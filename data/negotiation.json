@@ -1,0 +1,919 @@
+{
+  "name": "Negotiation and Labour Relations",
+  "description": "Public service negotiations, industrial relations, trade unions, and collective bargaining",
+  "type": "topic",
+  "hasSubcategories": false,
+  "icon": "🤝",
+  "questions": [
+    {
+      "id": "nlr_001",
+      "question": "What is the primary goal of collective bargaining in the public service?",
+      "options": [
+        "To create conflict between unions and management",
+        "To reach mutually beneficial agreements",
+        "To weaken union strength",
+        "To reduce productivity"
+      ],
+      "correct": 1,
+      "explanation": "Collective bargaining seeks agreements that promote mutual understanding and balance the interests of workers and management.",
+      "difficulty": "easy",
+      "chapter": "Collective Bargaining",
+      "keywords": [
+        "collective bargaining",
+        "mutual agreement",
+        "industrial relations"
+      ]
+    },
+    {
+      "id": "nlr_002",
+      "question": "Which body serves as the principal negotiation forum between Government and Civil Service unions in Nigeria?",
+      "options": [
+        "Federal Executive Council",
+        "Joint National Public Service Negotiating Council",
+        "National Salaries, Incomes and Wages Commission",
+        "National Labour Congress"
+      ],
+      "correct": 1,
+      "explanation": "The Joint National Public Service Negotiating Council (JNPSNC) is the recognized forum for negotiations between Government and unions in the civil service.",
+      "difficulty": "medium",
+      "chapter": "Negotiating Bodies",
+      "keywords": [
+        "JNPSNC",
+        "negotiating council",
+        "civil service"
+      ]
+    },
+    {
+      "id": "nlr_003",
+      "question": "Under the NPSNC structure, which council represents the senior staff category?",
+      "options": [
+        "Council I",
+        "Council II",
+        "Council III",
+        "Council IV"
+      ],
+      "correct": 0,
+      "explanation": "Council I represents senior staff, typically from Grade Levels 07 and above, while Councils II and III represent junior categories.",
+      "difficulty": "medium",
+      "chapter": "Council Structure",
+      "keywords": [
+        "NPSNC",
+        "Council I",
+        "senior staff"
+      ]
+    },
+    {
+      "id": "nlr_004",
+      "question": "The process of resolving a labour dispute through an independent third party whose decision is binding is known as:",
+      "options": [
+        "Mediation",
+        "Arbitration",
+        "Conciliation",
+        "Negotiation"
+      ],
+      "correct": 1,
+      "explanation": "Arbitration involves a neutral third party making a binding decision to resolve an industrial dispute.",
+      "difficulty": "medium",
+      "chapter": "Dispute Resolution",
+      "keywords": [
+        "arbitration",
+        "dispute",
+        "resolution"
+      ]
+    },
+    {
+      "id": "nlr_005",
+      "question": "Which legislation governs trade disputes and industrial relations in Nigeria?",
+      "options": [
+        "Labour Act 2000",
+        "Trade Disputes Act Cap T8 LFN 2004",
+        "Industrial Arbitration Act 2010",
+        "Public Service Rules 2021"
+      ],
+      "correct": 1,
+      "explanation": "The Trade Disputes Act Cap T8 LFN 2004 provides the legal framework for dispute resolution in Nigeria's labour system.",
+      "difficulty": "medium",
+      "chapter": "Trade Disputes Act",
+      "keywords": [
+        "trade disputes",
+        "labour law",
+        "industrial relations"
+      ]
+    },
+    {
+      "id": "nlr_006",
+      "question": "The ultimate stage in Nigeria's trade dispute settlement process is referral to:",
+      "options": [
+        "Industrial Arbitration Panel",
+        "National Industrial Court of Nigeria",
+        "Federal Executive Council",
+        "Minister of Labour"
+      ],
+      "correct": 1,
+      "explanation": "If arbitration fails, disputes are referred to the National Industrial Court, whose decisions are binding.",
+      "difficulty": "medium",
+      "chapter": "Dispute Resolution",
+      "keywords": [
+        "industrial court",
+        "trade dispute",
+        "settlement"
+      ]
+    },
+    {
+      "id": "nlr_007",
+      "question": "Which international body sets core conventions on freedom of association and collective bargaining?",
+      "options": [
+        "United Nations",
+        "World Bank",
+        "International Labour Organization",
+        "African Union"
+      ],
+      "correct": 2,
+      "explanation": "The International Labour Organization (ILO) sets conventions protecting workers' rights, including Conventions 87 and 98.",
+      "difficulty": "easy",
+      "chapter": "ILO Conventions",
+      "keywords": [
+        "ILO",
+        "collective bargaining",
+        "rights"
+      ]
+    },
+    {
+      "id": "nlr_008",
+      "question": "Which organ of the JNPSNC handles initial negotiations at the MDA level and ensures implementation of national agreements?",
+      "options": [
+        "National Council",
+        "Departmental Council",
+        "Standing Committee",
+        "Zonal Council"
+      ],
+      "correct": 1,
+      "explanation": "Departmental Councils handle initial negotiations at the MDA level and implement national agreements, while the Standing Committee monitors compliance across MDAs.",
+      "difficulty": "medium",
+      "chapter": "Council Operations",
+      "keywords": [
+        "departmental council",
+        "standing committee",
+        "implementation",
+        "negotiation"
+      ]
+    },
+    {
+      "id": "nlr_009",
+      "question": "The principle of 'good faith' in negotiation requires parties to:",
+      "options": [
+        "Be confrontational",
+        "Act honestly and fairly",
+        "Delay decision-making",
+        "Avoid compromise"
+      ],
+      "correct": 1,
+      "explanation": "Negotiation in good faith requires honesty, transparency, and willingness to reach fair outcomes.",
+      "difficulty": "easy",
+      "chapter": "Negotiation Ethics",
+      "keywords": [
+        "good faith",
+        "negotiation",
+        "ethics"
+      ]
+    },
+    {
+      "id": "nlr_010",
+      "question": "Which of the following best defines 'industrial harmony'?",
+      "options": [
+        "The absence of unions",
+        "Peaceful relations between employers and employees",
+        "Government dominance in negotiations",
+        "Frequent industrial actions"
+      ],
+      "correct": 1,
+      "explanation": "Industrial harmony refers to a state of peaceful, cooperative relations between workers and management.",
+      "difficulty": "easy",
+      "chapter": "Industrial Harmony",
+      "keywords": [
+        "industrial harmony",
+        "peace",
+        "labour relations"
+      ]
+    },
+    {
+      "id": "nlr_011",
+      "question": "According to the NPSNC Constitution, how often should the National Council meet?",
+      "options": [
+        "Monthly",
+        "Quarterly",
+        "Bi-annually",
+        "Annually"
+      ],
+      "correct": 3,
+      "explanation": "The National Council is mandated to meet annually to review and approve agreements.",
+      "difficulty": "medium",
+      "chapter": "Council Meetings",
+      "keywords": [
+        "NPSNC",
+        "meetings",
+        "constitution"
+      ]
+    },
+    {
+      "id": "nlr_012",
+      "question": "The process of intervention by a neutral third party who assists disputing parties reach a voluntary agreement is called:",
+      "options": [
+        "Arbitration",
+        "Conciliation",
+        "Adjudication",
+        "Mediation"
+      ],
+      "correct": 3,
+      "explanation": "Mediation helps parties reach mutual understanding without binding decisions.",
+      "difficulty": "medium",
+      "chapter": "Alternative Dispute Resolution",
+      "keywords": [
+        "mediation",
+        "conciliation",
+        "labour"
+      ]
+    },
+    {
+      "id": "nlr_013",
+      "question": "Which body is empowered to issue a 'trade dispute declaration' under Nigerian labour law?",
+      "options": [
+        "National Labour Congress",
+        "Minister of Labour and Employment",
+        "Head of Civil Service",
+        "Permanent Secretary of an MDA"
+      ],
+      "correct": 1,
+      "explanation": "The Minister of Labour and Employment is responsible for declaring and mediating trade disputes.",
+      "difficulty": "medium",
+      "chapter": "Labour Law Administration",
+      "keywords": [
+        "minister of labour",
+        "trade dispute"
+      ]
+    },
+    {
+      "id": "nlr_014",
+      "question": "A strike in the Nigerian Public Service is lawful only when:",
+      "options": [
+        "Workers are dissatisfied",
+        "Dispute resolution channels have been exhausted",
+        "Government changes leadership",
+        "The union wants wage review"
+      ],
+      "correct": 1,
+      "explanation": "A strike is lawful only after exhausting all legal dispute resolution mechanisms under the Trade Disputes Act.",
+      "difficulty": "medium",
+      "chapter": "Industrial Action",
+      "keywords": [
+        "strike",
+        "legality",
+        "trade dispute"
+      ]
+    },
+    {
+      "id": "nlr_015",
+      "question": "The process of reaching agreements on terms of employment between employer and employees is called:",
+      "options": [
+        "Collective bargaining",
+        "Dispute resolution",
+        "Conciliation",
+        "Legislation"
+      ],
+      "correct": 0,
+      "explanation": "Collective bargaining determines terms and conditions of employment.",
+      "difficulty": "easy",
+      "chapter": "Collective Bargaining",
+      "keywords": [
+        "employment terms",
+        "negotiation",
+        "labour"
+      ]
+    },
+    {
+      "id": "nlr_016",
+      "question": "Which party represents Government in the Joint National Public Service Negotiating Council?",
+      "options": [
+        "Head of the Civil Service of the Federation",
+        "Federal Civil Service Commission",
+        "Ministry of Labour and Employment",
+        "Ministry of Finance"
+      ],
+      "correct": 0,
+      "explanation": "The Head of the Civil Service leads the Government's delegation in the JNPSNC.",
+      "difficulty": "medium",
+      "chapter": "Representation",
+      "keywords": [
+        "government",
+        "negotiation",
+        "representation"
+      ]
+    },
+    {
+      "id": "nlr_017",
+      "question": "Under the ILO framework, which principle underpins fair labour practices?",
+      "options": [
+        "Freedom of association",
+        "Compulsory arbitration",
+        "Union suppression",
+        "Political neutrality"
+      ],
+      "correct": 0,
+      "explanation": "Freedom of association ensures workers can organize and bargain collectively.",
+      "difficulty": "medium",
+      "chapter": "ILO Conventions",
+      "keywords": [
+        "ILO",
+        "freedom of association"
+      ]
+    },
+    {
+      "id": "nlr_018",
+      "question": "What is the key outcome of successful negotiation?",
+      "options": [
+        "Industrial harmony",
+        "Increased strikes",
+        "Loss of productivity",
+        "Union disbandment"
+      ],
+      "correct": 0,
+      "explanation": "Successful negotiations result in mutual satisfaction and industrial harmony.",
+      "difficulty": "easy",
+      "chapter": "Negotiation Outcomes",
+      "keywords": [
+        "industrial harmony",
+        "negotiation",
+        "outcome"
+      ]
+    },
+    {
+      "id": "nlr_019",
+      "question": "The Labour-Management Cooperation principle promotes:",
+      "options": [
+        "Conflict escalation",
+        "Partnership and dialogue",
+        "Union restriction",
+        "Centralized decision-making"
+      ],
+      "correct": 1,
+      "explanation": "Labour-Management Cooperation fosters dialogue and collaboration for improved productivity.",
+      "difficulty": "easy",
+      "chapter": "Industrial Cooperation",
+      "keywords": [
+        "labour-management",
+        "dialogue",
+        "cooperation"
+      ]
+    },
+    {
+      "id": "nlr_020",
+      "question": "The Trade Disputes Act requires disputes to be reported within how many days after they arise?",
+      "options": [
+        "7 days",
+        "14 days",
+        "30 days",
+        "60 days"
+      ],
+      "correct": 1,
+      "explanation": "A dispute must be reported to the Minister of Labour within 14 days to activate mediation procedures.",
+      "difficulty": "medium",
+      "chapter": "Trade Disputes Act",
+      "keywords": [
+        "dispute reporting",
+        "timeline",
+        "minister"
+      ]
+    },
+    {
+      "id": "nlr_021",
+      "question": "The Industrial Arbitration Panel (IAP) was established to:",
+      "options": [
+        "Mediate trade disputes",
+        "Adjudicate disputes referred by the Minister",
+        "Register trade unions",
+        "Supervise elections"
+      ],
+      "correct": 1,
+      "explanation": "The IAP adjudicates disputes referred by the Minister of Labour for arbitration.",
+      "difficulty": "medium",
+      "chapter": "Industrial Arbitration",
+      "keywords": [
+        "IAP",
+        "arbitration",
+        "disputes"
+      ]
+    },
+    {
+      "id": "nlr_022",
+      "question": "Collective agreements in the public service become binding after approval by:",
+      "options": [
+        "The President",
+        "The Federal Executive Council",
+        "The Head of Service and Minister of Labour",
+        "The National Assembly"
+      ],
+      "correct": 2,
+      "explanation": "Collective agreements are validated by both the Head of Service and Minister of Labour before implementation.",
+      "difficulty": "medium",
+      "chapter": "Collective Agreements",
+      "keywords": [
+        "approval",
+        "agreement",
+        "implementation"
+      ]
+    },
+    {
+      "id": "nlr_023",
+      "question": "Which of the following is NOT a legitimate labour organization in the public service?",
+      "options": [
+        "Trade Union Congress (TUC)",
+        "Nigeria Labour Congress (NLC)",
+        "Civil Service Union",
+        "Public Workers Reform Party"
+      ],
+      "correct": 3,
+      "explanation": "Political entities such as the 'Public Workers Reform Party' are not recognized as trade unions.",
+      "difficulty": "easy",
+      "chapter": "Trade Unions",
+      "keywords": [
+        "union",
+        "legitimacy",
+        "labour"
+      ]
+    },
+    {
+      "id": "nlr_024",
+      "question": "The concept of 'collective responsibility' in negotiation means:",
+      "options": [
+        "Each side must negotiate separately",
+        "All parties must uphold the agreement reached",
+        "Only Government bears implementation duty",
+        "Union can revise decisions unilaterally"
+      ],
+      "correct": 1,
+      "explanation": "Collective responsibility implies joint ownership and adherence to agreements by all negotiating parties.",
+      "difficulty": "medium",
+      "chapter": "Collective Responsibility",
+      "keywords": [
+        "responsibility",
+        "agreement",
+        "implementation"
+      ]
+    },
+    {
+      "id": "nlr_025",
+      "question": "Who chairs the Government Side in the National Council meetings?",
+      "options": [
+        "Head of the Civil Service of the Federation",
+        "Minister of Labour and Employment",
+        "Permanent Secretary, Establishments",
+        "Secretary to the Government of the Federation"
+      ],
+      "correct": 0,
+      "explanation": "The Head of the Civil Service of the Federation chairs the Government Side in the National Council meetings.",
+      "difficulty": "medium",
+      "chapter": "Council Leadership",
+      "keywords": [
+        "chairperson",
+        "government side",
+        "NPSNC"
+      ]
+    },
+    {
+      "id": "nlr_026",
+      "question": "The principle of 'no work, no pay' in industrial relations is derived from which legal framework?",
+      "options": [
+        "Public Service Rules",
+        "Trade Disputes Act",
+        "Labour Act",
+        "Civil Service Handbook"
+      ],
+      "correct": 1,
+      "explanation": "Section 43 of the Trade Disputes Act establishes the principle of 'no work, no pay' during lawful or unlawful strikes.",
+      "difficulty": "medium",
+      "chapter": "Labour Law",
+      "keywords": [
+        "no work no pay",
+        "trade disputes",
+        "strike"
+      ]
+    },
+    {
+      "id": "nlr_027",
+      "question": "Which of the following best defines 'conciliation'?",
+      "options": [
+        "Binding settlement by an arbitrator",
+        "Voluntary process of resolving disputes through third-party assistance",
+        "Formal negotiation between unions and government",
+        "Legal enforcement of agreements"
+      ],
+      "correct": 1,
+      "explanation": "Conciliation is a voluntary process in which a neutral party helps disputing sides reach agreement.",
+      "difficulty": "medium",
+      "chapter": "Conciliation",
+      "keywords": [
+        "conciliation",
+        "negotiation",
+        "dispute resolution"
+      ]
+    },
+    {
+      "id": "nlr_028",
+      "question": "The National Industrial Court derives its authority from which constitutional provision?",
+      "options": [
+        "Section 254C of the 1999 Constitution (as amended)",
+        "Section 153 of the 1999 Constitution",
+        "Section 212 of the Labour Act",
+        "Section 20 of the Public Service Rules"
+      ],
+      "correct": 0,
+      "explanation": "Section 254C of the 1999 Constitution grants the National Industrial Court jurisdiction over labour matters.",
+      "difficulty": "medium",
+      "chapter": "Legal Framework",
+      "keywords": [
+        "industrial court",
+        "constitution",
+        "labour"
+      ]
+    },
+    {
+      "id": "nlr_029",
+      "question": "The term 'check-off dues' in industrial relations refers to:",
+      "options": [
+        "Penalties paid by striking workers",
+        "Union dues automatically deducted from salaries",
+        "Negotiation expenses",
+        "Performance bonuses"
+      ],
+      "correct": 1,
+      "explanation": "Check-off dues are union contributions deducted from members' salaries and remitted to their unions by employers.",
+      "difficulty": "easy",
+      "chapter": "Union Finance",
+      "keywords": [
+        "check-off dues",
+        "union finance"
+      ]
+    },
+    {
+      "id": "nlr_030",
+      "question": "Under the JNPSNC Constitution, the Secretary of the Government Side is appointed by:",
+      "options": [
+        "The President",
+        "The Head of the Civil Service of the Federation",
+        "The Minister of Labour",
+        "The Federal Civil Service Commission"
+      ],
+      "correct": 1,
+      "explanation": "The Head of the Civil Service designates the Secretary of the Government Side to coordinate administrative duties.",
+      "difficulty": "medium",
+      "chapter": "Administrative Structure",
+      "keywords": [
+        "secretary",
+        "JNPSNC",
+        "appointments"
+      ]
+    },
+    {
+      "id": "nlr_031",
+      "question": "Which organ of the JNPSNC is responsible for policy guidance and interpretation of agreements?",
+      "options": [
+        "National Council",
+        "Standing Committee",
+        "Departmental Committee",
+        "Zonal Council"
+      ],
+      "correct": 1,
+      "explanation": "The Standing Committee interprets agreements and provides policy direction between full Council sessions.",
+      "difficulty": "medium",
+      "chapter": "Standing Committee",
+      "keywords": [
+        "standing committee",
+        "interpretation",
+        "policy guidance"
+      ]
+    },
+    {
+      "id": "nlr_032",
+      "question": "What is the first step in resolving a trade dispute under Nigerian law?",
+      "options": [
+        "Arbitration by IAP",
+        "Conciliation by the Ministry of Labour",
+        "Judicial referral",
+        "Strike notice"
+      ],
+      "correct": 1,
+      "explanation": "Conciliation by the Ministry of Labour is the first statutory step under the Trade Disputes Act.",
+      "difficulty": "medium",
+      "chapter": "Trade Dispute Procedure",
+      "keywords": [
+        "conciliation",
+        "labour ministry",
+        "procedure"
+      ]
+    },
+    {
+      "id": "nlr_033",
+      "question": "Under the NPSNC, how are disputes within a Departmental Council escalated?",
+      "options": [
+        "To the Head of Service directly",
+        "To the National Council through the Standing Committee",
+        "To the Industrial Arbitration Panel",
+        "To the Federal Civil Service Commission"
+      ],
+      "correct": 1,
+      "explanation": "Unresolved disputes are escalated through the Standing Committee to the National Council for resolution.",
+      "difficulty": "medium",
+      "chapter": "Council Escalation",
+      "keywords": [
+        "disputes",
+        "standing committee",
+        "escalation"
+      ]
+    },
+    {
+      "id": "nlr_034",
+      "question": "Which of the following is an example of a 'non-monetary issue' in negotiations?",
+      "options": [
+        "Salary review",
+        "Promotion criteria",
+        "Housing allowance",
+        "Transport subsidy"
+      ],
+      "correct": 1,
+      "explanation": "Promotion and career development matters are non-monetary negotiation issues.",
+      "difficulty": "easy",
+      "chapter": "Negotiation Issues",
+      "keywords": [
+        "non-monetary",
+        "promotion",
+        "negotiation"
+      ]
+    },
+    {
+      "id": "nlr_035",
+      "question": "The ILO Convention 98 deals with:",
+      "options": [
+        "Child labour prohibition",
+        "Right to organize and collective bargaining",
+        "Gender equality at work",
+        "Occupational safety and health"
+      ],
+      "correct": 1,
+      "explanation": "ILO Convention 98 guarantees workers the right to organize and engage in collective bargaining.",
+      "difficulty": "medium",
+      "chapter": "ILO Conventions",
+      "keywords": [
+        "ILO 98",
+        "collective bargaining",
+        "rights"
+      ]
+    },
+    {
+      "id": "nlr_036",
+      "question": "The Labour Management Relations model emphasizes:",
+      "options": [
+        "Conflict and strikes",
+        "Mutual respect and dialogue",
+        "Management dominance",
+        "Union suppression"
+      ],
+      "correct": 1,
+      "explanation": "This model fosters collaboration and shared responsibility between management and employees.",
+      "difficulty": "medium",
+      "chapter": "Labour Management Relations",
+      "keywords": [
+        "dialogue",
+        "cooperation",
+        "mutual respect"
+      ]
+    },
+    {
+      "id": "nlr_037",
+      "question": "Which key principle underlies grievance procedures in the public service?",
+      "options": [
+        "Prompt and fair resolution",
+        "Lengthy documentation",
+        "Union isolation",
+        "Administrative secrecy"
+      ],
+      "correct": 0,
+      "explanation": "Grievance procedures must ensure fairness, confidentiality, and prompt handling of staff complaints.",
+      "difficulty": "easy",
+      "chapter": "Grievance Handling",
+      "keywords": [
+        "grievance",
+        "resolution",
+        "fairness"
+      ]
+    },
+    {
+      "id": "nlr_038",
+      "question": "The employer's refusal to allow workers to perform duties during an industrial dispute is called:",
+      "options": [
+        "Lockout",
+        "Suspension",
+        "Termination",
+        "Withdrawal"
+      ],
+      "correct": 0,
+      "explanation": "A lockout occurs when employers prevent employees from working as part of industrial action.",
+      "difficulty": "medium",
+      "chapter": "Industrial Action",
+      "keywords": [
+        "lockout",
+        "dispute",
+        "employer action"
+      ]
+    },
+    {
+      "id": "nlr_039",
+      "question": "The right of workers to join unions of their choice is protected by which Nigerian law?",
+      "options": [
+        "Public Service Rules",
+        "Labour Act, Cap L1 LFN 2004",
+        "Trade Disputes Act",
+        "Civil Service Handbook"
+      ],
+      "correct": 1,
+      "explanation": "The Labour Act guarantees workers' freedom to join or form unions of their choice.",
+      "difficulty": "medium",
+      "chapter": "Union Rights",
+      "keywords": [
+        "labour act",
+        "freedom",
+        "union"
+      ]
+    },
+    {
+      "id": "nlr_040",
+      "question": "What does the abbreviation JNPSNC stand for?",
+      "options": [
+        "Joint National Public Service Negotiating Council",
+        "Judicial National Public Sector Negotiation Committee",
+        "Joint National Personnel Service Council",
+        "Job Negotiation and Pay Structure Council"
+      ],
+      "correct": 0,
+      "explanation": "JNPSNC means Joint National Public Service Negotiating Council, the formal negotiation platform for the Nigerian public service.",
+      "difficulty": "easy",
+      "chapter": "Council Structure",
+      "keywords": [
+        "JNPSNC",
+        "negotiation",
+        "public service"
+      ]
+    },
+    {
+      "id": "nlr_041",
+      "question": "Which of the following is NOT a level of negotiation in the NPSNC structure?",
+      "options": [
+        "National Council",
+        "Departmental Council",
+        "Local Council",
+        "Regional Council"
+      ],
+      "correct": 3,
+      "explanation": "The NPSNC structure includes Departmental, State, and National Councils. 'Regional Council' is not a recognized level in this framework.",
+      "difficulty": "easy",
+      "chapter": "Council Levels",
+      "keywords": [
+        "council",
+        "negotiation levels",
+        "structure"
+      ]
+    },
+    {
+      "id": "nlr_042",
+      "question": "In negotiation, the 'BATNA' concept refers to:",
+      "options": [
+        "Best Alternative To a Negotiated Agreement",
+        "Basic Agreement To National Arbitration",
+        "Binding Arbitration Treaty on Negotiation Agreement",
+        "Budget Allocation for Trade Negotiations Act"
+      ],
+      "correct": 0,
+      "explanation": "BATNA helps negotiators understand their best fallback position if no agreement is reached.",
+      "difficulty": "medium",
+      "chapter": "Negotiation Concepts",
+      "keywords": [
+        "BATNA",
+        "negotiation",
+        "strategy"
+      ]
+    },
+    {
+      "id": "nlr_043",
+      "question": "The effectiveness of labour relations in the public service depends largely on:",
+      "options": [
+        "Union confrontation",
+        "Effective communication and trust",
+        "Frequent strikes",
+        "Rigid procedures"
+      ],
+      "correct": 1,
+      "explanation": "Strong communication and trust between unions and management sustain industrial peace.",
+      "difficulty": "medium",
+      "chapter": "Industrial Relations",
+      "keywords": [
+        "communication",
+        "trust",
+        "industrial peace"
+      ]
+    },
+    {
+      "id": "nlr_044",
+      "question": "Which of the following is a legal duty of trade unions?",
+      "options": [
+        "Organizing violent protests",
+        "Representing members in negotiations",
+        "Restricting other unions' rights",
+        "Rejecting government directives"
+      ],
+      "correct": 1,
+      "explanation": "Trade unions have the duty to represent members' welfare and protect employment conditions through lawful means.",
+      "difficulty": "medium",
+      "chapter": "Trade Union Functions",
+      "keywords": [
+        "representation",
+        "union",
+        "lawful"
+      ]
+    },
+    {
+      "id": "nlr_045",
+      "question": "The principle of 'tripartism' in labour relations refers to cooperation among:",
+      "options": [
+        "Government, Employers, and Workers",
+        "Employers, Politicians, and Media",
+        "Workers, Banks, and NGOs",
+        "Unions, Courts, and Investors"
+      ],
+      "correct": 0,
+      "explanation": "Tripartism is the partnership of Government, Employers, and Workers under ILO framework.",
+      "difficulty": "medium",
+      "chapter": "Tripartism",
+      "keywords": [
+        "ILO",
+        "tripartism",
+        "cooperation"
+      ]
+    },
+    {
+      "id": "nlr_046",
+      "question": "Under the NPSNC, quorum for National Council meetings requires representation from:",
+      "options": [
+        "Only Government Side",
+        "Only Staff Side",
+        "Both Government and Staff Sides",
+        "Observers and Advisers only"
+      ],
+      "correct": 2,
+      "explanation": "Both Government and Staff Sides must be present for quorum in Council meetings.",
+      "difficulty": "medium",
+      "chapter": "Council Procedure",
+      "keywords": [
+        "quorum",
+        "council",
+        "procedure"
+      ]
+    },
+    {
+      "id": "nlr_047",
+      "question": "The key purpose of a Memorandum of Understanding (MoU) after negotiation is to:",
+      "options": [
+        "Summarize and document agreed terms",
+        "Replace the formal agreement",
+        "Suspend negotiations",
+        "Serve as a temporary verbal understanding"
+      ],
+      "correct": 0,
+      "explanation": "An MoU records agreed positions and guides implementation of negotiated outcomes.",
+      "difficulty": "medium",
+      "chapter": "Negotiation Documentation",
+      "keywords": [
+        "MoU",
+        "agreement",
+        "documentation"
+      ]
+    },
+    {
+      "id": "nlr_048",
+      "question": "Effective labour relations contribute directly to:",
+      "options": [
+        "Industrial unrest",
+        "Enhanced productivity and morale",
+        "Reduced employee commitment",
+        "Increased absenteeism"
+      ],
+      "correct": 1,
+      "explanation": "Healthy labour relations improve productivity, morale, and organizational performance.",
+      "difficulty": "easy",
+      "chapter": "Labour Relations Outcomes",
+      "keywords": [
+        "productivity",
+        "morale",
+        "industrial relations"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,943 @@
+﻿# Extracted PSR Questions from QA Guide
+Total Questions Found: 460
+
+## PROMOTION - 49 questions
+- [ ] likely questions and answers drawn from the 2021 edition of the Public Service Rules (PSR) relevant to Civil Service promotion examinations. 
+Each entry includes the question, answer, and corresponding rule citation.
+S/N (Ref: Answer	PSR Reference)
+  - Question
+- [ ] When can an officer on GL 14 be considered for promotion? (Ref: Rule 020802(c))
+  - After spending a minimum of 3 years on the grade.
+- [ ] What is the effective date for all promotions in the Civil Service? (Ref: Rule 020806)
+  - 1st January of the year for which the promotion is conducted.
+- [ ] Who conducts confirmation examinations for officers? (Ref: Rule 030102)
+  - The Career Management Office (CMO) in OHCSF.
+- [ ] What happens to an officer who fails the confirmation exam after three attempts? (Ref: Rule 030104)
+  - The officer shall be required to resign or withdraw from the service.
+- [ ] Can a contract officer be promoted? (Ref: Rule 020809)
+  - No, but may be considered for enhanced appointment on re-negotiation.
+- [ ] What body handles promotion to posts in GL 07–14? (Ref: Rule 020802(e))
+  - The Ministry/Extra-Ministerial Office with OHCSF and FCSC confirmation.
+- [ ] What reference materials are allowed in confirmation exams? (Ref: Rule 030108)
+  - PSR, Financial Regulations, Civil Service Handbook, etc.
+- [ ] What body oversees promotion of Permanent Secretaries? (Ref: Rule 020811–020813)
+  - Office of the Head of Civil Service of the Federation.
+- [ ] Can an unconfirmed officer be promoted? (Ref: Rule 020808)
+  - No, except allowed to take confirmation exam after six months.
+- [ ] Who is eligible to sit promotion exams while on secondment? (Ref: Rule 020807)
+  - All officers on approved secondment or study leave.
+- [ ] What is the rule on notional promotion during sabbatical? (Ref: Rule 120224(f))
+  - Not granted; but officer may sit promotion exams.
+- [ ] Who supervises examination board for confirmation exams? (Ref: Rule 030103)
+  - Permanent Secretary (CMO), OHCSF.
+- [ ] What determines promotion eligibility besides years in service? (Ref: Rule 020802(d))
+  - Merit, performance, and absence of disciplinary issues.
+- [ ] When can an officer on GL 14 be considered for promotion? (Ref: Rule 020802(c))
+  - After 3 years on the grade, to ensure adequate experience before elevation.
+- [ ] What is the effective date for all promotions? (Ref: Rule 020806)
+  - 1st January of the promotion year. Promotions are standardized to align with the annual personnel budget.
+- [ ] Who conducts confirmation exams? (Ref: Rule 030102)
+  - Career Management Office (CMO), OHCSF, ensuring centralized and standard administration.
+- [ ] What if an officer fails confirmation exam 3 times? (Ref: Rule 030104)
+  - Required to resign or be withdrawn; failure shows lack of core service competence.
+- [ ] Can contract officers be promoted? (Ref: Rule 020809)
+  - No, but they can be reappointed on new terms. Contract roles are non-career appointments.
+- [ ] Who handles promotion GL 07–14? (Ref: Rule 020802(e))
+  - MDAs in liaison with OHCSF and FCSC, ensuring transparency and adherence to federal standards.
+- [ ] Who promotes Permanent Secretaries? (Ref: Rule 020811–020813)
+  - OHCSF, ensuring alignment with national strategy and leadership needs.
+- [ ] Can unconfirmed officers be promoted? (Ref: Rule 020808)
+  - No, unless special provision exists. Confirmation is a prerequisite for career progression.
+- [ ] Can seconded officers sit promotion exams? (Ref: Rule 020807)
+  - Yes, to avoid stagnation and ensure career progression while away.
+- [ ] Is notional promotion allowed on sabbatical? (Ref: Rule 120224(f))
+  - No, but officer can sit exams. Sabbatical is a break in normal duty.
+- [ ] Who chairs confirmation exam board? (Ref: Rule 030103)
+  - Permanent Secretary, CMO, ensures administrative oversight.
+- [ ] What qualifies officer for promotion? (Ref: Rule 020802(d))
+  - Merit, experience, no discipline records, plus skill and training compliance.
+- [ ] promotion exam-style questions with answers and brief explanations drawn from the 2021 Public Service Rules (PSR). Each entry also includes the relevant rule reference.
+Chapter 1 (Introduction)
+S/N (Ref: Answer with Explanation	PSR Reference)
+  - Question
+- [ ] What key principles does the PSR promote? (Ref: These principles are foundational to achieving an efficient, incorruptible, and citizen-centered public service.	Foreword)
+  - Transparency, rule of law, and accountability.
+- [ ] What is the purpose of confirmation examinations? (Ref: It is mandatory for career confirmation and ensures the officer understands civil service rules and duties.	Rule 030101)
+  - To assess an officer’s suitability for permanent appointment.
+- [ ] How long after appointment must an officer take the confirmation exam? (Ref: Officers are expected to write the exam after two years and pass within three attempts.	Rule 030105)
+  - Within two years.
+- [ ] What happens if an officer fails the confirmation exam after three attempts? (Ref: Persistent failure demonstrates unfitness for career civil service.	Rule 030105)
+  - The officer shall be required to resign from the service.
+- [ ] How often is the confirmation exam conducted? (Ref: This ensures consistency and allows officers regular opportunities to sit the exam.	Rule 030106)
+  - Once a year.
+- [ ] Who is exempted from Group A (Law) confirmation exam? (Ref: They are already certified in legal knowledge required.	Rule 030109)
+  - Law professionals trained in Nigeria or called to the Bar.
+- [ ] Who must pass the confirmation exams compulsorily? (Ref: It’s a statutory requirement unless formally exempted.	Rule 030501)
+  - All Senior Executive Officers, Administrative Officers, and Professionals.
+- [ ] Who conducts the confirmation examination? (Ref: Ensures standardization and impartiality.	Rule 030102)
+  - The OHCSF through its Career Management Office.
+- [ ] Can an officer be exempted from confirmation exam? (Ref: This is limited to specific cases and must be approved.	Rule 030109)
+  - Yes, by Government directive or proven legal qualification.
+- [ ] Can unconfirmed officers be promoted? (Ref: Confirmation is a prerequisite for career advancement.	Rule 020808 (cross-referenced))
+  - Generally, no.
+- [ ] What format does the confirmation exam follow? (Ref: Ensures officers grasp regulatory frameworks.	Rule 030203)
+  - Written papers on PSR, Financial Regulations, and relevant laws.
+- [ ] What happens to emoluments when an officer is promoted? (Ref: Salary upgrades reflect new responsibilities and must be promptly implemented upon promotion.	Rule 040104)
+  - They receive the salary of the new grade from the effective date.
+- [ ] What rules apply when an officer is promoted across overlapping salary levels? (Ref: Ensures fairness and reward, especially when old and new grades have intersecting salary scales.	Rule 040104(ii))
+  - Officer is placed at the next salary point above previous earnings.
+- [ ] Is promotion arrears allowed? (Ref: Officers must not lose entitlements due to administrative delays.	Rule 040104(iii))
+  - Yes, arrears must be paid within the year promotion is effected.
+- [ ] Who determines salary placement on promotion? (Ref: Accurate placement prevents pay disputes and maintains morale.	Rule 040104(i–ii))
+  - The employing MDA based on PSR guidelines.
+- [ ] When is PMS applied to a newly promoted officer? (Ref: Performance expectations adjust based on the new responsibilities.	Rule 050401(c))
+  - Immediately after promotion.
+- [ ] Can a reward replace promotion? (Ref: Rewards are motivational, while promotion is based on structured criteria and performance reviews.	Not explicitly stated but inferred)
+  - No.
+- [ ] What are the core values promoted through R&RS? (Ref: Recognizing these values supports the public service transformation agenda.	Rule 060102)
+  - Integrity, innovation, commitment, and service excellence.
+- [ ] Who should appeals on appointments or promotions be addressed to? (Ref: This ensures that issues relating to employment terms are reviewed by the appropriate authority.	Rule 110102(a))
+  - The Chairman, Federal Civil Service Commission.
+- [ ] Who approves appointments and promotions in parastatals? (Ref: Both junior and senior appointments follow this process.	Rule 170301)
+  - Boards/Councils through staff committees.
+- [ ] Who approves promotion of senior staff in parastatals? (Ref: Junior staff promotions are approved by CEOs on JSC recommendation.	Rule 170303)
+  - The Board/Council based on SSC recommendation.
+- [ ] What PSR rule applies to promotion in parastatals? (Ref: These provide eligibility criteria for promotion.	Rule 170304)
+  - PSR 020802 (b), (c), and (d).
+
+## DISCIPLINE - 22 questions
+- [ ] What type of misconduct warrants summary dismissal? (Ref: Rule 100401)
+  - Serious misconduct such as fraud, bribery, and corruption.
+- [ ] Who has disciplinary authority over officers on GL 06 and below? (Ref: Rule 100103)
+  - Permanent Secretaries or Heads of Extra-Ministerial Departments.
+- [ ] What is the penalty for gross misconduct? (Ref: Rule 100401)
+  - Dismissal from service.
+- [ ] What is considered misconduct? (Ref: Rule 100301)
+  - Improper behavior like insubordination, lateness, etc.
+- [ ] What is the disciplinary procedure start point? (Ref: Rule 100302)
+  - Issuance of a query and request for explanation.
+- [ ] Who may appeal a disciplinary decision? (Ref: Chapter 11)
+  - Any officer aggrieved by a disciplinary decision.
+- [ ] What type of misconduct warrants dismissal? (Ref: Rule 100401)
+  - Serious misconduct like fraud, theft, and insubordination; these compromise public trust.
+- [ ] Penalty for gross misconduct? (Ref: Rule 100401)
+  - Dismissal, since these offenses are incompatible with public service ethics.
+- [ ] What is misconduct? (Ref: Rule 100301)
+  - Improper behavior, like insubordination or negligence, not severe enough for dismissal.
+- [ ] What starts the disciplinary process? (Ref: Rule 100302)
+  - Query, with officer asked to explain the alleged offense.
+- [ ] What constitutes misconduct warranting non-confirmation? (Ref: These behaviors indicate unsuitability for continued public service.	Rule 020207)
+  - Persistent absenteeism, failure to pass confirmation exams, etc.
+- [ ] Is it misconduct to misuse free transport or allowances? (Ref: Misuse includes using transport for non-official purposes or failing to refund unspent allowances.	Rule 080106)
+  - Yes, it's serious misconduct.
+- [ ] What is misconduct? (Ref: Examples include lateness, insubordination, negligence, and inappropriate dressing.	Rule 100301)
+  - Improper behavior that undermines the image of the service.
+- [ ] What is serious misconduct? (Ref: Includes corruption, fraud, unauthorized disclosure, and criminal offences.	Rule 100401)
+  - Serious wrongdoing that may lead to dismissal.
+- [ ] What is the first step in a disciplinary process? (Ref: The officer must be informed in writing and allowed to respond.	Rule 100302)
+  - Issuance of a written query.
+- [ ] Can an officer be fined as a punishment? (Ref: The PSR prohibits fines as disciplinary punishment.	Rule 100309)
+  - No.
+- [ ] What if misconduct is discovered during an inquiry? (Ref: Transparency is required for any new grounds for discipline.	Rule 100308(viii))
+  - The officer must be informed and allowed to respond.
+- [ ] Who investigates allegations of misconduct? (Ref: Ensures impartiality and fairness.	Rule 100308(v))
+  - A board of inquiry with at least three members.
+- [ ] What disciplinary procedure applies to Permanent Secretaries? (Ref: They face a higher-level process due to their rank.	Rule 100701)
+  - Committee hearing and final approval by the President.
+- [ ] Who exercises disciplinary control in parastatals? (Ref: Ensures checks for high-level disciplinary actions.	Rule 170305)
+  - Staff Committees, with Board/Council approval for GL 07+.
+- [ ] Do parastatals follow PSR disciplinary rules? (Ref: Adjustments are made for institutional structure.	Rule 170307)
+  - Yes, with Board/Council and CEO replacing FCSC/PS.
+- [ ] What disciplinary rules apply to paramilitary services? (Ref: Recognizes the operational distinctiveness of paramilitary forces.	Rule 170308)
+  - Their own internal rules.
+
+## EMPLOYMENT_SERVICE - 0 questions
+
+## RETIREMENT - 10 questions
+- [ ] What is the compulsory retirement age for civil servants? (Ref: Rule 020909)
+  - 60 years of age or 35 years of pensionable service, whichever comes first.
+- [ ] Can officers on suspension earn salaries? (Ref: Rule 100406)
+  - No, salaries are suspended pending case conclusion.
+- [ ] What is the compulsory retirement age for civil servants? (Ref: Rule 020909)
+  - 60 years or 35 years of service, whichever is earlier. This ensures timely succession and rejuvenation in the Service.
+- [ ] Can increments be backdated upon reinstatement after suspension? (Ref: This discourages indiscipline and delays; restoration is from the date of reinstatement.	Rule 040207)
+  - No, unless otherwise directed by the Commission.
+- [ ] What if an officer is on suspension when increment is due? (Ref: Ensures that only actively contributing officers benefit from financial progression.	Rule 040202)
+  - They forfeit the increment for that year.
+- [ ] Who handles petitions on allowances or pensions? (Ref: Appeals on service conditions unrelated to appointments are handled by OHCSF.	Rule 110102(b))
+  - Head of the Civil Service of the Federation.
+- [ ] What is the minimum period before an officer can take pre-retirement leave? (Ref: The officer attends workshops and prepares documentation.	Rule 120243)
+  - 3 months before retirement.
+- [ ] What is the government's burial responsibility if a pensionable officer dies in service? (Ref: Serves as a form of death benefit.	Rule 130402)
+  - 100% of annual emoluments paid to the family.
+- [ ] Can the Next of Kin receive both life insurance and pension savings? (Ref: Both are due as part of death benefits.	Rule 160203(b))
+  - Yes
+- [ ] What is the compulsory retirement age in Foreign Service? (Ref: Whichever comes first, in line with general PSR retirement rules.	Reg. 28)
+  - 60 years or 35 years of service.
+
+## LEAVE - 34 questions
+- [ ] How many types of study leave exist in the PSR? (Ref: Rule 120226)
+  - Three: in-service training, study leave with pay, and study leave without pay.
+- [ ] Can an officer take study leave during a national assignment? (Ref: Rule 120224(b))
+  - No, except with proper clearance.
+- [ ] What is the maximum duration of study leave with pay? (Ref: Rule 120228)
+  - Two years, extendable by one year.
+- [ ] How many study leave types are in PSR? (Ref: Rule 120226)
+  - Three: In-service training, study leave with pay, and without pay, covering different academic and service contexts.
+- [ ] Can an officer on national assignment go on study leave? (Ref: Rule 120224(b))
+  - No, unless properly cleared, to avoid disruptions in priority duties.
+- [ ] Maximum study leave with pay? (Ref: Rule 120228)
+  - Two years, extendable by one year, balancing academic development with service needs.
+- [ ] Can performance appraisal be conducted for officers on approved leave? (Ref: Appraisal must reflect the officer’s work before absence and during any part of the year they worked.	Rule 050501)
+  - Yes, based on pre-leave achievements and supervisor’s assessment.
+- [ ] Can an officer on vacation leave perform duty and claim transport costs? (Ref: The officer is entitled to allowances as if on duty.	Rule 080302)
+  - Yes, if prior approval was obtained.
+- [ ] Can an interdicted officer leave their station? (Ref: Officers must notify superiors and get approval to travel.	Rule 100405)
+  - No, unless approved.
+- [ ] What is the definition of leave under the PSR? (Ref: Officers are officially allowed to take time off for various reasons as approved.	Rule 120101)
+  - Authorized absence from duty for a specific period.
+- [ ] What is the standard leave year in the public service? (Ref: All leave entitlements must fall within this timeframe.	Rule 120106)
+  - January 1 to December 31.
+- [ ] What qualifies an officer for annual leave? (Ref: Officers must serve at least six months after their last leave to qualify again.	Rule 120204)
+  - Completion of six months of leave earning service.
+- [ ] How many days of annual leave is an officer on GL 07 and above entitled to? (Ref: Higher-grade officers receive more days of rest.	Rule 120203(a))
+  - 30 working days.
+- [ ] What is proportionate (pro-rata) leave? (Ref: New or retiring officers who have not completed a full year are given leave based on their service.	Rule 120212)
+  - Leave granted based on months of service within a year.
+- [ ] Can annual leave be deferred or accumulated? (Ref: Officers must use their leave within the year or forfeit it.	Rule 120206)
+  - No, deferred leave has been abolished and accumulation is not allowed.
+- [ ] How many days of casual leave can be taken annually? (Ref: Used for short, unscheduled absences.	Rule 120215)
+  - 7 working days.
+- [ ] What is the maximum period for casual leave in a year? (Ref: Only under exceptional cases can more than 7 days be granted.	Rule 120215)
+  - 7 working days unless approved by the Permanent Secretary.
+- [ ] What is sick leave? (Ref: Ensures officers recuperate fully without affecting workplace health.	Rule 120216)
+  - Leave granted due to illness, certified by an approved medical practitioner.
+- [ ] What is maternity leave duration under the PSR? (Ref: Aimed at supporting maternal health and early childcare.	Rule 120218)
+  - 16 weeks (with 8 weeks before and 8 weeks after delivery).
+- [ ] What is the entitlement for paternity leave? (Ref: Granted to male officers whose spouses have delivered a baby.	Rule 120219)
+  - 14 working days.
+- [ ] Can officers be recalled from leave? (Ref: Leave can be interrupted if service exigencies demand it.	Rule 120210)
+  - Yes, by the Permanent Secretary/Head of Extra-Ministerial Office.
+- [ ] What happens if an officer overstays approved leave? (Ref: Disciplinary action may follow for unauthorized absence.	Rule 120245)
+  - They are considered absent without leave and not entitled to pay.
+- [ ] What is examination leave? (Ref: Supports professional development linked to service improvement.	Rule 120222)
+  - Leave granted to write an approved exam related to an officer's duties.
+- [ ] What is sabbatical leave and who qualifies? (Ref: Enhances the officer’s skill for better service delivery.	Rule 120223)
+  - 12 months leave for GL 15 and above for research or professional development.
+- [ ] What is the condition for study leave with pay? (Ref: Ensures training adds value to the officer’s role.	Rule 120228)
+  - Course must relate to the officer’s duties and be approved by the MDA.
+- [ ] What is the rule on study leave without pay? (Ref: No emolument is paid, but service continuity is preserved.	Rule 120229)
+  - Granted when the course is not in the MDA’s plan but relevant to officer’s career.
+- [ ] What is leave of absence? (Ref: Officers may pursue national interest assignments or join spouses abroad.	Rule 120234)
+  - Absence on public policy grounds without pay, approved by OHCSF.
+- [ ] What happens after an officer’s leave of absence ends? (Ref: Reinforces the requirement of medical clearance before resuming duties.	Rule 130106)
+  - Officer must undergo medical fitness verification.
+- [ ] How long can an officer be on sick leave initially? (Ref: Further review by a Medical Board is needed for extension.	Rule 130319)
+  - Three months with an approved certificate.
+- [ ] When is a Medical Board involved in sick leave? (Ref: The Board determines if the officer should be invalidated from service.	Rule 130317)
+  - If the officer exceeds three months of illness.
+- [ ] What is the policy on leave deferral for foreign officers? (Ref: Leave must be used within the calendar year.	Reg. 19(2))
+  - Deferred leave is abolished.
+- [ ] Who authorizes leave spent outside duty post abroad? (Ref: Helps ensure staff presence aligns with mission duties.	Reg. 19(3)(6))
+  - Head of Mission.
+- [ ] What governs urgent leave for family bereavement? (Ref: Granted on death of close relations like parents, spouse, children.	Reg. 19(6)(a))
+  - Free passage to Nigeria.
+- [ ] What travel time is allowed with casual leave overseas? (Ref: Leave taken abroad deducts directly from annual leave days.	Reg. 19(4))
+  - None.
+
+## GENERAL - 296 questions
+- [ ] What is the minimum period of probation? (Ref: Rule 020205)
+  - Two years from the date of first appointment.
+- [ ] What document should an officer sign upon appointment? (Ref: Rule 020210)
+  - Oath of Secrecy.
+- [ ] What is the penalty for unauthorized absence from duty? (Ref: Rule 100801)
+  - Loss of pay for the period of absence.
+- [ ] What is the definition of General Inefficiency? (Ref: Rule 100203)
+  - Persistent omission or incompetence that hampers effective duty performance.
+- [ ] Who determines if an officer can be retired on health grounds? (Ref: Rule 020905)
+  - A duly constituted Medical Board.
+- [ ] What happens if an officer refuses transfer? (Ref: Rule 020208)
+  - May be liable for disciplinary action.
+- [ ] What is the notice period for resignation? (Ref: Rule 020904)
+  - One month or payment of one month salary in lieu.
+- [ ] What is the penalty for falsifying records? (Ref: Rule 100401)
+  - Dismissal as it constitutes serious misconduct.
+- [ ] What does interdiction mean? (Ref: Rule 100406)
+  - Temporary removal from duties while under investigation.
+- [ ] How often should PSR be reviewed? (Ref: Chapter 19)
+  - Every five years.
+- [ ] What does deferment of increment mean? (Ref: Rule 040205)
+  - Increment is delayed, but not cancelled.
+- [ ] What is the purpose of Annual Performance Appraisal? (Ref: Chapter 5)
+  - To assess an officer's competence and guide promotion.
+- [ ] Can a female officer claim state of origin by marriage? (Ref: Rule 020811(f))
+  - No, state of origin for vacancies is by birth.
+- [ ] What is the probation period? (Ref: Rule 020205)
+  - Minimum of 2 years, to assess suitability and allow for confirmation.
+- [ ] What must a new officer sign? (Ref: Rule 020210)
+  - Oath of Secrecy, to ensure confidentiality and integrity in service.
+- [ ] Who disciplines GL 06 and below? (Ref: Rule 100103)
+  - Permanent Secretaries/Heads of Departments, to ensure internal control of junior staff.
+- [ ] Penalty for absence from duty? (Ref: Rule 100801)
+  - Loss of pay, as absence without permission violates service discipline.
+- [ ] What is General Inefficiency? (Ref: Rule 100203)
+  - Inability to perform duties effectively after repeated chances. Shows lack of capacity.
+- [ ] Allowed materials in exams? (Ref: Rule 030108)
+  - PSR, Financial Regulations, Handbook, to test knowledge of official documents.
+- [ ] Who retires someone on health grounds? (Ref: Rule 020905)
+  - Medical Board, ensures that only verified health issues lead to retirement.
+- [ ] What if an officer refuses a transfer? (Ref: Rule 020208)
+  - May face disciplinary action, as postings are within employer discretion.
+- [ ] Resignation notice period? (Ref: Rule 020904)
+  - One month or payment in lieu, to allow for replacement and administrative processing.
+- [ ] What if an officer falsifies records? (Ref: Rule 100401)
+  - Dismissal, as it's a breach of public trust and legal obligation.
+- [ ] Meaning of interdiction? (Ref: Rule 100406)
+  - Temporary suspension during investigations, pending outcome. It’s precautionary, not punitive.
+- [ ] How often is PSR reviewed? (Ref: Chapter 19)
+  - Every 5 years, to reflect current realities and reforms in public administration.
+- [ ] Who may appeal a sanction? (Ref: Chapter 11)
+  - Any aggrieved officer, to ensure fairness and administrative justice.
+- [ ] What is increment deferment? (Ref: Rule 040205)
+  - Delayed salary raise, often due to underperformance. It’s a corrective tool.
+- [ ] Purpose of Annual Performance Appraisal? (Ref: Chapter 5)
+  - To assess performance, inform promotion, and identify training needs.
+- [ ] Can state of origin change after marriage? (Ref: Rule 020811(f))
+  - No, determined by birth, not marital status.
+- [ ] To whom do the Public Service Rules (PSR) apply? (Ref: Rule 010101)
+  - PSR applies to all public servants except those covered by specific constitutional provisions or contractual terms.
+- [ ] What is the main legal document the PSR must conform to? (Ref: Rule 010102)
+  - The Constitution of the Federal Republic of Nigeria. All PSR provisions must align with it.
+- [ ] Who enforces the PSR? (Ref: Rule 010101)
+  - Ministries, Extra-Ministerial Offices, and Agencies are responsible for strict enforcement.
+- [ ] What is the responsibility of public officers under the PSR? (Ref: Rule 010103)
+  - Officers must familiarize themselves with the PSR and comply strictly. Ignorance is not an excuse.
+- [ ] What is meant by “special definitions” in the PSR? (Ref: Rule 010104)
+  - These are specific terminologies defined in the PSR for clarity and uniform understanding.
+- [ ] How are the PSR rules numbered? (Ref: Rule 010105)
+  - Rules have six-digit numbers: first two digits for chapter, next two for section, last two for specific rule.
+- [ ] What role do extant circulars play in the PSR? (Ref: Rule 010106)
+  - They serve as supplements or updates to the PSR, especially between revisions.
+- [ ] Does the masculine term “officer” in the PSR exclude female officers? (Ref: Rule 010107)
+  - No, “officer” refers to both male and female officers.
+- [ ] Should the PSR be available in every office? (Ref: Rule 010108)
+  - Yes, each office must have a copy of the PSR as part of its inventory.
+- [ ] Can the Federal Government amend the PSR? (Ref: Rule 010106)
+  - Yes, through circulars and periodic reviews.
+- [ ] When is the PSR due for review? (Ref: Preamble/Chapter 19)
+  - Every five years, to reflect current realities and improve effectiveness.
+- [ ] What is the purpose of the PSR? (Ref: Foreword)
+  - To define the employment relationship and guide conduct in public service.
+- [ ] What are officers advised to consult alongside the PSR? (Ref: Preamble)
+  - Extant circulars, Financial Regulations, and other complementary instructions.
+- [ ] Why was the 2021 PSR edition introduced? (Ref: Foreword)
+  - To align with modern governance needs including virtual work and performance-based management.
+- [ ] What principles does the PSR emphasize for governance? (Ref: Foreword)
+  - Transparency, rule of law, and corruption prevention.
+- [ ] What are “General Definitions” in the PSR? (Ref: Rule 010105)
+  - They explain commonly used service terms like “staff”, “suspension”, and “trainee”.
+- [ ] What are some key emerging issues added in the 2021 edition? (Ref: Foreword)
+  - Talent sourcing, volunteerism, performance management, and virtual meetings.
+- [ ] Who is encouraged to read and understand the PSR? (Ref: Preamble)
+  - All public servants and interested Nigerian citizens.
+- [ ] Is any part of the PSR allowed to be reproduced freely? (Ref: Foreword)
+  - No. It is copyrighted and reproduction requires permission.
+- [ ] To whom do the Public Service Rules apply? (Ref: The PSR is designed to guide all officers except those whose terms are covered by the Constitution, Judicial or Legislative Service Rules, or contract. The rules apply uniformly across Ministries, Extra-Ministerial Departments, and Agencies.	Rule 010101)
+  - All Public Servants in the Federal Public Service except where specifically exempted.
+- [ ] What is the supreme legal framework to which the PSR must conform? (Ref: The PSR derives its authority from and must align with the Nigerian Constitution, which is the highest legal authority in the country. Any part of the PSR that contradicts the Constitution is void to the extent of the contradiction.	Rule 010102)
+  - The Constitution of the Federal Republic of Nigeria.
+- [ ] Who is responsible for enforcing the PSR in Ministries and Agencies? (Ref: Enforcement of the PSR lies with the leadership of the respective public institutions. They ensure compliance and discipline in line with the rules.	Rule 010101)
+  - The respective Permanent Secretaries or Heads of Extra-Ministerial Departments.
+- [ ] What is the responsibility of an officer concerning the PSR? (Ref: Every public servant is individually accountable for understanding and following the PSR. Ignorance of the rules does not excuse misconduct.	Rule 010103)
+  - Officers must acquaint themselves with the PSR and ensure compliance.
+- [ ] What are “Special Definitions” in the PSR? (Ref: These definitions are inserted to ensure consistency and eliminate ambiguity in interpreting the PSR. They are distinct from general dictionary meanings.	Rule 010104)
+  - Terms with meanings unique to the public service.
+- [ ] How are PSR rules numbered? (Ref: This structured numbering aids easy reference, clarity, and precise application during administrative and legal processes.	Rule 010105)
+  - With six digits: two for chapter, two for section, and two for specific rule.
+- [ ] What is the function of extant circulars in relation to the PSR? (Ref: Circulars issued by the Head of Service or Presidency provide interim directives and interpretations pending the next PSR review cycle.	Rule 010106)
+  - They update or supplement the rules.
+- [ ] Does the PSR term “officer” apply to both men and women? (Ref: The rules emphasize gender inclusiveness, and masculine references should be understood to apply equally to female officers.	Rule 010107)
+  - Yes, it is gender-neutral.
+- [ ] Should the PSR be available in every government office? (Ref: Every department must maintain copies of the PSR to ensure that all officers have access for reference and compliance.	Rule 010108)
+  - Yes, it must be part of the official inventory.
+- [ ] Can the PSR be amended between review cycles? (Ref: Circulars serve as interim policy instruments to clarify or adjust rules without waiting for a full revision of the PSR.	Rule 010106)
+  - Yes, through circulars.
+- [ ] How often is the PSR to be reviewed? (Ref: This ensures that the rules stay relevant and reflect modern public service realities and reforms.	Chapter 19)
+  - Every five years.
+- [ ] What is the purpose of the PSR? (Ref: The PSR regulates conduct, appointments, promotions, discipline, and exit from service to ensure order and professionalism.	Foreword)
+  - To define the employment relationship between public servants and government.
+- [ ] What should officers consult alongside the PSR for full compliance? (Ref: These documents complement the PSR and provide practical, financial, and administrative guidance for proper decision-making.	Preamble)
+  - Financial Regulations, Civil Service Handbook, and extant circulars.
+- [ ] Why was the 2021 PSR edition introduced? (Ref: The 2021 update incorporated provisions for performance management, virtual work, talent sourcing, and pandemic-related adjustments.	Foreword)
+  - To align the rules with emerging trends in governance.
+- [ ] What are “General Definitions” in the PSR? (Ref: These ensure uniform interpretation and implementation of terms like “service”, “posting”, “suspension”, etc., across the civil service.	Rule 010105)
+  - Standard meanings for commonly used service terms.
+- [ ] What emerging work practices were added in the 2021 edition? (Ref: These additions reflect lessons from COVID-19 and aim to improve productivity in digital and hybrid work environments.	Foreword)
+  - Performance management, virtual engagements, volunteerism, etc.
+- [ ] Who else is encouraged to study the PSR aside from officers? (Ref: Transparency in governance is enhanced when citizens understand the rules that guide public officers and service delivery.	Preamble)
+  - All Nigerian citizens.
+- [ ] Is the PSR protected under copyright? (Ref: This protects the integrity of the document and ensures that any reproduction maintains official accuracy.	Foreword)
+  - Yes, and cannot be reproduced without authorization.
+- [ ] Who has the authority to appoint officers into the Federal Civil Service? (Ref: The FCSC is the statutory body responsible for appointments into senior posts in the civil service. It delegates some authority to Permanent Secretaries for specific lower-level posts.	Rule 020101)
+  - The Federal Civil Service Commission (FCSC).
+- [ ] What is the minimum qualification for appointment to GL.07 and above? (Ref: Candidates must have relevant academic/professional qualifications as per job role requirements.	Rule 020102(v))
+  - Qualification must align with the approved Scheme of Service.
+- [ ] Who appoints officers on GL.06 and below? (Ref: Appointments at this level are decentralized to encourage timely staffing and fair distribution.	Rule 020103(a))
+  - Junior Staff Committees of Ministries/Extra-Ministerial Departments.
+- [ ] What is the probation period for newly appointed officers? (Ref: Officers must undergo a two-year probation to assess performance and suitability for confirmation.	Rule 020205)
+  - Two years.
+- [ ] Can an officer on probation be terminated? (Ref: If the officer is unfit or fails required exams, their appointment may be terminated.	Rule 020207)
+  - Yes, if not confirmed after due assessment.
+- [ ] What are the types of appointments in the public service? (Ref: These reflect the different entry modes and employment needs across the service.	Rule 020202)
+  - Permanent, contract, temporary, acting, and secondment.
+- [ ] What is required before an officer may be transferred across Ministries? (Ref: Transfers ensure continuity and must not disrupt service delivery or contravene Scheme of Service.	Rule 020208)
+  - Consent of the receiving MDA and OHCSF.
+- [ ] What is secondment? (Ref: It allows officers to serve in another agency or tier of government while retaining rights.	Rule 020209)
+  - Temporary transfer of an officer to another post or organization.
+- [ ] What document must an officer sign upon appointment? (Ref: It binds the officer to protect official information and uphold integrity.	Rule 020210)
+  - Oath of Secrecy.
+- [ ] Can an officer be a member of a secret society? (Ref: Such membership is strictly prohibited as it compromises public trust.	Rule 020211)
+  - No.
+- [ ] What is the condition for confirmation of senior officers? (Ref: Senior officers must show both competence and moral fitness.	Rule 020304)
+  - Must have passed the confirmation exam and performed satisfactorily.
+- [ ] Who may be appointed on contract? (Ref: Contract appointment is used for experienced or rare skills not readily available.	Rule 020402)
+  - Retired officers, non-Nigerians, or specialists.
+- [ ] What is the maximum length for a contract appointment? (Ref: This cap prevents abuse and ensures contract roles remain temporary.	Rule 020405(vii))
+  - Four years (renewable annually or biennially).
+- [ ] What is required for re-engagement of a contract officer? (Ref: Without such notice, it is assumed the officer is not interested in renewal.	Rule 020408)
+  - Written notice 4 months before end of current contract.
+- [ ] When does an officer’s resignation become effective? (Ref: Submission alone does not terminate service; it must be formally accepted.	Rule 020904)
+  - Upon acceptance by the appointing authority.
+- [ ] What is the minimum notice for resignation? (Ref: This allows time for handover and replacement planning.	Rule 020904)
+  - One month or pay in lieu.
+- [ ] What is mandatory before retiring on medical grounds? (Ref: Only competent medical authorities can recommend retirement based on health.	Rule 020905)
+  - A report from a duly constituted Medical Board.
+- [ ] What is a certificate of service? (Ref: Issued upon disengagement, it includes details like rank, conduct, and performance.	Rule 0201101)
+  - A document summarizing the officer’s career.
+- [ ] Can officers use textbooks during the exam? (Ref: To promote fairness and real understanding, textbooks are prohibited, except official documents like PSR.	Rule 030107)
+  - No, only reference documents are allowed.
+- [ ] What books can officers on GL.06 and below refer to during exams? (Ref: These are deemed essential for junior officers’ exam readiness.	Rule 030108(a))
+  - PSR, Financial Regulations, Civil Service Handbook, and Guidance Notes.
+- [ ] What books can officers on GL.07 and above use? (Ref: This reflects broader responsibility at senior levels.	Rule 030108(b))
+  - Same as GL.06 with additional establishment circulars and Notes 1, 2, and 5.
+- [ ] What is Group A examination about? (Ref: Designed to test legal and administrative competence.	Rule 030202)
+  - Law, Government Procedure, and relevant legislation.
+- [ ] What is Group B examination about? (Ref: These are core subjects for general public service function.	Rule 030203)
+  - PSR, Financial Regulations, Computer Literacy, and General Paper.
+- [ ] Are there separate exams for police and paramilitary officers? (Ref: They have tailored exams reflecting their service-specific roles.	Rule 030401)
+  - Yes.
+- [ ] What is COMPRO? (Ref: A designated format used for confirmation and promotional assessment.	Rule 030201)
+  - Compulsory Promotion/Confirmation Examination.
+- [ ] What is the penalty for failing to take the exam within 3 years? (Ref: The rule discourages inaction or avoidance of assessment.	Rule 030105)
+  - Mandatory resignation.
+- [ ] What does the general paper test? (Ref: Encourages officers to remain informed and analytical.	Rule 030203(v))
+  - Knowledge of current affairs, service procedures, and analytical skills.
+- [ ] How soon must a new officer be placed on IPPIS after assumption of duty? (Ref: The IPPIS platform ensures automated and secure payroll management; delays beyond two months violate the rule.	Rule 040102)
+  - Within two months.
+- [ ] What is an increment in civil service? (Ref: Increments reward longevity and competence; it is a key motivator for continued public service.	Rule 040201)
+  - A predetermined annual increase in salary.
+- [ ] What conditions must be met to earn an increment? (Ref: Increments are tied to clean service records and satisfactory performance.	Rule 040202)
+  - Officer must not be under interdiction, suspension, or have pending disciplinary actions.
+- [ ] What does it mean to defer an increment? (Ref: The officer may regain eligibility after improvement; it is temporary and corrective.	Rule 040203)
+  - Postponing an increment due to performance or pending evaluation.
+- [ ] What does it mean to withhold an increment? (Ref: Unlike deferment, withholding has a more permanent implication unless specifically reversed.	Rule 040206)
+  - Denial of salary raise, usually due to serious misconduct or poor performance.
+- [ ] Can a withheld increment be restored retrospectively? (Ref: Even if performance improves, back-pay is not allowed; future increments may resume.	Rule 040207)
+  - No, it cannot be restored retroactively.
+- [ ] Who approves the restoration of a deferred increment? (Ref: Authority lies with top management to assess service improvement and approve restoration.	Rule 040208)
+  - Permanent Secretary/Head of Extra-Ministerial Office.
+- [ ] When does an officer get paid after a transfer to a new post? (Ref: This ensures that salary aligns with actual deployment and service.	Rule 040103)
+  - From the date of assumption at the new duty post.
+- [ ] What is the implication of interdiction on increment? (Ref: Pending investigations freeze progression, ensuring accountability and integrity.	Rule 040202)
+  - Officer is not entitled to increment.
+- [ ] When is an officer eligible for the first annual increment? (Ref: This standard ensures increments are earned through actual performance over time.	Implied from Rule 040201)
+  - After one full year of satisfactory service.
+- [ ] What is the aim of the Performance Management System (PMS)? (Ref: PMS is a structured approach to ensuring that officers achieve set goals aligned with the objectives of their MDAs.	Rule 050201)
+  - To monitor, evaluate, and improve individual and institutional performance.
+- [ ] When should the first progress report be completed for an officer on probation? (Ref: A structured report assesses the officer’s adjustment, capability, and performance early in their probation.	Rule 050101)
+  - After six months of duty.
+- [ ] What should accompany the final probation assessment report? (Ref: The report is essential for determining whether the officer should be retained.	Rule 050102)
+  - Recommendation for confirmation or otherwise.
+- [ ] Who is responsible for appraising officers annually? (Ref: Appraisals must be fair and based on first-hand knowledge of the officer’s work.	Rule 050203)
+  - The officer's direct supervisor.
+- [ ] When should annual appraisals be completed each year? (Ref: This allows performance evaluations to align with the calendar and budget cycles.	Rule 050301)
+  - Between January and March.
+- [ ] What is the Performance Management Cycle composed of? (Ref: This ensures performance is guided, monitored, and corrected regularly.	Rule 050401)
+  - Goal setting, continuous feedback, mid-year and end-of-year reviews.
+- [ ] What tool is used for performance evaluation in the PMS? (Ref: These standardized documents ensure consistency in assessment across MDAs.	Rule 050402)
+  - Performance Appraisal Forms (PAFs).
+- [ ] What happens to officers who score below expectations in their appraisal? (Ref: PIP supports development and corrective measures to improve productivity.	Rule 050404)
+  - They may be placed on a Performance Improvement Plan (PIP).
+- [ ] Who approves performance appraisals before submission to OHCSF? (Ref: The appraisal must go through internal validation for accuracy and fairness.	Rule 050602)
+  - Appraisal Committee or relevant authority in MDA.
+- [ ] What is the role of the Appraisal Committee? (Ref: This reduces bias and standardizes evaluation within MDAs.	Rule 050603)
+  - To vet and moderate all appraisals for transparency and fairness.
+- [ ] What body coordinates and monitors the implementation of PMS across MDAs? (Ref: Ensures national uniformity, data collation, and reporting for central oversight.	Rule 050701)
+  - OHCSF (Office of the Head of Civil Service of the Federation).
+- [ ] What is the importance of the Mid-Year Review in PMS? (Ref: It ensures that issues are addressed early before final appraisal.	Rule 050401(b))
+  - To identify gaps, reset goals, and offer performance support.
+- [ ] Can an officer contest an unfavorable appraisal result? (Ref: Officers have the right to seek redress to ensure fairness.	Implied from Rule 050602)
+  - Yes, by appeal through the appropriate channel.
+- [ ] What does a rating of “Outstanding” indicate in PMS? (Ref: Such officers are considered for commendation and accelerated growth.	Rule 050403)
+  - Exceeds all expectations and contributes significantly beyond set goals.
+- [ ] What is a key performance indicator (KPI) in PMS? (Ref: KPIs help quantify performance targets and achievements.	Rule 050201)
+  - A measurable value that reflects an officer’s success in a specific area.
+- [ ] Who signs off the final appraisal form? (Ref: Multiple signatories ensure integrity and transparency in evaluation.	Rule 050602)
+  - The supervisor, Appraisal Committee, and Head of Department.
+- [ ] What document is referenced for setting performance goals? (Ref: Ensures that the officer’s performance is aligned with organizational objectives.	Rule 050201)
+  - Job description and strategic goals of the MDA.
+- [ ] What does "reward" mean in the context of the PSR? (Ref: Rewards are used to recognize excellent or exemplary work and motivate continued commitment.	Rule 060101)
+  - Award of gifts, certificates, or commendation letters.
+- [ ] What is meant by “recognition” under the Reward System? (Ref: It celebrates longevity and consistent service integrity.	Rule 060101)
+  - Award of certificate of merit and/or gifts after 15, 25, or 35 years of meritorious service.
+- [ ] What is the aim of the Reward and Recognition System (R&RS)? (Ref: R&RS supports performance culture and staff morale in the service.	Rule 060102)
+  - To motivate officers and promote high performance.
+- [ ] Who are eligible for reward and recognition in the public service? (Ref: Eligibility includes achievements beyond routine duty or long-term dedication.	Rule 060102)
+  - Officers with outstanding performance or meritorious service.
+- [ ] What forms can rewards take? (Ref: These are non-monetary but symbolize institutional appreciation.	Rule 060101)
+  - Gifts, commendation letters, or official awards.
+- [ ] At what stages of service can an officer receive recognition? (Ref: These milestones are recognized to encourage staff retention and loyalty.	Rule 060101)
+  - At 15, 25, and 35 years of continuous meritorious service.
+- [ ] How is reward linked to performance? (Ref: It ensures that recognition is earned and objective.	Rule 060103)
+  - Based on measurable results and evaluated output.
+- [ ] Who manages the R&RS in each MDA? (Ref: Responsibility lies with the institution to identify deserving officers and process nominations.	Implied from Rule 060104)
+  - The Head of the MDA or a designated committee.
+- [ ] What is the long-term objective of the R&RS? (Ref: Sustained motivation and professionalism are key targets.	Rule 060103)
+  - To institutionalize a culture of excellence.
+- [ ] Can group achievements be rewarded under this system? (Ref: Teams that achieve significant goals can also be recognized.	Rule 060103)
+  - Yes.
+- [ ] What is the frequency for award nominations? (Ref: Flexibility allows rewards to align with key projects or annual events.	Rule 060103)
+  - As determined by the MDA or Presidential directive.
+- [ ] Are retirees eligible for recognition under this chapter? (Ref: Recognition serves as an honorable send-off and morale booster.	Rule 060101)
+  - Yes, for meritorious service milestones.
+- [ ] What is the scope of the R&RS? (Ref: Ensures uniform motivation framework across the service.	Rule 060103)
+  - All MDAs in the Federal Public Service.
+- [ ] What is the significance of linking reward to measurable performance? (Ref: Removes bias and ensures reward integrity.	Rule 060103)
+  - To promote transparency and objectivity in recognition.
+- [ ] Can officers nominate themselves for rewards? (Ref: Prevents abuse and ensures credible process.	Not stated directly but implied)
+  - No, nominations must be initiated by supervisors or MDA leadership.
+- [ ] What type of act qualifies as “outstanding work”? (Ref: The act must exceed routine expectations and have verifiable impact.	Rule 060102)
+  - Innovations, significant project delivery, or cost-saving initiatives.
+- [ ] What documentation must accompany a reward recommendation? (Ref: Justifies the reward and supports record-keeping.	Rule 060103)
+  - Performance reports and evidence of achievement.
+- [ ] What are the objectives of staff development? (Ref: Development strengthens both personal growth and the MDA’s overall output.	Rule 070102)
+  - To benefit the individual and organization by enhancing performance.
+- [ ] What happens if a course is interrupted by the sponsoring officer? (Ref: Officers must show commitment or risk losing support.	Rule 070306)
+  - Sponsorship may be withdrawn.
+- [ ] What are donor-sponsored courses classified as? (Ref: Officers must get OHCSF clearance and follow the same vetting.	Rule 070308)
+  - Externally Assisted Courses.
+- [ ] How are Technical Assistance programmes treated? (Ref: Ensures national ownership and alignment with development goals.	Rule 070309)
+  - As external training, subject to PSR training policy.
+- [ ] What does the term "cheaper point" mean? (Ref: Officers may be allowed to travel from or to a cheaper point than their home, provided it reduces government expenditure.	Rule 080101(i))
+  - A substitute travel point used only if it costs the government less.
+- [ ] What must be confirmed before approving transport at government expense? (Ref: Justification is needed to prevent abuse and ensure only official trips are covered.	Rule 080102)
+  - Necessity of the journey.
+- [ ] What determines the type of transport and route an officer may use? (Ref: These factors ensure fairness and cost-efficiency in travel authorizations.	Rule 080103(a))
+  - Cost, duty exigency, and officer's grade level.
+- [ ] Who approves the use of government-funded transport? (Ref: Written approval is mandatory and must align with Financial Regulations.	Rule 080104)
+  - Permanent Secretaries or authorized representatives.
+- [ ] Can officers use more transport than approved? (Ref: Officers must not exceed the authorized provision; they pay in advance for excesses.	Rule 080105)
+  - No, excess usage must be paid for personally.
+- [ ] Can staff act as personal attendants using government transport? (Ref: Prevents misuse of personnel resources and limits government liability.	Rule 080107)
+  - No, unless authorized by the OHCSF.
+- [ ] Are officers entitled to free transport within Nigeria for official duties? (Ref: Official journeys inside Nigeria qualify, subject to confirmation of duty needs.	Rule 080201)
+  - Yes.
+- [ ] Who qualifies for family passenger fare on official travel? (Ref: This recognizes family needs during significant postings but limits scope to avoid excessive cost.	Rule 080201(a))
+  - One spouse and up to four children.
+- [ ] Is medical travel considered official duty? (Ref: Officers traveling for medical or dental care are covered under duty transport.	Rule 080202(b–c))
+  - Yes, under approved health-related journeys.
+- [ ] Can officers be granted free transport for vehicle repairs? (Ref: Must be justified as necessary and economical for official duty.	Rule 080206)
+  - Yes, for major repairs or new vehicle purchases.
+- [ ] What is required for transporting an officer's car for duty? (Ref: This is only approved if transporting the car is cheaper than hiring vehicles.	Rule 080206(b))
+  - Justification that it reduces overall government cost.
+- [ ] What are the entitlements for duty visits abroad? (Ref: Officers receive these when attending official duties abroad, per government approval.	Rule 080301)
+  - Airfare, transport reimbursement, and estacode supplement.
+- [ ] Is daily subsistence reimbursable during official duty abroad? (Ref: Reimbursement includes daily travel expenses and allowances.	Rule 080303)
+  - Yes, if not covered by host.
+- [ ] Who determines if office equipment can be transported at government expense? (Ref: Approval depends on necessity for duty performance.	Rule 080401)
+  - Permanent Secretary or Head of MDA.
+- [ ] What is a virtual meeting according to the PSR? (Ref: Officers meet in the same virtual space regardless of physical location using ICT tools.	Rule 090101)
+  - A scheduled communication involving officers via video, audio, or text platforms.
+- [ ] Why were virtual meetings introduced in the PSR? (Ref: This supports uninterrupted government business in crisis situations.	Rule 090102)
+  - To enable remote work continuity during pandemics/emergencies.
+- [ ] List three official scenarios covered under virtual engagements. (Ref: These scenarios ensure the scope includes formal and informal government business.	Rule 090103)
+  - High-level meetings, board meetings, webinars.
+- [ ] What is the main data concern for virtual meetings? (Ref: High-level meetings must be secured using approved protocols to avoid data breaches.	Rule 090104)
+  - Security of government data/information.
+- [ ] Who provides security guidelines for virtual meetings? (Ref: This ensures that security policies are nationally standardized.	Rule 090104)
+  - Federal Ministry of Communications and Digital Economy.
+- [ ] Must there be an agenda for a virtual meeting? (Ref: This helps guide the discussion and prepare participants.	Rule 090201)
+  - Yes, approved by the Chairperson and shared in advance.
+- [ ] What must the secretary of a virtual meeting do before the meeting? (Ref: Ensures accountability and organized participation.	Rule 090202)
+  - Confirm availability of participants.
+- [ ] When should meeting materials be shared? (Ref: Early circulation improves preparation and engagement.	Rule 090203)
+  - At least 24 hours before the meeting.
+- [ ] Name two prohibited behaviors during virtual meetings. (Ref: These reduce meeting quality and engagement.	Rule 090204)
+  - Sidebar conversations, multitasking.
+- [ ] What is the protocol for meetings longer than one hour? (Ref: This improves concentration and reduces fatigue.	Rule 090204(v))
+  - Include a 10–15 minutes break.
+- [ ] What is required of officers speaking during virtual meetings? (Ref: Ensures accountability and clarity of speaker identity.	Rule 090204(iii))
+  - They must facially identify themselves.
+- [ ] What is the dress code for virtual meetings? (Ref: Professional appearance is expected regardless of location.	Rule 090205(i))
+  - Formal attire.
+- [ ] What conditions apply to home participation in virtual meetings? (Ref: Ensures professionalism and reduces distractions.	Rule 090205)
+  - Quiet, clean environment and formal dress.
+- [ ] How are ad-hoc virtual meetings convened? (Ref: Ensures even unscheduled meetings follow structured protocols.	Rule 090206)
+  - Secretary calls participants, sends link and materials.
+- [ ] Can personal devices be used for virtual meetings? (Ref: Maintains security standards even with private equipment.	Rule 090207)
+  - Yes, if used per official ICT guidelines.
+- [ ] Can officers participate in virtual meetings outside office hours? (Ref: Work-from-home or remote duty may require flexible scheduling.	Rule 090101–090103)
+  - Yes, when scheduled officially.
+- [ ] Are virtual engagements limited to Nigerian participants? (Ref: International webinars and bilateral meetings are included.	Rule 090103(viii–ix))
+  - No.
+- [ ] What should guide officers’ conduct during virtual meetings? (Ref: Ensures uniform behaviour and protects government reputation.	Rule 090105)
+  - Government-issued virtual engagement guidelines.
+- [ ] What happens if a participant disrupts a virtual meeting? (Ref: Officers are bound by decorum rules during all official functions.	Implied from 090104, 090204)
+  - It may be considered misconduct.
+- [ ] Who has the authority to discipline officers in the Federal Civil Service? (Ref: The Commission has final authority, though it delegates disciplinary powers to Permanent Secretaries/Heads of MDAs for certain levels.	Rule 100102)
+  - The Federal Civil Service Commission.
+- [ ] What is general inefficiency? (Ref: It includes repeated errors and underperformance over time.	Rule 100201)
+  - A pattern of omissions or incompetence showing inability to perform duties.
+- [ ] Can an officer be punished without being heard? (Ref: The officer must be allowed to defend themselves, including calling witnesses if necessary.	Rule 100308(vi–vii))
+  - No.
+- [ ] What is interdiction? (Ref: Applied when continued service is not in public interest.	Rule 100404)
+  - Temporary removal from duty with half pay during investigation.
+- [ ] What happens if an officer is acquitted after interdiction? (Ref: This ensures fairness and protection from undue penalty.	Rule 100404(iv))
+  - Full reinstatement and restoration of denied emoluments.
+- [ ] What is surcharge? (Ref: Applied when loss is due to officer’s fault.	Rule 100310)
+  - Recovery of government losses from officer's pay.
+- [ ] Can an officer give official character references? (Ref: Officers are prohibited from issuing certificates in official capacity.	Rule 100314)
+  - No.
+- [ ] What are the penalties under PSR discipline rules? (Ref: These provide a range of responses depending on severity.	Rule 100801)
+  - Dismissal, suspension, reduction in rank, withholding of salary, reprimand, etc.
+- [ ] Can an officer be dismissed without a board hearing? (Ref: Absence does not halt proceedings.	Rule 100308(vi))
+  - Yes, if the officer fails to respond or appear.
+- [ ] What is conduct prejudicial to state security? (Ref: Such conduct warrants immediate and serious disciplinary attention.	Rule 100501)
+  - Actions that threaten national security or violate Oath of Secrecy.
+- [ ] Can discipline be based solely on Tribunal of Inquiry findings? (Ref: Ensures natural justice is upheld.	Rule 100303)
+  - No, officer must be allowed to respond to allegations.
+- [ ] What is an appeal under the PSR? (Ref: An officer may appeal disciplinary or administrative decisions affecting them.	Rule 110101)
+  - A formal request for reconsideration of a decision by an authority.
+- [ ] What is a petition? (Ref: Can relate to personal grievances or matters of public interest.	Rule 110101)
+  - A complaint or request by an officer to the appropriate authority.
+- [ ] Can an officer petition the Head of Government directly? (Ref: The letter must be unsealed, in triplicate, and routed via superior officers and MDAs.	Rule 110103)
+  - Yes, through proper channels.
+- [ ] What happens if a petition is submitted directly to the Head of Government? (Ref: Direct communication bypasses verification processes and is against protocol.	Rule 110103)
+  - It will be returned to the sender.
+- [ ] How soon must appeals be concluded? (Ref: Ensures timely redress and administrative closure.	Rule 110201)
+  - Within six months.
+- [ ] What must officers do before going to court? (Ref: Officers must exhaust internal remedies before litigation.	Rule 110202(ii))
+  - Obtain formal approval from OHCSF.
+- [ ] What happens if an officer goes to court without OHCSF approval? (Ref: Legal action without compliance with PSR leads to suspension pending the outcome.	Rule 110202(iii))
+  - They shall be placed on suspension.
+- [ ] Who should an officer report a grievance to first? (Ref: All representations should start at the officer’s department level.	Rule 110203)
+  - Their immediate superior.
+- [ ] What is the proper route for a petition? (Ref: Ensures proper documentation and transparency.	Rule 110204)
+  - Through the superior officer, then the Permanent Secretary/Head of MDA.
+- [ ] How many copies of a petition must be submitted? (Ref: One is retained at the MDA, while the second goes to the decision authority.	Rule 110205)
+  - Two.
+- [ ] What details must a petition contain? (Ref: Ensures authenticity and accountability of the petition.	Rule 110206)
+  - Full name, staff number, signature, and address.
+- [ ] Can someone write a petition for an illiterate officer? (Ref: Assists officers unable to write, while preserving integrity.	Rule 110207)
+  - Yes, with a declaration of consent.
+- [ ] What are grounds for rejecting a petition? (Ref: These filters maintain quality and orderliness in processing petitions.	Rule 110208(a))
+  - Abuse, illegibility, pending court case, or repetition without new facts.
+- [ ] Will late petitions be accepted? (Ref: Officers must act promptly; unjustified delays lead to dismissal.	Rule 110209(b))
+  - No, unless justified by valid reasons.
+- [ ] Can a petition use foul or abusive language? (Ref: Proper conduct must be maintained even during grievances.	Rule 110208(a)(iv))
+  - No.
+- [ ] What should conclude a petition? (Ref: Officers must state what they want the authority to do.	Rule 110210)
+  - A clear statement of redress sought.
+- [ ] How long should a petition be? (Ref: This promotes clarity and helps quick understanding of the issue.	Rule 110210)
+  - Maximum of two pages; longer ones must have a summary.
+- [ ] Who is a Healthcare Provider (HCP)? (Ref: Only services from HCPs recognized under the NHIS are approved for civil servants.	Rule 130101)
+  - A medical institution accredited by the National Health Insurance Scheme (NHIS).
+- [ ] How often must officers undergo mandatory medical checks? (Ref: Ensures officers remain physically and mentally fit to continue in service.	Rule 130103)
+  - Every five (5) years.
+- [ ] Who can require an officer to undergo a health check while in service? (Ref: Health checks are required to determine an officer’s fitness for current or new duties.	Rule 130105)
+  - The Permanent Secretary/Head of Extra-Ministerial Office.
+- [ ] How are medical records of officers treated? (Ref: Confidentiality ensures the privacy of officers' medical information.	Rule 130104)
+  - As confidential documents.
+- [ ] Can an officer be referred to a specialist at public expense? (Ref: This ensures only essential referrals are supported with government funding.	Rule 130108)
+  - Yes, if a Healthcare Provider certifies it is necessary.
+- [ ] Who bears the cost if an officer chooses a private practitioner? (Ref: Only approved HCPs are covered under public service health benefits.	Rule 130202)
+  - The officer.
+- [ ] Are officers treated while traveling on official duty abroad? (Ref: Fees for medical attention by a ship or aircraft surgeon are borne by government.	Rule 130203)
+  - Yes, government covers costs.
+- [ ] What happens if an officer is ill and cannot attend work? (Ref: Prompt communication is required to avoid disciplinary issues.	Rule 130301)
+  - They must notify the office and provide medical documentation.
+- [ ] What certificate types can a Healthcare Provider issue? (Ref: These documents formally support absence due to illness.	Rule 130301)
+  - Excuse Duty, Light Duty, or Medical Certificate of Treatment.
+- [ ] What happens if a Medical Board declares an officer unfit for service? (Ref: This prepares the officer for medical retirement.	Rule 130318)
+  - Officer commences two months’ vacation leave before retirement.
+- [ ] What burial expenses are covered if an officer dies on official duty abroad? (Ref: The government ensures dignified handling of remains and family support.	Rule 130401)
+  - Repatriation, coffin, transport, and a newspaper obituary.
+- [ ] Can officers contest the decision of a Medical Board? (Ref: Officers may request further review if dissatisfied.	Rule 130107(d))
+  - Yes, through a formal representation.
+- [ ] Who approves overseas medical check-ups for top officials? (Ref: Depending on grade level, different authorities provide approval.	Rule 130210)
+  - The President or Head of Civil Service of the Federation.
+- [ ] What must accompany an application for overseas treatment? (Ref: Ensures treatment need is verified and aligned with policy.	Rule 130210(iv))
+  - Consultant’s certificate and Ministry of Health endorsement.
+- [ ] What is the purpose of the Invention and Awards Committee? (Ref: The Committee is constituted to evaluate civil servants’ inventions and recommend appropriate recognition and entitlements.	Rule 150102)
+  - To investigate and make recommendations on inventions
+- [ ] Who appoints members of the Invention and Awards Committee? (Ref: The responsible authority in the ministry or department appoints members, and their names are published on the MDA website.	Rule 150101)
+  - Minister or Head of Extra-Ministerial Office
+- [ ] Can an officer appear before the Invention and Awards Committee? (Ref: Officers have the right to appear personally or through approved representation when their invention is reviewed.	Rule 150103)
+  - Yes
+- [ ] How should an officer report an invention? (Ref: This ensures confidentiality and initiates the process for potential patent protection.	Rule 150104)
+  - Under secret cover to their Permanent Secretary/Head of Office
+- [ ] Can an officer apply for a patent for an invention? (Ref: Officers may file for provisional protection and inform the ministry simultaneously.	Rule 150104)
+  - Yes, with own or government expense
+- [ ] Who decides whether an invention should be regarded as secret? (Ref: This protects government interest in sensitive innovations.	Rule 150104)
+  - Minister or Head of Extra-Ministerial Office
+- [ ] Who decides on the controlling rights to a patent? (Ref: The decision is based on whether the invention is related to the officer's official duties.	Rule 150201)
+  - Head of Government
+- [ ] If an invention is unrelated to an officer’s employment, who owns it? (Ref: Officers usually retain full rights if the invention is not job-related.	Rule 150201)
+  - The officer
+- [ ] Who bears the cost of patenting if controlling rights are granted to the officer? (Ref: Officers assume financial responsibility for the patent application.	Rule 150202(a))
+  - The officer
+- [ ] Can the government reserve usage rights in an officer’s invention? (Ref: Government may use the invention royalty-free or share commercial proceeds.	Rule 150202(b))
+  - Yes
+- [ ] What committee assesses awards for inventions? (Ref: The Committee evaluates contributions and recommends monetary awards or rights.	Rule 150301)
+  - Invention and Awards Committee
+- [ ] Who determines the final share of commercial proceeds from an invention? (Ref: After reviewing Committee findings, the Head of Government makes a final decision.	Rule 150301)
+  - Head of Government
+- [ ] Can the officer appeal the decision of the government regarding the award? (Ref: Officers can contest unfair decisions under the Patents and Designs Act.	Rule 150302)
+  - Yes, to the court
+- [ ] What happens if circumstances change after an award decision? (Ref: Further investigations can lead to revised awards, excluding repayment of paid awards.	Rule 150302)
+  - Original decision may be modified
+- [ ] Are inventions made during official duties considered public property? (Ref: Until a final decision is made, such inventions are held in trust for government.	Rule 150201)
+  - Yes, pending decision
+- [ ] Can the officer apply for additional recognition for an invention? (Ref: Officers may seek further award based on their invention’s merit.	Rule 150202(c))
+  - Yes, through the Committee
+- [ ] What factors influence the amount of the invention award? (Ref: The Committee considers out-of-pocket costs and government use without royalties.	Rule 150301(a))
+  - Expenses and government use
+- [ ] Can the right of government use affect the award amount? (Ref: Only actual use of the invention by government impacts award revision.	Rule 150301(b))
+  - No, unless exercised
+- [ ] What legal duty remains unaffected despite these provisions? (Ref: Officers must still uphold confidentiality and national interest obligations.	Rule 150303)
+  - Obligations under Official Secrets Act
+- [ ] Are officers entitled to compensation for loss of personal property outside service duties? (Ref: Officers are advised to insure their property independently as public funds are not used for such loss.	Rule 160101)
+  - No
+- [ ] What happens if an officer dies in active service? (Ref: Benefits come from the group life insurance policy under the Pension Reform Act 2014.	Rule 160201)
+  - Entitlements are paid to the Next of Kin
+- [ ] Is damage to a private vehicle used for official duty compensable? (Ref: If the vehicle is damaged due to civil unrest during official duties, compensation is due.	Rule 160202(a))
+  - Yes
+- [ ] What is considered “official duty” in vehicle insurance? (Ref: This extends compensation coverage beyond work hours.	Rule 160202(a))
+  - Includes journeys between office and residence
+- [ ] Who pays the difference in cost if a vehicle is damaged beyond repairs during official duty? (Ref: Covers gap between insurance payout and replacement cost.	Rule 160202(b))
+  - The government
+- [ ] When is a missing officer presumed dead? (Ref: A Board of Enquiry is set up to decide, allowing death benefits to be processed.	Rule 160203(a))
+  - After one year if not found
+- [ ] What benefits are due if an officer is declared dead after missing? (Ref: Provides financial security to the family of the deceased.	Rule 160203(b))
+  - GLA and pension account balance
+- [ ] Are officers covered by health insurance abroad during assignments? (Ref: Premium is paid by government for the assignment period.	Rule 160204)
+  - Yes
+- [ ] Who is responsible for insurance during stopovers abroad? (Ref: Officers must insure themselves during non-official stopovers.	Rule 160205)
+  - The officer
+- [ ] What law governs compensation for workplace injuries? (Ref: Ensures standardized treatment and payment for injuries.	Rule 160206)
+  - Employees’ Compensation Act 2010
+- [ ] How soon must compensation be paid after injury? (Ref: This ensures prompt settlement and support.	Rule 160206)
+  - Within 3 months
+- [ ] Are all officers covered under the group life policy? (Ref: Applies regardless of cadre, provided officer is in service.	Rule 160201)
+  - Yes, while in active service
+- [ ] Can government deny compensation for a vehicle not used for duty? (Ref: Government only compensates vehicles used for official functions.	Rule 160202(a))
+  - Yes
+- [ ] Does private insurance remove government’s responsibility? (Ref: Government still covers the balance where applicable.	Rule 160202(b))
+  - No, if the use was official
+- [ ] Are officers mandated to insure their property? (Ref: Officers are encouraged to protect themselves through personal insurance.	Rule 160101)
+  - No, but it's advised
+- [ ] Does the definition of official duty include weekends? (Ref: Coverage applies beyond standard work hours.	Rule 160202(a))
+  - Yes, if duty is officially assigned
+- [ ] What must be established to presume a missing officer is dead? (Ref: Ensures due diligence before payment.	Rule 160203(a))
+  - Reasonable evidence by Board of Enquiry
+- [ ] Is stopover insurance reimbursed by government? (Ref: Stopovers are personal arrangements unless pre-approved.	Rule 160205)
+  - No
+- [ ] What is a parastatal? (Ref: It operates under a statutory mandate and government policy.	Rule 170101)
+  - A government-owned body established by law to render services.
+- [ ] How are parastatals classified? (Ref: These classifications help in applying customized management policies.	Rule 170102)
+  - Into five categories including regulatory, services, utilities, paramilitary, and R&D.
+- [ ] Who approves the structure and conditions of service in a parastatal? (Ref: Ensures alignment with national public service principles.	Rule 170103)
+  - The OHCSF on recommendation of Boards/Councils.
+- [ ] Can parastatals have internal rules? (Ref: PSR serves as the default when no internal provision exists.	Rule 170104)
+  - Yes, but must align with PSR where gaps exist.
+- [ ] What is the primary role of the statutory Board or Council? (Ref: Boards guide administrative policies without interfering in day-to-day operations.	Rule 170201)
+  - To set policy and supervise implementation.
+- [ ] Are part-time board members entitled to permanent accommodation? (Ref: They are not allowed permanent use of official assets.	Rule 170202)
+  - No
+- [ ] How are staff appointed in parastatals? (Ref: Must comply with Federal Character and needs assessment.	Rule 170302)
+  - Through a merit-based, open selection process.
+- [ ] What happens if a Board is not in place? (Ref: Prevents vacuum in governance.	Rule 170305)
+  - The supervising Minister assumes disciplinary powers.
+- [ ] What is the composition of staff committees in parastatals? (Ref: Ensures transparency and adherence to national standards.	Rule 170306)
+  - Includes HR reps and OHCSF observers.
+- [ ] Are OHCSF observers mandatory at committee meetings? (Ref: Ensures monitoring and compliance with federal rules.	Rule 170309)
+  - Yes
+- [ ] What PSR chapter applies to leaving service in parastatals? (Ref: Covers retirement, resignation, and termination.	Rule 170401)
+  - Chapter 2 Section 9.
+- [ ] How must petitions from parastatal officers be routed? (Ref: Upholds hierarchy and order in grievance redress.	Rule 170501)
+  - Through departmental channels up to Supervising Ministry.
+- [ ] Can PSR be ignored in parastatals if internal rules exist? (Ref: Internal rules must conform with PSR principles.	Rule 170104)
+  - No, PSR applies where internal gaps exist.
+- [ ] What is the structure of the Nigerian Foreign Service? (Ref: Branch A focuses on political, economic, and consular matters; Branch B handles administration.	Reg. 1)
+  - Divided into Branches A and B with specified duties.
+- [ ] What is the minimum language requirement for Branch “A” officers? (Ref: Officers must pass before end of probation to reflect Nigeria's francophone diplomatic ties.	Reg. 18(4))
+  - Lower Standard French exam.
+- [ ] What is the one-off benefit for language proficiency? (Ref: 5% for lower standard, 10% for higher standard proficiency in the host country’s language.	Reg. 18(1))
+  - 5% or 10% of consolidated FSA.
+- [ ] Who appoints Nigeria's Principal Representatives abroad? (Ref: Principal Representatives include Ambassadors and High Commissioners.	Reg. 6)
+  - The President.
+- [ ] How are domestic staff assigned to Heads of Missions? (Ref: Government covers costs and security screening is required.	Reg. 17)
+  - By entitlement – cooks, stewards, drivers, etc.
+- [ ] Can officers claim language tuition costs? (Ref: Costs recoverable if officer fails the required language exam.	Reg. 18(3))
+  - Yes, for up to 80 lessons.
+- [ ] What travel benefits are officers’ children entitled to? (Ref: Assists in reuniting families during assignments abroad.	Reg. 13)
+  - Free passage if non-domicile.
+- [ ] What is the medical fitness rule? (Ref: Ensures physical and mental fitness of foreign officers.	Reg. 17(4))
+  - Mandatory every 5 years.
+- [ ] What is the travel policy for stopovers abroad? (Ref: Officer bears costs unless mission-related.	Reg. 14)
+  - Not covered by government.
+- [ ] Can officers bring domestic servants abroad? (Ref: Must be for full-time domestic work; abuse is serious misconduct.	Reg. 17(1))
+  - Yes, at government expense.
+- [ ] What language ability is required for new Branch A entrants? (Ref: Reflects regional diplomatic needs in Africa.	Reg. 18(4))
+  - Must pass lower standard French.
+- [ ] How often should the Public Service Rules be reviewed? (Ref: This regular review ensures the rules remain relevant and up to date with governance changes.	Chapter 19)
+  - Every five (5) years
+- [ ] Who coordinates the review of the PSR? (Ref: The OHCSF is responsible for managing the PSR amendment process.	Chapter 19)
+  - Office of the Head of the Civil Service of the Federation
+- [ ] What is the first step in the review process? (Ref: Stakeholders can submit their views both in hard copy and online.	Chapter 19)
+  - Invitation to stakeholders to submit memoranda
+- [ ] What follows stakeholder submissions in the review process? (Ref: These meetings promote consensus and input gathering.	Chapter 19)
+  - Consultative meetings with stakeholders
+- [ ] How many technical committees are set up during the review? (Ref: These committees work sequentially to evaluate and analyze stakeholder inputs.	Chapter 19)
+  - Two
+- [ ] What event follows the work of technical committees? (Ref: This inclusive meeting reviews committee recommendations.	Chapter 19)
+  - Hosting of a larger stakeholders’ meeting
+- [ ] Who attends the larger stakeholders’ meeting? (Ref: Ensures all tiers of government are part of the decision-making.	Chapter 19)
+  - Representatives from Federal and State governments
+- [ ] Where are the recommendations from the stakeholder meeting sent? (Ref: The NCE considers and validates the changes.	Chapter 19)
+  - National Council on Establishments
+- [ ] Who finally ratifies the revised Public Service Rules? (Ref: The FEC gives the final approval to amendments.	Chapter 19)
+  - Federal Executive Council
+- [ ] Can amendments be made between official reviews? (Ref: The OHCSF can issue circulars for interim updates.	Preamble)
+  - Yes, through circulars
+- [ ] What document supports implementation of PSR updates? (Ref: These guide consistent application of new provisions.	Preamble)
+  - Manuals and guidelines
+- [ ] Can stakeholders be excluded from the review process? (Ref: Extensive consultation is a mandatory step.	Chapter 19)
+  - No
+- [ ] What is the role of the National Council on Establishments? (Ref: The NCE plays a consultative and advisory role on service matters.	Chapter 19)
+  - To validate recommendations
+- [ ] Are State Governments involved in PSR review? (Ref: Promotes nationwide alignment and standardization.	Chapter 19)
+  - Yes
+- [ ] Are PSR rules binding on all public servants? (Ref: Applies to all categories of public officers unless otherwise exempted.	Preamble)
+  - Yes
+- [ ] Who ensures compliance with the amended rules? (Ref: Responsible for dissemination and enforcement.	Chapter 19)
+  - Heads of MDAs and the OHCSF
+- [ ] What ensures legal backing for the amendments? (Ref: Legitimizes the rules as government policy.	Chapter 19)
+  - Ratification by FEC
+- [ ] What triggers an early review of PSR? (Ref: Examples include emergencies or reforms such as COVID-19 impacts.	Preamble)
+  - Emergence of significant governance changes
+- [ ] What format are stakeholder memoranda expected in? (Ref: Ensures inclusiveness and accessibility for all contributors.	Chapter 19)
+  - Hard copies and online
+
+## TRAINING - 17 questions
+- [ ] What qualifies an officer for ASCON or PSIN training? (Ref: Rule 030501(d))
+  - Advancement beyond GL 10.
+- [ ] Training eligibility for ASCON/PSIN? (Ref: Rule 030501(d))
+  - Officers from GL 10 upwards, to prepare them for mid- and senior-level roles.
+- [ ] What is the main goal of training and staff development in the PSR? (Ref: It equips officers with updated knowledge, skills, and attitudes to support service efficiency and national development.	Rule 070101)
+  - To improve staff performance and prepare officers for higher responsibilities.
+- [ ] Who coordinates training strategies across MDAs? (Ref: This ensures uniformity and relevance of training programmes.	Rule 070103)
+  - The Federal Government through the OHCSF.
+- [ ] What policy governs training distribution in MDAs? (Ref: This policy guarantees equitable training access to all staff.	Rule 070103)
+  - Public Service Training and Capacity Development Policy.
+- [ ] What are the six training categories outlined in the PSR? (Ref: Each category targets different training objectives (e.g., postgraduate, online, in-house).	Rules 070105–070201)
+  - Categories A to F.
+- [ ] What is Category A training? (Ref: The most strategic training with direct benefit to the service.	Rule 070105(a))
+  - Long-term, fully sponsored postgraduate studies relevant to MDA's mandate.
+- [ ] What is Category B training? (Ref: It still requires approval but may not be fully sponsored.	Rule 070105(b))
+  - Long-term training not crucial to MDA’s mandate but beneficial to officer.
+- [ ] What is Category C training? (Ref: Officers bear more responsibility and may be self-sponsored.	Rule 070105(c))
+  - Degree studies unrelated to officer’s present schedule.
+- [ ] What is Category D training? (Ref: This is cost-effective and organized within the MDA.	Rule 070105(d))
+  - In-house short-term training.
+- [ ] What are Category E and F trainings? (Ref: These reflect the PSR's adaptation to digital learning trends.	Rules 070201(e)(f))
+  - E = Short-term online courses; F = Online courses leading to degrees.
+- [ ] Who can nominate officers for external training? (Ref: This ensures accountability and alignment with service needs.	Rule 070301)
+  - Head of MDA through Staff Development Officer.
+- [ ] What must accompany training nomination? (Ref: Training is tied to merit and strategic alignment.	Rule 070303)
+  - Officer’s performance evaluation and relevance of course.
+- [ ] What is the training bond policy? (Ref: The bond prevents talent drain and ensures return on training investment.	Rule 070302)
+  - Officers must serve a specific number of years post-training.
+- [ ] Can officers take employment abroad during training? (Ref: Taking a job abroad contradicts the purpose of the training leave.	Rule 070305)
+  - No, unless authorized.
+- [ ] What is the role of ASCON and PSIN in training? (Ref: These institutions serve as official civil service training hubs.	Rule 070104)
+  - They help implement structured capacity-building.
+- [ ] Can officers apply for training directly to foreign institutions? (Ref: All applications must align with government’s development goals.	Rule 070301)
+  - Yes, but must obtain MDA and OHCSF approval.
+
+## ALLOWANCES - 32 questions
+- [ ] What document governs emolument payment rules? (Ref: Rule 040101)
+  - Financial Regulations.
+- [ ] What governs emolument payment? (Ref: Rule 040101)
+  - Financial Regulations, which lay down rules for all public fund management.
+- [ ] Do suspended officers earn salary? (Ref: Rule 100406)
+  - No, payment is halted until case resolution.
+- [ ] When does an officer become entitled to emoluments after appointment? (Ref: The officer’s salary begins when they officially start work, ensuring fair compensation from the first day of service.	Rule 040102)
+  - From the date of assumption of duty.
+- [ ] What is the consequence of poor performance on salary progression? (Ref: This emphasizes the link between productivity and reward in the civil service.	Rule 040203, 040206)
+  - Increment may be deferred or withheld.
+- [ ] What authority handles all emolument-related guidance? (Ref: The PSR defers detailed financial management to the Financial Regulations for consistency.	Rule 040101)
+  - Financial Regulations.
+- [ ] What constitutes a "load" in baggage allowance? (Ref: This standardizes transportable baggage to enable proper calculation of entitlements.	Rule 080101(ii))
+  - One load is 25kg in weight or 3/25 cubic meters in volume.
+- [ ] Does baggage allowance include extra tariff baggage for dependents? (Ref: This rule prevents false claims on non-traveling dependents.	Rule 080201(c))
+  - No, only when the dependent actually travels.
+- [ ] Are baggage allowances transferable between officers? (Ref: Transport benefits are non-transferable and must be used only by entitled officers.	Rule 080106 (inferred))
+  - No.
+- [ ] What is the emolument policy for injury sustained on duty? (Ref: Ensures officers are not financially penalized for service-related injuries.	Rule 130317(ii))
+  - Full pay until discharge or invalidation.
+- [ ] What is an allowance under the PSR? (Ref: Allowances support various duties, challenges, or roles and are reviewed periodically.	Rule 140101)
+  - A monetary benefit other than salary granted for a specific purpose.
+- [ ] Who reviews allowances in the Federal Public Service? (Ref: Reviews are made based on circulars initiated by the OHCSF.	Rule 140101(b))
+  - The National Salaries, Incomes and Wages Commission.
+- [ ] Name five types of allowances in the PSR. (Ref: Allowances are specific to function or condition of service.	Rule 140102)
+  - Acting, Duty Tour, Hazard, Books, Estacode.
+- [ ] What is acting allowance? (Ref: Paid when an officer acts in a role above their substantive grade.	Rule 140131)
+  - Payment for performing duties of a higher grade post.
+- [ ] What is the entitlement for duty tour allowance? (Ref: Enables officers to meet travel-related expenses.	Rule 140107)
+  - Covers feeding and lodging during official travel.
+- [ ] Who qualifies for estacode allowance? (Ref: Estacode supports lodging and feeding during trips outside Nigeria.	Rule 140109)
+  - Officers on short official duties abroad.
+- [ ] What is hardship allowance? (Ref: Encourages postings to remote or insecure areas.	Rule 140102(j))
+  - Granted for service in difficult terrains.
+- [ ] What does hotel accommodation allowance cover? (Ref: Aimed at easing relocation stress.	Rule 140106)
+  - First 28 days on transfer or new appointment.
+- [ ] What is hazard allowance? (Ref: Applies to officers in high-risk or health-hazard roles.	Rule 140102(k))
+  - Given for exposure to risk during duty.
+- [ ] What is kilometer allowance? (Ref: Especially for transfers or if travel to location lacks public transport.	Rule 140104)
+  - Paid to cover personal vehicle use for official duty.
+- [ ] What is disengagement allowance? (Ref: A form of severance to aid transition post-service.	Rule 140105)
+  - 25% of gross annual emolument on retirement.
+- [ ] What is resettlement allowance? (Ref: Paid when living conditions are disrupted.	Rule 140136)
+  - 2% of annual emolument during transfer.
+- [ ] Who is not entitled to resettlement allowance? (Ref: Only those moved by management are eligible.	Rule 140137)
+  - Officers who request their own transfer.
+- [ ] What is books allowance? (Ref: Supports purchase of academic materials.	Rule 140117)
+  - Paid to officers on approved courses.
+- [ ] What is project allowance? (Ref: A one-time allowance for academic projects.	Rule 140118)
+  - For postgraduates doing project work.
+- [ ] What is responsibility allowance? (Ref: Paid for proximity to top officials and sensitive tasks.	Rule 140119)
+  - Given to certain confidential secretaries.
+- [ ] Who is entitled to overtime allowance? (Ref: Compensates work done beyond official hours.	Rule 140121)
+  - Officers on GL.14 and below.
+- [ ] What is local course allowance? (Ref: Varies depending on whether lodging is provided.	Rule 140115–140116)
+  - Given for attending approved courses within Nigeria.
+- [ ] What is shift duty allowance? (Ref: Recognizes irregular and extended duty hours.	Rule 140143)
+  - 15% of salary for shift workers not in the health sector.
+- [ ] What allowance covers family relocation for diplomats? (Ref: Paid on posting from Nigeria to abroad or vice versa if two years’ service is met.	Reg. 11)
+  - Resettlement allowance.
+- [ ] What is the rate of resettlement allowance? (Ref: The rate differs based on marital status and is meant to offset relocation expenses.	Reg. 11)
+  - 7% (Married), 5% (Single) of salary.
+- [ ] What is the allowance for clothing in cold countries? (Ref: Designed to cater to climate differences officers face abroad.	Reg. 12)
+  - Clothing allowance.
+

@@ -1,0 +1,387 @@
+﻿{
+    "name":  "Public Service Rules",
+    "description":  "Federal Civil Service PSR questions",
+    "type":  "nested",
+    "hasSubcategories":  true,
+    "icon":  "ðŸ“‹",
+    "psr_categories":  {
+                           "employment_service":  {
+                                                      "name":  "Employment \u0026 Service",
+                                                      "icon":  "ðŸ‘¥",
+                                                      "description":  "Rules regarding appointments, probation, and service conditions",
+                                                      "questions":  [
+                                                                        {
+                                                                            "id":  "psr_emp_001",
+                                                                            "question":  "Which body is constitutionally empowered to appoint persons into senior posts (GL.07 and above) in the Federal Civil Service?",
+                                                                            "options":  [
+                                                                                            "Office of the Head of the Civil Service",
+                                                                                            "Federal Civil Service Commission (FCSC)",
+                                                                                            "Bureau of Public Service Reforms",
+                                                                                            "National Assembly"
+                                                                                        ],
+                                                                            "correct":  1,
+                                                                            "explanation":  "According to PSR 020102, the Federal Civil Service Commission is responsible for appointments into senior posts GL.07 and above.",
+                                                                            "difficulty":  "easy",
+                                                                            "chapter":  "Appointments",
+                                                                            "keywords":  [
+                                                                                             "appointments",
+                                                                                             "FCSC",
+                                                                                             "senior posts"
+                                                                                         ]
+                                                                        },
+                                                                        {
+                                                                            "id":  "psr_emp_002",
+                                                                            "question":  "What is the mandatory age eligibility criterion for appointment into the Federal Public Service?",
+                                                                            "options":  [
+                                                                                            "Not less than 21 years and not more than 55 years of age",
+                                                                                            "Not less than 18 years and not more than 50 years of age",
+                                                                                            "Not less than 25 years and not more than 45 years of age",
+                                                                                            "Not less than 20 years and not more than 60 years of age"
+                                                                                        ],
+                                                                            "correct":  1,
+                                                                            "explanation":  "To be eligible for appointment, an applicant must be not less than 18 years and not more than 50 years of age, including computer literacy requirements.",
+                                                                            "difficulty":  "medium",
+                                                                            "chapter":  "Eligibility (PSR 020206)",
+                                                                            "keywords":  [
+                                                                                             "eligibility",
+                                                                                             "age",
+                                                                                             "appointment"
+                                                                                         ]
+                                                                        },
+                                                                        {
+                                                                            "id":  "psr_emp_003",
+                                                                            "question":  "What is the mandatory maximum period an officer is required to serve on probation before being confirmed in the Service?",
+                                                                            "options":  [
+                                                                                            "Six months",
+                                                                                            "Two years",
+                                                                                            "Three years",
+                                                                                            "Four years"
+                                                                                        ],
+                                                                            "correct":  1,
+                                                                            "explanation":  "Officers on probation will be required to serve for two years before being confirmed in the Service, though this period may be reduced.",
+                                                                            "difficulty":  "easy",
+                                                                            "chapter":  "Probation (PSR 020301)",
+                                                                            "keywords":  [
+                                                                                             "probation",
+                                                                                             "confirmation",
+                                                                                             "period"
+                                                                                         ]
+                                                                        },
+                                                                        {
+                                                                            "id":  "psr_emp_004",
+                                                                            "question":  "What document must all newly appointed officers immediately enter their personal particulars into upon assumption of duty?",
+                                                                            "options":  [
+                                                                                            "Form Gen. 15A",
+                                                                                            "Form Gen. 60 (Staff Records Form)",
+                                                                                            "Annual Performance Evaluation Report (APER)",
+                                                                                            "Pension Retirement Form (Gen. 69C)"
+                                                                                        ],
+                                                                            "correct":  1,
+                                                                            "explanation":  "Immediately upon assumption of duty, a newly appointed officer is required to enter his personal particulars on Form Gen. 60 (Staff Records Form).",
+                                                                            "difficulty":  "medium",
+                                                                            "chapter":  "Personal Records (PSR 020209)",
+                                                                            "keywords":  [
+                                                                                             "Form Gen. 60",
+                                                                                             "personal records",
+                                                                                             "assumption of duty"
+                                                                                         ]
+                                                                        },
+                                                                        {
+                                                                            "id":  "psr_emp_005",
+                                                                            "question":  "Recruitment is defined as the filling of vacancies by direct appointment of persons not already in the Federal Public Service, but it explicitly excludes which category of movement?",
+                                                                            "options":  [
+                                                                                            "Appointment on contract terms",
+                                                                                            "Appointment on probation",
+                                                                                            "Transfer of officers from other Public Service to the Federal Public Service",
+                                                                                            "Appointment of trainees or pupils"
+                                                                                        ],
+                                                                            "correct":  2,
+                                                                            "explanation":  "Recruitment means the filling of vacancies... but it excludes the transfer of officers from other Public Service in the Federation to the Federal Public Service.",
+                                                                            "difficulty":  "medium",
+                                                                            "chapter":  "Recruitment Definition (PSR 020201)",
+                                                                            "keywords":  [
+                                                                                             "recruitment",
+                                                                                             "transfer",
+                                                                                             "vacancy"
+                                                                                         ]
+                                                                        },
+                                                                        {
+                                                                            "id":  "psr_emp_006",
+                                                                            "question":  "The three papers compulsorily required for Senior Executive Officers/Administrative Officers (COMPRO I \u0026 II) include the Public Service Rules (PSR), General Paper, and which other core subject area?",
+                                                                            "options":  [
+                                                                                            "Nigerian Legal System",
+                                                                                            "Financial Regulations (FR)",
+                                                                                            "Public Procurement Act",
+                                                                                            "Statistical Analysis"
+                                                                                        ],
+                                                                            "correct":  1,
+                                                                            "explanation":  "The COMPRO examination for GL 07 and above includes Public Service Rules (PSR), Financial Regulations (FR), Civil Service Handbook, and Establishment Circulars as reference books.",
+                                                                            "difficulty":  "medium",
+                                                                            "chapter":  "Confirmation Exam (PSR 030108)",
+                                                                            "keywords":  [
+                                                                                             "COMPRO",
+                                                                                             "PSR",
+                                                                                             "Financial Regulations"
+                                                                                         ]
+                                                                        },
+                                                                        {
+                                                                            "id":  "psr_emp_4181",
+                                                                            "correct":  1,
+                                                                            "chapter":  "Study Leave",
+                                                                            "question":  "What is the maximum duration of study leave with pay?",
+                                                                            "keywords":  [
+                                                                                             "study",
+                                                                                             "leave",
+                                                                                             "duration"
+                                                                                         ],
+                                                                            "difficulty":  "medium",
+                                                                            "options":  [
+                                                                                            "One year",
+                                                                                            "Two years, extendable by one year",
+                                                                                            "Six months",
+                                                                                            "Three years"
+                                                                                        ],
+                                                                            "explanation":  "According to PSR Rule 120228, study leave with pay is granted for a maximum of two years, extendable by one year."
+                                                                        }
+                                                                    ]
+                                                  },
+                           "leave_medical":  {
+                                                 "name":  "Leave \u0026 Medical",
+                                                 "icon":  "ðŸ–ï¸",
+                                                 "description":  "Rules regarding various types of leave and medical benefits",
+                                                 "questions":  [
+                                                                   {
+                                                                       "id":  "psr_leave_001",
+                                                                       "question":  "What is the standard annual leave entitlement for Senior Officers on Grade Level 07 and above?",
+                                                                       "options":  [
+                                                                                       "21 working days",
+                                                                                       "28 calendar days",
+                                                                                       "30 working days",
+                                                                                       "45 working days"
+                                                                                   ],
+                                                                       "correct":  2,
+                                                                       "explanation":  "Annual Leave entitlement for GL 07 and above is 30 working days.",
+                                                                       "difficulty":  "easy",
+                                                                       "chapter":  "Annual Leave (PSR 120203)",
+                                                                       "keywords":  [
+                                                                                        "annual leave",
+                                                                                        "GL 07",
+                                                                                        "30 working days"
+                                                                                    ]
+                                                                   },
+                                                                   {
+                                                                       "id":  "psr_leave_002",
+                                                                       "question":  "The maximum duration for which a female officer who is nursing a child shall be granted time off two hours off-duty every day after maternity leave is:",
+                                                                       "options":  [
+                                                                                       "Three months",
+                                                                                       "Four months",
+                                                                                       "Six months",
+                                                                                       "One year"
+                                                                                   ],
+                                                                       "correct":  2,
+                                                                       "explanation":  "A female Officer who is nursing a child shall be granted two hours off-duty every day... for a maximum period of six months from the date she resumes duty from maternity leave.",
+                                                                       "difficulty":  "medium",
+                                                                       "chapter":  "Nursing Mothers (PSR 120220)",
+                                                                       "keywords":  [
+                                                                                        "nursing mothers",
+                                                                                        "maternity leave",
+                                                                                        "time off"
+                                                                                    ]
+                                                                   }
+                                                               ]
+                                             },
+                           "compensation_benefits":  {
+                                                         "name":  "Compensation \u0026 Benefits",
+                                                         "icon":  "ðŸ’°",
+                                                         "description":  "Rules regarding salaries, allowances, and other benefits",
+                                                         "questions":  [
+                                                                           {
+                                                                               "id":  "psr_comp_001",
+                                                                               "question":  "Resettlement Allowance shall be paid upon transfer at what rate of an Officer\u0027s annual total emolument?",
+                                                                               "options":  [
+                                                                                               "1%",
+                                                                                               "2%",
+                                                                                               "5%",
+                                                                                               "10%"
+                                                                                           ],
+                                                                               "correct":  1,
+                                                                               "explanation":  "Resettlement Allowance shall be paid at the rate of 2% of an Officer\u0027s annual total emolument.",
+                                                                               "difficulty":  "medium",
+                                                                               "chapter":  "Resettlement Allowance (FR 140136)",
+                                                                               "keywords":  [
+                                                                                                "Resettlement Allowance",
+                                                                                                "transfer",
+                                                                                                "2%"
+                                                                                            ]
+                                                                           }
+                                                                       ]
+                                                     },
+                           "conduct_discipline":  {
+                                                      "name":  "Conduct \u0026 Discipline",
+                                                      "icon":  "âš–ï¸",
+                                                      "description":  "Rules regarding professional conduct and disciplinary procedures",
+                                                      "questions":  [
+                                                                        {
+                                                                            "id":  "psr_conduct_001",
+                                                                            "question":  "An officer under investigation for a serious offense who is placed on temporary removal from duties and earns **no salary** is deemed to be under:",
+                                                                            "options":  [
+                                                                                            "Interdiction",
+                                                                                            "Termination of Appointment",
+                                                                                            "Suspension",
+                                                                                            "Compulsory Retirement"
+                                                                                        ],
+                                                                            "correct":  2,
+                                                                            "explanation":  "Suspension means removal of an Officer from performing the duties of his office... during which period he shall earn **no salary**. Interdiction involves half salary.",
+                                                                            "difficulty":  "easy",
+                                                                            "chapter":  "Discipline Definitions (PSR 010105)",
+                                                                            "keywords":  [
+                                                                                             "Suspension",
+                                                                                             "no salary",
+                                                                                             "discipline"
+                                                                                         ]
+                                                                        },
+                                                                        {
+                                                                            "id":  "psr_conduct_002",
+                                                                            "question":  "Which of the following is defined as a \u0027Serious Misconduct\u0027 that may lead to dismissal from the Service?",
+                                                                            "options":  [
+                                                                                            "Lateness to work once",
+                                                                                            "Absence from duty without leave",
+                                                                                            "Minor negligence",
+                                                                                            "Failure to submit staff returns"
+                                                                                        ],
+                                                                            "correct":  1,
+                                                                            "explanation":  "Serious Misconduct includes Falsification of records, Corruption, Bribery, Engaging in partisan political activities, and **Absence from duty without leave**.",
+                                                                            "difficulty":  "medium",
+                                                                            "chapter":  "Serious Misconduct (PSR 100402)",
+                                                                            "keywords":  [
+                                                                                             "serious misconduct",
+                                                                                             "dismissal",
+                                                                                             "absence"
+                                                                                         ]
+                                                                        }
+                                                                    ]
+                                                  },
+                           "performance_development":  {
+                                                           "name":  "Performance \u0026 Development",
+                                                           "icon":  "ðŸ“ˆ",
+                                                           "description":  "Rules regarding performance management and career development",
+                                                           "questions":  [
+                                                                             {
+                                                                                 "id":  "psr_perf_001",
+                                                                                 "question":  "The Performance Management Cycle shall run annually from:",
+                                                                                 "options":  [
+                                                                                                 "April to March of the following year",
+                                                                                                 "September to August of the following year",
+                                                                                                 "January to December of every year",
+                                                                                                 "The date of the last promotion to the next promotion due date"
+                                                                                             ],
+                                                                                 "correct":  2,
+                                                                                 "explanation":  "The Performance Management Cycle shall run from January to December of every year.",
+                                                                                 "difficulty":  "easy",
+                                                                                 "chapter":  "Performance Management Timeline (PSR 050301)",
+                                                                                 "keywords":  [
+                                                                                                  "PMS",
+                                                                                                  "timeline",
+                                                                                                  "January to December"
+                                                                                              ]
+                                                                             }
+                                                                         ]
+                                                       },
+                           "administrative":  {
+                                                  "name":  "Administrative Procedures",
+                                                  "icon":  "ðŸ“œ",
+                                                  "description":  "General administrative rules and procedures",
+                                                  "questions":  [
+                                                                    {
+                                                                        "id":  "psr_admin_001",
+                                                                        "question":  "Sabbatical Leave is granted to an officer on GL 15 or equivalent and above, for a period of:",
+                                                                        "options":  [
+                                                                                        "Six calendar months, once every three years",
+                                                                                        "Twelve calendar months, once in five (5) years",
+                                                                                        "Two years, renewable once",
+                                                                                        "Nine calendar months"
+                                                                                    ],
+                                                                        "correct":  1,
+                                                                        "explanation":  "Sabbatical Leave applies to an officer on GL 15 or equivalent and above... for a period of twelve (12) calendar months once in five (5) years.",
+                                                                        "difficulty":  "medium",
+                                                                        "chapter":  "Sabbatical Leave (PSR 020413)",
+                                                                        "keywords":  [
+                                                                                         "Sabbatical Leave",
+                                                                                         "GL 15",
+                                                                                         "twelve months"
+                                                                                     ]
+                                                                    },
+                                                                    {
+                                                                        "id":  "psr_admin_002",
+                                                                        "question":  "What is the mandatory retirement requirement for all grades in the Federal Civil Service?",
+                                                                        "options":  [
+                                                                                        "55 years of age or 30 years of pensionable service",
+                                                                                        "60 years of age or 35 years of pensionable service, whichever is earlier",
+                                                                                        "65 years of age or 40 years of pensionable service",
+                                                                                        "60 years of age only"
+                                                                                    ],
+                                                                        "correct":  1,
+                                                                        "explanation":  "The mandatory retirement age for all grades in the Service shall be 60 years or 35 years of pensionable service, whichever is earlier.",
+                                                                        "difficulty":  "easy",
+                                                                        "chapter":  "Mandatory Retirement (PSR 020908)",
+                                                                        "keywords":  [
+                                                                                         "retirement age",
+                                                                                         "service years"
+                                                                                     ]
+                                                                    }
+                                                                ]
+                                              },
+                           "training_development":  {
+                                                        "name":  "Training \u0026 Development",
+                                                        "icon":  "ðŸŽ“",
+                                                        "description":  "Rules regarding staff training and development programs",
+                                                        "questions":  [
+                                                                          {
+                                                                              "id":  "psr_train_001",
+                                                                              "question":  "How often should public servants undergo mandatory training according to the PSR?",
+                                                                              "options":  [
+                                                                                              "Every year",
+                                                                                              "Every 2 years",
+                                                                                              "Every 3 years",
+                                                                                              "No specific requirement"
+                                                                                          ],
+                                                                              "correct":  2,
+                                                                              "explanation":  "PSR 160401 states that public servants should undergo mandatory training at least once every 3 years to update their skills and knowledge.",
+                                                                              "difficulty":  "medium",
+                                                                              "chapter":  "Training Policy",
+                                                                              "keywords":  [
+                                                                                               "training",
+                                                                                               "development",
+                                                                                               "skills"
+                                                                                           ]
+                                                                          }
+                                                                      ]
+                                                    },
+                           "retirement":  {
+                                              "name":  "Retirement",
+                                              "icon":  "ðŸ‘´",
+                                              "description":  "Rules and procedures for retirement and pension",
+                                              "questions":  [
+                                                                {
+                                                                    "id":  "psr_ret_001",
+                                                                    "question":  "What is the mandatory retirement age for public servants in Nigeria?",
+                                                                    "options":  [
+                                                                                    "60 years",
+                                                                                    "65 years",
+                                                                                    "70 years",
+                                                                                    "No mandatory age"
+                                                                                ],
+                                                                    "correct":  0,
+                                                                    "explanation":  "PSR 100301 specifies that the mandatory retirement age for public servants is 60 years or 35 years of service, whichever comes first.",
+                                                                    "difficulty":  "easy",
+                                                                    "chapter":  "Retirement",
+                                                                    "keywords":  [
+                                                                                     "retirement",
+                                                                                     "age",
+                                                                                     "service years"
+                                                                                 ]
+                                                                }
+                                                            ]
+                                          }
+                       }
+}

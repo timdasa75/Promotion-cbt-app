@@ -1,0 +1,1624 @@
+{
+  "name": "Ethics and Code of Conduct",
+  "description": "Covers civil service values, integrity, transparency, accountability, conflict of interest, and the Code of Conduct for Public Officers.",
+  "type": "topic",
+  "hasSubcategories": false,
+  "icon": "⚖️",
+  "questions": [
+    {
+      "id": "ethics_001",
+      "question": "Which Nigerian body is responsible for enforcing the Code of Conduct for public officers?",
+      "options": [
+        "ICPC",
+        "Code of Conduct Bureau (CCB)",
+        "EFCC",
+        "Civil Service Commission"
+      ],
+      "correct": 1,
+      "explanation": "The Code of Conduct Bureau (CCB) is mandated by the Constitution to enforce ethical standards for public officers.",
+      "difficulty": "medium",
+      "topic": "Code of Conduct",
+      "keywords": [
+        "ethics",
+        "code of conduct",
+        "CCB"
+      ]
+    },
+    {
+      "id": "ethics_002",
+      "question": "Which of the following is a key value of the Nigerian civil service?",
+      "options": [
+        "Nepotism",
+        "Accountability",
+        "Corruption",
+        "Favoritism"
+      ],
+      "correct": 1,
+      "explanation": "Accountability is one of the key values guiding civil servants in Nigeria.",
+      "difficulty": "easy",
+      "topic": "Civil Service Ethics",
+      "keywords": [
+        "ethics",
+        "accountability",
+        "civil service values"
+      ]
+    },
+    {
+      "id": "ethics_003",
+      "question": "According to the Code of Conduct, public officers are prohibited from:",
+      "options": [
+        "Owning property",
+        "Maintaining foreign bank accounts",
+        "Joining a political party",
+        "Traveling abroad"
+      ],
+      "correct": 1,
+      "explanation": "The Constitution prohibits public officers from maintaining foreign bank accounts.",
+      "difficulty": "medium",
+      "topic": "Code of Conduct",
+      "keywords": [
+        "ethics",
+        "foreign accounts",
+        "code of conduct"
+      ]
+    },
+    {
+      "id": "ethics_004",
+      "question": "Which of the following is an example of conflict of interest in the civil service?",
+      "options": [
+        "Awarding contracts to oneself",
+        "Taking annual leave",
+        "Attending official training",
+        "Writing memos"
+      ],
+      "correct": 0,
+      "explanation": "Conflict of interest occurs when a public officer awards contracts or takes decisions for personal benefit.",
+      "difficulty": "easy",
+      "topic": "Conflict of Interest",
+      "keywords": [
+        "ethics",
+        "conflict of interest",
+        "civil service"
+      ]
+    },
+    {
+      "id": "ethics_005",
+      "question": "Which anti-corruption agency focuses on investigating economic and financial crimes?",
+      "options": [
+        "CCB",
+        "EFCC",
+        "NCC",
+        "NITDA"
+      ],
+      "correct": 1,
+      "explanation": "The EFCC investigates and prosecutes financial crimes such as fraud, money laundering, and corruption.",
+      "difficulty": "medium",
+      "topic": "Anti-Corruption Agencies",
+      "keywords": [
+        "ethics",
+        "EFCC",
+        "anti-corruption"
+      ]
+    },
+    {
+      "id": "ethics_006",
+      "question": "Which principle requires civil servants to avoid using official resources for personal gain?",
+      "options": [
+        "Transparency",
+        "Accountability",
+        "Integrity",
+        "Professionalism"
+      ],
+      "correct": 2,
+      "explanation": "Integrity demands that civil servants do not misuse official resources for personal purposes.",
+      "difficulty": "medium",
+      "topic": "Civil Service Ethics",
+      "keywords": [
+        "ethics",
+        "integrity",
+        "civil service"
+      ]
+    },
+    {
+      "id": "ethics_007",
+      "question": "Which of these is an ethical obligation of public servants?",
+      "options": [
+        "Loyalty to the Constitution",
+        "Personal enrichment",
+        "Favoritism",
+        "Secrecy for corruption"
+      ],
+      "correct": 0,
+      "explanation": "Civil servants must remain loyal to the Nigerian Constitution and the government of the day.",
+      "difficulty": "easy",
+      "topic": "Civil Service Values",
+      "keywords": [
+        "ethics",
+        "loyalty",
+        "constitution"
+      ]
+    },
+    {
+      "id": "ethics_008",
+      "question": "The Code of Conduct Bureau is established under which section of the 1999 Constitution?",
+      "options": [
+        "Fifth Schedule",
+        "Second Schedule",
+        "Third Schedule",
+        "First Schedule"
+      ],
+      "correct": 0,
+      "explanation": "The Code of Conduct Bureau is established under the Fifth Schedule of the 1999 Constitution.",
+      "difficulty": "medium",
+      "topic": "Code of Conduct",
+      "keywords": [
+        "ethics",
+        "constitution",
+        "CCB"
+      ]
+    },
+    {
+      "id": "ethics_009",
+      "question": "Which value requires that civil servants provide unbiased service to all citizens?",
+      "options": [
+        "Transparency",
+        "Impartiality",
+        "Accountability",
+        "Professionalism"
+      ],
+      "correct": 1,
+      "explanation": "Impartiality ensures civil servants serve all citizens without discrimination or favoritism.",
+      "difficulty": "easy",
+      "topic": "Civil Service Values",
+      "keywords": [
+        "ethics",
+        "impartiality",
+        "civil service"
+      ]
+    },
+    {
+      "id": "ethics_010",
+      "question": "Which agency is empowered to investigate corrupt practices in public institutions?",
+      "options": [
+        "NITDA",
+        "NCC",
+        "ICPC",
+        "INEC"
+      ],
+      "correct": 2,
+      "explanation": "The Independent Corrupt Practices Commission (ICPC) investigates corrupt practices in public institutions.",
+      "difficulty": "medium",
+      "topic": "Anti-Corruption Agencies",
+      "keywords": [
+        "ethics",
+        "ICPC",
+        "corruption"
+      ]
+    },
+    {
+      "id": "ethics_011",
+      "question": "Which ethical principle requires honesty and fairness in all official dealings?",
+      "options": [
+        "Professionalism",
+        "Integrity",
+        "Transparency",
+        "Accountability"
+      ],
+      "correct": 1,
+      "explanation": "Integrity requires honesty and fairness in all official dealings.",
+      "difficulty": "medium",
+      "topic": "Civil Service Ethics",
+      "keywords": [
+        "ethics",
+        "integrity",
+        "civil service"
+      ]
+    },
+    {
+      "id": "ethics_012",
+      "question": "Which of the following is prohibited under the Code of Conduct for public officers?",
+      "options": [
+        "Engaging in private business without approval",
+        "Taking leave of absence",
+        "Attending workshops",
+        "Receiving salaries"
+      ],
+      "correct": 0,
+      "explanation": "Public officers are prohibited from engaging in private business without appropriate approval.",
+      "difficulty": "medium",
+      "topic": "Code of Conduct",
+      "keywords": [
+        "ethics",
+        "code of conduct",
+        "private business"
+      ]
+    },
+    {
+      "id": "ethics_013",
+      "question": "What is the main role of the Code of Conduct Tribunal (CCT)?",
+      "options": [
+        "Recruitment of civil servants",
+        "Prosecution of public officers for breaches of the Code of Conduct",
+        "Promotion of civil servants",
+        "Approval of budgets"
+      ],
+      "correct": 1,
+      "explanation": "The Code of Conduct Tribunal prosecutes public officers for violations of the Code of Conduct.",
+      "difficulty": "medium",
+      "topic": "Code of Conduct",
+      "keywords": [
+        "ethics",
+        "CCT",
+        "prosecution"
+      ]
+    },
+    {
+      "id": "ethics_014",
+      "question": "Which of the following promotes public trust in governance?",
+      "options": [
+        "Transparency",
+        "Secrecy",
+        "Nepotism",
+        "Corruption"
+      ],
+      "correct": 0,
+      "explanation": "Transparency builds public trust by ensuring government activities are open and accessible.",
+      "difficulty": "easy",
+      "topic": "Civil Service Ethics",
+      "keywords": [
+        "ethics",
+        "transparency",
+        "trust"
+      ]
+    },
+    {
+      "id": "ethics_015",
+      "question": "Which type of gift is prohibited for public officers under the Code of Conduct?",
+      "options": [
+        "Gifts related to official duties",
+        "Family gifts",
+        "Traditional wedding gifts",
+        "Birthday presents"
+      ],
+      "correct": 0,
+      "explanation": "Public officers must not accept gifts related to the performance of their official duties.",
+      "difficulty": "medium",
+      "topic": "Code of Conduct",
+      "keywords": [
+        "ethics",
+        "gifts",
+        "prohibited"
+      ]
+    },
+    {
+      "id": "ethics_016",
+      "question": "Which ethical principle ensures that civil servants put public interest above personal gain?",
+      "options": [
+        "Accountability",
+        "Integrity",
+        "Selflessness",
+        "Transparency"
+      ],
+      "correct": 2,
+      "explanation": "Selflessness ensures civil servants act in the public interest and not for personal enrichment.",
+      "difficulty": "medium",
+      "topic": "Civil Service Values",
+      "keywords": [
+        "ethics",
+        "selflessness",
+        "public interest"
+      ]
+    },
+    {
+      "id": "ethics_017",
+      "question": "Which Nigerian law established the ICPC?",
+      "options": [
+        "Corrupt Practices and Other Related Offences Act 2000",
+        "Public Procurement Act 2007",
+        "Fiscal Responsibility Act 2007",
+        "Freedom of Information Act 2011"
+      ],
+      "correct": 0,
+      "explanation": "The ICPC was established under the Corrupt Practices and Other Related Offences Act 2000.",
+      "difficulty": "medium",
+      "topic": "Anti-Corruption Laws",
+      "keywords": [
+        "ethics",
+        "ICPC",
+        "anti-corruption law"
+      ]
+    },
+    {
+      "id": "ethics_018",
+      "question": "Which civil service value requires that civil servants use resources effectively and avoid waste?",
+      "options": [
+        "Transparency",
+        "Efficiency",
+        "Impartiality",
+        "Professionalism"
+      ],
+      "correct": 1,
+      "explanation": "Efficiency ensures that civil servants make the best use of resources and avoid waste.",
+      "difficulty": "medium",
+      "topic": "Civil Service Ethics",
+      "keywords": [
+        "ethics",
+        "efficiency",
+        "civil service"
+      ]
+    },
+    {
+      "id": "ethics_019",
+      "question": "Which of these is considered misconduct under the Public Service Rules?",
+      "options": [
+        "Corruption",
+        "Annual leave",
+        "Promotion",
+        "Training attendance"
+      ],
+      "correct": 0,
+      "explanation": "Corruption is classified as misconduct and attracts disciplinary measures under the Public Service Rules.",
+      "difficulty": "easy",
+      "topic": "PSR & Ethics",
+      "keywords": [
+        "ethics",
+        "misconduct",
+        "PSR"
+      ]
+    },
+    {
+      "id": "ethics_020",
+      "question": "Which of these best defines ethical governance?",
+      "options": [
+        "Governance based on fairness, integrity, and accountability",
+        "Governance based on secrecy",
+        "Governance based on personal interest",
+        "Governance based on favoritism"
+      ],
+      "correct": 0,
+      "explanation": "Ethical governance is guided by fairness, integrity, and accountability.",
+      "difficulty": "medium",
+      "topic": "Civil Service Ethics",
+      "keywords": [
+        "ethics",
+        "ethical governance",
+        "accountability"
+      ]
+    },
+    {
+      "id": "ethics_021",
+      "question": "Which ethical value requires civil servants to provide services without discrimination?",
+      "options": [
+        "Selflessness",
+        "Impartiality",
+        "Integrity",
+        "Transparency"
+      ],
+      "correct": 1,
+      "explanation": "Impartiality requires public officers to serve all citizens fairly without bias or discrimination.",
+      "difficulty": "easy",
+      "topic": "Civil Service Values",
+      "keywords": [
+        "ethics",
+        "impartiality",
+        "civil service"
+      ]
+    },
+    {
+      "id": "ethics_022",
+      "question": "What is the role of the Bureau of Public Service Reforms (BPSR) in ethics?",
+      "options": [
+        "To reform administrative systems and strengthen accountability",
+        "To recruit civil servants",
+        "To prosecute offenders",
+        "To conduct elections"
+      ],
+      "correct": 0,
+      "explanation": "BPSR reforms the public service by strengthening ethics, transparency, and accountability in governance.",
+      "difficulty": "medium",
+      "topic": "Ethics Reforms",
+      "keywords": [
+        "ethics",
+        "BPSR",
+        "public service reform"
+      ]
+    },
+    {
+      "id": "ethics_023",
+      "question": "Which principle prevents public officers from accepting bribes?",
+      "options": [
+        "Transparency",
+        "Integrity",
+        "Selflessness",
+        "Professionalism"
+      ],
+      "correct": 1,
+      "explanation": "Integrity requires that civil servants reject bribes and act honestly in official duties.",
+      "difficulty": "easy",
+      "topic": "Civil Service Ethics",
+      "keywords": [
+        "ethics",
+        "integrity",
+        "bribery"
+      ]
+    },
+    {
+      "id": "ethics_024",
+      "question": "Which body is empowered to prosecute public officers for violations of the Code of Conduct?",
+      "options": [
+        "Code of Conduct Tribunal (CCT)",
+        "EFCC",
+        "ICPC",
+        "Civil Service Commission"
+      ],
+      "correct": 0,
+      "explanation": "The CCT prosecutes cases of public officers who breach the Code of Conduct.",
+      "difficulty": "medium",
+      "topic": "Code of Conduct",
+      "keywords": [
+        "ethics",
+        "CCT",
+        "prosecution"
+      ]
+    },
+    {
+      "id": "ethics_025",
+      "question": "Which civil service principle requires the disclosure of assets by public officers?",
+      "options": [
+        "Impartiality",
+        "Transparency",
+        "Integrity",
+        "Accountability"
+      ],
+      "correct": 3,
+      "explanation": "Accountability requires that public officers declare their assets before and after service.",
+      "difficulty": "medium",
+      "topic": "Civil Service Values",
+      "keywords": [
+        "ethics",
+        "accountability",
+        "asset declaration"
+      ]
+    },
+    {
+      "id": "ethics_026",
+      "question": "Which law guides the Code of Conduct for Public Officers in Nigeria?",
+      "options": [
+        "1999 Constitution (Fifth Schedule)",
+        "Public Procurement Act",
+        "Civil Service Handbook",
+        "Financial Regulations"
+      ],
+      "correct": 0,
+      "explanation": "The 1999 Constitution’s Fifth Schedule provides the Code of Conduct for Public Officers.",
+      "difficulty": "medium",
+      "topic": "Code of Conduct",
+      "keywords": [
+        "ethics",
+        "constitution",
+        "fifth schedule"
+      ]
+    },
+    {
+      "id": "ethics_027",
+      "question": "Which ethical principle is violated when a civil servant uses official time for personal business?",
+      "options": [
+        "Efficiency",
+        "Integrity",
+        "Selflessness",
+        "Impartiality"
+      ],
+      "correct": 0,
+      "explanation": "Efficiency requires that official time is used productively and not for personal business.",
+      "difficulty": "medium",
+      "topic": "Civil Service Values",
+      "keywords": [
+        "ethics",
+        "efficiency",
+        "misuse of time"
+      ]
+    },
+    {
+      "id": "ethics_028",
+      "question": "Which civil service principle ensures information is shared openly and not hidden?",
+      "options": [
+        "Impartiality",
+        "Transparency",
+        "Accountability",
+        "Confidentiality"
+      ],
+      "correct": 1,
+      "explanation": "Transparency ensures openness in government dealings and reduces secrecy.",
+      "difficulty": "easy",
+      "topic": "Civil Service Values",
+      "keywords": [
+        "ethics",
+        "transparency",
+        "openness"
+      ]
+    },
+    {
+      "id": "ethics_029",
+      "question": "What is the penalty for violating the Code of Conduct as determined by the CCT?",
+      "options": [
+        "Dismissal or disqualification from public office",
+        "Salary increment",
+        "Automatic promotion",
+        "Annual leave extension"
+      ],
+      "correct": 0,
+      "explanation": "The CCT may dismiss, suspend, or disqualify public officers from holding office if found guilty.",
+      "difficulty": "medium",
+      "topic": "Code of Conduct",
+      "keywords": [
+        "ethics",
+        "CCT",
+        "penalties"
+      ]
+    },
+    {
+      "id": "ethics_030",
+      "question": "Which ethical obligation prohibits civil servants from disclosing classified information?",
+      "options": [
+        "Confidentiality",
+        "Accountability",
+        "Integrity",
+        "Transparency"
+      ],
+      "correct": 0,
+      "explanation": "Confidentiality ensures sensitive information is not disclosed unlawfully.",
+      "difficulty": "medium",
+      "topic": "Civil Service Ethics",
+      "keywords": [
+        "ethics",
+        "confidentiality",
+        "information security"
+      ]
+    },
+    {
+      "id": "ethics_031",
+      "question": "Which Nigerian body investigates breaches of financial integrity among public officers?",
+      "options": [
+        "EFCC",
+        "NITDA",
+        "NCC",
+        "INEC"
+      ],
+      "correct": 0,
+      "explanation": "The EFCC investigates financial crimes such as fraud, embezzlement, and illicit enrichment.",
+      "difficulty": "medium",
+      "topic": "Anti-Corruption Agencies",
+      "keywords": [
+        "ethics",
+        "EFCC",
+        "financial integrity"
+      ]
+    },
+    {
+      "id": "ethics_032",
+      "question": "Which principle ensures that civil servants act with professionalism and respect?",
+      "options": [
+        "Integrity",
+        "Professionalism",
+        "Impartiality",
+        "Transparency"
+      ],
+      "correct": 1,
+      "explanation": "Professionalism requires that civil servants conduct themselves with competence and respect.",
+      "difficulty": "easy",
+      "topic": "Civil Service Values",
+      "keywords": [
+        "ethics",
+        "professionalism",
+        "civil service"
+      ]
+    },
+    {
+      "id": "ethics_033",
+      "question": "Which document serves as a guide to ethical behavior for Nigerian civil servants?",
+      "options": [
+        "Civil Service Handbook",
+        "Labour Act",
+        "Companies Act",
+        "Freedom of Information Act"
+      ],
+      "correct": 0,
+      "explanation": "The Civil Service Handbook outlines values, ethics, and professional expectations for civil servants.",
+      "difficulty": "medium",
+      "topic": "Civil Service Handbook",
+      "keywords": [
+        "ethics",
+        "civil service handbook",
+        "guidelines"
+      ]
+    },
+    {
+      "id": "ethics_034",
+      "question": "Which value ensures civil servants are held answerable for their actions?",
+      "options": [
+        "Accountability",
+        "Confidentiality",
+        "Impartiality",
+        "Integrity"
+      ],
+      "correct": 0,
+      "explanation": "Accountability ensures public officers are responsible for their actions and decisions.",
+      "difficulty": "medium",
+      "topic": "Civil Service Ethics",
+      "keywords": [
+        "ethics",
+        "accountability",
+        "responsibility"
+      ]
+    },
+    {
+      "id": "ethics_035",
+      "question": "Which principle requires civil servants to avoid favoritism in hiring and promotions?",
+      "options": [
+        "Transparency",
+        "Impartiality",
+        "Integrity",
+        "Professionalism"
+      ],
+      "correct": 1,
+      "explanation": "Impartiality ensures fair recruitment and promotions without favoritism.",
+      "difficulty": "easy",
+      "topic": "Civil Service Ethics",
+      "keywords": [
+        "ethics",
+        "impartiality",
+        "recruitment"
+      ]
+    },
+    {
+      "id": "ethics_036",
+      "question": "Which body investigates and prosecutes corruption in public procurement?",
+      "options": [
+        "BPP",
+        "ICPC",
+        "EFCC",
+        "CCB"
+      ],
+      "correct": 1,
+      "explanation": "The ICPC is empowered to investigate corruption in public procurement and contracts.",
+      "difficulty": "medium",
+      "topic": "Anti-Corruption Agencies",
+      "keywords": [
+        "ethics",
+        "ICPC",
+        "procurement corruption"
+      ]
+    },
+    {
+      "id": "ethics_037",
+      "question": "Which ethical principle prohibits civil servants from leaking government secrets?",
+      "options": [
+        "Confidentiality",
+        "Impartiality",
+        "Integrity",
+        "Transparency"
+      ],
+      "correct": 0,
+      "explanation": "Confidentiality prevents civil servants from disclosing sensitive government information.",
+      "difficulty": "medium",
+      "topic": "Civil Service Values",
+      "keywords": [
+        "ethics",
+        "confidentiality",
+        "secrecy"
+      ]
+    },
+    {
+      "id": "ethics_038",
+      "question": "Which agency is empowered to ensure compliance with Nigeria’s anti-corruption policies?",
+      "options": [
+        "ICPC",
+        "NITDA",
+        "INEC",
+        "NCC"
+      ],
+      "correct": 0,
+      "explanation": "The ICPC ensures compliance with Nigeria’s anti-corruption policies and laws.",
+      "difficulty": "medium",
+      "topic": "Anti-Corruption",
+      "keywords": [
+        "ethics",
+        "ICPC",
+        "compliance"
+      ]
+    },
+    {
+      "id": "ethics_039",
+      "question": "Which civil service principle requires civil servants to avoid discrimination in service delivery?",
+      "options": [
+        "Integrity",
+        "Impartiality",
+        "Transparency",
+        "Efficiency"
+      ],
+      "correct": 1,
+      "explanation": "Impartiality means providing fair and equal treatment to all citizens.",
+      "difficulty": "easy",
+      "topic": "Civil Service Ethics",
+      "keywords": [
+        "ethics",
+        "impartiality",
+        "fairness"
+      ]
+    },
+    {
+      "id": "ethics_040",
+      "question": "Which constitutional provision empowers the CCT to try cases of misconduct?",
+      "options": [
+        "Fifth Schedule of 1999 Constitution",
+        "Public Procurement Act",
+        "Labour Act",
+        "Civil Service Rules"
+      ],
+      "correct": 0,
+      "explanation": "The Fifth Schedule of the 1999 Constitution empowers the CCT to try misconduct cases.",
+      "difficulty": "medium",
+      "topic": "Constitution & Ethics",
+      "keywords": [
+        "ethics",
+        "CCT",
+        "constitution"
+      ]
+    },
+    {
+      "id": "ethics_041",
+      "question": "Which ethical principle requires public officers to put service above personal gain?",
+      "options": [
+        "Selflessness",
+        "Impartiality",
+        "Confidentiality",
+        "Efficiency"
+      ],
+      "correct": 0,
+      "explanation": "Selflessness demands that civil servants put the needs of the people above their own interests.",
+      "difficulty": "medium",
+      "topic": "Civil Service Values",
+      "keywords": [
+        "ethics",
+        "selflessness",
+        "public service"
+      ]
+    },
+    {
+      "id": "ethics_042",
+      "question": "What must public officers submit to the CCB within three months of assuming office?",
+      "options": [
+        "Asset declaration",
+        "Promotion request",
+        "Pension application",
+        "Loan application"
+      ],
+      "correct": 0,
+      "explanation": "The Code of Conduct requires all public officers to declare their assets within three months of assumption of office.",
+      "difficulty": "medium",
+      "topic": "Code of Conduct",
+      "keywords": [
+        "ethics",
+        "asset declaration",
+        "CCB"
+      ]
+    },
+    {
+      "id": "ethics_043",
+      "question": "Which ethical obligation prohibits civil servants from taking part in partisan politics?",
+      "options": [
+        "Impartiality",
+        "Integrity",
+        "Confidentiality",
+        "Selflessness"
+      ],
+      "correct": 0,
+      "explanation": "Impartiality requires that civil servants remain neutral and avoid partisan politics.",
+      "difficulty": "medium",
+      "topic": "Civil Service Values",
+      "keywords": [
+        "ethics",
+        "impartiality",
+        "partisan politics"
+      ]
+    },
+    {
+      "id": "ethics_044",
+      "question": "Which Nigerian body is tasked with monitoring compliance with asset declarations?",
+      "options": [
+        "Code of Conduct Bureau (CCB)",
+        "EFCC",
+        "ICPC",
+        "Civil Service Commission"
+      ],
+      "correct": 0,
+      "explanation": "The CCB monitors and verifies compliance with asset declarations by public officers.",
+      "difficulty": "medium",
+      "topic": "Code of Conduct",
+      "keywords": [
+        "ethics",
+        "CCB",
+        "asset declaration"
+      ]
+    },
+    {
+      "id": "ethics_045",
+      "question": "Which value ensures that civil servants use public funds for their intended purpose?",
+      "options": [
+        "Accountability",
+        "Efficiency",
+        "Integrity",
+        "Transparency"
+      ],
+      "correct": 0,
+      "explanation": "Accountability requires that civil servants use public resources responsibly for their intended purposes.",
+      "difficulty": "medium",
+      "topic": "Civil Service Ethics",
+      "keywords": [
+        "ethics",
+        "accountability",
+        "public funds"
+      ]
+    },
+    {
+      "id": "ethics_046",
+      "question": "Which body prosecutes public officers for non-declaration of assets?",
+      "options": [
+        "Code of Conduct Tribunal (CCT)",
+        "EFCC",
+        "ICPC",
+        "NCC"
+      ],
+      "correct": 0,
+      "explanation": "The CCT prosecutes cases of public officers who fail to declare their assets.",
+      "difficulty": "medium",
+      "topic": "Code of Conduct",
+      "keywords": [
+        "ethics",
+        "CCT",
+        "asset declaration"
+      ]
+    },
+    {
+      "id": "ethics_047",
+      "question": "Which principle requires civil servants to avoid conflicts between official duty and private interests?",
+      "options": [
+        "Integrity",
+        "Transparency",
+        "Selflessness",
+        "Impartiality"
+      ],
+      "correct": 0,
+      "explanation": "Integrity requires avoiding conflicts of interest and maintaining fairness in official duties.",
+      "difficulty": "medium",
+      "topic": "Civil Service Ethics",
+      "keywords": [
+        "ethics",
+        "integrity",
+        "conflict of interest"
+      ]
+    },
+    {
+      "id": "ethics_048",
+      "question": "Which constitutional body ensures ethical conduct in public service?",
+      "options": [
+        "Code of Conduct Bureau",
+        "National Assembly",
+        "INEC",
+        "Federal Character Commission"
+      ],
+      "correct": 0,
+      "explanation": "The Code of Conduct Bureau ensures compliance with ethical standards for public officers.",
+      "difficulty": "easy",
+      "topic": "Constitution & Ethics",
+      "keywords": [
+        "ethics",
+        "CCB",
+        "constitution"
+      ]
+    },
+    {
+      "id": "ethics_049",
+      "question": "Which principle demands that civil servants avoid actions that could discredit the service?",
+      "options": [
+        "Professionalism",
+        "Selflessness",
+        "Confidentiality",
+        "Integrity"
+      ],
+      "correct": 0,
+      "explanation": "Professionalism requires civil servants to conduct themselves in a way that upholds the reputation of the service.",
+      "difficulty": "medium",
+      "topic": "Civil Service Ethics",
+      "keywords": [
+        "ethics",
+        "professionalism",
+        "conduct"
+      ]
+    },
+    {
+      "id": "ethics_050",
+      "question": "Which type of misconduct involves deliberate misrepresentation of facts?",
+      "options": [
+        "Falsehood",
+        "Conflict of interest",
+        "Bribery",
+        "Favoritism"
+      ],
+      "correct": 0,
+      "explanation": "Falsehood is misconduct involving intentional misrepresentation of facts.",
+      "difficulty": "medium",
+      "topic": "PSR Misconduct",
+      "keywords": [
+        "ethics",
+        "falsehood",
+        "misconduct"
+      ]
+    },
+    {
+      "id": "ethics_051",
+      "question": "Which principle ensures public confidence in the civil service?",
+      "options": [
+        "Transparency",
+        "Impartiality",
+        "Accountability",
+        "All of the above"
+      ],
+      "correct": 3,
+      "explanation": "Transparency, impartiality, and accountability collectively build public trust in the civil service.",
+      "difficulty": "medium",
+      "topic": "Civil Service Ethics",
+      "keywords": [
+        "ethics",
+        "public confidence",
+        "civil service"
+      ]
+    },
+    {
+      "id": "ethics_052",
+      "question": "Which misconduct involves using an official position to obtain undue advantage?",
+      "options": [
+        "Abuse of office",
+        "Conflict of interest",
+        "Nepotism",
+        "Fraud"
+      ],
+      "correct": 0,
+      "explanation": "Abuse of office occurs when an official uses their position for personal advantage or gain.",
+      "difficulty": "medium",
+      "topic": "PSR Misconduct",
+      "keywords": [
+        "ethics",
+        "abuse of office",
+        "misconduct"
+      ]
+    },
+    {
+      "id": "ethics_053",
+      "question": "Which civil service rule prohibits acceptance of double remuneration?",
+      "options": [
+        "Public Service Rules",
+        "Financial Regulations",
+        "Procurement Act",
+        "Labour Act"
+      ],
+      "correct": 0,
+      "explanation": "The Public Service Rules prohibit public officers from receiving double pay from government sources.",
+      "difficulty": "medium",
+      "topic": "PSR & Ethics",
+      "keywords": [
+        "ethics",
+        "double remuneration",
+        "PSR"
+      ]
+    },
+    {
+      "id": "ethics_054",
+      "question": "Which principle demands that civil servants respect the rule of law in all activities?",
+      "options": [
+        "Integrity",
+        "Impartiality",
+        "Accountability",
+        "Rule of Law"
+      ],
+      "correct": 3,
+      "explanation": "The rule of law ensures civil servants act within the law and uphold justice.",
+      "difficulty": "medium",
+      "topic": "Civil Service Ethics",
+      "keywords": [
+        "ethics",
+        "rule of law",
+        "civil service"
+      ]
+    },
+    {
+      "id": "ethics_055",
+      "question": "Which agency investigates cases of gratification or bribery in government institutions?",
+      "options": [
+        "ICPC",
+        "CCB",
+        "NCC",
+        "NITDA"
+      ],
+      "correct": 0,
+      "explanation": "The ICPC investigates cases of bribery and gratification involving public officers.",
+      "difficulty": "medium",
+      "topic": "Anti-Corruption Agencies",
+      "keywords": [
+        "ethics",
+        "ICPC",
+        "bribery"
+      ]
+    },
+    {
+      "id": "ethics_056",
+      "question": "Which type of misconduct involves divulging official secrets without authorization?",
+      "options": [
+        "Divulging official information",
+        "Falsehood",
+        "Abuse of office",
+        "Absenteeism"
+      ],
+      "correct": 0,
+      "explanation": "Divulging official information without authorization is a form of serious misconduct.",
+      "difficulty": "medium",
+      "topic": "PSR Misconduct",
+      "keywords": [
+        "ethics",
+        "official secrets",
+        "misconduct"
+      ]
+    },
+    {
+      "id": "ethics_057",
+      "question": "Which constitutional principle underpins the Code of Conduct for Public Officers?",
+      "options": [
+        "Accountability and transparency",
+        "Federalism",
+        "Sovereignty",
+        "Supremacy of the Constitution"
+      ],
+      "correct": 0,
+      "explanation": "Accountability and transparency form the constitutional basis for the Code of Conduct.",
+      "difficulty": "medium",
+      "topic": "Constitution & Ethics",
+      "keywords": [
+        "ethics",
+        "accountability",
+        "constitution"
+      ]
+    },
+    {
+      "id": "ethics_058",
+      "question": "Which civil service principle requires prompt and efficient service delivery?",
+      "options": [
+        "Efficiency",
+        "Integrity",
+        "Impartiality",
+        "Transparency"
+      ],
+      "correct": 0,
+      "explanation": "Efficiency requires civil servants to deliver services quickly, effectively, and without waste.",
+      "difficulty": "medium",
+      "topic": "Civil Service Ethics",
+      "keywords": [
+        "ethics",
+        "efficiency",
+        "service delivery"
+      ]
+    },
+    {
+      "id": "ethics_059",
+      "question": "Which body can disqualify public officers from holding office due to ethical violations?",
+      "options": [
+        "Code of Conduct Tribunal",
+        "EFCC",
+        "Civil Service Commission",
+        "NCC"
+      ],
+      "correct": 0,
+      "explanation": "The CCT can disqualify public officers from holding office due to breaches of the Code of Conduct.",
+      "difficulty": "medium",
+      "topic": "Code of Conduct",
+      "keywords": [
+        "ethics",
+        "CCT",
+        "disqualification"
+      ]
+    },
+    {
+      "id": "ethics_060",
+      "question": "Which civil service value discourages corruption and promotes fairness?",
+      "options": [
+        "Integrity",
+        "Impartiality",
+        "Accountability",
+        "Professionalism"
+      ],
+      "correct": 0,
+      "explanation": "Integrity discourages corruption and requires fairness and honesty in service delivery.",
+      "difficulty": "medium",
+      "topic": "Civil Service Ethics",
+      "keywords": [
+        "ethics",
+        "integrity",
+        "anti-corruption"
+      ]
+    },
+    {
+      "id": "ethics_061",
+      "question": "Which misconduct involves unauthorized absence from duty?",
+      "options": [
+        "Absenteeism",
+        "Abuse of office",
+        "Conflict of interest",
+        "Corruption"
+      ],
+      "correct": 0,
+      "explanation": "Absenteeism is misconduct where a public officer fails to report to duty without permission.",
+      "difficulty": "easy",
+      "topic": "PSR Misconduct",
+      "keywords": [
+        "ethics",
+        "absenteeism",
+        "misconduct"
+      ]
+    },
+    {
+      "id": "ethics_062",
+      "question": "Which principle ensures that public servants are responsible stewards of public resources?",
+      "options": [
+        "Accountability",
+        "Transparency",
+        "Confidentiality",
+        "Integrity"
+      ],
+      "correct": 0,
+      "explanation": "Accountability ensures civil servants use public resources responsibly and answer for their use.",
+      "difficulty": "medium",
+      "topic": "Civil Service Values",
+      "keywords": [
+        "ethics",
+        "accountability",
+        "stewardship"
+      ]
+    },
+    {
+      "id": "ethics_063",
+      "question": "Which body investigates breaches of ethical conduct relating to asset declarations?",
+      "options": [
+        "CCB",
+        "EFCC",
+        "ICPC",
+        "NCC"
+      ],
+      "correct": 0,
+      "explanation": "The Code of Conduct Bureau investigates breaches relating to asset declarations.",
+      "difficulty": "medium",
+      "topic": "Code of Conduct",
+      "keywords": [
+        "ethics",
+        "CCB",
+        "asset declaration"
+      ]
+    },
+    {
+      "id": "ethics_064",
+      "question": "Which civil service principle ensures openness in government contracting processes?",
+      "options": [
+        "Transparency",
+        "Accountability",
+        "Confidentiality",
+        "Impartiality"
+      ],
+      "correct": 0,
+      "explanation": "Transparency ensures openness and fairness in government contracting and procurement.",
+      "difficulty": "medium",
+      "topic": "Civil Service Values",
+      "keywords": [
+        "ethics",
+        "transparency",
+        "procurement"
+      ]
+    },
+    {
+      "id": "ethics_065",
+      "question": "Which act makes bribery and corruption criminal offences in Nigeria?",
+      "options": [
+        "Corrupt Practices and Other Related Offences Act 2000",
+        "Labour Act",
+        "Freedom of Information Act",
+        "Public Procurement Act"
+      ],
+      "correct": 0,
+      "explanation": "The Corrupt Practices and Other Related Offences Act criminalizes bribery and corruption.",
+      "difficulty": "medium",
+      "topic": "Anti-Corruption Laws",
+      "keywords": [
+        "ethics",
+        "corruption",
+        "ICPC Act"
+      ]
+    },
+    {
+      "id": "ethics_066",
+      "question": "Which ethical principle requires civil servants to avoid personal bias in decision-making?",
+      "options": [
+        "Impartiality",
+        "Integrity",
+        "Confidentiality",
+        "Efficiency"
+      ],
+      "correct": 0,
+      "explanation": "Impartiality requires decisions to be made without personal bias or favoritism.",
+      "difficulty": "medium",
+      "topic": "Civil Service Values",
+      "keywords": [
+        "ethics",
+        "impartiality",
+        "bias"
+      ]
+    },
+    {
+      "id": "ethics_067",
+      "question": "Which body enforces penalties for non-compliance with ethical rules for public officers?",
+      "options": [
+        "CCT",
+        "EFCC",
+        "ICPC",
+        "Civil Service Commission"
+      ],
+      "correct": 0,
+      "explanation": "The Code of Conduct Tribunal enforces penalties for violations of ethical rules.",
+      "difficulty": "medium",
+      "topic": "Code of Conduct",
+      "keywords": [
+        "ethics",
+        "CCT",
+        "penalties"
+      ]
+    },
+    {
+      "id": "ethics_068",
+      "question": "Which ethical principle ensures that civil servants keep government information secure?",
+      "options": [
+        "Confidentiality",
+        "Accountability",
+        "Selflessness",
+        "Transparency"
+      ],
+      "correct": 0,
+      "explanation": "Confidentiality ensures that sensitive government information is kept secure and not disclosed unlawfully.",
+      "difficulty": "medium",
+      "topic": "Civil Service Values",
+      "keywords": [
+        "ethics",
+        "confidentiality",
+        "secrecy"
+      ]
+    },
+    {
+      "id": "ethics_069",
+      "question": "Which misconduct involves falsifying records for personal advantage?",
+      "options": [
+        "Forgery",
+        "Conflict of interest",
+        "Bribery",
+        "Absenteeism"
+      ],
+      "correct": 0,
+      "explanation": "Forgery is misconduct involving falsification of official records.",
+      "difficulty": "medium",
+      "topic": "PSR Misconduct",
+      "keywords": [
+        "ethics",
+        "forgery",
+        "misconduct"
+      ]
+    },
+    {
+      "id": "ethics_070",
+      "question": "Which principle ensures fairness in the treatment of colleagues and subordinates?",
+      "options": [
+        "Integrity",
+        "Impartiality",
+        "Professionalism",
+        "Efficiency"
+      ],
+      "correct": 2,
+      "explanation": "Professionalism ensures fair and respectful treatment of colleagues and subordinates.",
+      "difficulty": "medium",
+      "topic": "Civil Service Ethics",
+      "keywords": [
+        "ethics",
+        "professionalism",
+        "fairness"
+      ]
+    },
+    {
+      "id": "ethics_071",
+      "question": "Which Nigerian agency is mandated to promote ethical values in public service?",
+      "options": [
+        "Code of Conduct Bureau",
+        "INEC",
+        "NITDA",
+        "NCC"
+      ],
+      "correct": 0,
+      "explanation": "The CCB promotes ethical values and monitors compliance by public officers.",
+      "difficulty": "easy",
+      "topic": "Ethics in Governance",
+      "keywords": [
+        "ethics",
+        "CCB",
+        "ethics promotion"
+      ]
+    },
+    {
+      "id": "ethics_072",
+      "question": "Which civil service principle ensures judicious use of scarce public resources?",
+      "options": [
+        "Efficiency",
+        "Accountability",
+        "Integrity",
+        "Impartiality"
+      ],
+      "correct": 0,
+      "explanation": "Efficiency requires prudent use of scarce public resources to maximize benefits.",
+      "difficulty": "medium",
+      "topic": "Civil Service Ethics",
+      "keywords": [
+        "ethics",
+        "efficiency",
+        "resources"
+      ]
+    },
+    {
+      "id": "ethics_073",
+      "question": "Which misconduct involves using office resources for private business?",
+      "options": [
+        "Abuse of office",
+        "Forgery",
+        "Conflict of interest",
+        "Falsehood"
+      ],
+      "correct": 0,
+      "explanation": "Abuse of office includes using official resources for personal or private business.",
+      "difficulty": "medium",
+      "topic": "PSR Misconduct",
+      "keywords": [
+        "ethics",
+        "abuse of office",
+        "resources"
+      ]
+    },
+    {
+      "id": "ethics_074",
+      "question": "Which ethical principle requires civil servants to be answerable for their decisions?",
+      "options": [
+        "Accountability",
+        "Integrity",
+        "Impartiality",
+        "Transparency"
+      ],
+      "correct": 0,
+      "explanation": "Accountability requires public officers to be answerable for their decisions and actions.",
+      "difficulty": "medium",
+      "topic": "Civil Service Values",
+      "keywords": [
+        "ethics",
+        "accountability",
+        "responsibility"
+      ]
+    },
+    {
+      "id": "ethics_075",
+      "question": "Which body can recommend removal of a public officer due to unethical conduct?",
+      "options": [
+        "CCT",
+        "Federal Civil Service Commission",
+        "EFCC",
+        "ICPC"
+      ],
+      "correct": 0,
+      "explanation": "The CCT can recommend removal of public officers found guilty of unethical conduct.",
+      "difficulty": "medium",
+      "topic": "Code of Conduct",
+      "keywords": [
+        "ethics",
+        "CCT",
+        "removal"
+      ]
+    },
+    {
+      "id": "ethics_076",
+      "question": "Which ethical principle prohibits favoritism in public service?",
+      "options": [
+        "Impartiality",
+        "Efficiency",
+        "Confidentiality",
+        "Integrity"
+      ],
+      "correct": 0,
+      "explanation": "Impartiality prohibits favoritism and requires fair service to all citizens.",
+      "difficulty": "easy",
+      "topic": "Civil Service Ethics",
+      "keywords": [
+        "ethics",
+        "impartiality",
+        "favoritism"
+      ]
+    },
+    {
+      "id": "ethics_077",
+      "question": "Which principle ensures civil servants manage public funds responsibly?",
+      "options": [
+        "Accountability",
+        "Confidentiality",
+        "Professionalism",
+        "Impartiality"
+      ],
+      "correct": 0,
+      "explanation": "Accountability ensures responsible and transparent management of public funds.",
+      "difficulty": "medium",
+      "topic": "Civil Service Values",
+      "keywords": [
+        "ethics",
+        "accountability",
+        "public funds"
+      ]
+    },
+    {
+      "id": "ethics_078",
+      "question": "Which type of misconduct involves deliberate non-compliance with lawful orders?",
+      "options": [
+        "Insubordination",
+        "Forgery",
+        "Absenteeism",
+        "Corruption"
+      ],
+      "correct": 0,
+      "explanation": "Insubordination is deliberate refusal to comply with lawful orders from superiors.",
+      "difficulty": "medium",
+      "topic": "PSR Misconduct",
+      "keywords": [
+        "ethics",
+        "insubordination",
+        "misconduct"
+      ]
+    },
+    {
+      "id": "ethics_079",
+      "question": "Which ethical value requires that decisions are taken openly and justifiably?",
+      "options": [
+        "Transparency",
+        "Impartiality",
+        "Confidentiality",
+        "Integrity"
+      ],
+      "correct": 0,
+      "explanation": "Transparency ensures openness in decision-making and builds public trust.",
+      "difficulty": "medium",
+      "topic": "Civil Service Values",
+      "keywords": [
+        "ethics",
+        "transparency",
+        "decision-making"
+      ]
+    },
+    {
+      "id": "ethics_080",
+      "question": "Which misconduct involves unauthorized use of official vehicles?",
+      "options": [
+        "Abuse of office",
+        "Forgery",
+        "Insubordination",
+        "Conflict of interest"
+      ],
+      "correct": 0,
+      "explanation": "Unauthorized use of official vehicles constitutes abuse of office and misconduct.",
+      "difficulty": "medium",
+      "topic": "PSR Misconduct",
+      "keywords": [
+        "ethics",
+        "official vehicles",
+        "abuse of office"
+      ]
+    },
+    {
+      "id": "ethics_081",
+      "question": "What is the foundation of the Code of Conduct for public officers?",
+      "options": [
+        "Personal gain",
+        "Public interest",
+        "Political loyalty",
+        "Family ties"
+      ],
+      "correct": 1,
+      "explanation": "The Code of Conduct emphasizes serving the public interest above personal interests.",
+      "difficulty": "easy",
+      "topic": "Ethics and Code of Conduct",
+      "keywords": [
+        "code of conduct",
+        "public interest",
+        "ethics"
+      ]
+    },
+    {
+      "id": "ethics_082",
+      "question": "Which document sets out the duties, responsibilities and conduct of civil servants?",
+      "options": [
+        "Public Service Rules",
+        "Criminal Code",
+        "Companies and Allied Matters Act",
+        "Public Procurement Act"
+      ],
+      "correct": 0,
+      "explanation": "The Public Service Rules set out terms and conditions, conduct, duties and responsibilities for civil servants.",
+      "difficulty": "medium",
+      "topic": "Ethics and Code of Conduct",
+      "keywords": [
+        "public service rules",
+        "civil service",
+        "conduct"
+      ]
+    },
+    {
+      "id": "ethics_083",
+      "question": "What does 'Estacode' relate to in civil service practice?",
+      "options": [
+        "Staff recruitment",
+        "Official travel allowances and entitlements",
+        "Procurement thresholds",
+        "Performance appraisal"
+      ],
+      "correct": 1,
+      "explanation": "Estacode is the set of rules on official travel and allowances in the civil/public service.",
+      "difficulty": "medium",
+      "topic": "Ethics and Code of Conduct",
+      "keywords": [
+        "estacode",
+        "allowances",
+        "travel"
+      ]
+    },
+    {
+      "id": "ethics_084",
+      "question": "Which principle is fundamental to civil service recruitment and promotion?",
+      "options": [
+        "Partisanship",
+        "Merit and fairness",
+        "Arbitrariness",
+        "Nepotism"
+      ],
+      "correct": 1,
+      "explanation": "Recruitment and promotion in the civil service should be based on merit, fairness and transparency.",
+      "difficulty": "easy",
+      "topic": "Ethics and Code of Conduct",
+      "keywords": [
+        "merit",
+        "promotion",
+        "recruitment"
+      ]
+    },
+    {
+      "id": "ethics_085",
+      "question": "Which of the following is a best-practice principle for official correspondence retention?",
+      "options": [
+        "Retain only outgoing mail",
+        "Keep both incoming and outgoing official correspondence for the prescribed retention period",
+        "Destroy all documents immediately",
+        "Keep only electronic copies without backups"
+      ],
+      "correct": 1,
+      "explanation": "Good records management requires retention of official incoming and outgoing correspondence for specified retention schedules and proper archiving.",
+      "difficulty": "medium",
+      "topic": "Ethics and Code of Conduct",
+      "keywords": [
+        "records retention",
+        "correspondence",
+        "archiving"
+      ]
+    }
+  ]
+}

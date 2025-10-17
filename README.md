@@ -1,0 +1,42 @@
+# Nigerian PSR 2021 Quiz App
+
+An interactive quiz application for practicing Nigerian Public Service Rules (PSR) and related topics for civil service promotion exams.
+
+## Features
+
+- Multiple quiz topics
+- Practice and timed modes
+- Progress tracking
+- Responsive design
+- Instant feedback on answers
+- Performance analysis
+
+## How to Use
+
+1. Select a topic from the available options
+2. Choose your preferred quiz mode (Practice or Timed)
+3. Answer the questions
+4. Review your results and see detailed feedback
+
+## Technologies Used
+
+- HTML5
+- CSS3
+- JavaScript (ES6+)
+- GitHub Pages (for hosting)
+
+## Setup for Local Development
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/your-repo-name.git
+   ```
+2. Open `index.html` in your browser
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).

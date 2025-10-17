@@ -1,0 +1,76 @@
+{
+  "topics": [
+    {
+      "id": "psr",
+      "name": "Public Service Rules",
+      "description": "Federal Civil Service PSR questions",
+      "file": "psr.json"
+    },
+    {
+      "id": "financial",
+      "name": "Financial Management",
+      "description": "Financial management and budgeting questions",
+      "file": "financial.json"
+    },
+    {
+      "id": "procurement",
+      "name": "Procurement",
+      "description": "Procurement and supply chain questions",
+      "file": "procurement.json"
+    },
+    {
+      "id": "civil_service",
+      "name": "Civil Service",
+      "description": "Civil service administration questions",
+      "file": "civil_service.json"
+    },
+    {
+      "id": "competency",
+      "name": "Competency Framework",
+      "description": "Competency-based assessment questions",
+      "file": "competency.json"
+    },
+    {
+      "id": "freedom",
+      "name": "Freedom of Information",
+      "description": "Freedom of information act questions",
+      "file": "freedom.json"
+    },
+    {
+      "id": "ethics",
+      "name": "Ethics & Integrity",
+      "description": "Ethics and integrity in public service",
+      "file": "ethics.json"
+    },
+    {
+      "id": "negotiation",
+      "name": "Negotiation Skills",
+      "description": "Negotiation and conflict resolution",
+      "file": "negotiation.json"
+    },
+    {
+      "id": "circulars",
+      "name": "Official Circulars",
+      "description": "Government circulars and directives",
+      "file": "circulars.json"
+    },
+    {
+      "id": "ict",
+      "name": "ICT Management",
+      "description": "Information and communication technology",
+      "file": "ict.json"
+    },
+    {
+      "id": "leadership",
+      "name": "Leadership",
+      "description": "Leadership and management skills",
+      "file": "leadership.json"
+    },
+    {
+      "id": "policy",
+      "name": "Policy Analysis",
+      "description": "Policy development and analysis",
+      "file": "policy.json"
+    }
+  ]
+}

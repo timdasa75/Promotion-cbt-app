@@ -1,0 +1,2308 @@
+{
+  "name": "Financial Regulations",
+  "description": "Budgeting, procurement, financial management, imprest, allowances, audits, and sanctions in the Nigerian public service.",
+  "type": "topic",
+  "hasSubcategories": false,
+  "icon": "💰",
+  "questions": [
+    {
+      "id": "financial_fin_001",
+      "question": "According to the Financial Regulations, what is the maximum imprest advance allowed for a civil servant?",
+      "options": [
+        "₦50,000",
+        "₦100,000",
+        "₦200,000",
+        "₦500,000"
+      ],
+      "correct": 2,
+      "explanation": "The maximum imprest advance is ₦200,000 as stipulated in the Financial Regulations.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "imprest",
+        "advance",
+        "financial regulations"
+      ]
+    },
+    {
+      "id": "financial_fin_002",
+      "question": "Who is the Chief Accounting Officer of a Ministry?",
+      "options": [
+        "The Accountant-General of the Federation",
+        "The Director of Finance",
+        "The Minister",
+        "The Permanent Secretary"
+      ],
+      "correct": 3,
+      "explanation": "The Permanent Secretary is the Chief Accounting Officer of a Ministry, as per Financial Regulations.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "chief accounting officer",
+        "permanent secretary",
+        "ministries"
+      ]
+    },
+    {
+      "id": "financial_fin_003",
+      "question": "Which government official is responsible for issuing Treasury Circulars?",
+      "options": [
+        "Auditor-General",
+        "Minister of Finance",
+        "Accountant-General",
+        "Director-General, Budget Office"
+      ],
+      "correct": 2,
+      "explanation": "The Accountant-General of the Federation issues Treasury Circulars.",
+      "difficulty": "easy",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "treasury circulars",
+        "accountant general",
+        "finance"
+      ]
+    },
+    {
+      "id": "financial_fin_004",
+      "question": "What is the purpose of the Appropriation Act?",
+      "options": [
+        "To regulate banking operations",
+        "To authorize government expenditure",
+        "To increase revenue collection",
+        "To reduce inflation"
+      ],
+      "correct": 1,
+      "explanation": "The Appropriation Act authorizes government expenditure for a financial year.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "appropriation act",
+        "budget",
+        "government spending"
+      ]
+    },
+    {
+      "id": "financial_fin_005",
+      "question": "Which of the following must be prepared before funds can be released for government expenditure?",
+      "options": [
+        "Audited Report",
+        "Appropriation Act",
+        "Treasury Circular",
+        "Warrant"
+      ],
+      "correct": 3,
+      "explanation": "A Warrant must be prepared and authorized before funds are released for government expenditure.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "warrant",
+        "government expenditure",
+        "finance"
+      ]
+    },
+    {
+      "id": "financial_fin_006",
+      "question": "How often must public officers retire their imprest?",
+      "options": [
+        "Monthly",
+        "Quarterly",
+        "Bi-annually",
+        "Annually"
+      ],
+      "correct": 0,
+      "explanation": "Imprests must be retired monthly, as specified in the Financial Regulations.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "imprest retirement",
+        "financial regulations",
+        "monthly"
+      ]
+    },
+    {
+      "id": "financial_fin_007",
+      "question": "Which officer is responsible for maintaining the Vote Book?",
+      "options": [
+        "Internal Auditor",
+        "Sub-Accountant",
+        "Vote Controller",
+        "Director of Finance"
+      ],
+      "correct": 2,
+      "explanation": "The Vote Controller maintains the Vote Book to monitor budgetary allocations and expenditures.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "vote book",
+        "vote controller",
+        "budget monitoring"
+      ]
+    },
+    {
+      "id": "financial_fin_008",
+      "question": "What document sets the limits for government spending within a fiscal year?",
+      "options": [
+        "Budget Speech",
+        "Appropriation Act",
+        "Financial Regulations",
+        "Treasury Circular"
+      ],
+      "correct": 1,
+      "explanation": "The Appropriation Act sets the legal spending limits of government within a fiscal year.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "government spending",
+        "appropriation act",
+        "budget"
+      ]
+    },
+    {
+      "id": "financial_fin_009",
+      "question": "In the Nigerian public service, what is a virement?",
+      "options": [
+        "A budget cut",
+        "Transfer of funds between sub-heads",
+        "An increase in overall budget",
+        "A supplementary appropriation"
+      ],
+      "correct": 1,
+      "explanation": "A virement is the authorized transfer of funds from one sub-head to another within the same head of expenditure.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "virement",
+        "budget transfer",
+        "finance"
+      ]
+    },
+    {
+      "id": "financial_fin_010",
+      "question": "What is the primary role of the Auditor-General for the Federation?",
+      "options": [
+        "To prepare the national budget",
+        "To approve treasury warrants",
+        "To audit public accounts",
+        "To issue financial regulations"
+      ],
+      "correct": 2,
+      "explanation": "The Auditor-General audits the accounts of all government ministries and agencies.",
+      "difficulty": "easy",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "auditor general",
+        "public accounts",
+        "audit"
+      ]
+    },
+    {
+      "id": "financial_fin_011",
+      "question": "How are unspent balances of budgetary allocations treated at the end of the financial year?",
+      "options": [
+        "Rolled over automatically",
+        "Returned to the Treasury",
+        "Transferred to contractors",
+        "Added to next year’s budget"
+      ],
+      "correct": 1,
+      "explanation": "Unspent balances must be returned to the Treasury at the end of the financial year.",
+      "difficulty": "easy",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "unspent balances",
+        "treasury",
+        "financial year end"
+      ]
+    },
+    {
+      "id": "financial_fin_012",
+      "question": "What is the function of the Cash Book in financial management?",
+      "options": [
+        "To record all bank loans",
+        "To monitor inflow and outflow of cash",
+        "To authorize payments",
+        "To calculate imprest limits"
+      ],
+      "correct": 1,
+      "explanation": "The Cash Book is used to record all inflows and outflows of cash.",
+      "difficulty": "easy",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "cash book",
+        "financial management",
+        "record keeping"
+      ]
+    },
+    {
+      "id": "financial_fin_013",
+      "question": "Which agency is responsible for managing Nigeria’s public debt?",
+      "options": [
+        "Ministry of Finance",
+        "Debt Management Office",
+        "Central Bank of Nigeria",
+        "Budget Office"
+      ],
+      "correct": 1,
+      "explanation": "The Debt Management Office (DMO) is responsible for managing Nigeria’s public debt.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "dmo",
+        "public debt",
+        "financial management"
+      ]
+    },
+    {
+      "id": "financial_fin_014",
+      "question": "What is the penalty for unauthorized expenditure under the Financial Regulations?",
+      "options": [
+        "Warning letter",
+        "Surcharge and disciplinary action",
+        "Retirement of imprest",
+        "Reallocation of funds"
+      ],
+      "correct": 1,
+      "explanation": "Unauthorized expenditure attracts surcharge and disciplinary measures under the Financial Regulations.",
+      "difficulty": "hard",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "unauthorized expenditure",
+        "penalty",
+        "disciplinary action"
+      ]
+    },
+    {
+      "id": "financial_fin_015",
+      "question": "Who is responsible for issuing Financial Instructions within a Ministry?",
+      "options": [
+        "The Accountant-General",
+        "The Minister",
+        "The Permanent Secretary",
+        "The Director of Finance"
+      ],
+      "correct": 2,
+      "explanation": "The Permanent Secretary issues Financial Instructions within a Ministry.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "financial instructions",
+        "permanent secretary",
+        "ministries"
+      ]
+    },
+    {
+      "id": "financial_fin_016",
+      "question": "What does 'public revenue' include?",
+      "options": [
+        "Only oil revenue",
+        "Only taxes",
+        "All government income including taxes, oil, and non-oil sources",
+        "Only levies"
+      ],
+      "correct": 2,
+      "explanation": "Public revenue includes all government income, such as taxes, oil, customs, levies, and other sources.",
+      "difficulty": "easy",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "public revenue",
+        "government income",
+        "finance"
+      ]
+    },
+    {
+      "id": "financial_fin_017",
+      "question": "Which official document provides details of a Ministry’s expenditure proposals for a financial year?",
+      "options": [
+        "Budget Speech",
+        "Medium-Term Expenditure Framework",
+        "Appropriation Bill",
+        "Treasury Circular"
+      ],
+      "correct": 2,
+      "explanation": "The Appropriation Bill contains detailed expenditure proposals for each Ministry.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "appropriation bill",
+        "budgeting",
+        "finance"
+      ]
+    },
+    {
+      "id": "financial_fin_018",
+      "question": "Which officer maintains the departmental vote ledger?",
+      "options": [
+        "Vote Controller",
+        "Head of Department",
+        "Accounts Clerk",
+        "Internal Auditor"
+      ],
+      "correct": 0,
+      "explanation": "The Vote Controller maintains the departmental vote ledger.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "vote ledger",
+        "vote controller",
+        "budget management"
+      ]
+    },
+    {
+      "id": "financial_fin_019",
+      "question": "What is a Supplementary Appropriation Act?",
+      "options": [
+        "An act to reduce government expenditure",
+        "An act to approve additional spending not captured in the original Appropriation Act",
+        "A replacement for the budget",
+        "An emergency bailout law"
+      ],
+      "correct": 1,
+      "explanation": "A Supplementary Appropriation Act approves additional spending not captured in the original Appropriation Act.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "supplementary appropriation",
+        "budget",
+        "finance"
+      ]
+    },
+    {
+      "id": "financial_fin_020",
+      "question": "What does TSA stand for in Nigeria’s financial system?",
+      "options": [
+        "Total Savings Account",
+        "Treasury Single Account",
+        "Taxpayer Services Agency",
+        "Treasury State Allocation"
+      ],
+      "correct": 1,
+      "explanation": "TSA stands for Treasury Single Account, which consolidates government revenues into a single account for transparency.",
+      "difficulty": "easy",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "tsa",
+        "treasury single account",
+        "financial reforms"
+      ]
+    },
+    {
+      "id": "financial_fin_021",
+      "question": "Which law provides the legal framework for the management of Nigeria’s public finances?",
+      "options": [
+        "Fiscal Responsibility Act",
+        "Public Procurement Act",
+        "Appropriation Act",
+        "Audit Act"
+      ],
+      "correct": 0,
+      "explanation": "The Fiscal Responsibility Act provides the legal framework for prudent management of public finances in Nigeria.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "fiscal responsibility act",
+        "public finance",
+        "laws"
+      ]
+    },
+    {
+      "id": "financial_fin_022",
+      "question": "Who authorizes payments from the Consolidated Revenue Fund?",
+      "options": [
+        "The Minister of Finance",
+        "The National Assembly",
+        "The Accountant-General",
+        "The Auditor-General"
+      ],
+      "correct": 1,
+      "explanation": "Payments from the Consolidated Revenue Fund must be authorized by the National Assembly.",
+      "difficulty": "hard",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "consolidated revenue fund",
+        "national assembly",
+        "public finance"
+      ]
+    },
+    {
+      "id": "financial_fin_023",
+      "question": "What is the purpose of internal audit in Ministries and Agencies?",
+      "options": [
+        "To approve budgets",
+        "To detect fraud and ensure compliance",
+        "To prepare financial statements",
+        "To allocate funds"
+      ],
+      "correct": 1,
+      "explanation": "Internal audit helps detect fraud, ensure compliance, and assess the adequacy of internal controls.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "internal audit",
+        "fraud detection",
+        "compliance"
+      ]
+    },
+    {
+      "id": "financial_fin_024",
+      "question": "Which document accompanies all payments made in Ministries?",
+      "options": [
+        "Appropriation Bill",
+        "Payment Voucher",
+        "Audit Report",
+        "Budget Proposal"
+      ],
+      "correct": 1,
+      "explanation": "All government payments must be backed by duly approved Payment Vouchers.",
+      "difficulty": "easy",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "payment voucher",
+        "government expenditure",
+        "finance"
+      ]
+    },
+    {
+      "id": "financial_fin_025",
+      "question": "What is the maximum number of days within which an officer must retire an advance?",
+      "options": [
+        "14 days",
+        "21 days",
+        "30 days",
+        "60 days"
+      ],
+      "correct": 2,
+      "explanation": "Advances must be retired within 30 days according to Financial Regulations.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "advances",
+        "retirement",
+        "financial regulations"
+      ]
+    },
+    {
+      "id": "financial_fin_026",
+      "question": "Which body approves government borrowing?",
+      "options": [
+        "Debt Management Office",
+        "Ministry of Finance",
+        "Central Bank of Nigeria",
+        "National Assembly"
+      ],
+      "correct": 3,
+      "explanation": "Government borrowing must be approved by the National Assembly.",
+      "difficulty": "hard",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "government borrowing",
+        "national assembly",
+        "finance"
+      ]
+    },
+    {
+      "id": "financial_fin_027",
+      "question": "Who is responsible for maintaining the General Ledger?",
+      "options": [
+        "Auditor-General",
+        "Accountant-General",
+        "Permanent Secretary",
+        "Treasury Officer"
+      ],
+      "correct": 1,
+      "explanation": "The Accountant-General of the Federation is responsible for maintaining the General Ledger.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "general ledger",
+        "accountant general",
+        "financial records"
+      ]
+    },
+    {
+      "id": "financial_fin_028",
+      "question": "What is the main function of the Budget Office of the Federation?",
+      "options": [
+        "To disburse funds",
+        "To formulate and monitor the federal budget",
+        "To conduct audits",
+        "To issue warrants"
+      ],
+      "correct": 1,
+      "explanation": "The Budget Office of the Federation is responsible for budget preparation, monitoring, and evaluation.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "budget office",
+        "budget preparation",
+        "federal budget"
+      ]
+    },
+    {
+      "id": "financial_fin_029",
+      "question": "Which Nigerian law regulates public procurement?",
+      "options": [
+        "Fiscal Responsibility Act",
+        "Financial Regulations",
+        "Public Procurement Act 2007",
+        "Appropriation Act"
+      ],
+      "correct": 2,
+      "explanation": "The Public Procurement Act 2007 regulates public procurement processes in Nigeria.",
+      "difficulty": "easy",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "public procurement act",
+        "procurement",
+        "finance"
+      ]
+    },
+    {
+      "id": "financial_fin_030",
+      "question": "What does a budget deficit mean?",
+      "options": [
+        "Revenue is greater than expenditure",
+        "Expenditure is greater than revenue",
+        "Balanced budget",
+        "Government surplus"
+      ],
+      "correct": 1,
+      "explanation": "A budget deficit occurs when expenditure exceeds revenue.",
+      "difficulty": "easy",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "budget deficit",
+        "public finance",
+        "government spending"
+      ]
+    },
+    {
+      "id": "financial_fin_031",
+      "question": "Which officer is responsible for certifying that funds are available before incurring expenditure?",
+      "options": [
+        "Vote Controller",
+        "Internal Auditor",
+        "Permanent Secretary",
+        "Treasury Officer"
+      ],
+      "correct": 0,
+      "explanation": "The Vote Controller certifies that funds are available before incurring expenditure.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "vote controller",
+        "funds certification",
+        "expenditure"
+      ]
+    },
+    {
+      "id": "financial_fin_032",
+      "question": "What is the purpose of the Medium-Term Expenditure Framework (MTEF)?",
+      "options": [
+        "To audit accounts",
+        "To set out government’s spending priorities over three years",
+        "To approve loans",
+        "To replace the Appropriation Act"
+      ],
+      "correct": 1,
+      "explanation": "The MTEF sets out government’s spending priorities and projections over a three-year period.",
+      "difficulty": "hard",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "mtef",
+        "medium-term expenditure framework",
+        "budget planning"
+      ]
+    },
+    {
+      "id": "financial_fin_033",
+      "question": "Which official document is used to request for the release of funds from the Treasury?",
+      "options": [
+        "Treasury Circular",
+        "Payment Voucher",
+        "Warrant",
+        "Appropriation Act"
+      ],
+      "correct": 2,
+      "explanation": "A Warrant is used to request and authorize release of funds from the Treasury.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "warrant",
+        "fund release",
+        "treasury"
+      ]
+    },
+    {
+      "id": "financial_fin_034",
+      "question": "Which type of audit is conducted during the execution of a project to ensure compliance?",
+      "options": [
+        "Pre-audit",
+        "Concurrent audit",
+        "Post-audit",
+        "Internal audit"
+      ],
+      "correct": 1,
+      "explanation": "A concurrent audit is conducted during project execution to ensure compliance with rules and guidelines.",
+      "difficulty": "hard",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "concurrent audit",
+        "audit types",
+        "compliance"
+      ]
+    },
+    {
+      "id": "financial_fin_035",
+      "question": "What is the main source of Nigeria’s Federation Account revenue?",
+      "options": [
+        "Taxes",
+        "Customs duties",
+        "Oil revenue",
+        "Loans"
+      ],
+      "correct": 2,
+      "explanation": "Oil revenue remains the primary source of Nigeria’s Federation Account revenue.",
+      "difficulty": "easy",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "federation account",
+        "oil revenue",
+        "finance"
+      ]
+    },
+    {
+      "id": "financial_fin_036",
+      "question": "What is the main purpose of a Bank Reconciliation Statement?",
+      "options": [
+        "To calculate imprest",
+        "To reconcile differences between Cash Book and Bank Statement",
+        "To approve loans",
+        "To retire advances"
+      ],
+      "correct": 1,
+      "explanation": "A Bank Reconciliation Statement reconciles differences between the Cash Book and the Bank Statement.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "bank reconciliation",
+        "cash book",
+        "finance"
+      ]
+    },
+    {
+      "id": "financial_fin_037",
+      "question": "What is the tenure of the Auditor-General for the Federation?",
+      "options": [
+        "4 years",
+        "5 years",
+        "Until retirement age",
+        "8 years"
+      ],
+      "correct": 2,
+      "explanation": "The Auditor-General holds office until the statutory retirement age of 60 or 35 years of service.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "auditor general",
+        "tenure",
+        "public service rules"
+      ]
+    },
+    {
+      "id": "financial_fin_038",
+      "question": "Which account holds government revenues before they are shared?",
+      "options": [
+        "Treasury Single Account",
+        "Federation Account",
+        "Consolidated Revenue Fund",
+        "Development Fund"
+      ],
+      "correct": 1,
+      "explanation": "The Federation Account holds revenues before distribution among the three tiers of government.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "federation account",
+        "government revenues",
+        "finance"
+      ]
+    },
+    {
+      "id": "financial_fin_039",
+      "question": "What is the penalty for failing to keep proper records as required by Financial Regulations?",
+      "options": [
+        "No penalty",
+        "Warning only",
+        "Surcharge and disciplinary measures",
+        "Automatic dismissal"
+      ],
+      "correct": 2,
+      "explanation": "Failure to keep proper records attracts surcharge and disciplinary measures under Financial Regulations.",
+      "difficulty": "hard",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "record keeping",
+        "penalty",
+        "disciplinary measures"
+      ]
+    },
+    {
+      "id": "financial_fin_040",
+      "question": "Which agency regulates Nigeria’s capital market?",
+      "options": [
+        "Central Bank of Nigeria",
+        "Nigerian Stock Exchange",
+        "Securities and Exchange Commission",
+        "Debt Management Office"
+      ],
+      "correct": 2,
+      "explanation": "The Securities and Exchange Commission (SEC) regulates Nigeria’s capital market.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "capital market",
+        "sec",
+        "finance regulation"
+      ]
+    },
+    {
+      "id": "financial_fin_041",
+      "question": "What does IGR stand for in public finance?",
+      "options": [
+        "Internal Government Revenue",
+        "Internally Generated Revenue",
+        "International Government Receipts",
+        "Internal General Report"
+      ],
+      "correct": 1,
+      "explanation": "IGR stands for Internally Generated Revenue, which refers to income generated by states or ministries apart from federal allocations.",
+      "difficulty": "easy",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "igr",
+        "internally generated revenue",
+        "public finance"
+      ]
+    },
+    {
+      "id": "financial_fin_042",
+      "question": "Which official is responsible for issuing receipts for government revenue?",
+      "options": [
+        "Accountant-General",
+        "Revenue Collector",
+        "Auditor-General",
+        "Permanent Secretary"
+      ],
+      "correct": 1,
+      "explanation": "Revenue Collectors are responsible for issuing receipts for all government revenues received.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "revenue collector",
+        "receipts",
+        "government revenue"
+      ]
+    },
+    {
+      "id": "financial_fin_043",
+      "question": "Which body prepares Nigeria’s annual budget proposal?",
+      "options": [
+        "National Assembly",
+        "Budget Office of the Federation",
+        "Central Bank of Nigeria",
+        "Ministry of Finance only"
+      ],
+      "correct": 1,
+      "explanation": "The Budget Office of the Federation, under the Ministry of Finance, prepares the federal budget proposal.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "budget office",
+        "federal budget",
+        "finance"
+      ]
+    },
+    {
+      "id": "financial_fin_044",
+      "question": "Which account is used for financing capital projects in Nigeria?",
+      "options": [
+        "Federation Account",
+        "Development Fund",
+        "Consolidated Revenue Fund",
+        "Treasury Single Account"
+      ],
+      "correct": 1,
+      "explanation": "The Development Fund is used for financing capital projects in Nigeria.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "development fund",
+        "capital projects",
+        "finance"
+      ]
+    },
+    {
+      "id": "financial_fin_045",
+      "question": "Who is responsible for ensuring that all government revenue is remitted into the Treasury Single Account (TSA)?",
+      "options": [
+        "Permanent Secretary",
+        "Revenue Collector",
+        "Accountant-General",
+        "Auditor-General"
+      ],
+      "correct": 2,
+      "explanation": "The Accountant-General ensures that all revenues are remitted into the Treasury Single Account.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "tsa",
+        "treasury single account",
+        "accountant general"
+      ]
+    },
+    {
+      "id": "financial_fin_046",
+      "question": "Which Act established the Office of the Auditor-General for the Federation?",
+      "options": [
+        "Audit Ordinance 1956",
+        "Constitution of Nigeria 1999",
+        "Public Finance Management Act",
+        "Fiscal Responsibility Act"
+      ],
+      "correct": 1,
+      "explanation": "The 1999 Constitution of Nigeria established the Office of the Auditor-General for the Federation.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "auditor general",
+        "1999 constitution",
+        "finance"
+      ]
+    },
+    {
+      "id": "financial_fin_047",
+      "question": "What is the purpose of a Treasury Receipt?",
+      "options": [
+        "To certify expenditure",
+        "To acknowledge revenue payment",
+        "To request warrants",
+        "To record loans"
+      ],
+      "correct": 1,
+      "explanation": "A Treasury Receipt is issued to acknowledge payments made into government coffers.",
+      "difficulty": "easy",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "treasury receipt",
+        "government revenue",
+        "finance"
+      ]
+    },
+    {
+      "id": "financial_fin_048",
+      "question": "Which fund is used to meet unforeseen government expenditures?",
+      "options": [
+        "Contingencies Fund",
+        "Development Fund",
+        "Federation Account",
+        "Capital Fund"
+      ],
+      "correct": 0,
+      "explanation": "The Contingencies Fund is used to meet unforeseen and urgent government expenditures.",
+      "difficulty": "easy",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "contingencies fund",
+        "emergency expenditure",
+        "finance"
+      ]
+    },
+    {
+      "id": "financial_fin_049",
+      "question": "What is the meaning of a Recurrent Expenditure?",
+      "options": [
+        "Expenditure on one-time projects",
+        "Regular expenses such as salaries and overheads",
+        "Emergency spending",
+        "Capital investment"
+      ],
+      "correct": 1,
+      "explanation": "Recurrent Expenditure refers to regular government expenses such as salaries, overheads, and maintenance.",
+      "difficulty": "easy",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "recurrent expenditure",
+        "salaries",
+        "overheads"
+      ]
+    },
+    {
+      "id": "financial_fin_050",
+      "question": "Which officer authorizes virements within a Ministry?",
+      "options": [
+        "Permanent Secretary",
+        "Minister of Finance",
+        "Vote Controller",
+        "Auditor-General"
+      ],
+      "correct": 0,
+      "explanation": "The Permanent Secretary authorizes virements within a Ministry, subject to approval by the Minister of Finance.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "virement",
+        "permanent secretary",
+        "budget transfers"
+      ]
+    },
+    {
+      "id": "financial_fin_051",
+      "question": "Which financial document is prepared at the end of each fiscal year?",
+      "options": [
+        "Appropriation Bill",
+        "Final Accounts",
+        "Payment Vouchers",
+        "Treasury Circular"
+      ],
+      "correct": 1,
+      "explanation": "Final Accounts are prepared at the end of each fiscal year to summarize government’s financial performance.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "final accounts",
+        "fiscal year",
+        "financial performance"
+      ]
+    },
+    {
+      "id": "financial_fin_052",
+      "question": "Which financial instrument is issued by government to raise short-term funds?",
+      "options": [
+        "Treasury Bills",
+        "Development Bonds",
+        "Debentures",
+        "Shares"
+      ],
+      "correct": 0,
+      "explanation": "Treasury Bills are short-term instruments issued by government to raise funds.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "treasury bills",
+        "short-term funds",
+        "finance"
+      ]
+    },
+    {
+      "id": "financial_fin_053",
+      "question": "Which Nigerian law established the Debt Management Office (DMO)?",
+      "options": [
+        "Debt Management Act 2003",
+        "Public Procurement Act 2007",
+        "Fiscal Responsibility Act 2007",
+        "Financial Regulations"
+      ],
+      "correct": 0,
+      "explanation": "The Debt Management Office was established by the Debt Management Act 2003.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "debt management office",
+        "dmo",
+        "finance"
+      ]
+    },
+    {
+      "id": "financial_fin_054",
+      "question": "Which officer must sign all payment vouchers before payment?",
+      "options": [
+        "Auditor-General",
+        "Vote Controller",
+        "Head of Accounts",
+        "Permanent Secretary"
+      ],
+      "correct": 2,
+      "explanation": "The Head of Accounts must sign all payment vouchers before payments are processed.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "payment vouchers",
+        "head of accounts",
+        "finance"
+      ]
+    },
+    {
+      "id": "financial_fin_055",
+      "question": "What is the Consolidated Revenue Fund?",
+      "options": [
+        "Account for capital projects",
+        "Main account into which all government revenues are paid",
+        "Account for external loans",
+        "Account for emergency funds"
+      ],
+      "correct": 1,
+      "explanation": "The Consolidated Revenue Fund is the main account into which all government revenues are paid.",
+      "difficulty": "easy",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "consolidated revenue fund",
+        "government revenues",
+        "finance"
+      ]
+    },
+    {
+      "id": "financial_fin_056",
+      "question": "Which officer is responsible for issuing Authority to Incur Expenditure (AIE)?",
+      "options": [
+        "Minister of Finance",
+        "Permanent Secretary",
+        "Accountant-General",
+        "Vote Controller"
+      ],
+      "correct": 1,
+      "explanation": "The Permanent Secretary issues Authority to Incur Expenditure (AIE) within a Ministry.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "aie",
+        "authority to incur expenditure",
+        "permanent secretary"
+      ]
+    },
+    {
+      "id": "financial_fin_057",
+      "question": "Which document provides for the disbursement of funds for capital and recurrent expenditures?",
+      "options": [
+        "Warrant",
+        "Appropriation Act",
+        "Treasury Circular",
+        "Supplementary Budget"
+      ],
+      "correct": 0,
+      "explanation": "A Warrant provides for the release of funds for both capital and recurrent expenditures.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "warrant",
+        "fund disbursement",
+        "finance"
+      ]
+    },
+    {
+      "id": "financial_fin_058",
+      "question": "What does 'public expenditure' include?",
+      "options": [
+        "Only capital spending",
+        "All government spending from public funds",
+        "Private sector investments",
+        "External borrowing"
+      ],
+      "correct": 1,
+      "explanation": "Public expenditure includes all government spending from public funds on recurrent and capital projects.",
+      "difficulty": "easy",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "public expenditure",
+        "government spending",
+        "finance"
+      ]
+    },
+    {
+      "id": "financial_fin_059",
+      "question": "What is the purpose of Due Process in public procurement?",
+      "options": [
+        "To delay approvals",
+        "To ensure transparency and accountability",
+        "To increase spending",
+        "To reduce taxes"
+      ],
+      "correct": 1,
+      "explanation": "Due Process ensures transparency, accountability, and value for money in public procurement.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "due process",
+        "procurement",
+        "transparency"
+      ]
+    },
+    {
+      "id": "financial_fin_060",
+      "question": "Which officer is responsible for preparing bank reconciliation statements?",
+      "options": [
+        "Permanent Secretary",
+        "Vote Controller",
+        "Accounts Officer",
+        "Auditor-General"
+      ],
+      "correct": 2,
+      "explanation": "The Accounts Officer is responsible for preparing bank reconciliation statements.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "bank reconciliation",
+        "accounts officer",
+        "finance"
+      ]
+    },
+    {
+      "id": "financial_fin_061",
+      "question": "Which Nigerian law establishes the framework for auditing public accounts?",
+      "options": [
+        "Audit Act",
+        "Constitution of Nigeria 1999",
+        "Public Finance Act",
+        "Financial Regulations"
+      ],
+      "correct": 1,
+      "explanation": "The 1999 Constitution establishes the framework for auditing public accounts through the Auditor-General for the Federation.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "auditor general",
+        "public accounts",
+        "1999 constitution"
+      ]
+    },
+    {
+      "id": "financial_fin_062",
+      "question": "Which financial document is used to verify actual expenditure against approved budget?",
+      "options": [
+        "Appropriation Act",
+        "Vote Book",
+        "Audit Report",
+        "Treasury Receipt"
+      ],
+      "correct": 1,
+      "explanation": "The Vote Book is used to monitor expenditure against approved budget allocations.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "vote book",
+        "budget monitoring",
+        "finance"
+      ]
+    },
+    {
+      "id": "financial_fin_063",
+      "question": "What is the primary function of the Fiscal Responsibility Act?",
+      "options": [
+        "To regulate procurement",
+        "To promote transparency in public finance",
+        "To approve loans",
+        "To control inflation"
+      ],
+      "correct": 1,
+      "explanation": "The Fiscal Responsibility Act promotes transparency, accountability, and prudence in the management of public finance.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "fiscal responsibility act",
+        "public finance",
+        "transparency"
+      ]
+    },
+    {
+      "id": "financial_fin_064",
+      "question": "Which officer is the Chief Financial Adviser to the Federal Government?",
+      "options": [
+        "Accountant-General",
+        "Auditor-General",
+        "Minister of Finance",
+        "Budget Office Director"
+      ],
+      "correct": 2,
+      "explanation": "The Minister of Finance is the Chief Financial Adviser to the Federal Government.",
+      "difficulty": "easy",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "minister of finance",
+        "chief financial adviser",
+        "finance"
+      ]
+    },
+    {
+      "id": "financial_fin_065",
+      "question": "What is the main source of Local Government revenue?",
+      "options": [
+        "Oil revenue",
+        "Internally Generated Revenue (IGR)",
+        "Federation Account allocation",
+        "International grants"
+      ],
+      "correct": 2,
+      "explanation": "The main source of Local Government revenue is allocations from the Federation Account.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "local government revenue",
+        "federation account",
+        "igr"
+      ]
+    },
+    {
+      "id": "financial_fin_066",
+      "question": "Which officer ensures that stores are properly recorded and safeguarded?",
+      "options": [
+        "Head of Accounts",
+        "Store Officer",
+        "Auditor-General",
+        "Permanent Secretary"
+      ],
+      "correct": 1,
+      "explanation": "The Store Officer is responsible for proper recording and safeguarding of government stores.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "store officer",
+        "government stores",
+        "record keeping"
+      ]
+    },
+    {
+      "id": "financial_fin_067",
+      "question": "What is the primary purpose of public procurement regulation?",
+      "options": [
+        "To delay government projects",
+        "To ensure transparency, fairness, and value for money",
+        "To reduce expenditure",
+        "To empower contractors"
+      ],
+      "correct": 1,
+      "explanation": "Public procurement regulation ensures transparency, fairness, accountability, and value for money.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "public procurement",
+        "value for money",
+        "transparency"
+      ]
+    },
+    {
+      "id": "financial_fin_068",
+      "question": "What is the purpose of the Annual Financial Statement?",
+      "options": [
+        "To announce budget deficits",
+        "To report government financial performance",
+        "To issue warrants",
+        "To retire imprest"
+      ],
+      "correct": 1,
+      "explanation": "The Annual Financial Statement reports on government’s financial performance within the fiscal year.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "annual financial statement",
+        "fiscal year",
+        "finance report"
+      ]
+    },
+    {
+      "id": "financial_fin_069",
+      "question": "Who prepares the Audit Report on public accounts?",
+      "options": [
+        "Minister of Finance",
+        "Auditor-General for the Federation",
+        "Accountant-General",
+        "Permanent Secretary"
+      ],
+      "correct": 1,
+      "explanation": "The Auditor-General for the Federation prepares the Audit Report on public accounts.",
+      "difficulty": "easy",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "audit report",
+        "auditor general",
+        "public accounts"
+      ]
+    },
+    {
+      "id": "financial_fin_070",
+      "question": "Which financial term refers to the difference between actual revenue and projected revenue?",
+      "options": [
+        "Deficit",
+        "Variance",
+        "Surplus",
+        "Reconciliation"
+      ],
+      "correct": 1,
+      "explanation": "Variance refers to the difference between actual revenue and projected revenue in financial management.",
+      "difficulty": "hard",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "variance",
+        "revenue projection",
+        "finance"
+      ]
+    },
+    {
+      "id": "financial_fin_071",
+      "question": "What is the role of the Public Accounts Committee of the National Assembly?",
+      "options": [
+        "To prepare budgets",
+        "To examine audit reports",
+        "To authorize virements",
+        "To issue warrants"
+      ],
+      "correct": 1,
+      "explanation": "The Public Accounts Committee examines audit reports and ensures accountability in public finance.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "public accounts committee",
+        "audit reports",
+        "national assembly"
+      ]
+    },
+    {
+      "id": "financial_fin_072",
+      "question": "What is the Contingency Fund used for?",
+      "options": [
+        "Routine expenditure",
+        "Emergency and unforeseen expenditure",
+        "Capital projects",
+        "Salaries"
+      ],
+      "correct": 1,
+      "explanation": "The Contingency Fund is reserved for emergency and unforeseen government expenditures.",
+      "difficulty": "easy",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "contingency fund",
+        "emergency expenditure",
+        "finance"
+      ]
+    },
+    {
+      "id": "financial_fin_073",
+      "question": "Which officer is the principal signatory to government bank accounts?",
+      "options": [
+        "Minister of Finance",
+        "Permanent Secretary",
+        "Accountant-General",
+        "Vote Controller"
+      ],
+      "correct": 2,
+      "explanation": "The Accountant-General is the principal signatory to government bank accounts.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "accountant general",
+        "bank accounts",
+        "finance"
+      ]
+    },
+    {
+      "id": "financial_fin_074",
+      "question": "What is the main purpose of the Due Process Office in Nigeria?",
+      "options": [
+        "To regulate imports",
+        "To ensure transparency in public procurement",
+        "To manage salaries",
+        "To disburse funds"
+      ],
+      "correct": 1,
+      "explanation": "The Due Process Office ensures transparency and value for money in public procurement.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "due process office",
+        "public procurement",
+        "transparency"
+      ]
+    },
+    {
+      "id": "financial_fin_075",
+      "question": "Which document shows detailed estimates of government revenue and expenditure?",
+      "options": [
+        "Budget",
+        "Appropriation Act",
+        "Treasury Circular",
+        "Financial Statement"
+      ],
+      "correct": 0,
+      "explanation": "The Budget shows detailed estimates of government revenue and expenditure for a fiscal year.",
+      "difficulty": "easy",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "budget",
+        "government revenue",
+        "expenditure"
+      ]
+    },
+    {
+      "id": "financial_fin_076",
+      "question": "Which type of audit is conducted after project completion?",
+      "options": [
+        "Concurrent audit",
+        "Pre-audit",
+        "Post-audit",
+        "Internal audit"
+      ],
+      "correct": 2,
+      "explanation": "Post-audit is conducted after a project is completed to review compliance and financial performance.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "post audit",
+        "audit types",
+        "finance"
+      ]
+    },
+    {
+      "id": "financial_fin_077",
+      "question": "Which officer certifies that services have been duly performed before payment is made?",
+      "options": [
+        "Internal Auditor",
+        "Vote Controller",
+        "Head of Department",
+        "Accountant-General"
+      ],
+      "correct": 2,
+      "explanation": "The Head of Department certifies that services have been duly performed before payments are made.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "head of department",
+        "payment certification",
+        "finance"
+      ]
+    },
+    {
+      "id": "financial_fin_078",
+      "question": "What does the term 'accruals' mean in financial reporting?",
+      "options": [
+        "Cash received in advance",
+        "Expenses or revenues recognized when incurred, not when cash is exchanged",
+        "Government loans",
+        "Budget reserves"
+      ],
+      "correct": 1,
+      "explanation": "Accruals refer to expenses or revenues recognized when incurred, not when cash changes hands.",
+      "difficulty": "hard",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "accruals",
+        "financial reporting",
+        "accounting"
+      ]
+    },
+    {
+      "id": "financial_fin_079",
+      "question": "Which agency is responsible for regulating Nigeria’s insurance sector?",
+      "options": [
+        "SEC",
+        "CBN",
+        "NAICOM",
+        "DMO"
+      ],
+      "correct": 2,
+      "explanation": "The National Insurance Commission (NAICOM) regulates Nigeria’s insurance sector.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "naicom",
+        "insurance sector",
+        "regulation"
+      ]
+    },
+    {
+      "id": "financial_fin_080",
+      "question": "What is the meaning of 'capital expenditure'?",
+      "options": [
+        "Daily operational costs",
+        "Expenses on salaries",
+        "Investment in assets and infrastructure",
+        "Loan repayments"
+      ],
+      "correct": 2,
+      "explanation": "Capital expenditure refers to government spending on assets and infrastructure that create future benefits.",
+      "difficulty": "easy",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "capital expenditure",
+        "infrastructure",
+        "finance"
+      ]
+    },
+    {
+      "id": "financial_fin_081",
+      "question": "Which officer is responsible for certifying stores received in a Ministry?",
+      "options": [
+        "Permanent Secretary",
+        "Store Officer",
+        "Internal Auditor",
+        "Vote Controller"
+      ],
+      "correct": 1,
+      "explanation": "The Store Officer certifies all stores received in a Ministry to confirm accuracy and accountability.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "store officer",
+        "stores",
+        "certification"
+      ]
+    },
+    {
+      "id": "financial_fin_082",
+      "question": "What does the term 'defalcation' mean in financial management?",
+      "options": [
+        "Inflation",
+        "Misappropriation of funds",
+        "Budget deficit",
+        "Tax evasion"
+      ],
+      "correct": 1,
+      "explanation": "Defalcation means misappropriation of funds or embezzlement in financial management.",
+      "difficulty": "hard",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "defalcation",
+        "embezzlement",
+        "financial crimes"
+      ]
+    },
+    {
+      "id": "financial_fin_083",
+      "question": "Which Nigerian body is responsible for fighting financial crimes like fraud and money laundering?",
+      "options": [
+        "EFCC",
+        "ICPC",
+        "CBN",
+        "SEC"
+      ],
+      "correct": 0,
+      "explanation": "The Economic and Financial Crimes Commission (EFCC) is responsible for fighting fraud, financial crimes, and money laundering.",
+      "difficulty": "easy",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "efcc",
+        "financial crimes",
+        "fraud"
+      ]
+    },
+    {
+      "id": "financial_fin_084",
+      "question": "Which account is used for repayment of external debts?",
+      "options": [
+        "Debt Service Account",
+        "Consolidated Revenue Fund",
+        "Development Fund",
+        "Federation Account"
+      ],
+      "correct": 0,
+      "explanation": "The Debt Service Account is used for repayment of Nigeria’s external and domestic debts.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "debt service account",
+        "debt repayment",
+        "finance"
+      ]
+    },
+    {
+      "id": "financial_fin_085",
+      "question": "What is the role of the Public Procurement Council?",
+      "options": [
+        "To approve annual budgets",
+        "To regulate procurement practices",
+        "To manage salaries",
+        "To disburse funds"
+      ],
+      "correct": 1,
+      "explanation": "The Public Procurement Council regulates and oversees procurement practices to ensure transparency.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "public procurement council",
+        "procurement regulation",
+        "transparency"
+      ]
+    },
+    {
+      "id": "financial_fin_086",
+      "question": "Which officer is responsible for preparing departmental financial statements?",
+      "options": [
+        "Vote Controller",
+        "Permanent Secretary",
+        "Head of Accounts",
+        "Auditor-General"
+      ],
+      "correct": 2,
+      "explanation": "The Head of Accounts prepares departmental financial statements at the end of the fiscal year.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "head of accounts",
+        "financial statements",
+        "departments"
+      ]
+    },
+    {
+      "id": "financial_fin_087",
+      "question": "What is the purpose of a Cash Advance?",
+      "options": [
+        "To cover urgent small expenses",
+        "To pay contractors",
+        "To retire imprest",
+        "To reduce loans"
+      ],
+      "correct": 0,
+      "explanation": "Cash Advances are granted to officers to cover urgent small expenses that cannot await formal approval.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "cash advance",
+        "urgent expenses",
+        "finance"
+      ]
+    },
+    {
+      "id": "financial_fin_088",
+      "question": "Which Nigerian body monitors compliance with anti-corruption laws in public finance?",
+      "options": [
+        "EFCC",
+        "ICPC",
+        "CBN",
+        "Ministry of Justice"
+      ],
+      "correct": 1,
+      "explanation": "The Independent Corrupt Practices and Other Related Offences Commission (ICPC) monitors compliance with anti-corruption laws.",
+      "difficulty": "easy",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "icpc",
+        "anti-corruption",
+        "finance compliance"
+      ]
+    },
+    {
+      "id": "financial_fin_089",
+      "question": "Which fund is established for the replacement of depreciating government assets?",
+      "options": [
+        "Development Fund",
+        "Renewal Fund",
+        "Replacement Reserve Fund",
+        "Capital Expenditure Fund"
+      ],
+      "correct": 2,
+      "explanation": "The Replacement Reserve Fund is used for replacing depreciating government assets.",
+      "difficulty": "hard",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "replacement reserve fund",
+        "depreciation",
+        "assets"
+      ]
+    },
+    {
+      "id": "financial_fin_090",
+      "question": "What is the primary responsibility of the Treasury in Nigeria?",
+      "options": [
+        "To prepare budgets",
+        "To manage government cash flow and payments",
+        "To approve loans",
+        "To conduct audits"
+      ],
+      "correct": 1,
+      "explanation": "The Treasury manages government cash flows, payments, and receipts.",
+      "difficulty": "easy",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "treasury",
+        "cash flow management",
+        "finance"
+      ]
+    },
+    {
+      "id": "financial_fin_091",
+      "question": "Which officer ensures compliance with procurement thresholds?",
+      "options": [
+        "Procurement Officer",
+        "Permanent Secretary",
+        "Minister of Finance",
+        "Auditor-General"
+      ],
+      "correct": 0,
+      "explanation": "The Procurement Officer ensures compliance with procurement thresholds in line with the Public Procurement Act.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "procurement officer",
+        "procurement thresholds",
+        "compliance"
+      ]
+    },
+    {
+      "id": "financial_fin_092",
+      "question": "What is the primary role of the Accountant-General of the Federation?",
+      "options": [
+        "To regulate banks",
+        "To manage and control all receipts and payments of the federal government",
+        "To conduct audits",
+        "To manage procurement"
+      ],
+      "correct": 1,
+      "explanation": "The Accountant-General manages and controls all receipts and payments of the federal government.",
+      "difficulty": "easy",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "accountant general",
+        "federal receipts",
+        "payments"
+      ]
+    },
+    {
+      "id": "financial_fin_093",
+      "question": "Which officer is responsible for certifying stock balances in government stores?",
+      "options": [
+        "Store Officer",
+        "Internal Auditor",
+        "Head of Accounts",
+        "Vote Controller"
+      ],
+      "correct": 0,
+      "explanation": "The Store Officer certifies stock balances in government stores periodically.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "store officer",
+        "stock balances",
+        "stores"
+      ]
+    },
+    {
+      "id": "financial_fin_094",
+      "question": "Which Nigerian agency regulates and supervises banks?",
+      "options": [
+        "Debt Management Office",
+        "CBN",
+        "NDIC",
+        "SEC"
+      ],
+      "correct": 1,
+      "explanation": "The Central Bank of Nigeria (CBN) regulates and supervises banks in Nigeria.",
+      "difficulty": "easy",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "cbn",
+        "banks",
+        "regulation"
+      ]
+    },
+    {
+      "id": "financial_fin_095",
+      "question": "Which Nigerian law provides the legal basis for managing public procurement?",
+      "options": [
+        "Public Procurement Act 2007",
+        "Financial Regulations",
+        "Fiscal Responsibility Act",
+        "Audit Act"
+      ],
+      "correct": 0,
+      "explanation": "The Public Procurement Act 2007 provides the legal basis for managing procurement in Nigeria.",
+      "difficulty": "easy",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "public procurement act",
+        "procurement",
+        "law"
+      ]
+    },
+    {
+      "id": "financial_fin_096",
+      "question": "What is the main purpose of government budgeting?",
+      "options": [
+        "To allocate resources effectively",
+        "To increase government debt",
+        "To reduce employment",
+        "To improve taxation only"
+      ],
+      "correct": 0,
+      "explanation": "Government budgeting aims to allocate resources effectively to achieve national objectives.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "budgeting",
+        "resource allocation",
+        "finance"
+      ]
+    },
+    {
+      "id": "financial_fin_097",
+      "question": "Which officer authorizes emergency procurements in Ministries?",
+      "options": [
+        "Permanent Secretary",
+        "Minister",
+        "Procurement Officer",
+        "Auditor-General"
+      ],
+      "correct": 1,
+      "explanation": "The Minister authorizes emergency procurements in line with procurement laws and thresholds.",
+      "difficulty": "hard",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "emergency procurement",
+        "minister",
+        "procurement laws"
+      ]
+    },
+    {
+      "id": "financial_fin_098",
+      "question": "What does the term 'surcharge' mean in Financial Regulations?",
+      "options": [
+        "Additional allocation",
+        "Penalty imposed on an officer for financial loss due to negligence",
+        "Government bonus",
+        "Tax relief"
+      ],
+      "correct": 1,
+      "explanation": "Surcharge means a penalty imposed on an officer for financial loss caused by negligence or misconduct.",
+      "difficulty": "hard",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "surcharge",
+        "penalty",
+        "financial regulations"
+      ]
+    },
+    {
+      "id": "financial_fin_099",
+      "question": "Which officer is responsible for preparing annual budget performance reports?",
+      "options": [
+        "Permanent Secretary",
+        "Vote Controller",
+        "Budget Officer",
+        "Minister of Finance"
+      ],
+      "correct": 2,
+      "explanation": "The Budget Officer prepares annual budget performance reports for review.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "budget officer",
+        "budget performance",
+        "reports"
+      ]
+    },
+    {
+      "id": "financial_fin_100",
+      "question": "What does the term 'overhead costs' refer to in government finance?",
+      "options": [
+        "Salaries",
+        "Capital projects",
+        "Operational expenses such as utilities and office supplies",
+        "Loans"
+      ],
+      "correct": 2,
+      "explanation": "Overhead costs refer to operational expenses such as utilities, rent, and office supplies in government finance.",
+      "difficulty": "easy",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "overhead costs",
+        "government finance",
+        "operations"
+      ]
+    },
+    {
+      "id": "financial_fin_101",
+      "question": "What is duty tour allowance?",
+      "options": [
+        "A) Allowance for official travel within Nigeria",
+        "B) Allowance for accommodation only",
+        "C) Allowance for transportation only",
+        "D) Allowance for meals only"
+      ],
+      "correct": 0,
+      "explanation": "PSR 140107 states that duty tour allowance is granted to enable officers pay for lodging and feeding expenses during approved official tours.",
+      "difficulty": "easy",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "duty",
+        "tour",
+        "allowance",
+        "travel"
+      ]
+    },
+    {
+      "id": "financial_fin_102",
+      "question": "What is resettlement allowance?",
+      "options": [
+        "A) 1% of annual emolument",
+        "B) 2% of annual emolument",
+        "C) 5% of annual emolument",
+        "D) 10% of annual emolument"
+      ],
+      "correct": 1,
+      "explanation": "PSR 140136 states that resettlement allowance is 2% of annual total emolument.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "resettlement",
+        "allowance",
+        "2%"
+      ]
+    },
+    {
+      "id": "financial_fin_103",
+      "question": "Who is eligible for acting allowance?",
+      "options": [
+        "A) All officers",
+        "B) Officers acting in higher positions",
+        "C) Officers on transfer",
+        "D) Officers on leave"
+      ],
+      "correct": 1,
+      "explanation": "PSR 140130 states that officers duly authorized to act in higher positions are eligible for acting allowance.",
+      "difficulty": "easy",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "acting",
+        "allowance",
+        "higher",
+        "position"
+      ]
+    },
+    {
+      "id": "financial_fin_104",
+      "question": "What is the rate of acting allowance?",
+      "options": [
+        "A) 50% of the higher post salary",
+        "B) 100% of the higher post salary",
+        "C) 75% of the higher post salary",
+        "D) 25% of the higher post salary"
+      ],
+      "correct": 1,
+      "explanation": "PSR 140131 states that officers acting in immediately higher grade are entitled to 100% acting allowance.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "acting",
+        "allowance",
+        "100%",
+        "rate"
+      ]
+    },
+    {
+      "id": "financial_fin_105",
+      "question": "What is overtime allowance?",
+      "options": [
+        "A) Payment for work beyond normal hours",
+        "B) Payment for weekend work",
+        "C) Payment for holiday work",
+        "D) Payment for night shift"
+      ],
+      "correct": 0,
+      "explanation": "PSR 140120 defines overtime as additional time spent outside approved working time.",
+      "difficulty": "easy",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "overtime",
+        "allowance",
+        "normal",
+        "hours"
+      ]
+    },
+    {
+      "id": "financial_fin_106",
+      "question": "What is shift allowance?",
+      "options": [
+        "A) 10% of basic salary",
+        "B) 15% of basic salary",
+        "C) 20% of basic salary",
+        "D) 25% of basic salary"
+      ],
+      "correct": 1,
+      "explanation": "PSR 140121 states that shift allowance is 15% of basic salary for officers working shifts.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "shift",
+        "allowance",
+        "15%",
+        "basic"
+      ]
+    },
+    {
+      "id": "financial_fin_107",
+      "question": "What is hazard allowance?",
+      "options": [
+        "A) Payment for dangerous work",
+        "B) Payment for overtime",
+        "C) Payment for travel",
+        "D) Payment for accommodation"
+      ],
+      "correct": 0,
+      "explanation": "PSR 140122 states that hazard allowance is paid to officers engaged in dangerous occupations.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "hazard",
+        "allowance",
+        "dangerous",
+        "occupation"
+      ]
+    },
+    {
+      "id": "financial_fin_108",
+      "question": "What is the rate of hazard allowance?",
+      "options": [
+        "A) 5% of basic salary",
+        "B) 10% of basic salary",
+        "C) 15% of basic salary",
+        "D) 20% of basic salary"
+      ],
+      "correct": 1,
+      "explanation": "PSR 140123 states that hazard allowance is 10% of basic salary.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "hazard",
+        "allowance",
+        "10%",
+        "basic"
+      ]
+    },
+    {
+      "id": "financial_fin_109",
+      "question": "What is call duty allowance?",
+      "options": [
+        "A) Payment for being on call",
+        "B) Payment for emergency work",
+        "C) Payment for weekend work",
+        "D) Payment for night shift"
+      ],
+      "correct": 0,
+      "explanation": "PSR 140124 states that call duty allowance is paid to officers required to be on call.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "call",
+        "duty",
+        "allowance",
+        "on call"
+      ]
+    },
+    {
+      "id": "financial_fin_110",
+      "question": "What is the rate of call duty allowance?",
+      "options": [
+        "A) 5% of basic salary",
+        "B) 10% of basic salary",
+        "C) 15% of basic salary",
+        "D) 20% of basic salary"
+      ],
+      "correct": 1,
+      "explanation": "PSR 140125 states that call duty allowance is 10% of basic salary.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "call",
+        "duty",
+        "allowance",
+        "10%"
+      ]
+    },
+    {
+      "id": "financial_fin_111",
+      "question": "What is responsibility allowance?",
+      "options": [
+        "A) Payment for additional duties",
+        "B) Payment for supervisory role",
+        "C) Payment for management position",
+        "D) Payment for special assignment"
+      ],
+      "correct": 0,
+      "explanation": "PSR 140126 states that responsibility allowance is paid for additional duties and responsibilities.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "responsibility",
+        "allowance",
+        "additional",
+        "duties"
+      ]
+    },
+    {
+      "id": "financial_fin_112",
+      "question": "What is the rate of responsibility allowance?",
+      "options": [
+        "A) 5% of basic salary",
+        "B) 10% of basic salary",
+        "C) 15% of basic salary",
+        "D) 20% of basic salary"
+      ],
+      "correct": 1,
+      "explanation": "PSR 140127 states that responsibility allowance is 10% of basic salary.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "responsibility",
+        "allowance",
+        "10%",
+        "basic"
+      ]
+    },
+    {
+      "id": "financial_fin_113",
+      "question": "What is uniform allowance?",
+      "options": [
+        "A) Payment for buying uniforms",
+        "B) Payment for maintaining uniforms",
+        "C) Payment for uniform materials",
+        "D) Payment for uniform cleaning"
+      ],
+      "correct": 0,
+      "explanation": "PSR 140128 states that uniform allowance is paid to officers required to wear uniforms.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "uniform",
+        "allowance",
+        "buying",
+        "uniforms"
+      ]
+    },
+    {
+      "id": "financial_fin_114",
+      "question": "What is the rate of uniform allowance?",
+      "options": [
+        "A) 5% of basic salary",
+        "B) 10% of basic salary",
+        "C) 15% of basic salary",
+        "D) 20% of basic salary"
+      ],
+      "correct": 1,
+      "explanation": "PSR 140129 states that uniform allowance is 10% of basic salary.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "uniform",
+        "allowance",
+        "10%",
+        "basic"
+      ]
+    },
+    {
+      "id": "financial_fin_115",
+      "question": "What is transport allowance?",
+      "options": [
+        "A) Payment for official travel",
+        "B) Payment for commuting to work",
+        "C) Payment for vehicle maintenance",
+        "D) Payment for fuel"
+      ],
+      "correct": 1,
+      "explanation": "PSR 140130 states that transport allowance is paid to officers for commuting to work.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "transport",
+        "allowance",
+        "commuting",
+        "work"
+      ]
+    },
+    {
+      "id": "financial_fin_116",
+      "question": "What is the rate of transport allowance?",
+      "options": [
+        "A) 5% of basic salary",
+        "B) 10% of basic salary",
+        "C) 15% of basic salary",
+        "D) 20% of basic salary"
+      ],
+      "correct": 1,
+      "explanation": "PSR 140131 states that transport allowance is 10% of basic salary.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "transport",
+        "allowance",
+        "10%",
+        "basic"
+      ]
+    },
+    {
+      "id": "financial_fin_117",
+      "question": "What is housing allowance?",
+      "options": [
+        "A) Payment for rent",
+        "B) Payment for accommodation",
+        "C) Payment for housing maintenance",
+        "D) Payment for utilities"
+      ],
+      "correct": 0,
+      "explanation": "PSR 140132 states that housing allowance is paid to officers for rent and accommodation.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "housing",
+        "allowance",
+        "rent",
+        "accommodation"
+      ]
+    },
+    {
+      "id": "financial_fin_118",
+      "question": "What is the rate of housing allowance?",
+      "options": [
+        "A) 10% of basic salary",
+        "B) 15% of basic salary",
+        "C) 20% of basic salary",
+        "D) 25% of basic salary"
+      ],
+      "correct": 1,
+      "explanation": "PSR 140133 states that housing allowance is 15% of basic salary.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "housing",
+        "allowance",
+        "15%",
+        "basic"
+      ]
+    },
+    {
+      "id": "financial_fin_119",
+      "question": "What is medical allowance?",
+      "options": [
+        "A) Payment for medical treatment",
+        "B) Payment for health insurance",
+        "C) Payment for medical check-up",
+        "D) Payment for drugs"
+      ],
+      "correct": 0,
+      "explanation": "PSR 140134 states that medical allowance is paid for medical treatment and healthcare.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "medical",
+        "allowance",
+        "treatment",
+        "healthcare"
+      ]
+    },
+    {
+      "id": "financial_fin_120",
+      "question": "What is the rate of medical allowance?",
+      "options": [
+        "A) 5% of basic salary",
+        "B) 10% of basic salary",
+        "C) 15% of basic salary",
+        "D) 20% of basic salary"
+      ],
+      "correct": 1,
+      "explanation": "PSR 140135 states that medical allowance is 10% of basic salary.",
+      "difficulty": "medium",
+      "topic": "Financial Regulations",
+      "keywords": [
+        "medical",
+        "allowance",
+        "10%",
+        "basic"
+      ]
+    }
+  ]
+}

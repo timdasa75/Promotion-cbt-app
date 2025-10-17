@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PSR CBT Quiz</title>
+    <style>
+        :root {
+            --primary-green: #00bfa5;
+            --primary-green-light: #5df2d6;
+            --secondary-color: #263238;
+            --light-gray: #eceff1;
+            --medium-gray: #90a4ae;
+            --dark-gray: #37474f;
+            --info-color: #29b6f6;
+            --warning-color: #ffa726;
+            --success-color: #66bb6a;
+            --accent-color: #ef5350;
+            --border-radius: 12px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.12);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --compact-padding: 0.75rem;
+            --compact-margin: 0.5rem;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--secondary-color);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+        .header {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-green-light) 100%);
+            color: white;
+            padding: var(--compact-padding) 0;
+            border-radius: var(--border-radius);
+            margin-bottom: var(--compact-margin);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        .header-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+        .title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        .quiz-container {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+        .quiz-header {
+            background: var(--light-gray);
+            padding: var(--compact-padding);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .question-section h3 {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            line-height: 1.4;
+            color: var(--secondary-color);
+        }
+        .options-grid {
+            display: grid;
+            gap: 1rem;
+        }
+        .option-btn {
+            background: var(--light-gray);
+            border: 2px solid transparent;
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: left;
+            font-size: 1rem;
+            min-height: 48px;
+            display: flex;
+            align-items: center;
+        }
+        .option-btn:hover {
+            background: #e8f5e8;
+            border-color: var(--primary-green-light);
+        }
+        .option-btn.selected {
+            background: #e8f5e8;
+            border-color: var(--primary-green);
+            font-weight: 600;
+        }
+        .option-btn.correct {
+            background: #d4edda;
+            border-color: var(--success-color);
+        }
+        .option-btn.incorrect {
+            background: #f8d7da;
+            border-color: var(--accent-color);
+        }
+        .quiz-footer {
+            padding: var(--compact-padding);
+            background: var(--light-gray);
+            position: sticky;
+            bottom: 0;
+            z-index: 10;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+        }
+        .quiz-controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+        .btn-primary {
+            background: var(--primary-green);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: var(--transition);
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn-primary:hover {
+            background: var(--primary-green-light);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <h1 class="title">PSR CBT Quiz</h1>
+            </div>
+        </header>
+        <div id="quiz-container" class="quiz-container">
+            <div class="quiz-header">
+                <div class="quiz-info">
+                    <h2>Public Service Rules</h2>
+                </div>
+            </div>
+            <div class="question-section">
+                <h3 id="question">Loading question...</h3>
+                <div id="options" class="options-grid">
+                    <!-- Options will be added here by JavaScript -->
+                </div>
+            </div>
+            <div id="result"></div>
+            <div class="quiz-footer">
+                <div class="quiz-controls">
+                    <button id="next-btn" class="btn-primary" style="display: none;">Next Question</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const quizData = {
+    "name": "Public Service Rules",
+    "description": "Federal Civil Service PSR questions",
+    "type": "nested",
+    "hasSubcategories": true,
+    "icon": "ðŸ“‹",
+    "psr_categories": {
+        "employment_service": {
+            "name": "Employment & Service",
+            "icon": "ðŸ‘¥",
+            "description": "Rules regarding appointments, probation, and service conditions",
+            "questions": [
+                {
+                    "id": "psr_emp_001",
+                    "question": "Which body is constitutionally empowered to appoint persons into senior posts (GL.07 and above) in the Federal Civil Service?",
+                    "options": [
+                        "Office of the Head of the Civil Service",
+                        "Federal Civil Service Commission (FCSC)",
+                        "Bureau of Public Service Reforms",
+                        "National Assembly"
+                    ],
+                    "correct": 1,
+                    "explanation": "According to PSR 020102, the Federal Civil Service Commission is responsible for appointments into senior posts GL.07 and above.",
+                    "difficulty": "easy",
+                    "chapter": "Appointments",
+                    "keywords": [
+                        "appointments",
+                        "FCSC",
+                        "senior posts"
+                    ]
+                },
+                {
+                    "id": "psr_emp_002",
+                    "question": "What is the mandatory age eligibility criterion for appointment into the Federal Public Service?",
+                    "options": [
+                        "Not less than 21 years and not more than 55 years of age",
+                        "Not less than 18 years and not more than 50 years of age",
+                        "Not less than 25 years and not more than 45 years of age",
+                        "Not less than 20 years and not more than 60 years of age"
+                    ],
+                    "correct": 1,
+                    "explanation": "To be eligible for appointment, an applicant must be not less than 18 years and not more than 50 years of age, including computer literacy requirements.",
+                    "difficulty": "medium",
+                    "chapter": "Eligibility (PSR 020206)",
+                    "keywords": [
+                        "eligibility",
+                        "age",
+                        "appointment"
+                    ]
+                },
+                {
+                    "id": "psr_emp_003",
+                    "question": "What is the mandatory maximum period an officer is required to serve on probation before being confirmed in the Service?",
+                    "options": [
+                        "Six months",
+                        "Two years",
+                        "Three years",
+                        "Four years"
+                    ],
+                    "correct": 1,
+                    "explanation": "Officers on probation will be required to serve for two years before being confirmed in the Service, though this period may be reduced.",
+                    "difficulty": "easy",
+                    "chapter": "Probation (PSR 020301)",
+                    "keywords": [
+                        "probation",
+                        "confirmation",
+                        "period"
+                    ]
+                }
+            ]
+        }
+    }
+};
+
+        let allQuestions = [];
+        let currentQuestion = 0;
+        let score = 0;
+
+        const questionElement = document.getElementById('question');
+        const optionsElement = document.getElementById('options');
+        const nextButton = document.getElementById('next-btn');
+        const resultElement = document.getElementById('result');
+
+        function loadQuestions() {
+            allQuestions = Object.values(quizData.psr_categories).flatMap(category => category.questions);
+            loadQuestion(0);
+        }
+
+        function loadQuestion(questionIndex) {
+            const question = allQuestions[questionIndex];
+            questionElement.textContent = `${questionIndex + 1}. ${question.question}`;
+            
+            optionsElement.innerHTML = '';
+            
+            question.options.forEach((option, index) => {
+                const button = document.createElement('button');
+                button.textContent = option;
+                button.classList.add('option-btn');
+                button.onclick = () => selectOption(index);
+                optionsElement.appendChild(button);
+            });
+            
+            nextButton.style.display = 'none';
+            resultElement.textContent = '';
+        }
+
+        function selectOption(selectedIndex) {
+            const question = allQuestions[currentQuestion];
+            const buttons = optionsElement.querySelectorAll('button');
+            
+            buttons.forEach(button => {
+                button.disabled = true;
+            });
+            
+            if (selectedIndex === question.correct) {
+                buttons[selectedIndex].classList.add('correct');
+                resultElement.textContent = 'Correct!';
+                score++;
+            } else {
+                buttons[selectedIndex].classList.add('incorrect');
+                buttons[question.correct].classList.add('correct');
+                resultElement.textContent = 'Incorrect!';
+            }
+            
+            nextButton.style.display = 'block';
+        }
+
+        nextButton.addEventListener('click', () => {
+            currentQuestion++;
+            
+            if (currentQuestion < allQuestions.length) {
+                loadQuestion(currentQuestion);
+            } else {
+                questionElement.textContent = `Quiz completed! Your score: ${score}/${allQuestions.length}`;
+                optionsElement.innerHTML = '';
+                nextButton.style.display = 'none';
+                
+                const restartButton = document.createElement('button');
+                restartButton.textContent = 'Restart Quiz';
+                restartButton.classList.add('btn-primary');
+                restartButton.onclick = restartQuiz;
+                optionsElement.appendChild(restartButton);
+            }
+        });
+
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            loadQuestions();
+        }
+
+        loadQuestions();
+    </script>
+</body>
+</html>

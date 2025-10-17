@@ -1,0 +1,256 @@
+{
+    "name": "Categories",
+    "description": "Available quiz categories and their descriptions",
+    "type": "category",
+    "hasSubcategories": true,
+    "icon": "📂",
+    "questions": [
+        {
+            "id": "cat_psr",
+            "question": "What is Public Service Rules?",
+            "options": [
+                "Questions on Public Service Rules and Regulations",
+                "Questions on Financial Management",
+                "Questions on Procurement",
+                "Questions on Civil Service Handbook"
+            ],
+            "correct": 0,
+            "explanation": "Public Service Rules category contains questions on Public Service Rules and Regulations",
+            "difficulty": "easy",
+            "topic": "Categories",
+            "keywords": [
+                "psr",
+                "public service rules",
+                "regulations"
+            ]
+        },
+        {
+            "id": "cat_financial",
+            "question": "What is Financial Regulations?",
+            "options": [
+                "Questions on Financial Regulations",
+                "Questions on Public Service Rules",
+                "Questions on Procurement",
+                "Questions on Civil Service Handbook"
+            ],
+            "correct": 0,
+            "explanation": "Financial Regulations category contains questions on Financial Regulations",
+            "difficulty": "easy",
+            "topic": "Categories",
+            "keywords": [
+                "financial",
+                "financial regulations",
+                "budgeting"
+            ]
+        },
+        {
+            "id": "cat_procurement",
+            "question": "What is Public Procurement Act?",
+            "options": [
+                "Questions on Public Procurement",
+                "Questions on Financial Regulations",
+                "Questions on Public Service Rules",
+                "Questions on Civil Service Handbook"
+            ],
+            "correct": 0,
+            "explanation": "Public Procurement Act category contains questions on Public Procurement",
+            "difficulty": "easy",
+            "topic": "Categories",
+            "keywords": [
+                "procurement",
+                "public procurement act",
+                "tendering"
+            ]
+        },
+        {
+            "id": "cat_civil_service",
+            "question": "What is Civil Service Handbook?",
+            "options": [
+                "Questions on Civil Service Rules and Procedures",
+                "Questions on Financial Regulations",
+                "Questions on Public Service Rules",
+                "Questions on Procurement"
+            ],
+            "correct": 0,
+            "explanation": "Civil Service Handbook category contains questions on Civil Service Rules and Procedures",
+            "difficulty": "easy",
+            "topic": "Categories",
+            "keywords": [
+                "civil service",
+                "civil service handbook",
+                "procedures"
+            ]
+        },
+        {
+            "id": "cat_competency",
+            "question": "What is Competency Framework?",
+            "options": [
+                "Questions on Civil Service Competency Framework",
+                "Questions on Financial Regulations",
+                "Questions on Public Service Rules",
+                "Questions on Procurement"
+            ],
+            "correct": 0,
+            "explanation": "Competency Framework category contains questions on Civil Service Competency Framework",
+            "difficulty": "easy",
+            "topic": "Categories",
+            "keywords": [
+                "competency",
+                "competency framework",
+                "skills"
+            ]
+        },
+        {
+            "id": "cat_freedom",
+            "question": "What is Freedom of Information Act?",
+            "options": [
+                "Questions on Freedom of Information Act",
+                "Questions on Financial Regulations",
+                "Questions on Public Service Rules",
+                "Questions on Procurement"
+            ],
+            "correct": 0,
+            "explanation": "Freedom of Information Act category contains questions on Freedom of Information Act",
+            "difficulty": "easy",
+            "topic": "Categories",
+            "keywords": [
+                "freedom",
+                "freedom of information act",
+                "information"
+            ]
+        },
+        {
+            "id": "cat_ethics",
+            "question": "What is Ethics and Code of Conduct?",
+            "options": [
+                "Questions on Civil Service Ethics and Code of Conduct",
+                "Questions on Financial Regulations",
+                "Questions on Public Service Rules",
+                "Questions on Procurement"
+            ],
+            "correct": 0,
+            "explanation": "Ethics and Code of Conduct category contains questions on Civil Service Ethics and Code of Conduct",
+            "difficulty": "easy",
+            "topic": "Categories",
+            "keywords": [
+                "ethics",
+                "code of conduct",
+                "integrity"
+            ]
+        },
+        {
+            "id": "cat_ict",
+            "question": "What is ICT and E-Governance?",
+            "options": [
+                "Questions on ICT and E-Governance in Civil Service",
+                "Questions on Financial Regulations",
+                "Questions on Public Service Rules",
+                "Questions on Procurement"
+            ],
+            "correct": 0,
+            "explanation": "ICT and E-Governance category contains questions on ICT and E-Governance in Civil Service",
+            "difficulty": "easy",
+            "topic": "Categories",
+            "keywords": [
+                "ict",
+                "e-governance",
+                "technology"
+            ]
+        },
+        {
+            "id": "cat_leadership",
+            "question": "What is Leadership and Strategic Management?",
+            "options": [
+                "Questions on Leadership and Management",
+                "Questions on Financial Regulations",
+                "Questions on Public Service Rules",
+                "Questions on Procurement"
+            ],
+            "correct": 0,
+            "explanation": "Leadership and Strategic Management category contains questions on Leadership and Management",
+            "difficulty": "easy",
+            "topic": "Categories",
+            "keywords": [
+                "leadership",
+                "strategic management",
+                "management"
+            ]
+        },
+        {
+            "id": "cat_policy",
+            "question": "What is Governance and Public Policy?",
+            "options": [
+                "Questions on Public Policy and Governance",
+                "Questions on Financial Regulations",
+                "Questions on Public Service Rules",
+                "Questions on Procurement"
+            ],
+            "correct": 0,
+            "explanation": "Governance and Public Policy category contains questions on Public Policy and Governance",
+            "difficulty": "easy",
+            "topic": "Categories",
+            "keywords": [
+                "policy",
+                "governance",
+                "public policy"
+            ]
+        },
+        {
+            "id": "cat_circulars",
+            "question": "What is Government Circulars?",
+            "options": [
+                "Questions on Government Circulars and Notices",
+                "Questions on Financial Regulations",
+                "Questions on Public Service Rules",
+                "Questions on Procurement"
+            ],
+            "correct": 0,
+            "explanation": "Government Circulars category contains questions on Government Circulars and Notices",
+            "difficulty": "easy",
+            "topic": "Categories",
+            "keywords": [
+                "circulars",
+                "government circulars",
+                "notices"
+            ]
+        },
+        {
+            "id": "cat_negotiation",
+            "question": "What is Negotiation Skills?",
+            "options": [
+                "Questions on Negotiation and Conflict Resolution",
+                "Questions on Financial Regulations",
+                "Questions on Public Service Rules",
+                "Questions on Procurement"
+            ],
+            "correct": 0,
+            "explanation": "Negotiation Skills category contains questions on Negotiation and Conflict Resolution",
+            "difficulty": "easy",
+            "topic": "Categories",
+            "keywords": [
+                "negotiation",
+                "negotiation skills",
+                "conflict resolution"
+            ]
+        },
+        {
+            "id": "cat_all_topics",
+            "question": "What is All Topics?",
+            "options": [
+                "Questions from all categories combined",
+                "Questions on Financial Regulations only",
+                "Questions on Public Service Rules only",
+                "Questions on Procurement only"
+            ],
+            "correct": 0,
+            "explanation": "All Topics category contains questions from all categories combined",
+            "difficulty": "easy",
+            "topic": "Categories",
+            "keywords": [
+                "all topics",
+                "combined",
+                "comprehensive"
+            ]
+        }
+    ]
+}
