@@ -602,7 +602,7 @@ export async function loadQuestions(topic, mode) {
         // Load questions for the topic
         let response, topicData;
         try {
-            response = await fetch(`data/${topic.file}`);
+            response = await fetch(`/Promotion-cbt-app/data/${topic.file}`);
             if (!response.ok) throw new Error(`Failed to fetch ${topic.file}: ${response.status}`);
             topicData = await response.json();
             console.log('Loaded topic data:', topicData);

@@ -95,7 +95,7 @@ export async function displayCategories(topic, onSelect) {
 
     try {
         // Load topic data to get categories
-        const response = await fetch(`data/${topic.file}`);
+        const response = await fetch(`/Promotion-cbt-app/data/${topic.file}`);
         const topicData = await response.json();
 
         categoryList.innerHTML = '';
@@ -257,7 +257,7 @@ export async function getTotalQuestionCount(topic) {
 export async function selectTopic(topic) {
     try {
         // Load topic data to check if it has subcategories
-        const response = await fetch(`data/${topic.file}`);
+        const response = await fetch(`/Promotion-cbt-app/data/${topic.file}`);
         const topicData = await response.json();
 
         // Check if the topic has subcategories
