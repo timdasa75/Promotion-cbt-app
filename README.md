@@ -37,6 +37,14 @@ An interactive quiz application for practicing Nigerian Public Service Rules (PS
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
+## URL Shortener
+
+For easier sharing, you can use a URL shortener to create a more user-friendly link to this application:
+- Full URL: https://timdasa75.github.io/Promotion-cbt-app/
+- Example shortened URLs:
+  - https://bit.ly/promotion-quiz
+  - https://tinyurl.com/nigerian-psr-quiz
+
 ## License
 
 This project is open source and available under the [MIT License](LICENSE).
