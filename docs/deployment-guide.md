@@ -91,6 +91,20 @@ https://timdasa75.github.io/Promotion-cbt-app/
 - All data files (JSON) must be in the correct location relative to the root for the quiz questions to load
 - The application is responsive and will work on both desktop and mobile devices
 
+## Troubleshooting
+
+If the topics are not loading when you access the application:
+
+1. **Check browser console**: Open your browser's developer tools (F12) and look for any error messages in the Console tab.
+
+2. **Verify GitHub Pages deployment**: Make sure GitHub Pages is properly enabled in your repository settings under the "Pages" section.
+
+3. **Wait for build**: After pushing changes, GitHub Pages may take a few minutes to build and deploy your site.
+
+4. **Check CORS issues**: If you see errors related to fetching JSON files, it might be a cross-origin issue. This is usually resolved by GitHub Pages automatically, but ensure all data files are in the correct location.
+
+5. **Verify file paths**: Make sure all data files in the `data/` directory are properly formatted JSON files.
+
 ## Using a URL Shortener
 
 For easier sharing, you can use a URL shortener service to create a more user-friendly link to your quiz application:

@@ -45,6 +45,14 @@ For easier sharing, you can use a URL shortener to create a more user-friendly l
   - https://bit.ly/promotion-quiz
   - https://tinyurl.com/nigerian-psr-quiz
 
+## Troubleshooting
+
+If the topics are not loading when you access the application:
+1. Check browser console for errors (F12 → Console)
+2. Verify GitHub Pages is enabled in repository settings
+3. Wait a few minutes after deployment for GitHub Pages to build the site
+4. Ensure all data files are properly formatted JSON files in the data/ directory
+
 ## License
 
 This project is open source and available under the [MIT License](LICENSE).
