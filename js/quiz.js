@@ -7,7 +7,7 @@ let allQuestions = [];
 let currentQuestionIndex = 0;
 let score = 0;
 let userAnswers = [];
-let feedbackShown = [];
+let feedbackShown = []; // Track if feedback has been shown for each question
 let timer;
 let timeLeft = 0;
 let currentTopic = null;
@@ -336,10 +336,11 @@ function updateNavigation() {
         nextButton.onclick = () => {
             if (!nextButton.disabled) {
                 if (nextButton.textContent === 'Submit' && currentMode === 'practice') {
-                    // Call the submit logic which is already implemented in submitAnswer
+                    // In practice mode, when clicking "Submit", show feedback but don't advance to next question
+                    // Call the submit logic which shows feedback
                     submitAnswer();
                 } else {
-                    // For all other cases, proceed to next question
+                    // For all other cases (including when button says "Next"), proceed to next question
                     nextQuestion();
                 }
             }
@@ -385,50 +386,7 @@ function updateProgress() {
 
 // Move to next question
 function nextQuestion() {
-    // Check if this is the submit action in practice mode (first click after selecting answer)
-    if (currentMode === 'practice' && 
-        userAnswers[currentQuestionIndex] !== undefined && 
-        !feedbackShown[currentQuestionIndex]) {
-        // This is a submit action - show feedback but don't move to next question yet
-        const question = allQuestions[currentQuestionIndex];
-        const selectedIndex = userAnswers[currentQuestionIndex];
-        const options = document.querySelectorAll('.option-btn');
-        
-        // Update UI to show correct/incorrect feedback
-        options.forEach((option, index) => {
-            option.classList.remove('selected', 'correct', 'incorrect');
-            
-            if (index === selectedIndex) {
-                option.classList.add('selected');
-                if (index === question.correct) {
-                    option.classList.add('correct');
-                } else {
-                    option.classList.add('incorrect');
-                }
-            }
-            
-            if (index === question.correct) {
-                option.classList.add('correct');
-            }
-        });
-        
-        // Show explanation immediately
-        showExplanation();
-        const explanationDiv = document.getElementById('explanation');
-        if (explanationDiv) {
-            explanationDiv.classList.add('show');
-        }
-        
-        // Mark that feedback has been shown for this question
-        feedbackShown[currentQuestionIndex] = true;
-        
-        // Update the button text to "Next" via navigation update
-        updateNavigation();
-        // Don't proceed to next question yet, just update the button
-        return;
-    }
-    
-    // For all other cases (when feedback has been shown), proceed to next question
+    // For all cases except practice mode with unshown feedback, proceed to next question
     if (currentQuestionIndex < allQuestions.length - 1) {
         currentQuestionIndex++;
         showQuestion();
@@ -688,6 +646,7 @@ function initializeQuiz() {
     currentQuestionIndex = 0;
     score = 0;
     userAnswers = [];
+    // Initialize feedbackShown array to track if feedback has been shown for each question
     feedbackShown = new Array(allQuestions.length).fill(false);
 
     // Set up timer if in exam mode
