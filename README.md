@@ -1,6 +1,6 @@
-# Nigerian PSR 2021 Quiz App
+# Directorate Levels Promotion CBT Practice
 
-An interactive quiz application for practicing Nigerian Public Service Rules (PSR) and related topics for civil service promotion exams.
+An interactive CBT practice application for Nigerian civil service promotion exams at the directorate level.
 
 ## Features
 
