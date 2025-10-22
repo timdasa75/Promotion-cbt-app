@@ -7,10 +7,12 @@ let allQuestions = [];
 let currentQuestionIndex = 0;
 let score = 0;
 let userAnswers = [];
+let feedbackShown = [];
 let timer;
 let timeLeft = 0;
 let currentTopic = null;
 let currentMode = '';
+let feedbackShown = [];
 
 // DOM Elements
 const questionElement = document.getElementById('questionText');
@@ -207,10 +209,6 @@ function showQuestion() {
             
             optionsContainer.appendChild(button);
         });
-            }
-            
-            optionsContainer.appendChild(button);
-        });
         
         // In practice mode, if feedback has already been shown for this question, display it
         if (currentMode === 'practice' && feedbackShown[currentQuestionIndex]) {
@@ -295,7 +293,6 @@ function selectOption(selectedIndex) {
     }
     
     updateNavigation();
-}
 }
 
 // Update navigation buttons
@@ -650,6 +647,7 @@ function initializeQuiz() {
     currentQuestionIndex = 0;
     score = 0;
     userAnswers = [];
+    feedbackShown = new Array(allQuestions.length).fill(false);
 
     // Set up timer if in exam mode
     if (currentMode === 'exam') {
