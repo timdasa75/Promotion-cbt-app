@@ -56,3 +56,7 @@ If the topics are not loading when you access the application:
 ## License
 
 This project is open source and available under the [MIT License](LICENSE).
+
+## Known Issues and Fixes
+
+- Fixed JavaScript syntax error that was preventing topics from loading properly

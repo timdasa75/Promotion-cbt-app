@@ -105,7 +105,12 @@ If the topics are not loading when you access the application:
 
 5. **Verify file paths**: Make sure all data files in the `data/` directory are properly formatted JSON files.
 
-## Using a URL Shortener
+## Common Issues and Fixes
+
+### Topics Not Loading
+If topics are not loading, check the browser console for errors. A common issue was a JavaScript syntax error in the quiz.js file which has now been fixed.
+
+### Using a URL Shortener
 
 For easier sharing, you can use a URL shortener service to create a more user-friendly link to your quiz application:
 
