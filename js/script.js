@@ -29,10 +29,7 @@ const quizDescription = document.getElementById('modeQuizDescription');
 async function loadData() {
     try {
         // Load topics
-        // Determine base path dynamically for GitHub Pages
-        const isGitHubPages = window.location.hostname.includes('github.io');
-        const basePath = isGitHubPages ? '/Promotion-cbt-app' : '';
-        const response = await fetch(`${basePath}/data/topics.json`);
+        const response = await fetch('data/topics.json');
         const data = await response.json();
         topics = data.topics || [];
 
@@ -93,10 +90,7 @@ async function loadQuestions() {
         quizContainer.innerHTML = '<div class="loading">Loading questions...</div>';
 
         // Load questions for the topic
-        // Determine base path dynamically for GitHub Pages
-        const isGitHubPages = window.location.hostname.includes('github.io');
-        const basePath = isGitHubPages ? '/Promotion-cbt-app' : '';
-        const response = await fetch(`${basePath}/data/${currentTopic.file}`);
+        const response = await fetch(`data/${currentTopic.file}`);
         const topicData = await response.json();
 
         // Process questions

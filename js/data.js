@@ -8,11 +8,8 @@ export async function loadData() {
   try {
     console.log("Loading topics...");
     // Load topics with proper encoding
-    // Determine base path dynamically
-    // For GitHub Pages, we need to detect if we're running on GitHub Pages
-    const isGitHubPages = window.location.hostname.includes('github.io');
-    const basePath = isGitHubPages ? '/Promotion-cbt-app' : '';
-    const response = await fetch(`${basePath}/data/topics.json`, {
+    // Load data from JSON files - always use root path for GitHub Pages
+    const response = await fetch('data/topics.json', {
       headers: {
         "Content-Type": "application/json; charset=utf-8",
       },
@@ -53,8 +50,7 @@ export async function getTopicQuestionCounts(topics) {
         topics.map(async (topic) => {
             try {
                 console.log(`Fetching data for topic ${topic.id} from file ${topic.file}`);
-                const basePath = window.location.hostname.includes('github.io') ? '/Promotion-cbt-app' : '';
-                const response = await fetch(`${basePath}/data/${topic.file}`);
+                const response = await fetch(`data/${topic.file}`);
                 const data = await response.json();
                 console.log(`Data for topic ${topic.id}:`, data);
                 let count = 0;
@@ -93,8 +89,7 @@ export async function getTopicQuestionCounts(topics) {
 // Get question count for a specific topic and subcategory
 export async function getQuestionCountForSubcategory(topic, subcategoryId) {
   try {
-    const basePath = window.location.hostname.includes('github.io') ? '/Promotion-cbt-app' : '';
-    const response = await fetch(`${basePath}/data/${topic.file}`);
+    const response = await fetch(`data/${topic.file}`);
     const data = await response.json();
 
     if (data.hasSubcategories && data.subcategories && Array.isArray(data.subcategories)) {
@@ -122,8 +117,7 @@ export async function getQuestionCountForSubcategory(topic, subcategoryId) {
 // Get total question count for a topic
 export async function getTotalQuestionCountForTopic(topic) {
   try {
-    const basePath = window.location.hostname.includes('github.io') ? '/Promotion-cbt-app' : '';
-    const response = await fetch(`${basePath}/data/${topic.file}`);
+    const response = await fetch(`data/${topic.file}`);
     const data = await response.json();
     let count = 0;
     if (data.hasSubcategories && data.subcategories && Array.isArray(data.subcategories)) {

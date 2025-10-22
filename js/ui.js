@@ -95,9 +95,7 @@ export async function displayCategories(topic, onSelect) {
 
     try {
         // Load topic data to get categories
-        // Determine base path dynamically
-        const basePath = window.location.hostname.includes('github.io') ? '/Promotion-cbt-app' : '';
-        const response = await fetch(`${basePath}/data/${topic.file}`);
+        const response = await fetch(`data/${topic.file}`);
         const topicData = await response.json();
 
         categoryList.innerHTML = '';
@@ -259,9 +257,7 @@ export async function getTotalQuestionCount(topic) {
 export async function selectTopic(topic) {
     try {
         // Load topic data to check if it has subcategories
-        // Determine base path dynamically
-        const basePath = window.location.hostname.includes('github.io') ? '/Promotion-cbt-app' : '';
-        const response = await fetch(`${basePath}/data/${topic.file}`);
+        const response = await fetch(`data/${topic.file}`);
         const topicData = await response.json();
 
         // Check if the topic has subcategories

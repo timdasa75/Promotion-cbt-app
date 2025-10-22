@@ -560,10 +560,8 @@ export async function loadQuestions(topic, mode) {
         // Load questions for the topic
         let response, topicData;
         try {
-            // Determine base path dynamically for GitHub Pages
-            const isGitHubPages = window.location.hostname.includes('github.io');
-            const basePath = isGitHubPages ? '/Promotion-cbt-app' : '';
-            response = await fetch(`${basePath}/data/${topic.file}`);
+            // Load questions for the topic
+            response = await fetch(`data/${topic.file}`);
             if (!response.ok) throw new Error(`Failed to fetch ${topic.file}: ${response.status}`);
             topicData = await response.json();
             console.log('Loaded topic data:', topicData);
