@@ -33,14 +33,12 @@ html {
     
     /* Typography */
     --font-family-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    
-    /* Typography */
     --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    --font-family: var(--font-primary); /* Use Inter as primary font */
     --accent-gold: #FFC107;
     --border-radius: 12px;
     --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.12);
-    --font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
     --transition-speed: 0.3s;
     --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     --info-color: #29b6f6;
@@ -704,12 +702,14 @@ body::before {
     font-size: 0.9rem;
 }
 
+/* Base screen styles */
 .screen {
-    transition: opacity 0.3s ease-in-out;
     width: 100%;
+    min-height: 100vh;
+    padding: 10px;
 }
 
-.hidden {
+.screen.hidden {
     display: none !important;
 }
 
@@ -747,6 +747,14 @@ body::before {
 
 .quiz-nav-buttons .btn:nth-child(3) {
     order: 2;
+}
+
+.app-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .nav-buttons {
