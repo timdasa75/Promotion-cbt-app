@@ -4,7 +4,7 @@
       "id": "psr",
       "name": "Public Service Rules",
       "description": "Federal Civil Service PSR questions",
-      "file": "psr.json",
+      "file": "data/psr.json",
       "subcategories": [
         {
           "id": "psr_appointments",
@@ -62,7 +62,7 @@
       "id": "financial",
       "name": "Financial Management",
       "description": "Financial management and budgeting questions",
-      "file": "financial.json",
+      "file": "data/financial.json",
       "subcategories": [
         {
           "id": "fin_budgeting",
@@ -100,7 +100,7 @@
       "id": "procurement",
       "name": "Procurement",
       "description": "Procurement and supply chain questions",
-      "file": "procurement.json",
+      "file": "data/procurement.json",
       "subcategories": [
         {
           "id": "proc_objectives",
@@ -133,7 +133,7 @@
       "id": "civil_service",
       "name": "Civil Service",
       "description": "Civil service administration questions",
-      "file": "civil_service.json",
+      "file": "data/civil_service.json",
       "subcategories": [
         {
           "id": "csh_principles_ethics",
@@ -176,7 +176,7 @@
       "id": "competency",
       "name": "Competency Framework",
       "description": "Competency-based assessment questions",
-      "file": "competency.json",
+      "file": "data/competency.json",
       "subcategories": [
         {
           "id": "comp_numerical",
@@ -194,7 +194,7 @@
       "id": "freedom",
       "name": "Freedom of Information",
       "description": "Freedom of information act questions",
-      "file": "freedom.json",
+      "file": "data/freedom.json",
       "subcategories": [
         {
           "id": "foi_access_rights",
@@ -222,7 +222,7 @@
       "id": "ethics",
       "name": "Ethics & Integrity",
       "description": "Ethics and integrity in public service",
-      "file": "ethics.json",
+      "file": "data/ethics.json",
       "subcategories": [
         {
           "id": "eth_code_conduct",
@@ -260,7 +260,7 @@
       "id": "negotiation",
       "name": "Negotiation Skills",
       "description": "Negotiation and conflict resolution",
-      "file": "negotiation.json",
+      "file": "data/negotiation.json",
       "subcategories": [
         {
           "id": "neg_collective_bargaining",
@@ -293,7 +293,7 @@
       "id": "circulars",
       "name": "Official Circulars",
       "description": "Government circulars and directives",
-      "file": "circulars.json",
+      "file": "data/circulars.json",
       "subcategories": [
         {
           "id": "circ_leave_welfare",
@@ -336,7 +336,7 @@
       "id": "ict",
       "name": "ICT Management",
       "description": "Information and communication technology",
-      "file": "ict.json",
+      "file": "data/ict.json",
       "subcategories": [
         {
           "id": "ict_fundamentals",
@@ -364,7 +364,7 @@
       "id": "leadership",
       "name": "Leadership",
       "description": "Leadership and management skills",
-      "file": "leadership.json",
+      "file": "data/leadership.json",
       "subcategories": [
         {
           "id": "lead_principles_styles",
@@ -392,7 +392,7 @@
       "id": "policy",
       "name": "Policy Analysis",
       "description": "Policy development and analysis",
-      "file": "policy.json",
+      "file": "data/policy.json",
       "subcategories": [
         {
           "id": "pol_constitution_governance",
