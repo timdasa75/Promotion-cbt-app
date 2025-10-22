@@ -4,73 +4,417 @@
       "id": "psr",
       "name": "Public Service Rules",
       "description": "Federal Civil Service PSR questions",
-      "file": "psr.json"
+      "file": "psr.json",
+      "subcategories": [
+        {
+          "id": "psr_appointments",
+          "name": "Appointments, Promotions & Transfers",
+          "description": "Questions on Appointments, Promotions & Transfers from PSR 2021"
+        },
+        {
+          "id": "psr_discipline",
+          "name": "Discipline & Misconduct",
+          "description": "Questions on Discipline & Misconduct from PSR 2021"
+        },
+        {
+          "id": "psr_leave",
+          "name": "Leave, Absence & Holidays",
+          "description": "Questions on Leave, Absence & Holidays from PSR 2021"
+        },
+        {
+          "id": "psr_allowances",
+          "name": "Allowances, Pay & Benefits",
+          "description": "Questions on Allowances, Pay & Benefits from PSR 2021"
+        },
+        {
+          "id": "psr_ethics",
+          "name": "Conduct & Ethics",
+          "description": "Questions on Conduct & Ethics from PSR 2021"
+        },
+        {
+          "id": "psr_medical",
+          "name": "Medical & Welfare",
+          "description": "Questions on Medical & Welfare from PSR 2021"
+        },
+        {
+          "id": "psr_training",
+          "name": "Training, Performance & Career Development",
+          "description": "Questions on Training, Performance & Career Development from PSR 2021"
+        },
+        {
+          "id": "psr_retirement",
+          "name": "Separation, Retirement & Pensions",
+          "description": "Questions on Separation, Retirement & Pensions from PSR 2021"
+        },
+        {
+          "id": "psr_general_admin",
+          "name": "General Administration & Office Procedures",
+          "description": "Questions on General Administration & Office Procedures from PSR 2021"
+        },
+        {
+          "id": "psr_interpretation",
+          "name": "Interpretation & Commencement",
+          "description": "Questions on Interpretation & Commencement from PSR 2021"
+        }
+      ]
     },
     {
       "id": "financial",
       "name": "Financial Management",
       "description": "Financial management and budgeting questions",
-      "file": "financial.json"
+      "file": "financial.json",
+      "subcategories": [
+        {
+          "id": "fin_budgeting",
+          "name": "Budgeting",
+          "description": "Appropriation Act, warrants, virement, budget cycles, MTEF, and budget planning"
+        },
+        {
+          "id": "fin_procurement",
+          "name": "Procurement",
+          "description": "Public Procurement Act, due process, thresholds, and procurement regulations"
+        },
+        {
+          "id": "fin_imprest_advances",
+          "name": "Imprest and Advances",
+          "description": "Imprest limits, retirement, advances, and cash management"
+        },
+        {
+          "id": "fin_allowances",
+          "name": "Allowances",
+          "description": "Housing, transport, medical, overtime, and other allowances"
+        },
+        {
+          "id": "fin_audits_sanctions",
+          "name": "Audits and Sanctions",
+          "description": "Auditor-General, internal audits, penalties, and compliance"
+        },
+        {
+          "id": "fin_general",
+          "name": "General Financial Management",
+          "description": "TSA, revenue management, financial statements, reconciliations, and other general topics"
+        }
+      ]
     },
     {
       "id": "procurement",
       "name": "Procurement",
       "description": "Procurement and supply chain questions",
-      "file": "procurement.json"
+      "file": "procurement.json",
+      "subcategories": [
+        {
+          "id": "proc_objectives",
+          "name": "Objectives, Institutions & Methods",
+          "description": "Procurement objectives, institutions, principles, and methods"
+        },
+        {
+          "id": "proc_bidding",
+          "name": "Bidding, Evaluation & Award",
+          "description": "Bidding process, evaluation criteria, and award procedures"
+        },
+        {
+          "id": "proc_transparency",
+          "name": "Transparency, Ethics & Accountability",
+          "description": "Transparency, ethics, accountability, and anti-corruption measures"
+        },
+        {
+          "id": "proc_eligibility",
+          "name": "Eligibility, Consultants & Budgeting",
+          "description": "Eligibility criteria, consultants, and budgeting for procurement"
+        },
+        {
+          "id": "proc_implementation",
+          "name": "Implementation, Monitoring & Sanctions",
+          "description": "Implementation, monitoring, sanctions, and dispute resolution"
+        }
+      ]
     },
     {
       "id": "civil_service",
       "name": "Civil Service",
       "description": "Civil service administration questions",
-      "file": "civil_service.json"
+      "file": "civil_service.json",
+      "subcategories": [
+        {
+          "id": "csh_principles_ethics",
+          "name": "Civil Service Principles and Ethics",
+          "description": "Core principles, values, ethics, and code of conduct for civil servants"
+        },
+        {
+          "id": "csh_duties_responsibilities",
+          "name": "Duties and Responsibilities",
+          "description": "Duties of civil servants, role of key institutions, and service delivery principles"
+        },
+        {
+          "id": "csh_discipline_conduct",
+          "name": "Discipline and Conduct",
+          "description": "Disciplinary procedures, misconduct, and code of conduct enforcement"
+        },
+        {
+          "id": "csh_performance_training",
+          "name": "Performance and Training",
+          "description": "Performance management, training, development, and career progression"
+        },
+        {
+          "id": "csh_administrative_procedures",
+          "name": "Administrative Procedures",
+          "description": "Office procedures, records management, communication, and administrative coordination"
+        },
+        {
+          "id": "csh_innovation_technology",
+          "name": "Innovation and Technology",
+          "description": "Innovation, technology adoption, and modernization in civil service"
+        },
+        {
+          "id": "csh_service_delivery_grievance",
+          "name": "Service Delivery and Grievance",
+          "description": "Service delivery principles, grievance handling, and public service excellence"
+        }
+      ]
     },
     {
       "id": "competency",
       "name": "Competency Framework",
       "description": "Competency-based assessment questions",
-      "file": "competency.json"
+      "file": "competency.json",
+      "subcategories": [
+        {
+          "id": "comp_numerical",
+          "name": "Numerical and Mathematical Competencies",
+          "description": "Numerical reasoning, mathematical calculations, and data interpretation"
+        },
+        {
+          "id": "comp_verbal",
+          "name": "Verbal and Reasoning Competencies",
+          "description": "Verbal reasoning, logical thinking, and analytical skills"
+        }
+      ]
     },
     {
       "id": "freedom",
       "name": "Freedom of Information",
       "description": "Freedom of information act questions",
-      "file": "freedom.json"
+      "file": "freedom.json",
+      "subcategories": [
+        {
+          "id": "foi_access_rights",
+          "name": "Access Rights and Obligations",
+          "description": "Rights to access information and obligations of public institutions"
+        },
+        {
+          "id": "foi_exemptions",
+          "name": "Exemptions and Denials",
+          "description": "Information exemptions, denial procedures, and appeals"
+        },
+        {
+          "id": "foi_penalties",
+          "name": "Penalties and Enforcement",
+          "description": "Penalties for non-compliance and enforcement mechanisms"
+        },
+        {
+          "id": "foi_offences",
+          "name": "Offences and Prosecution",
+          "description": "Criminal offences under the FOI Act and prosecution procedures"
+        }
+      ]
     },
     {
       "id": "ethics",
       "name": "Ethics & Integrity",
       "description": "Ethics and integrity in public service",
-      "file": "ethics.json"
+      "file": "ethics.json",
+      "subcategories": [
+        {
+          "id": "eth_code_conduct",
+          "name": "Code of Conduct and Ethics",
+          "description": "Code of conduct, ethical principles, and professional standards"
+        },
+        {
+          "id": "eth_values",
+          "name": "Civil Service Values",
+          "description": "Core values of integrity, accountability, and transparency"
+        },
+        {
+          "id": "eth_anti_corruption",
+          "name": "Anti-Corruption Measures",
+          "description": "Anti-corruption laws, prevention, and enforcement"
+        },
+        {
+          "id": "eth_conflict_interest",
+          "name": "Conflict of Interest",
+          "description": "Identifying and managing conflicts of interest"
+        },
+        {
+          "id": "eth_misconduct",
+          "name": "Misconduct and Discipline",
+          "description": "Types of misconduct and disciplinary procedures"
+        },
+        {
+          "id": "eth_general",
+          "name": "General Ethics",
+          "description": "General ethical principles and guidelines"
+        }
+      ]
     },
     {
       "id": "negotiation",
       "name": "Negotiation Skills",
       "description": "Negotiation and conflict resolution",
-      "file": "negotiation.json"
+      "file": "negotiation.json",
+      "subcategories": [
+        {
+          "id": "neg_collective_bargaining",
+          "name": "Collective Bargaining and Negotiation",
+          "description": "Collective bargaining processes and negotiation techniques"
+        },
+        {
+          "id": "neg_bodies_structure",
+          "name": "Negotiating Bodies and Structure",
+          "description": "Negotiating bodies, their composition, and organizational structure"
+        },
+        {
+          "id": "neg_dispute_resolution",
+          "name": "Dispute Resolution and Industrial Relations",
+          "description": "Dispute resolution mechanisms and industrial relations"
+        },
+        {
+          "id": "neg_trade_unions",
+          "name": "Trade Unions and Labour Laws",
+          "description": "Trade unions, their roles, and relevant labour laws"
+        },
+        {
+          "id": "neg_issues_outcomes",
+          "name": "Negotiation Issues and Outcomes",
+          "description": "Key negotiation issues and expected outcomes"
+        }
+      ]
     },
     {
       "id": "circulars",
       "name": "Official Circulars",
       "description": "Government circulars and directives",
-      "file": "circulars.json"
+      "file": "circulars.json",
+      "subcategories": [
+        {
+          "id": "circ_leave_welfare",
+          "name": "Leave and Welfare",
+          "description": "Leave entitlements, welfare benefits, and related circulars"
+        },
+        {
+          "id": "circ_appointments_tenure",
+          "name": "Appointments and Tenure",
+          "description": "Appointment procedures, tenure, and career progression"
+        },
+        {
+          "id": "circ_personnel_management",
+          "name": "Personnel Management",
+          "description": "Personnel management policies and procedures"
+        },
+        {
+          "id": "circ_performance_management",
+          "name": "Performance Management",
+          "description": "Performance evaluation, appraisal, and management"
+        },
+        {
+          "id": "circ_allowances_benefits",
+          "name": "Allowances and Benefits",
+          "description": "Various allowances, benefits, and entitlements"
+        },
+        {
+          "id": "circ_discipline_conduct",
+          "name": "Discipline and Conduct",
+          "description": "Disciplinary procedures and code of conduct"
+        },
+        {
+          "id": "circ_service_delivery_reforms",
+          "name": "Service Delivery and Reforms",
+          "description": "Service delivery standards and reform initiatives"
+        }
+      ]
     },
     {
       "id": "ict",
       "name": "ICT Management",
       "description": "Information and communication technology",
-      "file": "ict.json"
+      "file": "ict.json",
+      "subcategories": [
+        {
+          "id": "ict_fundamentals",
+          "name": "ICT Fundamentals",
+          "description": "Basic concepts, terminology, and principles of ICT"
+        },
+        {
+          "id": "ict_e_governance",
+          "name": "E-Governance and Digital Services",
+          "description": "E-governance initiatives and digital service delivery"
+        },
+        {
+          "id": "ict_security",
+          "name": "Digital Security and Cybersecurity",
+          "description": "Digital security measures and cybersecurity practices"
+        },
+        {
+          "id": "ict_literacy_innovation",
+          "name": "Digital Literacy and Innovation",
+          "description": "Digital literacy skills and technological innovation"
+        }
+      ]
     },
     {
       "id": "leadership",
       "name": "Leadership",
       "description": "Leadership and management skills",
-      "file": "leadership.json"
+      "file": "leadership.json",
+      "subcategories": [
+        {
+          "id": "lead_principles_styles",
+          "name": "Leadership Principles and Styles",
+          "description": "Leadership principles, theories, and different leadership styles"
+        },
+        {
+          "id": "lead_strategic_management",
+          "name": "Strategic Management and Planning",
+          "description": "Strategic management concepts and planning processes"
+        },
+        {
+          "id": "lead_management_functions",
+          "name": "Management Functions and Performance",
+          "description": "Management functions, performance management, and evaluation"
+        },
+        {
+          "id": "lead_change_management",
+          "name": "Change Management and National Strategy",
+          "description": "Change management and national development strategies"
+        }
+      ]
     },
     {
       "id": "policy",
       "name": "Policy Analysis",
       "description": "Policy development and analysis",
-      "file": "policy.json"
+      "file": "policy.json",
+      "subcategories": [
+        {
+          "id": "pol_constitution_governance",
+          "name": "Constitution and Governance",
+          "description": "Constitutional provisions and governance structures"
+        },
+        {
+          "id": "pol_nigeria_states",
+          "name": "Nigeria States and Capitals",
+          "description": "States, capitals, and geographical knowledge of Nigeria"
+        },
+        {
+          "id": "pol_psr_administration",
+          "name": "Public Service Rules and Administration",
+          "description": "Public Service Rules and administrative procedures"
+        },
+        {
+          "id": "pol_current_affairs",
+          "name": "Current Affairs and Leadership",
+          "description": "Current affairs, leadership, and contemporary issues"
+        }
+      ]
     }
   ]
 }

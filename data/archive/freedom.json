@@ -1,0 +1,1056 @@
+{
+  "name": "Freedom of Information Act",
+  "description": "Key provisions of the Freedom of Information Act 2011 relating to access, exemptions, obligations, and penalties.",
+  "type": "topic",
+  "hasSubcategories": false,
+  "icon": "📄",
+  "questions": [
+    {
+      "id": "foi_001",
+      "question": "In which year was the Freedom of Information Act enacted in Nigeria?",
+      "options": [
+        "2007",
+        "2009",
+        "2011",
+        "2013"
+      ],
+      "correct": 2,
+      "explanation": "The Freedom of Information Act was signed into law in 2011 by President Goodluck Jonathan.",
+      "difficulty": "easy",
+      "chapter": "Introduction",
+      "keywords": [
+        "foi act",
+        "2011",
+        "enactment"
+      ]
+    },
+    {
+      "id": "foi_002",
+      "question": "What is the main objective of the Freedom of Information Act?",
+      "options": [
+        "To restrict information flow",
+        "To ensure public access to information held by public institutions",
+        "To empower only the judiciary",
+        "To limit freedom of the press"
+      ],
+      "correct": 1,
+      "explanation": "The FOI Act aims to make public records accessible to citizens, enhancing transparency and accountability.",
+      "difficulty": "easy",
+      "chapter": "Objectives",
+      "keywords": [
+        "foi act",
+        "objective",
+        "access to information"
+      ]
+    },
+    {
+      "id": "foi_003",
+      "question": "Under the FOI Act, within how many days must a public institution respond to a request for information?",
+      "options": [
+        "3 days",
+        "7 days",
+        "14 days",
+        "21 days"
+      ],
+      "correct": 1,
+      "explanation": "Section 4 of the FOI Act stipulates that public institutions must respond to requests within 7 days.",
+      "difficulty": "easy",
+      "chapter": "Access Rights",
+      "keywords": [
+        "foi act",
+        "response time",
+        "7 days"
+      ]
+    },
+    {
+      "id": "foi_004",
+      "question": "Which section of the FOI Act guarantees the right of any person to access public records?",
+      "options": [
+        "Section 1",
+        "Section 2",
+        "Section 4",
+        "Section 7"
+      ],
+      "correct": 0,
+      "explanation": "Section 1 of the FOI Act guarantees the right of any person to access or request information from public institutions.",
+      "difficulty": "medium",
+      "chapter": "Access Rights",
+      "keywords": [
+        "foi act",
+        "section 1",
+        "right of access"
+      ]
+    },
+    {
+      "id": "foi_005",
+      "question": "Which of the following is NOT exempted from disclosure under the FOI Act?",
+      "options": [
+        "National security records",
+        "Personal information",
+        "Public budget allocations",
+        "Trade secrets"
+      ],
+      "correct": 2,
+      "explanation": "Budget allocations are public information and cannot be withheld under the FOI Act.",
+      "difficulty": "medium",
+      "chapter": "Exemptions",
+      "keywords": [
+        "foi act",
+        "budget",
+        "public information"
+      ]
+    },
+    {
+      "id": "foi_006",
+      "question": "Which section of the FOI Act mandates every public institution to keep records?",
+      "options": [
+        "Section 2",
+        "Section 3",
+        "Section 5",
+        "Section 6"
+      ],
+      "correct": 0,
+      "explanation": "Section 2 of the FOI Act mandates public institutions to maintain proper records for easy access.",
+      "difficulty": "medium",
+      "chapter": "Obligations",
+      "keywords": [
+        "foi act",
+        "record keeping",
+        "section 2"
+      ]
+    },
+    {
+      "id": "foi_007",
+      "question": "What penalty is imposed on any officer who wrongfully denies access to information?",
+      "options": [
+        "Warning",
+        "Suspension",
+        "₦500,000 fine",
+        "Dismissal"
+      ],
+      "correct": 2,
+      "explanation": "The FOI Act imposes a fine of ₦500,000 on officers who unlawfully deny access to information.",
+      "difficulty": "medium",
+      "chapter": "Penalties",
+      "keywords": [
+        "foi act",
+        "penalty",
+        "500000 fine"
+      ]
+    },
+    {
+      "id": "foi_008",
+      "question": "Which body is responsible for ensuring compliance with the FOI Act?",
+      "options": [
+        "National Assembly",
+        "Federal Civil Service Commission",
+        "Attorney-General of the Federation",
+        "Head of Service"
+      ],
+      "correct": 2,
+      "explanation": "The Attorney-General of the Federation is responsible for oversight and reporting on compliance with the FOI Act.",
+      "difficulty": "medium",
+      "chapter": "Oversight",
+      "keywords": [
+        "foi act",
+        "attorney-general",
+        "compliance"
+      ]
+    },
+    {
+      "id": "foi_009",
+      "question": "Which section of the FOI Act obliges institutions to proactively publish certain categories of information?",
+      "options": [
+        "Section 1",
+        "Section 2",
+        "Section 5",
+        "Section 8"
+      ],
+      "correct": 1,
+      "explanation": "Section 2 requires public institutions to proactively publish categories of information without waiting for requests.",
+      "difficulty": "medium",
+      "chapter": "Proactive Disclosure",
+      "keywords": [
+        "foi act",
+        "section 2",
+        "publication"
+      ]
+    },
+    {
+      "id": "foi_010",
+      "question": "What recourse does an applicant have if denied access to information?",
+      "options": [
+        "Do nothing",
+        "Appeal to the Attorney-General",
+        "File an action in court",
+        "Resubmit the application after 30 days"
+      ],
+      "correct": 2,
+      "explanation": "Section 20 provides that applicants may challenge denials of access in a court of law.",
+      "difficulty": "medium",
+      "chapter": "Appeals",
+      "keywords": [
+        "foi act",
+        "appeal",
+        "court action"
+      ]
+    },
+    {
+      "id": "foi_011",
+      "question": "Who bears the burden of proof when a request for information is denied?",
+      "options": [
+        "The applicant",
+        "The court",
+        "The institution denying access",
+        "The Attorney-General"
+      ],
+      "correct": 2,
+      "explanation": "Section 24 places the burden of proof on the institution that denies access to information.",
+      "difficulty": "medium",
+      "chapter": "Burden of Proof",
+      "keywords": [
+        "foi act",
+        "burden of proof",
+        "section 24"
+      ]
+    },
+    {
+      "id": "foi_012",
+      "question": "Under the FOI Act, are foreign nationals allowed to request information?",
+      "options": [
+        "No, only citizens can",
+        "Yes, any person can",
+        "Yes, but only through a Nigerian lawyer",
+        "No, only NGOs can"
+      ],
+      "correct": 1,
+      "explanation": "Section 1 makes the right of access available to 'any person,' not limited to Nigerian citizens.",
+      "difficulty": "easy",
+      "chapter": "Access Rights",
+      "keywords": [
+        "foi act",
+        "foreign nationals",
+        "access"
+      ]
+    },
+    {
+      "id": "foi_013",
+      "question": "What is the maximum extension period for an FOI request if additional time is needed?",
+      "options": [
+        "3 days",
+        "7 days",
+        "14 days",
+        "30 days"
+      ],
+      "correct": 1,
+      "explanation": "The Act allows a maximum extension of 7 additional days to respond where necessary.",
+      "difficulty": "medium",
+      "chapter": "Access Rights",
+      "keywords": [
+        "foi act",
+        "extension",
+        "7 days"
+      ]
+    },
+    {
+      "id": "foi_014",
+      "question": "Which of the following is exempt under the FOI Act?",
+      "options": [
+        "Information on corruption",
+        "Trade secrets",
+        "Budgetary allocations",
+        "Public procurement records"
+      ],
+      "correct": 1,
+      "explanation": "Trade secrets and commercial confidentiality are exempt from disclosure under Section 15.",
+      "difficulty": "medium",
+      "chapter": "Exemptions",
+      "keywords": [
+        "foi act",
+        "trade secrets",
+        "section 15"
+      ]
+    },
+    {
+      "id": "foi_015",
+      "question": "Which section of the FOI Act protects whistleblowers from penalties?",
+      "options": [
+        "Section 24",
+        "Section 25",
+        "Section 27",
+        "Section 30"
+      ],
+      "correct": 2,
+      "explanation": "Section 27 protects officers from prosecution for releasing information in good faith.",
+      "difficulty": "medium",
+      "chapter": "Protection",
+      "keywords": [
+        "foi act",
+        "whistleblower",
+        "section 27"
+      ]
+    },
+    {
+      "id": "foi_016",
+      "question": "What is the status of the FOI Act in relation to state governments?",
+      "options": [
+        "It automatically applies to all states",
+        "States must domesticate it through their Houses of Assembly",
+        "It applies only to Lagos and Abuja",
+        "It applies only to ministries"
+      ],
+      "correct": 1,
+      "explanation": "The FOI Act applies federally, but states must domesticate it to apply within their jurisdiction.",
+      "difficulty": "medium",
+      "chapter": "Jurisdiction",
+      "keywords": [
+        "foi act",
+        "states",
+        "domestication"
+      ]
+    },
+    {
+      "id": "foi_017",
+      "question": "Who has the authority to issue guidelines for FOI implementation?",
+      "options": [
+        "The Senate",
+        "The Federal Civil Service Commission",
+        "The Attorney-General of the Federation",
+        "The Auditor-General"
+      ],
+      "correct": 2,
+      "explanation": "The Attorney-General of the Federation issues implementation guidelines and annual compliance reports.",
+      "difficulty": "medium",
+      "chapter": "Oversight",
+      "keywords": [
+        "foi act",
+        "guidelines",
+        "attorney-general"
+      ]
+    },
+    {
+      "id": "foi_018",
+      "question": "Which section of the FOI Act criminalizes destruction of public records?",
+      "options": [
+        "Section 6",
+        "Section 7",
+        "Section 10",
+        "Section 29"
+      ],
+      "correct": 3,
+      "explanation": "Section 29 criminalizes destruction or falsification of public records and prescribes penalties.",
+      "difficulty": "medium",
+      "chapter": "Offences",
+      "keywords": [
+        "foi act",
+        "destruction of records",
+        "section 29"
+      ]
+    },
+    {
+      "id": "foi_019",
+      "question": "What is the fine for wrongful destruction of records under FOI Act?",
+      "options": [
+        "₦100,000",
+        "₦200,000",
+        "₦250,000",
+        "₦500,000"
+      ],
+      "correct": 3,
+      "explanation": "Section 29 prescribes a ₦500,000 fine for wrongful destruction or falsification of public records.",
+      "difficulty": "medium",
+      "chapter": "Penalties",
+      "keywords": [
+        "foi act",
+        "fine",
+        "destruction of records"
+      ]
+    },
+    {
+      "id": "foi_020",
+      "question": "Under the FOI Act, what is the duty of public institutions regarding training?",
+      "options": [
+        "No duty is specified",
+        "They must train staff on records management and access procedures",
+        "They must rely only on external consultants",
+        "They are exempt from staff training"
+      ],
+      "correct": 1,
+      "explanation": "The Act requires institutions to train staff to ensure effective implementation and compliance.",
+      "difficulty": "medium",
+      "chapter": "Implementation",
+      "keywords": [
+        "foi act",
+        "staff training",
+        "implementation"
+      ]
+    },
+    {
+      "id": "foi_021",
+      "question": "Which section of the FOI Act provides that information should be in the language understandable to the applicant?",
+      "options": [
+        "Section 2(3)",
+        "Section 3(4)",
+        "Section 4(2)",
+        "Section 7(1)"
+      ],
+      "correct": 1,
+      "explanation": "Section 3(4) requires that information be provided in a language understandable to the applicant when reasonably practicable.",
+      "difficulty": "medium",
+      "chapter": "Access Rights",
+      "keywords": [
+        "foi act",
+        "language",
+        "section 3(4)"
+      ]
+    },
+    {
+      "id": "foi_022",
+      "question": "Which section of the FOI Act mandates public institutions to submit annual compliance reports on FOI requests to the Attorney-General?",
+      "options": [
+        "Section 2(7)",
+        "Section 5(2)",
+        "Section 10",
+        "Section 30"
+      ],
+      "correct": 0,
+      "explanation": "Section 2(7) mandates public institutions to submit annual compliance reports on FOI requests to the Attorney-General of the Federation.",
+      "difficulty": "medium",
+      "chapter": "Oversight",
+      "keywords": [
+        "foi act",
+        "compliance report",
+        "section 2(7)",
+        "attorney-general"
+      ]
+    },
+    {
+      "id": "foi_023",
+      "question": "Which section exempts cabinet papers and deliberations of government from disclosure?",
+      "options": [
+        "Section 11",
+        "Section 12",
+        "Section 13",
+        "Section 15"
+      ],
+      "correct": 0,
+      "explanation": "Section 11 exempts cabinet papers, records of deliberations, and decisions of the Executive Council of the Federation.",
+      "difficulty": "medium",
+      "chapter": "Exemptions",
+      "keywords": [
+        "foi act",
+        "cabinet papers",
+        "section 11"
+      ]
+    },
+    {
+      "id": "foi_024",
+      "question": "Which section exempts personal information that would constitute an invasion of privacy?",
+      "options": [
+        "Section 12",
+        "Section 13",
+        "Section 14",
+        "Section 15"
+      ],
+      "correct": 2,
+      "explanation": "Section 14 exempts personal information from disclosure to protect individual privacy rights.",
+      "difficulty": "medium",
+      "chapter": "Exemptions",
+      "keywords": [
+        "foi act",
+        "personal information",
+        "section 14"
+      ]
+    },
+    {
+      "id": "foi_025",
+      "question": "Which section exempts trade secrets and commercial confidentiality from disclosure?",
+      "options": [
+        "Section 14",
+        "Section 15",
+        "Section 16",
+        "Section 18"
+      ],
+      "correct": 1,
+      "explanation": "Section 15 exempts trade secrets, commercial or financial information obtained in confidence.",
+      "difficulty": "medium",
+      "chapter": "Exemptions",
+      "keywords": [
+        "foi act",
+        "trade secrets",
+        "section 15"
+      ]
+    },
+    {
+      "id": "foi_026",
+      "question": "Which section protects international relations and defence from disclosure?",
+      "options": [
+        "Section 11",
+        "Section 12",
+        "Section 13",
+        "Section 16"
+      ],
+      "correct": 1,
+      "explanation": "Section 12 exempts information that could affect national security, defence, or international relations.",
+      "difficulty": "medium",
+      "chapter": "Exemptions",
+      "keywords": [
+        "foi act",
+        "national security",
+        "section 12"
+      ]
+    },
+    {
+      "id": "foi_027",
+      "question": "Which section exempts professional privileges such as lawyer-client communication?",
+      "options": [
+        "Section 14",
+        "Section 15",
+        "Section 16",
+        "Section 19"
+      ],
+      "correct": 2,
+      "explanation": "Section 16 exempts professional privileges like solicitor-client communication from disclosure.",
+      "difficulty": "medium",
+      "chapter": "Exemptions",
+      "keywords": [
+        "foi act",
+        "professional privilege",
+        "section 16"
+      ]
+    },
+    {
+      "id": "foi_028",
+      "question": "Which section exempts research materials and pending academic work?",
+      "options": [
+        "Section 19",
+        "Section 20",
+        "Section 21",
+        "Section 22"
+      ],
+      "correct": 0,
+      "explanation": "Section 19 exempts research materials and examinations from disclosure until completion.",
+      "difficulty": "medium",
+      "chapter": "Exemptions",
+      "keywords": [
+        "foi act",
+        "research",
+        "section 19"
+      ]
+    },
+    {
+      "id": "foi_029",
+      "question": "Which section provides that exempt information may still be disclosed if public interest outweighs harm?",
+      "options": [
+        "Section 11(2)",
+        "Section 12(3)",
+        "Section 28",
+        "Section 31"
+      ],
+      "correct": 2,
+      "explanation": "Section 28 introduces the public interest test, allowing disclosure if public benefit outweighs harm.",
+      "difficulty": "medium",
+      "chapter": "Public Interest",
+      "keywords": [
+        "foi act",
+        "public interest",
+        "section 28"
+      ]
+    },
+    {
+      "id": "foi_030",
+      "question": "Which section makes it an offence to alter or falsify public records?",
+      "options": [
+        "Section 25",
+        "Section 27",
+        "Section 29",
+        "Section 31"
+      ],
+      "correct": 2,
+      "explanation": "Section 29 makes alteration or falsification of records a criminal offence with penalties.",
+      "difficulty": "medium",
+      "chapter": "Offences",
+      "keywords": [
+        "foi act",
+        "falsification",
+        "section 29"
+      ]
+    },
+    {
+      "id": "foi_031",
+      "question": "Which section requires institutions to designate FOI desk officers?",
+      "options": [
+        "Section 2(3)",
+        "Section 3(4)",
+        "Section 5(1)",
+        "Section 10(1)"
+      ],
+      "correct": 2,
+      "explanation": "Section 5(1) requires every institution to designate officers responsible for handling FOI requests.",
+      "difficulty": "medium",
+      "chapter": "Implementation",
+      "keywords": [
+        "foi act",
+        "desk officer",
+        "section 5(1)"
+      ]
+    },
+    {
+      "id": "foi_032",
+      "question": "Which section exempts test questions and examination materials from disclosure?",
+      "options": [
+        "Section 18",
+        "Section 19",
+        "Section 20",
+        "Section 21"
+      ],
+      "correct": 1,
+      "explanation": "Section 19 exempts examination materials and test questions from disclosure until after administration.",
+      "difficulty": "medium",
+      "chapter": "Exemptions",
+      "keywords": [
+        "foi act",
+        "exams",
+        "section 19"
+      ]
+    },
+    {
+      "id": "foi_033",
+      "question": "Which section obliges institutions to maintain records in machine-readable formats?",
+      "options": [
+        "Section 2(1)",
+        "Section 2(4)",
+        "Section 6(2)",
+        "Section 9(1)"
+      ],
+      "correct": 2,
+      "explanation": "Section 6(2) requires public institutions to keep records in formats that make them easily accessible.",
+      "difficulty": "medium",
+      "chapter": "Record Management",
+      "keywords": [
+        "foi act",
+        "records",
+        "section 6(2)"
+      ]
+    },
+    {
+      "id": "foi_034",
+      "question": "Which section provides for transfer of FOI requests if another institution holds the information?",
+      "options": [
+        "Section 4",
+        "Section 5",
+        "Section 7",
+        "Section 10"
+      ],
+      "correct": 2,
+      "explanation": "Section 7 provides for transfer of requests where the information is held by another institution.",
+      "difficulty": "medium",
+      "chapter": "Access Rights",
+      "keywords": [
+        "foi act",
+        "transfer",
+        "section 7"
+      ]
+    },
+    {
+      "id": "foi_035",
+      "question": "Which section allows partial disclosure where only part of a record is exempt?",
+      "options": [
+        "Section 12",
+        "Section 13",
+        "Section 15",
+        "Section 19"
+      ],
+      "correct": 1,
+      "explanation": "Section 13 allows partial disclosure of non-exempt portions of a record.",
+      "difficulty": "medium",
+      "chapter": "Exemptions",
+      "keywords": [
+        "foi act",
+        "partial disclosure",
+        "section 13"
+      ]
+    },
+    {
+      "id": "foi_036",
+      "question": "Which section provides protection from liability for officers who disclose information in good faith?",
+      "options": [
+        "Section 25",
+        "Section 26",
+        "Section 27",
+        "Section 28"
+      ],
+      "correct": 2,
+      "explanation": "Section 27 provides immunity for officers who release information in good faith.",
+      "difficulty": "medium",
+      "chapter": "Protection",
+      "keywords": [
+        "foi act",
+        "good faith",
+        "section 27"
+      ]
+    },
+    {
+      "id": "foi_037",
+      "question": "Which section prohibits destruction of records needed for pending FOI requests?",
+      "options": [
+        "Section 9",
+        "Section 10",
+        "Section 15",
+        "Section 29"
+      ],
+      "correct": 3,
+      "explanation": "Section 29 prohibits destruction of records subject to FOI requests and prescribes penalties.",
+      "difficulty": "medium",
+      "chapter": "Offences",
+      "keywords": [
+        "foi act",
+        "record destruction",
+        "section 29"
+      ]
+    },
+    {
+      "id": "foi_038",
+      "question": "Which section mandates wide dissemination of information to the public?",
+      "options": [
+        "Section 1",
+        "Section 2(3)",
+        "Section 6",
+        "Section 10"
+      ],
+      "correct": 1,
+      "explanation": "Section 2(3) mandates public institutions to widely disseminate information through various media.",
+      "difficulty": "medium",
+      "chapter": "Proactive Disclosure",
+      "keywords": [
+        "foi act",
+        "dissemination",
+        "section 2(3)"
+      ]
+    },
+    {
+      "id": "foi_039",
+      "question": "Which section exempts law enforcement records that could interfere with investigations?",
+      "options": [
+        "Section 12",
+        "Section 14",
+        "Section 16",
+        "Section 19"
+      ],
+      "correct": 0,
+      "explanation": "Section 12 exempts law enforcement records that may interfere with investigations or prosecutions.",
+      "difficulty": "medium",
+      "chapter": "Exemptions",
+      "keywords": [
+        "foi act",
+        "law enforcement",
+        "section 12"
+      ]
+    },
+    {
+      "id": "foi_040",
+      "question": "Which section exempts geological and mineral exploration data?",
+      "options": [
+        "Section 15",
+        "Section 17",
+        "Section 18",
+        "Section 19"
+      ],
+      "correct": 1,
+      "explanation": "Section 17 exempts geological and mineral exploration records from disclosure.",
+      "difficulty": "medium",
+      "chapter": "Exemptions",
+      "keywords": [
+        "foi act",
+        "geological data",
+        "section 17"
+      ]
+    },
+    {
+      "id": "foi_041",
+      "question": "Which section of the FOI Act covers information affecting personal safety?",
+      "options": [
+        "Section 12",
+        "Section 14",
+        "Section 16",
+        "Section 18"
+      ],
+      "correct": 2,
+      "explanation": "Section 16 exempts disclosure of information that could endanger the life or physical safety of any individual.",
+      "difficulty": "medium",
+      "chapter": "Exemptions",
+      "keywords": [
+        "foi act",
+        "personal safety",
+        "section 16"
+      ]
+    },
+    {
+      "id": "foi_042",
+      "question": "Which section provides for fees to cover the cost of duplication and transcription?",
+      "options": [
+        "Section 5(3)",
+        "Section 7(5)",
+        "Section 8(1)",
+        "Section 9(2)"
+      ],
+      "correct": 2,
+      "explanation": "Section 8(1) allows institutions to charge fees covering costs of duplication or transcription of records.",
+      "difficulty": "medium",
+      "chapter": "Access Rights",
+      "keywords": [
+        "foi act",
+        "fees",
+        "section 8(1)"
+      ]
+    },
+    {
+      "id": "foi_043",
+      "question": "Which section provides that applicants do not need to show reasons for requesting information?",
+      "options": [
+        "Section 1(2)",
+        "Section 3(3)",
+        "Section 4(2)",
+        "Section 5(1)"
+      ],
+      "correct": 0,
+      "explanation": "Section 1(2) makes clear that no applicant needs to demonstrate interest or reasons for requesting information.",
+      "difficulty": "easy",
+      "chapter": "Access Rights",
+      "keywords": [
+        "foi act",
+        "reasons",
+        "section 1(2)"
+      ]
+    },
+    {
+      "id": "foi_044",
+      "question": "Which section requires that public institutions keep training programs for their officials?",
+      "options": [
+        "Section 5",
+        "Section 9",
+        "Section 13",
+        "Section 28"
+      ],
+      "correct": 0,
+      "explanation": "Section 5 requires public institutions to train officials to ensure effective implementation of the Act.",
+      "difficulty": "medium",
+      "chapter": "Implementation",
+      "keywords": [
+        "foi act",
+        "training",
+        "section 5"
+      ]
+    },
+    {
+      "id": "foi_045",
+      "question": "Which section obliges the Attorney-General to prepare and submit an annual report on FOI implementation?",
+      "options": [
+        "Section 18",
+        "Section 20",
+        "Section 29",
+        "Section 32"
+      ],
+      "correct": 3,
+      "explanation": "Section 32 requires the Attorney-General of the Federation to submit an annual report to the National Assembly.",
+      "difficulty": "medium",
+      "chapter": "Oversight",
+      "keywords": [
+        "foi act",
+        "attorney-general",
+        "section 32"
+      ]
+    },
+    {
+      "id": "foi_046",
+      "question": "Which section provides that public institutions must maintain updated indexes of records?",
+      "options": [
+        "Section 2(2)",
+        "Section 3(3)",
+        "Section 6(1)",
+        "Section 9(1)"
+      ],
+      "correct": 2,
+      "explanation": "Section 6(1) mandates public institutions to maintain updated indexes of their records for accessibility.",
+      "difficulty": "medium",
+      "chapter": "Record Management",
+      "keywords": [
+        "foi act",
+        "record index",
+        "section 6(1)"
+      ]
+    },
+    {
+      "id": "foi_047",
+      "question": "Which section of the FOI Act emphasizes the proactive disclosure of financial records?",
+      "options": [
+        "Section 2(3)",
+        "Section 4(1)",
+        "Section 5(2)",
+        "Section 10(2)"
+      ],
+      "correct": 0,
+      "explanation": "Section 2(3) emphasizes proactive disclosure of information, including financial records, without waiting for requests.",
+      "difficulty": "medium",
+      "chapter": "Proactive Disclosure",
+      "keywords": [
+        "foi act",
+        "financial records",
+        "section 2(3)"
+      ]
+    },
+    {
+      "id": "foi_048",
+      "question": "Which section exempts information that could prejudice pending criminal proceedings?",
+      "options": [
+        "Section 11",
+        "Section 12",
+        "Section 16",
+        "Section 17"
+      ],
+      "correct": 1,
+      "explanation": "Section 12 exempts records that could interfere with investigations or prejudice pending criminal cases.",
+      "difficulty": "medium",
+      "chapter": "Exemptions",
+      "keywords": [
+        "foi act",
+        "criminal proceedings",
+        "section 12"
+      ]
+    },
+    {
+      "id": "foi_049",
+      "question": "Which section provides that exemptions should be narrowly interpreted?",
+      "options": [
+        "Section 1(1)",
+        "Section 12(3)",
+        "Section 28(1)",
+        "Section 30(1)"
+      ],
+      "correct": 2,
+      "explanation": "Section 28(1) states that exemptions must be interpreted narrowly in favor of disclosure.",
+      "difficulty": "medium",
+      "chapter": "Public Interest",
+      "keywords": [
+        "foi act",
+        "exemptions",
+        "section 28(1)"
+      ]
+    },
+    {
+      "id": "foi_050",
+      "question": "Which section criminalizes willful concealment of public records?",
+      "options": [
+        "Section 25",
+        "Section 27",
+        "Section 29",
+        "Section 31"
+      ],
+      "correct": 2,
+      "explanation": "Section 29 criminalizes willful concealment, destruction, or falsification of public records.",
+      "difficulty": "medium",
+      "chapter": "Offences",
+      "keywords": [
+        "foi act",
+        "concealment",
+        "section 29"
+      ]
+    },
+    {
+      "id": "foi_051",
+      "question": "Which section of the FOI Act provides that all institutions must make information available in accessible formats?",
+      "options": [
+        "Section 2(4)",
+        "Section 3(2)",
+        "Section 6(2)",
+        "Section 7(3)"
+      ],
+      "correct": 2,
+      "explanation": "Section 6(2) provides that records must be kept in accessible formats such as machine-readable versions.",
+      "difficulty": "medium",
+      "chapter": "Record Management",
+      "keywords": [
+        "foi act",
+        "accessible formats",
+        "section 6(2)"
+      ]
+    },
+    {
+      "id": "foi_052",
+      "question": "Which section protects officers from civil or criminal liability when they disclose information under the Act?",
+      "options": [
+        "Section 25",
+        "Section 26",
+        "Section 27",
+        "Section 29"
+      ],
+      "correct": 2,
+      "explanation": "Section 27 protects officers from liability when they disclose information in good faith.",
+      "difficulty": "medium",
+      "chapter": "Protection",
+      "keywords": [
+        "foi act",
+        "liability",
+        "section 27"
+      ]
+    },
+    {
+      "id": "foi_053",
+      "question": "Which section requires the Attorney-General to compile and publish annual compliance reports?",
+      "options": [
+        "Section 25",
+        "Section 29",
+        "Section 32",
+        "Section 33"
+      ],
+      "correct": 2,
+      "explanation": "Section 32 requires the Attorney-General to compile and publish annual FOI compliance reports.",
+      "difficulty": "medium",
+      "chapter": "Oversight",
+      "keywords": [
+        "foi act",
+        "compliance report",
+        "section 32"
+      ]
+    },
+    {
+      "id": "foi_054",
+      "question": "Which section requires every institution to keep proper indexes of their records?",
+      "options": [
+        "Section 5",
+        "Section 6(1)",
+        "Section 8",
+        "Section 10"
+      ],
+      "correct": 1,
+      "explanation": "Section 6(1) mandates public institutions to keep proper indexes of their records for easy accessibility.",
+      "difficulty": "medium",
+      "chapter": "Record Management",
+      "keywords": [
+        "foi act",
+        "indexes",
+        "section 6(1)"
+      ]
+    },
+    {
+      "id": "foi_055",
+      "question": "Which section emphasizes proactive publication of information categories such as budgets and contracts?",
+      "options": [
+        "Section 2(3)",
+        "Section 4(2)",
+        "Section 7(1)",
+        "Section 9(2)"
+      ],
+      "correct": 0,
+      "explanation": "Section 2(3) emphasizes proactive disclosure of categories like budgets, contracts, and financial data.",
+      "difficulty": "medium",
+      "chapter": "Proactive Disclosure",
+      "keywords": [
+        "foi act",
+        "budgets",
+        "contracts",
+        "section 2(3)"
+      ]
+    }
+  ]
+}

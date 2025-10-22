@@ -6,25 +6,6 @@
     "icon": "📂",
     "questions": [
         {
-            "id": "cat_psr",
-            "question": "What is Public Service Rules?",
-            "options": [
-                "Questions on Public Service Rules and Regulations",
-                "Questions on Financial Management",
-                "Questions on Procurement",
-                "Questions on Civil Service Handbook"
-            ],
-            "correct": 0,
-            "explanation": "Public Service Rules category contains questions on Public Service Rules and Regulations",
-            "difficulty": "easy",
-            "topic": "Categories",
-            "keywords": [
-                "psr",
-                "public service rules",
-                "regulations"
-            ]
-        },
-        {
             "id": "cat_financial",
             "question": "What is Financial Regulations?",
             "options": [
@@ -42,6 +23,126 @@
                 "financial regulations",
                 "budgeting"
             ]
+        },
+        {
+            "id": "psr_appointments",
+            "question": "What are Appointments, Promotions & Transfers?",
+            "options": [
+                "Questions on Appointments, Promotions & Transfers from PSR 2021"
+            ],
+            "correct": 0,
+            "explanation": "This category contains questions on Appointments, Promotions & Transfers from PSR 2021.",
+            "difficulty": "easy",
+            "topic": "PSR",
+            "keywords": ["appointments", "promotions", "transfers", "PSR"]
+        },
+        {
+            "id": "psr_discipline",
+            "question": "What is Discipline & Misconduct?",
+            "options": [
+                "Questions on Discipline & Misconduct from PSR 2021"
+            ],
+            "correct": 0,
+            "explanation": "This category contains questions on Discipline & Misconduct from PSR 2021.",
+            "difficulty": "easy",
+            "topic": "PSR",
+            "keywords": ["discipline", "misconduct", "PSR"]
+        },
+        {
+            "id": "psr_leave",
+            "question": "What is Leave, Absence & Holidays?",
+            "options": [
+                "Questions on Leave, Absence & Holidays from PSR 2021"
+            ],
+            "correct": 0,
+            "explanation": "This category contains questions on Leave, Absence & Holidays from PSR 2021.",
+            "difficulty": "easy",
+            "topic": "PSR",
+            "keywords": ["leave", "absence", "holidays", "PSR"]
+        },
+        {
+            "id": "psr_allowances",
+            "question": "What are Allowances, Pay & Benefits?",
+            "options": [
+                "Questions on Allowances, Pay & Benefits from PSR 2021"
+            ],
+            "correct": 0,
+            "explanation": "This category contains questions on Allowances, Pay & Benefits from PSR 2021.",
+            "difficulty": "easy",
+            "topic": "PSR",
+            "keywords": ["allowances", "pay", "benefits", "PSR"]
+        },
+        {
+            "id": "psr_ethics",
+            "question": "What is Conduct & Ethics?",
+            "options": [
+                "Questions on Conduct & Ethics from PSR 2021"
+            ],
+            "correct": 0,
+            "explanation": "This category contains questions on Conduct & Ethics from PSR 2021.",
+            "difficulty": "easy",
+            "topic": "PSR",
+            "keywords": ["conduct", "ethics", "PSR"]
+        },
+        {
+            "id": "psr_medical",
+            "question": "What is Medical & Welfare?",
+            "options": [
+                "Questions on Medical & Welfare from PSR 2021"
+            ],
+            "correct": 0,
+            "explanation": "This category contains questions on Medical & Welfare from PSR 2021.",
+            "difficulty": "easy",
+            "topic": "PSR",
+            "keywords": ["medical", "welfare", "PSR"]
+        },
+        {
+            "id": "psr_training",
+            "question": "What is Training, Performance & Career Development?",
+            "options": [
+                "Questions on Training, Performance & Career Development from PSR 2021"
+            ],
+            "correct": 0,
+            "explanation": "This category contains questions on Training, Performance & Career Development from PSR 2021.",
+            "difficulty": "easy",
+            "topic": "PSR",
+            "keywords": ["training", "performance", "career development", "PSR"]
+        },
+        {
+            "id": "psr_retirement",
+            "question": "What is Separation, Retirement & Pensions?",
+            "options": [
+                "Questions on Separation, Retirement & Pensions from PSR 2021"
+            ],
+            "correct": 0,
+            "explanation": "This category contains questions on Separation, Retirement & Pensions from PSR 2021.",
+            "difficulty": "easy",
+            "topic": "PSR",
+            "keywords": ["separation", "retirement", "pensions", "PSR"]
+        },
+        {
+            "id": "psr_general_admin",
+            "question": "What is General Administration & Office Procedures?",
+            "options": [
+                "Questions on General Administration & Office Procedures from PSR 2021"
+            ],
+            "correct": 0,
+            "explanation": "This category contains questions on General Administration & Office Procedures from PSR 2021.",
+            "difficulty": "easy",
+            "topic": "PSR",
+            "keywords": ["general administration", "office procedures", "PSR"]
+        },
+        {
+            "id": "psr_interpretation",
+            "question": "What is Interpretation & Commencement?",
+            "options": [
+                "Questions on Interpretation & Commencement from PSR 2021"
+            ],
+            "correct": 0,
+            "explanation": "This category contains questions on Interpretation & Commencement from PSR 2021.",
+            "difficulty": "easy",
+            "topic": "PSR",
+            "keywords": ["interpretation", "commencement", "PSR"]
         },
         {
             "id": "cat_procurement",

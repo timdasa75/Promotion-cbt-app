@@ -1,0 +1,1120 @@
+{
+  "name": "Public Procurement Act",
+  "description": "Key provisions of the Public Procurement Act 2007, covering objectives, procedures, methods, thresholds, and penalties.",
+  "psr_chapters": ["ch7", "ch10"],
+  "questions": [
+      {
+        "id": "ppa_001",
+        "question": "In which year was the Public Procurement Act enacted in Nigeria?",
+        "options": ["2003", "2005", "2007", "2010"],
+        "correct": 2,
+        "explanation": "The Public Procurement Act was enacted in 2007 to regulate public procurement practices in Nigeria.",
+        "difficulty": "easy",
+        "chapter": "Introduction",
+        "keywords": ["public procurement act", "2007", "enactment"]
+      },
+      {
+        "id": "ppa_002",
+        "question": "Which body is established by the Public Procurement Act to oversee procurement in Nigeria?",
+        "options": [
+          "EFCC",
+          "ICPC",
+          "Bureau of Public Procurement",
+          "Federal Civil Service Commission"
+        ],
+        "correct": 2,
+        "explanation": "The Bureau of Public Procurement (BPP) is established under the Act as the regulatory authority for procurement.",
+        "difficulty": "easy",
+        "chapter": "Institutions",
+        "keywords": ["bpp", "public procurement", "regulatory body"]
+      },
+      {
+        "id": "ppa_003",
+        "question": "Which section of the PPA 2007 establishes the Bureau of Public Procurement?",
+        "options": ["Section 1", "Section 3", "Section 4", "Section 5"],
+        "correct": 1,
+        "explanation": "Section 3 of the PPA 2007 establishes the Bureau of Public Procurement (BPP).",
+        "difficulty": "medium",
+        "chapter": "Institutions",
+        "keywords": ["ppa 2007", "section 3", "bpp"]
+      },
+      {
+        "id": "ppa_004",
+        "question": "Which of the following is NOT an objective of the Public Procurement Act?",
+        "options": [
+          "Promote transparency",
+          "Ensure competition",
+          "Encourage corruption",
+          "Achieve value for money"
+        ],
+        "correct": 2,
+        "explanation": "The Act seeks to promote transparency, competition, efficiency, and value for money, not corruption.",
+        "difficulty": "easy",
+        "chapter": "Objectives",
+        "keywords": [
+          "ppa 2007",
+          "objectives",
+          "transparency",
+          "value for money"
+        ]
+      },
+      {
+        "id": "ppa_005",
+        "question": "Which section of the Act prohibits splitting of contracts to circumvent approval thresholds?",
+        "options": ["Section 14", "Section 16", "Section 18", "Section 20"],
+        "correct": 1,
+        "explanation": "Section 16 prohibits splitting of contracts to evade approval thresholds.",
+        "difficulty": "medium",
+        "chapter": "Procurement Methods",
+        "keywords": ["ppa 2007", "contract splitting", "section 16"]
+      },
+      {
+        "id": "ppa_006",
+        "question": "Which section requires procurement to be based on principles of transparency, accountability, and fairness?",
+        "options": ["Section 12", "Section 15", "Section 16", "Section 18"],
+        "correct": 2,
+        "explanation": "Section 16 emphasizes transparency, accountability, fairness, and competition in procurement.",
+        "difficulty": "medium",
+        "chapter": "Principles",
+        "keywords": ["ppa 2007", "section 16", "principles"]
+      },
+      {
+        "id": "ppa_007",
+        "question": "Which procurement method is considered the default under the PPA?",
+        "options": [
+          "Selective Tendering",
+          "Direct Procurement",
+          "Open Competitive Bidding",
+          "Restricted Tendering"
+        ],
+        "correct": 2,
+        "explanation": "Open Competitive Bidding is the default procurement method under Section 24 of the PPA 2007.",
+        "difficulty": "easy",
+        "chapter": "Procurement Methods",
+        "keywords": ["ppa 2007", "open competitive bidding", "section 24"]
+      },
+      {
+        "id": "ppa_008",
+        "question": "What is the minimum time frame for submission of bids under national competitive bidding?",
+        "options": ["1 week", "2 weeks", "4 weeks", "6 weeks"],
+        "correct": 2,
+        "explanation": "Section 25 requires at least 4 weeks for submission of bids under national competitive bidding.",
+        "difficulty": "medium",
+        "chapter": "Bidding",
+        "keywords": ["ppa 2007", "submission", "section 25"]
+      },
+      {
+        "id": "ppa_009",
+        "question": "Which section empowers the BPP to issue guidelines and regulations?",
+        "options": ["Section 3", "Section 5", "Section 7", "Section 10"],
+        "correct": 2,
+        "explanation": "Section 5 gives BPP the power to issue guidelines, manuals, and regulations for procurement.",
+        "difficulty": "medium",
+        "chapter": "Institutions",
+        "keywords": ["ppa 2007", "bpp powers", "section 5"]
+      },
+      {
+        "id": "ppa_010",
+        "question": "Which section requires all procuring entities to have a procurement planning committee?",
+        "options": ["Section 18", "Section 20", "Section 21", "Section 23"],
+        "correct": 2,
+        "explanation": "Section 21 requires every procuring entity to have a procurement planning committee.",
+        "difficulty": "medium",
+        "chapter": "Institutions",
+        "keywords": ["ppa 2007", "procurement planning committee", "section 21"]
+      },
+      {
+        "id": "ppa_011",
+        "question": "Who chairs the Procurement Planning Committee of a Ministry?",
+        "options": [
+          "Director of Finance",
+          "Permanent Secretary",
+          "Head of Procurement",
+          "Minister"
+        ],
+        "correct": 1,
+        "explanation": "The Procurement Planning Committee is chaired by the Permanent Secretary or Chief Executive Officer of the procuring entity.",
+        "difficulty": "medium",
+        "chapter": "Institutions",
+        "keywords": ["ppa 2007", "committee chair", "permanent secretary"]
+      },
+      {
+        "id": "ppa_012",
+        "question": "Which section stipulates that all procurement above certain thresholds must be advertised?",
+        "options": ["Section 23", "Section 24", "Section 25", "Section 27"],
+        "correct": 0,
+        "explanation": "Section 23 requires advertisement of all procurements above the set thresholds.",
+        "difficulty": "medium",
+        "chapter": "Transparency",
+        "keywords": ["ppa 2007", "advertisement", "section 23"]
+      },
+      {
+        "id": "ppa_013",
+        "question": "What is the role of the Procurement Unit in a Ministry?",
+        "options": [
+          "Approve contracts",
+          "Prepare bidding documents and manage procurement processes",
+          "Authorize payments",
+          "Supervise contractors"
+        ],
+        "correct": 1,
+        "explanation": "Procurement Units prepare bidding documents, manage processes, and support the Procurement Planning Committee.",
+        "difficulty": "medium",
+        "chapter": "Institutions",
+        "keywords": ["ppa 2007", "procurement unit", "functions"]
+      },
+      {
+        "id": "ppa_014",
+        "question": "Which section provides for the establishment of procurement journals?",
+        "options": ["Section 5", "Section 12", "Section 19", "Section 23"],
+        "correct": 1,
+        "explanation": "Section 12 mandates the publication of procurement journals to ensure wide dissemination of information.",
+        "difficulty": "medium",
+        "chapter": "Transparency",
+        "keywords": ["ppa 2007", "procurement journal", "section 12"]
+      },
+      {
+        "id": "ppa_015",
+        "question": "Which section provides for international competitive bidding where necessary?",
+        "options": ["Section 25", "Section 27", "Section 31", "Section 35"],
+        "correct": 1,
+        "explanation": "Section 27 provides for international competitive bidding when national competitive bidding is inadequate.",
+        "difficulty": "medium",
+        "chapter": "Procurement Methods",
+        "keywords": ["ppa 2007", "international bidding", "section 27"]
+      },
+      {
+        "id": "ppa_016",
+        "question": "Which section prohibits conflict of interest in procurement proceedings?",
+        "options": ["Section 34", "Section 35", "Section 37", "Section 38"],
+        "correct": 2,
+        "explanation": "Section 57 prohibits conflict of interest and mandates disclosure of potential conflicts by officials.",
+        "difficulty": "medium",
+        "chapter": "Ethics",
+        "keywords": ["ppa 2007", "conflict of interest", "section 57"]
+      },
+      {
+        "id": "ppa_017",
+        "question": "Which section requires bid security for procurement of goods and works?",
+        "options": ["Section 25", "Section 26", "Section 27", "Section 28"],
+        "correct": 3,
+        "explanation": "Section 28 requires bid security to be submitted with bids for goods and works procurement.",
+        "difficulty": "medium",
+        "chapter": "Bidding",
+        "keywords": ["ppa 2007", "bid security", "section 28"]
+      },
+      {
+        "id": "ppa_018",
+        "question": "What is the validity period for bids unless otherwise specified?",
+        "options": ["30 days", "45 days", "60 days", "90 days"],
+        "correct": 2,
+        "explanation": "Section 26 provides that bids shall remain valid for 60 days unless otherwise stated.",
+        "difficulty": "medium",
+        "chapter": "Bidding",
+        "keywords": ["ppa 2007", "bid validity", "section 26"]
+      },
+      {
+        "id": "ppa_019",
+        "question": "Which section deals with pre-qualification of bidders?",
+        "options": ["Section 22", "Section 23", "Section 24", "Section 25"],
+        "correct": 0,
+        "explanation": "Section 22 provides for pre-qualification of bidders to ensure capability before submission of bids.",
+        "difficulty": "medium",
+        "chapter": "Bidding",
+        "keywords": ["ppa 2007", "pre-qualification", "section 22"]
+      },
+      {
+        "id": "ppa_020",
+        "question": "Which section requires evaluation of bids to be based only on criteria in the solicitation documents?",
+        "options": ["Section 25", "Section 27", "Section 30", "Section 33"],
+        "correct": 3,
+        "explanation": "Section 33 mandates that evaluation of bids must be based strictly on criteria stated in solicitation documents.",
+        "difficulty": "medium",
+        "chapter": "Evaluation",
+        "keywords": ["ppa 2007", "bid evaluation", "section 33"]
+      },
+      {
+        "id": "ppa_021",
+        "question": "Which section mandates the publication of contract awards above certain thresholds?",
+        "options": ["Section 25", "Section 28", "Section 32", "Section 37"],
+        "correct": 2,
+        "explanation": "Section 32 requires publication of contract awards above thresholds to ensure transparency.",
+        "difficulty": "medium",
+        "chapter": "Transparency",
+        "keywords": ["ppa 2007", "contract awards", "section 32"]
+      },
+      {
+        "id": "ppa_022",
+        "question": "Which section of the Act defines procurement thresholds and approval limits?",
+        "options": ["Section 12", "Section 15", "Section 17", "Section 16"],
+        "correct": 3,
+        "explanation": "Section 16 establishes procurement thresholds and approval requirements for entities.",
+        "difficulty": "medium",
+        "chapter": "Thresholds",
+        "keywords": ["ppa 2007", "thresholds", "section 16"]
+      },
+      {
+        "id": "ppa_023",
+        "question": "Which section stipulates the contents of standard bidding documents?",
+        "options": ["Section 25", "Section 26", "Section 28", "Section 30"],
+        "correct": 0,
+        "explanation": "Section 25 requires procuring entities to use standard bidding documents containing clear specifications and criteria.",
+        "difficulty": "medium",
+        "chapter": "Bidding",
+        "keywords": ["ppa 2007", "bidding documents", "section 25"]
+      },
+      {
+        "id": "ppa_024",
+        "question": "Which procurement method is allowed in emergencies?",
+        "options": [
+          "Direct Procurement",
+          "Open Competitive Bidding",
+          "Restricted Tendering",
+          "Selective Tendering"
+        ],
+        "correct": 0,
+        "explanation": "Direct Procurement under Section 42 is allowed in emergencies where competitive bidding is impractical.",
+        "difficulty": "medium",
+        "chapter": "Procurement Methods",
+        "keywords": ["ppa 2007", "direct procurement", "emergency"]
+      },
+      {
+        "id": "ppa_025",
+        "question": "Which section requires the use of domestic preference where applicable?",
+        "options": ["Section 32", "Section 34", "Section 35", "Section 36"],
+        "correct": 2,
+        "explanation": "Section 35 allows for domestic preference in procurement to support local industry.",
+        "difficulty": "medium",
+        "chapter": "Procurement Principles",
+        "keywords": ["ppa 2007", "domestic preference", "section 35"]
+      },
+      {
+        "id": "ppa_026",
+        "question": "What is the primary purpose of bid opening?",
+        "options": [
+          "To award the contract",
+          "To announce bid prices and ensure transparency",
+          "To evaluate bidders",
+          "To negotiate prices"
+        ],
+        "correct": 1,
+        "explanation": "Bid opening ensures transparency by publicly announcing bid prices and bidders' names.",
+        "difficulty": "easy",
+        "chapter": "Bidding",
+        "keywords": ["ppa 2007", "bid opening", "transparency"]
+      },
+      {
+        "id": "ppa_027",
+        "question": "Which section of the PPA provides for restricted tendering?",
+        "options": ["Section 24", "Section 28", "Section 38", "Section 40"],
+        "correct": 3,
+        "explanation": "Section 40 allows restricted tendering when goods or services are available only from a limited number of suppliers.",
+        "difficulty": "medium",
+        "chapter": "Procurement Methods",
+        "keywords": ["ppa 2007", "restricted tendering", "section 40"]
+      },
+      {
+        "id": "ppa_028",
+        "question": "Which section requires contractors to possess the professional and technical qualifications necessary for contract execution?",
+        "options": ["Section 15", "Section 16", "Section 18", "Section 31"],
+        "correct": 1,
+        "explanation": "Section 16 mandates that bidders must have the capacity and qualifications to perform contracts.",
+        "difficulty": "medium",
+        "chapter": "Eligibility",
+        "keywords": ["ppa 2007", "eligibility", "section 16"]
+      },
+      {
+        "id": "ppa_029",
+        "question": "Which section requires a bid security to protect against withdrawal or failure to sign a contract?",
+        "options": ["Section 28", "Section 29", "Section 31", "Section 33"],
+        "correct": 0,
+        "explanation": "Section 28 provides for bid securities to protect procuring entities from default by bidders.",
+        "difficulty": "medium",
+        "chapter": "Bidding",
+        "keywords": ["ppa 2007", "bid security", "section 28"]
+      },
+      {
+        "id": "ppa_030",
+        "question": "Which section covers the rejection of all bids if they fail to meet required standards?",
+        "options": ["Section 25", "Section 29", "Section 31", "Section 33"],
+        "correct": 2,
+        "explanation": "Section 31 allows rejection of all bids if none meets the required standards or criteria.",
+        "difficulty": "medium",
+        "chapter": "Bidding",
+        "keywords": ["ppa 2007", "bid rejection", "section 31"]
+      },
+      {
+        "id": "ppa_031",
+        "question": "Which section provides for negotiations in procurement?",
+        "options": ["Section 25", "Section 29", "Section 30", "Section 36"],
+        "correct": 3,
+        "explanation": "Section 36 permits negotiations only under limited circumstances, such as single-source procurement.",
+        "difficulty": "medium",
+        "chapter": "Negotiations",
+        "keywords": ["ppa 2007", "negotiations", "section 36"]
+      },
+      {
+        "id": "ppa_032",
+        "question": "Which section provides for community and small-scale procurement?",
+        "options": ["Section 39", "Section 40", "Section 42", "Section 44"],
+        "correct": 0,
+        "explanation": "Section 39 provides for community participation in small-scale procurement to encourage local development.",
+        "difficulty": "medium",
+        "chapter": "Procurement Methods",
+        "keywords": ["ppa 2007", "community procurement", "section 39"]
+      },
+      {
+        "id": "ppa_033",
+        "question": "Which section requires bid opening to be conducted in public?",
+        "options": ["Section 19", "Section 27", "Section 30", "Section 32"],
+        "correct": 1,
+        "explanation": "Section 27 requires that bid opening must be done publicly to ensure fairness and transparency.",
+        "difficulty": "easy",
+        "chapter": "Bidding",
+        "keywords": ["ppa 2007", "public bid opening", "section 27"]
+      },
+      {
+        "id": "ppa_034",
+        "question": "Which section provides for direct procurement in cases of national emergency?",
+        "options": ["Section 38", "Section 39", "Section 41", "Section 42"],
+        "correct": 3,
+        "explanation": "Section 42 allows direct procurement during emergencies to prevent delays.",
+        "difficulty": "medium",
+        "chapter": "Procurement Methods",
+        "keywords": ["ppa 2007", "direct procurement", "section 42"]
+      },
+      {
+        "id": "ppa_035",
+        "question": "Which section provides that the lowest evaluated responsive bid should be awarded the contract?",
+        "options": ["Section 31", "Section 33", "Section 35", "Section 37"],
+        "correct": 1,
+        "explanation": "Section 33 requires awarding the contract to the lowest evaluated responsive bid.",
+        "difficulty": "medium",
+        "chapter": "Evaluation",
+        "keywords": ["ppa 2007", "lowest responsive bid", "section 33"]
+      },
+      {
+        "id": "ppa_036",
+        "question": "Which section empowers the BPP to maintain a database of contractors and service providers?",
+        "options": ["Section 5", "Section 6", "Section 8", "Section 9"],
+        "correct": 3,
+        "explanation": "Section 5 and 9 empower the BPP to maintain and update a national database of contractors.",
+        "difficulty": "medium",
+        "chapter": "Institutions",
+        "keywords": ["ppa 2007", "contractor database", "section 9"]
+      },
+      {
+        "id": "ppa_037",
+        "question": "Which section provides for a complaint mechanism for aggrieved bidders?",
+        "options": ["Section 28", "Section 33", "Section 54", "Section 58"],
+        "correct": 2,
+        "explanation": "Section 54 provides a complaint mechanism for bidders to seek administrative review.",
+        "difficulty": "medium",
+        "chapter": "Complaints",
+        "keywords": ["ppa 2007", "bid complaints", "section 54"]
+      },
+      {
+        "id": "ppa_038",
+        "question": "Which section allows for suspension of procurement proceedings if irregularities are found?",
+        "options": ["Section 5", "Section 23", "Section 53", "Section 57"],
+        "correct": 2,
+        "explanation": "Section 53 empowers the BPP to suspend procurement if irregularities are detected.",
+        "difficulty": "medium",
+        "chapter": "Oversight",
+        "keywords": ["ppa 2007", "procurement suspension", "section 53"]
+      },
+      {
+        "id": "ppa_039",
+        "question": "Which section prohibits officials from accepting gifts from contractors?",
+        "options": ["Section 56", "Section 57", "Section 58", "Section 59"],
+        "correct": 1,
+        "explanation": "Section 57 prohibits conflict of interest and forbids officials from receiving gifts or favors.",
+        "difficulty": "medium",
+        "chapter": "Ethics",
+        "keywords": ["ppa 2007", "gifts", "section 57"]
+      },
+      {
+        "id": "ppa_040",
+        "question": "Which section prescribes penalties for conspiracy to rig bids?",
+        "options": ["Section 56", "Section 58", "Section 59", "Section 60"],
+        "correct": 1,
+        "explanation": "Section 58 prescribes penalties for bid-rigging, fraud, and collusion in procurement.",
+        "difficulty": "hard",
+        "chapter": "Penalties",
+        "keywords": ["ppa 2007", "bid rigging", "section 58"]
+      },
+      {
+        "id": "ppa_041",
+        "question": "Which section provides for administrative review of procurement proceedings?",
+        "options": ["Section 51", "Section 52", "Section 54", "Section 56"],
+        "correct": 2,
+        "explanation": "Section 54 provides for administrative review where aggrieved bidders may challenge procurement decisions.",
+        "difficulty": "medium",
+        "chapter": "Complaints",
+        "keywords": ["ppa 2007", "administrative review", "section 54"]
+      },
+      {
+        "id": "ppa_042",
+        "question": "Which section of the PPA 2007 prohibits fraudulent practices in procurement?",
+        "options": ["Section 54", "Section 55", "Section 56", "Section 58"],
+        "correct": 3,
+        "explanation": "Section 58 prohibits corrupt and fraudulent practices such as misrepresentation and collusion.",
+        "difficulty": "medium",
+        "chapter": "Ethics",
+        "keywords": ["ppa 2007", "fraudulent practices", "section 58"]
+      },
+      {
+        "id": "ppa_043",
+        "question": "Which section empowers the BPP to issue certificates of 'No Objection' to contract award?",
+        "options": ["Section 5", "Section 6", "Section 16", "Section 22"],
+        "correct": 0,
+        "explanation": "Section 5 empowers the BPP to issue a 'Certificate of No Objection' before a contract award can be finalized.",
+        "difficulty": "medium",
+        "chapter": "Oversight",
+        "keywords": ["ppa 2007", "certificate of no objection", "section 5"]
+      },
+      {
+        "id": "ppa_044",
+        "question": "Which section requires contractors to possess financial capability to perform contracts?",
+        "options": ["Section 15", "Section 16", "Section 18", "Section 20"],
+        "correct": 1,
+        "explanation": "Section 16 requires contractors to demonstrate financial capability as part of eligibility criteria.",
+        "difficulty": "medium",
+        "chapter": "Eligibility",
+        "keywords": ["ppa 2007", "financial capacity", "section 16"]
+      },
+      {
+        "id": "ppa_045",
+        "question": "Which section prohibits bid rigging and collusive practices?",
+        "options": ["Section 52", "Section 55", "Section 57", "Section 58"],
+        "correct": 3,
+        "explanation": "Section 58 prescribes penalties for bid rigging, collusion, and other anti-competitive practices.",
+        "difficulty": "medium",
+        "chapter": "Penalties",
+        "keywords": ["ppa 2007", "bid rigging", "section 58"]
+      },
+      {
+        "id": "ppa_046",
+        "question": "Which section states that contractors must not be in receivership or insolvency?",
+        "options": ["Section 14", "Section 15", "Section 16", "Section 18"],
+        "correct": 2,
+        "explanation": "Section 16 states that eligible contractors must not be in receivership, bankruptcy, or insolvency.",
+        "difficulty": "medium",
+        "chapter": "Eligibility",
+        "keywords": ["ppa 2007", "insolvency", "section 16"]
+      },
+      {
+        "id": "ppa_047",
+        "question": "Which section allows cancellation of a procurement proceeding before award?",
+        "options": ["Section 30", "Section 31", "Section 32", "Section 35"],
+        "correct": 1,
+        "explanation": "Section 31 provides that procurement proceedings may be cancelled at any time before contract award if necessary.",
+        "difficulty": "medium",
+        "chapter": "Procurement",
+        "keywords": ["ppa 2007", "cancellation", "section 31"]
+      },
+      {
+        "id": "ppa_048",
+        "question": "Which section provides guidelines for contract implementation and supervision?",
+        "options": ["Section 32", "Section 33", "Section 35", "Section 36"],
+        "correct": 2,
+        "explanation": "Section 35 provides guidelines for proper contract implementation and monitoring by procuring entities.",
+        "difficulty": "medium",
+        "chapter": "Implementation",
+        "keywords": ["ppa 2007", "contract implementation", "section 35"]
+      },
+      {
+        "id": "ppa_049",
+        "question": "Which section empowers the BPP to debar contractors for malpractice?",
+        "options": ["Section 53", "Section 54", "Section 57", "Section 58"],
+        "correct": 2,
+        "explanation": "Section 57 empowers the BPP to debar contractors who engage in fraudulent or corrupt practices.",
+        "difficulty": "medium",
+        "chapter": "Sanctions",
+        "keywords": ["ppa 2007", "debarment", "section 57"]
+      },
+      {
+        "id": "ppa_050",
+        "question": "Which section allows the use of procurement consultants?",
+        "options": ["Section 12", "Section 14", "Section 21", "Section 45"],
+        "correct": 3,
+        "explanation": "Section 45 provides for the engagement of procurement consultants to assist procuring entities.",
+        "difficulty": "medium",
+        "chapter": "Consultants",
+        "keywords": ["ppa 2007", "procurement consultants", "section 45"]
+      },
+      {
+        "id": "ppa_051",
+        "question": "Which section provides that procurement must be based on approved budgetary provision?",
+        "options": ["Section 14", "Section 15", "Section 16", "Section 17"],
+        "correct": 0,
+        "explanation": "Section 14 prohibits procurement without approved budgetary provision and availability of funds.",
+        "difficulty": "medium",
+        "chapter": "Budgeting",
+        "keywords": ["ppa 2007", "budget provision", "section 14"]
+      },
+      {
+        "id": "ppa_052",
+        "question": "Which section prohibits alteration of procurement documents after bid opening?",
+        "options": ["Section 27", "Section 30", "Section 33", "Section 37"],
+        "correct": 2,
+        "explanation": "Section 33 prohibits alteration of procurement documents once bids have been opened.",
+        "difficulty": "medium",
+        "chapter": "Bidding",
+        "keywords": ["ppa 2007", "document alteration", "section 33"]
+      },
+      {
+        "id": "ppa_053",
+        "question": "Which section requires that contractors must have fulfilled tax obligations?",
+        "options": ["Section 15", "Section 16", "Section 18", "Section 20"],
+        "correct": 1,
+        "explanation": "Section 16 requires bidders to have fulfilled obligations regarding taxes, pensions, and social security contributions.",
+        "difficulty": "medium",
+        "chapter": "Eligibility",
+        "keywords": ["ppa 2007", "tax obligations", "section 16"]
+      },
+      {
+        "id": "ppa_054",
+        "question": "Which section emphasizes record keeping of procurement proceedings?",
+        "options": ["Section 34", "Section 35", "Section 38", "Section 40"],
+        "correct": 0,
+        "explanation": "Section 34 requires procuring entities to keep detailed records of procurement proceedings for accountability.",
+        "difficulty": "medium",
+        "chapter": "Transparency",
+        "keywords": ["ppa 2007", "record keeping", "section 34"]
+      },
+      {
+        "id": "ppa_055",
+        "question": "Which section deals with the use of electronic procurement (e-procurement)?",
+        "options": ["Section 37", "Section 38", "Section 39", "Section 40"],
+        "correct": 1,
+        "explanation": "Section 38 provides for electronic procurement systems to enhance efficiency and transparency.",
+        "difficulty": "medium",
+        "chapter": "E-Procurement",
+        "keywords": ["ppa 2007", "e-procurement", "section 38"]
+      },
+      {
+        "id": "ppa_056",
+        "question": "Which section covers procurement of consultant services?",
+        "options": ["Section 41", "Section 42", "Section 43", "Section 45"],
+        "correct": 2,
+        "explanation": "Section 43 provides procedures for procuring consultant services, including selection and negotiation.",
+        "difficulty": "medium",
+        "chapter": "Consultants",
+        "keywords": ["ppa 2007", "consultant services", "section 43"]
+      },
+      {
+        "id": "ppa_057",
+        "question": "Which section states that contract award decisions must be communicated to unsuccessful bidders?",
+        "options": ["Section 29", "Section 30", "Section 31", "Section 33"],
+        "correct": 1,
+        "explanation": "Section 30 requires notifying unsuccessful bidders of contract award decisions to ensure transparency.",
+        "difficulty": "medium",
+        "chapter": "Transparency",
+        "keywords": ["ppa 2007", "unsuccessful bidders", "section 30"]
+      },
+      {
+        "id": "ppa_058",
+        "question": "Which section allows for framework agreements in procurement?",
+        "options": ["Section 35", "Section 37", "Section 41", "Section 44"],
+        "correct": 3,
+        "explanation": "Section 44 provides for framework agreements to allow repeated procurements under pre-agreed terms.",
+        "difficulty": "medium",
+        "chapter": "Procurement Methods",
+        "keywords": ["ppa 2007", "framework agreements", "section 44"]
+      },
+      {
+        "id": "ppa_059",
+        "question": "Which section provides that contractors must have no record of criminal conviction for fraud?",
+        "options": ["Section 15", "Section 16", "Section 17", "Section 18"],
+        "correct": 1,
+        "explanation": "Section 16 requires bidders to have no record of criminal conviction for fraud, corruption, or misrepresentation.",
+        "difficulty": "medium",
+        "chapter": "Eligibility",
+        "keywords": ["ppa 2007", "criminal conviction", "section 16"]
+      },
+      {
+        "id": "ppa_060",
+        "question": "Which section provides that contract performance must be monitored to ensure compliance?",
+        "options": ["Section 32", "Section 34", "Section 35", "Section 36"],
+        "correct": 2,
+        "explanation": "Section 35 requires monitoring of contract performance to ensure delivery in line with contract terms.",
+        "difficulty": "medium",
+        "chapter": "Implementation",
+        "keywords": ["ppa 2007", "contract monitoring", "section 35"]
+      },
+      {
+        "id": "ppa_061",
+        "question": "Which section of the PPA provides that procuring entities must maintain proper procurement records?",
+        "options": ["Section 32", "Section 34", "Section 36", "Section 38"],
+        "correct": 1,
+        "explanation": "Section 34 requires procuring entities to maintain detailed procurement records.",
+        "difficulty": "medium",
+        "chapter": "Record Keeping",
+        "keywords": ["ppa 2007", "records", "section 34"]
+      },
+      {
+        "id": "ppa_062",
+        "question": "Which section covers the use of selective tendering?",
+        "options": ["Section 39", "Section 40", "Section 41", "Section 42"],
+        "correct": 1,
+        "explanation": "Section 40 provides for selective tendering when only a few suppliers are qualified.",
+        "difficulty": "medium",
+        "chapter": "Procurement Methods",
+        "keywords": ["ppa 2007", "selective tendering", "section 40"]
+      },
+      {
+        "id": "ppa_063",
+        "question": "Which section provides for international competitive bidding?",
+        "options": ["Section 27", "Section 29", "Section 31", "Section 35"],
+        "correct": 0,
+        "explanation": "Section 27 provides for international competitive bidding when goods and services are not available locally.",
+        "difficulty": "medium",
+        "chapter": "Procurement Methods",
+        "keywords": ["ppa 2007", "international bidding", "section 27"]
+      },
+      {
+        "id": "ppa_064",
+        "question": "Which section provides that all procurement shall be conducted by open competitive bidding as default?",
+        "options": ["Section 22", "Section 23", "Section 24", "Section 25"],
+        "correct": 2,
+        "explanation": "Section 24 makes open competitive bidding the default method of procurement.",
+        "difficulty": "easy",
+        "chapter": "Procurement Methods",
+        "keywords": ["ppa 2007", "open competitive bidding", "section 24"]
+      },
+      {
+        "id": "ppa_065",
+        "question": "Which section empowers the BPP to inspect procurement documents of entities?",
+        "options": ["Section 4", "Section 5", "Section 6", "Section 7"],
+        "correct": 1,
+        "explanation": "Section 5 empowers the BPP to inspect procurement records to ensure compliance.",
+        "difficulty": "medium",
+        "chapter": "Oversight",
+        "keywords": ["ppa 2007", "inspection", "section 5"]
+      },
+      {
+        "id": "ppa_066",
+        "question": "Which section requires that contract awards above a certain threshold must have 'No Objection' from BPP?",
+        "options": ["Section 3", "Section 4", "Section 5", "Section 6"],
+        "correct": 2,
+        "explanation": "Section 5 mandates BPP to issue a 'Certificate of No Objection' for high-value procurements.",
+        "difficulty": "medium",
+        "chapter": "Oversight",
+        "keywords": ["ppa 2007", "certificate of no objection", "section 5"]
+      },
+      {
+        "id": "ppa_067",
+        "question": "Which section empowers the BPP to blacklist contractors?",
+        "options": ["Section 54", "Section 55", "Section 57", "Section 59"],
+        "correct": 2,
+        "explanation": "Section 57 empowers the BPP to blacklist or debar contractors found guilty of misconduct.",
+        "difficulty": "medium",
+        "chapter": "Sanctions",
+        "keywords": ["ppa 2007", "blacklisting", "section 57"]
+      },
+      {
+        "id": "ppa_068",
+        "question": "Which section prohibits splitting contracts to avoid thresholds?",
+        "options": ["Section 14", "Section 15", "Section 16", "Section 18"],
+        "correct": 2,
+        "explanation": "Section 16 prohibits contract splitting to circumvent procurement thresholds.",
+        "difficulty": "medium",
+        "chapter": "Thresholds",
+        "keywords": ["ppa 2007", "contract splitting", "section 16"]
+      },
+      {
+        "id": "ppa_069",
+        "question": "Which section provides that procurement planning must be based on approved budgets?",
+        "options": ["Section 12", "Section 14", "Section 16", "Section 20"],
+        "correct": 1,
+        "explanation": "Section 14 requires procurement planning to be backed by budgetary provisions.",
+        "difficulty": "medium",
+        "chapter": "Budgeting",
+        "keywords": ["ppa 2007", "procurement planning", "section 14"]
+      },
+      {
+        "id": "ppa_070",
+        "question": "Which section provides for emergency procurement without competitive bidding?",
+        "options": ["Section 40", "Section 42", "Section 44", "Section 46"],
+        "correct": 1,
+        "explanation": "Section 42 allows emergency procurement where delay would be detrimental.",
+        "difficulty": "medium",
+        "chapter": "Procurement Methods",
+        "keywords": ["ppa 2007", "emergency procurement", "section 42"]
+      },
+      {
+        "id": "ppa_071",
+        "question": "Which section provides penalties for procurement fraud?",
+        "options": ["Section 56", "Section 57", "Section 58", "Section 59"],
+        "correct": 2,
+        "explanation": "Section 58 prescribes penalties for fraud, misrepresentation, and bid-rigging.",
+        "difficulty": "medium",
+        "chapter": "Penalties",
+        "keywords": ["ppa 2007", "fraud", "section 58"]
+      },
+      {
+        "id": "ppa_072",
+        "question": "Which section provides that procurement must not commence without appropriation?",
+        "options": ["Section 12", "Section 13", "Section 14", "Section 15"],
+        "correct": 2,
+        "explanation": "Section 14 prohibits procurement without appropriation and funds in place.",
+        "difficulty": "medium",
+        "chapter": "Budgeting",
+        "keywords": ["ppa 2007", "appropriation", "section 14"]
+      },
+      {
+        "id": "ppa_073",
+        "question": "Which section requires that all bidders be treated fairly and equitably?",
+        "options": ["Section 15", "Section 16", "Section 17", "Section 18"],
+        "correct": 1,
+        "explanation": "Section 16 requires equal and fair treatment of all bidders during procurement.",
+        "difficulty": "medium",
+        "chapter": "Fairness",
+        "keywords": ["ppa 2007", "fair treatment", "section 16"]
+      },
+      {
+        "id": "ppa_074",
+        "question": "Which section requires public advertisement of procurement opportunities?",
+        "options": ["Section 21", "Section 22", "Section 23", "Section 24"],
+        "correct": 2,
+        "explanation": "Section 23 requires advertisement of procurement opportunities above thresholds.",
+        "difficulty": "medium",
+        "chapter": "Transparency",
+        "keywords": ["ppa 2007", "advertisement", "section 23"]
+      },
+      {
+        "id": "ppa_075",
+        "question": "Which section covers domestic preference to encourage Nigerian goods?",
+        "options": ["Section 33", "Section 34", "Section 35", "Section 36"],
+        "correct": 2,
+        "explanation": "Section 35 allows domestic preference to encourage use of Nigerian goods.",
+        "difficulty": "medium",
+        "chapter": "Procurement Principles",
+        "keywords": ["ppa 2007", "domestic preference", "section 35"]
+      },
+      {
+        "id": "ppa_076",
+        "question": "Which section provides guidelines for bid evaluation?",
+        "options": ["Section 25", "Section 29", "Section 30", "Section 33"],
+        "correct": 3,
+        "explanation": "Section 33 provides criteria and guidelines for evaluating bids.",
+        "difficulty": "medium",
+        "chapter": "Evaluation",
+        "keywords": ["ppa 2007", "bid evaluation", "section 33"]
+      },
+      {
+        "id": "ppa_077",
+        "question": "Which section prohibits procurement officials from having personal interests in contracts?",
+        "options": ["Section 55", "Section 56", "Section 57", "Section 58"],
+        "correct": 2,
+        "explanation": "Section 57 prohibits conflict of interest for procurement officials.",
+        "difficulty": "medium",
+        "chapter": "Ethics",
+        "keywords": ["ppa 2007", "conflict of interest", "section 57"]
+      },
+      {
+        "id": "ppa_078",
+        "question": "Which section provides for sanctions against defaulting suppliers?",
+        "options": ["Section 55", "Section 56", "Section 57", "Section 59"],
+        "correct": 3,
+        "explanation": "Section 59 prescribes sanctions for defaulting contractors and suppliers.",
+        "difficulty": "medium",
+        "chapter": "Sanctions",
+        "keywords": ["ppa 2007", "supplier sanctions", "section 59"]
+      },
+      {
+        "id": "ppa_079",
+        "question": "Which section requires that contract awards be based on responsiveness and lowest evaluated price?",
+        "options": ["Section 31", "Section 32", "Section 33", "Section 35"],
+        "correct": 2,
+        "explanation": "Section 33 mandates awards to the lowest responsive and evaluated bidder.",
+        "difficulty": "medium",
+        "chapter": "Evaluation",
+        "keywords": ["ppa 2007", "contract award", "section 33"]
+      },
+      {
+        "id": "ppa_080",
+        "question": "Which section prescribes penalties for procurement officers who breach the Act?",
+        "options": ["Section 56", "Section 57", "Section 58", "Section 59"],
+        "correct": 2,
+        "explanation": "Section 58 prescribes penalties for officers who breach procurement rules.",
+        "difficulty": "hard",
+        "chapter": "Penalties",
+        "keywords": ["ppa 2007", "procurement officers", "section 58"]
+      },
+      {
+        "id": "ppa_081",
+        "question": "Which section prohibits contract splitting to avoid oversight?",
+        "options": ["Section 14", "Section 15", "Section 16", "Section 18"],
+        "correct": 2,
+        "explanation": "Section 16 prohibits splitting contracts to evade approval thresholds.",
+        "difficulty": "medium",
+        "chapter": "Thresholds",
+        "keywords": ["ppa 2007", "contract splitting", "section 16"]
+      },
+      {
+        "id": "ppa_082",
+        "question": "Which section prescribes imprisonment for procurement fraud?",
+        "options": ["Section 57", "Section 58", "Section 59", "Section 60"],
+        "correct": 1,
+        "explanation": "Section 58 prescribes imprisonment and fines for procurement-related fraud.",
+        "difficulty": "hard",
+        "chapter": "Penalties",
+        "keywords": ["ppa 2007", "fraud penalties", "section 58"]
+      },
+      {
+        "id": "ppa_083",
+        "question": "Which section empowers the BPP to cancel a procurement proceeding?",
+        "options": ["Section 5", "Section 53", "Section 54", "Section 56"],
+        "correct": 1,
+        "explanation": "Section 53 allows the BPP to cancel proceedings where irregularities are discovered.",
+        "difficulty": "medium",
+        "chapter": "Oversight",
+        "keywords": ["ppa 2007", "procurement cancellation", "section 53"]
+      },
+      {
+        "id": "ppa_084",
+        "question": "Which section provides that unsuccessful bidders may seek judicial review?",
+        "options": ["Section 52", "Section 54", "Section 55", "Section 58"],
+        "correct": 1,
+        "explanation": "Section 54 allows aggrieved bidders to escalate complaints to judicial review after administrative review.",
+        "difficulty": "medium",
+        "chapter": "Complaints",
+        "keywords": ["ppa 2007", "judicial review", "section 54"]
+      },
+      {
+        "id": "ppa_085",
+        "question": "Which section requires procurement entities to advertise in national newspapers?",
+        "options": ["Section 21", "Section 23", "Section 24", "Section 25"],
+        "correct": 1,
+        "explanation": "Section 23 requires advertisement in widely circulated national newspapers.",
+        "difficulty": "medium",
+        "chapter": "Transparency",
+        "keywords": ["ppa 2007", "advertisement", "section 23"]
+      },
+      {
+        "id": "ppa_086",
+        "question": "Which section emphasizes efficiency and timeliness in procurement?",
+        "options": ["Section 15", "Section 16", "Section 17", "Section 18"],
+        "correct": 1,
+        "explanation": "Section 16 emphasizes efficiency, timeliness, and value for money in procurement.",
+        "difficulty": "medium",
+        "chapter": "Principles",
+        "keywords": ["ppa 2007", "efficiency", "section 16"]
+      },
+      {
+        "id": "ppa_087",
+        "question": "Which section provides for contract performance securities?",
+        "options": ["Section 27", "Section 28", "Section 29", "Section 30"],
+        "correct": 2,
+        "explanation": "Section 29 provides for performance securities to ensure contractors fulfill obligations.",
+        "difficulty": "medium",
+        "chapter": "Contracts",
+        "keywords": ["ppa 2007", "performance security", "section 29"]
+      },
+      {
+        "id": "ppa_088",
+        "question": "Which section covers bid validity periods?",
+        "options": ["Section 25", "Section 26", "Section 27", "Section 28"],
+        "correct": 1,
+        "explanation": "Section 26 provides for bid validity periods to ensure fairness and stability of offers.",
+        "difficulty": "medium",
+        "chapter": "Bidding",
+        "keywords": ["ppa 2007", "bid validity", "section 26"]
+      },
+      {
+        "id": "ppa_089",
+        "question": "Which section provides that procurement must achieve value for money?",
+        "options": ["Section 14", "Section 15", "Section 16", "Section 18"],
+        "correct": 2,
+        "explanation": "Section 16 emphasizes that procurement must achieve value for money.",
+        "difficulty": "easy",
+        "chapter": "Principles",
+        "keywords": ["ppa 2007", "value for money", "section 16"]
+      },
+      {
+        "id": "ppa_090",
+        "question": "Which section requires publication of procurement guidelines by BPP?",
+        "options": ["Section 3", "Section 5", "Section 7", "Section 9"],
+        "correct": 1,
+        "explanation": "Section 5 empowers the BPP to issue procurement guidelines.",
+        "difficulty": "medium",
+        "chapter": "Oversight",
+        "keywords": ["ppa 2007", "guidelines", "section 5"]
+      },
+      {
+        "id": "ppa_091",
+        "question": "Which section covers procurement audits by BPP?",
+        "options": ["Section 4", "Section 5", "Section 6", "Section 7"],
+        "correct": 2,
+        "explanation": "Section 6 empowers BPP to conduct procurement audits.",
+        "difficulty": "medium",
+        "chapter": "Oversight",
+        "keywords": ["ppa 2007", "procurement audits", "section 6"]
+      },
+      {
+        "id": "ppa_092",
+        "question": "Which section provides penalties for contractors who abandon projects?",
+        "options": ["Section 56", "Section 57", "Section 58", "Section 59"],
+        "correct": 3,
+        "explanation": "Section 59 prescribes sanctions for contractors who abandon projects.",
+        "difficulty": "medium",
+        "chapter": "Sanctions",
+        "keywords": ["ppa 2007", "abandoned projects", "section 59"]
+      },
+      {
+        "id": "ppa_093",
+        "question": "Which section mandates capacity building for procurement officers?",
+        "options": ["Section 3", "Section 4", "Section 5", "Section 6"],
+        "correct": 1,
+        "explanation": "Section 5 empowers the BPP to organize training and build capacity of procurement officers.",
+        "difficulty": "medium",
+        "chapter": "Capacity Building",
+        "keywords": ["ppa 2007", "training", "section 5"]
+      },
+      {
+        "id": "ppa_094",
+        "question": "Which section provides for dispute resolution mechanisms?",
+        "options": ["Section 52", "Section 53", "Section 54", "Section 55"],
+        "correct": 2,
+        "explanation": "Section 54 provides mechanisms for resolving disputes in procurement.",
+        "difficulty": "medium",
+        "chapter": "Complaints",
+        "keywords": ["ppa 2007", "dispute resolution", "section 54"]
+      },
+      {
+        "id": "ppa_095",
+        "question": "Which section allows blacklisting of bidders for corrupt practices?",
+        "options": ["Section 56", "Section 57", "Section 58", "Section 59"],
+        "correct": 1,
+        "explanation": "Section 57 empowers the BPP to blacklist bidders for engaging in corrupt practices.",
+        "difficulty": "medium",
+        "chapter": "Sanctions",
+        "keywords": ["ppa 2007", "blacklisting bidders", "section 57"]
+      },
+      {
+        "id": "ppa_096",
+        "question": "Which section requires contracts to be implemented efficiently and in good faith?",
+        "options": ["Section 33", "Section 34", "Section 35", "Section 36"],
+        "correct": 2,
+        "explanation": "Section 35 emphasizes efficient and good faith implementation of contracts.",
+        "difficulty": "medium",
+        "chapter": "Contracts",
+        "keywords": ["ppa 2007", "contract implementation", "section 35"]
+      },
+      {
+        "id": "ppa_097",
+        "question": "Which section prescribes sanctions for collusion among bidders?",
+        "options": ["Section 55", "Section 56", "Section 57", "Section 58"],
+        "correct": 3,
+        "explanation": "Section 58 prescribes sanctions for collusion, fraud, and bid rigging.",
+        "difficulty": "medium",
+        "chapter": "Penalties",
+        "keywords": ["ppa 2007", "collusion", "section 58"]
+      },
+      {
+        "id": "ppa_098",
+        "question": "Which section covers public access to procurement records?",
+        "options": ["Section 30", "Section 32", "Section 38", "Section 43"],
+        "correct": 1,
+        "explanation": "Section 32 provides for public access to procurement records and contract awards.",
+        "difficulty": "medium",
+        "chapter": "Transparency",
+        "keywords": ["ppa 2007", "public access", "section 32"]
+      },
+      {
+        "id": "ppa_099",
+        "question": "Which section provides that all procurement decisions must be documented?",
+        "options": ["Section 32", "Section 34", "Section 36", "Section 38"],
+        "correct": 1,
+        "explanation": "Section 34 requires that all procurement decisions be properly documented.",
+        "difficulty": "medium",
+        "chapter": "Record Keeping",
+        "keywords": ["ppa 2007", "documentation", "section 34"]
+      },
+      {
+        "id": "ppa_100",
+        "question": "Which section provides for e-procurement systems?",
+        "options": ["Section 37", "Section 38", "Section 39", "Section 40"],
+        "correct": 1,
+        "explanation": "Section 38 provides for the use of e-procurement systems in public procurement.",
+        "difficulty": "medium",
+        "chapter": "E-Procurement",
+        "keywords": ["ppa 2007", "e-procurement", "section 38"]
+      },
+
+      {
+        "id": "ppa_101",
+        "question": "What is the main objective of the Public Procurement Act?",
+        "options": [
+          "To maximize government spending",
+          "To ensure transparency, accountability, and value for money",
+          "To limit competition",
+          "To favor local contractors"
+        ],
+        "correct": 1,
+        "explanation": "The Public Procurement Act aims to ensure transparency, accountability, and value for money in public procurement.",
+        "difficulty": "easy",
+        "chapter": "Public Procurement Act",
+        "keywords": ["public procurement act", "transparency", "accountability"]
+      },
+      {
+        "id": "ppa_102",
+        "question": "Which body is responsible for regulating public procurement in Nigeria?",
+        "options": [
+          "Federal Ministry of Finance",
+          "Bureau of Public Procurement",
+          "National Assembly",
+          "Federal Civil Service Commission"
+        ],
+        "correct": 1,
+        "explanation": "The Bureau of Public Procurement (BPP) regulates public procurement in Nigeria.",
+        "difficulty": "easy",
+        "chapter": "Public Procurement Act",
+        "keywords": [
+          "bureau of public procurement",
+          "regulation",
+          "procurement"
+        ]
+      },
+      {
+        "id": "ppa_103",
+        "question": "What is the threshold for competitive bidding in public procurement?",
+        "options": ["₦1 million", "₦5 million", "₦10 million", "₦50 million"],
+        "correct": 2,
+        "explanation": "Competitive bidding is required for contracts above ₦10 million.",
+        "difficulty": "medium",
+        "chapter": "Public Procurement Act",
+        "keywords": ["competitive bidding", "threshold", "procurement"]
+      },
+      {
+        "id": "ppa_104",
+        "question": "Which procurement method involves inviting a limited number of pre-qualified contractors?",
+        "options": [
+          "Open competitive bidding",
+          "Selective tendering",
+          "Direct contracting",
+          "Emergency procurement"
+        ],
+        "correct": 1,
+        "explanation": "Selective tendering involves inviting a limited number of pre-qualified contractors.",
+        "difficulty": "medium",
+        "chapter": "Public Procurement Act",
+        "keywords": [     "selective tendering",
+          "procurement methods",
+          "contractors"
+        ]
+      },
+      {
+        "id": "ppa_105",
+        "question": "What is the maximum period for bid validity in public procurement?",
+        "options": ["30 days", "60 days", "90 days", "120 days"],
+        "correct": 2,
+        "explanation": "Bid validity period is typically 90 days, extendable with bidder consent.",
+        "difficulty": "medium",
+        "chapter": "Public Procurement Act",
+        "keywords": ["bid validity", "procurement", "bidding"]
+      }
+    ]
+}

@@ -1,0 +1,710 @@
+{
+  "name": "Leadership and Strategic Management",
+  "description": "Leadership principles, styles, change management, and strategic competencies",
+  "type": "topic",
+  "hasSubcategories": false,
+  "icon": "👑",
+  "questions": [
+    {
+      "id": "leadership_psr_gov_001",
+      "question": "The PSR shall be due for review every how many years to reflect current realities in the Public Service?",
+      "options": [
+        "Two years",
+        "Three years",
+        "Five years",
+        "Ten years"
+      ],
+      "correct": 2,
+      "explanation": "The Public Service Rules (PSR) shall be due for review every five years.",
+      "difficulty": "easy",
+      "topic": "Review Procedure",
+      "keywords": [
+        "PSR review",
+        "five years",
+        "public service rules"
+      ]
+    },
+    {
+      "id": "leadership_lsm_001",
+      "question": "Which leadership style emphasizes participation and shared decision-making within teams?",
+      "options": [
+        "Autocratic leadership",
+        "Democratic leadership",
+        "Laissez-faire leadership",
+        "Transactional leadership"
+      ],
+      "correct": 1,
+      "explanation": "Democratic leadership promotes participation and collective decision-making, motivating subordinates through involvement.",
+      "difficulty": "easy",
+      "topic": "Leadership Styles",
+      "keywords": [
+        "leadership",
+        "democratic",
+        "participation"
+      ]
+    },
+    {
+      "id": "leadership_lsm_002",
+      "question": "Transformational leaders primarily focus on which of the following?",
+      "options": [
+        "Short-term performance",
+        "Administrative compliance",
+        "Inspiring change and innovation",
+        "Maintaining routine operations"
+      ],
+      "correct": 2,
+      "explanation": "Transformational leadership inspires innovation and motivates followers toward higher ideals and organizational transformation.",
+      "difficulty": "medium",
+      "topic": "Transformational Leadership",
+      "keywords": [
+        "change",
+        "innovation",
+        "motivation"
+      ]
+    },
+    {
+      "id": "leadership_lsm_003",
+      "question": "In strategic management, the process of analyzing the internal and external environment is called what?",
+      "options": [
+        "Benchmarking",
+        "Environmental Scanning",
+        "Goal Setting",
+        "Implementation"
+      ],
+      "correct": 1,
+      "explanation": "Environmental scanning identifies internal strengths/weaknesses and external opportunities/threats (SWOT).",
+      "difficulty": "easy",
+      "topic": "Strategic Planning",
+      "keywords": [
+        "SWOT",
+        "analysis",
+        "environment"
+      ]
+    },
+    {
+      "id": "leadership_lsm_004",
+      "question": "Which document outlines an organization's long-term direction and objectives?",
+      "options": [
+        "Mission statement",
+        "Operational manual",
+        "Strategic plan",
+        "Performance report"
+      ],
+      "correct": 2,
+      "explanation": "The strategic plan sets the long-term direction, priorities, and objectives of an organization.",
+      "difficulty": "easy",
+      "topic": "Strategic Planning",
+      "keywords": [
+        "strategic plan",
+        "objectives",
+        "direction"
+      ]
+    },
+    {
+      "id": "leadership_lsm_005",
+      "question": "A key principle of the Balanced Scorecard approach is to link strategic objectives with what?",
+      "options": [
+        "Employee grievances",
+        "Budgetary allocations only",
+        "Performance indicators",
+        "Government circulars"
+      ],
+      "correct": 2,
+      "explanation": "The Balanced Scorecard links strategic objectives with measurable performance indicators across perspectives.",
+      "difficulty": "medium",
+      "topic": "Performance Management",
+      "keywords": [
+        "balanced scorecard",
+        "KPI",
+        "strategy"
+      ]
+    },
+    {
+      "id": "leadership_lsm_006",
+      "question": "Strategic leadership requires which of the following core competencies?",
+      "options": [
+        "Technical specialization only",
+        "Political loyalty",
+        "Visionary thinking and adaptability",
+        "Rigid rule enforcement"
+      ],
+      "correct": 2,
+      "explanation": "Strategic leaders demonstrate vision, flexibility, and the ability to align people with goals.",
+      "difficulty": "medium",
+      "topic": "Leadership Competencies",
+      "keywords": [
+        "vision",
+        "adaptability",
+        "strategy"
+      ]
+    },
+    {
+      "id": "leadership_lsm_007",
+      "question": "What is the final stage of the strategic management process?",
+      "options": [
+        "Environmental scanning",
+        "Strategy formulation",
+        "Strategy implementation",
+        "Evaluation and control"
+      ],
+      "correct": 3,
+      "explanation": "Evaluation and control ensure strategies are effective and adjustments are made when necessary.",
+      "difficulty": "easy",
+      "topic": "Strategic Process",
+      "keywords": [
+        "evaluation",
+        "control",
+        "strategy"
+      ]
+    },
+    {
+      "id": "leadership_lsm_008",
+      "question": "Which management theory emphasizes motivation through hierarchy of needs?",
+      "options": [
+        "Herzberg's Two-Factor Theory",
+        "McGregor's Theory X and Y",
+        "Maslow's Need Hierarchy",
+        "Vroom's Expectancy Theory"
+      ],
+      "correct": 2,
+      "explanation": "Maslow proposed five levels of needs that motivate human behavior, from physiological to self-actualization.",
+      "difficulty": "easy",
+      "topic": "Motivation Theories",
+      "keywords": [
+        "maslow",
+        "motivation",
+        "needs"
+      ]
+    },
+    {
+      "id": "leadership_lsm_009",
+      "question": "Delegation in leadership primarily enhances what?",
+      "options": [
+        "Authority concentration",
+        "Employee development and efficiency",
+        "Centralization of control",
+        "Task duplication"
+      ],
+      "correct": 1,
+      "explanation": "Effective delegation develops subordinates and increases efficiency by assigning responsibilities appropriately.",
+      "difficulty": "easy",
+      "topic": "Delegation",
+      "keywords": [
+        "delegation",
+        "empowerment",
+        "efficiency"
+      ]
+    },
+    {
+      "id": "leadership_lsm_010",
+      "question": "In management, SMART goals are defined as goals that are:",
+      "options": [
+        "Specific, Measurable, Achievable, Relevant, Time-bound",
+        "Simple, Manageable, Accountable, Realistic, Timely",
+        "Strategic, Motivated, Accurate, Responsible, Tangible",
+        "Special, Measurable, Attainable, Rapid, Targeted"
+      ],
+      "correct": 0,
+      "explanation": "SMART goals help leaders ensure clarity and feasibility in target setting.",
+      "difficulty": "easy",
+      "topic": "Goal Setting",
+      "keywords": [
+        "SMART",
+        "objectives",
+        "planning"
+      ]
+    },
+    {
+      "id": "leadership_lsm_026",
+      "question": "Which leadership style is most effective in crisis situations requiring quick decisions?",
+      "options": [
+        "Democratic",
+        "Autocratic",
+        "Laissez-faire",
+        "Transformational"
+      ],
+      "correct": 1,
+      "explanation": "Autocratic leadership provides rapid decision-making during crises when consultation is impractical.",
+      "difficulty": "medium",
+      "topic": "Leadership Styles",
+      "keywords": [
+        "autocratic",
+        "crisis",
+        "decision"
+      ]
+    },
+    {
+      "id": "leadership_lsm_027",
+      "question": "In strategic implementation, allocating resources efficiently across objectives is known as:",
+      "options": [
+        "Operational budgeting",
+        "Resource optimization",
+        "Strategic resource allocation",
+        "Administrative costing"
+      ],
+      "correct": 2,
+      "explanation": "Strategic resource allocation ensures funds, personnel, and materials are deployed to critical priorities.",
+      "difficulty": "medium",
+      "topic": "Strategy Implementation",
+      "keywords": [
+        "resources",
+        "allocation",
+        "strategy"
+      ]
+    },
+    {
+      "id": "leadership_lsm_028",
+      "question": "What is the main focus of the 'Vision 2020' initiative in Nigeria?",
+      "options": [
+        "Improving private sector profits",
+        "Making Nigeria one of the top 20 economies by 2020",
+        "Reducing political parties",
+        "Enhancing tourism"
+      ],
+      "correct": 1,
+      "explanation": "Vision 2020 aimed to position Nigeria among the top 20 global economies by the year 2020.",
+      "difficulty": "easy",
+      "topic": "National Strategy",
+      "keywords": [
+        "vision 2020",
+        "national development"
+      ]
+    },
+    {
+      "id": "leadership_lsm_029",
+      "question": "An effective leader balances task orientation with:",
+      "options": [
+        "Personal ambition",
+        "Relationship orientation",
+        "Political loyalty",
+        "Resource control"
+      ],
+      "correct": 1,
+      "explanation": "Balancing task and relationship orientations helps achieve goals while maintaining morale.",
+      "difficulty": "medium",
+      "topic": "Leadership Balance",
+      "keywords": [
+        "task",
+        "relationship",
+        "balance"
+      ]
+    },
+    {
+      "id": "leadership_lsm_030",
+      "question": "In management, 'feedback' serves the purpose of:",
+      "options": [
+        "Discipline only",
+        "Performance improvement",
+        "Information blocking",
+        "Punishment"
+      ],
+      "correct": 1,
+      "explanation": "Feedback is a control mechanism that improves performance and corrects deviations.",
+      "difficulty": "easy",
+      "topic": "Control and Feedback",
+      "keywords": [
+        "feedback",
+        "performance",
+        "control"
+      ]
+    },
+    {
+      "id": "leadership_lsm_031",
+      "question": "Which management function involves measuring results against objectives?",
+      "options": [
+        "Planning",
+        "Organizing",
+        "Controlling",
+        "Leading"
+      ],
+      "correct": 2,
+      "explanation": "Controlling measures performance against goals and ensures corrective actions are taken.",
+      "difficulty": "easy",
+      "topic": "Management Functions",
+      "keywords": [
+        "control",
+        "performance",
+        "management"
+      ]
+    },
+    {
+      "id": "leadership_lsm_032",
+      "question": "Strategic vision must be communicated effectively to ensure:",
+      "options": [
+        "Blind compliance",
+        "Shared understanding and commitment",
+        "Resistance to change",
+        "Administrative secrecy"
+      ],
+      "correct": 1,
+      "explanation": "Shared vision creates ownership and motivates employees toward common goals.",
+      "difficulty": "medium",
+      "topic": "Strategic Communication",
+      "keywords": [
+        "vision",
+        "communication",
+        "commitment"
+      ]
+    },
+    {
+      "id": "leadership_lsm_033",
+      "question": "Which leadership theory argues that effectiveness depends on the situation and leader-follower relationship?",
+      "options": [
+        "Trait theory",
+        "Contingency theory",
+        "Behavioral theory",
+        "Transactional theory"
+      ],
+      "correct": 1,
+      "explanation": "Contingency theory asserts that leadership success depends on situational factors and leader-member relations.",
+      "difficulty": "medium",
+      "topic": "Leadership Theories",
+      "keywords": [
+        "contingency",
+        "situation",
+        "leadership"
+      ]
+    },
+    {
+      "id": "leadership_lsm_034",
+      "question": "The PDCA cycle in management stands for:",
+      "options": [
+        "Plan, Do, Check, Act",
+        "Prepare, Design, Control, Assess",
+        "Plan, Develop, Coordinate, Apply",
+        "Propose, Decide, Check, Analyze"
+      ],
+      "correct": 0,
+      "explanation": "PDCA is a continuous improvement process used in strategic and operational management.",
+      "difficulty": "easy",
+      "topic": "Quality Management",
+      "keywords": [
+        "PDCA",
+        "continuous improvement"
+      ]
+    },
+    {
+      "id": "leadership_lsm_035",
+      "question": "Strategic management in the public sector is primarily aimed at:",
+      "options": [
+        "Maximizing shareholder value",
+        "Efficient resource use and service delivery",
+        "Private investment growth",
+        "Political patronage"
+      ],
+      "correct": 1,
+      "explanation": "Public sector strategy focuses on efficient service delivery and resource utilization for citizens' benefit.",
+      "difficulty": "medium",
+      "topic": "Public Sector Strategy",
+      "keywords": [
+        "public sector",
+        "strategy",
+        "service delivery"
+      ]
+    },
+    {
+      "id": "leadership_lsm_036",
+      "question": "Emotional intelligence in leadership helps to:",
+      "options": [
+        "Suppress feedback",
+        "Understand and manage emotions effectively",
+        "Ignore subordinate opinions",
+        "Increase power distance"
+      ],
+      "correct": 1,
+      "explanation": "Emotional intelligence enhances interpersonal relationships and leadership empathy.",
+      "difficulty": "medium",
+      "topic": "Emotional Intelligence",
+      "keywords": [
+        "emotions",
+        "empathy",
+        "leadership"
+      ]
+    },
+    {
+      "id": "leadership_lsm_037",
+      "question": "Strategic control systems are designed to:",
+      "options": [
+        "Reduce planning efforts",
+        "Monitor progress toward strategic goals",
+        "Delay implementation",
+        "Focus on administrative routines"
+      ],
+      "correct": 1,
+      "explanation": "Strategic controls ensure the organization stays aligned with its objectives and environment.",
+      "difficulty": "medium",
+      "topic": "Strategic Control",
+      "keywords": [
+        "control",
+        "monitoring",
+        "strategy"
+      ]
+    },
+    {
+      "id": "leadership_lsm_038",
+      "question": "Leadership succession planning helps organizations to:",
+      "options": [
+        "Reduce staff numbers",
+        "Ensure leadership continuity",
+        "Discourage internal promotion",
+        "Avoid training costs"
+      ],
+      "correct": 1,
+      "explanation": "Succession planning ensures continuity of leadership through structured talent development.",
+      "difficulty": "medium",
+      "topic": "Succession Planning",
+      "keywords": [
+        "succession",
+        "leadership",
+        "continuity"
+      ]
+    },
+    {
+      "id": "leadership_lsm_039",
+      "question": "The key output of strategic analysis is a:",
+      "options": [
+        "Performance report",
+        "SWOT summary",
+        "Budget forecast",
+        "Job description"
+      ],
+      "correct": 1,
+      "explanation": "Strategic analysis results in a SWOT profile outlining strengths, weaknesses, opportunities, and threats.",
+      "difficulty": "easy",
+      "topic": "Strategic Analysis",
+      "keywords": [
+        "SWOT",
+        "analysis",
+        "planning"
+      ]
+    },
+    {
+      "id": "leadership_lsm_040",
+      "question": "Which leadership principle is vital for maintaining ethical standards?",
+      "options": [
+        "Accountability",
+        "Popularity",
+        "Authority",
+        "Flexibility"
+      ],
+      "correct": 0,
+      "explanation": "Accountability ensures ethical behavior and responsibility in leadership.",
+      "difficulty": "easy",
+      "topic": "Leadership Ethics",
+      "keywords": [
+        "accountability",
+        "ethics",
+        "integrity"
+      ]
+    },
+    {
+      "id": "leadership_lsm_041",
+      "question": "Strategic vision and mission statements are important because they:",
+      "options": [
+        "Set the tone for organizational culture and direction",
+        "Restrict innovation",
+        "Focus on short-term results",
+        "Reduce performance evaluation"
+      ],
+      "correct": 0,
+      "explanation": "Vision and mission statements guide long-term strategy and influence culture.",
+      "difficulty": "medium",
+      "topic": "Vision and Mission",
+      "keywords": [
+        "mission",
+        "culture",
+        "strategy"
+      ]
+    },
+    {
+      "id": "leadership_lsm_042",
+      "question": "In decision-making, bounded rationality refers to:",
+      "options": [
+        "Unlimited information availability",
+        "Limited cognitive capacity and information",
+        "Perfect decision-making ability",
+        "Emotional reasoning only"
+      ],
+      "correct": 1,
+      "explanation": "Bounded rationality acknowledges decision-makers operate under information and time constraints.",
+      "difficulty": "medium",
+      "topic": "Decision-Making",
+      "keywords": [
+        "bounded rationality",
+        "decision",
+        "limitations"
+      ]
+    },
+    {
+      "id": "leadership_lsm_043",
+      "question": "Strategic leaders build trust primarily through:",
+      "options": [
+        "Command and control",
+        "Consistency and transparency",
+        "Secrecy and delegation",
+        "Avoiding accountability"
+      ],
+      "correct": 1,
+      "explanation": "Consistency and transparency in actions build trust among followers and stakeholders.",
+      "difficulty": "medium",
+      "topic": "Leadership Trust",
+      "keywords": [
+        "trust",
+        "transparency",
+        "leadership"
+      ]
+    },
+    {
+      "id": "leadership_lsm_044",
+      "question": "Benchmarking in management involves:",
+      "options": [
+        "Copying competitors exactly",
+        "Comparing performance with best practices",
+        "Ignoring external standards",
+        "Revising rules arbitrarily"
+      ],
+      "correct": 1,
+      "explanation": "Benchmarking helps identify performance gaps by comparing with top performers.",
+      "difficulty": "medium",
+      "topic": "Performance Management",
+      "keywords": [
+        "benchmarking",
+        "performance",
+        "comparison"
+      ]
+    },
+    {
+      "id": "leadership_lsm_045",
+      "question": "Which of these is not a component of strategic leadership?",
+      "options": [
+        "Visionary thinking",
+        "Operational planning",
+        "Courage and resilience",
+        "Short-term profit maximization"
+      ],
+      "correct": 3,
+      "explanation": "Strategic leadership focuses on long-term vision, not short-term profit motives.",
+      "difficulty": "medium",
+      "topic": "Strategic Leadership",
+      "keywords": [
+        "vision",
+        "leadership",
+        "long-term"
+      ]
+    },
+    {
+      "id": "leadership_lsm_046",
+      "question": "Leadership in the public service must align with which constitutional principle?",
+      "options": [
+        "Federal character and fairness",
+        "Privatization",
+        "Absolute loyalty to superiors",
+        "Profit generation"
+      ],
+      "correct": 0,
+      "explanation": "Public service leadership must embody fairness and inclusivity as required by the Federal Character principle.",
+      "difficulty": "medium",
+      "topic": "Public Service Leadership",
+      "keywords": [
+        "federal character",
+        "fairness",
+        "leadership"
+      ]
+    },
+    {
+      "id": "leadership_lsm_047",
+      "question": "What does a mission statement primarily describe?",
+      "options": [
+        "Future aspirations",
+        "Current purpose and scope of activities",
+        "Budget priorities",
+        "Employee benefits"
+      ],
+      "correct": 1,
+      "explanation": "A mission statement articulates the present purpose and core operations of an organization.",
+      "difficulty": "easy",
+      "topic": "Mission",
+      "keywords": [
+        "mission",
+        "purpose",
+        "organization"
+      ]
+    },
+    {
+      "id": "leadership_lsm_048",
+      "question": "Strategic thinking involves:",
+      "options": [
+        "Long-term visioning and analysis of opportunities",
+        "Routine paperwork",
+        "Departmental politics",
+        "Day-to-day supervision only"
+      ],
+      "correct": 0,
+      "explanation": "Strategic thinking anticipates trends and develops long-term, adaptive strategies.",
+      "difficulty": "medium",
+      "topic": "Strategic Thinking",
+      "keywords": [
+        "strategic thinking",
+        "planning",
+        "vision"
+      ]
+    },
+    {
+      "id": "leadership_lsm_049",
+      "question": "Leadership accountability in the civil service entails:",
+      "options": [
+        "Being answerable for decisions and resource use",
+        "Delegating blame to subordinates",
+        "Avoiding audits",
+        "Secrecy in decision-making"
+      ],
+      "correct": 0,
+      "explanation": "Accountability means leaders are responsible for their actions and use of public resources.",
+      "difficulty": "medium",
+      "topic": "Leadership Accountability",
+      "keywords": [
+        "accountability",
+        "responsibility",
+        "public service"
+      ]
+    },
+    {
+      "id": "leadership_lsm_050",
+      "question": "Strategic foresight enables leaders to:",
+      "options": [
+        "Predict and prepare for future scenarios",
+        "React only after crises occur",
+        "Ignore external changes",
+        "Focus solely on internal operations"
+      ],
+      "correct": 0,
+      "explanation": "Foresight allows proactive anticipation and planning for future opportunities and risks.",
+      "difficulty": "medium",
+      "topic": "Strategic Foresight",
+      "keywords": [
+        "foresight",
+        "future",
+        "leadership"
+      ]
+    },
+    {
+      "id": "leadership_lead_001",
+      "question": "What is a key characteristic of effective leadership in the civil service?",
+      "options": [
+        "Authoritarian control",
+        "Servant leadership",
+        "Personal gain",
+        "Avoiding responsibility"
+      ],
+      "correct": 1,
+      "explanation": "Servant leadership focuses on serving others and achieving organizational goals.",
+      "difficulty": "easy",
+      "topic": "Leadership and Strategic Management",
+      "keywords": [
+        "servant leadership",
+        "civil service",
+        "leadership principles"
+      ]
+    }
+  ]
+}

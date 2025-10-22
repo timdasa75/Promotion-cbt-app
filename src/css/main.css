@@ -1,0 +1,12 @@
+/* Base styles */
+@import './modules/base.css';
+
+/* Components */
+@import './modules/header.css';
+@import './modules/quiz.css';
+@import './modules/buttons.css';
+@import './modules/cards.css';
+@import './modules/navigation.css';
+
+/* Utilities */
+@import './modules/utilities.css';

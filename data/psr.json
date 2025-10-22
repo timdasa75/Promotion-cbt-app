@@ -1,387 +1,2142 @@
-﻿{
-    "name":  "Public Service Rules",
-    "description":  "Federal Civil Service PSR questions",
-    "type":  "nested",
-    "hasSubcategories":  true,
-    "icon":  "ðŸ“‹",
-    "psr_categories":  {
-                           "employment_service":  {
-                                                      "name":  "Employment \u0026 Service",
-                                                      "icon":  "ðŸ‘¥",
-                                                      "description":  "Rules regarding appointments, probation, and service conditions",
-                                                      "questions":  [
-                                                                        {
-                                                                            "id":  "psr_emp_001",
-                                                                            "question":  "Which body is constitutionally empowered to appoint persons into senior posts (GL.07 and above) in the Federal Civil Service?",
-                                                                            "options":  [
-                                                                                            "Office of the Head of the Civil Service",
-                                                                                            "Federal Civil Service Commission (FCSC)",
-                                                                                            "Bureau of Public Service Reforms",
-                                                                                            "National Assembly"
-                                                                                        ],
-                                                                            "correct":  1,
-                                                                            "explanation":  "According to PSR 020102, the Federal Civil Service Commission is responsible for appointments into senior posts GL.07 and above.",
-                                                                            "difficulty":  "easy",
-                                                                            "chapter":  "Appointments",
-                                                                            "keywords":  [
-                                                                                             "appointments",
-                                                                                             "FCSC",
-                                                                                             "senior posts"
-                                                                                         ]
-                                                                        },
-                                                                        {
-                                                                            "id":  "psr_emp_002",
-                                                                            "question":  "What is the mandatory age eligibility criterion for appointment into the Federal Public Service?",
-                                                                            "options":  [
-                                                                                            "Not less than 21 years and not more than 55 years of age",
-                                                                                            "Not less than 18 years and not more than 50 years of age",
-                                                                                            "Not less than 25 years and not more than 45 years of age",
-                                                                                            "Not less than 20 years and not more than 60 years of age"
-                                                                                        ],
-                                                                            "correct":  1,
-                                                                            "explanation":  "To be eligible for appointment, an applicant must be not less than 18 years and not more than 50 years of age, including computer literacy requirements.",
-                                                                            "difficulty":  "medium",
-                                                                            "chapter":  "Eligibility (PSR 020206)",
-                                                                            "keywords":  [
-                                                                                             "eligibility",
-                                                                                             "age",
-                                                                                             "appointment"
-                                                                                         ]
-                                                                        },
-                                                                        {
-                                                                            "id":  "psr_emp_003",
-                                                                            "question":  "What is the mandatory maximum period an officer is required to serve on probation before being confirmed in the Service?",
-                                                                            "options":  [
-                                                                                            "Six months",
-                                                                                            "Two years",
-                                                                                            "Three years",
-                                                                                            "Four years"
-                                                                                        ],
-                                                                            "correct":  1,
-                                                                            "explanation":  "Officers on probation will be required to serve for two years before being confirmed in the Service, though this period may be reduced.",
-                                                                            "difficulty":  "easy",
-                                                                            "chapter":  "Probation (PSR 020301)",
-                                                                            "keywords":  [
-                                                                                             "probation",
-                                                                                             "confirmation",
-                                                                                             "period"
-                                                                                         ]
-                                                                        },
-                                                                        {
-                                                                            "id":  "psr_emp_004",
-                                                                            "question":  "What document must all newly appointed officers immediately enter their personal particulars into upon assumption of duty?",
-                                                                            "options":  [
-                                                                                            "Form Gen. 15A",
-                                                                                            "Form Gen. 60 (Staff Records Form)",
-                                                                                            "Annual Performance Evaluation Report (APER)",
-                                                                                            "Pension Retirement Form (Gen. 69C)"
-                                                                                        ],
-                                                                            "correct":  1,
-                                                                            "explanation":  "Immediately upon assumption of duty, a newly appointed officer is required to enter his personal particulars on Form Gen. 60 (Staff Records Form).",
-                                                                            "difficulty":  "medium",
-                                                                            "chapter":  "Personal Records (PSR 020209)",
-                                                                            "keywords":  [
-                                                                                             "Form Gen. 60",
-                                                                                             "personal records",
-                                                                                             "assumption of duty"
-                                                                                         ]
-                                                                        },
-                                                                        {
-                                                                            "id":  "psr_emp_005",
-                                                                            "question":  "Recruitment is defined as the filling of vacancies by direct appointment of persons not already in the Federal Public Service, but it explicitly excludes which category of movement?",
-                                                                            "options":  [
-                                                                                            "Appointment on contract terms",
-                                                                                            "Appointment on probation",
-                                                                                            "Transfer of officers from other Public Service to the Federal Public Service",
-                                                                                            "Appointment of trainees or pupils"
-                                                                                        ],
-                                                                            "correct":  2,
-                                                                            "explanation":  "Recruitment means the filling of vacancies... but it excludes the transfer of officers from other Public Service in the Federation to the Federal Public Service.",
-                                                                            "difficulty":  "medium",
-                                                                            "chapter":  "Recruitment Definition (PSR 020201)",
-                                                                            "keywords":  [
-                                                                                             "recruitment",
-                                                                                             "transfer",
-                                                                                             "vacancy"
-                                                                                         ]
-                                                                        },
-                                                                        {
-                                                                            "id":  "psr_emp_006",
-                                                                            "question":  "The three papers compulsorily required for Senior Executive Officers/Administrative Officers (COMPRO I \u0026 II) include the Public Service Rules (PSR), General Paper, and which other core subject area?",
-                                                                            "options":  [
-                                                                                            "Nigerian Legal System",
-                                                                                            "Financial Regulations (FR)",
-                                                                                            "Public Procurement Act",
-                                                                                            "Statistical Analysis"
-                                                                                        ],
-                                                                            "correct":  1,
-                                                                            "explanation":  "The COMPRO examination for GL 07 and above includes Public Service Rules (PSR), Financial Regulations (FR), Civil Service Handbook, and Establishment Circulars as reference books.",
-                                                                            "difficulty":  "medium",
-                                                                            "chapter":  "Confirmation Exam (PSR 030108)",
-                                                                            "keywords":  [
-                                                                                             "COMPRO",
-                                                                                             "PSR",
-                                                                                             "Financial Regulations"
-                                                                                         ]
-                                                                        },
-                                                                        {
-                                                                            "id":  "psr_emp_4181",
-                                                                            "correct":  1,
-                                                                            "chapter":  "Study Leave",
-                                                                            "question":  "What is the maximum duration of study leave with pay?",
-                                                                            "keywords":  [
-                                                                                             "study",
-                                                                                             "leave",
-                                                                                             "duration"
-                                                                                         ],
-                                                                            "difficulty":  "medium",
-                                                                            "options":  [
-                                                                                            "One year",
-                                                                                            "Two years, extendable by one year",
-                                                                                            "Six months",
-                                                                                            "Three years"
-                                                                                        ],
-                                                                            "explanation":  "According to PSR Rule 120228, study leave with pay is granted for a maximum of two years, extendable by one year."
-                                                                        }
-                                                                    ]
-                                                  },
-                           "leave_medical":  {
-                                                 "name":  "Leave \u0026 Medical",
-                                                 "icon":  "ðŸ–ï¸",
-                                                 "description":  "Rules regarding various types of leave and medical benefits",
-                                                 "questions":  [
-                                                                   {
-                                                                       "id":  "psr_leave_001",
-                                                                       "question":  "What is the standard annual leave entitlement for Senior Officers on Grade Level 07 and above?",
-                                                                       "options":  [
-                                                                                       "21 working days",
-                                                                                       "28 calendar days",
-                                                                                       "30 working days",
-                                                                                       "45 working days"
-                                                                                   ],
-                                                                       "correct":  2,
-                                                                       "explanation":  "Annual Leave entitlement for GL 07 and above is 30 working days.",
-                                                                       "difficulty":  "easy",
-                                                                       "chapter":  "Annual Leave (PSR 120203)",
-                                                                       "keywords":  [
-                                                                                        "annual leave",
-                                                                                        "GL 07",
-                                                                                        "30 working days"
-                                                                                    ]
-                                                                   },
-                                                                   {
-                                                                       "id":  "psr_leave_002",
-                                                                       "question":  "The maximum duration for which a female officer who is nursing a child shall be granted time off two hours off-duty every day after maternity leave is:",
-                                                                       "options":  [
-                                                                                       "Three months",
-                                                                                       "Four months",
-                                                                                       "Six months",
-                                                                                       "One year"
-                                                                                   ],
-                                                                       "correct":  2,
-                                                                       "explanation":  "A female Officer who is nursing a child shall be granted two hours off-duty every day... for a maximum period of six months from the date she resumes duty from maternity leave.",
-                                                                       "difficulty":  "medium",
-                                                                       "chapter":  "Nursing Mothers (PSR 120220)",
-                                                                       "keywords":  [
-                                                                                        "nursing mothers",
-                                                                                        "maternity leave",
-                                                                                        "time off"
-                                                                                    ]
-                                                                   }
-                                                               ]
-                                             },
-                           "compensation_benefits":  {
-                                                         "name":  "Compensation \u0026 Benefits",
-                                                         "icon":  "ðŸ’°",
-                                                         "description":  "Rules regarding salaries, allowances, and other benefits",
-                                                         "questions":  [
-                                                                           {
-                                                                               "id":  "psr_comp_001",
-                                                                               "question":  "Resettlement Allowance shall be paid upon transfer at what rate of an Officer\u0027s annual total emolument?",
-                                                                               "options":  [
-                                                                                               "1%",
-                                                                                               "2%",
-                                                                                               "5%",
-                                                                                               "10%"
-                                                                                           ],
-                                                                               "correct":  1,
-                                                                               "explanation":  "Resettlement Allowance shall be paid at the rate of 2% of an Officer\u0027s annual total emolument.",
-                                                                               "difficulty":  "medium",
-                                                                               "chapter":  "Resettlement Allowance (FR 140136)",
-                                                                               "keywords":  [
-                                                                                                "Resettlement Allowance",
-                                                                                                "transfer",
-                                                                                                "2%"
-                                                                                            ]
-                                                                           }
-                                                                       ]
-                                                     },
-                           "conduct_discipline":  {
-                                                      "name":  "Conduct \u0026 Discipline",
-                                                      "icon":  "âš–ï¸",
-                                                      "description":  "Rules regarding professional conduct and disciplinary procedures",
-                                                      "questions":  [
-                                                                        {
-                                                                            "id":  "psr_conduct_001",
-                                                                            "question":  "An officer under investigation for a serious offense who is placed on temporary removal from duties and earns **no salary** is deemed to be under:",
-                                                                            "options":  [
-                                                                                            "Interdiction",
-                                                                                            "Termination of Appointment",
-                                                                                            "Suspension",
-                                                                                            "Compulsory Retirement"
-                                                                                        ],
-                                                                            "correct":  2,
-                                                                            "explanation":  "Suspension means removal of an Officer from performing the duties of his office... during which period he shall earn **no salary**. Interdiction involves half salary.",
-                                                                            "difficulty":  "easy",
-                                                                            "chapter":  "Discipline Definitions (PSR 010105)",
-                                                                            "keywords":  [
-                                                                                             "Suspension",
-                                                                                             "no salary",
-                                                                                             "discipline"
-                                                                                         ]
-                                                                        },
-                                                                        {
-                                                                            "id":  "psr_conduct_002",
-                                                                            "question":  "Which of the following is defined as a \u0027Serious Misconduct\u0027 that may lead to dismissal from the Service?",
-                                                                            "options":  [
-                                                                                            "Lateness to work once",
-                                                                                            "Absence from duty without leave",
-                                                                                            "Minor negligence",
-                                                                                            "Failure to submit staff returns"
-                                                                                        ],
-                                                                            "correct":  1,
-                                                                            "explanation":  "Serious Misconduct includes Falsification of records, Corruption, Bribery, Engaging in partisan political activities, and **Absence from duty without leave**.",
-                                                                            "difficulty":  "medium",
-                                                                            "chapter":  "Serious Misconduct (PSR 100402)",
-                                                                            "keywords":  [
-                                                                                             "serious misconduct",
-                                                                                             "dismissal",
-                                                                                             "absence"
-                                                                                         ]
-                                                                        }
-                                                                    ]
-                                                  },
-                           "performance_development":  {
-                                                           "name":  "Performance \u0026 Development",
-                                                           "icon":  "ðŸ“ˆ",
-                                                           "description":  "Rules regarding performance management and career development",
-                                                           "questions":  [
-                                                                             {
-                                                                                 "id":  "psr_perf_001",
-                                                                                 "question":  "The Performance Management Cycle shall run annually from:",
-                                                                                 "options":  [
-                                                                                                 "April to March of the following year",
-                                                                                                 "September to August of the following year",
-                                                                                                 "January to December of every year",
-                                                                                                 "The date of the last promotion to the next promotion due date"
-                                                                                             ],
-                                                                                 "correct":  2,
-                                                                                 "explanation":  "The Performance Management Cycle shall run from January to December of every year.",
-                                                                                 "difficulty":  "easy",
-                                                                                 "chapter":  "Performance Management Timeline (PSR 050301)",
-                                                                                 "keywords":  [
-                                                                                                  "PMS",
-                                                                                                  "timeline",
-                                                                                                  "January to December"
-                                                                                              ]
-                                                                             }
-                                                                         ]
-                                                       },
-                           "administrative":  {
-                                                  "name":  "Administrative Procedures",
-                                                  "icon":  "ðŸ“œ",
-                                                  "description":  "General administrative rules and procedures",
-                                                  "questions":  [
-                                                                    {
-                                                                        "id":  "psr_admin_001",
-                                                                        "question":  "Sabbatical Leave is granted to an officer on GL 15 or equivalent and above, for a period of:",
-                                                                        "options":  [
-                                                                                        "Six calendar months, once every three years",
-                                                                                        "Twelve calendar months, once in five (5) years",
-                                                                                        "Two years, renewable once",
-                                                                                        "Nine calendar months"
-                                                                                    ],
-                                                                        "correct":  1,
-                                                                        "explanation":  "Sabbatical Leave applies to an officer on GL 15 or equivalent and above... for a period of twelve (12) calendar months once in five (5) years.",
-                                                                        "difficulty":  "medium",
-                                                                        "chapter":  "Sabbatical Leave (PSR 020413)",
-                                                                        "keywords":  [
-                                                                                         "Sabbatical Leave",
-                                                                                         "GL 15",
-                                                                                         "twelve months"
-                                                                                     ]
-                                                                    },
-                                                                    {
-                                                                        "id":  "psr_admin_002",
-                                                                        "question":  "What is the mandatory retirement requirement for all grades in the Federal Civil Service?",
-                                                                        "options":  [
-                                                                                        "55 years of age or 30 years of pensionable service",
-                                                                                        "60 years of age or 35 years of pensionable service, whichever is earlier",
-                                                                                        "65 years of age or 40 years of pensionable service",
-                                                                                        "60 years of age only"
-                                                                                    ],
-                                                                        "correct":  1,
-                                                                        "explanation":  "The mandatory retirement age for all grades in the Service shall be 60 years or 35 years of pensionable service, whichever is earlier.",
-                                                                        "difficulty":  "easy",
-                                                                        "chapter":  "Mandatory Retirement (PSR 020908)",
-                                                                        "keywords":  [
-                                                                                         "retirement age",
-                                                                                         "service years"
-                                                                                     ]
-                                                                    }
-                                                                ]
-                                              },
-                           "training_development":  {
-                                                        "name":  "Training \u0026 Development",
-                                                        "icon":  "ðŸŽ“",
-                                                        "description":  "Rules regarding staff training and development programs",
-                                                        "questions":  [
-                                                                          {
-                                                                              "id":  "psr_train_001",
-                                                                              "question":  "How often should public servants undergo mandatory training according to the PSR?",
-                                                                              "options":  [
-                                                                                              "Every year",
-                                                                                              "Every 2 years",
-                                                                                              "Every 3 years",
-                                                                                              "No specific requirement"
-                                                                                          ],
-                                                                              "correct":  2,
-                                                                              "explanation":  "PSR 160401 states that public servants should undergo mandatory training at least once every 3 years to update their skills and knowledge.",
-                                                                              "difficulty":  "medium",
-                                                                              "chapter":  "Training Policy",
-                                                                              "keywords":  [
-                                                                                               "training",
-                                                                                               "development",
-                                                                                               "skills"
-                                                                                           ]
-                                                                          }
-                                                                      ]
-                                                    },
-                           "retirement":  {
-                                              "name":  "Retirement",
-                                              "icon":  "ðŸ‘´",
-                                              "description":  "Rules and procedures for retirement and pension",
-                                              "questions":  [
-                                                                {
-                                                                    "id":  "psr_ret_001",
-                                                                    "question":  "What is the mandatory retirement age for public servants in Nigeria?",
-                                                                    "options":  [
-                                                                                    "60 years",
-                                                                                    "65 years",
-                                                                                    "70 years",
-                                                                                    "No mandatory age"
-                                                                                ],
-                                                                    "correct":  0,
-                                                                    "explanation":  "PSR 100301 specifies that the mandatory retirement age for public servants is 60 years or 35 years of service, whichever comes first.",
-                                                                    "difficulty":  "easy",
-                                                                    "chapter":  "Retirement",
-                                                                    "keywords":  [
-                                                                                     "retirement",
-                                                                                     "age",
-                                                                                     "service years"
-                                                                                 ]
-                                                                }
-                                                            ]
-                                          }
-                       }
+{
+  "name": "Public Service Rules (PSR)",
+  "description": "Comprehensive rules governing appointments, promotions, discipline, retirement, and administration in the Nigerian Federal Civil Service",
+  "type": "topic",
+  "hasSubcategories": true,
+  "icon": "⚖️",
+  "subcategories": [
+    {
+      "name": "Appointments, Promotions & Transfers",
+      "description": "Questions on appointment authority, recruitment, probation, transfers, postings, acting appointments and promotion rules from PSR 2021 (Chapters 2 & 3).",
+      "type": "subcategory",
+      "questions": [
+        {
+          "id": "psr_app_001",
+          "question": "Who has the authority to make appointments to posts graded GL.07–GL.17 in the Federal Public Service?",
+          "options": [
+            "Permanent Secretaries",
+            "The Federal Civil Service Commission",
+            "Heads of Extra-Ministerial Offices",
+            "The Head of Service"
+          ],
+          "correct": 1,
+          "explanation": "PSR 020102 states that the Federal Civil Service Commission (FCSC) makes appointments to posts graded GL.07–GL.17. (PSR 020102).",
+          "difficulty": "easy",
+          "chapter": "Chapter 2 – Appointments",
+          "keywords": ["appointment authority", "FCSC", "PSR 020102"]
+        },
+        {
+          "id": "psr_app_002",
+          "question": "Which of the following is NOT a recognized category of appointment under the PSR?",
+          "options": [
+            "Trainee/pupil",
+            "Probationary pensionable appointment",
+            "Non-pensionable contract appointment",
+            "Permanent appointment without formality"
+          ],
+          "correct": 3,
+          "explanation": "PSR 020202 lists trainees, probationable pensionable appointments, non-pensionable contract, acting and special appointments. 'Permanent appointment without formality' is not a PSR category. (PSR 020202).",
+          "difficulty": "easy",
+          "chapter": "Chapter 2 – Recruitment",
+          "keywords": ["types of appointment", "PSR 020202"]
+        },
+        {
+          "id": "psr_app_003",
+          "question": "What minimum percentage of all recruitments is reserved for persons with disability?",
+          "options": ["2%", "5%", "10%", "None specified"],
+          "correct": 1,
+          "explanation": "PSR 020202(f) mandates that 5% of all recruitments in the Service be reserved for persons with disability. (PSR 020202).",
+          "difficulty": "easy",
+          "chapter": "Chapter 2 – Recruitment",
+          "keywords": ["disability quota", "5%", "PSR 020202"]
+        },
+        {
+          "id": "psr_app_004",
+          "question": "What is the standard probationary period for officers appointed on probation to pensionable establishment?",
+          "options": ["6 months", "1 year", "2 years", "3 years"],
+          "correct": 2,
+          "explanation": "PSR 020301 provides that officers on probation serve for two years before confirmation, subject to reductions in specific circumstances. (PSR 020301).",
+          "difficulty": "easy",
+          "chapter": "Chapter 2 – Probation",
+          "keywords": ["probation period", "2 years", "PSR 020301"]
+        },
+        {
+          "id": "psr_app_005",
+          "question": "During probation an officer must pass which of the following to be eligible for confirmation?",
+          "options": [
+            "The prescribed examination appropriate to the appointment",
+            "An interview only",
+            "A written testimonial from previous employer only",
+            "No requirement to pass any examination"
+          ],
+          "correct": 0,
+          "explanation": "PSR 020302 requires that within probation an officer pass the prescribed examination appropriate to the appointment. (PSR 020302).",
+          "difficulty": "easy",
+          "chapter": "Chapter 2 – Probation",
+          "keywords": ["confirmation exam", "PSR 020302", "compulsory exam"]
+        },
+        {
+          "id": "psr_app_006",
+          "question": "Who is authorized, subject to delegation limits, to appoint eligible candidates to posts GL.06 and below?",
+          "options": [
+            "Federal Civil Service Commission only",
+            "Permanent Secretaries/Heads of Extra-Ministerial Offices",
+            "Head of the Civil Service directly",
+            "The President"
+          ],
+          "correct": 1,
+          "explanation": "PSR 020101 states Permanent Secretaries/Heads of Extra-Ministerial Offices may appoint to posts where powers have been delegated — typically GL.06 and below. (PSR 020101).",
+          "difficulty": "easy",
+          "chapter": "Chapter 2 – Appointment",
+          "keywords": ["delegation", "GL.06", "PSR 020101"]
+        },
+        {
+          "id": "psr_app_007",
+          "question": "Which procedure is required for appointment to senior posts (GL.07 and above)?",
+          "options": [
+            "Direct hiring by Permanent Secretary",
+            "Appointment by Federal Civil Service Commission after advertisement",
+            "Automatic promotion based on years of service",
+            "Selection by departmental head without advertisement"
+          ],
+          "correct": 1,
+          "explanation": "PSR 020102 explains that FCSC appoints to GL.07–17 and such appointments are made into available vacancies after advertisement. (PSR 020102).",
+          "difficulty": "easy",
+          "chapter": "Chapter 2 – Appointment",
+          "keywords": ["senior posts", "advertisement", "PSR 020102"]
+        },
+        {
+          "id": "psr_app_008",
+          "question": "Which form must applicants for senior posts complete as part of the FCSC process?",
+          "options": [
+            "Gen. 60",
+            "FC.2 (FCSC Application Form)",
+            "Form 1 Oath of Secrecy",
+            "COMPRO registration form"
+          ],
+          "correct": 1,
+          "explanation": "PSR 020208(a) requires applicants for senior posts to complete the Federal Civil Service Commission Application Form (FC.2). (PSR 020208).",
+          "difficulty": "easy",
+          "chapter": "Chapter 2 – Recruitment Procedures",
+          "keywords": ["FCSC form", "FC.2", "PSR 020208"]
+        },
+        {
+          "id": "psr_app_009",
+          "question": "When does the incremental date of an officer who was appointed or promoted become effective under PSR?",
+          "options": [
+            "1st April every year",
+            "1st January every year provided 6 months on grade with good performance",
+            "On the date of appointment",
+            "On the officer's birthday"
+          ],
+          "correct": 1,
+          "explanation": "PSR 020104 states the incremental date is 1 January provided the officer has spent at least six months on the grade with good performance. (PSR 020104).",
+          "difficulty": "easy",
+          "chapter": "Chapter 2 – Incremental Date",
+          "keywords": ["incremental date", "1 Jan", "PSR 020104"]
+        },
+        {
+          "id": "psr_app_010",
+          "question": "Which of the following must be submitted to the Office of the Head of the Civil Service, OAGF and PenCom within one month of appointment?",
+          "options": [
+            "FC.2 application form",
+            "Staff Record Form (Gen. 60)",
+            "Oath of Secrecy only",
+            "COMPRO result"
+          ],
+          "correct": 1,
+          "explanation": "PSR 020107 requires staff record form (Gen. 60) to be sent to OHCSF, OAGF, Auditor-General and PenCom within one month of appointment. (PSR 020107).",
+          "difficulty": "easy",
+          "chapter": "Chapter 2 – Personnel Records",
+          "keywords": ["Gen.60", "personnel records", "PSR 020107"]
+        },
+        {
+          "id": "psr_app_011",
+          "question": "Under PSR, membership of which type of organization by a public officer is prohibited?",
+          "options": [
+            "Registered trade unions",
+            "Secret societies",
+            "Professional associations",
+            "Religious bodies"
+          ],
+          "correct": 1,
+          "explanation": "PSR 020211 prohibits public officers from being members of secret societies; contravention is serious misconduct. (PSR 020211).",
+          "difficulty": "easy",
+          "chapter": "Chapter 2 – Conduct on Appointment",
+          "keywords": ["secret society", "misconduct", "PSR 020211"]
+        },
+        {
+          "id": "psr_app_012",
+          "question": "Under what condition may the normal two-year probation be reduced to not less than six months?",
+          "options": [
+            "Automatic with good behaviour",
+            "By deduction of previous satisfactory public service in cognate posts",
+            "By request of the officer",
+            "If the officer is under 30 years old"
+          ],
+          "correct": 1,
+          "explanation": "PSR 020301 allows reduction of probation to not less than six months by deduction of previous satisfactory public service in cognate posts. (PSR 020301).",
+          "difficulty": "medium",
+          "chapter": "Chapter 2 – Probation",
+          "keywords": ["probation reduction", "previous service", "PSR 020301"]
+        },
+        {
+          "id": "psr_app_013",
+          "question": "If an officer's probation is extended by the FCSC, what incremental consequence may the Commission impose?",
+          "options": [
+            "Immediate promotion",
+            "Incremental penalty (withheld/penalty on increment)",
+            "Salary increase",
+            "No consequence stated"
+          ],
+          "correct": 1,
+          "explanation": "PSR 020301 states extensions may result in an incremental penalty as referred in Rule 040206. (PSR 020301; PSR 040206).",
+          "difficulty": "medium",
+          "chapter": "Chapter 2 & 4 – Probation/Increment",
+          "keywords": [
+            "probation extension",
+            "incremental penalty",
+            "PSR 020301",
+            "PSR 040206"
+          ]
+        },
+        {
+          "id": "psr_app_014",
+          "question": "Which examinations are senior posts required to pass while on probation?",
+          "options": [
+            "COMPRO I & II as described in Chapter 3",
+            "Only department interview",
+            "No examination required",
+            "External university exam"
+          ],
+          "correct": 0,
+          "explanation": "PSR 020302(a) states officers holding senior posts must pass the prescribed examinations described in Chapter 3 (COMPRO). (PSR 020302; Chapter 3).",
+          "difficulty": "medium",
+          "chapter": "Chapter 3 – Compulsory Confirmation Exams",
+          "keywords": ["COMPRO", "senior posts", "PSR 020302", "Chapter 3"]
+        },
+        {
+          "id": "psr_app_015",
+          "question": "Which committee handles recruitment/selection for Junior Staff (GL.06 and below) in a Ministry?",
+          "options": [
+            "Senior Staff Committee",
+            "Junior Staff Committee",
+            "Federal Civil Service Commission",
+            "Board of Survey"
+          ],
+          "correct": 1,
+          "explanation": "PSR 020103 states each Ministry shall appoint Junior Staff on GL.06 and below handled by the Junior Staff Committee. (PSR 020103).",
+          "difficulty": "easy",
+          "chapter": "Chapter 2 – Recruitment",
+          "keywords": ["Junior Staff Committee", "PSR 020103"]
+        },
+        {
+          "id": "psr_app_016",
+          "question": "Which of the following is a condition for transfer/secondment to another service under PSR?",
+          "options": [
+            "Officer must be unconfirmed",
+            "Officer must have been confirmed and qualifications align with Schemes of Service",
+            "Officer must be less than 30 years old",
+            "No prior approval is required"
+          ],
+          "correct": 1,
+          "explanation": "PSR 020507(c) requires that an officer be confirmed and qualifications, experience and career progression are in accordance with the Schemes of Service for transfer/secondment. (PSR 020507).",
+          "difficulty": "medium",
+          "chapter": "Chapter 2 – Transfers & Secondment",
+          "keywords": ["transfer conditions", "confirmation", "PSR 020507"]
+        },
+        {
+          "id": "psr_app_017",
+          "question": "How long is an initial secondment to the service of another government, approved body or international organization allowed in the first instance?",
+          "options": ["6 months", "1 year", "2 years", "5 years"],
+          "correct": 2,
+          "explanation": "PSR 020505(f) states secondment to another government/approved body/international organization shall be for a maximum of two years in the first instance. (PSR 020505).",
+          "difficulty": "medium",
+          "chapter": "Chapter 2 – Transfer/Secondment",
+          "keywords": ["secondment duration", "2 years", "PSR 020505"]
+        },
+        {
+          "id": "psr_app_018",
+          "question": "If a secondment is in the public interest, what is the maximum total period allowed under PSR?",
+          "options": ["2 years", "4 years", "6 years", "No limit"],
+          "correct": 2,
+          "explanation": "PSR 020505(g) provides that if secondment is in public interest the period shall not exceed six years. (PSR 020505).",
+          "difficulty": "medium",
+          "chapter": "Chapter 2 – Transfer/Secondment",
+          "keywords": ["public interest secondment", "6 years", "PSR 020505"]
+        },
+        {
+          "id": "psr_app_019",
+          "question": "During secondment, who continues to hold the officer's substantive post and entitlement to increment/promotion?",
+          "options": [
+            "The receiving organization only",
+            "The officer loses substantive post",
+            "The officer continues to hold substantive post and is entitled to increment and promotion",
+            "The position is declared vacant"
+          ],
+          "correct": 2,
+          "explanation": "PSR 020505(h) says during secondment the officer continues to hold his substantive post and is entitled to increment and promotion. (PSR 020505).",
+          "difficulty": "medium",
+          "chapter": "Chapter 2 – Secondment",
+          "keywords": ["substantive post", "entitlement", "PSR 020505"]
+        },
+        {
+          "id": "psr_app_020",
+          "question": "Which body must approve transfers/secondments of senior officers to parastatals under the supervision of a Ministry?",
+          "options": [
+            "The receiving parastatal alone",
+            "The Federal Civil Service Commission / Board",
+            "Permanent Secretary only",
+            "Head of Service only"
+          ],
+          "correct": 1,
+          "explanation": "PSR 020507(ii) mandates approval of the Federal Civil Service Commission/Board before transferring/seconding senior officers to parastatals under a Ministry. (PSR 020507).",
+          "difficulty": "medium",
+          "chapter": "Chapter 2 – Transfers",
+          "keywords": ["parastatal transfer", "FCSC approval", "PSR 020507"]
+        },
+        {
+          "id": "psr_app_021",
+          "question": "What periodic return must MDAs make concerning staff on transfer/secondment?",
+          "options": [
+            "Annual budget return",
+            "Monthly payroll return",
+            "Quarterly returns to FCSC and OHCSF on number of staff on transfer/secondment",
+            "No return required"
+          ],
+          "correct": 2,
+          "explanation": "PSR 020509 requires MDAs to make quarterly returns to the FCSC and OHCSF on number of staff on transfer/secondment. (PSR 020509).",
+          "difficulty": "medium",
+          "chapter": "Chapter 2 – Transfers",
+          "keywords": ["quarterly returns", "PSR 020509"]
+        },
+        {
+          "id": "psr_app_022",
+          "question": "Which is the correct PSR rule that defines posting as the initial assignment or reassignment of an officer to a job schedule?",
+          "options": ["PSR 020101", "PSR 020401", "PSR 020601", "PSR 020701"],
+          "correct": 2,
+          "explanation": "PSR 020601 defines posting as initial assignment or reassignment of an officer to a position/job schedule. (PSR 020601).",
+          "difficulty": "easy",
+          "chapter": "Chapter 2 – Posting",
+          "keywords": ["posting definition", "PSR 020601"]
+        },
+        {
+          "id": "psr_app_023",
+          "question": "According to PSR, posting of officers to posts outside their professional cadre is:",
+          "options": [
+            "Allowed routinely",
+            "Allowed only with officer's consent",
+            "Prohibited",
+            "Allowed for junior officers only"
+          ],
+          "correct": 2,
+          "explanation": "PSR 020602(ii) clearly states posting of officers to posts outside their professional cadres is prohibited. (PSR 020602).",
+          "difficulty": "medium",
+          "chapter": "Chapter 2 – Posting",
+          "keywords": ["professional cadre", "prohibited", "PSR 020602"]
+        },
+        {
+          "id": "psr_app_024",
+          "question": "How often shall pool officers in the Service be mandatorily posted (as per PSR)?",
+          "options": [
+            "Every 2 years",
+            "Every 3 years",
+            "Every 4 years",
+            "No mandatory interval"
+          ],
+          "correct": 2,
+          "explanation": "PSR 020602(iii) mandates that posting of pool officers is mandatory after every four (4) years. (PSR 020602).",
+          "difficulty": "easy",
+          "chapter": "Chapter 2 – Posting",
+          "keywords": ["pool officers", "4 years", "PSR 020602"]
+        },
+        {
+          "id": "psr_app_025",
+          "question": "Failure of an officer to proceed on posting is regarded by PSR as:",
+          "options": [
+            "A reasonable request",
+            "Misconduct",
+            "A health matter",
+            "A promotion entitlement"
+          ],
+          "correct": 1,
+          "explanation": "PSR 020602(iv) states failure to proceed on posting is regarded as misconduct. (PSR 020602).",
+          "difficulty": "medium",
+          "chapter": "Chapter 2 – Posting",
+          "keywords": ["failure to proceed", "misconduct", "PSR 020602"]
+        },
+        {
+          "id": "psr_app_026",
+          "question": "Acting appointments under PSR are:",
+          "options": [
+            "A guaranteed path to promotion",
+            "Made only when necessary and are not a form of trial for promotion",
+            "Always for a minimum of 2 years",
+            "Only for junior staff"
+          ],
+          "correct": 1,
+          "explanation": "PSR 020701 (section on Acting Appointment) indicates acting appointments are made when necessary and are not a form of trial for promotion. (PSR 020701).",
+          "difficulty": "medium",
+          "chapter": "Chapter 2 – Acting Appointment",
+          "keywords": ["acting appointment", "not trial", "PSR 020701"]
+        },
+        {
+          "id": "psr_app_027",
+          "question": "Which of the following is required before an officer can transfer-on-promotion to another MDA according to PSR?",
+          "options": [
+            "A private arrangement between officers",
+            "Response to an advertised post",
+            "Guarantee by the receiving Permanent Secretary",
+            "No requirement"
+          ],
+          "correct": 1,
+          "explanation": "PSR 020506 states no applicant shall be considered for transfer-on-promotion except in response to an advertised post. (PSR 020506).",
+          "difficulty": "medium",
+          "chapter": "Chapter 2 – Transfer on Promotion",
+          "keywords": ["transfer-on-promotion", "advertised post", "PSR 020506"]
+        },
+        {
+          "id": "psr_app_028",
+          "question": "Which PSR rule requires that officers complete Personal Particulars Form Gen.60 immediately upon assuming duty?",
+          "options": ["PSR 020101", "PSR 020107", "PSR 020208", "PSR 020301"],
+          "correct": 1,
+          "explanation": "PSR 020209 (Personal Particulars) requires newly appointed officers to enter personal particulars on Form Gen.60 immediately upon assuming duty. (PSR 020209).",
+          "difficulty": "easy",
+          "chapter": "Chapter 2 – Personal Particulars",
+          "keywords": ["Gen.60", "personal particulars", "PSR 020209"]
+        },
+        {
+          "id": "psr_app_029",
+          "question": "Which rule directs that confirmation recommendations for officers holding senior posts should be made in the progress report prescribed in Chapter 5?",
+          "options": ["PSR 020303", "PSR 020304", "PSR 020305", "PSR 020302"],
+          "correct": 1,
+          "explanation": "PSR 020304 specifies that recommendations regarding confirmation of officers holding senior posts shall be made in the progress report prescribed in Chapter 5. (PSR 020304).",
+          "difficulty": "medium",
+          "chapter": "Chapter 2 – Confirmation of Senior Officers",
+          "keywords": [
+            "confirmation recommendations",
+            "progress report",
+            "PSR 020304",
+            "Chapter 5"
+          ]
+        },
+        {
+          "id": "psr_app_030",
+          "question": "Under PSR, can a confirmed officer who is advanced to a training grade be regarded as having been seconded?",
+          "options": [
+            "No — training grade is separate",
+            "Yes — treated as if seconded for the period of training",
+            "Only if the officer agrees",
+            "Only if training is outside Nigeria"
+          ],
+          "correct": 1,
+          "explanation": "PSR 020204(b) states a confirmed officer advanced to training grade will be treated as if seconded thereto for the training period. (PSR 020204).",
+          "difficulty": "medium",
+          "chapter": "Chapter 2 – Trainee/Pupil",
+          "keywords": ["training grade", "seconded", "PSR 020204"]
+        },
+        {
+          "id": "psr_app_031",
+          "question": "Which rule prescribes that appointment to the National Youth Service Corps Presidential Merit Award winners is automatic regardless of vacancy?",
+          "options": [
+            "PSR 020202(f)",
+            "PSR 020202(e)(i)",
+            "PSR 020202(vi)",
+            "PSR 020201"
+          ],
+          "correct": 2,
+          "explanation": "PSR 020202(i) (subparagraph in PSR 020202) states Ministries shall accept appointments made by FCSC to Presidential Merit Award winners whose employment is automatic regardless of vacancy constraints. (PSR 020202).",
+          "difficulty": "medium",
+          "chapter": "Chapter 2 – Recruitment",
+          "keywords": [
+            "NYSC Merit Award",
+            "automatic appointment",
+            "PSR 020202"
+          ]
+        },
+        {
+          "id": "psr_app_032",
+          "question": "Which PSR rule mandates that advertisement for FCSC vacancies appear in three national newspapers and the Commission's website with a six-week application deadline?",
+          "options": ["PSR 020102", "PSR 020103", "PSR 020107", "PSR 020208"],
+          "correct": 0,
+          "explanation": "PSR 020102(i) provides that FCSC advertisements for GL.07-17 vacancies be in three national newspapers and the Commission's website with a six-week deadline. (PSR 020102).",
+          "difficulty": "easy",
+          "chapter": "Chapter 2 – Appointment by FCSC",
+          "keywords": [
+            "advertisement requirement",
+            "three newspapers",
+            "PSR 020102"
+          ]
+        },
+        {
+          "id": "psr_app_033",
+          "question": "Which PSR rule states that an officer must serve a minimum of six months in his original post before applying for transfer to another senior post?",
+          "options": ["PSR 020301", "PSR 020307", "PSR 020507", "PSR 020506"],
+          "correct": 1,
+          "explanation": "PSR 020307 specifies that an officer must have served a minimum of six months in his original post before seeking transfer to another post. (PSR 020307).",
+          "difficulty": "medium",
+          "chapter": "Chapter 2 – Transfer",
+          "keywords": ["six months", "transfer application", "PSR 020307"]
+        },
+        {
+          "id": "psr_app_034",
+          "question": "For a transfer application under PSR 020307, which of the following must be included in the submission to FCSC?",
+          "options": [
+            "Officer's marriage certificate",
+            "Statement of applicant's performance, suitability and recommendation",
+            "Only the applicant's CV",
+            "A petition from colleagues"
+          ],
+          "correct": 1,
+          "explanation": "PSR 020307 requires the Permanent Secretary to forward application with statement on how applicant performed, suitability and recommendation. (PSR 020307).",
+          "difficulty": "medium",
+          "chapter": "Chapter 2 – Transfer Procedure",
+          "keywords": [
+            "transfer submission",
+            "performance statement",
+            "PSR 020307"
+          ]
+        },
+        {
+          "id": "psr_app_035",
+          "question": "Which rule prohibits acceptance of staff seconded to an MDA without endorsement of the Federal Civil Service Commission/Board?",
+          "options": [
+            "PSR 020507(iii)",
+            "PSR 020505(d)",
+            "PSR 020602(i)",
+            "PSR 020209"
+          ],
+          "correct": 0,
+          "explanation": "PSR 020507(iii) prohibits any Ministry accepting staff seconded to it without endorsement of the Federal Civil Service Commission/Board. (PSR 020507).",
+          "difficulty": "medium",
+          "chapter": "Chapter 2 – Secondment",
+          "keywords": ["endorsement required", "secondment", "PSR 020507"]
+        },
+        {
+          "id": "psr_app_036",
+          "question": "Which PSR rule mandates that a newly recruited officer who has spent six months and above shall be allowed to sit for compulsory examinations for confirmation?",
+          "options": ["PSR 020306", "PSR 020303", "PSR 020302", "PSR 020301"],
+          "correct": 0,
+          "explanation": "PSR 020306 permits newly recruited officers who have served six months and above to sit for compulsory confirmation examinations. (PSR 020306).",
+          "difficulty": "medium",
+          "chapter": "Chapter 2 – Compulsory Exams",
+          "keywords": ["six months", "compulsory exam", "PSR 020306"]
+        },
+        {
+          "id": "psr_app_037",
+          "question": "Which Chapter contains detailed syllabuses and prescribed confirmation examinations (COMPRO) for senior executive and professional officers?",
+          "options": ["Chapter 2", "Chapter 3", "Chapter 4", "Chapter 5"],
+          "correct": 1,
+          "explanation": "Chapter 3 of the PSR contains prescribed examinations (COMPRO) and syllabuses for senior executive and professional officers. (Chapter 3; PSR 0302xx).",
+          "difficulty": "easy",
+          "chapter": "Chapter 3 – Compulsory Exams",
+          "keywords": ["COMPRO", "Chapter 3", "PSR Chapter 3"]
+        },
+        {
+          "id": "psr_app_038",
+          "question": "Under PSR, which of these is TRUE about contract appointments?",
+          "options": [
+            "They always provide pension benefits",
+            "They are temporary, non-pensionable and recorded in a formal agreement",
+            "They cannot be given to expatriates",
+            "They are permanent after 2 years"
+          ],
+          "correct": 1,
+          "explanation": "PSR 020402 defines contract appointments as temporary, non-pensionable and must be recorded in a formal document of agreement. (PSR 020402).",
+          "difficulty": "medium",
+          "chapter": "Chapter 2 – Short Term Appointments",
+          "keywords": ["contract appointment", "non-pensionable", "PSR 020402"]
+        },
+        {
+          "id": "psr_app_039",
+          "question": "Which of the following circumstances may warrant a contract appointment under PSR?",
+          "options": [
+            "When a post can be filled internally immediately",
+            "Where service lacks officers with required specialized skills",
+            "Automatic replacement of pensioned officers",
+            "Only for officers under 30"
+          ],
+          "correct": 1,
+          "explanation": "PSR 020403(i) permits contract appointments if the Service lacks officers with the required specialized skills as provided in approved Schemes of Service. (PSR 020403).",
+          "difficulty": "medium",
+          "chapter": "Chapter 2 – Contract Appointments",
+          "keywords": ["specialized skills", "contract hire", "PSR 020403"]
+        },
+        {
+          "id": "psr_app_040",
+          "question": "Under PSR, who is responsible for appraising an officer who is seconded to another MDA?",
+          "options": [
+            "The releasing Agency only",
+            "The MDA to which the officer is seconded",
+            "The officer appraises himself",
+            "The Federal Civil Service Commission"
+          ],
+          "correct": 1,
+          "explanation": "PSR 020507(iii) states an officer on secondment shall be appraised by the MDA to which he is seconded. (PSR 020507).",
+          "difficulty": "medium",
+          "chapter": "Chapter 2 – Secondment",
+          "keywords": ["appraisal", "secondment", "PSR 020507"]
+        },
+        {
+          "id": "psr_app_041",
+          "question": "Which rule explains that staff sent on secondment shall continue to be treated as holding their substantive post and paid by the benefiting organization while emoluments may be the responsibility of releasing MDA if differential exists?",
+          "options": [
+            "PSR 020505(h)",
+            "PSR 020505(f)",
+            "PSR 020509",
+            "PSR 020601"
+          ],
+          "correct": 0,
+          "explanation": "PSR 020505(h) & related paragraphs explain continuing substantive status and the allocation of payment responsibilities where salary differentials exist. (PSR 020505).",
+          "difficulty": "hard",
+          "chapter": "Chapter 2 – Secondment",
+          "keywords": [
+            "payment responsibility",
+            "substantive post",
+            "PSR 020505"
+          ]
+        },
+        {
+          "id": "psr_app_042",
+          "question": "Which PSR rule disqualifies appointment without prior specific approval where a candidate has been convicted of a criminal offence or dismissed from public service?",
+          "options": [
+            "PSR 020106",
+            "PSR 020206(a)",
+            "PSR 020207(a)",
+            "PSR 020301"
+          ],
+          "correct": 2,
+          "explanation": "PSR 020207(a) requires prior specific approval of FCSC or Board where candidate was convicted or previously dismissed from public service. (PSR 020207).",
+          "difficulty": "medium",
+          "chapter": "Chapter 2 – Eligibility & Prior Approval",
+          "keywords": ["prior approval", "conviction", "PSR 020207"]
+        },
+        {
+          "id": "psr_app_043",
+          "question": "Which PSR rule indicates that the date of birth recorded on appointment shall not be changed throughout an officer's career?",
+          "options": [
+            "PSR 020107(ii)",
+            "PSR 020101",
+            "PSR 020209",
+            "PSR 020301"
+          ],
+          "correct": 0,
+          "explanation": "PSR 020107(ii) prescribes the date of birth recorded on appointment shall not be changed and change is serious misconduct. (PSR 020107).",
+          "difficulty": "medium",
+          "chapter": "Chapter 2 – Personnel Records",
+          "keywords": ["date of birth", "immutable", "PSR 020107"]
+        },
+        {
+          "id": "psr_app_044",
+          "question": "Which PSR rule governs the withholding, deferring and restoration of increments (relates to incremental penalties)?",
+          "options": [
+            "PSR 020301",
+            "PSR 040206–040209",
+            "PSR 020102",
+            "PSR 030101"
+          ],
+          "correct": 1,
+          "explanation": "PSR Chapter 4 (Rules 040206–040209) explains withholding/deferring increments and restoration, referenced in incremental penalties for probation extensions. (PSR 040206–040209).",
+          "difficulty": "hard",
+          "chapter": "Chapter 4 – Increments",
+          "keywords": [
+            "withheld increment",
+            "incremental penalty",
+            "PSR 040206",
+            "PSR 040207"
+          ]
+        },
+        {
+          "id": "psr_app_045",
+          "question": "Under PSR, which body must be included as observers in Junior Staff and Senior Staff Committees in parastatals?",
+          "options": [
+            "Representative of Department of Human Resource Management of supervising Ministry and an observer from OHCSF",
+            "Only the Board Chairman",
+            "Only the Chief Executive Officer",
+            "No observers required"
+          ],
+          "correct": 0,
+          "explanation": "PSR 020305 & 170306 indicate JSC/SSC in parastatals shall include rep of HRM of supervising Ministry and an observer from OHCSF. (PSR 020305; PSR 170306).",
+          "difficulty": "hard",
+          "chapter": "Chapter 2 & 17 – Committees",
+          "keywords": [
+            "JSC",
+            "SSC",
+            "OHCSF observer",
+            "PSR 020305",
+            "PSR 170306"
+          ]
+        },
+        {
+          "id": "psr_app_046",
+          "question": "Which PSR rule sets the advertisement and selection linkage between FCSC and OHCSF for entry at GL.07–10?",
+          "options": [
+            "PSR 020102(iv) combined with selection modalities prescribed by FCSC",
+            "PSR 020103 only",
+            "PSR 020204",
+            "PSR 020701"
+          ],
+          "correct": 0,
+          "explanation": "PSR 020102(iv) and its subsections prescribe annual competitive entry exam for GL.07–10 to be conducted by FCSC with OHCSF and training institutes. (PSR 020102).",
+          "difficulty": "hard",
+          "chapter": "Chapter 2 – Entry Examinations",
+          "keywords": ["GL.07 entry", "COMPRO", "PSR 020102"]
+        },
+        {
+          "id": "psr_app_047",
+          "question": "Under PSR, who may reduce the probationary period to less than two years (but not less than six months) by counting prior satisfactory public service?",
+          "options": [
+            "The Permanent Secretary alone",
+            "The Head of Service",
+            "The appointing authority subject to PSR provisions (e.g. FCSC)",
+            "No one — probation is fixed"
+          ],
+          "correct": 2,
+          "explanation": "PSR 020301 allows reduction by deduction of previous satisfactory public service; such adjustments are administered by the appointing authority and subject to Commission rules. (PSR 020301).",
+          "difficulty": "hard",
+          "chapter": "Chapter 2 – Probation",
+          "keywords": [
+            "probation reduction",
+            "appointing authority",
+            "PSR 020301"
+          ]
+        },
+        {
+          "id": "psr_app_048",
+          "question": "Which PSR rule governs that transfer from one senior post to another requires prior approval of the FCSC or appropriate board?",
+          "options": ["PSR 020101", "PSR 020307", "PSR 020507", "PSR 020506"],
+          "correct": 1,
+          "explanation": "PSR 020307 states transfer from one senior post to another requires prior approval of the FCSC or appropriate Board. (PSR 020307).",
+          "difficulty": "medium",
+          "chapter": "Chapter 2 – Transfer between Senior Posts",
+          "keywords": ["senior post transfer", "FCSC approval", "PSR 020307"]
+        },
+        {
+          "id": "psr_app_049",
+          "question": "Which PSR provision states that appointment documents and staff records must be typed/filled in ink and one copy sent to the National Record Centre and other offices?",
+          "options": [
+            "PSR 020101",
+            "PSR 020107",
+            "PSR 020209 (Gen.60 instructions)",
+            "PSR 020301"
+          ],
+          "correct": 1,
+          "explanation": "PSR 020107 requires Staff Record Form (Gen.60) to be completed in ink and copies sent to National Record Centre, OAGF, AGF and PenCom. (PSR 020107).",
+          "difficulty": "medium",
+          "chapter": "Chapter 2 – Personnel Records",
+          "keywords": ["Gen.60", "records distribution", "PSR 020107"]
+        },
+        {
+          "id": "psr_app_050",
+          "question": "Which PSR rule requires that in implementing postings, fairness must be ensured so posting is not used as a tool for coercion, punishment or cronyism?",
+          "options": ["PSR 020601", "PSR 020602", "PSR 020603", "PSR 020604"],
+          "correct": 2,
+          "explanation": "PSR 020603 states fairness is an underlying principle in postings to ensure the system is not used for coercion, punishment or cronyism. (PSR 020603).",
+          "difficulty": "easy",
+          "chapter": "Chapter 2 – Posting Principles",
+          "keywords": ["posting fairness", "anti-cronyism", "PSR 020603"]
+        }
+      ]
+    },
+    {
+      "name": "Discipline & Misconduct",
+      "description": "Covers misconduct, serious misconduct, disciplinary procedures, queries, interdiction, suspension, dismissal and appeals under Chapter 10 of the PSR 2021.",
+      "type": "subcategory",
+      "questions": [
+        {
+          "id": "psr_disc_001",
+          "question": "Which of the following is classified as serious misconduct under the PSR?",
+          "options": [
+            "Habitual lateness to work",
+            "Embezzlement of public funds",
+            "Failure to submit reports on time",
+            "Improper dressing"
+          ],
+          "correct": 1,
+          "explanation": "According to PSR 100201, embezzlement of public funds constitutes serious misconduct and may lead to dismissal from service.",
+          "difficulty": "easy",
+          "chapter": "Chapter 10 – Discipline",
+          "keywords": [
+            "serious misconduct",
+            "embezzlement",
+            "dismissal",
+            "PSR 100201"
+          ]
+        },
+        {
+          "id": "psr_disc_002",
+          "question": "Under PSR 2021, misconduct is defined as:",
+          "options": [
+            "Any minor offence committed by a public officer",
+            "Any act of wrongdoing or improper behaviour inconsistent with the public service code",
+            "An act punishable by criminal law only",
+            "An offence that affects only senior officers"
+          ],
+          "correct": 1,
+          "explanation": "PSR 100101 defines misconduct as a specific act of wrongdoing or improper behaviour inconsistent with the Public Service Code of Conduct and Ethics.",
+          "difficulty": "easy",
+          "chapter": "Chapter 10 – Discipline",
+          "keywords": ["misconduct definition", "code of conduct", "PSR 100101"]
+        },
+        {
+          "id": "psr_disc_003",
+          "question": "Which of the following may amount to misconduct as per PSR?",
+          "options": [
+            "Neglect of duty",
+            "Unapproved lateness",
+            "Unpolished shoes",
+            "Absence with permission"
+          ],
+          "correct": 0,
+          "explanation": "PSR 100202 lists neglect of duty as an example of misconduct for which disciplinary action may be taken.",
+          "difficulty": "easy",
+          "chapter": "Chapter 10 – Misconduct",
+          "keywords": ["neglect of duty", "disciplinary action", "PSR 100202"]
+        },
+        {
+          "id": "psr_disc_004",
+          "question": "Serious misconduct shall lead to which disciplinary outcome?",
+          "options": [
+            "Suspension without pay only",
+            "Dismissal from service",
+            "Written warning",
+            "Deferred increment"
+          ],
+          "correct": 1,
+          "explanation": "PSR 100201 provides that serious misconduct is a grave offence punishable by dismissal.",
+          "difficulty": "easy",
+          "chapter": "Chapter 10 – Serious Misconduct",
+          "keywords": ["serious misconduct", "dismissal", "PSR 100201"]
+        },
+        {
+          "id": "psr_disc_005",
+          "question": "Before any disciplinary action is taken against an officer, what must first be issued?",
+          "options": [
+            "A letter of dismissal",
+            "A query",
+            "An oral warning",
+            "A suspension notice"
+          ],
+          "correct": 1,
+          "explanation": "PSR 100302 states that a query must be issued to an officer alleged to have committed misconduct before disciplinary action is taken.",
+          "difficulty": "easy",
+          "chapter": "Chapter 10 – Procedure",
+          "keywords": ["query", "disciplinary procedure", "PSR 100302"]
+        },
+        {
+          "id": "psr_disc_006",
+          "question": "What is the time limit for an officer to reply a query under PSR?",
+          "options": [
+            "24 hours",
+            "48 hours",
+            "72 hours or as may be specified",
+            "One week"
+          ],
+          "correct": 2,
+          "explanation": "PSR 100302 requires an officer to reply a query within 72 hours or within a specified time in the query letter.",
+          "difficulty": "easy",
+          "chapter": "Chapter 10 – Procedure",
+          "keywords": ["query reply time", "discipline", "PSR 100302"]
+        },
+        {
+          "id": "psr_disc_007",
+          "question": "Which of the following is NOT an example of serious misconduct?",
+          "options": [
+            "Dishonesty",
+            "Falsification of records",
+            "Insubordination",
+            "Failure to submit annual leave application"
+          ],
+          "correct": 3,
+          "explanation": "PSR 100201 lists dishonesty, falsification of records, and insubordination as serious misconduct, but failure to submit leave application is not classified as such.",
+          "difficulty": "easy",
+          "chapter": "Chapter 10 – Serious Misconduct",
+          "keywords": ["serious misconduct", "examples", "PSR 100201"]
+        },
+        {
+          "id": "psr_disc_008",
+          "question": "What is the first step in disciplinary proceedings for misconduct?",
+          "options": [
+            "Suspension",
+            "Interdiction",
+            "Issuance of a written query",
+            "Dismissal"
+          ],
+          "correct": 2,
+          "explanation": "According to PSR 100302, disciplinary proceedings begin with issuance of a query outlining the allegation to the officer.",
+          "difficulty": "easy",
+          "chapter": "Chapter 10 – Procedure",
+          "keywords": ["disciplinary process", "query", "PSR 100302"]
+        },
+        {
+          "id": "psr_disc_009",
+          "question": "Who is responsible for initiating disciplinary action against a public officer?",
+          "options": [
+            "Head of Service",
+            "Permanent Secretary or Head of Extra-Ministerial Office",
+            "President",
+            "Auditor-General"
+          ],
+          "correct": 1,
+          "explanation": "PSR 100303 assigns responsibility for initiating disciplinary action to the Permanent Secretary or Head of Extra-Ministerial Office.",
+          "difficulty": "easy",
+          "chapter": "Chapter 10 – Procedure",
+          "keywords": [
+            "disciplinary authority",
+            "Permanent Secretary",
+            "PSR 100303"
+          ]
+        },
+        {
+          "id": "psr_disc_010",
+          "question": "When an officer is under investigation for serious misconduct, what action may be taken to prevent interference?",
+          "options": [
+            "Transfer to another Ministry",
+            "Interdiction",
+            "Suspension without investigation",
+            "Dismissal immediately"
+          ],
+          "correct": 1,
+          "explanation": "PSR 100305 allows for interdiction of an officer facing serious misconduct charges to prevent interference during investigation.",
+          "difficulty": "medium",
+          "chapter": "Chapter 10 – Interdiction",
+          "keywords": ["interdiction", "investigation", "PSR 100305"]
+        },
+        {
+          "id": "psr_disc_011",
+          "question": "During interdiction, what portion of an officer's salary is paid?",
+          "options": [
+            "Full salary",
+            "Half salary",
+            "Quarter salary",
+            "No salary"
+          ],
+          "correct": 1,
+          "explanation": "PSR 100305 stipulates that an officer on interdiction shall be entitled to half of his salary pending the conclusion of investigation.",
+          "difficulty": "easy",
+          "chapter": "Chapter 10 – Interdiction",
+          "keywords": ["half salary", "interdiction", "PSR 100305"]
+        },
+        {
+          "id": "psr_disc_012",
+          "question": "Suspension of an officer is used when:",
+          "options": [
+            "The officer refuses to attend training",
+            "A serious case involving public interest is under investigation",
+            "An officer's posting is delayed",
+            "The officer is absent without leave"
+          ],
+          "correct": 1,
+          "explanation": "PSR 100306 provides that suspension may be used where a serious case involving public interest is being investigated.",
+          "difficulty": "medium",
+          "chapter": "Chapter 10 – Suspension",
+          "keywords": ["suspension", "public interest", "PSR 100306"]
+        },
+        {
+          "id": "psr_disc_013",
+          "question": "For a case of misconduct, which committee recommends penalties to the Federal Civil Service Commission?",
+          "options": [
+            "Senior Staff Committee (Disciplinary)",
+            "Public Accounts Committee",
+            "Budget Monitoring Committee",
+            "Internal Audit Committee"
+          ],
+          "correct": 0,
+          "explanation": "PSR 100304 specifies that the Senior Staff Committee (Disciplinary) considers disciplinary cases and makes recommendations to the FCSC.",
+          "difficulty": "medium",
+          "chapter": "Chapter 10 – Disciplinary Committees",
+          "keywords": ["SSC", "disciplinary recommendations", "PSR 100304"]
+        },
+        {
+          "id": "psr_disc_014",
+          "question": "When an officer is found guilty of misconduct but not dismissed, which punishment may be applied?",
+          "options": [
+            "Reduction in rank",
+            "Dismissal",
+            "Termination",
+            "Interdiction"
+          ],
+          "correct": 0,
+          "explanation": "PSR 100310 lists punishments such as reduction in rank, withholding increment, or written warning when misconduct does not warrant dismissal.",
+          "difficulty": "medium",
+          "chapter": "Chapter 10 – Penalties",
+          "keywords": ["punishment", "reduction in rank", "PSR 100310"]
+        },
+        {
+          "id": "psr_disc_015",
+          "question": "An officer dismissed for serious misconduct loses all claims to:",
+          "options": [
+            "Leave allowance only",
+            "Salary and benefits from date of dismissal",
+            "Promotion only",
+            "Medical benefits only"
+          ],
+          "correct": 1,
+          "explanation": "PSR 100311 states that a dismissed officer forfeits all claims to remuneration and terminal benefits as from the date of dismissal.",
+          "difficulty": "easy",
+          "chapter": "Chapter 10 – Dismissal",
+          "keywords": ["dismissal", "forfeiture", "PSR 100311"]
+        },
+        {
+          "id": "psr_disc_016",
+          "question": "Where a disciplinary case has been pending for over six months without conclusion, the responsible authority must:",
+          "options": [
+            "Close the case automatically",
+            "Submit a progress report to the Head of Service",
+            "Dismiss the officer",
+            "Refer it to EFCC"
+          ],
+          "correct": 1,
+          "explanation": "PSR 100309 requires that where a case remains pending beyond six months, a progress report must be submitted to the Head of Service.",
+          "difficulty": "medium",
+          "chapter": "Chapter 10 – Disciplinary Procedure",
+          "keywords": ["progress report", "delay", "PSR 100309"]
+        },
+        {
+          "id": "psr_disc_017",
+          "question": "What punishment applies to an officer convicted by a court for a criminal offence involving dishonesty?",
+          "options": [
+            "Written warning",
+            "Termination of appointment",
+            "Dismissal from service",
+            "Reduction in rank"
+          ],
+          "correct": 2,
+          "explanation": "PSR 100312 provides that an officer convicted of a criminal offence involving dishonesty shall be dismissed from service.",
+          "difficulty": "medium",
+          "chapter": "Chapter 10 – Criminal Conviction",
+          "keywords": ["conviction", "dishonesty", "PSR 100312"]
+        },
+        {
+          "id": "psr_disc_018",
+          "question": "Which PSR rule provides that disciplinary action shall not commence unless the officer has been informed in writing of the charges?",
+          "options": ["PSR 100302", "PSR 100304", "PSR 100307", "PSR 100201"],
+          "correct": 0,
+          "explanation": "PSR 100302 mandates written communication of allegations before disciplinary action begins.",
+          "difficulty": "medium",
+          "chapter": "Chapter 10 – Procedure",
+          "keywords": ["written notice", "disciplinary charges", "PSR 100302"]
+        },
+        {
+          "id": "psr_disc_019",
+          "question": "In cases involving fraud, falsification, or dishonesty, which agency must be notified?",
+          "options": [
+            "Federal Character Commission",
+            "Office of the Auditor-General",
+            "Independent Corrupt Practices and Other Related Offences Commission (ICPC)",
+            "Bureau of Public Service Reforms"
+          ],
+          "correct": 2,
+          "explanation": "PSR 100307 directs Ministries to notify ICPC or relevant anti-corruption agencies when cases involve fraud or dishonesty.",
+          "difficulty": "medium",
+          "chapter": "Chapter 10 – Disciplinary Reporting",
+          "keywords": ["ICPC", "fraud", "reporting", "PSR 100307"]
+        },
+        {
+          "id": "psr_disc_020",
+          "question": "When is an officer deemed to have abandoned duty under PSR?",
+          "options": [
+            "After 1 week of absence",
+            "After 10 consecutive working days without permission",
+            "After 30 calendar days",
+            "After 48 hours without communication"
+          ],
+          "correct": 1,
+          "explanation": "PSR 100308 considers an officer absent without leave for 10 working days as having abandoned duty and liable to dismissal.",
+          "difficulty": "medium",
+          "chapter": "Chapter 10 – Absence",
+          "keywords": ["absence", "abandonment", "PSR 100308"]
+        },
+        {
+          "id": "psr_disc_021",
+          "question": "What happens when an officer under interdiction is found not guilty of the offence?",
+          "options": [
+            "The interdiction remains for record purposes",
+            "He is reinstated and unpaid salary refunded",
+            "He is compulsorily retired",
+            "The case file is closed without reinstatement"
+          ],
+          "correct": 1,
+          "explanation": "PSR 100305 states that if the officer is exonerated, he must be reinstated and the balance of salary refunded.",
+          "difficulty": "medium",
+          "chapter": "Chapter 10 – Interdiction",
+          "keywords": ["interdiction", "reinstatement", "PSR 100305"]
+        },
+        {
+          "id": "psr_disc_022",
+          "question": "Under PSR 2021, which action may be taken against an officer found guilty of misconduct but whose offence is not grave enough for dismissal?",
+          "options": [
+            "Written warning or deferment of increment",
+            "Immediate suspension",
+            "Termination with benefits",
+            "Dismissal without benefits"
+          ],
+          "correct": 0,
+          "explanation": "PSR 100310 provides that lesser punishments such as written warning, deferment or withholding of increment, or reduction in rank may apply.",
+          "difficulty": "medium",
+          "chapter": "Chapter 10 – Penalties",
+          "keywords": ["punishment", "warning", "increment", "PSR 100310"]
+        },
+        {
+          "id": "psr_disc_023",
+          "question": "Which PSR provision ensures an officer is given a fair hearing before any disciplinary action is taken?",
+          "options": ["PSR 100301", "PSR 100303", "PSR 100305", "PSR 100312"],
+          "correct": 1,
+          "explanation": "PSR 100303 guarantees an officer the right to a fair hearing consistent with Section 36 of the Constitution before disciplinary action.",
+          "difficulty": "medium",
+          "chapter": "Chapter 10 – Procedure",
+          "keywords": ["fair hearing", "disciplinary process", "PSR 100303"]
+        },
+        {
+          "id": "psr_disc_024",
+          "question": "When an officer is suspended, what proportion of salary is paid?",
+          "options": [
+            "None, suspension is without pay",
+            "Half pay",
+            "Full pay until conclusion",
+            "One-third pay"
+          ],
+          "correct": 0,
+          "explanation": "PSR 100306 states that suspension is normally without pay during the period of investigation for serious offences.",
+          "difficulty": "medium",
+          "chapter": "Chapter 10 – Suspension",
+          "keywords": ["suspension", "salary", "PSR 100306"]
+        },
+        {
+          "id": "psr_disc_025",
+          "question": "If an officer under suspension is acquitted, what should happen?",
+          "options": [
+            "Suspension remains valid",
+            "Officer is reinstated and full salary restored",
+            "Officer must appeal",
+            "Officer is compulsorily retired"
+          ],
+          "correct": 1,
+          "explanation": "PSR 100306(b) requires reinstatement and full payment of withheld emoluments if the officer is acquitted.",
+          "difficulty": "medium",
+          "chapter": "Chapter 10 – Suspension",
+          "keywords": ["acquittal", "reinstatement", "PSR 100306"]
+        },
+        {
+          "id": "psr_disc_026",
+          "question": "Under PSR, termination differs from dismissal because:",
+          "options": [
+            "Dismissal is honourable",
+            "Termination allows payment of benefits while dismissal forfeits them",
+            "Both have equal consequences",
+            "Termination applies to criminal offences"
+          ],
+          "correct": 1,
+          "explanation": "PSR 100311 distinguishes termination (with benefits) from dismissal (forfeiture of benefits and disqualification from re-employment).",
+          "difficulty": "medium",
+          "chapter": "Chapter 10 – Termination vs Dismissal",
+          "keywords": ["termination", "dismissal", "PSR 100311"]
+        },
+        {
+          "id": "psr_disc_027",
+          "question": "Which disciplinary measure can be imposed for persistent lateness or negligence not amounting to serious misconduct?",
+          "options": [
+            "Dismissal",
+            "Written warning",
+            "Suspension without pay",
+            "Demotion"
+          ],
+          "correct": 1,
+          "explanation": "PSR 100310 lists written warning as appropriate for minor cases of negligence or inefficiency.",
+          "difficulty": "easy",
+          "chapter": "Chapter 10 – Minor Penalties",
+          "keywords": ["lateness", "warning", "PSR 100310"]
+        },
+        {
+          "id": "psr_disc_028",
+          "question": "An officer may be dismissed without further disciplinary proceedings if:",
+          "options": [
+            "He is convicted by a court of law",
+            "He receives three queries in a year",
+            "His supervisor recommends it",
+            "He fails annual performance review"
+          ],
+          "correct": 0,
+          "explanation": "PSR 100312 allows dismissal without further proceedings after a criminal conviction involving dishonesty or moral turpitude.",
+          "difficulty": "medium",
+          "chapter": "Chapter 10 – Conviction",
+          "keywords": ["conviction", "dismissal", "PSR 100312"]
+        },
+        {
+          "id": "psr_disc_029",
+          "question": "Under PSR, who approves dismissal for officers on GL.07 and above?",
+          "options": [
+            "Head of Service",
+            "Federal Civil Service Commission",
+            "Permanent Secretary",
+            "President"
+          ],
+          "correct": 1,
+          "explanation": "PSR 100303 and 100304 designate the Federal Civil Service Commission as the approving authority for dismissal of senior officers.",
+          "difficulty": "medium",
+          "chapter": "Chapter 10 – Disciplinary Authority",
+          "keywords": ["dismissal approval", "FCSC", "PSR 100303"]
+        },
+        {
+          "id": "psr_disc_030",
+          "question": "Which committee handles disciplinary cases involving officers on GL.06 and below?",
+          "options": [
+            "Senior Staff Committee",
+            "Junior Staff Committee (Disciplinary)",
+            "Federal Civil Service Commission",
+            "Head of Service Disciplinary Board"
+          ],
+          "correct": 1,
+          "explanation": "PSR 100304 provides that the Junior Staff Committee (Disciplinary) handles disciplinary cases for officers on GL.06 and below.",
+          "difficulty": "easy",
+          "chapter": "Chapter 10 – Committees",
+          "keywords": ["Junior Staff Committee", "discipline", "PSR 100304"]
+        },
+        {
+          "id": "psr_disc_031",
+          "question": "How many days must elapse before an officer absent without leave is assumed to have abandoned duty?",
+          "options": [
+            "5 days",
+            "7 days",
+            "10 working days",
+            "14 calendar days"
+          ],
+          "correct": 2,
+          "explanation": "PSR 100308 specifies that an officer absent for 10 consecutive working days without permission is deemed to have abandoned duty.",
+          "difficulty": "medium",
+          "chapter": "Chapter 10 – Absence",
+          "keywords": ["absence", "abandonment", "PSR 100308"]
+        },
+        {
+          "id": "psr_disc_032",
+          "question": "Which PSR rule allows the use of video or electronic evidence in disciplinary proceedings?",
+          "options": ["PSR 100303", "PSR 100305", "PSR 100307", "PSR 100315"],
+          "correct": 3,
+          "explanation": "PSR 100315 introduces acceptance of electronic and video evidence in line with modern administrative justice standards.",
+          "difficulty": "hard",
+          "chapter": "Chapter 10 – Evidence",
+          "keywords": [
+            "electronic evidence",
+            "disciplinary procedure",
+            "PSR 100315"
+          ]
+        },
+        {
+          "id": "psr_disc_033",
+          "question": "Which rule empowers the Head of Service to direct reinstatement after an officer is cleared on appeal?",
+          "options": ["PSR 100316", "PSR 100312", "PSR 100304", "PSR 100309"],
+          "correct": 0,
+          "explanation": "PSR 100316 gives the Head of Service power to direct reinstatement after successful appeal or exoneration.",
+          "difficulty": "hard",
+          "chapter": "Chapter 10 – Appeals",
+          "keywords": ["reinstatement", "appeal", "PSR 100316"]
+        },
+        {
+          "id": "psr_disc_034",
+          "question": "What should happen to an officer's record after dismissal?",
+          "options": [
+            "Record is destroyed",
+            "Marked 'Dismissed' and retained for reference",
+            "Forwarded to civil registry",
+            "Erased after 5 years"
+          ],
+          "correct": 1,
+          "explanation": "PSR 100311(c) mandates that dismissed officers' records be marked accordingly and kept for administrative reference.",
+          "difficulty": "medium",
+          "chapter": "Chapter 10 – Records",
+          "keywords": ["dismissal record", "PSR 100311"]
+        },
+        {
+          "id": "psr_disc_035",
+          "question": "An officer under interdiction who takes up private employment before conclusion of his case commits:",
+          "options": [
+            "No offence if employed part-time",
+            "Serious misconduct",
+            "Minor misconduct",
+            "Conflict of interest only"
+          ],
+          "correct": 1,
+          "explanation": "PSR 100305(e) forbids taking up private employment while under interdiction; such act constitutes serious misconduct.",
+          "difficulty": "medium",
+          "chapter": "Chapter 10 – Interdiction",
+          "keywords": ["interdiction", "private employment", "PSR 100305"]
+        },
+        {
+          "id": "psr_disc_036",
+          "question": "Where a disciplinary decision is made in error or without due process, the PSR provides that:",
+          "options": [
+            "The decision stands as final",
+            "The FCSC may review and reverse it",
+            "The officer may not appeal",
+            "The Head of Service must approve it"
+          ],
+          "correct": 1,
+          "explanation": "PSR 100316 permits the FCSC to review and reverse any disciplinary decision made in error or without due process.",
+          "difficulty": "hard",
+          "chapter": "Chapter 10 – Review and Appeal",
+          "keywords": ["review", "due process", "PSR 100316"]
+        },
+        {
+          "id": "psr_disc_037",
+          "question": "What is the responsibility of Permanent Secretaries after disciplinary proceedings have been concluded?",
+          "options": [
+            "Archive the case file only",
+            "Forward copies of decisions to OHCSF and FCSC",
+            "Publicly announce the result",
+            "Destroy the officer's file"
+          ],
+          "correct": 1,
+          "explanation": "PSR 100314 mandates submission of disciplinary outcomes to OHCSF and FCSC for record and oversight.",
+          "difficulty": "medium",
+          "chapter": "Chapter 10 – Reporting",
+          "keywords": ["disciplinary outcome", "reporting", "PSR 100314"]
+        },
+        {
+          "id": "psr_disc_038",
+          "question": "Which PSR rule addresses the disciplinary process in parastatals and agencies?",
+          "options": ["PSR 100304", "PSR 170305", "PSR 100316", "PSR 020507"],
+          "correct": 1,
+          "explanation": "PSR 170305 aligns parastatal disciplinary procedure with Chapter 10 of PSR, requiring Board oversight and OHCSF notification.",
+          "difficulty": "hard",
+          "chapter": "Chapter 17 – Parastatals (linked)",
+          "keywords": ["parastatal discipline", "PSR 170305", "PSR Chapter 10"]
+        },
+        {
+          "id": "psr_disc_039",
+          "question": "If a dismissed officer later wins an appeal, which right is restored under PSR?",
+          "options": [
+            "Only gratuity",
+            "All rights, emoluments, and benefits as if never dismissed",
+            "No benefits restored",
+            "Half salary for the period"
+          ],
+          "correct": 1,
+          "explanation": "PSR 100316(b) provides that on successful appeal, the officer is entitled to all rights and benefits as if never dismissed.",
+          "difficulty": "hard",
+          "chapter": "Chapter 10 – Appeal Outcome",
+          "keywords": ["reinstatement", "appeal", "PSR 100316"]
+        },
+        {
+          "id": "psr_disc_040",
+          "question": "A disciplinary case against a deceased officer should be:",
+          "options": [
+            "Continued posthumously",
+            "Terminated immediately",
+            "Transferred to family for response",
+            "Handled by next of kin"
+          ],
+          "correct": 1,
+          "explanation": "PSR 100309(c) directs that disciplinary proceedings terminate upon the death of the officer.",
+          "difficulty": "medium",
+          "chapter": "Chapter 10 – Termination of Proceedings",
+          "keywords": ["death", "discipline termination", "PSR 100309"]
+        },
+        {
+          "id": "psr_disc_041",
+          "question": "If a disciplinary case leads to dismissal and the officer appeals unsuccessfully, can he be re-employed?",
+          "options": [
+            "Yes, after 5 years",
+            "Only with approval of the Federal Civil Service Commission",
+            "Automatically after appeal",
+            "Never under any circumstances"
+          ],
+          "correct": 1,
+          "explanation": "PSR 100316(d) permits re-employment of a dismissed officer only upon FCSC approval.",
+          "difficulty": "hard",
+          "chapter": "Chapter 10 – Re-employment",
+          "keywords": ["re-employment", "dismissed officer", "PSR 100316"]
+        },
+        {
+          "id": "psr_disc_042",
+          "question": "An officer on trial in court must be placed on what status pending judgment?",
+          "options": [
+            "Suspension or interdiction depending on gravity",
+            "Normal duty",
+            "Leave without pay",
+            "Probation"
+          ],
+          "correct": 0,
+          "explanation": "PSR 100305 and 100306 provide for interdiction or suspension pending court outcome depending on offence severity.",
+          "difficulty": "medium",
+          "chapter": "Chapter 10 – Pending Trial",
+          "keywords": ["court trial", "interdiction", "PSR 100305"]
+        },
+        {
+          "id": "psr_disc_043",
+          "question": "If an officer under investigation absconds, what disciplinary action applies?",
+          "options": [
+            "Case is suspended indefinitely",
+            "Officer is dismissed for desertion",
+            "Salary is stopped but investigation continues",
+            "Transferred to another department"
+          ],
+          "correct": 1,
+          "explanation": "PSR 100308 provides that absence without permission or abscondment equals desertion, leading to dismissal.",
+          "difficulty": "medium",
+          "chapter": "Chapter 10 – Absence",
+          "keywords": ["abscondment", "dismissal", "PSR 100308"]
+        },
+        {
+          "id": "psr_disc_044",
+          "question": "What must accompany all disciplinary proceedings records forwarded to the Commission?",
+          "options": [
+            "A covering memo only",
+            "A full set of evidence, minutes and recommendation",
+            "Only the query and reply",
+            "An oral briefing"
+          ],
+          "correct": 1,
+          "explanation": "PSR 100314 requires that disciplinary records forwarded to FCSC must include evidence, minutes and recommendations.",
+          "difficulty": "medium",
+          "chapter": "Chapter 10 – Documentation",
+          "keywords": ["records", "discipline", "PSR 100314"]
+        },
+        {
+          "id": "psr_disc_045",
+          "question": "When a disciplinary case involves financial loss to Government, the amount is:",
+          "options": [
+            "Written off automatically",
+            "Recovered from officer where culpability is proven",
+            "Shared between officers",
+            "Paid from Ministry's imprest"
+          ],
+          "correct": 1,
+          "explanation": "PSR 100307(b) directs recovery of any financial loss caused by an officer found culpable after disciplinary proceedings.",
+          "difficulty": "medium",
+          "chapter": "Chapter 10 – Recovery of Loss",
+          "keywords": ["financial loss", "recovery", "PSR 100307"]
+        },
+        {
+          "id": "psr_disc_046",
+          "question": "Under PSR, which penalty results in forfeiture of all pension and gratuity rights?",
+          "options": ["Termination", "Dismissal", "Suspension", "Retirement"],
+          "correct": 1,
+          "explanation": "PSR 100311(c) explicitly states dismissal results in forfeiture of all claims to terminal benefits.",
+          "difficulty": "easy",
+          "chapter": "Chapter 10 – Dismissal",
+          "keywords": ["dismissal", "forfeiture", "PSR 100311"]
+        },
+        {
+          "id": "psr_disc_047",
+          "question": "An officer who falsifies his age at entry into service commits:",
+          "options": [
+            "Minor misconduct",
+            "Serious misconduct punishable by dismissal",
+            "Misstatement requiring warning",
+            "Administrative error"
+          ],
+          "correct": 1,
+          "explanation": "PSR 100201(f) classifies falsification of records, including age, as serious misconduct punishable by dismissal.",
+          "difficulty": "easy",
+          "chapter": "Chapter 10 – Serious Misconduct",
+          "keywords": ["falsification", "age", "PSR 100201"]
+        },
+        {
+          "id": "psr_disc_048",
+          "question": "What is the purpose of maintaining disciplinary registers in Ministries?",
+          "options": [
+            "To track financial performance",
+            "To record staff disciplinary outcomes for reference and audit",
+            "For pension documentation",
+            "For staff promotion exams"
+          ],
+          "correct": 1,
+          "explanation": "PSR 100314 requires Ministries to maintain disciplinary registers for record, monitoring and audit purposes.",
+          "difficulty": "medium",
+          "chapter": "Chapter 10 – Records and Registers",
+          "keywords": ["disciplinary register", "record keeping", "PSR 100314"]
+        },
+        {
+          "id": "psr_disc_049",
+          "question": "Under PSR, which of the following may not appeal a disciplinary decision?",
+          "options": [
+            "Dismissed officer",
+            "Suspended officer",
+            "Officer found guilty but cautioned",
+            "Deceased officer's family"
+          ],
+          "correct": 3,
+          "explanation": "PSR 100316(a) allows appeals only by living officers; proceedings terminate upon death of the officer.",
+          "difficulty": "medium",
+          "chapter": "Chapter 10 – Appeals",
+          "keywords": ["appeal", "eligibility", "PSR 100316"]
+        },
+        {
+          "id": "psr_disc_050",
+          "question": "Under PSR 2021, what is the maximum timeline within which the Federal Civil Service Commission should conclude disciplinary cases referred to it?",
+          "options": [
+            "3 months",
+            "6 months",
+            "12 months",
+            "No specified period"
+          ],
+          "correct": 1,
+          "explanation": "PSR 100309(b) provides that FCSC should ensure disciplinary cases are concluded within six months from commencement.",
+          "difficulty": "hard",
+          "chapter": "Chapter 10 – Timelines",
+          "keywords": ["FCSC", "disciplinary timeline", "PSR 100309"]
+        }
+      ]
+    },
+    {
+      "name": "Leave, Absence & Holidays",
+      "description": "Covers types of leave, eligibility, computation, approval authority, and related conditions under PSR 2021 Chapter 12.",
+      "type": "subcategory",
+      "questions": [
+        {
+          "id": "psr_leave_001",
+          "question": "What is the minimum annual leave entitlement for officers on Grade Level 07 and above according to PSR 2021?",
+          "options": [
+            "21 working days",
+            "28 working days",
+            "30 calendar days",
+            "14 working days"
+          ],
+          "correct": 1,
+          "explanation": "PSR 120101 provides that officers on GL.07 and above are entitled to 28 working days annual leave in each leave year.",
+          "difficulty": "easy",
+          "chapter": "Chapter 12 – Annual Leave",
+          "keywords": ["annual leave", "GL.07", "PSR 120101"]
+        },
+        {
+          "id": "psr_leave_002",
+          "question": "How many working days of annual leave are officers on GL.06 and below entitled to?",
+          "options": [
+            "21 working days",
+            "14 working days",
+            "18 working days",
+            "30 calendar days"
+          ],
+          "correct": 0,
+          "explanation": "PSR 120101 specifies that officers on GL.06 and below are entitled to 21 working days annual leave each year.",
+          "difficulty": "easy",
+          "chapter": "Chapter 12 – Annual Leave",
+          "keywords": ["annual leave", "GL.06", "PSR 120101"]
+        },
+        {
+          "id": "psr_leave_003",
+          "question": "Leave year in the Federal Public Service is defined as:",
+          "options": [
+            "January to December",
+            "April to March",
+            "July to June",
+            "October to September"
+          ],
+          "correct": 0,
+          "explanation": "PSR 120102 defines the leave year as beginning on 1st January and ending on 31st December each year.",
+          "difficulty": "easy",
+          "chapter": "Chapter 12 – Annual Leave",
+          "keywords": ["leave year", "calendar", "PSR 120102"]
+        },
+        {
+          "id": "psr_leave_004",
+          "question": "Which PSR provision governs leave entitlement for officers who have not completed 12 months of continuous service?",
+          "options": ["PSR 120103", "PSR 120104", "PSR 120106", "PSR 120110"],
+          "correct": 1,
+          "explanation": "PSR 120104 states that officers who have not completed 12 months continuous service are entitled to leave proportionate to service rendered.",
+          "difficulty": "medium",
+          "chapter": "Chapter 12 – Leave Entitlement",
+          "keywords": ["pro rata leave", "first year", "PSR 120104"]
+        },
+        {
+          "id": "psr_leave_005",
+          "question": "How many days of annual leave may be deferred to the next leave year with proper approval?",
+          "options": [
+            "Not more than 10 days",
+            "Not more than 14 days",
+            "Not more than 21 days",
+            "Not more than 7 days"
+          ],
+          "correct": 1,
+          "explanation": "PSR 120105 allows a maximum of 14 days to be deferred to the next leave year with appropriate approval.",
+          "difficulty": "medium",
+          "chapter": "Chapter 12 – Leave Deferment",
+          "keywords": ["deferment", "carry over", "PSR 120105"]
+        },
+        {
+          "id": "psr_leave_006",
+          "question": "What is the minimum qualifying service before an officer can proceed on annual leave?",
+          "options": [
+            "6 months of continuous service",
+            "12 months of continuous service",
+            "18 months of continuous service",
+            "2 years of service"
+          ],
+          "correct": 1,
+          "explanation": "PSR 120103 requires an officer to complete a minimum of 12 months of continuous service before becoming eligible for annual leave.",
+          "difficulty": "easy",
+          "chapter": "Chapter 12 – Annual Leave",
+          "keywords": ["qualifying service", "annual leave", "PSR 120103"]
+        },
+        {
+          "id": "psr_leave_007",
+          "question": "Which authority may approve annual leave for officers on GL.13 and above?",
+          "options": [
+            "Head of Department",
+            "Permanent Secretary or Head of Extra-Ministerial Office",
+            "Director of Administration",
+            "Federal Civil Service Commission"
+          ],
+          "correct": 1,
+          "explanation": "PSR 120107 states that annual leave for officers on GL.13 and above shall be approved by the Permanent Secretary or Head of Extra-Ministerial Office.",
+          "difficulty": "medium",
+          "chapter": "Chapter 12 – Leave Approval",
+          "keywords": ["leave approval", "GL.13", "PSR 120107"]
+        },
+        {
+          "id": "psr_leave_008",
+          "question": "Officers who cannot be spared during the leave year may be granted how many days leave in lieu with monetary compensation?",
+          "options": [
+            "10 days maximum",
+            "14 days maximum",
+            "7 days maximum",
+            "21 days maximum"
+          ],
+          "correct": 1,
+          "explanation": "PSR 120106 allows officers who cannot be spared to take up to 14 days leave in lieu, with leave allowance paid in addition.",
+          "difficulty": "medium",
+          "chapter": "Chapter 12 – Leave in Lieu",
+          "keywords": ["leave in lieu", "compensation", "PSR 120106"]
+        },
+        {
+          "id": "psr_leave_009",
+          "question": "How is annual leave calculated in PSR 2021?",
+          "options": [
+            "On a monthly basis at 1/12th per month of service",
+            "Quarterly at 1/4th of total days",
+            "Randomly by department",
+            "Bi-annually based on supervisor's discretion"
+          ],
+          "correct": 0,
+          "explanation": "PSR 120104 provides that annual leave accrues monthly at the rate of one-twelfth of the total annual entitlement.",
+          "difficulty": "medium",
+          "chapter": "Chapter 12 – Leave Calculation",
+          "keywords": ["leave computation", "monthly accrual", "PSR 120104"]
+        },
+        {
+          "id": "psr_leave_010",
+          "question": "What is the leave allowance percentage payable on annual basic salary?",
+          "options": ["5%", "7.5%", "10%", "15%"],
+          "correct": 2,
+          "explanation": "PSR 120108 provides that leave allowance is 10% of annual basic salary, payable once a year to every officer proceeding on leave.",
+          "difficulty": "easy",
+          "chapter": "Chapter 12 – Leave Allowance",
+          "keywords": ["leave allowance", "10%", "PSR 120108"]
+        },
+        {
+          "id": "psr_leave_011",
+          "question": "What is the duration of maternity leave under PSR 2021?",
+          "options": ["8 weeks", "12 weeks", "16 weeks", "20 weeks"],
+          "correct": 2,
+          "explanation": "PSR 120201 states that female officers are entitled to 16 weeks maternity leave with full pay.",
+          "difficulty": "easy",
+          "chapter": "Chapter 12 – Maternity Leave",
+          "keywords": ["maternity leave", "16 weeks", "PSR 120201"]
+        },
+        {
+          "id": "psr_leave_012",
+          "question": "When does maternity leave normally commence?",
+          "options": [
+            "Immediately after delivery",
+            "At least 4 weeks before the expected date of delivery",
+            "At any time within pregnancy",
+            "After approval by husband"
+          ],
+          "correct": 1,
+          "explanation": "PSR 120201 provides that maternity leave begins 4 weeks before the expected date of delivery.",
+          "difficulty": "medium",
+          "chapter": "Chapter 12 – Maternity Leave",
+          "keywords": ["maternity leave", "pre-delivery", "PSR 120201"]
+        },
+        {
+          "id": "psr_leave_013",
+          "question": "What is the maximum number of maternity leaves a female officer can enjoy in her career?",
+          "options": ["Three times", "Four times", "Five times", "Unlimited"],
+          "correct": 1,
+          "explanation": "PSR 120201(b) limits maternity leave to a maximum of four times during an officer's career.",
+          "difficulty": "medium",
+          "chapter": "Chapter 12 – Maternity Leave",
+          "keywords": ["maternity leave limit", "PSR 120201"]
+        },
+        {
+          "id": "psr_leave_014",
+          "question": "What is the duration of paternity leave approved under PSR 2021?",
+          "options": [
+            "5 working days",
+            "7 working days",
+            "10 working days",
+            "14 working days"
+          ],
+          "correct": 2,
+          "explanation": "PSR 120202 provides that male officers are entitled to 10 working days paternity leave after the birth of a child.",
+          "difficulty": "easy",
+          "chapter": "Chapter 12 – Paternity Leave",
+          "keywords": ["paternity leave", "10 days", "PSR 120202"]
+        },
+        {
+          "id": "psr_leave_015",
+          "question": "How many days of casual leave may an officer be granted per year?",
+          "options": [
+            "5 working days",
+            "7 working days",
+            "10 working days",
+            "12 working days"
+          ],
+          "correct": 2,
+          "explanation": "PSR 120109 allows up to 10 working days of casual leave per year, not deductible from annual leave.",
+          "difficulty": "easy",
+          "chapter": "Chapter 12 – Casual Leave",
+          "keywords": ["casual leave", "10 days", "PSR 120109"]
+        },
+        {
+          "id": "psr_leave_016",
+          "question": "Which PSR rule provides for study leave with pay for officers undergoing approved courses relevant to their duties?",
+          "options": ["PSR 120206", "PSR 120207", "PSR 120208", "PSR 120211"],
+          "correct": 1,
+          "explanation": "PSR 120207 grants study leave with pay for approved courses relevant to the officer's duties and beneficial to the Service.",
+          "difficulty": "medium",
+          "chapter": "Chapter 12 – Study Leave",
+          "keywords": ["study leave", "with pay", "PSR 120207"]
+        },
+        {
+          "id": "psr_leave_017",
+          "question": "What is the maximum period for study leave with pay under PSR?",
+          "options": ["6 months", "12 months", "24 months", "36 months"],
+          "correct": 3,
+          "explanation": "PSR 120207(b) provides that study leave with pay shall not exceed 36 months at a stretch.",
+          "difficulty": "medium",
+          "chapter": "Chapter 12 – Study Leave",
+          "keywords": ["study leave duration", "PSR 120207"]
+        },
+        {
+          "id": "psr_leave_018",
+          "question": "Who must approve study leave with pay exceeding one year?",
+          "options": [
+            "Head of Department",
+            "Permanent Secretary or Head of Extra-Ministerial Office with FCSC approval",
+            "Director of Administration",
+            "Civil Service Commission alone"
+          ],
+          "correct": 1,
+          "explanation": "PSR 120207(c) requires FCSC approval for study leave with pay exceeding one year.",
+          "difficulty": "medium",
+          "chapter": "Chapter 12 – Study Leave Approval",
+          "keywords": ["study leave approval", "FCSC", "PSR 120207"]
+        },
+        {
+          "id": "psr_leave_019",
+          "question": "What is the consequence of failing to resume duty after expiration of approved leave?",
+          "options": [
+            "Extension of leave automatically",
+            "Loss of pay for excess days and possible disciplinary action",
+            "Written apology only",
+            "Dismissal automatically"
+          ],
+          "correct": 1,
+          "explanation": "PSR 120110 provides that failure to resume after leave results in loss of pay for the period and may attract disciplinary action.",
+          "difficulty": "medium",
+          "chapter": "Chapter 12 – Resumption",
+          "keywords": ["leave resumption", "absence", "PSR 120110"]
+        },
+        {
+          "id": "psr_leave_020",
+          "question": "How many months of sick leave with full pay are officers entitled to within any 12-month period?",
+          "options": ["3 months", "4 months", "6 months", "8 months"],
+          "correct": 2,
+          "explanation": "PSR 120203(a) provides six months sick leave with full pay within a 12-month period, extendable under medical advice.",
+          "difficulty": "medium",
+          "chapter": "Chapter 12 – Sick Leave",
+          "keywords": ["sick leave", "6 months", "PSR 120203"]
+        },
+        {
+          "id": "psr_leave_021",
+          "question": "What follows after six months of sick leave with full pay if the officer is still unfit?",
+          "options": [
+            "Compulsory retirement",
+            "Sick leave with half pay for further six months",
+            "Termination of appointment",
+            "Leave without pay"
+          ],
+          "correct": 1,
+          "explanation": "PSR 120203(b) allows an extension of six months with half pay if the officer remains unfit after the initial six months.",
+          "difficulty": "medium",
+          "chapter": "Chapter 12 – Sick Leave Extension",
+          "keywords": ["sick leave half pay", "PSR 120203"]
+        },
+        {
+          "id": "psr_leave_022",
+          "question": "What authority must certify an officer's illness before granting sick leave exceeding two days?",
+          "options": [
+            "Supervisor's note",
+            "A Government Medical Officer",
+            "Private hospital doctor",
+            "Permanent Secretary"
+          ],
+          "correct": 1,
+          "explanation": "PSR 120203(c) requires certification by a Government Medical Officer for sick leave beyond two working days.",
+          "difficulty": "easy",
+          "chapter": "Chapter 12 – Sick Leave Certification",
+          "keywords": ["medical officer", "certification", "PSR 120203"]
+        },
+        {
+          "id": "psr_leave_023",
+          "question": "Which PSR rule provides for pre-retirement leave?",
+          "options": ["PSR 120210", "PSR 120211", "PSR 120204", "PSR 120108"],
+          "correct": 1,
+          "explanation": "PSR 120211 grants pre-retirement leave of three months to officers retiring voluntarily or compulsorily.",
+          "difficulty": "medium",
+          "chapter": "Chapter 12 – Pre-retirement Leave",
+          "keywords": ["pre-retirement leave", "3 months", "PSR 120211"]
+        },
+        {
+          "id": "psr_leave_024",
+          "question": "Public holidays in the Federal Service are declared by which authority?",
+          "options": [
+            "The President of the Federal Republic of Nigeria",
+            "Permanent Secretary",
+            "National Assembly",
+            "Federal Civil Service Commission"
+          ],
+          "correct": 0,
+          "explanation": "PSR 120209 provides that public holidays are declared by the President of the Federal Republic of Nigeria.",
+          "difficulty": "easy",
+          "chapter": "Chapter 12 – Public Holidays",
+          "keywords": ["public holiday", "president", "PSR 120209"]
+        },
+        {
+          "id": "psr_leave_025",
+          "question": "Officers who are hospitalized while on annual leave are entitled to:",
+          "options": [
+            "Loss of leave days",
+            "Conversion of the affected period to sick leave",
+            "No adjustment",
+            "Double leave allowance"
+          ],
+          "correct": 1,
+          "explanation": "PSR 120203(e) provides that hospitalization during leave converts the affected period to sick leave upon certification.",
+          "difficulty": "medium",
+          "chapter": "Chapter 12 – Sick Leave Conversion",
+          "keywords": ["hospitalization", "conversion", "PSR 120203"]
+        },
+        {
+          "id": "psr_leave_026",
+          "question": "Under PSR 2021, how many times may an officer be granted study leave without pay?",
+          "options": [
+            "Once in a career",
+            "Twice in a career",
+            "Unlimited",
+            "Every 5 years"
+          ],
+          "correct": 0,
+          "explanation": "PSR 120208 restricts study leave without pay to once during an officer's career, unless otherwise approved by the Federal Civil Service Commission.",
+          "difficulty": "medium",
+          "chapter": "Chapter 12 – Study Leave",
+          "keywords": ["study leave", "without pay", "PSR 120208"]
+        },
+        {
+          "id": "psr_leave_027",
+          "question": "How long must an officer serve after returning from study leave with pay before applying for another?",
+          "options": ["One year", "Two years", "Three years", "Four years"],
+          "correct": 2,
+          "explanation": "PSR 120207(e) requires an officer to serve at least three years after resumption before being eligible for another study leave with pay.",
+          "difficulty": "medium",
+          "chapter": "Chapter 12 – Study Leave",
+          "keywords": ["study leave", "eligibility", "PSR 120207"]
+        },
+        {
+          "id": "psr_leave_028",
+          "question": "An officer who fails to resume duty after study leave without valid reason shall be treated as:",
+          "options": [
+            "On unpaid extension",
+            "To have resigned from the service",
+            "Suspended",
+            "Retired compulsorily"
+          ],
+          "correct": 1,
+          "explanation": "PSR 120208(b) provides that failure to resume after study leave without valid reason is deemed resignation from the Service.",
+          "difficulty": "medium",
+          "chapter": "Chapter 12 – Study Leave",
+          "keywords": ["study leave", "resignation", "PSR 120208"]
+        },
+        {
+          "id": "psr_leave_029",
+          "question": "Which rule specifies the treatment of unauthorized absence from duty?",
+          "options": ["PSR 120110", "PSR 100308", "PSR 120103", "PSR 120205"],
+          "correct": 1,
+          "explanation": "PSR 100308 (linked to Chapter 10) states that unauthorized absence for 10 consecutive working days constitutes abandonment of duty.",
+          "difficulty": "medium",
+          "chapter": "Chapter 12 – Absence from Duty",
+          "keywords": ["unauthorized absence", "abandonment", "PSR 100308"]
+        },
+        {
+          "id": "psr_leave_030",
+          "question": "What is the maximum period for leave on compassionate grounds under PSR?",
+          "options": [
+            "7 working days",
+            "10 working days",
+            "14 working days",
+            "21 working days"
+          ],
+          "correct": 2,
+          "explanation": "PSR 120205 provides that compassionate leave not exceeding 14 working days may be granted in deserving cases.",
+          "difficulty": "medium",
+          "chapter": "Chapter 12 – Compassionate Leave",
+          "keywords": ["compassionate leave", "PSR 120205"]
+        },
+        {
+          "id": "psr_leave_031",
+          "question": "Who approves sick leave exceeding 42 days?",
+          "options": [
+            "Permanent Secretary on advice of a Government Medical Board",
+            "Head of Department",
+            "Director of Administration",
+            "Federal Civil Service Commission"
+          ],
+          "correct": 0,
+          "explanation": "PSR 120203(d) requires approval of the Permanent Secretary based on recommendation from a Government Medical Board for sick leave exceeding 42 days.",
+          "difficulty": "medium",
+          "chapter": "Chapter 12 – Sick Leave Approval",
+          "keywords": ["sick leave", "medical board", "PSR 120203"]
+        },
+        {
+          "id": "psr_leave_032",
+          "question": "What should be done when a public holiday falls within an officer's approved annual leave period?",
+          "options": [
+            "The day is added to the leave period",
+            "The day counts as part of the leave",
+            "Leave must be postponed",
+            "Officer must report for duty on the holiday"
+          ],
+          "correct": 1,
+          "explanation": "PSR 120209(b) provides that public holidays occurring during annual leave count as part of the leave.",
+          "difficulty": "easy",
+          "chapter": "Chapter 12 – Public Holidays",
+          "keywords": ["public holiday", "leave overlap", "PSR 120209"]
+        },
+        {
+          "id": "psr_leave_033",
+          "question": "Officers on what category of leave are not entitled to leave allowance?",
+          "options": [
+            "Annual leave",
+            "Sick leave",
+            "Study leave with pay",
+            "Casual leave"
+          ],
+          "correct": 2,
+          "explanation": "PSR 120207(f) stipulates that officers on study leave with pay are not entitled to leave allowance during the period.",
+          "difficulty": "medium",
+          "chapter": "Chapter 12 – Leave Allowance",
+          "keywords": ["study leave", "leave allowance", "PSR 120207"]
+        },
+        {
+          "id": "psr_leave_034",
+          "question": "How many consecutive years may an officer defer annual leave before it is forfeited?",
+          "options": ["One year", "Two years", "Three years", "No limit"],
+          "correct": 1,
+          "explanation": "PSR 120105 allows deferment of leave for only one subsequent year; thereafter, unused leave is forfeited.",
+          "difficulty": "medium",
+          "chapter": "Chapter 12 – Leave Deferment",
+          "keywords": ["leave forfeiture", "PSR 120105"]
+        },
+        {
+          "id": "psr_leave_035",
+          "question": "Under PSR 2021, officers on GL.14 and above must obtain whose approval to travel abroad while on leave?",
+          "options": [
+            "Permanent Secretary",
+            "Head of the Civil Service of the Federation",
+            "Federal Civil Service Commission",
+            "Director of Administration"
+          ],
+          "correct": 1,
+          "explanation": "PSR 120107(c) requires officers on GL.14 and above to obtain clearance from the Head of the Civil Service of the Federation before travelling abroad while on leave.",
+          "difficulty": "medium",
+          "chapter": "Chapter 12 – Leave Travel Abroad",
+          "keywords": ["foreign travel", "leave approval", "PSR 120107"]
+        },
+        {
+          "id": "psr_leave_036",
+          "question": "An officer on approved study leave with pay who withdraws from the course without permission shall:",
+          "options": [
+            "Be warned only",
+            "Refund emoluments received during the leave",
+            "Apply for reinstatement",
+            "Lose promotion prospect"
+          ],
+          "correct": 1,
+          "explanation": "PSR 120207(g) requires refund of all emoluments by any officer who withdraws from an approved course without authorization.",
+          "difficulty": "medium",
+          "chapter": "Chapter 12 – Study Leave Withdrawal",
+          "keywords": ["study leave", "refund", "PSR 120207"]
+        },
+        {
+          "id": "psr_leave_037",
+          "question": "During pre-retirement leave, the officer is entitled to:",
+          "options": [
+            "Half pay",
+            "Full pay and benefits",
+            "No pay",
+            "Only basic salary"
+          ],
+          "correct": 1,
+          "explanation": "PSR 120211(b) provides that pre-retirement leave is with full pay and benefits.",
+          "difficulty": "easy",
+          "chapter": "Chapter 12 – Pre-retirement Leave",
+          "keywords": ["pre-retirement leave", "full pay", "PSR 120211"]
+        },
+        {
+          "id": "psr_leave_038",
+          "question": "What is the main difference between study leave with pay and without pay?",
+          "options": [
+            "Course relevance and financial entitlement",
+            "Length of service",
+            "Gender of the officer",
+            "Leave period only"
+          ],
+          "correct": 0,
+          "explanation": "PSR 120207 and 120208 distinguish between study leave with pay (for relevant approved courses) and without pay (for unrelated or self-sponsored study).",
+          "difficulty": "medium",
+          "chapter": "Chapter 12 – Study Leave",
+          "keywords": [
+            "study leave",
+            "with pay",
+            "without pay",
+            "PSR 120207",
+            "PSR 120208"
+          ]
+        },
+        {
+          "id": "psr_leave_039",
+          "question": "Who approves compassionate leave beyond 14 days?",
+          "options": [
+            "Head of Department",
+            "Permanent Secretary or Head of Extra-Ministerial Office",
+            "Head of the Civil Service of the Federation",
+            "Federal Civil Service Commission"
+          ],
+          "correct": 2,
+          "explanation": "PSR 120205(b) provides that compassionate leave exceeding 14 days requires approval of the Head of the Civil Service of the Federation.",
+          "difficulty": "medium",
+          "chapter": "Chapter 12 – Compassionate Leave",
+          "keywords": ["compassionate leave", "approval", "PSR 120205"]
+        },
+        {
+          "id": "psr_leave_040",
+          "question": "Which PSR provision deals with leave for officers posted to missions abroad?",
+          "options": ["PSR 120210", "PSR 130206", "PSR 120205", "PSR 120207"],
+          "correct": 1,
+          "explanation": "PSR 130206 governs leave for officers serving in Nigeria's missions abroad, applied in conjunction with Chapter 12.",
+          "difficulty": "hard",
+          "chapter": "Chapter 13 – Foreign Service Leave",
+          "keywords": ["foreign mission", "leave", "PSR 130206"]
+        },
+        {
+          "id": "psr_leave_041",
+          "question": "What should be attached to leave applications according to PSR?",
+          "options": [
+            "Passport photograph",
+            "Leave roster and duty relief arrangement",
+            "Health certificate",
+            "Salary statement"
+          ],
+          "correct": 1,
+          "explanation": "PSR 120107(d) requires officers to attach leave roster and duty relief arrangements to their leave applications.",
+          "difficulty": "medium",
+          "chapter": "Chapter 12 – Leave Procedure",
+          "keywords": ["leave application", "roster", "PSR 120107"]
+        },
+        {
+          "id": "psr_leave_042",
+          "question": "An officer who over-stays approved leave without permission commits:",
+          "options": [
+            "Serious misconduct",
+            "Minor misconduct",
+            "Absence with pay",
+            "Administrative oversight"
+          ],
+          "correct": 0,
+          "explanation": "PSR 120110 treats over-staying leave as serious misconduct punishable under disciplinary rules.",
+          "difficulty": "medium",
+          "chapter": "Chapter 12 – Leave Violation",
+          "keywords": ["overstay", "serious misconduct", "PSR 120110"]
+        },
+        {
+          "id": "psr_leave_043",
+          "question": "Can a nursing mother combine maternity leave with annual leave?",
+          "options": [
+            "Yes, with approval of Permanent Secretary",
+            "No, maternity leave must be taken separately",
+            "Only if she has twins",
+            "Only once in a career"
+          ],
+          "correct": 0,
+          "explanation": "PSR 120201(c) allows maternity leave to be combined with annual leave upon approval by the Permanent Secretary.",
+          "difficulty": "medium",
+          "chapter": "Chapter 12 – Maternity Leave",
+          "keywords": ["maternity leave", "combination", "PSR 120201"]
+        },
+        {
+          "id": "psr_leave_044",
+          "question": "If a public holiday is declared during pre-retirement leave, the officer:",
+          "options": [
+            "Receives additional leave days",
+            "Remains on leave as the day counts within it",
+            "Returns to duty for the holiday",
+            "Loses pay for that day"
+          ],
+          "correct": 1,
+          "explanation": "PSR 120209 clarifies that public holidays falling during any form of leave, including pre-retirement, count within the leave period.",
+          "difficulty": "easy",
+          "chapter": "Chapter 12 – Public Holidays",
+          "keywords": ["public holiday", "pre-retirement leave", "PSR 120209"]
+        },
+        {
+          "id": "psr_leave_045",
+          "question": "What is the consequence for an officer who overstays study leave without approval?",
+          "options": [
+            "Loss of salary only",
+            "Deemed to have resigned from the Service",
+            "Warning from supervisor",
+            "Automatic suspension"
+          ],
+          "correct": 1,
+          "explanation": "PSR 120208(c) provides that overstay beyond approved study leave period without approval is treated as resignation.",
+          "difficulty": "medium",
+          "chapter": "Chapter 12 – Study Leave",
+          "keywords": ["study leave", "overstay", "PSR 120208"]
+        },
+        {
+          "id": "psr_leave_046",
+          "question": "Officers granted paternity leave must apply within what period after the birth of a child?",
+          "options": [
+            "Within 3 months",
+            "Within 30 days",
+            "Within 14 days",
+            "Within 10 days"
+          ],
+          "correct": 2,
+          "explanation": "PSR 120202 provides that paternity leave applications must be made within 14 days of the child's birth.",
+          "difficulty": "medium",
+          "chapter": "Chapter 12 – Paternity Leave",
+          "keywords": ["paternity leave", "application period", "PSR 120202"]
+        }
+      ]
+    },
+    {
+      "name": "Allowances, Pay & Benefits",
+      "description": "Covers the rules on allowances, salary payment, acting appointment benefits, responsibility allowance, transport, overtime, and advances as provided in PSR 2021 Chapters 13–14.",
+      "type": "subcategory",
+      "questions": [
+        {
+          "id": "psr_allow_001",
+          "question": "What PSR provision governs payment of duty tour allowance?",
+          "options": ["PSR 130101", "PSR 130103", "PSR 140106", "PSR 130205"],
+          "correct": 0,
+          "explanation": "PSR 130101 defines duty tour allowance as payment to cover expenses incurred by an officer on official assignment away from duty station.",
+          "difficulty": "easy",
+          "chapter": "Chapter 13 – Duty Tour Allowance",
+          "keywords": ["duty tour", "allowance", "PSR 130101"]
+        }
+      ]
+    }
+  ]
 }
