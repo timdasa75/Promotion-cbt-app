@@ -96,8 +96,7 @@ export async function displayCategories(topic, onSelect) {
     try {
         // Load topic data to get categories
         // Determine base path dynamically
-        const basePath = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ?
-          '' : '/Promotion-cbt-app';
+        const basePath = window.location.hostname.includes('github.io') ? '/Promotion-cbt-app' : '';
         const response = await fetch(`${basePath}/data/${topic.file}`);
         const topicData = await response.json();
 
@@ -261,8 +260,7 @@ export async function selectTopic(topic) {
     try {
         // Load topic data to check if it has subcategories
         // Determine base path dynamically
-        const basePath = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ?
-          '' : '/Promotion-cbt-app';
+        const basePath = window.location.hostname.includes('github.io') ? '/Promotion-cbt-app' : '';
         const response = await fetch(`${basePath}/data/${topic.file}`);
         const topicData = await response.json();
 
