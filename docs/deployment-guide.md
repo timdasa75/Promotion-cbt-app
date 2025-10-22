@@ -114,6 +114,18 @@ If topics are not loading, check the browser console for errors. A common issue 
 
 For easier sharing, you can use a URL shortener service to create a more user-friendly link to your quiz application:
 
+### GitHub Pages Specific Issues
+
+If the app runs locally but not on GitHub Pages:
+
+1. **JavaScript modules**: GitHub Pages serves from a subdirectory (`/Promotion-cbt-app/`) which may affect relative paths. The `_config.yml` file has been configured with the correct `baseurl`.
+
+2. **Jekyll processing**: Added exclude rules to prevent Jekyll from processing static assets like JavaScript, CSS, and data files.
+
+3. **Browser caching**: After deployment, clear your browser cache or do a hard refresh (Ctrl+Shift+R) to ensure you're loading the latest version.
+
+4. **Check browser console**: If issues persist, open the browser developer tools (F12) and check the Console and Network tabs for specific error messages.
+
 1. Once your GitHub Pages site is live, copy the full URL:
    ```
    https://timdasa75.github.io/Promotion-cbt-app/
