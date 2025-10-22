@@ -64,7 +64,7 @@ function showTimeWarning(message) {
     if (timerDisplay) {
         timerDisplay.style.color = '#f44336'; // Red color for warning
         timerDisplay.style.fontWeight = 'bold';
-        
+
         // Create warning element
         let warningEl = document.getElementById('timeWarning');
         if (!warningEl) {
@@ -285,16 +285,8 @@ function selectOption(selectedIndex) {
         }
     });
 
-    // Enable next button and change its text to "Submit" when option is selected
+    // Update navigation to handle button state (text will be handled by updateNavigation)
     nextButton.disabled = false;
-    nextButton.textContent = 'Submit';
-    
-    // Don't show explanation in practice mode until user submits
-    const explanationDiv = document.getElementById('explanation');
-    if (explanationDiv) {
-        explanationDiv.classList.remove('show');
-    }
-    
     updateNavigation();
 }
 
@@ -342,7 +334,15 @@ function updateNavigation() {
         }
         
         nextButton.onclick = () => {
-            if (!nextButton.disabled) nextQuestion();
+            if (!nextButton.disabled) {
+                if (nextButton.textContent === 'Submit' && currentMode === 'practice') {
+                    // Call the submit logic which is already implemented in submitAnswer
+                    submitAnswer();
+                } else {
+                    // For all other cases, proceed to next question
+                    nextQuestion();
+                }
+            }
         };
     }
 
@@ -422,12 +422,13 @@ function nextQuestion() {
         // Mark that feedback has been shown for this question
         feedbackShown[currentQuestionIndex] = true;
         
-        // Update the button text via navigation update
+        // Update the button text to "Next" via navigation update
         updateNavigation();
-        return; // Don't proceed to next question yet
+        // Don't proceed to next question yet, just update the button
+        return;
     }
     
-    // For all other cases (including when feedback has been shown), proceed to next question
+    // For all other cases (when feedback has been shown), proceed to next question
     if (currentQuestionIndex < allQuestions.length - 1) {
         currentQuestionIndex++;
         showQuestion();
@@ -438,10 +439,10 @@ function nextQuestion() {
 
 // Submit current answer (can be called from app.js) - kept for compatibility but not used in UI
 function submitAnswer() {
-    // In practice mode, submitting shows feedback and explanation
+    // In practice mode, submitting shows feedback but doesn't advance to next question
     if (currentMode === 'practice') {
-        // Ensure an answer was selected
-        if (userAnswers[currentQuestionIndex] === undefined) return;
+        // Ensure an answer was selected and feedback hasn't been shown yet
+        if (userAnswers[currentQuestionIndex] === undefined || feedbackShown[currentQuestionIndex]) return;
         
         const question = allQuestions[currentQuestionIndex];
         const selectedIndex = userAnswers[currentQuestionIndex];
