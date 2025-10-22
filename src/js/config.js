@@ -1,7 +1,7 @@
 // Configuration object for the application
 const config = {
     // API endpoints or data file paths
-    dataPath: '/data',
+    dataPath: `${window.BASE_URL}/data`,
     
     // Quiz settings
     quiz: {
