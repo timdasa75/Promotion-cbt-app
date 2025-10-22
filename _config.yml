@@ -5,6 +5,8 @@ url: "https://timdasa75.github.io"
 
 # Exclude files from Jekyll processing
 exclude:
+  - js/
+  - css/
   - assets/
   - data/
   - src/
