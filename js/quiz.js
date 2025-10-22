@@ -12,7 +12,6 @@ let timer;
 let timeLeft = 0;
 let currentTopic = null;
 let currentMode = '';
-let feedbackShown = [];
 
 // DOM Elements
 const questionElement = document.getElementById('questionText');
@@ -139,8 +138,12 @@ function showQuestion() {
     // Handle explanation visibility based on mode
     const explanationDiv = document.getElementById('explanation');
     if (explanationDiv) {
+        // Don't clear explanation content when moving from question to question in practice mode
+        // Only clear if we're not in practice mode or if we're not viewing a question that's already been answered
+        if (currentMode !== 'practice' || userAnswers[currentQuestionIndex] === undefined || !feedbackShown[currentQuestionIndex]) {
+            explanationDiv.innerHTML = '';
+        }
         explanationDiv.classList.remove('show');
-        explanationDiv.innerHTML = '';
         
         // Hide explanation container in exam mode
         if (currentMode === 'exam') {
@@ -323,14 +326,16 @@ function updateNavigation() {
             if (!nextButton.disabled) showResults();
         };
     } else {
-        // For practice mode, set appropriate text based on whether answer has been selected
+        // For practice mode, set appropriate text based on whether answer has been selected and shown
         if (currentMode === 'practice') {
             if (userAnswers[currentQuestionIndex] === undefined) {
                 nextButton.textContent = 'Next';
-            } else {
-                // When answer is selected but no logic to track if submitted yet, default to Next
-                // We'll handle Submit vs Next in the selectOption and nextQuestion functions
+            } else if (!feedbackShown[currentQuestionIndex]) {
+                // Answer selected but feedback not shown yet - show Submit
                 nextButton.textContent = 'Submit';
+            } else {
+                // Answer selected and feedback shown - show Next
+                nextButton.textContent = 'Next';
             }
         } else {
             nextButton.textContent = 'Next';
@@ -407,14 +412,12 @@ function nextQuestion() {
             }
         });
         
-        // Show explanation after a short delay
-        setTimeout(() => {
-            showExplanation();
-            const explanationDiv = document.getElementById('explanation');
-            if (explanationDiv) {
-                explanationDiv.classList.add('show');
-            }
-        }, 300);
+        // Show explanation immediately
+        showExplanation();
+        const explanationDiv = document.getElementById('explanation');
+        if (explanationDiv) {
+            explanationDiv.classList.add('show');
+        }
         
         // Mark that feedback has been shown for this question
         feedbackShown[currentQuestionIndex] = true;
@@ -435,16 +438,50 @@ function nextQuestion() {
 
 // Submit current answer (can be called from app.js) - kept for compatibility but not used in UI
 function submitAnswer() {
-    // In practice mode, submitting simply advances to next question
-    // Ensure an answer was selected
-    if (userAnswers[currentQuestionIndex] === undefined) return;
-    // Show explanation if available, then move on
-    showExplanation();
-    // Auto-advance after a short delay to allow user to read explanation
-    setTimeout(() => {
+    // In practice mode, submitting shows feedback and explanation
+    if (currentMode === 'practice') {
+        // Ensure an answer was selected
+        if (userAnswers[currentQuestionIndex] === undefined) return;
+        
+        const question = allQuestions[currentQuestionIndex];
+        const selectedIndex = userAnswers[currentQuestionIndex];
+        const options = document.querySelectorAll('.option-btn');
+        
+        // Update UI to show correct/incorrect feedback
+        options.forEach((option, index) => {
+            option.classList.remove('selected', 'correct', 'incorrect');
+            
+            if (index === selectedIndex) {
+                option.classList.add('selected');
+                if (index === question.correct) {
+                    option.classList.add('correct');
+                } else {
+                    option.classList.add('incorrect');
+                }
+            }
+            
+            if (index === question.correct) {
+                option.classList.add('correct');
+            }
+        });
+        
+        // Show explanation immediately
+        showExplanation();
+        const explanationDiv = document.getElementById('explanation');
+        if (explanationDiv) {
+            explanationDiv.classList.add('show');
+        }
+        
+        // Mark that feedback has been shown for this question
+        feedbackShown[currentQuestionIndex] = true;
+        
+        // Update navigation to change button text to "Next"
+        updateNavigation();
+    } else {
+        // For other modes, advance to next question
         if (currentQuestionIndex < allQuestions.length - 1) nextQuestion();
         else showResults();
-    }, 800);
+    }
 }
 
 // Expose navigation functions for external wiring
