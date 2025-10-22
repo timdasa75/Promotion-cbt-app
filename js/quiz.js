@@ -602,7 +602,10 @@ export async function loadQuestions(topic, mode) {
         // Load questions for the topic
         let response, topicData;
         try {
-            response = await fetch(`/Promotion-cbt-app/data/${topic.file}`);
+            // Determine base path dynamically
+            const basePath = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ?
+              '' : '/Promotion-cbt-app';
+            response = await fetch(`${basePath}/data/${topic.file}`);
             if (!response.ok) throw new Error(`Failed to fetch ${topic.file}: ${response.status}`);
             topicData = await response.json();
             console.log('Loaded topic data:', topicData);

@@ -29,7 +29,10 @@ const quizDescription = document.getElementById('modeQuizDescription');
 async function loadData() {
     try {
         // Load topics
-        const response = await fetch('data/topics.json');
+        // Determine base path dynamically
+        const basePath = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ?
+          '' : '/Promotion-cbt-app';
+        const response = await fetch(`${basePath}/data/topics.json`);
         const data = await response.json();
         topics = data.topics || [];
 
@@ -90,7 +93,10 @@ async function loadQuestions() {
         quizContainer.innerHTML = '<div class="loading">Loading questions...</div>';
 
         // Load questions for the topic
-        const response = await fetch(`data/${currentTopic.file}`);
+        // Determine base path dynamically
+        const basePath = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ?
+          '' : '/Promotion-cbt-app';
+        const response = await fetch(`${basePath}/data/${currentTopic.file}`);
         const topicData = await response.json();
 
         // Process questions
