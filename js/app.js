@@ -2,7 +2,7 @@
 
 import { loadData } from './data.js';
 import { displayTopics, selectTopic, showScreen, showError } from './ui.js';
-import { loadQuestions, previousQuestion, nextQuestion, submitAnswer, currentMode } from './quiz.js';
+import { loadQuestions, currentMode } from './quiz.js';
 
 // Global variables
 let currentTopic = null;
@@ -45,11 +45,9 @@ if (reviewModeCard) {
     reviewModeCard.addEventListener('click', () => startQuiz('review'));
 }
 
-// Event listeners for navigation
-document.getElementById('prevBtn').addEventListener('click', previousQuestion);
-document.getElementById('actionBtn').addEventListener('click', nextQuestion);
-// Submit button removed from UI, but keeping function for compatibility
-// document.getElementById('submitAnswerBtn').addEventListener('click', submitAnswer);
+// Event listeners for navigation - now handled in quiz.js module
+// Previous button is handled in quiz.js
+// Submit and Next buttons are handled in quiz.js
 
 // Event listener for back button in mode selection screen
 const backToCategoryBtn = document.getElementById('backToCategoryBtn');
