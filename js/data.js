@@ -50,8 +50,8 @@ export async function getTopicQuestionCounts(topics) {
         topics.map(async (topic) => {
             try {
                 console.log(`Fetching data for topic ${topic.id} from file ${topic.file}`);
-                // Avoid double /data/ prefix issue
-                const filePath = topic.file.startsWith('data/') && window.BASE_URL === 'data/' ? topic.file : `${window.BASE_URL}${topic.file}`.replace('//', '/');
+                // Construct proper file path with correct slash handling
+                const filePath = window.BASE_URL.endsWith('/') || topic.file.startsWith('/') ? `${window.BASE_URL}${topic.file}` : `${window.BASE_URL}/${topic.file}`;
                 const response = await fetch(filePath);
                 const data = await response.json();
                 console.log(`Data for topic ${topic.id}:`, data);
@@ -91,8 +91,8 @@ export async function getTopicQuestionCounts(topics) {
 // Get question count for a specific topic and subcategory
 export async function getQuestionCountForSubcategory(topic, subcategoryId) {
   try {
-    // Avoid double /data/ prefix issue
-    const filePath = topic.file.startsWith('data/') && window.BASE_URL === 'data/' ? topic.file : `${window.BASE_URL}${topic.file}`.replace('//', '/');
+    // Construct proper file path with correct slash handling
+    const filePath = window.BASE_URL.endsWith('/') || topic.file.startsWith('/') ? `${window.BASE_URL}${topic.file}` : `${window.BASE_URL}/${topic.file}`;
     const response = await fetch(filePath);
     const data = await response.json();
 
@@ -121,8 +121,8 @@ export async function getQuestionCountForSubcategory(topic, subcategoryId) {
 // Get total question count for a topic
 export async function getTotalQuestionCountForTopic(topic) {
   try {
-    // Avoid double /data/ prefix issue
-    const filePath = topic.file.startsWith('data/') && window.BASE_URL === 'data/' ? topic.file : `${window.BASE_URL}${topic.file}`.replace('//', '/');
+    // Construct proper file path with correct slash handling
+    const filePath = window.BASE_URL.endsWith('/') || topic.file.startsWith('/') ? `${window.BASE_URL}${topic.file}` : `${window.BASE_URL}/${topic.file}`;
     const response = await fetch(filePath);
     const data = await response.json();
     let count = 0;
