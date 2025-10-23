@@ -137,13 +137,6 @@ function showQuestion() {
     // Handle explanation visibility based on mode
     const explanationDiv = document.getElementById('explanation');
     if (explanationDiv) {
-        // Don't clear explanation content when moving from question to question in practice mode
-        // Only clear if we're not in practice mode or if we're not viewing a question that's already been answered
-        if (currentMode !== 'practice' || userAnswers[currentQuestionIndex] === undefined || !feedbackShown[currentQuestionIndex]) {
-            explanationDiv.innerHTML = '';
-        }
-        explanationDiv.classList.remove('show');
-        
         // Hide explanation container in exam mode
         if (currentMode === 'exam') {
             explanationDiv.style.display = 'none';

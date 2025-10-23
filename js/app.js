@@ -47,7 +47,7 @@ if (reviewModeCard) {
 
 // Event listeners for navigation
 document.getElementById('prevBtn').addEventListener('click', previousQuestion);
-document.getElementById('nextBtn').addEventListener('click', nextQuestion);
+document.getElementById('actionBtn').addEventListener('click', nextQuestion);
 // Submit button removed from UI, but keeping function for compatibility
 // document.getElementById('submitAnswerBtn').addEventListener('click', submitAnswer);
 
