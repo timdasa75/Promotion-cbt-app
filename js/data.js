@@ -9,7 +9,7 @@ export async function loadData() {
     console.log("Loading topics...");
     // Load topics with proper encoding
     // Load data from JSON files - always use root path for GitHub Pages
-    const response = await fetch('/data/topics.json', {
+    const response = await fetch(`${window.BASE_URL}/data/topics.json`, {
       headers: {
         "Content-Type": "application/json; charset=utf-8",
       },
@@ -50,7 +50,7 @@ export async function getTopicQuestionCounts(topics) {
         topics.map(async (topic) => {
             try {
                 console.log(`Fetching data for topic ${topic.id} from file ${topic.file}`);
-                const response = await fetch(`/${topic.file}`);
+                const response = await fetch(`${window.BASE_URL}/${topic.file}`);
                 const data = await response.json();
                 console.log(`Data for topic ${topic.id}:`, data);
                 let count = 0;
@@ -89,7 +89,7 @@ export async function getTopicQuestionCounts(topics) {
 // Get question count for a specific topic and subcategory
 export async function getQuestionCountForSubcategory(topic, subcategoryId) {
   try {
-    const response = await fetch(`/${topic.file}`);
+    const response = await fetch(`${window.BASE_URL}/${topic.file}`);
     const data = await response.json();
 
     if (data.hasSubcategories && data.subcategories && Array.isArray(data.subcategories)) {
@@ -117,7 +117,7 @@ export async function getQuestionCountForSubcategory(topic, subcategoryId) {
 // Get total question count for a topic
 export async function getTotalQuestionCountForTopic(topic) {
   try {
-    const response = await fetch(`/${topic.file}`);
+    const response = await fetch(`${window.BASE_URL}/${topic.file}`);
     const data = await response.json();
     let count = 0;
     if (data.hasSubcategories && data.subcategories && Array.isArray(data.subcategories)) {
