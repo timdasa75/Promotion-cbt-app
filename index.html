@@ -8,14 +8,15 @@
       content="Directorate Levels Promotion CBT Practice Application"
     />
     <title>Directorate Levels Promotion CBT Practice</title>
-    <link rel="stylesheet" href="/Promotion-cbt-app/css/normalize.css">
-    <link rel="stylesheet" href="/Promotion-cbt-app/css/fonts.css">
-    <link rel="stylesheet" href="/Promotion-cbt-app/css/styles.css">
-    <link rel="icon" type="image/png" href="/Promotion-cbt-app/assets/icons/favicon.png">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/png" href="assets/icons/favicon.png">
   </head>
   <body>
     <script>
-        window.BASE_URL = "/Promotion-cbt-app";
+        // Detect if we're running locally or on GitHub Pages
+        window.BASE_URL = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost' ? '' : '/Promotion-cbt-app';
     </script>
     <div class="app-container">
       <!-- Topic Selection Screen -->
