@@ -577,19 +577,72 @@ function showResults() {
 
     const scorePercentage = Math.round((score / allQuestions.length) * 100);
     finalScore.textContent = `${scorePercentage}%`;
-    
-    // Set performance text
+
+    // Enhanced performance analysis
     let performanceMessage = '';
-    if (scorePercentage >= 80) {
+    let performanceClass = '';
+
+    if (scorePercentage >= 90) {
+        performanceMessage = 'Outstanding! You have mastered this topic exceptionally well.';
+        performanceClass = 'excellent';
+    } else if (scorePercentage >= 80) {
         performanceMessage = 'Excellent! You have a strong understanding of this topic.';
+        performanceClass = 'excellent';
+    } else if (scorePercentage >= 70) {
+        performanceMessage = 'Very Good! You have a solid grasp of the material.';
+        performanceClass = 'good';
     } else if (scorePercentage >= 60) {
-        performanceMessage = 'Good job! You have a good grasp of the material.';
+        performanceMessage = 'Good job! You have a good understanding of the key concepts.';
+        performanceClass = 'good';
+    } else if (scorePercentage >= 50) {
+        performanceMessage = 'Fair performance. Review the material and strengthen weak areas.';
+        performanceClass = 'average';
     } else if (scorePercentage >= 40) {
-        performanceMessage = 'Keep practicing! Review the material and try again.';
+        performanceMessage = 'Keep practicing! Focus on understanding the core concepts.';
+        performanceClass = 'average';
     } else {
-        performanceMessage = 'Consider reviewing the material before trying again.';
+        performanceMessage = 'This topic needs significant review. Consider studying the material more thoroughly.';
+        performanceClass = 'poor';
     }
+
     performanceText.textContent = performanceMessage;
+    performanceText.className = `performance ${performanceClass}`;
+
+    // Add detailed analytics
+    const analyticsDiv = document.getElementById('categoryBreakdown') || document.createElement('div');
+    analyticsDiv.id = 'categoryBreakdown';
+    analyticsDiv.innerHTML = `
+        <h3>📊 Performance Analysis</h3>
+        <div class="analytics-grid">
+            <div class="analytic-item">
+                <div class="analytic-value">${scorePercentage}%</div>
+                <div class="analytic-label">Overall Score</div>
+            </div>
+            <div class="analytic-item">
+                <div class="analytic-value">${correct}/${allQuestions.length}</div>
+                <div class="analytic-label">Correct Answers</div>
+            </div>
+            <div class="analytic-item">
+                <div class="analytic-value">${Math.round((correct/allQuestions.length) * 100)}%</div>
+                <div class="analytic-label">Accuracy Rate</div>
+            </div>
+            <div class="analytic-item">
+                <div class="analytic-value">${unanswered}</div>
+                <div class="analytic-label">Unanswered</div>
+            </div>
+        </div>
+        <div class="recommendation">
+            <strong>Recommendation:</strong> ${scorePercentage >= 70 ? 'You\'re ready for the next level!' : 'Consider reviewing this topic before advancing.'}
+        </div>
+    `;
+
+    // Insert analytics after stats if not already present
+    if (!document.getElementById('categoryBreakdown')) {
+        const statsDiv = document.getElementById('resultsStats');
+        if (statsDiv) {
+            statsDiv.parentNode.insertBefore(analyticsDiv, statsDiv.nextSibling);
+        }
+    }
     showScreen('resultsScreen');
 }
 
@@ -628,10 +681,20 @@ export async function loadQuestions(topic, mode) {
         let response, topicData;
         try {
             // Load questions for the topic with proper path construction
+            console.log('BASE_URL:', window.BASE_URL, 'topic.file:', topic.file);
             const filePath = window.BASE_URL.endsWith('/') || topic.file.startsWith('/') ? `${window.BASE_URL}${topic.file}` : `${window.BASE_URL}/${topic.file}`;
+            console.log('Constructed filePath:', filePath);
             response = await fetch(filePath);
             if (!response.ok) throw new Error(`Failed to fetch ${topic.file}: ${response.status}`);
-            topicData = await response.json();
+            const responseText = await response.text();
+            console.log('Response text length:', responseText.length);
+
+            // Check if response is HTML (error page) instead of JSON
+            if (responseText.trim().startsWith('<')) {
+                throw new Error(`Server returned HTML error page instead of JSON for ${topic.file}`);
+            }
+
+            topicData = JSON.parse(responseText);
             console.log('Loaded topic data:', topicData);
         } catch (fetchErr) {
             console.error('Fetch error:', fetchErr);
