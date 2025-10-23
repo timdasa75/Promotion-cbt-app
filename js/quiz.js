@@ -16,9 +16,8 @@ let currentMode = '';
 // DOM Elements
 const questionElement = document.getElementById('questionText');
 const optionsContainer = document.getElementById('optionsContainer');
-const nextButton = document.getElementById('nextBtn');
+const actionButton = document.getElementById('actionBtn');
 const prevButton = document.getElementById('prevBtn');
-const submitButton = document.getElementById('submitAnswerBtn');
 const progressBar = document.getElementById('progressFill');
 const questionCounter = document.getElementById('currentQ');
 const timerDisplay = document.getElementById('timeLeft');
@@ -293,66 +292,62 @@ function selectOption(selectedIndex) {
 
 // Update navigation buttons
 function updateNavigation() {
-    const nextButton = document.getElementById('nextBtn');
+    const actionButton = document.getElementById('actionBtn');
     const prevButton = document.getElementById('prevBtn');
-    if (!nextButton || !prevButton) return;
+    if (!actionButton || !prevButton) return;
     // Previous button
     prevButton.disabled = currentQuestionIndex === 0;
     prevButton.setAttribute('aria-disabled', prevButton.disabled);
     prevButton.title = prevButton.disabled ? 'No previous question' : 'Go to previous question';
     prevButton.textContent = 'Previous';
 
-    // Next button behavior
+    // Action button behavior
     if (currentMode === 'review' || currentMode === 'exam') {
-        // In exam mode, always enable next button once an answer is selected
-        // In review mode, next button is always enabled
-        nextButton.disabled = false;
+        // In exam mode, always enable action button once an answer is selected
+        // In review mode, action button is always enabled
+        actionButton.disabled = false;
     } else {
-        // In practice mode, disable next until an answer is selected
-        nextButton.disabled = userAnswers[currentQuestionIndex] === undefined;
+        // In practice mode, disable action until an answer is selected
+        actionButton.disabled = userAnswers[currentQuestionIndex] === undefined;
     }
-    nextButton.setAttribute('aria-disabled', nextButton.disabled);
+    actionButton.setAttribute('aria-disabled', actionButton.disabled);
 
     if (currentQuestionIndex === allQuestions.length - 1) {
-        nextButton.textContent = currentMode === 'review' ? 'End Review' : (currentMode === 'exam' ? 'Submit Exam' : 'Finish Quiz');
-        nextButton.onclick = () => {
-            if (!nextButton.disabled) showResults();
+        actionButton.textContent = currentMode === 'review' ? 'End Review' : (currentMode === 'exam' ? 'Submit Exam' : 'Finish Quiz');
+        actionButton.onclick = () => {
+            if (!actionButton.disabled) showResults();
         };
     } else {
         // For practice mode, set appropriate text based on whether answer has been selected and shown
         if (currentMode === 'practice') {
             if (userAnswers[currentQuestionIndex] === undefined) {
-                nextButton.textContent = 'Next';
+                actionButton.textContent = 'Next';
+                actionButton.onclick = () => {
+                    if (!actionButton.disabled) nextQuestion();
+                };
             } else if (!feedbackShown[currentQuestionIndex]) {
                 // Answer selected but feedback not shown yet - show Submit
-                nextButton.textContent = 'Submit';
+                actionButton.textContent = 'Submit';
+                actionButton.onclick = () => {
+                    if (!actionButton.disabled) handleSubmit();
+                };
             } else {
                 // Answer selected and feedback shown - show Next
-                nextButton.textContent = 'Next';
+                actionButton.textContent = 'Next';
+                actionButton.onclick = () => {
+                    if (!actionButton.disabled) nextQuestion();
+                };
             }
         } else {
-            nextButton.textContent = 'Next';
+            actionButton.textContent = 'Next';
+            actionButton.onclick = () => {
+                if (!actionButton.disabled) nextQuestion();
+            };
         }
-        
-        nextButton.onclick = () => {
-            if (!nextButton.disabled) {
-                if (nextButton.textContent === 'Submit' && currentMode === 'practice') {
-                    // In practice mode, when clicking "Submit", show feedback but don't advance to next question
-                    submitAnswer();
-                    // Update button text to "Next" after showing feedback
-                    setTimeout(() => {
-                        nextButton.textContent = 'Next';
-                    }, 100);
-                } else if (nextButton.textContent === 'Next') {
-                    // When button says "Next", proceed to next question
-                    nextQuestion();
-                }
-            }
-        };
     }
 
     // Keyboard support: Enter/Space on focused buttons
-    [prevButton, nextButton].forEach(btn => {
+    [prevButton, actionButton].forEach(btn => {
         btn.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
@@ -390,7 +385,13 @@ function updateProgress() {
 
 // Move to next question
 function nextQuestion() {
-    // For all cases except practice mode with unshown feedback, proceed to next question
+    // Clear explanation when moving to the next question
+    const explanationDiv = document.getElementById('explanation');
+    if (explanationDiv) {
+        explanationDiv.innerHTML = '';
+        explanationDiv.classList.remove('show');
+    }
+
     if (currentQuestionIndex < allQuestions.length - 1) {
         currentQuestionIndex++;
         showQuestion();
@@ -399,48 +400,55 @@ function nextQuestion() {
     }
 }
 
-// Submit current answer (can be called from app.js) - kept for compatibility but not used in UI
-function submitAnswer() {
-    // In practice mode, submitting shows feedback but doesn't advance to next question
-    if (currentMode === 'practice') {
-        // Ensure an answer was selected and feedback hasn't been shown yet
-        if (userAnswers[currentQuestionIndex] === undefined || feedbackShown[currentQuestionIndex]) return;
+// Handle submit action (show feedback and explanation)
+function handleSubmit() {
+    // Ensure an answer was selected and feedback hasn't been shown yet
+    if (userAnswers[currentQuestionIndex] === undefined || feedbackShown[currentQuestionIndex]) return;
+
+    const question = allQuestions[currentQuestionIndex];
+    const selectedIndex = userAnswers[currentQuestionIndex];
+    const options = document.querySelectorAll('.option-btn');
+
+    // Update UI to show correct/incorrect feedback
+    options.forEach((option, index) => {
+        option.classList.remove('selected', 'correct', 'incorrect');
         
-        const question = allQuestions[currentQuestionIndex];
-        const selectedIndex = userAnswers[currentQuestionIndex];
-        const options = document.querySelectorAll('.option-btn');
-        
-        // Update UI to show correct/incorrect feedback
-        options.forEach((option, index) => {
-            option.classList.remove('selected', 'correct', 'incorrect');
-            
-            if (index === selectedIndex) {
-                option.classList.add('selected');
-                if (index === question.correct) {
-                    option.classList.add('correct');
-                } else {
-                    option.classList.add('incorrect');
-                }
-            }
-            
+        if (index === selectedIndex) {
+            option.classList.add('selected');
             if (index === question.correct) {
                 option.classList.add('correct');
+            } else {
+                option.classList.add('incorrect');
             }
-        });
-        
-        // Show explanation immediately
-        showExplanation();
-        const explanationDiv = document.getElementById('explanation');
-        if (explanationDiv) {
-            explanationDiv.classList.add('show');
-            explanationDiv.style.display = 'block';
         }
         
-        // Mark that feedback has been shown for this question
-        feedbackShown[currentQuestionIndex] = true;
-        
-        // Update navigation to change button text to "Next"
-        updateNavigation();
+        if (index === question.correct) {
+            option.classList.add('correct');
+        }
+    });
+    
+    // Show explanation immediately
+    showExplanation();
+    const explanationDiv = document.getElementById('explanation');
+    if (explanationDiv) {
+        explanationDiv.classList.add('show');
+        explanationDiv.style.display = 'block';
+    }
+    
+    // Mark that feedback has been shown for this question
+    feedbackShown[currentQuestionIndex] = true;
+    
+    // Update navigation to change button text to "Next"
+    updateNavigation();
+}
+
+// Submit current answer (can be called from app.js) - kept for compatibility but not used in UI
+function submitAnswer() {
+    // This function is now primarily for external compatibility if needed,
+    // but the main submit logic is in handleSubmit for practice mode.
+    // For other modes, it still advances.
+    if (currentMode === 'practice') {
+        handleSubmit(); // Call the new submit handler
     } else {
         // For other modes, advance to next question
         if (currentQuestionIndex < allQuestions.length - 1) nextQuestion();
