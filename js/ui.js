@@ -94,8 +94,9 @@ export async function displayCategories(topic, onSelect) {
     categoryList.innerHTML = '<div class="loading">Loading categories...</div>';
 
     try {
-        // Load topic data to get categories
-        const response = await fetch(`data/${topic.file}`);
+        // Load topic data to get categories with proper path construction
+        const filePath = window.BASE_URL.endsWith('/') || topic.file.startsWith('/') ? `${window.BASE_URL}${topic.file}` : `${window.BASE_URL}/${topic.file}`;
+        const response = await fetch(filePath);
         const topicData = await response.json();
 
         categoryList.innerHTML = '';
@@ -256,8 +257,9 @@ export async function getTotalQuestionCount(topic) {
 // Select a topic and show category selection (then mode selection)
 export async function selectTopic(topic) {
     try {
-        // Load topic data to check if it has subcategories
-        const response = await fetch(`data/${topic.file}`);
+        // Load topic data to check if it has subcategories with proper path construction
+        const filePath = window.BASE_URL.endsWith('/') || topic.file.startsWith('/') ? `${window.BASE_URL}${topic.file}` : `${window.BASE_URL}/${topic.file}`;
+        const response = await fetch(filePath);
         const topicData = await response.json();
 
         // Check if the topic has subcategories

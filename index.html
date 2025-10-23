@@ -17,6 +17,10 @@
     <script>
         // Detect if we're running locally or on GitHub Pages
         window.BASE_URL = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost' ? '' : '/Promotion-cbt-app';
+        console.log('BASE_URL set to:', window.BASE_URL);
+        console.log('Hostname:', window.location.hostname);
+        console.log('Port:', window.location.port);
+        console.log('Protocol:', window.location.protocol);
     </script>
     <div class="app-container">
       <!-- Topic Selection Screen -->
