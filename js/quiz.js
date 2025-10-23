@@ -42,17 +42,27 @@ function startTimer() {
         timeLeft--;
         updateTimerDisplay();
 
-        // Add warning when time is running low (less than 5 minutes)
+        // Add warning when time is running low
         if (timeLeft === 300) { // 5 minutes
             showTimeWarning("5 minutes remaining!");
+        } else if (timeLeft === 180) { // 3 minutes
+            showTimeWarning("3 minutes remaining!");
         } else if (timeLeft === 60) { // 1 minute
             showTimeWarning("1 minute remaining!");
         } else if (timeLeft === 30) { // 30 seconds
             showTimeWarning("30 seconds remaining!");
+        } else if (timeLeft <= 10 && timeLeft > 0) { // Last 10 seconds
+            showTimeWarning(`${timeLeft} seconds remaining!`);
         }
 
         if (timeLeft <= 0) {
             clearInterval(timer);
+            // Auto-submit exam when time runs out
+            if (currentMode === 'exam') {
+                console.log('Exam time expired - auto-submitting');
+                // Calculate score for answered questions
+                calculateExamScore();
+            }
             showResults();
         }
     }, 1000);
@@ -62,8 +72,14 @@ function startTimer() {
 function showTimeWarning(message) {
     const timerDisplay = document.getElementById('timeLeft');
     if (timerDisplay) {
-        timerDisplay.style.color = '#f44336'; // Red color for warning
-        timerDisplay.style.fontWeight = 'bold';
+        // Make timer more urgent based on time remaining
+        if (timeLeft <= 60) {
+            timerDisplay.style.backgroundColor = '#dc3545'; // Red background for urgency
+            timerDisplay.style.animation = 'urgentPulse 0.5s infinite';
+        } else {
+            timerDisplay.style.color = '#f44336'; // Red color for warning
+            timerDisplay.style.fontWeight = 'bold';
+        }
 
         // Create warning element
         let warningEl = document.getElementById('timeWarning');
@@ -73,18 +89,22 @@ function showTimeWarning(message) {
             warningEl.style.position = 'fixed';
             warningEl.style.top = '60px';
             warningEl.style.right = '20px';
-            warningEl.style.backgroundColor = '#f44336';
+            warningEl.style.backgroundColor = timeLeft <= 60 ? '#dc3545' : '#ff9800';
             warningEl.style.color = 'white';
-            warningEl.style.padding = '10px 15px';
-            warningEl.style.borderRadius = '4px';
+            warningEl.style.padding = '15px 20px';
+            warningEl.style.borderRadius = '8px';
             warningEl.style.zIndex = '1000';
-            warningEl.style.boxShadow = '0 2px 10px rgba(0,0,0,0.3)';
+            warningEl.style.boxShadow = '0 4px 15px rgba(0,0,0,0.4)';
+            warningEl.style.fontSize = '1.1rem';
+            warningEl.style.fontWeight = 'bold';
+            warningEl.style.textAlign = 'center';
             document.body.appendChild(warningEl);
         }
-        
+
         warningEl.textContent = message;
-        
-        // Remove warning after 3 seconds
+
+        // Remove warning after appropriate time based on urgency
+        const warningDuration = timeLeft <= 60 ? 5000 : 3000;
         setTimeout(() => {
             if (warningEl && warningEl.parentNode) {
                 warningEl.parentNode.removeChild(warningEl);
@@ -93,8 +113,10 @@ function showTimeWarning(message) {
             if (timerDisplay) {
                 timerDisplay.style.color = '';
                 timerDisplay.style.fontWeight = '';
+                timerDisplay.style.backgroundColor = currentMode === 'exam' ? '#dc3545' : '';
+                timerDisplay.style.animation = timeLeft <= 60 ? 'urgentPulse 0.5s infinite' : '';
             }
-        }, 3000);
+        }, warningDuration);
     }
 }
 
@@ -298,10 +320,19 @@ function updateNavigation() {
     prevButton.title = prevButton.disabled ? 'No previous question' : 'Go to previous question';
     prevButton.textContent = 'Previous';
 
-    if (currentMode === 'review' || currentMode === 'exam') {
-        // In exam mode, always enable next button once an answer is selected
+    if (currentMode === 'review') {
         // In review mode, next button is always enabled
         nextButton.disabled = false;
+        submitButton.style.display = 'none';
+        nextButton.style.display = 'inline-flex';
+    } else if (currentMode === 'exam') {
+        // In exam mode, disable previous button after answering to prevent going back
+        prevButton.disabled = userAnswers[currentQuestionIndex] !== undefined || currentQuestionIndex === 0;
+        prevButton.setAttribute('aria-disabled', prevButton.disabled);
+        prevButton.title = prevButton.disabled ? 'Cannot go back after answering' : 'Go to previous question';
+
+        // Enable next button once an answer is selected
+        nextButton.disabled = userAnswers[currentQuestionIndex] === undefined;
         submitButton.style.display = 'none';
         nextButton.style.display = 'inline-flex';
     } else {
@@ -481,6 +512,17 @@ function previousQuestion() {
         // Update navigation after moving to previous question
         updateNavigation();
     }
+}
+
+// Calculate exam score when time runs out
+function calculateExamScore() {
+    score = 0;
+    for (let i = 0; i < allQuestions.length; i++) {
+        if (userAnswers[i] !== undefined && userAnswers[i] === allQuestions[i].correct) {
+            score++;
+        }
+    }
+    console.log('Exam auto-submitted. Final score:', score, 'out of', allQuestions.length);
 }
 
 // Show explanation for the current question
@@ -675,19 +717,23 @@ function initializeQuiz() {
 
     // Set up timer if in exam mode
     if (currentMode === 'exam') {
-        // Set 45 seconds per question for exam mode
-        timeLeft = allQuestions.length * 45; 
+        // Set 45 seconds per question for exam mode (total exam time)
+        timeLeft = allQuestions.length * 45;
         startTimer();
-        
-        // Show exam mode specific UI
+
+        // Show and style exam mode specific UI
         const timerDisplay = document.getElementById('timerDisplay');
         if (timerDisplay) {
             timerDisplay.classList.remove('hidden');
+            timerDisplay.style.backgroundColor = '#dc3545'; // Red background for urgency
+            timerDisplay.style.color = 'white';
+            timerDisplay.style.fontWeight = 'bold';
+            timerDisplay.style.fontSize = '1.2rem';
         }
     } else {
         timeLeft = 0;
         updateTimerDisplay();
-        
+
         // Hide timer for non-exam modes
         const timerDisplay = document.getElementById('timerDisplay');
         if (timerDisplay) {

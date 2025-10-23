@@ -656,6 +656,12 @@ body::before {
     100% { transform: scale(1); }
 }
 
+@keyframes urgentPulse {
+    0% { transform: scale(1); background-color: #dc3545; }
+    50% { transform: scale(1.1); background-color: #c82333; }
+    100% { transform: scale(1); background-color: #dc3545; }
+}
+
 .results {
     text-align: center;
     padding: 20px;
