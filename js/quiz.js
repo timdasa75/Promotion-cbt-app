@@ -220,8 +220,9 @@ function showQuestion() {
                 const explanationDiv = document.getElementById('explanation');
                 if (explanationDiv) {
                     explanationDiv.classList.add('show');
+                    explanationDiv.style.display = 'block';
                 }
-            }, 300);
+            }, 100);
         }
     } else {
         optionsContainer.innerHTML = '<div class="error-message">No options found for this question.</div>';
@@ -337,10 +338,13 @@ function updateNavigation() {
             if (!nextButton.disabled) {
                 if (nextButton.textContent === 'Submit' && currentMode === 'practice') {
                     // In practice mode, when clicking "Submit", show feedback but don't advance to next question
-                    // Call the submit logic which shows feedback
                     submitAnswer();
-                } else {
-                    // For all other cases (including when button says "Next"), proceed to next question
+                    // Update button text to "Next" after showing feedback
+                    setTimeout(() => {
+                        nextButton.textContent = 'Next';
+                    }, 100);
+                } else if (nextButton.textContent === 'Next') {
+                    // When button says "Next", proceed to next question
                     nextQuestion();
                 }
             }
@@ -429,6 +433,7 @@ function submitAnswer() {
         const explanationDiv = document.getElementById('explanation');
         if (explanationDiv) {
             explanationDiv.classList.add('show');
+            explanationDiv.style.display = 'block';
         }
         
         // Mark that feedback has been shown for this question
