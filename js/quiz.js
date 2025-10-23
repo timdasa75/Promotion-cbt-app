@@ -560,8 +560,9 @@ export async function loadQuestions(topic, mode) {
         // Load questions for the topic
         let response, topicData;
         try {
-            // Load questions for the topic
-            response = await fetch(`data/${topic.file}`);
+            // Load questions for the topic with proper path construction
+            const filePath = window.BASE_URL.endsWith('/') || topic.file.startsWith('/') ? `${window.BASE_URL}${topic.file}` : `${window.BASE_URL}/${topic.file}`;
+            response = await fetch(filePath);
             if (!response.ok) throw new Error(`Failed to fetch ${topic.file}: ${response.status}`);
             topicData = await response.json();
             console.log('Loaded topic data:', topicData);
