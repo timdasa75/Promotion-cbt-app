@@ -223,7 +223,7 @@ function showQuestion() {
         optionsContainer.innerHTML = '<div class="error-message">No options found for this question.</div>';
     }
 
-    // Update navigation
+    // Update navigation and progress
     updateNavigation();
     updateProgress();
 }
@@ -349,6 +349,11 @@ function updateNavigation() {
         };
     }
 
+    // Add click event listeners for navigation buttons
+    prevButton.onclick = () => {
+        if (!prevButton.disabled) previousQuestion();
+    };
+
     // Keyboard support: Enter/Space on focused buttons
     [prevButton, submitButton, nextButton].forEach(btn => {
         btn.addEventListener('keydown', (e) => {
@@ -398,6 +403,8 @@ function nextQuestion() {
     if (currentQuestionIndex < allQuestions.length - 1) {
         currentQuestionIndex++;
         showQuestion();
+        // Update navigation after moving to next question
+        updateNavigation();
     } else {
         showResults();
     }
@@ -471,6 +478,8 @@ function previousQuestion() {
     if (currentQuestionIndex > 0) {
         currentQuestionIndex--;
         showQuestion();
+        // Update navigation after moving to previous question
+        updateNavigation();
     }
 }
 
