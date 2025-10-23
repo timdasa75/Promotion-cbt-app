@@ -738,6 +738,10 @@ body::before {
     max-width: 140px; /* Reduced max-width for more compact layout */
 }
 
+.quiz-nav-buttons .btn[style*="display: none"] {
+    display: none !important;
+}
+
 .quiz-nav-buttons .btn:first-child {
     order: 1;
 }
