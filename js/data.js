@@ -9,7 +9,9 @@ export async function loadData() {
     console.log("Loading topics...");
     // Load topics with proper encoding
     // Load data from JSON files - use dynamic BASE_URL for both local and GitHub Pages
-    const response = await fetch(`${window.BASE_URL}/data/topics.json`, {
+    // Fix double /data/ prefix issue
+    const topicsPath = window.BASE_URL === '/Promotion-cbt-app' ? '/Promotion-cbt-app/data/topics.json' : '/data/topics.json';
+    const response = await fetch(topicsPath, {
       headers: {
         "Content-Type": "application/json; charset=utf-8",
       },
@@ -91,8 +93,8 @@ export async function getTopicQuestionCounts(topics) {
 // Get question count for a specific topic and subcategory
 export async function getQuestionCountForSubcategory(topic, subcategoryId) {
   try {
-    // Construct proper file path with correct slash handling
-    const filePath = window.BASE_URL.endsWith('/') || topic.file.startsWith('/') ? `${window.BASE_URL}${topic.file}` : `${window.BASE_URL}/${topic.file}`;
+    // Fix double /data/ prefix issue
+    const filePath = topic.file.startsWith('data/') ? `/${topic.file}` : `${window.BASE_URL}/${topic.file}`;
     const response = await fetch(filePath);
     const data = await response.json();
 

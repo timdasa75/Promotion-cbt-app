@@ -788,19 +788,30 @@ function initializeQuiz() {
         const timerDisplay = document.getElementById('timerDisplay');
         if (timerDisplay) {
             timerDisplay.classList.remove('hidden');
+            timerDisplay.style.display = 'block'; // Ensure timer is visible
             timerDisplay.style.backgroundColor = '#dc3545'; // Red background for urgency
             timerDisplay.style.color = 'white';
             timerDisplay.style.fontWeight = 'bold';
             timerDisplay.style.fontSize = '1.2rem';
+            timerDisplay.style.padding = '10px 15px';
+            timerDisplay.style.borderRadius = '8px';
+            timerDisplay.style.position = 'fixed';
+            timerDisplay.style.top = '20px';
+            timerDisplay.style.right = '20px';
+            timerDisplay.style.zIndex = '1000';
+            timerDisplay.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.3)';
+            timerDisplay.style.animation = 'urgentPulse 1s infinite'; // Add pulsing animation
         }
     } else {
         timeLeft = 0;
         updateTimerDisplay();
-
+        
         // Hide timer for non-exam modes
         const timerDisplay = document.getElementById('timerDisplay');
         if (timerDisplay) {
             timerDisplay.classList.add('hidden');
+            timerDisplay.style.display = 'none'; // Ensure timer is hidden
+            timerDisplay.style.animation = ''; // Remove animation
         }
     }
 
