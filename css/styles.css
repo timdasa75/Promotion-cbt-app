@@ -516,6 +516,9 @@ body::before {
     top: 50%;
     transform: translateY(-50%);
     font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .section-title::after {
@@ -532,7 +535,7 @@ body::before {
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 15px;
     margin-bottom: 20px;
 }
@@ -545,7 +548,7 @@ body::before {
 }
 
 .mode-selector .mode-card {
-    min-width: 200px;
+    min-width: 180px; /* Reduced to allow more flexible layout */
 }
 
 .card,
@@ -888,8 +891,8 @@ body::before {
 .quiz-content-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 15px;
-    margin-bottom: 15px;
+    gap: 12px; /* More compact gap */
+    margin-bottom: 12px; /* More compact margin */
     justify-items: center; /* Center all grid items */
     align-items: start; /* Align items to start but keep horizontal centering */
 }
@@ -897,9 +900,9 @@ body::before {
 .quiz-main-column {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px; /* More compact gap */
     overflow-y: auto;
-    padding-right: 8px;
+    padding-right: 6px; /* More compact padding */
     align-items: center; /* Center items horizontally */
     width: 100%;
 }
@@ -930,7 +933,7 @@ body::before {
     display: flex;
     flex-direction: column;
     overflow-y: auto;
-    padding-left: 8px;
+    padding-left: 6px; /* More compact padding */
     align-items: center; /* Center items horizontally */
     width: 100%;
 }
@@ -1045,11 +1048,11 @@ body::before {
         font-size: 1.1rem;
     }
     .header {
-        padding: 20px 18px; /* More compact padding */
-        margin-bottom: 18px; /* More compact margin */
+        padding: 18px 16px; /* Even more compact padding */
+        margin-bottom: 15px; /* Even more compact margin */
     }
     .header h1 {
-        font-size: 1.5rem; /* More compact font size */
+        font-size: 1.4rem; /* Even more compact font size */
     }
 }
 
@@ -1062,11 +1065,11 @@ body::before {
         min-height: 500px;
     }
     .header {
-        padding: 22px 20px; /* More compact padding */
-        margin-bottom: 20px; /* More compact margin */
+        padding: 20px 18px; /* Even more compact padding */
+        margin-bottom: 18px; /* Even more compact margin */
     }
     .header h1 {
-        font-size: 1.6rem; /* More compact font size */
+        font-size: 1.5rem; /* Even more compact font size */
     }
 }
 
