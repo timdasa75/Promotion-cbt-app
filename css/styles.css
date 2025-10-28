@@ -624,6 +624,9 @@ body::before {
 }
 
 .question-text-fullwidth {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 15px;
     font-size: 1rem;
     line-height: 1.5;
     color: #1a4d1a;
@@ -643,6 +646,17 @@ body::before {
     border: 1px solid rgba(0, 135, 81, 0.1);
     margin-bottom: 10px;
     width: 100%;
+}
+
+.question-number-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.question-text-container {
+    display: flex;
+    align-items: center;
 }
 
 .options-grid {

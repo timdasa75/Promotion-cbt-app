@@ -190,7 +190,14 @@ function showQuestion() {
   // Make sure quiz screen is visible
   quizScreen.classList.remove("hidden");
   quizScreen.classList.add("active");
-  questionElement.innerHTML = `<span class="question-number">${currentQuestionIndex + 1}</span> ${parseMarkdown(question.question)}`;
+  questionElement.innerHTML = `
+    <div class="question-number-container">
+      <span class="question-number">${currentQuestionIndex + 1}</span>
+    </div>
+    <div class="question-text-container">
+      ${parseMarkdown(question.question)}
+    </div>
+  `;
 
   // Clear previous options
   optionsContainer.innerHTML = "";
