@@ -438,9 +438,9 @@ body::before {
     border: 2px solid rgba(0, 135, 81, 0.2);
     backdrop-filter: blur(15px);
     transition: var(--transition-bounce);
-    width: 95%; /* Nearly fixed but allows some flexibility */
+    width: 100%; /* Full width within container */
     min-height: 500px; /* Fixed minimum height */
-    max-width: 800px; /* Maximum width constraint */
+    max-width: 700px; /* Match header container max-width */
     margin-left: auto;
     margin-right: auto;
     position: relative;
@@ -1037,8 +1037,9 @@ body::before {
         max-width: 90%;
     }
     .quiz-card {
-        width: 85%;
+        width: 100%; /* Full width within container */
         min-height: 500px;
+        max-width: 700px; /* Match header container max-width */
     }
     .quiz-content-grid {
         grid-template-columns: 2fr 1fr;
@@ -1058,11 +1059,12 @@ body::before {
 
 @media (min-width: 992px) {
     .container {
-        max-width: 800px;
+        max-width: 700px; /* Match header container max-width */
     }
     .quiz-card {
-        width: 800px;
+        width: 100%; /* Full width within container */
         min-height: 500px;
+        max-width: 700px; /* Match header container max-width */
     }
     .header {
         padding: 20px 18px; /* Even more compact padding */
