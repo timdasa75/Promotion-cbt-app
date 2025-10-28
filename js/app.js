@@ -2,7 +2,7 @@
 
 import { loadData } from './data.js';
 import { displayTopics, selectTopic, showScreen, showError } from './ui.js';
-import { loadQuestions, currentMode } from './quiz.js';
+import { loadQuestions, setCurrentTopic, setCurrentMode, currentMode, getCurrentMode } from './quiz.js';
 
 // Global variables
 let currentTopic = null;
@@ -11,14 +11,14 @@ let currentTopic = null;
 async function init() {
     try {
         console.log('Initializing app...');
-        const topics = await loadData();
-        console.log('Loaded topics:', topics);
-        if (!topics || topics.length === 0) {
+        const topicsData = await loadData(); // Renamed to avoid conflict with imported topics
+        console.log('Loaded topics:', topicsData);
+        if (!topicsData || topicsData.length === 0) {
             console.error('No topics loaded');
             showError('No topics available. Please check data files.');
             return;
         }
-        await displayTopics(topics, handleTopicSelect);
+        await displayTopics(topicsData, handleTopicSelect);
         console.log('Displayed topics');
     } catch (error) {
         console.error('Error initializing app:', error);
@@ -26,6 +26,28 @@ async function init() {
     }
 }
 
+// Handle topic selection from UI
+async function handleTopicSelect(topic) {
+    currentTopic = topic;
+    setCurrentTopic(topic); // Update currentTopic in quiz.js module
+
+    // Call the ui.js selectTopic function which handles categories properly
+    await selectTopic(topic);
+
+    // Attach event listeners for mode cards after modeSelectionScreen is likely shown
+    // This needs to be done dynamically because the elements might not exist on initial DOMContentLoaded
+    document.getElementById('practiceModeCard').onclick = () => startQuiz('practice');
+    document.getElementById('examModeCard').onclick = () => startQuiz('exam');
+    document.getElementById('reviewModeCard').onclick = () => startQuiz('review');
+
+    // Ensure quiz title and description are updated for mode selection screen
+    const quizTitle = document.getElementById('modeQuizTitle');
+    const quizDescription = document.getElementById('modeQuizDescription');
+    const selectedTopicName = document.getElementById('selectedTopicName');
+    if (quizTitle) quizTitle.textContent = topic.name;
+    if (quizDescription) quizDescription.textContent = topic.description;
+    if (selectedTopicName) selectedTopicName.textContent = topic.name;
+}
 
 // Start the quiz with selected mode
 function startQuiz(mode) {
@@ -33,38 +55,8 @@ function startQuiz(mode) {
         showError('No topic selected.');
         return;
     }
-    loadQuestions(currentTopic, mode);
-}
-
-
-// Event listeners for mode selection
-document.getElementById('practiceModeCard').addEventListener('click', () => startQuiz('practice'));
-document.getElementById('examModeCard').addEventListener('click', () => startQuiz('exam'));
-const reviewModeCard = document.getElementById('reviewModeCard');
-if (reviewModeCard) {
-    reviewModeCard.addEventListener('click', () => startQuiz('review'));
-}
-
-// Event listeners for navigation - now handled in quiz.js module
-// Previous button is handled in quiz.js
-// Submit and Next buttons are handled in quiz.js
-
-// Event listener for back button in mode selection screen
-const backToCategoryBtn = document.getElementById('backToCategoryBtn');
-if (backToCategoryBtn) {
-    backToCategoryBtn.addEventListener('click', () => {
-        if (currentTopic) {
-            // Go back to category selection screen
-            showScreen('categorySelectionScreen');
-        }
-    });
-}
-
-// Handle topic selection from UI
-function handleTopicSelect(topic) {
-    currentTopic = topic;
-    // Call the ui.js selectTopic function which handles categories properly
-    selectTopic(topic);
+    setCurrentMode(mode);
+    loadQuestions(); // loadQuestions in quiz.js will use its internal currentTopic and currentMode
 }
 
 // Initialize result screen buttons
@@ -75,7 +67,7 @@ function initializeResultButtons() {
     if (retakeQuizBtn) {
         retakeQuizBtn.addEventListener('click', () => {
             if (currentTopic) {
-                startQuiz(currentMode);
+                startQuiz(getCurrentMode());
             }
         });
     }
@@ -89,8 +81,11 @@ function initializeResultButtons() {
     }
 }
 
+// Make startQuiz globally accessible (for onclick attributes if any are still used, but prefer event listeners)
+window.startQuiz = startQuiz;
+
 // Initialize on page load
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function() {
     init();
     initializeResultButtons();
 });

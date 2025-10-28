@@ -1,14 +1,14 @@
 {
-  "name": "Leadership and Strategic Management",
-  "description": "Leadership principles, styles, change management, and strategic competencies",
+  "name": "Topic 5: Leadership and Strategic Management",
+  "description": "Comprehensive assessment of leadership principles, strategic planning, management functions, ethical governance, and change management relevant to the Directorate cadre.",
   "type": "topic",
   "hasSubcategories": true,
   "icon": "👑",
   "subcategories": [
     {
-      "name": "Leadership Principles and Styles",
-      "description": "Core leadership principles, styles, and theories in public administration.",
-      "type": "subcategory",
+      "id": "lead_principles_styles",
+      "name": "Leadership Principles, Styles, and Ethics (50 Questions)",
+      "description": "Core leadership principles, ethical standards, leadership styles, and accountability mechanisms within the public sector.",
       "questions": [
         {
           "id": "leadership_lsm_001",
@@ -20,14 +20,10 @@
             "Transactional leadership"
           ],
           "correct": 1,
-          "explanation": "Democratic leadership promotes participation and collective decision-making, motivating subordinates through involvement.",
+          "explanation": "Democratic leadership promotes participation and collective decision-making, motivating subordinates through involvement [1].",
           "difficulty": "easy",
-          "topic": "Leadership Styles",
-          "keywords": [
-            "leadership",
-            "democratic",
-            "participation"
-          ]
+          "chapter": "Leadership Styles",
+          "keywords": ["democratic", "participation"]
         },
         {
           "id": "leadership_lsm_002",
@@ -39,18 +35,14 @@
             "Maintaining routine operations"
           ],
           "correct": 2,
-          "explanation": "Transformational leadership inspires innovation and motivates followers toward higher ideals and organizational transformation.",
+          "explanation": "Transformational leadership inspires innovation and motivates followers toward higher ideals and organizational transformation [2].",
           "difficulty": "medium",
-          "topic": "Transformational Leadership",
-          "keywords": [
-            "change",
-            "innovation",
-            "motivation"
-          ]
+          "chapter": "Transformational Leadership",
+          "keywords": ["change", "innovation", "motivation"]
         },
         {
-          "id": "leadership_lsm_026",
-          "question": "Which leadership style is most effective in crisis situations requiring quick decisions?",
+          "id": "leadership_lsm_003",
+          "question": "Which leadership style is most effective in crisis situations requiring quick decisions and centralized control?",
           "options": [
             "Democratic",
             "Autocratic",
@@ -58,17 +50,13 @@
             "Transformational"
           ],
           "correct": 1,
-          "explanation": "Autocratic leadership provides rapid decision-making during crises when consultation is impractical.",
+          "explanation": "Autocratic leadership provides rapid decision-making during crises when consultation is impractical [3].",
           "difficulty": "medium",
-          "topic": "Leadership Styles",
-          "keywords": [
-            "autocratic",
-            "crisis",
-            "decision"
-          ]
+          "chapter": "Leadership Styles",
+          "keywords": ["autocratic", "crisis", "decision"]
         },
         {
-          "id": "leadership_lsm_029",
+          "id": "leadership_lsm_004",
           "question": "An effective leader balances task orientation with:",
           "options": [
             "Personal ambition",
@@ -77,18 +65,14 @@
             "Resource control"
           ],
           "correct": 1,
-          "explanation": "Balancing task and relationship orientations helps achieve goals while maintaining morale.",
+          "explanation": "Balancing task and relationship orientations helps achieve goals while maintaining morale and staff support [4].",
           "difficulty": "medium",
-          "topic": "Leadership Balance",
-          "keywords": [
-            "task",
-            "relationship",
-            "balance"
-          ]
+          "chapter": "Leadership Balance",
+          "keywords": ["task", "relationship", "balance"]
         },
         {
-          "id": "leadership_lsm_033",
-          "question": "Which leadership theory argues that effectiveness depends on the situation and leader-follower relationship?",
+          "id": "leadership_lsm_005",
+          "question": "Which leadership theory argues that effectiveness depends heavily on the specific situation and the leader-follower relationship?",
           "options": [
             "Trait theory",
             "Contingency theory",
@@ -96,37 +80,29 @@
             "Transactional theory"
           ],
           "correct": 1,
-          "explanation": "Contingency theory asserts that leadership success depends on situational factors and leader-member relations.",
+          "explanation": "Contingency theory asserts that leadership success depends on situational factors and leader-member relations [5].",
           "difficulty": "medium",
-          "topic": "Leadership Theories",
-          "keywords": [
-            "contingency",
-            "situation",
-            "leadership"
-          ]
+          "chapter": "Leadership Theories",
+          "keywords": ["contingency", "situation", "leadership"]
         },
         {
-          "id": "leadership_lsm_036",
-          "question": "Emotional intelligence in leadership helps to:",
+          "id": "leadership_lsm_006",
+          "question": "Emotional intelligence in leadership helps a director to:",
           "options": [
             "Suppress feedback",
-            "Understand and manage emotions effectively",
+            "Understand and manage emotions effectively in self and others",
             "Ignore subordinate opinions",
             "Increase power distance"
           ],
           "correct": 1,
-          "explanation": "Emotional intelligence enhances interpersonal relationships and leadership empathy.",
+          "explanation": "Emotional intelligence enhances interpersonal relationships, empathy, and effective conflict resolution among staff [6].",
           "difficulty": "medium",
-          "topic": "Emotional Intelligence",
-          "keywords": [
-            "emotions",
-            "empathy",
-            "leadership"
-          ]
+          "chapter": "Emotional Intelligence",
+          "keywords": ["emotions", "empathy", "leadership"]
         },
         {
-          "id": "leadership_lsm_040",
-          "question": "Which leadership principle is vital for maintaining ethical standards?",
+          "id": "leadership_lsm_007",
+          "question": "Which leadership principle is vital for maintaining ethical standards and ensuring public trust in governance?",
           "options": [
             "Accountability",
             "Popularity",
@@ -134,101 +110,666 @@
             "Flexibility"
           ],
           "correct": 0,
-          "explanation": "Accountability ensures ethical behavior and responsibility in leadership.",
+          "explanation": "Accountability ensures ethical behavior, compliance with rules, and responsibility for resource use, which is critical for public sector integrity [7], [8].",
           "difficulty": "easy",
-          "topic": "Leadership Ethics",
-          "keywords": [
-            "accountability",
-            "ethics",
-            "integrity"
-          ]
+          "chapter": "Leadership Ethics",
+          "keywords": ["accountability", "ethics", "integrity"]
         },
         {
-          "id": "leadership_lsm_043",
-          "question": "Strategic leaders build trust primarily through:",
+          "id": "leadership_lsm_008",
+          "question": "Strategic leaders build trust among staff and stakeholders primarily through:",
           "options": [
-            "Command and control",
-            "Consistency and transparency",
-            "Secrecy and delegation",
-            "Avoiding accountability"
+            "Command and control structures",
+            "Consistency and transparency in decision-making",
+            "Secrecy and delegation of non-critical tasks",
+            "Avoiding external audits"
           ],
           "correct": 1,
-          "explanation": "Consistency and transparency in actions build trust among followers and stakeholders.",
+          "explanation": "Consistency and transparency in actions build trust among followers and stakeholders, crucial for implementing major reforms [7], [9].",
           "difficulty": "medium",
-          "topic": "Leadership Trust",
-          "keywords": [
-            "trust",
-            "transparency",
-            "leadership"
-          ]
+          "chapter": "Leadership Trust",
+          "keywords": ["trust", "transparency", "consistency"]
         },
         {
-          "id": "leadership_lsm_046",
-          "question": "Leadership in the public service must align with which constitutional principle?",
+          "id": "leadership_lsm_009",
+          "question": "Leadership in the public service must align staff appointments and deployments with which constitutional principle?",
           "options": [
+            "Political party alignment",
+            "Profit maximization",
             "Federal character and fairness",
-            "Privatization",
-            "Absolute loyalty to superiors",
-            "Profit generation"
+            "Regional exclusivity"
           ],
           "correct": 0,
-          "explanation": "Public service leadership must embody fairness and inclusivity as required by the Federal Character principle.",
+          "explanation": "Public service leadership must embody fairness and inclusivity as required by the Federal Character principle in recruitment and deployment [9], [10].",
           "difficulty": "medium",
-          "topic": "Public Service Leadership",
-          "keywords": [
-            "federal character",
-            "fairness",
-            "leadership"
-          ]
+          "chapter": "Public Service Leadership",
+          "keywords": ["federal character", "fairness", "leadership"]
         },
         {
-          "id": "leadership_lsm_049",
+          "id": "leadership_lsm_010",
           "question": "Leadership accountability in the civil service entails:",
           "options": [
-            "Being answerable for decisions and resource use",
-            "Delegating blame to subordinates",
-            "Avoiding audits",
-            "Secrecy in decision-making"
+            "Delegating blame downwards",
+            "Being answerable for decisions and prudent resource use",
+            "Centralizing all approval powers",
+            "Ensuring administrative secrecy"
           ],
-          "correct": 0,
-          "explanation": "Accountability means leaders are responsible for their actions and use of public resources.",
+          "correct": 1,
+          "explanation": "Accountability means leaders are responsible for their actions and the utilization of public funds and resources [8], [11].",
           "difficulty": "medium",
-          "topic": "Leadership Accountability",
-          "keywords": [
-            "accountability",
-            "responsibility",
-            "public service"
-          ]
+          "chapter": "Leadership Accountability",
+          "keywords": ["accountability", "responsibility", "public service"]
         },
         {
-          "id": "leadership_lead_001",
-          "question": "What is a key characteristic of effective leadership in the civil service?",
+          "id": "leadership_lsm_011",
+          "question": "What is a key characteristic of effective leadership in the civil service, focusing on the welfare and success of subordinates?",
           "options": [
             "Authoritarian control",
             "Servant leadership",
             "Personal gain",
-            "Avoiding responsibility"
+            "Avoiding conflict"
           ],
           "correct": 1,
-          "explanation": "Servant leadership focuses on serving others and achieving organizational goals.",
+          "explanation": "Servant leadership focuses on serving others, empowering subordinates, and achieving organizational goals while prioritizing staff well-being [8], [12].",
           "difficulty": "easy",
-          "topic": "Leadership and Strategic Management",
-          "keywords": [
-            "servant leadership",
-            "civil service",
-            "leadership principles"
-          ]
+          "chapter": "Leadership Principles",
+          "keywords": ["servant leadership", "civil service", "welfare"]
+        },
+        {
+          "id": "leadership_lsm_012",
+          "question": "Which PSR rule strictly prohibits an officer from seeking the influence of prominent persons for obtaining consideration in matters connected with promotion or postings?",
+          "options": [
+            "Rule 100425",
+            "Rule 100427",
+            "Rule 100429",
+            "Rule 100431"
+          ],
+          "correct": 1,
+          "explanation": "Rule 100427 prohibits officers from seeking undue influence from prominent persons regarding official matters like promotion or discipline [13].",
+          "difficulty": "medium",
+          "chapter": "Ethical Conduct (PSR)",
+          "keywords": ["seeking influence", "prohibition", "Rule 100427"]
+        },
+        {
+          "id": "leadership_lsm_013",
+          "question": "According to the Civil Service Handbook (CSH), which three core values must civil servants uphold?",
+          "options": [
+            "Partisanship, favoritism, and delay",
+            "Secrecy, efficiency, and loyalty",
+            "Transparency, profitability, and speed",
+            "Nepotism, complexity, and neutrality"
+          ],
+          "correct": 1,
+          "explanation": "The handbook emphasizes secrecy, efficiency, and loyalty as core values of civil servants [14], [15].",
+          "difficulty": "easy",
+          "chapter": "CSH Core Values",
+          "keywords": ["secrecy", "efficiency", "loyalty", "CSH"]
+        },
+        {
+          "id": "leadership_lsm_014",
+          "question": "What ethical principle ensures that civil servants serve all citizens fairly without political or personal bias?",
+          "options": [
+            "Meritocracy",
+            "Impartiality",
+            "Flexibility",
+            "Bureaucracy"
+          ],
+          "correct": 1,
+          "explanation": "Impartiality guarantees that civil servants serve all citizens fairly without political or personal bias [16].",
+          "difficulty": "easy",
+          "chapter": "CSH Ethics",
+          "keywords": ["impartiality", "unbiased service"]
+        },
+        {
+          "id": "leadership_lsm_015",
+          "question": "The ethical principle of **Integrity and Accountability** is emphasized as essential for which cadre in the civil service?",
+          "options": [
+            "Clerical staff",
+            "Leadership (Directorate and above)",
+            "External consultants",
+            "Trainees"
+          ],
+          "correct": 1,
+          "explanation": "Integrity and accountability are emphasized as essential qualities for leadership in the civil service [17], [18].",
+          "difficulty": "medium",
+          "chapter": "CSH Leadership",
+          "keywords": ["integrity", "accountability", "leadership"]
+        },
+        {
+          "id": "leadership_lsm_016",
+          "question": "In the public service, the duty of **Secrecy** for handling official matters is legally enforced by which Act?",
+          "options": [
+            "Fiscal Responsibility Act",
+            "Official Secrets Act",
+            "Public Procurement Act",
+            "Freedom of Information Act"
+          ],
+          "correct": 1,
+          "explanation": "The Official Secrets Act enforces secrecy requirements for civil servants handling official matters [19], [11].",
+          "difficulty": "medium",
+          "chapter": "Secrecy and Law",
+          "keywords": ["Official Secrets Act", "secrecy", "conduct"]
+        },
+        {
+          "id": "leadership_lsm_017",
+          "question": "According to the PSR, an officer must make a statutory declaration renouncing membership in any secret society, and contravention may lead to:",
+          "options": [
+            "Transfer to a remote area",
+            "Dismissal from the service",
+            "Deferment of increment only",
+            "A written warning"
+          ],
+          "correct": 1,
+          "explanation": "Contravention of Rule 020211 (Secret Societies) shall attract disciplinary action which may include dismissal from the service [20], [21].",
+          "difficulty": "medium",
+          "chapter": "PSR Conduct",
+          "keywords": ["Secret society", "dismissal", "Rule 020212"]
+        },
+        {
+          "id": "leadership_lsm_018",
+          "question": "The PSR requires that applicants for employment must confirm they are free from:",
+          "options": [
+            "Financial embarrassment",
+            "Political opposition",
+            "Excessive social interaction",
+            "Religious affiliation"
+          ],
+          "correct": 0,
+          "explanation": "Applicants must confirm they are free from financial embarrassment (Rule 020206(b)(v)), implying the need for fiscal responsibility [22].",
+          "difficulty": "medium",
+          "chapter": "Ethical Recruitment",
+          "keywords": ["Financial embarrassment", "fiscal responsibility", "Rule 020206"]
+        },
+        {
+          "id": "leadership_lsm_019",
+          "question": "Which PSR rule mandates that all officers must familiarize themselves with the PSR and comply strictly, regardless of their grade level?",
+          "options": [
+            "Rule 010103",
+            "Rule 020801",
+            "Rule 100401",
+            "Rule 040101"
+          ],
+          "correct": 0,
+          "explanation": "Rule 010103 stipulates that all Public Officers must familiarize themselves with the PSR and comply strictly (Ignorance of the rule is no excuse).",
+          "difficulty": "easy",
+          "chapter": "PSR Application",
+          "keywords": ["compliance", "ignorance", "Rule 010103"]
+        },
+        {
+          "id": "leadership_lsm_020",
+          "question": "The PPA's Section 57 mandates disclosure of potential conflicts of interest in procurement proceedings by:",
+          "options": [
+            "Only the Chief Executive Officer",
+            "All officials involved in the procurement process",
+            "Only the successful bidder",
+            "The Internal Auditor"
+          ],
+          "correct": 1,
+          "explanation": "Section 57 prohibits conflict of interest and mandates disclosure of potential conflicts by all officials involved [23], [24].",
+          "difficulty": "medium",
+          "chapter": "PPA Ethics",
+          "keywords": ["conflict of interest", "PPA Section 57", "disclosure"]
+        },
+        {
+          "id": "leadership_lsm_021",
+          "question": "Which leadership model emphasizes transaction—rewarding performance and punishing failures—rather than focusing on motivating through a shared vision?",
+          "options": [
+            "Transformational",
+            "Charismatic",
+            "Transactional",
+            "Servant"
+          ],
+          "correct": 2,
+          "explanation": "Transactional leadership uses clear exchanges (rewards/punishments) to manage compliance and performance.",
+          "difficulty": "easy",
+          "chapter": "Leadership Styles",
+          "keywords": ["transactional", "reward", "punishment"]
+        },
+        {
+          "id": "leadership_lsm_022",
+          "question": "The 'Laissez-faire' style of leadership is typically characterized by:",
+          "options": [
+            "High control and directive communication",
+            "Delegation with minimal guidance or intervention",
+            "Motivational inspiration",
+            "Strict adherence to procedure only"
+          ],
+          "correct": 1,
+          "explanation": "Laissez-faire leadership provides extreme autonomy, delegating tasks with minimal supervision, which can lead to low productivity if staff lack maturity.",
+          "difficulty": "easy",
+          "chapter": "Leadership Styles",
+          "keywords": ["Laissez-faire", "delegation", "minimal supervision"]
+        },
+        {
+          "id": "leadership_lsm_023",
+          "question": "The concept of **Span of Control** in leadership structure refers to:",
+          "options": [
+            "The distance between an MDA and the Presidency",
+            "The number of subordinates reporting directly to a manager",
+            "The duration of a political appointment",
+            "The budget allocated to a Ministry"
+          ],
+          "correct": 1,
+          "explanation": "Span of Control dictates how many individuals report directly to a supervisor, influencing the organizational structure (flat vs. hierarchical).",
+          "difficulty": "medium",
+          "chapter": "Organizational Structure",
+          "keywords": ["span of control", "subordinates", "hierarchy"]
+        },
+        {
+          "id": "leadership_lsm_024",
+          "question": "In the Civil Service Handbook, **Nepotism** is explicitly discouraged because it violates the principle of:",
+          "options": [
+            "Transparency",
+            "Meritocracy",
+            "Neutrality",
+            "Secrecy"
+          ],
+          "correct": 1,
+          "explanation": "Nepotism (favoring family and friends in appointments) violates meritocracy, a core principle emphasized in Chapter 2 of the Handbook [25], [26], [27], [28].",
+          "difficulty": "easy",
+          "chapter": "CSH Ethics",
+          "keywords": ["nepotism", "meritocracy", "Handbook"]
+        },
+        {
+          "id": "leadership_lsm_025",
+          "question": "Which leadership skill is primarily used to align staff objectives with the MDA's strategic direction, particularly during the PMS cycle?",
+          "options": [
+            "Budgeting",
+            "Coaching and Mentoring",
+            "Auditing",
+            "Virement application"
+          ],
+          "correct": 1,
+          "explanation": "Coaching and Mentoring skills are essential for leaders to guide subordinates, develop their potential, and ensure their goals align with the organizational mission (PMS implementation).",
+          "difficulty": "medium",
+          "chapter": "Leadership Skills",
+          "keywords": ["coaching", "mentoring", "PMS alignment"]
+        },
+        {
+          "id": "leadership_lsm_026",
+          "question": "A leader demonstrating **Situational Leadership** adapts their style primarily based on what factor?",
+          "options": [
+            "Their personal mood",
+            "The seniority of the position they hold",
+            "The maturity and readiness level of the subordinates",
+            "The political party in power"
+          ],
+          "correct": 2,
+          "explanation": "Situational Leadership dictates that the leader must adjust their directive/supportive behavior based on the specific needs, competence, and commitment of the follower.",
+          "difficulty": "medium",
+          "chapter": "Leadership Theory",
+          "keywords": ["situational leadership", "maturity", "readiness"]
+        },
+        {
+          "id": "leadership_lsm_027",
+          "question": "The concept of **Stewardship** in public sector leadership primarily implies:",
+          "options": [
+            "Personal ownership of government assets",
+            "A duty to safeguard public funds and resources responsibly",
+            "The right to delegate all responsibility",
+            "Strict non-compliance with external oversight"
+          ],
+          "correct": 1,
+          "explanation": "Stewardship requires leaders to treat public resources (funds, assets, personnel) responsibly, ensuring they are used efficiently and ethically for public good (Chapter 4, CSH [11], [29]).",
+          "difficulty": "easy",
+          "chapter": "Leadership Ethics",
+          "keywords": ["stewardship", "public funds", "responsibility"]
+        },
+        {
+          "id": "leadership_lsm_028",
+          "question": "Which PSR Rule mandates that Officers must discharge every duty assigned to him by Government and accept liability of being stationed wherever his presence is considered to be most useful?",
+          "options": [
+            "Rule 100425",
+            "Rule 100427",
+            "Rule 100428",
+            "Rule 100431"
+          ],
+          "correct": 2,
+          "explanation": "Rule 100428 covers the officer's duty to discharge assigned duties and accept liability of being stationed wherever his presence is considered most useful, emphasizing service over personal convenience [30].",
+          "difficulty": "easy",
+          "chapter": "Duty and Posting",
+          "keywords": ["duty discharge", "posting", "Rule 100428"]
+        },
+        {
+          "id": "leadership_lsm_029",
+          "question": "If a Permanent Secretary demonstrates strong **Path-Goal Theory** leadership, they would focus on:",
+          "options": [
+            "Removing obstacles and clarifying the path to achieving organizational goals",
+            "Ignoring subordinate suggestions entirely",
+            "Centralizing all decision-making",
+            "Focusing solely on staff welfare payments"
+          ],
+          "correct": 0,
+          "explanation": "Path-Goal theory suggests that a leader's function is to clarify the path to help subordinates achieve goals and provide support along the way.",
+          "difficulty": "medium",
+          "chapter": "Leadership Theory",
+          "keywords": ["Path-Goal Theory", "goal achievement", "clarification"]
+        },
+        {
+          "id": "leadership_lsm_030",
+          "question": "The development of **Succession Planning** within an MDA is a key leadership responsibility primarily aimed at ensuring:",
+          "options": [
+            "Mandatory retirement at 60",
+            "Leadership continuity and talent pipeline development",
+            "Reduction in staff strength",
+            "Promotion interviews are mandatory"
+          ],
+          "correct": 1,
+          "explanation": "Succession planning ensures continuity of leadership through structured talent development, a critical strategic function [31].",
+          "difficulty": "medium",
+          "chapter": "HR Strategic Planning",
+          "keywords": ["succession planning", "continuity", "talent pipeline"]
+        },
+        {
+          "id": "leadership_lsm_031",
+          "question": "Which ethical concept requires that public officials, including leaders, regularly disclose their assets and liabilities?",
+          "options": [
+            "Freedom of Information Act",
+            "Code of Conduct provisions",
+            "Official Secrets Act",
+            "Public Procurement Act"
+          ],
+          "correct": 1,
+          "explanation": "The Code of Conduct provisions (enforced by the Code of Conduct Bureau, CCB) require public officers to declare their assets regularly [32], [33].",
+          "difficulty": "easy",
+          "chapter": "Constitutional Ethics",
+          "keywords": ["Asset declaration", "Code of Conduct", "CCB"]
+        },
+        {
+          "id": "leadership_lsm_032",
+          "question": "The **Federal Character Principle** influences leadership decisions in the civil service primarily through regulating:",
+          "options": [
+            "Budgetary allocations to MDAs",
+            "Geographical distribution of appointments across states",
+            "The frequency of PSR review",
+            "The duration of annual leave"
+          ],
+          "correct": 1,
+          "explanation": "The principle ensures appointments and positions reflect the diversity and geographical spread of the Federation, promoting national unity and fairness [10].",
+          "difficulty": "medium",
+          "chapter": "Constitutional Leadership",
+          "keywords": ["Federal Character", "appointments", "geographical balance"]
+        },
+        {
+          "id": "leadership_lsm_033",
+          "question": "In the context of the Civil Service Handbook, **Impartiality** in leadership means treating staff and citizens equally, regardless of:",
+          "options": [
+            "Their job description",
+            "Political affiliation, tribe, or religion",
+            "Their technical skill level",
+            "The time of day"
+          ],
+          "correct": 1,
+          "explanation": "Impartiality demands non-bias based on non-merit factors such as politics, tribe, or religion [16].",
+          "difficulty": "easy",
+          "chapter": "CSH Ethics",
+          "keywords": ["Impartiality", "bias", "neutrality"]
+        },
+        {
+          "id": "leadership_lsm_034",
+          "question": "The **Charismatic Leader** style relies heavily on:",
+          "options": [
+            "Strict adherence to the PSR",
+            "The leader's personality and inspiring vision to motivate followers",
+            "Financial incentives only",
+            "A complex hierarchy of command"
+          ],
+          "correct": 1,
+          "explanation": "Charismatic leadership is based on the leader's personality, communication, and ability to inspire loyalty and enthusiasm in subordinates.",
+          "difficulty": "easy",
+          "chapter": "Leadership Styles",
+          "keywords": ["Charismatic leader", "personality", "vision"]
+        },
+        {
+          "id": "leadership_lsm_035",
+          "question": "A key challenge of highly centralized decision-making (Autocratic leadership) in complex MDAs is:",
+          "options": [
+            "Slow implementation of policy",
+            "Lack of stakeholder input and stifled staff morale",
+            "Excessive delegation of authority",
+            "Too much focus on team development"
+          ],
+          "correct": 1,
+          "explanation": "While fast in a crisis, extreme centralization reduces staff ownership, dampens morale, and neglects diverse input necessary for policy success.",
+          "difficulty": "medium",
+          "chapter": "Leadership Styles",
+          "keywords": ["Centralization", "morale", "autocratic"]
+        },
+        {
+          "id": "leadership_lsm_036",
+          "question": "The principle of **Delegation of Authority** in the Civil Service Handbook primarily enhances efficiency by:",
+          "options": [
+            "Transferring responsibility entirely to subordinates",
+            "Improving subordinate skill development while retaining ultimate responsibility at the higher level",
+            "Centralizing all decision-making authority",
+            "Eliminating the need for hierarchical structure"
+          ],
+          "correct": 1,
+          "explanation": "Delegation improves efficiency and employee development while ultimate responsibility remains with the senior officer [34], [35].",
+          "difficulty": "medium",
+          "chapter": "Delegation",
+          "keywords": ["Delegation", "efficiency", "responsibility"]
+        },
+        {
+          "id": "leadership_lsm_037",
+          "question": "Which PSR rule prohibits an officer from engaging in political activities or being a member of a political party?",
+          "options": [
+            "Rule 040101",
+            "Rule 090101",
+            "Rule 100403",
+            "Rule 100427"
+          ],
+          "correct": 2,
+          "explanation": "Rule 100403 restricts public servants from engaging in partisan politics to maintain neutrality [36].",
+          "difficulty": "medium",
+          "chapter": "Political Neutrality",
+          "keywords": ["political neutrality", "Rule 100403", "prohibition"]
+        },
+        {
+          "id": "leadership_lsm_038",
+          "question": "In ethical leadership, **Transparency** in public sector procurement decisions is required by the PPA to prevent:",
+          "options": [
+            "Delay in project completion",
+            "Fraud, corruption, and bid-rigging",
+            "Insufficient budget allocation",
+            "Lack of delegation"
+          ],
+          "correct": 1,
+          "explanation": "Transparency requirements (e.g., public bid opening, publication of contract awards) are mandated to deter fraud and corruption [37], [38], [39].",
+          "difficulty": "easy",
+          "chapter": "Transparency and Ethics",
+          "keywords": ["transparency", "procurement fraud", "PPA"]
+        },
+        {
+          "id": "leadership_lsm_039",
+          "question": "The primary role of the **Head of the Civil Service of the Federation (OHCSF)**, in relation to HR and institutional reforms, is:",
+          "options": [
+            "Collecting non-oil revenue",
+            "Leading HR reforms, capacity building, and policy formulation for service delivery",
+            "Managing defense strategy",
+            "Approving all capital projects"
+          ],
+          "correct": 1,
+          "explanation": "The OHCSF leads HR reforms, capacity building, and policy formulation for service delivery, coordinating circulars and system implementation [40], [41], [42].",
+          "difficulty": "easy",
+          "chapter": "Institutional Leadership",
+          "keywords": ["OHCSF", "HR reforms", "policy formulation"]
+        },
+        {
+          "id": "leadership_lsm_040",
+          "question": "Which type of leader focuses heavily on inspiring commitment and developing subordinates into future leaders?",
+          "options": [
+            "Autocratic",
+            "Servant/Transformational",
+            "Laissez-faire",
+            "Traditional Bureaucratic"
+          ],
+          "correct": 1,
+          "explanation": "Both Servant and Transformational leadership styles prioritize the development and inspiration of followers for long-term organizational success [2], [12].",
+          "difficulty": "easy",
+          "chapter": "Leadership Styles",
+          "keywords": ["Transformational", "development", "inspiration"]
+        },
+        {
+          "id": "leadership_lsm_041",
+          "question": "When faced with **General Inefficiency** in a subordinate (Rule 100201), the leader's initial disciplinary step should be to:",
+          "options": [
+            "Immediately recommend dismissal to the FCSC",
+            "Issue a query and provide warning and instruction to improve the officer's usefulness",
+            "Transfer the officer to a remote station",
+            "Defer the officer's promotion indefinitely"
+          ],
+          "correct": 1,
+          "explanation": "The superior officer must record the shortcoming, give warning, and provide adequate time to redeem the image, aimed at improving the officer’s usefulness and efficiency [43].",
+          "difficulty": "medium",
+          "chapter": "Discipline (PSR)",
+          "keywords": ["General Inefficiency", "warning", "Rule 100202"]
+        },
+        {
+          "id": "leadership_lsm_042",
+          "question": "Effective leadership requires the ability to foster **Teamwork** in MDAs primarily to enhance:",
+          "options": [
+            "Individual competition",
+            "Collective efficiency and service delivery",
+            "Administrative secrecy",
+            "Centralized data ownership"
+          ],
+          "correct": 1,
+          "explanation": "Teamwork fosters collaboration and enhances collective efficiency and service delivery within the civil service [44], [45], [46].",
+          "difficulty": "easy",
+          "chapter": "CSH Teamwork",
+          "keywords": ["Teamwork", "efficiency", "collaboration"]
+        },
+        {
+          "id": "leadership_lsm_043",
+          "question": "A transactional leader would primarily use which tool to motivate staff to adhere to PSR standards?",
+          "options": [
+            "Emotional appeals",
+            "Threat of disciplinary action (PSR Chapter 10) or promises of promotion (PSR Chapter 2)",
+            "Shared strategic visioning",
+            "Laissez-faire delegation"
+          ],
+          "correct": 1,
+          "explanation": "Transactional leadership relies on clear rewards (promotion/increment) and punishments (queries/deferment) outlined in the PSR structure.",
+          "difficulty": "medium",
+          "chapter": "Leadership Styles",
+          "keywords": ["Transactional", "PSR rewards", "discipline"]
+        },
+        {
+          "id": "leadership_lsm_044",
+          "question": "When promoting **Diversity and Inclusivity** in the workplace, a leader ensures compliance with the spirit of the:",
+          "options": [
+            "Appropriation Act",
+            "Federal Character Principle",
+            "Official Secrets Act",
+            "Financial Regulations"
+          ],
+          "correct": 1,
+          "explanation": "Respecting diversity fosters inclusivity and unity in the workplace, aligning with the constitutional requirement for Federal Character [47], [48].",
+          "difficulty": "easy",
+          "chapter": "CSH Diversity",
+          "keywords": ["diversity", "inclusivity", "Federal Character"]
+        },
+        {
+          "id": "leadership_lsm_045",
+          "question": "A leader in the Directorate cadre must ensure the utilization of government funds and resources adheres strictly to accountability guidelines found in which Chapter of the Civil Service Handbook?",
+          "options": [
+            "Chapter 1",
+            "Chapter 2",
+            "Chapter 4",
+            "Chapter 5"
+          ],
+          "correct": 2,
+          "explanation": "Chapter 4 of the Civil Service Handbook emphasizes accountability in the utilization of government funds and resources [49], [11].",
+          "difficulty": "medium",
+          "chapter": "CSH Accountability",
+          "keywords": ["accountability", "CSH Chapter 4", "resources"]
+        },
+        {
+          "id": "leadership_lsm_046",
+          "question": "Which concept describes the process by which leaders actively anticipate trends and develop long-term, adaptive strategies?",
+          "options": [
+            "Operational management",
+            "Strategic thinking",
+            "Tactical planning",
+            "Daily routine management"
+          ],
+          "correct": 1,
+          "explanation": "Strategic thinking anticipates trends and develops long-term, adaptive strategies, rather than focusing solely on day-to-day supervision [50].",
+          "difficulty": "medium",
+          "chapter": "Strategic Leadership",
+          "keywords": ["strategic thinking", "long-term vision"]
+        },
+        {
+          "id": "leadership_lsm_047",
+          "question": "The ethical requirement for public officers to maintain **Political Neutrality** means they must refrain from:",
+          "options": [
+            "Voting in elections",
+            "Expressing partisan political views publicly",
+            "Reading national newspapers",
+            "Attending civil service functions"
+          ],
+          "correct": 1,
+          "explanation": "Civil servants are prohibited from partisan politics (Rule 100403) to maintain neutrality and integrity [36].",
+          "difficulty": "easy",
+          "chapter": "Political Neutrality",
+          "keywords": ["Political Neutrality", "PSR 100403"]
+        },
+        {
+          "id": "leadership_lsm_048",
+          "question": "In a highly technical environment, a leader might adopt a **Pacesetting** style, characterized by:",
+          "options": [
+            "Setting extremely high performance standards and expecting rapid compliance",
+            "Focusing solely on staff relationship building",
+            "Delaying decision-making until consensus is reached",
+            "Ignoring measurable performance targets"
+          ],
+          "correct": 0,
+          "explanation": "Pacesetting leaders set very high standards for performance and productivity, often driving results quickly but risking staff burnout if used inappropriately.",
+          "difficulty": "hard",
+          "chapter": "Leadership Styles",
+          "keywords": ["Pacesetting", "high performance", "standards"]
+        },
+        {
+          "id": "leadership_lsm_049",
+          "question": "A leader must promote **Meritocracy** in the HR process, meaning appointments and promotions must be based on:",
+          "options": [
+            "Seniority only",
+            "Performance and competence",
+            "Political patronage",
+            "State of origin"
+          ],
+          "correct": 1,
+          "explanation": "Meritocracy ensures that recruitment, appointments, and promotions are based on competence, performance, and objective evaluation, rather than kinship or bias [51], [52], [53].",
+          "difficulty": "easy",
+          "chapter": "Meritocracy",
+          "keywords": ["Meritocracy", "performance", "competence"]
+        },
+        {
+          "id": "leadership_lsm_050",
+          "question": "Leadership **Resilience** is crucial for MDAs facing major reform or resource constraints because it enables the leader to:",
+          "options": [
+            "Blame external factors for failure",
+            "Maintain stability and guide the organization through prolonged stress or crisis",
+            "Immediately resign from office",
+            "Increase delegation to external consultants"
+          ],
+          "correct": 1,
+          "explanation": "Resilience is the ability to adapt and maintain effectiveness under persistent pressure, ensuring organizational stability during times of reform or crisis.",
+          "difficulty": "medium",
+          "chapter": "Leadership Attributes",
+          "keywords": ["Resilience", "crisis", "stability"]
         }
       ]
     },
     {
-      "name": "Strategic Management and Planning",
-      "description": "Strategic planning, implementation, and control processes.",
-      "type": "subcategory",
+      "id": "lead_strategic_management",
+      "name": "Strategic Management and Planning (50 Questions)",
+      "description": "Strategic direction, environmental analysis (SWOT), mission, vision, planning frameworks (MTEF), and strategic resource allocation.",
       "questions": [
         {
-          "id": "leadership_lsm_003",
-          "question": "In strategic management, the process of analyzing the internal and external environment is called what?",
+          "id": "leadership_smp_001",
+          "question": "In strategic management, the process of analyzing the internal and external environment to inform direction is called:",
           "options": [
             "Benchmarking",
             "Environmental Scanning",
@@ -236,18 +777,14 @@
             "Implementation"
           ],
           "correct": 1,
-          "explanation": "Environmental scanning identifies internal strengths/weaknesses and external opportunities/threats (SWOT).",
+          "explanation": "Environmental scanning identifies internal strengths/weaknesses and external opportunities/threats (SWOT) [54].",
           "difficulty": "easy",
-          "topic": "Strategic Planning",
-          "keywords": [
-            "SWOT",
-            "analysis",
-            "environment"
-          ]
+          "chapter": "Strategic Planning",
+          "keywords": ["Environmental Scanning", "SWOT", "analysis"]
         },
         {
-          "id": "leadership_lsm_004",
-          "question": "Which document outlines an organization's long-term direction and objectives?",
+          "id": "leadership_smp_002",
+          "question": "Which document outlines an organization's long-term direction, priorities, and objectives?",
           "options": [
             "Mission statement",
             "Operational manual",
@@ -255,17 +792,13 @@
             "Performance report"
           ],
           "correct": 2,
-          "explanation": "The strategic plan sets the long-term direction, priorities, and objectives of an organization.",
+          "explanation": "The strategic plan sets the long-term direction, priorities, and objectives of an organization [55].",
           "difficulty": "easy",
-          "topic": "Strategic Planning",
-          "keywords": [
-            "strategic plan",
-            "objectives",
-            "direction"
-          ]
+          "chapter": "Strategic Planning",
+          "keywords": ["strategic plan", "objectives", "long-term"]
         },
         {
-          "id": "leadership_lsm_006",
+          "id": "leadership_smp_003",
           "question": "Strategic leadership requires which of the following core competencies?",
           "options": [
             "Technical specialization only",
@@ -274,17 +807,13 @@
             "Rigid rule enforcement"
           ],
           "correct": 2,
-          "explanation": "Strategic leaders demonstrate vision, flexibility, and the ability to align people with goals.",
+          "explanation": "Strategic leaders demonstrate vision, flexibility, and the ability to align people with long-term goals [56].",
           "difficulty": "medium",
-          "topic": "Leadership Competencies",
-          "keywords": [
-            "vision",
-            "adaptability",
-            "strategy"
-          ]
+          "chapter": "Leadership Competencies",
+          "keywords": ["vision", "adaptability", "strategy"]
         },
         {
-          "id": "leadership_lsm_007",
+          "id": "leadership_smp_004",
           "question": "What is the final stage of the strategic management process?",
           "options": [
             "Environmental scanning",
@@ -293,18 +822,14 @@
             "Evaluation and control"
           ],
           "correct": 3,
-          "explanation": "Evaluation and control ensure strategies are effective and adjustments are made when necessary.",
+          "explanation": "Evaluation and control ensure strategies are effective and adjustments are made when necessary [57].",
           "difficulty": "easy",
-          "topic": "Strategic Process",
-          "keywords": [
-            "evaluation",
-            "control",
-            "strategy"
-          ]
+          "chapter": "Strategic Process",
+          "keywords": ["evaluation", "control", "strategy"]
         },
         {
-          "id": "leadership_lsm_027",
-          "question": "In strategic implementation, allocating resources efficiently across objectives is known as:",
+          "id": "leadership_smp_005",
+          "question": "In strategic implementation, allocating funds and personnel across objectives efficiently is known as:",
           "options": [
             "Operational budgeting",
             "Resource optimization",
@@ -312,392 +837,149 @@
             "Administrative costing"
           ],
           "correct": 2,
-          "explanation": "Strategic resource allocation ensures funds, personnel, and materials are deployed to critical priorities.",
+          "explanation": "Strategic resource allocation ensures funds, personnel, and materials are deployed to critical priorities outlined in the strategic plan [58].",
           "difficulty": "medium",
-          "topic": "Strategy Implementation",
-          "keywords": [
-            "resources",
-            "allocation",
-            "strategy"
-          ]
+          "chapter": "Strategy Implementation",
+          "keywords": ["resources", "allocation", "strategy"]
         },
         {
-          "id": "leadership_lsm_032",
-          "question": "Strategic vision must be communicated effectively to ensure:",
-          "options": [
-            "Blind compliance",
-            "Shared understanding and commitment",
-            "Resistance to change",
-            "Administrative secrecy"
-          ],
-          "correct": 1,
-          "explanation": "Shared vision creates ownership and motivates employees toward common goals.",
-          "difficulty": "medium",
-          "topic": "Strategic Communication",
-          "keywords": [
-            "vision",
-            "communication",
-            "commitment"
-          ]
-        },
-        {
-          "id": "leadership_lsm_035",
+          "id": "leadership_smp_006",
           "question": "Strategic management in the public sector is primarily aimed at:",
           "options": [
             "Maximizing shareholder value",
-            "Efficient resource use and service delivery",
+            "Efficient resource use and optimal service delivery",
             "Private investment growth",
             "Political patronage"
           ],
           "correct": 1,
-          "explanation": "Public sector strategy focuses on efficient service delivery and resource utilization for citizens' benefit.",
+          "explanation": "Public sector strategy focuses on efficient service delivery and resource utilization for citizens' benefit [59].",
           "difficulty": "medium",
-          "topic": "Public Sector Strategy",
-          "keywords": [
-            "public sector",
-            "strategy",
-            "service delivery"
-          ]
+          "chapter": "Public Sector Strategy",
+          "keywords": ["public sector", "strategy", "service delivery"]
         },
         {
-          "id": "leadership_lsm_037",
+          "id": "leadership_smp_007",
           "question": "Strategic control systems are designed to:",
           "options": [
             "Reduce planning efforts",
-            "Monitor progress toward strategic goals",
-            "Delay implementation",
-            "Focus on administrative routines"
+            "Monitor progress toward strategic goals and compliance",
+            "Delay implementation indefinitely",
+            "Focus solely on administrative routines"
           ],
           "correct": 1,
-          "explanation": "Strategic controls ensure the organization stays aligned with its objectives and environment.",
+          "explanation": "Strategic controls ensure the organization stays aligned with its objectives and environment by monitoring progress [60].",
           "difficulty": "medium",
-          "topic": "Strategic Control",
-          "keywords": [
-            "control",
-            "monitoring",
-            "strategy"
-          ]
+          "chapter": "Strategic Control",
+          "keywords": ["control", "monitoring", "strategy"]
         },
         {
-          "id": "leadership_lsm_039",
-          "question": "The key output of strategic analysis is a:",
+          "id": "leadership_smp_008",
+          "question": "The key output of strategic analysis, often summarized internally for high-level decision-makers, is a:",
           "options": [
             "Performance report",
-            "SWOT summary",
+            "SWOT summary (Strengths, Weaknesses, Opportunities, Threats)",
             "Budget forecast",
             "Job description"
           ],
           "correct": 1,
-          "explanation": "Strategic analysis results in a SWOT profile outlining strengths, weaknesses, opportunities, and threats.",
+          "explanation": "Strategic analysis results in a SWOT profile outlining key internal and external factors influencing the strategy [61], [54].",
           "difficulty": "easy",
-          "topic": "Strategic Analysis",
-          "keywords": [
-            "SWOT",
-            "analysis",
-            "planning"
-          ]
+          "chapter": "Strategic Analysis",
+          "keywords": ["SWOT", "analysis", "planning"]
         },
         {
-          "id": "leadership_lsm_041",
+          "id": "leadership_smp_009",
           "question": "Strategic vision and mission statements are important because they:",
           "options": [
-            "Set the tone for organizational culture and direction",
+            "Set the tone for organizational culture and long-term direction",
             "Restrict innovation",
-            "Focus on short-term results",
-            "Reduce performance evaluation"
+            "Focus only on short-term results",
+            "Reduce performance evaluation frequency"
           ],
           "correct": 0,
-          "explanation": "Vision and mission statements guide long-term strategy and influence culture.",
+          "explanation": "Vision and mission statements guide long-term strategy and influence organizational culture and ethical behavior [62].",
           "difficulty": "medium",
-          "topic": "Vision and Mission",
-          "keywords": [
-            "mission",
-            "culture",
-            "strategy"
-          ]
+          "chapter": "Vision and Mission",
+          "keywords": ["mission", "vision", "strategy"]
         },
         {
-          "id": "leadership_lsm_047",
+          "id": "leadership_smp_010",
           "question": "What does a mission statement primarily describe?",
           "options": [
-            "Future aspirations",
-            "Current purpose and scope of activities",
+            "Future aspirations (Vision)",
+            "Current purpose, operations, and scope of activities",
             "Budget priorities",
             "Employee benefits"
           ],
           "correct": 1,
-          "explanation": "A mission statement articulates the present purpose and core operations of an organization.",
+          "explanation": "A mission statement articulates the present purpose and core operations of an organization [50].",
           "difficulty": "easy",
-          "topic": "Mission",
-          "keywords": [
-            "mission",
-            "purpose",
-            "organization"
-          ]
+          "chapter": "Mission",
+          "keywords": ["mission", "purpose", "organization"]
         },
         {
-          "id": "leadership_lsm_048",
+          "id": "leadership_smp_011",
           "question": "Strategic thinking involves:",
           "options": [
-            "Long-term visioning and analysis of opportunities",
-            "Routine paperwork",
+            "Long-term visioning and adaptive analysis of opportunities and threats",
+            "Routine paperwork management",
             "Departmental politics",
             "Day-to-day supervision only"
           ],
           "correct": 0,
-          "explanation": "Strategic thinking anticipates trends and develops long-term, adaptive strategies.",
+          "explanation": "Strategic thinking anticipates trends and develops long-term, adaptive strategies [63].",
           "difficulty": "medium",
-          "topic": "Strategic Thinking",
-          "keywords": [
-            "strategic thinking",
-            "planning",
-            "vision"
-          ]
+          "chapter": "Strategic Thinking",
+          "keywords": ["strategic thinking", "planning", "vision"]
         },
         {
-          "id": "leadership_lsm_050",
+          "id": "leadership_smp_012",
           "question": "Strategic foresight enables leaders to:",
           "options": [
-            "Predict and prepare for future scenarios",
+            "Predict and prepare for future scenarios and risks",
             "React only after crises occur",
             "Ignore external changes",
             "Focus solely on internal operations"
           ],
           "correct": 0,
-          "explanation": "Foresight allows proactive anticipation and planning for future opportunities and risks.",
+          "explanation": "Foresight allows proactive anticipation and planning for future opportunities and risks [64].",
           "difficulty": "medium",
-          "topic": "Strategic Foresight",
-          "keywords": [
-            "foresight",
-            "future",
-            "leadership"
-          ]
-        }
-      ]
-    },
-    {
-      "name": "Management Functions and Performance",
-      "description": "Management functions, performance management, and organizational development.",
-      "type": "subcategory",
-      "questions": [
-        {
-          "id": "leadership_lsm_005",
-          "question": "A key principle of the Balanced Scorecard approach is to link strategic objectives with what?",
-          "options": [
-            "Employee grievances",
-            "Budgetary allocations only",
-            "Performance indicators",
-            "Government circulars"
-          ],
-          "correct": 2,
-          "explanation": "The Balanced Scorecard links strategic objectives with measurable performance indicators across perspectives.",
-          "difficulty": "medium",
-          "topic": "Performance Management",
-          "keywords": [
-            "balanced scorecard",
-            "KPI",
-            "strategy"
-          ]
+          "chapter": "Strategic Foresight",
+          "keywords": ["foresight", "future", "leadership"]
         },
         {
-          "id": "leadership_lsm_008",
-          "question": "Which management theory emphasizes motivation through hierarchy of needs?",
+          "id": "leadership_smp_013",
+          "question": "The **Medium-Term Expenditure Framework (MTEF)** is a key planning tool that requires government budgeting to focus on projections over a rolling period of:",
           "options": [
-            "Herzberg's Two-Factor Theory",
-            "McGregor's Theory X and Y",
-            "Maslow's Need Hierarchy",
-            "Vroom's Expectancy Theory"
-          ],
-          "correct": 2,
-          "explanation": "Maslow proposed five levels of needs that motivate human behavior, from physiological to self-actualization.",
-          "difficulty": "easy",
-          "topic": "Motivation Theories",
-          "keywords": [
-            "maslow",
-            "motivation",
-            "needs"
-          ]
-        },
-        {
-          "id": "leadership_lsm_009",
-          "question": "Delegation in leadership primarily enhances what?",
-          "options": [
-            "Authority concentration",
-            "Employee development and efficiency",
-            "Centralization of control",
-            "Task duplication"
+            "One year",
+            "Three years",
+            "Five years",
+            "Ten years"
           ],
           "correct": 1,
-          "explanation": "Effective delegation develops subordinates and increases efficiency by assigning responsibilities appropriately.",
-          "difficulty": "easy",
-          "topic": "Delegation",
-          "keywords": [
-            "delegation",
-            "empowerment",
-            "efficiency"
-          ]
+          "explanation": "The MTEF sets out government’s spending priorities and projections over a three-year period [65].",
+          "difficulty": "medium",
+          "chapter": "Planning Frameworks",
+          "keywords": ["MTEF", "Three years", "Budget planning"]
         },
         {
-          "id": "leadership_lsm_010",
-          "question": "In management, SMART goals are defined as goals that are:",
+          "id": "leadership_smp_014",
+          "question": "The final authority for ratifying amendments to the Public Service Rules (PSR), based on recommendations from the National Council on Establishments (NCE), is the:",
           "options": [
-            "Specific, Measurable, Achievable, Relevant, Time-bound",
-            "Simple, Manageable, Accountable, Realistic, Timely",
-            "Strategic, Motivated, Accurate, Responsible, Tangible",
-            "Special, Measurable, Attainable, Rapid, Targeted"
-          ],
-          "correct": 0,
-          "explanation": "SMART goals help leaders ensure clarity and feasibility in target setting.",
-          "difficulty": "easy",
-          "topic": "Goal Setting",
-          "keywords": [
-            "SMART",
-            "objectives",
-            "planning"
-          ]
-        },
-        {
-          "id": "leadership_lsm_030",
-          "question": "In management, 'feedback' serves the purpose of:",
-          "options": [
-            "Discipline only",
-            "Performance improvement",
-            "Information blocking",
-            "Punishment"
+            "Head of the Civil Service of the Federation (OHCSF)",
+            "Federal Executive Council (FEC)",
+            "National Assembly",
+            "Federal Civil Service Commission (FCSC)"
           ],
           "correct": 1,
-          "explanation": "Feedback is a control mechanism that improves performance and corrects deviations.",
-          "difficulty": "easy",
-          "topic": "Control and Feedback",
-          "keywords": [
-            "feedback",
-            "performance",
-            "control"
-          ]
-        },
-        {
-          "id": "leadership_lsm_031",
-          "question": "Which management function involves measuring results against objectives?",
-          "options": [
-            "Planning",
-            "Organizing",
-            "Controlling",
-            "Leading"
-          ],
-          "correct": 2,
-          "explanation": "Controlling measures performance against goals and ensures corrective actions are taken.",
-          "difficulty": "easy",
-          "topic": "Management Functions",
-          "keywords": [
-            "control",
-            "performance",
-            "management"
-          ]
-        },
-        {
-          "id": "leadership_lsm_034",
-          "question": "The PDCA cycle in management stands for:",
-          "options": [
-            "Plan, Do, Check, Act",
-            "Prepare, Design, Control, Assess",
-            "Plan, Develop, Coordinate, Apply",
-            "Propose, Decide, Check, Analyze"
-          ],
-          "correct": 0,
-          "explanation": "PDCA is a continuous improvement process used in strategic and operational management.",
-          "difficulty": "easy",
-          "topic": "Quality Management",
-          "keywords": [
-            "PDCA",
-            "continuous improvement"
-          ]
-        },
-        {
-          "id": "leadership_lsm_038",
-          "question": "Leadership succession planning helps organizations to:",
-          "options": [
-            "Reduce staff numbers",
-            "Ensure leadership continuity",
-            "Discourage internal promotion",
-            "Avoid training costs"
-          ],
-          "correct": 1,
-          "explanation": "Succession planning ensures continuity of leadership through structured talent development.",
+          "explanation": "The FEC gives final ratification to PSR amendments, following the review process coordinated by the OHCSF [66].",
           "difficulty": "medium",
-          "topic": "Succession Planning",
-          "keywords": [
-            "succession",
-            "leadership",
-            "continuity"
-          ]
+          "chapter": "Strategy and Policy Review",
+          "keywords": ["FEC approval", "PSR amendments", "ratification", "471"]
         },
         {
-          "id": "leadership_lsm_042",
-          "question": "In decision-making, bounded rationality refers to:",
-          "options": [
-            "Unlimited information availability",
-            "Limited cognitive capacity and information",
-            "Perfect decision-making ability",
-            "Emotional reasoning only"
-          ],
-          "correct": 1,
-          "explanation": "Bounded rationality acknowledges decision-makers operate under information and time constraints.",
-          "difficulty": "medium",
-          "topic": "Decision-Making",
-          "keywords": [
-            "bounded rationality",
-            "decision",
-            "limitations"
-          ]
-        },
-        {
-          "id": "leadership_lsm_044",
-          "question": "Benchmarking in management involves:",
-          "options": [
-            "Copying competitors exactly",
-            "Comparing performance with best practices",
-            "Ignoring external standards",
-            "Revising rules arbitrarily"
-          ],
-          "correct": 1,
-          "explanation": "Benchmarking helps identify performance gaps by comparing with top performers.",
-          "difficulty": "medium",
-          "topic": "Performance Management",
-          "keywords": [
-            "benchmarking",
-            "performance",
-            "comparison"
-          ]
-        },
-        {
-          "id": "leadership_lsm_045",
-          "question": "Which of these is not a component of strategic leadership?",
-          "options": [
-            "Visionary thinking",
-            "Operational planning",
-            "Courage and resilience",
-            "Short-term profit maximization"
-          ],
-          "correct": 3,
-          "explanation": "Strategic leadership focuses on long-term vision, not short-term profit motives.",
-          "difficulty": "medium",
-          "topic": "Strategic Leadership",
-          "keywords": [
-            "vision",
-            "leadership",
-            "long-term"
-          ]
-        }
-      ]
-    },
-    {
-      "name": "Change Management and National Strategy",
-      "description": "Change management, national development strategies, and public service reforms.",
-      "type": "subcategory",
-      "questions": [
-        {
-          "id": "leadership_psr_gov_001",
-          "question": "The PSR shall be due for review every how many years to reflect current realities in the Public Service?",
+          "id": "leadership_smp_015",
+          "question": "The PSR is mandated to be reviewed every **how many years** to reflect current realities and improve effectiveness?",
           "options": [
             "Two years",
             "Three years",
@@ -705,32 +987,1293 @@
             "Ten years"
           ],
           "correct": 2,
-          "explanation": "The Public Service Rules (PSR) shall be due for review every five years.",
+          "explanation": "The Public Service Rules (PSR) shall be due for review every five years [67].",
           "difficulty": "easy",
-          "topic": "Review Procedure",
-          "keywords": [
-            "PSR review",
-            "five years",
-            "public service rules"
-          ]
+          "chapter": "Policy Review",
+          "keywords": ["PSR review", "five years", "285"]
         },
         {
-          "id": "leadership_lsm_028",
-          "question": "What is the main focus of the 'Vision 2020' initiative in Nigeria?",
+          "id": "leadership_smp_016",
+          "question": "The strategic objective of the Nigerian Open Contracting Portal (NOCOPO) is to ensure transparency in procurement by publicly disclosing information about:",
           "options": [
-            "Improving private sector profits",
-            "Making Nigeria one of the top 20 economies by 2020",
-            "Reducing political parties",
-            "Enhancing tourism"
+            "Staff emoluments only",
+            "Bidding, contracts, and implementation data",
+            "Annual leave rosters",
+            "Internal audit reports only"
           ],
           "correct": 1,
-          "explanation": "Vision 2020 aimed to position Nigeria among the top 20 global economies by the year 2020.",
+          "explanation": "NOCOPO supports e-Procurement and public disclosure of contracting data, aligning with PPA transparency principles [68], [69].",
+          "difficulty": "medium",
+          "chapter": "E-Governance Strategy",
+          "keywords": ["NOCOPO", "e-Procurement", "transparency"]
+        },
+        {
+          "id": "leadership_smp_017",
+          "question": "The core of the **Vision 2020** initiative was strategically focused on:",
+          "options": [
+            "Improving private sector profits",
+            "Positioning Nigeria among the top 20 global economies by 2020",
+            "Reducing political party influence",
+            "Enhancing diplomatic ties with African nations"
+          ],
+          "correct": 1,
+          "explanation": "Vision 2020 aimed to position Nigeria among the top 20 global economies by the year 2020, guiding national strategies [70].",
           "difficulty": "easy",
-          "topic": "National Strategy",
-          "keywords": [
-            "vision 2020",
-            "national development"
+          "chapter": "National Strategy",
+          "keywords": ["Vision 2020", "national development", "top 20 economies"]
+        },
+        {
+          "id": "leadership_smp_018",
+          "question": "The strategic objective of the **Treasury Single Account (TSA)** system is primarily to:",
+          "options": [
+            "Decentralize financial control",
+            "Consolidate all government revenue and expenditure into a single account for visibility and control",
+            "Facilitate individual staff loan applications",
+            "Replace the IPPIS system"
+          ],
+          "correct": 1,
+          "explanation": "TSA, implemented via GIFMIS, centralizes public sector financial accounts to block leakages and improve financial transparency [71], [72].",
+          "difficulty": "easy",
+          "chapter": "Financial Strategy",
+          "keywords": ["TSA", "consolidation", "revenue"]
+        },
+        {
+          "id": "leadership_smp_019",
+          "question": "Which strategic approach is emphasized in the Civil Service Handbook to ensure continuous service delivery, especially during staff transfers?",
+          "options": [
+            "Automatic promotion",
+            "Proper handover and record-keeping",
+            "Mandatory retirement",
+            "Temporary cessation of duties"
+          ],
+          "correct": 1,
+          "explanation": "Proper handover ensures continuity and accountability, a critical administrative procedure [73], [74].",
+          "difficulty": "medium",
+          "chapter": "Administrative Strategy",
+          "keywords": ["handover", "continuity", "record-keeping"]
+        },
+        {
+          "id": "leadership_smp_020",
+          "question": "The **Mission Statement** of an MDA provides the strategic foundation for operational decisions by defining:",
+          "options": [
+            "The future vision (where the MDA wants to be)",
+            "The MDA's core reason for existence and current scope of operations",
+            "The maximum budget allocation",
+            "The required staff grade levels"
+          ],
+          "correct": 1,
+          "explanation": "The mission statement articulates the present purpose and core operations of an organization [50].",
+          "difficulty": "easy",
+          "chapter": "Strategic Tools",
+          "keywords": ["Mission Statement", "purpose", "scope"]
+        },
+        {
+          "id": "leadership_smp_021",
+          "question": "When developing a **strategic plan** for an MDA, the first critical step after defining the mission should be:",
+          "options": [
+            "Allocating resources",
+            "Conducting environmental scanning (SWOT/PESTLE analysis)",
+            "Writing the annual report",
+            "Approving all capital projects"
+          ],
+          "correct": 1,
+          "explanation": "The first step in planning is environmental scanning to assess strengths, weaknesses, opportunities, and threats [54].",
+          "difficulty": "medium",
+          "chapter": "Strategic Process",
+          "keywords": ["strategic plan", "environmental scanning", "first step"]
+        },
+        {
+          "id": "leadership_smp_022",
+          "question": "The strategic importance of the **Official Gazette** in public administration is:",
+          "options": [
+            "To simplify local procurement",
+            "To publish laws, appointments, and official constitutional changes",
+            "To record daily staff attendance",
+            "To manage the IPPIS payroll"
+          ],
+          "correct": 1,
+          "explanation": "The Official Gazette is the formal government publication used to promulgate laws, appointments, and constitutional changes [75].",
+          "difficulty": "easy",
+          "chapter": "Administrative Strategy",
+          "keywords": ["Official Gazette", "publication", "laws"]
+        },
+        {
+          "id": "leadership_smp_023",
+          "question": "What is the strategic purpose of requiring a **Certificate of No Objection** from the BPP for high-value contracts?",
+          "options": [
+            "To allow the MDA to bypass competitive bidding",
+            "To confirm compliance with procurement rules and budgetary capacity before final award",
+            "To increase the contract sum",
+            "To speed up payment processing"
+          ],
+          "correct": 1,
+          "explanation": "The Certificate of No Objection, mandated by PPA Section 5, confirms that the procurement process followed due process and the award is justified [76], [77].",
+          "difficulty": "medium",
+          "chapter": "Procurement Strategy",
+          "keywords": ["Certificate of No Objection", "BPP", "compliance"]
+        },
+        {
+          "id": "leadership_smp_024",
+          "question": "In strategy implementation, leaders must ensure that **Virement** (movement of funds between budget subheads) is formally backed by which legal document?",
+          "options": [
+            "A Ministerial Policy Statement",
+            "A Virement Warrant",
+            "An Audit Clearance Certificate",
+            "A Letter of Intent"
+          ],
+          "correct": 1,
+          "explanation": "Virement must be formally approved and backed by a Virement Warrant to ensure accountability and adherence to financial regulations [78].",
+          "difficulty": "medium",
+          "chapter": "Strategic Finance",
+          "keywords": ["Virement", "Virement Warrant", "authorization"]
+        },
+        {
+          "id": "leadership_smp_025",
+          "question": "What is the strategic objective of the National Development Plan (e.g., 2021–2025) in relation to Nigeria's economy?",
+          "options": [
+            "Solely focusing on oil exploration",
+            "Promoting economic growth, job creation, and digital innovation",
+            "Centralizing all diplomatic affairs",
+            "Maintaining administrative status quo"
+          ],
+          "correct": 1,
+          "explanation": "The National Development Plan promotes economic growth, digital transformation, and job creation [79].",
+          "difficulty": "easy",
+          "chapter": "National Strategy",
+          "keywords": ["National Development Plan", "digital innovation", "economic growth"]
+        },
+        {
+          "id": "leadership_smp_026",
+          "question": "Which strategic document sets the tone for organizational culture and guides the long-term priorities of an MDA?",
+          "options": [
+            "The daily attendance register",
+            "The Annual Budget Call Circular",
+            "The Vision and Mission Statements",
+            "The Internal Audit Report"
+          ],
+          "correct": 2,
+          "explanation": "Vision and mission statements set the long-term tone for organizational culture and strategic direction [62].",
+          "difficulty": "easy",
+          "chapter": "Strategic Tools",
+          "keywords": ["Vision", "Mission", "culture"]
+        },
+        {
+          "id": "leadership_smp_027",
+          "question": "The concept of **Digital Identity Integration** (linking staff records to NIN and biometrics) strategically aims to:",
+          "options": [
+            "Slow down payroll processing",
+            "Enhance data accuracy and integrity in personnel management systems (IPPIS)",
+            "Simplify foreign exchange transactions",
+            "Reduce the number of promotions granted"
+          ],
+          "correct": 1,
+          "explanation": "Digital Identity Integration ensures data accuracy, essential for payroll integrity and eliminating ghost workers in systems like IPPIS/HRMIS [80].",
+          "difficulty": "medium",
+          "chapter": "E-Governance Strategy",
+          "keywords": ["Digital Identity", "NIN", "IPPIS", "data integrity"]
+        },
+        {
+          "id": "leadership_smp_028",
+          "question": "In managing strategic projects, leaders should rely on **Big Data Analytics** for which purpose?",
+          "options": [
+            "To replace human decision-making entirely",
+            "To process and analyze large government datasets for evidence-based decision-making",
+            "To manually verify payment vouchers",
+            "To enforce disciplinary actions"
+          ],
+          "correct": 1,
+          "explanation": "Big Data Analytics is used to process and analyze large datasets, providing insights for strategic planning and efficient decision-making [81].",
+          "difficulty": "hard",
+          "chapter": "ICT Strategy",
+          "keywords": ["Big Data Analytics", "decision-making", "ICT"]
+        },
+        {
+          "id": "leadership_smp_029",
+          "question": "The strategy of setting **SMART goals** (Specific, Measurable, Achievable, Relevant, Time-bound) is primarily used to ensure clarity and feasibility in:",
+          "options": [
+            "Annual leave roster approval",
+            "Target setting and performance monitoring",
+            "Inter-ministerial posting",
+            "Auditing of Vote Books"
+          ],
+          "correct": 1,
+          "explanation": "SMART goals help leaders ensure clarity and feasibility in target setting, especially in the PMS framework [82].",
+          "difficulty": "easy",
+          "chapter": "Strategic Management Functions",
+          "keywords": ["SMART goals", "target setting", "planning"]
+        },
+        {
+          "id": "leadership_smp_030",
+          "question": "The primary objective of **environmental scanning** in strategic planning is to identify potential:",
+          "options": [
+            "Personnel conflicts",
+            "Internal strengths/weaknesses and external opportunities/threats",
+            "Daily expenditure limits",
+            "Individual training needs"
+          ],
+          "correct": 1,
+          "explanation": "Environmental scanning assesses the strategic landscape to identify the internal and external factors critical for strategy formulation [54].",
+          "difficulty": "easy",
+          "chapter": "Strategic Process",
+          "keywords": ["environmental scanning", "SWOT"]
+        },
+        {
+          "id": "leadership_smp_031",
+          "question": "In aligning strategy with budgetary capacity, what must the Vote Controller check immediately before approving any financial commitment?",
+          "options": [
+            "The Minister’s travel schedule",
+            "The balance remaining in the relevant budget subhead",
+            "The officer’s latest performance report",
+            "The external audit report"
+          ],
+          "correct": 1,
+          "explanation": "The Vote Controller must check the Vote Book balance to confirm expenditure is within approved limits and the relevant subhead has funds [83], [84], [85].",
+          "difficulty": "medium",
+          "chapter": "Strategic Control (Finance)",
+          "keywords": ["Vote Book", "balance check", "commitment"]
+        },
+        {
+          "id": "leadership_smp_032",
+          "question": "The strategic importance of the **Official Secrets Act** to a director's duties relates to:",
+          "options": [
+            "Ensuring political patronage",
+            "Protecting classified information and national security",
+            "Promoting unlimited public disclosure",
+            "Allowing staff personal use of government assets"
+          ],
+          "correct": 1,
+          "explanation": "The Official Secrets Act enforces secrecy and protects sensitive official matters and national security [19], [86].",
+          "difficulty": "easy",
+          "chapter": "Strategy and Law",
+          "keywords": ["Official Secrets Act", "secrecy", "national security"]
+        },
+        {
+          "id": "leadership_smp_033",
+          "question": "Strategic control involves the monitoring of performance against objectives to ensure corrective actions are taken. This aligns with which management function?",
+          "options": [
+            "Planning",
+            "Organizing",
+            "Controlling",
+            "Leading"
+          ],
+          "correct": 2,
+          "explanation": "Controlling involves measuring results against objectives and ensuring corrective actions are taken [87], [88].",
+          "difficulty": "easy",
+          "chapter": "Management Functions",
+          "keywords": ["Controlling", "monitoring", "performance"]
+        },
+        {
+          "id": "leadership_smp_034",
+          "question": "The strategic planning tool that requires government to look ahead over a rolling period of three years is the:",
+          "options": [
+            "Annual Appropriation Act",
+            "Medium-Term Expenditure Framework (MTEF)",
+            "Quarterly Audit Report",
+            "Monthly Payroll Ledger"
+          ],
+          "correct": 1,
+          "explanation": "MTEF sets out government’s spending priorities and projections over a three-year period [65].",
+          "difficulty": "medium",
+          "chapter": "Planning Frameworks",
+          "keywords": ["MTEF", "Three years"]
+        },
+        {
+          "id": "leadership_smp_035",
+          "question": "Effective strategic communication of the vision must be ensured to secure:",
+          "options": [
+            "Blind compliance from all staff",
+            "Shared understanding and commitment among all employees",
+            "Administrative secrecy",
+            "Resistance to change"
+          ],
+          "correct": 1,
+          "explanation": "Shared vision creates ownership and motivates employees toward common goals, requiring effective communication [58].",
+          "difficulty": "medium",
+          "chapter": "Strategic Communication",
+          "keywords": ["vision", "communication", "commitment"]
+        },
+        {
+          "id": "leadership_smp_036",
+          "question": "The Nigerian Public Procurement Act (PPA) strategically emphasizes **Open Competitive Bidding** as the default method to promote:",
+          "options": [
+            "Rapid contract award without competition",
+            "Fairness, competition, and value for money",
+            "Sole sourcing",
+            "Contract splitting"
+          ],
+          "correct": 1,
+          "explanation": "Open Competitive Bidding is the default method (PPA Section 24) to ensure fairness, competition, efficiency, and value for money [89], [90], [91].",
+          "difficulty": "easy",
+          "chapter": "Procurement Strategy",
+          "keywords": ["Open Competitive Bidding", "PPA Section 24", "value for money"]
+        },
+        {
+          "id": "leadership_smp_037",
+          "question": "Which strategic challenge for e-Governance involves the difficulty in providing adequate ICT services and infrastructure to remote or low-income areas?",
+          "options": [
+            "Cybersecurity attacks",
+            "Digital exclusion of citizens",
+            "System redundancy",
+            "Inter-agency collaboration"
+          ],
+          "correct": 1,
+          "explanation": "Digital exclusion (or digital divide) is a challenge resulting from inadequate ICT access in underserved communities, a major policy focus for USPF [92], [93].",
+          "difficulty": "medium",
+          "chapter": "ICT Strategy Challenges",
+          "keywords": ["Digital exclusion", "ICT challenges", "USPF"]
+        },
+        {
+          "id": "leadership_smp_038",
+          "question": "The strategic development of an MDA's capacity must be based on strategies encapsulated in the:",
+          "options": [
+            "Annual leave roster",
+            "Public Service Training and Capacity Development Policy",
+            "Financial Regulations",
+            "Minister's personal diary"
+          ],
+          "correct": 1,
+          "explanation": "Training strategies are encapsulated in the Public Service Training and Capacity Development Policy [94], [95], [96].",
+          "difficulty": "medium",
+          "chapter": "Training Strategy",
+          "keywords": ["Capacity Development Policy", "training"]
+        },
+        {
+          "id": "leadership_smp_039",
+          "question": "Which strategic approach involves comparing an MDA's performance, processes, or results against industry best practices or high-performing organizations?",
+          "options": [
+            "Benchmarking",
+            "Internal auditing",
+            "Contingency planning",
+            "Administrative forecasting"
+          ],
+          "correct": 0,
+          "explanation": "Benchmarking helps identify performance gaps by comparing the MDA's performance against top performers or best practices [97].",
+          "difficulty": "medium",
+          "chapter": "Strategic Management Tools",
+          "keywords": ["Benchmarking", "performance", "best practices"]
+        },
+        {
+          "id": "leadership_smp_040",
+          "question": "The primary objective of the **Contingencies Fund** in public finance strategy is to cover:",
+          "options": [
+            "Routine overhead expenditure",
+            "Emergency and unforeseen government expenditures",
+            "Personnel emoluments",
+            "Capital projects only"
+          ],
+          "correct": 1,
+          "explanation": "The Contingencies Fund is used to meet unforeseen and urgent government expenditures [98], [99].",
+          "difficulty": "easy",
+          "chapter": "Financial Strategy",
+          "keywords": ["Contingencies Fund", "emergency expenditure"]
+        },
+        {
+          "id": "leadership_smp_041",
+          "question": "Strategic thinking must primarily involve considering the implications of actions on the organization's:",
+          "options": [
+            "Historical staff nominal roll",
+            "Long-term stability and adaptation to external change",
+            "Short-term cash flow only",
+            "Immediate disciplinary issues"
+          ],
+          "correct": 1,
+          "explanation": "Strategic thinking anticipates trends and develops long-term, adaptive strategies, prioritizing long-term stability [50].",
+          "difficulty": "medium",
+          "chapter": "Strategic Thinking",
+          "keywords": ["long-term stability", "adaptation", "strategic thinking"]
+        },
+        {
+          "id": "leadership_smp_042",
+          "question": "In a strategic context, the purpose of a **Renewal Fund** or **Replacement Reserve Fund** is:",
+          "options": [
+            "To cover budget deficits",
+            "To replace depreciating government assets",
+            "To pay for staff training",
+            "To fund operational research"
+          ],
+          "correct": 1,
+          "explanation": "The Replacement Reserve Fund is established specifically for replacing depreciating government assets [100], [101].",
+          "difficulty": "hard",
+          "chapter": "Financial Strategy",
+          "keywords": ["Replacement Reserve Fund", "assets", "depreciation"]
+        },
+        {
+          "id": "leadership_smp_043",
+          "question": "The strategic approach to manage government funds by consolidating all revenue into one account (TSA) is primarily facilitated by which ICT platform?",
+          "options": [
+            "IPPIS",
+            "GIFMIS",
+            "BVN",
+            "REMITA"
+          ],
+          "correct": 1,
+          "explanation": "GIFMIS provides the platform for implementing the Treasury Single Account (TSA) [71], [102].",
+          "difficulty": "medium",
+          "chapter": "E-Governance Strategy",
+          "keywords": ["GIFMIS", "TSA", "consolidation"]
+        },
+        {
+          "id": "leadership_smp_044",
+          "question": "In strategic planning for HR, which PSR rule defines the mandatory training categories (A, B, C) based on relevance to the MDA’s mandate?",
+          "options": [
+            "Rule 070101",
+            "Rule 070105",
+            "Rule 030101",
+            "Rule 120226"
+          ],
+          "correct": 1,
+          "explanation": "Rule 070105 defines the categories of training, particularly noting that Category A must be very crucial to the MDA’s mandate [103], [104].",
+          "difficulty": "medium",
+          "chapter": "HR Strategy (PSR)",
+          "keywords": ["training category", "Rule 070105", "MDA mandate"]
+        },
+        {
+          "id": "leadership_smp_045",
+          "question": "When an MDA uses **Benchmarking** in its strategic review, its primary goal is to:",
+          "options": [
+            "Identify best practices to emulate and close performance gaps",
+            "Reduce the total annual budget allocation",
+            "Increase staff leave days",
+            "Complicate official procedures"
+          ],
+          "correct": 0,
+          "explanation": "Benchmarking is used to compare performance with best practices to identify gaps and improve effectiveness [97].",
+          "difficulty": "medium",
+          "chapter": "Strategic Management Tools",
+          "keywords": ["Benchmarking", "performance gaps"]
+        },
+        {
+          "id": "leadership_smp_046",
+          "question": "Which strategic document provides the overall legal authority and spending limits for Federal MDAs for a specific fiscal year?",
+          "options": [
+            "The Financial Regulations",
+            "The Appropriation Act",
+            "The Civil Service Handbook",
+            "The Procurement Act"
+          ],
+          "correct": 1,
+          "explanation": "The Appropriation Act (the Budget) provides the legislative basis for spending and sets legal limits for the fiscal year [105].",
+          "difficulty": "easy",
+          "chapter": "Financial Strategy",
+          "keywords": ["Appropriation Act", "spending limits", "budget"]
+        },
+        {
+          "id": "leadership_smp_047",
+          "question": "The development of a new **Scheme of Service** for a professional cadre is strategically important because it links:",
+          "options": [
+            "Political appointments to emoluments",
+            "Qualifications, duties, and career progression to grade levels",
+            "Annual leave to sick leave",
+            "The Minister’s travel plans to the budget"
+          ],
+          "correct": 1,
+          "explanation": "The Scheme of Service aligns qualifications, duties, and career paths with specific grades, providing a roadmap for career growth [106].",
+          "difficulty": "medium",
+          "chapter": "HR Strategy",
+          "keywords": ["Scheme of Service", "career progression", "qualifications"]
+        },
+        {
+          "id": "leadership_smp_048",
+          "question": "The **National e-Government Master Plan** is a strategic document primarily intended to guide MDAs on:",
+          "options": [
+            "Increasing manual records management",
+            "Automation of services, secure cloud deployment, and inter-agency data sharing",
+            "Reducing staff training budgets",
+            "Centralizing disciplinary authority"
+          ],
+          "correct": 1,
+          "explanation": "The Master Plan guides the comprehensive digital transformation of government services and infrastructure [93], [80].",
+          "difficulty": "hard",
+          "chapter": "ICT Policy",
+          "keywords": ["e-Government Master Plan", "automation", "cloud deployment"]
+        },
+        {
+          "id": "leadership_smp_049",
+          "question": "The strategic objective of linking **Reward and Recognition** to measurable performance (Rule 060103) is to ensure:",
+          "options": [
+            "Political favoritism",
+            "Transparency and objectivity in motivation and recognition",
+            "Automatic increment for all staff",
+            "Secrecy in promotions"
+          ],
+          "correct": 1,
+          "explanation": "Linking reward to measurable performance promotes transparency and objectivity in recognition, vital for staff motivation [32], [107], [108].",
+          "difficulty": "easy",
+          "chapter": "Performance Strategy",
+          "keywords": ["R&RS", "transparency", "objectivity"]
+        },
+        {
+          "id": "leadership_smp_050",
+          "question": "In the public sector, the **Strategic Vision** statement should primarily articulate:",
+          "options": [
+            "The daily operational budget",
+            "The desired future state and aspirations of the organization",
+            "Detailed staff grievance procedures",
+            "The specific rules for annual leave calculation"
+          ],
+          "correct": 1,
+          "explanation": "A vision statement describes the aspirational, desired future state of the organization, guiding long-term strategic efforts [50].",
+          "difficulty": "easy",
+          "chapter": "Strategic Tools",
+          "keywords": ["Vision", "future state", "aspirations"]
+        }
+      ]
+    },
+    {
+      "id": "lead_management_performance",
+      "name": "Management Functions and Performance (50 Questions)",
+      "description": "Delegation, motivation theories, control systems (PDCA), performance measurement (PMS), and training categorization.",
+      "questions": [
+        {
+          "id": "leadership_mpf_001",
+          "question": "A key principle of the **Balanced Scorecard** approach is to link strategic objectives with what measurable organizational output?",
+          "options": [
+            "Employee grievances",
+            "Budgetary allocations only",
+            "Performance indicators (KPIs)",
+            "Government circulars"
+          ],
+          "correct": 2,
+          "explanation": "The Balanced Scorecard links strategic objectives with measurable performance indicators (KPIs) across various perspectives (e.g., finance, customer, process) [109].",
+          "difficulty": "medium",
+          "chapter": "Performance Management",
+          "keywords": ["balanced scorecard", "KPI", "strategy"]
+        },
+        {
+          "id": "leadership_mpf_002",
+          "question": "Which management theory emphasizes staff motivation through a **hierarchy of needs** (physiological, safety, social, esteem, self-actualization)?",
+          "options": [
+            "Herzberg's Two-Factor Theory",
+            "McGregor's Theory X and Y",
+            "Maslow's Need Hierarchy",
+            "Vroom's Expectancy Theory"
+          ],
+          "correct": 2,
+          "explanation": "Maslow proposed five levels of needs that motivate human behavior, crucial for understanding employee engagement [110].",
+          "difficulty": "easy",
+          "chapter": "Motivation Theories",
+          "keywords": ["maslow", "motivation", "needs"]
+        },
+        {
+          "id": "leadership_mpf_003",
+          "question": "Delegation in leadership primarily enhances:",
+          "options": [
+            "Authority concentration",
+            "Employee development and organizational efficiency",
+            "Centralization of control",
+            "Task duplication"
+          ],
+          "correct": 1,
+          "explanation": "Effective delegation develops subordinates and increases efficiency by assigning responsibilities appropriately [34], [111].",
+          "difficulty": "easy",
+          "chapter": "Delegation",
+          "keywords": ["delegation", "empowerment", "efficiency"]
+        },
+        {
+          "id": "leadership_mpf_004",
+          "question": "In management, **SMART goals** are defined as goals that are:",
+          "options": [
+            "Specific, Measurable, Achievable, Relevant, Time-bound",
+            "Simple, Manageable, Accountable, Realistic, Timely",
+            "Strategic, Motivated, Accurate, Responsible, Tangible",
+            "Special, Measurable, Attainable, Rapid, Targeted"
+          ],
+          "correct": 0,
+          "explanation": "SMART goals help leaders ensure clarity and feasibility in target setting and performance tracking [82].",
+          "difficulty": "easy",
+          "chapter": "Goal Setting",
+          "keywords": ["SMART", "objectives", "planning"]
+        },
+        {
+          "id": "leadership_mpf_005",
+          "question": "In performance management, **feedback** serves the essential purpose of:",
+          "options": [
+            "Discipline only",
+            "Performance improvement and deviation correction",
+            "Information blocking",
+            "Punishment"
+          ],
+          "correct": 1,
+          "explanation": "Feedback is a control mechanism that improves performance and corrects deviations from established standards [87].",
+          "difficulty": "easy",
+          "chapter": "Control and Feedback",
+          "keywords": ["feedback", "performance", "control"]
+        },
+        {
+          "id": "leadership_mpf_006",
+          "question": "Which management function involves measuring results against predetermined objectives?",
+          "options": [
+            "Planning",
+            "Organizing",
+            "Controlling",
+            "Leading"
+          ],
+          "correct": 2,
+          "explanation": "Controlling measures performance against goals and ensures corrective actions are taken, making it crucial in the PMS cycle [88].",
+          "difficulty": "easy",
+          "chapter": "Management Functions",
+          "keywords": ["control", "performance", "management"]
+        },
+        {
+          "id": "leadership_mpf_007",
+          "question": "The **PDCA cycle** in management stands for:",
+          "options": [
+            "Plan, Do, Check, Act",
+            "Prepare, Design, Control, Assess",
+            "Plan, Develop, Coordinate, Apply",
+            "Propose, Decide, Check, Analyze"
+          ],
+          "correct": 0,
+          "explanation": "PDCA (Plan, Do, Check, Act) is a continuous improvement process used in strategic and operational management [88].",
+          "difficulty": "easy",
+          "chapter": "Quality Management",
+          "keywords": ["PDCA", "continuous improvement"]
+        },
+        {
+          "id": "leadership_mpf_008",
+          "question": "Leadership succession planning helps organizations to:",
+          "options": [
+            "Reduce staff numbers permanently",
+            "Ensure leadership continuity and preparedness",
+            "Discourage internal promotion",
+            "Avoid training costs"
+          ],
+          "correct": 1,
+          "explanation": "Succession planning ensures continuity of leadership through structured talent development, mitigating risks of critical staff exit [31].",
+          "difficulty": "medium",
+          "chapter": "Succession Planning",
+          "keywords": ["succession", "leadership", "continuity"]
+        },
+        {
+          "id": "leadership_mpf_009",
+          "question": "In decision-making, **bounded rationality** refers to:",
+          "options": [
+            "Unlimited information availability",
+            "Limited cognitive capacity and information constraints faced by decision-makers",
+            "Perfect decision-making ability",
+            "Emotional reasoning only"
+          ],
+          "correct": 1,
+          "explanation": "Bounded rationality acknowledges decision-makers operate under information and time constraints, leading to 'satisficing' rather than optimizing [112].",
+          "difficulty": "medium",
+          "chapter": "Decision-Making",
+          "keywords": ["bounded rationality", "decision", "limitations"]
+        },
+        {
+          "id": "leadership_mpf_010",
+          "question": "When an MDA engages in **Benchmarking**, it involves:",
+          "options": [
+            "Copying competitors exactly",
+            "Comparing performance with internal departmental results only",
+            "Comparing performance with best practices or high standards",
+            "Revising rules arbitrarily"
+          ],
+          "correct": 2,
+          "explanation": "Benchmarking helps identify performance gaps by comparing the MDA's performance/processes with top performers [97].",
+          "difficulty": "medium",
+          "chapter": "Performance Management",
+          "keywords": ["benchmarking", "performance", "comparison"]
+        },
+        {
+          "id": "leadership_mpf_011",
+          "question": "Which management function is NOT typically considered a core component of strategic leadership?",
+          "options": [
+            "Visionary thinking",
+            "Operational planning",
+            "Courage and resilience",
+            "Short-term profit maximization"
+          ],
+          "correct": 3,
+          "explanation": "Strategic leadership focuses on long-term vision and public good, not short-term profit motives [113].",
+          "difficulty": "medium",
+          "chapter": "Strategic Leadership",
+          "keywords": ["strategic leadership", "profit maximization"]
+        },
+        {
+          "id": "leadership_mpf_012",
+          "question": "The **Performance Management Cycle** shall run from January to December of every year and shall commence immediately after the leadership of each MDA has finalized their:",
+          "options": [
+            "Annual procurement plan",
+            "Annual institutional and departmental goals and targets",
+            "Annual leave roster",
+            "Financial audit report"
+          ],
+          "correct": 1,
+          "explanation": "The PMS cycle commences immediately after the MDA leadership finalizes its institutional and departmental goals and targets (Rule 050301) [114].",
+          "difficulty": "medium",
+          "chapter": "PMS Timeline",
+          "keywords": ["PMS", "goals and targets", "Rule 050301"]
+        },
+        {
+          "id": "leadership_mpf_013",
+          "question": "When an Officer is seconded to another MDA, who is responsible for furnishing the required **performance reports** on the Officer?",
+          "options": [
+            "The releasing MDA",
+            "The receiving MDA (Permanent Secretary/Head of Extra-Ministerial Office)",
+            "The Head of the Civil Service of the Federation",
+            "The Federal Civil Service Commission"
+          ],
+          "correct": 1,
+          "explanation": "The receiving MDA is responsible for furnishing the performance reports to ensure current performance is assessed (Rule 050207) [115].",
+          "difficulty": "hard",
+          "chapter": "Performance Reporting",
+          "keywords": ["Secondment reports", "Rule 050207", "receiving MDA"]
+        },
+        {
+          "id": "leadership_mpf_014",
+          "question": "The three types of study leave listed in the PSR (Rule 120226) are Leave for In-Service Training, Study Leave without Pay, and:",
+          "options": [
+            "Sabbatical Leave",
+            "Leave of Absence",
+            "Study Leave with Pay",
+            "Proportionate Leave"
+          ],
+          "correct": 2,
+          "explanation": "The three types of study leave are Leave for In-Service Training, Study Leave with Pay, and Study Leave without Pay [116], [117].",
+          "difficulty": "medium",
+          "chapter": "Training Types",
+          "keywords": ["Study Leave", "types", "Rule 120226"]
+        },
+        {
+          "id": "leadership_mpf_015",
+          "question": "Who must approve the ultimate release of any Officer on study leave, whether paid or unpaid, upon the recommendation of the Officer’s Permanent Secretary?",
+          "options": [
+            "The Accountant-General of the Federation",
+            "The Federal Civil Service Commission",
+            "The Head of the Civil Service of the Federation",
+            "The Minister of Education"
+          ],
+          "correct": 2,
+          "explanation": "The release of any Officer on study leave shall be subject to the approval of the Head of the Civil Service of the Federation (Rule 120231) [118], [119], [120].",
+          "difficulty": "medium",
+          "chapter": "Study Leave Approval",
+          "keywords": ["Study leave", "OHCSF approval", "Rule 120231"]
+        },
+        {
+          "id": "leadership_mpf_016",
+          "question": "Category A training is defined as long-term training leading to a post-graduate degree, which must be considered:",
+          "options": [
+            "Unrelated to the MDA’s mandate",
+            "Very crucial and beneficial to the Officer and the attainment of the MDA's Mandate",
+            "Beneficial but not crucial to the MDA",
+            "Funded solely by the Officer"
+          ],
+          "correct": 1,
+          "explanation": "Category A training must be very crucial and beneficial to the Officer and the attainment of the MDA’s mandate (Rule 070105(a)) [103].",
+          "difficulty": "medium",
+          "chapter": "Training Categorization",
+          "keywords": ["Category A training", "MDA mandate", "Rule 070105(a)"]
+        },
+        {
+          "id": "leadership_mpf_017",
+          "question": "Category B training is characterized as long-term post-graduate training that is beneficial to the Officer but:",
+          "options": [
+            "Mandatorily funded by the MDA",
+            "NOT so crucial to the attainment of the MDA’s mandate",
+            "Compulsory for promotion to GL 17",
+            "A prerequisite for a political appointment"
+          ],
+          "correct": 1,
+          "explanation": "Category B training is beneficial but NOT so crucial to the attainment of the MDA’s mandate (Rule 070105(b)) [104].",
+          "difficulty": "hard",
+          "chapter": "Training Categorization",
+          "keywords": ["Category B training", "Rule 070105(b)"]
+        },
+        {
+          "id": "leadership_mpf_018",
+          "question": "The minimum period of service required before an officer is eligible to sit for the compulsory confirmation examination (COMPRO) is:",
+          "options": [
+            "Three months",
+            "Six months",
+            "One year",
+            "Two years"
+          ],
+          "correct": 1,
+          "explanation": "Officers eligible for the examinations must have served for six (6) months after taking up their appointments (Rule 030501(a)) [121], [122].",
+          "difficulty": "easy",
+          "chapter": "Career Management",
+          "keywords": ["Confirmation examination", "six months", "Rule 030501(a)"]
+        },
+        {
+          "id": "leadership_mpf_019",
+          "question": "An officer who is dismissed from the service shall forfeit all claims to retiring benefits, leave, or transport grant, subject to the provisions of the:",
+          "options": [
+            "Fiscal Responsibility Act",
+            "Pension Reform Act, 2014 (as amended)",
+            "Public Procurement Act",
+            "Freedom of Information Act"
+          ],
+          "correct": 1,
+          "explanation": "Dismissal results in forfeiture subject to the provisions of the Pension Reform Act, 2014 (as amended) [123].",
+          "difficulty": "easy",
+          "chapter": "Disciplinary Sanctions",
+          "keywords": ["Dismissal", "forfeiture", "Pension Reform Act"]
+        },
+        {
+          "id": "leadership_mpf_020",
+          "question": "In the Reward and Recognition Scheme (R&RS), 'Reward' applies to officers who have served meritoriously for continuous periods of 15, 25, or:",
+          "options": [
+            "30 years",
+            "35 years",
+            "40 years",
+            "50 years"
+          ],
+          "correct": 1,
+          "explanation": "Reward refers to officers who have served meritoriously for a period of 15, 25 or 35 years (Rule 060101) [124].",
+          "difficulty": "medium",
+          "chapter": "R&RS",
+          "keywords": ["Reward", "years of service", "Rule 060101"]
+        },
+        {
+          "id": "leadership_mpf_021",
+          "question": "The **Annual Performance Evaluation Report (APER)** has been officially replaced by which system, as dictated by OHCSF circulars?",
+          "options": [
+            "KPI Scorecard",
+            "Performance Management System (PMS)",
+            "360-Degree Feedback",
+            "Merit Award System"
+          ],
+          "correct": 1,
+          "explanation": "The Performance Management System (PMS) was introduced by the 2016 OHCSF Circular to replace the outdated APER system [125], [40].",
+          "difficulty": "medium",
+          "chapter": "Performance Management",
+          "keywords": ["PMS", "APER replacement", "2016 Circular"]
+        },
+        {
+          "id": "leadership_mpf_022",
+          "question": "When an MDA incurs expenditure that exceeds its approved budget allocation (Over-Expenditure), this liability must ultimately be covered by:",
+          "options": [
+            "A Virement Warrant issued internally",
+            "A Supplementary Budget requiring legislative approval",
+            "The Contingencies Fund automatically",
+            "The Permanent Secretary’s personal funds"
+          ],
+          "correct": 1,
+          "explanation": "Unauthorized Over-Expenditure requires subsequent legislative approval via a Supplementary Budget, highlighting financial control failure [126], [127].",
+          "difficulty": "hard",
+          "chapter": "Financial Control",
+          "keywords": ["Over-Expenditure", "Supplementary Budget", "financial control"]
+        },
+        {
+          "id": "leadership_mpf_023",
+          "question": "Which of the following documents is **NOT** allowed as a reference book for officers on GL 07 and above during the compulsory confirmation examination?",
+          "options": [
+            "Public Service Rules (PSR)",
+            "Textbooks for the General Paper (Rule 030107)",
+            "Financial Regulations",
+            "Establishment Circulars"
+          ],
+          "correct": 1,
+          "explanation": "Textbooks and reference books are not allowed for examinations in the General Paper, Office Procedure/Routine or Special Paper (Rule 030107) [128].",
+          "difficulty": "medium",
+          "chapter": "Examination Rules",
+          "keywords": ["Reference books", "General Paper", "Rule 030107"]
+        },
+        {
+          "id": "leadership_mpf_024",
+          "question": "The managerial principle that involves the separation of the roles of approval, custody, and recording in financial transactions is known as:",
+          "options": [
+            "Concurrent Auditing",
+            "Fiscal Review",
+            "Segregation of Duties",
+            "Post-Audit"
+          ],
+          "correct": 2,
+          "explanation": "Segregation of Duties is the first line of defense against financial fraud and malpractice [129], [130].",
+          "difficulty": "medium",
+          "chapter": "Internal Controls",
+          "keywords": ["Segregation of Duties", "fraud control", "financial transactions"]
+        },
+        {
+          "id": "leadership_mpf_025",
+          "question": "The process of Staff Development (Rule 070101) is defined as enhancing the knowledge, skills, and effectiveness of staff in order to meet their career goals and prepare them for:",
+          "options": [
+            "Retirement",
+            "Changing duties and responsibilities",
+            "Political appointments",
+            "Private practice"
+          ],
+          "correct": 1,
+          "explanation": "Staff Development prepares officers for changing duties and responsibilities, ensuring adaptability and efficiency [131], [132].",
+          "difficulty": "easy",
+          "chapter": "Training Objectives",
+          "keywords": ["Staff Development", "efficiency", "Rule 070101"]
+        },
+        {
+          "id": "leadership_mpf_026",
+          "question": "The primary objective of recording all financial commitments in the **Vote Book** (Obligation Control) is to:",
+          "options": [
+            "Guarantee prompt promotion",
+            "Ensure that all planned expenditure is within the legal capacity of the approved budget",
+            "Simplify foreign exchange conversion",
+            "Track staff punctuality"
+          ],
+          "correct": 1,
+          "explanation": "The Vote Book ensures that expenditure is kept within budget limits and prevents unauthorized commitments [133], [85], [134].",
+          "difficulty": "medium",
+          "chapter": "Financial Management",
+          "keywords": ["Vote Book", "Obligation Control", "budgetary limits"]
+        },
+        {
+          "id": "leadership_mpf_027",
+          "question": "Who is primarily responsible for maintaining the departmental Vote Ledger (Vote Book) and monitoring budgetary allocations and commitments?",
+          "options": [
+            "Internal Auditor",
+            "Sub-Accountant",
+            "Vote Controller",
+            "Director of Finance"
+          ],
+          "correct": 2,
+          "explanation": "The Vote Controller maintains the Vote Book/Ledger to monitor budgetary allocations and commitments [135], [136], [137].",
+          "difficulty": "medium",
+          "chapter": "Financial Control Officer",
+          "keywords": ["Vote Controller", "Vote Book", "budget monitoring"]
+        },
+        {
+          "id": "leadership_mpf_028",
+          "question": "What is the primary significance of performance appraisal, as emphasized in the Civil Service Handbook?",
+          "options": [
+            "To punish staff only",
+            "To evaluate, improve, and reward staff performance",
+            "To increase workload",
+            "To reduce salaries"
+          ],
+          "correct": 1,
+          "explanation": "Performance appraisals are used to evaluate, improve, and reward staff performance, serving as a basis for promotion [138], [139], [140].",
+          "difficulty": "medium",
+          "chapter": "Performance Management",
+          "keywords": ["performance appraisal", "evaluation", "improvement"]
+        },
+        {
+          "id": "leadership_mpf_029",
+          "question": "The maximum duration of study leave with pay that may be granted to a Confirmed Officer is:",
+          "options": [
+            "Six months",
+            "Two years",
+            "Three years",
+            "Four years"
+          ],
+          "correct": 1,
+          "explanation": "The duration of study leave with pay shall not exceed two years (Rule 120228(a)) [141], [142].",
+          "difficulty": "medium",
+          "chapter": "Training Rules",
+          "keywords": ["Study Leave with Pay", "two years", "Rule 120228(a)"]
+        },
+        {
+          "id": "leadership_mpf_030",
+          "question": "If an officer is in receipt of a personal allowance, such allowance will be treated as part of his substantive basic emolument for the purpose of calculating:",
+          "options": [
+            "Annual leave entitlement",
+            "Promotion arrears",
+            "Resettlement allowance (Rule 140134)",
+            "Overtime pay"
+          ],
+          "correct": 2,
+          "explanation": "Personal allowance is included in the substantive emolument for calculating resettlement allowance (Rule 140134) [143], [144].",
+          "difficulty": "hard",
+          "chapter": "Allowance Calculation",
+          "keywords": ["Personal allowance", "resettlement allowance", "Rule 140134"]
+        },
+        {
+          "id": "leadership_mpf_031",
+          "question": "In the **Job Characteristics Model**, which core dimension relates to the extent to which a job requires completion of a whole and identifiable piece of work?",
+          "options": [
+            "Skill Variety",
+            "Task Identity",
+            "Task Significance",
+            "Autonomy"
+          ],
+          "correct": 1,
+          "explanation": "Task Identity refers to the degree to which a job requires completing a whole and identifiable piece of work, contributing to motivation.",
+          "difficulty": "hard",
+          "chapter": "Management Theory",
+          "keywords": ["Job Characteristics Model", "Task Identity"]
+        },
+        {
+          "id": "leadership_mpf_032",
+          "question": "The managerial function of **Organizing** primarily involves:",
+          "options": [
+            "Setting strategic goals",
+            "Determining what tasks are to be done, who is to do them, and how they are to be grouped",
+            "Motivating employees",
+            "Measuring performance against goals"
+          ],
+          "correct": 1,
+          "explanation": "Organizing involves structuring the work, defining roles, and establishing the hierarchy necessary to execute the plan.",
+          "difficulty": "easy",
+          "chapter": "Management Functions",
+          "keywords": ["Organizing", "tasks", "structuring"]
+        },
+        {
+          "id": "leadership_mpf_033",
+          "question": "According to the PSR, an Officer on an incremental grade level shall normally be granted an increment unless he is under interdiction/suspension or:",
+          "options": [
+            "Has completed his annual leave",
+            "Has a disciplinary action pending",
+            "Has applied for retirement",
+            "Is on secondment"
+          ],
+          "correct": 1,
+          "explanation": "Increment is withheld/deferred if the officer is on interdiction/suspension or has a disciplinary action pending (Rule 040202) [145], [146].",
+          "difficulty": "easy",
+          "chapter": "Emoluments and Discipline",
+          "keywords": ["Increment", "Suspension", "Rule 040202"]
+        },
+        {
+          "id": "leadership_mpf_034",
+          "question": "Who must be simultaneously notified, along with the officer concerned, of decisions regarding the deferment or withholding of increment and stoppage of salaries?",
+          "options": [
+            "The Minister of Justice and the Minister of Education",
+            "The AGF, the AuGF, and the OHCSF (Rule 040209)",
+            "The Federal Civil Service Commission only",
+            "The Staff Union Chairman"
+          ],
+          "correct": 1,
+          "explanation": "Decisions on increments must be communicated to the AGF, AuGF, and the OHCSF for administrative and audit control (Rule 040209) [147], [148], [149].",
+          "difficulty": "medium",
+          "chapter": "Emolument Control",
+          "keywords": ["Increment decisions", "AGF", "AuGF", "OHCSF"]
+        },
+        {
+          "id": "leadership_mpf_035",
+          "question": "What is the consequence for an officer's unauthorized absence from duty (A.W.O.L.)?",
+          "options": [
+            "A verbal warning",
+            "Loss of pay for the period of absence",
+            "Automatic transfer",
+            "Grant of special leave"
+          ],
+          "correct": 1,
+          "explanation": "The penalty for unauthorized absence from duty is loss of pay for the period of absence (Rule 040206) [13], [150], [151].",
+          "difficulty": "easy",
+          "chapter": "Disciplinary Penalties",
+          "keywords": ["Unauthorized absence", "loss of pay", "Rule 040206"]
+        },
+        {
+          "id": "leadership_mpf_036",
+          "question": "The formal tool used in government accounting to authorize payment, detailing the expenditure, head, subhead, and required authorization is the:",
+          "options": [
+            "Appropriation Bill",
+            "Payment Voucher",
+            "Audit Report",
+            "Budget Proposal"
+          ],
+          "correct": 1,
+          "explanation": "All government payments must be backed by duly approved Payment Vouchers [152].",
+          "difficulty": "medium",
+          "chapter": "Financial Management",
+          "keywords": ["Payment Voucher", "authorization", "expenditure"]
+        },
+        {
+          "id": "leadership_mpf_037",
+          "question": "Which officer must sign all Payment Vouchers before payments are processed, confirming the correctness and classification of the transaction?",
+          "options": [
+            "Vote Controller",
+            "Auditor-General",
+            "Head of Accounts",
+            "Permanent Secretary"
+          ],
+          "correct": 2,
+          "explanation": "The Head of Accounts must sign all payment vouchers before payments are processed, confirming correctness [153], [154].",
+          "difficulty": "medium",
+          "chapter": "Payment Authority",
+          "keywords": ["Head of Accounts", "payment vouchers"]
+        },
+        {
+          "id": "leadership_mpf_038",
+          "question": "The managerial function of **Leading** primarily involves:",
+          "options": [
+            "Defining tasks and structure",
+            "Motivating, directing, and influencing staff",
+            "Allocating resources",
+            "Measuring budget variances"
+          ],
+          "correct": 1,
+          "explanation": "Leading is the function of influencing others to engage in the work behaviors necessary to reach organizational goals.",
+          "difficulty": "easy",
+          "chapter": "Management Functions",
+          "keywords": ["Leading", "motivating", "influencing"]
+        },
+        {
+          "id": "leadership_mpf_039",
+          "question": "Which motivational theory suggests that employees will be motivated if they believe their efforts will lead to good performance, which will be followed by desirable rewards?",
+          "options": [
+            "Maslow's Need Hierarchy",
+            "Herzberg's Two-Factor Theory",
+            "Expectancy Theory (Vroom)",
+            "Theory X and Y"
+          ],
+          "correct": 2,
+          "explanation": "Vroom's Expectancy Theory links effort, performance, and reward outcomes.",
+          "difficulty": "medium",
+          "chapter": "Motivation Theories",
+          "keywords": ["Expectancy Theory", "Vroom", "rewards"]
+        },
+        {
+          "id": "leadership_mpf_040",
+          "question": "The PSR requires that performance reports must be jointly signed by the officer and his immediate supervisor to ensure:",
+          "options": [
+            "Reduced staff transfers",
+            "Accuracy and fairness",
+            "Automatic increment",
+            "FCSC approval"
+          ],
+          "correct": 1,
+          "explanation": "Joint signing of the performance review ensures accuracy and fairness in the appraisal process.",
+          "difficulty": "easy",
+          "chapter": "Performance Review",
+          "keywords": ["performance review", "supervisor", "fairness"]
+        },
+        {
+          "id": "leadership_mpf_041",
+          "question": "The three types of leave of absence (Rule 120236) include Leave of Absence to join spouse on grounds of public policy, and:",
+          "options": [
+            "Leave of Absence for Annual Holiday",
+            "Special Leave of Absence to join spouse on course of instruction and Leave for Technical Aid Programmes",
+            "Deferred Leave",
+            "Compulsory Retirement Leave"
+          ],
+          "correct": 1,
+          "explanation": "The types listed include Special Leave of Absence to join spouse on course of instruction and Leave of Absence for Technical Aid Programmes [155].",
+          "difficulty": "medium",
+          "chapter": "Leave Rules",
+          "keywords": ["Leave of Absence", "Technical Aid Programmes", "spouse"]
+        },
+        {
+          "id": "leadership_mpf_042",
+          "question": "The concept of **Audit Trail** refers to the sequential documentation of financial transactions to ensure:",
+          "options": [
+            "Rapid fund disbursement",
+            "Integrity and traceability, thereby ensuring accountability and transparency",
+            "Elimination of the Vote Book",
+            "Compliance with political directives"
+          ],
+          "correct": 1,
+          "explanation": "An Audit Trail documents the flow of transactions, which is crucial for internal audit control, integrity, and traceability [156], [130].",
+          "difficulty": "medium",
+          "chapter": "Internal Controls",
+          "keywords": ["Audit Trail", "traceability", "accountability"]
+        },
+        {
+          "id": "leadership_mpf_043",
+          "question": "The duration of probation for first appointments shall not exceed two years unless an extension is approved by the:",
+          "options": [
+            "Permanent Secretary",
+            "Federal Civil Service Commission (FCSC)",
+            "Head of Department",
+            "Minister"
+          ],
+          "correct": 1,
+          "explanation": "The period of probation shall not exceed two years unless an extension is approved by the Federal Civil Service Commission (Rule 020301) [157], [158].",
+          "difficulty": "easy",
+          "chapter": "Appointment Rules",
+          "keywords": ["Probation extension", "FCSC", "Rule 020301"]
+        },
+        {
+          "id": "leadership_mpf_044",
+          "question": "Under the Reward and Recognition Scheme (R&RS), awards should be based on:",
+          "options": [
+            "Measurable results and evaluated output",
+            "The opinion of the Minister only",
+            "The length of the officer’s resume",
+            "The total number of staff recruited"
+          ],
+          "correct": 0,
+          "explanation": "Reward is linked to performance based on measurable results and evaluated output, ensuring objectivity [159], [32].",
+          "difficulty": "easy",
+          "chapter": "Performance Reward",
+          "keywords": ["Reward", "measurable results", "objectivity"]
+        },
+        {
+          "id": "leadership_mpf_045",
+          "question": "Which management system supports the deployment of electronic medical records and health service delivery in the public sector?",
+          "options": [
+            "IPPIS",
+            "E-Health Portal",
+            "GIFMIS",
+            "PEBEC Portal"
+          ],
+          "correct": 1,
+          "explanation": "E-Health platforms support electronic medical records and health service delivery, reflecting ICT modernization [160].",
+          "difficulty": "medium",
+          "chapter": "E-Governance Functions",
+          "keywords": ["E-Health", "medical records", "ICT"]
+        },
+        {
+          "id": "leadership_mpf_046",
+          "question": "The concept of **Benchmarking** in management helps organizations move toward:",
+          "options": [
+            "Decreased transparency",
+            "Continuous Improvement",
+            "Increased secrecy",
+            "Stagnation"
           ]
+          ,
+          "correct": 1,
+          "explanation": "Benchmarking and the PDCA cycle are integral to achieving continuous improvement in organizational processes and service delivery [88], [97].",
+          "difficulty": "medium",
+          "chapter": "Quality Management",
+          "keywords": ["Benchmarking", "Continuous Improvement"]
+        },
+        {
+          "id": "leadership_mpf_047",
+          "question": "If an officer causes financial loss due to negligence or fault, the penalty imposed (**surcharge**) is intended to recover:",
+          "options": [
+            "Future salaries",
+            "The exact amount of financial loss caused by the officer's fault",
+            "The cost of the audit",
+            "A fixed statutory amount unrelated to the loss"
+          ],
+          "correct": 1,
+          "explanation": "Surcharge is the recovery of government losses from the officer's pay, specifically aiming to recover the exact amount lost due to the officer’s fault [161].",
+          "difficulty": "medium",
+          "chapter": "Financial Sanctions",
+          "keywords": ["Surcharge", "financial loss", "recovery"]
+        },
+        {
+          "id": "leadership_mpf_048",
+          "question": "The mandatory retirement age in the Federal Civil Service is:",
+          "options": [
+            "55 years or 30 years in service",
+            "60 years of age or 35 years of service, whichever comes first",
+            "65 years only",
+            "After 40 years in service"
+          ],
+          "correct": 1,
+          "explanation": "Rule 020810 defines the mandatory retirement age as 60 years of age or 35 years of service, whichever comes first [162], [163].",
+          "difficulty": "easy",
+          "chapter": "Retirement Rules",
+          "keywords": ["retirement age", "60 years", "35 years"]
+        },
+        {
+          "id": "leadership_mpf_049",
+          "question": "Management functions include Planning, Organizing, Leading, and:",
+          "options": [
+            "Budgeting",
+            "Controlling",
+            "Auditing",
+            "Recruiting"
+          ],
+          "correct": 1,
+          "explanation": "The core management functions are generally recognized as Planning, Organizing, Leading, and Controlling [88].",
+          "difficulty": "easy",
+          "chapter": "Management Functions",
+          "keywords": ["Management functions", "Controlling"]
+        },
+        {
+          "id": "leadership_mpf_050",
+          "question": "The objective of the **Civil Service Handbook** in providing clear guidelines on administrative workflow and conduct is primarily to ensure:",
+          "options": [
+            "Political alignment",
+            "Administrative efficiency and standardization",
+            "Increased complexity",
+            "Reduced accountability"
+          ],
+          "correct": 1,
+          "explanation": "The Handbook guides administrative workflow and conduct to ensure efficiency and standardization of office procedures [164], [165].",
+          "difficulty": "easy",
+          "chapter": "Administrative Management",
+          "keywords": ["Civil Service Handbook", "efficiency", "standardization"]
         }
       ]
     }

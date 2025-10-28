@@ -11,18 +11,25 @@
 
 .topic-card {
     background: linear-gradient(135deg, var(--nigerian-white) 0%, rgba(255, 255, 255, 0.95) 100%);
-    border: 2px solid transparent;
-    border-radius: var(--border-radius);
-    padding: 1.5rem;
-    margin: 1rem;
+    border: 1.5px solid transparent;
+    border-radius: calc(var(--border-radius) * 0.6); /* More compact border-radius */
+    padding: 0.75rem; /* Further reduced padding */
+    margin: 0.5rem; /* Further reduced margin */
     cursor: pointer;
     transition: all var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: var(--shadow);
     flex: 1;
-    min-width: 250px;
-    max-width: calc(33.333% - 2rem);
-    animation: fadeInUp 0.5s ease forwards;
-    backdrop-filter: blur(10px);
+    min-width: 240px;
+    max-width: 240px; /* Fixed width for all cards */
+    width: 240px; /* Fixed width for all cards */
+    height: 190px; /* Fixed height for all cards */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Distribute content evenly */
+    align-items: center; /* Center content horizontally */
+    text-align: center; /* Center text content */
+    animation: fadeInUp 0.4s ease forwards; /* Slightly faster animation */
+    backdrop-filter: blur(6px); /* Slightly less blur for more compact look */
 }
 
 .topic-card:hover {
@@ -32,44 +39,60 @@
 }
 
 .topic-icon {
-    font-size: 2rem;
-    margin-bottom: 1rem;
+    font-size: 1.6rem; /* More compact font size */
+    margin-bottom: 0.4rem; /* Further reduced margin */
 }
 
 .topic-title {
     color: var(--dark-green-text);
-    font-size: 1.25rem;
+    font-size: 1rem; /* More compact font size */
     font-weight: 500;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.2rem; /* Further reduced margin */
 }
 
 .topic-description {
     color: #666;
-    font-size: 0.9rem;
-    line-height: 1.4;
+    font-size: 0.75rem; /* More compact font size */
+    line-height: 1.25; /* More compact line height */
+    margin-bottom: 0.2rem; /* Further reduced bottom margin */
+}
+
+.topic-count {
+    font-size: 0.7rem; /* More compact font size */
+    color: var(--accent-color);
+    background: rgba(0, 135, 81, 0.1); /* Light green background */
+    padding: 0.15rem 0.4rem; /* More compact padding */
+    border-radius: 10px; /* More compact border-radius */
+    display: inline-block;
+    margin-top: 0.1rem; /* Further reduced top margin */
+    font-weight: 500;
 }
 
 #topicList {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 1rem;
-    padding: 1rem;
+    align-items: stretch; /* Make all cards in a row the same height */
+    gap: 0.5rem; /* More compact gap */
+    padding: 0.5rem; /* More compact padding */
+    width: 100%; /* Ensure full width for consistent centering */
 }
 
 .error-message {
     background-color: #ffebee;
     color: #c62828;
-    padding: 1rem;
-    border-radius: var(--border-radius);
-    margin: 1rem;
+    padding: 0.75rem; /* More compact padding */
+    border-radius: calc(var(--border-radius) * 0.8); /* More compact border-radius */
+    margin: 0.75rem; /* Reduced margin */
     text-align: center;
     border: 1px solid #ef9a9a;
+    font-size: 0.85rem; /* Slightly smaller text */
 }
 
 .loading {
     text-align: center;
-    padding: 2rem;
+    padding: 1.2rem; /* More compact padding */
     color: var(--dark-green-text);
     font-style: italic;
+    font-size: 0.9rem; /* Slightly smaller text */
 }

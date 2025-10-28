@@ -1,0 +1,1865 @@
+{
+  "name": "Constitutional, Legal, and General Competency (100 Questions)",
+  "description": "Comprehensive assessment of the legal, constitutional, and ethical framework governing public administration and policy execution in Nigeria, aligning with Directorate-level responsibility.",
+  "type": "topic",
+  "hasSubcategories": true,
+  "icon": "⚖️",
+  "subcategories": [
+    {
+      "id": "clg_constitutional_governance",
+      "name": "Constitutional Structure, Bodies, and Principles",
+      "questions": [
+        {
+          "id": "clg_con_001",
+          "question": "The power to dismiss and exercise disciplinary control over officers on GL 07 and above in the Federal Civil Service is vested in:",
+          "options": [
+            "The Permanent Secretary/CEO",
+            "The Office of the Head of the Civil Service of the Federation (OHCSF)",
+            "The Federal Civil Service Commission (FCSC)",
+            "The Ministerial Tenders Board"
+          ],
+          "correct": 2,
+          "explanation": "The Federal Civil Service Commission (FCSC) is vested with the power to dismiss and exercise disciplinary control over officers in the Federal Civil Service, particularly those on GL 07 and above, as mandated by Rule 100102 [1].",
+          "difficulty": "easy",
+          "chapter": "Rule 100102",
+          "keywords": [
+            "FCSC",
+            "Disciplinary authority",
+            "GL 07+"
+          ]
+        },
+        {
+          "id": "clg_con_002",
+          "question": "The principle that ensures government policies continue to be implemented regardless of transient changes in political leadership is known as:",
+          "options": [
+            "Neutrality",
+            "Permanence",
+            "Meritocracy",
+            "Anonymity"
+          ],
+          "correct": 1,
+          "explanation": "Permanence ensures that the civil service continues its functions despite political changes [2].",
+          "difficulty": "medium",
+          "chapter": "CSH Principles",
+          "keywords": [
+            "Permanence",
+            "Continuity"
+          ]
+        },
+        {
+          "id": "clg_con_003",
+          "question": "Appointments into all grades in Parastatals must be based on merit, credibility, and equal opportunity with due regard to the:",
+          "options": [
+            "Political party manifesto",
+            "Federal Character Principle",
+            "Seniority rule",
+            "Budgetary appropriation"
+          ],
+          "correct": 1,
+          "explanation": "Rule 170302 mandates that appointments must be fair and open, ensuring merit, credibility, and equal opportunity for all with due regard to the Federal Character Principle [3, 4].",
+          "difficulty": "easy",
+          "chapter": "Rule 170302",
+          "keywords": [
+            "Federal Character Principle",
+            "Appointments",
+            "Parastatals"
+          ]
+        },
+        {
+          "id": "clg_con_004",
+          "question": "Who is constitutionally empowered to present the annual budget to the National Assembly for legislative approval?",
+          "options": [
+            "The Minister of Finance",
+            "The Accountant-General of the Federation",
+            "The President",
+            "The Head of the Civil Service of the Federation"
+          ],
+          "correct": 2,
+          "explanation": "Section 81 of the Constitution mandates the President to present the budget to the National Assembly [5].",
+          "difficulty": "easy",
+          "chapter": "Constitution, Section 81",
+          "keywords": [
+            "President",
+            "Budget presentation",
+            "National Assembly"
+          ]
+        },
+        {
+          "id": "clg_con_005",
+          "question": "The constitutional provision that all government funds must be centralized into a specific main account for transparency and control refers to the:",
+          "options": [
+            "Contingencies Fund",
+            "Development Fund",
+            "Consolidated Revenue Fund (CRF)",
+            "Replacement Reserve Fund"
+          ],
+          "correct": 2,
+          "explanation": "The Consolidated Revenue Fund (CRF) is the main account into which all government revenues are paid [6].",
+          "difficulty": "easy",
+          "chapter": "FR General Management",
+          "keywords": [
+            "Consolidated Revenue Fund",
+            "Revenue centralization"
+          ]
+        },
+        {
+          "id": "clg_con_006",
+          "question": "The authority responsible for the audit of government accounts and reporting findings to the National Assembly is the:",
+          "options": [
+            "Accountant-General of the Federation",
+            "Auditor-General for the Federation (AuGF)",
+            "Minister of Finance",
+            "Internal Auditor"
+          ],
+          "correct": 1,
+          "explanation": "The Auditor-General for the Federation (AuGF) audits public accounts and reports to the National Assembly (implied by references to Audit Report and legislative oversight) [7, 8].",
+          "difficulty": "medium",
+          "chapter": "AuGF Oversight",
+          "keywords": [
+            "Auditor-General",
+            "Audit Report",
+            "National Assembly"
+          ]
+        },
+        {
+          "id": "clg_con_007",
+          "question": "The power of the National Assembly to make laws on matters such as currency and defense is drawn from which list in the Constitution?",
+          "options": [
+            "Concurrent Legislative List",
+            "Residual Powers List",
+            "Exclusive Legislative List",
+            "Judicial Review List"
+          ],
+          "correct": 2,
+          "explanation": "Federal-only matters are typically found in the Exclusive Legislative List [9].",
+          "difficulty": "medium",
+          "chapter": "Constitutional Provisions",
+          "keywords": [
+            "Exclusive Legislative List",
+            "NASS powers"
+          ]
+        },
+        {
+          "id": "clg_con_008",
+          "question": "Who is designated as the Chief Accounting Officer personally responsible for the control, custody, and disbursement of funds within a Ministry?",
+          "options": [
+            "The Minister",
+            "The Permanent Secretary/DG",
+            "The Accountant-General of the Federation",
+            "The Head of the Civil Service of the Federation"
+          ],
+          "correct": 1,
+          "explanation": "The Permanent Secretary or DG of an MDA serves as the Accounting Officer responsible for expenditure control, record keeping, and compliance (FR 104) [10, 11].",
+          "difficulty": "easy",
+          "chapter": "FR 104",
+          "keywords": [
+            "Accounting Officer",
+            "Permanent Secretary",
+            "Financial control"
+          ]
+        },
+        {
+          "id": "clg_con_009",
+          "question": "The three core values emphasized for civil servants in the Civil Service Handbook are secrecy, efficiency, and:",
+          "options": [
+            "Nepotism",
+            "Loyalty",
+            "Partisanship",
+            "Insolvency"
+          ],
+          "correct": 1,
+          "explanation": "The handbook emphasizes secrecy, efficiency, and loyalty as core values of civil servants [12, 13].",
+          "difficulty": "easy",
+          "chapter": "CSH Ethics",
+          "keywords": [
+            "Core values",
+            "Loyalty",
+            "Efficiency"
+          ]
+        },
+        {
+          "id": "clg_con_010",
+          "question": "The constitutional body that collects and verifies asset declarations from public officers to enforce ethical standards is the:",
+          "options": [
+            "Economic and Financial Crimes Commission (EFCC)",
+            "Independent Corrupt Practices Commission (ICPC)",
+            "Code of Conduct Bureau (CCB)",
+            "Federal Civil Service Commission (FCSC)"
+          ],
+          "correct": 2,
+          "explanation": "The Code of Conduct Bureau (CCB) receives asset declarations [14] and monitors compliance with ethical standards [15, 16].",
+          "difficulty": "easy",
+          "chapter": "CCB Mandate",
+          "keywords": [
+            "CCB",
+            "Asset declaration",
+            "Ethics enforcement"
+          ]
+        },
+        {
+          "id": "clg_con_011",
+          "question": "The doctrine of **Separation of Powers** divides governmental authority between which three arms?",
+          "options": [
+            "Federal, State, and Local",
+            "The Public, the Civil Service, and the Military",
+            "The Judiciary, the Executive, and the Legislature",
+            "The Minister, the Permanent Secretary, and the Director"
+          ],
+          "correct": 2,
+          "explanation": "The doctrine of separation of powers divides authority between the Judiciary, Executive, and Legislature [17].",
+          "difficulty": "easy",
+          "chapter": "Constitutional Knowledge",
+          "keywords": [
+            "Separation of Powers",
+            "Arms of Government"
+          ]
+        },
+        {
+          "id": "clg_con_012",
+          "question": "The **Oath of Allegiance/Oath of Office** signed by an officer commits them to uphold and serve faithfully according to the:",
+          "options": [
+            "Public Service Rules",
+            "Constitution of Nigeria",
+            "Ministerial Directives",
+            "Financial Regulations"
+          ],
+          "correct": 1,
+          "explanation": "The Oath of Allegiance/Oath of Office is a binding promise to uphold the Constitution and serve faithfully [9].",
+          "difficulty": "easy",
+          "chapter": "Constitution/Ethics",
+          "keywords": [
+            "Oath of Office",
+            "Constitution"
+          ]
+        },
+        {
+          "id": "clg_con_013",
+          "question": "Which body ensures that recruitment and disciplinary standards are maintained across the Federal Civil Service?",
+          "options": [
+            "Budget Office of the Federation (BOF)",
+            "Debt Management Office (DMO)",
+            "Federal Civil Service Commission (FCSC)",
+            "National Population Commission (NPC)"
+          ],
+          "correct": 2,
+          "explanation": "The FCSC manages appointments and discipline within the service [18, 19].",
+          "difficulty": "easy",
+          "chapter": "FCSC Role",
+          "keywords": [
+            "FCSC",
+            "Appointments",
+            "Discipline"
+          ]
+        },
+        {
+          "id": "clg_con_014",
+          "question": "The PSR 2021 mandates that matters not covered in its provisions should be referred to whom for appropriate direction?",
+          "options": [
+            "The Minister of Justice",
+            "The National Assembly",
+            "The Head of Service",
+            "The Permanent Secretary"
+          ],
+          "correct": 2,
+          "explanation": "Matters not covered in the PSR should be referred to the Head of Service for appropriate direction (Rule 16.10) [20].",
+          "difficulty": "medium",
+          "chapter": "PSR Gaps",
+          "keywords": [
+            "Head of Service",
+            "Gaps in PSR"
+          ]
+        },
+        {
+          "id": "clg_con_015",
+          "question": "Who must approve the re-engagement of retired officers into career posts, whose remuneration is based on negotiable terms?",
+          "options": [
+            "The Minister of Finance",
+            "The Federal Civil Service Commission (FCSC)",
+            "The Head of the Civil Service of the Federation (OHCSF)",
+            "The Permanent Secretary"
+          ],
+          "correct": 1,
+          "explanation": "Re-engagement typically requires approval by the FCSC for career posts (Rule 020412) [21].",
+          "difficulty": "medium",
+          "chapter": "FCSC Appointment",
+          "keywords": [
+            "Re-engagement",
+            "FCSC approval"
+          ]
+        },
+        {
+          "id": "clg_con_016",
+          "question": "Which principle guarantees that civil servants serve all citizens and political parties without personal or political preference?",
+          "options": [
+            "Anonymity",
+            "Neutrality",
+            "Permanence",
+            "Centralization"
+          ],
+          "correct": 1,
+          "explanation": "Impartiality guarantees that civil servants serve all citizens fairly without political or personal bias [22, 23].",
+          "difficulty": "easy",
+          "chapter": "CSH Impartiality",
+          "keywords": [
+            "Neutrality",
+            "Impartiality"
+          ]
+        },
+        {
+          "id": "clg_con_017",
+          "question": "The civil service hierarchy structures staff into categories based on professional disciplines and levels of responsibility, known as:",
+          "options": [
+            "Committees and Boards",
+            "Regions and Zones",
+            "Grades and Cadres",
+            "Parastatals and Agencies"
+          ],
+          "correct": 2,
+          "explanation": "The civil service is structured into Grades and Cadres [24, 25].",
+          "difficulty": "easy",
+          "chapter": "PSR Structure",
+          "keywords": [
+            "Grades and cadres",
+            "Structure"
+          ]
+        },
+        {
+          "id": "clg_con_018",
+          "question": "The official document used to publish laws, appointments, and constitutional changes in Nigeria is the:",
+          "options": [
+            "National Gazette",
+            "Annual Appropriation Act",
+            "Budget Call Circular",
+            "Public Complaints Report"
+          ],
+          "correct": 0,
+          "explanation": "The Official Gazette is the formal government publication used to publish laws, appointments, and constitutional changes [9].",
+          "difficulty": "easy",
+          "chapter": "Official Gazette",
+          "keywords": [
+            "Official Gazette",
+            "Government Publication"
+          ]
+        },
+        {
+          "id": "clg_con_019",
+          "question": "In the case of conflict between the English version and a local language version of the PSR, which version prevails?",
+          "options": [
+            "The local language version",
+            "The English version",
+            "The version preferred by the OHCSF",
+            "The version with the earliest commencement date"
+          ],
+          "correct": 1,
+          "explanation": "The English version of the PSR prevails in case of conflict with local language versions (Rule 16.19) [26].",
+          "difficulty": "medium",
+          "chapter": "PSR Interpretation",
+          "keywords": [
+            "PSR language",
+            "English version"
+          ]
+        },
+        {
+          "id": "clg_con_020",
+          "question": "The core constitutional and legal document that outlines civil liberties and protections for citizens, including the right to fair hearing, is:",
+          "options": [
+            "The Public Procurement Act",
+            "The Financial Regulations",
+            "The Constitution (Chapter IV)",
+            "The Civil Service Handbook"
+          ],
+          "correct": 2,
+          "explanation": "Chapter IV of the Constitution outlines civil liberties and protections, known as fundamental rights [27].",
+          "difficulty": "easy",
+          "chapter": "Constitution Chapter IV",
+          "keywords": [
+            "Fundamental Rights",
+            "Constitution Chapter IV"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "clg_legal_compliance",
+      "name": "Legal Frameworks, Procurement, and Statutory Compliance",
+      "questions": [
+        {
+          "id": "clg_lc_021",
+          "question": "Which legal framework provides the guidelines for prudence, transparency, and accountability in the management of public finance in Nigeria?",
+          "options": [
+            "Public Procurement Act (PPA)",
+            "Fiscal Responsibility Act (FRA)",
+            "Official Secrets Act",
+            "Pension Reform Act"
+          ],
+          "correct": 1,
+          "explanation": "The Fiscal Responsibility Act provides the legal framework for prudent management of public finances in Nigeria [28].",
+          "difficulty": "medium",
+          "chapter": "FR Legal Framework",
+          "keywords": [
+            "Fiscal Responsibility Act",
+            "Prudent management",
+            "Public finance"
+          ]
+        },
+        {
+          "id": "clg_lc_022",
+          "question": "Section 58 of the Public Procurement Act (PPA) prescribes penalties for offenses such as bid rigging, collusion, and procurement fraud, including dismissal or:",
+          "options": [
+            "Payment of a minor fine to the MDA",
+            "Reduction in salary only",
+            "Criminal charges including imprisonment",
+            "Transfer to a remote station"
+          ],
+          "correct": 2,
+          "explanation": "Section 58 prescribes imprisonment and fines for procurement-related fraud [29, 30]. Officers involved also face dismissal as serious misconduct [31].",
+          "difficulty": "hard",
+          "chapter": "PPA Section 58",
+          "keywords": [
+            "Procurement fraud",
+            "Dismissal",
+            "Criminal charges"
+          ]
+        },
+        {
+          "id": "clg_lc_023",
+          "question": "The legal principle that prohibits civil servants from disclosing sensitive government information without authorization is enforced by the:",
+          "options": [
+            "Freedom of Information Act (FOIA)",
+            "Official Secrets Act",
+            "Public Complaints Act",
+            "Code of Conduct Bureau Act"
+          ],
+          "correct": 1,
+          "explanation": "The Official Secrets Act enforces secrecy requirements for civil servants handling official matters [32, 33].",
+          "difficulty": "medium",
+          "chapter": "Official Secrets Act",
+          "keywords": [
+            "Official Secrets Act",
+            "Secrecy",
+            "Confidentiality"
+          ]
+        },
+        {
+          "id": "clg_lc_024",
+          "question": "Which body is empowered to blacklist or debar contracting firms found guilty of corrupt practices or fraudulent misrepresentation during a bidding process?",
+          "options": [
+            "The Auditor-General of the Federation (AuGF)",
+            "The Bureau of Public Procurement (BPP)",
+            "The Permanent Secretary/CEO",
+            "The Federal Civil Service Commission (FCSC)"
+          ],
+          "correct": 1,
+          "explanation": "Section 57 empowers the BPP to blacklist bidders for engaging in corrupt practices [34, 35].",
+          "difficulty": "medium",
+          "chapter": "PPA Section 57",
+          "keywords": [
+            "Blacklisting",
+            "BPP",
+            "Corrupt practices"
+          ]
+        },
+        {
+          "id": "clg_lc_025",
+          "question": "In a disciplinary inquiry, documentary evidence cannot be used against the officer unless he is given open access thereto, ensuring the principle of:",
+          "options": [
+            "Anonymity",
+            "Neutrality",
+            "Fair Hearing (Natural Justice)",
+            "Permanence"
+          ],
+          "correct": 2,
+          "explanation": "No documentary evidence shall be used against the officer unless he has previously been supplied with a copy or given open access thereto (Rule 100307(vii)) [36-38].",
+          "difficulty": "medium",
+          "chapter": "Rule 100307(vii)",
+          "keywords": [
+            "Fair Hearing",
+            "Access to documents"
+          ]
+        },
+        {
+          "id": "clg_lc_026",
+          "question": "The mandatory pre-qualification requirement for bidders, ensuring they have fulfilled tax obligations to the Federal Government, is the submission of a valid:",
+          "options": [
+            "Letter of intent",
+            "Tax Clearance Certificate (TCC)",
+            "Political Party Membership Card",
+            "Local Government Identification Letter"
+          ],
+          "correct": 1,
+          "explanation": "Section 16 of the PPA requires contractors to demonstrate eligibility, including fulfilling tax obligations [39].",
+          "difficulty": "medium",
+          "chapter": "PPA Section 16",
+          "keywords": [
+            "Tax Clearance Certificate",
+            "PPA eligibility"
+          ]
+        },
+        {
+          "id": "clg_lc_027",
+          "question": "The penalty of **Surcharge** is imposed on an officer to recover:",
+          "options": [
+            "Administrative processing fees",
+            "The exact amount of financial loss caused by the officer's negligence or fault",
+            "Future salary increments",
+            "Legal defense costs"
+          ],
+          "correct": 1,
+          "explanation": "Surcharge is the recovery of government losses from the officer's pay, applied when the loss is due to the officer’s fault or negligence [40].",
+          "difficulty": "medium",
+          "chapter": "FR Sanctions",
+          "keywords": [
+            "Surcharge",
+            "Recovery of loss",
+            "Financial loss"
+          ]
+        },
+        {
+          "id": "clg_lc_028",
+          "question": "Which legal principle in procurement mandates strict adherence to legal and procedural requirements in awarding contracts to guarantee transparency?",
+          "options": [
+            "Invitation to Treat",
+            "Due Process",
+            "Caveat Emptor",
+            "Locus Standi"
+          ],
+          "correct": 1,
+          "explanation": "Due Process mandates strict adherence to legal and procedural requirements in awarding contracts [41-43].",
+          "difficulty": "medium",
+          "chapter": "PPA Due Process",
+          "keywords": [
+            "Due Process",
+            "Transparency",
+            "Legality"
+          ]
+        },
+        {
+          "id": "clg_lc_029",
+          "question": "The use of e-procurement systems (PPA Section 38) in public procurement is primarily aimed at enhancing:",
+          "options": [
+            "Manual processing and paperwork",
+            "Efficiency and transparency",
+            "Political patronage",
+            "Secrecy and restricted bidding"
+          ],
+          "correct": 1,
+          "explanation": "E-procurement enhances efficiency and transparency [21, 44].",
+          "difficulty": "medium",
+          "chapter": "PPA Section 38",
+          "keywords": [
+            "E-procurement",
+            "Efficiency",
+            "Transparency"
+          ]
+        },
+        {
+          "id": "clg_lc_030",
+          "question": "An officer must promptly report a criminal charge or the outcome of such charge to whom, under pain of disciplinary action?",
+          "options": [
+            "The Minister of Justice",
+            "His Permanent Secretary/Head of Extra-Ministerial Office",
+            "The Police Commissioner",
+            "The Head of the Civil Service of the Federation (OHCSF)"
+          ],
+          "correct": 1,
+          "explanation": "An Officer must promptly report a criminal charge or the outcome of such charge to his Permanent Secretary/Head of Extra-Ministerial Office (Rule 100409) [8].",
+          "difficulty": "medium",
+          "chapter": "Rule 100409",
+          "keywords": [
+            "Criminal charge",
+            "Reporting duty",
+            "Permanent Secretary"
+          ]
+        },
+        {
+          "id": "clg_lc_031",
+          "question": "Which specific PPA Section prohibits procurement without approved budgetary provision and availability of funds?",
+          "options": [
+            "Section 21 (PPC)",
+            "Section 14 (Appropriation)",
+            "Section 30 (Evaluation)",
+            "Section 42 (Emergency)"
+          ],
+          "correct": 1,
+          "explanation": "Section 14 prohibits procurement without approved budgetary provision and funds in place [45, 46].",
+          "difficulty": "medium",
+          "chapter": "PPA Section 14",
+          "keywords": [
+            "PPA Section 14",
+            "Appropriation",
+            "Budget provision"
+          ]
+        },
+        {
+          "id": "clg_lc_032",
+          "question": "The practice of illegally breaking down a contract into smaller units to circumvent approval limits is explicitly prohibited in the PPA as:",
+          "options": [
+            "Bid Rigging",
+            "Contract Variation",
+            "Contract Splitting",
+            "Collusion"
+          ],
+          "correct": 2,
+          "explanation": "Contract Splitting is explicitly prohibited (PPA Section 58(4)) as it undermines transparency and circumvents established thresholds [47, 48].",
+          "difficulty": "medium",
+          "chapter": "PPA Section 58(4)",
+          "keywords": [
+            "Contract Splitting",
+            "Prohibited practice"
+          ]
+        },
+        {
+          "id": "clg_lc_033",
+          "question": "The minimum mandatory period for the archive retention of all procurement records and documents by MDAs is:",
+          "options": [
+            "1 year",
+            "3 years",
+            "5 years",
+            "10 years"
+          ],
+          "correct": 2,
+          "explanation": "Procurement documents must be retained for at least 5 years to support potential audits and inquiries (PPA Section 38) [49].",
+          "difficulty": "medium",
+          "chapter": "PPA Section 38",
+          "keywords": [
+            "Record retention",
+            "5 years"
+          ]
+        },
+        {
+          "id": "clg_lc_034",
+          "question": "The statutory default and preferred method for the procurement of goods, works, and services that promotes transparency and fair competition is:",
+          "options": [
+            "Sole Sourcing",
+            "Restricted Bidding",
+            "Selective Tendering",
+            "Open Competitive Bidding"
+          ],
+          "correct": 3,
+          "explanation": "Open Competitive Bidding is the default procurement method under Section 24 of the PPA 2007 [50, 51].",
+          "difficulty": "easy",
+          "chapter": "PPA Section 24",
+          "keywords": [
+            "Open Competitive Bidding",
+            "Default procurement method"
+          ]
+        },
+        {
+          "id": "clg_lc_035",
+          "question": "Who must authorize emergency procurements, subject to later audit and ratification, as required under PPA Section 42?",
+          "options": [
+            "The Permanent Secretary",
+            "The Minister",
+            "The Head of Civil Service of the Federation",
+            "The Accountant-General"
+          ],
+          "correct": 1,
+          "explanation": "The Minister authorizes emergency procurements, often in line with procurement laws and thresholds, subject to later review [52].",
+          "difficulty": "hard",
+          "chapter": "PPA Section 42",
+          "keywords": [
+            "Emergency procurement",
+            "Minister approval"
+          ]
+        },
+        {
+          "id": "clg_lc_036",
+          "question": "If, during the course of a disciplinary inquiry, further grounds for dismissal are disclosed, the FCSC shall furnish the Officer with:",
+          "options": [
+            "A written notice of termination",
+            "A written statement thereof and the same steps shall be taken as prescribed above in respect of the original grounds",
+            "A recommendation for compulsory retirement",
+            "A transfer letter"
+          ],
+          "correct": 1,
+          "explanation": "If further grounds are disclosed, the Officer shall be furnished with a written statement thereof and the same steps taken as for the original grounds (Rule 100307(viii)) [53].",
+          "difficulty": "hard",
+          "chapter": "Rule 100307(viii)",
+          "keywords": [
+            "Further grounds for dismissal",
+            "Written statement"
+          ]
+        },
+        {
+          "id": "clg_lc_037",
+          "question": "The rule that the head of the officer’s department shall not be a member of the board of inquiry tasked with investigating the officer (Rule 100307(v)) safeguards:",
+          "options": [
+            "Anonymity",
+            "Fair hearing and judicial neutrality",
+            "Segregation of duties",
+            "Permanence of the service"
+          ],
+          "correct": 1,
+          "explanation": "The head of the Officer's department shall not be a member of the board (Rule 100307(v)) [53]. This prevents bias and ensures a fair hearing.",
+          "difficulty": "medium",
+          "chapter": "Rule 100307(v)",
+          "keywords": [
+            "Board of Inquiry",
+            "Fair hearing"
+          ]
+        },
+        {
+          "id": "clg_lc_038",
+          "question": "To ensure maximum transparency, the process of bid opening for public tenders must be conducted:",
+          "options": [
+            "Only by the Ministerial Tenders Board (MTB)",
+            "In secrecy to protect prices",
+            "Publicly, with all bidders or their representatives invited",
+            "After the contract award is finalized"
+          ],
+          "correct": 2,
+          "explanation": "Bid Opening must be conducted publicly, with all bidders invited and minutes recorded [43, 54].",
+          "difficulty": "easy",
+          "chapter": "PPA Bid Opening",
+          "keywords": [
+            "Bid Opening",
+            "Publicity"
+          ]
+        },
+        {
+          "id": "clg_lc_039",
+          "question": "The final check that confirms goods or services were delivered satisfactorily before any payment is processed is documented by the:",
+          "options": [
+            "Local Purchase Order (LPO)",
+            "Job Completion Certificate (JCC)",
+            "Stores Receipt Voucher (SRV)",
+            "Virement Warrant"
+          ],
+          "correct": 1,
+          "explanation": "No payment is processed without the Job Completion Certificate (JCC), which confirms that work was done or goods were received [55].",
+          "difficulty": "easy",
+          "chapter": "FR Payment Validation",
+          "keywords": [
+            "Job Completion Certificate",
+            "Payment verification"
+          ]
+        },
+        {
+          "id": "clg_lc_040",
+          "question": "Which PPA Section requires bid opening to be conducted in public?",
+          "options": [
+            "Section 19",
+            "Section 27",
+            "Section 30",
+            "Section 32"
+          ],
+          "correct": 1,
+          "explanation": "Section 27 requires that bid opening must be done publicly to ensure fairness and transparency [56].",
+          "difficulty": "easy",
+          "chapter": "PPA Section 27",
+          "keywords": [
+            "Bid opening",
+            "Publicity",
+            "PPA Section 27"
+          ]
+        },
+        {
+          "id": "clg_lc_041",
+          "question": "The mandatory requirement that bidders must not be in receivership, bankruptcy, or insolvency is contained in PPA:",
+          "options": [
+            "Section 12",
+            "Section 16",
+            "Section 24",
+            "Section 40"
+          ],
+          "correct": 1,
+          "explanation": "Section 16 states that eligible contractors must not be in receivership, bankruptcy, or insolvency [57].",
+          "difficulty": "medium",
+          "chapter": "PPA Section 16",
+          "keywords": [
+            "Insolvency",
+            "Eligibility",
+            "Section 16"
+          ]
+        },
+        {
+          "id": "clg_lc_042",
+          "question": "What is the maximum penalty for an officer convicted of a felony (criminal offense) in addition to possible automatic dismissal?",
+          "options": [
+            "Transfer to a non-sensitive post",
+            "Imprisonment and/or fine",
+            "Mandatory study leave",
+            "Reduction in salary for six months"
+          ],
+          "correct": 1,
+          "explanation": "Serious offenses, especially fraud/corruption (PPA Section 58), lead to dismissal and criminal charges/imprisonment [29, 31].",
+          "difficulty": "medium",
+          "chapter": "PPA/PSR Sanctions",
+          "keywords": [
+            "Criminal offense",
+            "Dismissal",
+            "Imprisonment"
+          ]
+        },
+        {
+          "id": "clg_lc_043",
+          "question": "An officer who is dismissed from the service shall forfeit all claims to retiring benefits, leave, or transport grant, subject to the provisions of the:",
+          "options": [
+            "Financial Regulations",
+            "Public Procurement Act",
+            "Pension Reform Act, 2014 (as amended)",
+            "Contingencies Fund Act"
+          ],
+          "correct": 2,
+          "explanation": "Dismissal results in forfeiture subject to the provisions of the Pension Reform Act [58, 59].",
+          "difficulty": "easy",
+          "chapter": "Rule 100407",
+          "keywords": [
+            "Dismissal",
+            "Forfeiture",
+            "Pension Reform Act"
+          ]
+        },
+        {
+          "id": "clg_lc_044",
+          "question": "The officer who must sign all **Payment Vouchers** before payments are processed, confirming the correctness and classification of the transaction, is the:",
+          "options": [
+            "Auditor-General",
+            "Vote Controller",
+            "Head of Accounts",
+            "Permanent Secretary"
+          ],
+          "correct": 2,
+          "explanation": "The Head of Accounts must sign all payment vouchers before payments are processed [60, 61].",
+          "difficulty": "medium",
+          "chapter": "FR Payment Approval",
+          "keywords": [
+            "Payment Vouchers",
+            "Head of Accounts"
+          ]
+        },
+        {
+          "id": "clg_lc_045",
+          "question": "The legal instrument enacted by the National Assembly that authorizes the Federal Government to withdraw funds from the Consolidated Revenue Fund (CRF) for annual expenditure is the:",
+          "options": [
+            "Budget Call Circular",
+            "Annual Appropriation Act",
+            "Fiscal Responsibility Act",
+            "Treasury Circular"
+          ],
+          "correct": 1,
+          "explanation": "The Annual Appropriation Act is the legal instrument authorizing withdrawal from the CRF for annual expenditure [10].",
+          "difficulty": "medium",
+          "chapter": "FR Budgeting",
+          "keywords": [
+            "Appropriation Act",
+            "CRF",
+            "NASS authorization"
+          ]
+        },
+        {
+          "id": "clg_lc_046",
+          "question": "The primary role of the Internal Auditor is compromised if they report directly to the Minister instead of the Accounting Officer (Permanent Secretary), due to lack of:",
+          "options": [
+            "Loyalty",
+            "Funding",
+            "Independence and objectivity",
+            "Training and skills"
+          ],
+          "correct": 2,
+          "explanation": "Internal Audit functions must maintain independence and objectivity; reporting to the Accounting Officer ensures accountability within the MDA structure, while ministerial reporting risks political interference [62].",
+          "difficulty": "hard",
+          "chapter": "FR Internal Audit",
+          "keywords": [
+            "Internal Audit",
+            "Independence",
+            "Accounting Officer"
+          ]
+        },
+        {
+          "id": "clg_lc_047",
+          "question": "Which PPA Section allows for framework agreements to allow repeated procurements under pre-agreed terms?",
+          "options": [
+            "Section 35",
+            "Section 44",
+            "Section 42",
+            "Section 32"
+          ],
+          "correct": 1,
+          "explanation": "Section 44 provides for framework agreements [63].",
+          "difficulty": "medium",
+          "chapter": "PPA Section 44",
+          "keywords": [
+            "Framework agreements",
+            "PPA Section 44"
+          ]
+        },
+        {
+          "id": "clg_lc_048",
+          "question": "Which principle in the Civil Service requires public officers to serve without seeking personal recognition for policies implemented by the Government?",
+          "options": [
+            "Meritocracy",
+            "Anonymity",
+            "Delegation",
+            "Efficiency"
+          ],
+          "correct": 1,
+          "explanation": "Anonymity means civil servants serve the government and maintain policy continuity without seeking personal recognition [22].",
+          "difficulty": "medium",
+          "chapter": "CSH Principles",
+          "keywords": [
+            "Anonymity",
+            "Civil Service Principle"
+          ]
+        },
+        {
+          "id": "clg_lc_049",
+          "question": "If an officer is required to present himself for examination by a Medical Board and fails to comply with the instructions, they are liable to be treated as having been:",
+          "options": [
+            "Transferred immediately",
+            "Reduced in rank",
+            "Absent without leave",
+            "Granted sabbatical leave"
+          ],
+          "correct": 2,
+          "explanation": "An Officer who fails to comply with this rule shall render himself liable to be treated as having been absent without leave (Rule 130307) [64].",
+          "difficulty": "medium",
+          "chapter": "Rule 130307",
+          "keywords": [
+            "Medical Board",
+            "Failure to comply",
+            "Absent without leave"
+          ]
+        },
+        {
+          "id": "clg_lc_050",
+          "question": "In a disciplinary investigation involving serious misconduct, the board of inquiry shall consist of not less than:",
+          "options": [
+            "One person",
+            "Three persons",
+            "Five persons",
+            "Seven persons"
+          ],
+          "correct": 1,
+          "explanation": "The Commission may set up a board of inquiry which shall consist of not less than three persons (Rule 100307(v)) [65].",
+          "difficulty": "medium",
+          "chapter": "Rule 100307(v)",
+          "keywords": [
+            "Board of Inquiry",
+            "Three members"
+          ]
+        },
+        {
+          "id": "clg_lc_051",
+          "question": "The PPA principle that requires all bidders be treated fairly and equitably is emphasized in:",
+          "options": [
+            "Section 35",
+            "Section 16",
+            "Section 42",
+            "Section 58"
+          ],
+          "correct": 1,
+          "explanation": "Section 16 requires equal and fair treatment of all bidders during procurement [66].",
+          "difficulty": "medium",
+          "chapter": "PPA Section 16",
+          "keywords": [
+            "Fair treatment",
+            "PPA Section 16"
+          ]
+        },
+        {
+          "id": "clg_lc_052",
+          "question": "Section 32 of the PPA mandates transparency in contract awards by requiring:",
+          "options": [
+            "Publication of Ministerial Tenders Board Minutes only",
+            "Public access to procurement records and contract awards above thresholds",
+            "BPP approval for all low-value contracts",
+            "Secret negotiation with contractors"
+          ],
+          "correct": 1,
+          "explanation": "Section 32 requires publication of contract awards above thresholds and provides for public access to procurement records [67, 68].",
+          "difficulty": "medium",
+          "chapter": "PPA Section 32",
+          "keywords": [
+            "Public access",
+            "Contract awards",
+            "Section 32"
+          ]
+        },
+        {
+          "id": "clg_lc_053",
+          "question": "An officer involved in procurement fraud, such as collusion or over-invoicing, faces which penalty under the FR and PPA framework?",
+          "options": [
+            "A written warning only",
+            "Surcharge and disciplinary query",
+            "Dismissal or criminal charges",
+            "Transfer to another Ministry"
+          ],
+          "correct": 2,
+          "explanation": "Officers involved in procurement abuse and fraud face dismissal or criminal charges, as this constitutes serious misconduct (PPA Section 58 / FR Sanctions) [31, 47].",
+          "difficulty": "medium",
+          "chapter": "PPA/FR Sanctions",
+          "keywords": [
+            "Procurement fraud",
+            "dismissal",
+            "criminal charges"
+          ]
+        },
+        {
+          "id": "clg_lc_054",
+          "question": "In disciplinary matters, which misconduct is classified as **Gross Misconduct** according to the Civil Service Handbook?",
+          "options": [
+            "Habitual lateness",
+            "Failure to sign attendance register",
+            "Fraud and falsification of records",
+            "Poor communication"
+          ],
+          "correct": 2,
+          "explanation": "Fraud and falsification of records constitute gross misconduct [69, 70].",
+          "difficulty": "medium",
+          "chapter": "CSH Discipline",
+          "keywords": [
+            "Gross misconduct",
+            "Fraud",
+            "Falsification"
+          ]
+        },
+        {
+          "id": "clg_lc_055",
+          "question": "The maximum acting appointment period shall not exceed one year, but in exceptional circumstances may be extended for a further period of:",
+          "options": [
+            "Three months",
+            "Six months",
+            "One year",
+            "Two years"
+          ],
+          "correct": 1,
+          "explanation": "The acting appointment shall not exceed one year, but may be extended for a further period of six months (Rule 020703) [71].",
+          "difficulty": "easy",
+          "chapter": "Rule 020703",
+          "keywords": [
+            "Acting appointment",
+            "Six months"
+          ]
+        },
+        {
+          "id": "clg_lc_056",
+          "question": "Which of the following is NOT required to be notified simultaneously of decisions regarding the deferment or withholding of increment (Rule 040209)?",
+          "options": [
+            "The Office of the Accountant General of the Federation",
+            "The Permanent Secretary (CMO, OHCSF)",
+            "The Office of the Auditor General for the Federation",
+            "The Minister of Justice"
+          ],
+          "correct": 3,
+          "explanation": "Decisions must be communicated to the AGF, AuGF, and the OHCSF [72-74].",
+          "difficulty": "medium",
+          "chapter": "Rule 040209",
+          "keywords": [
+            "Increment decisions",
+            "Notification",
+            "Rule 040209"
+          ]
+        },
+        {
+          "id": "clg_lc_057",
+          "question": "The final authority to restore a deferred increment, which requires assessing service improvement and conduct, lies with the:",
+          "options": [
+            "Federal Civil Service Commission (FCSC)",
+            "Permanent Secretary/Head of Extra-Ministerial Office",
+            "Accountant-General of the Federation",
+            "The officer's direct supervisor"
+          ],
+          "correct": 1,
+          "explanation": "The Permanent Secretary/Head of Extra-Ministerial Office holds the authority to decide on restoring a deferred increment (Rule 040208) [75, 76].",
+          "difficulty": "medium",
+          "chapter": "Rule 040208",
+          "keywords": [
+            "Increment restoration",
+            "Permanent Secretary"
+          ]
+        },
+        {
+          "id": "clg_lc_058",
+          "question": "What happens if an Officer who has accepted a course of instruction abroad receives a salary from an employer in the overseas country during the training period?",
+          "options": [
+            "He receives full emolument from Nigeria",
+            "He forfeits all Nigerian emoluments/allowances unless specifically approved by the OHCSF",
+            "He must refund the cost of the course immediately",
+            "He is automatically promoted"
+          ],
+          "correct": 1,
+          "explanation": "The officer forfeits all Nigerian emoluments/allowances unless specifically approved by the OHCSF [77].",
+          "difficulty": "hard",
+          "chapter": "PSR Training Emoluments",
+          "keywords": [
+            "Overseas training",
+            "Salary forfeiture"
+          ]
+        },
+        {
+          "id": "clg_lc_059",
+          "question": "The separation of roles—authorization, custody, and recording—in financial transactions is the first control measure against fraud, known as:",
+          "options": [
+            "Concurrent Auditing",
+            "Segregation of Duties",
+            "Fiscal Review",
+            "Post-Audit"
+          ],
+          "correct": 1,
+          "explanation": "The separation of roles (Segregation of Duties) is the first line of defense against financial fraud [78-80].",
+          "difficulty": "easy",
+          "chapter": "FR Internal Controls",
+          "keywords": [
+            "Segregation of Duties",
+            "Fraud control"
+          ]
+        },
+        {
+          "id": "clg_lc_060",
+          "question": "What must be checked in the **Vote Book** immediately before any commitment (like issuing an LPO) is made?",
+          "options": [
+            "The date the last Virement Warrant was issued",
+            "The balance remaining in the relevant subhead",
+            "The date of the last audit query",
+            "The bank statement reconciliation status"
+          ],
+          "correct": 1,
+          "explanation": "The balance remaining in the relevant subhead must be checked to prevent unauthorized commitment [81, 82].",
+          "difficulty": "medium",
+          "chapter": "FR Budgeting",
+          "keywords": [
+            "Vote Book",
+            "Commitment check"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "clg_general_competency",
+      "name": "General Competency, Ethics, and Reforms",
+      "questions": [
+        {
+          "id": "clg_gc_061",
+          "question": "Which system automates payroll, eliminates ghost workers, and tracks civil servant identity records?",
+          "options": [
+            "TSA",
+            "GIFMIS",
+            "HRMIS",
+            "IPPIS"
+          ],
+          "correct": 3,
+          "explanation": "The Integrated Payroll and Personnel Information System (IPPIS) manages payroll and personnel data, crucial for controlling emoluments and eliminating ghost workers [83-85].",
+          "difficulty": "easy",
+          "chapter": "ICT/FR Reforms",
+          "keywords": [
+            "IPPIS",
+            "Payroll automation"
+          ]
+        },
+        {
+          "id": "clg_gc_062",
+          "question": "The Treasury Single Account (TSA) system was introduced primarily to achieve which of the following financial objectives?",
+          "options": [
+            "Allow MDAs to manage separate bank accounts",
+            "Consolidate all government revenue into a single account to improve transparency",
+            "Replace the Accountant-General's role",
+            "Fund capital projects only"
+          ],
+          "correct": 1,
+          "explanation": "TSA consolidates government revenues into a single account managed by the CBN to improve transparency and block leakages [11, 86, 87].",
+          "difficulty": "easy",
+          "chapter": "FR Reforms – TSA",
+          "keywords": [
+            "TSA",
+            "Treasury Single Account",
+            "Financial reform"
+          ]
+        },
+        {
+          "id": "clg_gc_063",
+          "question": "The primary objective of Staff Development and training (Rule 070101) is to enhance the knowledge, skills, attitude, effectiveness, and:",
+          "options": [
+            "Political loyalty",
+            "Efficiency of staff",
+            "Social media presence",
+            "Nepotism"
+          ],
+          "correct": 1,
+          "explanation": "Staff Development aims to enhance the effectiveness and efficiency of staff in order to meet their career goals and prepare them for changing duties and responsibilities (Rule 070101) [88, 89].",
+          "difficulty": "easy",
+          "chapter": "Rule 070101",
+          "keywords": [
+            "Staff Development",
+            "Efficiency",
+            "Rule 070101"
+          ]
+        },
+        {
+          "id": "clg_gc_064",
+          "question": "What is the consequence for an officer who fails the compulsory confirmation examination after three consecutive attempts (Rule 030104)?",
+          "options": [
+            "Temporary freeze of salary",
+            "Reduction in rank for one year",
+            "Required to resign or be withdrawn from the service",
+            "Payment of a fine"
+          ],
+          "correct": 2,
+          "explanation": "An Officer who fails the confirmation examination after three consecutive attempts shall be required to resign or be withdrawn from the service [90, 91].",
+          "difficulty": "easy",
+          "chapter": "Rule 030104",
+          "keywords": [
+            "Confirmation failure",
+            "Resign or withdrawal"
+          ]
+        },
+        {
+          "id": "clg_gc_065",
+          "question": "The compulsory retirement age for all civil servants in the Federal Public Service is:",
+          "options": [
+            "65 years or 30 years of service",
+            "60 years or 35 years of pensionable service, whichever comes first",
+            "55 years or 35 years of service",
+            "60 years regardless of years of service"
+          ],
+          "correct": 1,
+          "explanation": "The compulsory retirement age is 60 years or 35 years of pensionable service, whichever comes first (Rule 020909) [27, 92].",
+          "difficulty": "easy",
+          "chapter": "Rule 020909",
+          "keywords": [
+            "Retirement age",
+            "35 years service",
+            "60 years"
+          ]
+        },
+        {
+          "id": "clg_gc_066",
+          "question": "The primary purpose of **record-keeping** in the Civil Service Handbook is emphasized to ensure:",
+          "options": [
+            "Reduced paper consumption",
+            "Accountability and continuity of government operations",
+            "Secrecy from the public",
+            "Simplified hierarchical structure"
+          ],
+          "correct": 1,
+          "explanation": "Proper record-keeping ensures accountability, transparency, and continuity in civil service operations [93, 94].",
+          "difficulty": "easy",
+          "chapter": "CSH Records",
+          "keywords": [
+            "Record-keeping",
+            "Accountability",
+            "Continuity"
+          ]
+        },
+        {
+          "id": "clg_gc_067",
+          "question": "The responsibility for issuing Establishment Circulars that amend, clarify, or interpret the Public Service Rules (PSR) rests with the:",
+          "options": [
+            "National Assembly",
+            "Office of the Head of the Civil Service of the Federation (OHCSF)",
+            "Federal Civil Service Commission (FCSC)",
+            "Attorney-General of the Federation"
+          ],
+          "correct": 1,
+          "explanation": "Circulars issued by the Head of Service or Presidency update or supplement the rules and provide interim directives [95].",
+          "difficulty": "easy",
+          "chapter": "PSR/OHCSF Role",
+          "keywords": [
+            "Establishment Circulars",
+            "OHCSF",
+            "PSR interpretation"
+          ]
+        },
+        {
+          "id": "clg_gc_068",
+          "question": "The movement of funds from one specified budget subhead to another **within the same expenditure vote**, authorized by a Warrant, is known as:",
+          "options": [
+            "Appropriation",
+            "Virement",
+            "Excess Vote",
+            "Consolidation"
+          ],
+          "correct": 1,
+          "explanation": "Virement is the authorized transfer of funds from one sub-head to another within the same head of expenditure [96, 97].",
+          "difficulty": "easy",
+          "chapter": "FR Budgeting",
+          "keywords": [
+            "Virement",
+            "Budget transfer"
+          ]
+        },
+        {
+          "id": "clg_gc_069",
+          "question": "Which administrative body is responsible for handling public complaints against administrative injustice in the public service?",
+          "options": [
+            "Economic and Financial Crimes Commission (EFCC)",
+            "Public Complaints Commission",
+            "Federal Civil Service Commission (FCSC)",
+            "Code of Conduct Tribunal (CCT)"
+          ],
+          "correct": 1,
+          "explanation": "The Public Complaints Commission addresses grievances and promotes administrative justice [98].",
+          "difficulty": "medium",
+          "chapter": "General Knowledge",
+          "keywords": [
+            "Public Complaints Commission",
+            "Administrative injustice"
+          ]
+        },
+        {
+          "id": "clg_gc_070",
+          "question": "The concept of **Meritocracy** in the Civil Service Handbook emphasizes that appointments and promotions must be based on:",
+          "options": [
+            "Political patronage",
+            "Age and tenure only",
+            "Performance, competence, and vacancy",
+            "Seniority over all other factors"
+          ],
+          "correct": 2,
+          "explanation": "Meritocracy is based on performance, competence, and availability of vacancies [99, 100].",
+          "difficulty": "easy",
+          "chapter": "CSH Meritocracy",
+          "keywords": [
+            "Meritocracy",
+            "Performance",
+            "Promotion"
+          ]
+        },
+        {
+          "id": "clg_gc_071",
+          "question": "What is the primary objective of discouraging **nepotism** in the Civil Service Handbook?",
+          "options": [
+            "To simplify the recruitment process",
+            "To ensure fairness and merit-based appointments",
+            "To increase secrecy in appointments",
+            "To promote political loyalty"
+          ],
+          "correct": 1,
+          "explanation": "Nepotism refers to giving undue advantage to family or friends in recruitment and appointments, which the Handbook discourages [101, 102].",
+          "difficulty": "easy",
+          "chapter": "CSH Ethics",
+          "keywords": [
+            "Nepotism",
+            "Merit-based appointments"
+          ]
+        },
+        {
+          "id": "clg_gc_072",
+          "question": "The use of the Government Integrated Financial Management Information System (GIFMIS) primarily supports the financial management process by providing:",
+          "options": [
+            "A platform for political campaigning",
+            "Integrated financial operations, accounting, and expenditure tracking",
+            "The exclusive mechanism for collecting tax revenue",
+            "A register of physical assets only"
+          ],
+          "correct": 1,
+          "explanation": "GIFMIS supports real-time public finance tracking, integrating budgeting, accounting, and expenditure [85, 103].",
+          "difficulty": "easy",
+          "chapter": "FR Budgeting – GIFMIS",
+          "keywords": [
+            "GIFMIS",
+            "Integrated financial operations"
+          ]
+        },
+        {
+          "id": "clg_gc_073",
+          "question": "Which principle allows for the gradual transfer of operational responsibility to subordinates to enhance efficiency, provided the ultimate responsibility remains at the higher, Directorate level?",
+          "options": [
+            "Centralization",
+            "Delegation of Authority",
+            "Autocracy",
+            "Permanence"
+          ],
+          "correct": 1,
+          "explanation": "Delegation improves efficiency by allowing junior officers to act, but ultimate responsibility remains with the senior officer [104, 105].",
+          "difficulty": "medium",
+          "chapter": "CSH Delegation",
+          "keywords": [
+            "Delegation of Authority",
+            "Responsibility"
+          ]
+        },
+        {
+          "id": "clg_gc_074",
+          "question": "The principle of **Transparency** in decision-making requires that:",
+          "options": [
+            "All information is classified",
+            "Decisions and processes are open, with records available for accountability",
+            "Only the Permanent Secretary knows the budget details",
+            "Procurement is conducted secretly"
+          ],
+          "correct": 1,
+          "explanation": "Transparency requires that decisions and processes are open, with records available for accountability [106, 107].",
+          "difficulty": "medium",
+          "chapter": "CSH Transparency",
+          "keywords": [
+            "Transparency",
+            "Accountability"
+          ]
+        },
+        {
+          "id": "clg_gc_075",
+          "question": "An officer must discharge every duty assigned to him by Government and accept liability of being stationed wherever his presence is considered to be most useful, as per:",
+          "options": [
+            "Rule 100425 (Private Practice)",
+            "Rule 100428 (Posting and Duty Discharge)",
+            "Rule 100427 (Seeking Influence)",
+            "Rule 100431 (False Statement)"
+          ],
+          "correct": 1,
+          "explanation": "Rule 100428 mandates the officer's duty to discharge assigned duties and accept liability of being stationed wherever his presence is considered most useful [108].",
+          "difficulty": "easy",
+          "chapter": "Rule 100428",
+          "keywords": [
+            "Posting liability",
+            "Duty discharge"
+          ]
+        },
+        {
+          "id": "clg_gc_076",
+          "question": "The primary objective of the Reward and Recognition Scheme (R&RS) in the PSR is to:",
+          "options": [
+            "Replace financial allowances",
+            "Institutionalize a culture of excellence and high levels of staff motivation",
+            "Increase staff salaries permanently",
+            "Fund recreational activities only"
+          ],
+          "correct": 1,
+          "explanation": "The R&RS System encourages excellence, merit, and high levels of staff motivation (Rule 060103) [109].",
+          "difficulty": "easy",
+          "chapter": "Rule 060103",
+          "keywords": [
+            "R&RS",
+            "Motivation",
+            "Excellence"
+          ]
+        },
+        {
+          "id": "clg_gc_077",
+          "question": "Who is statutorily designated as the Chief Financial Adviser to the Federal Government?",
+          "options": [
+            "Accountant-General of the Federation (AGF)",
+            "Auditor-General for the Federation (AuGF)",
+            "Minister of Finance",
+            "Director-General, Budget Office"
+          ],
+          "correct": 2,
+          "explanation": "The Minister of Finance is the Chief Financial Adviser to the Federal Government [110].",
+          "difficulty": "easy",
+          "chapter": "FR General Management",
+          "keywords": [
+            "Minister of Finance",
+            "Chief Financial Adviser"
+          ]
+        },
+        {
+          "id": "clg_gc_078",
+          "question": "The period of service rendered during **study leave without pay** shall be regarded as:",
+          "options": [
+            "A break in service",
+            "Not a break in Service",
+            "A period of suspension",
+            "A period of interdiction"
+          ],
+          "correct": 1,
+          "explanation": "The period of study shall not be regarded as a break in Service (Rule 120230(b)) [111].",
+          "difficulty": "medium",
+          "chapter": "Rule 120230(b)",
+          "keywords": [
+            "Study Leave without Pay",
+            "Break in service"
+          ]
+        },
+        {
+          "id": "clg_gc_079",
+          "question": "The mandatory pre-retirement leave for officers who give notice of retirement is:",
+          "options": [
+            "One month",
+            "Two months",
+            "Three months",
+            "Six months"
+          ],
+          "correct": 2,
+          "explanation": "The pre-retirement leave is three months before retirement (Rule 120243) [112].",
+          "difficulty": "medium",
+          "chapter": "Rule 120243",
+          "keywords": [
+            "Pre-retirement leave",
+            "Three months"
+          ]
+        },
+        {
+          "id": "clg_gc_080",
+          "question": "The primary role of the Registry Unit in an MDA is to:",
+          "options": [
+            "Conduct internal audits",
+            "Manage official files, classification, numbering, and document movement",
+            "Process payroll (IPPIS)",
+            "Handle disciplinary hearings"
+          ],
+          "correct": 1,
+          "explanation": "The Registry Unit handles receipt, classification, numbering, and movement of files in an MDA. It is crucial to documentation integrity [113, 114].",
+          "difficulty": "medium",
+          "chapter": "Admin Practice",
+          "keywords": [
+            "Registry Unit",
+            "File management",
+            "Documentation"
+          ]
+        },
+        {
+          "id": "clg_gc_081",
+          "question": "The Accountant-General of the Federation is responsible for issuing which key financial instrument that provides detailed instructions on financial procedures and implementation?",
+          "options": [
+            "Appropriation Act",
+            "Treasury Circulars",
+            "Audit Report",
+            "Virement Warrant"
+          ],
+          "correct": 1,
+          "explanation": "The Accountant-General of the Federation issues Treasury Circulars [115, 116].",
+          "difficulty": "easy",
+          "chapter": "FR General Management",
+          "keywords": [
+            "Treasury Circulars",
+            "Accountant-General"
+          ]
+        },
+        {
+          "id": "clg_gc_082",
+          "question": "In the civil service, **Seniority** is primarily determined by:",
+          "options": [
+            "The age of the officer",
+            "Academic qualifications",
+            "Grade level and date of promotion/appointment",
+            "The geopolitical zone of origin"
+          ],
+          "correct": 2,
+          "explanation": "Seniority within a grade level is determined by the date of promotion to that grade [117].",
+          "difficulty": "easy",
+          "chapter": "PSR Seniority",
+          "keywords": [
+            "Seniority",
+            "Grade level",
+            "Promotion date"
+          ]
+        },
+        {
+          "id": "clg_gc_083",
+          "question": "The purpose of the **Contingencies Fund** is to cover:",
+          "options": [
+            "Routine overhead expenditure",
+            "Emergency and unforeseen government expenditures",
+            "Personnel emoluments",
+            "Capital projects only"
+          ],
+          "correct": 1,
+          "explanation": "The Contingencies Fund is used to meet unforeseen and urgent government expenditures [118-120].",
+          "difficulty": "easy",
+          "chapter": "FR General Management",
+          "keywords": [
+            "Contingencies Fund",
+            "Emergency expenditure"
+          ]
+        },
+        {
+          "id": "clg_gc_084",
+          "question": "The statutory standard incremental date for an Officer appointed or promoted to a post in the Federal Public Service shall be:",
+          "options": [
+            "The date of appointment/promotion",
+            "The $1^{st}$ January of the year following at least six months of service or promotion",
+            "The end of the current quarter",
+            "The 31st December of the current year"
+          ],
+          "correct": 1,
+          "explanation": "The incremental date is the $1^{st}$ January of the year following at least six months of service or promotion (Rule 040203) [121, 122].",
+          "difficulty": "medium",
+          "chapter": "Rule 040203",
+          "keywords": [
+            "Incremental date",
+            "1st January"
+          ]
+        },
+        {
+          "id": "clg_gc_085",
+          "question": "Which body coordinates and monitors the implementation of the Performance Management System (PMS) across MDAs to ensure national uniformity?",
+          "options": [
+            "Federal Civil Service Commission (FCSC)",
+            "Office of the Head of the Civil Service of the Federation (OHCSF)",
+            "Budget Office of the Federation (BOF)",
+            "National Salaries, Incomes and Wages Commission (NSIWC)"
+          ],
+          "correct": 1,
+          "explanation": "The OHCSF coordinates and monitors the implementation of PMS across MDAs [123].",
+          "difficulty": "medium",
+          "chapter": "OHCSF Role – PMS",
+          "keywords": [
+            "OHCSF",
+            "PMS implementation"
+          ]
+        },
+        {
+          "id": "clg_gc_086",
+          "question": "The goal of promoting **respect for diversity** in the Civil Service Handbook is primarily aimed at achieving:",
+          "options": [
+            "Favouritism towards specific ethnic groups",
+            "Inclusivity and unity in the workplace",
+            "Compliance with political directives",
+            "Reduced accountability"
+          ],
+          "correct": 1,
+          "explanation": "Respecting diversity fosters inclusivity, unity, and fairness in the workplace [23, 77].",
+          "difficulty": "easy",
+          "chapter": "CSH Diversity",
+          "keywords": [
+            "Diversity",
+            "Inclusivity"
+          ]
+        },
+        {
+          "id": "clg_gc_087",
+          "question": "What is the key difference between **withholding** an increment and **deferring** an increment (Rule 040204)?",
+          "options": [
+            "Deferring is a permanent loss; withholding is temporary.",
+            "Withholding is a more serious penalty because the loss cannot be restored retrospectively.",
+            "Deferring requires FCSC approval; withholding requires only Permanent Secretary approval.",
+            "Withholding only applies to GL 06 and below."
+          ],
+          "correct": 1,
+          "explanation": "The gravity of the shortcoming determines the penalty, bearing in mind that to withhold an increment is a more serious penalty than to defer it [122]. A withheld increment cannot be restored retroactively [121].",
+          "difficulty": "hard",
+          "chapter": "Rule 040204",
+          "keywords": [
+            "Withheld increment",
+            "Deferred increment",
+            "Penalty gravity"
+          ]
+        },
+        {
+          "id": "clg_gc_088",
+          "question": "The three types of study leave listed in the PSR (Rule 120226) are Leave for In-Service Training, Study Leave without Pay, and:",
+          "options": [
+            "Sabbatical Leave",
+            "Leave of Absence",
+            "Study Leave with Pay",
+            "Proportionate Leave"
+          ],
+          "correct": 2,
+          "explanation": "The three types of study leave are Leave for In-Service Training, Study Leave with Pay, and Study Leave without Pay [124, 125].",
+          "difficulty": "medium",
+          "chapter": "Rule 120226",
+          "keywords": [
+            "Types of study leave"
+          ]
+        },
+        {
+          "id": "clg_gc_089",
+          "question": "Which reform initiative specifically aims to enhance staff discipline and record accurate staff presence in MDAs?",
+          "options": [
+            "TSA",
+            "Biometric Attendance Systems",
+            "Open Contracting Portal",
+            "National Broadband Plan"
+          ],
+          "correct": 1,
+          "explanation": "Biometric Attendance Systems enhance punctuality and record staff presence [126, 127].",
+          "difficulty": "medium",
+          "chapter": "ICT Reforms",
+          "keywords": [
+            "Biometric Attendance",
+            "Discipline",
+            "Punctuality"
+          ]
+        },
+        {
+          "id": "clg_gc_090",
+          "question": "The maximum duration of **study leave with pay** that may be granted to an Officer is:",
+          "options": [
+            "One year",
+            "Two years",
+            "Three years",
+            "Four years"
+          ],
+          "correct": 1,
+          "explanation": "The duration of study leave with pay shall not exceed two years (Rule 120228(a)) [128].",
+          "difficulty": "medium",
+          "chapter": "Rule 120228(a)",
+          "keywords": [
+            "Study Leave with Pay",
+            "Two years"
+          ]
+        },
+        {
+          "id": "clg_gc_091",
+          "question": "All newly employed Officers must be placed on the **IPPIS platform** within a maximum period of:",
+          "options": [
+            "Seven days",
+            "One month",
+            "Two months of assumption of duty",
+            "Six months"
+          ],
+          "correct": 2,
+          "explanation": "All Officers shall be placed on the IPPIS platform within two months of assumption of duty (Rule 040102) [83, 129].",
+          "difficulty": "medium",
+          "chapter": "Rule 040102",
+          "keywords": [
+            "IPPIS",
+            "Two months"
+          ]
+        },
+        {
+          "id": "clg_gc_092",
+          "question": "Which chapter of the Civil Service Handbook provides grievance procedures to resolve disputes within the civil service?",
+          "options": [
+            "Chapter 3 (Discipline)",
+            "Chapter 4 (Accountability)",
+            "Chapter 7 (Grievance)",
+            "Chapter 9 (Collaboration)"
+          ],
+          "correct": 2,
+          "explanation": "Chapter 7 provides grievance procedures to resolve disputes within the civil service [130, 131].",
+          "difficulty": "medium",
+          "chapter": "CSH Grievance",
+          "keywords": [
+            "Grievance procedures",
+            "Chapter 7"
+          ]
+        },
+        {
+          "id": "clg_gc_093",
+          "question": "The primary objective of recording all financial commitments in the Vote Book (Obligation Control) is to:",
+          "options": [
+            "Guarantee prompt promotion",
+            "Ensure that all planned expenditure is within the legal capacity of the approved budget",
+            "Simplify foreign exchange conversion",
+            "Track staff punctuality"
+          ],
+          "correct": 1,
+          "explanation": "The Vote Book ensures that all planned expenditure is within the legal capacity of the approved budget [84, 132].",
+          "difficulty": "medium",
+          "chapter": "FR Budgeting",
+          "keywords": [
+            "Vote Book",
+            "Obligation Control"
+          ]
+        },
+        {
+          "id": "clg_gc_094",
+          "question": "The system used to manage digital HR records, including staff leave, postings, and promotions, is known as:",
+          "options": [
+            "TSA",
+            "IPPIS",
+            "HRMIS",
+            "BPP"
+          ],
+          "correct": 2,
+          "explanation": "The Human Resource Management Information System (HRMIS) enables digital management of staff records, leave, postings, and promotions [85, 133].",
+          "difficulty": "easy",
+          "chapter": "ICT Reforms",
+          "keywords": [
+            "HRMIS",
+            "Digital records"
+          ]
+        },
+        {
+          "id": "clg_gc_095",
+          "question": "The term **'working hours'** in the PSR definition specifically excludes:",
+          "options": [
+            "Overtime periods",
+            "Official meetings",
+            "All officially recognized break periods",
+            "Preparation time"
+          ],
+          "correct": 2,
+          "explanation": "The definition of 'working hours' excludes all officially recognized break periods (Rule 16.45) [134].",
+          "difficulty": "medium",
+          "chapter": "PSR Definition",
+          "keywords": [
+            "Working hours",
+            "Break periods"
+          ]
+        },
+        {
+          "id": "clg_gc_096",
+          "question": "Officers who are going on religious pilgrimages, other than Officials assigned to cover such activities, should use part of their:",
+          "options": [
+            "Special Leave of Absence",
+            "Annual leave",
+            "Sick leave",
+            "Sabbatical leave"
+          ],
+          "correct": 1,
+          "explanation": "Officers going on religious pilgrimages should use part of their annual leave for such purposes (Rule 120232) [135].",
+          "difficulty": "medium",
+          "chapter": "Rule 120232",
+          "keywords": [
+            "Religious pilgrimage",
+            "Annual leave"
+          ]
+        },
+        {
+          "id": "clg_gc_097",
+          "question": "The principle of **Efficiency** in service delivery primarily aims to ensure:",
+          "options": [
+            "That government services meet public needs effectively and deliver value for money",
+            "Political neutrality in all functions",
+            "That decisions favor senior staff",
+            "Maximum secrecy in operations"
+          ],
+          "correct": 0,
+          "explanation": "Efficiency ensures civil servants meet public needs effectively and deliver value for money [136, 137].",
+          "difficulty": "easy",
+          "chapter": "CSH Efficiency",
+          "keywords": [
+            "Efficiency",
+            "Value for money"
+          ]
+        },
+        {
+          "id": "clg_gc_098",
+          "question": "The mandatory requirement for promotion eligibility, in addition to merit and seniority, is that the officer must have undergone:",
+          "options": [
+            "Continuous annual leave for five years",
+            "Structured training and acquired skill competence per scheme of service",
+            "Foreign diplomatic posting",
+            "A course on political lobbying"
+          ],
+          "correct": 1,
+          "explanation": "The officer must have undergone structured training and acquired skill competence as specified in the scheme of service (Rule 020803(a)) [138, 139].",
+          "difficulty": "medium",
+          "chapter": "Rule 020803(a)",
+          "keywords": [
+            "Promotion requirement",
+            "Structured training"
+          ]
+        },
+        {
+          "id": "clg_gc_099",
+          "question": "Which officer is primarily responsible for maintaining the departmental Vote Ledger (Vote Book), tracking budget allocations, and controlling expenditure commitments?",
+          "options": [
+            "Internal Auditor",
+            "Sub-Accountant",
+            "Vote Controller",
+            "Director of Finance"
+          ],
+          "correct": 2,
+          "explanation": "The Vote Controller maintains the Vote Book to monitor budgetary allocations and expenditures [140-142].",
+          "difficulty": "medium",
+          "chapter": "FR Budgeting",
+          "keywords": [
+            "Vote Controller",
+            "Vote Book"
+          ]
+        },
+        {
+          "id": "clg_gc_100",
+          "question": "Who must approve the release of any Officer on study leave, whether paid or unpaid, upon the recommendation of the Officer’s Permanent Secretary/Head of Extra Ministerial Office?",
+          "options": [
+            "The Federal Civil Service Commission (FCSC)",
+            "The Office of the Head of the Civil Service of the Federation (OHCSF)",
+            "The Minister of Education",
+            "The Director (HRM)"
+          ],
+          "correct": 1,
+          "explanation": "Study leave (both paid and unpaid) requires OHCSF approval [143, 144].",
+          "difficulty": "medium",
+          "chapter": "Rule 120231",
+          "keywords": [
+            "Study leave",
+            "OHCSF approval"
+          ]
+        }
+      ]
+    }
+  ]
+}
