@@ -352,18 +352,14 @@ body::before {
 }
 
 .mode-selector {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    margin-bottom: 15px;
-    justify-content: center;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    margin-bottom: 25px;
 }
 
 .mode-selector .mode-card {
-    flex: 1;
     min-width: 200px;
-    max-width: 250px;
 }
 
 .card,
@@ -509,6 +505,7 @@ body::before {
     backdrop-filter: blur(5px);
     display: flex;
     align-items: center;
+    flex-shrink: 0;
     height: 32px; /* Match question-counter height exactly */
     /* Ensure timer is hidden by default */
     display: none;
@@ -530,6 +527,7 @@ body::before {
     backdrop-filter: blur(5px);
     display: flex !important; /* Override display: none from .timer */
     align-items: center;
+    flex-shrink: 0;
     height: 32px; /* Match question-counter height exactly */
 }
 
