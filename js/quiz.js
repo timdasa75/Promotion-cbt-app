@@ -4,46 +4,50 @@ import { showScreen, showError } from "./ui.js";
 
 // Simple markdown parser for basic formatting
 function parseMarkdown(text) {
-  if (!text || typeof text !== 'string') return text || '';
-  
+  if (!text || typeof text !== "string") return text || "";
+
   let html = text;
-  
+
   // Convert headers (### Header)
-  html = html.replace(/^### (.*$)/gim, '<h3>$1</h3>');
-  html = html.replace(/^## (.*$)/gim, '<h2>$1</h2>');
-  html = html.replace(/^# (.*$)/gim, '<h1>$1</h1>');
-  
+  html = html.replace(/^### (.*$)/gim, "<h3>$1</h3>");
+  html = html.replace(/^## (.*$)/gim, "<h2>$1</h2>");
+  html = html.replace(/^# (.*$)/gim, "<h1>$1</h1>");
+
   // Convert **bold** and __bold__
-  html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-  html = html.replace(/__(.*?)__/g, '<strong>$1</strong>');
-  
+  html = html.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+  html = html.replace(/__(.*?)__/g, "<strong>$1</strong>");
+
   // Convert *italic* and _italic_
-  html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
-  html = html.replace(/_(.*?)_/g, '<em>$1</em>');
-  
+  html = html.replace(/\*(.*?)\*/g, "<em>$1</em>");
+  html = html.replace(/_(.*?)_/g, "<em>$1</em>");
+
   // Convert `code`
-  html = html.replace(/`(.*?)`/g, '<code>$1</code>');
-  
+  html = html.replace(/`(.*?)`/g, "<code>$1</code>");
+
   // Convert line breaks (double space at end of line)
-  html = html.replace(/  \n/g, '<br>');
-  
+  html = html.replace(/  \n/g, "<br>");
+
   // Convert paragraphs (separate text blocks with double newline)
-  html = html.replace(/\n\n/g, '</p><p>');
-  
+  html = html.replace(/\n\n/g, "</p><p>");
+
   // Replace any remaining newlines with line breaks
-  html = html.replace(/\n/g, '<br>');
-  
+  html = html.replace(/\n/g, "<br>");
+
   // Wrap in paragraph tags if not already wrapped
-  if (!html.startsWith('<p>') && !html.startsWith('<h') && !html.startsWith('<')) {
-    html = '<p>' + html + '</p>';
-  } else if (html.startsWith('<')) {
+  if (
+    !html.startsWith("<p>") &&
+    !html.startsWith("<h") &&
+    !html.startsWith("<")
+  ) {
+    html = "<p>" + html + "</p>";
+  } else if (html.startsWith("<")) {
     // If it starts with HTML tags, still wrap non-header content in paragraphs
-    html = '<p>' + html + '</p>';
+    html = "<p>" + html + "</p>";
   }
-  
+
   // Clean up multiple paragraph tags that might have formed
-  html = html.replace(/<\/p><p><\/p><p>/g, '</p><p>');
-  
+  html = html.replace(/<\/p><p><\/p><p>/g, "</p><p>");
+
   return html;
 }
 
@@ -57,7 +61,16 @@ let timer;
 let timeLeft = 0;
 
 // DOM Elements (will be queried when needed since DOM might not be ready at module load)
-let questionElement, optionsContainer, submitButton, nextButton, prevButton, progressBar, questionCounter, timerDisplay, finalScore, performanceText;
+let questionElement,
+  optionsContainer,
+  submitButton,
+  nextButton,
+  prevButton,
+  progressBar,
+  questionCounter,
+  timerDisplay,
+  finalScore,
+  performanceText;
 
 // Function to get DOM elements when needed
 function getDOMElements() {
@@ -107,11 +120,11 @@ function startTimer() {
 function showTimeWarning(message) {
   const timeLeftElement = document.getElementById("timeLeft");
   const timerContainer = document.getElementById("timerDisplay");
-  
+
   if (timerContainer) {
     // Remove all timer classes first
     timerContainer.classList.remove("warning", "critical", "urgent");
-    
+
     // Add different classes based on time remaining
     if (timeLeft <= 60) {
       // Last minute - critical state
@@ -324,7 +337,7 @@ function selectOption(selectedIndex) {
     // Enable next button
     nextButton.disabled = false;
     updateNavigation();
-    
+
     // Update progress bar to reflect answered question
     updateProgress();
 
@@ -358,7 +371,7 @@ function selectOption(selectedIndex) {
 
   // Update navigation to handle button state
   updateNavigation();
-  
+
   // Update progress bar to reflect answered question
   updateProgress();
 }
@@ -473,18 +486,13 @@ function updateProgress() {
   const totalQ = document.getElementById("totalQ");
   if (!progressBar || !questionCounter || !totalQ) return;
 
-  if (currentMode === "review") {
-    progressBar.style.width = "100%";
-    if (questionCounter)
-      questionCounter.textContent = `${currentQuestionIndex + 1} of ${total}`;
-    return;
-  }
   // Ensure we have a valid total
   const total = Array.isArray(allQuestions) ? allQuestions.length : 0;
   totalQ.textContent = total;
   if (total === 0) {
     progressBar.style.width = "0%";
-    questionCounter.textContent = "0";
+    if (questionCounter) questionCounter.textContent = "0";
+    if (totalQ) totalQ.textContent = "0";
     return;
   }
 
@@ -496,12 +504,13 @@ function updateProgress() {
       answeredCount++;
     }
   }
-  
+
   // Calculate progress percentage based on answered questions
   const progress = (answeredCount / total) * 100;
   progressBar.style.width = `${progress}%`;
   if (questionCounter)
-    questionCounter.textContent = `${currentQuestionIndex + 1} of ${total}`;
+    questionCounter.textContent = `${currentQuestionIndex + 1}`;
+  if (totalQ) totalQ.textContent = total;
 }
 
 // Move to next question
@@ -737,7 +746,7 @@ function showResults() {
                 <div class="analytic-label">Unanswered</div>
             </div>
         </div>
-        <div class="recommendation ${scorePercentage >= 70 ? 'success' : 'improvement'}">
+        <div class="recommendation ${scorePercentage >= 70 ? "success" : "improvement"}">
             <strong>Recommendation:</strong> ${scorePercentage >= 70 ? "You're ready for the next level!" : "Consider reviewing this topic before advancing."}
         </div>
     `;
@@ -854,7 +863,11 @@ export async function loadQuestions() {
       if (Array.isArray(topicData)) {
         // Handle direct array of subcategories (e.g., psr.json format)
         for (const subcategory of topicData) {
-          if (subcategory && subcategory.questions && Array.isArray(subcategory.questions)) {
+          if (
+            subcategory &&
+            subcategory.questions &&
+            Array.isArray(subcategory.questions)
+          ) {
             allQuestions = allQuestions.concat(subcategory.questions);
           }
         }
@@ -863,16 +876,28 @@ export async function loadQuestions() {
         for (const domain of topicData.domains) {
           if (domain.topics && Array.isArray(domain.topics)) {
             for (const subcategory of domain.topics) {
-              if (subcategory && subcategory.questions && Array.isArray(subcategory.questions)) {
+              if (
+                subcategory &&
+                subcategory.questions &&
+                Array.isArray(subcategory.questions)
+              ) {
                 allQuestions = allQuestions.concat(subcategory.questions);
               }
             }
           }
         }
-      } else if (topicData.hasSubcategories && topicData.subcategories && Array.isArray(topicData.subcategories)) {
+      } else if (
+        topicData.hasSubcategories &&
+        topicData.subcategories &&
+        Array.isArray(topicData.subcategories)
+      ) {
         // Handle new structure with subcategories array
         for (const subcategory of topicData.subcategories) {
-          if (subcategory && subcategory.questions && Array.isArray(subcategory.questions)) {
+          if (
+            subcategory &&
+            subcategory.questions &&
+            Array.isArray(subcategory.questions)
+          ) {
             allQuestions = allQuestions.concat(subcategory.questions);
           }
         }
@@ -880,7 +905,11 @@ export async function loadQuestions() {
         // Handle legacy structure with psr_categories
         for (const cat in topicData.psr_categories) {
           const subcategory = topicData.psr_categories[cat];
-          if (subcategory && subcategory.questions && Array.isArray(subcategory.questions)) {
+          if (
+            subcategory &&
+            subcategory.questions &&
+            Array.isArray(subcategory.questions)
+          ) {
             allQuestions = allQuestions.concat(subcategory.questions);
           }
         }
@@ -894,7 +923,11 @@ export async function loadQuestions() {
         const selectedSubcategory = topicData.find(
           (sub) => sub && sub.id === selectedCategory,
         );
-        if (selectedSubcategory && selectedSubcategory.questions && Array.isArray(selectedSubcategory.questions)) {
+        if (
+          selectedSubcategory &&
+          selectedSubcategory.questions &&
+          Array.isArray(selectedSubcategory.questions)
+        ) {
           allQuestions = selectedSubcategory.questions;
         }
       } else if (topicData.domains && Array.isArray(topicData.domains)) {
@@ -903,23 +936,39 @@ export async function loadQuestions() {
             const selectedSubcategory = domain.topics.find(
               (sub) => sub && sub.id === selectedCategory,
             );
-            if (selectedSubcategory && selectedSubcategory.questions && Array.isArray(selectedSubcategory.questions)) {
+            if (
+              selectedSubcategory &&
+              selectedSubcategory.questions &&
+              Array.isArray(selectedSubcategory.questions)
+            ) {
               allQuestions = selectedSubcategory.questions;
               break; // Found the subcategory, no need to check other domains
             }
           }
         }
-      } else if (topicData.hasSubcategories && topicData.subcategories && Array.isArray(topicData.subcategories)) {
+      } else if (
+        topicData.hasSubcategories &&
+        topicData.subcategories &&
+        Array.isArray(topicData.subcategories)
+      ) {
         const selectedSubcategory = topicData.subcategories.find(
           (sub) => sub && sub.id === selectedCategory,
         );
-        if (selectedSubcategory && selectedSubcategory.questions && Array.isArray(selectedSubcategory.questions)) {
+        if (
+          selectedSubcategory &&
+          selectedSubcategory.questions &&
+          Array.isArray(selectedSubcategory.questions)
+        ) {
           allQuestions = selectedSubcategory.questions;
         }
       } else if (topicData.psr_categories) {
         // Legacy structure - find the category
         const subcategory = topicData.psr_categories[selectedCategory];
-        if (subcategory && subcategory.questions && Array.isArray(subcategory.questions)) {
+        if (
+          subcategory &&
+          subcategory.questions &&
+          Array.isArray(subcategory.questions)
+        ) {
           allQuestions = subcategory.questions;
         }
       }
@@ -960,7 +1009,7 @@ export function initializeQuiz() {
 
   // Show the quiz screen first, then set up timer
   showScreen("quizScreen");
-  
+
   // Now that the screen is shown, get DOM elements
   getDOMElements();
 
@@ -1002,7 +1051,7 @@ export function initializeQuiz() {
   }
 
   showQuestion();
-  
+
   // Initialize progress bar
   updateProgress();
 }
