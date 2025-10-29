@@ -1002,4 +1002,7 @@ export function initializeQuiz() {
   }
 
   showQuestion();
+  
+  // Initialize progress bar
+  updateProgress();
 }
