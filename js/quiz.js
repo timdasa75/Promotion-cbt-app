@@ -476,7 +476,7 @@ function updateProgress() {
   if (currentMode === "review") {
     progressBar.style.width = "100%";
     if (questionCounter)
-      questionCounter.textContent = `${currentQuestionIndex + 1}`;
+      questionCounter.textContent = `${currentQuestionIndex + 1} of ${total}`;
     return;
   }
   // Ensure we have a valid total
@@ -501,7 +501,7 @@ function updateProgress() {
   const progress = (answeredCount / total) * 100;
   progressBar.style.width = `${progress}%`;
   if (questionCounter)
-    questionCounter.textContent = `${currentQuestionIndex + 1}`;
+    questionCounter.textContent = `${currentQuestionIndex + 1} of ${total}`;
 }
 
 // Move to next question

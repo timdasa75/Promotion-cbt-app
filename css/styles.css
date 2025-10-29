@@ -1049,11 +1049,11 @@ body::before {
         font-size: 1.1rem;
     }
     .header {
-        padding: 18px 16px; /* Even more compact padding */
-        margin-bottom: 15px; /* Even more compact margin */
+        padding: 15px 12px; /* Even more compact padding */
+        margin-bottom: 12px; /* Even more compact margin */
     }
     .header h1 {
-        font-size: 1.4rem; /* Even more compact font size */
+        font-size: 1.3rem; /* Even more compact font size */
     }
 }
 
@@ -1067,11 +1067,11 @@ body::before {
         max-width: 700px; /* Match header container max-width */
     }
     .header {
-        padding: 20px 18px; /* Even more compact padding */
-        margin-bottom: 18px; /* Even more compact margin */
+        padding: 14px 12px; /* Even more compact padding */
+        margin-bottom: 12px; /* Even more compact margin */
     }
     .header h1 {
-        font-size: 1.5rem; /* Even more compact font size */
+        font-size: 1.3rem; /* Even more compact font size */
     }
 }
 
