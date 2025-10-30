@@ -164,11 +164,11 @@ body::before {
 .header {
     background: var(--gradient-surface);
     border-radius: var(--border-radius-large);
-    padding: 15px; /* More compact padding */
+    padding: 12px; /* Even more compact padding */
     text-align: center;
-    margin-bottom: 15px; /* More compact margin */
+    margin-bottom: 12px; /* Even more compact margin */
     box-shadow: var(--shadow-strong);
-    border: 2px solid var(--nigerian-green); /* Thinner border */
+    border: 1px solid var(--nigerian-green); /* Even thinner border */
     backdrop-filter: blur(15px);
     position: relative;
     overflow: hidden;
@@ -196,8 +196,8 @@ body::before {
 
 .header h1 {
     color: var(--dark-green-text);
-    font-size: 1.8rem;
-    margin-bottom: 8px;
+    font-size: 1.5rem; /* More compact font size */
+    margin-bottom: 5px; /* More compact margin */
     font-weight: 700;
 }
 
@@ -560,10 +560,9 @@ body::before {
 }
 
 .card-container {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
-    justify-content: center;
     margin-bottom: 25px;
 }
 
@@ -573,7 +572,7 @@ body::before {
         rgba(255, 255, 255, 0.9) 0%,
         rgba(255, 255, 255, 0.95) 100%
     );
-    padding: 15px;
+    padding: 12px; /* More compact padding */
     border-radius: var(--border-radius);
     text-align: center;
     cursor: pointer;
@@ -583,8 +582,8 @@ body::before {
     backdrop-filter: blur(5px);
     position: relative;
     overflow: hidden;
-    width: 286px;
-    height: 220px;
+    min-width: 200px; /* Flexible minimum width for 3-column layout */
+    height: 180px; /* More compact height */
 }
 
 .unified-card:hover,
@@ -696,21 +695,21 @@ body::before {
 }
 
 .question-counter {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     color: #2c5530;
     font-weight: 600;
-    padding: 6px 12px;
+    padding: 8px 15px;
     background: linear-gradient(
         135deg,
-        rgba(0, 135, 81, 0.1) 0%,
-        rgba(255, 255, 255, 0.6) 100%
+        rgba(0, 135, 81, 0.15) 0%,
+        rgba(255, 255, 255, 0.7) 100%
     );
     border-radius: var(--border-radius);
-    border: 1px solid rgba(0, 135, 81, 0.2);
-    box-shadow: 0 2px 8px rgba(0, 135, 81, 0.1);
-    backdrop-filter: blur(5px);
+    border: 2px solid rgba(0, 135, 81, 0.25);
+    box-shadow: 0 3px 12px rgba(0, 135, 81, 0.15);
+    backdrop-filter: blur(8px);
     flex-shrink: 0;
-    height: 32px; /* Fixed height to match timer */
+    height: 36px; /* Fixed height to match timer exactly */
     display: flex;
     align-items: center;
 }
@@ -832,17 +831,17 @@ body::before {
     font-weight: bold;
     background: var(--gradient-primary);
     color: white;
-    width: 42px;
-    height: 42px;
+    width: 36px;
+    height: 36px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     flex-shrink: 0;
-    box-shadow: 0 4px 15px rgba(0, 135, 81, 0.5);
+    box-shadow: 0 3px 10px rgba(0, 135, 81, 0.4);
     vertical-align: middle;
-    border: 3px solid rgba(255, 255, 255, 0.4);
+    border: 2px solid rgba(255, 255, 255, 0.3);
     transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     position: relative;
     overflow: hidden;
