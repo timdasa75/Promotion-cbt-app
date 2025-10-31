@@ -965,8 +965,13 @@ export async function loadQuestions(questions = null) {
           }
         }
       } else if (topicData.questions && Array.isArray(topicData.questions)) {
-        // Simple structure with direct questions array
-        allQuestions = topicData.questions;
+        // Check for the specific nested structure of ca_general
+        if (selectedCategory === "ca_general" && topicData.questions.length > 0 && topicData.questions[0].ca_general) {
+          allQuestions = topicData.questions[0].ca_general;
+        } else {
+          // Simple structure with direct questions array
+          allQuestions = topicData.questions;
+        }
       }
     } else {
       // Load questions for specific category only
@@ -979,7 +984,12 @@ export async function loadQuestions(questions = null) {
           selectedSubcategory.questions &&
           Array.isArray(selectedSubcategory.questions)
         ) {
-          allQuestions = selectedSubcategory.questions;
+          // Check for the specific nested structure of ca_general within a subcategory
+          if (selectedCategory === "ca_general" && selectedSubcategory.questions.length > 0 && selectedSubcategory.questions[0].ca_general) {
+            allQuestions = selectedSubcategory.questions[0].ca_general;
+          } else {
+            allQuestions = selectedSubcategory.questions;
+          }
         }
       } else if (topicData.domains && Array.isArray(topicData.domains)) {
         for (const domain of topicData.domains) {

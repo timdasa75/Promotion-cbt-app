@@ -11,33 +11,729 @@
       "name": "Public Service and Institutional Reforms",
       "description": "Rules governing the internal operations of the Civil Service, drawing primarily on the Public Service Rules (PSR). This includes areas like appointments, promotions, discipline, allowances (Chapter 14), leave entitlements (Chapter 12), and modernizations like the Performance Management System (PMS) (Chapter 5) and the introduction of Virtual Meetings (Chapter 9).",
       "icon": "🏛️",
-      "questions": []
+      "questions": [
+        {
+          "id": "PSIR_051",
+          "question": "What is the minimum grade level for which a Contract Appointment shall be made?",
+          "options": ["SGL. 07", "SGL. 08", "SGL. 10", "SGL. 12"],
+          "correct": 3,
+          "explanation": "The Post to which contract appointment shall be made must not be below SGL. 12 [57, 58].",
+          "difficulty": "medium",
+          "chapter": "Contract Appointment Procedure",
+          "keywords": ["Contract Appointment", "SGL 12"]
+        },
+        {
+          "id": "PSIR_052",
+          "question": "The duration of a contract appointment should be one (1) or two (2) years and renewable but must not exceed what maximum period in total?",
+          "options": ["Two years", "Three years", "Four years", "Six years"],
+          "correct": 2,
+          "explanation": "The duration of contract appointment should be one (1) or two (2) years and renewable but not more than four (4) years in all [57, 59].",
+          "difficulty": "medium",
+          "chapter": "Contract Duration",
+          "keywords": ["Contract Appointment", "Four Years"]
+        },
+        {
+          "id": "PSIR_053",
+          "question": "What mandatory duty must a **Contract Officer** undertake as a condition for their offer of appointment?",
+          "options": [
+            "Mentoring serving Officers",
+            "Obtaining foreign exchange",
+            "Serving in a Parastatal only",
+            "Working only from home"
+          ],
+          "correct": 0,
+          "explanation": "The contract Officer must, as part of his duties, be responsible for mentoring serving Officers as a condition for the offer of the contract appointment [58, 60].",
+          "difficulty": "easy",
+          "chapter": "Contract Rules",
+          "keywords": ["Contract Officer", "Mentoring"]
+        },
+        {
+          "id": "PSIR_054",
+          "question": "Where retired officers are re-engaged into career posts, on what grade level shall their appointment be made?",
+          "options": [
+            "The grade level immediately above their retirement level",
+            "The grade level immediately below that on which they retired",
+            "SGL 17 only",
+            "GL 08 only"
+          ],
+          "correct": 1,
+          "explanation": "Where retired Officers from the Service are re-engaged into career posts, the appointment shall be on grade level immediately below that on which they retired and be eligible to maintain their last step at retirement [61, 62].",
+          "difficulty": "medium",
+          "chapter": "Re-engagement of Retired Officers",
+          "keywords": ["Retired Officer", "Re-engagement"]
+        },
+        {
+          "id": "PSIR_055",
+          "question": "What is the maximum number of times a Trade Union/Staff Association Executive member is mandated to serve in their tenure in the Public Service?",
+          "options": ["One term", "Two terms", "Three terms", "Four terms"],
+          "correct": 1,
+          "explanation": "Trade Unions/Staff Associations are mandated to introduce tenure limit of two (2) terms in their Constitutions [63].",
+          "difficulty": "medium",
+          "chapter": "Union Executive Tenure",
+          "keywords": ["Union Executive", "Tenure Limit", "Two terms"]
+        },
+        {
+          "id": "PSIR_056",
+          "question": "An Officer who resigns is liable to forfeit all claims to:",
+          "options": [
+            "Their pension benefits",
+            "Salary only",
+            "Vacation leave and any vacation leave or passage privileges granted",
+            "Health Insurance"
+          ],
+          "correct": 2,
+          "explanation": "An Officer who resigns will be liable to forfeit all claims to vacation leave and any vacation leave or passage privileges granted [64].",
+          "difficulty": "medium",
+          "chapter": "Resignation",
+          "keywords": ["Resignation", "Forfeit Leave"]
+        },
+        {
+          "id": "PSIR_057",
+          "question": "The PSR shall be reviewed how frequently to reflect current realities and align with global best practices?",
+          "options": [
+            "Annually",
+            "Every three years",
+            "Every five years",
+            "After every election cycle"
+          ],
+          "correct": 2,
+          "explanation": "The Public Service Rules (PSR) shall be reviewed every five years to update the provisions of the rules [65, 66].",
+          "difficulty": "easy",
+          "chapter": "Review of PSR",
+          "keywords": ["Review", "Five Years"]
+        },
+        {
+          "id": "PSIR_058",
+          "question": "What process replaces the Annual Performance Evaluation Report (APER) for the Federal Public Service?",
+          "options": [
+            "IPPIS",
+            "The Performance Management System (PMS)",
+            "The Scheme of Service",
+            "Staff Inspection"
+          ],
+          "correct": 1,
+          "explanation": "The Performance Management System (PMS) shall replace the Annual Performance Evaluation Report (APER) for the Federal Public Service [37, 67].",
+          "difficulty": "easy",
+          "chapter": "Performance Management System",
+          "keywords": ["PMS", "APER", "Replacement"]
+        },
+        {
+          "id": "PSIR_059",
+          "question": "What is the primary rationale for implementing virtual meetings/engagements in the Public Service?",
+          "options": [
+            "To reduce travel costs only",
+            "To enhance political activities",
+            "To respond to work demands remotely and ensure continuity during pandemics/emergencies",
+            "To eliminate the need for physical offices"
+          ],
+          "correct": 2,
+          "explanation": "The rationale is to ensure that employees are able to respond to work demands remotely, such that MDAs continue to function adequately with minimal disruption in the face of any pandemic/emergencies [22, 68].",
+          "difficulty": "medium",
+          "chapter": "Rationale for Virtual Meetings",
+          "keywords": ["Virtual Meetings", "Emergencies", "Continuity"]
+        },
+        {
+          "id": "PSIR_060",
+          "question": "The Confirmation Examination Board is chaired by whom?",
+          "options": [
+            "Director (Promotion) FCSC",
+            "Director (HRM) Federal Ministry of Justice",
+            "Permanent Secretary, CMO (OHCSF)",
+            "Permanent Secretary, Federal Civil Service Commission"
+          ],
+          "correct": 2,
+          "explanation": "The Examination Board shall be responsible for the conduct and supervision of the examinations. The Board shall comprise the Permanent Secretary, CMO (OHCSF) as Chairman [69, 70].",
+          "difficulty": "medium",
+          "chapter": "Examination Board",
+          "keywords": ["Confirmation Exam", "CMO", "OHCSF"]
+        },
+        {
+          "id": "PSIR_061",
+          "question": "How long after first appointment must officers eligible for compulsory confirmation examination have served before taking the exam?",
+          "options": ["Three months", "Six months", "One year", "Two years"],
+          "correct": 1,
+          "explanation": "Newly recruited Officer who has spent six months and above shall be allowed to sit for compulsory examination for confirmation in the Service [71].",
+          "difficulty": "easy",
+          "chapter": "Compulsory Confirmation",
+          "keywords": ["Confirmation Exam", "Six Months"]
+        },
+        {
+          "id": "PSIR_062",
+          "question": "What is the consequence for an officer who fails the compulsory confirmation examination after three consecutive attempts?",
+          "options": [
+            "Promotion deferment",
+            "Required to resign or withdraw from the service",
+            "Transfer to a Parastatal",
+            "Granting of paid leave"
+          ],
+          "correct": 1,
+          "explanation": "An Officer who fails the examination after three consecutive attempts shall by virtue of such failures be required to resign or withdraw from the service [72].",
+          "difficulty": "easy",
+          "chapter": "Failure to Pass Confirmation Exam",
+          "keywords": ["Confirmation Exam", "Three attempts", "Resign"]
+        },
+        {
+          "id": "PSIR_063",
+          "question": "What category of appointments were introduced to fill observed gaps and/or shore up the capacities of existing Officers, specifically covering Contract, Internship, and Volunteerism?",
+          "options": [
+            "Trainee Appointments",
+            "Non-Pensionable Appointments",
+            "Short Term Appointments",
+            "Ad-hoc Appointments"
+          ],
+          "correct": 2,
+          "explanation": "Appointments may be made for a prescribed period of time in the following categories: Contract Appointments, Sabbatical Appointment, Career Exchange Programme, Talent Sourcing Strategy, Internship and Volunteerism in the Federal Service [73, 74].",
+          "difficulty": "easy",
+          "chapter": "Short Term Appointments",
+          "keywords": ["Short Term", "Internship", "Volunteerism"]
+        },
+        {
+          "id": "PSIR_064",
+          "question": "What is the PSR’s definition of **Internship**?",
+          "options": [
+            "A temporary assignment abroad",
+            "A non-structured, unpaid role",
+            "A structured experience that relates to a student’s/graduate’s discipline or career goal and helps to enhance academic, career, professional and personal development",
+            "A role for retired officers only"
+          ],
+          "correct": 2,
+          "explanation": "Internship connotes a structured experience that relates to a student’s/graduate’s discipline or career goal and helps to enhance academic, career, professional and personal development [75].",
+          "difficulty": "medium",
+          "chapter": "Internship Definition",
+          "keywords": ["Internship", "Structured Experience"]
+        },
+        {
+          "id": "PSIR_065",
+          "question": "What is the maximum continuous service period for which a Secondment may be granted to the service of another approved body or international organization?",
+          "options": [
+            "Two years (in the first instance)",
+            "Three years",
+            "Five years",
+            "Six years"
+          ],
+          "correct": 0,
+          "explanation": "Secondment means the temporary release of an Officer to the service of another government approved body or any recognized International Organization or body for a **specified period** [1, 2].",
+          "difficulty": "hard",
+          "chapter": "Secondment/Contract Duration",
+          "keywords": ["Secondment", "Temporary Release"]
+        },
+        {
+          "id": "PSIR_066",
+          "question": "What grade level must an officer be on to be eligible for Sabbatical Appointment?",
+          "options": [
+            "GL 12 and above",
+            "GL 14 and above",
+            "GL 15 or equivalent and above",
+            "GL 08 and above"
+          ],
+          "correct": 2,
+          "explanation": "Sabbatical Appointment applies to the Service is the appointment of an officer on GL 15 or equivalent and above [75].",
+          "difficulty": "easy",
+          "chapter": "Sabbatical Appointment",
+          "keywords": ["Sabbatical", "GL 15"]
+        },
+        {
+          "id": "PSIR_067",
+          "question": "What is the mandatory retirement age for all grades in the Service?",
+          "options": [
+            "60 years or 35 years of pensionable service, whichever is earlier",
+            "65 years or 40 years of service",
+            "60 years only",
+            "35 years of service only"
+          ],
+          "correct": 0,
+          "explanation": "The mandatory retirement age for all grades in the Service shall be 60 years or 35 years of pensionable service whichever is earlier [79].",
+          "difficulty": "easy",
+          "chapter": "Mandatory Retirement",
+          "keywords": ["Retirement", "60 years", "35 years"]
+        },
+        {
+          "id": "PSIR_068",
+          "question": "What is the consequence of making a false statement on the employment application, if detected after engagement?",
+          "options": [
+            "Withholding of increment",
+            "Transfer to a new post",
+            "Regarded as sufficient grounds for non-employment or for subsequent termination of appointment without notice",
+            "Reprimand"
+          ],
+          "correct": 2,
+          "explanation": "Concealment of any of the facts... or any false statement... shall be regarded as sufficient grounds for non-employment or for subsequent termination of appointment without notice [80].",
+          "difficulty": "medium",
+          "chapter": "Statement on Appointment",
+          "keywords": ["False Statement", "Termination"]
+        },
+        {
+          "id": "PSIR_069",
+          "question": "What is the primary objective of issuing a **Certificate of Service** to an officer leaving the service?",
+          "options": [
+            "To grant retirement benefits",
+            "To serve as a reference covering the holder's public service when seeking other employment",
+            "To exempt the officer from tax",
+            "To authorize paid leave"
+          ],
+          "correct": 1,
+          "explanation": "The main purpose of issuing a Certificate of Service is that, it may be used as a reference, covering the holder's public service when seeking other employment [81, 82].",
+          "difficulty": "easy",
+          "chapter": "Certificate of Service Objective",
+          "keywords": ["Certificate of Service", "Reference"]
+        },
+        {
+          "id": "PSIR_070",
+          "question": "What must an officer submit upon return from annual leave to their Permanent Secretary/Head of Extra-Ministerial Office?",
+          "options": [
+            "Medical report",
+            "Progress report",
+            "Resumption of Duty Certificate (Form L.10)",
+            "A letter of thanks"
+          ],
+          "correct": 2,
+          "explanation": "On return from annual leave, every Officer must complete and submit a Resumption of Duty Certificate (Form L.10) [83, 84].",
+          "difficulty": "easy",
+          "chapter": "Return from Leave",
+          "keywords": ["Resumption of Duty Certificate", "Annual Leave"]
+        },
+        {
+          "id": "PSIR_071",
+          "question": "In the context of the PSR, what does the term 'Junior Posts' refer to?",
+          "options": [
+            "Posts attracting emoluments on Grade Level 07 and above",
+            "Posts attracting emoluments on Grade Level 06 and below",
+            "Posts for temporary staff only",
+            "Posts in Parastatals only"
+          ],
+          "correct": 1,
+          "explanation": "Junior Posts are posts in Ministries/Extra-Ministerial Offices attracting emoluments on Grade Level 06 and below [13].",
+          "difficulty": "easy",
+          "chapter": "General Definitions",
+          "keywords": ["Junior Posts", "GL 06"]
+        },
+        {
+          "id": "PSIR_072",
+          "question": "What is the entitlement for **Annual Leave** for officers on GL 07 and above?",
+          "options": [
+            "14 working days",
+            "21 working days",
+            "30 working days",
+            "45 calendar days"
+          ],
+          "correct": 2,
+          "explanation": "Annual Leave entitlement for GL 07 and above is 30 working days [85].",
+          "difficulty": "easy",
+          "chapter": "Annual Leave Entitlement",
+          "keywords": ["Annual Leave", "30 working days"]
+        },
+        {
+          "id": "PSIR_073",
+          "question": "What action is required before any officer can withdraw their public record, such as personal files?",
+          "options": [
+            "Verbal permission from the Permanent Secretary",
+            "Permission from the Permanent Secretary, Service Policies and Strategies Office, OHCSF [86]",
+            "A police report",
+            "Approval from the FCSC"
+          ],
+          "correct": 1,
+          "explanation": "No Officer may leave the Public Service take with him any public record without the written permission of the Permanent Secretary, Service Policies and Strategies Office, OHCSF [86].",
+          "difficulty": "medium",
+          "chapter": "Removal of Public Records",
+          "keywords": ["Public Records", "OHCSF"]
+        },
+        {
+          "id": "PSIR_074",
+          "question": "Who must approve the deployment of staff in the Nigerian Civil Service?",
+          "options": [
+            "The Minister of Communications",
+            "The Federal Civil Service Commission",
+            "The Office of the Head of the Civil Service of the Federation (OHCSF) [5]",
+            "The National Assembly"
+          ],
+          "correct": 1,
+          "explanation": "Appointments to offices in the Federal Civil Service are made on the authority of the Federal Civil Service Commission [5]. Permanent Secretaries/Heads of Extra-Ministerial Offices are authorized to appoint candidates where powers have been delegated [5].",
+          "difficulty": "easy",
+          "chapter": "Authority for Appointment",
+          "keywords": ["FCSC", "Deployment", "Appointments"]
+        },
+        {
+          "id": "PSIR_075",
+          "question": "The PSR permits officers to publish or speak in public or broadcast on any matter which may reasonably be regarded as:",
+          "options": [
+            "A political or administrative nature, without permission",
+            "A personal affair, without permission",
+            "A political or administrative nature, only with express permission of their Permanent Secretary/Head of Extra-Ministerial Office [86]",
+            "Official secrets"
+          ],
+          "correct": 2,
+          "explanation": "No Officer shall, without the express permission of his Permanent Secretary/Head of Extra-Ministerial Office, speak in public or broadcast on any matter which may reasonably be regarded as of a political or administrative nature [87].",
+          "difficulty": "medium",
+          "chapter": "Publication and Public Utterances",
+          "keywords": ["Public Utterances", "Permission"]
+        },
+        {
+          "id": "PSIR_076",
+          "question": "Under the Performance Management System (PMS), performance expectations shall be based on the detailed contents captured in which document?",
+          "options": [
+            "The National Budget",
+            "Job Descriptions (JDs)",
+            "The Leave Roster",
+            "The Reward and Recognition Scheme (R&RS)"
+          ],
+          "correct": 1,
+          "explanation": "Job Descriptions (JDs) shall be available for each job, and used to capture detailed job contents including scope, responsibilities, reporting lines, etc. Performance expectations shall be based on the contents of JD [88].",
+          "difficulty": "medium",
+          "chapter": "Performance Planning",
+          "keywords": ["PMS", "Job Descriptions (JDs)"]
+        },
+        {
+          "id": "PSIR_077",
+          "question": "The PSR includes emerging issues such as Performance Management, Talent Sourcing, Volunteerism, and what other ICT-related trend?",
+          "options": [
+            "Biometric Verification",
+            "Virtual Meetings/Engagements",
+            "Cloud Storage Policy",
+            "Electronic Mail Only Policy"
+          ],
+          "correct": 1,
+          "explanation": "The 2021 Edition of Public Service Rules (PSR) includes emerging issues such as Performance Management System, Talent Sourcing, Volunteerism, Virtual Meetings/Engagements [89, 90].",
+          "difficulty": "easy",
+          "chapter": "Emerging Issues (2021 PSR)",
+          "keywords": ["Virtual Meetings", "Emerging Issues", "2021 PSR"]
+        },
+        {
+          "id": "PSIR_078",
+          "question": "When can an officer on leave be recalled by the Permanent Secretary/Head of Extra-Ministerial Office?",
+          "options": [
+            "Only on weekends",
+            "If they are required to return before the expiration of their authorized leave",
+            "If the officer is abroad",
+            "Only if they are GL 07 and above"
+          ],
+          "correct": 1,
+          "explanation": "An Officer may be required to return to duty before the expiration of his authorized leave by the Permanent Secretary/Head of Extra-Ministerial Office [85].",
+          "difficulty": "medium",
+          "chapter": "Curtailment of Leave",
+          "keywords": ["Leave", "Recall", "Curtailment"]
+        },
+        {
+          "id": "PSIR_079",
+          "question": "What is the maximum number of days a newly appointed Officer on GL.07–17 is expected to complete the confirmation examination after taking up their appointment in the Ministry/Extra-Ministerial Office?",
+          "options": ["Six months", "One year", "Two years", "Three years"],
+          "correct": 2,
+          "explanation": "All officers must take the confirmation examination within two years from the date of taking up their appointments in the Ministry/Extra-Ministerial Office [72].",
+          "difficulty": "medium",
+          "chapter": "Confirmation Examination",
+          "keywords": ["Confirmation Exam", "Two years"]
+        },
+        {
+          "id": "PSIR_080",
+          "question": "The promotion process for officers involves a selection process including but not limited to written examination, oral interview, and what other technical assessment?",
+          "options": [
+            "Financial audit",
+            "Test of ICT proficiency",
+            "Physical fitness test",
+            "Psychological evaluation"
+          ],
+          "correct": 1,
+          "explanation": "Selection shall be through competitive examination process including but not limited to written examination, test of ICT proficiency and oral interview [71].",
+          "difficulty": "medium",
+          "chapter": "Selection Process for Promotion",
+          "keywords": ["Promotion", "ICT proficiency", "Selection"]
+        },
+        {
+          "id": "PSIR_081",
+          "question": "When an Officer is promoted, when shall the payment of promotion arrears be made?",
+          "options": [
+            "After six months",
+            "Within the year promotion is effected",
+            "Upon retirement",
+            "Immediately the letter is issued"
+          ],
+          "correct": 1,
+          "explanation": "Payment of promotion arrears shall be made within the year promotion is effected [8, 9].",
+          "difficulty": "medium",
+          "chapter": "Promotion Arrears",
+          "keywords": ["Promotion Arrears", "Timing"]
+        },
+        {
+          "id": "PSIR_082",
+          "question": "What is the maximum tenure for a Director, subject to satisfactory performance, under the Tenure Policy?",
+          "options": [
+            "Four years renewable for a further four years",
+            "Five years renewable",
+            "Ten years non-renewable",
+            "Six years total"
+          ],
+          "correct": 0,
+          "explanation": "A Director... shall compulsively retire upon serving eight years on the post; and a Permanent Secretary shall hold office for a term of four years and renewable for a further term of four years [79]. (The Director rule mentions 8 years, while the PS rule mentions 4+4 years).",
+          "difficulty": "hard",
+          "chapter": "Tenure Policy",
+          "keywords": ["Director", "Permanent Secretary", "Tenure"]
+        },
+        {
+          "id": "PSIR_083",
+          "question": "What is the minimum number of years an officer on GL.07–14 must spend in post before being considered eligible for promotion?",
+          "options": ["2 years", "3 years", "4 years", "5 years"],
+          "correct": 1,
+          "explanation": "The minimum number of years that an Officer must spend in a post before being considered eligible for promotion for GL.07–14 is Minimum of 3 years [41].",
+          "difficulty": "easy",
+          "chapter": "Eligibility for Promotion",
+          "keywords": ["GL 07-14", "3 years", "Promotion"]
+        },
+        {
+          "id": "PSIR_084",
+          "question": "What is the maximum period of continuous absence from duty without leave that makes an officer liable to dismissal (deemed to have resigned)?",
+          "options": ["7 days", "10 days", "14 days", "30 days"],
+          "correct": 2,
+          "explanation": "An Officer absent without Leave for 14 days renders himself liable to dismissal [91].",
+          "difficulty": "easy",
+          "chapter": "Absence without Leave",
+          "keywords": ["Absence", "14 days", "Dismissal"]
+        },
+        {
+          "id": "PSIR_085",
+          "question": "Who must countersign the Certificate of Service issued to an officer holding senior posts (GL 07 and above)?",
+          "options": [
+            "The Minister",
+            "The Permanent Secretary of the retiring Officer and the Permanent Secretary, Federal Civil Service Commission",
+            "The Director HRM only",
+            "The Accountant General"
+          ],
+          "correct": 1,
+          "explanation": "Certificate of service to be issued to Officers holding senior posts on GL.07 and above, requires the countersignature of the Permanent Secretary of the retiring Officer and the Permanent Secretary, Federal Civil Service Commission [92].",
+          "difficulty": "medium",
+          "chapter": "Certificate of Service Authority",
+          "keywords": ["Certificate of Service", "Countersignature", "FCSC"]
+        },
+        {
+          "id": "PSIR_086",
+          "question": "Which specific allowance is not payable if the transfer is at the Officer's own request?",
+          "options": [
+            "Duty Tour Allowance",
+            "Kilometer Allowance",
+            "Resettlement Allowance",
+            "Shift Duty Allowance"
+          ],
+          "correct": 2,
+          "explanation": "An Officer whose transfer is at his own request shall be entitled to only transport allowance and not resettlement allowance [93].",
+          "difficulty": "medium",
+          "chapter": "Resettlement Allowance",
+          "keywords": ["Resettlement Allowance", "Officer's Request"]
+        },
+        {
+          "id": "PSIR_087",
+          "question": "What is the rate of payment for **Resettlement Allowance**?",
+          "options": [
+            "5 per cent of annual emolument",
+            "2 per cent of an Officer's annual total emolument",
+            "10 per cent of monthly salary",
+            "A fixed amount of N50,000"
+          ],
+          "correct": 1,
+          "explanation": "Resettlement Allowance shall be paid at the rate of 2 per cent of an Officer’s annual total emolument [93].",
+          "difficulty": "medium",
+          "chapter": "Resettlement Allowance Rate",
+          "keywords": ["Resettlement Allowance", "2 per cent"]
+        },
+        {
+          "id": "PSIR_088",
+          "question": "Who shall be paid the **Non-accident bonus** at the rate of N50,000.00 per annum?",
+          "options": [
+            "All officers who drive government vehicles",
+            "Drivers who are not involved in an accident and have been driving for a period of not less than six months in a year",
+            "All senior officers",
+            "Only drivers of Ministers"
+          ],
+          "correct": 1,
+          "explanation": "Non-accident bonus shall be paid at the rate of N50,000.00 per annum, for drivers who are not involved in an accident... and have been driving for a period of not less than six months in a year [94].",
+          "difficulty": "medium",
+          "chapter": "Non-Accident Bonus",
+          "keywords": ["Non-accident bonus", "Drivers", "N50,000"]
+        },
+        {
+          "id": "PSIR_089",
+          "question": "Which form of reward includes certificates, engraved plaques, medals, cash gifts, and sponsorship for attendance of Masterclass and local training programmes?",
+          "options": [
+            "Acting Allowance",
+            "Resettlement Allowance",
+            "Reward for Outstanding Work and Meritorious Service",
+            "Duty Tour Allowance"
+          ],
+          "correct": 2,
+          "explanation": "Rewards for each of the awards shall be in the form of certificates, letter of recommendation, engraved plaques or trophies, medals, cash gifts, sponsorship... [95].",
+          "difficulty": "easy",
+          "chapter": "Form of Reward",
+          "keywords": ["Reward", "Cash Gifts", "Masterclass"]
+        },
+        {
+          "id": "PSIR_090",
+          "question": "What is the primary objective of staff development policies?",
+          "options": [
+            "To promote only senior staff",
+            "To enhance the knowledge, skills, attitude, effectiveness and efficiency of staff",
+            "To reduce the workforce",
+            "To replace permanent staff with contract staff"
+          ],
+          "correct": 1,
+          "explanation": "Objectives of Staff Development... to enhance the knowledge, skills, attitude, effectiveness and efficiency of staff [96].",
+          "difficulty": "easy",
+          "chapter": "Staff Development Objectives",
+          "keywords": ["Staff Development", "Effectiveness", "Efficiency"]
+        },
+        {
+          "id": "PSIR_091",
+          "question": "Under the **Performance Management Cycle**, when shall individual performance planning be done?",
+          "options": [
+            "At the end of the year",
+            "Mid-year",
+            "At the beginning of the Performance Management Cycle",
+            "Only when the officer requests it"
+          ],
+          "correct": 2,
+          "explanation": "Individual Performance Planning shall be done at the beginning of the Performance Management Cycle [88].",
+          "difficulty": "easy",
+          "chapter": "Performance Planning",
+          "keywords": ["PMS", "Performance Planning", "Beginning of Cycle"]
+        },
+        {
+          "id": "PSIR_092",
+          "question": "Which PSR rule prohibits officers from borrowing money in any manner that places them under a financial obligation to a person within the Public Service?",
+          "options": [
+            "Rule 100427 (Seeking Influence)",
+            "Rule 100432 (Borrowing Money)",
+            "Rule 100416 (Unauthorized Disclosure)",
+            "Rule 100424 (Investments)"
+          ],
+          "correct": 1,
+          "explanation": "No Officer may borrow money either as principal or as surety or in any manner which places him under a financial obligation to a person within the Public Service [80].",
+          "difficulty": "medium",
+          "chapter": "Borrowing Money",
+          "keywords": ["Borrowing Money", "Prohibition"]
+        },
+        {
+          "id": "PSIR_093",
+          "question": "What is the entitlement for **Annual Leave** for officers on GL 04–06?",
+          "options": [
+            "14 working days",
+            "21 working days",
+            "30 working days",
+            "45 calendar days"
+          ],
+          "correct": 1,
+          "explanation": "Annual Leave entitlement for GL 04–06 is 21 working days [85].",
+          "difficulty": "easy",
+          "chapter": "Annual Leave Entitlement",
+          "keywords": ["Annual Leave", "21 working days"]
+        },
+        {
+          "id": "PSIR_094",
+          "question": "What is the compensation for an officer who sustains an injury during official duties which incapacitates them, such that they are entitled to be discharged from sick leave or permanently invalided?",
+          "options": [
+            "Entitled to draw full emolument until he is discharged [50]",
+            "Payment of half salary",
+            "Immediate dismissal",
+            "Transfer to a desk job"
+          ],
+          "correct": 0,
+          "explanation": "An Officer who is incapacitated as a result of injury sustained in the course of his official duties shall be entitled to draw full emolument until he is discharged from sick leave or permanently invalided [50].",
+          "difficulty": "medium",
+          "chapter": "Incapacitation/Removal of Officer",
+          "keywords": ["Incapacitation", "Injury", "Full Emolument"]
+        },
+        {
+          "id": "PSIR_095",
+          "question": "What does the PSR state must be done with all records generated during any of the phases of the annual Performance Management cycle?",
+          "options": [
+            "Destroyed immediately",
+            "Used only for public consultation",
+            "Administered in line with good administrative document and data management practices",
+            "Sent to the National Assembly"
+          ],
+          "correct": 2,
+          "explanation": "All records generated during any of the phases of the annual Performance Management cycle... shall be administered in line with good administrative document and data management practices [97].",
+          "difficulty": "medium",
+          "chapter": "Record Management",
+          "keywords": ["PMS", "Record Management", "Data Management"]
+        },
+        {
+          "id": "PSIR_096",
+          "question": "What is the penalty for failure to submit required representations regarding unsatisfactory conduct within the specified time limit?",
+          "options": [
+            "The representations are accepted late",
+            "Appropriate sanction will be invoked against the officer",
+            "The officer is transferred",
+            "The officer is promoted"
+          ],
+          "correct": 1,
+          "explanation": "Failure to submit them within this time limit will be taken to mean that you do not wish to make any, and appropriate sanction will be invoked against you [98].",
+          "difficulty": "easy",
+          "chapter": "Preliminary Letter/Discipline",
+          "keywords": ["Sanction", "Time Limit"]
+        },
+        {
+          "id": "PSIR_097",
+          "question": "Which authority is responsible for the approval of conditions of service, schemes of service, and organizational structure for Parastatals?",
+          "options": [
+            "Supervising Minister",
+            "The Board/Council",
+            "The Office of the Head of the Civil Service of the Federation (OHCSF)",
+            "Federal Ministry of Finance"
+          ],
+          "correct": 2,
+          "explanation": "Conditions of Service, Scheme of Service and the Organizational Structure for Parastatals shall be approved by the Office of the Head of the Civil Service of the Federation [44].",
+          "difficulty": "medium",
+          "chapter": "Parastatals Conditions Approval",
+          "keywords": ["Parastatals", "Scheme of Service", "OHCSF"]
+        },
+        {
+          "id": "PSIR_098",
+          "question": "What is the required qualification standard for **Interns and Volunteers**?",
+          "options": [
+            "Primary School Certificate only",
+            "Secondary School Certificate Examination (SSCE) or equivalent, up to University Degree/HND",
+            "Masters Degree only",
+            "Only specialized professional certification"
+          ],
+          "correct": 1,
+          "explanation": "Interns must be postgraduates, undergraduates, or students in other tertiary institutions while volunteers must possess a University Degree, HND, NCE, ND and SSCE or its equivalent [76].",
+          "difficulty": "easy",
+          "chapter": "Qualifications for Interns/Volunteers",
+          "keywords": ["Interns", "Volunteers", "SSCE"]
+        },
+        {
+          "id": "PSIR_099",
+          "question": "What is the minimum period of service required for an officer to qualify for Annual Leave in a given year?",
+          "options": [
+            "Less than six months",
+            "Not less than six months previous service within a leave earning service year",
+            "One month",
+            "Twelve months"
+          ],
+          "correct": 1,
+          "explanation": "An Officer shall qualify for Annual Leave not less than six months previous service within a leave earning service year [99].",
+          "difficulty": "medium",
+          "chapter": "Qualifying Period for Annual Leave",
+          "keywords": ["Annual Leave", "Six months"]
+        },
+        {
+          "id": "PSIR_100",
+          "question": "For a senior officer seeking a Certificate of Service (Form Gen. 58), whose countersignature is required in addition to the Permanent Secretary of the retiring officer?",
+          "options": [
+            "The Auditor General",
+            "The Permanent Secretary, Federal Civil Service Commission",
+            "The Minister of Labour",
+            "The Head of the Civil Service of the Federation"
+          ],
+          "correct": 1,
+          "explanation": "Certificate of service to be issued to Officers holding senior posts on GL.07 and above, requires the countersignature of the Permanent Secretary of the retiring Officer and the Permanent Secretary, Federal Civil Service Commission [92].",
+          "difficulty": "medium",
+          "chapter": "Certificate of Service",
+          "keywords": ["Certificate of Service", "FCSC", "Senior Post"]
+        }
+      ]
     },
     {
       "id": "ca_national_governance",
       "name": "National Governance and Policy Developments",
       "description": "The legal, constitutional, and financial frameworks governing the Federal Government. This is based on mandatory examination subjects such as Financial Regulations, Nigerian Legal System, provisions of the 1999 Constitution (e.g., Chapter IV on Fundamental Human Rights), and key financial and digital policies (TSA, IPPIS, PPA).",
       "icon": "⚖️",
-      "questions": []
-    },
-    {
-      "id": "ca_international_affairs",
-      "name": "International and Regional Affairs",
-      "description": "Nigeria's external relationships, diplomatic service, and global awareness. This draws heavily on the Nigerian Foreign Service Regulations (Chapter 18) and General Paper topics related to international organizations (e.g., UN, ECOWAS) and diplomatic rules.",
-      "icon": "🌍",
-      "questions": []
-    },
-    {
-      "id": "ca_national_events",
-      "name": "National Events and Key Personalities",
-      "description": "General knowledge, national history, symbols, political leadership, and the roles of federal agencies. This category encompasses topics addressed in the General Paper examination, including names of current ministers and agency heads, national symbols (flag/coat of arms), and major national events (e.g., 774 Local Government Areas, the principle of anonymity of civil servants).",
-      "icon": "🗞️",
-      "questions": []
-    },
-    {
-      "id": "ca_general",
-      "name": "General Current Affairs",
-      "description": "General knowledge and recent events (covering Governance, Reforms, International Affairs, and Key Personalities).",
       "questions": [
         {
           "id": "NGPD_001",
@@ -763,722 +1459,15 @@
           "difficulty": "hard",
           "chapter": "Interdiction",
           "keywords": ["Interdiction", "Seven Days", "Absence"]
-        },
-        {
-          "id": "PSIR_051",
-          "question": "What is the minimum grade level for which a Contract Appointment shall be made?",
-          "options": ["SGL. 07", "SGL. 08", "SGL. 10", "SGL. 12"],
-          "correct": 3,
-          "explanation": "The Post to which contract appointment shall be made must not be below SGL. 12 [57, 58].",
-          "difficulty": "medium",
-          "chapter": "Contract Appointment Procedure",
-          "keywords": ["Contract Appointment", "SGL 12"]
-        },
-        {
-          "id": "PSIR_052",
-          "question": "The duration of a contract appointment should be one (1) or two (2) years and renewable but must not exceed what maximum period in total?",
-          "options": ["Two years", "Three years", "Four years", "Six years"],
-          "correct": 2,
-          "explanation": "The duration of contract appointment should be one (1) or two (2) years and renewable but not more than four (4) years in all [57, 59].",
-          "difficulty": "medium",
-          "chapter": "Contract Duration",
-          "keywords": ["Contract Appointment", "Four Years"]
-        },
-        {
-          "id": "PSIR_053",
-          "question": "What mandatory duty must a **Contract Officer** undertake as a condition for their offer of appointment?",
-          "options": [
-            "Mentoring serving Officers",
-            "Obtaining foreign exchange",
-            "Serving in a Parastatal only",
-            "Working only from home"
-          ],
-          "correct": 0,
-          "explanation": "The contract Officer must, as part of his duties, be responsible for mentoring serving Officers as a condition for the offer of the contract appointment [58, 60].",
-          "difficulty": "easy",
-          "chapter": "Contract Rules",
-          "keywords": ["Contract Officer", "Mentoring"]
-        },
-        {
-          "id": "PSIR_054",
-          "question": "Where retired officers are re-engaged into career posts, on what grade level shall their appointment be made?",
-          "options": [
-            "The grade level immediately above their retirement level",
-            "The grade level immediately below that on which they retired",
-            "SGL 17 only",
-            "GL 08 only"
-          ],
-          "correct": 1,
-          "explanation": "Where retired Officers from the Service are re-engaged into career posts, the appointment shall be on grade level immediately below that on which they retired and be eligible to maintain their last step at retirement [61, 62].",
-          "difficulty": "medium",
-          "chapter": "Re-engagement of Retired Officers",
-          "keywords": ["Retired Officer", "Re-engagement"]
-        },
-        {
-          "id": "PSIR_055",
-          "question": "What is the maximum number of times a Trade Union/Staff Association Executive member is mandated to serve in their tenure in the Public Service?",
-          "options": ["One term", "Two terms", "Three terms", "Four terms"],
-          "correct": 1,
-          "explanation": "Trade Unions/Staff Associations are mandated to introduce tenure limit of two (2) terms in their Constitutions [63].",
-          "difficulty": "medium",
-          "chapter": "Union Executive Tenure",
-          "keywords": ["Union Executive", "Tenure Limit", "Two terms"]
-        },
-        {
-          "id": "PSIR_056",
-          "question": "An Officer who resigns is liable to forfeit all claims to:",
-          "options": [
-            "Their pension benefits",
-            "Salary only",
-            "Vacation leave and any vacation leave or passage privileges granted",
-            "Health Insurance"
-          ],
-          "correct": 2,
-          "explanation": "An Officer who resigns will be liable to forfeit all claims to vacation leave and any vacation leave or passage privileges granted [64].",
-          "difficulty": "medium",
-          "chapter": "Resignation",
-          "keywords": ["Resignation", "Forfeit Leave"]
-        },
-        {
-          "id": "PSIR_057",
-          "question": "The PSR shall be reviewed how frequently to reflect current realities and align with global best practices?",
-          "options": [
-            "Annually",
-            "Every three years",
-            "Every five years",
-            "After every election cycle"
-          ],
-          "correct": 2,
-          "explanation": "The Public Service Rules (PSR) shall be reviewed every five years to update the provisions of the rules [65, 66].",
-          "difficulty": "easy",
-          "chapter": "Review of PSR",
-          "keywords": ["Review", "Five Years"]
-        },
-        {
-          "id": "PSIR_058",
-          "question": "What process replaces the Annual Performance Evaluation Report (APER) for the Federal Public Service?",
-          "options": [
-            "IPPIS",
-            "The Performance Management System (PMS)",
-            "The Scheme of Service",
-            "Staff Inspection"
-          ],
-          "correct": 1,
-          "explanation": "The Performance Management System (PMS) shall replace the Annual Performance Evaluation Report (APER) for the Federal Public Service [37, 67].",
-          "difficulty": "easy",
-          "chapter": "Performance Management System",
-          "keywords": ["PMS", "APER", "Replacement"]
-        },
-        {
-          "id": "PSIR_059",
-          "question": "What is the primary rationale for implementing virtual meetings/engagements in the Public Service?",
-          "options": [
-            "To reduce travel costs only",
-            "To enhance political activities",
-            "To respond to work demands remotely and ensure continuity during pandemics/emergencies",
-            "To eliminate the need for physical offices"
-          ],
-          "correct": 2,
-          "explanation": "The rationale is to ensure that employees are able to respond to work demands remotely, such that MDAs continue to function adequately with minimal disruption in the face of any pandemic/emergencies [22, 68].",
-          "difficulty": "medium",
-          "chapter": "Rationale for Virtual Meetings",
-          "keywords": ["Virtual Meetings", "Emergencies", "Continuity"]
-        },
-        {
-          "id": "PSIR_060",
-          "question": "The Confirmation Examination Board is chaired by whom?",
-          "options": [
-            "Director (Promotion) FCSC",
-            "Director (HRM) Federal Ministry of Justice",
-            "Permanent Secretary, CMO (OHCSF)",
-            "Permanent Secretary, Federal Civil Service Commission"
-          ],
-          "correct": 2,
-          "explanation": "The Examination Board shall be responsible for the conduct and supervision of the examinations. The Board shall comprise the Permanent Secretary, CMO (OHCSF) as Chairman [69, 70].",
-          "difficulty": "medium",
-          "chapter": "Examination Board",
-          "keywords": ["Confirmation Exam", "CMO", "OHCSF"]
-        },
-        {
-          "id": "PSIR_061",
-          "question": "How long after first appointment must officers eligible for compulsory confirmation examination have served before taking the exam?",
-          "options": ["Three months", "Six months", "One year", "Two years"],
-          "correct": 1,
-          "explanation": "Newly recruited Officer who has spent six months and above shall be allowed to sit for compulsory examination for confirmation in the Service [71].",
-          "difficulty": "easy",
-          "chapter": "Compulsory Confirmation",
-          "keywords": ["Confirmation Exam", "Six Months"]
-        },
-        {
-          "id": "PSIR_062",
-          "question": "What is the consequence for an officer who fails the compulsory confirmation examination after three consecutive attempts?",
-          "options": [
-            "Promotion deferment",
-            "Required to resign or withdraw from the service",
-            "Transfer to a Parastatal",
-            "Granting of paid leave"
-          ],
-          "correct": 1,
-          "explanation": "An Officer who fails the examination after three consecutive attempts shall by virtue of such failures be required to resign or withdraw from the service [72].",
-          "difficulty": "easy",
-          "chapter": "Failure to Pass Confirmation Exam",
-          "keywords": ["Confirmation Exam", "Three attempts", "Resign"]
-        },
-        {
-          "id": "PSIR_063",
-          "question": "What category of appointments were introduced to fill observed gaps and/or shore up the capacities of existing Officers, specifically covering Contract, Internship, and Volunteerism?",
-          "options": [
-            "Trainee Appointments",
-            "Non-Pensionable Appointments",
-            "Short Term Appointments",
-            "Ad-hoc Appointments"
-          ],
-          "correct": 2,
-          "explanation": "Appointments may be made for a prescribed period of time in the following categories: Contract Appointments, Sabbatical Appointment, Career Exchange Programme, Talent Sourcing Strategy, Internship and Volunteerism in the Federal Service [73, 74].",
-          "difficulty": "easy",
-          "chapter": "Short Term Appointments",
-          "keywords": ["Short Term", "Internship", "Volunteerism"]
-        },
-        {
-          "id": "PSIR_064",
-          "question": "What is the PSR’s definition of **Internship**?",
-          "options": [
-            "A temporary assignment abroad",
-            "A non-structured, unpaid role",
-            "A structured experience that relates to a student’s/graduate’s discipline or career goal and helps to enhance academic, career, professional and personal development",
-            "A role for retired officers only"
-          ],
-          "correct": 2,
-          "explanation": "Internship connotes a structured experience that relates to a student’s/graduate’s discipline or career goal and helps to enhance academic, career, professional and personal development [75].",
-          "difficulty": "medium",
-          "chapter": "Internship Definition",
-          "keywords": ["Internship", "Structured Experience"]
-        },
-        {
-          "id": "PSIR_065",
-          "question": "What is the maximum continuous service period for which a Secondment may be granted to the service of another approved body or international organization?",
-          "options": [
-            "Two years (in the first instance)",
-            "Three years",
-            "Five years",
-            "Six years"
-          ],
-          "correct": 0,
-          "explanation": "Secondment means the temporary release of an Officer to the service of another government approved body or any recognized International Organization or body for a **specified period** [1, 2].",
-          "difficulty": "hard",
-          "chapter": "Secondment/Contract Duration",
-          "keywords": ["Secondment", "Temporary Release"]
-        },
-        {
-          "id": "PSIR_066",
-          "question": "What grade level must an officer be on to be eligible for Sabbatical Appointment?",
-          "options": [
-            "GL 12 and above",
-            "GL 14 and above",
-            "GL 15 or equivalent and above",
-            "GL 08 and above"
-          ],
-          "correct": 2,
-          "explanation": "Sabbatical Appointment applies to the Service is the appointment of an officer on GL 15 or equivalent and above [75].",
-          "difficulty": "easy",
-          "chapter": "Sabbatical Appointment",
-          "keywords": ["Sabbatical", "GL 15"]
-        },
-        {
-          "id": "PSIR_067",
-          "question": "What is the mandatory retirement age for all grades in the Service?",
-          "options": [
-            "60 years or 35 years of pensionable service, whichever is earlier",
-            "65 years or 40 years of service",
-            "60 years only",
-            "35 years of service only"
-          ],
-          "correct": 0,
-          "explanation": "The mandatory retirement age for all grades in the Service shall be 60 years or 35 years of pensionable service whichever is earlier [79].",
-          "difficulty": "easy",
-          "chapter": "Mandatory Retirement",
-          "keywords": ["Retirement", "60 years", "35 years"]
-        },
-        {
-          "id": "PSIR_068",
-          "question": "What is the consequence of making a false statement on the employment application, if detected after engagement?",
-          "options": [
-            "Withholding of increment",
-            "Transfer to a new post",
-            "Regarded as sufficient grounds for non-employment or for subsequent termination of appointment without notice",
-            "Reprimand"
-          ],
-          "correct": 2,
-          "explanation": "Concealment of any of the facts... or any false statement... shall be regarded as sufficient grounds for non-employment or for subsequent termination of appointment without notice [80].",
-          "difficulty": "medium",
-          "chapter": "Statement on Appointment",
-          "keywords": ["False Statement", "Termination"]
-        },
-        {
-          "id": "PSIR_069",
-          "question": "What is the primary objective of issuing a **Certificate of Service** to an officer leaving the service?",
-          "options": [
-            "To grant retirement benefits",
-            "To serve as a reference covering the holder's public service when seeking other employment",
-            "To exempt the officer from tax",
-            "To authorize paid leave"
-          ],
-          "correct": 1,
-          "explanation": "The main purpose of issuing a Certificate of Service is that, it may be used as a reference, covering the holder's public service when seeking other employment [81, 82].",
-          "difficulty": "easy",
-          "chapter": "Certificate of Service Objective",
-          "keywords": ["Certificate of Service", "Reference"]
-        },
-        {
-          "id": "PSIR_070",
-          "question": "What must an officer submit upon return from annual leave to their Permanent Secretary/Head of Extra-Ministerial Office?",
-          "options": [
-            "Medical report",
-            "Progress report",
-            "Resumption of Duty Certificate (Form L.10)",
-            "A letter of thanks"
-          ],
-          "correct": 2,
-          "explanation": "On return from annual leave, every Officer must complete and submit a Resumption of Duty Certificate (Form L.10) [83, 84].",
-          "difficulty": "easy",
-          "chapter": "Return from Leave",
-          "keywords": ["Resumption of Duty Certificate", "Annual Leave"]
-        },
-        {
-          "id": "PSIR_071",
-          "question": "In the context of the PSR, what does the term 'Junior Posts' refer to?",
-          "options": [
-            "Posts attracting emoluments on Grade Level 07 and above",
-            "Posts attracting emoluments on Grade Level 06 and below",
-            "Posts for temporary staff only",
-            "Posts in Parastatals only"
-          ],
-          "correct": 1,
-          "explanation": "Junior Posts are posts in Ministries/Extra-Ministerial Offices attracting emoluments on Grade Level 06 and below [13].",
-          "difficulty": "easy",
-          "chapter": "General Definitions",
-          "keywords": ["Junior Posts", "GL 06"]
-        },
-        {
-          "id": "PSIR_072",
-          "question": "What is the entitlement for **Annual Leave** for officers on GL 07 and above?",
-          "options": [
-            "14 working days",
-            "21 working days",
-            "30 working days",
-            "45 calendar days"
-          ],
-          "correct": 2,
-          "explanation": "Annual Leave entitlement for GL 07 and above is 30 working days [85].",
-          "difficulty": "easy",
-          "chapter": "Annual Leave Entitlement",
-          "keywords": ["Annual Leave", "30 working days"]
-        },
-        {
-          "id": "PSIR_073",
-          "question": "What action is required before any officer can withdraw their public record, such as personal files?",
-          "options": [
-            "Verbal permission from the Permanent Secretary",
-            "Permission from the Permanent Secretary, Service Policies and Strategies Office, OHCSF [86]",
-            "A police report",
-            "Approval from the FCSC"
-          ],
-          "correct": 1,
-          "explanation": "No Officer may leave the Public Service take with him any public record without the written permission of the Permanent Secretary, Service Policies and Strategies Office, OHCSF [86].",
-          "difficulty": "medium",
-          "chapter": "Removal of Public Records",
-          "keywords": ["Public Records", "OHCSF"]
-        },
-        {
-          "id": "PSIR_074",
-          "question": "Who must approve the deployment of staff in the Nigerian Civil Service?",
-          "options": [
-            "The Minister of Communications",
-            "The Federal Civil Service Commission",
-            "The Office of the Head of the Civil Service of the Federation (OHCSF) [5]",
-            "The National Assembly"
-          ],
-          "correct": 1,
-          "explanation": "Appointments to offices in the Federal Civil Service are made on the authority of the Federal Civil Service Commission [5]. Permanent Secretaries/Heads of Extra-Ministerial Offices are authorized to appoint candidates where powers have been delegated [5].",
-          "difficulty": "easy",
-          "chapter": "Authority for Appointment",
-          "keywords": ["FCSC", "Deployment", "Appointments"]
-        },
-        {
-          "id": "PSIR_075",
-          "question": "The PSR permits officers to publish or speak in public or broadcast on any matter which may reasonably be regarded as:",
-          "options": [
-            "A political or administrative nature, without permission",
-            "A personal affair, without permission",
-            "A political or administrative nature, only with express permission of their Permanent Secretary/Head of Extra-Ministerial Office [86]",
-            "Official secrets"
-          ],
-          "correct": 2,
-          "explanation": "No Officer shall, without the express permission of his Permanent Secretary/Head of Extra-Ministerial Office, speak in public or broadcast on any matter which may reasonably be regarded as of a political or administrative nature [87].",
-          "difficulty": "medium",
-          "chapter": "Publication and Public Utterances",
-          "keywords": ["Public Utterances", "Permission"]
-        },
-        {
-          "id": "PSIR_076",
-          "question": "Under the Performance Management System (PMS), performance expectations shall be based on the detailed contents captured in which document?",
-          "options": [
-            "The National Budget",
-            "Job Descriptions (JDs)",
-            "The Leave Roster",
-            "The Reward and Recognition Scheme (R&RS)"
-          ],
-          "correct": 1,
-          "explanation": "Job Descriptions (JDs) shall be available for each job, and used to capture detailed job contents including scope, responsibilities, reporting lines, etc. Performance expectations shall be based on the contents of JD [88].",
-          "difficulty": "medium",
-          "chapter": "Performance Planning",
-          "keywords": ["PMS", "Job Descriptions (JDs)"]
-        },
-        {
-          "id": "PSIR_077",
-          "question": "The PSR includes emerging issues such as Performance Management, Talent Sourcing, Volunteerism, and what other ICT-related trend?",
-          "options": [
-            "Biometric Verification",
-            "Virtual Meetings/Engagements",
-            "Cloud Storage Policy",
-            "Electronic Mail Only Policy"
-          ],
-          "correct": 1,
-          "explanation": "The 2021 Edition of Public Service Rules (PSR) includes emerging issues such as Performance Management System, Talent Sourcing, Volunteerism, Virtual Meetings/Engagements [89, 90].",
-          "difficulty": "easy",
-          "chapter": "Emerging Issues (2021 PSR)",
-          "keywords": ["Virtual Meetings", "Emerging Issues", "2021 PSR"]
-        },
-        {
-          "id": "PSIR_078",
-          "question": "When can an officer on leave be recalled by the Permanent Secretary/Head of Extra-Ministerial Office?",
-          "options": [
-            "Only on weekends",
-            "If they are required to return before the expiration of their authorized leave",
-            "If the officer is abroad",
-            "Only if they are GL 07 and above"
-          ],
-          "correct": 1,
-          "explanation": "An Officer may be required to return to duty before the expiration of his authorized leave by the Permanent Secretary/Head of Extra-Ministerial Office [85].",
-          "difficulty": "medium",
-          "chapter": "Curtailment of Leave",
-          "keywords": ["Leave", "Recall", "Curtailment"]
-        },
-        {
-          "id": "PSIR_079",
-          "question": "What is the maximum number of days a newly appointed Officer on GL.07–17 is expected to complete the confirmation examination after taking up their appointment in the Ministry/Extra-Ministerial Office?",
-          "options": ["Six months", "One year", "Two years", "Three years"],
-          "correct": 2,
-          "explanation": "All officers must take the confirmation examination within two years from the date of taking up their appointments in the Ministry/Extra-Ministerial Office [72].",
-          "difficulty": "medium",
-          "chapter": "Confirmation Examination",
-          "keywords": ["Confirmation Exam", "Two years"]
-        },
-        {
-          "id": "PSIR_080",
-          "question": "The promotion process for officers involves a selection process including but not limited to written examination, oral interview, and what other technical assessment?",
-          "options": [
-            "Financial audit",
-            "Test of ICT proficiency",
-            "Physical fitness test",
-            "Psychological evaluation"
-          ],
-          "correct": 1,
-          "explanation": "Selection shall be through competitive examination process including but not limited to written examination, test of ICT proficiency and oral interview [71].",
-          "difficulty": "medium",
-          "chapter": "Selection Process for Promotion",
-          "keywords": ["Promotion", "ICT proficiency", "Selection"]
-        },
-        {
-          "id": "PSIR_081",
-          "question": "When an Officer is promoted, when shall the payment of promotion arrears be made?",
-          "options": [
-            "After six months",
-            "Within the year promotion is effected",
-            "Upon retirement",
-            "Immediately the letter is issued"
-          ],
-          "correct": 1,
-          "explanation": "Payment of promotion arrears shall be made within the year promotion is effected [8, 9].",
-          "difficulty": "medium",
-          "chapter": "Promotion Arrears",
-          "keywords": ["Promotion Arrears", "Timing"]
-        },
-        {
-          "id": "PSIR_082",
-          "question": "What is the maximum tenure for a Director, subject to satisfactory performance, under the Tenure Policy?",
-          "options": [
-            "Four years renewable for a further four years",
-            "Five years renewable",
-            "Ten years non-renewable",
-            "Six years total"
-          ],
-          "correct": 0,
-          "explanation": "A Director... shall compulsively retire upon serving eight years on the post; and a Permanent Secretary shall hold office for a term of four years and renewable for a further term of four years [79]. (The Director rule mentions 8 years, while the PS rule mentions 4+4 years).",
-          "difficulty": "hard",
-          "chapter": "Tenure Policy",
-          "keywords": ["Director", "Permanent Secretary", "Tenure"]
-        },
-        {
-          "id": "PSIR_083",
-          "question": "What is the minimum number of years an officer on GL.07–14 must spend in post before being considered eligible for promotion?",
-          "options": ["2 years", "3 years", "4 years", "5 years"],
-          "correct": 1,
-          "explanation": "The minimum number of years that an Officer must spend in a post before being considered eligible for promotion for GL.07–14 is Minimum of 3 years [41].",
-          "difficulty": "easy",
-          "chapter": "Eligibility for Promotion",
-          "keywords": ["GL 07-14", "3 years", "Promotion"]
-        },
-        {
-          "id": "PSIR_084",
-          "question": "What is the maximum period of continuous absence from duty without leave that makes an officer liable to dismissal (deemed to have resigned)?",
-          "options": ["7 days", "10 days", "14 days", "30 days"],
-          "correct": 2,
-          "explanation": "An Officer absent without Leave for 14 days renders himself liable to dismissal [91].",
-          "difficulty": "easy",
-          "chapter": "Absence without Leave",
-          "keywords": ["Absence", "14 days", "Dismissal"]
-        },
-        {
-          "id": "PSIR_085",
-          "question": "Who must countersign the Certificate of Service issued to an officer holding senior posts (GL 07 and above)?",
-          "options": [
-            "The Minister",
-            "The Permanent Secretary of the retiring Officer and the Permanent Secretary, Federal Civil Service Commission",
-            "The Director HRM only",
-            "The Accountant General"
-          ],
-          "correct": 1,
-          "explanation": "Certificate of service to be issued to Officers holding senior posts on GL.07 and above, requires the countersignature of the Permanent Secretary of the retiring Officer and the Permanent Secretary, Federal Civil Service Commission [92].",
-          "difficulty": "medium",
-          "chapter": "Certificate of Service Authority",
-          "keywords": ["Certificate of Service", "Countersignature", "FCSC"]
-        },
-        {
-          "id": "PSIR_086",
-          "question": "Which specific allowance is not payable if the transfer is at the Officer's own request?",
-          "options": [
-            "Duty Tour Allowance",
-            "Kilometer Allowance",
-            "Resettlement Allowance",
-            "Shift Duty Allowance"
-          ],
-          "correct": 2,
-          "explanation": "An Officer whose transfer is at his own request shall be entitled to only transport allowance and not resettlement allowance [93].",
-          "difficulty": "medium",
-          "chapter": "Resettlement Allowance",
-          "keywords": ["Resettlement Allowance", "Officer's Request"]
-        },
-        {
-          "id": "PSIR_087",
-          "question": "What is the rate of payment for **Resettlement Allowance**?",
-          "options": [
-            "5 per cent of annual emolument",
-            "2 per cent of an Officer's annual total emolument",
-            "10 per cent of monthly salary",
-            "A fixed amount of N50,000"
-          ],
-          "correct": 1,
-          "explanation": "Resettlement Allowance shall be paid at the rate of 2 per cent of an Officer’s annual total emolument [93].",
-          "difficulty": "medium",
-          "chapter": "Resettlement Allowance Rate",
-          "keywords": ["Resettlement Allowance", "2 per cent"]
-        },
-        {
-          "id": "PSIR_088",
-          "question": "Who shall be paid the **Non-accident bonus** at the rate of N50,000.00 per annum?",
-          "options": [
-            "All officers who drive government vehicles",
-            "Drivers who are not involved in an accident and have been driving for a period of not less than six months in a year",
-            "All senior officers",
-            "Only drivers of Ministers"
-          ],
-          "correct": 1,
-          "explanation": "Non-accident bonus shall be paid at the rate of N50,000.00 per annum, for drivers who are not involved in an accident... and have been driving for a period of not less than six months in a year [94].",
-          "difficulty": "medium",
-          "chapter": "Non-Accident Bonus",
-          "keywords": ["Non-accident bonus", "Drivers", "N50,000"]
-        },
-        {
-          "id": "PSIR_089",
-          "question": "Which form of reward includes certificates, engraved plaques, medals, cash gifts, and sponsorship for attendance of Masterclass and local training programmes?",
-          "options": [
-            "Acting Allowance",
-            "Resettlement Allowance",
-            "Reward for Outstanding Work and Meritorious Service",
-            "Duty Tour Allowance"
-          ],
-          "correct": 2,
-          "explanation": "Rewards for each of the awards shall be in the form of certificates, letter of recommendation, engraved plaques or trophies, medals, cash gifts, sponsorship... [95].",
-          "difficulty": "easy",
-          "chapter": "Form of Reward",
-          "keywords": ["Reward", "Cash Gifts", "Masterclass"]
-        },
-        {
-          "id": "PSIR_090",
-          "question": "What is the primary objective of staff development policies?",
-          "options": [
-            "To promote only senior staff",
-            "To enhance the knowledge, skills, attitude, effectiveness and efficiency of staff",
-            "To reduce the workforce",
-            "To replace permanent staff with contract staff"
-          ],
-          "correct": 1,
-          "explanation": "Objectives of Staff Development... to enhance the knowledge, skills, attitude, effectiveness and efficiency of staff [96].",
-          "difficulty": "easy",
-          "chapter": "Staff Development Objectives",
-          "keywords": ["Staff Development", "Effectiveness", "Efficiency"]
-        },
-        {
-          "id": "PSIR_091",
-          "question": "Under the **Performance Management Cycle**, when shall individual performance planning be done?",
-          "options": [
-            "At the end of the year",
-            "Mid-year",
-            "At the beginning of the Performance Management Cycle",
-            "Only when the officer requests it"
-          ],
-          "correct": 2,
-          "explanation": "Individual Performance Planning shall be done at the beginning of the Performance Management Cycle [88].",
-          "difficulty": "easy",
-          "chapter": "Performance Planning",
-          "keywords": ["PMS", "Performance Planning", "Beginning of Cycle"]
-        },
-        {
-          "id": "PSIR_092",
-          "question": "Which PSR rule prohibits officers from borrowing money in any manner that places them under a financial obligation to a person within the Public Service?",
-          "options": [
-            "Rule 100427 (Seeking Influence)",
-            "Rule 100432 (Borrowing Money)",
-            "Rule 100416 (Unauthorized Disclosure)",
-            "Rule 100424 (Investments)"
-          ],
-          "correct": 1,
-          "explanation": "No Officer may borrow money either as principal or as surety or in any manner which places him under a financial obligation to a person within the Public Service [80].",
-          "difficulty": "medium",
-          "chapter": "Borrowing Money",
-          "keywords": ["Borrowing Money", "Prohibition"]
-        },
-        {
-          "id": "PSIR_093",
-          "question": "What is the entitlement for **Annual Leave** for officers on GL 04–06?",
-          "options": [
-            "14 working days",
-            "21 working days",
-            "30 working days",
-            "45 calendar days"
-          ],
-          "correct": 1,
-          "explanation": "Annual Leave entitlement for GL 04–06 is 21 working days [85].",
-          "difficulty": "easy",
-          "chapter": "Annual Leave Entitlement",
-          "keywords": ["Annual Leave", "21 working days"]
-        },
-        {
-          "id": "PSIR_094",
-          "question": "What is the compensation for an officer who sustains an injury during official duties which incapacitates them, such that they are entitled to be discharged from sick leave or permanently invalided?",
-          "options": [
-            "Entitled to draw full emolument until he is discharged [50]",
-            "Payment of half salary",
-            "Immediate dismissal",
-            "Transfer to a desk job"
-          ],
-          "correct": 0,
-          "explanation": "An Officer who is incapacitated as a result of injury sustained in the course of his official duties shall be entitled to draw full emolument until he is discharged from sick leave or permanently invalided [50].",
-          "difficulty": "medium",
-          "chapter": "Incapacitation/Removal of Officer",
-          "keywords": ["Incapacitation", "Injury", "Full Emolument"]
-        },
-        {
-          "id": "PSIR_095",
-          "question": "What does the PSR state must be done with all records generated during any of the phases of the annual Performance Management cycle?",
-          "options": [
-            "Destroyed immediately",
-            "Used only for public consultation",
-            "Administered in line with good administrative document and data management practices",
-            "Sent to the National Assembly"
-          ],
-          "correct": 2,
-          "explanation": "All records generated during any of the phases of the annual Performance Management cycle... shall be administered in line with good administrative document and data management practices [97].",
-          "difficulty": "medium",
-          "chapter": "Record Management",
-          "keywords": ["PMS", "Record Management", "Data Management"]
-        },
-        {
-          "id": "PSIR_096",
-          "question": "What is the penalty for failure to submit required representations regarding unsatisfactory conduct within the specified time limit?",
-          "options": [
-            "The representations are accepted late",
-            "Appropriate sanction will be invoked against the officer",
-            "The officer is transferred",
-            "The officer is promoted"
-          ],
-          "correct": 1,
-          "explanation": "Failure to submit them within this time limit will be taken to mean that you do not wish to make any, and appropriate sanction will be invoked against you [98].",
-          "difficulty": "easy",
-          "chapter": "Preliminary Letter/Discipline",
-          "keywords": ["Sanction", "Time Limit"]
-        },
-        {
-          "id": "PSIR_097",
-          "question": "Which authority is responsible for the approval of conditions of service, schemes of service, and organizational structure for Parastatals?",
-          "options": [
-            "Supervising Minister",
-            "The Board/Council",
-            "The Office of the Head of the Civil Service of the Federation (OHCSF)",
-            "Federal Ministry of Finance"
-          ],
-          "correct": 2,
-          "explanation": "Conditions of Service, Scheme of Service and the Organizational Structure for Parastatals shall be approved by the Office of the Head of the Civil Service of the Federation [44].",
-          "difficulty": "medium",
-          "chapter": "Parastatals Conditions Approval",
-          "keywords": ["Parastatals", "Scheme of Service", "OHCSF"]
-        },
-        {
-          "id": "PSIR_098",
-          "question": "What is the required qualification standard for **Interns and Volunteers**?",
-          "options": [
-            "Primary School Certificate only",
-            "Secondary School Certificate Examination (SSCE) or equivalent, up to University Degree/HND",
-            "Masters Degree only",
-            "Only specialized professional certification"
-          ],
-          "correct": 1,
-          "explanation": "Interns must be postgraduates, undergraduates, or students in other tertiary institutions while volunteers must possess a University Degree, HND, NCE, ND and SSCE or its equivalent [76].",
-          "difficulty": "easy",
-          "chapter": "Qualifications for Interns/Volunteers",
-          "keywords": ["Interns", "Volunteers", "SSCE"]
-        },
-        {
-          "id": "PSIR_099",
-          "question": "What is the minimum period of service required for an officer to qualify for Annual Leave in a given year?",
-          "options": [
-            "Less than six months",
-            "Not less than six months previous service within a leave earning service year",
-            "One month",
-            "Twelve months"
-          ],
-          "correct": 1,
-          "explanation": "An Officer shall qualify for Annual Leave not less than six months previous service within a leave earning service year [99].",
-          "difficulty": "medium",
-          "chapter": "Qualifying Period for Annual Leave",
-          "keywords": ["Annual Leave", "Six months"]
-        },
-        {
-          "id": "PSIR_100",
-          "question": "For a senior officer seeking a Certificate of Service (Form Gen. 58), whose countersignature is required in addition to the Permanent Secretary of the retiring officer?",
-          "options": [
-            "The Auditor General",
-            "The Permanent Secretary, Federal Civil Service Commission",
-            "The Minister of Labour",
-            "The Head of the Civil Service of the Federation"
-          ],
-          "correct": 1,
-          "explanation": "Certificate of service to be issued to Officers holding senior posts on GL.07 and above, requires the countersignature of the Permanent Secretary of the retiring Officer and the Permanent Secretary, Federal Civil Service Commission [92].",
-          "difficulty": "medium",
-          "chapter": "Certificate of Service",
-          "keywords": ["Certificate of Service", "FCSC", "Senior Post"]
-        },
+        }
+      ]
+    },
+    {
+      "id": "ca_international_affairs",
+      "name": "International and Regional Affairs",
+      "description": "Nigeria's external relationships, diplomatic service, and global awareness. This draws heavily on the Nigerian Foreign Service Regulations (Chapter 18) and General Paper topics related to international organizations (e.g., UN, ECOWAS) and diplomatic rules.",
+      "icon": "🌍",
+      "questions": [
         {
           "id": "IRA_101",
           "question": "Who is the current Secretary-General of the United Nations (as of 2025)?",
@@ -2183,7 +2172,15 @@
           "difficulty": "medium",
           "chapter": "Entertainment Allocation (Overseas)",
           "keywords": ["Estacode", "Entertainment", "Special Allocation"]
-        },
+        }
+      ]
+    },
+    {
+      "id": "ca_national_events",
+      "name": "National Events and Key Personalities",
+      "description": "General knowledge, national history, symbols, political leadership, and the roles of federal agencies. This category encompasses topics addressed in the General Paper examination, including names of current ministers and agency heads, national symbols (flag/coat of arms), and major national events (e.g., 774 Local Government Areas, the principle of anonymity of civil servants).",
+      "icon": "🗞️",
+      "questions": [
         {
           "id": "NEKP_151",
           "question": "Who is cited as the current Head of the Civil Service of the Federation (HoCSF) in the 2021 PSR Preamble?",
@@ -2883,6 +2880,588 @@
           "difficulty": "hard",
           "chapter": "Special Increments",
           "keywords": ["Withheld Increment", "Special Increments", "Mitigation"]
+        }
+      ]
+    },
+    {
+      "id": "ca_general",
+      "name": "General Current Affairs",
+      "description": "General knowledge and recent events (covering Governance, Reforms, International Affairs, and Key Personalities).",
+      "questions": [
+        {
+          "ca_general": [
+            {
+              "id": "ca_general_001",
+              "question": "Which Nigerian state is officially known as the 'Centre of Excellence'?",
+              "options": [
+                "Lagos State",
+                "Ogun State",
+                "Oyo State",
+                "Osun State"
+              ],
+              "correct": 0,
+              "explanation": "Lagos State is officially recognized as the 'Centre of Excellence' [1].",
+              "difficulty": "easy",
+              "chapter": "Current Affairs",
+              "keywords": ["Lagos", "state nickname", "centre of excellence"]
+            },
+            {
+              "id": "ca_general_002",
+              "question": "Who is the current Head of the Civil Service of the Federation (as of 2025)?",
+              "options": [
+                "Folashade Yemi-Esan",
+                "Winifred Oyo-Ita",
+                "Olusegun Adekunle",
+                "Ebele Okeke"
+              ],
+              "correct": 0,
+              "explanation": "Dr. Folashade Yemi-Esan is the current Head of the Civil Service of the Federation, appointed in March 2020 [2, 3].",
+              "difficulty": "medium",
+              "chapter": "Current Affairs",
+              "keywords": [
+                "head of service",
+                "civil service",
+                "federal government"
+              ]
+            },
+            {
+              "id": "ca_general_003",
+              "question": "Which Nigerian city is known as the 'Coal City'?",
+              "options": ["Enugu", "Jos", "Ibadan", "Kano"],
+              "correct": 0,
+              "explanation": "Enugu is called the 'Coal City' because of its historic coal deposits [3].",
+              "difficulty": "easy",
+              "chapter": "Current Affairs",
+              "keywords": ["Enugu", "coal city", "nigerian cities"]
+            },
+            {
+              "id": "ca_general_004",
+              "question": "Who is the current President of Nigeria (as of 2025)?",
+              "options": [
+                "Muhammandu Buhari",
+                "Goodluck Jonathan",
+                "Bola Ahmed Tinubu",
+                "Atiku Abubakar"
+              ],
+              "correct": 2,
+              "explanation": "Bola Ahmed Tinubu became President of Nigeria on May 29, 2023 [4].",
+              "difficulty": "easy",
+              "chapter": "Current Affairs",
+              "keywords": ["president", "tinubu", "nigeria"]
+            },
+            {
+              "id": "ca_general_005",
+              "question": "Nigeria is a member of which regional economic community?",
+              "options": ["SADC", "ECOWAS", "EAC", "COMESA"],
+              "correct": 1,
+              "explanation": "Nigeria is a founding member of the Economic Community of West African States (ECOWAS) [4, 5].",
+              "difficulty": "easy",
+              "chapter": "Current Affairs",
+              "keywords": ["ECOWAS", "regional integration", "nigeria"]
+            },
+            {
+              "id": "ca_general_006",
+              "question": "Which Nigerian state is called the 'Gateway State'?",
+              "options": [
+                "Ogun State",
+                "Ekiti State",
+                "Ondo State",
+                "Kwara State"
+              ],
+              "correct": 0,
+              "explanation": "Ogun State is known as the 'Gateway State' [5].",
+              "difficulty": "easy",
+              "chapter": "Current Affairs",
+              "keywords": ["Ogun", "gateway state", "nigerian states"]
+            },
+            {
+              "id": "ca_general_007",
+              "question": "What is the capital of Nasarawa State?",
+              "options": ["Lafia", "Keffi", "Akwanga", "Mararaba"],
+              "correct": 0,
+              "explanation": "The capital of Nasarawa State is Lafia [6].",
+              "difficulty": "easy",
+              "chapter": "Current Affairs",
+              "keywords": ["nasarawa", "lafia", "state capitals"]
+            },
+            {
+              "id": "ca_general_008",
+              "question": "Which Nigerian city is nicknamed 'Tin City'?",
+              "options": ["Jos", "Kaduna", "Bauchi", "Kano"],
+              "correct": 0,
+              "explanation": "Jos is known as the 'Tin City' because of its tin mining history [7].",
+              "difficulty": "easy",
+              "chapter": "Current Affairs",
+              "keywords": ["jos", "tin city", "nigerian cities"]
+            },
+            {
+              "id": "ca_general_009",
+              "question": "Which Nigerian state is called the 'Land of Equity'?",
+              "options": ["Kano", "Kwara", "Ekiti", "Kebbi"],
+              "correct": 3,
+              "explanation": "Kebbi State is officially known as the 'Land of Equity' [7].",
+              "difficulty": "easy",
+              "chapter": "Current Affairs",
+              "keywords": ["kebbi", "land of equity", "state nickname"]
+            },
+            {
+              "id": "ca_general_010",
+              "question": "What is the current minimum wage in Nigeria (as of 2025)?",
+              "options": ["₦18,000", "₦30,000", "₦35,000", "₦40,000"],
+              "correct": 1,
+              "explanation": "The national minimum wage in Nigeria remains ₦30,000 as of 2025 [8].",
+              "difficulty": "medium",
+              "chapter": "Current Affairs",
+              "keywords": ["minimum wage", "labour", "nigeria"]
+            },
+            {
+              "id": "ca_general_011",
+              "question": "Which Nigerian state is called the 'Sunshine State'?",
+              "options": [
+                "Ondo State",
+                "Ekiti State",
+                "Osun State",
+                "Oyo State"
+              ],
+              "correct": 0,
+              "explanation": "Ondo State is officially known as the 'Sunshine State' [9].",
+              "difficulty": "easy",
+              "chapter": "Current Affairs",
+              "keywords": ["ondo", "sunshine state", "nigerian states"]
+            },
+            {
+              "id": "ca_general_012",
+              "question": "Nigeria adopted the presidential system of government in which year?",
+              "options": ["1960", "1963", "1979", "1999"],
+              "correct": 2,
+              "explanation": "Nigeria adopted the presidential system of government in 1979 with the Second Republic Constitution [9, 10].",
+              "difficulty": "medium",
+              "chapter": "Current Affairs",
+              "keywords": [
+                "presidential system",
+                "nigeria constitution",
+                "1979"
+              ]
+            },
+            {
+              "id": "ca_general_013",
+              "question": "Which Nigerian state is known as the 'Land of Promise'?",
+              "options": ["Akwa Ibom", "Cross River", "Delta", "Bayelsa"],
+              "correct": 0,
+              "explanation": "Akwa Ibom State is known as the 'Land of Promise' [10].",
+              "difficulty": "easy",
+              "chapter": "Current Affairs",
+              "keywords": ["akwa ibom", "land of promise", "state nicknames"]
+            },
+            {
+              "id": "ca_general_014",
+              "question": "Which international organization is headquartered in Abuja, Nigeria?",
+              "options": ["African Union", "ECOWAS", "UNDP", "UNICEF"],
+              "correct": 1,
+              "explanation": "The headquarters of ECOWAS is located in Abuja, Nigeria [11].",
+              "difficulty": "medium",
+              "chapter": "Current Affairs",
+              "keywords": ["ECOWAS", "abuja", "international organizations"]
+            },
+            {
+              "id": "ca_general_015",
+              "question": "What is the capital of Borno State?",
+              "options": ["Maiduguri", "Damaturu", "Biu", "Gwoza"],
+              "correct": 0,
+              "explanation": "The capital of Borno State is Maiduguri [11, 12].",
+              "difficulty": "easy",
+              "chapter": "Current Affairs",
+              "keywords": ["borno", "maiduguri", "state capitals"]
+            },
+            {
+              "id": "ca_general_016",
+              "question": "Which Nigerian state is nicknamed the 'Food Basket of the Nation'?",
+              "options": [
+                "Benue State",
+                "Plateau State",
+                "Kano State",
+                "Kaduna State"
+              ],
+              "correct": 0,
+              "explanation": "Benue State is called the 'Food Basket of the Nation' [12].",
+              "difficulty": "easy",
+              "chapter": "Current Affairs",
+              "keywords": ["benue", "food basket", "agriculture"]
+            },
+            {
+              "id": "ca_general_017",
+              "question": "What is the capital of Cross River State?",
+              "options": ["Calabar", "Uyo", "Port Harcourt", "Warri"],
+              "correct": 0,
+              "explanation": "The capital of Cross River State is Calabar [13].",
+              "difficulty": "easy",
+              "chapter": "Current Affairs",
+              "keywords": ["cross river", "calabar", "state capitals"]
+            },
+            {
+              "id": "ca_general_018",
+              "question": "Which Nigerian state is nicknamed the 'Home of Peace'?",
+              "options": ["Yobe", "Adamawa", "Borno", "Sokoto"],
+              "correct": 0,
+              "explanation": "Yobe State is called the 'Home of Peace' [13, 14].",
+              "difficulty": "easy",
+              "chapter": "Current Affairs",
+              "keywords": ["yobe", "home of peace", "state nicknames"]
+            },
+            {
+              "id": "ca_general_019",
+              "question": "Which Nigerian leader introduced the Structural Adjustment Programme (SAP) in 1986?",
+              "options": [
+                "Olusegun Obasanjo",
+                "Ibrahim Babangida",
+                "Sani Abacha",
+                "Yakubu Gowon"
+              ],
+              "correct": 1,
+              "explanation": "General Ibrahim Babangida introduced the Structural Adjustment Programme in 1986 [14].",
+              "difficulty": "medium",
+              "chapter": "Current Affairs",
+              "keywords": ["SAP", "babangida", "economic reforms"]
+            },
+            {
+              "id": "ca_general_020",
+              "question": "What is the capital of Kogi State?",
+              "options": ["Lokoja", "Okene", "Idah", "Kabba"],
+              "correct": 0,
+              "explanation": "The capital of Kogi State is Lokoja [15].",
+              "difficulty": "easy",
+              "chapter": "Current Affairs",
+              "keywords": ["kogi", "lokoja", "state capitals"]
+            },
+            {
+              "id": "ca_general_021",
+              "question": "Which Nigerian state is known as the 'Confluence State'?",
+              "options": ["Kogi", "Niger", "Kwara", "Benue"],
+              "correct": 0,
+              "explanation": "Kogi State is called the 'Confluence State' because Rivers Niger and Benue meet there [15, 16].",
+              "difficulty": "easy",
+              "chapter": "Current Affairs",
+              "keywords": ["kogi", "confluence state", "rivers"]
+            },
+            {
+              "id": "ca_general_022",
+              "question": "What is the capital of Gombe State?",
+              "options": ["Gombe", "Bauchi", "Jalingo", "Damaturu"],
+              "correct": 0,
+              "explanation": "The capital of Gombe State is Gombe [16].",
+              "difficulty": "easy",
+              "chapter": "Current Affairs",
+              "keywords": ["gombe", "state capitals", "nigeria"]
+            },
+            {
+              "id": "ca_general_023",
+              "question": "Who is the current Vice President of Nigeria (as of 2025)?",
+              "options": [
+                "Yemi Osinbajo",
+                "Kashim Shettima",
+                "Atiku Abubakar",
+                "Namadi Sambo"
+              ],
+              "correct": 1,
+              "explanation": "Kashim Shettima has been Nigeria’s Vice President since May 29, 2023 [17].",
+              "difficulty": "easy",
+              "chapter": "Current Affairs",
+              "keywords": ["vice president", "shettima", "nigeria"]
+            },
+            {
+              "id": "ca_general_024",
+              "question": "Which Nigerian state is called the 'Seat of Caliphate'?",
+              "options": ["Kano", "Kaduna", "Sokoto", "Katsina"],
+              "correct": 2,
+              "explanation": "Sokoto State is the 'Seat of the Caliphate' [17, 18].",
+              "difficulty": "easy",
+              "chapter": "Current Affairs",
+              "keywords": ["sokoto", "seat of caliphate", "nicknames"]
+            },
+            {
+              "id": "ca_general_025",
+              "question": "Which Nigerian city is called the 'Centre of Learning'?",
+              "options": ["Kano", "Kaduna", "Zaria", "Ibadan"],
+              "correct": 2,
+              "explanation": "Zaria, in Kaduna State, is called the 'Centre of Learning' due to its historic institutions [18].",
+              "difficulty": "easy",
+              "chapter": "Current Affairs",
+              "keywords": ["zaria", "centre of learning", "nicknames"]
+            },
+            {
+              "id": "ca_general_026",
+              "question": "Nigeria joined the United Nations in which year?",
+              "options": ["1957", "1960", "1963", "1966"],
+              "correct": 1,
+              "explanation": "Nigeria joined the UN in 1960 after independence [19].",
+              "difficulty": "medium",
+              "chapter": "Current Affairs",
+              "keywords": ["united nations", "nigeria", "membership"]
+            },
+            {
+              "id": "ca_general_027",
+              "question": "Which Nigerian state is called the 'Big Heart'?",
+              "options": ["Delta", "Edo", "Anambra", "Bayelsa"],
+              "correct": 1,
+              "explanation": "Edo State is known as the 'Heartbeat of the Nation', often shortened to 'Big Heart' [19, 20].",
+              "difficulty": "easy",
+              "chapter": "Current Affairs",
+              "keywords": ["edo", "big heart", "nicknames"]
+            },
+            {
+              "id": "ca_general_028",
+              "question": "Which Nigerian city is the capital of Anambra State?",
+              "options": ["Onitsha", "Awka", "Nnewi", "Enugu"],
+              "correct": 1,
+              "explanation": "Awka is the capital of Anambra State [20].",
+              "difficulty": "easy",
+              "chapter": "Current Affairs",
+              "keywords": ["anambra", "awka", "state capitals"]
+            },
+            {
+              "id": "ca_general_029",
+              "question": "Which Nigerian state is nicknamed the 'Home of Solid Minerals'?",
+              "options": ["Plateau", "Ebonyi", "Nasarawa", "Kogi"],
+              "correct": 2,
+              "explanation": "Nasarawa State is the 'Home of Solid Minerals' [21].",
+              "difficulty": "easy",
+              "chapter": "Current Affairs",
+              "keywords": ["nasarawa", "solid minerals", "nicknames"]
+            },
+            {
+              "id": "ca_general_030",
+              "question": "What is the capital of Yobe State?",
+              "options": ["Damaturu", "Maiduguri", "Potiskum", "Gashua"],
+              "correct": 0,
+              "explanation": "The capital of Yobe State is Damaturu [21, 22].",
+              "difficulty": "easy",
+              "chapter": "Current Affairs",
+              "keywords": ["yobe", "damaturu", "state capitals"]
+            },
+            {
+              "id": "ca_general_031",
+              "question": "Which Nigerian state is called the 'Land of Beauty'?",
+              "options": ["Taraba", "Bauchi", "Adamawa", "Niger"],
+              "correct": 0,
+              "explanation": "Taraba State is nicknamed the 'Nature’s Gift to the Nation' and 'Land of Beauty' [22].",
+              "difficulty": "easy",
+              "chapter": "Current Affairs",
+              "keywords": ["taraba", "land of beauty", "nicknames"]
+            },
+            {
+              "id": "ca_general_032",
+              "question": "Which Nigerian city is called the 'Ancient City'?",
+              "options": ["Ibadan", "Zaria", "Kano", "Benin City"],
+              "correct": 2,
+              "explanation": "Kano is often referred to as the 'Ancient City' [23].",
+              "difficulty": "easy",
+              "chapter": "Current Affairs",
+              "keywords": ["kano", "ancient city", "nicknames"]
+            },
+            {
+              "id": "ca_general_033",
+              "question": "Who is the current Senate President of Nigeria (as of 2025)?",
+              "options": [
+                "Ahmed Lawan",
+                "Bukola Saraki",
+                "Godswill Akpabio",
+                "David Mark"
+              ],
+              "correct": 2,
+              "explanation": "Godswill Akpabio has been the Senate President since June 2023 [23, 24].",
+              "difficulty": "medium",
+              "chapter": "Current Affairs",
+              "keywords": ["senate president", "akpabio", "nigeria"]
+            },
+            {
+              "id": "ca_general_034",
+              "question": "Which Nigerian state is nicknamed the 'Hospitality State'?",
+              "options": ["Benue", "Plateau", "Akwa Ibom", "Cross River"],
+              "correct": 1,
+              "explanation": "Plateau State is nicknamed the 'Home of Peace and Tourism' or 'Hospitality State' [24].",
+              "difficulty": "easy",
+              "chapter": "Current Affairs",
+              "keywords": ["plateau", "hospitality", "nicknames"]
+            },
+            {
+              "id": "ca_general_035",
+              "question": "Nigeria is divided into how many geopolitical zones?",
+              "options": ["4", "5", "6", "7"],
+              "correct": 2,
+              "explanation": "Nigeria has six geopolitical zones [25].",
+              "difficulty": "easy",
+              "chapter": "Current Affairs",
+              "keywords": ["geopolitical zones", "nigeria", "division"]
+            },
+            {
+              "id": "ca_general_036",
+              "question": "Which Nigerian city is nicknamed the 'Garden City'?",
+              "options": ["Port Harcourt", "Enugu", "Ibadan", "Kaduna"],
+              "correct": 0,
+              "explanation": "Port Harcourt is known as the 'Garden City' [25, 26].",
+              "difficulty": "easy",
+              "chapter": "Current Affairs",
+              "keywords": ["port harcourt", "garden city", "nicknames"]
+            },
+            {
+              "id": "ca_general_037",
+              "question": "Which Nigerian state is called the 'Land of Honour and Integrity'?",
+              "options": ["Osun", "Ekiti", "Ondo", "Oyo"],
+              "correct": 1,
+              "explanation": "Ekiti State is called the 'Land of Honour and Integrity' [26].",
+              "difficulty": "easy",
+              "chapter": "Current Affairs",
+              "keywords": ["ekiti", "honour and integrity", "nicknames"]
+            },
+            {
+              "id": "ca_general_038",
+              "question": "Which Nigerian city is the capital of Katsina State?",
+              "options": ["Daura", "Funtua", "Katsina", "Dutsin-Ma"],
+              "correct": 2,
+              "explanation": "The capital of Katsina State is Katsina City [27].",
+              "difficulty": "easy",
+              "chapter": "Current Affairs",
+              "keywords": ["katsina", "capital", "state capitals"]
+            },
+            {
+              "id": "ca_general_039",
+              "question": "Which Nigerian state is nicknamed the 'Treasure Base of the Nation'?",
+              "options": ["Bayelsa", "Rivers", "Akwa Ibom", "Delta"],
+              "correct": 1,
+              "explanation": "Rivers State is called the 'Treasure Base of the Nation' [27, 28].",
+              "difficulty": "easy",
+              "chapter": "Current Affairs",
+              "keywords": ["rivers state", "treasure base", "nicknames"]
+            },
+            {
+              "id": "ca_general_040",
+              "question": "Which Nigerian city is called the 'Ancient City of Benin'?",
+              "options": ["Ibadan", "Benin City", "Oyo", "Zaria"],
+              "correct": 1,
+              "explanation": "Benin City is popularly called the 'Ancient City of Benin' [28].",
+              "difficulty": "easy",
+              "chapter": "Current Affairs",
+              "keywords": ["benin city", "ancient city", "nicknames"]
+            },
+            {
+              "id": "ca_general_041",
+              "question": "Which Nigerian state is nicknamed the 'Land of Courage'?",
+              "options": ["Kaduna", "Zamfara", "Taraba", "Adamawa"],
+              "correct": 1,
+              "explanation": "Zamfara State is nicknamed the 'Land of Courage' [29].",
+              "difficulty": "easy",
+              "chapter": "Current Affairs",
+              "keywords": ["zamfara", "land of courage", "nicknames"]
+            },
+            {
+              "id": "ca_general_042",
+              "question": "Which Nigerian city is the capital of Ebonyi State?",
+              "options": ["Abakaliki", "Enugu", "Owerri", "Onitsha"],
+              "correct": 0,
+              "explanation": "The capital of Ebonyi State is Abakaliki [29, 30].",
+              "difficulty": "easy",
+              "chapter": "Current Affairs",
+              "keywords": ["ebonyi", "abakaliki", "state capitals"]
+            },
+            {
+              "id": "ca_general_043",
+              "question": "Who is the current Speaker of the House of Representatives (as of 2025)?",
+              "options": [
+                "Femi Gbajabiamila",
+                "Yakubu Dogara",
+                "Tajudeen Abbas",
+                "Patricia Etteh"
+              ],
+              "correct": 2,
+              "explanation": "Tajudeen Abbas has been Speaker since June 2023 [30].",
+              "difficulty": "medium",
+              "chapter": "Current Affairs",
+              "keywords": [
+                "speaker",
+                "house of representatives",
+                "tajudeen abbas"
+              ]
+            },
+            {
+              "id": "ca_general_044",
+              "question": "Which Nigerian state is called the 'Home of Peace and Tourism'?",
+              "options": ["Kaduna", "Plateau", "Taraba", "Niger"],
+              "correct": 1,
+              "explanation": "Plateau State is called the 'Home of Peace and Tourism' [31].",
+              "difficulty": "easy",
+              "chapter": "Current Affairs",
+              "keywords": ["plateau", "tourism", "nicknames"]
+            },
+            {
+              "id": "ca_general_045",
+              "question": "Which Nigerian city is nicknamed the 'City of Excellence'?",
+              "options": ["Abuja", "Port Harcourt", "Ibadan", "Lagos"],
+              "correct": 3,
+              "explanation": "Lagos is sometimes referred to as the 'City of Excellence' [31, 32].",
+              "difficulty": "easy",
+              "chapter": "Current Affairs",
+              "keywords": ["lagos", "city of excellence", "nicknames"]
+            },
+            {
+              "id": "ca_general_046",
+              "question": "Which Nigerian state is called the 'Power State'?",
+              "options": ["Kano", "Niger", "Kaduna", "Osun"],
+              "correct": 1,
+              "explanation": "Niger State is nicknamed the 'Power State' because of the Kainji Dam [32].",
+              "difficulty": "easy",
+              "chapter": "Current Affairs",
+              "keywords": ["niger state", "power state", "nicknames"]
+            },
+            {
+              "id": "ca_general_047",
+              "question": "Who was Nigeria’s first civilian President?",
+              "options": [
+                "Olusegun Obasanjo",
+                "Shehu Shagari",
+                "Nnamdi Azikiwe",
+                "Goodluck Jonathan"
+              ],
+              "correct": 1,
+              "explanation": "Shehu Shagari was Nigeria’s first civilian President, elected in 1979 [33].",
+              "difficulty": "medium",
+              "chapter": "Current Affairs",
+              "keywords": [
+                "shehu shagari",
+                "first civilian president",
+                "nigeria"
+              ]
+            },
+            {
+              "id": "ca_general_048",
+              "question": "Which Nigerian state is called the 'Salt of the Nation'?",
+              "options": ["Ebonyi", "Enugu", "Anambra", "Cross River"],
+              "correct": 0,
+              "explanation": "Ebonyi State is called the 'Salt of the Nation' because of its salt deposits [34].",
+              "difficulty": "easy",
+              "chapter": "Current Affairs",
+              "keywords": ["ebonyi", "salt of the nation", "nicknames"]
+            },
+            {
+              "id": "ca_general_049",
+              "question": "Nigeria operates under how many tiers of government?",
+              "options": ["Two", "Three", "Four", "Five"],
+              "correct": 1,
+              "explanation": "Nigeria operates a three-tier government system: Federal, State, and Local Government [34].",
+              "difficulty": "easy",
+              "chapter": "Current Affairs",
+              "keywords": ["tiers of government", "federalism", "nigeria"]
+            },
+            {
+              "id": "ca_general_050",
+              "question": "What is the capital of Niger State?",
+              "options": ["Mokwa", "Minna", "Bida", "Kontagora"],
+              "correct": 1,
+              "explanation": "The capital of Niger State is Minna [35].",
+              "difficulty": "easy",
+              "chapter": "Current Affairs",
+              "keywords": ["niger state", "minna", "state capitals"]
+            }
+          ]
         }
       ]
     }

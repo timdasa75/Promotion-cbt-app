@@ -146,9 +146,12 @@ export async function displayCategories(topic, onSelect) {
       const categoryCards = await Promise.all(
         subcategoriesToDisplay.map(async (subcategory, index) => {
           // Calculate the count based on the questions in the subcategory
-          const count = subcategory.questions
-            ? subcategory.questions.length
-            : 0;
+          let count = 0;
+          if (subcategory.id === "ca_general" && subcategory.questions && subcategory.questions.length > 0 && subcategory.questions[0].ca_general) {
+            count = subcategory.questions[0].ca_general.length;
+          } else if (subcategory.questions && Array.isArray(subcategory.questions)) {
+            count = subcategory.questions.length;
+          }
 
           const categoryCard = document.createElement("div");
           categoryCard.className = "topic-card ripple scale-on-hover";
