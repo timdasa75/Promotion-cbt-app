@@ -1028,6 +1028,25 @@ export async function loadQuestions(questions = null) {
     console.log("Extracted questions:", allQuestions);
 
     if (allQuestions.length === 0) {
+      // Check if we're dealing with current affairs and the selected subcategory is empty
+      if (currentTopic && currentTopic.id === "current_affairs") {
+        // For current affairs, if a specific subcategory has no questions,
+        // we should show a more informative message
+        if (currentTopic.selectedCategory && currentTopic.selectedCategory !== "all") {
+          // Find the selected category to get its name
+          let selectedCategoryName = currentTopic.selectedCategory;
+          if (topicData && topicData.subcategories && Array.isArray(topicData.subcategories)) {
+            const selectedCat = topicData.subcategories.find(cat => cat && cat.id === currentTopic.selectedCategory);
+            if (selectedCat && selectedCat.name) {
+              selectedCategoryName = selectedCat.name;
+            }
+          }
+          showError(`No questions are currently available for the selected subcategory: ${selectedCategoryName}. Please select a different subcategory or 'All Categories'.`);
+          showScreen("categorySelectionScreen");
+          return;
+        }
+      }
+      
       showError("No questions found for this topic/category.");
       showScreen("topicSelectionScreen");
       return;

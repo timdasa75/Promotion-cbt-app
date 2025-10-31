@@ -94,6 +94,13 @@ export async function getTopicQuestionCounts(topics) {
                             count += subcat.questions.length;
                         }
                     }
+                } else if (data.hasSubcategories && data.subcategories && Array.isArray(data.subcategories)) { // Handle structure with hasSubcategories and subcategories array
+                    console.log(`Topic ${topic.id} has hasSubcategories and subcategories property`);
+                    for (const subcat of data.subcategories) {
+                        if (subcat && subcat.questions && Array.isArray(subcat.questions)) {
+                            count += subcat.questions.length;
+                        }
+                    }
                 } else if (data.questions && Array.isArray(data.questions)) {
                     // Existing simple structure
                     console.log(`Topic ${topic.id} has simple questions array`);

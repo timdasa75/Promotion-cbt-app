@@ -5,6 +5,7 @@ let currentScreenId = "topicSelectionScreen";
 
 // Show a specific screen with animation
 export function showScreen(screenId) {
+  setTimeout(() => window.scrollTo(0, 0), 0);
   console.log(`Switching to screen: ${screenId}`);
   return new Promise((resolve, reject) => {
     // Validate input
@@ -111,7 +112,10 @@ export async function displayCategories(topic, onSelect) {
 
     let subcategoriesToDisplay = [];
 
-    if (topicData.subcategories && Array.isArray(topicData.subcategories)) {
+    if (topicData.hasSubcategories && topicData.subcategories && Array.isArray(topicData.subcategories)) {
+      // Handle structure with hasSubcategories and subcategories array (like current affairs)
+      subcategoriesToDisplay = topicData.subcategories;
+    } else if (topicData.subcategories && Array.isArray(topicData.subcategories)) {
       subcategoriesToDisplay = topicData.subcategories;
     } else if (Array.isArray(topicData)) {
       // Handle direct array of subcategories (e.g., psr.json)
