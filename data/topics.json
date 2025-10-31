@@ -551,6 +551,12 @@
           "name": "National Events and Key Personalities",
           "description": "General knowledge, national history, symbols, political leadership, and the roles of federal agencies. This category encompasses topics addressed in the General Paper examination, including names of current ministers and agency heads, national symbols (flag/coat of arms), and major national events (e.g., 774 Local Government Areas, the principle of anonymity of civil servants).",
           "icon": "🗞️"
+        },
+        {
+          "id": "ca_general",
+          "name": "General Current Affairs",
+          "description": "General knowledge and recent events (covering Governance, Reforms, International Affairs, and Key Personalities).",
+          "icon": "🔍"
         }
       ]
     }
