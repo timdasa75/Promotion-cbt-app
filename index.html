@@ -1,235 +1,271 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Directorate Levels Promotion CBT Practice Application"
-    />
-    <title>Directorate Levels Promotion CBT Practice</title>
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/fonts.css">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="icon" type="image/png" href="assets/icons/favicon.png">
-  </head>
-  <body>
-    <script>
-        // Detect if we're running locally or on GitHub Pages
-        window.BASE_URL = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost' ? '' : '/Promotion-cbt-app';
-        console.log('BASE_URL set to:', window.BASE_URL);
-        console.log('Hostname:', window.location.hostname);
-        console.log('Port:', window.location.port);
-        console.log('Protocol:', window.location.protocol);
-    </script>
-    <div class="app-container">
-      <!-- Topic Selection Screen -->
-      <div id="topicSelectionScreen" class="screen active">
-        <header class="header">
-          <h1>🇳🇬 Directorate Levels Promotion CBT Practice</h1>
-          <p>Select a topic to begin</p>
-          <div class="nigerian-flag">
-            <div class="green-stripe"></div>
-            <div class="white-stripe"></div>
-            <div class="green-stripe"></div>
-          </div>
-        </header>
-        <div class="quiz-card">
-          <h2 class="section-title">Available Topics</h2>
-          <div class="mode-selector" id="topicList">
-            <div class="loading">Loading topics...</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Category Selection Screen -->
-      <div id="categorySelectionScreen" class="screen hidden">
-        <header class="header">
-          <h1 id="categoryQuizTitle">Select Category</h1>
-          <p id="categoryQuizDescription">
-            Choose a category from <span id="selectedTopicForCategory"></span>
-          </p>
-          <div class="nigerian-flag">
-            <div class="green-stripe"></div>
-            <div class="white-stripe"></div>
-            <div class="green-stripe"></div>
-          </div>
-        </header>
-        <div class="quiz-card">
-          <h2 class="section-title">Select Category</h2>
-          <div class="mode-selector" id="categoryList">
-            <div class="loading">Loading categories...</div>
-          </div>
-          <div class="buttons-container">
-            <button class="btn btn-outline" id="backToTopicBtn">
-              ← Change Topic
-            </button>
-            <button class="btn btn-outline" id="selectAllCategoryBtn">
-              Select All Categories
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Mode Selection Screen -->
-      <div id="modeSelectionScreen" class="screen hidden">
-        <header class="header">
-          <h1 id="modeQuizTitle">Quiz Mode</h1>
-          <p id="modeQuizDescription">
-            Choose how you want to practice for
-            <span id="selectedTopicName"></span>
-          </p>
-          <div class="nigerian-flag">
-            <div class="green-stripe"></div>
-            <div class="white-stripe"></div>
-            <div class="green-stripe"></div>
-          </div>
-        </header>
-        <div class="quiz-card">
-          <h2 class="section-title">Select Quiz Mode</h2>
-          <div class="mode-selector">
-            <div class="mode-card" id="practiceModeCard">
-              <div class="mode-icon">📚</div>
-              <h3>Practice Mode</h3>
-              <p>Learn with immediate feedback. Unlimited time.</p>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Directorate Levels Promotion CBT Practice Application"
+        />
+        <title>Directorate Levels Promotion CBT Practice</title>
+        <link rel="stylesheet" href="css/normalize.css" />
+        <link rel="stylesheet" href="css/fonts.css" />
+        <link rel="stylesheet" href="css/styles.css" />
+        <link rel="icon" type="image/png" href="assets/icons/favicon.png" />
+    </head>
+    <body>
+        <script>
+            // Detect if we're running locally or on GitHub Pages
+            window.BASE_URL =
+                window.location.hostname === "127.0.0.1" ||
+                window.location.hostname === "localhost"
+                    ? ""
+                    : "/Promotion-cbt-app";
+            console.log("BASE_URL set to:", window.BASE_URL);
+            console.log("Hostname:", window.location.hostname);
+            console.log("Port:", window.location.port);
+            console.log("Protocol:", window.location.protocol);
+        </script>
+        <div class="app-container">
+            <!-- Topic Selection Screen -->
+            <div id="topicSelectionScreen" class="screen active">
+                <header class="header">
+                    <h1>🇳🇬 Directorate Levels Promotion CBT Practice</h1>
+                    <p>Select a topic to begin</p>
+                    <div class="nigerian-flag">
+                        <div class="green-stripe"></div>
+                        <div class="white-stripe"></div>
+                        <div class="green-stripe"></div>
+                    </div>
+                </header>
+                <div class="quiz-card">
+                    <h2 class="section-title">Available Topics</h2>
+                    <div class="card-container" id="topicList">
+                        <div class="loading">Loading topics...</div>
+                    </div>
+                </div>
             </div>
-            <div class="mode-card" id="examModeCard">
-              <div class="mode-icon">⏱️</div>
-              <h3>Exam Mode</h3>
-              <p>Timed test. No immediate feedback.</p>
+
+            <!-- Category Selection Screen -->
+            <div id="categorySelectionScreen" class="screen hidden">
+                <header class="header">
+                    <h1 id="categoryQuizTitle">Select Category</h1>
+                    <p id="categoryQuizDescription">
+                        Choose a category from
+                        <span id="selectedTopicForCategory"></span>
+                    </p>
+                    <div class="nigerian-flag">
+                        <div class="green-stripe"></div>
+                        <div class="white-stripe"></div>
+                        <div class="green-stripe"></div>
+                    </div>
+                </header>
+                <div class="quiz-card">
+                    <h2 class="section-title">Select Category</h2>
+                    <div class="card-container" id="categoryList">
+                        <div class="loading">Loading categories...</div>
+                    </div>
+                    <div class="buttons-container">
+                        <button class="btn btn-outline" id="backToTopicBtn">
+                            ← Change Topic
+                        </button>
+                        <button
+                            class="btn btn-outline"
+                            id="selectAllCategoryBtn"
+                        >
+                            Select All Categories
+                        </button>
+                    </div>
+                </div>
             </div>
-            <div class="mode-card" id="reviewModeCard">
-              <div class="mode-icon">🔍</div>
-              <h3>Review Mode</h3>
-              <p>Review all questions and answers without scoring.</p>
+
+            <!-- Mode Selection Screen -->
+            <div id="modeSelectionScreen" class="screen hidden">
+                <header class="header">
+                    <h1 id="modeQuizTitle">Quiz Mode</h1>
+                    <p id="modeQuizDescription">
+                        Choose how you want to practice for
+                        <span id="selectedTopicName"></span>
+                    </p>
+                    <div class="nigerian-flag">
+                        <div class="green-stripe"></div>
+                        <div class="white-stripe"></div>
+                        <div class="green-stripe"></div>
+                    </div>
+                </header>
+                <div class="quiz-card">
+                    <h2 class="section-title">Select Quiz Mode</h2>
+                    <div class="card-container">
+                        <div class="unified-card" id="practiceModeCard">
+                            <div class="mode-icon">📚</div>
+                            <h3>Practice Mode</h3>
+                            <p>
+                                Learn with immediate feedback. Unlimited time.
+                            </p>
+                        </div>
+                        <div class="unified-card" id="examModeCard">
+                            <div class="mode-icon">⏱️</div>
+                            <h3>Exam Mode</h3>
+                            <p>Timed test. No immediate feedback.</p>
+                        </div>
+                        <div class="unified-card" id="reviewModeCard">
+                            <div class="mode-icon">🔍</div>
+                            <h3>Review Mode</h3>
+                            <p>
+                                Review all questions and answers without
+                                scoring.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="buttons-container">
+                        <button class="btn btn-outline" id="backToCategoryBtn">
+                            ← Change Category
+                        </button>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="buttons-container">
-            <button class="btn btn-outline" id="backToCategoryBtn">
-              ← Change Category
-            </button>
-          </div>
-        </div>
-      </div>
 
-      <!-- Quiz Screen -->
-      <div id="quizScreen" class="screen hidden quiz-card">
-        <div class="green-stripe" style="height: 4px; margin-bottom: 8px"></div>
+            <!-- Quiz Screen -->
+            <div id="quizScreen" class="screen hidden quiz-card">
+                <div
+                    class="green-stripe"
+                    style="height: 4px; margin-bottom: 8px"
+                ></div>
 
-        <div class="nigerian-flag">
-          <div class="green-stripe"></div>
-          <div class="white-stripe"></div>
-          <div class="green-stripe"></div>
-        </div>
+                <div class="nigerian-flag">
+                    <div class="green-stripe"></div>
+                    <div class="white-stripe"></div>
+                    <div class="green-stripe"></div>
+                </div>
 
-        <div class="quiz-header-row">
-          <div class="quiz-topic-title" id="quizTopicTitle">
-            Topic: Loading...
-          </div>
-          <div class="timer-container">
+                <div class="quiz-header-row">
+                    <div class="quiz-topic-title" id="quizTopicTitle">
+                        Topic: Loading...
+                    </div>
+                    <div class="timer-container">
+                        <div id="timerDisplay" class="timer">
+                            <span id="timeLeft">00:00</span>
+                        </div>
+                    </div>
+                    <div class="question-counter">
+                        Question <span id="currentQ">0</span> of
+                        <span id="totalQ">0</span>
+                    </div>
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+
+                <div class="question-text-fullwidth" id="questionText">
+                    Loading question...
+                </div>
+
+                <div class="quiz-content-grid">
+                    <div class="quiz-main-column">
+                        <div class="options-grid" id="optionsContainer"></div>
+                    </div>
+                    <div class="quiz-explanation-column">
+                        <div class="explanation" id="explanation"></div>
+                    </div>
+                </div>
+
+                <div class="quiz-nav-buttons">
+                    <button class="btn btn-secondary" id="prevBtn">
+                        Previous
+                    </button>
+                    <button class="btn" id="submitBtn" disabled>Submit</button>
+                    <button class="btn" id="nextBtn">Next</button>
+                </div>
+            </div>
+
+            <!-- Results Screen -->
+            <div id="resultsScreen" class="screen hidden quiz-card">
+                <div class="results">
+                    <h2 class="section-title">Quiz Results</h2>
+                    <div class="score" id="finalScore">0%</div>
+                    <div class="performance" id="performanceText">
+                        Calculating your performance...
+                    </div>
+
+                    <div class="card-container" id="resultsStats">
+                        <div class="unified-card">
+                            <div class="stat-number" id="correctCount">0</div>
+
+                            <div class="stat-label">Correct Answers</div>
+                        </div>
+
+                        <div class="unified-card">
+                            <div class="stat-number" id="wrongCount">0</div>
+
+                            <div class="stat-label">Wrong Answers</div>
+                        </div>
+
+                        <div class="unified-card">
+                            <div class="stat-number" id="unansweredCount">
+                                0
+                            </div>
+
+                            <div class="stat-label">Unanswered</div>
+                        </div>
+
+                        <div class="unified-card">
+                            <div class="stat-number" id="timeSpent">00:00</div>
+
+                            <div class="stat-label">Time Spent</div>
+                        </div>
+                    </div>
+                    <div id="categoryBreakdown" style="margin-top: 30px"></div>
+
+                    <div class="buttons-container">
+                        <button class="btn" id="retakeQuizBtn">
+                            Try Again
+                        </button>
+                        <button class="btn btn-secondary" id="reviewAnswersBtn">
+                            Review Answers
+                        </button>
+                        <button
+                            class="btn btn-secondary hidden"
+                            id="reviewIncorrectBtn"
+                        >
+                            Review Incorrect
+                        </button>
+                        <button
+                            class="btn btn-outline"
+                            onclick="showScreen('topicSelectionScreen')"
+                        >
+                            Back to Topics
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timer Display -->
             <div id="timerDisplay" class="timer">
-              <span id="timeLeft">00:00</span>
+                <span id="timeLeft">00:00</span>
             </div>
-          </div>
-          <div class="question-counter">
-            Question <span id="currentQ">0</span> of <span id="totalQ">0</span>
-          </div>
+
+            <!-- Error Message Display -->
+            <div id="errorMessageContainer" class="hidden"></div>
         </div>
 
-        <div class="progress-bar">
-          <div class="progress-fill" id="progressFill"></div>
-        </div>
-
-        <div class="question-text-fullwidth" id="questionText">
-          Loading question...
-        </div>
-
-        <div class="quiz-content-grid">
-          <div class="quiz-main-column">
-            <div class="options-grid" id="optionsContainer"></div>
-          </div>
-          <div class="quiz-explanation-column">
-            <div class="explanation" id="explanation"></div>
-          </div>
-        </div>
-
-        <div class="quiz-nav-buttons">
-          <button class="btn btn-secondary" id="prevBtn">Previous</button>
-          <button class="btn" id="submitBtn" disabled>Submit</button>
-          <button class="btn" id="nextBtn">Next</button>
-        </div>
-      </div>
-
-      <!-- Results Screen -->
-      <div id="resultsScreen" class="screen hidden quiz-card">
-        <div class="results">
-          <h2 class="section-title">Quiz Results</h2>
-          <div class="score" id="finalScore">0%</div>
-          <div class="performance" id="performanceText">
-            Calculating your performance...
-          </div>
-
-          <div class="stats" id="resultsStats">
-            <div class="stat-card">
-              <div class="stat-number" id="correctCount">0</div>
-              <div class="stat-label">Correct Answers</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-number" id="wrongCount">0</div>
-              <div class="stat-label">Wrong Answers</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-number" id="unansweredCount">0</div>
-              <div class="stat-label">Unanswered</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-number" id="timeSpent">00:00</div>
-              <div class="stat-label">Time Spent</div>
-            </div>
-          </div>
-          <div id="categoryBreakdown" style="margin-top: 30px"></div>
-
-          <div class="buttons-container">
-            <button class="btn" id="retakeQuizBtn">Try Again</button>
-            <button class="btn btn-secondary" id="reviewAnswersBtn">
-              Review Answers
-            </button>
-            <button
-              class="btn btn-outline"
-              onclick="showScreen('topicSelectionScreen')"
-            >
-              Back to Topics
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Timer Display -->
-      <div id="timerDisplay" class="timer">
-        <span id="timeLeft">00:00</span>
-      </div>
-
-      <!-- Error Message Display -->
-      <div id="errorMessageContainer" class="hidden"></div>
-    </div>
-
-    <script type="module" src="js/app.js"></script>
-    <script type="module" src="js/init.js"></script>
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        console.log(
-          "Diagnostic: quizScreen:",
-          document.querySelectorAll("#quizScreen").length
-        );
-        console.log(
-          "Diagnostic: questionText:",
-          document.querySelectorAll("#questionText").length
-        );
-        console.log(
-          "Diagnostic: optionsContainer:",
-          document.querySelectorAll("#optionsContainer").length
-        );
-      });
-    </script>
-  </body>
+        <script type="module" src="js/app.js"></script>
+        <script type="module" src="js/init.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                console.log(
+                    "Diagnostic: quizScreen:",
+                    document.querySelectorAll("#quizScreen").length,
+                );
+                console.log(
+                    "Diagnostic: questionText:",
+                    document.querySelectorAll("#questionText").length,
+                );
+                console.log(
+                    "Diagnostic: optionsContainer:",
+                    document.querySelectorAll("#optionsContainer").length,
+                );
+            });
+        </script>
+    </body>
 </html>

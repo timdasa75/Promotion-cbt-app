@@ -53,9 +53,11 @@ function parseMarkdown(text) {
 
 // Global variables for quiz state
 let allQuestions = [];
+let originalQuestions = [];
 let currentQuestionIndex = 0;
 let score = 0;
 let userAnswers = [];
+let incorrectAnswers = [];
 let feedbackShown = []; // Track if feedback has been shown for each question
 let timer;
 let timeLeft = 0;
@@ -593,7 +595,13 @@ function submitAnswer() {
 }
 
 // Expose navigation functions for external wiring
-export { previousQuestion, nextQuestion, submitAnswer };
+export {
+  previousQuestion,
+  nextQuestion,
+  submitAnswer,
+  initializeQuiz,
+  retakeFullQuiz,
+};
 // Also attach to window for compatibility
 window.nextQuestion = nextQuestion;
 window.previousQuestion = previousQuestion;
@@ -640,6 +648,21 @@ function showExplanation() {
     `;
 }
 
+function reviewIncorrectAnswers() {
+  currentMode = "review";
+  loadQuestions(incorrectAnswers);
+}
+
+function retakeFullQuiz() {
+  if (originalQuestions.length > 0) {
+    allQuestions = originalQuestions;
+    originalQuestions = [];
+    initializeQuiz();
+    return true;
+  }
+  return false;
+}
+
 // Show quiz results
 function showResults() {
   clearInterval(timer);
@@ -653,6 +676,13 @@ function showResults() {
   const wrongCount = document.getElementById("wrongCount");
   const unansweredCount = document.getElementById("unansweredCount");
   const timeSpent = document.getElementById("timeSpent");
+
+  incorrectAnswers = [];
+  for (let i = 0; i < allQuestions.length; i++) {
+    if (userAnswers[i] !== allQuestions[i].correct) {
+      incorrectAnswers.push(allQuestions[i]);
+    }
+  }
 
   if (currentMode === "review") {
     finalScore.textContent = "Review Complete";
@@ -758,6 +788,22 @@ function showResults() {
       statsDiv.parentNode.insertBefore(analyticsDiv, statsDiv.nextSibling);
     }
   }
+
+  const reviewIncorrectBtn = document.getElementById("reviewIncorrectBtn");
+  if (reviewIncorrectBtn) {
+    if (incorrectAnswers.length > 0) {
+      reviewIncorrectBtn.classList.remove("hidden");
+      reviewIncorrectBtn.onclick = () => {
+        originalQuestions = allQuestions;
+        allQuestions = incorrectAnswers;
+        currentMode = "review";
+        initializeQuiz();
+      };
+    } else {
+      reviewIncorrectBtn.classList.add("hidden");
+    }
+  }
+
   showScreen("resultsScreen");
 }
 
@@ -779,7 +825,12 @@ export function getCurrentMode() {
 }
 
 // Load questions for the selected topic
-export async function loadQuestions() {
+export async function loadQuestions(questions = null) {
+  if (questions) {
+    allQuestions = questions;
+    initializeQuiz();
+    return;
+  }
   try {
     if (!currentTopic || !currentTopic.file) {
       throw new Error("Invalid topic selected");
@@ -1000,7 +1051,7 @@ export async function loadQuestions() {
 }
 
 // Initialize the quiz
-export function initializeQuiz() {
+function initializeQuiz() {
   currentQuestionIndex = 0;
   score = 0;
   userAnswers = [];

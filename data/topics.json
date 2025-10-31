@@ -519,6 +519,40 @@
           "icon": "🎯"
         }
       ]
+    },
+    {
+      "id": "current_affairs",
+      "name": "Current Affairs",
+      "description": "Recent national, regional, and international developments.",
+      "file": "data/current_affairs.json",
+      "icon": "📰",
+      "hasSubcategories": true,
+      "subcategories": [
+        {
+          "id": "ca_public_service_reforms",
+          "name": "Public Service and Institutional Reforms",
+          "description": "Rules governing the internal operations of the Civil Service, drawing primarily on the Public Service Rules (PSR). This includes areas like appointments, promotions, discipline, allowances (Chapter 14), leave entitlements (Chapter 12), and modernizations like the Performance Management System (PMS) (Chapter 5) and the introduction of Virtual Meetings (Chapter 9).",
+          "icon": "🏛️"
+        },
+        {
+          "id": "ca_national_governance",
+          "name": "National Governance and Policy Developments",
+          "description": "The legal, constitutional, and financial frameworks governing the Federal Government. This is based on mandatory examination subjects such as Financial Regulations, Nigerian Legal System, provisions of the 1999 Constitution (e.g., Chapter IV on Fundamental Human Rights), and key financial and digital policies (TSA, IPPIS, PPA).",
+          "icon": "⚖️"
+        },
+        {
+          "id": "ca_international_affairs",
+          "name": "International and Regional Affairs",
+          "description": "Nigeria's external relationships, diplomatic service, and global awareness. This draws heavily on the Nigerian Foreign Service Regulations (Chapter 18) and General Paper topics related to international organizations (e.g., UN, ECOWAS) and diplomatic rules.",
+          "icon": "🌍"
+        },
+        {
+          "id": "ca_national_events",
+          "name": "National Events and Key Personalities",
+          "description": "General knowledge, national history, symbols, political leadership, and the roles of federal agencies. This category encompasses topics addressed in the General Paper examination, including names of current ministers and agency heads, national symbols (flag/coat of arms), and major national events (e.g., 774 Local Government Areas, the principle of anonymity of civil servants).",
+          "icon": "🗞️"
+        }
+      ]
     }
   ]
 }

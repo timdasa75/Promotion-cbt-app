@@ -139,32 +139,45 @@ export async function displayCategories(topic, onSelect) {
 
     if (subcategoriesToDisplay.length > 0) {
       // Use Promise.all to handle all async operations first
-      const categoryCards = await Promise.all(subcategoriesToDisplay.map(async (subcategory, index) => {
-        // Calculate the count based on the questions in the subcategory
-        const count = subcategory.questions ? subcategory.questions.length : 0;
-        
-        const categoryCard = document.createElement("div");
-        categoryCard.className = "topic-card ripple scale-on-hover";
-        categoryCard.style.setProperty("--animation-order", index);
-        categoryCard.innerHTML = `
-                    <div class="topic-icon">${subcategory.icon || "📁"}</div>
-                    <h3 class="topic-title">${subcategory.name}</h3>
-                    <p class="topic-description">${subcategory.description || "No description available"}</p>
-                    <div class="topic-count">${count} questions</div>
-                `;
-        categoryCard.addEventListener("click", () => {
-          document
-            .querySelectorAll(".topic-card")
-            .forEach((card) => card.classList.remove("active"));
-          categoryCard.classList.add("active");
-          if (onSelect) onSelect(subcategory);
-        });
-        
-        return categoryCard;
-      }));
-      
+      const categoryCards = await Promise.all(
+        subcategoriesToDisplay.map(async (subcategory, index) => {
+          // Calculate the count based on the questions in the subcategory
+          const count = subcategory.questions
+            ? subcategory.questions.length
+            : 0;
+
+          const categoryCard = document.createElement("div");
+          categoryCard.className = "topic-card ripple scale-on-hover";
+          categoryCard.style.setProperty("--animation-order", index);
+          const name = subcategory.name
+            .replace(/^[A-Z]\.\s/, "")
+            .replace(/ \(\d+ Questions\)/, "");
+          categoryCard.innerHTML = `
+              <div class="card-content">
+                  <div class="topic-icon">${subcategory.icon || "📁"}</div>
+                  <h3 class="topic-title">${name}</h3>
+                  <p class="topic-description">${subcategory.description || "No description available"}</p>
+              </div>
+              <div class="card-footer">
+                  <div class="question-count">
+                      <strong>${count}</strong> Questions
+                  </div>
+              </div>
+          `;
+          categoryCard.addEventListener("click", () => {
+            document
+              .querySelectorAll(".topic-card")
+              .forEach((card) => card.classList.remove("active"));
+            categoryCard.classList.add("active");
+            if (onSelect) onSelect(subcategory);
+          });
+
+          return categoryCard;
+        }),
+      );
+
       // Append all cards to the category list
-      categoryCards.forEach(card => categoryList.appendChild(card));
+      categoryCards.forEach((card) => categoryList.appendChild(card));
 
       // Add "All Categories" option
       const allCategoryCard = document.createElement("div");
@@ -178,6 +191,7 @@ export async function displayCategories(topic, onSelect) {
                 <h3 class="topic-title">All Categories</h3>
                 <p class="topic-description">Practice with questions from all categories</p>
                 <div class="topic-count">All available questions</div>
+
             `;
       allCategoryCard.addEventListener("click", () => {
         document
@@ -250,12 +264,21 @@ export async function displayTopics(topics, onSelect) {
     const topicCard = document.createElement("div");
     topicCard.className = "topic-card ripple scale-on-hover";
     topicCard.style.setProperty("--animation-order", index);
+    const name = topic.name
+      .replace(/^[A-Z]\.\s/, "")
+      .replace(/ \(\d+ Questions\)/, "");
     topicCard.innerHTML = `
+        <div class="card-content">
             <div class="topic-icon">${topic.icon || "📚"}</div>
-            <h3 class="topic-title">${topic.name || "Untitled Topic"}</h3>
+            <h3 class="topic-title">${name}</h3>
             <p class="topic-description">${topic.description || "No description available"}</p>
-            <div class="topic-count">${counts[topic.id] || 0} questions</div>
-        `;
+        </div>
+        <div class="card-footer">
+            <div class="question-count">
+                <strong>${counts[topic.id] || 0}</strong> Questions
+            </div>
+        </div>
+    `;
     topicCard.addEventListener("click", () => {
       document
         .querySelectorAll(".topic-card")
@@ -387,6 +410,6 @@ export async function selectTopic(topic) {
     showScreen("modeSelectionScreen");
   }
 }
-  
-// Make functions available globally for HTML onclick handlers  
-window.showScreen = showScreen; 
+
+// Make functions available globally for HTML onclick handlers
+window.showScreen = showScreen;
