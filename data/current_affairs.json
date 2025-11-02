@@ -1,7 +1,7 @@
 {
   "id": "current_affairs",
   "name": "Current Affairs",
-  "description": "Questions on recent events, national and international news, and general knowledge.",
+  "description": "Recent events, national and international news, and general knowledge.",
   "type": "topic",
   "hasSubcategories": true,
   "icon": "📰",
@@ -9,7 +9,7 @@
     {
       "id": "ca_public_service_reforms",
       "name": "Public Service and Institutional Reforms",
-      "description": "Rules governing the internal operations of the Civil Service, drawing primarily on the Public Service Rules (PSR). This includes areas like appointments, promotions, discipline, allowances (Chapter 14), leave entitlements (Chapter 12), and modernizations like the Performance Management System (PMS) (Chapter 5) and the introduction of Virtual Meetings (Chapter 9).",
+      "description": "Civil Service rules, modernizations, appointments, promotions, and performance.",
       "icon": "🏛️",
       "questions": [
         {
@@ -732,7 +732,7 @@
     {
       "id": "ca_national_governance",
       "name": "National Governance and Policy Developments",
-      "description": "The legal, constitutional, and financial frameworks governing the Federal Government. This is based on mandatory examination subjects such as Financial Regulations, Nigerian Legal System, provisions of the 1999 Constitution (e.g., Chapter IV on Fundamental Human Rights), and key financial and digital policies (TSA, IPPIS, PPA).",
+      "description": "Federal Government legal, constitutional, and financial frameworks and policies.",
       "icon": "⚖️",
       "questions": [
         {
@@ -1465,7 +1465,7 @@
     {
       "id": "ca_international_affairs",
       "name": "International and Regional Affairs",
-      "description": "Nigeria's external relationships, diplomatic service, and global awareness. This draws heavily on the Nigerian Foreign Service Regulations (Chapter 18) and General Paper topics related to international organizations (e.g., UN, ECOWAS) and diplomatic rules.",
+      "description": "Nigeria's foreign relations, diplomacy, and international organizations.",
       "icon": "🌍",
       "questions": [
         {

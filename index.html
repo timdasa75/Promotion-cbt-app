@@ -32,6 +32,11 @@
                 <header class="header">
                     <h1>🇳🇬 Directorate Levels Promotion CBT Practice</h1>
                     <p>Select a topic to begin</p>
+                    <div class="theme-toggle-container">
+                        <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle dark mode">
+                            <span class="theme-icon">☀️</span>
+                        </button>
+                    </div>
                     <div class="nigerian-flag">
                         <div class="green-stripe"></div>
                         <div class="white-stripe"></div>
@@ -265,6 +270,32 @@
                     "Diagnostic: optionsContainer:",
                     document.querySelectorAll("#optionsContainer").length,
                 );
+                
+                // Dark Mode Toggle
+                const themeToggle = document.getElementById('themeToggle');
+                const themeIcon = document.querySelector('.theme-icon');
+                const body = document.body;
+                
+                // Check for saved theme preference or respect OS preference
+                const savedTheme = localStorage.getItem('theme');
+                const osDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                
+                if (savedTheme === 'dark' || (!savedTheme && osDark)) {
+                    body.classList.add('dark-mode');
+                    themeIcon.textContent = '🌙';
+                }
+                
+                themeToggle.addEventListener('click', () => {
+                    body.classList.toggle('dark-mode');
+                    
+                    if (body.classList.contains('dark-mode')) {
+                        themeIcon.textContent = '🌙';
+                        localStorage.setItem('theme', 'dark');
+                    } else {
+                        themeIcon.textContent = '☀️';
+                        localStorage.setItem('theme', 'light');
+                    }
+                });
             });
         </script>
     </body>

@@ -5,7 +5,7 @@ let currentScreenId = "topicSelectionScreen";
 
 // Show a specific screen with animation
 export function showScreen(screenId) {
-  setTimeout(() => window.scrollTo(0, 0), 0);
+  window.scrollTo(0, 0);
   console.log(`Switching to screen: ${screenId}`);
   return new Promise((resolve, reject) => {
     // Validate input

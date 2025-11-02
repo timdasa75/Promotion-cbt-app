@@ -93,8 +93,34 @@ function initializeResultButtons() {
 // Make startQuiz globally accessible (for onclick attributes if any are still used, but prefer event listeners)
 window.startQuiz = startQuiz;
 
-// Initialize on page load
+  // Initialize on page load
 document.addEventListener("DOMContentLoaded", function () {
   init();
   initializeResultButtons();
+
+  // Dark Mode Toggle
+  const themeToggle = document.getElementById('themeToggle');
+  const themeIcon = document.querySelector('.theme-icon');
+  const body = document.body;
+
+  // Check for saved theme preference or respect OS preference
+  const savedTheme = localStorage.getItem('theme');
+  const osDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+  if (savedTheme === 'dark' || (!savedTheme && osDark)) {
+      body.classList.add('dark-mode');
+      themeIcon.textContent = '🌙';
+  }
+
+  themeToggle.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+
+      if (body.classList.contains('dark-mode')) {
+          themeIcon.textContent = '🌙';
+          localStorage.setItem('theme', 'dark');
+      } else {
+          themeIcon.textContent = '☀️';
+          localStorage.setItem('theme', 'light');
+      }
+  });
 });
