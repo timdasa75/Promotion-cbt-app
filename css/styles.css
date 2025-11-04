@@ -25,9 +25,9 @@ html {
    ==================== */
 :root {
     /* Core Colors */
-    --color-primary: #2E7D32; /* A more muted, forest green */
-    --color-primary-dark: #1B5E20;
-    --color-primary-light: #4CAF50;
+    --color-primary: #007A4D; /* A slightly darker, more saturated green */
+    --color-primary-dark: #005C3A;
+    --color-primary-light: #00A86B;
     --color-accent: #FDB813; /* A vibrant gold */
     --color-text-dark: #1A1A1A; /* A very dark gray for text */
     --color-text-light: #FFFFFF;
@@ -36,14 +36,14 @@ html {
     --color-border-light: #E0E0E0;
     --surface-white: var(--color-surface);
     --dark-green-text: var(--color-primary-dark);
-    --light-green-bg: rgba(46, 125, 50, 0.1);
+    --light-green-bg: rgba(0, 122, 77, 0.1);
     --nigerian-green: var(--color-primary);
 
     /* Surface Colors */
-    --color-background: #F8FFF8;
+    --color-background: #F0FFF0;
     --color-surface: #FFFFFF;
-    --color-card-background: #F1FAF1;  /* More muted card background */
-    --color-card-border: #BBDED0;      /* Softer green border */
+    --color-card-background: #E8F5E8;  /* Light green card background */
+    --color-card-border: #A0D8A0;      /* Green card border */
     --color-shadow: rgba(0, 0, 0, 0.1);
 
     /* Typography */
@@ -138,8 +138,8 @@ html {
 
     --color-background: #121212;
     --color-surface: #1E1E1E;
-    --color-card-background: #2A2A2A;  /* A lighter dark gray for cards */
-    --color-card-border: #3A3A3A;      /* A lighter border for cards */
+    --color-card-background: #2C2C2C;  /* A lighter dark gray for cards */
+    --color-card-border: #444444;      /* A lighter border for cards */
     --color-shadow: rgba(0, 0, 0, 0.7);
 
     --shadow: 0 4px 20px var(--color-shadow);
@@ -235,7 +235,7 @@ body.dark-mode::before {
     box-shadow: var(--shadow-strong);
     border: 1px solid var(--color-primary); /* Even thinner border */
     backdrop-filter: blur(15px);
-    position: relative;
+    position: relative; /* Ensure relative positioning for absolute child elements */
     overflow: hidden;
     max-width: 1399px; /* 10% wider */
     margin-left: auto;
@@ -427,7 +427,7 @@ body.dark-mode::before {
     color: var(--color-text-light);
     border-color: var(--color-primary-dark);
     transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 8px 25px rgba(46, 122, 77, 0.3);
+    box-shadow: 0 8px 25px rgba(0, 122, 77, 0.4);
 }
 
 .option-btn.selected {
@@ -435,7 +435,7 @@ body.dark-mode::before {
     color: var(--color-text-light);
     border-color: var(--color-primary-dark);
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(46, 122, 77, 0.4);
+    box-shadow: 0 6px 20px rgba(0, 122, 77, 0.4);
 }
 
 .option-btn.selected .option-letter {
@@ -457,14 +457,14 @@ body.dark-mode::before {
     border-radius: 50%;
     font-size: 1.1rem;
     flex-shrink: 0;
-    box-shadow: 0 3px 10px rgba(46, 142, 60, 0.4);
+    box-shadow: 0 3px 10px rgba(0, 168, 89, 0.4);
     transition: all 0.2s ease;
     border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
 .option-btn:hover .option-letter {
     transform: scale(1.1);
-    box-shadow: 0 4px 15px rgba(46, 142, 60, 0.5);
+    box-shadow: 0 4px 15px rgba(0, 168, 89, 0.5);
 }
 
 .option-btn.correct {
@@ -617,7 +617,7 @@ body.dark-mode::before {
 
 .quiz-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 40px rgba(46, 142, 60, 0.15);
+    box-shadow: 0 10px 40px rgba(0, 168, 89, 0.15);
 }
 
 /* ==================== 
@@ -634,13 +634,13 @@ body.dark-mode::before {
     text-align: center;
     background: linear-gradient(
         90deg,
-        rgba(200, 200, 200, 0.03) 0%,
-        rgba(255, 255, 255, 0.8) 50%,
-        rgba(200, 200, 200, 0.03) 100%
+        rgba(139, 195, 74, 0.1) 0%,
+        rgba(43, 43, 43, 0.8) 50%,
+        rgba(139, 195, 74, 0.1) 100%
     );
     border-radius: var(--border-radius-small);
     border: 1px solid var(--color-card-border);
-    box-shadow: 0 2px 10px rgba(180, 180, 180, 0.08);
+    box-shadow: 0 2px 10px rgba(139, 195, 74, 0.1);
 }
 
 .section-title::before {
@@ -692,7 +692,7 @@ body.dark-mode::before {
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     border: 2px solid var(--color-primary);
-    box-shadow: 0 8px 20px rgba(180, 180, 180, 0.08), 0 0 20px rgba(180, 180, 180, 0.04), inset 0 0 10px rgba(255, 255, 255, 0.5);
+    box-shadow: 0 8px 20px rgba(0, 122, 77, 0.15), 0 0 20px rgba(0, 122, 77, 0.1), inset 0 0 10px rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(5px);
     position: relative;
     overflow: hidden;
@@ -707,7 +707,7 @@ body.dark-mode::before {
 .unified-card:active,
 .unified-card:focus {
     transform: translateY(-5px) rotateY(15deg) rotateX(10deg);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 25px 50px rgba(0, 122, 77, 0.25);
     border-color: var(--color-primary);
 }
 
@@ -721,7 +721,7 @@ body.dark-mode::before {
     background: linear-gradient(
         90deg,
         transparent,
-        rgba(200, 200, 200, 0.03),
+        rgba(0, 122, 77, 0.05),
         transparent
     );
     transition: left 0.6s;
@@ -871,10 +871,12 @@ body.dark-mode::before {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 8px; /* Reduced margin to save space */
+    margin: 20px auto 8px auto; /* Added top margin for more space at the top */
     gap: 10px; /* Reduced gap for better spacing */
     flex-wrap: wrap; /* Allow wrapping on small screens */
     padding: 0 10px; /* Reduce padding to prevent extra spacing */
+    width: 100%;
+    max-width: 800px; /* Ensure proper width */
 }
 
 /* ==================== 
@@ -1092,6 +1094,7 @@ body.dark-mode::before {
     position: relative;
     overflow: hidden;
     transition: all 0.3s ease;
+    margin-top: 10px; /* Added top margin for more space */
 }
 
 .timer::before {
@@ -1133,6 +1136,7 @@ body.dark-mode::before {
     overflow: hidden;
     transition: all 0.3s ease;
     animation: modernTimerGlow 2s infinite alternate;
+    margin-top: 10px; /* Added top margin for more space */
 }
 
 .modern-timer::before {
@@ -1179,12 +1183,13 @@ body.dark-mode::before {
     padding: 6px 12px;
     background: linear-gradient(
         135deg,
-        rgba(200, 200, 200, 0.1) 0%,
-        rgba(255, 255, 255, 0.8) 100%
+        rgba(139, 195, 74, 0.15) 0%,
+        rgba(43, 43, 43, 0.8) 100%
     );
     border-radius: var(--border-radius-small);
     border: 1px solid var(--color-primary);
-    box-shadow: 0 1px 6px rgba(200, 200, 200, 0.1);
+    box-shadow: 0 1px 6px rgba(139, 195, 74, 0.15);
+    margin-top: 10px; /* Added top margin for more space */
 }
 
 /* ==================== 
@@ -1324,9 +1329,9 @@ body.dark-mode::before {
     border-left: 4px solid var(--color-primary);
     min-height: 70px;
     overflow-y: auto;
-    box-shadow: 0 3px 15px rgba(46, 142, 60, 0.12);
+    box-shadow: 0 3px 15px rgba(139, 195, 74, 0.12);
     backdrop-filter: blur(8px);
-    border: 1px solid rgba(46, 142, 60, 0.15);
+    border: 1px solid rgba(139, 195, 74, 0.15);
     margin-bottom: 15px;
     width: 100%;
     position: relative;
@@ -1344,7 +1349,7 @@ body.dark-mode::before {
     background: linear-gradient(
         45deg,
         transparent,
-        rgba(46, 142, 60, 0.02),
+        rgba(139, 195, 74, 0.02),
         transparent
     );
     pointer-events: none;
@@ -1511,13 +1516,13 @@ body.dark-mode::before {
     padding: 20px;
     background: linear-gradient(
         135deg,
-        rgba(46, 142, 60, 0.05) 0%,
-        rgba(255, 255, 255, 0.8) 50%,
-        rgba(46, 142, 60, 0.05) 100%
+        rgba(139, 195, 74, 0.1) 0%,
+        rgba(43, 43, 43, 0.8) 50%,
+        rgba(139, 195, 74, 0.1) 100%
     );
     border-radius: var(--border-radius-large);
     border: 2px solid var(--color-card-border);
-    box-shadow: 0 5px 20px rgba(46, 142, 60, 0.1);
+    box-shadow: 0 5px 20px rgba(139, 195, 74, 0.15);
 }
 
 .results .section-title::before {
@@ -1552,7 +1557,7 @@ body.dark-mode::before {
 .score {
     color: var(--color-primary);
     margin: 40px 0;
-    text-shadow: 0 6px 20px rgba(46, 142, 60, 0.3);
+    text-shadow: 0 6px 20px rgba(139, 195, 74, 0.3);
     animation: scorePopIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
     display: inline-block;
@@ -1560,9 +1565,9 @@ body.dark-mode::before {
     border-radius: 20px;
     background: var(--gradient-surface);
     box-shadow:
-        0 0 30px rgba(46, 142, 60, 0.2),
-        inset 0 0 20px rgba(255, 255, 255, 0.5);
-    border: 3px solid rgba(46, 142, 60, 0.3);
+        0 0 30px rgba(139, 195, 74, 0.2),
+        inset 0 0 20px rgba(200, 200, 200, 0.5);
+    border: 3px solid rgba(139, 195, 74, 0.3);
 }
 
 .score::before {
@@ -1610,8 +1615,8 @@ body.dark-mode::before {
     padding: 25px 40px;
     border-radius: var(--border-radius-large);
     background: var(--gradient-surface);
-    box-shadow: 0 8px 30px rgba(46, 142, 60, 0.15);
-    border: 3px solid rgba(46, 142, 60, 0.2);
+    box-shadow: 0 8px 30px rgba(139, 195, 74, 0.15);
+    border: 3px solid rgba(139, 195, 74, 0.2);
     backdrop-filter: blur(15px);
     animation: performancePopIn 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
@@ -1757,7 +1762,7 @@ body.dark-mode::before {
     font-weight: 800;
     color: var(--color-primary);
     margin-bottom: 12px;
-    text-shadow: 0 4px 8px rgba(46, 142, 60, 0.2);
+    text-shadow: 0 4px 8px rgba(139, 195, 74, 0.2);
     background: linear-gradient(
         135deg,
         var(--color-primary),
@@ -1778,12 +1783,12 @@ body.dark-mode::before {
     padding: 8px 12px;
     background: linear-gradient(
         135deg,
-        rgba(46, 142, 60, 0.05) 0%,
-        rgba(255, 255, 255, 0.7) 100%
+        rgba(139, 195, 74, 0.1) 0%,
+        rgba(43, 43, 43, 0.7) 100%
     );
     border-radius: var(--border-radius-small);
-    border: 1px solid rgba(46, 142, 60, 0.1);
-    box-shadow: 0 2px 8px rgba(46, 142, 60, 0.05);
+    border: 1px solid rgba(139, 195, 74, 0.15);
+    box-shadow: 0 2px 8px rgba(139, 195, 74, 0.1);
 }
 
 @keyframes statCardEntrance {
@@ -2128,4 +2133,43 @@ body.dark-mode::before {
 #questionMap .nav-btn.current {
     transform: scale(1.2);
     border-color: var(--color-primary);
+}
+
+/* ==================== 
+   Theme Toggle  
+   ==================== */
+.theme-toggle-container {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 1000;
+}
+
+.theme-toggle-btn {
+    background: var(--gradient-primary);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+    color: white;
+}
+
+.theme-toggle-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.theme-icon {
+    transition: transform 0.3s ease;
+}
+
+.theme-toggle-btn:hover .theme-icon {
+    transform: rotate(25deg);
 }

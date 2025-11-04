@@ -110,6 +110,10 @@ document.addEventListener("DOMContentLoaded", function () {
   if (savedTheme === 'dark' || (!savedTheme && osDark)) {
       body.classList.add('dark-mode');
       themeIcon.textContent = '🌙';
+  } else {
+      // Ensure light mode is set by default
+      body.classList.remove('dark-mode');
+      themeIcon.textContent = '☀️';
   }
 
   themeToggle.addEventListener('click', () => {
