@@ -1,6 +1,6 @@
 {
   "name": "Topic: ICT Management",
-  "description": "A comprehensive assessment of technical literacy, E-Governance platform utilization (IPPIS, GIFMIS, HRMIS), digital security compliance (NDPR), and innovation strategy in the Federal Public Service.",
+  "description": "Technical literacy, E-Governance platforms (IPPIS, GIFMIS, HRMIS), digital security (NDPR), and innovation in Federal Public Service.",
   "type": "topic",
   "hasSubcategories": true,
   "icon": "💻",

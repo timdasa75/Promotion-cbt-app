@@ -1,6 +1,6 @@
 {
   "name": "Constitutional, Legal, and General Competency (100 Questions)",
-  "description": "Comprehensive assessment of the legal, constitutional, and ethical framework governing public administration and policy execution in Nigeria, aligning with Directorate-level responsibility.",
+  "description": "Legal, constitutional, and ethical framework for public administration in Nigeria.",
   "type": "topic",
   "hasSubcategories": true,
   "icon": "⚖️",
@@ -8,6 +8,8 @@
     {
       "id": "clg_constitutional_governance",
       "name": "Constitutional Structure, Bodies, and Principles",
+      "description": "Constitutional structure, bodies, and governance principles",
+      "icon": "🏛️",
       "questions": [
         {
           "id": "clg_con_001",
@@ -382,6 +384,8 @@
     {
       "id": "clg_legal_compliance",
       "name": "Legal Frameworks, Procurement, and Statutory Compliance",
+      "description": "Legal frameworks, procurement laws, statutory compliance",
+      "icon": "⚖️",
       "questions": [
         {
           "id": "clg_lc_021",
@@ -1128,6 +1132,8 @@
     {
       "id": "clg_general_competency",
       "name": "General Competency, Ethics, and Reforms",
+      "description": "General competencies, ethics, public service reforms",
+      "icon": "🎯",
       "questions": [
         {
           "id": "clg_gc_061",

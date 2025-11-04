@@ -109,7 +109,7 @@
         {
           "id": "fin_general",
           "name": "General Financial Management",
-          "description": "TSA, revenue management, financial statements, reconciliations, and other general topics",
+          "description": "TSA, revenue management, financial statements, reconciliations",
           "icon": "💼"
         }
       ]
@@ -163,7 +163,7 @@
         {
           "id": "csh_principles_ethics",
           "name": "Civil Service Principles and Ethics",
-          "description": "Core principles, values, ethics, and code of conduct for civil servants",
+          "description": "Core principles, values, ethics, and conduct for civil servants",
           "icon": "⚖️"
         },
         {
@@ -214,7 +214,7 @@
         {
           "id": "comp_numerical",
           "name": "Numerical and Mathematical Competencies",
-          "description": "Numerical reasoning, mathematical calculations, and data interpretation",
+          "description": "Numerical reasoning, calculations, and data interpretation",
           "icon": "🧮"
         },
         {
@@ -503,19 +503,19 @@
         {
           "id": "clg_constitutional_governance",
           "name": "Constitutional Structure, Bodies, and Principles",
-          "description": "Questions on constitutional structure, bodies, and governance principles",
+          "description": "Constitutional structure, bodies, and governance principles",
           "icon": "🏛️"
         },
         {
           "id": "clg_legal_compliance",
           "name": "Legal Frameworks, Procurement, and Statutory Compliance",
-          "description": "Questions on legal frameworks, procurement laws, and statutory compliance",
+          "description": "Legal frameworks, procurement laws, statutory compliance",
           "icon": "⚖️"
         },
         {
           "id": "clg_general_competency",
           "name": "General Competency, Ethics, and Reforms",
-          "description": "Questions on general competencies, ethics, and public service reforms",
+          "description": "General competencies, ethics, public service reforms",
           "icon": "🎯"
         }
       ]
@@ -523,7 +523,7 @@
     {
       "id": "current_affairs",
       "name": "Current Affairs",
-      "description": "Recent national, regional, and international developments.",
+      "description": "Recent national and international developments.",
       "file": "data/current_affairs.json",
       "icon": "📰",
       "hasSubcategories": true,
@@ -531,7 +531,7 @@
         {
           "id": "ca_public_service_reforms",
           "name": "Public Service and Institutional Reforms",
-          "description": "Public Service Rules (PSR), appointments, promotions, discipline, and other institutional reforms.",
+          "description": "PSR, appointments, promotions, discipline, reforms.",
           "icon": "🏛️"
         },
         {
@@ -555,7 +555,7 @@
         {
           "id": "ca_general",
           "name": "General Current Affairs",
-          "description": "General knowledge and recent events (covering Governance, Reforms, International Affairs, and Key Personalities).",
+          "description": "General knowledge and recent events.",
           "icon": "🔍"
         }
       ]

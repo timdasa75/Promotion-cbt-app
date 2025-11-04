@@ -32,8 +32,12 @@
                 <header class="header">
                     <h1>🇳🇬 Directorate Levels Promotion CBT Practice</h1>
                     <p>Select a topic to begin</p>
-                    <div class="theme-toggle-container">
-                        <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle dark mode">
+                    <div class="theme-toggle-container hidden">
+                        <button
+                            id="themeToggle"
+                            class="theme-toggle-btn"
+                            aria-label="Toggle dark mode"
+                        >
                             <span class="theme-icon">☀️</span>
                         </button>
                     </div>
@@ -131,36 +135,46 @@
             </div>
 
             <!-- Quiz Screen -->
-            <div id="quizScreen" class="screen hidden quiz-card">
-                <div
-                    class="green-stripe"
-                    style="height: 4px; margin-bottom: 8px"
-                ></div>
-
-                <div class="nigerian-flag">
-                    <div class="green-stripe"></div>
-                    <div class="white-stripe"></div>
-                    <div class="green-stripe"></div>
-                </div>
-
-                <div class="quiz-header-row">
-                    <div class="quiz-topic-title" id="quizTopicTitle">
-                        Topic: Loading...
+            <div id="quizScreen" class="screen hidden">
+                <header class="header">
+                    <h1 id="quizScreenTitle">Quiz Mode</h1>
+                    <p id="quizScreenDescription">Active quiz session (<span id="quizModeDisplay">mode</span>)</p>
+                    <div class="nigerian-flag">
+                        <div class="green-stripe"></div>
+                        <div class="white-stripe"></div>
+                        <div class="green-stripe"></div>
                     </div>
-                    <div class="timer-container">
-                        <div id="timerDisplay" class="timer">
-                            <span id="timeLeft">00:00</span>
-                        </div>
-                    </div>
-                    <div class="question-counter">
-                        Question <span id="currentQ">0</span> of
-                        <span id="totalQ">0</span>
-                    </div>
-                </div>
+                </header>
 
                 <div class="progress-bar">
                     <div class="progress-fill" id="progressFill"></div>
                 </div>
+
+                <div class="quiz-card">
+                    <div id="questionMap" class="hidden"></div>
+                    <div id="reviewControls" class="hidden">
+                        <div id="reviewFilters">
+                            <button id="reviewAllBtn" class="btn btn-outline">All</button>
+                            <button id="reviewCorrectBtn" class="btn btn-outline">Correct</button>
+                            <button id="reviewIncorrectBtn" class="btn btn-outline">Incorrect</button>
+                            <button id="reviewUnansweredBtn" class="btn btn-outline">Unanswered</button>
+                        </div>
+                        <div id="reviewNavigator"></div>
+                    </div>
+                    <div class="quiz-header-row">
+                        <div class="quiz-topic-title" id="quizTopicTitle">
+                            Topic: Loading...
+                        </div>
+                        <div class="timer-container">
+                            <div id="timerDisplay" class="timer">
+                                <span id="timeLeft">00:00</span>
+                            </div>
+                        </div>
+                        <div class="question-counter" title="Question Counter">
+                            <span id="currentQ">0</span> <span>of</span>
+                            <span id="totalQ">0</span>
+                        </div>
+                    </div>
 
                 <div class="question-text-fullwidth" id="questionText">
                     Loading question...
@@ -183,15 +197,26 @@
                     <button class="btn" id="nextBtn">Next</button>
                 </div>
             </div>
+        </div>
 
             <!-- Results Screen -->
-            <div id="resultsScreen" class="screen hidden quiz-card">
-                <div class="results">
-                    <h2 class="section-title">Quiz Results</h2>
-                    <div class="score" id="finalScore">0%</div>
-                    <div class="performance" id="performanceText">
-                        Calculating your performance...
+            <div id="resultsScreen" class="screen hidden">
+                <header class="header">
+                    <h1>Quiz Results</h1>
+                    <p>Your quiz performance summary</p>
+                    <div class="nigerian-flag">
+                        <div class="green-stripe"></div>
+                        <div class="white-stripe"></div>
+                        <div class="green-stripe"></div>
                     </div>
+                </header>
+                <div class="quiz-card">
+                    <div class="results">
+                        <h2 class="section-title">Quiz Results</h2>
+                        <div class="score" id="finalScore">0%</div>
+                        <div class="performance" id="performanceText">
+                            Calculating your performance...
+                        </div>
 
                     <div class="card-container" id="resultsStats">
                         <div class="unified-card">
@@ -244,11 +269,9 @@
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Timer Display -->
-            <div id="timerDisplay" class="timer">
-                <span id="timeLeft">00:00</span>
-            </div>
+
 
             <!-- Error Message Display -->
             <div id="errorMessageContainer" class="hidden"></div>
@@ -256,47 +279,5 @@
 
         <script type="module" src="js/app.js"></script>
         <script type="module" src="js/init.js"></script>
-        <script>
-            document.addEventListener("DOMContentLoaded", () => {
-                console.log(
-                    "Diagnostic: quizScreen:",
-                    document.querySelectorAll("#quizScreen").length,
-                );
-                console.log(
-                    "Diagnostic: questionText:",
-                    document.querySelectorAll("#questionText").length,
-                );
-                console.log(
-                    "Diagnostic: optionsContainer:",
-                    document.querySelectorAll("#optionsContainer").length,
-                );
-                
-                // Dark Mode Toggle
-                const themeToggle = document.getElementById('themeToggle');
-                const themeIcon = document.querySelector('.theme-icon');
-                const body = document.body;
-                
-                // Check for saved theme preference or respect OS preference
-                const savedTheme = localStorage.getItem('theme');
-                const osDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                
-                if (savedTheme === 'dark' || (!savedTheme && osDark)) {
-                    body.classList.add('dark-mode');
-                    themeIcon.textContent = '🌙';
-                }
-                
-                themeToggle.addEventListener('click', () => {
-                    body.classList.toggle('dark-mode');
-                    
-                    if (body.classList.contains('dark-mode')) {
-                        themeIcon.textContent = '🌙';
-                        localStorage.setItem('theme', 'dark');
-                    } else {
-                        themeIcon.textContent = '☀️';
-                        localStorage.setItem('theme', 'light');
-                    }
-                });
-            });
-        </script>
     </body>
 </html>

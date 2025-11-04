@@ -1,6 +1,6 @@
 {
   "name": "Topic 7: Negotiation and Industrial Relations",
-  "description": "Assessment of negotiation strategies, industrial relations frameworks, council structures (JNPSNC), dispute resolution mechanisms, and relevant labour laws.",
+  "description": "Negotiation strategies, industrial relations, JNPSNC structures, dispute resolution, labour laws.",
   "type": "topic",
   "hasSubcategories": true,
   "icon": "🤝",
@@ -210,7 +210,7 @@
     {
       "id": "neg_structure_bodies",
       "name": "B. Negotiating Bodies and Structure (12 Questions)",
-      "description": "Composition, roles, and hierarchy of the Joint National Public Service Negotiating Council (JNPSNC) and related councils.",
+      "description": "Composition, roles, and hierarchy of JNPSNC and related councils.",
       "questions": [
         {
           "id": "NLR_S_014",
@@ -397,7 +397,7 @@
     {
       "id": "neg_dispute_law",
       "name": "C. Dispute Resolution, Industrial Relations, and Labour Law (14 Questions)",
-      "description": "Dispute mechanisms (mediation, arbitration, conciliation), legal framework (Trade Disputes Act, ILO), and industrial relations practices.",
+      "description": "Dispute mechanisms (mediation, arbitration, conciliation), legal framework, industrial relations.",
       "questions": [
         {
           "id": "NLR_L_026",

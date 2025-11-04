@@ -2,7 +2,11 @@
 
 import { showScreen, showError } from "./ui.js";
 
-// Simple markdown parser for basic formatting
+/**
+ * Markdown parser for basic formatting
+ * @param {string} text - Text to convert to HTML
+ * @returns {string} HTML formatted text
+ */
 function parseMarkdown(text) {
   if (!text || typeof text !== "string") return text || "";
 
@@ -51,44 +55,58 @@ function parseMarkdown(text) {
   return html;
 }
 
-// Global variables for quiz state
-let allQuestions = [];
-let originalQuestions = [];
-let currentQuestionIndex = 0;
-let score = 0;
-let userAnswers = [];
-let incorrectAnswers = [];
-let feedbackShown = []; // Track if feedback has been shown for each question
-let timer;
-let timeLeft = 0;
+/**
+ * Quiz state management
+ */
+const quizState = {
+  allQuestions: [],
+  originalQuestions: [],
+  currentQuestionIndex: 0,
+  score: 0,
+  userAnswers: [],
+  incorrectAnswers: [],
+  feedbackShown: [], // Track if feedback has been shown for each question
+  timer: null,
+  timeLeft: 0,
+};
 
-// DOM Elements (will be queried when needed since DOM might not be ready at module load)
-let questionElement,
-  optionsContainer,
-  submitButton,
-  nextButton,
-  prevButton,
-  progressBar,
-  questionCounter,
-  timerDisplay,
-  finalScore,
-  performanceText;
+/**
+ * DOM Elements cache
+ */
+const domElements = {
+  questionElement: null,
+  optionsContainer: null,
+  submitButton: null,
+  nextButton: null,
+  prevButton: null,
+  progressBar: null,
+  questionCounter: null,
+  timerDisplay: null,
+  finalScore: null,
+  performanceText: null,
+};
 
-// Function to get DOM elements when needed
+/**
+ * Get DOM elements when needed
+ */
 function getDOMElements() {
-  questionElement = document.getElementById("questionText");
-  optionsContainer = document.getElementById("optionsContainer");
-  submitButton = document.getElementById("submitBtn");
-  nextButton = document.getElementById("nextBtn");
-  prevButton = document.getElementById("prevBtn");
-  progressBar = document.getElementById("progressFill");
-  questionCounter = document.getElementById("currentQ");
-  timerDisplay = document.getElementById("timeLeft");
-  finalScore = document.getElementById("finalScore");
-  performanceText = document.getElementById("performanceText");
+  domElements.questionElement = document.getElementById("questionText");
+  domElements.optionsContainer = document.getElementById("optionsContainer");
+  domElements.submitButton = document.getElementById("submitBtn");
+  domElements.nextButton = document.getElementById("nextBtn");
+  domElements.prevButton = document.getElementById("prevBtn");
+  domElements.progressBar = document.getElementById("progressFill");
+  domElements.questionCounter = document.getElementById("currentQ");
+  domElements.timerDisplay = document.getElementById("timeLeft");
+  domElements.finalScore = document.getElementById("finalScore");
+  domElements.performanceText = document.getElementById("performanceText");
 }
 
-// Shuffle array (Fisher-Yates algorithm)
+/**
+ * Shuffle array (Fisher-Yates algorithm)
+ * @param {Array} array - Array to shuffle
+ * @returns {Array} Shuffled array
+ */
 function shuffleArray(array) {
   const newArray = [...array];
   for (let i = newArray.length - 1; i > 0; i--) {
@@ -98,15 +116,17 @@ function shuffleArray(array) {
   return newArray;
 }
 
-// Start the timer
+/**
+ * Start the quiz timer
+ */
 function startTimer() {
   updateTimerDisplay();
-  timer = setInterval(() => {
-    timeLeft--;
+  quizState.timer = setInterval(() => {
+    quizState.timeLeft--;
     updateTimerDisplay();
 
-    if (timeLeft <= 0) {
-      clearInterval(timer);
+    if (quizState.timeLeft <= 0) {
+      clearInterval(quizState.timer);
       // Auto-submit exam when time runs out
       if (currentMode === "exam") {
         console.log("Exam time expired - auto-submitting");
@@ -118,9 +138,11 @@ function startTimer() {
   }, 1000);
 }
 
-// Show time warning
+/**
+ * Show time warning based on remaining time
+ * @param {string} message - Warning message to display
+ */
 function showTimeWarning(message) {
-  const timeLeftElement = document.getElementById("timeLeft");
   const timerContainer = document.getElementById("timerDisplay");
 
   if (timerContainer) {
@@ -128,42 +150,44 @@ function showTimeWarning(message) {
     timerContainer.classList.remove("warning", "critical", "urgent");
 
     // Add different classes based on time remaining
-    if (timeLeft <= 60) {
+    if (quizState.timeLeft <= 60) {
       // Last minute - critical state
       timerContainer.classList.add("critical", "urgent");
-    } else if (timeLeft <= 120) {
+    } else if (quizState.timeLeft <= 120) {
       // Last 2 minutes - warning state
       timerContainer.classList.add("warning");
     }
   }
 }
 
-// Update the timer display
+/**
+ * Update the timer display
+ */
 function updateTimerDisplay() {
   const timeLeftElement = document.getElementById("timeLeft");
   if (!timeLeftElement) return;
 
-  const minutes = Math.floor(timeLeft / 60);
-  const seconds = timeLeft % 60;
+  const minutes = Math.floor(quizState.timeLeft / 60);
+  const seconds = quizState.timeLeft % 60;
   timeLeftElement.textContent = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
 
   // Check if we need to show time warnings or reset to normal state
-  if (timeLeft <= 10 && timeLeft > 0) {
+  if (quizState.timeLeft <= 10 && quizState.timeLeft > 0) {
     // Last 10 seconds
-    showTimeWarning(`${timeLeft} seconds remaining!`);
-  } else if (timeLeft === 30) {
+    showTimeWarning(`${quizState.timeLeft} seconds remaining!`);
+  } else if (quizState.timeLeft === 30) {
     // 30 seconds
     showTimeWarning("30 seconds remaining!");
-  } else if (timeLeft === 60) {
+  } else if (quizState.timeLeft === 60) {
     // 1 minute
     showTimeWarning("1 minute remaining!");
-  } else if (timeLeft === 180) {
+  } else if (quizState.timeLeft === 180) {
     // 3 minutes
     showTimeWarning("3 minutes remaining!");
-  } else if (timeLeft === 300) {
+  } else if (quizState.timeLeft === 300) {
     // 5 minutes
     showTimeWarning("5 minutes remaining!");
-  } else if (timeLeft > 120) {
+  } else if (quizState.timeLeft > 120) {
     // If we have more than 2 minutes left, ensure normal state
     const timerContainer = document.getElementById("timerDisplay");
     if (timerContainer) {
@@ -172,20 +196,23 @@ function updateTimerDisplay() {
   }
 }
 
-// Show the current question
+/**
+ * Show the current question
+ */
 function showQuestion() {
   console.log(
     "showQuestion called, index:",
-    currentQuestionIndex,
+    quizState.currentQuestionIndex,
     "of",
-    allQuestions.length,
+    quizState.allQuestions.length,
   );
-  if (currentQuestionIndex >= allQuestions.length) {
+  if (quizState.currentQuestionIndex >= quizState.allQuestions.length) {
     showResults();
     return;
   }
-  const question = allQuestions[currentQuestionIndex];
+  const question = quizState.allQuestions[quizState.currentQuestionIndex];
   console.log("Current question:", question);
+  
   // Query DOM elements here to ensure they exist
   const questionElement = document.getElementById("questionText");
   const optionsContainer = document.getElementById("optionsContainer");
@@ -202,12 +229,14 @@ function showQuestion() {
     );
     return;
   }
+  
   // Make sure quiz screen is visible
   quizScreen.classList.remove("hidden");
   quizScreen.classList.add("active");
+  
   questionElement.innerHTML = `
     <div class="question-number-container">
-      <span class="question-number">${currentQuestionIndex + 1}</span>
+      <span class="question-number">${quizState.currentQuestionIndex + 1}</span>
     </div>
     <div class="question-text-container">
       ${parseMarkdown(question.question)}
@@ -228,72 +257,71 @@ function showQuestion() {
     }
   }
 
-  // Add new options
-  if (question.options && Array.isArray(question.options)) {
-    question.options.forEach((option, index) => {
-      const button = document.createElement("button");
-      button.className = "option-btn";
-      button.innerHTML = `
-                <span class="option-letter">${String.fromCharCode(65 + index)}</span>
-                ${parseMarkdown(option)}
-            `;
-
-      // Different behavior based on mode
-      if (currentMode === "review") {
-        button.disabled = true;
-        // In review mode, show user's actual answer and whether it was correct
-        if (userAnswers[currentQuestionIndex] !== undefined) {
-          if (userAnswers[currentQuestionIndex] === index) {
-            button.classList.add("selected");
+        // Add new options
+    if (question.options && Array.isArray(question.options)) {
+      question.options.forEach((option, index) => {
+        const button = document.createElement("button");
+        button.className = "option-btn";
+        button.innerHTML = `
+                  <span class="option-letter">${String.fromCharCode(65 + index)}</span>
+                  ${parseMarkdown(option)}
+              `;
+  
+        // Different behavior based on mode
+        if (currentMode === "review") {
+          button.disabled = true;
+          // In review mode, show user's actual answer and whether it was correct
+          const originalQuestionIndex = quizState.originalQuestions.indexOf(question);
+          if (quizState.userAnswers[originalQuestionIndex] !== undefined) {
+            if (quizState.userAnswers[originalQuestionIndex] === index) {
+              button.classList.add("selected");
+              if (index !== question.correct) {
+                button.classList.add("user-incorrect"); // User selected wrong answer
+              }
+            }
+            // Also show the correct answer
             if (index === question.correct) {
-              button.classList.add("correct"); // User selected correct answer
-            } else {
-              button.classList.add("incorrect"); // User selected wrong answer
+              button.classList.add("correct");
             }
           }
-          // Also show the correct answer
-          if (index === question.correct) {
-            button.classList.add("correct");
+        } else if (currentMode === "exam") {
+          // In exam mode, options are not disabled until selected
+          // Once an option is selected, it stays selected and disabled
+          button.onclick = () => selectOption(index);
+        } else {
+          // Practice mode
+          button.onclick = () => selectOption(index);
+        }
+  
+        // If user already answered this question, show their answer
+        const originalQuestionIndex = quizState.originalQuestions.indexOf(question);
+        if (quizState.userAnswers[originalQuestionIndex] !== undefined) {
+          if (quizState.userAnswers[originalQuestionIndex] === index) {
+            button.classList.add("selected");
+            // In exam and review modes, keep the button disabled after selection
+            if (currentMode === "exam") {
+              button.disabled = true;
+            }
+          }
+  
+          // In practice and review modes, show correct/incorrect feedback
+          // In exam mode, don't show feedback until exam is completed to maintain exam integrity
+          if (currentMode === "practice" || currentMode === "review") {
+            if (index === question.correct) {
+              button.classList.add("correct");
+            } else if (
+              quizState.userAnswers[originalQuestionIndex] === index &&
+              index !== question.correct
+            ) {
+              button.classList.add("incorrect");
+            }
           }
         }
-      } else if (currentMode === "exam") {
-        // In exam mode, options are not disabled until selected
-        // Once an option is selected, it stays selected and disabled
-        button.onclick = () => selectOption(index);
-      } else {
-        // Practice mode
-        button.onclick = () => selectOption(index);
-      }
-
-      // If user already answered this question, show their answer
-      if (userAnswers[currentQuestionIndex] !== undefined) {
-        if (userAnswers[currentQuestionIndex] === index) {
-          button.classList.add("selected");
-          // In exam and review modes, keep the button disabled after selection
-          if (currentMode === "exam") {
-            button.disabled = true;
-          }
-        }
-
-        // In practice and review modes, show correct/incorrect feedback
-        // In exam mode, don't show feedback until exam is completed to maintain exam integrity
-        if (currentMode === "practice" || currentMode === "review") {
-          if (index === question.correct) {
-            button.classList.add("correct");
-          } else if (
-            userAnswers[currentQuestionIndex] === index &&
-            index !== question.correct
-          ) {
-            button.classList.add("incorrect");
-          }
-        }
-      }
-
-      optionsContainer.appendChild(button);
-    });
-
+  
+        optionsContainer.appendChild(button);
+      });
     // In practice mode, if feedback has already been shown for this question, display it and update navigation
-    if (currentMode === "practice" && feedbackShown[currentQuestionIndex]) {
+    if (currentMode === "practice" && quizState.feedbackShown[quizState.currentQuestionIndex]) {
       setTimeout(() => {
         showExplanation();
         const explanationDiv = document.getElementById("explanation");
@@ -313,15 +341,21 @@ function showQuestion() {
   // Update navigation and progress
   updateNavigation();
   updateProgress();
+  if (currentMode !== "review") {
+    showQuestionMap();
+  }
 }
 
-// Handle option selection
+/**
+ * Handle option selection
+ * @param {number} selectedIndex - Index of selected option
+ */
 function selectOption(selectedIndex) {
-  const question = allQuestions[currentQuestionIndex];
+  const question = quizState.allQuestions[quizState.currentQuestionIndex];
 
   // For exam mode: record answer but don't show feedback immediately
   if (currentMode === "exam") {
-    userAnswers[currentQuestionIndex] = selectedIndex;
+    quizState.userAnswers[quizState.currentQuestionIndex] = selectedIndex;
 
     // Disable all options to prevent changing answer
     const options = document.querySelectorAll(".option-btn");
@@ -337,7 +371,7 @@ function selectOption(selectedIndex) {
     });
 
     // Enable next button
-    nextButton.disabled = false;
+    domElements.nextButton.disabled = false;
     updateNavigation();
 
     // Update progress bar to reflect answered question
@@ -353,7 +387,7 @@ function selectOption(selectedIndex) {
 
   // For practice and review modes: show immediate feedback
   // Store the selected answer but don't increment score (score calculated at end)
-  userAnswers[currentQuestionIndex] = selectedIndex;
+  quizState.userAnswers[quizState.currentQuestionIndex] = selectedIndex;
 
   // Query DOM elements inside function
   const optionsContainer = document.getElementById("optionsContainer");
@@ -376,17 +410,20 @@ function selectOption(selectedIndex) {
 
   // Update progress bar to reflect answered question
   updateProgress();
+  showQuestionMap();
 }
 
-// Update navigation buttons
+/**
+ * Update navigation buttons based on current state and mode
+ */
 function updateNavigation() {
-  const submitButton = document.getElementById("submitBtn");
-  const nextButton = document.getElementById("nextBtn");
-  const prevButton = document.getElementById("prevBtn");
+  const submitButton = domElements.submitButton;
+  const nextButton = domElements.nextButton;
+  const prevButton = domElements.prevButton;
   if (!submitButton || !nextButton || !prevButton) return;
 
   // Previous button
-  prevButton.disabled = currentQuestionIndex === 0;
+  prevButton.disabled = quizState.currentQuestionIndex === 0;
   prevButton.setAttribute("aria-disabled", prevButton.disabled);
   prevButton.title = prevButton.disabled
     ? "No previous question"
@@ -398,18 +435,24 @@ function updateNavigation() {
     nextButton.disabled = false;
     submitButton.style.display = "none";
     nextButton.style.display = "inline-flex";
+    nextButton.onclick = () => {
+      if (!nextButton.disabled) nextQuestion();
+    };
+    prevButton.onclick = () => {
+      if (!prevButton.disabled) previousQuestion();
+    };
   } else if (currentMode === "exam") {
     // In exam mode, disable previous button after answering to prevent going back
     prevButton.disabled =
-      userAnswers[currentQuestionIndex] !== undefined ||
-      currentQuestionIndex === 0;
+      quizState.userAnswers[quizState.currentQuestionIndex] !== undefined ||
+      quizState.currentQuestionIndex === 0;
     prevButton.setAttribute("aria-disabled", prevButton.disabled);
     prevButton.title = prevButton.disabled
       ? "Cannot go back after answering"
       : "Go to previous question";
 
     // Enable next button once an answer is selected
-    nextButton.disabled = userAnswers[currentQuestionIndex] === undefined;
+    nextButton.disabled = quizState.userAnswers[quizState.currentQuestionIndex] === undefined;
     submitButton.style.display = "none";
     nextButton.style.display = "inline-flex";
     nextButton.onclick = () => {
@@ -417,7 +460,7 @@ function updateNavigation() {
     };
   } else {
     // In practice mode, handle Submit/Next button visibility
-    if (userAnswers[currentQuestionIndex] === undefined) {
+    if (quizState.userAnswers[quizState.currentQuestionIndex] === undefined) {
       // No answer selected yet - show Next button (disabled)
       submitButton.style.display = "none";
       nextButton.style.display = "inline-flex";
@@ -426,7 +469,7 @@ function updateNavigation() {
       nextButton.onclick = () => {
         if (!nextButton.disabled) nextQuestion();
       };
-    } else if (!feedbackShown[currentQuestionIndex]) {
+    } else if (!quizState.feedbackShown[quizState.currentQuestionIndex]) {
       // Answer selected but feedback not shown yet - show Submit button
       submitButton.style.display = "inline-flex";
       nextButton.style.display = "none";
@@ -447,22 +490,28 @@ function updateNavigation() {
   }
 
   // Handle last question
-  if (currentQuestionIndex === allQuestions.length - 1) {
+  if (quizState.currentQuestionIndex === quizState.allQuestions.length - 1) {
     if (currentMode === "review") {
       nextButton.textContent = "End Review";
+      nextButton.onclick = () => {
+        if (!nextButton.disabled) showResults();
+      };
     } else if (currentMode === "exam") {
       nextButton.textContent = "Submit Exam";
+      nextButton.onclick = () => {
+        if (!nextButton.disabled) showResults();
+      };
     } else {
       nextButton.textContent = "Finish Quiz";
+      nextButton.onclick = () => {
+        if (!nextButton.disabled) showResults();
+      };
     }
-    nextButton.onclick = () => {
-      if (!nextButton.disabled) showResults();
-    };
   } else {
-    // Make sure it says "Next" for non-last questions in exam mode
-    if (currentMode === "exam") {
-      nextButton.textContent = "Next";
-    }
+    nextButton.textContent = "Next";
+    nextButton.onclick = () => {
+      if (!nextButton.disabled) nextQuestion();
+    };
   }
 
   // Add click event listeners for navigation buttons
@@ -481,15 +530,19 @@ function updateNavigation() {
   });
 }
 
-// Update progress bar
+/**
+ * Update progress bar based on answered questions
+ */
 function updateProgress() {
-  const progressBar = document.getElementById("progressFill");
-  const questionCounter = document.getElementById("currentQ");
+  const progressBar = domElements.progressBar;
+  const questionCounter = domElements.questionCounter;
   const totalQ = document.getElementById("totalQ");
   if (!progressBar || !questionCounter || !totalQ) return;
 
   // Ensure we have a valid total
-  const total = Array.isArray(allQuestions) ? allQuestions.length : 0;
+  const total = Number(
+    Array.isArray(quizState.allQuestions) ? quizState.allQuestions.length : 0,
+  );
   totalQ.textContent = total;
   if (total === 0) {
     progressBar.style.width = "0%";
@@ -498,24 +551,17 @@ function updateProgress() {
     return;
   }
 
-  // Calculate progress based on answered questions instead of just position
-  // Count how many questions in the array have been answered (not undefined)
-  let answeredCount = 0;
-  for (let i = 0; i < allQuestions.length; i++) {
-    if (userAnswers[i] !== undefined) {
-      answeredCount++;
-    }
-  }
-
-  // Calculate progress percentage based on answered questions
-  const progress = (answeredCount / total) * 100;
+  // Calculate progress percentage based on current question index in filtered set
+  const progress = ((quizState.currentQuestionIndex + 1) / total) * 100;
   progressBar.style.width = `${progress}%`;
   if (questionCounter)
-    questionCounter.textContent = `${currentQuestionIndex + 1}`;
+    questionCounter.textContent = `${quizState.currentQuestionIndex + 1}`;
   if (totalQ) totalQ.textContent = total;
 }
 
-// Move to next question
+/**
+ * Move to next question
+ */
 function nextQuestion() {
   // Clear explanation when moving to the next question
   const explanationDiv = document.getElementById("explanation");
@@ -524,8 +570,8 @@ function nextQuestion() {
     explanationDiv.classList.remove("show");
   }
 
-  if (currentQuestionIndex < allQuestions.length - 1) {
-    currentQuestionIndex++;
+  if (quizState.currentQuestionIndex < quizState.allQuestions.length - 1) {
+    quizState.currentQuestionIndex++;
     showQuestion();
     // Update navigation after moving to next question
     updateNavigation();
@@ -534,17 +580,19 @@ function nextQuestion() {
   }
 }
 
-// Handle submit action (show feedback and explanation)
+/**
+ * Handle submit action (show feedback and explanation)
+ */
 function handleSubmit() {
   // Ensure an answer was selected and feedback hasn't been shown yet
   if (
-    userAnswers[currentQuestionIndex] === undefined ||
-    feedbackShown[currentQuestionIndex]
+    quizState.userAnswers[quizState.currentQuestionIndex] === undefined ||
+    quizState.feedbackShown[quizState.currentQuestionIndex]
   )
     return;
 
-  const question = allQuestions[currentQuestionIndex];
-  const selectedIndex = userAnswers[currentQuestionIndex];
+  const question = quizState.allQuestions[quizState.currentQuestionIndex];
+  const selectedIndex = quizState.userAnswers[quizState.currentQuestionIndex];
   const options = document.querySelectorAll(".option-btn");
 
   // Update UI to show correct/incorrect feedback
@@ -574,13 +622,15 @@ function handleSubmit() {
   }
 
   // Mark that feedback has been shown for this question
-  feedbackShown[currentQuestionIndex] = true;
+  quizState.feedbackShown[quizState.currentQuestionIndex] = true;
 
   // Update navigation to show Next button
   updateNavigation();
 }
 
-// Submit current answer (can be called from app.js) - kept for compatibility but not used in UI
+/**
+ * Submit current answer (can be called from app.js) - kept for compatibility but not used in UI
+ */
 function submitAnswer() {
   // This function is now primarily for external compatibility if needed,
   // but the main submit logic is in handleSubmit for practice mode.
@@ -589,9 +639,56 @@ function submitAnswer() {
     handleSubmit(); // Call the new submit handler
   } else {
     // For other modes, advance to next question
-    if (currentQuestionIndex < allQuestions.length - 1) nextQuestion();
+    if (quizState.currentQuestionIndex < quizState.allQuestions.length - 1) nextQuestion();
     else showResults();
   }
+}
+
+/**
+ * Move to previous question
+ */
+function previousQuestion() {
+  if (quizState.currentQuestionIndex > 0) {
+    quizState.currentQuestionIndex--;
+    showQuestion();
+    // Update navigation after moving to previous question
+    updateNavigation();
+  }
+}
+
+/**
+ * Calculate exam score when time runs out
+ */
+function calculateExamScore() {
+  quizState.score = 0;
+  for (let i = 0; i < quizState.allQuestions.length; i++) {
+    if (
+      quizState.userAnswers[i] !== undefined &&
+      quizState.userAnswers[i] === quizState.allQuestions[i].correct
+    ) {
+      quizState.score++;
+    }
+  }
+  console.log(
+    "Exam auto-submitted. Final score:",
+    quizState.score,
+    "out of",
+    quizState.allQuestions.length,
+  );
+}
+
+/**
+ * Show explanation for the current question
+ */
+function showExplanation() {
+  const explanationDiv = document.getElementById("explanation");
+  if (!explanationDiv) return;
+
+  const question = quizState.allQuestions[quizState.currentQuestionIndex];
+  explanationDiv.innerHTML = `
+        <h4>Explanation:</h4>
+        <p>${parseMarkdown(question.explanation || "No explanation available.")}</p>
+    `;
 }
 
 // Expose navigation functions for external wiring
@@ -607,56 +704,14 @@ window.nextQuestion = nextQuestion;
 window.previousQuestion = previousQuestion;
 window.submitAnswer = submitAnswer;
 
-// Move to previous question
-function previousQuestion() {
-  if (currentQuestionIndex > 0) {
-    currentQuestionIndex--;
-    showQuestion();
-    // Update navigation after moving to previous question
-    updateNavigation();
-  }
-}
-
-// Calculate exam score when time runs out
-function calculateExamScore() {
-  score = 0;
-  for (let i = 0; i < allQuestions.length; i++) {
-    if (
-      userAnswers[i] !== undefined &&
-      userAnswers[i] === allQuestions[i].correct
-    ) {
-      score++;
-    }
-  }
-  console.log(
-    "Exam auto-submitted. Final score:",
-    score,
-    "out of",
-    allQuestions.length,
-  );
-}
-
-// Show explanation for the current question
-function showExplanation() {
-  const explanationDiv = document.getElementById("explanation");
-  if (!explanationDiv) return;
-
-  const question = allQuestions[currentQuestionIndex];
-  explanationDiv.innerHTML = `
-        <h4>Explanation:</h4>
-        <p>${parseMarkdown(question.explanation || "No explanation available.")}</p>
-    `;
-}
-
 function reviewIncorrectAnswers() {
-  currentMode = "review";
-  loadQuestions(incorrectAnswers);
+  applyReviewFilter("incorrect");
 }
 
 function retakeFullQuiz() {
-  if (originalQuestions.length > 0) {
-    allQuestions = originalQuestions;
-    originalQuestions = [];
+  if (quizState.originalQuestions.length > 0) {
+    quizState.allQuestions = quizState.originalQuestions;
+    quizState.originalQuestions = [];
     initializeQuiz();
     return true;
   }
@@ -665,7 +720,7 @@ function retakeFullQuiz() {
 
 // Show quiz results
 function showResults() {
-  clearInterval(timer);
+  clearInterval(quizState.timer);
   calculateExamScore(); // Ensure score is calculated before displaying results
   const finalScore = document.getElementById("finalScore");
   const performanceText = document.getElementById("performanceText");
@@ -677,10 +732,10 @@ function showResults() {
   const unansweredCount = document.getElementById("unansweredCount");
   const timeSpent = document.getElementById("timeSpent");
 
-  incorrectAnswers = [];
-  for (let i = 0; i < allQuestions.length; i++) {
-    if (userAnswers[i] !== allQuestions[i].correct) {
-      incorrectAnswers.push(allQuestions[i]);
+  quizState.incorrectAnswers = [];
+  for (let i = 0; i < quizState.allQuestions.length; i++) {
+    if (quizState.userAnswers[i] !== quizState.allQuestions[i].correct) {
+      quizState.incorrectAnswers.push(quizState.allQuestions[i]);
     }
   }
 
@@ -692,27 +747,34 @@ function showResults() {
     if (wrongCount) wrongCount.parentElement.style.display = "none";
     if (unansweredCount) unansweredCount.parentElement.style.display = "none";
     if (timeSpent) timeSpent.parentElement.style.display = "none";
+    
+    // Hide the review incorrect button if it's already shown
+    const reviewIncorrectBtn = document.getElementById("reviewIncorrectBtn");
+    if (reviewIncorrectBtn) {
+      reviewIncorrectBtn.classList.add("hidden");
+    }
+
     showScreen("resultsScreen");
     return;
   }
 
-  const answered = userAnswers.filter((answer) => answer !== undefined).length;
-  const correct = score;
+  const answered = quizState.userAnswers.filter((answer) => answer !== undefined).length;
+  const correct = quizState.score;
   const wrong = answered - correct;
-  const unanswered = allQuestions.length - answered;
+  const unanswered = quizState.allQuestions.length - answered;
 
   if (correctCount) correctCount.textContent = correct;
   if (wrongCount) wrongCount.textContent = wrong;
   if (unansweredCount) unansweredCount.textContent = unanswered;
   if (timeSpent) {
     // Calculate initial total time based on exam mode settings
-    const initialTotalTime = allQuestions.length * 45; // 45 seconds per question in exam mode
-    const timeElapsed = initialTotalTime - timeLeft;
+    const initialTotalTime = quizState.allQuestions.length * 45; // 45 seconds per question in exam mode
+    const timeElapsed = initialTotalTime - quizState.timeLeft;
     const minutes = Math.floor(timeElapsed / 60);
     const seconds = timeElapsed % 60;
     timeSpent.textContent = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
   }
-  const scorePercentage = Math.round((score / allQuestions.length) * 100);
+  const scorePercentage = Math.round((quizState.score / quizState.allQuestions.length) * 100);
   finalScore.textContent = `${scorePercentage}%`;
 
   // Enhanced performance analysis
@@ -764,11 +826,11 @@ function showResults() {
                 <div class="analytic-label">Overall Score</div>
             </div>
             <div class="analytic-item">
-                <div class="analytic-value">${correct}/${allQuestions.length}</div>
+                <div class="analytic-value">${correct}/${quizState.allQuestions.length}</div>
                 <div class="analytic-label">Correct Answers</div>
             </div>
             <div class="analytic-item">
-                <div class="analytic-value">${Math.round((correct / allQuestions.length) * 100)}%</div>
+                <div class="analytic-value">${Math.round((correct / answered) * 100) || 0}%</div>
                 <div class="analytic-label">Accuracy Rate</div>
             </div>
             <div class="analytic-item">
@@ -791,17 +853,25 @@ function showResults() {
 
   const reviewIncorrectBtn = document.getElementById("reviewIncorrectBtn");
   if (reviewIncorrectBtn) {
-    if (incorrectAnswers.length > 0) {
+    if (quizState.incorrectAnswers.length > 0) {
       reviewIncorrectBtn.classList.remove("hidden");
       reviewIncorrectBtn.onclick = () => {
-        originalQuestions = allQuestions;
-        allQuestions = incorrectAnswers;
         currentMode = "review";
         initializeQuiz();
+        applyReviewFilter("incorrect");
       };
     } else {
       reviewIncorrectBtn.classList.add("hidden");
     }
+  }
+
+  const reviewAnswersBtn = document.getElementById("reviewAnswersBtn");
+  if (reviewAnswersBtn) {
+    reviewAnswersBtn.onclick = () => {
+      currentMode = "review";
+      initializeQuiz();
+      applyReviewFilter("all");
+    };
   }
 
   showScreen("resultsScreen");
@@ -818,6 +888,26 @@ export function setCurrentTopic(topic) {
 export function setCurrentMode(mode) {
   console.log("setCurrentMode called with:", mode);
   currentMode = mode;
+  
+  // Update the quiz mode display in the header
+  const quizModeDisplay = document.getElementById("quizModeDisplay");
+  if (quizModeDisplay) {
+    let modeText = mode;
+    switch(mode) {
+      case "practice":
+        modeText = "Practice";
+        break;
+      case "exam":
+        modeText = "Exam";
+        break;
+      case "review":
+        modeText = "Review";
+        break;
+      default:
+        modeText = mode.charAt(0).toUpperCase() + mode.slice(1);
+    }
+    quizModeDisplay.textContent = modeText;
+  }
 }
 
 export function getCurrentMode() {
@@ -827,7 +917,8 @@ export function getCurrentMode() {
 // Load questions for the selected topic
 export async function loadQuestions(questions = null) {
   if (questions) {
-    allQuestions = questions;
+    quizState.allQuestions = questions;
+    quizState.originalQuestions = questions;
     initializeQuiz();
     return;
   }
@@ -856,10 +947,19 @@ export async function loadQuestions(questions = null) {
       loadingEl.className = "loading";
       loadingEl.textContent = "Loading questions...";
       // Insert loading indicator before the quiz content grid
+      // With new structure, quizContentGrid is inside the quiz-card div
       const quizContentGrid = quizContainer.querySelector(".quiz-content-grid");
-      if (quizContentGrid)
-        quizContainer.insertBefore(loadingEl, quizContentGrid);
-      else quizContainer.appendChild(loadingEl);
+      if (quizContentGrid) {
+        // Insert before quizContentGrid in its parent
+        quizContentGrid.parentNode.insertBefore(loadingEl, quizContentGrid);
+      } else {
+        const quizCard = quizContainer.querySelector(".quiz-card");
+        if (quizCard) {
+          quizCard.appendChild(loadingEl);
+        } else {
+          quizContainer.appendChild(loadingEl);
+        }
+      }
     } else {
       loadingEl.textContent = "Loading questions...";
     }
@@ -906,7 +1006,7 @@ export async function loadQuestions(questions = null) {
     }
 
     // Process questions based on category selection
-    allQuestions = [];
+    quizState.allQuestions = [];
     let selectedCategory = currentTopic.selectedCategory || "all";
 
     if (selectedCategory === "all") {
@@ -919,7 +1019,7 @@ export async function loadQuestions(questions = null) {
             subcategory.questions &&
             Array.isArray(subcategory.questions)
           ) {
-            allQuestions = allQuestions.concat(subcategory.questions);
+            quizState.allQuestions = quizState.allQuestions.concat(subcategory.questions);
           }
         }
       } else if (topicData.domains && Array.isArray(topicData.domains)) {
@@ -932,7 +1032,7 @@ export async function loadQuestions(questions = null) {
                 subcategory.questions &&
                 Array.isArray(subcategory.questions)
               ) {
-                allQuestions = allQuestions.concat(subcategory.questions);
+                quizState.allQuestions = quizState.allQuestions.concat(subcategory.questions);
               }
             }
           }
@@ -949,7 +1049,7 @@ export async function loadQuestions(questions = null) {
             subcategory.questions &&
             Array.isArray(subcategory.questions)
           ) {
-            allQuestions = allQuestions.concat(subcategory.questions);
+            quizState.allQuestions = quizState.allQuestions.concat(subcategory.questions);
           }
         }
       } else if (topicData.psr_categories) {
@@ -961,16 +1061,16 @@ export async function loadQuestions(questions = null) {
             subcategory.questions &&
             Array.isArray(subcategory.questions)
           ) {
-            allQuestions = allQuestions.concat(subcategory.questions);
+            quizState.allQuestions = quizState.allQuestions.concat(subcategory.questions);
           }
         }
       } else if (topicData.questions && Array.isArray(topicData.questions)) {
         // Check for the specific nested structure of ca_general
         if (selectedCategory === "ca_general" && topicData.questions.length > 0 && topicData.questions[0].ca_general) {
-          allQuestions = topicData.questions[0].ca_general;
+          quizState.allQuestions = topicData.questions[0].ca_general;
         } else {
           // Simple structure with direct questions array
-          allQuestions = topicData.questions;
+          quizState.allQuestions = topicData.questions;
         }
       }
     } else {
@@ -986,9 +1086,9 @@ export async function loadQuestions(questions = null) {
         ) {
           // Check for the specific nested structure of ca_general within a subcategory
           if (selectedCategory === "ca_general" && selectedSubcategory.questions.length > 0 && selectedSubcategory.questions[0].ca_general) {
-            allQuestions = selectedSubcategory.questions[0].ca_general;
+            quizState.allQuestions = selectedSubcategory.questions[0].ca_general;
           } else {
-            allQuestions = selectedSubcategory.questions;
+            quizState.allQuestions = selectedSubcategory.questions;
           }
         }
       } else if (topicData.domains && Array.isArray(topicData.domains)) {
@@ -1002,7 +1102,7 @@ export async function loadQuestions(questions = null) {
               selectedSubcategory.questions &&
               Array.isArray(selectedSubcategory.questions)
             ) {
-              allQuestions = selectedSubcategory.questions;
+              quizState.allQuestions = selectedSubcategory.questions;
               break; // Found the subcategory, no need to check other domains
             }
           }
@@ -1020,7 +1120,7 @@ export async function loadQuestions(questions = null) {
           selectedSubcategory.questions &&
           Array.isArray(selectedSubcategory.questions)
         ) {
-          allQuestions = selectedSubcategory.questions;
+          quizState.allQuestions = selectedSubcategory.questions;
         }
       } else if (topicData.psr_categories) {
         // Legacy structure - find the category
@@ -1030,14 +1130,14 @@ export async function loadQuestions(questions = null) {
           subcategory.questions &&
           Array.isArray(subcategory.questions)
         ) {
-          allQuestions = subcategory.questions;
+          quizState.allQuestions = subcategory.questions;
         }
       }
     }
 
-    console.log("Extracted questions:", allQuestions);
+    console.log("Extracted questions:", quizState.allQuestions);
 
-    if (allQuestions.length === 0) {
+    if (quizState.allQuestions.length === 0) {
       // Check if we're dealing with current affairs and the selected subcategory is empty
       if (currentTopic && currentTopic.id === "current_affairs") {
         // For current affairs, if a specific subcategory has no questions,
@@ -1063,11 +1163,11 @@ export async function loadQuestions(questions = null) {
     }
 
     // Shuffle questions
-    allQuestions = shuffleArray(allQuestions);
+    quizState.allQuestions = shuffleArray(quizState.allQuestions);
 
     // Limit to 40 questions for the quiz (or fewer if subcategory has fewer questions)
-    if (allQuestions.length > 40) {
-      allQuestions = allQuestions.slice(0, 40);
+    if (quizState.allQuestions.length > 40) {
+      quizState.allQuestions = quizState.allQuestions.slice(0, 40);
     }
 
     // Initialize quiz
@@ -1079,13 +1179,123 @@ export async function loadQuestions(questions = null) {
   }
 }
 
+let reviewFilter = "all";
+
+function jumpToQuestion(index) {
+    if (currentMode === "review") {
+        const question = quizState.originalQuestions[index];
+        const filteredIndex = quizState.allQuestions.indexOf(question);
+        if (filteredIndex !== -1) {
+            quizState.currentQuestionIndex = filteredIndex;
+            showQuestion();
+            showReviewControls();
+        } else {
+            showError("Question not found in current filter.");
+        }
+    } else {
+        quizState.currentQuestionIndex = index;
+        showQuestion();
+    }
+}
+
+function applyReviewFilter(filter) {
+    reviewFilter = filter;
+    quizState.allQuestions = getFilteredQuestions();
+    quizState.currentQuestionIndex = 0;
+    if (quizState.allQuestions.length > 0) {
+        showQuestion();
+        showReviewControls();
+    } else {
+        showError("No questions match the selected filter.");
+    }
+}
+
+function getFilteredQuestions() {
+    switch (reviewFilter) {
+        case "correct":
+            return quizState.originalQuestions.filter((q, i) => quizState.userAnswers[i] === q.correct);
+        case "incorrect":
+            return quizState.originalQuestions.filter((q, i) => quizState.userAnswers[i] !== undefined && quizState.userAnswers[i] !== q.correct);
+        case "unanswered":
+            return quizState.originalQuestions.filter((q, i) => quizState.userAnswers[i] === undefined);
+        default:
+            return quizState.originalQuestions;
+    }
+}
+
+document.getElementById("reviewAllBtn").onclick = () => applyReviewFilter("all");
+document.getElementById("reviewCorrectBtn").onclick = () => applyReviewFilter("correct");
+document.getElementById("reviewIncorrectBtn").onclick = () => applyReviewFilter("incorrect");
+document.getElementById("reviewUnansweredBtn").onclick = () => applyReviewFilter("unanswered");
+
+function showReviewControls() {
+    const reviewControls = document.getElementById("reviewControls");
+    const reviewNavigator = document.getElementById("reviewNavigator");
+
+    if (reviewControls && reviewNavigator) {
+        reviewControls.classList.remove("hidden");
+        reviewNavigator.innerHTML = "";
+
+        quizState.originalQuestions.forEach((_, index) => {
+            const navBtn = document.createElement("button");
+            navBtn.className = "nav-btn";
+            navBtn.textContent = index + 1;
+            navBtn.onclick = () => jumpToQuestion(index);
+
+            const answer = quizState.userAnswers[index];
+            const question = quizState.originalQuestions[index];
+
+            if (answer === undefined) {
+                navBtn.classList.add("unanswered");
+            } else if (answer === question.correct) {
+                navBtn.classList.add("correct");
+            } else {
+                navBtn.classList.add("incorrect");
+            }
+
+            if (quizState.allQuestions[quizState.currentQuestionIndex] === quizState.originalQuestions[index]) {
+                navBtn.classList.add("current");
+            }
+
+            reviewNavigator.appendChild(navBtn);
+        });
+    }
+}
+
+function showQuestionMap() {
+    const questionMap = document.getElementById("questionMap");
+
+    if (questionMap) {
+        questionMap.classList.remove("hidden");
+        questionMap.innerHTML = "";
+
+        quizState.allQuestions.forEach((_, index) => {
+            const navBtn = document.createElement("button");
+            navBtn.className = "nav-btn";
+            navBtn.textContent = index + 1;
+            navBtn.onclick = () => jumpToQuestion(index);
+
+            if (quizState.userAnswers[index] !== undefined) {
+                navBtn.classList.add("answered");
+            }
+
+            if (index === quizState.currentQuestionIndex) {
+                navBtn.classList.add("current");
+            }
+
+            questionMap.appendChild(navBtn);
+        });
+    }
+}
+
 // Initialize the quiz
 function initializeQuiz() {
-  currentQuestionIndex = 0;
-  score = 0;
-  userAnswers = [];
+  quizState.originalQuestions = [...quizState.allQuestions];
+  quizState.currentQuestionIndex = 0;
+  quizState.score = 0;
+  quizState.userAnswers = [];
   // Initialize feedbackShown array to track if feedback has been shown for each question
-  feedbackShown = new Array(allQuestions.length).fill(false);
+  quizState.feedbackShown = new Array(quizState.allQuestions.length).fill(false);
 
   // Show the quiz screen first, then set up timer
   showScreen("quizScreen");
@@ -1093,11 +1303,25 @@ function initializeQuiz() {
   // Now that the screen is shown, get DOM elements
   getDOMElements();
 
+  if (currentMode === "review") {
+    showReviewControls();
+    const questionMap = document.getElementById("questionMap");
+    if(questionMap) {
+        questionMap.classList.add("hidden");
+    }
+  } else {
+    const reviewControls = document.getElementById("reviewControls");
+    if(reviewControls) {
+        reviewControls.classList.add("hidden");
+    }
+    showQuestionMap();
+  }
+
   // Set up timer if in exam mode
   if (currentMode === "exam") {
     // Set 45 seconds per question for exam mode (total exam time)
-    timeLeft = allQuestions.length * 45;
-    clearInterval(timer); // Clear any existing timer before starting a new one
+    quizState.timeLeft = quizState.allQuestions.length * 45;
+    clearInterval(quizState.timer); // Clear any existing timer before starting a new one
     startTimer();
 
     // Show and style exam mode specific UI
@@ -1107,7 +1331,7 @@ function initializeQuiz() {
       timerContainer.classList.add("modern-timer");
     }
   } else {
-    timeLeft = 0;
+    quizState.timeLeft = 0;
     updateTimerDisplay();
 
     // Hide timer for non-exam modes
