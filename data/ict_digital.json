@@ -7,8 +7,8 @@
   "subcategories": [
     {
       "id": "ict_fundamentals",
-      "name": "1. ICT Fundamentals (and Tools)",
-      "description": "Basic concepts, hardware, software, network protocols, and terminology.",
+      "name": "ICT Fundamentals & Concepts",
+      "description": "Core ICT concepts and operational understanding.",
       "questions": [
         {
           "id": "ict_f_001",
@@ -23,7 +23,11 @@
           "explanation": "ICT refers to Information and Communication Technology, which supports digital processes and service delivery [1].",
           "difficulty": "easy",
           "chapter": "ICT Basics",
-          "keywords": ["ICT", "public administration", "definition"]
+          "keywords": [
+            "ICT",
+            "public administration",
+            "definition"
+          ]
         },
         {
           "id": "ict_f_002",
@@ -38,7 +42,11 @@
           "explanation": "The CPU is responsible for performing calculations and executing software instructions [2, 3].",
           "difficulty": "easy",
           "chapter": "ICT Fundamentals",
-          "keywords": ["CPU", "execution", "hardware"]
+          "keywords": [
+            "CPU",
+            "execution",
+            "hardware"
+          ]
         },
         {
           "id": "ict_f_003",
@@ -53,7 +61,11 @@
           "explanation": "RAM (Random Access Memory) is volatile memory used to store data that is actively being used or processed by the CPU [4, 5].",
           "difficulty": "easy",
           "chapter": "ICT Fundamentals",
-          "keywords": ["RAM", "memory", "volatile"]
+          "keywords": [
+            "RAM",
+            "memory",
+            "volatile"
+          ]
         },
         {
           "id": "ict_f_004",
@@ -68,7 +80,11 @@
           "explanation": "The operating system controls hardware and manages software resources, providing a platform for applications [4].",
           "difficulty": "easy",
           "chapter": "ICT Fundamentals",
-          "keywords": ["OS", "hardware control", "software management"]
+          "keywords": [
+            "OS",
+            "hardware control",
+            "software management"
+          ]
         },
         {
           "id": "ict_f_005",
@@ -83,7 +99,10 @@
           "explanation": "Microsoft Word is a word processing application, not an operating system [6].",
           "difficulty": "easy",
           "chapter": "ICT Fundamentals",
-          "keywords": ["Operating System", "Microsoft Word"]
+          "keywords": [
+            "Operating System",
+            "Microsoft Word"
+          ]
         },
         {
           "id": "ict_f_006",
@@ -98,7 +117,10 @@
           "explanation": "Scanners convert paper documents into electronic formats for digital use [7].",
           "difficulty": "easy",
           "chapter": "ICT Fundamentals",
-          "keywords": ["Scanner", "digital archiving"]
+          "keywords": [
+            "Scanner",
+            "digital archiving"
+          ]
         },
         {
           "id": "ict_f_007",
@@ -113,7 +135,11 @@
           "explanation": "VPN stands for Virtual Private Network, used to secure internet connections and protect data [8].",
           "difficulty": "easy",
           "chapter": "ICT Fundamentals",
-          "keywords": ["VPN", "acronym", "network security"]
+          "keywords": [
+            "VPN",
+            "acronym",
+            "network security"
+          ]
         },
         {
           "id": "ict_f_008",
@@ -128,7 +154,10 @@
           "explanation": "An IP Address (Internet Protocol Address) identifies a device on a network [9].",
           "difficulty": "easy",
           "chapter": "ICT Fundamentals",
-          "keywords": ["IP Address", "network protocol"]
+          "keywords": [
+            "IP Address",
+            "network protocol"
+          ]
         },
         {
           "id": "ict_f_009",
@@ -143,7 +172,11 @@
           "explanation": "Routers manage traffic between different networks like LAN and internet [3, 10, 11].",
           "difficulty": "medium",
           "chapter": "ICT Fundamentals",
-          "keywords": ["Router", "networking", "data direction"]
+          "keywords": [
+            "Router",
+            "networking",
+            "data direction"
+          ]
         },
         {
           "id": "ict_f_010",
@@ -158,7 +191,11 @@
           "explanation": "The ping command checks if a host is reachable across an IP network [12].",
           "difficulty": "easy",
           "chapter": "ICT Fundamentals",
-          "keywords": ["ping", "connectivity", "networking"]
+          "keywords": [
+            "ping",
+            "connectivity",
+            "networking"
+          ]
         },
         {
           "id": "ict_f_011",
@@ -173,7 +210,10 @@
           "explanation": "DNS converts user-friendly domain names (URLs) into numerical IP addresses [13].",
           "difficulty": "easy",
           "chapter": "ICT Fundamentals",
-          "keywords": ["DNS", "IP address resolution"]
+          "keywords": [
+            "DNS",
+            "IP address resolution"
+          ]
         },
         {
           "id": "ict_f_012",
@@ -188,7 +228,10 @@
           "explanation": "The Bit is the smallest unit of data in computing, representing a 0 or 1 [14].",
           "difficulty": "easy",
           "chapter": "ICT Fundamentals",
-          "keywords": ["Bit", "data unit"]
+          "keywords": [
+            "Bit",
+            "data unit"
+          ]
         },
         {
           "id": "ict_f_013",
@@ -203,7 +246,11 @@
           "explanation": "LAN stands for Local Area Network, connecting computers within a small geographical area [15, 16].",
           "difficulty": "easy",
           "chapter": "ICT Fundamentals",
-          "keywords": ["LAN", "acronym", "networking"]
+          "keywords": [
+            "LAN",
+            "acronym",
+            "networking"
+          ]
         },
         {
           "id": "ict_f_014",
@@ -218,7 +265,10 @@
           "explanation": "A web browser is software designed to access and display information on the World Wide Web [17].",
           "difficulty": "easy",
           "chapter": "ICT Fundamentals",
-          "keywords": ["web browser", "internet access"]
+          "keywords": [
+            "web browser",
+            "internet access"
+          ]
         },
         {
           "id": "ict_f_015",
@@ -233,7 +283,10 @@
           "explanation": "SMTP (Simple Mail Transfer Protocol) is the standard for sending email messages across the internet [18, 19].",
           "difficulty": "medium",
           "chapter": "ICT Fundamentals",
-          "keywords": ["SMTP", "email protocol"]
+          "keywords": [
+            "SMTP",
+            "email protocol"
+          ]
         },
         {
           "id": "ict_f_016",
@@ -248,7 +301,11 @@
           "explanation": "Switches connect devices within a LAN and direct traffic efficiently [12, 20].",
           "difficulty": "easy",
           "chapter": "ICT Fundamentals",
-          "keywords": ["Switch", "LAN", "networking"]
+          "keywords": [
+            "Switch",
+            "LAN",
+            "networking"
+          ]
         },
         {
           "id": "ict_f_017",
@@ -263,7 +320,10 @@
           "explanation": "ROM (Read-Only Memory) is non-volatile memory used to store permanent data [20].",
           "difficulty": "easy",
           "chapter": "ICT Fundamentals",
-          "keywords": ["ROM", "non-volatile memory"]
+          "keywords": [
+            "ROM",
+            "non-volatile memory"
+          ]
         },
         {
           "id": "ict_f_018",
@@ -278,7 +338,11 @@
           "explanation": "Compilers convert source code written in a high-level language into executable machine code [15].",
           "difficulty": "medium",
           "chapter": "ICT Fundamentals",
-          "keywords": ["Compiler", "machine code", "programming"]
+          "keywords": [
+            "Compiler",
+            "machine code",
+            "programming"
+          ]
         },
         {
           "id": "ict_f_019",
@@ -293,7 +357,11 @@
           "explanation": "ipconfig shows current IP, subnet mask, and gateway configuration in Windows [21].",
           "difficulty": "medium",
           "chapter": "ICT Fundamentals",
-          "keywords": ["ipconfig", "IP configuration", "command"]
+          "keywords": [
+            "ipconfig",
+            "IP configuration",
+            "command"
+          ]
         },
         {
           "id": "ict_f_020",
@@ -308,7 +376,11 @@
           "explanation": "HTML stands for HyperText Markup Language, used to structure web content [22, 23].",
           "difficulty": "easy",
           "chapter": "ICT Fundamentals",
-          "keywords": ["HTML", "markup language", "acronym"]
+          "keywords": [
+            "HTML",
+            "markup language",
+            "acronym"
+          ]
         },
         {
           "id": "ict_f_021",
@@ -323,7 +395,10 @@
           "explanation": "HTML structures the layout and content of web pages [22].",
           "difficulty": "easy",
           "chapter": "ICT Fundamentals",
-          "keywords": ["HTML", "web content"]
+          "keywords": [
+            "HTML",
+            "web content"
+          ]
         },
         {
           "id": "ict_f_022",
@@ -338,7 +413,11 @@
           "explanation": "A Server provides data, resources, or services to other computers over a network [24].",
           "difficulty": "easy",
           "chapter": "ICT Fundamentals",
-          "keywords": ["Server", "networking", "definition"]
+          "keywords": [
+            "Server",
+            "networking",
+            "definition"
+          ]
         },
         {
           "id": "ict_f_023",
@@ -353,7 +432,11 @@
           "explanation": "Projectors are used for presentations in government meetings [25].",
           "difficulty": "easy",
           "chapter": "ICT Fundamentals",
-          "keywords": ["Projector", "presentations", "ICT tool"]
+          "keywords": [
+            "Projector",
+            "presentations",
+            "ICT tool"
+          ]
         },
         {
           "id": "ict_f_024",
@@ -368,7 +451,11 @@
           "explanation": "MAC stands for Media Access Control [16].",
           "difficulty": "medium",
           "chapter": "ICT Fundamentals",
-          "keywords": ["MAC", "acronym", "networking"]
+          "keywords": [
+            "MAC",
+            "acronym",
+            "networking"
+          ]
         },
         {
           "id": "ict_f_025",
@@ -383,7 +470,11 @@
           "explanation": "The MAC Address is a unique identifier tied to the network interface hardware [9].",
           "difficulty": "medium",
           "chapter": "ICT Fundamentals",
-          "keywords": ["MAC Address", "hardware", "networking"]
+          "keywords": [
+            "MAC Address",
+            "hardware",
+            "networking"
+          ]
         },
         {
           "id": "ict_f_026",
@@ -398,7 +489,11 @@
           "explanation": "SSD (Solid State Drive) is faster than HDD (Hard Disk Drive) [11, 16].",
           "difficulty": "medium",
           "chapter": "ICT Fundamentals",
-          "keywords": ["SSD", "storage", "speed"]
+          "keywords": [
+            "SSD",
+            "storage",
+            "speed"
+          ]
         },
         {
           "id": "ict_f_027",
@@ -413,7 +508,10 @@
           "explanation": "Cache is temporary high-speed storage that speeds up access to frequently used data [11, 14].",
           "difficulty": "easy",
           "chapter": "ICT Fundamentals",
-          "keywords": ["Cache", "temporary storage"]
+          "keywords": [
+            "Cache",
+            "temporary storage"
+          ]
         },
         {
           "id": "ict_f_028",
@@ -428,7 +526,11 @@
           "explanation": "SQL stands for Structured Query Language, used to manage and query databases [20, 23].",
           "difficulty": "easy",
           "chapter": "ICT Fundamentals",
-          "keywords": ["SQL", "acronym", "database"]
+          "keywords": [
+            "SQL",
+            "acronym",
+            "database"
+          ]
         },
         {
           "id": "ict_f_029",
@@ -443,7 +545,10 @@
           "explanation": "SQL (Structured Query Language) is the standard language for managing and querying relational databases [20, 22].",
           "difficulty": "medium",
           "chapter": "ICT Fundamentals",
-          "keywords": ["SQL", "database management"]
+          "keywords": [
+            "SQL",
+            "database management"
+          ]
         },
         {
           "id": "ict_f_030",
@@ -458,7 +563,10 @@
           "explanation": "Email remains the official communication tool in the civil service, ensuring record-keeping and formal correspondence [26].",
           "difficulty": "easy",
           "chapter": "ICT Fundamentals",
-          "keywords": ["Email", "official communication"]
+          "keywords": [
+            "Email",
+            "official communication"
+          ]
         },
         {
           "id": "ict_f_031",
@@ -473,7 +581,11 @@
           "explanation": "SMTP (Simple Mail Transfer Protocol) is the standard protocol for sending emails [18, 19].",
           "difficulty": "medium",
           "chapter": "ICT Fundamentals",
-          "keywords": ["SMTP", "protocol", "email"]
+          "keywords": [
+            "SMTP",
+            "protocol",
+            "email"
+          ]
         },
         {
           "id": "ict_f_032",
@@ -488,7 +600,10 @@
           "explanation": "ROM stands for Read-Only Memory, which is non-volatile [16, 20].",
           "difficulty": "easy",
           "chapter": "ICT Fundamentals",
-          "keywords": ["ROM", "acronym"]
+          "keywords": [
+            "ROM",
+            "acronym"
+          ]
         },
         {
           "id": "ict_f_033",
@@ -503,7 +618,10 @@
           "explanation": "Fingerprint scanners are used for biometric verification in systems like IPPIS/NIN [27].",
           "difficulty": "medium",
           "chapter": "ICT Fundamentals",
-          "keywords": ["Fingerprint Scanner", "biometrics"]
+          "keywords": [
+            "Fingerprint Scanner",
+            "biometrics"
+          ]
         },
         {
           "id": "ict_f_034",
@@ -518,7 +636,11 @@
           "explanation": "API stands for Application Programming Interface, which allows software components to communicate [23, 28].",
           "difficulty": "easy",
           "chapter": "ICT Fundamentals",
-          "keywords": ["API", "acronym", "programming"]
+          "keywords": [
+            "API",
+            "acronym",
+            "programming"
+          ]
         },
         {
           "id": "ict_f_035",
@@ -533,7 +655,10 @@
           "explanation": "CSV is used for storing structured data and is excellent for data exchange between systems [29].",
           "difficulty": "medium",
           "chapter": "ICT Fundamentals",
-          "keywords": ["CSV", "data exchange"]
+          "keywords": [
+            "CSV",
+            "data exchange"
+          ]
         },
         {
           "id": "ict_f_036",
@@ -548,7 +673,11 @@
           "explanation": "Version control systems track code changes and facilitate collaboration among developers [30].",
           "difficulty": "medium",
           "chapter": "ICT Fundamentals",
-          "keywords": ["Version control", "collaboration", "development"]
+          "keywords": [
+            "Version control",
+            "collaboration",
+            "development"
+          ]
         },
         {
           "id": "ict_f_037",
@@ -563,7 +692,10 @@
           "explanation": "HTTP (HyperText Transfer Protocol) is the protocol for transmitting web pages, often on Port 80, but is unsecured compared to HTTPS [23].",
           "difficulty": "easy",
           "chapter": "ICT Fundamentals",
-          "keywords": ["HTTP", "protocol"]
+          "keywords": [
+            "HTTP",
+            "protocol"
+          ]
         },
         {
           "id": "ict_f_038",
@@ -578,7 +710,11 @@
           "explanation": "A Database is a structured collection of data that can be accessed, managed, and updated electronically [5, 31].",
           "difficulty": "easy",
           "chapter": "ICT Fundamentals",
-          "keywords": ["Database", "definition", "data management"]
+          "keywords": [
+            "Database",
+            "definition",
+            "data management"
+          ]
         },
         {
           "id": "ict_f_039",
@@ -593,7 +729,10 @@
           "explanation": "WAN stands for Wide Area Network [16].",
           "difficulty": "easy",
           "chapter": "ICT Fundamentals",
-          "keywords": ["WAN", "acronym"]
+          "keywords": [
+            "WAN",
+            "acronym"
+          ]
         },
         {
           "id": "ict_f_040",
@@ -608,7 +747,10 @@
           "explanation": "A Monitor displays information and is an output device.",
           "difficulty": "easy",
           "chapter": "ICT Fundamentals",
-          "keywords": ["Monitor", "output device"]
+          "keywords": [
+            "Monitor",
+            "output device"
+          ]
         },
         {
           "id": "ict_f_041",
@@ -623,7 +765,10 @@
           "explanation": "Microsoft Project is commonly used for project planning and tracking [7].",
           "difficulty": "medium",
           "chapter": "ICT Fundamentals",
-          "keywords": ["Microsoft Project", "project management"]
+          "keywords": [
+            "Microsoft Project",
+            "project management"
+          ]
         },
         {
           "id": "ict_f_042",
@@ -638,7 +783,10 @@
           "explanation": "URL (Uniform Resource Locator) is the address of a web page or resource on the internet [23, 24].",
           "difficulty": "easy",
           "chapter": "ICT Fundamentals",
-          "keywords": ["URL", "web address"]
+          "keywords": [
+            "URL",
+            "web address"
+          ]
         },
         {
           "id": "ict_f_043",
@@ -653,7 +801,10 @@
           "explanation": "Tracert is used to trace the path a packet takes across a network (implied by networking troubleshooting basics).",
           "difficulty": "medium",
           "chapter": "ICT Fundamentals",
-          "keywords": ["tracert", "networking"]
+          "keywords": [
+            "tracert",
+            "networking"
+          ]
         },
         {
           "id": "ict_f_044",
@@ -668,7 +819,10 @@
           "explanation": "SDLC (Software Development Life Cycle) is the process of planning, creating, testing, and deploying an information system [32].",
           "difficulty": "medium",
           "chapter": "ICT Fundamentals",
-          "keywords": ["SDLC", "software development"]
+          "keywords": [
+            "SDLC",
+            "software development"
+          ]
         },
         {
           "id": "ict_f_045",
@@ -683,7 +837,10 @@
           "explanation": "HTTPS (HyperText Transfer Protocol Secure) uses SSL/TLS to encrypt web traffic [10, 23].",
           "difficulty": "easy",
           "chapter": "ICT Fundamentals",
-          "keywords": ["HTTPS", "secure protocol"]
+          "keywords": [
+            "HTTPS",
+            "secure protocol"
+          ]
         },
         {
           "id": "ict_f_046",
@@ -698,7 +855,10 @@
           "explanation": "Cloud Computing is the delivery of computing services over the internet, allowing storage and access to data and programs remotely [31, 33].",
           "difficulty": "medium",
           "chapter": "ICT Fundamentals",
-          "keywords": ["Cloud Computing", "remote storage"]
+          "keywords": [
+            "Cloud Computing",
+            "remote storage"
+          ]
         },
         {
           "id": "ict_f_047",
@@ -713,7 +873,10 @@
           "explanation": "FTP (File Transfer Protocol) is used for transferring files [19].",
           "difficulty": "easy",
           "chapter": "ICT Fundamentals",
-          "keywords": ["FTP", "file transfer"]
+          "keywords": [
+            "FTP",
+            "file transfer"
+          ]
         },
         {
           "id": "ict_f_048",
@@ -728,7 +891,10 @@
           "explanation": "Bandwidth is the capacity of a network to transmit data in a given time [14, 31].",
           "difficulty": "easy",
           "chapter": "ICT Fundamentals",
-          "keywords": ["Bandwidth", "network capacity"]
+          "keywords": [
+            "Bandwidth",
+            "network capacity"
+          ]
         },
         {
           "id": "ict_f_049",
@@ -743,7 +909,10 @@
           "explanation": "Video conferencing tools enable real-time communication for governance meetings [34, 35].",
           "difficulty": "easy",
           "chapter": "ICT Fundamentals",
-          "keywords": ["Video conferencing", "real-time communication"]
+          "keywords": [
+            "Video conferencing",
+            "real-time communication"
+          ]
         },
         {
           "id": "ict_f_050",
@@ -758,7 +927,10 @@
           "explanation": "DHCP (Dynamic Host Configuration Protocol) automatically assigns IP addresses to devices (Implied by standard networking terminology, complementing DNS/IP).",
           "difficulty": "medium",
           "chapter": "ICT Fundamentals",
-          "keywords": ["DHCP", "IP allocation"]
+          "keywords": [
+            "DHCP",
+            "IP allocation"
+          ]
         },
         {
           "id": "ict_f_051",
@@ -773,7 +945,11 @@
           "explanation": "Zoom and similar platforms enable ministries to conduct virtual training and meetings [25, 36, 37].",
           "difficulty": "easy",
           "chapter": "ICT Fundamentals",
-          "keywords": ["Zoom", "webinars", "virtual meetings"]
+          "keywords": [
+            "Zoom",
+            "webinars",
+            "virtual meetings"
+          ]
         },
         {
           "id": "ict_f_052",
@@ -788,7 +964,10 @@
           "explanation": "RAM (Random Access Memory) is volatile [4, 5].",
           "difficulty": "easy",
           "chapter": "ICT Fundamentals",
-          "keywords": ["RAM", "volatile memory"]
+          "keywords": [
+            "RAM",
+            "volatile memory"
+          ]
         },
         {
           "id": "ict_f_053",
@@ -803,7 +982,10 @@
           "explanation": "OS stands for Operating System [5, 16].",
           "difficulty": "easy",
           "chapter": "ICT Fundamentals",
-          "keywords": ["OS", "acronym"]
+          "keywords": [
+            "OS",
+            "acronym"
+          ]
         },
         {
           "id": "ict_f_054",
@@ -818,7 +1000,10 @@
           "explanation": "Projectors are used for presentations in government meetings [25].",
           "difficulty": "easy",
           "chapter": "ICT Fundamentals",
-          "keywords": ["Projector", "presentations"]
+          "keywords": [
+            "Projector",
+            "presentations"
+          ]
         },
         {
           "id": "ict_f_055",
@@ -833,7 +1018,10 @@
           "explanation": "PHP is commonly used to process data and connect to databases on the server side [3, 38].",
           "difficulty": "medium",
           "chapter": "ICT Fundamentals",
-          "keywords": ["PHP", "backend development"]
+          "keywords": [
+            "PHP",
+            "backend development"
+          ]
         },
         {
           "id": "ict_f_056",
@@ -848,7 +1036,10 @@
           "explanation": "SaaS (Software as a Service) refers to software delivered over the internet [20, 39].",
           "difficulty": "medium",
           "chapter": "ICT Fundamentals",
-          "keywords": ["SaaS", "Cloud Computing"]
+          "keywords": [
+            "SaaS",
+            "Cloud Computing"
+          ]
         },
         {
           "id": "ict_f_057",
@@ -863,7 +1054,10 @@
           "explanation": "A Byte is a group of 8 bits [14].",
           "difficulty": "easy",
           "chapter": "ICT Fundamentals",
-          "keywords": ["Byte", "bits"]
+          "keywords": [
+            "Byte",
+            "bits"
+          ]
         },
         {
           "id": "ict_f_058",
@@ -878,7 +1072,10 @@
           "explanation": "SQL (Structured Query Language) is the language used by Database Administrators to manage and query data [20].",
           "difficulty": "medium",
           "chapter": "ICT Fundamentals",
-          "keywords": ["SQL", "Database Administrator"]
+          "keywords": [
+            "SQL",
+            "Database Administrator"
+          ]
         },
         {
           "id": "ict_f_059",
@@ -893,7 +1090,11 @@
           "explanation": "IDE stands for Integrated Development Environment [5, 29].",
           "difficulty": "medium",
           "chapter": "ICT Fundamentals",
-          "keywords": ["IDE", "acronym", "programming"]
+          "keywords": [
+            "IDE",
+            "acronym",
+            "programming"
+          ]
         },
         {
           "id": "ict_f_060",
@@ -908,7 +1109,10 @@
           "explanation": "VPN (Virtual Private Network) provides a secure connection over the internet [8, 24].",
           "difficulty": "easy",
           "chapter": "ICT Fundamentals",
-          "keywords": ["VPN", "network security"]
+          "keywords": [
+            "VPN",
+            "network security"
+          ]
         },
         {
           "id": "ict_f_061",
@@ -923,7 +1127,10 @@
           "explanation": "An Algorithm is a step-by-step procedure for solving a problem or performing a task [14, 31].",
           "difficulty": "easy",
           "chapter": "ICT Fundamentals",
-          "keywords": ["Algorithm", "definition"]
+          "keywords": [
+            "Algorithm",
+            "definition"
+          ]
         },
         {
           "id": "ict_f_062",
@@ -938,7 +1145,10 @@
           "explanation": "DHCP (Dynamic Host Configuration Protocol) automatically assigns IP addresses.",
           "difficulty": "medium",
           "chapter": "ICT Fundamentals",
-          "keywords": ["DHCP", "IP allocation"]
+          "keywords": [
+            "DHCP",
+            "IP allocation"
+          ]
         },
         {
           "id": "ict_f_063",
@@ -953,7 +1163,10 @@
           "explanation": "Switches manage connections within local networks (LAN) [12].",
           "difficulty": "easy",
           "chapter": "ICT Fundamentals",
-          "keywords": ["Switch", "LAN"]
+          "keywords": [
+            "Switch",
+            "LAN"
+          ]
         },
         {
           "id": "ict_f_064",
@@ -968,7 +1181,10 @@
           "explanation": "User Support / Helpdesk focuses on incident resolution and system user support [32].",
           "difficulty": "easy",
           "chapter": "ICT Fundamentals",
-          "keywords": ["Helpdesk", "User Support"]
+          "keywords": [
+            "Helpdesk",
+            "User Support"
+          ]
         },
         {
           "id": "ict_f_065",
@@ -983,7 +1199,10 @@
           "explanation": "URL (Uniform Resource Locator) is the web address [23, 24].",
           "difficulty": "easy",
           "chapter": "ICT Fundamentals",
-          "keywords": ["URL", "acronym"]
+          "keywords": [
+            "URL",
+            "acronym"
+          ]
         },
         {
           "id": "ict_f_066",
@@ -998,7 +1217,10 @@
           "explanation": "Cache is temporary high-speed storage that speeds up access to frequently used data [14].",
           "difficulty": "easy",
           "chapter": "ICT Fundamentals",
-          "keywords": ["Cache", "speed"]
+          "keywords": [
+            "Cache",
+            "speed"
+          ]
         },
         {
           "id": "ict_f_067",
@@ -1013,7 +1235,11 @@
           "explanation": "Primary keys ensure each record is unique, preventing data duplication in systems like IPPIS/HRMIS [40].",
           "difficulty": "medium",
           "chapter": "ICT Fundamentals",
-          "keywords": ["Primary Key", "database", "unique identifier"]
+          "keywords": [
+            "Primary Key",
+            "database",
+            "unique identifier"
+          ]
         },
         {
           "id": "ict_f_068",
@@ -1028,7 +1254,10 @@
           "explanation": "SSL/TLS protocols are used for securing data transmitted over the internet [20].",
           "difficulty": "medium",
           "chapter": "ICT Fundamentals",
-          "keywords": ["SSL/TLS", "security protocol"]
+          "keywords": [
+            "SSL/TLS",
+            "security protocol"
+          ]
         },
         {
           "id": "ict_f_069",
@@ -1043,7 +1272,10 @@
           "explanation": "JavaScript is used for interactive client-side scripting [12].",
           "difficulty": "medium",
           "chapter": "ICT Fundamentals",
-          "keywords": ["JavaScript", "front-end"]
+          "keywords": [
+            "JavaScript",
+            "front-end"
+          ]
         },
         {
           "id": "ict_f_070",
@@ -1058,7 +1290,10 @@
           "explanation": "A Database Management System (DBMS) manages the structured collection of data [31].",
           "difficulty": "medium",
           "chapter": "ICT Fundamentals",
-          "keywords": ["DBMS", "Database"]
+          "keywords": [
+            "DBMS",
+            "Database"
+          ]
         },
         {
           "id": "ict_f_071",
@@ -1073,7 +1308,10 @@
           "explanation": "IP stands for Internet Protocol [23].",
           "difficulty": "easy",
           "chapter": "ICT Fundamentals",
-          "keywords": ["IP", "protocol"]
+          "keywords": [
+            "IP",
+            "protocol"
+          ]
         },
         {
           "id": "ict_f_072",
@@ -1088,7 +1326,10 @@
           "explanation": "A Modem converts digital and analog signals for internet access (implied by networking requirements).",
           "difficulty": "easy",
           "chapter": "ICT Fundamentals",
-          "keywords": ["Modem", "internet access"]
+          "keywords": [
+            "Modem",
+            "internet access"
+          ]
         },
         {
           "id": "ict_f_073",
@@ -1103,7 +1344,10 @@
           "explanation": "VPNs encrypt data and provide private access over public networks for secure remote access [21, 24].",
           "difficulty": "easy",
           "chapter": "ICT Fundamentals",
-          "keywords": ["VPN", "secure remote access"]
+          "keywords": [
+            "VPN",
+            "secure remote access"
+          ]
         },
         {
           "id": "ict_f_074",
@@ -1118,7 +1362,10 @@
           "explanation": "Virtualization runs multiple OS or applications on one physical machine [23].",
           "difficulty": "medium",
           "chapter": "ICT Fundamentals",
-          "keywords": ["Virtualization", "technology"]
+          "keywords": [
+            "Virtualization",
+            "technology"
+          ]
         },
         {
           "id": "ict_f_075",
@@ -1133,14 +1380,17 @@
           "explanation": "Python is crucial for programming, automation, data science, and AI [5, 38].",
           "difficulty": "medium",
           "chapter": "ICT Fundamentals",
-          "keywords": ["Python", "Data Analyst"]
+          "keywords": [
+            "Python",
+            "Data Analyst"
+          ]
         }
       ]
     },
     {
       "id": "ict_e_governance",
-      "name": "2. E-Governance and Digital Services",
-      "description": "E-governance platforms (IPPIS, GIFMIS, HRMIS, TSA), digital service delivery, and strategic reforms.",
+      "name": "E-Governance & Digital Services",
+      "description": "Digital service delivery and e-governance operations.",
       "questions": [
         {
           "id": "ict_eg_001",
@@ -1155,7 +1405,11 @@
           "explanation": "IPPIS tracks payroll and personnel data to prevent ghost workers and automate salary administration [41, 42].",
           "difficulty": "easy",
           "chapter": "E-Governance Systems",
-          "keywords": ["IPPIS", "payroll", "ghost workers"]
+          "keywords": [
+            "IPPIS",
+            "payroll",
+            "ghost workers"
+          ]
         },
         {
           "id": "ict_eg_002",
@@ -1170,7 +1424,11 @@
           "explanation": "All Officers shall be placed on the IPPIS platform within two months of assumption of duty (Rule 040102) [43].",
           "difficulty": "medium",
           "chapter": "Rule 040102",
-          "keywords": ["IPPIS", "placement", "Rule 040102"]
+          "keywords": [
+            "IPPIS",
+            "placement",
+            "Rule 040102"
+          ]
         },
         {
           "id": "ict_eg_003",
@@ -1185,7 +1443,11 @@
           "explanation": "GIFMIS supports integrated financial operations, accounting, and expenditure tracking [41, 44].",
           "difficulty": "easy",
           "chapter": "E-Governance Systems",
-          "keywords": ["GIFMIS", "financial management", "budget execution"]
+          "keywords": [
+            "GIFMIS",
+            "financial management",
+            "budget execution"
+          ]
         },
         {
           "id": "ict_eg_004",
@@ -1200,7 +1462,11 @@
           "explanation": "TSA consolidates government revenues into a single account at the CBN, improving transparency and blocking leakages [41, 42].",
           "difficulty": "easy",
           "chapter": "E-Governance Reforms",
-          "keywords": ["TSA", "revenue consolidation", "transparency"]
+          "keywords": [
+            "TSA",
+            "revenue consolidation",
+            "transparency"
+          ]
         },
         {
           "id": "ict_eg_005",
@@ -1215,7 +1481,11 @@
           "explanation": "HRMIS (Human Resource Management Information System) digitalizes personnel management in the public service [41, 45].",
           "difficulty": "easy",
           "chapter": "E-Governance Systems",
-          "keywords": ["HRMIS", "personnel management", "digital records"]
+          "keywords": [
+            "HRMIS",
+            "personnel management",
+            "digital records"
+          ]
         },
         {
           "id": "ict_eg_006",
@@ -1230,7 +1500,10 @@
           "explanation": "Digitization of Registry/Records reduces manual files and improves document tracking [46, 47].",
           "difficulty": "medium",
           "chapter": "E-Governance Reforms",
-          "keywords": ["Digitization of Records", "E-Registry"]
+          "keywords": [
+            "Digitization of Records",
+            "E-Registry"
+          ]
         },
         {
           "id": "ict_eg_007",
@@ -1245,7 +1518,10 @@
           "explanation": "IPPS integration with NIN links personnel records with biometric ID for accuracy and integrity [48].",
           "difficulty": "easy",
           "chapter": "E-Governance Reforms",
-          "keywords": ["NIN integration", "Data integrity"]
+          "keywords": [
+            "NIN integration",
+            "Data integrity"
+          ]
         },
         {
           "id": "ict_eg_008",
@@ -1260,7 +1536,10 @@
           "explanation": "Biometric Attendance Systems enhance punctuality and record staff presence [48, 49].",
           "difficulty": "medium",
           "chapter": "E-Governance Reforms",
-          "keywords": ["Biometric Attendance", "Punctuality"]
+          "keywords": [
+            "Biometric Attendance",
+            "Punctuality"
+          ]
         },
         {
           "id": "ict_eg_009",
@@ -1275,7 +1554,10 @@
           "explanation": "E-Governance emphasizes delivering government services through digital platforms for easy access and efficiency [50].",
           "difficulty": "easy",
           "chapter": "E-Governance Concepts",
-          "keywords": ["E-Governance", "service delivery"]
+          "keywords": [
+            "E-Governance",
+            "service delivery"
+          ]
         },
         {
           "id": "ict_eg_010",
@@ -1290,7 +1572,10 @@
           "explanation": "NOCOPO was developed for open contracting and electronic procurement processes in Nigeria [51, 52].",
           "difficulty": "medium",
           "chapter": "E-Governance Systems",
-          "keywords": ["NOCOPO", "e-procurement"]
+          "keywords": [
+            "NOCOPO",
+            "e-procurement"
+          ]
         },
         {
           "id": "ict_eg_011",
@@ -1305,7 +1590,10 @@
           "explanation": "Geo-tagging for Project Monitoring adds GPS data to monitor federal projects [53].",
           "difficulty": "medium",
           "chapter": "E-Governance Initiatives",
-          "keywords": ["Geo-tagging", "Project Monitoring"]
+          "keywords": [
+            "Geo-tagging",
+            "Project Monitoring"
+          ]
         },
         {
           "id": "ict_eg_012",
@@ -1320,7 +1608,11 @@
           "explanation": "IPMIS was developed to manage pension records and eliminate ghost pensioners [54].",
           "difficulty": "medium",
           "chapter": "E-Governance Systems",
-          "keywords": ["IPMIS", "pensions", "ghost pensioners"]
+          "keywords": [
+            "IPMIS",
+            "pensions",
+            "ghost pensioners"
+          ]
         },
         {
           "id": "ict_eg_013",
@@ -1335,7 +1627,10 @@
           "explanation": "Servicom Dashboards and Digital Service Charters are used to monitor citizen feedback and service quality in MDAs [55].",
           "difficulty": "medium",
           "chapter": "E-Governance Initiatives",
-          "keywords": ["Servicom Dashboards", "Citizen feedback"]
+          "keywords": [
+            "Servicom Dashboards",
+            "Citizen feedback"
+          ]
         },
         {
           "id": "ict_eg_014",
@@ -1350,7 +1645,10 @@
           "explanation": "The National e-Government Masterplan guides the strategy for digitizing services and infrastructure deployment [56-58].",
           "difficulty": "hard",
           "chapter": "E-Governance Policy",
-          "keywords": ["E-Government Masterplan", "digitalization"]
+          "keywords": [
+            "E-Government Masterplan",
+            "digitalization"
+          ]
         },
         {
           "id": "ict_eg_015",
@@ -1365,7 +1663,11 @@
           "explanation": "CBT Examinations are used for promotion, recruitment, and verification, standardizing evaluation [48, 53].",
           "difficulty": "easy",
           "chapter": "E-Governance Initiatives",
-          "keywords": ["CBT", "Standardization", "Promotion Exams"]
+          "keywords": [
+            "CBT",
+            "Standardization",
+            "Promotion Exams"
+          ]
         },
         {
           "id": "ict_eg_016",
@@ -1380,7 +1682,10 @@
           "explanation": "The National Identification Number (NIN), managed by NIMC, provides a unified identity management system [59].",
           "difficulty": "medium",
           "chapter": "E-Governance Systems",
-          "keywords": ["NIN", "identity management"]
+          "keywords": [
+            "NIN",
+            "identity management"
+          ]
         },
         {
           "id": "ict_eg_017",
@@ -1395,7 +1700,11 @@
           "explanation": "The Head of the MDA (Permanent Secretary/CEO) certifies the accuracy of records for correct payment (PSR/IPPIS Practice) [60].",
           "difficulty": "medium",
           "chapter": "Rule 040102",
-          "keywords": ["IPPIS", "MDA Head", "accuracy"]
+          "keywords": [
+            "IPPIS",
+            "MDA Head",
+            "accuracy"
+          ]
         },
         {
           "id": "ict_eg_018",
@@ -1410,7 +1719,10 @@
           "explanation": "GIFMIS provides the platform for implementing the Treasury Single Account (TSA) [61].",
           "difficulty": "medium",
           "chapter": "E-Governance Systems",
-          "keywords": ["TSA", "GIFMIS"]
+          "keywords": [
+            "TSA",
+            "GIFMIS"
+          ]
         },
         {
           "id": "ict_eg_019",
@@ -1425,7 +1737,11 @@
           "explanation": "Section 38 provides for electronic procurement systems to enhance efficiency and transparency [62, 63].",
           "difficulty": "medium",
           "chapter": "PPA Section 38",
-          "keywords": ["E-Procurement", "transparency", "PPA Section 38"]
+          "keywords": [
+            "E-Procurement",
+            "transparency",
+            "PPA Section 38"
+          ]
         },
         {
           "id": "ict_eg_020",
@@ -1440,7 +1756,11 @@
           "explanation": "NITDA (National Information Technology Development Agency) promotes ICT policy and development [61, 64].",
           "difficulty": "easy",
           "chapter": "ICT Institutions",
-          "keywords": ["NITDA", "acronym", "ICT policy"]
+          "keywords": [
+            "NITDA",
+            "acronym",
+            "ICT policy"
+          ]
         },
         {
           "id": "ict_eg_021",
@@ -1455,7 +1775,10 @@
           "explanation": "The Nigerian Open Contracting Portal (NOCOPO) supports e-Procurement [65].",
           "difficulty": "medium",
           "chapter": "E-Governance Systems",
-          "keywords": ["NOCOPO", "e-Procurement"]
+          "keywords": [
+            "NOCOPO",
+            "e-Procurement"
+          ]
         },
         {
           "id": "ict_eg_022",
@@ -1470,7 +1793,10 @@
           "explanation": "The E-Government Master Plan lays out Nigeria's vision for Smart Government through ICT adoption [56].",
           "difficulty": "hard",
           "chapter": "E-Governance Policy",
-          "keywords": ["E-Government Master Plan", "Smart Government"]
+          "keywords": [
+            "E-Government Master Plan",
+            "Smart Government"
+          ]
         },
         {
           "id": "ict_eg_023",
@@ -1485,7 +1811,10 @@
           "explanation": "NICIS II supports electronic customs clearance and trade facilitation [66].",
           "difficulty": "medium",
           "chapter": "E-Governance Systems",
-          "keywords": ["NICIS II", "customs clearance"]
+          "keywords": [
+            "NICIS II",
+            "customs clearance"
+          ]
         },
         {
           "id": "ict_eg_024",
@@ -1500,7 +1829,10 @@
           "explanation": "IPPIS manages the personnel and payroll data crucial for controlling personnel emoluments [67, 68].",
           "difficulty": "medium",
           "chapter": "FR Budgeting",
-          "keywords": ["IPPIS", "Personnel Emoluments"]
+          "keywords": [
+            "IPPIS",
+            "Personnel Emoluments"
+          ]
         },
         {
           "id": "ict_eg_025",
@@ -1515,7 +1847,10 @@
           "explanation": "Digitization of Registry replaces manual filing with Electronic Document Management (ECM) to improve efficiency and record keeping [46, 47].",
           "difficulty": "medium",
           "chapter": "E-Governance Reforms",
-          "keywords": ["Digitization of Registry", "ECM"]
+          "keywords": [
+            "Digitization of Registry",
+            "ECM"
+          ]
         },
         {
           "id": "ict_eg_026",
@@ -1530,7 +1865,10 @@
           "explanation": "CBT (Computer-Based Test) platforms are used for online recruitment and promotion examinations [48, 69].",
           "difficulty": "medium",
           "chapter": "E-Governance Systems",
-          "keywords": ["CBT", "recruitment exams"]
+          "keywords": [
+            "CBT",
+            "recruitment exams"
+          ]
         },
         {
           "id": "ict_eg_027",
@@ -1545,7 +1883,11 @@
           "explanation": "The OHCSF agenda includes HRMIS, Enterprise Content Management (ECM), and digitization of records [47, 57].",
           "difficulty": "hard",
           "chapter": "E-Governance Policy",
-          "keywords": ["OHCSF Agenda", "HRMIS", "ECM"]
+          "keywords": [
+            "OHCSF Agenda",
+            "HRMIS",
+            "ECM"
+          ]
         },
         {
           "id": "ict_eg_028",
@@ -1560,7 +1902,10 @@
           "explanation": "IPMIS was developed to manage pension records and eliminate ghost pensioners [54].",
           "difficulty": "medium",
           "chapter": "E-Governance Systems",
-          "keywords": ["IPMIS", "pensions"]
+          "keywords": [
+            "IPMIS",
+            "pensions"
+          ]
         },
         {
           "id": "ict_eg_029",
@@ -1575,7 +1920,11 @@
           "explanation": "BVAS (Bimodal Voter Accreditation System) is used by INEC for voter authentication [65, 70, 71].",
           "difficulty": "medium",
           "chapter": "E-Governance Systems",
-          "keywords": ["BVAS", "elections", "acronym"]
+          "keywords": [
+            "BVAS",
+            "elections",
+            "acronym"
+          ]
         },
         {
           "id": "ict_eg_030",
@@ -1590,7 +1939,10 @@
           "explanation": "BVAS is used by INEC (Independent National Electoral Commission) [70].",
           "difficulty": "easy",
           "chapter": "ICT in Governance",
-          "keywords": ["BVAS", "INEC"]
+          "keywords": [
+            "BVAS",
+            "INEC"
+          ]
         },
         {
           "id": "ict_eg_031",
@@ -1605,7 +1957,10 @@
           "explanation": "Remita is a Nigerian payment gateway that facilitates electronic payments for government services [72].",
           "difficulty": "medium",
           "chapter": "E-Governance Services",
-          "keywords": ["Remita", "digital payments"]
+          "keywords": [
+            "Remita",
+            "digital payments"
+          ]
         },
         {
           "id": "ict_eg_032",
@@ -1620,7 +1975,10 @@
           "explanation": "E-Census is designed to improve accuracy and efficiency in Nigeria's population census [73].",
           "difficulty": "medium",
           "chapter": "E-Governance Initiatives",
-          "keywords": ["E-Census", "population census"]
+          "keywords": [
+            "E-Census",
+            "population census"
+          ]
         },
         {
           "id": "ict_eg_033",
@@ -1635,7 +1993,10 @@
           "explanation": "The Gov.ng portal provides citizens access to digital government services [50].",
           "difficulty": "medium",
           "chapter": "E-Governance Services",
-          "keywords": ["Gov.ng", "digital services"]
+          "keywords": [
+            "Gov.ng",
+            "digital services"
+          ]
         },
         {
           "id": "ict_eg_034",
@@ -1650,7 +2011,10 @@
           "explanation": "ERP integrates core business functions like HR, finance, and procurement [47, 74].",
           "difficulty": "medium",
           "chapter": "E-Governance Reforms",
-          "keywords": ["ERP", "Enterprise Resource Planning"]
+          "keywords": [
+            "ERP",
+            "Enterprise Resource Planning"
+          ]
         },
         {
           "id": "ict_eg_035",
@@ -1665,7 +2029,10 @@
           "explanation": "E-Health platforms support electronic medical records and health service delivery [75].",
           "difficulty": "medium",
           "chapter": "E-Governance Services",
-          "keywords": ["E-Health", "medical records"]
+          "keywords": [
+            "E-Health",
+            "medical records"
+          ]
         },
         {
           "id": "ict_eg_036",
@@ -1680,7 +2047,10 @@
           "explanation": "The Nigerian Communications Commission (NCC) regulates telecommunication services and drives broadband rollout [76, 77].",
           "difficulty": "easy",
           "chapter": "ICT Institutions",
-          "keywords": ["NCC", "broadband"]
+          "keywords": [
+            "NCC",
+            "broadband"
+          ]
         },
         {
           "id": "ict_eg_037",
@@ -1695,7 +2065,10 @@
           "explanation": "The BVN provides biometric identity verification for Nigerian bank accounts [78, 79].",
           "difficulty": "medium",
           "chapter": "E-Governance Systems",
-          "keywords": ["BVN", "bank accounts"]
+          "keywords": [
+            "BVN",
+            "bank accounts"
+          ]
         },
         {
           "id": "ict_eg_038",
@@ -1710,7 +2083,10 @@
           "explanation": "Mobile government applications provide access to public services via smartphones and tablets [80].",
           "difficulty": "medium",
           "chapter": "E-Governance Services",
-          "keywords": ["Mobile Apps", "e-governance"]
+          "keywords": [
+            "Mobile Apps",
+            "e-governance"
+          ]
         },
         {
           "id": "ict_eg_039",
@@ -1725,7 +2101,10 @@
           "explanation": "E-Court platforms allow digital case filing and management [81].",
           "difficulty": "medium",
           "chapter": "E-Governance Initiatives",
-          "keywords": ["E-Court", "justice delivery"]
+          "keywords": [
+            "E-Court",
+            "justice delivery"
+          ]
         },
         {
           "id": "ict_eg_040",
@@ -1740,7 +2119,10 @@
           "explanation": "GIFMIS is the integrated system used by the OAGF for financial management, accounting, and reporting [56, 61].",
           "difficulty": "medium",
           "chapter": "E-Governance Systems",
-          "keywords": ["GIFMIS", "OAGF"]
+          "keywords": [
+            "GIFMIS",
+            "OAGF"
+          ]
         },
         {
           "id": "ict_eg_041",
@@ -1755,7 +2137,10 @@
           "explanation": "The INEC Voter Enrolment Device (IVED) supports biometric voter registration electronically [73].",
           "difficulty": "medium",
           "chapter": "ICT in Elections",
-          "keywords": ["IVED", "voter registration"]
+          "keywords": [
+            "IVED",
+            "voter registration"
+          ]
         },
         {
           "id": "ict_eg_042",
@@ -1770,7 +2155,10 @@
           "explanation": "NOCOPO promotes transparency in Nigeria's public procurement [52, 65].",
           "difficulty": "medium",
           "chapter": "E-Procurement",
-          "keywords": ["NOCOPO", "procurement transparency"]
+          "keywords": [
+            "NOCOPO",
+            "procurement transparency"
+          ]
         },
         {
           "id": "ict_eg_043",
@@ -1785,7 +2173,10 @@
           "explanation": "NITDA drives ICT innovation and promotes policy [59, 61].",
           "difficulty": "easy",
           "chapter": "ICT Institutions",
-          "keywords": ["NITDA", "innovation"]
+          "keywords": [
+            "NITDA",
+            "innovation"
+          ]
         },
         {
           "id": "ict_eg_044",
@@ -1800,7 +2191,10 @@
           "explanation": "Service Charter Automation is designed to enable citizens to interact with MDAs online for service delivery [47].",
           "difficulty": "medium",
           "chapter": "E-Governance Reforms",
-          "keywords": ["Service Charter Automation", "service delivery"]
+          "keywords": [
+            "Service Charter Automation",
+            "service delivery"
+          ]
         },
         {
           "id": "ict_eg_045",
@@ -1815,7 +2209,10 @@
           "explanation": "CBT (Computer-Based Test) platforms are used for online recruitment examinations [69].",
           "difficulty": "medium",
           "chapter": "ICT in HR",
-          "keywords": ["CBT", "recruitment"]
+          "keywords": [
+            "CBT",
+            "recruitment"
+          ]
         },
         {
           "id": "ict_eg_046",
@@ -1830,7 +2227,10 @@
           "explanation": "The PEBEC portal simplifies regulatory processes and improves Nigeria's ease of doing business [80].",
           "difficulty": "medium",
           "chapter": "E-Governance Initiatives",
-          "keywords": ["PEBEC", "ease of doing business"]
+          "keywords": [
+            "PEBEC",
+            "ease of doing business"
+          ]
         },
         {
           "id": "ict_eg_047",
@@ -1845,7 +2245,11 @@
           "explanation": "The OHCSF issues circulars on digital reforms and systems implementation [82, 83].",
           "difficulty": "medium",
           "chapter": "ICT Administration",
-          "keywords": ["OHCSF", "circulars", "digital reforms"]
+          "keywords": [
+            "OHCSF",
+            "circulars",
+            "digital reforms"
+          ]
         },
         {
           "id": "ict_eg_048",
@@ -1860,7 +2264,10 @@
           "explanation": "E-Land Registry digitizes land records to improve transparency and reduce disputes [84].",
           "difficulty": "medium",
           "chapter": "E-Governance Initiatives",
-          "keywords": ["E-Land Registry", "land administration"]
+          "keywords": [
+            "E-Land Registry",
+            "land administration"
+          ]
         },
         {
           "id": "ict_eg_049",
@@ -1875,7 +2282,11 @@
           "explanation": "USPF promotes ICT access in underserved and rural communities across Nigeria [85].",
           "difficulty": "medium",
           "chapter": "ICT Policy",
-          "keywords": ["USPF", "inclusion", "rural access"]
+          "keywords": [
+            "USPF",
+            "inclusion",
+            "rural access"
+          ]
         },
         {
           "id": "ict_eg_050",
@@ -1890,7 +2301,10 @@
           "explanation": "Government Data Centers centralize the hosting of government applications [86].",
           "difficulty": "medium",
           "chapter": "E-Governance Initiatives",
-          "keywords": ["Data Centers", "centralization"]
+          "keywords": [
+            "Data Centers",
+            "centralization"
+          ]
         },
         {
           "id": "ict_eg_051",
@@ -1905,7 +2319,10 @@
           "explanation": "Rule 040102 mandates IPPIS placement within two months [43].",
           "difficulty": "medium",
           "chapter": "Rule 040102",
-          "keywords": ["IPPIS", "Rule 040102"]
+          "keywords": [
+            "IPPIS",
+            "Rule 040102"
+          ]
         },
         {
           "id": "ict_eg_052",
@@ -1920,7 +2337,10 @@
           "explanation": "Digital signatures enhance authentication and security by verifying the sender's identity and file integrity [87].",
           "difficulty": "easy",
           "chapter": "ICT Security",
-          "keywords": ["Digital Signatures", "Authentication"]
+          "keywords": [
+            "Digital Signatures",
+            "Authentication"
+          ]
         },
         {
           "id": "ict_eg_053",
@@ -1935,7 +2355,10 @@
           "explanation": "The Nigerian Communications Commission (NCC) regulates telecom operators [76, 88].",
           "difficulty": "easy",
           "chapter": "ICT Institutions",
-          "keywords": ["NCC", "telecoms"]
+          "keywords": [
+            "NCC",
+            "telecoms"
+          ]
         },
         {
           "id": "ict_eg_054",
@@ -1950,7 +2373,10 @@
           "explanation": "The e-Government Master Plan aims to digitize services, automate processes, and ensure secure cloud infrastructure [57, 58].",
           "difficulty": "medium",
           "chapter": "ICT Governance",
-          "keywords": ["E-Government Master Plan", "Digital services"]
+          "keywords": [
+            "E-Government Master Plan",
+            "Digital services"
+          ]
         },
         {
           "id": "ict_eg_055",
@@ -1965,7 +2391,10 @@
           "explanation": "GIFMIS provides the platform for implementing the Treasury Single Account (TSA) in Nigeria [61].",
           "difficulty": "medium",
           "chapter": "ICT in Finance",
-          "keywords": ["TSA", "GIFMIS"]
+          "keywords": [
+            "TSA",
+            "GIFMIS"
+          ]
         },
         {
           "id": "ict_eg_056",
@@ -1980,7 +2409,10 @@
           "explanation": "Section 38 provides for electronic procurement systems to enhance efficiency and transparency [62, 63].",
           "difficulty": "medium",
           "chapter": "PPA Section 38",
-          "keywords": ["E-procurement", "PPA Section 38"]
+          "keywords": [
+            "E-procurement",
+            "PPA Section 38"
+          ]
         },
         {
           "id": "ict_eg_057",
@@ -1995,7 +2427,10 @@
           "explanation": "The Unified Personnel Database avoids duplication and ensures accurate postings [49].",
           "difficulty": "medium",
           "chapter": "E-Governance Reforms",
-          "keywords": ["Unified Personnel Database", "postings"]
+          "keywords": [
+            "Unified Personnel Database",
+            "postings"
+          ]
         },
         {
           "id": "ict_eg_058",
@@ -2010,7 +2445,10 @@
           "explanation": "Rule 070105 defines the Categories of courses of instruction (A-F), including short-term online courses (E) [89, 90].",
           "difficulty": "medium",
           "chapter": "Rule 070105",
-          "keywords": ["Training categories", "Rule 070105"]
+          "keywords": [
+            "Training categories",
+            "Rule 070105"
+          ]
         },
         {
           "id": "ict_eg_059",
@@ -2025,7 +2463,10 @@
           "explanation": "The Nigeria Immigration Service (NIS) Portal facilitates online passport applications [91].",
           "difficulty": "medium",
           "chapter": "E-Governance Services",
-          "keywords": ["NIS Portal", "passport applications"]
+          "keywords": [
+            "NIS Portal",
+            "passport applications"
+          ]
         },
         {
           "id": "ict_eg_060",
@@ -2040,7 +2481,10 @@
           "explanation": "NITDA promotes ICT policy and monitors its implementation [61, 64].",
           "difficulty": "easy",
           "chapter": "ICT Institutions",
-          "keywords": ["NITDA", "ICT policy"]
+          "keywords": [
+            "NITDA",
+            "ICT policy"
+          ]
         },
         {
           "id": "ict_eg_061",
@@ -2055,7 +2499,10 @@
           "explanation": "The E-Government Master Plan lays out Nigeria's vision for Smart Government through ICT adoption [56].",
           "difficulty": "hard",
           "chapter": "E-Governance Policy",
-          "keywords": ["Smart Government", "E-Government Master Plan"]
+          "keywords": [
+            "Smart Government",
+            "E-Government Master Plan"
+          ]
         },
         {
           "id": "ict_eg_062",
@@ -2070,7 +2517,11 @@
           "explanation": "IPPIS is personnel/payroll focused, while GIFMIS is for integrated budget execution and financial reporting [41].",
           "difficulty": "medium",
           "chapter": "E-Governance Systems",
-          "keywords": ["IPPIS", "GIFMIS", "comparison"]
+          "keywords": [
+            "IPPIS",
+            "GIFMIS",
+            "comparison"
+          ]
         },
         {
           "id": "ict_eg_063",
@@ -2085,7 +2536,10 @@
           "explanation": "Servicom Dashboards monitor citizen feedback and service quality [55].",
           "difficulty": "medium",
           "chapter": "E-Governance Services",
-          "keywords": ["Servicom Dashboards", "service quality"]
+          "keywords": [
+            "Servicom Dashboards",
+            "service quality"
+          ]
         },
         {
           "id": "ict_eg_064",
@@ -2100,7 +2554,10 @@
           "explanation": "NITDA issues guidelines and standards for public sector ICT [64].",
           "difficulty": "easy",
           "chapter": "ICT Institutions",
-          "keywords": ["NITDA", "standards"]
+          "keywords": [
+            "NITDA",
+            "standards"
+          ]
         },
         {
           "id": "ict_eg_065",
@@ -2115,7 +2572,10 @@
           "explanation": "E-Land Registry digitizes land records [84].",
           "difficulty": "medium",
           "chapter": "E-Governance Initiatives",
-          "keywords": ["E-Land Registry", "digitization"]
+          "keywords": [
+            "E-Land Registry",
+            "digitization"
+          ]
         },
         {
           "id": "ict_eg_066",
@@ -2130,7 +2590,11 @@
           "explanation": "Online verification is used for pensioners, civil servants, and vendor registration [48].",
           "difficulty": "medium",
           "chapter": "E-Governance Initiatives",
-          "keywords": ["Online Verification Portals", "pensioners", "vendors"]
+          "keywords": [
+            "Online Verification Portals",
+            "pensioners",
+            "vendors"
+          ]
         },
         {
           "id": "ict_eg_067",
@@ -2145,7 +2609,10 @@
           "explanation": "The Nigeria ICT Policy 2012 promotes ICT development and application in governance [92].",
           "difficulty": "medium",
           "chapter": "ICT Policy",
-          "keywords": ["ICT Policy 2012", "development"]
+          "keywords": [
+            "ICT Policy 2012",
+            "development"
+          ]
         },
         {
           "id": "ict_eg_068",
@@ -2160,7 +2627,10 @@
           "explanation": "CBT-Based Promotion Exams standardize evaluation across cadres [53].",
           "difficulty": "easy",
           "chapter": "E-Governance Initiatives",
-          "keywords": ["CBT", "standardization"]
+          "keywords": [
+            "CBT",
+            "standardization"
+          ]
         },
         {
           "id": "ict_eg_069",
@@ -2175,7 +2645,10 @@
           "explanation": "Document Scanning and Archiving Projects convert paper records to digital archives [53].",
           "difficulty": "medium",
           "chapter": "E-Governance Initiatives",
-          "keywords": ["Document Scanning", "digital archives"]
+          "keywords": [
+            "Document Scanning",
+            "digital archives"
+          ]
         },
         {
           "id": "ict_eg_070",
@@ -2190,7 +2663,10 @@
           "explanation": "Cloud Migration moves email and document services to cloud platforms (centralized hosting) [55, 57].",
           "difficulty": "medium",
           "chapter": "E-Governance Initiatives",
-          "keywords": ["Cloud Migration", "hosting platforms"]
+          "keywords": [
+            "Cloud Migration",
+            "hosting platforms"
+          ]
         },
         {
           "id": "ict_eg_071",
@@ -2205,7 +2681,10 @@
           "explanation": "NOCOPO supports e-Procurement [51, 52].",
           "difficulty": "medium",
           "chapter": "E-Governance Systems",
-          "keywords": ["NOCOPO", "e-Procurement"]
+          "keywords": [
+            "NOCOPO",
+            "e-Procurement"
+          ]
         },
         {
           "id": "ict_eg_072",
@@ -2220,7 +2699,10 @@
           "explanation": "The CBN Cashless Policy promotes electronic transactions and reduces reliance on physical cash [78, 93].",
           "difficulty": "medium",
           "chapter": "ICT Initiatives",
-          "keywords": ["Cashless Policy", "electronic transactions"]
+          "keywords": [
+            "Cashless Policy",
+            "electronic transactions"
+          ]
         },
         {
           "id": "ict_eg_073",
@@ -2235,7 +2717,11 @@
           "explanation": "The Director (HRM) is responsible for ensuring staff records are completed and submitted to the Pension Fund Administrator/National Pension Commission (Rule 020209) [94].",
           "difficulty": "medium",
           "chapter": "Rule 020209",
-          "keywords": ["HRM", "Pension", "staff records"]
+          "keywords": [
+            "HRM",
+            "Pension",
+            "staff records"
+          ]
         },
         {
           "id": "ict_eg_074",
@@ -2250,7 +2736,11 @@
           "explanation": "E-M&E systems track progress on government programs and projects in real time [95].",
           "difficulty": "medium",
           "chapter": "ICT in Governance",
-          "keywords": ["E-M&E", "monitoring", "evaluation"]
+          "keywords": [
+            "E-M&E",
+            "monitoring",
+            "evaluation"
+          ]
         },
         {
           "id": "ict_eg_075",
@@ -2265,14 +2755,17 @@
           "explanation": "The E-Government Master Plan emphasizes secure cloud infrastructure deployment [57, 58].",
           "difficulty": "medium",
           "chapter": "E-Governance Policy",
-          "keywords": ["Cloud Migration", "infrastructure"]
+          "keywords": [
+            "Cloud Migration",
+            "infrastructure"
+          ]
         }
       ]
     },
     {
       "id": "ict_security",
-      "name": "3. Digital Security and Cybersecurity",
-      "description": "Cybersecurity measures, data protection (NDPR), threats (phishing, malware), and compliance.",
+      "name": "Digital Security & Cybersecurity",
+      "description": "Security controls, cyber risk, and protection practices.",
       "questions": [
         {
           "id": "ict_sec_001",
@@ -2287,7 +2780,10 @@
           "explanation": "Cyber security protects ICT systems, networks, and data from unauthorized access or attacks [96, 97].",
           "difficulty": "easy",
           "chapter": "ICT Security",
-          "keywords": ["cybersecurity", "data protection"]
+          "keywords": [
+            "cybersecurity",
+            "data protection"
+          ]
         },
         {
           "id": "ict_sec_002",
@@ -2302,7 +2798,10 @@
           "explanation": "A firewall acts as a barrier to control network traffic and prevent unauthorized access [33, 97].",
           "difficulty": "easy",
           "chapter": "ICT Security",
-          "keywords": ["Firewall", "network security"]
+          "keywords": [
+            "Firewall",
+            "network security"
+          ]
         },
         {
           "id": "ict_sec_003",
@@ -2317,7 +2816,10 @@
           "explanation": "Phishing is a cybercrime method where attackers impersonate trustworthy entities to steal sensitive data [22, 24, 96].",
           "difficulty": "easy",
           "chapter": "ICT Security",
-          "keywords": ["Phishing", "cybercrime"]
+          "keywords": [
+            "Phishing",
+            "cybercrime"
+          ]
         },
         {
           "id": "ict_sec_004",
@@ -2332,7 +2834,10 @@
           "explanation": "Patching refers to applying updates to software to fix security vulnerabilities [98].",
           "difficulty": "medium",
           "chapter": "ICT Security",
-          "keywords": ["Patching", "vulnerabilities"]
+          "keywords": [
+            "Patching",
+            "vulnerabilities"
+          ]
         },
         {
           "id": "ict_sec_005",
@@ -2347,7 +2852,10 @@
           "explanation": "Encryption is a core method of data protection, securing official documents from unauthorized access [28, 99, 100].",
           "difficulty": "medium",
           "chapter": "ICT Security",
-          "keywords": ["Encryption", "data protection"]
+          "keywords": [
+            "Encryption",
+            "data protection"
+          ]
         },
         {
           "id": "ict_sec_006",
@@ -2362,7 +2870,10 @@
           "explanation": "A strong password includes a mix of characters to enhance security and prevent unauthorized access [100, 101].",
           "difficulty": "easy",
           "chapter": "ICT Security",
-          "keywords": ["Password security", "strong password"]
+          "keywords": [
+            "Password security",
+            "strong password"
+          ]
         },
         {
           "id": "ict_sec_007",
@@ -2377,7 +2888,10 @@
           "explanation": "Malware refers to harmful software such as viruses, worms, and trojans [39, 102].",
           "difficulty": "easy",
           "chapter": "ICT Security",
-          "keywords": ["Malware", "malicious software"]
+          "keywords": [
+            "Malware",
+            "malicious software"
+          ]
         },
         {
           "id": "ict_sec_008",
@@ -2392,7 +2906,10 @@
           "explanation": "The Cybercrime Act 2015 addresses cybercrimes such as hacking, identity theft, and cyber fraud [103, 104].",
           "difficulty": "medium",
           "chapter": "ICT Law",
-          "keywords": ["Cybercrime Act 2015", "fraud"]
+          "keywords": [
+            "Cybercrime Act 2015",
+            "fraud"
+          ]
         },
         {
           "id": "ict_sec_009",
@@ -2407,7 +2924,10 @@
           "explanation": "Data backup ensures copies of data are available in case of system failure [30, 105].",
           "difficulty": "easy",
           "chapter": "ICT Security",
-          "keywords": ["Data backup", "system failure"]
+          "keywords": [
+            "Data backup",
+            "system failure"
+          ]
         },
         {
           "id": "ict_sec_010",
@@ -2422,7 +2942,10 @@
           "explanation": "The Nigeria Data Protection Regulation (NDPR) mandates safe handling of personal digital data [106].",
           "difficulty": "medium",
           "chapter": "ICT Policy",
-          "keywords": ["NDPR", "data protection"]
+          "keywords": [
+            "NDPR",
+            "data protection"
+          ]
         },
         {
           "id": "ict_sec_011",
@@ -2437,7 +2960,10 @@
           "explanation": "Digital signature software ensures documents are signed securely, verifying the sender's identity and file integrity [87, 107].",
           "difficulty": "medium",
           "chapter": "ICT Security",
-          "keywords": ["Digital Signatures", "Authentication"]
+          "keywords": [
+            "Digital Signatures",
+            "Authentication"
+          ]
         },
         {
           "id": "ict_sec_012",
@@ -2452,7 +2978,10 @@
           "explanation": "Multi-Factor Authentication (MFA) or 2FA strengthens security by requiring a second verification method [30].",
           "difficulty": "easy",
           "chapter": "ICT Security",
-          "keywords": ["2FA", "Multi-Factor Authentication"]
+          "keywords": [
+            "2FA",
+            "Multi-Factor Authentication"
+          ]
         },
         {
           "id": "ict_sec_013",
@@ -2467,7 +2996,10 @@
           "explanation": "Breaches of data protection laws can lead to significant regulatory fines and reputational damage (Implied by NDPR enforcement agency setup) [108].",
           "difficulty": "medium",
           "chapter": "ICT Governance",
-          "keywords": ["NDPR breach", "fines"]
+          "keywords": [
+            "NDPR breach",
+            "fines"
+          ]
         },
         {
           "id": "ict_sec_014",
@@ -2482,7 +3014,10 @@
           "explanation": "Access control prevents unauthorized persons from copying, modifying, or accessing sensitive files [109].",
           "difficulty": "medium",
           "chapter": "ICT Security",
-          "keywords": ["Access Control", "file protection"]
+          "keywords": [
+            "Access Control",
+            "file protection"
+          ]
         },
         {
           "id": "ict_sec_015",
@@ -2497,7 +3032,10 @@
           "explanation": "The NDPC enforces data protection standards [39, 55].",
           "difficulty": "medium",
           "chapter": "ICT Institutions",
-          "keywords": ["NDPC", "data protection"]
+          "keywords": [
+            "NDPC",
+            "data protection"
+          ]
         },
         {
           "id": "ict_sec_016",
@@ -2512,7 +3050,10 @@
           "explanation": "Backup and recovery are essential for business continuity in case of data loss due to hardware failure, cyberattack, or human error [30].",
           "difficulty": "easy",
           "chapter": "ICT Security",
-          "keywords": ["Data loss", "disaster recovery"]
+          "keywords": [
+            "Data loss",
+            "disaster recovery"
+          ]
         },
         {
           "id": "ict_sec_017",
@@ -2527,7 +3068,10 @@
           "explanation": "NDPC (Nigeria Data Protection Commission) enforces data privacy [39, 74].",
           "difficulty": "easy",
           "chapter": "ICT Acronyms",
-          "keywords": ["NDPC", "acronym"]
+          "keywords": [
+            "NDPC",
+            "acronym"
+          ]
         },
         {
           "id": "ict_sec_018",
@@ -2542,7 +3086,10 @@
           "explanation": "Ransomware is malicious software that encrypts files and demands payment (part of malware classification) [102].",
           "difficulty": "easy",
           "chapter": "Cybersecurity",
-          "keywords": ["Ransomware", "malware"]
+          "keywords": [
+            "Ransomware",
+            "malware"
+          ]
         },
         {
           "id": "ict_sec_019",
@@ -2557,7 +3104,10 @@
           "explanation": "An Insider Threat refers to a security risk originating from within the organization, often involving authorized staff misuse [108].",
           "difficulty": "medium",
           "chapter": "ICT Security",
-          "keywords": ["Insider Threat", "security risk"]
+          "keywords": [
+            "Insider Threat",
+            "security risk"
+          ]
         },
         {
           "id": "ict_sec_020",
@@ -2572,7 +3122,10 @@
           "explanation": "Data integrity checks prevent unauthorized modifications to sensitive files [110].",
           "difficulty": "medium",
           "chapter": "ICT Security",
-          "keywords": ["Data Integrity Checks", "modification prevention"]
+          "keywords": [
+            "Data Integrity Checks",
+            "modification prevention"
+          ]
         },
         {
           "id": "ict_sec_021",
@@ -2587,7 +3140,10 @@
           "explanation": "Training on Cyber Hygiene builds awareness against phishing and malware [111].",
           "difficulty": "easy",
           "chapter": "ICT Initiatives",
-          "keywords": ["Cyber hygiene", "Staff awareness"]
+          "keywords": [
+            "Cyber hygiene",
+            "Staff awareness"
+          ]
         },
         {
           "id": "ict_sec_022",
@@ -2602,7 +3158,10 @@
           "explanation": "Encryption converts data into a secure format, readable only with the correct key [28, 100].",
           "difficulty": "easy",
           "chapter": "ICT Security",
-          "keywords": ["Encryption", "data protection"]
+          "keywords": [
+            "Encryption",
+            "data protection"
+          ]
         },
         {
           "id": "ict_sec_023",
@@ -2617,7 +3176,10 @@
           "explanation": "SSL/TLS (Secure Sockets Layer/Transport Layer Security) protocols are used for securing data transmitted over the internet [20].",
           "difficulty": "medium",
           "chapter": "ICT Fundamentals",
-          "keywords": ["SSL/TLS", "HTTPS"]
+          "keywords": [
+            "SSL/TLS",
+            "HTTPS"
+          ]
         },
         {
           "id": "ict_sec_024",
@@ -2632,7 +3194,10 @@
           "explanation": "DoS (Denial of Service) floods systems to cause unavailability [19, 108].",
           "difficulty": "easy",
           "chapter": "Cybersecurity",
-          "keywords": ["DoS", "Denial of Service"]
+          "keywords": [
+            "DoS",
+            "Denial of Service"
+          ]
         },
         {
           "id": "ict_sec_025",
@@ -2647,7 +3212,10 @@
           "explanation": "Malware refers to harmful software such as viruses, worms, and trojans [102].",
           "difficulty": "easy",
           "chapter": "ICT Security",
-          "keywords": ["Malware", "acronym"]
+          "keywords": [
+            "Malware",
+            "acronym"
+          ]
         },
         {
           "id": "ict_sec_026",
@@ -2662,7 +3230,10 @@
           "explanation": "User authentication prevents unauthorized system access [112].",
           "difficulty": "easy",
           "chapter": "ICT Security",
-          "keywords": ["User authentication", "security"]
+          "keywords": [
+            "User authentication",
+            "security"
+          ]
         },
         {
           "id": "ict_sec_027",
@@ -2677,7 +3248,10 @@
           "explanation": "The Cybercrime Act 2015 requires service providers to retain traffic data for national security [66].",
           "difficulty": "hard",
           "chapter": "ICT Law",
-          "keywords": ["Cybercrime Act", "data retention"]
+          "keywords": [
+            "Cybercrime Act",
+            "data retention"
+          ]
         },
         {
           "id": "ict_sec_028",
@@ -2692,7 +3266,10 @@
           "explanation": "A 'zero-day' refers to a vulnerability with no known fix yet [40].",
           "difficulty": "medium",
           "chapter": "Cybersecurity",
-          "keywords": ["Zero-day", "vulnerability"]
+          "keywords": [
+            "Zero-day",
+            "vulnerability"
+          ]
         },
         {
           "id": "ict_sec_029",
@@ -2707,7 +3284,10 @@
           "explanation": "PKI (Public Key Infrastructure) is a set of roles, policies, and procedures needed to create, manage, distribute, use, store, and revoke digital certificates.",
           "difficulty": "hard",
           "chapter": "ICT Security",
-          "keywords": ["PKI", "digital certificates"]
+          "keywords": [
+            "PKI",
+            "digital certificates"
+          ]
         },
         {
           "id": "ict_sec_030",
@@ -2722,7 +3302,10 @@
           "explanation": "Segregation of Duties is the first control measure against financial fraud [113, 114].",
           "difficulty": "medium",
           "chapter": "FR Internal Controls",
-          "keywords": ["Segregation of Duties", "fraud control"]
+          "keywords": [
+            "Segregation of Duties",
+            "fraud control"
+          ]
         },
         {
           "id": "ict_sec_031",
@@ -2737,7 +3320,10 @@
           "explanation": "Misuse of government property (including IT resources) for private business is serious/gross misconduct [115, 116].",
           "difficulty": "medium",
           "chapter": "CSH Discipline",
-          "keywords": ["Gross misconduct", "Misuse of resources"]
+          "keywords": [
+            "Gross misconduct",
+            "Misuse of resources"
+          ]
         },
         {
           "id": "ict_sec_032",
@@ -2752,7 +3338,10 @@
           "explanation": "Writing down passwords risks disclosure to unauthorized persons (Poor password practice) [100].",
           "difficulty": "easy",
           "chapter": "ICT Security",
-          "keywords": ["Password risk", "unauthorized access"]
+          "keywords": [
+            "Password risk",
+            "unauthorized access"
+          ]
         },
         {
           "id": "ict_sec_033",
@@ -2767,7 +3356,10 @@
           "explanation": "MFA strengthens access security in government systems [30].",
           "difficulty": "easy",
           "chapter": "ICT Security",
-          "keywords": ["MFA", "security"]
+          "keywords": [
+            "MFA",
+            "security"
+          ]
         },
         {
           "id": "ict_sec_034",
@@ -2782,7 +3374,10 @@
           "explanation": "Hacking is an ICT threat where attackers gain unauthorized access to systems [117].",
           "difficulty": "medium",
           "chapter": "ICT Security",
-          "keywords": ["Hacking", "cybersecurity"]
+          "keywords": [
+            "Hacking",
+            "cybersecurity"
+          ]
         },
         {
           "id": "ict_sec_035",
@@ -2797,7 +3392,10 @@
           "explanation": "Antivirus software detects and removes malicious software.",
           "difficulty": "easy",
           "chapter": "ICT Security",
-          "keywords": ["Antivirus", "Malware"]
+          "keywords": [
+            "Antivirus",
+            "Malware"
+          ]
         },
         {
           "id": "ict_sec_036",
@@ -2812,7 +3410,10 @@
           "explanation": "NDPR stands for Nigeria Data Protection Regulation [106].",
           "difficulty": "easy",
           "chapter": "ICT Policy",
-          "keywords": ["NDPR", "acronym"]
+          "keywords": [
+            "NDPR",
+            "acronym"
+          ]
         },
         {
           "id": "ict_sec_037",
@@ -2827,7 +3428,10 @@
           "explanation": "Access Control prevents unauthorized copying [109].",
           "difficulty": "medium",
           "chapter": "ICT Security",
-          "keywords": ["Access Control", "file protection"]
+          "keywords": [
+            "Access Control",
+            "file protection"
+          ]
         },
         {
           "id": "ict_sec_038",
@@ -2842,7 +3446,10 @@
           "explanation": "The Cybercrime Act 2015 requires service providers to retain traffic data for national security [66].",
           "difficulty": "hard",
           "chapter": "ICT Law",
-          "keywords": ["Cybercrime Act", "data retention"]
+          "keywords": [
+            "Cybercrime Act",
+            "data retention"
+          ]
         },
         {
           "id": "ict_sec_039",
@@ -2857,7 +3464,10 @@
           "explanation": "The EFCC investigates economic and financial crimes, including digital fraud [118].",
           "difficulty": "easy",
           "chapter": "ICT Law",
-          "keywords": ["EFCC", "financial crimes"]
+          "keywords": [
+            "EFCC",
+            "financial crimes"
+          ]
         },
         {
           "id": "ict_sec_040",
@@ -2872,7 +3482,10 @@
           "explanation": "Data backup and redundancy ensure data recoverability [105, 119].",
           "difficulty": "easy",
           "chapter": "ICT Security",
-          "keywords": ["Data backup", "redundancy"]
+          "keywords": [
+            "Data backup",
+            "redundancy"
+          ]
         },
         {
           "id": "ict_sec_041",
@@ -2887,7 +3500,10 @@
           "explanation": "Data redundancy ensures critical information is stored in multiple locations for safety [119].",
           "difficulty": "medium",
           "chapter": "ICT Security",
-          "keywords": ["Data Redundancy", "multiple locations"]
+          "keywords": [
+            "Data Redundancy",
+            "multiple locations"
+          ]
         },
         {
           "id": "ict_sec_042",
@@ -2902,7 +3518,10 @@
           "explanation": "Disclosure of sensitive government information is a breach of the Official Secrets Act [120-122].",
           "difficulty": "medium",
           "chapter": "CSH Secrecy",
-          "keywords": ["Official Secrets Act", "Breach of Secrecy"]
+          "keywords": [
+            "Official Secrets Act",
+            "Breach of Secrecy"
+          ]
         },
         {
           "id": "ict_sec_043",
@@ -2917,7 +3536,10 @@
           "explanation": "Post-audit functions involve checks after financial commitment is finalized.",
           "difficulty": "medium",
           "chapter": "Audits – Types",
-          "keywords": ["Post-audit", "Financial commitment"]
+          "keywords": [
+            "Post-audit",
+            "Financial commitment"
+          ]
         },
         {
           "id": "ict_sec_044",
@@ -2932,7 +3554,11 @@
           "explanation": "A proxy server acts as a gateway between users and the internet for filtering and control [5].",
           "difficulty": "medium",
           "chapter": "ICT Security",
-          "keywords": ["Proxy Server", "filtering", "gateway"]
+          "keywords": [
+            "Proxy Server",
+            "filtering",
+            "gateway"
+          ]
         },
         {
           "id": "ict_sec_045",
@@ -2947,7 +3573,10 @@
           "explanation": "No documentary evidence shall be used against the Officer unless he has previously been supplied with a copy thereof or given open access thereto (Rule 100307(vii)) [123].",
           "difficulty": "medium",
           "chapter": "Rule 100307(vii)",
-          "keywords": ["Inquiry", "access to documents"]
+          "keywords": [
+            "Inquiry",
+            "access to documents"
+          ]
         },
         {
           "id": "ict_sec_046",
@@ -2962,7 +3591,10 @@
           "explanation": "SFTP (Secure File Transfer Protocol) is used for secure file transfer [124].",
           "difficulty": "medium",
           "chapter": "ICT Fundamentals",
-          "keywords": ["SFTP", "protocol"]
+          "keywords": [
+            "SFTP",
+            "protocol"
+          ]
         },
         {
           "id": "ict_sec_047",
@@ -2977,7 +3609,10 @@
           "explanation": "Section 57 prohibits conflict of interest and mandates disclosure of potential conflicts by officials [121, 125].",
           "difficulty": "medium",
           "chapter": "PPA Section 57",
-          "keywords": ["conflict of interest", "PPA Section 57"]
+          "keywords": [
+            "conflict of interest",
+            "PPA Section 57"
+          ]
         },
         {
           "id": "ict_sec_048",
@@ -2992,7 +3627,10 @@
           "explanation": "Hacking is an ICT threat where attackers gain unauthorized access to systems [117].",
           "difficulty": "medium",
           "chapter": "ICT Security",
-          "keywords": ["Hacking", "cybersecurity"]
+          "keywords": [
+            "Hacking",
+            "cybersecurity"
+          ]
         },
         {
           "id": "ict_sec_049",
@@ -3007,7 +3645,10 @@
           "explanation": "ACLs specify which users or systems are allowed to access network resources (Implied by standard security practices).",
           "difficulty": "medium",
           "chapter": "ICT Security",
-          "keywords": ["Access Control Lists", "security"]
+          "keywords": [
+            "Access Control Lists",
+            "security"
+          ]
         },
         {
           "id": "ict_sec_050",
@@ -3022,7 +3663,10 @@
           "explanation": "The loss of funds must be communicated immediately to the Police, Auditor-General, and Accountant-General [126].",
           "difficulty": "medium",
           "chapter": "FR Audits",
-          "keywords": ["Loss of funds", "reporting"]
+          "keywords": [
+            "Loss of funds",
+            "reporting"
+          ]
         },
         {
           "id": "ict_sec_051",
@@ -3037,7 +3681,10 @@
           "explanation": "Rule 020206 requires an applicant to be free from financial embarrassment [62].",
           "difficulty": "medium",
           "chapter": "Rule 020206",
-          "keywords": ["Financial embarrassment", "Rule 020206"]
+          "keywords": [
+            "Financial embarrassment",
+            "Rule 020206"
+          ]
         },
         {
           "id": "ict_sec_052",
@@ -3052,7 +3699,10 @@
           "explanation": "Habitual lateness is considered minor misconduct [127].",
           "difficulty": "medium",
           "chapter": "CSH Discipline",
-          "keywords": ["Minor misconduct", "lateness"]
+          "keywords": [
+            "Minor misconduct",
+            "lateness"
+          ]
         },
         {
           "id": "ict_sec_053",
@@ -3067,7 +3717,10 @@
           "explanation": "Data validation ensures that data is accurate, complete, and meets quality standards [128].",
           "difficulty": "medium",
           "chapter": "Data Quality",
-          "keywords": ["Data validation", "accuracy"]
+          "keywords": [
+            "Data validation",
+            "accuracy"
+          ]
         },
         {
           "id": "ict_sec_054",
@@ -3082,7 +3735,10 @@
           "explanation": "Section 58 prescribes imprisonment and fines for procurement-related fraud [129, 130].",
           "difficulty": "hard",
           "chapter": "PPA Section 58",
-          "keywords": ["Procurement fraud", "penalties"]
+          "keywords": [
+            "Procurement fraud",
+            "penalties"
+          ]
         },
         {
           "id": "ict_sec_055",
@@ -3097,7 +3753,10 @@
           "explanation": "The Cybercrime Act 2015 criminalizes online fraud [103, 104].",
           "difficulty": "medium",
           "chapter": "ICT Law",
-          "keywords": ["Cybercrime Act", "acronym"]
+          "keywords": [
+            "Cybercrime Act",
+            "acronym"
+          ]
         },
         {
           "id": "ict_sec_056",
@@ -3112,7 +3771,10 @@
           "explanation": "Non-repudiation ensures the sender cannot deny having sent the document, often provided by digital signatures [30].",
           "difficulty": "hard",
           "chapter": "ICT Security",
-          "keywords": ["Non-repudiation", "digital security"]
+          "keywords": [
+            "Non-repudiation",
+            "digital security"
+          ]
         },
         {
           "id": "ict_sec_057",
@@ -3127,7 +3789,10 @@
           "explanation": "The Official Secrets Act enforces secrecy requirements [121, 122].",
           "difficulty": "medium",
           "chapter": "CSH Secrecy",
-          "keywords": ["Official Secrets Act", "secrecy"]
+          "keywords": [
+            "Official Secrets Act",
+            "secrecy"
+          ]
         },
         {
           "id": "ict_sec_058",
@@ -3142,7 +3807,10 @@
           "explanation": "Segregation of Duties is the first line of defense against financial fraud [113, 114].",
           "difficulty": "easy",
           "chapter": "FR Internal Controls",
-          "keywords": ["Segregation of Duties", "fraud prevention"]
+          "keywords": [
+            "Segregation of Duties",
+            "fraud prevention"
+          ]
         },
         {
           "id": "ict_sec_059",
@@ -3157,7 +3825,10 @@
           "explanation": "A firewall acts as a barrier to control incoming and outgoing network traffic [34].",
           "difficulty": "medium",
           "chapter": "ICT Security",
-          "keywords": ["Firewall", "security"]
+          "keywords": [
+            "Firewall",
+            "security"
+          ]
         },
         {
           "id": "ict_sec_060",
@@ -3172,7 +3843,10 @@
           "explanation": "The Bank Verification Number (BVN) ensures accurate identification in banking services [79].",
           "difficulty": "easy",
           "chapter": "ICT in Finance",
-          "keywords": ["BVN", "banking"]
+          "keywords": [
+            "BVN",
+            "banking"
+          ]
         },
         {
           "id": "ict_sec_061",
@@ -3187,7 +3861,10 @@
           "explanation": "Antivirus software detects and removes malicious software (implied by security basics).",
           "difficulty": "easy",
           "chapter": "ICT Security",
-          "keywords": ["Antivirus", "Malware detection"]
+          "keywords": [
+            "Antivirus",
+            "Malware detection"
+          ]
         },
         {
           "id": "ict_sec_062",
@@ -3202,7 +3879,10 @@
           "explanation": "NDPC (Nigeria Data Protection Commission) enforces data protection standards [55].",
           "difficulty": "medium",
           "chapter": "ICT Institutions",
-          "keywords": ["NDPC", "acronym"]
+          "keywords": [
+            "NDPC",
+            "acronym"
+          ]
         },
         {
           "id": "ict_sec_063",
@@ -3217,7 +3897,10 @@
           "explanation": "Confidentiality ensures that data is only accessed by authorized individuals (Implied by security principles).",
           "difficulty": "easy",
           "chapter": "ICT Security",
-          "keywords": ["Confidentiality", "security principle"]
+          "keywords": [
+            "Confidentiality",
+            "security principle"
+          ]
         },
         {
           "id": "ict_sec_064",
@@ -3232,7 +3915,10 @@
           "explanation": "Password-protecting attachments helps secure confidential information from unauthorized access [131].",
           "difficulty": "medium",
           "chapter": "Secure Communication",
-          "keywords": ["Password protection", "security"]
+          "keywords": [
+            "Password protection",
+            "security"
+          ]
         },
         {
           "id": "ict_sec_065",
@@ -3247,7 +3933,10 @@
           "explanation": "Chapter 4 of the Civil Service Handbook emphasizes accountability in the utilization of government funds and resources [132, 133].",
           "difficulty": "medium",
           "chapter": "CSH Accountability",
-          "keywords": ["Accountability", "Chapter 4"]
+          "keywords": [
+            "Accountability",
+            "Chapter 4"
+          ]
         },
         {
           "id": "ict_sec_066",
@@ -3262,7 +3951,10 @@
           "explanation": "Fraud and falsification of records constitute gross misconduct, which can lead to dismissal [116, 134].",
           "difficulty": "medium",
           "chapter": "CSH Discipline",
-          "keywords": ["Gross misconduct", "falsification"]
+          "keywords": [
+            "Gross misconduct",
+            "falsification"
+          ]
         },
         {
           "id": "ict_sec_067",
@@ -3277,7 +3969,10 @@
           "explanation": "The Audit Trail provides a chronological record of transactions, allowing auditors to verify integrity and traceability [135, 136].",
           "difficulty": "easy",
           "chapter": "FR Audits",
-          "keywords": ["Audit Trail", "traceability"]
+          "keywords": [
+            "Audit Trail",
+            "traceability"
+          ]
         },
         {
           "id": "ict_sec_068",
@@ -3292,7 +3987,10 @@
           "explanation": "Multi-tasking, such as running email or treating files, is prohibited during virtual meetings (Rule 090204) [137].",
           "difficulty": "medium",
           "chapter": "Rule 090204",
-          "keywords": ["Virtual meetings", "multi-tasking"]
+          "keywords": [
+            "Virtual meetings",
+            "multi-tasking"
+          ]
         },
         {
           "id": "ict_sec_069",
@@ -3307,7 +4005,10 @@
           "explanation": "NITDA promotes ICT policy and monitors its implementation [61, 64].",
           "difficulty": "easy",
           "chapter": "ICT Institutions",
-          "keywords": ["NITDA", "ICT policy"]
+          "keywords": [
+            "NITDA",
+            "ICT policy"
+          ]
         },
         {
           "id": "ict_sec_070",
@@ -3322,7 +4023,10 @@
           "explanation": "Access Control prevents unauthorized copying [109].",
           "difficulty": "medium",
           "chapter": "ICT Security",
-          "keywords": ["Access Control", "file protection"]
+          "keywords": [
+            "Access Control",
+            "file protection"
+          ]
         },
         {
           "id": "ict_sec_071",
@@ -3337,7 +4041,10 @@
           "explanation": "A Firewall filters network traffic to block unauthorized access [34, 97].",
           "difficulty": "easy",
           "chapter": "ICT Security",
-          "keywords": ["Firewall", "network security"]
+          "keywords": [
+            "Firewall",
+            "network security"
+          ]
         },
         {
           "id": "ict_sec_072",
@@ -3352,7 +4059,10 @@
           "explanation": "Corruption and fraud are gross misconducts leading to dismissal and possible prosecution [127, 138].",
           "difficulty": "easy",
           "chapter": "CSH Discipline",
-          "keywords": ["Dismissal", "Gross misconduct"]
+          "keywords": [
+            "Dismissal",
+            "Gross misconduct"
+          ]
         },
         {
           "id": "ict_sec_073",
@@ -3367,7 +4077,10 @@
           "explanation": "SSL/TLS protocols are used for securing data transmitted over the internet [20].",
           "difficulty": "medium",
           "chapter": "ICT Fundamentals",
-          "keywords": ["SSL/TLS", "security protocol"]
+          "keywords": [
+            "SSL/TLS",
+            "security protocol"
+          ]
         },
         {
           "id": "ict_sec_074",
@@ -3382,7 +4095,10 @@
           "explanation": "The Cybercrime Act 2015 criminalizes online fraud [103, 104].",
           "difficulty": "medium",
           "chapter": "ICT Law",
-          "keywords": ["Cybercrime Act", "acronym"]
+          "keywords": [
+            "Cybercrime Act",
+            "acronym"
+          ]
         },
         {
           "id": "ict_sec_075",
@@ -3397,14 +4113,17 @@
           "explanation": "Major service-wide digital reforms require the highest-level approval, typically from the Federal Executive Council (FEC) (Implied by hierarchy of government approval).",
           "difficulty": "hard",
           "chapter": "ICT Governance",
-          "keywords": ["FEC approval", "digital systems"]
+          "keywords": [
+            "FEC approval",
+            "digital systems"
+          ]
         }
       ]
     },
     {
       "id": "ict_literacy_innovation",
-      "name": "4. Digital Literacy and Innovation",
-      "description": "Digital literacy skills, innovation strategies, collaboration, data analysis, and emerging technologies (AI, Cloud).",
+      "name": "Digital Literacy & Innovation",
+      "description": "Digital skills and innovation culture in public service.",
       "questions": [
         {
           "id": "ict_li_001",
@@ -3419,7 +4138,10 @@
           "explanation": "Digital exclusion is a challenge, not a benefit. ICT benefits governance by improving efficiency and transparency [139].",
           "difficulty": "medium",
           "chapter": "ICT Benefits",
-          "keywords": ["ICT benefits", "digital exclusion"]
+          "keywords": [
+            "ICT benefits",
+            "digital exclusion"
+          ]
         },
         {
           "id": "ict_li_002",
@@ -3434,7 +4156,10 @@
           "explanation": "ICT fosters transparency by making government data and processes accessible to citizens [140].",
           "difficulty": "medium",
           "chapter": "ICT Benefits",
-          "keywords": ["ICT", "transparency"]
+          "keywords": [
+            "ICT",
+            "transparency"
+          ]
         },
         {
           "id": "ict_li_003",
@@ -3449,7 +4174,10 @@
           "explanation": "Low broadband penetration in rural areas limits access to e-Governance platforms [141].",
           "difficulty": "medium",
           "chapter": "ICT Challenges",
-          "keywords": ["broadband penetration", "rural access"]
+          "keywords": [
+            "broadband penetration",
+            "rural access"
+          ]
         },
         {
           "id": "ict_li_004",
@@ -3464,7 +4192,10 @@
           "explanation": "Information literacy involves the ability to identify, locate, evaluate, and effectively use information [142].",
           "difficulty": "medium",
           "chapter": "Digital Literacy",
-          "keywords": ["information literacy", "evaluate information"]
+          "keywords": [
+            "information literacy",
+            "evaluate information"
+          ]
         },
         {
           "id": "ict_li_005",
@@ -3479,7 +4210,11 @@
           "explanation": "Chatbots use AI to provide automated, chat-based service delivery in governance [143].",
           "difficulty": "medium",
           "chapter": "ICT Innovations",
-          "keywords": ["Chatbots", "AI", "service delivery"]
+          "keywords": [
+            "Chatbots",
+            "AI",
+            "service delivery"
+          ]
         },
         {
           "id": "ict_li_006",
@@ -3494,7 +4229,10 @@
           "explanation": "Google Sheets enables real-time editing, sharing, and commenting by multiple users online [144].",
           "difficulty": "easy",
           "chapter": "Collaboration Tools",
-          "keywords": ["Google Sheets", "real-time editing"]
+          "keywords": [
+            "Google Sheets",
+            "real-time editing"
+          ]
         },
         {
           "id": "ict_li_007",
@@ -3509,7 +4247,10 @@
           "explanation": "Cloud collaboration allows users to share and edit documents in real time from any location [145].",
           "difficulty": "medium",
           "chapter": "Cloud Tools",
-          "keywords": ["Cloud collaboration", "teamwork"]
+          "keywords": [
+            "Cloud collaboration",
+            "teamwork"
+          ]
         },
         {
           "id": "ict_li_008",
@@ -3524,7 +4265,10 @@
           "explanation": "Big Data Analytics is used to process and analyze large datasets [141].",
           "difficulty": "hard",
           "chapter": "ICT Innovations",
-          "keywords": ["Big Data Analytics", "data analysis"]
+          "keywords": [
+            "Big Data Analytics",
+            "data analysis"
+          ]
         },
         {
           "id": "ict_li_009",
@@ -3539,7 +4283,10 @@
           "explanation": "Official government websites are authoritative sources for verified information and policies [146].",
           "difficulty": "medium",
           "chapter": "Information Sources",
-          "keywords": ["reliability", "government sources"]
+          "keywords": [
+            "reliability",
+            "government sources"
+          ]
         },
         {
           "id": "ict_li_010",
@@ -3554,7 +4301,11 @@
           "explanation": "Clarity and brevity are essential for ensuring messages are understood in digital platforms [18].",
           "difficulty": "easy",
           "chapter": "Online Communication Skills",
-          "keywords": ["conciseness", "clarity", "communication"]
+          "keywords": [
+            "conciseness",
+            "clarity",
+            "communication"
+          ]
         },
         {
           "id": "ict_li_011",
@@ -3569,7 +4320,10 @@
           "explanation": "Information literacy involves the ability to identify, locate, evaluate, and effectively use information [142].",
           "difficulty": "medium",
           "chapter": "Digital Literacy",
-          "keywords": ["Information Literacy", "skill"]
+          "keywords": [
+            "Information Literacy",
+            "skill"
+          ]
         },
         {
           "id": "ict_li_012",
@@ -3584,7 +4338,10 @@
           "explanation": "Digital communication involves the electronic exchange of information through digital devices and platforms [147].",
           "difficulty": "easy",
           "chapter": "Digital Literacy",
-          "keywords": ["Digital communication", "definition"]
+          "keywords": [
+            "Digital communication",
+            "definition"
+          ]
         },
         {
           "id": "ict_li_013",
@@ -3599,7 +4356,10 @@
           "explanation": "Emails allow delayed responses, making them asynchronous communication [128, 148].",
           "difficulty": "easy",
           "chapter": "Communication Modes",
-          "keywords": ["asynchronous communication", "Email"]
+          "keywords": [
+            "asynchronous communication",
+            "Email"
+          ]
         },
         {
           "id": "ict_li_014",
@@ -3614,7 +4374,10 @@
           "explanation": "Data redundancy ensures critical information is stored in multiple locations for safety and business continuity [119].",
           "difficulty": "medium",
           "chapter": "ICT Security",
-          "keywords": ["Data Redundancy", "backup"]
+          "keywords": [
+            "Data Redundancy",
+            "backup"
+          ]
         },
         {
           "id": "ict_li_015",
@@ -3629,7 +4392,10 @@
           "explanation": "Version tracking ensures accountability and transparency in document editing [149].",
           "difficulty": "medium",
           "chapter": "Document Management",
-          "keywords": ["Version history", "collaboration"]
+          "keywords": [
+            "Version history",
+            "collaboration"
+          ]
         },
         {
           "id": "ict_li_016",
@@ -3644,7 +4410,10 @@
           "explanation": "Netiquette means polite and respectful behavior on the internet [150].",
           "difficulty": "easy",
           "chapter": "Online Etiquette",
-          "keywords": ["netiquette", "online behavior"]
+          "keywords": [
+            "netiquette",
+            "online behavior"
+          ]
         },
         {
           "id": "ict_li_017",
@@ -3659,7 +4428,10 @@
           "explanation": "The BCC (Blind Carbon Copy) field lets you send a message copy without other recipients knowing [150].",
           "difficulty": "medium",
           "chapter": "Email Communication",
-          "keywords": ["BCC", "email privacy"]
+          "keywords": [
+            "BCC",
+            "email privacy"
+          ]
         },
         {
           "id": "ict_li_018",
@@ -3674,7 +4446,10 @@
           "explanation": "Digital tools streamline communication and teamwork, improving overall productivity [151].",
           "difficulty": "medium",
           "chapter": "Digital Collaboration",
-          "keywords": ["teamwork", "efficiency"]
+          "keywords": [
+            "teamwork",
+            "efficiency"
+          ]
         },
         {
           "id": "ict_li_019",
@@ -3689,7 +4464,10 @@
           "explanation": "Emojis and slang reduce professionalism and clarity in formal emails [152].",
           "difficulty": "easy",
           "chapter": "Email Etiquette",
-          "keywords": ["formal communication", "slang"]
+          "keywords": [
+            "formal communication",
+            "slang"
+          ]
         },
         {
           "id": "ict_li_020",
@@ -3704,7 +4482,11 @@
           "explanation": "Zoom and Teams are secure platforms for official virtual meetings and webinars [36, 37].",
           "difficulty": "medium",
           "chapter": "Virtual Collaboration",
-          "keywords": ["virtual meeting", "Zoom", "Teams"]
+          "keywords": [
+            "virtual meeting",
+            "Zoom",
+            "Teams"
+          ]
         },
         {
           "id": "ict_li_021",
@@ -3719,7 +4501,11 @@
           "explanation": "GIS is used for accurate mapping and spatial analysis [153].",
           "difficulty": "medium",
           "chapter": "ICT Innovations",
-          "keywords": ["GIS", "mapping", "resource planning"]
+          "keywords": [
+            "GIS",
+            "mapping",
+            "resource planning"
+          ]
         },
         {
           "id": "ict_li_022",
@@ -3734,7 +4520,10 @@
           "explanation": "Digital problem solving uses technology to identify and solve problems [154].",
           "difficulty": "medium",
           "chapter": "Digital Literacy",
-          "keywords": ["digital problem solving", "technology"]
+          "keywords": [
+            "digital problem solving",
+            "technology"
+          ]
         },
         {
           "id": "ict_li_023",
@@ -3749,7 +4538,10 @@
           "explanation": "Cloud Storage allows data to be stored across servers accessible via the internet [155].",
           "difficulty": "medium",
           "chapter": "ICT Innovations",
-          "keywords": ["Cloud Storage", "data"]
+          "keywords": [
+            "Cloud Storage",
+            "data"
+          ]
         },
         {
           "id": "ict_li_024",
@@ -3764,7 +4556,10 @@
           "explanation": "Low ICT literacy among workers remains a key challenge [156].",
           "difficulty": "medium",
           "chapter": "ICT Challenges",
-          "keywords": ["ICT literacy", "challenges"]
+          "keywords": [
+            "ICT literacy",
+            "challenges"
+          ]
         },
         {
           "id": "ict_li_025",
@@ -3779,7 +4574,10 @@
           "explanation": "Interrupting others (talking over) disrupts communication and violates etiquette [157].",
           "difficulty": "medium",
           "chapter": "Virtual Meeting Etiquette",
-          "keywords": ["virtual meetings", "etiquette"]
+          "keywords": [
+            "virtual meetings",
+            "etiquette"
+          ]
         },
         {
           "id": "ict_li_026",
@@ -3794,7 +4592,10 @@
           "explanation": "Meeting materials shall be circulated to participants at least 24 hours before the meeting (Rule 090203) [137].",
           "difficulty": "medium",
           "chapter": "Rule 090203",
-          "keywords": ["Virtual meetings", "24 hours"]
+          "keywords": [
+            "Virtual meetings",
+            "24 hours"
+          ]
         },
         {
           "id": "ict_li_027",
@@ -3809,7 +4610,10 @@
           "explanation": "E-M&E systems track progress on government programs and projects in real time [95].",
           "difficulty": "medium",
           "chapter": "ICT in Governance",
-          "keywords": ["E-M&E", "performance dashboards"]
+          "keywords": [
+            "E-M&E",
+            "performance dashboards"
+          ]
         },
         {
           "id": "ict_li_028",
@@ -3824,7 +4628,11 @@
           "explanation": "Tools like Trello and Asana help assign, monitor, and track tasks efficiently online [158, 159].",
           "difficulty": "medium",
           "chapter": "Team Coordination",
-          "keywords": ["Trello", "Asana", "task management"]
+          "keywords": [
+            "Trello",
+            "Asana",
+            "task management"
+          ]
         },
         {
           "id": "ict_li_029",
@@ -3839,7 +4647,10 @@
           "explanation": "Innovation is encouraged to improve efficiency and adapt to new challenges in governance [160].",
           "difficulty": "medium",
           "chapter": "CSH Innovation",
-          "keywords": ["Innovation", "efficiency"]
+          "keywords": [
+            "Innovation",
+            "efficiency"
+          ]
         },
         {
           "id": "ict_li_030",
@@ -3854,7 +4665,10 @@
           "explanation": "Digital Dependency makes Nigeria reliant on foreign ICT tools and reduces local innovation [161].",
           "difficulty": "hard",
           "chapter": "ICT Challenges",
-          "keywords": ["Digital Dependency", "innovation"]
+          "keywords": [
+            "Digital Dependency",
+            "innovation"
+          ]
         },
         {
           "id": "ict_li_031",
@@ -3869,7 +4683,10 @@
           "explanation": "ECM (Enterprise Content Management) is part of the OHCSF ICT Transformation Agenda [47].",
           "difficulty": "medium",
           "chapter": "ICT Reforms",
-          "keywords": ["ECM", "acronym"]
+          "keywords": [
+            "ECM",
+            "acronym"
+          ]
         },
         {
           "id": "ict_li_032",
@@ -3884,7 +4701,10 @@
           "explanation": "When participating in a Meeting from a non-work environment, participants must dress formally (Rule 090205) [162].",
           "difficulty": "easy",
           "chapter": "Rule 090205",
-          "keywords": ["Virtual meetings", "Formal attire"]
+          "keywords": [
+            "Virtual meetings",
+            "Formal attire"
+          ]
         },
         {
           "id": "ict_li_033",
@@ -3899,7 +4719,10 @@
           "explanation": "Google Docs enables real-time document editing and commenting by multiple users [163].",
           "difficulty": "easy",
           "chapter": "Collaboration Tools",
-          "keywords": ["Google Docs", "real-time editing"]
+          "keywords": [
+            "Google Docs",
+            "real-time editing"
+          ]
         },
         {
           "id": "ict_li_034",
@@ -3914,7 +4737,10 @@
           "explanation": "The three types of study leave are Leave for In-Service Training, Study Leave with Pay, and Study Leave without Pay (Rule 120226) [164, 165].",
           "difficulty": "medium",
           "chapter": "Rule 120226",
-          "keywords": ["Study leave", "Rule 120226"]
+          "keywords": [
+            "Study leave",
+            "Rule 120226"
+          ]
         },
         {
           "id": "ict_li_035",
@@ -3929,7 +4755,10 @@
           "explanation": "Synchronous communication involves real-time interaction (e.g., phone call, video conference) [166].",
           "difficulty": "easy",
           "chapter": "Communication Modes",
-          "keywords": ["Synchronous communication", "real-time"]
+          "keywords": [
+            "Synchronous communication",
+            "real-time"
+          ]
         },
         {
           "id": "ict_li_036",
@@ -3944,7 +4773,11 @@
           "explanation": "Slack and Teams are designed for secure, efficient communication within professional environments [167].",
           "difficulty": "medium",
           "chapter": "Workplace Communication",
-          "keywords": ["Slack", "Teams", "internal communication"]
+          "keywords": [
+            "Slack",
+            "Teams",
+            "internal communication"
+          ]
         },
         {
           "id": "ict_li_037",
@@ -3959,7 +4792,10 @@
           "explanation": "NITDA's Digital Literacy Program aims to promote digital literacy across Nigeria [168].",
           "difficulty": "medium",
           "chapter": "ICT Policy",
-          "keywords": ["NITDA", "digital literacy"]
+          "keywords": [
+            "NITDA",
+            "digital literacy"
+          ]
         },
         {
           "id": "ict_li_038",
@@ -3974,7 +4810,10 @@
           "explanation": "Digital content refers to information that is stored in digital format [154].",
           "difficulty": "easy",
           "chapter": "Digital Literacy",
-          "keywords": ["Digital content", "definition"]
+          "keywords": [
+            "Digital content",
+            "definition"
+          ]
         },
         {
           "id": "ict_li_039",
@@ -3989,7 +4828,10 @@
           "explanation": "Shared calendars and digital boards synchronize team activities across physical and remote settings [149].",
           "difficulty": "medium",
           "chapter": "Hybrid Work Collaboration",
-          "keywords": ["shared calendars", "hybrid work"]
+          "keywords": [
+            "shared calendars",
+            "hybrid work"
+          ]
         },
         {
           "id": "ict_li_040",
@@ -4004,7 +4846,10 @@
           "explanation": "Virtual meetings were introduced to enable remote work continuity during pandemics/emergencies, supporting uninterrupted government business (Rule 090102) [169].",
           "difficulty": "easy",
           "chapter": "Rule 090102",
-          "keywords": ["Virtual meetings", "continuity"]
+          "keywords": [
+            "Virtual meetings",
+            "continuity"
+          ]
         },
         {
           "id": "ict_li_041",
@@ -4019,7 +4864,10 @@
           "explanation": "Where meetings are expected to last beyond one hour, 10–15 minutes break shall be observed (Rule 090204) [137].",
           "difficulty": "medium",
           "chapter": "Rule 090204",
-          "keywords": ["Mandatory break", "Virtual meetings"]
+          "keywords": [
+            "Mandatory break",
+            "Virtual meetings"
+          ]
         },
         {
           "id": "ict_li_042",
@@ -4034,7 +4882,10 @@
           "explanation": "CC means 'Carbon Copy', used to send the same email to additional recipients for their information [166].",
           "difficulty": "easy",
           "chapter": "Email Communication",
-          "keywords": ["CC", "email"]
+          "keywords": [
+            "CC",
+            "email"
+          ]
         },
         {
           "id": "ict_li_043",
@@ -4049,7 +4900,10 @@
           "explanation": "Multitasking with unrelated tabs violates the ground rules of virtual meetings (Rule 090204) [137, 170].",
           "difficulty": "medium",
           "chapter": "Virtual Meeting Etiquette",
-          "keywords": ["Virtual meetings", "etiquette"]
+          "keywords": [
+            "Virtual meetings",
+            "etiquette"
+          ]
         },
         {
           "id": "ict_li_044",
@@ -4064,7 +4918,10 @@
           "explanation": "Python is crucial for programming, automation, data science, and AI/ML [38].",
           "difficulty": "medium",
           "chapter": "ICT Innovations",
-          "keywords": ["AI/ML", "Python"]
+          "keywords": [
+            "AI/ML",
+            "Python"
+          ]
         },
         {
           "id": "ict_li_045",
@@ -4079,7 +4936,10 @@
           "explanation": "The National e-Government Masterplan guides automation of services and inter-agency data sharing [57, 58].",
           "difficulty": "medium",
           "chapter": "ICT Policy",
-          "keywords": ["E-Government Masterplan", "acronym"]
+          "keywords": [
+            "E-Government Masterplan",
+            "acronym"
+          ]
         },
         {
           "id": "ict_li_046",
@@ -4094,7 +4954,10 @@
           "explanation": "Digital content refers to information that is stored in digital format [154].",
           "difficulty": "easy",
           "chapter": "Digital Literacy",
-          "keywords": ["Digital Content", "definition"]
+          "keywords": [
+            "Digital Content",
+            "definition"
+          ]
         },
         {
           "id": "ict_li_047",
@@ -4109,7 +4972,10 @@
           "explanation": "Continuous training ensures civil servants develop skills and adapt to emerging governance challenges [171-173].",
           "difficulty": "medium",
           "chapter": "CSH Training",
-          "keywords": ["professional development", "adaptability"]
+          "keywords": [
+            "professional development",
+            "adaptability"
+          ]
         },
         {
           "id": "ict_li_048",
@@ -4124,7 +4990,10 @@
           "explanation": "NITDA promotes ICT policy and monitors its implementation [61, 64].",
           "difficulty": "easy",
           "chapter": "ICT Institutions",
-          "keywords": ["NITDA", "ICT policy"]
+          "keywords": [
+            "NITDA",
+            "ICT policy"
+          ]
         },
         {
           "id": "ict_li_049",
@@ -4139,7 +5008,10 @@
           "explanation": "Officers beyond GL 10 shall attend ASCON, PSIN, or other approved institutions (Rule 030501(d)) [174].",
           "difficulty": "medium",
           "chapter": "Rule 030501(d)",
-          "keywords": ["ASCON", "training support"]
+          "keywords": [
+            "ASCON",
+            "training support"
+          ]
         },
         {
           "id": "ict_li_050",
@@ -4154,7 +5026,10 @@
           "explanation": "Cloud computing allows government agencies to store and access data over the internet [33, 155].",
           "difficulty": "medium",
           "chapter": "ICT Innovations",
-          "keywords": ["Cloud Computing", "storage"]
+          "keywords": [
+            "Cloud Computing",
+            "storage"
+          ]
         },
         {
           "id": "ict_li_051",
@@ -4169,7 +5044,10 @@
           "explanation": "Participants must use 'mute' technology as per group agreement to minimize extraneous noise (Rule 090204) [137].",
           "difficulty": "easy",
           "chapter": "Rule 090204",
-          "keywords": ["Mute technology", "Virtual meetings"]
+          "keywords": [
+            "Mute technology",
+            "Virtual meetings"
+          ]
         },
         {
           "id": "ict_li_052",
@@ -4184,7 +5062,10 @@
           "explanation": "Python supports libraries for data science and AI/ML (Machine Learning) [38].",
           "difficulty": "medium",
           "chapter": "ICT Fundamentals",
-          "keywords": ["Python", "AI/ML"]
+          "keywords": [
+            "Python",
+            "AI/ML"
+          ]
         },
         {
           "id": "ict_li_053",
@@ -4199,7 +5080,10 @@
           "explanation": "Digital literacy involves the ability to use digital tools effectively (Implied by literacy subtopic) [142].",
           "difficulty": "easy",
           "chapter": "Digital Literacy",
-          "keywords": ["Digital Literacy", "skills"]
+          "keywords": [
+            "Digital Literacy",
+            "skills"
+          ]
         },
         {
           "id": "ict_li_054",
@@ -4214,7 +5098,10 @@
           "explanation": "The National Information Technology Development Agency (NITDA) drives ICT innovation in Nigeria [61].",
           "difficulty": "easy",
           "chapter": "ICT Institutions",
-          "keywords": ["NITDA", "innovation"]
+          "keywords": [
+            "NITDA",
+            "innovation"
+          ]
         },
         {
           "id": "ict_li_055",
@@ -4229,7 +5116,10 @@
           "explanation": "An Officer granted leave to visit a Medical Specialist, certified as critical, will be treated for the purpose of free transport facilities as travelling on duty (Rule 130108) [175].",
           "difficulty": "medium",
           "chapter": "Rule 130108",
-          "keywords": ["Travelling on duty", "Medical Specialist"]
+          "keywords": [
+            "Travelling on duty",
+            "Medical Specialist"
+          ]
         },
         {
           "id": "ict_li_056",
@@ -4244,7 +5134,10 @@
           "explanation": "A dashboard is a visual interface showing real-time data for decision-making [30].",
           "difficulty": "easy",
           "chapter": "ICT Fundamentals",
-          "keywords": ["Dashboard", "real-time data"]
+          "keywords": [
+            "Dashboard",
+            "real-time data"
+          ]
         },
         {
           "id": "ict_li_057",
@@ -4259,7 +5152,10 @@
           "explanation": "The handbook emphasizes secrecy, efficiency, and loyalty as core values [176].",
           "difficulty": "easy",
           "chapter": "CSH Ethics",
-          "keywords": ["core values", "Favoritism"]
+          "keywords": [
+            "core values",
+            "Favoritism"
+          ]
         },
         {
           "id": "ict_li_058",
@@ -4274,7 +5170,10 @@
           "explanation": "Chapter 7 provides grievance procedures to resolve disputes within the civil service [113, 160].",
           "difficulty": "medium",
           "chapter": "CSH Grievance",
-          "keywords": ["Grievance", "Chapter 7"]
+          "keywords": [
+            "Grievance",
+            "Chapter 7"
+          ]
         },
         {
           "id": "ict_li_059",
@@ -4289,7 +5188,10 @@
           "explanation": "Over-Expenditure must be covered by a Supplementary Budget with legislative approval [177].",
           "difficulty": "hard",
           "chapter": "FR Audits",
-          "keywords": ["Over-Expenditure", "Supplementary Budget"]
+          "keywords": [
+            "Over-Expenditure",
+            "Supplementary Budget"
+          ]
         },
         {
           "id": "ict_li_060",
@@ -4304,7 +5206,10 @@
           "explanation": "E-Land Registry digitizes land records [84].",
           "difficulty": "medium",
           "chapter": "ICT in Governance",
-          "keywords": ["E-Land Registry", "land administration"]
+          "keywords": [
+            "E-Land Registry",
+            "land administration"
+          ]
         },
         {
           "id": "ict_li_061",
@@ -4319,7 +5224,10 @@
           "explanation": "Version tracking ensures accountability and transparency in document editing [149].",
           "difficulty": "medium",
           "chapter": "Document Management",
-          "keywords": ["Version history", "track changes"]
+          "keywords": [
+            "Version history",
+            "track changes"
+          ]
         },
         {
           "id": "ict_li_062",
@@ -4334,7 +5242,10 @@
           "explanation": "Google Docs enables real-time document editing and commenting by multiple users [163].",
           "difficulty": "easy",
           "chapter": "Collaboration Tools",
-          "keywords": ["Google Docs", "real-time editing"]
+          "keywords": [
+            "Google Docs",
+            "real-time editing"
+          ]
         },
         {
           "id": "ict_li_063",
@@ -4349,7 +5260,10 @@
           "explanation": "The test determines if the officer is physically and mentally capable of performing duties of his appointment or of any appointment to which he may be proposed to transfer him [178].",
           "difficulty": "medium",
           "chapter": "Rule 130105",
-          "keywords": ["Medical Test", "transfer"]
+          "keywords": [
+            "Medical Test",
+            "transfer"
+          ]
         },
         {
           "id": "ict_li_064",
@@ -4364,7 +5278,10 @@
           "explanation": "Data redundancy ensures critical information is stored in multiple locations for safety [119].",
           "difficulty": "medium",
           "chapter": "ICT Security",
-          "keywords": ["Data Redundancy", "backup"]
+          "keywords": [
+            "Data Redundancy",
+            "backup"
+          ]
         },
         {
           "id": "ict_li_065",
@@ -4379,7 +5296,10 @@
           "explanation": "The three types of study leave are Leave for In-Service Training, Study Leave with Pay, and Study Leave without Pay (Rule 120226) [164, 165].",
           "difficulty": "medium",
           "chapter": "Rule 120226",
-          "keywords": ["Study leave", "Rule 120226"]
+          "keywords": [
+            "Study leave",
+            "Rule 120226"
+          ]
         },
         {
           "id": "ict_li_066",
@@ -4394,7 +5314,10 @@
           "explanation": "Proper record-keeping ensures accountability, transparency, and continuity in civil service operations [179, 180].",
           "difficulty": "easy",
           "chapter": "CSH Records",
-          "keywords": ["record-keeping", "accountability"]
+          "keywords": [
+            "record-keeping",
+            "accountability"
+          ]
         },
         {
           "id": "ict_li_067",
@@ -4409,7 +5332,10 @@
           "explanation": "In-service training shall be granted when the course is crucial to the MDA, subject to approval by the PS/HoEMO (Rule 120227) [181].",
           "difficulty": "medium",
           "chapter": "Rule 120227",
-          "keywords": ["In-service training", "MDA mandate"]
+          "keywords": [
+            "In-service training",
+            "MDA mandate"
+          ]
         },
         {
           "id": "ict_li_068",
@@ -4424,7 +5350,10 @@
           "explanation": "Online Payslip and Leave Portals are integrated components of the HRMIS system [48].",
           "difficulty": "easy",
           "chapter": "ICT Initiatives",
-          "keywords": ["e-Leave Portal", "HRMIS"]
+          "keywords": [
+            "e-Leave Portal",
+            "HRMIS"
+          ]
         },
         {
           "id": "ict_li_069",
@@ -4439,7 +5368,10 @@
           "explanation": "The E-Government Master Plan guides automation and secure cloud infrastructure deployment [57, 58].",
           "difficulty": "medium",
           "chapter": "ICT Policy",
-          "keywords": ["E-Government Master Plan", "cloud infrastructure"]
+          "keywords": [
+            "E-Government Master Plan",
+            "cloud infrastructure"
+          ]
         },
         {
           "id": "ict_li_070",
@@ -4454,7 +5386,10 @@
           "explanation": "Ignoring mandatory attachments leads to rejection and is poor practice (Implied by CSH efficiency requirements).",
           "difficulty": "easy",
           "chapter": "CSH Administrative Procedures",
-          "keywords": ["best practice", "digital application"]
+          "keywords": [
+            "best practice",
+            "digital application"
+          ]
         },
         {
           "id": "ict_li_071",
@@ -4469,7 +5404,10 @@
           "explanation": "NITDA promotes ICT policy and monitors its implementation [61, 64].",
           "difficulty": "easy",
           "chapter": "ICT Institutions",
-          "keywords": ["NITDA", "ICT policy"]
+          "keywords": [
+            "NITDA",
+            "ICT policy"
+          ]
         },
         {
           "id": "ict_li_072",
@@ -4484,7 +5422,10 @@
           "explanation": "An Officer receiving an overseas salary will not be eligible for Federal Government emolument/allowance unless specifically approved by the PS, CMO, OHCSF (Rule 070209) [182].",
           "difficulty": "hard",
           "chapter": "Rule 070209",
-          "keywords": ["Overseas employment", "Training allowance"]
+          "keywords": [
+            "Overseas employment",
+            "Training allowance"
+          ]
         },
         {
           "id": "ict_li_073",
@@ -4499,7 +5440,11 @@
           "explanation": "A female Officer must enter into an agreement to refund the cost in the event of her course being interrupted on grounds of pregnancy (Rule 070210) [183, 184].",
           "difficulty": "hard",
           "chapter": "Rule 070210",
-          "keywords": ["Training interruption", "pregnancy", "refund"]
+          "keywords": [
+            "Training interruption",
+            "pregnancy",
+            "refund"
+          ]
         },
         {
           "id": "ict_li_074",
@@ -4514,7 +5459,10 @@
           "explanation": "Staff Development is the policy of enhancing the knowledge, skills, attitude, effectiveness and efficiency of staff (Rule 070101) [185].",
           "difficulty": "easy",
           "chapter": "Rule 070101",
-          "keywords": ["Staff Development", "Efficiency"]
+          "keywords": [
+            "Staff Development",
+            "Efficiency"
+          ]
         },
         {
           "id": "ict_li_075",
@@ -4529,7 +5477,10 @@
           "explanation": "Section 38 provides for the use of e-procurement systems in public procurement [62, 63].",
           "difficulty": "medium",
           "chapter": "PPA Section 38",
-          "keywords": ["E-procurement", "PPA Section 38"]
+          "keywords": [
+            "E-procurement",
+            "PPA Section 38"
+          ]
         }
       ]
     }

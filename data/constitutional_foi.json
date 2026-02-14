@@ -1,0 +1,4694 @@
+{
+  "name": "Constitutional, Legal, and General Competency (100 Questions)",
+  "description": "Legal, constitutional, and ethical framework for public administration in Nigeria.",
+  "type": "topic",
+  "hasSubcategories": true,
+  "icon": "⚖️",
+  "subcategories": [
+    {
+      "id": "clg_constitutional_governance",
+      "name": "Constitutional Structure, Bodies & Principles",
+      "description": "Constitutional structure, institutions, and governance principles.",
+      "icon": "🏛️",
+      "questions": [
+        {
+          "id": "clg_con_001",
+          "question": "The power to dismiss and exercise disciplinary control over officers on GL 07 and above in the Federal Civil Service is vested in:",
+          "options": [
+            "The Permanent Secretary/CEO",
+            "The Office of the Head of the Civil Service of the Federation (OHCSF)",
+            "The Federal Civil Service Commission (FCSC)",
+            "The Ministerial Tenders Board"
+          ],
+          "correct": 2,
+          "explanation": "The Federal Civil Service Commission (FCSC) is vested with the power to dismiss and exercise disciplinary control over officers in the Federal Civil Service, particularly those on GL 07 and above, as mandated by Rule 100102 [1].",
+          "difficulty": "easy",
+          "chapter": "Rule 100102",
+          "keywords": [
+            "FCSC",
+            "Disciplinary authority",
+            "GL 07+"
+          ]
+        },
+        {
+          "id": "clg_con_002",
+          "question": "The principle that ensures government policies continue to be implemented regardless of transient changes in political leadership is known as:",
+          "options": [
+            "Neutrality",
+            "Permanence",
+            "Meritocracy",
+            "Anonymity"
+          ],
+          "correct": 1,
+          "explanation": "Permanence ensures that the civil service continues its functions despite political changes [2].",
+          "difficulty": "medium",
+          "chapter": "CSH Principles",
+          "keywords": [
+            "Permanence",
+            "Continuity"
+          ]
+        },
+        {
+          "id": "clg_con_003",
+          "question": "Appointments into all grades in Parastatals must be based on merit, credibility, and equal opportunity with due regard to the:",
+          "options": [
+            "Political party manifesto",
+            "Federal Character Principle",
+            "Seniority rule",
+            "Budgetary appropriation"
+          ],
+          "correct": 1,
+          "explanation": "Rule 170302 mandates that appointments must be fair and open, ensuring merit, credibility, and equal opportunity for all with due regard to the Federal Character Principle [3, 4].",
+          "difficulty": "easy",
+          "chapter": "Rule 170302",
+          "keywords": [
+            "Federal Character Principle",
+            "Appointments",
+            "Parastatals"
+          ]
+        },
+        {
+          "id": "clg_con_004",
+          "question": "Who is constitutionally empowered to present the annual budget to the National Assembly for legislative approval?",
+          "options": [
+            "The Minister of Finance",
+            "The Accountant-General of the Federation",
+            "The President",
+            "The Head of the Civil Service of the Federation"
+          ],
+          "correct": 2,
+          "explanation": "Section 81 of the Constitution mandates the President to present the budget to the National Assembly [5].",
+          "difficulty": "easy",
+          "chapter": "Constitution, Section 81",
+          "keywords": [
+            "President",
+            "Budget presentation",
+            "National Assembly"
+          ]
+        },
+        {
+          "id": "clg_con_005",
+          "question": "The constitutional provision that all government funds must be centralized into a specific main account for transparency and control refers to the:",
+          "options": [
+            "Contingencies Fund",
+            "Development Fund",
+            "Consolidated Revenue Fund (CRF)",
+            "Replacement Reserve Fund"
+          ],
+          "correct": 2,
+          "explanation": "The Consolidated Revenue Fund (CRF) is the main account into which all government revenues are paid [6].",
+          "difficulty": "easy",
+          "chapter": "FR General Management",
+          "keywords": [
+            "Consolidated Revenue Fund",
+            "Revenue centralization"
+          ]
+        },
+        {
+          "id": "clg_con_006",
+          "question": "The authority responsible for the audit of government accounts and reporting findings to the National Assembly is the:",
+          "options": [
+            "Accountant-General of the Federation",
+            "Auditor-General for the Federation (AuGF)",
+            "Minister of Finance",
+            "Internal Auditor"
+          ],
+          "correct": 1,
+          "explanation": "The Auditor-General for the Federation (AuGF) audits public accounts and reports to the National Assembly (implied by references to Audit Report and legislative oversight) [7, 8].",
+          "difficulty": "medium",
+          "chapter": "AuGF Oversight",
+          "keywords": [
+            "Auditor-General",
+            "Audit Report",
+            "National Assembly"
+          ]
+        },
+        {
+          "id": "clg_con_007",
+          "question": "The power of the National Assembly to make laws on matters such as currency and defense is drawn from which list in the Constitution?",
+          "options": [
+            "Concurrent Legislative List",
+            "Residual Powers List",
+            "Exclusive Legislative List",
+            "Judicial Review List"
+          ],
+          "correct": 2,
+          "explanation": "Federal-only matters are typically found in the Exclusive Legislative List [9].",
+          "difficulty": "medium",
+          "chapter": "Constitutional Provisions",
+          "keywords": [
+            "Exclusive Legislative List",
+            "NASS powers"
+          ]
+        },
+        {
+          "id": "clg_con_008",
+          "question": "Who is designated as the Chief Accounting Officer personally responsible for the control, custody, and disbursement of funds within a Ministry?",
+          "options": [
+            "The Minister",
+            "The Permanent Secretary/DG",
+            "The Accountant-General of the Federation",
+            "The Head of the Civil Service of the Federation"
+          ],
+          "correct": 1,
+          "explanation": "The Permanent Secretary or DG of an MDA serves as the Accounting Officer responsible for expenditure control, record keeping, and compliance (FR 104) [10, 11].",
+          "difficulty": "easy",
+          "chapter": "FR 104",
+          "keywords": [
+            "Accounting Officer",
+            "Permanent Secretary",
+            "Financial control"
+          ]
+        },
+        {
+          "id": "clg_con_009",
+          "question": "The three core values emphasized for civil servants in the Civil Service Handbook are secrecy, efficiency, and:",
+          "options": [
+            "Nepotism",
+            "Loyalty",
+            "Partisanship",
+            "Insolvency"
+          ],
+          "correct": 1,
+          "explanation": "The handbook emphasizes secrecy, efficiency, and loyalty as core values of civil servants [12, 13].",
+          "difficulty": "easy",
+          "chapter": "CSH Ethics",
+          "keywords": [
+            "Core values",
+            "Loyalty",
+            "Efficiency"
+          ]
+        },
+        {
+          "id": "clg_con_010",
+          "question": "The constitutional body that collects and verifies asset declarations from public officers to enforce ethical standards is the:",
+          "options": [
+            "Economic and Financial Crimes Commission (EFCC)",
+            "Independent Corrupt Practices Commission (ICPC)",
+            "Code of Conduct Bureau (CCB)",
+            "Federal Civil Service Commission (FCSC)"
+          ],
+          "correct": 2,
+          "explanation": "The Code of Conduct Bureau (CCB) receives asset declarations [14] and monitors compliance with ethical standards [15, 16].",
+          "difficulty": "easy",
+          "chapter": "CCB Mandate",
+          "keywords": [
+            "CCB",
+            "Asset declaration",
+            "Ethics enforcement"
+          ]
+        },
+        {
+          "id": "clg_con_011",
+          "question": "The doctrine of **Separation of Powers** divides governmental authority between which three arms?",
+          "options": [
+            "Federal, State, and Local",
+            "The Public, the Civil Service, and the Military",
+            "The Judiciary, the Executive, and the Legislature",
+            "The Minister, the Permanent Secretary, and the Director"
+          ],
+          "correct": 2,
+          "explanation": "The doctrine of separation of powers divides authority between the Judiciary, Executive, and Legislature [17].",
+          "difficulty": "easy",
+          "chapter": "Constitutional Knowledge",
+          "keywords": [
+            "Separation of Powers",
+            "Arms of Government"
+          ]
+        },
+        {
+          "id": "clg_con_012",
+          "question": "The **Oath of Allegiance/Oath of Office** signed by an officer commits them to uphold and serve faithfully according to the:",
+          "options": [
+            "Public Service Rules",
+            "Constitution of Nigeria",
+            "Ministerial Directives",
+            "Financial Regulations"
+          ],
+          "correct": 1,
+          "explanation": "The Oath of Allegiance/Oath of Office is a binding promise to uphold the Constitution and serve faithfully [9].",
+          "difficulty": "easy",
+          "chapter": "Constitution/Ethics",
+          "keywords": [
+            "Oath of Office",
+            "Constitution"
+          ]
+        },
+        {
+          "id": "clg_con_013",
+          "question": "Which body ensures that recruitment and disciplinary standards are maintained across the Federal Civil Service?",
+          "options": [
+            "Budget Office of the Federation (BOF)",
+            "Debt Management Office (DMO)",
+            "Federal Civil Service Commission (FCSC)",
+            "National Population Commission (NPC)"
+          ],
+          "correct": 2,
+          "explanation": "The FCSC manages appointments and discipline within the service [18, 19].",
+          "difficulty": "easy",
+          "chapter": "FCSC Role",
+          "keywords": [
+            "FCSC",
+            "Appointments",
+            "Discipline"
+          ]
+        },
+        {
+          "id": "clg_con_014",
+          "question": "The PSR 2021 mandates that matters not covered in its provisions should be referred to whom for appropriate direction?",
+          "options": [
+            "The Minister of Justice",
+            "The National Assembly",
+            "The Head of Service",
+            "The Permanent Secretary"
+          ],
+          "correct": 2,
+          "explanation": "Matters not covered in the PSR should be referred to the Head of Service for appropriate direction (Rule 16.10) [20].",
+          "difficulty": "medium",
+          "chapter": "PSR Gaps",
+          "keywords": [
+            "Head of Service",
+            "Gaps in PSR"
+          ]
+        },
+        {
+          "id": "clg_con_015",
+          "question": "Who must approve the re-engagement of retired officers into career posts, whose remuneration is based on negotiable terms?",
+          "options": [
+            "The Minister of Finance",
+            "The Federal Civil Service Commission (FCSC)",
+            "The Head of the Civil Service of the Federation (OHCSF)",
+            "The Permanent Secretary"
+          ],
+          "correct": 1,
+          "explanation": "Re-engagement typically requires approval by the FCSC for career posts (Rule 020412) [21].",
+          "difficulty": "medium",
+          "chapter": "FCSC Appointment",
+          "keywords": [
+            "Re-engagement",
+            "FCSC approval"
+          ]
+        },
+        {
+          "id": "clg_con_016",
+          "question": "Which principle guarantees that civil servants serve all citizens and political parties without personal or political preference?",
+          "options": [
+            "Anonymity",
+            "Neutrality",
+            "Permanence",
+            "Centralization"
+          ],
+          "correct": 1,
+          "explanation": "Impartiality guarantees that civil servants serve all citizens fairly without political or personal bias [22, 23].",
+          "difficulty": "easy",
+          "chapter": "CSH Impartiality",
+          "keywords": [
+            "Neutrality",
+            "Impartiality"
+          ]
+        },
+        {
+          "id": "clg_con_017",
+          "question": "The civil service hierarchy structures staff into categories based on professional disciplines and levels of responsibility, known as:",
+          "options": [
+            "Committees and Boards",
+            "Regions and Zones",
+            "Grades and Cadres",
+            "Parastatals and Agencies"
+          ],
+          "correct": 2,
+          "explanation": "The civil service is structured into Grades and Cadres [24, 25].",
+          "difficulty": "easy",
+          "chapter": "PSR Structure",
+          "keywords": [
+            "Grades and cadres",
+            "Structure"
+          ]
+        },
+        {
+          "id": "clg_con_018",
+          "question": "The official document used to publish laws, appointments, and constitutional changes in Nigeria is the:",
+          "options": [
+            "National Gazette",
+            "Annual Appropriation Act",
+            "Budget Call Circular",
+            "Public Complaints Report"
+          ],
+          "correct": 0,
+          "explanation": "The Official Gazette is the formal government publication used to publish laws, appointments, and constitutional changes [9].",
+          "difficulty": "easy",
+          "chapter": "Official Gazette",
+          "keywords": [
+            "Official Gazette",
+            "Government Publication"
+          ]
+        },
+        {
+          "id": "clg_con_019",
+          "question": "In the case of conflict between the English version and a local language version of the PSR, which version prevails?",
+          "options": [
+            "The local language version",
+            "The English version",
+            "The version preferred by the OHCSF",
+            "The version with the earliest commencement date"
+          ],
+          "correct": 1,
+          "explanation": "The English version of the PSR prevails in case of conflict with local language versions (Rule 16.19) [26].",
+          "difficulty": "medium",
+          "chapter": "PSR Interpretation",
+          "keywords": [
+            "PSR language",
+            "English version"
+          ]
+        },
+        {
+          "id": "clg_con_020",
+          "question": "The core constitutional and legal document that outlines civil liberties and protections for citizens, including the right to fair hearing, is:",
+          "options": [
+            "The Public Procurement Act",
+            "The Financial Regulations",
+            "The Constitution (Chapter IV)",
+            "The Civil Service Handbook"
+          ],
+          "correct": 2,
+          "explanation": "Chapter IV of the Constitution outlines civil liberties and protections, known as fundamental rights [27].",
+          "difficulty": "easy",
+          "chapter": "Constitution Chapter IV",
+          "keywords": [
+            "Fundamental Rights",
+            "Constitution Chapter IV"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "clg_legal_compliance",
+      "name": "Legal Frameworks & Statutory Compliance",
+      "description": "Applicable laws and compliance obligations in public service.",
+      "icon": "⚖️",
+      "questions": [
+        {
+          "id": "clg_lc_021",
+          "question": "Which legal framework provides the guidelines for prudence, transparency, and accountability in the management of public finance in Nigeria?",
+          "options": [
+            "Public Procurement Act (PPA)",
+            "Fiscal Responsibility Act (FRA)",
+            "Official Secrets Act",
+            "Pension Reform Act"
+          ],
+          "correct": 1,
+          "explanation": "The Fiscal Responsibility Act provides the legal framework for prudent management of public finances in Nigeria [28].",
+          "difficulty": "medium",
+          "chapter": "FR Legal Framework",
+          "keywords": [
+            "Fiscal Responsibility Act",
+            "Prudent management",
+            "Public finance"
+          ]
+        },
+        {
+          "id": "clg_lc_022",
+          "question": "Section 58 of the Public Procurement Act (PPA) prescribes penalties for offenses such as bid rigging, collusion, and procurement fraud, including dismissal or:",
+          "options": [
+            "Payment of a minor fine to the MDA",
+            "Reduction in salary only",
+            "Criminal charges including imprisonment",
+            "Transfer to a remote station"
+          ],
+          "correct": 2,
+          "explanation": "Section 58 prescribes imprisonment and fines for procurement-related fraud [29, 30]. Officers involved also face dismissal as serious misconduct [31].",
+          "difficulty": "hard",
+          "chapter": "PPA Section 58",
+          "keywords": [
+            "Procurement fraud",
+            "Dismissal",
+            "Criminal charges"
+          ]
+        },
+        {
+          "id": "clg_lc_023",
+          "question": "The legal principle that prohibits civil servants from disclosing sensitive government information without authorization is enforced by the:",
+          "options": [
+            "Freedom of Information Act (FOIA)",
+            "Official Secrets Act",
+            "Public Complaints Act",
+            "Code of Conduct Bureau Act"
+          ],
+          "correct": 1,
+          "explanation": "The Official Secrets Act enforces secrecy requirements for civil servants handling official matters [32, 33].",
+          "difficulty": "medium",
+          "chapter": "Official Secrets Act",
+          "keywords": [
+            "Official Secrets Act",
+            "Secrecy",
+            "Confidentiality"
+          ]
+        },
+        {
+          "id": "clg_lc_024",
+          "question": "Which body is empowered to blacklist or debar contracting firms found guilty of corrupt practices or fraudulent misrepresentation during a bidding process?",
+          "options": [
+            "The Auditor-General of the Federation (AuGF)",
+            "The Bureau of Public Procurement (BPP)",
+            "The Permanent Secretary/CEO",
+            "The Federal Civil Service Commission (FCSC)"
+          ],
+          "correct": 1,
+          "explanation": "Section 57 empowers the BPP to blacklist bidders for engaging in corrupt practices [34, 35].",
+          "difficulty": "medium",
+          "chapter": "PPA Section 57",
+          "keywords": [
+            "Blacklisting",
+            "BPP",
+            "Corrupt practices"
+          ]
+        },
+        {
+          "id": "clg_lc_025",
+          "question": "In a disciplinary inquiry, documentary evidence cannot be used against the officer unless he is given open access thereto, ensuring the principle of:",
+          "options": [
+            "Anonymity",
+            "Neutrality",
+            "Fair Hearing (Natural Justice)",
+            "Permanence"
+          ],
+          "correct": 2,
+          "explanation": "No documentary evidence shall be used against the officer unless he has previously been supplied with a copy or given open access thereto (Rule 100307(vii)) [36-38].",
+          "difficulty": "medium",
+          "chapter": "Rule 100307(vii)",
+          "keywords": [
+            "Fair Hearing",
+            "Access to documents"
+          ]
+        },
+        {
+          "id": "clg_lc_026",
+          "question": "The mandatory pre-qualification requirement for bidders, ensuring they have fulfilled tax obligations to the Federal Government, is the submission of a valid:",
+          "options": [
+            "Letter of intent",
+            "Tax Clearance Certificate (TCC)",
+            "Political Party Membership Card",
+            "Local Government Identification Letter"
+          ],
+          "correct": 1,
+          "explanation": "Section 16 of the PPA requires contractors to demonstrate eligibility, including fulfilling tax obligations [39].",
+          "difficulty": "medium",
+          "chapter": "PPA Section 16",
+          "keywords": [
+            "Tax Clearance Certificate",
+            "PPA eligibility"
+          ]
+        },
+        {
+          "id": "clg_lc_027",
+          "question": "The penalty of **Surcharge** is imposed on an officer to recover:",
+          "options": [
+            "Administrative processing fees",
+            "The exact amount of financial loss caused by the officer's negligence or fault",
+            "Future salary increments",
+            "Legal defense costs"
+          ],
+          "correct": 1,
+          "explanation": "Surcharge is the recovery of government losses from the officer's pay, applied when the loss is due to the officer’s fault or negligence [40].",
+          "difficulty": "medium",
+          "chapter": "FR Sanctions",
+          "keywords": [
+            "Surcharge",
+            "Recovery of loss",
+            "Financial loss"
+          ]
+        },
+        {
+          "id": "clg_lc_028",
+          "question": "Which legal principle in procurement mandates strict adherence to legal and procedural requirements in awarding contracts to guarantee transparency?",
+          "options": [
+            "Invitation to Treat",
+            "Due Process",
+            "Caveat Emptor",
+            "Locus Standi"
+          ],
+          "correct": 1,
+          "explanation": "Due Process mandates strict adherence to legal and procedural requirements in awarding contracts [41-43].",
+          "difficulty": "medium",
+          "chapter": "PPA Due Process",
+          "keywords": [
+            "Due Process",
+            "Transparency",
+            "Legality"
+          ]
+        },
+        {
+          "id": "clg_lc_029",
+          "question": "The use of e-procurement systems (PPA Section 38) in public procurement is primarily aimed at enhancing:",
+          "options": [
+            "Manual processing and paperwork",
+            "Efficiency and transparency",
+            "Political patronage",
+            "Secrecy and restricted bidding"
+          ],
+          "correct": 1,
+          "explanation": "E-procurement enhances efficiency and transparency [21, 44].",
+          "difficulty": "medium",
+          "chapter": "PPA Section 38",
+          "keywords": [
+            "E-procurement",
+            "Efficiency",
+            "Transparency"
+          ]
+        },
+        {
+          "id": "clg_lc_030",
+          "question": "An officer must promptly report a criminal charge or the outcome of such charge to whom, under pain of disciplinary action?",
+          "options": [
+            "The Minister of Justice",
+            "His Permanent Secretary/Head of Extra-Ministerial Office",
+            "The Police Commissioner",
+            "The Head of the Civil Service of the Federation (OHCSF)"
+          ],
+          "correct": 1,
+          "explanation": "An Officer must promptly report a criminal charge or the outcome of such charge to his Permanent Secretary/Head of Extra-Ministerial Office (Rule 100409) [8].",
+          "difficulty": "medium",
+          "chapter": "Rule 100409",
+          "keywords": [
+            "Criminal charge",
+            "Reporting duty",
+            "Permanent Secretary"
+          ]
+        },
+        {
+          "id": "clg_lc_031",
+          "question": "Which specific PPA Section prohibits procurement without approved budgetary provision and availability of funds?",
+          "options": [
+            "Section 21 (PPC)",
+            "Section 14 (Appropriation)",
+            "Section 30 (Evaluation)",
+            "Section 42 (Emergency)"
+          ],
+          "correct": 1,
+          "explanation": "Section 14 prohibits procurement without approved budgetary provision and funds in place [45, 46].",
+          "difficulty": "medium",
+          "chapter": "PPA Section 14",
+          "keywords": [
+            "PPA Section 14",
+            "Appropriation",
+            "Budget provision"
+          ]
+        },
+        {
+          "id": "clg_lc_032",
+          "question": "The practice of illegally breaking down a contract into smaller units to circumvent approval limits is explicitly prohibited in the PPA as:",
+          "options": [
+            "Bid Rigging",
+            "Contract Variation",
+            "Contract Splitting",
+            "Collusion"
+          ],
+          "correct": 2,
+          "explanation": "Contract Splitting is explicitly prohibited (PPA Section 58(4)) as it undermines transparency and circumvents established thresholds [47, 48].",
+          "difficulty": "medium",
+          "chapter": "PPA Section 58(4)",
+          "keywords": [
+            "Contract Splitting",
+            "Prohibited practice"
+          ]
+        },
+        {
+          "id": "clg_lc_033",
+          "question": "The minimum mandatory period for the archive retention of all procurement records and documents by MDAs is:",
+          "options": [
+            "1 year",
+            "3 years",
+            "5 years",
+            "10 years"
+          ],
+          "correct": 2,
+          "explanation": "Procurement documents must be retained for at least 5 years to support potential audits and inquiries (PPA Section 38) [49].",
+          "difficulty": "medium",
+          "chapter": "PPA Section 38",
+          "keywords": [
+            "Record retention",
+            "5 years"
+          ]
+        },
+        {
+          "id": "clg_lc_034",
+          "question": "The statutory default and preferred method for the procurement of goods, works, and services that promotes transparency and fair competition is:",
+          "options": [
+            "Sole Sourcing",
+            "Restricted Bidding",
+            "Selective Tendering",
+            "Open Competitive Bidding"
+          ],
+          "correct": 3,
+          "explanation": "Open Competitive Bidding is the default procurement method under Section 24 of the PPA 2007 [50, 51].",
+          "difficulty": "easy",
+          "chapter": "PPA Section 24",
+          "keywords": [
+            "Open Competitive Bidding",
+            "Default procurement method"
+          ]
+        },
+        {
+          "id": "clg_lc_035",
+          "question": "Who must authorize emergency procurements, subject to later audit and ratification, as required under PPA Section 42?",
+          "options": [
+            "The Permanent Secretary",
+            "The Minister",
+            "The Head of Civil Service of the Federation",
+            "The Accountant-General"
+          ],
+          "correct": 1,
+          "explanation": "The Minister authorizes emergency procurements, often in line with procurement laws and thresholds, subject to later review [52].",
+          "difficulty": "hard",
+          "chapter": "PPA Section 42",
+          "keywords": [
+            "Emergency procurement",
+            "Minister approval"
+          ]
+        },
+        {
+          "id": "clg_lc_036",
+          "question": "If, during the course of a disciplinary inquiry, further grounds for dismissal are disclosed, the FCSC shall furnish the Officer with:",
+          "options": [
+            "A written notice of termination",
+            "A written statement thereof and the same steps shall be taken as prescribed above in respect of the original grounds",
+            "A recommendation for compulsory retirement",
+            "A transfer letter"
+          ],
+          "correct": 1,
+          "explanation": "If further grounds are disclosed, the Officer shall be furnished with a written statement thereof and the same steps taken as for the original grounds (Rule 100307(viii)) [53].",
+          "difficulty": "hard",
+          "chapter": "Rule 100307(viii)",
+          "keywords": [
+            "Further grounds for dismissal",
+            "Written statement"
+          ]
+        },
+        {
+          "id": "clg_lc_037",
+          "question": "The rule that the head of the officer’s department shall not be a member of the board of inquiry tasked with investigating the officer (Rule 100307(v)) safeguards:",
+          "options": [
+            "Anonymity",
+            "Fair hearing and judicial neutrality",
+            "Segregation of duties",
+            "Permanence of the service"
+          ],
+          "correct": 1,
+          "explanation": "The head of the Officer's department shall not be a member of the board (Rule 100307(v)) [53]. This prevents bias and ensures a fair hearing.",
+          "difficulty": "medium",
+          "chapter": "Rule 100307(v)",
+          "keywords": [
+            "Board of Inquiry",
+            "Fair hearing"
+          ]
+        },
+        {
+          "id": "clg_lc_038",
+          "question": "To ensure maximum transparency, the process of bid opening for public tenders must be conducted:",
+          "options": [
+            "Only by the Ministerial Tenders Board (MTB)",
+            "In secrecy to protect prices",
+            "Publicly, with all bidders or their representatives invited",
+            "After the contract award is finalized"
+          ],
+          "correct": 2,
+          "explanation": "Bid Opening must be conducted publicly, with all bidders invited and minutes recorded [43, 54].",
+          "difficulty": "easy",
+          "chapter": "PPA Bid Opening",
+          "keywords": [
+            "Bid Opening",
+            "Publicity"
+          ]
+        },
+        {
+          "id": "clg_lc_039",
+          "question": "The final check that confirms goods or services were delivered satisfactorily before any payment is processed is documented by the:",
+          "options": [
+            "Local Purchase Order (LPO)",
+            "Job Completion Certificate (JCC)",
+            "Stores Receipt Voucher (SRV)",
+            "Virement Warrant"
+          ],
+          "correct": 1,
+          "explanation": "No payment is processed without the Job Completion Certificate (JCC), which confirms that work was done or goods were received [55].",
+          "difficulty": "easy",
+          "chapter": "FR Payment Validation",
+          "keywords": [
+            "Job Completion Certificate",
+            "Payment verification"
+          ]
+        },
+        {
+          "id": "clg_lc_040",
+          "question": "Which PPA Section requires bid opening to be conducted in public?",
+          "options": [
+            "Section 19",
+            "Section 27",
+            "Section 30",
+            "Section 32"
+          ],
+          "correct": 1,
+          "explanation": "Section 27 requires that bid opening must be done publicly to ensure fairness and transparency [56].",
+          "difficulty": "easy",
+          "chapter": "PPA Section 27",
+          "keywords": [
+            "Bid opening",
+            "Publicity",
+            "PPA Section 27"
+          ]
+        },
+        {
+          "id": "clg_lc_041",
+          "question": "The mandatory requirement that bidders must not be in receivership, bankruptcy, or insolvency is contained in PPA:",
+          "options": [
+            "Section 12",
+            "Section 16",
+            "Section 24",
+            "Section 40"
+          ],
+          "correct": 1,
+          "explanation": "Section 16 states that eligible contractors must not be in receivership, bankruptcy, or insolvency [57].",
+          "difficulty": "medium",
+          "chapter": "PPA Section 16",
+          "keywords": [
+            "Insolvency",
+            "Eligibility",
+            "Section 16"
+          ]
+        },
+        {
+          "id": "clg_lc_042",
+          "question": "What is the maximum penalty for an officer convicted of a felony (criminal offense) in addition to possible automatic dismissal?",
+          "options": [
+            "Transfer to a non-sensitive post",
+            "Imprisonment and/or fine",
+            "Mandatory study leave",
+            "Reduction in salary for six months"
+          ],
+          "correct": 1,
+          "explanation": "Serious offenses, especially fraud/corruption (PPA Section 58), lead to dismissal and criminal charges/imprisonment [29, 31].",
+          "difficulty": "medium",
+          "chapter": "PPA/PSR Sanctions",
+          "keywords": [
+            "Criminal offense",
+            "Dismissal",
+            "Imprisonment"
+          ]
+        },
+        {
+          "id": "clg_lc_043",
+          "question": "An officer who is dismissed from the service shall forfeit all claims to retiring benefits, leave, or transport grant, subject to the provisions of the:",
+          "options": [
+            "Financial Regulations",
+            "Public Procurement Act",
+            "Pension Reform Act, 2014 (as amended)",
+            "Contingencies Fund Act"
+          ],
+          "correct": 2,
+          "explanation": "Dismissal results in forfeiture subject to the provisions of the Pension Reform Act [58, 59].",
+          "difficulty": "easy",
+          "chapter": "Rule 100407",
+          "keywords": [
+            "Dismissal",
+            "Forfeiture",
+            "Pension Reform Act"
+          ]
+        },
+        {
+          "id": "clg_lc_044",
+          "question": "The officer who must sign all **Payment Vouchers** before payments are processed, confirming the correctness and classification of the transaction, is the:",
+          "options": [
+            "Auditor-General",
+            "Vote Controller",
+            "Head of Accounts",
+            "Permanent Secretary"
+          ],
+          "correct": 2,
+          "explanation": "The Head of Accounts must sign all payment vouchers before payments are processed [60, 61].",
+          "difficulty": "medium",
+          "chapter": "FR Payment Approval",
+          "keywords": [
+            "Payment Vouchers",
+            "Head of Accounts"
+          ]
+        },
+        {
+          "id": "clg_lc_045",
+          "question": "The legal instrument enacted by the National Assembly that authorizes the Federal Government to withdraw funds from the Consolidated Revenue Fund (CRF) for annual expenditure is the:",
+          "options": [
+            "Budget Call Circular",
+            "Annual Appropriation Act",
+            "Fiscal Responsibility Act",
+            "Treasury Circular"
+          ],
+          "correct": 1,
+          "explanation": "The Annual Appropriation Act is the legal instrument authorizing withdrawal from the CRF for annual expenditure [10].",
+          "difficulty": "medium",
+          "chapter": "FR Budgeting",
+          "keywords": [
+            "Appropriation Act",
+            "CRF",
+            "NASS authorization"
+          ]
+        },
+        {
+          "id": "clg_lc_046",
+          "question": "The primary role of the Internal Auditor is compromised if they report directly to the Minister instead of the Accounting Officer (Permanent Secretary), due to lack of:",
+          "options": [
+            "Loyalty",
+            "Funding",
+            "Independence and objectivity",
+            "Training and skills"
+          ],
+          "correct": 2,
+          "explanation": "Internal Audit functions must maintain independence and objectivity; reporting to the Accounting Officer ensures accountability within the MDA structure, while ministerial reporting risks political interference [62].",
+          "difficulty": "hard",
+          "chapter": "FR Internal Audit",
+          "keywords": [
+            "Internal Audit",
+            "Independence",
+            "Accounting Officer"
+          ]
+        },
+        {
+          "id": "clg_lc_047",
+          "question": "Which PPA Section allows for framework agreements to allow repeated procurements under pre-agreed terms?",
+          "options": [
+            "Section 35",
+            "Section 44",
+            "Section 42",
+            "Section 32"
+          ],
+          "correct": 1,
+          "explanation": "Section 44 provides for framework agreements [63].",
+          "difficulty": "medium",
+          "chapter": "PPA Section 44",
+          "keywords": [
+            "Framework agreements",
+            "PPA Section 44"
+          ]
+        },
+        {
+          "id": "clg_lc_048",
+          "question": "Which principle in the Civil Service requires public officers to serve without seeking personal recognition for policies implemented by the Government?",
+          "options": [
+            "Meritocracy",
+            "Anonymity",
+            "Delegation",
+            "Efficiency"
+          ],
+          "correct": 1,
+          "explanation": "Anonymity means civil servants serve the government and maintain policy continuity without seeking personal recognition [22].",
+          "difficulty": "medium",
+          "chapter": "CSH Principles",
+          "keywords": [
+            "Anonymity",
+            "Civil Service Principle"
+          ]
+        },
+        {
+          "id": "clg_lc_049",
+          "question": "If an officer is required to present himself for examination by a Medical Board and fails to comply with the instructions, they are liable to be treated as having been:",
+          "options": [
+            "Transferred immediately",
+            "Reduced in rank",
+            "Absent without leave",
+            "Granted sabbatical leave"
+          ],
+          "correct": 2,
+          "explanation": "An Officer who fails to comply with this rule shall render himself liable to be treated as having been absent without leave (Rule 130307) [64].",
+          "difficulty": "medium",
+          "chapter": "Rule 130307",
+          "keywords": [
+            "Medical Board",
+            "Failure to comply",
+            "Absent without leave"
+          ]
+        },
+        {
+          "id": "clg_lc_050",
+          "question": "In a disciplinary investigation involving serious misconduct, the board of inquiry shall consist of not less than:",
+          "options": [
+            "One person",
+            "Three persons",
+            "Five persons",
+            "Seven persons"
+          ],
+          "correct": 1,
+          "explanation": "The Commission may set up a board of inquiry which shall consist of not less than three persons (Rule 100307(v)) [65].",
+          "difficulty": "medium",
+          "chapter": "Rule 100307(v)",
+          "keywords": [
+            "Board of Inquiry",
+            "Three members"
+          ]
+        },
+        {
+          "id": "clg_lc_051",
+          "question": "The PPA principle that requires all bidders be treated fairly and equitably is emphasized in:",
+          "options": [
+            "Section 35",
+            "Section 16",
+            "Section 42",
+            "Section 58"
+          ],
+          "correct": 1,
+          "explanation": "Section 16 requires equal and fair treatment of all bidders during procurement [66].",
+          "difficulty": "medium",
+          "chapter": "PPA Section 16",
+          "keywords": [
+            "Fair treatment",
+            "PPA Section 16"
+          ]
+        },
+        {
+          "id": "clg_lc_052",
+          "question": "Section 32 of the PPA mandates transparency in contract awards by requiring:",
+          "options": [
+            "Publication of Ministerial Tenders Board Minutes only",
+            "Public access to procurement records and contract awards above thresholds",
+            "BPP approval for all low-value contracts",
+            "Secret negotiation with contractors"
+          ],
+          "correct": 1,
+          "explanation": "Section 32 requires publication of contract awards above thresholds and provides for public access to procurement records [67, 68].",
+          "difficulty": "medium",
+          "chapter": "PPA Section 32",
+          "keywords": [
+            "Public access",
+            "Contract awards",
+            "Section 32"
+          ]
+        },
+        {
+          "id": "clg_lc_053",
+          "question": "An officer involved in procurement fraud, such as collusion or over-invoicing, faces which penalty under the FR and PPA framework?",
+          "options": [
+            "A written warning only",
+            "Surcharge and disciplinary query",
+            "Dismissal or criminal charges",
+            "Transfer to another Ministry"
+          ],
+          "correct": 2,
+          "explanation": "Officers involved in procurement abuse and fraud face dismissal or criminal charges, as this constitutes serious misconduct (PPA Section 58 / FR Sanctions) [31, 47].",
+          "difficulty": "medium",
+          "chapter": "PPA/FR Sanctions",
+          "keywords": [
+            "Procurement fraud",
+            "dismissal",
+            "criminal charges"
+          ]
+        },
+        {
+          "id": "clg_lc_054",
+          "question": "In disciplinary matters, which misconduct is classified as **Gross Misconduct** according to the Civil Service Handbook?",
+          "options": [
+            "Habitual lateness",
+            "Failure to sign attendance register",
+            "Fraud and falsification of records",
+            "Poor communication"
+          ],
+          "correct": 2,
+          "explanation": "Fraud and falsification of records constitute gross misconduct [69, 70].",
+          "difficulty": "medium",
+          "chapter": "CSH Discipline",
+          "keywords": [
+            "Gross misconduct",
+            "Fraud",
+            "Falsification"
+          ]
+        },
+        {
+          "id": "clg_lc_055",
+          "question": "The maximum acting appointment period shall not exceed one year, but in exceptional circumstances may be extended for a further period of:",
+          "options": [
+            "Three months",
+            "Six months",
+            "One year",
+            "Two years"
+          ],
+          "correct": 1,
+          "explanation": "The acting appointment shall not exceed one year, but may be extended for a further period of six months (Rule 020703) [71].",
+          "difficulty": "easy",
+          "chapter": "Rule 020703",
+          "keywords": [
+            "Acting appointment",
+            "Six months"
+          ]
+        },
+        {
+          "id": "clg_lc_056",
+          "question": "Which of the following is NOT required to be notified simultaneously of decisions regarding the deferment or withholding of increment (Rule 040209)?",
+          "options": [
+            "The Office of the Accountant General of the Federation",
+            "The Permanent Secretary (CMO, OHCSF)",
+            "The Office of the Auditor General for the Federation",
+            "The Minister of Justice"
+          ],
+          "correct": 3,
+          "explanation": "Decisions must be communicated to the AGF, AuGF, and the OHCSF [72-74].",
+          "difficulty": "medium",
+          "chapter": "Rule 040209",
+          "keywords": [
+            "Increment decisions",
+            "Notification",
+            "Rule 040209"
+          ]
+        },
+        {
+          "id": "clg_lc_057",
+          "question": "The final authority to restore a deferred increment, which requires assessing service improvement and conduct, lies with the:",
+          "options": [
+            "Federal Civil Service Commission (FCSC)",
+            "Permanent Secretary/Head of Extra-Ministerial Office",
+            "Accountant-General of the Federation",
+            "The officer's direct supervisor"
+          ],
+          "correct": 1,
+          "explanation": "The Permanent Secretary/Head of Extra-Ministerial Office holds the authority to decide on restoring a deferred increment (Rule 040208) [75, 76].",
+          "difficulty": "medium",
+          "chapter": "Rule 040208",
+          "keywords": [
+            "Increment restoration",
+            "Permanent Secretary"
+          ]
+        },
+        {
+          "id": "clg_lc_058",
+          "question": "What happens if an Officer who has accepted a course of instruction abroad receives a salary from an employer in the overseas country during the training period?",
+          "options": [
+            "He receives full emolument from Nigeria",
+            "He forfeits all Nigerian emoluments/allowances unless specifically approved by the OHCSF",
+            "He must refund the cost of the course immediately",
+            "He is automatically promoted"
+          ],
+          "correct": 1,
+          "explanation": "The officer forfeits all Nigerian emoluments/allowances unless specifically approved by the OHCSF [77].",
+          "difficulty": "hard",
+          "chapter": "PSR Training Emoluments",
+          "keywords": [
+            "Overseas training",
+            "Salary forfeiture"
+          ]
+        },
+        {
+          "id": "clg_lc_059",
+          "question": "The separation of roles—authorization, custody, and recording—in financial transactions is the first control measure against fraud, known as:",
+          "options": [
+            "Concurrent Auditing",
+            "Segregation of Duties",
+            "Fiscal Review",
+            "Post-Audit"
+          ],
+          "correct": 1,
+          "explanation": "The separation of roles (Segregation of Duties) is the first line of defense against financial fraud [78-80].",
+          "difficulty": "easy",
+          "chapter": "FR Internal Controls",
+          "keywords": [
+            "Segregation of Duties",
+            "Fraud control"
+          ]
+        },
+        {
+          "id": "clg_lc_060",
+          "question": "What must be checked in the **Vote Book** immediately before any commitment (like issuing an LPO) is made?",
+          "options": [
+            "The date the last Virement Warrant was issued",
+            "The balance remaining in the relevant subhead",
+            "The date of the last audit query",
+            "The bank statement reconciliation status"
+          ],
+          "correct": 1,
+          "explanation": "The balance remaining in the relevant subhead must be checked to prevent unauthorized commitment [81, 82].",
+          "difficulty": "medium",
+          "chapter": "FR Budgeting",
+          "keywords": [
+            "Vote Book",
+            "Commitment check"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "clg_general_competency",
+      "name": "General Competency, Ethics & Reforms",
+      "description": "Cross-cutting legal/ethical competency and reform-oriented governance.",
+      "icon": "🎯",
+      "questions": [
+        {
+          "id": "clg_gc_061",
+          "question": "Which system automates payroll, eliminates ghost workers, and tracks civil servant identity records?",
+          "options": [
+            "TSA",
+            "GIFMIS",
+            "HRMIS",
+            "IPPIS"
+          ],
+          "correct": 3,
+          "explanation": "The Integrated Payroll and Personnel Information System (IPPIS) manages payroll and personnel data, crucial for controlling emoluments and eliminating ghost workers [83-85].",
+          "difficulty": "easy",
+          "chapter": "ICT/FR Reforms",
+          "keywords": [
+            "IPPIS",
+            "Payroll automation"
+          ]
+        },
+        {
+          "id": "clg_gc_062",
+          "question": "The Treasury Single Account (TSA) system was introduced primarily to achieve which of the following financial objectives?",
+          "options": [
+            "Allow MDAs to manage separate bank accounts",
+            "Consolidate all government revenue into a single account to improve transparency",
+            "Replace the Accountant-General's role",
+            "Fund capital projects only"
+          ],
+          "correct": 1,
+          "explanation": "TSA consolidates government revenues into a single account managed by the CBN to improve transparency and block leakages [11, 86, 87].",
+          "difficulty": "easy",
+          "chapter": "FR Reforms – TSA",
+          "keywords": [
+            "TSA",
+            "Treasury Single Account",
+            "Financial reform"
+          ]
+        },
+        {
+          "id": "clg_gc_063",
+          "question": "The primary objective of Staff Development and training (Rule 070101) is to enhance the knowledge, skills, attitude, effectiveness, and:",
+          "options": [
+            "Political loyalty",
+            "Efficiency of staff",
+            "Social media presence",
+            "Nepotism"
+          ],
+          "correct": 1,
+          "explanation": "Staff Development aims to enhance the effectiveness and efficiency of staff in order to meet their career goals and prepare them for changing duties and responsibilities (Rule 070101) [88, 89].",
+          "difficulty": "easy",
+          "chapter": "Rule 070101",
+          "keywords": [
+            "Staff Development",
+            "Efficiency",
+            "Rule 070101"
+          ]
+        },
+        {
+          "id": "clg_gc_064",
+          "question": "What is the consequence for an officer who fails the compulsory confirmation examination after three consecutive attempts (Rule 030104)?",
+          "options": [
+            "Temporary freeze of salary",
+            "Reduction in rank for one year",
+            "Required to resign or be withdrawn from the service",
+            "Payment of a fine"
+          ],
+          "correct": 2,
+          "explanation": "An Officer who fails the confirmation examination after three consecutive attempts shall be required to resign or be withdrawn from the service [90, 91].",
+          "difficulty": "easy",
+          "chapter": "Rule 030104",
+          "keywords": [
+            "Confirmation failure",
+            "Resign or withdrawal"
+          ]
+        },
+        {
+          "id": "clg_gc_065",
+          "question": "The compulsory retirement age for all civil servants in the Federal Public Service is:",
+          "options": [
+            "65 years or 30 years of service",
+            "60 years or 35 years of pensionable service, whichever comes first",
+            "55 years or 35 years of service",
+            "60 years regardless of years of service"
+          ],
+          "correct": 1,
+          "explanation": "The compulsory retirement age is 60 years or 35 years of pensionable service, whichever comes first (Rule 020909) [27, 92].",
+          "difficulty": "easy",
+          "chapter": "Rule 020909",
+          "keywords": [
+            "Retirement age",
+            "35 years service",
+            "60 years"
+          ]
+        },
+        {
+          "id": "clg_gc_066",
+          "question": "The primary purpose of **record-keeping** in the Civil Service Handbook is emphasized to ensure:",
+          "options": [
+            "Reduced paper consumption",
+            "Accountability and continuity of government operations",
+            "Secrecy from the public",
+            "Simplified hierarchical structure"
+          ],
+          "correct": 1,
+          "explanation": "Proper record-keeping ensures accountability, transparency, and continuity in civil service operations [93, 94].",
+          "difficulty": "easy",
+          "chapter": "CSH Records",
+          "keywords": [
+            "Record-keeping",
+            "Accountability",
+            "Continuity"
+          ]
+        },
+        {
+          "id": "clg_gc_067",
+          "question": "The responsibility for issuing Establishment Circulars that amend, clarify, or interpret the Public Service Rules (PSR) rests with the:",
+          "options": [
+            "National Assembly",
+            "Office of the Head of the Civil Service of the Federation (OHCSF)",
+            "Federal Civil Service Commission (FCSC)",
+            "Attorney-General of the Federation"
+          ],
+          "correct": 1,
+          "explanation": "Circulars issued by the Head of Service or Presidency update or supplement the rules and provide interim directives [95].",
+          "difficulty": "easy",
+          "chapter": "PSR/OHCSF Role",
+          "keywords": [
+            "Establishment Circulars",
+            "OHCSF",
+            "PSR interpretation"
+          ]
+        },
+        {
+          "id": "clg_gc_068",
+          "question": "The movement of funds from one specified budget subhead to another **within the same expenditure vote**, authorized by a Warrant, is known as:",
+          "options": [
+            "Appropriation",
+            "Virement",
+            "Excess Vote",
+            "Consolidation"
+          ],
+          "correct": 1,
+          "explanation": "Virement is the authorized transfer of funds from one sub-head to another within the same head of expenditure [96, 97].",
+          "difficulty": "easy",
+          "chapter": "FR Budgeting",
+          "keywords": [
+            "Virement",
+            "Budget transfer"
+          ]
+        },
+        {
+          "id": "clg_gc_069",
+          "question": "Which administrative body is responsible for handling public complaints against administrative injustice in the public service?",
+          "options": [
+            "Economic and Financial Crimes Commission (EFCC)",
+            "Public Complaints Commission",
+            "Federal Civil Service Commission (FCSC)",
+            "Code of Conduct Tribunal (CCT)"
+          ],
+          "correct": 1,
+          "explanation": "The Public Complaints Commission addresses grievances and promotes administrative justice [98].",
+          "difficulty": "medium",
+          "chapter": "General Knowledge",
+          "keywords": [
+            "Public Complaints Commission",
+            "Administrative injustice"
+          ]
+        },
+        {
+          "id": "clg_gc_070",
+          "question": "The concept of **Meritocracy** in the Civil Service Handbook emphasizes that appointments and promotions must be based on:",
+          "options": [
+            "Political patronage",
+            "Age and tenure only",
+            "Performance, competence, and vacancy",
+            "Seniority over all other factors"
+          ],
+          "correct": 2,
+          "explanation": "Meritocracy is based on performance, competence, and availability of vacancies [99, 100].",
+          "difficulty": "easy",
+          "chapter": "CSH Meritocracy",
+          "keywords": [
+            "Meritocracy",
+            "Performance",
+            "Promotion"
+          ]
+        },
+        {
+          "id": "clg_gc_071",
+          "question": "What is the primary objective of discouraging **nepotism** in the Civil Service Handbook?",
+          "options": [
+            "To simplify the recruitment process",
+            "To ensure fairness and merit-based appointments",
+            "To increase secrecy in appointments",
+            "To promote political loyalty"
+          ],
+          "correct": 1,
+          "explanation": "Nepotism refers to giving undue advantage to family or friends in recruitment and appointments, which the Handbook discourages [101, 102].",
+          "difficulty": "easy",
+          "chapter": "CSH Ethics",
+          "keywords": [
+            "Nepotism",
+            "Merit-based appointments"
+          ]
+        },
+        {
+          "id": "clg_gc_072",
+          "question": "The use of the Government Integrated Financial Management Information System (GIFMIS) primarily supports the financial management process by providing:",
+          "options": [
+            "A platform for political campaigning",
+            "Integrated financial operations, accounting, and expenditure tracking",
+            "The exclusive mechanism for collecting tax revenue",
+            "A register of physical assets only"
+          ],
+          "correct": 1,
+          "explanation": "GIFMIS supports real-time public finance tracking, integrating budgeting, accounting, and expenditure [85, 103].",
+          "difficulty": "easy",
+          "chapter": "FR Budgeting – GIFMIS",
+          "keywords": [
+            "GIFMIS",
+            "Integrated financial operations"
+          ]
+        },
+        {
+          "id": "clg_gc_073",
+          "question": "Which principle allows for the gradual transfer of operational responsibility to subordinates to enhance efficiency, provided the ultimate responsibility remains at the higher, Directorate level?",
+          "options": [
+            "Centralization",
+            "Delegation of Authority",
+            "Autocracy",
+            "Permanence"
+          ],
+          "correct": 1,
+          "explanation": "Delegation improves efficiency by allowing junior officers to act, but ultimate responsibility remains with the senior officer [104, 105].",
+          "difficulty": "medium",
+          "chapter": "CSH Delegation",
+          "keywords": [
+            "Delegation of Authority",
+            "Responsibility"
+          ]
+        },
+        {
+          "id": "clg_gc_074",
+          "question": "The principle of **Transparency** in decision-making requires that:",
+          "options": [
+            "All information is classified",
+            "Decisions and processes are open, with records available for accountability",
+            "Only the Permanent Secretary knows the budget details",
+            "Procurement is conducted secretly"
+          ],
+          "correct": 1,
+          "explanation": "Transparency requires that decisions and processes are open, with records available for accountability [106, 107].",
+          "difficulty": "medium",
+          "chapter": "CSH Transparency",
+          "keywords": [
+            "Transparency",
+            "Accountability"
+          ]
+        },
+        {
+          "id": "clg_gc_075",
+          "question": "An officer must discharge every duty assigned to him by Government and accept liability of being stationed wherever his presence is considered to be most useful, as per:",
+          "options": [
+            "Rule 100425 (Private Practice)",
+            "Rule 100428 (Posting and Duty Discharge)",
+            "Rule 100427 (Seeking Influence)",
+            "Rule 100431 (False Statement)"
+          ],
+          "correct": 1,
+          "explanation": "Rule 100428 mandates the officer's duty to discharge assigned duties and accept liability of being stationed wherever his presence is considered most useful [108].",
+          "difficulty": "easy",
+          "chapter": "Rule 100428",
+          "keywords": [
+            "Posting liability",
+            "Duty discharge"
+          ]
+        },
+        {
+          "id": "clg_gc_076",
+          "question": "The primary objective of the Reward and Recognition Scheme (R&RS) in the PSR is to:",
+          "options": [
+            "Replace financial allowances",
+            "Institutionalize a culture of excellence and high levels of staff motivation",
+            "Increase staff salaries permanently",
+            "Fund recreational activities only"
+          ],
+          "correct": 1,
+          "explanation": "The R&RS System encourages excellence, merit, and high levels of staff motivation (Rule 060103) [109].",
+          "difficulty": "easy",
+          "chapter": "Rule 060103",
+          "keywords": [
+            "R&RS",
+            "Motivation",
+            "Excellence"
+          ]
+        },
+        {
+          "id": "clg_gc_077",
+          "question": "Who is statutorily designated as the Chief Financial Adviser to the Federal Government?",
+          "options": [
+            "Accountant-General of the Federation (AGF)",
+            "Auditor-General for the Federation (AuGF)",
+            "Minister of Finance",
+            "Director-General, Budget Office"
+          ],
+          "correct": 2,
+          "explanation": "The Minister of Finance is the Chief Financial Adviser to the Federal Government [110].",
+          "difficulty": "easy",
+          "chapter": "FR General Management",
+          "keywords": [
+            "Minister of Finance",
+            "Chief Financial Adviser"
+          ]
+        },
+        {
+          "id": "clg_gc_078",
+          "question": "The period of service rendered during **study leave without pay** shall be regarded as:",
+          "options": [
+            "A break in service",
+            "Not a break in Service",
+            "A period of suspension",
+            "A period of interdiction"
+          ],
+          "correct": 1,
+          "explanation": "The period of study shall not be regarded as a break in Service (Rule 120230(b)) [111].",
+          "difficulty": "medium",
+          "chapter": "Rule 120230(b)",
+          "keywords": [
+            "Study Leave without Pay",
+            "Break in service"
+          ]
+        },
+        {
+          "id": "clg_gc_079",
+          "question": "The mandatory pre-retirement leave for officers who give notice of retirement is:",
+          "options": [
+            "One month",
+            "Two months",
+            "Three months",
+            "Six months"
+          ],
+          "correct": 2,
+          "explanation": "The pre-retirement leave is three months before retirement (Rule 120243) [112].",
+          "difficulty": "medium",
+          "chapter": "Rule 120243",
+          "keywords": [
+            "Pre-retirement leave",
+            "Three months"
+          ]
+        },
+        {
+          "id": "clg_gc_080",
+          "question": "The primary role of the Registry Unit in an MDA is to:",
+          "options": [
+            "Conduct internal audits",
+            "Manage official files, classification, numbering, and document movement",
+            "Process payroll (IPPIS)",
+            "Handle disciplinary hearings"
+          ],
+          "correct": 1,
+          "explanation": "The Registry Unit handles receipt, classification, numbering, and movement of files in an MDA. It is crucial to documentation integrity [113, 114].",
+          "difficulty": "medium",
+          "chapter": "Admin Practice",
+          "keywords": [
+            "Registry Unit",
+            "File management",
+            "Documentation"
+          ]
+        },
+        {
+          "id": "clg_gc_081",
+          "question": "The Accountant-General of the Federation is responsible for issuing which key financial instrument that provides detailed instructions on financial procedures and implementation?",
+          "options": [
+            "Appropriation Act",
+            "Treasury Circulars",
+            "Audit Report",
+            "Virement Warrant"
+          ],
+          "correct": 1,
+          "explanation": "The Accountant-General of the Federation issues Treasury Circulars [115, 116].",
+          "difficulty": "easy",
+          "chapter": "FR General Management",
+          "keywords": [
+            "Treasury Circulars",
+            "Accountant-General"
+          ]
+        },
+        {
+          "id": "clg_gc_082",
+          "question": "In the civil service, **Seniority** is primarily determined by:",
+          "options": [
+            "The age of the officer",
+            "Academic qualifications",
+            "Grade level and date of promotion/appointment",
+            "The geopolitical zone of origin"
+          ],
+          "correct": 2,
+          "explanation": "Seniority within a grade level is determined by the date of promotion to that grade [117].",
+          "difficulty": "easy",
+          "chapter": "PSR Seniority",
+          "keywords": [
+            "Seniority",
+            "Grade level",
+            "Promotion date"
+          ]
+        },
+        {
+          "id": "clg_gc_083",
+          "question": "The purpose of the **Contingencies Fund** is to cover:",
+          "options": [
+            "Routine overhead expenditure",
+            "Emergency and unforeseen government expenditures",
+            "Personnel emoluments",
+            "Capital projects only"
+          ],
+          "correct": 1,
+          "explanation": "The Contingencies Fund is used to meet unforeseen and urgent government expenditures [118-120].",
+          "difficulty": "easy",
+          "chapter": "FR General Management",
+          "keywords": [
+            "Contingencies Fund",
+            "Emergency expenditure"
+          ]
+        },
+        {
+          "id": "clg_gc_084",
+          "question": "The statutory standard incremental date for an Officer appointed or promoted to a post in the Federal Public Service shall be:",
+          "options": [
+            "The date of appointment/promotion",
+            "The $1^{st}$ January of the year following at least six months of service or promotion",
+            "The end of the current quarter",
+            "The 31st December of the current year"
+          ],
+          "correct": 1,
+          "explanation": "The incremental date is the $1^{st}$ January of the year following at least six months of service or promotion (Rule 040203) [121, 122].",
+          "difficulty": "medium",
+          "chapter": "Rule 040203",
+          "keywords": [
+            "Incremental date",
+            "1st January"
+          ]
+        },
+        {
+          "id": "clg_gc_085",
+          "question": "Which body coordinates and monitors the implementation of the Performance Management System (PMS) across MDAs to ensure national uniformity?",
+          "options": [
+            "Federal Civil Service Commission (FCSC)",
+            "Office of the Head of the Civil Service of the Federation (OHCSF)",
+            "Budget Office of the Federation (BOF)",
+            "National Salaries, Incomes and Wages Commission (NSIWC)"
+          ],
+          "correct": 1,
+          "explanation": "The OHCSF coordinates and monitors the implementation of PMS across MDAs [123].",
+          "difficulty": "medium",
+          "chapter": "OHCSF Role – PMS",
+          "keywords": [
+            "OHCSF",
+            "PMS implementation"
+          ]
+        },
+        {
+          "id": "clg_gc_086",
+          "question": "The goal of promoting **respect for diversity** in the Civil Service Handbook is primarily aimed at achieving:",
+          "options": [
+            "Favouritism towards specific ethnic groups",
+            "Inclusivity and unity in the workplace",
+            "Compliance with political directives",
+            "Reduced accountability"
+          ],
+          "correct": 1,
+          "explanation": "Respecting diversity fosters inclusivity, unity, and fairness in the workplace [23, 77].",
+          "difficulty": "easy",
+          "chapter": "CSH Diversity",
+          "keywords": [
+            "Diversity",
+            "Inclusivity"
+          ]
+        },
+        {
+          "id": "clg_gc_087",
+          "question": "What is the key difference between **withholding** an increment and **deferring** an increment (Rule 040204)?",
+          "options": [
+            "Deferring is a permanent loss; withholding is temporary.",
+            "Withholding is a more serious penalty because the loss cannot be restored retrospectively.",
+            "Deferring requires FCSC approval; withholding requires only Permanent Secretary approval.",
+            "Withholding only applies to GL 06 and below."
+          ],
+          "correct": 1,
+          "explanation": "The gravity of the shortcoming determines the penalty, bearing in mind that to withhold an increment is a more serious penalty than to defer it [122]. A withheld increment cannot be restored retroactively [121].",
+          "difficulty": "hard",
+          "chapter": "Rule 040204",
+          "keywords": [
+            "Withheld increment",
+            "Deferred increment",
+            "Penalty gravity"
+          ]
+        },
+        {
+          "id": "clg_gc_088",
+          "question": "The three types of study leave listed in the PSR (Rule 120226) are Leave for In-Service Training, Study Leave without Pay, and:",
+          "options": [
+            "Sabbatical Leave",
+            "Leave of Absence",
+            "Study Leave with Pay",
+            "Proportionate Leave"
+          ],
+          "correct": 2,
+          "explanation": "The three types of study leave are Leave for In-Service Training, Study Leave with Pay, and Study Leave without Pay [124, 125].",
+          "difficulty": "medium",
+          "chapter": "Rule 120226",
+          "keywords": [
+            "Types of study leave"
+          ]
+        },
+        {
+          "id": "clg_gc_089",
+          "question": "Which reform initiative specifically aims to enhance staff discipline and record accurate staff presence in MDAs?",
+          "options": [
+            "TSA",
+            "Biometric Attendance Systems",
+            "Open Contracting Portal",
+            "National Broadband Plan"
+          ],
+          "correct": 1,
+          "explanation": "Biometric Attendance Systems enhance punctuality and record staff presence [126, 127].",
+          "difficulty": "medium",
+          "chapter": "ICT Reforms",
+          "keywords": [
+            "Biometric Attendance",
+            "Discipline",
+            "Punctuality"
+          ]
+        },
+        {
+          "id": "clg_gc_090",
+          "question": "The maximum duration of **study leave with pay** that may be granted to an Officer is:",
+          "options": [
+            "One year",
+            "Two years",
+            "Three years",
+            "Four years"
+          ],
+          "correct": 1,
+          "explanation": "The duration of study leave with pay shall not exceed two years (Rule 120228(a)) [128].",
+          "difficulty": "medium",
+          "chapter": "Rule 120228(a)",
+          "keywords": [
+            "Study Leave with Pay",
+            "Two years"
+          ]
+        },
+        {
+          "id": "clg_gc_091",
+          "question": "All newly employed Officers must be placed on the **IPPIS platform** within a maximum period of:",
+          "options": [
+            "Seven days",
+            "One month",
+            "Two months of assumption of duty",
+            "Six months"
+          ],
+          "correct": 2,
+          "explanation": "All Officers shall be placed on the IPPIS platform within two months of assumption of duty (Rule 040102) [83, 129].",
+          "difficulty": "medium",
+          "chapter": "Rule 040102",
+          "keywords": [
+            "IPPIS",
+            "Two months"
+          ]
+        },
+        {
+          "id": "clg_gc_092",
+          "question": "Which chapter of the Civil Service Handbook provides grievance procedures to resolve disputes within the civil service?",
+          "options": [
+            "Chapter 3 (Discipline)",
+            "Chapter 4 (Accountability)",
+            "Chapter 7 (Grievance)",
+            "Chapter 9 (Collaboration)"
+          ],
+          "correct": 2,
+          "explanation": "Chapter 7 provides grievance procedures to resolve disputes within the civil service [130, 131].",
+          "difficulty": "medium",
+          "chapter": "CSH Grievance",
+          "keywords": [
+            "Grievance procedures",
+            "Chapter 7"
+          ]
+        },
+        {
+          "id": "clg_gc_093",
+          "question": "The primary objective of recording all financial commitments in the Vote Book (Obligation Control) is to:",
+          "options": [
+            "Guarantee prompt promotion",
+            "Ensure that all planned expenditure is within the legal capacity of the approved budget",
+            "Simplify foreign exchange conversion",
+            "Track staff punctuality"
+          ],
+          "correct": 1,
+          "explanation": "The Vote Book ensures that all planned expenditure is within the legal capacity of the approved budget [84, 132].",
+          "difficulty": "medium",
+          "chapter": "FR Budgeting",
+          "keywords": [
+            "Vote Book",
+            "Obligation Control"
+          ]
+        },
+        {
+          "id": "clg_gc_094",
+          "question": "The system used to manage digital HR records, including staff leave, postings, and promotions, is known as:",
+          "options": [
+            "TSA",
+            "IPPIS",
+            "HRMIS",
+            "BPP"
+          ],
+          "correct": 2,
+          "explanation": "The Human Resource Management Information System (HRMIS) enables digital management of staff records, leave, postings, and promotions [85, 133].",
+          "difficulty": "easy",
+          "chapter": "ICT Reforms",
+          "keywords": [
+            "HRMIS",
+            "Digital records"
+          ]
+        },
+        {
+          "id": "clg_gc_095",
+          "question": "The term **'working hours'** in the PSR definition specifically excludes:",
+          "options": [
+            "Overtime periods",
+            "Official meetings",
+            "All officially recognized break periods",
+            "Preparation time"
+          ],
+          "correct": 2,
+          "explanation": "The definition of 'working hours' excludes all officially recognized break periods (Rule 16.45) [134].",
+          "difficulty": "medium",
+          "chapter": "PSR Definition",
+          "keywords": [
+            "Working hours",
+            "Break periods"
+          ]
+        },
+        {
+          "id": "clg_gc_096",
+          "question": "Officers who are going on religious pilgrimages, other than Officials assigned to cover such activities, should use part of their:",
+          "options": [
+            "Special Leave of Absence",
+            "Annual leave",
+            "Sick leave",
+            "Sabbatical leave"
+          ],
+          "correct": 1,
+          "explanation": "Officers going on religious pilgrimages should use part of their annual leave for such purposes (Rule 120232) [135].",
+          "difficulty": "medium",
+          "chapter": "Rule 120232",
+          "keywords": [
+            "Religious pilgrimage",
+            "Annual leave"
+          ]
+        },
+        {
+          "id": "clg_gc_097",
+          "question": "The principle of **Efficiency** in service delivery primarily aims to ensure:",
+          "options": [
+            "That government services meet public needs effectively and deliver value for money",
+            "Political neutrality in all functions",
+            "That decisions favor senior staff",
+            "Maximum secrecy in operations"
+          ],
+          "correct": 0,
+          "explanation": "Efficiency ensures civil servants meet public needs effectively and deliver value for money [136, 137].",
+          "difficulty": "easy",
+          "chapter": "CSH Efficiency",
+          "keywords": [
+            "Efficiency",
+            "Value for money"
+          ]
+        },
+        {
+          "id": "clg_gc_098",
+          "question": "The mandatory requirement for promotion eligibility, in addition to merit and seniority, is that the officer must have undergone:",
+          "options": [
+            "Continuous annual leave for five years",
+            "Structured training and acquired skill competence per scheme of service",
+            "Foreign diplomatic posting",
+            "A course on political lobbying"
+          ],
+          "correct": 1,
+          "explanation": "The officer must have undergone structured training and acquired skill competence as specified in the scheme of service (Rule 020803(a)) [138, 139].",
+          "difficulty": "medium",
+          "chapter": "Rule 020803(a)",
+          "keywords": [
+            "Promotion requirement",
+            "Structured training"
+          ]
+        },
+        {
+          "id": "clg_gc_099",
+          "question": "Which officer is primarily responsible for maintaining the departmental Vote Ledger (Vote Book), tracking budget allocations, and controlling expenditure commitments?",
+          "options": [
+            "Internal Auditor",
+            "Sub-Accountant",
+            "Vote Controller",
+            "Director of Finance"
+          ],
+          "correct": 2,
+          "explanation": "The Vote Controller maintains the Vote Book to monitor budgetary allocations and expenditures [140-142].",
+          "difficulty": "medium",
+          "chapter": "FR Budgeting",
+          "keywords": [
+            "Vote Controller",
+            "Vote Book"
+          ]
+        },
+        {
+          "id": "clg_gc_100",
+          "question": "Who must approve the release of any Officer on study leave, whether paid or unpaid, upon the recommendation of the Officer’s Permanent Secretary/Head of Extra Ministerial Office?",
+          "options": [
+            "The Federal Civil Service Commission (FCSC)",
+            "The Office of the Head of the Civil Service of the Federation (OHCSF)",
+            "The Minister of Education",
+            "The Director (HRM)"
+          ],
+          "correct": 1,
+          "explanation": "Study leave (both paid and unpaid) requires OHCSF approval [143, 144].",
+          "difficulty": "medium",
+          "chapter": "Rule 120231",
+          "keywords": [
+            "Study leave",
+            "OHCSF approval"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "foi_access_obligations",
+      "name": "Access Rights & Obligations (FOI)",
+      "description": "Rights to access public records and institutional obligations.",
+      "questions": [
+        {
+          "id": "FOI_AO_001",
+          "question": "In which year was the Freedom of Information Act enacted in Nigeria?",
+          "options": [
+            "2007",
+            "2009",
+            "2011",
+            "2013"
+          ],
+          "correct": 2,
+          "explanation": "The Freedom of Information Act was signed into law in 2011 [1].",
+          "difficulty": "easy",
+          "chapter": "Introduction",
+          "keywords": [
+            "foi act",
+            "2011",
+            "enactment"
+          ]
+        },
+        {
+          "id": "FOI_AO_002",
+          "question": "What is the primary objective of the Freedom of Information Act?",
+          "options": [
+            "To restrict information flow to foreign entities",
+            "To ensure public access to information held by public institutions",
+            "To empower only the judiciary in document review",
+            "To limit freedom of the press"
+          ],
+          "correct": 1,
+          "explanation": "The FOI Act aims to make public records accessible to citizens, enhancing transparency and accountability [2].",
+          "difficulty": "easy",
+          "chapter": "Objectives",
+          "keywords": [
+            "foi act",
+            "objective",
+            "access to information"
+          ]
+        },
+        {
+          "id": "FOI_AO_003",
+          "question": "Under the FOI Act, within how many days must a public institution generally respond to a request for information?",
+          "options": [
+            "3 days",
+            "7 days",
+            "14 days",
+            "21 days"
+          ],
+          "correct": 1,
+          "explanation": "Section 4 of the FOI Act stipulates that public institutions must respond to requests within 7 days [3].",
+          "difficulty": "easy",
+          "chapter": "Access Rights",
+          "keywords": [
+            "foi act",
+            "response time",
+            "7 days"
+          ]
+        },
+        {
+          "id": "FOI_AO_004",
+          "question": "Which section of the FOI Act guarantees the right of any person to access public records?",
+          "options": [
+            "Section 1",
+            "Section 2",
+            "Section 4",
+            "Section 7"
+          ],
+          "correct": 0,
+          "explanation": "Section 1 of the FOI Act guarantees the right of any person to access or request information from public institutions [4].",
+          "difficulty": "medium",
+          "chapter": "Access Rights",
+          "keywords": [
+            "foi act",
+            "section 1",
+            "right of access"
+          ]
+        },
+        {
+          "id": "FOI_AO_005",
+          "question": "The right of access under the FOI Act extends to:",
+          "options": [
+            "Only Nigerian citizens",
+            "Nigerian citizens and registered NGOs only",
+            "Any person, including foreign nationals",
+            "Only the media"
+          ],
+          "correct": 2,
+          "explanation": "Section 1 makes the right of access available to 'any person,' not limited to Nigerian citizens [5].",
+          "difficulty": "easy",
+          "chapter": "Access Rights",
+          "keywords": [
+            "foi act",
+            "foreign nationals",
+            "access"
+          ]
+        },
+        {
+          "id": "FOI_AO_006",
+          "question": "What is the maximum extension period allowed for an FOI request if the initial 7-day period is insufficient?",
+          "options": [
+            "3 days",
+            "7 days",
+            "14 days",
+            "30 days"
+          ],
+          "correct": 1,
+          "explanation": "The Act allows a maximum extension of 7 additional days to respond where necessary [5].",
+          "difficulty": "medium",
+          "chapter": "Access Rights",
+          "keywords": [
+            "foi act",
+            "extension",
+            "7 days"
+          ]
+        },
+        {
+          "id": "FOI_AO_007",
+          "question": "Which section of the FOI Act requires that information be provided in a language understandable to the applicant, when reasonably practicable?",
+          "options": [
+            "Section 2(3)",
+            "Section 3(4)",
+            "Section 4(2)",
+            "Section 7(1)"
+          ],
+          "correct": 1,
+          "explanation": "Section 3(4) requires that information be provided in a language understandable to the applicant when reasonably practicable [6].",
+          "difficulty": "medium",
+          "chapter": "Access Rights",
+          "keywords": [
+            "foi act",
+            "language",
+            "section 3(4)"
+          ]
+        },
+        {
+          "id": "FOI_AO_008",
+          "question": "If a public institution does not hold the requested information but knows another institution does, which section requires the institution to transfer the request?",
+          "options": [
+            "Section 4",
+            "Section 5",
+            "Section 7",
+            "Section 10"
+          ],
+          "correct": 2,
+          "explanation": "Section 7 provides for transfer of requests where the information is held by another institution [7].",
+          "difficulty": "medium",
+          "chapter": "Access Rights",
+          "keywords": [
+            "foi act",
+            "transfer",
+            "section 7"
+          ]
+        },
+        {
+          "id": "FOI_AO_009",
+          "question": "Which section provides for public institutions to charge fees to cover the cost of duplication and transcription of records?",
+          "options": [
+            "Section 5(3)",
+            "Section 7(5)",
+            "Section 8(1)",
+            "Section 9(2)"
+          ],
+          "correct": 2,
+          "explanation": "Section 8(1) allows institutions to charge fees covering costs of duplication or transcription of records [8].",
+          "difficulty": "medium",
+          "chapter": "Access Rights",
+          "keywords": [
+            "foi act",
+            "fees",
+            "section 8(1)"
+          ]
+        },
+        {
+          "id": "FOI_AO_010",
+          "question": "What is explicitly stated by Section 1(2) regarding the applicant's motivation for requesting information?",
+          "options": [
+            "The applicant must demonstrate financial interest",
+            "The applicant must provide strong reasons for the request",
+            "No applicant needs to demonstrate interest or reasons",
+            "The request must be legally sanctioned"
+          ],
+          "correct": 2,
+          "explanation": "Section 1(2) makes clear that no applicant needs to demonstrate interest or reasons for requesting information [9].",
+          "difficulty": "easy",
+          "chapter": "Access Rights",
+          "keywords": [
+            "foi act",
+            "reasons",
+            "section 1(2)"
+          ]
+        },
+        {
+          "id": "FOI_AO_011",
+          "question": "Which section of the FOI Act mandates every public institution to maintain proper records for easy access?",
+          "options": [
+            "Section 2",
+            "Section 3",
+            "Section 5",
+            "Section 6"
+          ],
+          "correct": 0,
+          "explanation": "Section 2 of the FOI Act mandates public institutions to maintain proper records for easy access [10].",
+          "difficulty": "medium",
+          "chapter": "Obligations",
+          "keywords": [
+            "foi act",
+            "record keeping",
+            "section 2"
+          ]
+        },
+        {
+          "id": "FOI_AO_012",
+          "question": "Which section of the FOI Act obliges institutions to proactively publish certain categories of information without waiting for requests?",
+          "options": [
+            "Section 1",
+            "Section 2",
+            "Section 5",
+            "Section 8"
+          ],
+          "correct": 1,
+          "explanation": "Section 2 requires public institutions to proactively publish categories of information without waiting for requests [11].",
+          "difficulty": "medium",
+          "chapter": "Proactive Disclosure",
+          "keywords": [
+            "foi act",
+            "section 2",
+            "publication"
+          ]
+        },
+        {
+          "id": "FOI_AO_013",
+          "question": "The Act requires institutions to train staff on records management and access procedures to ensure:",
+          "options": [
+            "Reduction in staff strength",
+            "Reliance on external consultants only",
+            "Effective implementation and compliance",
+            "Exemption from annual audits"
+          ],
+          "correct": 2,
+          "explanation": "The Act requires institutions to train staff to ensure effective implementation and compliance [12].",
+          "difficulty": "medium",
+          "chapter": "Implementation",
+          "keywords": [
+            "foi act",
+            "staff training",
+            "implementation"
+          ]
+        },
+        {
+          "id": "FOI_AO_014",
+          "question": "Which section mandates public institutions to submit annual compliance reports on FOI requests to the Attorney-General?",
+          "options": [
+            "Section 2(7)",
+            "Section 5(2)",
+            "Section 10",
+            "Section 30"
+          ],
+          "correct": 0,
+          "explanation": "Section 2(7) mandates public institutions to submit annual compliance reports on FOI requests to the Attorney-General of the Federation [13].",
+          "difficulty": "medium",
+          "chapter": "Oversight",
+          "keywords": [
+            "foi act",
+            "compliance report",
+            "section 2(7)",
+            "attorney-general"
+          ]
+        },
+        {
+          "id": "FOI_AO_015",
+          "question": "Which section requires institutions to designate FOI desk officers responsible for handling requests?",
+          "options": [
+            "Section 2(3)",
+            "Section 3(4)",
+            "Section 5(1)",
+            "Section 10(1)"
+          ],
+          "correct": 2,
+          "explanation": "Section 5(1) requires every institution to designate officers responsible for handling FOI requests [14].",
+          "difficulty": "medium",
+          "chapter": "Implementation",
+          "keywords": [
+            "foi act",
+            "desk officer",
+            "section 5(1)"
+          ]
+        },
+        {
+          "id": "FOI_AO_016",
+          "question": "Section 6(2) obliges institutions to maintain records in which format for easy access?",
+          "options": [
+            "Only paper copies",
+            "Only in archives",
+            "Machine-readable formats",
+            "Handwritten formats"
+          ],
+          "correct": 2,
+          "explanation": "Section 6(2) requires public institutions to keep records in formats that make them easily accessible, such as machine-readable versions [15, 16].",
+          "difficulty": "medium",
+          "chapter": "Record Management",
+          "keywords": [
+            "foi act",
+            "records",
+            "section 6(2)",
+            "accessible formats"
+          ]
+        },
+        {
+          "id": "FOI_AO_017",
+          "question": "Section 2(3) mandates public institutions to widely disseminate information through various media to the public. This relates to:",
+          "options": [
+            "Exemption procedures",
+            "Proactive disclosure",
+            "Penalties for non-compliance",
+            "Fee calculation"
+          ],
+          "correct": 1,
+          "explanation": "Section 2(3) mandates wide dissemination of information, aligning with the principle of proactive disclosure [17].",
+          "difficulty": "medium",
+          "chapter": "Proactive Disclosure",
+          "keywords": [
+            "foi act",
+            "dissemination",
+            "section 2(3)"
+          ]
+        },
+        {
+          "id": "FOI_AO_018",
+          "question": "Which section requires public institutions to maintain updated indexes of their records for accessibility?",
+          "options": [
+            "Section 2(2)",
+            "Section 3(3)",
+            "Section 6(1)",
+            "Section 9(1)"
+          ],
+          "correct": 2,
+          "explanation": "Section 6(1) mandates public institutions to maintain updated indexes of their records for accessibility [18, 19].",
+          "difficulty": "medium",
+          "chapter": "Record Management",
+          "keywords": [
+            "foi act",
+            "record index",
+            "section 6(1)"
+          ]
+        },
+        {
+          "id": "FOI_AO_019",
+          "question": "Section 2(3) emphasizes the proactive disclosure of which categories of records, even without a formal request?",
+          "options": [
+            "Personal staff medical histories",
+            "Cabinet deliberations",
+            "Financial records, budgets, and contracts",
+            "National security secrets"
+          ],
+          "correct": 2,
+          "explanation": "Section 2(3) emphasizes proactive disclosure of categories like budgets, contracts, and financial data [20, 21].",
+          "difficulty": "medium",
+          "chapter": "Proactive Disclosure",
+          "keywords": [
+            "foi act",
+            "financial records",
+            "section 2(3)",
+            "contracts"
+          ]
+        },
+        {
+          "id": "FOI_AO_020",
+          "question": "If an applicant is denied access, which recourse is available to them under the Act (Section 20)?",
+          "options": [
+            "Resubmit the application after 30 days",
+            "Appeal immediately to the Permanent Secretary",
+            "File an action in a court of law",
+            "Appeal to the Head of Service"
+          ],
+          "correct": 2,
+          "explanation": "Section 20 provides that applicants may challenge denials of access in a court of law [22].",
+          "difficulty": "medium",
+          "chapter": "Appeals",
+          "keywords": [
+            "foi act",
+            "appeal",
+            "court action"
+          ]
+        },
+        {
+          "id": "FOI_AO_021",
+          "question": "Who is responsible for oversight and submitting an annual report on FOI compliance to the National Assembly?",
+          "options": [
+            "The Federal Civil Service Commission",
+            "The Attorney-General of the Federation",
+            "The Auditor-General of the Federation",
+            "The Senate President"
+          ],
+          "correct": 1,
+          "explanation": "The Attorney-General of the Federation is responsible for oversight, issuing guidelines [23, 24], and submitting an annual report to the National Assembly (Section 32) [25, 26].",
+          "difficulty": "medium",
+          "chapter": "Oversight",
+          "keywords": [
+            "foi act",
+            "attorney-general",
+            "compliance",
+            "section 32"
+          ]
+        },
+        {
+          "id": "FOI_AO_022",
+          "question": "Which legal entity bears the burden of proof when a request for information is denied?",
+          "options": [
+            "The applicant",
+            "The court",
+            "The institution denying access",
+            "The Attorney-General"
+          ],
+          "correct": 2,
+          "explanation": "Section 24 places the burden of proof on the institution that denies access to information [22].",
+          "difficulty": "medium",
+          "chapter": "Burden of Proof",
+          "keywords": [
+            "foi act",
+            "burden of proof",
+            "section 24"
+          ]
+        },
+        {
+          "id": "FOI_AO_023",
+          "question": "What is required of public institutions regarding compliance reports under Section 2(7)?",
+          "options": [
+            "Daily updates to the Minister of Finance",
+            "Annual submission to the Attorney-General of the Federation",
+            "Quarterly reports to the National Assembly",
+            "Verbal confirmation to the Head of Service"
+          ],
+          "correct": 1,
+          "explanation": "Section 2(7) mandates annual compliance reports to the Attorney-General of the Federation [13].",
+          "difficulty": "medium",
+          "chapter": "Oversight",
+          "keywords": [
+            "foi act",
+            "compliance report",
+            "section 2(7)"
+          ]
+        },
+        {
+          "id": "FOI_AO_024",
+          "question": "The fee chargeable under Section 8(1) for fulfilling an FOI request is limited to covering the cost of:",
+          "options": [
+            "Staff time and processing costs",
+            "Legal consultation fees",
+            "Duplication and transcription of records",
+            "Acquisition of new records"
+          ],
+          "correct": 2,
+          "explanation": "Section 8(1) allows fees covering costs of duplication or transcription of records [8].",
+          "difficulty": "medium",
+          "chapter": "Access Rights",
+          "keywords": [
+            "foi act",
+            "fees",
+            "duplication"
+          ]
+        },
+        {
+          "id": "FOI_AO_025",
+          "question": "Section 5(1) addresses which core institutional capacity requirement for FOI implementation?",
+          "options": [
+            "Financial resource allocation",
+            "Designation of FOI desk officers",
+            "Proactive publication schedules",
+            "Internal audit requirements"
+          ],
+          "correct": 1,
+          "explanation": "Section 5(1) mandates the designation of officers responsible for handling FOI requests [14].",
+          "difficulty": "medium",
+          "chapter": "Implementation",
+          "keywords": [
+            "foi act",
+            "desk officer",
+            "section 5(1)"
+          ]
+        },
+        {
+          "id": "FOI_AO_026",
+          "question": "The right to access public records under Section 1 extends to 'any person', meaning access is not restricted by:",
+          "options": [
+            "Age",
+            "Nationality",
+            "Gender",
+            "All of the above"
+          ],
+          "correct": 3,
+          "explanation": "The right of access is available to 'any person,' regardless of citizenship, demonstrating universal applicability [4, 5].",
+          "difficulty": "easy",
+          "chapter": "Access Rights",
+          "keywords": [
+            "any person",
+            "nationality",
+            "universal access"
+          ]
+        },
+        {
+          "id": "FOI_AO_027",
+          "question": "If an MDA denies an FOI request, the denial must be accompanied by:",
+          "options": [
+            "A cheque covering the transcription fee",
+            "The specific section of the Act justifying the exemption",
+            "A non-disclosure agreement",
+            "A new request form"
+          ],
+          "correct": 1,
+          "explanation": "A denial must clearly state the statutory ground for exemption and the section invoked, aligning with procedural compliance (General FOI practice, not explicitly cited in all steps, but derived from the principle of judicial appeal [22]).",
+          "difficulty": "medium",
+          "chapter": "Denial Procedure",
+          "keywords": [
+            "denial",
+            "exemption justification"
+          ]
+        },
+        {
+          "id": "FOI_AO_028",
+          "question": "The FOI Act requires institutions to maintain updated **indexes** of their records primarily to facilitate:",
+          "options": [
+            "The calculation of staff pensions",
+            "E-Procurement processes",
+            "Public identification and request of existing records",
+            "The tracking of political donations"
+          ],
+          "correct": 2,
+          "explanation": "Section 6(1) mandates indexes for public accessibility and identification of records [18, 19].",
+          "difficulty": "medium",
+          "chapter": "Record Management",
+          "keywords": [
+            "record index",
+            "accessibility",
+            "Section 6(1)"
+          ]
+        },
+        {
+          "id": "FOI_AO_029",
+          "question": "Which of these categories is emphasized for **proactive disclosure** under Section 2(3)?",
+          "options": [
+            "Draft policy papers",
+            "Internal security memos",
+            "Records of all contracts and expenditure",
+            "Personnel disciplinary files"
+          ],
+          "correct": 2,
+          "explanation": "Section 2(3) emphasizes proactive disclosure of categories like budgets, contracts, and financial data [20, 21].",
+          "difficulty": "medium",
+          "chapter": "Proactive Disclosure",
+          "keywords": [
+            "contracts",
+            "expenditure",
+            "proactive disclosure"
+          ]
+        },
+        {
+          "id": "FOI_AO_030",
+          "question": "The response time for an FOI request (7 days) is crucial because failure to respond within this period is legally deemed as:",
+          "options": [
+            "An approval of the request",
+            "A denial of the request",
+            "A waiver of the duplication fee",
+            "An invitation for negotiation"
+          ],
+          "correct": 1,
+          "explanation": "Failure to respond within the statutory time frame is considered a deemed refusal, allowing the applicant recourse to court (Implied by Section 4 and Section 20 [3, 22]).",
+          "difficulty": "hard",
+          "chapter": "Response Failure",
+          "keywords": [
+            "deemed denial",
+            "7 days",
+            "court action"
+          ]
+        },
+        {
+          "id": "FOI_AO_031",
+          "question": "Which official has the authority to issue guidelines for the implementation and compliance of the FOI Act?",
+          "options": [
+            "The Senate President",
+            "The Federal Civil Service Commission",
+            "The Attorney-General of the Federation",
+            "The Auditor-General"
+          ],
+          "correct": 2,
+          "explanation": "The Attorney-General of the Federation issues implementation guidelines and monitors compliance [24].",
+          "difficulty": "medium",
+          "chapter": "Oversight",
+          "keywords": [
+            "foi act",
+            "guidelines",
+            "attorney-general"
+          ]
+        },
+        {
+          "id": "FOI_AO_032",
+          "question": "If a public institution fails to submit its annual compliance report to the Attorney-General, it is in breach of:",
+          "options": [
+            "Section 2(7)",
+            "Section 5(1)",
+            "Section 6(2)",
+            "Section 8(1)"
+          ],
+          "correct": 0,
+          "explanation": "Section 2(7) mandates annual compliance reports submission [13].",
+          "difficulty": "medium",
+          "chapter": "Oversight Compliance",
+          "keywords": [
+            "compliance report",
+            "section 2(7)",
+            "breach"
+          ]
+        },
+        {
+          "id": "FOI_AO_033",
+          "question": "The FOI Act is said to complement which constitutional right of Nigerian citizens?",
+          "options": [
+            "Right to fair hearing",
+            "Right to life",
+            "Freedom of expression and information (Section 39)",
+            "Right to peaceful assembly"
+          ],
+          "correct": 2,
+          "explanation": "The FOI Act operationalizes the constitutional right to freedom of expression and information (Section 39) [27, 28].",
+          "difficulty": "medium",
+          "chapter": "Constitutional Linkage",
+          "keywords": [
+            "constitutional right",
+            "Section 39",
+            "freedom of information"
+          ]
+        },
+        {
+          "id": "FOI_AO_034",
+          "question": "For efficiency, institutions are required to keep records in formats that make them easily accessible, as per Section 6(2). This is vital for promoting:",
+          "options": [
+            "Paper documentation",
+            "Digital governance and e-service delivery",
+            "Secrecy",
+            "Political patronage"
+          ],
+          "correct": 1,
+          "explanation": "Keeping records in easily accessible (machine-readable) formats supports digital governance and efficient service delivery [15, 16].",
+          "difficulty": "medium",
+          "chapter": "E-Governance Records",
+          "keywords": [
+            "accessible formats",
+            "e-governance",
+            "section 6(2)"
+          ]
+        },
+        {
+          "id": "FOI_AO_035",
+          "question": "Under Section 7, if an MDA receives a request for information that primarily concerns another MDA, the receiving MDA must transfer the request within:",
+          "options": [
+            "24 hours",
+            "3 days",
+            "7 days",
+            "14 days"
+          ],
+          "correct": 1,
+          "explanation": "The FOI Act requires requests to be transferred expeditiously, usually within 3 working days (Derived from Section 7 [7] and general FOI implementation guidelines).",
+          "difficulty": "hard",
+          "chapter": "Request Transfer",
+          "keywords": [
+            "transfer of request",
+            "3 days",
+            "Section 7"
+          ]
+        },
+        {
+          "id": "FOI_AO_036",
+          "question": "When can an applicant waive the right to challenge a denial in court?",
+          "options": [
+            "If they receive a partial disclosure",
+            "If they fail to pay the fee",
+            "The right cannot be waived once denied",
+            "If the requested record is classified as 'Secret'"
+          ],
+          "correct": 0,
+          "explanation": "Section 20 grants the right to court action [22]. An applicant may choose not to pursue legal action, effectively waiving the challenge.",
+          "difficulty": "easy",
+          "chapter": "Appeal Rights",
+          "keywords": [
+            "court action",
+            "Section 20"
+          ]
+        },
+        {
+          "id": "FOI_AO_037",
+          "question": "The proactive disclosure duty under Section 2 mandates that public institutions publish information that is relevant to:",
+          "options": [
+            "Only the FCSC",
+            "The functioning of the institution and the public's access rights",
+            "Foreign government reports",
+            "Staff social media activity"
+          ],
+          "correct": 1,
+          "explanation": "Proactive disclosure covers information regarding the institution's function, structure, decisions, and financial dealings [11, 20].",
+          "difficulty": "medium",
+          "chapter": "Proactive Disclosure Scope",
+          "keywords": [
+            "proactive disclosure",
+            "functioning of institution"
+          ]
+        },
+        {
+          "id": "FOI_AO_038",
+          "question": "To ensure effective compliance, Section 5 requires public institutions to maintain:",
+          "options": [
+            "A minimum N500m audit fund",
+            "Regular staff training programs for officials",
+            "An executive committee on secrecy",
+            "Only manual records"
+          ],
+          "correct": 1,
+          "explanation": "Section 5 requires public institutions to train officials to ensure effective implementation of the Act [17].",
+          "difficulty": "medium",
+          "chapter": "Implementation",
+          "keywords": [
+            "training",
+            "section 5",
+            "compliance"
+          ]
+        },
+        {
+          "id": "FOI_AO_039",
+          "question": "Which document is the Attorney-General of the Federation mandated to submit annually to the National Assembly regarding FOI?",
+          "options": [
+            "The Annual Budget Proposal",
+            "A report on FOI implementation and compliance",
+            "The list of all staff promotions",
+            "The Financial Regulations review"
+          ],
+          "correct": 1,
+          "explanation": "Section 32 requires the Attorney-General to submit an annual report on FOI implementation to the National Assembly [25, 26].",
+          "difficulty": "medium",
+          "chapter": "Oversight Reporting",
+          "keywords": [
+            "annual report",
+            "section 32",
+            "attorney-general"
+          ]
+        },
+        {
+          "id": "FOI_AO_040",
+          "question": "The right to access information under the FOI Act is limited by:",
+          "options": [
+            "The Permanent Secretary's discretion",
+            "The need to demonstrate political neutrality",
+            "Specific statutory exemptions defined in the Act (Sections 11-19)",
+            "The amount of the duplication fee"
+          ],
+          "correct": 2,
+          "explanation": "The right to access is restricted only by the specific exemptions defined in the Act, such as those related to national security or privacy [29-31].",
+          "difficulty": "easy",
+          "chapter": "Access Limitation",
+          "keywords": [
+            "statutory exemptions",
+            "limitation"
+          ]
+        },
+        {
+          "id": "FOI_AO_041",
+          "question": "The FOI Act applies to:",
+          "options": [
+            "Only Federal Ministries",
+            "Only the Federal Executive Council",
+            "All public institutions under the Federal Government",
+            "Only private companies handling government contracts"
+          ],
+          "correct": 2,
+          "explanation": "The FOI Act applies broadly to all public institutions under the Federal Government, including MDAs.",
+          "difficulty": "easy",
+          "chapter": "Applicability",
+          "keywords": [
+            "public institutions",
+            "federal government"
+          ]
+        },
+        {
+          "id": "FOI_AO_042",
+          "question": "What happens if a state government wishes the FOI Act to apply to its institutions?",
+          "options": [
+            "It automatically applies immediately",
+            "States must domesticate it through their Houses of Assembly",
+            "The Federal Attorney-General extends it via circular",
+            "It is restricted by the Federal Character Principle"
+          ],
+          "correct": 1,
+          "explanation": "States must domesticate the Act through their Houses of Assembly for it to apply within their jurisdiction [32].",
+          "difficulty": "medium",
+          "chapter": "Jurisdiction",
+          "keywords": [
+            "states",
+            "domestication",
+            "jurisdiction"
+          ]
+        },
+        {
+          "id": "FOI_AO_043",
+          "question": "The principle of **proactive disclosure** (Section 2) ensures transparency by mandating the publication of information:",
+          "options": [
+            "Only after a court order is issued",
+            "Without waiting for a formal request",
+            "Only to foreign applicants",
+            "Only on the anniversary of the Act"
+          ],
+          "correct": 1,
+          "explanation": "Proactive disclosure means publishing information proactively, without the need for a formal request [11].",
+          "difficulty": "easy",
+          "chapter": "Proactive Disclosure",
+          "keywords": [
+            "proactive disclosure",
+            "transparency"
+          ]
+        },
+        {
+          "id": "FOI_AO_044",
+          "question": "Section 3(4) requires that the form in which access is granted should be preferred by the applicant, unless:",
+          "options": [
+            "The applicant is a foreign national",
+            "It is impracticable to produce in that form",
+            "The information is exempt",
+            "The duplication fee is waived"
+          ],
+          "correct": 1,
+          "explanation": "Institutions must comply with the applicant's preferred format unless it is impracticable or infringes on copyrights (General FOI principle, aligned with accessible formats Section 6(2) [15]).",
+          "difficulty": "hard",
+          "chapter": "Format Preference",
+          "keywords": [
+            "format preference",
+            "impracticable"
+          ]
+        },
+        {
+          "id": "FOI_AO_045",
+          "question": "If an officer discloses information in good faith, believing the disclosure is required under the FOI Act, they are protected from civil or criminal liability by which section?",
+          "options": [
+            "Section 25",
+            "Section 26",
+            "Section 27",
+            "Section 28"
+          ],
+          "correct": 2,
+          "explanation": "Section 27 provides immunity for officers who release information in good faith [26, 33].",
+          "difficulty": "medium",
+          "chapter": "Protection",
+          "keywords": [
+            "good faith",
+            "section 27",
+            "liability"
+          ]
+        },
+        {
+          "id": "FOI_AO_046",
+          "question": "The establishment of FOI desk officers (Section 5(1)) is a strategy to ensure:",
+          "options": [
+            "Centralization of all government records",
+            "Streamlined processing and prompt response to requests",
+            "Mandatory reduction of staff salaries",
+            "Elimination of all classified information"
+          ],
+          "correct": 1,
+          "explanation": "Designated officers ensure clear responsibility, leading to streamlined processing and prompt response [14].",
+          "difficulty": "medium",
+          "chapter": "Implementation Strategy",
+          "keywords": [
+            "desk officer",
+            "streamlined processing"
+          ]
+        },
+        {
+          "id": "FOI_AO_047",
+          "question": "What is the consequence if a public institution exceeds the statutory response deadline without notifying the applicant of an extension?",
+          "options": [
+            "The officer in charge receives a commendation",
+            "The information is deemed denied, enabling court appeal",
+            "The fee is automatically doubled",
+            "The applicant must re-file the request"
+          ],
+          "correct": 1,
+          "explanation": "Failure to respond leads to deemed refusal, authorizing the applicant to proceed to court [22].",
+          "difficulty": "medium",
+          "chapter": "Response Failure",
+          "keywords": [
+            "deemed denial",
+            "court appeal"
+          ]
+        },
+        {
+          "id": "FOI_AO_048",
+          "question": "Which section requires public institutions to keep training programs for their officials to maintain adequate records and address access procedures?",
+          "options": [
+            "Section 5",
+            "Section 9",
+            "Section 13",
+            "Section 28"
+          ],
+          "correct": 0,
+          "explanation": "Section 5 requires public institutions to train officials [17].",
+          "difficulty": "medium",
+          "chapter": "Implementation",
+          "keywords": [
+            "training",
+            "section 5"
+          ]
+        },
+        {
+          "id": "FOI_AO_049",
+          "question": "The requirement in Section 6(1) for maintaining updated indexes of records enhances:",
+          "options": [
+            "Secrecy",
+            "The public's ability to identify relevant records before formal request",
+            "Political fundraising",
+            "Internal disciplinary action"
+          ],
+          "correct": 1,
+          "explanation": "Indexes improve accessibility and help the public identify specific records needed [18, 19].",
+          "difficulty": "easy",
+          "chapter": "Record Management",
+          "keywords": [
+            "indexes",
+            "accessibility",
+            "Section 6(1)"
+          ]
+        },
+        {
+          "id": "FOI_AO_050",
+          "question": "The FOI Act fundamentally enhances governance in Nigeria by promoting transparency and:",
+          "options": [
+            "Increasing bureaucracy",
+            "Restricting information flow",
+            "Facilitating accountability",
+            "Centralizing all political power"
+          ],
+          "correct": 2,
+          "explanation": "The Act's core purpose is to enhance transparency and accountability in governance [2].",
+          "difficulty": "easy",
+          "chapter": "Objectives",
+          "keywords": [
+            "transparency",
+            "accountability",
+            "governance"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "foi_exemptions_public_interest",
+      "name": "Exemptions & Public Interest (FOI)",
+      "description": "Exemptions and public-interest balancing tests.",
+      "questions": [
+        {
+          "id": "FOI_EX_001",
+          "question": "Which section of the FOI Act exempts cabinet papers and records of government deliberations from disclosure?",
+          "options": [
+            "Section 11",
+            "Section 12",
+            "Section 13",
+            "Section 15"
+          ],
+          "correct": 0,
+          "explanation": "Section 11 exempts cabinet papers, records of deliberations, and decisions of the Executive Council of the Federation [29].",
+          "difficulty": "medium",
+          "chapter": "Exemptions (S. 11)",
+          "keywords": [
+            "foi act",
+            "cabinet papers",
+            "section 11"
+          ]
+        },
+        {
+          "id": "FOI_EX_002",
+          "question": "Information regarding national security, defence, or international relations is exempt from disclosure under which section?",
+          "options": [
+            "Section 11",
+            "Section 12",
+            "Section 13",
+            "Section 16"
+          ],
+          "correct": 1,
+          "explanation": "Section 12 exempts information that could affect national security, defence, or international relations [31].",
+          "difficulty": "medium",
+          "chapter": "Exemptions (S. 12)",
+          "keywords": [
+            "foi act",
+            "national security",
+            "section 12"
+          ]
+        },
+        {
+          "id": "FOI_EX_003",
+          "question": "Which type of record is NOT exempted from disclosure under the FOI Act?",
+          "options": [
+            "National security records",
+            "Trade secrets",
+            "Public budget allocations",
+            "Personal staff medical information"
+          ],
+          "correct": 2,
+          "explanation": "Budget allocations are public information and cannot be withheld under the FOI Act [34].",
+          "difficulty": "medium",
+          "chapter": "Exemptions (Non-Exempt)",
+          "keywords": [
+            "budget",
+            "public information",
+            "non-exempt"
+          ]
+        },
+        {
+          "id": "FOI_EX_004",
+          "question": "Which section exempts personal information that would constitute an invasion of individual privacy?",
+          "options": [
+            "Section 12",
+            "Section 13",
+            "Section 14",
+            "Section 15"
+          ],
+          "correct": 2,
+          "explanation": "Section 14 exempts personal information from disclosure to protect individual privacy rights [30].",
+          "difficulty": "medium",
+          "chapter": "Exemptions (S. 14)",
+          "keywords": [
+            "foi act",
+            "personal information",
+            "section 14"
+          ]
+        },
+        {
+          "id": "FOI_EX_005",
+          "question": "Trade secrets and commercial or financial information obtained in confidence are exempt from disclosure under which section?",
+          "options": [
+            "Section 14",
+            "Section 15",
+            "Section 16",
+            "Section 18"
+          ],
+          "correct": 1,
+          "explanation": "Section 15 exempts trade secrets, commercial or financial information obtained in confidence [35].",
+          "difficulty": "medium",
+          "chapter": "Exemptions (S. 15)",
+          "keywords": [
+            "foi act",
+            "trade secrets",
+            "section 15"
+          ]
+        },
+        {
+          "id": "FOI_EX_006",
+          "question": "Which section exempts information covered by professional privileges, such as lawyer-client communication?",
+          "options": [
+            "Section 14",
+            "Section 15",
+            "Section 16",
+            "Section 19"
+          ],
+          "correct": 2,
+          "explanation": "Section 16 exempts professional privileges like solicitor-client communication from disclosure [36].",
+          "difficulty": "medium",
+          "chapter": "Exemptions (S. 16)",
+          "keywords": [
+            "foi act",
+            "professional privilege",
+            "section 16"
+          ]
+        },
+        {
+          "id": "FOI_EX_007",
+          "question": "Research materials and examinations, including test questions, are exempt from disclosure until completion or administration by:",
+          "options": [
+            "Section 18",
+            "Section 19",
+            "Section 20",
+            "Section 22"
+          ],
+          "correct": 1,
+          "explanation": "Section 19 exempts research materials and examinations/test questions from disclosure until after completion/administration [37, 37].",
+          "difficulty": "medium",
+          "chapter": "Exemptions (S. 19)",
+          "keywords": [
+            "foi act",
+            "research",
+            "section 19",
+            "exams"
+          ]
+        },
+        {
+          "id": "FOI_EX_008",
+          "question": "The section that allows for **partial disclosure** where only part of a record is exempt, requiring the release of the non-exempt portion, is:",
+          "options": [
+            "Section 12",
+            "Section 13",
+            "Section 15",
+            "Section 19"
+          ],
+          "correct": 1,
+          "explanation": "Section 13 allows partial disclosure of non-exempt portions of a record [38].",
+          "difficulty": "medium",
+          "chapter": "Exemptions (S. 13)",
+          "keywords": [
+            "foi act",
+            "partial disclosure",
+            "section 13"
+          ]
+        },
+        {
+          "id": "FOI_EX_009",
+          "question": "Information that could endanger the life or physical safety of any individual is exempt under which section?",
+          "options": [
+            "Section 12",
+            "Section 14",
+            "Section 16",
+            "Section 18"
+          ],
+          "correct": 2,
+          "explanation": "Section 16 exempts disclosure of information that could endanger the life or physical safety of any individual [39].",
+          "difficulty": "medium",
+          "chapter": "Exemptions (S. 16)",
+          "keywords": [
+            "foi act",
+            "personal safety",
+            "section 16"
+          ]
+        },
+        {
+          "id": "FOI_EX_010",
+          "question": "Geological and mineral exploration data is exempted by which specific section of the FOI Act?",
+          "options": [
+            "Section 15",
+            "Section 17",
+            "Section 18",
+            "Section 19"
+          ],
+          "correct": 1,
+          "explanation": "Section 17 exempts geological and mineral exploration records from disclosure [40].",
+          "difficulty": "medium",
+          "chapter": "Exemptions (S. 17)",
+          "keywords": [
+            "foi act",
+            "geological data",
+            "section 17"
+          ]
+        },
+        {
+          "id": "FOI_EX_011",
+          "question": "Information that could interfere with law enforcement investigations or prejudice pending criminal proceedings is exempt under:",
+          "options": [
+            "Section 11",
+            "Section 12",
+            "Section 16",
+            "Section 17"
+          ],
+          "correct": 1,
+          "explanation": "Section 12 exempts law enforcement records that may interfere with investigations or prejudice pending criminal cases [40, 41].",
+          "difficulty": "medium",
+          "chapter": "Exemptions (S. 12)",
+          "keywords": [
+            "foi act",
+            "law enforcement",
+            "section 12",
+            "criminal proceedings"
+          ]
+        },
+        {
+          "id": "FOI_EX_012",
+          "question": "The **Public Interest Test**, introduced by Section 28, stipulates that otherwise exempt information may be disclosed if:",
+          "options": [
+            "The applicant pays an extra fee",
+            "The public interest in disclosure outweighs the harm caused by disclosure",
+            "The information is already five years old",
+            "The Minister approves the disclosure verbally"
+          ],
+          "correct": 1,
+          "explanation": "Section 28 allows disclosure if the public benefit outweighs the harm, introducing the public interest test [42].",
+          "difficulty": "medium",
+          "chapter": "Public Interest (S. 28)",
+          "keywords": [
+            "foi act",
+            "public interest",
+            "section 28"
+          ]
+        },
+        {
+          "id": "FOI_EX_013",
+          "question": "Section 28(1) requires that all exemptions under the Act must be interpreted:",
+          "options": [
+            "Broadly to protect government secrecy",
+            "Narrowly in favour of disclosure",
+            "Only by the Attorney-General",
+            "Only after five years have elapsed"
+          ],
+          "correct": 1,
+          "explanation": "Section 28(1) states that exemptions must be interpreted narrowly in favor of disclosure [43].",
+          "difficulty": "medium",
+          "chapter": "Public Interest (S. 28)",
+          "keywords": [
+            "foi act",
+            "exemptions",
+            "narrowly interpreted",
+            "section 28(1)"
+          ]
+        },
+        {
+          "id": "FOI_EX_014",
+          "question": "Which section allows an MDA to redact (remove) only the sensitive portions of a document and release the remainder?",
+          "options": [
+            "Section 11",
+            "Section 13",
+            "Section 16",
+            "Section 19"
+          ],
+          "correct": 1,
+          "explanation": "Section 13 allows for partial disclosure by separating the exempt information from the non-exempt portion [38].",
+          "difficulty": "medium",
+          "chapter": "Exemptions (S. 13)",
+          "keywords": [
+            "partial disclosure",
+            "redaction",
+            "section 13"
+          ]
+        },
+        {
+          "id": "FOI_EX_015",
+          "question": "Information relating to pending administrative sanctions or internal disciplinary actions is typically protected under which exemption category?",
+          "options": [
+            "Section 11 (Cabinet papers)",
+            "Section 12 (Law enforcement/investigation)",
+            "Section 17 (Geological data)",
+            "Section 19 (Research)"
+          ],
+          "correct": 1,
+          "explanation": "Records related to ongoing investigations, including law enforcement and certain internal administrative enforcement, fall under Section 12 [40].",
+          "difficulty": "hard",
+          "chapter": "Exemptions (S. 12)",
+          "keywords": [
+            "law enforcement",
+            "investigations",
+            "Section 12"
+          ]
+        },
+        {
+          "id": "FOI_EX_016",
+          "question": "If information contains both cabinet deliberations (S. 11) and public expenditure (non-exempt), the principle of partial disclosure mandates:",
+          "options": [
+            "Total denial",
+            "Disclosure of the expenditure data, but withholding the cabinet deliberation details",
+            "Transfer of the request to the National Assembly",
+            "Waiving the duplication fee"
+          ],
+          "correct": 1,
+          "explanation": "Section 13 mandates the release of any non-exempt portion of the record [38].",
+          "difficulty": "hard",
+          "chapter": "Exemptions (S. 13)",
+          "keywords": [
+            "partial disclosure",
+            "expenditure",
+            "Section 13"
+          ]
+        },
+        {
+          "id": "FOI_EX_017",
+          "question": "Disclosure of personal information relating to staff salaries and emoluments is generally:",
+          "options": [
+            "Exempt under Section 14 (Privacy)",
+            "Not exempt, as public servants' salaries are often public knowledge",
+            "Exempt under Section 15 (Trade Secrets)",
+            "Subject only to political discretion"
+          ],
+          "correct": 1,
+          "explanation": "While Section 14 protects privacy [30], the salaries of public servants are often considered public data; however, exact legal determination often hinges on the Public Interest Test (S. 28) [42]. In the context of budget allocation [34], salary data for senior staff is generally releasable.",
+          "difficulty": "hard",
+          "chapter": "Exemptions (S. 14)",
+          "keywords": [
+            "personal information",
+            "salary",
+            "public information"
+          ]
+        },
+        {
+          "id": "FOI_EX_018",
+          "question": "Which section ensures that the disclosure of information will not prejudice the conduct of international affairs?",
+          "options": [
+            "Section 10",
+            "Section 12",
+            "Section 14",
+            "Section 17"
+          ],
+          "correct": 1,
+          "explanation": "Section 12 exempts information that could prejudice international relations [31].",
+          "difficulty": "medium",
+          "chapter": "Exemptions (S. 12)",
+          "keywords": [
+            "international relations",
+            "section 12"
+          ]
+        },
+        {
+          "id": "FOI_EX_019",
+          "question": "If geological data (S. 17) must be disclosed because it relates to massive environmental fraud, this action would be justified by the principle of:",
+          "options": [
+            "Professional privilege",
+            "Cabinet secrecy",
+            "Public Interest Test (Section 28)",
+            "Law enforcement exemption"
+          ],
+          "correct": 2,
+          "explanation": "The Public Interest Test (Section 28) [42] allows disclosure if the public benefit (exposing fraud/environmental harm) outweighs the harm of releasing the data.",
+          "difficulty": "hard",
+          "chapter": "Public Interest (S. 28)",
+          "keywords": [
+            "public interest test",
+            "geological data",
+            "Section 28"
+          ]
+        },
+        {
+          "id": "FOI_EX_020",
+          "question": "Disclosure of information that reveals a government's economic policy strategy and could undermine national market stability is likely exempt under:",
+          "options": [
+            "Section 14 (Privacy)",
+            "Section 15 (Trade secrets/commercial confidentiality)",
+            "Section 19 (Research)",
+            "Section 11 (Cabinet deliberations)"
+          ],
+          "correct": 1,
+          "explanation": "Section 15 also covers commercial/financial information obtained in confidence, which may extend to market-sensitive economic policies [35].",
+          "difficulty": "hard",
+          "chapter": "Exemptions (S. 15)",
+          "keywords": [
+            "economic policy",
+            "section 15",
+            "financial information"
+          ]
+        },
+        {
+          "id": "FOI_EX_021",
+          "question": "If an MDA decides to deny a request based on Section 15 (Trade Secrets), it must prove that disclosure would:",
+          "options": [
+            "Increase the MDA's budget",
+            "Harm the trade secret or commercial confidence of a third party",
+            "Increase the volume of requests received",
+            "Delay the annual leave roster"
+          ],
+          "correct": 1,
+          "explanation": "The burden of proof rests on the institution [22] to justify the denial based on the specific harm cited by the exemption (Section 15 [35]).",
+          "difficulty": "medium",
+          "chapter": "Exemptions (S. 15)",
+          "keywords": [
+            "trade secrets",
+            "burden of proof",
+            "commercial confidentiality"
+          ]
+        },
+        {
+          "id": "FOI_EX_022",
+          "question": "Records relating to the prosecution of an active criminal case are exempt to prevent interference, as covered by the law enforcement/investigation exemption in:",
+          "options": [
+            "Section 12",
+            "Section 14",
+            "Section 16",
+            "Section 19"
+          ],
+          "correct": 0,
+          "explanation": "Section 12 exempts law enforcement records that may interfere with investigations or prejudice pending criminal cases [40, 41].",
+          "difficulty": "medium",
+          "chapter": "Exemptions (S. 12)",
+          "keywords": [
+            "criminal proceedings",
+            "law enforcement",
+            "section 12"
+          ]
+        },
+        {
+          "id": "FOI_EX_023",
+          "question": "Which of the following is most likely exempt under Section 19 (Research Materials)?",
+          "options": [
+            "Completed final audit report",
+            "Pending academic test questions for a government certification exam",
+            "Annual budget projections",
+            "Public procurement contracts"
+          ],
+          "correct": 1,
+          "explanation": "Section 19 specifically exempts examination materials and test questions until administration [37].",
+          "difficulty": "medium",
+          "chapter": "Exemptions (S. 19)",
+          "keywords": [
+            "examination materials",
+            "test questions",
+            "section 19"
+          ]
+        },
+        {
+          "id": "FOI_EX_024",
+          "question": "The exemption for cabinet papers (Section 11) protects records of deliberations and decisions made by which body?",
+          "options": [
+            "The National Assembly",
+            "The Federal Civil Service Commission",
+            "The Executive Council of the Federation",
+            "The Ministerial Tenders Board"
+          ],
+          "correct": 2,
+          "explanation": "Section 11 protects records of deliberations and decisions of the Executive Council of the Federation [29].",
+          "difficulty": "medium",
+          "chapter": "Exemptions (S. 11)",
+          "keywords": [
+            "Executive Council of the Federation",
+            "cabinet papers",
+            "section 11"
+          ]
+        },
+        {
+          "id": "FOI_EX_025",
+          "question": "If disclosure poses a risk to an individual's physical safety, which exemption applies?",
+          "options": [
+            "Section 14",
+            "Section 16",
+            "Section 17",
+            "Section 19"
+          ],
+          "correct": 1,
+          "explanation": "Section 16 exempts disclosure of information that could endanger the life or physical safety of any individual [39].",
+          "difficulty": "medium",
+          "chapter": "Exemptions (S. 16)",
+          "keywords": [
+            "physical safety",
+            "section 16"
+          ]
+        },
+        {
+          "id": "FOI_EX_026",
+          "question": "Section 15 covers trade secrets. Which type of information is specifically included in this exemption?",
+          "options": [
+            "The Minister's schedule",
+            "Commercial or financial information obtained in confidence",
+            "Public procurement guidelines",
+            "Staff training policies"
+          ],
+          "correct": 1,
+          "explanation": "Section 15 covers trade secrets, commercial or financial information obtained in confidence [35].",
+          "difficulty": "medium",
+          "chapter": "Exemptions (S. 15)",
+          "keywords": [
+            "commercial confidentiality",
+            "section 15"
+          ]
+        },
+        {
+          "id": "FOI_EX_027",
+          "question": "The inclusion of the Public Interest Test (Section 28) serves what strategic objective regarding exemptions?",
+          "options": [
+            "To make all exemptions absolute",
+            "To permit judicial review and prioritize public good over procedural secrecy",
+            "To limit the power of the Attorney-General",
+            "To increase processing fees"
+          ],
+          "correct": 1,
+          "explanation": "Section 28 prioritizes public good by allowing disclosure if the benefit outweighs the harm, preventing blanket secrecy claims [42].",
+          "difficulty": "medium",
+          "chapter": "Public Interest (S. 28)",
+          "keywords": [
+            "public interest test",
+            "prioritize public good"
+          ]
+        },
+        {
+          "id": "FOI_EX_028",
+          "question": "Which category of information is clearly NOT intended to be covered by the privacy exemption (Section 14)?",
+          "options": [
+            "Personal bank account details",
+            "Home address and phone number",
+            "Public expenditure records detailing government spending",
+            "Staff medical records"
+          ],
+          "correct": 2,
+          "explanation": "Section 14 protects privacy [30], but records of public expenditure are explicitly non-exempt [34] and must be disclosed.",
+          "difficulty": "medium",
+          "chapter": "Exemptions (S. 14)",
+          "keywords": [
+            "public expenditure",
+            "privacy exemption"
+          ]
+        },
+        {
+          "id": "FOI_EX_029",
+          "question": "Section 12 deals with national security and defense. This provision aims to ensure the protection of:",
+          "options": [
+            "The Permanent Secretary's job security",
+            "The physical safety of the nation and its strategic interests",
+            "The integrity of the IPPIS database",
+            "The confidentiality of staff annual leave dates"
+          ],
+          "correct": 1,
+          "explanation": "Section 12 protects information relating to national security and defense [31].",
+          "difficulty": "easy",
+          "chapter": "Exemptions (S. 12)",
+          "keywords": [
+            "national security",
+            "defense",
+            "section 12"
+          ]
+        },
+        {
+          "id": "FOI_EX_030",
+          "question": "The decision to withhold information under Section 19 (Exams) is conditional on the examination material being:",
+          "options": [
+            "Written in English",
+            "Pending or unadministered",
+            "Over 10 years old",
+            "Mandated by the FCSC"
+          ],
+          "correct": 1,
+          "explanation": "Section 19 exempts examination materials until administration [37].",
+          "difficulty": "medium",
+          "chapter": "Exemptions (S. 19)",
+          "keywords": [
+            "examination materials",
+            "pending"
+          ]
+        },
+        {
+          "id": "FOI_EX_031",
+          "question": "The principle that exemptions should be narrowly interpreted in favour of disclosure is contained in which section?",
+          "options": [
+            "Section 1(1)",
+            "Section 12(3)",
+            "Section 28(1)",
+            "Section 30(1)"
+          ],
+          "correct": 2,
+          "explanation": "Section 28(1) states that exemptions must be interpreted narrowly in favor of disclosure [43].",
+          "difficulty": "medium",
+          "chapter": "Public Interest (S. 28)",
+          "keywords": [
+            "narrowly interpreted",
+            "section 28(1)"
+          ]
+        },
+        {
+          "id": "FOI_EX_032",
+          "question": "If disclosing information about a pending fraud investigation would compromise the law enforcement strategy, the denial is justifiable under:",
+          "options": [
+            "Section 11 (Cabinet papers)",
+            "Section 12 (Law enforcement)",
+            "Section 16 (Professional privilege)",
+            "Section 17 (Geological data)"
+          ],
+          "correct": 1,
+          "explanation": "Law enforcement records interfering with investigations are exempt under Section 12 [40, 41].",
+          "difficulty": "medium",
+          "chapter": "Exemptions (S. 12)",
+          "keywords": [
+            "fraud investigation",
+            "section 12"
+          ]
+        },
+        {
+          "id": "FOI_EX_033",
+          "question": "Records of internal advice, opinions, or recommendations provided to the Executive Council are protected by:",
+          "options": [
+            "Section 11",
+            "Section 13",
+            "Section 15",
+            "Section 19"
+          ],
+          "correct": 0,
+          "explanation": "Section 11 protects cabinet papers and records of deliberations of the Executive Council [29].",
+          "difficulty": "medium",
+          "chapter": "Exemptions (S. 11)",
+          "keywords": [
+            "cabinet papers",
+            "deliberations",
+            "section 11"
+          ]
+        },
+        {
+          "id": "FOI_EX_034",
+          "question": "The disclosure of information concerning commercial activities of a public corporation, if harmful to its market competitiveness, may be exempt under the provisions of:",
+          "options": [
+            "Section 14",
+            "Section 15",
+            "Section 17",
+            "Section 19"
+          ],
+          "correct": 1,
+          "explanation": "Section 15 covers commercial or financial information obtained in confidence [35].",
+          "difficulty": "medium",
+          "chapter": "Exemptions (S. 15)",
+          "keywords": [
+            "commercial confidentiality",
+            "public corporation"
+          ]
+        },
+        {
+          "id": "FOI_EX_035",
+          "question": "When geological data is denied under Section 17, the denial is predicated on protecting the:",
+          "options": [
+            "Intellectual property rights of the exploring party",
+            "National economic interests relating to minerals",
+            "Privacy of the geological surveyors",
+            "Confidentiality of the FCSC registry"
+          ],
+          "correct": 1,
+          "explanation": "Section 17 exempts geological and mineral exploration records to protect national economic interests [40].",
+          "difficulty": "medium",
+          "chapter": "Exemptions (S. 17)",
+          "keywords": [
+            "mineral exploration",
+            "section 17"
+          ]
+        },
+        {
+          "id": "FOI_EX_036",
+          "question": "The exemption for professional privilege (Section 16) is intended to maintain the relationship between:",
+          "options": [
+            "The Minister and the Permanent Secretary",
+            "Client and legal counsel",
+            "The MDA and its suppliers",
+            "The public officer and the Auditor-General"
+          ],
+          "correct": 1,
+          "explanation": "Section 16 protects professional privileges, such as solicitor-client confidentiality [36].",
+          "difficulty": "medium",
+          "chapter": "Exemptions (S. 16)",
+          "keywords": [
+            "professional privilege",
+            "legal counsel"
+          ]
+        },
+        {
+          "id": "FOI_EX_037",
+          "question": "If a document is only 10% exempt (e.g., private names), the remaining 90% must be disclosed due to the principle found in:",
+          "options": [
+            "Section 12",
+            "Section 13",
+            "Section 17",
+            "Section 19"
+          ],
+          "correct": 1,
+          "explanation": "Section 13 requires partial disclosure of the non-exempt portion [38].",
+          "difficulty": "medium",
+          "chapter": "Exemptions (S. 13)",
+          "keywords": [
+            "partial disclosure",
+            "section 13"
+          ]
+        },
+        {
+          "id": "FOI_EX_038",
+          "question": "When can information concerning pending criminal proceedings be released?",
+          "options": [
+            "Only if it cannot interfere with the investigation (Section 12)",
+            "Only with the approval of the Accountant-General",
+            "Only if the applicant is a Nigerian citizen",
+            "Never, under any circumstances"
+          ],
+          "correct": 0,
+          "explanation": "Section 12 allows withholding records if they interfere with investigations [40, 41]. Conversely, they can be released if they pose no interference or if the Public Interest Test (S. 28) applies.",
+          "difficulty": "hard",
+          "chapter": "Exemptions (S. 12)",
+          "keywords": [
+            "criminal proceedings",
+            "release conditions"
+          ]
+        },
+        {
+          "id": "FOI_EX_039",
+          "question": "Which section requires the mandatory release of exempt information if public interest justifies it?",
+          "options": [
+            "Section 11(2)",
+            "Section 12(3)",
+            "Section 28",
+            "Section 31"
+          ],
+          "correct": 2,
+          "explanation": "Section 28 introduces the public interest test, allowing disclosure if public benefit outweighs harm [42].",
+          "difficulty": "medium",
+          "chapter": "Public Interest (S. 28)",
+          "keywords": [
+            "public interest",
+            "section 28"
+          ]
+        },
+        {
+          "id": "FOI_EX_040",
+          "question": "If an MDA denies a request based on the Exemption provisions, the burden of proving that the harm outweighs the public benefit lies with:",
+          "options": [
+            "The National Assembly",
+            "The institution denying access",
+            "The applicant",
+            "The Attorney-General"
+          ],
+          "correct": 1,
+          "explanation": "Section 24 places the burden of proof on the institution denying access [22].",
+          "difficulty": "medium",
+          "chapter": "Burden of Proof",
+          "keywords": [
+            "burden of proof",
+            "denial"
+          ]
+        },
+        {
+          "id": "FOI_EX_041",
+          "question": "Information exempt under Section 11 (Cabinet papers) is primarily protected to maintain:",
+          "options": [
+            "Political secrecy and neutrality",
+            "The confidentiality and effective functioning of the Executive",
+            "The budgetary allocation process",
+            "The civil service promotion roster"
+          ],
+          "correct": 1,
+          "explanation": "Section 11 protects cabinet deliberations necessary for effective executive functioning [29].",
+          "difficulty": "medium",
+          "chapter": "Exemptions (S. 11)",
+          "keywords": [
+            "confidentiality",
+            "Executive Council"
+          ]
+        },
+        {
+          "id": "FOI_EX_042",
+          "question": "The exemption protecting research materials and pending academic work (Section 19) is intended to ensure:",
+          "options": [
+            "The prompt resignation of research staff",
+            "Academic freedom and the integrity of intellectual property before finalization",
+            "Exemption from all other FOI provisions",
+            "Mandatory retirement of professors"
+          ],
+          "correct": 1,
+          "explanation": "Section 19 protects research integrity until completion [37].",
+          "difficulty": "medium",
+          "chapter": "Exemptions (S. 19)",
+          "keywords": [
+            "research integrity",
+            "section 19"
+          ]
+        },
+        {
+          "id": "FOI_EX_043",
+          "question": "If a request seeks information about the internal security structure of a military base, this falls under which exemption?",
+          "options": [
+            "Section 14 (Privacy)",
+            "Section 12 (National Security)",
+            "Section 17 (Geological)",
+            "Section 19 (Research)"
+          ],
+          "correct": 1,
+          "explanation": "Information concerning national security and defense is exempt under Section 12 [31].",
+          "difficulty": "easy",
+          "chapter": "Exemptions (S. 12)",
+          "keywords": [
+            "military base",
+            "national security",
+            "section 12"
+          ]
+        },
+        {
+          "id": "FOI_EX_044",
+          "question": "Information concerning trade secrets that are submitted to a government regulator is exempt under Section 15 only if the information was:",
+          "options": [
+            "Submitted voluntarily",
+            "Already public knowledge",
+            "Submitted in confidence",
+            "Required by law"
+          ],
+          "correct": 2,
+          "explanation": "Section 15 applies to commercial or financial information obtained in confidence [35].",
+          "difficulty": "medium",
+          "chapter": "Exemptions (S. 15)",
+          "keywords": [
+            "in confidence",
+            "trade secrets"
+          ]
+        },
+        {
+          "id": "FOI_EX_045",
+          "question": "Which of these exemptions is intended to protect the strategic economic interests of Nigeria?",
+          "options": [
+            "Section 14 (Privacy)",
+            "Section 17 (Geological/Mineral data)",
+            "Section 16 (Professional Privilege)",
+            "Section 11 (Cabinet papers)"
+          ],
+          "correct": 1,
+          "explanation": "Section 17 protects geological and mineral exploration records crucial to economic strategy [40].",
+          "difficulty": "medium",
+          "chapter": "Exemptions (S. 17)",
+          "keywords": [
+            "geological data",
+            "economic interests"
+          ]
+        },
+        {
+          "id": "FOI_EX_046",
+          "question": "Under the FOI Act, which statement is true regarding the nature of exemptions?",
+          "options": [
+            "They are absolute and cannot be overridden",
+            "They are subject to the Public Interest Test (S. 28)",
+            "They apply only to the Executive branch",
+            "They must be interpreted broadly"
+          ],
+          "correct": 1,
+          "explanation": "Exemptions are not absolute as they are subject to the Section 28 Public Interest Test [42].",
+          "difficulty": "medium",
+          "chapter": "Public Interest (S. 28)",
+          "keywords": [
+            "absolute",
+            "public interest test"
+          ]
+        },
+        {
+          "id": "FOI_EX_047",
+          "question": "The protection of records related to legal opinions provided by Ministry lawyers to the Permanent Secretary falls under:",
+          "options": [
+            "Section 14 (Privacy)",
+            "Section 16 (Professional privilege)",
+            "Section 17 (Geological data)",
+            "Section 19 (Research)"
+          ],
+          "correct": 1,
+          "explanation": "Legal counsel communication is protected under Section 16 [36].",
+          "difficulty": "medium",
+          "chapter": "Exemptions (S. 16)",
+          "keywords": [
+            "legal counsel",
+            "professional privilege"
+          ]
+        },
+        {
+          "id": "FOI_EX_048",
+          "question": "If information contains personal medical records, the denial is primarily justified by:",
+          "options": [
+            "Section 11",
+            "Section 14",
+            "Section 15",
+            "Section 19"
+          ],
+          "correct": 1,
+          "explanation": "Personal information and privacy are protected under Section 14 [30].",
+          "difficulty": "medium",
+          "chapter": "Exemptions (S. 14)",
+          "keywords": [
+            "medical records",
+            "privacy",
+            "section 14"
+          ]
+        },
+        {
+          "id": "FOI_EX_049",
+          "question": "Which section allows for partial disclosure by excising the exempt information from a document?",
+          "options": [
+            "Section 12",
+            "Section 13",
+            "Section 14",
+            "Section 15"
+          ],
+          "correct": 1,
+          "explanation": "Section 13 allows partial disclosure [38].",
+          "difficulty": "medium",
+          "chapter": "Exemptions (S. 13)",
+          "keywords": [
+            "partial disclosure",
+            "excising"
+          ]
+        },
+        {
+          "id": "FOI_EX_050",
+          "question": "The exemption of examination materials (Section 19) is necessary to ensure the:",
+          "options": [
+            "Efficiency of the Accountant-General's office",
+            "Integrity and fairness of the testing process",
+            "Secrecy of all government documents",
+            "Compliance with the Appropriation Act"
+          ],
+          "correct": 1,
+          "explanation": "Protecting test questions until administration preserves the integrity and fairness of the examination process [37].",
+          "difficulty": "easy",
+          "chapter": "Exemptions (S. 19)",
+          "keywords": [
+            "examination integrity",
+            "section 19"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "foi_offences_penalties",
+      "name": "Offences, Penalties & Enforcement (FOI)",
+      "description": "Sanctions, offences, and enforcement pathways under FOI.",
+      "questions": [
+        {
+          "id": "FOI_OP_001",
+          "question": "What penalty is imposed on any officer who wrongfully denies access to information in violation of the FOI Act?",
+          "options": [
+            "Warning",
+            "Suspension",
+            "₦500,000 fine",
+            "Dismissal"
+          ],
+          "correct": 2,
+          "explanation": "The FOI Act imposes a fine of ₦500,000 on officers who unlawfully deny access to information [44].",
+          "difficulty": "medium",
+          "chapter": "Penalties",
+          "keywords": [
+            "foi act",
+            "penalty",
+            "500000 fine"
+          ]
+        },
+        {
+          "id": "FOI_OP_002",
+          "question": "Which section of the FOI Act criminalizes destruction of public records?",
+          "options": [
+            "Section 6",
+            "Section 7",
+            "Section 10",
+            "Section 29"
+          ],
+          "correct": 3,
+          "explanation": "Section 29 criminalizes destruction or falsification of public records and prescribes penalties [45].",
+          "difficulty": "medium",
+          "chapter": "Offences (S. 29)",
+          "keywords": [
+            "foi act",
+            "destruction of records",
+            "section 29"
+          ]
+        },
+        {
+          "id": "FOI_OP_003",
+          "question": "What is the fine prescribed for wrongful destruction or falsification of public records under Section 29?",
+          "options": [
+            "₦100,000",
+            "₦200,000",
+            "₦250,000",
+            "₦500,000"
+          ],
+          "correct": 3,
+          "explanation": "Section 29 prescribes a ₦500,000 fine for wrongful destruction or falsification of public records [46].",
+          "difficulty": "medium",
+          "chapter": "Offences (S. 29)",
+          "keywords": [
+            "foi act",
+            "fine",
+            "destruction of records"
+          ]
+        },
+        {
+          "id": "FOI_OP_004",
+          "question": "Which section makes it an offense to alter or falsify public records?",
+          "options": [
+            "Section 25",
+            "Section 27",
+            "Section 29",
+            "Section 31"
+          ],
+          "correct": 2,
+          "explanation": "Section 29 makes alteration or falsification of records a criminal offence with penalties [45].",
+          "difficulty": "medium",
+          "chapter": "Offences (S. 29)",
+          "keywords": [
+            "foi act",
+            "falsification",
+            "section 29"
+          ]
+        },
+        {
+          "id": "FOI_OP_005",
+          "question": "Section 29 prohibits the destruction of records needed for pending FOI requests. This is intended to ensure:",
+          "options": [
+            "Compliance with the Pension Reform Act",
+            "The integrity and availability of evidence for disclosure",
+            "Automatic promotion for desk officers",
+            "Centralization of all government funds"
+          ],
+          "correct": 1,
+          "explanation": "Section 29 prohibits destruction of records subject to FOI requests and prescribes penalties [47].",
+          "difficulty": "medium",
+          "chapter": "Offences (S. 29)",
+          "keywords": [
+            "foi act",
+            "record destruction",
+            "section 29"
+          ]
+        },
+        {
+          "id": "FOI_OP_006",
+          "question": "Which section criminalizes willful concealment of public records?",
+          "options": [
+            "Section 25",
+            "Section 27",
+            "Section 29",
+            "Section 31"
+          ],
+          "correct": 2,
+          "explanation": "Section 29 criminalizes willful concealment, destruction, or falsification of public records [48].",
+          "difficulty": "medium",
+          "chapter": "Offences (S. 29)",
+          "keywords": [
+            "foi act",
+            "concealment",
+            "section 29"
+          ]
+        },
+        {
+          "id": "FOI_OP_007",
+          "question": "Which section provides protection from liability for officers who disclose information in good faith?",
+          "options": [
+            "Section 25",
+            "Section 26",
+            "Section 27",
+            "Section 28"
+          ],
+          "correct": 2,
+          "explanation": "Section 27 provides immunity for officers who release information in good faith [26, 33].",
+          "difficulty": "medium",
+          "chapter": "Protection (S. 27)",
+          "keywords": [
+            "foi act",
+            "good faith",
+            "section 27",
+            "liability"
+          ]
+        },
+        {
+          "id": "FOI_OP_008",
+          "question": "The fine of ₦500,000 for wrongful denial of access is imposed on:",
+          "options": [
+            "The public institution itself",
+            "The specific officer responsible for the unlawful denial",
+            "The Attorney-General",
+            "The Minister of Finance"
+          ],
+          "correct": 1,
+          "explanation": "The fine is imposed on the specific officer who wrongfully denies access [44].",
+          "difficulty": "medium",
+          "chapter": "Penalties",
+          "keywords": [
+            "fine",
+            "officer responsibility"
+          ]
+        },
+        {
+          "id": "FOI_OP_009",
+          "question": "If an officer is prosecuted for willful concealment of records (S. 29), this action is typically initiated by:",
+          "options": [
+            "The FCSC",
+            "Law enforcement agencies or the Attorney-General’s office",
+            "The Permanent Secretary",
+            "The Audit Committee"
+          ],
+          "correct": 1,
+          "explanation": "Criminal offences under the FOI Act are subject to prosecution, usually managed by the Attorney-General's office or relevant law enforcement [45, 48].",
+          "difficulty": "medium",
+          "chapter": "Enforcement",
+          "keywords": [
+            "prosecution",
+            "concealment",
+            "Attorney-General"
+          ]
+        },
+        {
+          "id": "FOI_OP_010",
+          "question": "Section 29 addresses which cluster of criminal activities related to public records?",
+          "options": [
+            "Procurement fraud and bid rigging",
+            "Destruction, concealment, or falsification of records",
+            "Conflict of interest in contracts",
+            "Failure to attend annual training"
+          ],
+          "correct": 1,
+          "explanation": "Section 29 criminalizes willful concealment, destruction, or falsification of public records [45, 48].",
+          "difficulty": "easy",
+          "chapter": "Offences (S. 29)",
+          "keywords": [
+            "criminal activities",
+            "destruction",
+            "falsification"
+          ]
+        },
+        {
+          "id": "FOI_OP_011",
+          "question": "Protection from liability (S. 27) applies when an officer:",
+          "options": [
+            "Releases any document, regardless of secrecy classification",
+            "Releases exempt information despite knowing the harm",
+            "Discloses information in good faith under the Act's mandate",
+            "Destroys records unintentionally"
+          ],
+          "correct": 2,
+          "explanation": "Section 27 protects officers only when disclosure is made in good faith [26, 33].",
+          "difficulty": "medium",
+          "chapter": "Protection (S. 27)",
+          "keywords": [
+            "good faith",
+            "protection",
+            "liability"
+          ]
+        },
+        {
+          "id": "FOI_OP_012",
+          "question": "If an officer unlawfully denies an FOI request and is fined ₦500,000, this penalty is administered through:",
+          "options": [
+            "The FCSC disciplinary process",
+            "A court order",
+            "The Ministerial Tenders Board",
+            "The internal audit process"
+          ],
+          "correct": 1,
+          "explanation": "Penalties and enforcement of the FOI Act generally rely on legal action initiated by the applicant (Section 20 [22]) or prosecution by the AGF, resulting in court-imposed sanctions.",
+          "difficulty": "hard",
+          "chapter": "Enforcement",
+          "keywords": [
+            "fine",
+            "court order",
+            "penalty"
+          ]
+        },
+        {
+          "id": "FOI_OP_013",
+          "question": "If an applicant challenges a denial in court (S. 20), the institution must present evidence showing the records fall under a specific statutory exemption and that:",
+          "options": [
+            "The applicant is known to the Minister",
+            "The duplication fee was paid",
+            "The public interest test (S. 28) does not favor disclosure",
+            "The records are easily accessible"
+          ],
+          "correct": 2,
+          "explanation": "The institution must overcome the Public Interest Test (S. 28) if applicable, as exemptions must be narrowly interpreted [42, 43].",
+          "difficulty": "medium",
+          "chapter": "Public Interest Defense",
+          "keywords": [
+            "burden of proof",
+            "public interest test",
+            "section 28"
+          ]
+        },
+        {
+          "id": "FOI_OP_014",
+          "question": "Falsification of public records by an officer, as defined in Section 29, constitutes a:",
+          "options": [
+            "Minor misconduct under PSR",
+            "Criminal offense under the FOI Act",
+            "Simple administrative error",
+            "Routine financial adjustment"
+          ],
+          "correct": 1,
+          "explanation": "Section 29 makes falsification a criminal offense [45].",
+          "difficulty": "easy",
+          "chapter": "Offences (S. 29)",
+          "keywords": [
+            "falsification",
+            "criminal offense",
+            "section 29"
+          ]
+        },
+        {
+          "id": "FOI_OP_015",
+          "question": "The primary objective of imposing penalties for FOI violations is to:",
+          "options": [
+            "Increase government revenue",
+            "Deter non-compliance and protect the public's right to information",
+            "Fund staff training programs",
+            "Mandate staff annual leave"
+          ],
+          "correct": 1,
+          "explanation": "Penalties are designed to deter unauthorized denial or destruction of records, supporting the Act's transparency objectives.",
+          "difficulty": "easy",
+          "chapter": "Penalties Objective",
+          "keywords": [
+            "deterrence",
+            "compliance",
+            "right to information"
+          ]
+        },
+        {
+          "id": "FOI_OP_016",
+          "question": "If a Permanent Secretary instructs an officer to destroy a record subject to a pending FOI request, both the Permanent Secretary and the officer may be liable under:",
+          "options": [
+            "The Fiscal Responsibility Act",
+            "Section 29 of the FOI Act",
+            "The Official Secrets Act",
+            "The Appropriation Act"
+          ],
+          "correct": 1,
+          "explanation": "Section 29 criminalizes destruction of public records [45, 47].",
+          "difficulty": "medium",
+          "chapter": "Offences (S. 29)",
+          "keywords": [
+            "destruction of records",
+            "section 29",
+            "liability"
+          ]
+        },
+        {
+          "id": "FOI_OP_017",
+          "question": "The protection offered by Section 27 does **not** apply if the officer's disclosure of information was done:",
+          "options": [
+            "In a formal letter",
+            "In bad faith or maliciously",
+            "Based on the advice of legal counsel",
+            "To comply with a court order"
+          ],
+          "correct": 1,
+          "explanation": "The protection relies entirely on the disclosure being made in 'good faith' [26, 33].",
+          "difficulty": "easy",
+          "chapter": "Protection (S. 27)",
+          "keywords": [
+            "bad faith",
+            "maliciously",
+            "section 27"
+          ]
+        },
+        {
+          "id": "FOI_OP_018",
+          "question": "What happens if a public officer is found guilty of an offense under Section 29?",
+          "options": [
+            "Automatic transfer to another MDA",
+            "Imposition of fine (₦500k) and potential dismissal from service",
+            "A verbal warning and deferred promotion",
+            "Mandatory attendance at a training course"
+          ],
+          "correct": 1,
+          "explanation": "Section 29 prescribes penalties including fines (₦500,000) [46]. Criminal conviction typically leads to dismissal under PSR guidelines [49].",
+          "difficulty": "medium",
+          "chapter": "Offences Consequence",
+          "keywords": [
+            "section 29",
+            "fine",
+            "dismissal"
+          ]
+        },
+        {
+          "id": "FOI_OP_019",
+          "question": "Willful concealment of public records is treated as an offense primarily because it:",
+          "options": [
+            "Interferes with the smooth flow of official correspondence",
+            "Frustrates the public's right to information guaranteed by the Act",
+            "Violates the Annual Leave Roster",
+            "Increases the cost of utilities"
+          ],
+          "correct": 1,
+          "explanation": "Concealment frustrates the purpose of the FOI Act and the public's right of access [2, 48].",
+          "difficulty": "easy",
+          "chapter": "Offences Rationale",
+          "keywords": [
+            "concealment",
+            "right to information"
+          ]
+        },
+        {
+          "id": "FOI_OP_020",
+          "question": "Who is responsible for oversight of FOI Act compliance among public institutions?",
+          "options": [
+            "Federal Civil Service Commission (FCSC)",
+            "Attorney-General of the Federation",
+            "Bureau of Public Procurement (BPP)",
+            "The Minister of Justice"
+          ],
+          "correct": 1,
+          "explanation": "The Attorney-General of the Federation is responsible for oversight and enforcement [23, 24].",
+          "difficulty": "easy",
+          "chapter": "Oversight",
+          "keywords": [
+            "attorney-general",
+            "compliance",
+            "oversight"
+          ]
+        },
+        {
+          "id": "FOI_OP_021",
+          "question": "The Attorney-General is mandated to submit the annual FOI compliance report to which legislative body?",
+          "options": [
+            "The House of Representatives only",
+            "The Senate only",
+            "The National Assembly (both houses)",
+            "The Economic and Financial Crimes Commission (EFCC)"
+          ],
+          "correct": 2,
+          "explanation": "Section 32 requires the Attorney-General to submit an annual report to the National Assembly [25, 26].",
+          "difficulty": "medium",
+          "chapter": "Oversight Reporting",
+          "keywords": [
+            "national assembly",
+            "section 32",
+            "attorney-general"
+          ]
+        },
+        {
+          "id": "FOI_OP_022",
+          "question": "Which criminal action is defined in Section 29 of the FOI Act?",
+          "options": [
+            "Misuse of government vehicle",
+            "Falsification of public records",
+            "Habitual lateness",
+            "Absenteeism without permission"
+          ],
+          "correct": 1,
+          "explanation": "Falsification of public records is a criminal offense under Section 29 [45].",
+          "difficulty": "medium",
+          "chapter": "Offences (S. 29)",
+          "keywords": [
+            "falsification",
+            "section 29"
+          ]
+        },
+        {
+          "id": "FOI_OP_023",
+          "question": "An officer who illegally denies access to information may be liable to a court-imposed fine of:",
+          "options": [
+            "₦100,000",
+            "₦250,000",
+            "₦500,000",
+            "₦1,000,000"
+          ],
+          "correct": 2,
+          "explanation": "The penalty for wrongful denial of access is a fine of ₦500,000 [44].",
+          "difficulty": "medium",
+          "chapter": "Penalties",
+          "keywords": [
+            "fine",
+            "denial"
+          ]
+        },
+        {
+          "id": "FOI_OP_024",
+          "question": "The provision for the Attorney-General to compile and publish annual FOI compliance reports is found in:",
+          "options": [
+            "Section 25",
+            "Section 29",
+            "Section 32",
+            "Section 33"
+          ],
+          "correct": 2,
+          "explanation": "Section 32 requires the Attorney-General to compile and publish annual FOI compliance reports [26].",
+          "difficulty": "medium",
+          "chapter": "Oversight (S. 32)",
+          "keywords": [
+            "compliance report",
+            "section 32",
+            "attorney-general"
+          ]
+        },
+        {
+          "id": "FOI_OP_025",
+          "question": "If an officer discloses information in good faith, Section 27 protects them from:",
+          "options": [
+            "Internal audit queries",
+            "Civil or criminal liability",
+            "Promotion deferment",
+            "Mandatory retirement"
+          ],
+          "correct": 1,
+          "explanation": "Section 27 protects officers from liability when they disclose information in good faith [26, 33].",
+          "difficulty": "medium",
+          "chapter": "Protection (S. 27)",
+          "keywords": [
+            "liability",
+            "section 27",
+            "good faith"
+          ]
+        },
+        {
+          "id": "FOI_OP_026",
+          "question": "When an MDA defends a denial in court, the burden of proving that the record is truly exempt falls upon:",
+          "options": [
+            "The court judge",
+            "The institution denying access (Section 24)",
+            "The Attorney-General's representative",
+            "The applicant"
+          ],
+          "correct": 1,
+          "explanation": "Section 24 places the burden of proof on the institution that denies access to information [22].",
+          "difficulty": "medium",
+          "chapter": "Burden of Proof",
+          "keywords": [
+            "burden of proof",
+            "section 24"
+          ]
+        },
+        {
+          "id": "FOI_OP_027",
+          "question": "Section 29 ensures the accountability of officers concerning public records by criminalizing:",
+          "options": [
+            "The reading of unclassified documents",
+            "The payment of staff emoluments",
+            "Concealment and falsification",
+            "The submission of annual budgets"
+          ],
+          "correct": 2,
+          "explanation": "Section 29 criminalizes actions that undermine record integrity, such as concealment and falsification [45, 48].",
+          "difficulty": "easy",
+          "chapter": "Offences (S. 29)",
+          "keywords": [
+            "accountability",
+            "concealment",
+            "section 29"
+          ]
+        },
+        {
+          "id": "FOI_OP_028",
+          "question": "The penalty for unlawful destruction of records (S. 29) is a fine of ₦500,000 and potentially:",
+          "options": [
+            "A written caution",
+            "Imprisonment",
+            "Automatic promotion",
+            "A travel ban"
+          ],
+          "correct": 1,
+          "explanation": "Section 29 prescribes fines and potential imprisonment for criminal offences related to records [45, 46].",
+          "difficulty": "medium",
+          "chapter": "Offences (S. 29)",
+          "keywords": [
+            "imprisonment",
+            "destruction of records"
+          ]
+        },
+        {
+          "id": "FOI_OP_029",
+          "question": "Which section requires that exemptions must be interpreted narrowly in favour of disclosure?",
+          "options": [
+            "Section 11(1)",
+            "Section 28(1)",
+            "Section 32(1)",
+            "Section 27(1)"
+          ],
+          "correct": 1,
+          "explanation": "Section 28(1) mandates a narrow interpretation of exemptions [43].",
+          "difficulty": "medium",
+          "chapter": "Public Interest (S. 28)",
+          "keywords": [
+            "narrowly interpreted",
+            "section 28(1)"
+          ]
+        },
+        {
+          "id": "FOI_OP_030",
+          "question": "An MDA that fails to respond to an FOI request within the statutory timeframe risks:",
+          "options": [
+            "Loss of its entire budget",
+            "Being deemed to have denied the request and facing court action",
+            "Suspension of the Permanent Secretary",
+            "A mandatory promotion for the desk officer"
+          ],
+          "correct": 1,
+          "explanation": "Deemed refusal enables the applicant to appeal immediately to court (Section 20) [22].",
+          "difficulty": "medium",
+          "chapter": "Appeals",
+          "keywords": [
+            "deemed denial",
+            "court action"
+          ]
+        },
+        {
+          "id": "FOI_OP_031",
+          "question": "Section 29 applies to destruction of records needed for pending FOI requests, but does NOT apply to records destroyed as part of routine, lawful:",
+          "options": [
+            "Falsification processes",
+            "Records management and retention policies",
+            "Procurement actions",
+            "Political appointments"
+          ],
+          "correct": 1,
+          "explanation": "The offence applies only to wrongful/unlawful destruction, not routine records management and retention policies.",
+          "difficulty": "hard",
+          "chapter": "Offences (S. 29) Limit",
+          "keywords": [
+            "unlawful destruction",
+            "record retention"
+          ]
+        },
+        {
+          "id": "FOI_OP_032",
+          "question": "If an applicant is denied access, Section 20 grants them the right to seek redress in a court of competent jurisdiction within how many days of the denial or deemed denial?",
+          "options": [
+            "7 days",
+            "14 days",
+            "30 days",
+            "60 days"
+          ],
+          "correct": 1,
+          "explanation": "Section 20 grants the right to court action within 30 days (General FOI practice, supported by Section 20 providing for court action [22]).",
+          "difficulty": "hard",
+          "chapter": "Appeals Time Limit",
+          "keywords": [
+            "court action",
+            "30 days",
+            "section 20"
+          ]
+        },
+        {
+          "id": "FOI_OP_033",
+          "question": "The public institution's obligation to maintain proper indexes of records (S. 6(1)) serves as a procedural countermeasure against accusations of:",
+          "options": [
+            "Unlawful emolument payment",
+            "Willful concealment of records (S. 29)",
+            "Insufficient annual leave granting",
+            "Non-compliance with the MTEF"
+          ],
+          "correct": 1,
+          "explanation": "Proper record indexing prevents claims that the institution is concealing records by claiming they don't exist or cannot be located [18, 19, 48].",
+          "difficulty": "medium",
+          "chapter": "Record Integrity",
+          "keywords": [
+            "indexes",
+            "concealment"
+          ]
+        },
+        {
+          "id": "FOI_OP_034",
+          "question": "Section 29 of the FOI Act is primarily concerned with protecting the integrity of government:",
+          "options": [
+            "Personnel",
+            "Political activities",
+            "Records",
+            "Buildings"
+          ],
+          "correct": 2,
+          "explanation": "Section 29 criminalizes actions against public records (destruction, falsification, concealment) [45, 48].",
+          "difficulty": "easy",
+          "chapter": "Offences (S. 29)",
+          "keywords": [
+            "records",
+            "integrity",
+            "section 29"
+          ]
+        },
+        {
+          "id": "FOI_OP_035",
+          "question": "If a Permanent Secretary willfully withholds non-exempt information, they are liable to a fine of:",
+          "options": [
+            "₦100,000",
+            "₦250,000",
+            "₦500,000",
+            "₦1,000,000"
+          ],
+          "correct": 2,
+          "explanation": "The penalty for wrongful denial of access is a fine of ₦500,000 [44].",
+          "difficulty": "medium",
+          "chapter": "Penalties",
+          "keywords": [
+            "fine",
+            "denial"
+          ]
+        },
+        {
+          "id": "FOI_OP_036",
+          "question": "The authority to issue guidelines for FOI implementation rests with the:",
+          "options": [
+            "President's Chief of Staff",
+            "Attorney-General of the Federation",
+            "Federal Civil Service Commission",
+            "Head of Service"
+          ],
+          "correct": 1,
+          "explanation": "The Attorney-General of the Federation issues implementation guidelines [24].",
+          "difficulty": "medium",
+          "chapter": "Oversight",
+          "keywords": [
+            "guidelines",
+            "attorney-general"
+          ]
+        },
+        {
+          "id": "FOI_OP_037",
+          "question": "Section 27 provides protection from liability for officers who disclose information, provided the disclosure is based on the officer's belief that it is required by the Act and is made in:",
+          "options": [
+            "Secret",
+            "Bad faith",
+            "Good faith",
+            "Writing"
+          ],
+          "correct": 2,
+          "explanation": "The crucial condition is disclosure in 'good faith' [26, 33].",
+          "difficulty": "easy",
+          "chapter": "Protection (S. 27)",
+          "keywords": [
+            "good faith",
+            "section 27"
+          ]
+        },
+        {
+          "id": "FOI_OP_038",
+          "question": "If an MDA fails to designate an FOI desk officer as required by Section 5(1), this constitutes a failure in:",
+          "options": [
+            "Financial resource management",
+            "Administrative implementation of the Act",
+            "Policy formulation",
+            "External communication"
+          ],
+          "correct": 1,
+          "explanation": "Designating desk officers is an administrative implementation requirement of the Act [14].",
+          "difficulty": "medium",
+          "chapter": "Implementation Failure",
+          "keywords": [
+            "desk officer",
+            "section 5(1)"
+          ]
+        },
+        {
+          "id": "FOI_OP_039",
+          "question": "Which entity is responsible for challenging the denial of access in court?",
+          "options": [
+            "The Attorney-General",
+            "The applicant",
+            "The Head of Service",
+            "The BPP"
+          ],
+          "correct": 1,
+          "explanation": "Section 20 grants the applicant the right to file an action in court [22].",
+          "difficulty": "easy",
+          "chapter": "Appeals",
+          "keywords": [
+            "applicant",
+            "court action"
+          ]
+        },
+        {
+          "id": "FOI_OP_040",
+          "question": "The annual compliance report submitted by the Attorney-General must detail:",
+          "options": [
+            "The personal wealth of all public officers",
+            "The number of requests received, granted, and denied across MDAs",
+            "The total cost of government procurements",
+            "The list of staff promotions"
+          ],
+          "correct": 1,
+          "explanation": "The compliance report summarizes FOI implementation metrics, including requests received and disposition [13, 25].",
+          "difficulty": "medium",
+          "chapter": "Oversight Reporting",
+          "keywords": [
+            "compliance report",
+            "requests received"
+          ]
+        },
+        {
+          "id": "FOI_OP_041",
+          "question": "If an officer inadvertently destroys a public record while transferring offices, would they be liable under Section 29?",
+          "options": [
+            "Yes, immediately",
+            "Only if the destruction was willful or malicious",
+            "No, if they report it within 24 hours",
+            "Yes, if the record was classified 'Secret'"
+          ],
+          "correct": 1,
+          "explanation": "Section 29 criminalizes 'willful' concealment, destruction, or falsification [45, 48]. Inadvertent destruction lacks the requisite intent for this criminal offense.",
+          "difficulty": "hard",
+          "chapter": "Offences (S. 29) Intent",
+          "keywords": [
+            "willful",
+            "destruction of records"
+          ]
+        },
+        {
+          "id": "FOI_OP_042",
+          "question": "When an MDA grants access, the cost of copying (duplication/transcription) is recovered under:",
+          "options": [
+            "Section 4(1)",
+            "Section 8(1)",
+            "Section 29",
+            "Section 11"
+          ],
+          "correct": 1,
+          "explanation": "Section 8(1) allows institutions to charge fees covering costs of duplication or transcription [8].",
+          "difficulty": "medium",
+          "chapter": "Fees",
+          "keywords": [
+            "fees",
+            "duplication",
+            "section 8(1)"
+          ]
+        },
+        {
+          "id": "FOI_OP_043",
+          "question": "Which FOI provision emphasizes that exemptions must be narrowly construed?",
+          "options": [
+            "Section 1(2)",
+            "Section 28(1)",
+            "Section 32(1)",
+            "Section 27(1)"
+          ],
+          "correct": 1,
+          "explanation": "Section 28(1) mandates narrow interpretation in favour of disclosure [43].",
+          "difficulty": "medium",
+          "chapter": "Public Interest (S. 28)",
+          "keywords": [
+            "narrowly construed",
+            "section 28(1)"
+          ]
+        },
+        {
+          "id": "FOI_OP_044",
+          "question": "If an MDA denies a request, the applicant may appeal to court within 30 days of the denial or:",
+          "options": [
+            "The date the FOI Act was enacted",
+            "The deemed denial date (7 days after request)",
+            "The end of the current fiscal year",
+            "The date of the next promotion board meeting"
+          ],
+          "correct": 1,
+          "explanation": "Appeal period runs from the denial or the date the institution was deemed to have denied the request [22].",
+          "difficulty": "medium",
+          "chapter": "Appeals Time Limit",
+          "keywords": [
+            "deemed denial",
+            "court action"
+          ]
+        },
+        {
+          "id": "FOI_OP_045",
+          "question": "Section 27, protecting officers who disclose in good faith, incentivizes:",
+          "options": [
+            "Strict adherence to the Official Secrets Act only",
+            "Proactive compliance and information release",
+            "Willful destruction of records",
+            "Political patronage"
+          ],
+          "correct": 1,
+          "explanation": "The protection encourages officers to err on the side of transparency and disclosure, supporting the Act's purpose [26, 33].",
+          "difficulty": "easy",
+          "chapter": "Protection Rationale",
+          "keywords": [
+            "proactive compliance",
+            "good faith"
+          ]
+        },
+        {
+          "id": "FOI_OP_046",
+          "question": "The failure to produce records in accessible, machine-readable formats (S. 6(2)) undermines:",
+          "options": [
+            "The Attorney-General's authority",
+            "The accessibility objective of the Act",
+            "The power of the FCSC",
+            "The calculation of the Contingencies Fund"
+          ],
+          "correct": 1,
+          "explanation": "Section 6(2) aims to make records easily accessible, especially digitally [15, 16].",
+          "difficulty": "medium",
+          "chapter": "Record Management",
+          "keywords": [
+            "accessible formats",
+            "section 6(2)"
+          ]
+        },
+        {
+          "id": "FOI_OP_047",
+          "question": "If a public institution fails to keep proper records as mandated by Section 2, they may be subject to legal action for:",
+          "options": [
+            "Contempt of court",
+            "Breach of statutory duty under the FOI Act",
+            "Violation of civil service promotion rules",
+            "Exceeding the MTEF limits"
+          ],
+          "correct": 1,
+          "explanation": "Failure to maintain proper records is a breach of statutory duty [10].",
+          "difficulty": "medium",
+          "chapter": "Obligations Failure",
+          "keywords": [
+            "record keeping",
+            "statutory duty"
+          ]
+        },
+        {
+          "id": "FOI_OP_048",
+          "question": "Which body ensures the enforcement of the criminal offences outlined in Section 29?",
+          "options": [
+            "Federal Civil Service Commission",
+            "The Judiciary, supported by the AGF’s office",
+            "The Ministerial Tenders Board",
+            "The OHCSF"
+          ],
+          "correct": 1,
+          "explanation": "The Judiciary handles criminal prosecution, with oversight and initiation often by the Attorney-General [45].",
+          "difficulty": "medium",
+          "chapter": "Enforcement",
+          "keywords": [
+            "criminal offence",
+            "judiciary",
+            "section 29"
+          ]
+        },
+        {
+          "id": "FOI_OP_049",
+          "question": "An officer found to have willfully concealed records (S. 29) is liable to pay:",
+          "options": [
+            "₦100,000",
+            "₦250,000",
+            "₦500,000 fine",
+            "No fine, only imprisonment"
+          ],
+          "correct": 2,
+          "explanation": "Section 29 criminalizes concealment and prescribes a ₦500,000 fine [46, 48].",
+          "difficulty": "medium",
+          "chapter": "Offences (S. 29)",
+          "keywords": [
+            "concealment",
+            "fine"
+          ]
+        },
+        {
+          "id": "FOI_OP_050",
+          "question": "Section 28 promotes accountability by ensuring the judiciary can interpret exemptions narrowly, thereby minimizing:",
+          "options": [
+            "The burden on the applicant",
+            "The abuse of exemptions to cover up illegal activities",
+            "The cost of transcription",
+            "The need for staff training"
+          ],
+          "correct": 1,
+          "explanation": "Narrow interpretation and the public interest test minimize the use of exemptions to shield illegal activity from public view [42, 43].",
+          "difficulty": "medium",
+          "chapter": "Public Interest (S. 28)",
+          "keywords": [
+            "judiciary",
+            "narrow interpretation",
+            "accountability"
+          ]
+        }
+      ]
+    }
+  ]
+}

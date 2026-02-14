@@ -7,8 +7,8 @@
   "subcategories": [
     {
       "id": "fin_budgeting",
-      "name": "Budgeting",
-      "description": "Appropriation Act, warrants, virement, budget cycles, MTEF, and emoluments.",
+      "name": "Budgeting & Financial Planning",
+      "description": "Appropriation, warrants, virement, MTEF, and planning cycles.",
       "questions": [
         {
           "id": "fin_bgt_001",
@@ -43,17 +43,30 @@
           "explanation": "The Annual Appropriation Act, enacted by the National Assembly, is the legal instrument that authorizes the Federal Government to withdraw funds from the CRF for annual expenditure [3].",
           "difficulty": "medium",
           "chapter": "Budgeting – Appropriation",
-          "keywords": ["Appropriation Act", "CRF", "National Assembly"]
+          "keywords": [
+            "Appropriation Act",
+            "CRF",
+            "National Assembly"
+          ]
         },
         {
           "id": "fin_bgt_003",
           "question": "How often must the Vote Book be updated to accurately reflect budget implementation and commitments, ensuring effective expenditure control?",
-          "options": ["Weekly.", "Monthly.", "Annually.", "Daily."],
+          "options": [
+            "Weekly.",
+            "Monthly.",
+            "Annually.",
+            "Daily."
+          ],
           "correct": 3,
           "explanation": "Vote books should be updated daily to reflect accurate budget implementation and commitments [4].",
           "difficulty": "easy",
           "chapter": "Budgeting – Control Frequency",
-          "keywords": ["Vote Book", "Daily", "Expenditure control"]
+          "keywords": [
+            "Vote Book",
+            "Daily",
+            "Expenditure control"
+          ]
         },
         {
           "id": "fin_bgt_004",
@@ -68,7 +81,11 @@
           "explanation": "Virement is the authorized transfer of funds from one sub-head to another within the same head of expenditure [5, 6].",
           "difficulty": "easy",
           "chapter": "Budgeting – Virement Definition",
-          "keywords": ["Virement", "Fund transfer", "budget transfer"]
+          "keywords": [
+            "Virement",
+            "Fund transfer",
+            "budget transfer"
+          ]
         },
         {
           "id": "fin_bgt_005",
@@ -83,7 +100,10 @@
           "explanation": "Virement must be formally approved and backed by a Virement Warrant [7].",
           "difficulty": "medium",
           "chapter": "Budgeting – Virement Authorization",
-          "keywords": ["Virement Warrant", "Authorization"]
+          "keywords": [
+            "Virement Warrant",
+            "Authorization"
+          ]
         },
         {
           "id": "fin_bgt_006",
@@ -98,7 +118,10 @@
           "explanation": "Spending that surpasses the approved budget is classified as an Excess Vote or unauthorized expenditure [7].",
           "difficulty": "medium",
           "chapter": "Budgeting – Irregularity",
-          "keywords": ["Excess Vote", "Unauthorized expenditure"]
+          "keywords": [
+            "Excess Vote",
+            "Unauthorized expenditure"
+          ]
         },
         {
           "id": "fin_bgt_007",
@@ -113,7 +136,11 @@
           "explanation": "At the close of the fiscal year, unspent budget balances are typically returned to the Treasury, specifically the CRF [8].",
           "difficulty": "easy",
           "chapter": "Budgeting – Year-End Closure",
-          "keywords": ["Unspent Balance", "CRF", "Returned to Treasury"]
+          "keywords": [
+            "Unspent Balance",
+            "CRF",
+            "Returned to Treasury"
+          ]
         },
         {
           "id": "fin_bgt_008",
@@ -128,7 +155,11 @@
           "explanation": "A Warrant provides for the release of funds for both capital and recurrent expenditures [8].",
           "difficulty": "medium",
           "chapter": "Budgeting – Funds Release",
-          "keywords": ["Warrant", "Funds release", "Treasury"]
+          "keywords": [
+            "Warrant",
+            "Funds release",
+            "Treasury"
+          ]
         },
         {
           "id": "fin_bgt_009",
@@ -162,17 +193,30 @@
           "explanation": "Before issuing any commitment, the Vote book balance must be checked to confirm that the expenditure is within approved limits [10].",
           "difficulty": "easy",
           "chapter": "Budgeting – Commitment Check",
-          "keywords": ["Vote Book balance", "Commitment", "Expenditure limits"]
+          "keywords": [
+            "Vote Book balance",
+            "Commitment",
+            "Expenditure limits"
+          ]
         },
         {
           "id": "fin_bgt_011",
           "question": "The **Medium-Term Expenditure Framework (MTEF)**, a key planning tool, requires government budgeting to focus on planning and projections over a rolling period of:",
-          "options": ["One year.", "Three years.", "Five years.", "Ten years."],
+          "options": [
+            "One year.",
+            "Three years.",
+            "Five years.",
+            "Ten years."
+          ],
           "correct": 1,
           "explanation": "The MTEF sets out government’s spending priorities and projections over a three-year period [11].",
           "difficulty": "medium",
           "chapter": "Budgeting – MTEF",
-          "keywords": ["MTEF", "Three years", "Budget planning"]
+          "keywords": [
+            "MTEF",
+            "Three years",
+            "Budget planning"
+          ]
         },
         {
           "id": "fin_bgt_012",
@@ -187,7 +231,11 @@
           "explanation": "Payment of promotion arrears shall be made within the year the promotion is effected, calculated from the effective date of the promotion (Rule 040104(iii)) [11, 12].",
           "difficulty": "medium",
           "chapter": "Chapter 4 – Emoluments on Promotion",
-          "keywords": ["Promotion arrears", "effective date", "Rule 040104"]
+          "keywords": [
+            "Promotion arrears",
+            "effective date",
+            "Rule 040104"
+          ]
         },
         {
           "id": "fin_bgt_013",
@@ -202,7 +250,11 @@
           "explanation": "Rule 040102 confirms that on first appointment, emoluments shall, as a general rule, be paid as from the date of assumption of duty [12, 13].",
           "difficulty": "easy",
           "chapter": "Chapter 4 – Emoluments on Appointment",
-          "keywords": ["Emoluments", "Assumption of duty", "Rule 040102"]
+          "keywords": [
+            "Emoluments",
+            "Assumption of duty",
+            "Rule 040102"
+          ]
         },
         {
           "id": "fin_bgt_014",
@@ -217,7 +269,11 @@
           "explanation": "All Officers shall be placed on the IPPIS platform within two months of assumption of duty (Rule 040102) [13, 14].",
           "difficulty": "medium",
           "chapter": "Chapter 4 – IPPIS Placement",
-          "keywords": ["IPPIS", "Two months", "Rule 040102"]
+          "keywords": [
+            "IPPIS",
+            "Two months",
+            "Rule 040102"
+          ]
         },
         {
           "id": "fin_bgt_015",
@@ -328,7 +384,11 @@
           "explanation": "The Budget shows detailed estimates of government revenue and expenditure for a fiscal year [21].",
           "difficulty": "easy",
           "chapter": "Budgeting – Document Definition",
-          "keywords": ["Budget", "revenue", "expenditure"]
+          "keywords": [
+            "Budget",
+            "revenue",
+            "expenditure"
+          ]
         },
         {
           "id": "fin_bgt_021",
@@ -343,7 +403,12 @@
           "explanation": "An Officer on an incremental grade level shall normally be granted an increment unless he is on interdiction/suspension or has a disciplinary action pending (Rule 040202) [22].",
           "difficulty": "easy",
           "chapter": "Budgeting/Emoluments – Increment",
-          "keywords": ["Increment", "Interdiction", "Suspension", "Rule 040202"]
+          "keywords": [
+            "Increment",
+            "Interdiction",
+            "Suspension",
+            "Rule 040202"
+          ]
         },
         {
           "id": "fin_bgt_022",
@@ -358,7 +423,11 @@
           "explanation": "The incremental date of an Officer appointed or promoted to a post in the Federal Public Service shall be 1st January of the year following at least six months of service or promotion (Rule 040203) [23].",
           "difficulty": "medium",
           "chapter": "Budgeting/Emoluments – Incremental Date",
-          "keywords": ["Incremental date", "January 1", "Rule 040203"]
+          "keywords": [
+            "Incremental date",
+            "January 1",
+            "Rule 040203"
+          ]
         },
         {
           "id": "fin_bgt_023",
@@ -373,7 +442,11 @@
           "explanation": "A staff on transfer shall be eligible for the emolument attached to his new office with effect from the date he assumes duty (Rule 040103) [24-26].",
           "difficulty": "easy",
           "chapter": "Budgeting/Emoluments – Transfer",
-          "keywords": ["Emoluments on Transfer", "Assumes duty", "Rule 040103"]
+          "keywords": [
+            "Emoluments on Transfer",
+            "Assumes duty",
+            "Rule 040103"
+          ]
         },
         {
           "id": "fin_bgt_024",
@@ -388,7 +461,11 @@
           "explanation": "If the Officer is promoted to a grade level that does not overlap his old grade level, he shall be placed at the minimum point of his new salary grade level (Rule 040104(i)) [24, 27].",
           "difficulty": "medium",
           "chapter": "Chapter 4 – Emoluments on Promotion",
-          "keywords": ["Salary grade level", "Minimum point", "Rule 040104"]
+          "keywords": [
+            "Salary grade level",
+            "Minimum point",
+            "Rule 040104"
+          ]
         },
         {
           "id": "fin_bgt_025",
@@ -403,7 +480,11 @@
           "explanation": "The Budget Office of the Federation, under the Ministry of Finance, prepares the federal budget proposal [28].",
           "difficulty": "medium",
           "chapter": "Budgeting – Planning Authority",
-          "keywords": ["Budget Office", "federal budget", "Budget Officer"]
+          "keywords": [
+            "Budget Office",
+            "federal budget",
+            "Budget Officer"
+          ]
         },
         {
           "id": "fin_bgt_026",
@@ -418,7 +499,11 @@
           "explanation": "All government payments must be backed by duly approved Payment Vouchers [29].",
           "difficulty": "easy",
           "chapter": "Budgeting – Payment Document",
-          "keywords": ["Payment Voucher", "government expenditure", "finance"]
+          "keywords": [
+            "Payment Voucher",
+            "government expenditure",
+            "finance"
+          ]
         },
         {
           "id": "fin_bgt_027",
@@ -433,7 +518,11 @@
           "explanation": "The Head of Department certifies that services have been duly performed before payments are made [30, 31].",
           "difficulty": "medium",
           "chapter": "Budgeting – Payment Certification",
-          "keywords": ["Head of Department", "payment certification", "finance"]
+          "keywords": [
+            "Head of Department",
+            "payment certification",
+            "finance"
+          ]
         },
         {
           "id": "fin_bgt_028",
@@ -448,7 +537,11 @@
           "explanation": "A budget deficit occurs when expenditure exceeds revenue [32].",
           "difficulty": "easy",
           "chapter": "Budgeting – Definitions",
-          "keywords": ["Budget deficit", "expenditure", "revenue"]
+          "keywords": [
+            "Budget deficit",
+            "expenditure",
+            "revenue"
+          ]
         },
         {
           "id": "fin_bgt_029",
@@ -463,17 +556,29 @@
           "explanation": "The Advance Ledger is specifically maintained to record all outstanding advances to staff and contractors, ensuring recovery and control [33].",
           "difficulty": "medium",
           "chapter": "Budgeting – Advance Control",
-          "keywords": ["Advance Ledger", "Outstanding advances"]
+          "keywords": [
+            "Advance Ledger",
+            "Outstanding advances"
+          ]
         },
         {
           "id": "fin_bgt_030",
           "question": "The total amount of funds allocated for staff salaries (Personnel Emoluments) in the budget is controlled primarily by data sourced from which platform?",
-          "options": ["TSA.", "GIFMIS.", "IPPIS.", "BPP."],
+          "options": [
+            "TSA.",
+            "GIFMIS.",
+            "IPPIS.",
+            "BPP."
+          ],
           "correct": 2,
           "explanation": "The Integrated Personnel and Payroll Information System (IPPIS) holds the accurate data on staff nominal roll, grade levels, and steps, which determines personnel emoluments [34-36].",
           "difficulty": "medium",
           "chapter": "Budgeting – Personnel Cost Control",
-          "keywords": ["IPPIS", "Personnel Emoluments", "Payroll"]
+          "keywords": [
+            "IPPIS",
+            "Personnel Emoluments",
+            "Payroll"
+          ]
         },
         {
           "id": "fin_bgt_031",
@@ -488,7 +593,11 @@
           "explanation": "The Vote Book ensures that expenditure is kept within budget limits [36, 37].",
           "difficulty": "medium",
           "chapter": "Budgeting – Obligation Control",
-          "keywords": ["Vote Book", "Obligation Control", "budgetary limits"]
+          "keywords": [
+            "Vote Book",
+            "Obligation Control",
+            "budgetary limits"
+          ]
         },
         {
           "id": "fin_bgt_032",
@@ -503,7 +612,10 @@
           "explanation": "Self-Accounting MDAs are authorized to manage their financial records internally but must still comply with FR and submit statutory returns [38].",
           "difficulty": "medium",
           "chapter": "Budgeting – MDA Classification",
-          "keywords": ["Self-Accounting MDA", "Financial returns"]
+          "keywords": [
+            "Self-Accounting MDA",
+            "Financial returns"
+          ]
         },
         {
           "id": "fin_bgt_033",
@@ -518,7 +630,11 @@
           "explanation": "The Replacement Reserve Fund is used for replacing depreciating government assets [39-41].",
           "difficulty": "hard",
           "chapter": "Budgeting – Reserve Fund",
-          "keywords": ["Replacement Reserve Fund", "depreciation", "assets"]
+          "keywords": [
+            "Replacement Reserve Fund",
+            "depreciation",
+            "assets"
+          ]
         },
         {
           "id": "fin_bgt_034",
@@ -533,7 +649,11 @@
           "explanation": "If an increment is deferred, the period must be fixed for not less than six months (Rule 040205) [42].",
           "difficulty": "medium",
           "chapter": "Chapter 4 – Deferred Increment",
-          "keywords": ["Deferred increment", "Six months", "Rule 040205"]
+          "keywords": [
+            "Deferred increment",
+            "Six months",
+            "Rule 040205"
+          ]
         },
         {
           "id": "fin_bgt_035",
@@ -587,7 +707,11 @@
           "explanation": "Capital expenditure refers to government spending on assets and infrastructure that create future benefits [48].",
           "difficulty": "easy",
           "chapter": "Budgeting – Capital Definition",
-          "keywords": ["Capital expenditure", "infrastructure", "assets"]
+          "keywords": [
+            "Capital expenditure",
+            "infrastructure",
+            "assets"
+          ]
         },
         {
           "id": "fin_bgt_038",
@@ -621,7 +745,11 @@
           "explanation": "If the emolument in the former post is higher than the minimum point of the new salary grade level, the officer will be placed on the next point, higher than their former emolument (Rule 040104(ii)) [50, 51].",
           "difficulty": "medium",
           "chapter": "Chapter 4 – Emoluments on Promotion",
-          "keywords": ["Promotion", "overlapping salary", "Rule 040104"]
+          "keywords": [
+            "Promotion",
+            "overlapping salary",
+            "Rule 040104"
+          ]
         },
         {
           "id": "fin_bgt_040",
@@ -636,7 +764,11 @@
           "explanation": "The Budget Officer prepares annual budget performance reports for review [52].",
           "difficulty": "medium",
           "chapter": "Budgeting – Reporting Officer",
-          "keywords": ["Budget Officer", "budget performance", "reports"]
+          "keywords": [
+            "Budget Officer",
+            "budget performance",
+            "reports"
+          ]
         },
         {
           "id": "fin_bgt_041",
@@ -651,7 +783,11 @@
           "explanation": "The Contingencies Fund is used to meet unforeseen and urgent government expenditures [53-55].",
           "difficulty": "easy",
           "chapter": "Budgeting – Contingency Fund",
-          "keywords": ["Contingencies Fund", "emergency expenditure", "finance"]
+          "keywords": [
+            "Contingencies Fund",
+            "emergency expenditure",
+            "finance"
+          ]
         },
         {
           "id": "fin_bgt_042",
@@ -704,7 +840,11 @@
           "explanation": "The payment of emoluments on promotion arrears is calculated from the effective date of promotion, typically the 1st of January of the promotion year (Rule 040104(iii)) [58].",
           "difficulty": "medium",
           "chapter": "Chapter 4 – Emoluments on Promotion",
-          "keywords": ["Promotion arrears", "effective date", "1st January"]
+          "keywords": [
+            "Promotion arrears",
+            "effective date",
+            "1st January"
+          ]
         },
         {
           "id": "fin_bgt_045",
@@ -719,17 +859,29 @@
           "explanation": "Payment of promotion arrears shall be made within the year the promotion is effected (Rule 040104(iii)) [12].",
           "difficulty": "medium",
           "chapter": "Chapter 4 – Promotion Arrears Timeline",
-          "keywords": ["Promotion arrears", "payment timeline"]
+          "keywords": [
+            "Promotion arrears",
+            "payment timeline"
+          ]
         },
         {
           "id": "fin_bgt_046",
           "question": "Which of the following is defined as the maximum amount an MDA can legally spend within a fiscal year for a defined purpose?",
-          "options": ["Warrant", "Appropriation", "Virement", "Excess Vote"],
+          "options": [
+            "Warrant",
+            "Appropriation",
+            "Virement",
+            "Excess Vote"
+          ],
           "correct": 1,
           "explanation": "Appropriation is the legislative authorization for expenditure, defining the maximum legal spending limit [59].",
           "difficulty": "medium",
           "chapter": "Budgeting – Definitions",
-          "keywords": ["Appropriation", "legal limit", "expenditure"]
+          "keywords": [
+            "Appropriation",
+            "legal limit",
+            "expenditure"
+          ]
         },
         {
           "id": "fin_bgt_047",
@@ -744,7 +896,11 @@
           "explanation": "Accurate information is essential for correct payment; the Head of the MDA certifies the records for IPPIS/payroll (Rule 040102) [60].",
           "difficulty": "medium",
           "chapter": "Chapter 4 – IPPIS Accuracy",
-          "keywords": ["IPPIS", "accuracy", "certification"]
+          "keywords": [
+            "IPPIS",
+            "accuracy",
+            "certification"
+          ]
         },
         {
           "id": "fin_bgt_048",
@@ -759,12 +915,21 @@
           "explanation": "The Federal Civil Service Commission is the body empowered to grant special increments (Rule 040207) [61].",
           "difficulty": "hard",
           "chapter": "Chapter 4 – Special Increment",
-          "keywords": ["Special increment", "FCSC", "Rule 040207"]
+          "keywords": [
+            "Special increment",
+            "FCSC",
+            "Rule 040207"
+          ]
         },
         {
           "id": "fin_bgt_049",
           "question": "An officer duly authorized to act in a post is eligible for acting allowance EXCEPT for any days in excess of how many days of continuous absence from duty on account of ill-health?",
-          "options": ["7 days", "14 days", "21 days", "30 days"],
+          "options": [
+            "7 days",
+            "14 days",
+            "21 days",
+            "30 days"
+          ],
           "correct": 1,
           "explanation": "Acting allowance is paid except for any days in excess of 14 days of continuous absence from duty on account of ill-health (Rule 140130) [62].",
           "difficulty": "hard",
@@ -789,14 +954,18 @@
           "explanation": "Resettlement Allowance shall be paid at the rate of 2% of an Officer’s annual total emolument (Rule 140136) [63, 64].",
           "difficulty": "medium",
           "chapter": "Chapter 14 – Resettlement Allowance",
-          "keywords": ["Resettlement Allowance", "2 percent", "Rule 140136"]
+          "keywords": [
+            "Resettlement Allowance",
+            "2 percent",
+            "Rule 140136"
+          ]
         }
       ]
     },
     {
       "id": "fin_procurement",
-      "name": "Procurement",
-      "description": "Public Procurement Act, due process, thresholds, and procurement regulations",
+      "name": "Procurement Under Financial Controls",
+      "description": "Procurement processes where FR controls and expenditure rules apply.",
       "questions": [
         {
           "id": "fin_pro_001",
@@ -811,7 +980,11 @@
           "explanation": "The Public Procurement Act (PPA) 2007 provides the primary legal basis and framework for managing public procurement processes in Nigeria [65, 66].",
           "difficulty": "easy",
           "chapter": "Procurement – Legal Framework",
-          "keywords": ["PPA 2007", "Legal framework", "Procurement"]
+          "keywords": [
+            "PPA 2007",
+            "Legal framework",
+            "Procurement"
+          ]
         },
         {
           "id": "fin_pro_002",
@@ -826,7 +999,11 @@
           "explanation": "The PPA aims to ensure transparency, accountability, and value for money in public procurement [67, 68].",
           "difficulty": "easy",
           "chapter": "Procurement – Objective",
-          "keywords": ["Transparency", "Value for money", "PPA objective"]
+          "keywords": [
+            "Transparency",
+            "Value for money",
+            "PPA objective"
+          ]
         },
         {
           "id": "fin_pro_003",
@@ -869,12 +1046,21 @@
         {
           "id": "fin_pro_005",
           "question": "What is the mandatory period for the archive retention of procurement records and documents?",
-          "options": ["2 years.", "3 years.", "5 years minimum.", "10 years."],
+          "options": [
+            "2 years.",
+            "3 years.",
+            "5 years minimum.",
+            "10 years."
+          ],
           "correct": 2,
           "explanation": "Procurement documents must be retained for at least 5 years to support potential audits and inquiries (Section 34) [73, 74].",
           "difficulty": "medium",
           "chapter": "Procurement – Record Keeping",
-          "keywords": ["Record retention", "5 years", "Section 38"]
+          "keywords": [
+            "Record retention",
+            "5 years",
+            "Section 38"
+          ]
         },
         {
           "id": "fin_pro_006",
@@ -927,7 +1113,11 @@
           "explanation": "A responsive bid is one that complies fully with all criteria stated in the bid document and is eligible for evaluation [78].",
           "difficulty": "medium",
           "chapter": "Procurement – Bidding",
-          "keywords": ["Responsive Bid", "Compliance", "Section 27"]
+          "keywords": [
+            "Responsive Bid",
+            "Compliance",
+            "Section 27"
+          ]
         },
         {
           "id": "fin_pro_009",
@@ -942,7 +1132,11 @@
           "explanation": "Bid security is a financial guarantee that ensures the bidder’s commitment and discourages frivolous or unserious bidding (Section 28) [79, 80].",
           "difficulty": "medium",
           "chapter": "Procurement – Bid Security",
-          "keywords": ["Bid Security", "Commitment", "Section 28"]
+          "keywords": [
+            "Bid Security",
+            "Commitment",
+            "Section 28"
+          ]
         },
         {
           "id": "fin_pro_010",
@@ -957,7 +1151,11 @@
           "explanation": "Due Process mandates strict adherence to legal and procedural requirements to guarantee transparency and legality in government contracts [81].",
           "difficulty": "medium",
           "chapter": "Procurement – Due Process",
-          "keywords": ["Due Process", "Legal procedures", "Transparency"]
+          "keywords": [
+            "Due Process",
+            "Legal procedures",
+            "Transparency"
+          ]
         },
         {
           "id": "fin_pro_011",
@@ -972,7 +1170,11 @@
           "explanation": "The Ministerial Tenders Board (MTB) approves procurements within the specific thresholds set for the MDA [82].",
           "difficulty": "medium",
           "chapter": "Procurement – Thresholds",
-          "keywords": ["MTB", "Thresholds", "Tenders Board"]
+          "keywords": [
+            "MTB",
+            "Thresholds",
+            "Tenders Board"
+          ]
         },
         {
           "id": "fin_pro_012",
@@ -987,7 +1189,11 @@
           "explanation": "The Accounting Officer chairs the Procurement Planning Committee (PPC) established in every MDA (Section 21) [83, 84].",
           "difficulty": "medium",
           "chapter": "Procurement – Planning Committee",
-          "keywords": ["PPC", "Accounting Officer", "Section 21"]
+          "keywords": [
+            "PPC",
+            "Accounting Officer",
+            "Section 21"
+          ]
         },
         {
           "id": "fin_pro_013",
@@ -1002,7 +1208,11 @@
           "explanation": "The Procurement Officer ensures compliance with procurement thresholds in line with the Public Procurement Act [85].",
           "difficulty": "medium",
           "chapter": "Procurement – Compliance Officer",
-          "keywords": ["Procurement Officer", "Compliance", "Thresholds"]
+          "keywords": [
+            "Procurement Officer",
+            "Compliance",
+            "Thresholds"
+          ]
         },
         {
           "id": "fin_pro_014",
@@ -1037,7 +1247,11 @@
           "explanation": "Officers involved in procurement abuse and fraud face dismissal or criminal charges (Section 58), as this constitutes serious misconduct [87, 88].",
           "difficulty": "medium",
           "chapter": "Procurement – Sanctions",
-          "keywords": ["Procurement fraud", "Dismissal", "Criminal charges"]
+          "keywords": [
+            "Procurement fraud",
+            "Dismissal",
+            "Criminal charges"
+          ]
         },
         {
           "id": "fin_pro_016",
@@ -1052,7 +1266,11 @@
           "explanation": "The Minister authorizes emergency procurements, often in line with procurement laws and thresholds, subject to later review [89].",
           "difficulty": "medium",
           "chapter": "Procurement – Emergency",
-          "keywords": ["Emergency procurement", "Minister", "Approval"]
+          "keywords": [
+            "Emergency procurement",
+            "Minister",
+            "Approval"
+          ]
         },
         {
           "id": "fin_pro_017",
@@ -1067,37 +1285,67 @@
           "explanation": "Bid opening must be conducted publicly to ensure transparency and fairness (Section 27) [90, 91].",
           "difficulty": "easy",
           "chapter": "Procurement – Bid Opening",
-          "keywords": ["Bid Opening", "Public", "Section 27"]
+          "keywords": [
+            "Bid Opening",
+            "Public",
+            "Section 27"
+          ]
         },
         {
           "id": "fin_pro_018",
           "question": "The Bureau of Public Procurement (BPP) is established under which section of the PPA 2007?",
-          "options": ["Section 1", "Section 3", "Section 4", "Section 5"],
+          "options": [
+            "Section 1",
+            "Section 3",
+            "Section 4",
+            "Section 5"
+          ],
           "correct": 1,
           "explanation": "Section 3 of the PPA 2007 establishes the Bureau of Public Procurement (BPP) [92].",
           "difficulty": "medium",
           "chapter": "PPA – BPP Establishment",
-          "keywords": ["ppa 2007", "section 3", "bpp"]
+          "keywords": [
+            "ppa 2007",
+            "section 3",
+            "bpp"
+          ]
         },
         {
           "id": "fin_pro_019",
           "question": "Which section empowers the BPP to issue a 'Certificate of No Objection' before a contract award can be finalized?",
-          "options": ["Section 3", "Section 4", "Section 5", "Section 6"],
+          "options": [
+            "Section 3",
+            "Section 4",
+            "Section 5",
+            "Section 6"
+          ],
           "correct": 2,
           "explanation": "Section 5 mandates BPP to issue a 'Certificate of No Objection' for high-value procurements [93, 94].",
           "difficulty": "medium",
           "chapter": "PPA – BPP Powers",
-          "keywords": ["certificate of no objection", "section 5"]
+          "keywords": [
+            "certificate of no objection",
+            "section 5"
+          ]
         },
         {
           "id": "fin_pro_020",
           "question": "The minimum time frame required for submission of bids under national competitive bidding is:",
-          "options": ["1 week", "2 weeks", "4 weeks", "6 weeks"],
+          "options": [
+            "1 week",
+            "2 weeks",
+            "4 weeks",
+            "6 weeks"
+          ],
           "correct": 2,
           "explanation": "Section 25 requires at least 4 weeks for submission of bids under national competitive bidding [95].",
           "difficulty": "medium",
           "chapter": "PPA – Bidding Period",
-          "keywords": ["submission", "section 25", "bidding"]
+          "keywords": [
+            "submission",
+            "section 25",
+            "bidding"
+          ]
         },
         {
           "id": "fin_pro_021",
@@ -1112,17 +1360,30 @@
           "explanation": "Section 22 provides for pre-qualification of bidders to ensure capability and eligibility before submission [96].",
           "difficulty": "medium",
           "chapter": "PPA – Bidding",
-          "keywords": ["pre-qualification", "section 22", "bidders"]
+          "keywords": [
+            "pre-qualification",
+            "section 22",
+            "bidders"
+          ]
         },
         {
           "id": "fin_pro_022",
           "question": "Which section mandates that evaluation of bids must be based strictly on criteria stated in the solicitation documents?",
-          "options": ["Section 25", "Section 27", "Section 30", "Section 33"],
+          "options": [
+            "Section 25",
+            "Section 27",
+            "Section 30",
+            "Section 33"
+          ],
           "correct": 3,
           "explanation": "Section 33 mandates that evaluation of bids must be based strictly on criteria stated in solicitation documents [97].",
           "difficulty": "medium",
           "chapter": "PPA – Bid Evaluation",
-          "keywords": ["bid evaluation", "section 33", "criteria"]
+          "keywords": [
+            "bid evaluation",
+            "section 33",
+            "criteria"
+          ]
         },
         {
           "id": "fin_pro_023",
@@ -1137,47 +1398,87 @@
           "explanation": "Section 33 requires awarding the contract to the lowest evaluated responsive bid [98].",
           "difficulty": "medium",
           "chapter": "PPA – Contract Award",
-          "keywords": ["lowest responsive bid", "section 33", "contract award"]
+          "keywords": [
+            "lowest responsive bid",
+            "section 33",
+            "contract award"
+          ]
         },
         {
           "id": "fin_pro_024",
           "question": "Which section allows for the cancellation of a procurement proceeding at any time before the contract award?",
-          "options": ["Section 30", "Section 31", "Section 32", "Section 35"],
+          "options": [
+            "Section 30",
+            "Section 31",
+            "Section 32",
+            "Section 35"
+          ],
           "correct": 1,
           "explanation": "Section 31 provides that procurement proceedings may be cancelled at any time before contract award if necessary [99].",
           "difficulty": "medium",
           "chapter": "PPA – Cancellation",
-          "keywords": ["cancellation", "section 31", "procurement"]
+          "keywords": [
+            "cancellation",
+            "section 31",
+            "procurement"
+          ]
         },
         {
           "id": "fin_pro_025",
           "question": "All procurements above certain thresholds must be advertised publicly, as stipulated by:",
-          "options": ["Section 21", "Section 23", "Section 24", "Section 25"],
+          "options": [
+            "Section 21",
+            "Section 23",
+            "Section 24",
+            "Section 25"
+          ],
           "correct": 1,
           "explanation": "Section 23 requires advertisement of all procurements above the set thresholds in national newspapers [100, 101].",
           "difficulty": "medium",
           "chapter": "PPA – Advertisement",
-          "keywords": ["advertisement", "section 23", "thresholds"]
+          "keywords": [
+            "advertisement",
+            "section 23",
+            "thresholds"
+          ]
         },
         {
           "id": "fin_pro_026",
           "question": "Which section requires the publication of contract awards above certain thresholds to ensure transparency?",
-          "options": ["Section 25", "Section 28", "Section 32", "Section 37"],
+          "options": [
+            "Section 25",
+            "Section 28",
+            "Section 32",
+            "Section 37"
+          ],
           "correct": 2,
           "explanation": "Section 32 requires publication of contract awards above thresholds to ensure transparency and public access to records [102, 103].",
           "difficulty": "medium",
           "chapter": "PPA – Transparency",
-          "keywords": ["contract awards", "section 32", "publication"]
+          "keywords": [
+            "contract awards",
+            "section 32",
+            "publication"
+          ]
         },
         {
           "id": "fin_pro_027",
           "question": "Which section promotes efficiency and transparency in procurement by providing for the use of e-procurement systems?",
-          "options": ["Section 37", "Section 38", "Section 39", "Section 40"],
+          "options": [
+            "Section 37",
+            "Section 38",
+            "Section 39",
+            "Section 40"
+          ],
           "correct": 1,
           "explanation": "Section 38 provides for the use of e-procurement systems in public procurement [104, 105].",
           "difficulty": "medium",
           "chapter": "PPA – E-Procurement",
-          "keywords": ["e-procurement", "section 38", "transparency"]
+          "keywords": [
+            "e-procurement",
+            "section 38",
+            "transparency"
+          ]
         },
         {
           "id": "fin_pro_028",
@@ -1192,27 +1493,49 @@
           "explanation": "Section 57 prohibits conflict of interest and mandates disclosure of potential conflicts by officials [106, 107].",
           "difficulty": "medium",
           "chapter": "PPA – Ethics",
-          "keywords": ["conflict of interest", "section 57", "prohibition"]
+          "keywords": [
+            "conflict of interest",
+            "section 57",
+            "prohibition"
+          ]
         },
         {
           "id": "fin_pro_029",
           "question": "Which section prescribes imprisonment and fines for procurement-related fraud, misrepresentation, and bid-rigging?",
-          "options": ["Section 56", "Section 57", "Section 58", "Section 59"],
+          "options": [
+            "Section 56",
+            "Section 57",
+            "Section 58",
+            "Section 59"
+          ],
           "correct": 2,
           "explanation": "Section 58 prescribes penalties for fraud, misrepresentation, and bid-rigging, including imprisonment [108-110].",
           "difficulty": "medium",
           "chapter": "PPA – Penalties",
-          "keywords": ["fraud", "section 58", "penalties"]
+          "keywords": [
+            "fraud",
+            "section 58",
+            "penalties"
+          ]
         },
         {
           "id": "fin_pro_030",
           "question": "The BPP is empowered to suspend procurement proceedings if irregularities are detected, as stipulated in:",
-          "options": ["Section 5", "Section 23", "Section 53", "Section 57"],
+          "options": [
+            "Section 5",
+            "Section 23",
+            "Section 53",
+            "Section 57"
+          ],
           "correct": 2,
           "explanation": "Section 53 empowers the BPP to suspend procurement if irregularities are detected [111].",
           "difficulty": "medium",
           "chapter": "PPA – Oversight",
-          "keywords": ["procurement suspension", "section 53", "bpp"]
+          "keywords": [
+            "procurement suspension",
+            "section 53",
+            "bpp"
+          ]
         },
         {
           "id": "fin_pro_031",
@@ -1227,7 +1550,11 @@
           "explanation": "Section 16 states that eligible contractors must not be in receivership, bankruptcy, or insolvency [112].",
           "difficulty": "medium",
           "chapter": "PPA – Eligibility",
-          "keywords": ["insolvency", "section 16", "eligibility"]
+          "keywords": [
+            "insolvency",
+            "section 16",
+            "eligibility"
+          ]
         },
         {
           "id": "fin_pro_032",
@@ -1242,7 +1569,11 @@
           "explanation": "Section 14 prohibits procurement without approved budgetary provision and availability of funds [71, 113].",
           "difficulty": "medium",
           "chapter": "PPA – Budgeting",
-          "keywords": ["budget provision", "section 14", "appropriation"]
+          "keywords": [
+            "budget provision",
+            "section 14",
+            "appropriation"
+          ]
         },
         {
           "id": "fin_pro_033",
@@ -1257,7 +1588,11 @@
           "explanation": "Pre-qualification is intended to determine the bidders' technical and professional capacity before receiving main tenders [96, 114].",
           "difficulty": "medium",
           "chapter": "PPA – Pre-qualification objective",
-          "keywords": ["Pre-qualification", "capability", "eligibility"]
+          "keywords": [
+            "Pre-qualification",
+            "capability",
+            "eligibility"
+          ]
         },
         {
           "id": "fin_pro_034",
@@ -1272,37 +1607,68 @@
           "explanation": "The Bureau of Public Procurement (BPP) is established under the Act as the regulatory authority for procurement [115].",
           "difficulty": "easy",
           "chapter": "PPA – Regulatory Body",
-          "keywords": ["bpp", "regulatory body", "procurement"]
+          "keywords": [
+            "bpp",
+            "regulatory body",
+            "procurement"
+          ]
         },
         {
           "id": "fin_pro_035",
           "question": "Which section empowers the BPP to inspect procurement documents and records of entities?",
-          "options": ["Section 4", "Section 5", "Section 6", "Section 7"],
+          "options": [
+            "Section 4",
+            "Section 5",
+            "Section 6",
+            "Section 7"
+          ],
           "correct": 1,
           "explanation": "Section 5 empowers the BPP to inspect procurement records to ensure compliance [94].",
           "difficulty": "medium",
           "chapter": "PPA – Inspection Powers",
-          "keywords": ["inspection", "section 5", "bpp"]
+          "keywords": [
+            "inspection",
+            "section 5",
+            "bpp"
+          ]
         },
         {
           "id": "fin_pro_036",
           "question": "Procurement audits by the BPP are covered under which section of the PPA?",
-          "options": ["Section 4", "Section 5", "Section 6", "Section 7"],
+          "options": [
+            "Section 4",
+            "Section 5",
+            "Section 6",
+            "Section 7"
+          ],
           "correct": 2,
           "explanation": "Section 6 empowers BPP to conduct procurement audits [116].",
           "difficulty": "medium",
           "chapter": "PPA – Procurement Audits",
-          "keywords": ["procurement audits", "section 6", "bpp"]
+          "keywords": [
+            "procurement audits",
+            "section 6",
+            "bpp"
+          ]
         },
         {
           "id": "fin_pro_037",
           "question": "Which section stipulates the mandatory contents of standard bidding documents?",
-          "options": ["Section 25", "Section 26", "Section 28", "Section 30"],
+          "options": [
+            "Section 25",
+            "Section 26",
+            "Section 28",
+            "Section 30"
+          ],
           "correct": 0,
           "explanation": "Section 25 requires procuring entities to use standard bidding documents containing clear specifications and criteria [95].",
           "difficulty": "medium",
           "chapter": "PPA – Bidding Documents",
-          "keywords": ["bidding documents", "section 25", "standard"]
+          "keywords": [
+            "bidding documents",
+            "section 25",
+            "standard"
+          ]
         },
         {
           "id": "fin_pro_038",
@@ -1317,27 +1683,49 @@
           "explanation": "Bid opening ensures transparency by publicly announcing bid prices and bidders' names [117].",
           "difficulty": "easy",
           "chapter": "PPA – Bid Opening Purpose",
-          "keywords": ["bid opening", "transparency", "public"]
+          "keywords": [
+            "bid opening",
+            "transparency",
+            "public"
+          ]
         },
         {
           "id": "fin_pro_039",
           "question": "Which section prohibits the alteration of procurement documents once bids have been opened?",
-          "options": ["Section 27", "Section 30", "Section 33", "Section 37"],
+          "options": [
+            "Section 27",
+            "Section 30",
+            "Section 33",
+            "Section 37"
+          ],
           "correct": 2,
           "explanation": "Section 33 prohibits alteration of procurement documents once bids have been opened [99].",
           "difficulty": "medium",
           "chapter": "PPA – Document Integrity",
-          "keywords": ["document alteration", "section 33", "integrity"]
+          "keywords": [
+            "document alteration",
+            "section 33",
+            "integrity"
+          ]
         },
         {
           "id": "fin_pro_040",
           "question": "Which section empowers the BPP to blacklist or debar contractors found guilty of misconduct?",
-          "options": ["Section 54", "Section 55", "Section 57", "Section 59"],
+          "options": [
+            "Section 54",
+            "Section 55",
+            "Section 57",
+            "Section 59"
+          ],
           "correct": 2,
           "explanation": "Section 57 empowers the BPP to blacklist or debar contractors found guilty of misconduct [118].",
           "difficulty": "medium",
           "chapter": "PPA – Blacklisting",
-          "keywords": ["blacklisting bidders", "section 57", "bpp"]
+          "keywords": [
+            "blacklisting bidders",
+            "section 57",
+            "bpp"
+          ]
         },
         {
           "id": "fin_pro_041",
@@ -1352,17 +1740,30 @@
           "explanation": "Section 16 requires bidders to have fulfilled obligations regarding taxes, pensions, and social security contributions [75].",
           "difficulty": "medium",
           "chapter": "PPA – Eligibility Criteria",
-          "keywords": ["tax obligations", "pensions", "section 16"]
+          "keywords": [
+            "tax obligations",
+            "pensions",
+            "section 16"
+          ]
         },
         {
           "id": "fin_pro_042",
           "question": "Which section provides guidelines for proper contract implementation and monitoring by procuring entities?",
-          "options": ["Section 32", "Section 33", "Section 35", "Section 36"],
+          "options": [
+            "Section 32",
+            "Section 33",
+            "Section 35",
+            "Section 36"
+          ],
           "correct": 2,
           "explanation": "Section 35 provides guidelines for proper contract implementation and monitoring by procuring entities [113, 119].",
           "difficulty": "medium",
           "chapter": "PPA – Implementation",
-          "keywords": ["contract implementation", "section 35", "monitoring"]
+          "keywords": [
+            "contract implementation",
+            "section 35",
+            "monitoring"
+          ]
         },
         {
           "id": "fin_pro_043",
@@ -1396,7 +1797,11 @@
           "explanation": "Direct Procurement (Section 42) is allowed in emergencies where competitive bidding is impractical or delay would be detrimental [121, 122].",
           "difficulty": "medium",
           "chapter": "PPA – Emergency Procurement",
-          "keywords": ["Direct Procurement", "emergency", "section 42"]
+          "keywords": [
+            "Direct Procurement",
+            "emergency",
+            "section 42"
+          ]
         },
         {
           "id": "fin_pro_045",
@@ -1411,37 +1816,68 @@
           "explanation": "Section 14 prohibits procurement without appropriation and funds in place [123].",
           "difficulty": "medium",
           "chapter": "PPA – Appropriation",
-          "keywords": ["appropriation", "section 14", "funds"]
+          "keywords": [
+            "appropriation",
+            "section 14",
+            "funds"
+          ]
         },
         {
           "id": "fin_pro_046",
           "question": "Which section of the PPA permits negotiations only under limited circumstances, such as single-source procurement?",
-          "options": ["Section 25", "Section 29", "Section 30", "Section 36"],
+          "options": [
+            "Section 25",
+            "Section 29",
+            "Section 30",
+            "Section 36"
+          ],
           "correct": 3,
           "explanation": "Section 36 permits negotiations only under limited circumstances, such as single-source procurement [124].",
           "difficulty": "medium",
           "chapter": "PPA – Negotiations",
-          "keywords": ["negotiations", "section 36", "single-source"]
+          "keywords": [
+            "negotiations",
+            "section 36",
+            "single-source"
+          ]
         },
         {
           "id": "fin_pro_047",
           "question": "Procedures for procuring consultant services, including selection and negotiation, are provided under which section of the PPA?",
-          "options": ["Section 41", "Section 42", "Section 43", "Section 45"],
+          "options": [
+            "Section 41",
+            "Section 42",
+            "Section 43",
+            "Section 45"
+          ],
           "correct": 2,
           "explanation": "Section 43 provides procedures for procuring consultant services, including selection and negotiation [125].",
           "difficulty": "medium",
           "chapter": "PPA – Consultant Services",
-          "keywords": ["consultant services", "section 43", "procurement"]
+          "keywords": [
+            "consultant services",
+            "section 43",
+            "procurement"
+          ]
         },
         {
           "id": "fin_pro_048",
           "question": "Which section allows for the engagement of procurement consultants to assist procuring entities?",
-          "options": ["Section 12", "Section 14", "Section 21", "Section 45"],
+          "options": [
+            "Section 12",
+            "Section 14",
+            "Section 21",
+            "Section 45"
+          ],
           "correct": 3,
           "explanation": "Section 45 provides for the engagement of procurement consultants to assist procuring entities [126].",
           "difficulty": "medium",
           "chapter": "PPA – Procurement Consultants",
-          "keywords": ["procurement consultants", "section 45", "engagement"]
+          "keywords": [
+            "procurement consultants",
+            "section 45",
+            "engagement"
+          ]
         },
         {
           "id": "fin_pro_049",
@@ -1456,24 +1892,37 @@
           "explanation": "The Minister authorizes emergency procurements, often in line with procurement laws and thresholds, subject to later review [89].",
           "difficulty": "medium",
           "chapter": "Procurement – Emergency",
-          "keywords": ["Emergency procurement", "Minister", "Approval"]
+          "keywords": [
+            "Emergency procurement",
+            "Minister",
+            "Approval"
+          ]
         },
         {
           "id": "fin_pro_050",
           "question": "Which section empowers the BPP to blacklist contractors for procurement misconduct?",
-          "options": ["Section 54", "Section 55", "Section 57", "Section 59"],
+          "options": [
+            "Section 54",
+            "Section 55",
+            "Section 57",
+            "Section 59"
+          ],
           "correct": 2,
           "explanation": "Section 57 empowers the BPP to blacklist or debar contractors found guilty of misconduct [118].",
           "difficulty": "medium",
           "chapter": "PPA – Sanctions",
-          "keywords": ["Blacklisting", "Section 57", "BPP"]
+          "keywords": [
+            "Blacklisting",
+            "Section 57",
+            "BPP"
+          ]
         }
       ]
     },
     {
       "id": "fin_audits_sanctions",
-      "name": "Audits & Sanctions",
-      "description": "Internal audits, external audits, audit queries, financial misconduct, and disciplinary procedures",
+      "name": "Audits, Sanctions & Compliance",
+      "description": "Audit controls, sanctions, and compliance obligations.",
       "questions": [
         {
           "id": "fin_aud_001",
@@ -1488,7 +1937,11 @@
           "explanation": "Audit Trail refers to the sequential documentation of transactions to ensure integrity, traceability, accountability, and transparency [91, 127].",
           "difficulty": "medium",
           "chapter": "Audits – Audit Trail",
-          "keywords": ["Audit Trail", "Traceability", "Accountability"]
+          "keywords": [
+            "Audit Trail",
+            "Traceability",
+            "Accountability"
+          ]
         },
         {
           "id": "fin_aud_002",
@@ -1503,7 +1956,11 @@
           "explanation": "Pre-audit functions involve checks before financial commitment is finalized to confirm legality and budgetary provision [128, 129].",
           "difficulty": "medium",
           "chapter": "Audits – Types",
-          "keywords": ["Pre-audit", "Legality check", "Financial commitment"]
+          "keywords": [
+            "Pre-audit",
+            "Legality check",
+            "Financial commitment"
+          ]
         },
         {
           "id": "fin_aud_003",
@@ -1518,7 +1975,11 @@
           "explanation": "Loss of government funds or property must be communicated immediately to the Auditor-General and the Accountant-General [129].",
           "difficulty": "medium",
           "chapter": "Audits – Loss Reporting",
-          "keywords": ["Loss of funds", "Auditor-General", "Accountant-General"]
+          "keywords": [
+            "Loss of funds",
+            "Auditor-General",
+            "Accountant-General"
+          ]
         },
         {
           "id": "fin_aud_004",
@@ -1533,7 +1994,11 @@
           "explanation": "Public officers guilty of financial misconduct may face disciplinary action or prosecution, including surcharge and dismissal [130].",
           "difficulty": "medium",
           "chapter": "Sanctions – Penalties",
-          "keywords": ["Financial misconduct", "Dismissal", "Surcharge"]
+          "keywords": [
+            "Financial misconduct",
+            "Dismissal",
+            "Surcharge"
+          ]
         },
         {
           "id": "fin_aud_005",
@@ -1548,7 +2013,11 @@
           "explanation": "The Economic and Financial Crimes Commission (EFCC) investigates and prosecutes financial crimes, fraud, and money laundering [131, 132].",
           "difficulty": "easy",
           "chapter": "Sanctions – Anti-Corruption",
-          "keywords": ["EFCC", "Financial crimes", "Money laundering"]
+          "keywords": [
+            "EFCC",
+            "Financial crimes",
+            "Money laundering"
+          ]
         },
         {
           "id": "fin_aud_006",
@@ -1563,7 +2032,11 @@
           "explanation": "The Independent Corrupt Practices Commission (ICPC) focuses on institutional corruption and enforcement of ethical standards [133].",
           "difficulty": "easy",
           "chapter": "Sanctions – Anti-Corruption",
-          "keywords": ["ICPC", "Institutional corruption", "Ethics"]
+          "keywords": [
+            "ICPC",
+            "Institutional corruption",
+            "Ethics"
+          ]
         },
         {
           "id": "fin_aud_007",
@@ -1597,7 +2070,10 @@
           "explanation": "Segregation of Duties is a crucial internal control mechanism designed to prevent fraud by distributing control over financial operations [135, 136].",
           "difficulty": "easy",
           "chapter": "Audits – Internal Controls",
-          "keywords": ["Segregation of Duties", "Fraud control"]
+          "keywords": [
+            "Segregation of Duties",
+            "Fraud control"
+          ]
         },
         {
           "id": "fin_aud_009",
@@ -1612,7 +2088,11 @@
           "explanation": "The Audit Trail documents the flow of transactions, and the Internal Audit monitors compliance to detect irregularities [127].",
           "difficulty": "easy",
           "chapter": "Audits – Control Mechanisms",
-          "keywords": ["Audit Trail", "Internal Audit", "Irregularities"]
+          "keywords": [
+            "Audit Trail",
+            "Internal Audit",
+            "Irregularities"
+          ]
         },
         {
           "id": "fin_aud_010",
@@ -1627,7 +2107,10 @@
           "explanation": "The Auditor-General reports on all unauthorized or excess expenditure in their report on public accounts [137].",
           "difficulty": "medium",
           "chapter": "Audits – Reporting Excess",
-          "keywords": ["Excess Vote", "Auditor-General's Report"]
+          "keywords": [
+            "Excess Vote",
+            "Auditor-General's Report"
+          ]
         },
         {
           "id": "fin_aud_011",
@@ -1642,7 +2125,10 @@
           "explanation": "Unauthorized expenditure is categorized as misappropriation or unauthorized spending [138].",
           "difficulty": "medium",
           "chapter": "Sanctions – Misappropriation",
-          "keywords": ["Misappropriation", "Unauthorized spending"]
+          "keywords": [
+            "Misappropriation",
+            "Unauthorized spending"
+          ]
         },
         {
           "id": "fin_aud_012",
@@ -1676,7 +2162,10 @@
           "explanation": "Surcharge is the recovery of government losses from the officer's pay, applied when the loss is due to the officer’s fault [141].",
           "difficulty": "medium",
           "chapter": "Sanctions – Surcharge Recovery",
-          "keywords": ["Surcharge", "Recovery of loss"]
+          "keywords": [
+            "Surcharge",
+            "Recovery of loss"
+          ]
         },
         {
           "id": "fin_aud_014",
@@ -1691,7 +2180,11 @@
           "explanation": "The Federal Civil Service Commission (FCSC) is the body empowered to grant special increments [61, 77].",
           "difficulty": "medium",
           "chapter": "Sanctions – Special Increment Authority",
-          "keywords": ["Special increment", "FCSC", "Rule 040207"]
+          "keywords": [
+            "Special increment",
+            "FCSC",
+            "Rule 040207"
+          ]
         },
         {
           "id": "fin_aud_015",
@@ -1706,7 +2199,11 @@
           "explanation": "The ultimate penalty for serious misconduct is dismissal, resulting in the forfeiture of benefits, subject to the Pension Reform Act (Rule 100407) [142-144].",
           "difficulty": "easy",
           "chapter": "Sanctions – Ultimate Penalty",
-          "keywords": ["Dismissal", "Serious misconduct", "Forfeiture"]
+          "keywords": [
+            "Dismissal",
+            "Serious misconduct",
+            "Forfeiture"
+          ]
         },
         {
           "id": "fin_aud_016",
@@ -1740,7 +2237,11 @@
           "explanation": "An Audit Alarm necessitates a detailed investigation into the suspected irregularity flagged immediately [145].",
           "difficulty": "medium",
           "chapter": "Audits – Audit Alarm Action",
-          "keywords": ["Audit Alarm", "Investigation", "Irregularity"]
+          "keywords": [
+            "Audit Alarm",
+            "Investigation",
+            "Irregularity"
+          ]
         },
         {
           "id": "fin_aud_018",
@@ -1755,7 +2256,10 @@
           "explanation": "Accruals refer to expenses or revenues recognized when incurred, not when cash changes hands [146].",
           "difficulty": "hard",
           "chapter": "Audits – Financial Terminology",
-          "keywords": ["Accruals", "Financial reporting"]
+          "keywords": [
+            "Accruals",
+            "Financial reporting"
+          ]
         },
         {
           "id": "fin_aud_019",
@@ -1770,7 +2274,10 @@
           "explanation": "Post-Qualification audit is the review of bidder’s documentation to confirm eligibility after bid opening [147].",
           "difficulty": "medium",
           "chapter": "Audits – Procurement Audit",
-          "keywords": ["Post-Qualification", "bidder eligibility"]
+          "keywords": [
+            "Post-Qualification",
+            "bidder eligibility"
+          ]
         },
         {
           "id": "fin_aud_020",
@@ -1804,7 +2311,10 @@
           "explanation": "The Code of Conduct Bureau (CCB) receives asset declarations and monitors compliance with ethical standards [149, 150].",
           "difficulty": "medium",
           "chapter": "Sanctions – Ethics Enforcement",
-          "keywords": ["Code of Conduct Bureau", "Asset declarations"]
+          "keywords": [
+            "Code of Conduct Bureau",
+            "Asset declarations"
+          ]
         },
         {
           "id": "fin_aud_022",
@@ -1819,7 +2329,11 @@
           "explanation": "The Audit Query is a formal question from auditors, and the response must be addressed back to the originating authority (the issuing Auditor) for resolution [151].",
           "difficulty": "medium",
           "chapter": "Audits – Query Response",
-          "keywords": ["Audit Query", "Formal response", "Auditor"]
+          "keywords": [
+            "Audit Query",
+            "Formal response",
+            "Auditor"
+          ]
         },
         {
           "id": "fin_aud_023",
@@ -1853,7 +2367,11 @@
           "explanation": "An Officer must promptly report a criminal charge or the outcome of such charge to his Permanent Secretary/Head of Extra-Ministerial Office (Rule 100409) [153, 154].",
           "difficulty": "easy",
           "chapter": "Sanctions – Reporting Criminal Charge",
-          "keywords": ["Criminal charge", "Permanent Secretary", "Rule 100409"]
+          "keywords": [
+            "Criminal charge",
+            "Permanent Secretary",
+            "Rule 100409"
+          ]
         },
         {
           "id": "fin_aud_025",
@@ -1868,7 +2386,11 @@
           "explanation": "The power to dismiss and to exercise disciplinary control over Officers in the Federal Civil Service is vested in the Federal Civil Service Commission (Rule 100102) [155].",
           "difficulty": "easy",
           "chapter": "Sanctions – Disciplinary Authority",
-          "keywords": ["Disciplinary authority", "FCSC", "Rule 100102"]
+          "keywords": [
+            "Disciplinary authority",
+            "FCSC",
+            "Rule 100102"
+          ]
         },
         {
           "id": "fin_aud_026",
@@ -1883,7 +2405,11 @@
           "explanation": "The FCSC delegates disciplinary powers to Permanent Secretaries/Heads of Extra-Ministerial Offices for officers on GL 13 and below [156-158].",
           "difficulty": "hard",
           "chapter": "Sanctions – Delegated Powers",
-          "keywords": ["Delegated powers", "discipline", "GL 13"]
+          "keywords": [
+            "Delegated powers",
+            "discipline",
+            "GL 13"
+          ]
         },
         {
           "id": "fin_aud_027",
@@ -1898,7 +2424,11 @@
           "explanation": "If the Commission does not approve the Officer’s dismissal, he shall be reinstated forthwith and be entitled to the full amount of salary denied him if he was interdicted or suspended (Rule 100307(xi)) [159, 160].",
           "difficulty": "easy",
           "chapter": "Sanctions – Reinstatement",
-          "keywords": ["Reinstatement", "full salary", "FCSC"]
+          "keywords": [
+            "Reinstatement",
+            "full salary",
+            "FCSC"
+          ]
         },
         {
           "id": "fin_aud_028",
@@ -1913,7 +2443,11 @@
           "explanation": "Fraud and falsification of records constitute gross misconduct in the civil service [159, 161].",
           "difficulty": "medium",
           "chapter": "Sanctions – Gross Misconduct",
-          "keywords": ["Gross misconduct", "fraud", "falsification"]
+          "keywords": [
+            "Gross misconduct",
+            "fraud",
+            "falsification"
+          ]
         },
         {
           "id": "fin_aud_029",
@@ -1928,7 +2462,10 @@
           "explanation": "Absenteeism without permission is classified as gross misconduct [162, 163].",
           "difficulty": "medium",
           "chapter": "Sanctions – Absenteeism",
-          "keywords": ["Absenteeism", "gross misconduct"]
+          "keywords": [
+            "Absenteeism",
+            "gross misconduct"
+          ]
         },
         {
           "id": "fin_aud_030",
@@ -1943,7 +2480,11 @@
           "explanation": "Discipline and removal of Officers on GL 06 and below is based on the recommendation of the Junior Staff Committee (JSC) (Rule 100104) [164].",
           "difficulty": "medium",
           "chapter": "Sanctions – GL 06 Discipline",
-          "keywords": ["JSC", "discipline", "GL 06"]
+          "keywords": [
+            "JSC",
+            "discipline",
+            "GL 06"
+          ]
         },
         {
           "id": "fin_aud_031",
@@ -1958,7 +2499,11 @@
           "explanation": "Concealment of facts or any false statement in an application for employment shall be regarded as sufficient grounds for non-engagement or subsequent termination of appointment without notice (Rule 100431) [164, 165].",
           "difficulty": "easy",
           "chapter": "Sanctions – Employment Application",
-          "keywords": ["Concealment of facts", "termination", "Rule 100431"]
+          "keywords": [
+            "Concealment of facts",
+            "termination",
+            "Rule 100431"
+          ]
         },
         {
           "id": "fin_aud_032",
@@ -1973,7 +2518,10 @@
           "explanation": "General inefficiency is directly linked to performance and competence, captured in performance appraisals (Chapter 5) [166].",
           "difficulty": "easy",
           "chapter": "Sanctions – Inefficiency Evidence",
-          "keywords": ["General inefficiency", "performance appraisal"]
+          "keywords": [
+            "General inefficiency",
+            "performance appraisal"
+          ]
         },
         {
           "id": "fin_aud_033",
@@ -1988,7 +2536,11 @@
           "explanation": "No documentary evidence shall be used against the Officer unless he has previously been supplied with a copy thereof or given open access thereto (Rule 100307(vii)) [160, 167].",
           "difficulty": "medium",
           "chapter": "Sanctions – Inquiry Procedure",
-          "keywords": ["Inquiry", "documentary evidence", "Rule 100307(vii)"]
+          "keywords": [
+            "Inquiry",
+            "documentary evidence",
+            "Rule 100307(vii)"
+          ]
         },
         {
           "id": "fin_aud_034",
@@ -2003,7 +2555,11 @@
           "explanation": "Dismissal results in forfeiture subject to the provisions of the Pension Reform Act, 2014 (as amended) (Rule 100407) [142, 143].",
           "difficulty": "easy",
           "chapter": "Sanctions – Forfeiture",
-          "keywords": ["Dismissal", "forfeiture", "Pension Reform Act"]
+          "keywords": [
+            "Dismissal",
+            "forfeiture",
+            "Pension Reform Act"
+          ]
         },
         {
           "id": "fin_aud_035",
@@ -2018,7 +2574,11 @@
           "explanation": "The disciplinary process starts with a query issued by the supervisor or Head of Department (Rule 100307(i)) [168, 169].",
           "difficulty": "easy",
           "chapter": "Sanctions – Query Issuance",
-          "keywords": ["Query", "Supervisor", "HOD"]
+          "keywords": [
+            "Query",
+            "Supervisor",
+            "HOD"
+          ]
         },
         {
           "id": "fin_aud_036",
@@ -2033,7 +2593,11 @@
           "explanation": "Section 58 prescribes imprisonment and fines for procurement-related fraud, which constitutes gross misconduct leading to dismissal [109, 168].",
           "difficulty": "hard",
           "chapter": "Sanctions – Procurement Fraud Penalty",
-          "keywords": ["Procurement fraud", "Dismissal", "Criminal charges"]
+          "keywords": [
+            "Procurement fraud",
+            "Dismissal",
+            "Criminal charges"
+          ]
         },
         {
           "id": "fin_aud_037",
@@ -2048,7 +2612,11 @@
           "explanation": "Disciplinary penalties may include surcharges, reductions, or warnings, but imposing monetary fines on officers as a penalty is generally prohibited [170].",
           "difficulty": "medium",
           "chapter": "Sanctions – Prohibited Penalties",
-          "keywords": ["Prohibited penalties", "Fines", "Disciplinary measures"]
+          "keywords": [
+            "Prohibited penalties",
+            "Fines",
+            "Disciplinary measures"
+          ]
         },
         {
           "id": "fin_aud_038",
@@ -2091,12 +2659,21 @@
         {
           "id": "fin_aud_040",
           "question": "The minimum period for which an increment deferment must be fixed is:",
-          "options": ["One month", "Three months", "Six months", "One year"],
+          "options": [
+            "One month",
+            "Three months",
+            "Six months",
+            "One year"
+          ],
           "correct": 2,
           "explanation": "If an increment is deferred, the period must be fixed for not less than six months (Rule 040205) [42].",
           "difficulty": "medium",
           "chapter": "Sanctions – Deferment Period",
-          "keywords": ["Deferred increment", "Six months", "Rule 040205"]
+          "keywords": [
+            "Deferred increment",
+            "Six months",
+            "Rule 040205"
+          ]
         },
         {
           "id": "fin_aud_041",
@@ -2111,7 +2688,11 @@
           "explanation": "Disciplinary measures against a Permanent Secretary include dismissal, termination, or retirement (Rule 100702) [157].",
           "difficulty": "hard",
           "chapter": "Sanctions – Permanent Secretary Discipline",
-          "keywords": ["Permanent Secretary", "Dismissal", "Rule 100702"]
+          "keywords": [
+            "Permanent Secretary",
+            "Dismissal",
+            "Rule 100702"
+          ]
         },
         {
           "id": "fin_aud_042",
@@ -2126,7 +2707,11 @@
           "explanation": "An acting Officer will not be regarded as relinquishing the duties and responsibilities of his acting appointment by proceeding on casual or special leave within the country, and it is not necessary during any such leave to appoint another Officer to act in the duty post in question (Rule 020708(a)) [172].",
           "difficulty": "hard",
           "chapter": "Sanctions – Acting Duty",
-          "keywords": ["Acting duty", "casual leave", "Rule 020708(a)"]
+          "keywords": [
+            "Acting duty",
+            "casual leave",
+            "Rule 020708(a)"
+          ]
         },
         {
           "id": "fin_aud_043",
@@ -2141,7 +2726,11 @@
           "explanation": "The dismissal of Officers on GL 06 and below is an exception to the delegated powers and still requires the approval of the FCSC (Rule 100103) [173].",
           "difficulty": "medium",
           "chapter": "Sanctions – Dismissal GL 06",
-          "keywords": ["Dismissal GL 06", "FCSC approval", "Rule 100103"]
+          "keywords": [
+            "Dismissal GL 06",
+            "FCSC approval",
+            "Rule 100103"
+          ]
         },
         {
           "id": "fin_aud_044",
@@ -2156,7 +2745,11 @@
           "explanation": "An Officer who resigns will forfeit claims to vacation leave, and any leave privileges granted will be ex-gratia (Rule 020904(i)) [174].",
           "difficulty": "medium",
           "chapter": "Sanctions – Resignation Forfeiture",
-          "keywords": ["Resignation", "leave forfeiture", "ex-gratia"]
+          "keywords": [
+            "Resignation",
+            "leave forfeiture",
+            "ex-gratia"
+          ]
         },
         {
           "id": "fin_aud_045",
@@ -2200,12 +2793,21 @@
         {
           "id": "fin_aud_047",
           "question": "In the case of an inquiry into serious misconduct, the head of the officer’s department shall generally **not** be a member of the inquiry board, in order to maintain:",
-          "options": ["Security", "Neutrality", "Efficiency", "Speed"],
+          "options": [
+            "Security",
+            "Neutrality",
+            "Efficiency",
+            "Speed"
+          ],
           "correct": 1,
           "explanation": "The head of the officer's department shall not be a member of the board (Rule 100307(v)) to ensure impartiality in the disciplinary process [160, 177].",
           "difficulty": "medium",
           "chapter": "Sanctions – Inquiry Neutrality",
-          "keywords": ["Inquiry board", "head of department", "impartiality"]
+          "keywords": [
+            "Inquiry board",
+            "head of department",
+            "impartiality"
+          ]
         },
         {
           "id": "fin_aud_048",
@@ -2220,7 +2822,11 @@
           "explanation": "An officer convicted of a criminal offence shall be suspended pending the Commission's determination (Rule 100412) [178].",
           "difficulty": "medium",
           "chapter": "Sanctions – Suspension upon Conviction",
-          "keywords": ["Suspension", "criminal conviction", "Rule 100412"]
+          "keywords": [
+            "Suspension",
+            "criminal conviction",
+            "Rule 100412"
+          ]
         },
         {
           "id": "fin_aud_049",
@@ -2235,7 +2841,11 @@
           "explanation": "Absence without leave where the onus rests on the officer to justify the absence implies desertion or serious misconduct (Rule 100413) [178].",
           "difficulty": "medium",
           "chapter": "Sanctions – Absence Without Leave",
-          "keywords": ["Absence without leave", "Desertion", "Rule 100413"]
+          "keywords": [
+            "Absence without leave",
+            "Desertion",
+            "Rule 100413"
+          ]
         },
         {
           "id": "fin_aud_050",
@@ -2250,14 +2860,18 @@
           "explanation": "Unauthorized absence from duty results in loss of pay for the period of absence (Rule 040206) [47, 152].",
           "difficulty": "easy",
           "chapter": "Sanctions – Loss of Pay",
-          "keywords": ["Loss of pay", "absence", "Rule 040206"]
+          "keywords": [
+            "Loss of pay",
+            "absence",
+            "Rule 040206"
+          ]
         }
       ]
     },
     {
       "id": "fin_general",
       "name": "General Financial Management",
-      "description": "TSA, revenue management, financial statements, reconciliations, and other general topics",
+      "description": "TSA, reconciliation, statements, and core PFM principles.",
       "questions": [
         {
           "id": "fin_gen_001",
@@ -2291,7 +2905,11 @@
           "explanation": "The Accountant-General of the Federation issues Treasury Circulars to guide accounting officers on procedures [179-181].",
           "difficulty": "easy",
           "chapter": "General Financial Management – Authority",
-          "keywords": ["treasury circulars", "accountant general", "finance"]
+          "keywords": [
+            "treasury circulars",
+            "accountant general",
+            "finance"
+          ]
         },
         {
           "id": "fin_gen_003",
@@ -2306,7 +2924,11 @@
           "explanation": "The Vote Controller maintains the Vote Book (or departmental vote ledger) to monitor budgetary allocations and expenditures [16, 17, 181].",
           "difficulty": "medium",
           "chapter": "General Financial Management – Vote Book",
-          "keywords": ["vote controller", "vote book", "budget management"]
+          "keywords": [
+            "vote controller",
+            "vote book",
+            "budget management"
+          ]
         },
         {
           "id": "fin_gen_004",
@@ -2321,7 +2943,11 @@
           "explanation": "The Cash Book is used to record all inflows and outflows of cash, supporting reconciliation and control [182].",
           "difficulty": "easy",
           "chapter": "General Financial Management – Record Keeping",
-          "keywords": ["cash book", "financial management", "record keeping"]
+          "keywords": [
+            "cash book",
+            "financial management",
+            "record keeping"
+          ]
         },
         {
           "id": "fin_gen_005",
@@ -2336,7 +2962,11 @@
           "explanation": "The Debt Management Office (DMO) is responsible for managing Nigeria’s public debt [183].",
           "difficulty": "medium",
           "chapter": "General Financial Management – DMO",
-          "keywords": ["dmo", "public debt", "financial management"]
+          "keywords": [
+            "dmo",
+            "public debt",
+            "financial management"
+          ]
         },
         {
           "id": "fin_gen_006",
@@ -2351,7 +2981,11 @@
           "explanation": "TSA stands for Treasury Single Account, which consolidates government revenues into a single account for transparency [184].",
           "difficulty": "easy",
           "chapter": "General Financial Management – TSA",
-          "keywords": ["tsa", "treasury single account", "financial reforms"]
+          "keywords": [
+            "tsa",
+            "treasury single account",
+            "financial reforms"
+          ]
         },
         {
           "id": "fin_gen_007",
@@ -2366,7 +3000,11 @@
           "explanation": "The Fiscal Responsibility Act provides the legal framework for prudent management of public finances in Nigeria [185].",
           "difficulty": "medium",
           "chapter": "General Financial Management – Legal Framework",
-          "keywords": ["fiscal responsibility act", "public finance", "laws"]
+          "keywords": [
+            "fiscal responsibility act",
+            "public finance",
+            "laws"
+          ]
         },
         {
           "id": "fin_gen_008",
@@ -2400,7 +3038,11 @@
           "explanation": "All government payments must be backed by duly approved Payment Vouchers [29, 187].",
           "difficulty": "easy",
           "chapter": "General Financial Management – Payment Document",
-          "keywords": ["payment voucher", "government expenditure", "finance"]
+          "keywords": [
+            "payment voucher",
+            "government expenditure",
+            "finance"
+          ]
         },
         {
           "id": "fin_gen_010",
@@ -2415,7 +3057,11 @@
           "explanation": "The Head of Accounts must sign all payment vouchers before payments are processed [19, 188].",
           "difficulty": "medium",
           "chapter": "General Financial Management – Payment Approval",
-          "keywords": ["payment vouchers", "head of accounts", "finance"]
+          "keywords": [
+            "payment vouchers",
+            "head of accounts",
+            "finance"
+          ]
         },
         {
           "id": "fin_gen_011",
@@ -2449,7 +3095,11 @@
           "explanation": "The Accountant-General ensures that all revenues are remitted into the Treasury Single Account [190].",
           "difficulty": "medium",
           "chapter": "General Financial Management – TSA Compliance",
-          "keywords": ["tsa", "treasury single account", "accountant general"]
+          "keywords": [
+            "tsa",
+            "treasury single account",
+            "accountant general"
+          ]
         },
         {
           "id": "fin_gen_013",
@@ -2464,7 +3114,11 @@
           "explanation": "The 1999 Constitution of Nigeria established the Office of the Auditor-General for the Federation [191].",
           "difficulty": "medium",
           "chapter": "General Financial Management – AuGF Establishment",
-          "keywords": ["auditor general", "1999 constitution", "finance"]
+          "keywords": [
+            "auditor general",
+            "1999 constitution",
+            "finance"
+          ]
         },
         {
           "id": "fin_gen_014",
@@ -2479,7 +3133,11 @@
           "explanation": "A Treasury Receipt is issued to acknowledge payments made into government coffers (revenue collection) [192].",
           "difficulty": "easy",
           "chapter": "General Financial Management – Revenue Documentation",
-          "keywords": ["treasury receipt", "government revenue", "finance"]
+          "keywords": [
+            "treasury receipt",
+            "government revenue",
+            "finance"
+          ]
         },
         {
           "id": "fin_gen_015",
@@ -2494,7 +3152,11 @@
           "explanation": "The Contingencies Fund is used to meet unforeseen and urgent government expenditures [53-55].",
           "difficulty": "easy",
           "chapter": "General Financial Management – Contingencies Fund",
-          "keywords": ["contingencies fund", "emergency expenditure", "finance"]
+          "keywords": [
+            "contingencies fund",
+            "emergency expenditure",
+            "finance"
+          ]
         },
         {
           "id": "fin_gen_016",
@@ -2509,7 +3171,11 @@
           "explanation": "Public expenditure includes all government spending from public funds on recurrent and capital projects [193].",
           "difficulty": "easy",
           "chapter": "General Financial Management – Expenditure Definition",
-          "keywords": ["public expenditure", "government spending", "finance"]
+          "keywords": [
+            "public expenditure",
+            "government spending",
+            "finance"
+          ]
         },
         {
           "id": "fin_gen_017",
@@ -2524,7 +3190,11 @@
           "explanation": "Recurrent Expenditure covers spending that is regular and occurs within the fiscal year, such as salaries and overhead costs [194].",
           "difficulty": "easy",
           "chapter": "General Financial Management – Recurrent Expenditure",
-          "keywords": ["Recurrent Expenditure", "Salaries", "Overhead Costs"]
+          "keywords": [
+            "Recurrent Expenditure",
+            "Salaries",
+            "Overhead Costs"
+          ]
         },
         {
           "id": "fin_gen_018",
@@ -2539,7 +3209,11 @@
           "explanation": "The Contingency Fund is reserved for emergency and unforeseen government expenditures [54, 194].",
           "difficulty": "easy",
           "chapter": "General Financial Management – Contingency Fund Purpose",
-          "keywords": ["contingency fund", "emergency expenditure", "finance"]
+          "keywords": [
+            "contingency fund",
+            "emergency expenditure",
+            "finance"
+          ]
         },
         {
           "id": "fin_gen_019",
@@ -2554,7 +3228,11 @@
           "explanation": "The Accountant-General is the principal signatory to government bank accounts, controlling federal receipts and payments [195].",
           "difficulty": "medium",
           "chapter": "General Financial Management – AGF Role",
-          "keywords": ["accountant general", "bank accounts", "finance"]
+          "keywords": [
+            "accountant general",
+            "bank accounts",
+            "finance"
+          ]
         },
         {
           "id": "fin_gen_020",
@@ -2569,7 +3247,11 @@
           "explanation": "The Head of Department certifies that services have been duly performed before payments are made [30, 31].",
           "difficulty": "medium",
           "chapter": "General Financial Management – Certification",
-          "keywords": ["head of department", "payment certification", "finance"]
+          "keywords": [
+            "head of department",
+            "payment certification",
+            "finance"
+          ]
         },
         {
           "id": "fin_gen_021",
@@ -2584,7 +3266,11 @@
           "explanation": "Accruals refer to expenses or revenues recognized when incurred, not when cash changes hands [146, 196].",
           "difficulty": "hard",
           "chapter": "General Financial Management – Accruals",
-          "keywords": ["Accruals", "Financial reporting", "incurred"]
+          "keywords": [
+            "Accruals",
+            "Financial reporting",
+            "incurred"
+          ]
         },
         {
           "id": "fin_gen_022",
@@ -2599,7 +3285,11 @@
           "explanation": "The Securities and Exchange Commission (SEC) regulates Nigeria’s capital market [196].",
           "difficulty": "medium",
           "chapter": "General Financial Management – Regulation",
-          "keywords": ["capital market", "sec", "finance regulation"]
+          "keywords": [
+            "capital market",
+            "sec",
+            "finance regulation"
+          ]
         },
         {
           "id": "fin_gen_023",
@@ -2614,7 +3304,11 @@
           "explanation": "IGR stands for Internally Generated Revenue, which refers to income generated by states or ministries apart from federal allocations [197].",
           "difficulty": "easy",
           "chapter": "General Financial Management – IGR",
-          "keywords": ["igr", "internally generated revenue", "public finance"]
+          "keywords": [
+            "igr",
+            "internally generated revenue",
+            "public finance"
+          ]
         },
         {
           "id": "fin_gen_024",
@@ -2629,7 +3323,11 @@
           "explanation": "Revenue Collectors are responsible for issuing receipts for all government revenues received [198].",
           "difficulty": "medium",
           "chapter": "General Financial Management – Revenue Collection",
-          "keywords": ["revenue collector", "receipts", "government revenue"]
+          "keywords": [
+            "revenue collector",
+            "receipts",
+            "government revenue"
+          ]
         },
         {
           "id": "fin_gen_025",
@@ -2644,7 +3342,11 @@
           "explanation": "The Federation Account holds revenues before distribution among the three tiers of government [199].",
           "difficulty": "medium",
           "chapter": "General Financial Management – Federation Account",
-          "keywords": ["federation account", "government revenues", "finance"]
+          "keywords": [
+            "federation account",
+            "government revenues",
+            "finance"
+          ]
         },
         {
           "id": "fin_gen_026",
@@ -2659,7 +3361,11 @@
           "explanation": "The Development Fund is used for financing capital projects in Nigeria [200].",
           "difficulty": "medium",
           "chapter": "General Financial Management – Development Fund",
-          "keywords": ["development fund", "capital projects", "finance"]
+          "keywords": [
+            "development fund",
+            "capital projects",
+            "finance"
+          ]
         },
         {
           "id": "fin_gen_027",
@@ -2674,7 +3380,11 @@
           "explanation": "The Debt Service Account is used for repayment of Nigeria’s external and domestic debts [201].",
           "difficulty": "medium",
           "chapter": "General Financial Management – Debt Account",
-          "keywords": ["debt service account", "debt repayment", "finance"]
+          "keywords": [
+            "debt service account",
+            "debt repayment",
+            "finance"
+          ]
         },
         {
           "id": "fin_gen_028",
@@ -2689,7 +3399,11 @@
           "explanation": "The Debt Management Office was established by the Debt Management Act 2003 [202].",
           "difficulty": "medium",
           "chapter": "General Financial Management – DMO Establishment",
-          "keywords": ["debt management office", "dmo", "finance"]
+          "keywords": [
+            "debt management office",
+            "dmo",
+            "finance"
+          ]
         },
         {
           "id": "fin_gen_029",
@@ -2704,7 +3418,11 @@
           "explanation": "The Treasury manages government cash flows, payments, and receipts [203].",
           "difficulty": "easy",
           "chapter": "General Financial Management – Treasury Role",
-          "keywords": ["treasury", "cash flow management", "finance"]
+          "keywords": [
+            "treasury",
+            "cash flow management",
+            "finance"
+          ]
         },
         {
           "id": "fin_gen_030",
@@ -2719,27 +3437,49 @@
           "explanation": "The Accountant-General manages and controls all receipts and payments of the federal government [204].",
           "difficulty": "easy",
           "chapter": "General Financial Management – AGF Primary Role",
-          "keywords": ["accountant general", "federal receipts", "payments"]
+          "keywords": [
+            "accountant general",
+            "federal receipts",
+            "payments"
+          ]
         },
         {
           "id": "fin_gen_031",
           "question": "Which Nigerian agency regulates and supervises banks?",
-          "options": ["Debt Management Office", "CBN", "NDIC", "SEC"],
+          "options": [
+            "Debt Management Office",
+            "CBN",
+            "NDIC",
+            "SEC"
+          ],
           "correct": 1,
           "explanation": "The Central Bank of Nigeria (CBN) regulates and supervises banks in Nigeria [205].",
           "difficulty": "easy",
           "chapter": "General Financial Management – Banking Regulation",
-          "keywords": ["cbn", "banks", "regulation"]
+          "keywords": [
+            "cbn",
+            "banks",
+            "regulation"
+          ]
         },
         {
           "id": "fin_gen_032",
           "question": "What is the main source of Nigeria’s Federation Account revenue?",
-          "options": ["Taxes", "Customs duties", "Oil revenue", "Loans"],
+          "options": [
+            "Taxes",
+            "Customs duties",
+            "Oil revenue",
+            "Loans"
+          ],
           "correct": 2,
           "explanation": "Oil revenue remains the primary source of Nigeria’s Federation Account revenue [206].",
           "difficulty": "easy",
           "chapter": "General Financial Management – Revenue Source",
-          "keywords": ["federation account", "oil revenue", "finance"]
+          "keywords": [
+            "federation account",
+            "oil revenue",
+            "finance"
+          ]
         },
         {
           "id": "fin_gen_033",
@@ -2754,7 +3494,11 @@
           "explanation": "The main source of Local Government revenue is allocations from the Federation Account [207].",
           "difficulty": "medium",
           "chapter": "General Financial Management – LG Revenue",
-          "keywords": ["local government revenue", "federation account", "igr"]
+          "keywords": [
+            "local government revenue",
+            "federation account",
+            "igr"
+          ]
         },
         {
           "id": "fin_gen_034",
@@ -2788,7 +3532,11 @@
           "explanation": "Treasury Bills are short-term instruments issued by government to raise funds [209].",
           "difficulty": "medium",
           "chapter": "General Financial Management – Financial Instruments",
-          "keywords": ["treasury bills", "short-term funds", "finance"]
+          "keywords": [
+            "treasury bills",
+            "short-term funds",
+            "finance"
+          ]
         },
         {
           "id": "fin_gen_036",
@@ -2803,7 +3551,11 @@
           "explanation": "The Vote Controller maintains the departmental vote ledger [210, 211].",
           "difficulty": "medium",
           "chapter": "General Financial Management – Vote Ledger",
-          "keywords": ["vote ledger", "vote controller", "budget management"]
+          "keywords": [
+            "vote ledger",
+            "vote controller",
+            "budget management"
+          ]
         },
         {
           "id": "fin_gen_037",
@@ -2818,7 +3570,11 @@
           "explanation": "The Accounts Officer is responsible for preparing bank reconciliation statements [212].",
           "difficulty": "medium",
           "chapter": "General Financial Management – Accounting Duties",
-          "keywords": ["bank reconciliation", "accounts officer", "finance"]
+          "keywords": [
+            "bank reconciliation",
+            "accounts officer",
+            "finance"
+          ]
         },
         {
           "id": "fin_gen_038",
@@ -2833,7 +3589,11 @@
           "explanation": "A Bank Reconciliation Statement reconciles differences between the Cash Book and the Bank Statement [213].",
           "difficulty": "medium",
           "chapter": "General Financial Management – Reconciliation",
-          "keywords": ["bank reconciliation", "cash book", "finance"]
+          "keywords": [
+            "bank reconciliation",
+            "cash book",
+            "finance"
+          ]
         },
         {
           "id": "fin_gen_039",
@@ -2867,7 +3627,11 @@
           "explanation": "The Vote Controller certifies that funds are available before incurring expenditure [215, 216].",
           "difficulty": "medium",
           "chapter": "General Financial Management – Fund Certification",
-          "keywords": ["vote controller", "funds certification", "expenditure"]
+          "keywords": [
+            "vote controller",
+            "funds certification",
+            "expenditure"
+          ]
         },
         {
           "id": "fin_gen_041",
@@ -2901,7 +3665,11 @@
           "explanation": "The Replacement Reserve Fund is used for replacing depreciating government assets [39-41].",
           "difficulty": "hard",
           "chapter": "General Financial Management – Reserve Fund",
-          "keywords": ["Replacement Reserve Fund", "assets", "depreciation"]
+          "keywords": [
+            "Replacement Reserve Fund",
+            "assets",
+            "depreciation"
+          ]
         },
         {
           "id": "fin_gen_043",
@@ -2916,7 +3684,11 @@
           "explanation": "Public revenue includes all government income, such as taxes, oil, customs, levies, and other sources [218].",
           "difficulty": "easy",
           "chapter": "General Financial Management – Revenue Scope",
-          "keywords": ["public revenue", "government income", "finance"]
+          "keywords": [
+            "public revenue",
+            "government income",
+            "finance"
+          ]
         },
         {
           "id": "fin_gen_044",
@@ -2931,7 +3703,11 @@
           "explanation": "Capital Expenditure is spending on assets and infrastructure that create future benefits [15, 48, 211].",
           "difficulty": "easy",
           "chapter": "General Financial Management – Capital Definition",
-          "keywords": ["Capital Expenditure", "fixed assets", "infrastructure"]
+          "keywords": [
+            "Capital Expenditure",
+            "fixed assets",
+            "infrastructure"
+          ]
         },
         {
           "id": "fin_gen_045",
@@ -2955,12 +3731,21 @@
         {
           "id": "fin_gen_046",
           "question": "The total amount of funds allocated for staff salaries (Personnel Emoluments) in the budget is controlled primarily by data sourced from which platform?",
-          "options": ["TSA.", "GIFMIS.", "IPPIS.", "BPP."],
+          "options": [
+            "TSA.",
+            "GIFMIS.",
+            "IPPIS.",
+            "BPP."
+          ],
           "correct": 2,
           "explanation": "The Integrated Personnel and Payroll Information System (IPPIS) holds the accurate data on staff nominal roll, grade levels, and steps, which determines personnel emoluments [34-36].",
           "difficulty": "medium",
           "chapter": "General Financial Management – Personnel Cost Control",
-          "keywords": ["IPPIS", "Personnel Emoluments", "Payroll"]
+          "keywords": [
+            "IPPIS",
+            "Personnel Emoluments",
+            "Payroll"
+          ]
         },
         {
           "id": "fin_gen_047",
@@ -2975,7 +3760,11 @@
           "explanation": "The Budget Officer prepares annual budget performance reports for review [52].",
           "difficulty": "medium",
           "chapter": "General Financial Management – Reporting Officer",
-          "keywords": ["Budget Officer", "budget performance", "reports"]
+          "keywords": [
+            "Budget Officer",
+            "budget performance",
+            "reports"
+          ]
         },
         {
           "id": "fin_gen_048",
@@ -2990,7 +3779,11 @@
           "explanation": "A Warrant provides for the release of funds for both capital and recurrent expenditures [8].",
           "difficulty": "medium",
           "chapter": "General Financial Management – Funds Release",
-          "keywords": ["Warrant", "Funds release", "Treasury"]
+          "keywords": [
+            "Warrant",
+            "Funds release",
+            "Treasury"
+          ]
         },
         {
           "id": "fin_gen_049",
@@ -3005,7 +3798,11 @@
           "explanation": "The Store Officer certifies stock balances in government stores periodically [219].",
           "difficulty": "medium",
           "chapter": "General Financial Management – Stores Management",
-          "keywords": ["Store Officer", "stock balances", "stores"]
+          "keywords": [
+            "Store Officer",
+            "stock balances",
+            "stores"
+          ]
         },
         {
           "id": "fin_gen_050",

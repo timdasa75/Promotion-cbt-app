@@ -1,6 +1,8 @@
 // quiz.js - Module for quiz logic
 
 import { showScreen, showError } from "./ui.js";
+import { extractQuestionsByCategory, fetchTopicDataFiles } from "./topicSources.js";
+import { debugLog } from "./logger.js";
 
 /**
  * Markdown parser for basic formatting
@@ -73,6 +75,91 @@ const quizState = {
 /**
  * DOM Elements cache
  */
+
+const PROGRESS_STORAGE_KEY = "cbt_progress_summary_v1";
+
+function readProgressSummary() {
+  try {
+    const raw = window.localStorage.getItem(PROGRESS_STORAGE_KEY);
+    if (!raw) return { attempts: [] };
+    const parsed = JSON.parse(raw);
+    if (!parsed || !Array.isArray(parsed.attempts)) return { attempts: [] };
+    return parsed;
+  } catch (error) {
+    return { attempts: [] };
+  }
+}
+
+function saveProgressSummary(summary) {
+  try {
+    window.localStorage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(summary));
+  } catch (error) {
+    console.warn("Unable to persist progress summary", error);
+  }
+}
+
+function recordAttemptResult({ topicId, topicName, mode, scorePercentage, totalQuestions }) {
+  const summary = readProgressSummary();
+  summary.attempts.push({
+    topicId,
+    topicName,
+    mode,
+    scorePercentage,
+    totalQuestions,
+    createdAt: new Date().toISOString(),
+  });
+
+  if (summary.attempts.length > 50) {
+    summary.attempts = summary.attempts.slice(summary.attempts.length - 50);
+  }
+
+  saveProgressSummary(summary);
+  return summary;
+}
+
+function calculateProgressInsights(summary, currentTopicId) {
+  const attempts = summary?.attempts || [];
+  const recent = attempts.slice(-5);
+
+  const avgRecentScore = recent.length
+    ? Math.round(recent.reduce((acc, a) => acc + (a.scorePercentage || 0), 0) / recent.length)
+    : null;
+
+  const byTopic = new Map();
+  attempts.forEach((attempt) => {
+    if (!attempt.topicId) return;
+    if (!byTopic.has(attempt.topicId)) {
+      byTopic.set(attempt.topicId, {
+        topicId: attempt.topicId,
+        topicName: attempt.topicName || attempt.topicId,
+        scores: [],
+      });
+    }
+    byTopic.get(attempt.topicId).scores.push(attempt.scorePercentage || 0);
+  });
+
+  const topicAverages = Array.from(byTopic.values()).map((entry) => ({
+    topicId: entry.topicId,
+    topicName: entry.topicName,
+    avgScore: Math.round(entry.scores.reduce((acc, score) => acc + score, 0) / entry.scores.length),
+  }));
+
+  const weakestTopic = topicAverages.length
+    ? topicAverages.sort((a, b) => a.avgScore - b.avgScore)[0]
+    : null;
+
+  const recommendedTopic = weakestTopic && weakestTopic.topicId !== currentTopicId
+    ? weakestTopic.topicName
+    : null;
+
+  return {
+    attemptsCount: attempts.length,
+    avgRecentScore,
+    weakestTopic,
+    recommendedTopic,
+  };
+}
+
 const domElements = {
   questionElement: null,
   optionsContainer: null,
@@ -129,7 +216,7 @@ function startTimer() {
       clearInterval(quizState.timer);
       // Auto-submit exam when time runs out
       if (currentMode === "exam") {
-        console.log("Exam time expired - auto-submitting");
+        debugLog("Exam time expired - auto-submitting");
         // Calculate score for answered questions
         calculateExamScore();
       }
@@ -200,7 +287,7 @@ function updateTimerDisplay() {
  * Show the current question
  */
 function showQuestion() {
-  console.log(
+  debugLog(
     "showQuestion called, index:",
     quizState.currentQuestionIndex,
     "of",
@@ -211,13 +298,13 @@ function showQuestion() {
     return;
   }
   const question = quizState.allQuestions[quizState.currentQuestionIndex];
-  console.log("Current question:", question);
+  debugLog("Current question:", question);
   
   // Query DOM elements here to ensure they exist
   const questionElement = document.getElementById("questionText");
   const optionsContainer = document.getElementById("optionsContainer");
   const quizScreen = document.getElementById("quizScreen");
-  console.log("showQuestion DOM check:", {
+  debugLog("showQuestion DOM check:", {
     questionElement,
     optionsContainer,
     quizScreen,
@@ -669,7 +756,7 @@ function calculateExamScore() {
       quizState.score++;
     }
   }
-  console.log(
+  debugLog(
     "Exam auto-submitted. Final score:",
     quizState.score,
     "out of",
@@ -749,9 +836,9 @@ function showResults() {
     if (timeSpent) timeSpent.parentElement.style.display = "none";
     
     // Hide the review incorrect button if it's already shown
-    const reviewIncorrectBtn = document.getElementById("reviewIncorrectBtn");
-    if (reviewIncorrectBtn) {
-      reviewIncorrectBtn.classList.add("hidden");
+    const reviewIncorrectResultsBtn = document.getElementById("reviewIncorrectResultsBtn");
+    if (reviewIncorrectResultsBtn) {
+      reviewIncorrectResultsBtn.classList.add("hidden");
     }
 
     showScreen("resultsScreen");
@@ -776,6 +863,15 @@ function showResults() {
   }
   const scorePercentage = Math.round((quizState.score / quizState.allQuestions.length) * 100);
   finalScore.textContent = `${scorePercentage}%`;
+
+  const progressSummary = recordAttemptResult({
+    topicId: currentTopic?.id,
+    topicName: currentTopic?.name,
+    mode: currentMode,
+    scorePercentage,
+    totalQuestions: quizState.allQuestions.length,
+  });
+  const progressInsights = calculateProgressInsights(progressSummary, currentTopic?.id);
 
   // Enhanced performance analysis
   let performanceMessage = "";
@@ -838,8 +934,22 @@ function showResults() {
                 <div class="analytic-label">Unanswered</div>
             </div>
         </div>
+        <div class="analytics-grid progress-grid">
+            <div class="analytic-item">
+                <div class="analytic-value">${progressInsights.attemptsCount}</div>
+                <div class="analytic-label">Total Attempts</div>
+            </div>
+            <div class="analytic-item">
+                <div class="analytic-value">${progressInsights.avgRecentScore ?? "-"}${progressInsights.avgRecentScore !== null ? "%" : ""}</div>
+                <div class="analytic-label">Recent Avg (last 5)</div>
+            </div>
+            <div class="analytic-item">
+                <div class="analytic-value">${progressInsights.weakestTopic ? `${progressInsights.weakestTopic.avgScore}%` : "-"}</div>
+                <div class="analytic-label">Weakest Topic Avg</div>
+            </div>
+        </div>
         <div class="recommendation ${scorePercentage >= 70 ? "success" : "improvement"}">
-            <strong>Recommendation:</strong> ${scorePercentage >= 70 ? "You're ready for the next level!" : "Consider reviewing this topic before advancing."}
+            <strong>Recommendation:</strong> ${progressInsights.recommendedTopic ? `Prioritize ${progressInsights.recommendedTopic} next.` : (scorePercentage >= 70 ? "You're ready for the next level!" : "Consider reviewing this topic before advancing.")}
         </div>
     `;
 
@@ -851,17 +961,17 @@ function showResults() {
     }
   }
 
-  const reviewIncorrectBtn = document.getElementById("reviewIncorrectBtn");
-  if (reviewIncorrectBtn) {
+  const reviewIncorrectResultsBtn = document.getElementById("reviewIncorrectResultsBtn");
+  if (reviewIncorrectResultsBtn) {
     if (quizState.incorrectAnswers.length > 0) {
-      reviewIncorrectBtn.classList.remove("hidden");
-      reviewIncorrectBtn.onclick = () => {
+      reviewIncorrectResultsBtn.classList.remove("hidden");
+      reviewIncorrectResultsBtn.onclick = () => {
         currentMode = "review";
         initializeQuiz();
         applyReviewFilter("incorrect");
       };
     } else {
-      reviewIncorrectBtn.classList.add("hidden");
+      reviewIncorrectResultsBtn.classList.add("hidden");
     }
   }
 
@@ -881,12 +991,12 @@ export let currentTopic = null;
 export let currentMode = "";
 
 export function setCurrentTopic(topic) {
-  console.log("setCurrentTopic called with:", topic);
+  debugLog("setCurrentTopic called with:", topic);
   currentTopic = topic;
 }
 
 export function setCurrentMode(mode) {
-  console.log("setCurrentMode called with:", mode);
+  debugLog("setCurrentMode called with:", mode);
   currentMode = mode;
   
   // Update the quiz mode display in the header
@@ -922,255 +1032,50 @@ export async function loadQuestions(questions = null) {
     initializeQuiz();
     return;
   }
+
+
   try {
     if (!currentTopic || !currentTopic.file) {
       throw new Error("Invalid topic selected");
     }
 
-    console.log(
-      "Loading questions for topic:",
-      currentTopic.name,
-      "in mode:",
-      currentMode,
-    );
-
-    // Show loading state without wiping out quizScreen children
     const quizContainer = document.getElementById("quizScreen");
     if (!quizContainer) {
       throw new Error("Quiz screen element not found");
     }
-    // Ensure quiz screen is visible
+
     showScreen("quizScreen");
     let loadingEl = quizContainer.querySelector(".loading");
     if (!loadingEl) {
       loadingEl = document.createElement("div");
       loadingEl.className = "loading";
       loadingEl.textContent = "Loading questions...";
-      // Insert loading indicator before the quiz content grid
-      // With new structure, quizContentGrid is inside the quiz-card div
       const quizContentGrid = quizContainer.querySelector(".quiz-content-grid");
-      if (quizContentGrid) {
-        // Insert before quizContentGrid in its parent
-        quizContentGrid.parentNode.insertBefore(loadingEl, quizContentGrid);
-      } else {
-        const quizCard = quizContainer.querySelector(".quiz-card");
-        if (quizCard) {
-          quizCard.appendChild(loadingEl);
-        } else {
-          quizContainer.appendChild(loadingEl);
-        }
-      }
+      if (quizContentGrid) quizContentGrid.parentNode.insertBefore(loadingEl, quizContentGrid);
+      else (quizContainer.querySelector(".quiz-card") || quizContainer).appendChild(loadingEl);
     } else {
       loadingEl.textContent = "Loading questions...";
     }
 
-    // Load questions for the topic
-    let response, topicData;
-    try {
-      // Load questions for the topic with proper path construction
-      console.log(
-        "BASE_URL:",
-        window.BASE_URL,
-        "currentTopic.file:",
-        currentTopic.file,
-      );
-      const filePath =
-        window.BASE_URL.endsWith("/") || currentTopic.file.startsWith("/")
-          ? `${window.BASE_URL}${currentTopic.file}`
-          : `${window.BASE_URL}/${currentTopic.file}`;
-      console.log("Constructed filePath:", filePath);
-      response = await fetch(filePath);
-      if (!response.ok)
-        throw new Error(
-          `Failed to fetch ${currentTopic.file}: ${response.status}`,
-        );
-      const responseText = await response.text();
-      console.log("Response text length:", responseText.length);
+    const selectedCategory = currentTopic.selectedCategory || "all";
+    const topicDataFiles = await fetchTopicDataFiles(currentTopic, { tolerateFailures: true });
 
-      // Check if response is HTML (error page) instead of JSON
-      if (responseText.trim().startsWith("<")) {
-        throw new Error(
-          `Server returned HTML error page instead of JSON for ${currentTopic.file}`,
-        );
-      }
-
-      topicData = JSON.parse(responseText);
-      console.log("Loaded topic data:", topicData);
-    } catch (fetchErr) {
-      console.error("Fetch error:", fetchErr);
-      showError(
-        "Could not load questions for this topic. Please check your data files.",
-      );
-      showScreen("topicSelectionScreen");
-      return;
-    }
-
-    // Process questions based on category selection
     quizState.allQuestions = [];
-    let selectedCategory = currentTopic.selectedCategory || "all";
-
-    if (selectedCategory === "all") {
-      // Load all questions from the topic
-      if (Array.isArray(topicData)) {
-        // Handle direct array of subcategories (e.g., psr.json format)
-        for (const subcategory of topicData) {
-          if (
-            subcategory &&
-            subcategory.questions &&
-            Array.isArray(subcategory.questions)
-          ) {
-            quizState.allQuestions = quizState.allQuestions.concat(subcategory.questions);
-          }
-        }
-      } else if (topicData.domains && Array.isArray(topicData.domains)) {
-        // Handle structure with domains containing topics (e.g., financial.json format)
-        for (const domain of topicData.domains) {
-          if (domain.topics && Array.isArray(domain.topics)) {
-            for (const subcategory of domain.topics) {
-              if (
-                subcategory &&
-                subcategory.questions &&
-                Array.isArray(subcategory.questions)
-              ) {
-                quizState.allQuestions = quizState.allQuestions.concat(subcategory.questions);
-              }
-            }
-          }
-        }
-      } else if (
-        topicData.hasSubcategories &&
-        topicData.subcategories &&
-        Array.isArray(topicData.subcategories)
-      ) {
-        // Handle new structure with subcategories array
-        for (const subcategory of topicData.subcategories) {
-          if (
-            subcategory &&
-            subcategory.questions &&
-            Array.isArray(subcategory.questions)
-          ) {
-            quizState.allQuestions = quizState.allQuestions.concat(subcategory.questions);
-          }
-        }
-      } else if (topicData.psr_categories) {
-        // Handle legacy structure with psr_categories
-        for (const cat in topicData.psr_categories) {
-          const subcategory = topicData.psr_categories[cat];
-          if (
-            subcategory &&
-            subcategory.questions &&
-            Array.isArray(subcategory.questions)
-          ) {
-            quizState.allQuestions = quizState.allQuestions.concat(subcategory.questions);
-          }
-        }
-      } else if (topicData.questions && Array.isArray(topicData.questions)) {
-        // Check for the specific nested structure of ca_general
-        if (selectedCategory === "ca_general" && topicData.questions.length > 0 && topicData.questions[0].ca_general) {
-          quizState.allQuestions = topicData.questions[0].ca_general;
-        } else {
-          // Simple structure with direct questions array
-          quizState.allQuestions = topicData.questions;
-        }
-      }
-    } else {
-      // Load questions for specific category only
-      if (Array.isArray(topicData)) {
-        const selectedSubcategory = topicData.find(
-          (sub) => sub && sub.id === selectedCategory,
-        );
-        if (
-          selectedSubcategory &&
-          selectedSubcategory.questions &&
-          Array.isArray(selectedSubcategory.questions)
-        ) {
-          // Check for the specific nested structure of ca_general within a subcategory
-          if (selectedCategory === "ca_general" && selectedSubcategory.questions.length > 0 && selectedSubcategory.questions[0].ca_general) {
-            quizState.allQuestions = selectedSubcategory.questions[0].ca_general;
-          } else {
-            quizState.allQuestions = selectedSubcategory.questions;
-          }
-        }
-      } else if (topicData.domains && Array.isArray(topicData.domains)) {
-        for (const domain of topicData.domains) {
-          if (domain.topics && Array.isArray(domain.topics)) {
-            const selectedSubcategory = domain.topics.find(
-              (sub) => sub && sub.id === selectedCategory,
-            );
-            if (
-              selectedSubcategory &&
-              selectedSubcategory.questions &&
-              Array.isArray(selectedSubcategory.questions)
-            ) {
-              quizState.allQuestions = selectedSubcategory.questions;
-              break; // Found the subcategory, no need to check other domains
-            }
-          }
-        }
-      } else if (
-        topicData.hasSubcategories &&
-        topicData.subcategories &&
-        Array.isArray(topicData.subcategories)
-      ) {
-        const selectedSubcategory = topicData.subcategories.find(
-          (sub) => sub && sub.id === selectedCategory,
-        );
-        if (
-          selectedSubcategory &&
-          selectedSubcategory.questions &&
-          Array.isArray(selectedSubcategory.questions)
-        ) {
-          quizState.allQuestions = selectedSubcategory.questions;
-        }
-      } else if (topicData.psr_categories) {
-        // Legacy structure - find the category
-        const subcategory = topicData.psr_categories[selectedCategory];
-        if (
-          subcategory &&
-          subcategory.questions &&
-          Array.isArray(subcategory.questions)
-        ) {
-          quizState.allQuestions = subcategory.questions;
-        }
-      }
-    }
-
-    console.log("Extracted questions:", quizState.allQuestions);
+    topicDataFiles.forEach((topicData) => {
+      quizState.allQuestions.push(...extractQuestionsByCategory(topicData, selectedCategory));
+    });
 
     if (quizState.allQuestions.length === 0) {
-      // Check if we're dealing with current affairs and the selected subcategory is empty
-      if (currentTopic && currentTopic.id === "current_affairs") {
-        // For current affairs, if a specific subcategory has no questions,
-        // we should show a more informative message
-        if (currentTopic.selectedCategory && currentTopic.selectedCategory !== "all") {
-          // Find the selected category to get its name
-          let selectedCategoryName = currentTopic.selectedCategory;
-          if (topicData && topicData.subcategories && Array.isArray(topicData.subcategories)) {
-            const selectedCat = topicData.subcategories.find(cat => cat && cat.id === currentTopic.selectedCategory);
-            if (selectedCat && selectedCat.name) {
-              selectedCategoryName = selectedCat.name;
-            }
-          }
-          showError(`No questions are currently available for the selected subcategory: ${selectedCategoryName}. Please select a different subcategory or 'All Categories'.`);
-          showScreen("categorySelectionScreen");
-          return;
-        }
-      }
-      
       showError("No questions found for this topic/category.");
       showScreen("topicSelectionScreen");
       return;
     }
 
-    // Shuffle questions
     quizState.allQuestions = shuffleArray(quizState.allQuestions);
-
-    // Limit to 40 questions for the quiz (or fewer if subcategory has fewer questions)
     if (quizState.allQuestions.length > 40) {
       quizState.allQuestions = quizState.allQuestions.slice(0, 40);
     }
 
-    // Initialize quiz
     initializeQuiz();
   } catch (error) {
     console.error("Error loading questions:", error);

@@ -60,3 +60,16 @@ This project is open source and available under the [MIT License](LICENSE).
 ## Known Issues and Fixes
 
 - Fixed JavaScript syntax error that was preventing topics from loading properly
+
+
+## Refactor Roadmap
+
+A working implementation roadmap for the 10-topic architecture is available at:
+
+- `docs/refactor-implementation-plan.md`
+
+Before data/model changes are merged, run:
+
+```bash
+python scripts/validate_taxonomy.py
+```

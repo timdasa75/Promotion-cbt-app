@@ -8,29 +8,45 @@
   "subcategories": [
     {
       "id": "ca_public_service_reforms",
-      "name": "Public Service and Institutional Reforms",
-      "description": "Civil Service rules, modernizations, appointments, promotions, and performance.",
+      "name": "Public Service & Institutional Reforms",
+      "description": "Reform trends and contemporary service modernization.",
       "icon": "🏛️",
       "questions": [
         {
           "id": "PSIR_051",
           "question": "What is the minimum grade level for which a Contract Appointment shall be made?",
-          "options": ["SGL. 07", "SGL. 08", "SGL. 10", "SGL. 12"],
+          "options": [
+            "SGL. 07",
+            "SGL. 08",
+            "SGL. 10",
+            "SGL. 12"
+          ],
           "correct": 3,
           "explanation": "The Post to which contract appointment shall be made must not be below SGL. 12 [57, 58].",
           "difficulty": "medium",
           "chapter": "Contract Appointment Procedure",
-          "keywords": ["Contract Appointment", "SGL 12"]
+          "keywords": [
+            "Contract Appointment",
+            "SGL 12"
+          ]
         },
         {
           "id": "PSIR_052",
           "question": "The duration of a contract appointment should be one (1) or two (2) years and renewable but must not exceed what maximum period in total?",
-          "options": ["Two years", "Three years", "Four years", "Six years"],
+          "options": [
+            "Two years",
+            "Three years",
+            "Four years",
+            "Six years"
+          ],
           "correct": 2,
           "explanation": "The duration of contract appointment should be one (1) or two (2) years and renewable but not more than four (4) years in all [57, 59].",
           "difficulty": "medium",
           "chapter": "Contract Duration",
-          "keywords": ["Contract Appointment", "Four Years"]
+          "keywords": [
+            "Contract Appointment",
+            "Four Years"
+          ]
         },
         {
           "id": "PSIR_053",
@@ -45,7 +61,10 @@
           "explanation": "The contract Officer must, as part of his duties, be responsible for mentoring serving Officers as a condition for the offer of the contract appointment [58, 60].",
           "difficulty": "easy",
           "chapter": "Contract Rules",
-          "keywords": ["Contract Officer", "Mentoring"]
+          "keywords": [
+            "Contract Officer",
+            "Mentoring"
+          ]
         },
         {
           "id": "PSIR_054",
@@ -60,17 +79,29 @@
           "explanation": "Where retired Officers from the Service are re-engaged into career posts, the appointment shall be on grade level immediately below that on which they retired and be eligible to maintain their last step at retirement [61, 62].",
           "difficulty": "medium",
           "chapter": "Re-engagement of Retired Officers",
-          "keywords": ["Retired Officer", "Re-engagement"]
+          "keywords": [
+            "Retired Officer",
+            "Re-engagement"
+          ]
         },
         {
           "id": "PSIR_055",
           "question": "What is the maximum number of times a Trade Union/Staff Association Executive member is mandated to serve in their tenure in the Public Service?",
-          "options": ["One term", "Two terms", "Three terms", "Four terms"],
+          "options": [
+            "One term",
+            "Two terms",
+            "Three terms",
+            "Four terms"
+          ],
           "correct": 1,
           "explanation": "Trade Unions/Staff Associations are mandated to introduce tenure limit of two (2) terms in their Constitutions [63].",
           "difficulty": "medium",
           "chapter": "Union Executive Tenure",
-          "keywords": ["Union Executive", "Tenure Limit", "Two terms"]
+          "keywords": [
+            "Union Executive",
+            "Tenure Limit",
+            "Two terms"
+          ]
         },
         {
           "id": "PSIR_056",
@@ -85,7 +116,10 @@
           "explanation": "An Officer who resigns will be liable to forfeit all claims to vacation leave and any vacation leave or passage privileges granted [64].",
           "difficulty": "medium",
           "chapter": "Resignation",
-          "keywords": ["Resignation", "Forfeit Leave"]
+          "keywords": [
+            "Resignation",
+            "Forfeit Leave"
+          ]
         },
         {
           "id": "PSIR_057",
@@ -100,7 +134,10 @@
           "explanation": "The Public Service Rules (PSR) shall be reviewed every five years to update the provisions of the rules [65, 66].",
           "difficulty": "easy",
           "chapter": "Review of PSR",
-          "keywords": ["Review", "Five Years"]
+          "keywords": [
+            "Review",
+            "Five Years"
+          ]
         },
         {
           "id": "PSIR_058",
@@ -115,7 +152,11 @@
           "explanation": "The Performance Management System (PMS) shall replace the Annual Performance Evaluation Report (APER) for the Federal Public Service [37, 67].",
           "difficulty": "easy",
           "chapter": "Performance Management System",
-          "keywords": ["PMS", "APER", "Replacement"]
+          "keywords": [
+            "PMS",
+            "APER",
+            "Replacement"
+          ]
         },
         {
           "id": "PSIR_059",
@@ -130,7 +171,11 @@
           "explanation": "The rationale is to ensure that employees are able to respond to work demands remotely, such that MDAs continue to function adequately with minimal disruption in the face of any pandemic/emergencies [22, 68].",
           "difficulty": "medium",
           "chapter": "Rationale for Virtual Meetings",
-          "keywords": ["Virtual Meetings", "Emergencies", "Continuity"]
+          "keywords": [
+            "Virtual Meetings",
+            "Emergencies",
+            "Continuity"
+          ]
         },
         {
           "id": "PSIR_060",
@@ -145,17 +190,29 @@
           "explanation": "The Examination Board shall be responsible for the conduct and supervision of the examinations. The Board shall comprise the Permanent Secretary, CMO (OHCSF) as Chairman [69, 70].",
           "difficulty": "medium",
           "chapter": "Examination Board",
-          "keywords": ["Confirmation Exam", "CMO", "OHCSF"]
+          "keywords": [
+            "Confirmation Exam",
+            "CMO",
+            "OHCSF"
+          ]
         },
         {
           "id": "PSIR_061",
           "question": "How long after first appointment must officers eligible for compulsory confirmation examination have served before taking the exam?",
-          "options": ["Three months", "Six months", "One year", "Two years"],
+          "options": [
+            "Three months",
+            "Six months",
+            "One year",
+            "Two years"
+          ],
           "correct": 1,
           "explanation": "Newly recruited Officer who has spent six months and above shall be allowed to sit for compulsory examination for confirmation in the Service [71].",
           "difficulty": "easy",
           "chapter": "Compulsory Confirmation",
-          "keywords": ["Confirmation Exam", "Six Months"]
+          "keywords": [
+            "Confirmation Exam",
+            "Six Months"
+          ]
         },
         {
           "id": "PSIR_062",
@@ -170,7 +227,11 @@
           "explanation": "An Officer who fails the examination after three consecutive attempts shall by virtue of such failures be required to resign or withdraw from the service [72].",
           "difficulty": "easy",
           "chapter": "Failure to Pass Confirmation Exam",
-          "keywords": ["Confirmation Exam", "Three attempts", "Resign"]
+          "keywords": [
+            "Confirmation Exam",
+            "Three attempts",
+            "Resign"
+          ]
         },
         {
           "id": "PSIR_063",
@@ -185,7 +246,11 @@
           "explanation": "Appointments may be made for a prescribed period of time in the following categories: Contract Appointments, Sabbatical Appointment, Career Exchange Programme, Talent Sourcing Strategy, Internship and Volunteerism in the Federal Service [73, 74].",
           "difficulty": "easy",
           "chapter": "Short Term Appointments",
-          "keywords": ["Short Term", "Internship", "Volunteerism"]
+          "keywords": [
+            "Short Term",
+            "Internship",
+            "Volunteerism"
+          ]
         },
         {
           "id": "PSIR_064",
@@ -200,7 +265,10 @@
           "explanation": "Internship connotes a structured experience that relates to a student’s/graduate’s discipline or career goal and helps to enhance academic, career, professional and personal development [75].",
           "difficulty": "medium",
           "chapter": "Internship Definition",
-          "keywords": ["Internship", "Structured Experience"]
+          "keywords": [
+            "Internship",
+            "Structured Experience"
+          ]
         },
         {
           "id": "PSIR_065",
@@ -215,7 +283,10 @@
           "explanation": "Secondment means the temporary release of an Officer to the service of another government approved body or any recognized International Organization or body for a **specified period** [1, 2].",
           "difficulty": "hard",
           "chapter": "Secondment/Contract Duration",
-          "keywords": ["Secondment", "Temporary Release"]
+          "keywords": [
+            "Secondment",
+            "Temporary Release"
+          ]
         },
         {
           "id": "PSIR_066",
@@ -230,7 +301,10 @@
           "explanation": "Sabbatical Appointment applies to the Service is the appointment of an officer on GL 15 or equivalent and above [75].",
           "difficulty": "easy",
           "chapter": "Sabbatical Appointment",
-          "keywords": ["Sabbatical", "GL 15"]
+          "keywords": [
+            "Sabbatical",
+            "GL 15"
+          ]
         },
         {
           "id": "PSIR_067",
@@ -245,7 +319,11 @@
           "explanation": "The mandatory retirement age for all grades in the Service shall be 60 years or 35 years of pensionable service whichever is earlier [79].",
           "difficulty": "easy",
           "chapter": "Mandatory Retirement",
-          "keywords": ["Retirement", "60 years", "35 years"]
+          "keywords": [
+            "Retirement",
+            "60 years",
+            "35 years"
+          ]
         },
         {
           "id": "PSIR_068",
@@ -260,7 +338,10 @@
           "explanation": "Concealment of any of the facts... or any false statement... shall be regarded as sufficient grounds for non-employment or for subsequent termination of appointment without notice [80].",
           "difficulty": "medium",
           "chapter": "Statement on Appointment",
-          "keywords": ["False Statement", "Termination"]
+          "keywords": [
+            "False Statement",
+            "Termination"
+          ]
         },
         {
           "id": "PSIR_069",
@@ -275,7 +356,10 @@
           "explanation": "The main purpose of issuing a Certificate of Service is that, it may be used as a reference, covering the holder's public service when seeking other employment [81, 82].",
           "difficulty": "easy",
           "chapter": "Certificate of Service Objective",
-          "keywords": ["Certificate of Service", "Reference"]
+          "keywords": [
+            "Certificate of Service",
+            "Reference"
+          ]
         },
         {
           "id": "PSIR_070",
@@ -290,7 +374,10 @@
           "explanation": "On return from annual leave, every Officer must complete and submit a Resumption of Duty Certificate (Form L.10) [83, 84].",
           "difficulty": "easy",
           "chapter": "Return from Leave",
-          "keywords": ["Resumption of Duty Certificate", "Annual Leave"]
+          "keywords": [
+            "Resumption of Duty Certificate",
+            "Annual Leave"
+          ]
         },
         {
           "id": "PSIR_071",
@@ -305,7 +392,10 @@
           "explanation": "Junior Posts are posts in Ministries/Extra-Ministerial Offices attracting emoluments on Grade Level 06 and below [13].",
           "difficulty": "easy",
           "chapter": "General Definitions",
-          "keywords": ["Junior Posts", "GL 06"]
+          "keywords": [
+            "Junior Posts",
+            "GL 06"
+          ]
         },
         {
           "id": "PSIR_072",
@@ -320,7 +410,10 @@
           "explanation": "Annual Leave entitlement for GL 07 and above is 30 working days [85].",
           "difficulty": "easy",
           "chapter": "Annual Leave Entitlement",
-          "keywords": ["Annual Leave", "30 working days"]
+          "keywords": [
+            "Annual Leave",
+            "30 working days"
+          ]
         },
         {
           "id": "PSIR_073",
@@ -335,7 +428,10 @@
           "explanation": "No Officer may leave the Public Service take with him any public record without the written permission of the Permanent Secretary, Service Policies and Strategies Office, OHCSF [86].",
           "difficulty": "medium",
           "chapter": "Removal of Public Records",
-          "keywords": ["Public Records", "OHCSF"]
+          "keywords": [
+            "Public Records",
+            "OHCSF"
+          ]
         },
         {
           "id": "PSIR_074",
@@ -350,7 +446,11 @@
           "explanation": "Appointments to offices in the Federal Civil Service are made on the authority of the Federal Civil Service Commission [5]. Permanent Secretaries/Heads of Extra-Ministerial Offices are authorized to appoint candidates where powers have been delegated [5].",
           "difficulty": "easy",
           "chapter": "Authority for Appointment",
-          "keywords": ["FCSC", "Deployment", "Appointments"]
+          "keywords": [
+            "FCSC",
+            "Deployment",
+            "Appointments"
+          ]
         },
         {
           "id": "PSIR_075",
@@ -365,7 +465,10 @@
           "explanation": "No Officer shall, without the express permission of his Permanent Secretary/Head of Extra-Ministerial Office, speak in public or broadcast on any matter which may reasonably be regarded as of a political or administrative nature [87].",
           "difficulty": "medium",
           "chapter": "Publication and Public Utterances",
-          "keywords": ["Public Utterances", "Permission"]
+          "keywords": [
+            "Public Utterances",
+            "Permission"
+          ]
         },
         {
           "id": "PSIR_076",
@@ -380,7 +483,10 @@
           "explanation": "Job Descriptions (JDs) shall be available for each job, and used to capture detailed job contents including scope, responsibilities, reporting lines, etc. Performance expectations shall be based on the contents of JD [88].",
           "difficulty": "medium",
           "chapter": "Performance Planning",
-          "keywords": ["PMS", "Job Descriptions (JDs)"]
+          "keywords": [
+            "PMS",
+            "Job Descriptions (JDs)"
+          ]
         },
         {
           "id": "PSIR_077",
@@ -395,7 +501,11 @@
           "explanation": "The 2021 Edition of Public Service Rules (PSR) includes emerging issues such as Performance Management System, Talent Sourcing, Volunteerism, Virtual Meetings/Engagements [89, 90].",
           "difficulty": "easy",
           "chapter": "Emerging Issues (2021 PSR)",
-          "keywords": ["Virtual Meetings", "Emerging Issues", "2021 PSR"]
+          "keywords": [
+            "Virtual Meetings",
+            "Emerging Issues",
+            "2021 PSR"
+          ]
         },
         {
           "id": "PSIR_078",
@@ -410,17 +520,29 @@
           "explanation": "An Officer may be required to return to duty before the expiration of his authorized leave by the Permanent Secretary/Head of Extra-Ministerial Office [85].",
           "difficulty": "medium",
           "chapter": "Curtailment of Leave",
-          "keywords": ["Leave", "Recall", "Curtailment"]
+          "keywords": [
+            "Leave",
+            "Recall",
+            "Curtailment"
+          ]
         },
         {
           "id": "PSIR_079",
           "question": "What is the maximum number of days a newly appointed Officer on GL.07–17 is expected to complete the confirmation examination after taking up their appointment in the Ministry/Extra-Ministerial Office?",
-          "options": ["Six months", "One year", "Two years", "Three years"],
+          "options": [
+            "Six months",
+            "One year",
+            "Two years",
+            "Three years"
+          ],
           "correct": 2,
           "explanation": "All officers must take the confirmation examination within two years from the date of taking up their appointments in the Ministry/Extra-Ministerial Office [72].",
           "difficulty": "medium",
           "chapter": "Confirmation Examination",
-          "keywords": ["Confirmation Exam", "Two years"]
+          "keywords": [
+            "Confirmation Exam",
+            "Two years"
+          ]
         },
         {
           "id": "PSIR_080",
@@ -435,7 +557,11 @@
           "explanation": "Selection shall be through competitive examination process including but not limited to written examination, test of ICT proficiency and oral interview [71].",
           "difficulty": "medium",
           "chapter": "Selection Process for Promotion",
-          "keywords": ["Promotion", "ICT proficiency", "Selection"]
+          "keywords": [
+            "Promotion",
+            "ICT proficiency",
+            "Selection"
+          ]
         },
         {
           "id": "PSIR_081",
@@ -450,7 +576,10 @@
           "explanation": "Payment of promotion arrears shall be made within the year promotion is effected [8, 9].",
           "difficulty": "medium",
           "chapter": "Promotion Arrears",
-          "keywords": ["Promotion Arrears", "Timing"]
+          "keywords": [
+            "Promotion Arrears",
+            "Timing"
+          ]
         },
         {
           "id": "PSIR_082",
@@ -465,27 +594,49 @@
           "explanation": "A Director... shall compulsively retire upon serving eight years on the post; and a Permanent Secretary shall hold office for a term of four years and renewable for a further term of four years [79]. (The Director rule mentions 8 years, while the PS rule mentions 4+4 years).",
           "difficulty": "hard",
           "chapter": "Tenure Policy",
-          "keywords": ["Director", "Permanent Secretary", "Tenure"]
+          "keywords": [
+            "Director",
+            "Permanent Secretary",
+            "Tenure"
+          ]
         },
         {
           "id": "PSIR_083",
           "question": "What is the minimum number of years an officer on GL.07–14 must spend in post before being considered eligible for promotion?",
-          "options": ["2 years", "3 years", "4 years", "5 years"],
+          "options": [
+            "2 years",
+            "3 years",
+            "4 years",
+            "5 years"
+          ],
           "correct": 1,
           "explanation": "The minimum number of years that an Officer must spend in a post before being considered eligible for promotion for GL.07–14 is Minimum of 3 years [41].",
           "difficulty": "easy",
           "chapter": "Eligibility for Promotion",
-          "keywords": ["GL 07-14", "3 years", "Promotion"]
+          "keywords": [
+            "GL 07-14",
+            "3 years",
+            "Promotion"
+          ]
         },
         {
           "id": "PSIR_084",
           "question": "What is the maximum period of continuous absence from duty without leave that makes an officer liable to dismissal (deemed to have resigned)?",
-          "options": ["7 days", "10 days", "14 days", "30 days"],
+          "options": [
+            "7 days",
+            "10 days",
+            "14 days",
+            "30 days"
+          ],
           "correct": 2,
           "explanation": "An Officer absent without Leave for 14 days renders himself liable to dismissal [91].",
           "difficulty": "easy",
           "chapter": "Absence without Leave",
-          "keywords": ["Absence", "14 days", "Dismissal"]
+          "keywords": [
+            "Absence",
+            "14 days",
+            "Dismissal"
+          ]
         },
         {
           "id": "PSIR_085",
@@ -500,7 +651,11 @@
           "explanation": "Certificate of service to be issued to Officers holding senior posts on GL.07 and above, requires the countersignature of the Permanent Secretary of the retiring Officer and the Permanent Secretary, Federal Civil Service Commission [92].",
           "difficulty": "medium",
           "chapter": "Certificate of Service Authority",
-          "keywords": ["Certificate of Service", "Countersignature", "FCSC"]
+          "keywords": [
+            "Certificate of Service",
+            "Countersignature",
+            "FCSC"
+          ]
         },
         {
           "id": "PSIR_086",
@@ -515,7 +670,10 @@
           "explanation": "An Officer whose transfer is at his own request shall be entitled to only transport allowance and not resettlement allowance [93].",
           "difficulty": "medium",
           "chapter": "Resettlement Allowance",
-          "keywords": ["Resettlement Allowance", "Officer's Request"]
+          "keywords": [
+            "Resettlement Allowance",
+            "Officer's Request"
+          ]
         },
         {
           "id": "PSIR_087",
@@ -530,7 +688,10 @@
           "explanation": "Resettlement Allowance shall be paid at the rate of 2 per cent of an Officer’s annual total emolument [93].",
           "difficulty": "medium",
           "chapter": "Resettlement Allowance Rate",
-          "keywords": ["Resettlement Allowance", "2 per cent"]
+          "keywords": [
+            "Resettlement Allowance",
+            "2 per cent"
+          ]
         },
         {
           "id": "PSIR_088",
@@ -545,7 +706,11 @@
           "explanation": "Non-accident bonus shall be paid at the rate of N50,000.00 per annum, for drivers who are not involved in an accident... and have been driving for a period of not less than six months in a year [94].",
           "difficulty": "medium",
           "chapter": "Non-Accident Bonus",
-          "keywords": ["Non-accident bonus", "Drivers", "N50,000"]
+          "keywords": [
+            "Non-accident bonus",
+            "Drivers",
+            "N50,000"
+          ]
         },
         {
           "id": "PSIR_089",
@@ -560,7 +725,11 @@
           "explanation": "Rewards for each of the awards shall be in the form of certificates, letter of recommendation, engraved plaques or trophies, medals, cash gifts, sponsorship... [95].",
           "difficulty": "easy",
           "chapter": "Form of Reward",
-          "keywords": ["Reward", "Cash Gifts", "Masterclass"]
+          "keywords": [
+            "Reward",
+            "Cash Gifts",
+            "Masterclass"
+          ]
         },
         {
           "id": "PSIR_090",
@@ -575,7 +744,11 @@
           "explanation": "Objectives of Staff Development... to enhance the knowledge, skills, attitude, effectiveness and efficiency of staff [96].",
           "difficulty": "easy",
           "chapter": "Staff Development Objectives",
-          "keywords": ["Staff Development", "Effectiveness", "Efficiency"]
+          "keywords": [
+            "Staff Development",
+            "Effectiveness",
+            "Efficiency"
+          ]
         },
         {
           "id": "PSIR_091",
@@ -590,7 +763,11 @@
           "explanation": "Individual Performance Planning shall be done at the beginning of the Performance Management Cycle [88].",
           "difficulty": "easy",
           "chapter": "Performance Planning",
-          "keywords": ["PMS", "Performance Planning", "Beginning of Cycle"]
+          "keywords": [
+            "PMS",
+            "Performance Planning",
+            "Beginning of Cycle"
+          ]
         },
         {
           "id": "PSIR_092",
@@ -605,7 +782,10 @@
           "explanation": "No Officer may borrow money either as principal or as surety or in any manner which places him under a financial obligation to a person within the Public Service [80].",
           "difficulty": "medium",
           "chapter": "Borrowing Money",
-          "keywords": ["Borrowing Money", "Prohibition"]
+          "keywords": [
+            "Borrowing Money",
+            "Prohibition"
+          ]
         },
         {
           "id": "PSIR_093",
@@ -620,7 +800,10 @@
           "explanation": "Annual Leave entitlement for GL 04–06 is 21 working days [85].",
           "difficulty": "easy",
           "chapter": "Annual Leave Entitlement",
-          "keywords": ["Annual Leave", "21 working days"]
+          "keywords": [
+            "Annual Leave",
+            "21 working days"
+          ]
         },
         {
           "id": "PSIR_094",
@@ -635,7 +818,11 @@
           "explanation": "An Officer who is incapacitated as a result of injury sustained in the course of his official duties shall be entitled to draw full emolument until he is discharged from sick leave or permanently invalided [50].",
           "difficulty": "medium",
           "chapter": "Incapacitation/Removal of Officer",
-          "keywords": ["Incapacitation", "Injury", "Full Emolument"]
+          "keywords": [
+            "Incapacitation",
+            "Injury",
+            "Full Emolument"
+          ]
         },
         {
           "id": "PSIR_095",
@@ -650,7 +837,11 @@
           "explanation": "All records generated during any of the phases of the annual Performance Management cycle... shall be administered in line with good administrative document and data management practices [97].",
           "difficulty": "medium",
           "chapter": "Record Management",
-          "keywords": ["PMS", "Record Management", "Data Management"]
+          "keywords": [
+            "PMS",
+            "Record Management",
+            "Data Management"
+          ]
         },
         {
           "id": "PSIR_096",
@@ -665,7 +856,10 @@
           "explanation": "Failure to submit them within this time limit will be taken to mean that you do not wish to make any, and appropriate sanction will be invoked against you [98].",
           "difficulty": "easy",
           "chapter": "Preliminary Letter/Discipline",
-          "keywords": ["Sanction", "Time Limit"]
+          "keywords": [
+            "Sanction",
+            "Time Limit"
+          ]
         },
         {
           "id": "PSIR_097",
@@ -680,7 +874,11 @@
           "explanation": "Conditions of Service, Scheme of Service and the Organizational Structure for Parastatals shall be approved by the Office of the Head of the Civil Service of the Federation [44].",
           "difficulty": "medium",
           "chapter": "Parastatals Conditions Approval",
-          "keywords": ["Parastatals", "Scheme of Service", "OHCSF"]
+          "keywords": [
+            "Parastatals",
+            "Scheme of Service",
+            "OHCSF"
+          ]
         },
         {
           "id": "PSIR_098",
@@ -695,7 +893,11 @@
           "explanation": "Interns must be postgraduates, undergraduates, or students in other tertiary institutions while volunteers must possess a University Degree, HND, NCE, ND and SSCE or its equivalent [76].",
           "difficulty": "easy",
           "chapter": "Qualifications for Interns/Volunteers",
-          "keywords": ["Interns", "Volunteers", "SSCE"]
+          "keywords": [
+            "Interns",
+            "Volunteers",
+            "SSCE"
+          ]
         },
         {
           "id": "PSIR_099",
@@ -710,7 +912,10 @@
           "explanation": "An Officer shall qualify for Annual Leave not less than six months previous service within a leave earning service year [99].",
           "difficulty": "medium",
           "chapter": "Qualifying Period for Annual Leave",
-          "keywords": ["Annual Leave", "Six months"]
+          "keywords": [
+            "Annual Leave",
+            "Six months"
+          ]
         },
         {
           "id": "PSIR_100",
@@ -725,14 +930,18 @@
           "explanation": "Certificate of service to be issued to Officers holding senior posts on GL.07 and above, requires the countersignature of the Permanent Secretary of the retiring Officer and the Permanent Secretary, Federal Civil Service Commission [92].",
           "difficulty": "medium",
           "chapter": "Certificate of Service",
-          "keywords": ["Certificate of Service", "FCSC", "Senior Post"]
+          "keywords": [
+            "Certificate of Service",
+            "FCSC",
+            "Senior Post"
+          ]
         }
       ]
     },
     {
       "id": "ca_national_governance",
-      "name": "National Governance and Policy Developments",
-      "description": "Federal Government legal, constitutional, and financial frameworks and policies.",
+      "name": "National Governance & Policy Developments",
+      "description": "Current policy/governance developments in Nigeria.",
       "icon": "⚖️",
       "questions": [
         {
@@ -748,7 +957,11 @@
           "explanation": "The Rules apply only to the extent that they are not inconsistent with the provisions of the Constitution of the Federal Republic of Nigeria [1, 2].",
           "difficulty": "easy",
           "chapter": "Conformity with Constitution",
-          "keywords": ["PSR", "Constitution", "Supremacy"]
+          "keywords": [
+            "PSR",
+            "Constitution",
+            "Supremacy"
+          ]
         },
         {
           "id": "NGPD_002",
@@ -763,7 +976,10 @@
           "explanation": "Each Rule has been given a number containing six digits. The first two indicate the Chapter [3].",
           "difficulty": "easy",
           "chapter": "PSR Structure",
-          "keywords": ["Rule Numbering", "Chapter"]
+          "keywords": [
+            "Rule Numbering",
+            "Chapter"
+          ]
         },
         {
           "id": "NGPD_003",
@@ -778,7 +994,11 @@
           "explanation": "The Federal Civil Service Commission shall make appointments to posts graded GL.07-17 [4, 5].",
           "difficulty": "easy",
           "chapter": "Appointments",
-          "keywords": ["FCSC", "Appointments", "GL 07-17"]
+          "keywords": [
+            "FCSC",
+            "Appointments",
+            "GL 07-17"
+          ]
         },
         {
           "id": "NGPD_004",
@@ -793,17 +1013,29 @@
           "explanation": "Date of birth recorded on appointment by an officer shall not be changed throughout the career of the Officer. Any contravention shall be regarded as an act of serious misconduct [6].",
           "difficulty": "medium",
           "chapter": "Personal Records",
-          "keywords": ["Date of Birth", "Serious Misconduct"]
+          "keywords": [
+            "Date of Birth",
+            "Serious Misconduct"
+          ]
         },
         {
           "id": "NGPD_005",
           "question": "What is the deadline for the submission of applications from interested candidates following a recruitment advertisement by the FCSC?",
-          "options": ["Two weeks", "One month", "Six weeks", "Three months"],
+          "options": [
+            "Two weeks",
+            "One month",
+            "Six weeks",
+            "Three months"
+          ],
           "correct": 2,
           "explanation": "The deadline for submission of applications from interested candidates shall be six weeks from the date of placement of the advertisement [4, 5].",
           "difficulty": "medium",
           "chapter": "Recruitment Procedure",
-          "keywords": ["Advertisement", "Six Weeks", "FCSC"]
+          "keywords": [
+            "Advertisement",
+            "Six Weeks",
+            "FCSC"
+          ]
         },
         {
           "id": "NGPD_006",
@@ -818,7 +1050,11 @@
           "explanation": "Each Ministry/Extra-Ministerial Office shall appoint Junior Staff on GL. 06 and below. This shall be handled by the Junior Staff Committee [7].",
           "difficulty": "easy",
           "chapter": "Junior Appointments",
-          "keywords": ["JSC", "GL 06", "Appointments"]
+          "keywords": [
+            "JSC",
+            "GL 06",
+            "Appointments"
+          ]
         },
         {
           "id": "NGPD_007",
@@ -833,7 +1069,10 @@
           "explanation": "The employment of unpaid Staff is prohibited [6].",
           "difficulty": "easy",
           "chapter": "Unpaid Staff",
-          "keywords": ["Unpaid Staff", "Prohibited"]
+          "keywords": [
+            "Unpaid Staff",
+            "Prohibited"
+          ]
         },
         {
           "id": "NGPD_008",
@@ -848,7 +1087,11 @@
           "explanation": "If the Officer is promoted to a grade level that does not overlap his old grade level, he will be placed at the minimum point of his new salary grade level [8, 9].",
           "difficulty": "medium",
           "chapter": "Emoluments on Promotion",
-          "keywords": ["Promotion", "Emoluments", "Minimum Point"]
+          "keywords": [
+            "Promotion",
+            "Emoluments",
+            "Minimum Point"
+          ]
         },
         {
           "id": "NGPD_009",
@@ -863,17 +1106,29 @@
           "explanation": "An increment deferred or withheld cannot be restored with retrospective effect in consequence of improved service during a later increment earning period [10-12].",
           "difficulty": "medium",
           "chapter": "Increments",
-          "keywords": ["Increment", "Retrospect", "Withheld"]
+          "keywords": [
+            "Increment",
+            "Retrospect",
+            "Withheld"
+          ]
         },
         {
           "id": "NGPD_010",
           "question": "What term defines the temporary removal of an officer from performing his normal duties when disciplinary proceedings for dismissal are undertaken, and the officer is paid half salary?",
-          "options": ["Suspension", "Demotion", "Interdiction", "Termination"],
+          "options": [
+            "Suspension",
+            "Demotion",
+            "Interdiction",
+            "Termination"
+          ],
           "correct": 2,
           "explanation": "Interdiction means the temporary removal of an officer... during which he shall be placed on half salary [13].",
           "difficulty": "easy",
           "chapter": "General Definitions",
-          "keywords": ["Interdiction", "Half Salary"]
+          "keywords": [
+            "Interdiction",
+            "Half Salary"
+          ]
         },
         {
           "id": "NGPD_011",
@@ -888,7 +1143,11 @@
           "explanation": "Posting is the initial assignment of an officer to position (job schedule) [14]. The Director HR submits reports on posting instructions [15].",
           "difficulty": "easy",
           "chapter": "Posting",
-          "keywords": ["Posting", "Assignment", "Director HR"]
+          "keywords": [
+            "Posting",
+            "Assignment",
+            "Director HR"
+          ]
         },
         {
           "id": "NGPD_012",
@@ -903,7 +1162,11 @@
           "explanation": "Fairness to all Officers shall be an underlying principle in order to ensure that the system is not used as a tool for coercion, punishment or cronyism [16].",
           "difficulty": "medium",
           "chapter": "Procedure for Posting",
-          "keywords": ["Posting", "Coercion", "Cronyism"]
+          "keywords": [
+            "Posting",
+            "Coercion",
+            "Cronyism"
+          ]
         },
         {
           "id": "NGPD_013",
@@ -918,7 +1181,11 @@
           "explanation": "All Officers on official assignment are entitled to airfare, depending on the exigencies and with the approval of the Accounting Officer [17, 18].",
           "difficulty": "medium",
           "chapter": "Transport Allowance",
-          "keywords": ["Airfare", "Accounting Officer", "Official Assignment"]
+          "keywords": [
+            "Airfare",
+            "Accounting Officer",
+            "Official Assignment"
+          ]
         },
         {
           "id": "NGPD_014",
@@ -933,17 +1200,29 @@
           "explanation": "All Officers when travelling to towns and cities where air transport services do not exist shall be paid Kilometer Allowance [17, 19].",
           "difficulty": "easy",
           "chapter": "Kilometer Allowance",
-          "keywords": ["Kilometer Allowance", "Travel"]
+          "keywords": [
+            "Kilometer Allowance",
+            "Travel"
+          ]
         },
         {
           "id": "NGPD_015",
           "question": "How much of their Duty Tour Allowance (DTA) are officers granted for the purpose of local running (transport and local errands)?",
-          "options": ["10% of DTA", "20% of DTA", "30% of DTA", "50% of DTA"],
+          "options": [
+            "10% of DTA",
+            "20% of DTA",
+            "30% of DTA",
+            "50% of DTA"
+          ],
           "correct": 2,
           "explanation": "For the purpose of local running, Officers shall be granted 30% of their duty tour allowance in addition to airport taxi, at the prevailing rates [17, 20].",
           "difficulty": "medium",
           "chapter": "Local Running Allowance",
-          "keywords": ["DTA", "Local Running", "30%"]
+          "keywords": [
+            "DTA",
+            "Local Running",
+            "30%"
+          ]
         },
         {
           "id": "NGPD_016",
@@ -958,7 +1237,11 @@
           "explanation": "Security of Government data/information... shall be conducted in line with the Guidelines prescribed from time to time by the Federal Ministry of Communications and Digital Economy [21, 22].",
           "difficulty": "medium",
           "chapter": "Security of Data (Virtual Meetings)",
-          "keywords": ["Virtual Meetings", "Security", "FMCDE"]
+          "keywords": [
+            "Virtual Meetings",
+            "Security",
+            "FMCDE"
+          ]
         },
         {
           "id": "NGPD_017",
@@ -973,7 +1256,11 @@
           "explanation": "No sidebar conversations [23] and No multi-tasking (e.g., running e-mail or treating files while participating in virtual meetings) [24].",
           "difficulty": "easy",
           "chapter": "Ground Rules (Virtual Meetings)",
-          "keywords": ["Multi-tasking", "Virtual Meetings", "Prohibited"]
+          "keywords": [
+            "Multi-tasking",
+            "Virtual Meetings",
+            "Prohibited"
+          ]
         },
         {
           "id": "NGPD_018",
@@ -988,7 +1275,11 @@
           "explanation": "Paternity Allowance is not explicitly listed in Rule 140102 [25], which lists Acting, Books, Call Duty, Disengagement, Duty Tour, Estacode, Hazard, Kilometer, Overtime, Resettlement, etc. (Paternity Leave is a time entitlement, not a cash allowance listed here).",
           "difficulty": "hard",
           "chapter": "Types of Allowances",
-          "keywords": ["Allowances", "Paternity", "Chapter 14"]
+          "keywords": [
+            "Allowances",
+            "Paternity",
+            "Chapter 14"
+          ]
         },
         {
           "id": "NGPD_019",
@@ -1003,7 +1294,11 @@
           "explanation": "Historical manuscripts... shall not be appropriated to his own use, but their existence must be reported to Permanent Secretary/ Head of Extra Ministerial Office in order that steps may be taken for their examination and preservation [26].",
           "difficulty": "medium",
           "chapter": "Historical Documents",
-          "keywords": ["Historical Manuscripts", "Preservation", "Reporting"]
+          "keywords": [
+            "Historical Manuscripts",
+            "Preservation",
+            "Reporting"
+          ]
         },
         {
           "id": "NGPD_020",
@@ -1018,7 +1313,11 @@
           "explanation": "The Federal Civil Service Commission has delegated full disciplinary powers to Permanent Secretaries and Heads of Extra-Ministerial Offices in respect of officers on Salary G.L. 13 and below with the exception of the power of dismissal which has been delegated only from G.L. 06 and below [27].",
           "difficulty": "medium",
           "chapter": "Delegated Disciplinary Powers",
-          "keywords": ["GL 13", "Permanent Secretary", "Disciplinary Powers"]
+          "keywords": [
+            "GL 13",
+            "Permanent Secretary",
+            "Disciplinary Powers"
+          ]
         },
         {
           "id": "NGPD_021",
@@ -1033,17 +1332,29 @@
           "explanation": "Every Officer is prohibited from abstracting or copying official minutes, records or other documents except in accordance with official routine or with special permission of his Permanent Secretary/Head of Extra-Ministerial Office [28].",
           "difficulty": "medium",
           "chapter": "Abstraction/Copying Documents",
-          "keywords": ["Official Documents", "Abstraction", "Prohibited"]
+          "keywords": [
+            "Official Documents",
+            "Abstraction",
+            "Prohibited"
+          ]
         },
         {
           "id": "NGPD_022",
           "question": "An appeal made by an aggrieved officer for reconsideration of a decision must be handled and concluded within what maximum period?",
-          "options": ["90 days", "One year", "Six months", "18 months"],
+          "options": [
+            "90 days",
+            "One year",
+            "Six months",
+            "18 months"
+          ],
           "correct": 2,
           "explanation": "An appeal from an aggrieved Officer shall be handled and concluded within six months [29, 30].",
           "difficulty": "easy",
           "chapter": "Petitions and Appeals Timing",
-          "keywords": ["Appeal", "Six Months"]
+          "keywords": [
+            "Appeal",
+            "Six Months"
+          ]
         },
         {
           "id": "NGPD_023",
@@ -1058,7 +1369,11 @@
           "explanation": "An Officer on leave of absence shall not accept any paid employment without previously obtaining the express approval of the Office of the Head of the Civil Service of the Federation (OHCSF) [31].",
           "difficulty": "medium",
           "chapter": "Paid Appointment during Leave",
-          "keywords": ["Leave of Absence", "Paid Appointment", "OHCSF"]
+          "keywords": [
+            "Leave of Absence",
+            "Paid Appointment",
+            "OHCSF"
+          ]
         },
         {
           "id": "NGPD_024",
@@ -1073,7 +1388,11 @@
           "explanation": "It is the duty of every Officer to report to Government any discovery of what he considers to be valuable minerals. Officers are prohibited, under pain of dismissal, from giving any information on such valuable discoveries to any syndicate, company or individual [31].",
           "difficulty": "medium",
           "chapter": "Mineral Discoveries",
-          "keywords": ["Mineral Discoveries", "Dismissal", "Reporting"]
+          "keywords": [
+            "Mineral Discoveries",
+            "Dismissal",
+            "Reporting"
+          ]
         },
         {
           "id": "NGPD_025",
@@ -1088,7 +1407,10 @@
           "explanation": "Suspension means removal of an Officer from performing the duties of his office... during which period he shall earn no salary [32].",
           "difficulty": "easy",
           "chapter": "General Definitions",
-          "keywords": ["Suspension", "No Salary"]
+          "keywords": [
+            "Suspension",
+            "No Salary"
+          ]
         },
         {
           "id": "NGPD_026",
@@ -1103,7 +1425,10 @@
           "explanation": "Senior Posts are posts attracting emoluments on Grade Level GL.07 and above [32].",
           "difficulty": "easy",
           "chapter": "General Definitions",
-          "keywords": ["Senior Posts", "GL 07"]
+          "keywords": [
+            "Senior Posts",
+            "GL 07"
+          ]
         },
         {
           "id": "NGPD_027",
@@ -1118,7 +1443,10 @@
           "explanation": "The recipient of any of the awards must have been considered as the best on the basis of outstanding performance of duties and exemplary conduct as outlined in approved Rewards and Recognition Scheme (R&RS) [33, 34].",
           "difficulty": "medium",
           "chapter": "Basis for Award",
-          "keywords": ["Reward", "Outstanding Performance"]
+          "keywords": [
+            "Reward",
+            "Outstanding Performance"
+          ]
         },
         {
           "id": "NGPD_028",
@@ -1133,7 +1461,11 @@
           "explanation": "The Accounting Officer of every Federal Public Service Institution shall be responsible for ensuring the successful implementation of the PMS across all levels of officers [35].",
           "difficulty": "medium",
           "chapter": "PMS Accountability",
-          "keywords": ["PMS", "Accounting Officer", "Implementation"]
+          "keywords": [
+            "PMS",
+            "Accounting Officer",
+            "Implementation"
+          ]
         },
         {
           "id": "NGPD_029",
@@ -1148,7 +1480,10 @@
           "explanation": "When an Officer is seconded to another Ministry/Extra Ministerial Office, the Permanent Secretary/Head of the Extra-Ministerial Office to which he is seconded is responsible for furnishing the reports on the Officer [36, 37].",
           "difficulty": "easy",
           "chapter": "Report during Secondment",
-          "keywords": ["Secondment", "Performance Report"]
+          "keywords": [
+            "Secondment",
+            "Performance Report"
+          ]
         },
         {
           "id": "NGPD_030",
@@ -1163,7 +1498,11 @@
           "explanation": "The final Progress Report rendered after 21 months' service shall include a definite recommendation as to whether the Officer's appointment should be confirmed or terminated or whether his contract should be renewed [38].",
           "difficulty": "medium",
           "chapter": "Final Progress Report",
-          "keywords": ["Confirmation", "Termination", "21 months"]
+          "keywords": [
+            "Confirmation",
+            "Termination",
+            "21 months"
+          ]
         },
         {
           "id": "NGPD_031",
@@ -1178,17 +1517,30 @@
           "explanation": "The FCSC may at a subsequent incremental date grant one or more special increments having the effects of raising the salary of the Officer to or towards the level it would have reached if the previous withholding has not occurred [39].",
           "difficulty": "hard",
           "chapter": "Special Increments",
-          "keywords": ["Withheld Increment", "Special Increments", "Mitigation"]
+          "keywords": [
+            "Withheld Increment",
+            "Special Increments",
+            "Mitigation"
+          ]
         },
         {
           "id": "NGPD_032",
           "question": "All decisions on deferment or withholding of increment and stoppage of salaries must be communicated to the officer concerned within what period?",
-          "options": ["Two weeks", "One month", "Six weeks", "Three months"],
+          "options": [
+            "Two weeks",
+            "One month",
+            "Six weeks",
+            "Three months"
+          ],
           "correct": 0,
           "explanation": "All decisions on deferment or withholding of increment and stoppage of salaries shall be communicated... to the Officer concerned within two weeks [39].",
           "difficulty": "medium",
           "chapter": "Communication of Deferment",
-          "keywords": ["Deferment", "Withholding", "Two Weeks"]
+          "keywords": [
+            "Deferment",
+            "Withholding",
+            "Two Weeks"
+          ]
         },
         {
           "id": "NGPD_033",
@@ -1203,7 +1555,10 @@
           "explanation": "‘Classified matter’ means any information or thing which, under any system of security classification, is not to be disclosed to the public and of which the disclosure to the public would be prejudicial to the security of Nigeria [40].",
           "difficulty": "medium",
           "chapter": "Official Secrets Act",
-          "keywords": ["Classified Matter", "Official Secrets Act"]
+          "keywords": [
+            "Classified Matter",
+            "Official Secrets Act"
+          ]
         },
         {
           "id": "NGPD_034",
@@ -1218,7 +1573,10 @@
           "explanation": "All Officers who fall within the field of selection for any promotion exercise shall be considered except those who are under disciplinary action [41].",
           "difficulty": "medium",
           "chapter": "Promotion Eligibility",
-          "keywords": ["Disciplinary Action", "Promotion"]
+          "keywords": [
+            "Disciplinary Action",
+            "Promotion"
+          ]
         },
         {
           "id": "NGPD_035",
@@ -1233,7 +1591,11 @@
           "explanation": "Seniority and previous records of performance will be taken into account in choosing between candidates with equal potential for promotion [42].",
           "difficulty": "medium",
           "chapter": "Promotion Assessment",
-          "keywords": ["Seniority", "Performance", "Promotion"]
+          "keywords": [
+            "Seniority",
+            "Performance",
+            "Promotion"
+          ]
         },
         {
           "id": "NGPD_036",
@@ -1248,7 +1610,11 @@
           "explanation": "Conditions of Service, Scheme of Service and the Organizational Structure for Parastatals shall be approved by the Office of the Head of the Civil Service of the Federation, on the recommendation of the various Boards/ Councils [43, 44].",
           "difficulty": "medium",
           "chapter": "Parastatal Conditions",
-          "keywords": ["Parastatal", "Scheme of Service", "OHCSF"]
+          "keywords": [
+            "Parastatal",
+            "Scheme of Service",
+            "OHCSF"
+          ]
         },
         {
           "id": "NGPD_037",
@@ -1263,7 +1629,10 @@
           "explanation": "The ultimate penalty for serious misconduct is dismissal [45].",
           "difficulty": "easy",
           "chapter": "Discipline",
-          "keywords": ["Dismissal", "Serious Misconduct"]
+          "keywords": [
+            "Dismissal",
+            "Serious Misconduct"
+          ]
         },
         {
           "id": "NGPD_038",
@@ -1278,7 +1647,11 @@
           "explanation": "The ultimate penalty for serious misconduct is dismissal. An Officer who is dismissed forfeits all claims to retiring benefits, leave or transport grant etc. [45].",
           "difficulty": "medium",
           "chapter": "Dismissal Effects",
-          "keywords": ["Dismissal", "Forfeiture", "Retiring Benefits"]
+          "keywords": [
+            "Dismissal",
+            "Forfeiture",
+            "Retiring Benefits"
+          ]
         },
         {
           "id": "NGPD_039",
@@ -1293,7 +1666,11 @@
           "explanation": "The Board/Council of a parastatal shall approve promotion in respect of Senior Staff... while the promotion in respect of junior staff shall be delegated to Chief Executive Officer of the Agency on the recommendation of Junior Staff Committee [46].",
           "difficulty": "easy",
           "chapter": "Parastatal Staffing",
-          "keywords": ["JSC", "Parastatal", "GL 06"]
+          "keywords": [
+            "JSC",
+            "Parastatal",
+            "GL 06"
+          ]
         },
         {
           "id": "NGPD_040",
@@ -1308,7 +1685,11 @@
           "explanation": "The petition shall route such representation through the proper departmental channels, namely, the petitioner's superior Officer; the Chief Executive Officer; the Board/Council and the Supervising Ministry of the Organization [47].",
           "difficulty": "medium",
           "chapter": "Parastatal Petitions",
-          "keywords": ["Petition", "Parastatal", "Supervising Ministry"]
+          "keywords": [
+            "Petition",
+            "Parastatal",
+            "Supervising Ministry"
+          ]
         },
         {
           "id": "NGPD_041",
@@ -1323,7 +1704,10 @@
           "explanation": "In every five (5) years, an Officer shall present himself to a recognized Healthcare Provider for examination to certify that the Officer is sound in health and fit to continue in Service [48].",
           "difficulty": "easy",
           "chapter": "Medical Examination in Service",
-          "keywords": ["Medical Examination", "Five years"]
+          "keywords": [
+            "Medical Examination",
+            "Five years"
+          ]
         },
         {
           "id": "NGPD_042",
@@ -1338,7 +1722,11 @@
           "explanation": "Any prolonged absence from duty on ground of illness should be supported with... Medical Certificate of Treatment duly authorized by an approved Healthcare Provider [49].",
           "difficulty": "medium",
           "chapter": "Absence on Account of Illness",
-          "keywords": ["Illness", "HCP", "Medical Certificate"]
+          "keywords": [
+            "Illness",
+            "HCP",
+            "Medical Certificate"
+          ]
         },
         {
           "id": "NGPD_043",
@@ -1353,7 +1741,10 @@
           "explanation": "Sick leave for a period up to three months in the first instance may be allowed on the certificate of an approved Healthcare Provider to an Officer who is hospitalized [50].",
           "difficulty": "easy",
           "chapter": "Sick Leave Rules",
-          "keywords": ["Sick Leave", "Three months"]
+          "keywords": [
+            "Sick Leave",
+            "Three months"
+          ]
         },
         {
           "id": "NGPD_044",
@@ -1368,7 +1759,11 @@
           "explanation": "Government's responsibility shall be limited to payment of 100 per cent of the Officer's total annual emolument to the family as burial expenses [50].",
           "difficulty": "medium",
           "chapter": "Burial Expenses",
-          "keywords": ["Burial Expenses", "100%", "Pensionable Officer"]
+          "keywords": [
+            "Burial Expenses",
+            "100%",
+            "Pensionable Officer"
+          ]
         },
         {
           "id": "NGPD_045",
@@ -1383,7 +1778,11 @@
           "explanation": "Notwithstanding that throughout the Public Service Rules the terms 'Officer' and 'Staff' are referred to in the masculine gender, the provisions of the Rules apply equally to both genders [51].",
           "difficulty": "easy",
           "chapter": "Gender",
-          "keywords": ["Gender-neutral language", "Officer", "Staff"]
+          "keywords": [
+            "Gender-neutral language",
+            "Officer",
+            "Staff"
+          ]
         },
         {
           "id": "NGPD_046",
@@ -1398,7 +1797,11 @@
           "explanation": "When an invention is in all respects alien to the employment of the Officer, he shall normally be granted the full rights in such invention [52]. (Impliedly, rights belong to Government if related to employment).",
           "difficulty": "medium",
           "chapter": "Controlling Rights and Patents",
-          "keywords": ["Invention", "Patents", "Federal Government"]
+          "keywords": [
+            "Invention",
+            "Patents",
+            "Federal Government"
+          ]
         },
         {
           "id": "NGPD_047",
@@ -1413,7 +1816,11 @@
           "explanation": "When an Officer eligible for overtime payment is duly authorized to act in a post which attracts overtime payment, he will be paid for overtime on his full acting emolument [53].",
           "difficulty": "medium",
           "chapter": "Effect of Acting Appointment",
-          "keywords": ["Overtime", "Acting Appointment", "Emolument"]
+          "keywords": [
+            "Overtime",
+            "Acting Appointment",
+            "Emolument"
+          ]
         },
         {
           "id": "NGPD_048",
@@ -1428,7 +1835,10 @@
           "explanation": "The functions of the Committee shall be to make investigations and recommendations in connection with Rules 150301 and 150302 [54].",
           "difficulty": "medium",
           "chapter": "Inventions and Awards Committee",
-          "keywords": ["Inventions", "Awards Committee"]
+          "keywords": [
+            "Inventions",
+            "Awards Committee"
+          ]
         },
         {
           "id": "NGPD_049",
@@ -1443,7 +1853,11 @@
           "explanation": "Oversea Duty Tour by all public servants and estacode allowance shall be subject to the approval of the Head of the Civil Service of the Federation, on the recommendation of the Permanent Secretary/Head of the Extra-Ministerial Office [55, 56].",
           "difficulty": "medium",
           "chapter": "Estacode Approval",
-          "keywords": ["Estacode", "Oversea Duty Tour", "OHCSF"]
+          "keywords": [
+            "Estacode",
+            "Oversea Duty Tour",
+            "OHCSF"
+          ]
         },
         {
           "id": "NGPD_050",
@@ -1458,14 +1872,18 @@
           "explanation": "If he fails to comply with the instructions delivered to him at such address within seven days of such delivery, he will be regarded as absent from duty without leave [45].",
           "difficulty": "hard",
           "chapter": "Interdiction",
-          "keywords": ["Interdiction", "Seven Days", "Absence"]
+          "keywords": [
+            "Interdiction",
+            "Seven Days",
+            "Absence"
+          ]
         }
       ]
     },
     {
       "id": "ca_international_affairs",
-      "name": "International and Regional Affairs",
-      "description": "Nigeria's foreign relations, diplomacy, and international organizations.",
+      "name": "International & Regional Affairs",
+      "description": "Regional and global affairs relevant to Nigeria.",
       "icon": "🌍",
       "questions": [
         {
@@ -1481,7 +1899,11 @@
           "explanation": "António Guterres is the current Secretary-General of the United Nations [100, 101].",
           "difficulty": "easy",
           "chapter": "International Organizations",
-          "keywords": ["UN", "Secretary-General", "António Guterres"]
+          "keywords": [
+            "UN",
+            "Secretary-General",
+            "António Guterres"
+          ]
         },
         {
           "id": "IRA_102",
@@ -1496,7 +1918,11 @@
           "explanation": "A Senior Officer sent overseas on a course of instruction will be eligible for free air passage for himself only, but where the duration of the course of instruction is not less than nine months, his spouse may accompany him at Government expense [102].",
           "difficulty": "medium",
           "chapter": "Oversea Course Passage",
-          "keywords": ["Oversea Course", "Nine Months", "Spouse Passage"]
+          "keywords": [
+            "Oversea Course",
+            "Nine Months",
+            "Spouse Passage"
+          ]
         },
         {
           "id": "IRA_103",
@@ -1511,7 +1937,10 @@
           "explanation": "Officers shall be eligible for appropriate estacode allowance at the prevailing rates when they undertake special duty abroad or are on a delegation or visit to an organization abroad for a short period [20, 56].",
           "difficulty": "easy",
           "chapter": "Estacode Allowance",
-          "keywords": ["Estacode", "Short Period"]
+          "keywords": [
+            "Estacode",
+            "Short Period"
+          ]
         },
         {
           "id": "IRA_104",
@@ -1526,7 +1955,10 @@
           "explanation": "An Officer who is required to proceed to a foreign country on duty or on an approved course of instruction will be eligible for a warm clothing allowance [103].",
           "difficulty": "easy",
           "chapter": "Warm Clothing Allowance",
-          "keywords": ["Warm Clothing", "Overseas Duty"]
+          "keywords": [
+            "Warm Clothing",
+            "Overseas Duty"
+          ]
         },
         {
           "id": "IRA_105",
@@ -1541,7 +1973,11 @@
           "explanation": "Where the donor providing the training as a form of technical assistance to Nigeria also provides free boarding and lodging, the Officer concerned shall be entitled to 10 per cent of his appropriate estacode for the whole duration of the course [103].",
           "difficulty": "medium",
           "chapter": "Estacode Supplementation",
-          "keywords": ["Estacode", "Free Boarding", "10 per cent"]
+          "keywords": [
+            "Estacode",
+            "Free Boarding",
+            "10 per cent"
+          ]
         },
         {
           "id": "IRA_106",
@@ -1556,7 +1992,11 @@
           "explanation": "An Officer who is incapacitated as a result of injury sustained in the course of his official duties shall be entitled to draw full emolument until he is discharged from sick leave or permanently invalided [50].",
           "difficulty": "medium",
           "chapter": "Compensation for Injury",
-          "keywords": ["Injury", "Compensation", "Full Emolument"]
+          "keywords": [
+            "Injury",
+            "Compensation",
+            "Full Emolument"
+          ]
         },
         {
           "id": "IRA_107",
@@ -1571,7 +2011,11 @@
           "explanation": "Air passage for himself only, but where the duration of the Officer's duties is not less than 9 months, his spouse may accompany him at Government expense [55, 104].",
           "difficulty": "medium",
           "chapter": "Duty Visit Outside Nigeria",
-          "keywords": ["Air Passage", "Nine Months", "Spouse"]
+          "keywords": [
+            "Air Passage",
+            "Nine Months",
+            "Spouse"
+          ]
         },
         {
           "id": "IRA_108",
@@ -1586,7 +2030,11 @@
           "explanation": "Conversion of domestic staff of an entitled Officer shall not be converted to locally recruited staff [105].",
           "difficulty": "medium",
           "chapter": "Domestic Staff",
-          "keywords": ["Domestic Staff", "Conversion", "Prohibited"]
+          "keywords": [
+            "Domestic Staff",
+            "Conversion",
+            "Prohibited"
+          ]
         },
         {
           "id": "IRA_109",
@@ -1601,7 +2049,10 @@
           "explanation": "Before an Officer on leave outside Nigeria undertakes official visit, prior approval of the Head of the Civil Service of the Federation shall be obtained [106].",
           "difficulty": "medium",
           "chapter": "Official Visit While on Leave",
-          "keywords": ["Official Visit", "OHCSF Approval"]
+          "keywords": [
+            "Official Visit",
+            "OHCSF Approval"
+          ]
         },
         {
           "id": "IRA_110",
@@ -1616,7 +2067,10 @@
           "explanation": "The Head of Mission shall be entitled to the following domestic staff: one cook and two stewards; two security guards; and two drivers [107].",
           "difficulty": "medium",
           "chapter": "Domestic Staff Allowance",
-          "keywords": ["Head of Mission", "Domestic Staff"]
+          "keywords": [
+            "Head of Mission",
+            "Domestic Staff"
+          ]
         },
         {
           "id": "IRA_111",
@@ -1631,7 +2085,10 @@
           "explanation": "The contribution of an Officer to secondary education in respect of each child shall be 15 per cent of the cost (boarding and tuition inclusive) [108].",
           "difficulty": "medium",
           "chapter": "Children’s Education Supplement",
-          "keywords": ["Education Supplement", "15 per cent"]
+          "keywords": [
+            "Education Supplement",
+            "15 per cent"
+          ]
         },
         {
           "id": "IRA_112",
@@ -1646,7 +2103,10 @@
           "explanation": "Accredited Representative of the Federal Republic of Nigeria means the Diplomatic or Consular Representative of the Federal Republic of Nigeria within the area [1, 109].",
           "difficulty": "easy",
           "chapter": "General Definitions",
-          "keywords": ["Accredited Representative", "Diplomatic"]
+          "keywords": [
+            "Accredited Representative",
+            "Diplomatic"
+          ]
         },
         {
           "id": "IRA_113",
@@ -1661,27 +2121,48 @@
           "explanation": "An Officer serving in an overseas post may, subject to the exigencies of the Service, be permitted within any calendar year to spend up to half of his annual leave entitlement for that year as casual leave overseas [110].",
           "difficulty": "medium",
           "chapter": "Overseas Casual Leave",
-          "keywords": ["Overseas Post", "Annual Leave", "Half"]
+          "keywords": [
+            "Overseas Post",
+            "Annual Leave",
+            "Half"
+          ]
         },
         {
           "id": "IRA_114",
           "question": "Which protocol is used for secure data transmission over the web?",
-          "options": ["HTTP", "FTP", "HTTPS", "SMTP"],
+          "options": [
+            "HTTP",
+            "FTP",
+            "HTTPS",
+            "SMTP"
+          ],
           "correct": 2,
           "explanation": "HTTPS uses SSL/TLS to encrypt web traffic [111-113].",
           "difficulty": "easy",
           "chapter": "Technical ICT Competency",
-          "keywords": ["HTTPS", "Encryption", "Protocol"]
+          "keywords": [
+            "HTTPS",
+            "Encryption",
+            "Protocol"
+          ]
         },
         {
           "id": "IRA_115",
           "question": "The second-largest continent in the world is:",
-          "options": ["Asia", "Africa", "Europe", "North America"],
+          "options": [
+            "Asia",
+            "Africa",
+            "Europe",
+            "North America"
+          ],
           "correct": 1,
           "explanation": "Africa is the second largest continent in the world (cited in previous current affairs discussion). [Source not present in new excerpts, relying on established conversational fact].",
           "difficulty": "easy",
           "chapter": "World Geography",
-          "keywords": ["Africa", "Continent"]
+          "keywords": [
+            "Africa",
+            "Continent"
+          ]
         },
         {
           "id": "IRA_116",
@@ -1696,7 +2177,10 @@
           "explanation": "Estacode Allowance is eligible for officers undertaking special duty or courses abroad [20, 56].",
           "difficulty": "easy",
           "chapter": "Allowances",
-          "keywords": ["Estacode", "Overseas Travel"]
+          "keywords": [
+            "Estacode",
+            "Overseas Travel"
+          ]
         },
         {
           "id": "IRA_117",
@@ -1711,7 +2195,10 @@
           "explanation": "Secondment means the temporary release of an Officer to the service of another government approved body or any recognized International Organization or body for a specified period [76].",
           "difficulty": "easy",
           "chapter": "Secondment",
-          "keywords": ["Secondment", "International Organization"]
+          "keywords": [
+            "Secondment",
+            "International Organization"
+          ]
         },
         {
           "id": "IRA_118",
@@ -1726,7 +2213,11 @@
           "explanation": "Leave of Absence on grounds of Public Policy may be granted to a Foreign Service Officer who is also a Public Officer, to enable him join his spouse on posting abroad, granted as leave without pay [114].",
           "difficulty": "medium",
           "chapter": "Leave on Grounds of Public Policy",
-          "keywords": ["Leave of Absence", "Public Policy", "Spouse"]
+          "keywords": [
+            "Leave of Absence",
+            "Public Policy",
+            "Spouse"
+          ]
         },
         {
           "id": "IRA_119",
@@ -1741,7 +2232,10 @@
           "explanation": "Children of Officers at post shall enjoy free Primary Education at Government expense [108].",
           "difficulty": "medium",
           "chapter": "Children’s Education",
-          "keywords": ["Primary Education", "Foreign Service"]
+          "keywords": [
+            "Primary Education",
+            "Foreign Service"
+          ]
         },
         {
           "id": "IRA_120",
@@ -1756,7 +2250,10 @@
           "explanation": "Officers who maintain proficiency in language lower standard or higher standard shall qualify for a one-off payment of 5 percent or 10 percent of Consolidated Foreign Service Allowance respectively [107].",
           "difficulty": "hard",
           "chapter": "Foreign Language",
-          "keywords": ["Foreign Language", "Proficiency"]
+          "keywords": [
+            "Foreign Language",
+            "Proficiency"
+          ]
         },
         {
           "id": "IRA_121",
@@ -1771,7 +2268,10 @@
           "explanation": "An Officer required to undertake duty or a course of instruction outside Nigeria must be furnished with detailed instructions regarding such duties or course and be informed in advance and in writing of the allowances and traveling facilities for which he will be eligible for at Government expense; by his Permanent Secretary/Head of Extra-Ministerial Office [102].",
           "difficulty": "medium",
           "chapter": "Oversea Duty Instructions",
-          "keywords": ["Oversea Duty", "Instructions"]
+          "keywords": [
+            "Oversea Duty",
+            "Instructions"
+          ]
         },
         {
           "id": "IRA_122",
@@ -1786,17 +2286,29 @@
           "explanation": "Government will bear the expenses... provided that a Nigerian Officer urgently needs a specialist attention outside that country, certified by the Head of Mission based on medical opinion [115].",
           "difficulty": "medium",
           "chapter": "Overseas Medical Treatment",
-          "keywords": ["Medical Treatment", "Certification"]
+          "keywords": [
+            "Medical Treatment",
+            "Certification"
+          ]
         },
         {
           "id": "IRA_123",
           "question": "When was the FIFA World Cup hosted by Qatar?",
-          "options": ["2018", "2022", "2026", "2020"],
+          "options": [
+            "2018",
+            "2022",
+            "2026",
+            "2020"
+          ],
           "correct": 1,
           "explanation": "Qatar hosted the FIFA World Cup in 2022 [116].",
           "difficulty": "easy",
           "chapter": "Sports",
-          "keywords": ["FIFA World Cup", "2022", "Qatar"]
+          "keywords": [
+            "FIFA World Cup",
+            "2022",
+            "Qatar"
+          ]
         },
         {
           "id": "IRA_124",
@@ -1811,7 +2323,10 @@
           "explanation": "Officer on SGL. 13 and above shall be entitled to a maximum of 40 foot container [117].",
           "difficulty": "medium",
           "chapter": "Baggage Entitlement (Sea)",
-          "keywords": ["Sea Travel", "40-foot container"]
+          "keywords": [
+            "Sea Travel",
+            "40-foot container"
+          ]
         },
         {
           "id": "IRA_125",
@@ -1826,17 +2341,28 @@
           "explanation": "An Officer who leaves the Service other than by resignation or dismissal will be eligible for proportionate leave in accordance with Rule 120212. He is entitled to receive under that rule, he will be required to refund salary at the rate at which it was paid in the number of working days leave enjoyed in excess of what he was eligible to receive [64].",
           "difficulty": "medium",
           "chapter": "Leaving the Service during Leave",
-          "keywords": ["Proportionate Leave", "Leaving Service"]
+          "keywords": [
+            "Proportionate Leave",
+            "Leaving Service"
+          ]
         },
         {
           "id": "IRA_126",
           "question": "The PSR mandates that all officers must be placed on the IPPIS platform within what period of assumption of duty?",
-          "options": ["One week", "Two months", "Six months", "One year"],
+          "options": [
+            "One week",
+            "Two months",
+            "Six months",
+            "One year"
+          ],
           "correct": 1,
           "explanation": "On first appointment, emolument, shall, as a general rule be paid as from the date of assumption of duty. All Officers shall be placed on IPPIS platform within two months of assumption of duty [118].",
           "difficulty": "easy",
           "chapter": "Emoluments on Appointment",
-          "keywords": ["IPPIS", "Two months"]
+          "keywords": [
+            "IPPIS",
+            "Two months"
+          ]
         },
         {
           "id": "IRA_127",
@@ -1851,7 +2377,11 @@
           "explanation": "Appointments to offices in the Federal Civil Service are made on the authority of the Federal Civil Service Commission [5]. Permanent Secretaries/Heads of Extra-Ministerial Offices are authorized to appoint candidates where powers have been delegated [5].",
           "difficulty": "easy",
           "chapter": "Authority for Appointment",
-          "keywords": ["FCSC", "Deployment", "Appointments"]
+          "keywords": [
+            "FCSC",
+            "Deployment",
+            "Appointments"
+          ]
         },
         {
           "id": "IRA_128",
@@ -1866,17 +2396,30 @@
           "explanation": "When it seems likely that a delegation or any individual Officer going abroad will have to incur expenditure on entertainment, a special allocation will be authorized for that purpose [55].",
           "difficulty": "medium",
           "chapter": "Entertainment Allocation (Overseas)",
-          "keywords": ["Estacode", "Entertainment", "Special Allocation"]
+          "keywords": [
+            "Estacode",
+            "Entertainment",
+            "Special Allocation"
+          ]
         },
         {
           "id": "IRA_129",
           "question": "The FCSC makes appointments to posts graded GL.07–17. The deadline for application submissions is six weeks from the date of advertisement placement in how many national newspapers?",
-          "options": ["Two", "Three", "Four", "Five"],
+          "options": [
+            "Two",
+            "Three",
+            "Four",
+            "Five"
+          ],
           "correct": 1,
           "explanation": "Advertisement shall be in three national newspapers and the Commission's website [4, 5].",
           "difficulty": "easy",
           "chapter": "Appointment Advertisement",
-          "keywords": ["Advertisement", "Three Newspapers", "FCSC"]
+          "keywords": [
+            "Advertisement",
+            "Three Newspapers",
+            "FCSC"
+          ]
         },
         {
           "id": "IRA_130",
@@ -1891,7 +2434,11 @@
           "explanation": "An Officer who is recommended by a Medical Board or a Healthcare Provider to be permanently invalided will forthwith commence vacation leave prior to retirement in accordance with Rule 120244 [50].",
           "difficulty": "medium",
           "chapter": "Invalidating Officer",
-          "keywords": ["Invalided", "Retirement", "Medical Board"]
+          "keywords": [
+            "Invalided",
+            "Retirement",
+            "Medical Board"
+          ]
         },
         {
           "id": "IRA_131",
@@ -1906,7 +2453,11 @@
           "explanation": "Duty Tour Allowance is granted to enable Officers pay for lodging and feeding expenses during approved official tours [20].",
           "difficulty": "easy",
           "chapter": "Duty Tour Allowance",
-          "keywords": ["DTA", "Lodging", "Feeding"]
+          "keywords": [
+            "DTA",
+            "Lodging",
+            "Feeding"
+          ]
         },
         {
           "id": "IRA_132",
@@ -1921,7 +2472,11 @@
           "explanation": "If he fails to comply with the instructions delivered to him at such address within seven days of such delivery, he will be regarded as absent from duty without leave [45].",
           "difficulty": "hard",
           "chapter": "Interdiction",
-          "keywords": ["Interdiction", "Seven Days", "Absence"]
+          "keywords": [
+            "Interdiction",
+            "Seven Days",
+            "Absence"
+          ]
         },
         {
           "id": "IRA_133",
@@ -1936,7 +2491,10 @@
           "explanation": "An Officer proceeding or returning from an overseas posting... is eligible for free air passage or sea passage as laid down in the Public Service Rules or extant Circulars for self, wife and four children [117].",
           "difficulty": "medium",
           "chapter": "Overseas Posting Passage",
-          "keywords": ["Overseas Posting", "Four Children"]
+          "keywords": [
+            "Overseas Posting",
+            "Four Children"
+          ]
         },
         {
           "id": "IRA_134",
@@ -1951,7 +2509,11 @@
           "explanation": "An Officer who is incapacitated as a result of injury sustained in the course of his official duties shall be entitled to draw full emolument until he is discharged from sick leave or permanently invalided [50].",
           "difficulty": "medium",
           "chapter": "Compensation for Injury",
-          "keywords": ["Incapacitation", "Injury", "Full Emolument"]
+          "keywords": [
+            "Incapacitation",
+            "Injury",
+            "Full Emolument"
+          ]
         },
         {
           "id": "IRA_135",
@@ -1966,17 +2528,30 @@
           "explanation": "Appointments to offices in the Federal Civil Service are made on the authority of the Federal Civil Service Commission [5]. Permanent Secretaries/Heads of Extra-Ministerial Offices are authorized to appoint candidates where powers have been delegated [5].",
           "difficulty": "easy",
           "chapter": "Authority for Appointment",
-          "keywords": ["FCSC", "Deployment", "Appointments"]
+          "keywords": [
+            "FCSC",
+            "Deployment",
+            "Appointments"
+          ]
         },
         {
           "id": "IRA_136",
           "question": "The FCSC makes appointments to posts graded GL.07–17. The deadline for application submissions is six weeks from the date of advertisement placement in how many national newspapers?",
-          "options": ["Two", "Three", "Four", "Five"],
+          "options": [
+            "Two",
+            "Three",
+            "Four",
+            "Five"
+          ],
           "correct": 1,
           "explanation": "Advertisement shall be in three national newspapers and the Commission's website [4, 5].",
           "difficulty": "easy",
           "chapter": "Appointment Advertisement",
-          "keywords": ["Advertisement", "Three Newspapers", "FCSC"]
+          "keywords": [
+            "Advertisement",
+            "Three Newspapers",
+            "FCSC"
+          ]
         },
         {
           "id": "IRA_137",
@@ -1991,17 +2566,28 @@
           "explanation": "NCE stakeholders include FCSC, National Assembly Service Commission, and National Judicial Service Commission, but not Federal Ministry of Information [119].",
           "difficulty": "medium",
           "chapter": "NCE Stakeholders",
-          "keywords": ["NCE", "Stakeholders"]
+          "keywords": [
+            "NCE",
+            "Stakeholders"
+          ]
         },
         {
           "id": "IRA_138",
           "question": "The National Council on Establishments (NCE) was established in what year?",
-          "options": ["1957", "1960", "1973", "1999"],
+          "options": [
+            "1957",
+            "1960",
+            "1973",
+            "1999"
+          ],
           "correct": 0,
           "explanation": "The National Council on Establishment was established in 1957 [119].",
           "difficulty": "easy",
           "chapter": "National Council on Establishments",
-          "keywords": ["NCE", "1957"]
+          "keywords": [
+            "NCE",
+            "1957"
+          ]
         },
         {
           "id": "IRA_139",
@@ -2016,7 +2602,10 @@
           "explanation": "Functions of the National Council on Establishment: ensures periodic review/update of the Schemes of Service; approves new cadres... [120, 121].",
           "difficulty": "medium",
           "chapter": "NCE Functions",
-          "keywords": ["NCE", "Schemes of Service"]
+          "keywords": [
+            "NCE",
+            "Schemes of Service"
+          ]
         },
         {
           "id": "IRA_140",
@@ -2031,7 +2620,11 @@
           "explanation": "Security of Government data/information... shall be conducted in line with the Guidelines prescribed from time to time by the Federal Ministry of Communications and Digital Economy [21, 22].",
           "difficulty": "medium",
           "chapter": "Security of Data (Virtual Meetings)",
-          "keywords": ["Virtual Meetings", "Security", "FMCDE"]
+          "keywords": [
+            "Virtual Meetings",
+            "Security",
+            "FMCDE"
+          ]
         },
         {
           "id": "IRA_141",
@@ -2046,7 +2639,10 @@
           "explanation": "Failure to submit them within this time limit will be taken to mean that you do not wish to make any, and appropriate sanction will be invoked against you [98].",
           "difficulty": "easy",
           "chapter": "Preliminary Letter/Discipline",
-          "keywords": ["Sanction", "Time Limit"]
+          "keywords": [
+            "Sanction",
+            "Time Limit"
+          ]
         },
         {
           "id": "IRA_142",
@@ -2061,7 +2657,11 @@
           "explanation": "When it seems likely that a delegation or any individual Officer going abroad will have to incur expenditure on entertainment, a special allocation will be authorized for that purpose [55].",
           "difficulty": "medium",
           "chapter": "Entertainment Allocation (Overseas)",
-          "keywords": ["Estacode", "Entertainment", "Special Allocation"]
+          "keywords": [
+            "Estacode",
+            "Entertainment",
+            "Special Allocation"
+          ]
         },
         {
           "id": "IRA_143",
@@ -2076,7 +2676,11 @@
           "explanation": "Historical manuscripts... shall not be appropriated to his own use, but their existence must be reported to Permanent Secretary/ Head of Extra Ministerial Office in order that steps may be taken for their examination and preservation [26].",
           "difficulty": "medium",
           "chapter": "Historical Documents",
-          "keywords": ["Historical Manuscripts", "Preservation", "Reporting"]
+          "keywords": [
+            "Historical Manuscripts",
+            "Preservation",
+            "Reporting"
+          ]
         },
         {
           "id": "IRA_144",
@@ -2091,7 +2695,11 @@
           "explanation": "An Officer who is incapacitated as a result of injury sustained in the course of his official duties shall be entitled to draw full emolument until he is discharged from sick leave or permanently invalided [50].",
           "difficulty": "medium",
           "chapter": "Compensation for Injury",
-          "keywords": ["Incapacitation", "Injury", "Full Emolument"]
+          "keywords": [
+            "Incapacitation",
+            "Injury",
+            "Full Emolument"
+          ]
         },
         {
           "id": "IRA_145",
@@ -2106,17 +2714,30 @@
           "explanation": "Appointments to offices in the Federal Civil Service are made on the authority of the Federal Civil Service Commission [5]. Permanent Secretaries/Heads of Extra-Ministerial Offices are authorized to appoint candidates where powers have been delegated [5].",
           "difficulty": "easy",
           "chapter": "Authority for Appointment",
-          "keywords": ["FCSC", "Deployment", "Appointments"]
+          "keywords": [
+            "FCSC",
+            "Deployment",
+            "Appointments"
+          ]
         },
         {
           "id": "IRA_146",
           "question": "The FCSC makes appointments to posts graded GL.07–17. The deadline for application submissions is six weeks from the date of advertisement placement in how many national newspapers?",
-          "options": ["Two", "Three", "Four", "Five"],
+          "options": [
+            "Two",
+            "Three",
+            "Four",
+            "Five"
+          ],
           "correct": 1,
           "explanation": "Advertisement shall be in three national newspapers and the Commission's website [4, 5].",
           "difficulty": "easy",
           "chapter": "Appointment Advertisement",
-          "keywords": ["Advertisement", "Three Newspapers", "FCSC"]
+          "keywords": [
+            "Advertisement",
+            "Three Newspapers",
+            "FCSC"
+          ]
         },
         {
           "id": "IRA_147",
@@ -2131,17 +2752,30 @@
           "explanation": "The FCSC may at a subsequent incremental date grant one or more special increments having the effects of raising the salary of the Officer to or towards the level it would have reached if the previous withholding has not occurred [39].",
           "difficulty": "hard",
           "chapter": "Special Increments",
-          "keywords": ["Withheld Increment", "Special Increments", "Mitigation"]
+          "keywords": [
+            "Withheld Increment",
+            "Special Increments",
+            "Mitigation"
+          ]
         },
         {
           "id": "IRA_148",
           "question": "All decisions on deferment or withholding of increment and stoppage of salaries must be communicated to the officer concerned within what period?",
-          "options": ["Two weeks", "One month", "Six weeks", "Three months"],
+          "options": [
+            "Two weeks",
+            "One month",
+            "Six weeks",
+            "Three months"
+          ],
           "correct": 0,
           "explanation": "All decisions on deferment or withholding of increment and stoppage of salaries shall be communicated... to the Officer concerned within two weeks [39].",
           "difficulty": "medium",
           "chapter": "Communication of Deferment",
-          "keywords": ["Deferment", "Withholding", "Two Weeks"]
+          "keywords": [
+            "Deferment",
+            "Withholding",
+            "Two Weeks"
+          ]
         },
         {
           "id": "IRA_149",
@@ -2156,7 +2790,11 @@
           "explanation": "If he fails to comply with the instructions delivered to him at such address within seven days of such delivery, he will be regarded as absent from duty without leave [45].",
           "difficulty": "hard",
           "chapter": "Interdiction",
-          "keywords": ["Interdiction", "Seven Days", "Absence"]
+          "keywords": [
+            "Interdiction",
+            "Seven Days",
+            "Absence"
+          ]
         },
         {
           "id": "IRA_150",
@@ -2171,14 +2809,18 @@
           "explanation": "When it seems likely that a delegation or any individual Officer going abroad will have to incur expenditure on entertainment, a special allocation will be authorized for that purpose [55].",
           "difficulty": "medium",
           "chapter": "Entertainment Allocation (Overseas)",
-          "keywords": ["Estacode", "Entertainment", "Special Allocation"]
+          "keywords": [
+            "Estacode",
+            "Entertainment",
+            "Special Allocation"
+          ]
         }
       ]
     },
     {
       "id": "ca_national_events",
-      "name": "National Events and Key Personalities",
-      "description": "General knowledge, national history, symbols, political leadership, federal agencies.",
+      "name": "National Events & Key Personalities",
+      "description": "Key events, institutions, and personalities.",
       "icon": "🗞️",
       "questions": [
         {
@@ -2194,7 +2836,10 @@
           "explanation": "The PSR Preamble is signed by Dr. Folasade Yemi-Esan, Head of the Civil Service of the Federation [3, 122].",
           "difficulty": "easy",
           "chapter": "Key Personalities",
-          "keywords": ["HoCSF", "Folasade Yemi-Esan"]
+          "keywords": [
+            "HoCSF",
+            "Folasade Yemi-Esan"
+          ]
         },
         {
           "id": "NEKP_152",
@@ -2209,17 +2854,28 @@
           "explanation": "The Foreword is signed by Muhammadu Buhari, President of the Federal Republic of Nigeria [123].",
           "difficulty": "easy",
           "chapter": "Key Personalities",
-          "keywords": ["President", "Muhammadu Buhari"]
+          "keywords": [
+            "President",
+            "Muhammadu Buhari"
+          ]
         },
         {
           "id": "NEKP_153",
           "question": "In what year was Nigeria's currency changed to Naira and Kobo?",
-          "options": ["1960", "1973", "1984", "1999"],
+          "options": [
+            "1960",
+            "1973",
+            "1984",
+            "1999"
+          ],
           "correct": 1,
           "explanation": "Nigeria’s currency was changed to Naira and Kobo on January 1st, 1973 [124].",
           "difficulty": "medium",
           "chapter": "National Events/History",
-          "keywords": ["Naira and Kobo", "1973"]
+          "keywords": [
+            "Naira and Kobo",
+            "1973"
+          ]
         },
         {
           "id": "NEKP_154",
@@ -2234,7 +2890,10 @@
           "explanation": "Emerging issues such as Performance Management System, Volunteerism, Virtual Meetings/Engagements... are products of our recent experience in the management of COVID-19 Pandemic and many others [89].",
           "difficulty": "easy",
           "chapter": "PSR Rationale",
-          "keywords": ["COVID-19", "Virtual Meetings"]
+          "keywords": [
+            "COVID-19",
+            "Virtual Meetings"
+          ]
         },
         {
           "id": "NEKP_155",
@@ -2249,7 +2908,10 @@
           "explanation": "Nigeria’s Minister of transportation is Rotimi Amaechi [124].",
           "difficulty": "easy",
           "chapter": "Key Personalities",
-          "keywords": ["Minister of Transportation", "Rotimi Amaechi"]
+          "keywords": [
+            "Minister of Transportation",
+            "Rotimi Amaechi"
+          ]
         },
         {
           "id": "NEKP_156",
@@ -2264,7 +2926,10 @@
           "explanation": "The NCE is a consultative body for the Government on matters pertaining to staff establishments, salary structures, grading, conditions and schemes of service [119].",
           "difficulty": "medium",
           "chapter": "NCE Functions",
-          "keywords": ["NCE", "Schemes of Service"]
+          "keywords": [
+            "NCE",
+            "Schemes of Service"
+          ]
         },
         {
           "id": "NEKP_157",
@@ -2279,7 +2944,10 @@
           "explanation": "The termination of appointment... if the Officer is eligible for vacation leave in respect of his service to date, such leave may be granted... The appointment will be effected by means of a month's notice [125].",
           "difficulty": "medium",
           "chapter": "Termination/Retirement",
-          "keywords": ["Retirement", "Effective Date"]
+          "keywords": [
+            "Retirement",
+            "Effective Date"
+          ]
         },
         {
           "id": "NEKP_158",
@@ -2294,7 +2962,10 @@
           "explanation": "Interdiction means the temporary removal of an officer... during which he shall be placed on half salary [13].",
           "difficulty": "easy",
           "chapter": "General Definitions",
-          "keywords": ["Interdiction", "Half Salary"]
+          "keywords": [
+            "Interdiction",
+            "Half Salary"
+          ]
         },
         {
           "id": "NEKP_159",
@@ -2309,7 +2980,10 @@
           "explanation": "The inventor of the computer is Charles Babbage [124].",
           "difficulty": "easy",
           "chapter": "Inventors",
-          "keywords": ["Computer", "Charles Babbage"]
+          "keywords": [
+            "Computer",
+            "Charles Babbage"
+          ]
         },
         {
           "id": "NEKP_160",
@@ -2324,7 +2998,10 @@
           "explanation": "The fastest man in the world is Usain Bolt (100m records) [124].",
           "difficulty": "easy",
           "chapter": "Sports",
-          "keywords": ["Usain Bolt", "Fastest Man"]
+          "keywords": [
+            "Usain Bolt",
+            "Fastest Man"
+          ]
         },
         {
           "id": "NEKP_161",
@@ -2339,17 +3016,29 @@
           "explanation": "Notwithstanding that throughout the Public Service Rules the terms 'Officer' and 'Staff' are referred to in the masculine gender, the provisions of the Rules apply equally to both genders [51].",
           "difficulty": "easy",
           "chapter": "Gender",
-          "keywords": ["Gender-neutral language", "Officer", "Staff"]
+          "keywords": [
+            "Gender-neutral language",
+            "Officer",
+            "Staff"
+          ]
         },
         {
           "id": "NEKP_162",
           "question": "When was Google founded?",
-          "options": ["1995", "1998", "2001", "2004"],
+          "options": [
+            "1995",
+            "1998",
+            "2001",
+            "2004"
+          ],
           "correct": 1,
           "explanation": "Google was founded on 4th September 1998 [124].",
           "difficulty": "medium",
           "chapter": "Technology History",
-          "keywords": ["Google", "Founded"]
+          "keywords": [
+            "Google",
+            "Founded"
+          ]
         },
         {
           "id": "NEKP_163",
@@ -2364,7 +3053,10 @@
           "explanation": "The internet was discovered by Robert E. Kahn and Vint Cerf [124].",
           "difficulty": "medium",
           "chapter": "Inventors",
-          "keywords": ["Internet", "Kahn and Cerf"]
+          "keywords": [
+            "Internet",
+            "Kahn and Cerf"
+          ]
         },
         {
           "id": "NEKP_164",
@@ -2379,7 +3071,10 @@
           "explanation": "Donald Trump assumed duties as President of America on 20th January 2017 [124].",
           "difficulty": "medium",
           "chapter": "International Leadership",
-          "keywords": ["Donald Trump", "2017"]
+          "keywords": [
+            "Donald Trump",
+            "2017"
+          ]
         },
         {
           "id": "NEKP_165",
@@ -2394,7 +3089,10 @@
           "explanation": "Failure to submit them within this time limit will be taken to mean that you do not wish to make any, and appropriate sanction will be invoked against you [98].",
           "difficulty": "easy",
           "chapter": "Preliminary Letter/Discipline",
-          "keywords": ["Sanction", "Time Limit"]
+          "keywords": [
+            "Sanction",
+            "Time Limit"
+          ]
         },
         {
           "id": "NEKP_166",
@@ -2409,7 +3107,11 @@
           "explanation": "When it seems likely that a delegation or any individual Officer going abroad will have to incur expenditure on entertainment, a special allocation will be authorized for that purpose [55].",
           "difficulty": "medium",
           "chapter": "Entertainment Allocation (Overseas)",
-          "keywords": ["Estacode", "Entertainment", "Special Allocation"]
+          "keywords": [
+            "Estacode",
+            "Entertainment",
+            "Special Allocation"
+          ]
         },
         {
           "id": "NEKP_167",
@@ -2424,7 +3126,11 @@
           "explanation": "Historical manuscripts... shall not be appropriated to his own use, but their existence must be reported to Permanent Secretary/ Head of Extra Ministerial Office in order that steps may be taken for their examination and preservation [26].",
           "difficulty": "medium",
           "chapter": "Historical Documents",
-          "keywords": ["Historical Manuscripts", "Preservation", "Reporting"]
+          "keywords": [
+            "Historical Manuscripts",
+            "Preservation",
+            "Reporting"
+          ]
         },
         {
           "id": "NEKP_168",
@@ -2439,7 +3145,11 @@
           "explanation": "An Officer who is incapacitated as a result of injury sustained in the course of his official duties shall be entitled to draw full emolument until he is discharged from sick leave or permanently invalided [50].",
           "difficulty": "medium",
           "chapter": "Compensation for Injury",
-          "keywords": ["Incapacitation", "Injury", "Full Emolument"]
+          "keywords": [
+            "Incapacitation",
+            "Injury",
+            "Full Emolument"
+          ]
         },
         {
           "id": "NEKP_169",
@@ -2454,17 +3164,30 @@
           "explanation": "Appointments to offices in the Federal Civil Service are made on the authority of the Federal Civil Service Commission [5]. Permanent Secretaries/Heads of Extra-Ministerial Offices are authorized to appoint candidates where powers have been delegated [5].",
           "difficulty": "easy",
           "chapter": "Authority for Appointment",
-          "keywords": ["FCSC", "Deployment", "Appointments"]
+          "keywords": [
+            "FCSC",
+            "Deployment",
+            "Appointments"
+          ]
         },
         {
           "id": "NEKP_170",
           "question": "The FCSC makes appointments to posts graded GL.07–17. The deadline for application submissions is six weeks from the date of advertisement placement in how many national newspapers?",
-          "options": ["Two", "Three", "Four", "Five"],
+          "options": [
+            "Two",
+            "Three",
+            "Four",
+            "Five"
+          ],
           "correct": 1,
           "explanation": "Advertisement shall be in three national newspapers and the Commission's website [4, 5].",
           "difficulty": "easy",
           "chapter": "Appointment Advertisement",
-          "keywords": ["Advertisement", "Three Newspapers", "FCSC"]
+          "keywords": [
+            "Advertisement",
+            "Three Newspapers",
+            "FCSC"
+          ]
         },
         {
           "id": "NEKP_171",
@@ -2479,17 +3202,30 @@
           "explanation": "The FCSC may at a subsequent incremental date grant one or more special increments having the effects of raising the salary of the Officer to or towards the level it would have reached if the previous withholding has not occurred [39].",
           "difficulty": "hard",
           "chapter": "Special Increments",
-          "keywords": ["Withheld Increment", "Special Increments", "Mitigation"]
+          "keywords": [
+            "Withheld Increment",
+            "Special Increments",
+            "Mitigation"
+          ]
         },
         {
           "id": "NEKP_172",
           "question": "All decisions on deferment or withholding of increment and stoppage of salaries must be communicated to the officer concerned within what period?",
-          "options": ["Two weeks", "One month", "Six weeks", "Three months"],
+          "options": [
+            "Two weeks",
+            "One month",
+            "Six weeks",
+            "Three months"
+          ],
           "correct": 0,
           "explanation": "All decisions on deferment or withholding of increment and stoppage of salaries shall be communicated... to the Officer concerned within two weeks [39].",
           "difficulty": "medium",
           "chapter": "Communication of Deferment",
-          "keywords": ["Deferment", "Withholding", "Two Weeks"]
+          "keywords": [
+            "Deferment",
+            "Withholding",
+            "Two Weeks"
+          ]
         },
         {
           "id": "NEKP_173",
@@ -2504,7 +3240,11 @@
           "explanation": "If he fails to comply with the instructions delivered to him at such address within seven days of such delivery, he will be regarded as absent from duty without leave [45].",
           "difficulty": "hard",
           "chapter": "Interdiction",
-          "keywords": ["Interdiction", "Seven Days", "Absence"]
+          "keywords": [
+            "Interdiction",
+            "Seven Days",
+            "Absence"
+          ]
         },
         {
           "id": "NEKP_174",
@@ -2519,7 +3259,11 @@
           "explanation": "When it seems likely that a delegation or any individual Officer going abroad will have to incur expenditure on entertainment, a special allocation will be authorized for that purpose [55].",
           "difficulty": "medium",
           "chapter": "Entertainment Allocation (Overseas)",
-          "keywords": ["Estacode", "Entertainment", "Special Allocation"]
+          "keywords": [
+            "Estacode",
+            "Entertainment",
+            "Special Allocation"
+          ]
         },
         {
           "id": "NEKP_175",
@@ -2534,7 +3278,11 @@
           "explanation": "Notwithstanding that throughout the Public Service Rules the terms 'Officer' and 'Staff' are referred to in the masculine gender, the provisions of the Rules apply equally to both genders [51].",
           "difficulty": "easy",
           "chapter": "Gender",
-          "keywords": ["Gender-neutral language", "Officer", "Staff"]
+          "keywords": [
+            "Gender-neutral language",
+            "Officer",
+            "Staff"
+          ]
         },
         {
           "id": "NEKP_176",
@@ -2549,17 +3297,30 @@
           "explanation": "Appointments to offices in the Federal Civil Service are made on the authority of the Federal Civil Service Commission [5]. Permanent Secretaries/Heads of Extra-Ministerial Offices are authorized to appoint candidates where powers have been delegated [5].",
           "difficulty": "easy",
           "chapter": "Authority for Appointment",
-          "keywords": ["FCSC", "Deployment", "Appointments"]
+          "keywords": [
+            "FCSC",
+            "Deployment",
+            "Appointments"
+          ]
         },
         {
           "id": "NEKP_177",
           "question": "The FCSC makes appointments to posts graded GL.07–17. The deadline for application submissions is six weeks from the date of advertisement placement in how many national newspapers?",
-          "options": ["Two", "Three", "Four", "Five"],
+          "options": [
+            "Two",
+            "Three",
+            "Four",
+            "Five"
+          ],
           "correct": 1,
           "explanation": "Advertisement shall be in three national newspapers and the Commission's website [4, 5].",
           "difficulty": "easy",
           "chapter": "Appointment Advertisement",
-          "keywords": ["Advertisement", "Three Newspapers", "FCSC"]
+          "keywords": [
+            "Advertisement",
+            "Three Newspapers",
+            "FCSC"
+          ]
         },
         {
           "id": "NEKP_178",
@@ -2574,7 +3335,10 @@
           "explanation": "Failure to submit them within this time limit will be taken to mean that you do not wish to make any, and appropriate sanction will be invoked against you [98].",
           "difficulty": "easy",
           "chapter": "Preliminary Letter/Discipline",
-          "keywords": ["Sanction", "Time Limit"]
+          "keywords": [
+            "Sanction",
+            "Time Limit"
+          ]
         },
         {
           "id": "NEKP_179",
@@ -2589,7 +3353,11 @@
           "explanation": "When it seems likely that a delegation or any individual Officer going abroad will have to incur expenditure on entertainment, a special allocation will be authorized for that purpose [55].",
           "difficulty": "medium",
           "chapter": "Entertainment Allocation (Overseas)",
-          "keywords": ["Estacode", "Entertainment", "Special Allocation"]
+          "keywords": [
+            "Estacode",
+            "Entertainment",
+            "Special Allocation"
+          ]
         },
         {
           "id": "NEKP_180",
@@ -2604,7 +3372,11 @@
           "explanation": "Historical manuscripts... shall not be appropriated to his own use, but their existence must be reported to Permanent Secretary/ Head of Extra Ministerial Office in order that steps may be taken for their examination and preservation [26].",
           "difficulty": "medium",
           "chapter": "Historical Documents",
-          "keywords": ["Historical Manuscripts", "Preservation", "Reporting"]
+          "keywords": [
+            "Historical Manuscripts",
+            "Preservation",
+            "Reporting"
+          ]
         },
         {
           "id": "NEKP_181",
@@ -2619,7 +3391,11 @@
           "explanation": "An Officer who is incapacitated as a result of injury sustained in the course of his official duties shall be entitled to draw full emolument until he is discharged from sick leave or permanently invalided [50].",
           "difficulty": "medium",
           "chapter": "Compensation for Injury",
-          "keywords": ["Incapacitation", "Injury", "Full Emolument"]
+          "keywords": [
+            "Incapacitation",
+            "Injury",
+            "Full Emolument"
+          ]
         },
         {
           "id": "NEKP_182",
@@ -2634,17 +3410,30 @@
           "explanation": "Appointments to offices in the Federal Civil Service are made on the authority of the Federal Civil Service Commission [5]. Permanent Secretaries/Heads of Extra-Ministerial Offices are authorized to appoint candidates where powers have been delegated [5].",
           "difficulty": "easy",
           "chapter": "Authority for Appointment",
-          "keywords": ["FCSC", "Deployment", "Appointments"]
+          "keywords": [
+            "FCSC",
+            "Deployment",
+            "Appointments"
+          ]
         },
         {
           "id": "NEKP_183",
           "question": "The FCSC makes appointments to posts graded GL.07–17. The deadline for application submissions is six weeks from the date of advertisement placement in how many national newspapers?",
-          "options": ["Two", "Three", "Four", "Five"],
+          "options": [
+            "Two",
+            "Three",
+            "Four",
+            "Five"
+          ],
           "correct": 1,
           "explanation": "Advertisement shall be in three national newspapers and the Commission's website [4, 5].",
           "difficulty": "easy",
           "chapter": "Appointment Advertisement",
-          "keywords": ["Advertisement", "Three Newspapers", "FCSC"]
+          "keywords": [
+            "Advertisement",
+            "Three Newspapers",
+            "FCSC"
+          ]
         },
         {
           "id": "NEKP_184",
@@ -2659,17 +3448,30 @@
           "explanation": "The FCSC may at a subsequent incremental date grant one or more special increments having the effects of raising the salary of the Officer to or towards the level it would have reached if the previous withholding has not occurred [39].",
           "difficulty": "hard",
           "chapter": "Special Increments",
-          "keywords": ["Withheld Increment", "Special Increments", "Mitigation"]
+          "keywords": [
+            "Withheld Increment",
+            "Special Increments",
+            "Mitigation"
+          ]
         },
         {
           "id": "NEKP_185",
           "question": "All decisions on deferment or withholding of increment and stoppage of salaries must be communicated to the officer concerned within what period?",
-          "options": ["Two weeks", "One month", "Six weeks", "Three months"],
+          "options": [
+            "Two weeks",
+            "One month",
+            "Six weeks",
+            "Three months"
+          ],
           "correct": 0,
           "explanation": "All decisions on deferment or withholding of increment and stoppage of salaries shall be communicated... to the Officer concerned within two weeks [39].",
           "difficulty": "medium",
           "chapter": "Communication of Deferment",
-          "keywords": ["Deferment", "Withholding", "Two Weeks"]
+          "keywords": [
+            "Deferment",
+            "Withholding",
+            "Two Weeks"
+          ]
         },
         {
           "id": "NEKP_186",
@@ -2684,7 +3486,11 @@
           "explanation": "If he fails to comply with the instructions delivered to him at such address within seven days of such delivery, he will be regarded as absent from duty without leave [45].",
           "difficulty": "hard",
           "chapter": "Interdiction",
-          "keywords": ["Interdiction", "Seven Days", "Absence"]
+          "keywords": [
+            "Interdiction",
+            "Seven Days",
+            "Absence"
+          ]
         },
         {
           "id": "NEKP_187",
@@ -2699,7 +3505,11 @@
           "explanation": "When it seems likely that a delegation or any individual Officer going abroad will have to incur expenditure on entertainment, a special allocation will be authorized for that purpose [55].",
           "difficulty": "medium",
           "chapter": "Entertainment Allocation (Overseas)",
-          "keywords": ["Estacode", "Entertainment", "Special Allocation"]
+          "keywords": [
+            "Estacode",
+            "Entertainment",
+            "Special Allocation"
+          ]
         },
         {
           "id": "NEKP_188",
@@ -2714,7 +3524,11 @@
           "explanation": "Historical manuscripts... shall not be appropriated to his own use, but their existence must be reported to Permanent Secretary/ Head of Extra Ministerial Office in order that steps may be taken for their examination and preservation [26].",
           "difficulty": "medium",
           "chapter": "Historical Documents",
-          "keywords": ["Historical Manuscripts", "Preservation", "Reporting"]
+          "keywords": [
+            "Historical Manuscripts",
+            "Preservation",
+            "Reporting"
+          ]
         },
         {
           "id": "NEKP_189",
@@ -2729,7 +3543,11 @@
           "explanation": "An Officer who is incapacitated as a result of injury sustained in the course of his official duties shall be entitled to draw full emolument until he is discharged from sick leave or permanently invalided [50].",
           "difficulty": "medium",
           "chapter": "Compensation for Injury",
-          "keywords": ["Incapacitation", "Injury", "Full Emolument"]
+          "keywords": [
+            "Incapacitation",
+            "Injury",
+            "Full Emolument"
+          ]
         },
         {
           "id": "NEKP_190",
@@ -2744,17 +3562,30 @@
           "explanation": "Appointments to offices in the Federal Civil Service are made on the authority of the Federal Civil Service Commission [5]. Permanent Secretaries/Heads of Extra-Ministerial Offices are authorized to appoint candidates where powers have been delegated [5].",
           "difficulty": "easy",
           "chapter": "Authority for Appointment",
-          "keywords": ["FCSC", "Deployment", "Appointments"]
+          "keywords": [
+            "FCSC",
+            "Deployment",
+            "Appointments"
+          ]
         },
         {
           "id": "NEKP_191",
           "question": "The FCSC makes appointments to posts graded GL.07–17. The deadline for application submissions is six weeks from the date of advertisement placement in how many national newspapers?",
-          "options": ["Two", "Three", "Four", "Five"],
+          "options": [
+            "Two",
+            "Three",
+            "Four",
+            "Five"
+          ],
           "correct": 1,
           "explanation": "Advertisement shall be in three national newspapers and the Commission's website [4, 5].",
           "difficulty": "easy",
           "chapter": "Appointment Advertisement",
-          "keywords": ["Advertisement", "Three Newspapers", "FCSC"]
+          "keywords": [
+            "Advertisement",
+            "Three Newspapers",
+            "FCSC"
+          ]
         },
         {
           "id": "NEKP_192",
@@ -2769,17 +3600,30 @@
           "explanation": "The FCSC may at a subsequent incremental date grant one or more special increments having the effects of raising the salary of the Officer to or towards the level it would have reached if the previous withholding has not occurred [39].",
           "difficulty": "hard",
           "chapter": "Special Increments",
-          "keywords": ["Withheld Increment", "Special Increments", "Mitigation"]
+          "keywords": [
+            "Withheld Increment",
+            "Special Increments",
+            "Mitigation"
+          ]
         },
         {
           "id": "NEKP_193",
           "question": "All decisions on deferment or withholding of increment and stoppage of salaries must be communicated to the officer concerned within what period?",
-          "options": ["Two weeks", "One month", "Six weeks", "Three months"],
+          "options": [
+            "Two weeks",
+            "One month",
+            "Six weeks",
+            "Three months"
+          ],
           "correct": 0,
           "explanation": "All decisions on deferment or withholding of increment and stoppage of salaries shall be communicated... to the Officer concerned within two weeks [39].",
           "difficulty": "medium",
           "chapter": "Communication of Deferment",
-          "keywords": ["Deferment", "Withholding", "Two Weeks"]
+          "keywords": [
+            "Deferment",
+            "Withholding",
+            "Two Weeks"
+          ]
         },
         {
           "id": "NEKP_194",
@@ -2794,7 +3638,11 @@
           "explanation": "If he fails to comply with the instructions delivered to him at such address within seven days of such delivery, he will be regarded as absent from duty without leave [45].",
           "difficulty": "hard",
           "chapter": "Interdiction",
-          "keywords": ["Interdiction", "Seven Days", "Absence"]
+          "keywords": [
+            "Interdiction",
+            "Seven Days",
+            "Absence"
+          ]
         },
         {
           "id": "NEKP_195",
@@ -2809,7 +3657,11 @@
           "explanation": "When it seems likely that a delegation or any individual Officer going abroad will have to incur expenditure on entertainment, a special allocation will be authorized for that purpose [55].",
           "difficulty": "medium",
           "chapter": "Entertainment Allocation (Overseas)",
-          "keywords": ["Estacode", "Entertainment", "Special Allocation"]
+          "keywords": [
+            "Estacode",
+            "Entertainment",
+            "Special Allocation"
+          ]
         },
         {
           "id": "NEKP_196",
@@ -2824,7 +3676,11 @@
           "explanation": "Historical manuscripts... shall not be appropriated to his own use, but their existence must be reported to Permanent Secretary/ Head of Extra Ministerial Office in order that steps may be taken for their examination and preservation [26].",
           "difficulty": "medium",
           "chapter": "Historical Documents",
-          "keywords": ["Historical Manuscripts", "Preservation", "Reporting"]
+          "keywords": [
+            "Historical Manuscripts",
+            "Preservation",
+            "Reporting"
+          ]
         },
         {
           "id": "NEKP_197",
@@ -2839,7 +3695,11 @@
           "explanation": "An Officer who is incapacitated as a result of injury sustained in the course of his official duties shall be entitled to draw full emolument until he is discharged from sick leave or permanently invalided [50].",
           "difficulty": "medium",
           "chapter": "Compensation for Injury",
-          "keywords": ["Incapacitation", "Injury", "Full Emolument"]
+          "keywords": [
+            "Incapacitation",
+            "Injury",
+            "Full Emolument"
+          ]
         },
         {
           "id": "NEKP_198",
@@ -2854,17 +3714,30 @@
           "explanation": "Appointments to offices in the Federal Civil Service are made on the authority of the Federal Civil Service Commission [5]. Permanent Secretaries/Heads of Extra-Ministerial Offices are authorized to appoint candidates where powers have been delegated [5].",
           "difficulty": "easy",
           "chapter": "Authority for Appointment",
-          "keywords": ["FCSC", "Deployment", "Appointments"]
+          "keywords": [
+            "FCSC",
+            "Deployment",
+            "Appointments"
+          ]
         },
         {
           "id": "NEKP_199",
           "question": "The FCSC makes appointments to posts graded GL.07–17. The deadline for application submissions is six weeks from the date of advertisement placement in how many national newspapers?",
-          "options": ["Two", "Three", "Four", "Five"],
+          "options": [
+            "Two",
+            "Three",
+            "Four",
+            "Five"
+          ],
           "correct": 1,
           "explanation": "Advertisement shall be in three national newspapers and the Commission's website [4, 5].",
           "difficulty": "easy",
           "chapter": "Appointment Advertisement",
-          "keywords": ["Advertisement", "Three Newspapers", "FCSC"]
+          "keywords": [
+            "Advertisement",
+            "Three Newspapers",
+            "FCSC"
+          ]
         },
         {
           "id": "NEKP_200",
@@ -2879,14 +3752,18 @@
           "explanation": "The FCSC may at a subsequent incremental date grant one or more special increments having the effects of raising the salary of the Officer to or towards the level it would have reached if the previous withholding has not occurred [39].",
           "difficulty": "hard",
           "chapter": "Special Increments",
-          "keywords": ["Withheld Increment", "Special Increments", "Mitigation"]
+          "keywords": [
+            "Withheld Increment",
+            "Special Increments",
+            "Mitigation"
+          ]
         }
       ]
     },
     {
       "id": "ca_general",
       "name": "General Current Affairs",
-      "description": "General knowledge and recent events (covering Governance, Reforms, International Affairs, and Key Personalities).",
+      "description": "General recency-focused affairs and factual updates.",
       "questions": [
         {
           "ca_general": [
@@ -2903,7 +3780,11 @@
               "explanation": "Lagos State is officially recognized as the 'Centre of Excellence' [1].",
               "difficulty": "easy",
               "chapter": "Current Affairs",
-              "keywords": ["Lagos", "state nickname", "centre of excellence"]
+              "keywords": [
+                "Lagos",
+                "state nickname",
+                "centre of excellence"
+              ]
             },
             {
               "id": "ca_general_002",
@@ -2927,12 +3808,21 @@
             {
               "id": "ca_general_003",
               "question": "Which Nigerian city is known as the 'Coal City'?",
-              "options": ["Enugu", "Jos", "Ibadan", "Kano"],
+              "options": [
+                "Enugu",
+                "Jos",
+                "Ibadan",
+                "Kano"
+              ],
               "correct": 0,
               "explanation": "Enugu is called the 'Coal City' because of its historic coal deposits [3].",
               "difficulty": "easy",
               "chapter": "Current Affairs",
-              "keywords": ["Enugu", "coal city", "nigerian cities"]
+              "keywords": [
+                "Enugu",
+                "coal city",
+                "nigerian cities"
+              ]
             },
             {
               "id": "ca_general_004",
@@ -2947,17 +3837,30 @@
               "explanation": "Bola Ahmed Tinubu became President of Nigeria on May 29, 2023 [4].",
               "difficulty": "easy",
               "chapter": "Current Affairs",
-              "keywords": ["president", "tinubu", "nigeria"]
+              "keywords": [
+                "president",
+                "tinubu",
+                "nigeria"
+              ]
             },
             {
               "id": "ca_general_005",
               "question": "Nigeria is a member of which regional economic community?",
-              "options": ["SADC", "ECOWAS", "EAC", "COMESA"],
+              "options": [
+                "SADC",
+                "ECOWAS",
+                "EAC",
+                "COMESA"
+              ],
               "correct": 1,
               "explanation": "Nigeria is a founding member of the Economic Community of West African States (ECOWAS) [4, 5].",
               "difficulty": "easy",
               "chapter": "Current Affairs",
-              "keywords": ["ECOWAS", "regional integration", "nigeria"]
+              "keywords": [
+                "ECOWAS",
+                "regional integration",
+                "nigeria"
+              ]
             },
             {
               "id": "ca_general_006",
@@ -2972,47 +3875,87 @@
               "explanation": "Ogun State is known as the 'Gateway State' [5].",
               "difficulty": "easy",
               "chapter": "Current Affairs",
-              "keywords": ["Ogun", "gateway state", "nigerian states"]
+              "keywords": [
+                "Ogun",
+                "gateway state",
+                "nigerian states"
+              ]
             },
             {
               "id": "ca_general_007",
               "question": "What is the capital of Nasarawa State?",
-              "options": ["Lafia", "Keffi", "Akwanga", "Mararaba"],
+              "options": [
+                "Lafia",
+                "Keffi",
+                "Akwanga",
+                "Mararaba"
+              ],
               "correct": 0,
               "explanation": "The capital of Nasarawa State is Lafia [6].",
               "difficulty": "easy",
               "chapter": "Current Affairs",
-              "keywords": ["nasarawa", "lafia", "state capitals"]
+              "keywords": [
+                "nasarawa",
+                "lafia",
+                "state capitals"
+              ]
             },
             {
               "id": "ca_general_008",
               "question": "Which Nigerian city is nicknamed 'Tin City'?",
-              "options": ["Jos", "Kaduna", "Bauchi", "Kano"],
+              "options": [
+                "Jos",
+                "Kaduna",
+                "Bauchi",
+                "Kano"
+              ],
               "correct": 0,
               "explanation": "Jos is known as the 'Tin City' because of its tin mining history [7].",
               "difficulty": "easy",
               "chapter": "Current Affairs",
-              "keywords": ["jos", "tin city", "nigerian cities"]
+              "keywords": [
+                "jos",
+                "tin city",
+                "nigerian cities"
+              ]
             },
             {
               "id": "ca_general_009",
               "question": "Which Nigerian state is called the 'Land of Equity'?",
-              "options": ["Kano", "Kwara", "Ekiti", "Kebbi"],
+              "options": [
+                "Kano",
+                "Kwara",
+                "Ekiti",
+                "Kebbi"
+              ],
               "correct": 3,
               "explanation": "Kebbi State is officially known as the 'Land of Equity' [7].",
               "difficulty": "easy",
               "chapter": "Current Affairs",
-              "keywords": ["kebbi", "land of equity", "state nickname"]
+              "keywords": [
+                "kebbi",
+                "land of equity",
+                "state nickname"
+              ]
             },
             {
               "id": "ca_general_010",
               "question": "What is the current minimum wage in Nigeria (as of 2025)?",
-              "options": ["₦18,000", "₦30,000", "₦35,000", "₦40,000"],
+              "options": [
+                "₦18,000",
+                "₦30,000",
+                "₦35,000",
+                "₦40,000"
+              ],
               "correct": 1,
               "explanation": "The national minimum wage in Nigeria remains ₦30,000 as of 2025 [8].",
               "difficulty": "medium",
               "chapter": "Current Affairs",
-              "keywords": ["minimum wage", "labour", "nigeria"]
+              "keywords": [
+                "minimum wage",
+                "labour",
+                "nigeria"
+              ]
             },
             {
               "id": "ca_general_011",
@@ -3027,12 +3970,21 @@
               "explanation": "Ondo State is officially known as the 'Sunshine State' [9].",
               "difficulty": "easy",
               "chapter": "Current Affairs",
-              "keywords": ["ondo", "sunshine state", "nigerian states"]
+              "keywords": [
+                "ondo",
+                "sunshine state",
+                "nigerian states"
+              ]
             },
             {
               "id": "ca_general_012",
               "question": "Nigeria adopted the presidential system of government in which year?",
-              "options": ["1960", "1963", "1979", "1999"],
+              "options": [
+                "1960",
+                "1963",
+                "1979",
+                "1999"
+              ],
               "correct": 2,
               "explanation": "Nigeria adopted the presidential system of government in 1979 with the Second Republic Constitution [9, 10].",
               "difficulty": "medium",
@@ -3046,32 +3998,59 @@
             {
               "id": "ca_general_013",
               "question": "Which Nigerian state is known as the 'Land of Promise'?",
-              "options": ["Akwa Ibom", "Cross River", "Delta", "Bayelsa"],
+              "options": [
+                "Akwa Ibom",
+                "Cross River",
+                "Delta",
+                "Bayelsa"
+              ],
               "correct": 0,
               "explanation": "Akwa Ibom State is known as the 'Land of Promise' [10].",
               "difficulty": "easy",
               "chapter": "Current Affairs",
-              "keywords": ["akwa ibom", "land of promise", "state nicknames"]
+              "keywords": [
+                "akwa ibom",
+                "land of promise",
+                "state nicknames"
+              ]
             },
             {
               "id": "ca_general_014",
               "question": "Which international organization is headquartered in Abuja, Nigeria?",
-              "options": ["African Union", "ECOWAS", "UNDP", "UNICEF"],
+              "options": [
+                "African Union",
+                "ECOWAS",
+                "UNDP",
+                "UNICEF"
+              ],
               "correct": 1,
               "explanation": "The headquarters of ECOWAS is located in Abuja, Nigeria [11].",
               "difficulty": "medium",
               "chapter": "Current Affairs",
-              "keywords": ["ECOWAS", "abuja", "international organizations"]
+              "keywords": [
+                "ECOWAS",
+                "abuja",
+                "international organizations"
+              ]
             },
             {
               "id": "ca_general_015",
               "question": "What is the capital of Borno State?",
-              "options": ["Maiduguri", "Damaturu", "Biu", "Gwoza"],
+              "options": [
+                "Maiduguri",
+                "Damaturu",
+                "Biu",
+                "Gwoza"
+              ],
               "correct": 0,
               "explanation": "The capital of Borno State is Maiduguri [11, 12].",
               "difficulty": "easy",
               "chapter": "Current Affairs",
-              "keywords": ["borno", "maiduguri", "state capitals"]
+              "keywords": [
+                "borno",
+                "maiduguri",
+                "state capitals"
+              ]
             },
             {
               "id": "ca_general_016",
@@ -3086,27 +4065,49 @@
               "explanation": "Benue State is called the 'Food Basket of the Nation' [12].",
               "difficulty": "easy",
               "chapter": "Current Affairs",
-              "keywords": ["benue", "food basket", "agriculture"]
+              "keywords": [
+                "benue",
+                "food basket",
+                "agriculture"
+              ]
             },
             {
               "id": "ca_general_017",
               "question": "What is the capital of Cross River State?",
-              "options": ["Calabar", "Uyo", "Port Harcourt", "Warri"],
+              "options": [
+                "Calabar",
+                "Uyo",
+                "Port Harcourt",
+                "Warri"
+              ],
               "correct": 0,
               "explanation": "The capital of Cross River State is Calabar [13].",
               "difficulty": "easy",
               "chapter": "Current Affairs",
-              "keywords": ["cross river", "calabar", "state capitals"]
+              "keywords": [
+                "cross river",
+                "calabar",
+                "state capitals"
+              ]
             },
             {
               "id": "ca_general_018",
               "question": "Which Nigerian state is nicknamed the 'Home of Peace'?",
-              "options": ["Yobe", "Adamawa", "Borno", "Sokoto"],
+              "options": [
+                "Yobe",
+                "Adamawa",
+                "Borno",
+                "Sokoto"
+              ],
               "correct": 0,
               "explanation": "Yobe State is called the 'Home of Peace' [13, 14].",
               "difficulty": "easy",
               "chapter": "Current Affairs",
-              "keywords": ["yobe", "home of peace", "state nicknames"]
+              "keywords": [
+                "yobe",
+                "home of peace",
+                "state nicknames"
+              ]
             },
             {
               "id": "ca_general_019",
@@ -3121,37 +4122,68 @@
               "explanation": "General Ibrahim Babangida introduced the Structural Adjustment Programme in 1986 [14].",
               "difficulty": "medium",
               "chapter": "Current Affairs",
-              "keywords": ["SAP", "babangida", "economic reforms"]
+              "keywords": [
+                "SAP",
+                "babangida",
+                "economic reforms"
+              ]
             },
             {
               "id": "ca_general_020",
               "question": "What is the capital of Kogi State?",
-              "options": ["Lokoja", "Okene", "Idah", "Kabba"],
+              "options": [
+                "Lokoja",
+                "Okene",
+                "Idah",
+                "Kabba"
+              ],
               "correct": 0,
               "explanation": "The capital of Kogi State is Lokoja [15].",
               "difficulty": "easy",
               "chapter": "Current Affairs",
-              "keywords": ["kogi", "lokoja", "state capitals"]
+              "keywords": [
+                "kogi",
+                "lokoja",
+                "state capitals"
+              ]
             },
             {
               "id": "ca_general_021",
               "question": "Which Nigerian state is known as the 'Confluence State'?",
-              "options": ["Kogi", "Niger", "Kwara", "Benue"],
+              "options": [
+                "Kogi",
+                "Niger",
+                "Kwara",
+                "Benue"
+              ],
               "correct": 0,
               "explanation": "Kogi State is called the 'Confluence State' because Rivers Niger and Benue meet there [15, 16].",
               "difficulty": "easy",
               "chapter": "Current Affairs",
-              "keywords": ["kogi", "confluence state", "rivers"]
+              "keywords": [
+                "kogi",
+                "confluence state",
+                "rivers"
+              ]
             },
             {
               "id": "ca_general_022",
               "question": "What is the capital of Gombe State?",
-              "options": ["Gombe", "Bauchi", "Jalingo", "Damaturu"],
+              "options": [
+                "Gombe",
+                "Bauchi",
+                "Jalingo",
+                "Damaturu"
+              ],
               "correct": 0,
               "explanation": "The capital of Gombe State is Gombe [16].",
               "difficulty": "easy",
               "chapter": "Current Affairs",
-              "keywords": ["gombe", "state capitals", "nigeria"]
+              "keywords": [
+                "gombe",
+                "state capitals",
+                "nigeria"
+              ]
             },
             {
               "id": "ca_general_023",
@@ -3166,97 +4198,182 @@
               "explanation": "Kashim Shettima has been Nigeria’s Vice President since May 29, 2023 [17].",
               "difficulty": "easy",
               "chapter": "Current Affairs",
-              "keywords": ["vice president", "shettima", "nigeria"]
+              "keywords": [
+                "vice president",
+                "shettima",
+                "nigeria"
+              ]
             },
             {
               "id": "ca_general_024",
               "question": "Which Nigerian state is called the 'Seat of Caliphate'?",
-              "options": ["Kano", "Kaduna", "Sokoto", "Katsina"],
+              "options": [
+                "Kano",
+                "Kaduna",
+                "Sokoto",
+                "Katsina"
+              ],
               "correct": 2,
               "explanation": "Sokoto State is the 'Seat of the Caliphate' [17, 18].",
               "difficulty": "easy",
               "chapter": "Current Affairs",
-              "keywords": ["sokoto", "seat of caliphate", "nicknames"]
+              "keywords": [
+                "sokoto",
+                "seat of caliphate",
+                "nicknames"
+              ]
             },
             {
               "id": "ca_general_025",
               "question": "Which Nigerian city is called the 'Centre of Learning'?",
-              "options": ["Kano", "Kaduna", "Zaria", "Ibadan"],
+              "options": [
+                "Kano",
+                "Kaduna",
+                "Zaria",
+                "Ibadan"
+              ],
               "correct": 2,
               "explanation": "Zaria, in Kaduna State, is called the 'Centre of Learning' due to its historic institutions [18].",
               "difficulty": "easy",
               "chapter": "Current Affairs",
-              "keywords": ["zaria", "centre of learning", "nicknames"]
+              "keywords": [
+                "zaria",
+                "centre of learning",
+                "nicknames"
+              ]
             },
             {
               "id": "ca_general_026",
               "question": "Nigeria joined the United Nations in which year?",
-              "options": ["1957", "1960", "1963", "1966"],
+              "options": [
+                "1957",
+                "1960",
+                "1963",
+                "1966"
+              ],
               "correct": 1,
               "explanation": "Nigeria joined the UN in 1960 after independence [19].",
               "difficulty": "medium",
               "chapter": "Current Affairs",
-              "keywords": ["united nations", "nigeria", "membership"]
+              "keywords": [
+                "united nations",
+                "nigeria",
+                "membership"
+              ]
             },
             {
               "id": "ca_general_027",
               "question": "Which Nigerian state is called the 'Big Heart'?",
-              "options": ["Delta", "Edo", "Anambra", "Bayelsa"],
+              "options": [
+                "Delta",
+                "Edo",
+                "Anambra",
+                "Bayelsa"
+              ],
               "correct": 1,
               "explanation": "Edo State is known as the 'Heartbeat of the Nation', often shortened to 'Big Heart' [19, 20].",
               "difficulty": "easy",
               "chapter": "Current Affairs",
-              "keywords": ["edo", "big heart", "nicknames"]
+              "keywords": [
+                "edo",
+                "big heart",
+                "nicknames"
+              ]
             },
             {
               "id": "ca_general_028",
               "question": "Which Nigerian city is the capital of Anambra State?",
-              "options": ["Onitsha", "Awka", "Nnewi", "Enugu"],
+              "options": [
+                "Onitsha",
+                "Awka",
+                "Nnewi",
+                "Enugu"
+              ],
               "correct": 1,
               "explanation": "Awka is the capital of Anambra State [20].",
               "difficulty": "easy",
               "chapter": "Current Affairs",
-              "keywords": ["anambra", "awka", "state capitals"]
+              "keywords": [
+                "anambra",
+                "awka",
+                "state capitals"
+              ]
             },
             {
               "id": "ca_general_029",
               "question": "Which Nigerian state is nicknamed the 'Home of Solid Minerals'?",
-              "options": ["Plateau", "Ebonyi", "Nasarawa", "Kogi"],
+              "options": [
+                "Plateau",
+                "Ebonyi",
+                "Nasarawa",
+                "Kogi"
+              ],
               "correct": 2,
               "explanation": "Nasarawa State is the 'Home of Solid Minerals' [21].",
               "difficulty": "easy",
               "chapter": "Current Affairs",
-              "keywords": ["nasarawa", "solid minerals", "nicknames"]
+              "keywords": [
+                "nasarawa",
+                "solid minerals",
+                "nicknames"
+              ]
             },
             {
               "id": "ca_general_030",
               "question": "What is the capital of Yobe State?",
-              "options": ["Damaturu", "Maiduguri", "Potiskum", "Gashua"],
+              "options": [
+                "Damaturu",
+                "Maiduguri",
+                "Potiskum",
+                "Gashua"
+              ],
               "correct": 0,
               "explanation": "The capital of Yobe State is Damaturu [21, 22].",
               "difficulty": "easy",
               "chapter": "Current Affairs",
-              "keywords": ["yobe", "damaturu", "state capitals"]
+              "keywords": [
+                "yobe",
+                "damaturu",
+                "state capitals"
+              ]
             },
             {
               "id": "ca_general_031",
               "question": "Which Nigerian state is called the 'Land of Beauty'?",
-              "options": ["Taraba", "Bauchi", "Adamawa", "Niger"],
+              "options": [
+                "Taraba",
+                "Bauchi",
+                "Adamawa",
+                "Niger"
+              ],
               "correct": 0,
               "explanation": "Taraba State is nicknamed the 'Nature’s Gift to the Nation' and 'Land of Beauty' [22].",
               "difficulty": "easy",
               "chapter": "Current Affairs",
-              "keywords": ["taraba", "land of beauty", "nicknames"]
+              "keywords": [
+                "taraba",
+                "land of beauty",
+                "nicknames"
+              ]
             },
             {
               "id": "ca_general_032",
               "question": "Which Nigerian city is called the 'Ancient City'?",
-              "options": ["Ibadan", "Zaria", "Kano", "Benin City"],
+              "options": [
+                "Ibadan",
+                "Zaria",
+                "Kano",
+                "Benin City"
+              ],
               "correct": 2,
               "explanation": "Kano is often referred to as the 'Ancient City' [23].",
               "difficulty": "easy",
               "chapter": "Current Affairs",
-              "keywords": ["kano", "ancient city", "nicknames"]
+              "keywords": [
+                "kano",
+                "ancient city",
+                "nicknames"
+              ]
             },
             {
               "id": "ca_general_033",
@@ -3271,97 +4388,182 @@
               "explanation": "Godswill Akpabio has been the Senate President since June 2023 [23, 24].",
               "difficulty": "medium",
               "chapter": "Current Affairs",
-              "keywords": ["senate president", "akpabio", "nigeria"]
+              "keywords": [
+                "senate president",
+                "akpabio",
+                "nigeria"
+              ]
             },
             {
               "id": "ca_general_034",
               "question": "Which Nigerian state is nicknamed the 'Hospitality State'?",
-              "options": ["Benue", "Plateau", "Akwa Ibom", "Cross River"],
+              "options": [
+                "Benue",
+                "Plateau",
+                "Akwa Ibom",
+                "Cross River"
+              ],
               "correct": 1,
               "explanation": "Plateau State is nicknamed the 'Home of Peace and Tourism' or 'Hospitality State' [24].",
               "difficulty": "easy",
               "chapter": "Current Affairs",
-              "keywords": ["plateau", "hospitality", "nicknames"]
+              "keywords": [
+                "plateau",
+                "hospitality",
+                "nicknames"
+              ]
             },
             {
               "id": "ca_general_035",
               "question": "Nigeria is divided into how many geopolitical zones?",
-              "options": ["4", "5", "6", "7"],
+              "options": [
+                "4",
+                "5",
+                "6",
+                "7"
+              ],
               "correct": 2,
               "explanation": "Nigeria has six geopolitical zones [25].",
               "difficulty": "easy",
               "chapter": "Current Affairs",
-              "keywords": ["geopolitical zones", "nigeria", "division"]
+              "keywords": [
+                "geopolitical zones",
+                "nigeria",
+                "division"
+              ]
             },
             {
               "id": "ca_general_036",
               "question": "Which Nigerian city is nicknamed the 'Garden City'?",
-              "options": ["Port Harcourt", "Enugu", "Ibadan", "Kaduna"],
+              "options": [
+                "Port Harcourt",
+                "Enugu",
+                "Ibadan",
+                "Kaduna"
+              ],
               "correct": 0,
               "explanation": "Port Harcourt is known as the 'Garden City' [25, 26].",
               "difficulty": "easy",
               "chapter": "Current Affairs",
-              "keywords": ["port harcourt", "garden city", "nicknames"]
+              "keywords": [
+                "port harcourt",
+                "garden city",
+                "nicknames"
+              ]
             },
             {
               "id": "ca_general_037",
               "question": "Which Nigerian state is called the 'Land of Honour and Integrity'?",
-              "options": ["Osun", "Ekiti", "Ondo", "Oyo"],
+              "options": [
+                "Osun",
+                "Ekiti",
+                "Ondo",
+                "Oyo"
+              ],
               "correct": 1,
               "explanation": "Ekiti State is called the 'Land of Honour and Integrity' [26].",
               "difficulty": "easy",
               "chapter": "Current Affairs",
-              "keywords": ["ekiti", "honour and integrity", "nicknames"]
+              "keywords": [
+                "ekiti",
+                "honour and integrity",
+                "nicknames"
+              ]
             },
             {
               "id": "ca_general_038",
               "question": "Which Nigerian city is the capital of Katsina State?",
-              "options": ["Daura", "Funtua", "Katsina", "Dutsin-Ma"],
+              "options": [
+                "Daura",
+                "Funtua",
+                "Katsina",
+                "Dutsin-Ma"
+              ],
               "correct": 2,
               "explanation": "The capital of Katsina State is Katsina City [27].",
               "difficulty": "easy",
               "chapter": "Current Affairs",
-              "keywords": ["katsina", "capital", "state capitals"]
+              "keywords": [
+                "katsina",
+                "capital",
+                "state capitals"
+              ]
             },
             {
               "id": "ca_general_039",
               "question": "Which Nigerian state is nicknamed the 'Treasure Base of the Nation'?",
-              "options": ["Bayelsa", "Rivers", "Akwa Ibom", "Delta"],
+              "options": [
+                "Bayelsa",
+                "Rivers",
+                "Akwa Ibom",
+                "Delta"
+              ],
               "correct": 1,
               "explanation": "Rivers State is called the 'Treasure Base of the Nation' [27, 28].",
               "difficulty": "easy",
               "chapter": "Current Affairs",
-              "keywords": ["rivers state", "treasure base", "nicknames"]
+              "keywords": [
+                "rivers state",
+                "treasure base",
+                "nicknames"
+              ]
             },
             {
               "id": "ca_general_040",
               "question": "Which Nigerian city is called the 'Ancient City of Benin'?",
-              "options": ["Ibadan", "Benin City", "Oyo", "Zaria"],
+              "options": [
+                "Ibadan",
+                "Benin City",
+                "Oyo",
+                "Zaria"
+              ],
               "correct": 1,
               "explanation": "Benin City is popularly called the 'Ancient City of Benin' [28].",
               "difficulty": "easy",
               "chapter": "Current Affairs",
-              "keywords": ["benin city", "ancient city", "nicknames"]
+              "keywords": [
+                "benin city",
+                "ancient city",
+                "nicknames"
+              ]
             },
             {
               "id": "ca_general_041",
               "question": "Which Nigerian state is nicknamed the 'Land of Courage'?",
-              "options": ["Kaduna", "Zamfara", "Taraba", "Adamawa"],
+              "options": [
+                "Kaduna",
+                "Zamfara",
+                "Taraba",
+                "Adamawa"
+              ],
               "correct": 1,
               "explanation": "Zamfara State is nicknamed the 'Land of Courage' [29].",
               "difficulty": "easy",
               "chapter": "Current Affairs",
-              "keywords": ["zamfara", "land of courage", "nicknames"]
+              "keywords": [
+                "zamfara",
+                "land of courage",
+                "nicknames"
+              ]
             },
             {
               "id": "ca_general_042",
               "question": "Which Nigerian city is the capital of Ebonyi State?",
-              "options": ["Abakaliki", "Enugu", "Owerri", "Onitsha"],
+              "options": [
+                "Abakaliki",
+                "Enugu",
+                "Owerri",
+                "Onitsha"
+              ],
               "correct": 0,
               "explanation": "The capital of Ebonyi State is Abakaliki [29, 30].",
               "difficulty": "easy",
               "chapter": "Current Affairs",
-              "keywords": ["ebonyi", "abakaliki", "state capitals"]
+              "keywords": [
+                "ebonyi",
+                "abakaliki",
+                "state capitals"
+              ]
             },
             {
               "id": "ca_general_043",
@@ -3385,32 +4587,59 @@
             {
               "id": "ca_general_044",
               "question": "Which Nigerian state is called the 'Home of Peace and Tourism'?",
-              "options": ["Kaduna", "Plateau", "Taraba", "Niger"],
+              "options": [
+                "Kaduna",
+                "Plateau",
+                "Taraba",
+                "Niger"
+              ],
               "correct": 1,
               "explanation": "Plateau State is called the 'Home of Peace and Tourism' [31].",
               "difficulty": "easy",
               "chapter": "Current Affairs",
-              "keywords": ["plateau", "tourism", "nicknames"]
+              "keywords": [
+                "plateau",
+                "tourism",
+                "nicknames"
+              ]
             },
             {
               "id": "ca_general_045",
               "question": "Which Nigerian city is nicknamed the 'City of Excellence'?",
-              "options": ["Abuja", "Port Harcourt", "Ibadan", "Lagos"],
+              "options": [
+                "Abuja",
+                "Port Harcourt",
+                "Ibadan",
+                "Lagos"
+              ],
               "correct": 3,
               "explanation": "Lagos is sometimes referred to as the 'City of Excellence' [31, 32].",
               "difficulty": "easy",
               "chapter": "Current Affairs",
-              "keywords": ["lagos", "city of excellence", "nicknames"]
+              "keywords": [
+                "lagos",
+                "city of excellence",
+                "nicknames"
+              ]
             },
             {
               "id": "ca_general_046",
               "question": "Which Nigerian state is called the 'Power State'?",
-              "options": ["Kano", "Niger", "Kaduna", "Osun"],
+              "options": [
+                "Kano",
+                "Niger",
+                "Kaduna",
+                "Osun"
+              ],
               "correct": 1,
               "explanation": "Niger State is nicknamed the 'Power State' because of the Kainji Dam [32].",
               "difficulty": "easy",
               "chapter": "Current Affairs",
-              "keywords": ["niger state", "power state", "nicknames"]
+              "keywords": [
+                "niger state",
+                "power state",
+                "nicknames"
+              ]
             },
             {
               "id": "ca_general_047",
@@ -3434,32 +4663,59 @@
             {
               "id": "ca_general_048",
               "question": "Which Nigerian state is called the 'Salt of the Nation'?",
-              "options": ["Ebonyi", "Enugu", "Anambra", "Cross River"],
+              "options": [
+                "Ebonyi",
+                "Enugu",
+                "Anambra",
+                "Cross River"
+              ],
               "correct": 0,
               "explanation": "Ebonyi State is called the 'Salt of the Nation' because of its salt deposits [34].",
               "difficulty": "easy",
               "chapter": "Current Affairs",
-              "keywords": ["ebonyi", "salt of the nation", "nicknames"]
+              "keywords": [
+                "ebonyi",
+                "salt of the nation",
+                "nicknames"
+              ]
             },
             {
               "id": "ca_general_049",
               "question": "Nigeria operates under how many tiers of government?",
-              "options": ["Two", "Three", "Four", "Five"],
+              "options": [
+                "Two",
+                "Three",
+                "Four",
+                "Five"
+              ],
               "correct": 1,
               "explanation": "Nigeria operates a three-tier government system: Federal, State, and Local Government [34].",
               "difficulty": "easy",
               "chapter": "Current Affairs",
-              "keywords": ["tiers of government", "federalism", "nigeria"]
+              "keywords": [
+                "tiers of government",
+                "federalism",
+                "nigeria"
+              ]
             },
             {
               "id": "ca_general_050",
               "question": "What is the capital of Niger State?",
-              "options": ["Mokwa", "Minna", "Bida", "Kontagora"],
+              "options": [
+                "Mokwa",
+                "Minna",
+                "Bida",
+                "Kontagora"
+              ],
               "correct": 1,
               "explanation": "The capital of Niger State is Minna [35].",
               "difficulty": "easy",
               "chapter": "Current Affairs",
-              "keywords": ["niger state", "minna", "state capitals"]
+              "keywords": [
+                "niger state",
+                "minna",
+                "state capitals"
+              ]
             }
           ]
         }

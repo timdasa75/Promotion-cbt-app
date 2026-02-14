@@ -36,7 +36,7 @@
 
     transition: all 0.3s ease;
 
-    box-shadow: 0 12px 35px rgba(0, 135, 81, 0.1), 0 0 20px rgba(0, 135, 81, 0.05), inset 0 0 10px rgba(255, 255, 255, 0.5);
+    box-shadow: 0 12px 35px var(--color-primary-alpha-10), 0 0 20px rgba(0, 122, 77, 0.06), inset 0 0 10px rgba(255, 255, 255, 0.4);
 
     display: flex;
 
@@ -123,7 +123,7 @@
 
     padding-top: 0.25rem;
 
-    border-top: 1px solid rgba(0, 135, 81, 0.1);
+    border-top: 1px solid var(--color-primary-alpha-10);
 }
 
 .question-count {
@@ -133,7 +133,7 @@
 
     font-weight: 500;
 
-    background-color: rgba(0, 135, 81, 0.1);
+    background-color: var(--color-primary-alpha-10);
 
     padding: 0.25rem 0.75rem;
 
@@ -157,15 +157,15 @@
 }
 
 .error-message {
-    background-color: #ffebee;
-    color: #c62828;
+    background-color: var(--state-error-bg);
+    color: var(--state-error-text);
     padding: 0.75rem; /* More compact padding */
     border-radius: calc(
         var(--border-radius) * 0.8
     ); /* More compact border-radius */
     margin: 0.75rem; /* Reduced margin */
     text-align: center;
-    border: 1px solid #ef9a9a;
+    border: 1px solid var(--state-error-border);
     font-size: 0.85rem; /* Slightly smaller text */
 }
 
@@ -175,4 +175,19 @@
     color: var(--dark-green-text);
     font-style: italic;
     font-size: 0.9rem; /* Slightly smaller text */
+}
+
+.warning-message {
+    background-color: var(--state-warning-bg);
+    color: var(--state-warning-text);
+    padding: 0.75rem;
+    border-radius: calc(var(--border-radius) * 0.8);
+    margin: 0.75rem;
+    text-align: center;
+    border: 1px solid var(--state-warning-border);
+    font-size: 0.85rem;
+}
+
+.inline-warning {
+    margin: 0.75rem 0.75rem 0.25rem;
 }

@@ -9,6 +9,7 @@ import {
   getCurrentMode,
   retakeFullQuiz,
 } from "./quiz.js";
+import { debugLog } from "./logger.js";
 
 // Global variables
 let currentTopic = null;
@@ -16,16 +17,16 @@ let currentTopic = null;
 // Initialize the app
 async function init() {
   try {
-    console.log("Initializing app...");
+    debugLog("Initializing app...");
     const topicsData = await loadData(); // Renamed to avoid conflict with imported topics
-    console.log("Loaded topics:", topicsData);
+    debugLog("Loaded topics:", topicsData);
     if (!topicsData || topicsData.length === 0) {
       console.error("No topics loaded");
       showError("No topics available. Please check data files.");
       return;
     }
     await displayTopics(topicsData, handleTopicSelect);
-    console.log("Displayed topics");
+    debugLog("Displayed topics");
   } catch (error) {
     console.error("Error initializing app:", error);
     showError("Failed to load quiz data. Please try again later.");

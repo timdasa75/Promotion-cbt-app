@@ -7,18 +7,27 @@
   "subcategories": [
     {
       "id": "proc_objectives_institutions",
-      "name": "Objectives and Institutions",
-      "description": "Objectives of the PPA, establishment of BPP, procurement planning committee, and procurement units",
+      "name": "Objectives & Institutions",
+      "description": "Procurement objectives, institutions, and governance architecture.",
       "questions": [
         {
           "id": "ppa_objectives_001",
           "question": "In which year was the Public Procurement Act enacted in Nigeria?",
-          "options": ["2003", "2005", "2007", "2010"],
+          "options": [
+            "2003",
+            "2005",
+            "2007",
+            "2010"
+          ],
           "correct": 2,
           "explanation": "The Public Procurement Act was enacted in 2007 to regulate public procurement practices in Nigeria [1], [2].",
           "difficulty": "easy",
           "topic": "Public Procurement Act",
-          "keywords": ["public procurement act", "2007", "enactment"]
+          "keywords": [
+            "public procurement act",
+            "2007",
+            "enactment"
+          ]
         },
         {
           "id": "ppa_objectives_002",
@@ -33,17 +42,30 @@
           "explanation": "The Bureau of Public Procurement (BPP) is established under the Act as the regulatory authority for procurement [3], [4].",
           "difficulty": "easy",
           "topic": "Public Procurement Act",
-          "keywords": ["bpp", "public procurement", "regulatory body"]
+          "keywords": [
+            "bpp",
+            "public procurement",
+            "regulatory body"
+          ]
         },
         {
           "id": "ppa_objectives_003",
           "question": "Which section of the PPA 2007 establishes the Bureau of Public Procurement?",
-          "options": ["Section 1", "Section 3", "Section 4", "Section 5"],
+          "options": [
+            "Section 1",
+            "Section 3",
+            "Section 4",
+            "Section 5"
+          ],
           "correct": 1,
           "explanation": "Section 3 of the PPA 2007 legally establishes the Bureau of Public Procurement (BPP) [5], [6].",
           "difficulty": "medium",
           "topic": "Public Procurement Act",
-          "keywords": ["ppa 2007", "section 3", "bpp"]
+          "keywords": [
+            "ppa 2007",
+            "section 3",
+            "bpp"
+          ]
         },
         {
           "id": "ppa_objectives_004",
@@ -68,17 +90,32 @@
         {
           "id": "ppa_objectives_005",
           "question": "Which section empowers the BPP to issue guidelines and regulations to MDAs?",
-          "options": ["Section 3", "Section 5", "Section 7", "Section 10"],
+          "options": [
+            "Section 3",
+            "Section 5",
+            "Section 7",
+            "Section 10"
+          ],
           "correct": 1,
           "explanation": "Section 5 gives BPP the power to issue guidelines, manuals, and regulations for standardized procurement [9], [10].",
           "difficulty": "medium",
           "topic": "Public Procurement Act",
-          "keywords": ["ppa 2007", "bpp powers", "section 5", "guidelines"]
+          "keywords": [
+            "ppa 2007",
+            "bpp powers",
+            "section 5",
+            "guidelines"
+          ]
         },
         {
           "id": "ppa_objectives_006",
           "question": "Which section requires all procuring entities to establish a Procurement Planning Committee (PPC)?",
-          "options": ["Section 18", "Section 20", "Section 21", "Section 23"],
+          "options": [
+            "Section 18",
+            "Section 20",
+            "Section 21",
+            "Section 23"
+          ],
           "correct": 2,
           "explanation": "Section 21 requires every procuring entity to have a Procurement Planning Committee [9], [11], [12].",
           "difficulty": "medium",
@@ -102,7 +139,11 @@
           "explanation": "The Procurement Planning Committee is chaired by the Permanent Secretary or Chief Executive Officer (the Accounting Officer) of the procuring entity [13], [11].",
           "difficulty": "medium",
           "topic": "Public Procurement Act",
-          "keywords": ["ppa 2007", "committee chair", "permanent secretary"]
+          "keywords": [
+            "ppa 2007",
+            "committee chair",
+            "permanent secretary"
+          ]
         },
         {
           "id": "ppa_objectives_008",
@@ -117,67 +158,125 @@
           "explanation": "Procurement Units prepare bidding documents, manage the process flow, and support the Procurement Planning Committee [14].",
           "difficulty": "medium",
           "topic": "Public Procurement Act",
-          "keywords": ["ppa 2007", "procurement unit", "functions"]
+          "keywords": [
+            "ppa 2007",
+            "procurement unit",
+            "functions"
+          ]
         },
         {
           "id": "ppa_objectives_009",
           "question": "Which section provides for the establishment of procurement journals to publish notices?",
-          "options": ["Section 5", "Section 12", "Section 19", "Section 23"],
+          "options": [
+            "Section 5",
+            "Section 12",
+            "Section 19",
+            "Section 23"
+          ],
           "correct": 1,
           "explanation": "Section 12 mandates the publication of procurement journals to ensure wide dissemination of information [15].",
           "difficulty": "medium",
           "topic": "Public Procurement Act",
-          "keywords": ["ppa 2007", "procurement journal", "section 12"]
+          "keywords": [
+            "ppa 2007",
+            "procurement journal",
+            "section 12"
+          ]
         },
         {
           "id": "ppa_objectives_010",
           "question": "Which section empowers the BPP to maintain and update a national database of contractors and service providers?",
-          "options": ["Section 5", "Section 6", "Section 8", "Section 9"],
+          "options": [
+            "Section 5",
+            "Section 6",
+            "Section 8",
+            "Section 9"
+          ],
           "correct": 3,
           "explanation": "Sections 5 and 9 empower the BPP to maintain and update a national database of eligible contractors [16].",
           "difficulty": "medium",
           "topic": "Public Procurement Act",
-          "keywords": ["ppa 2007", "contractor database", "section 9"]
+          "keywords": [
+            "ppa 2007",
+            "contractor database",
+            "section 9"
+          ]
         },
         {
           "id": "ppa_objectives_011",
           "question": "The power to organize and carry out training for procurement officers falls under which BPP power?",
-          "options": ["Section 3", "Section 4", "Section 5", "Section 6"],
+          "options": [
+            "Section 3",
+            "Section 4",
+            "Section 5",
+            "Section 6"
+          ],
           "correct": 2,
           "explanation": "Section 5 empowers the BPP to organize training and build capacity of procurement officers [17].",
           "difficulty": "medium",
           "topic": "Public Procurement Act",
-          "keywords": ["ppa 2007", "training", "section 5"]
+          "keywords": [
+            "ppa 2007",
+            "training",
+            "section 5"
+          ]
         },
         {
           "id": "ppa_objectives_012",
           "question": "Which section empowers the BPP to issue Certificates of 'No Objection' to contract awards above designated thresholds?",
-          "options": ["Section 3", "Section 4", "Section 5", "Section 6"],
+          "options": [
+            "Section 3",
+            "Section 4",
+            "Section 5",
+            "Section 6"
+          ],
           "correct": 2,
           "explanation": "Section 5 mandates BPP to issue a 'Certificate of No Objection' before high-value contract awards can be finalized [18], [19].",
           "difficulty": "medium",
           "topic": "Public Procurement Act",
-          "keywords": ["ppa 2007", "certificate of no objection", "section 5"]
+          "keywords": [
+            "ppa 2007",
+            "certificate of no objection",
+            "section 5"
+          ]
         },
         {
           "id": "ppa_objectives_013",
           "question": "Which section empowers the BPP to inspect procurement records and documents of entities to ensure compliance?",
-          "options": ["Section 4", "Section 5", "Section 6", "Section 7"],
+          "options": [
+            "Section 4",
+            "Section 5",
+            "Section 6",
+            "Section 7"
+          ],
           "correct": 1,
           "explanation": "Section 5 empowers the BPP to inspect procurement records to ensure compliance [19].",
           "difficulty": "medium",
           "topic": "Public Procurement Act",
-          "keywords": ["ppa 2007", "inspection", "section 5"]
+          "keywords": [
+            "ppa 2007",
+            "inspection",
+            "section 5"
+          ]
         },
         {
           "id": "ppa_objectives_014",
           "question": "Which section covers the conduct of mandatory procurement audits by the BPP?",
-          "options": ["Section 4", "Section 5", "Section 6", "Section 7"],
+          "options": [
+            "Section 4",
+            "Section 5",
+            "Section 6",
+            "Section 7"
+          ],
           "correct": 2,
           "explanation": "Section 6 empowers BPP to conduct procurement audits of procuring entities [20].",
           "difficulty": "medium",
           "topic": "Public Procurement Act",
-          "keywords": ["ppa 2007", "procurement audits", "section 6"]
+          "keywords": [
+            "ppa 2007",
+            "procurement audits",
+            "section 6"
+          ]
         },
         {
           "id": "ppa_objectives_015",
@@ -201,12 +300,21 @@
         {
           "id": "ppa_objectives_016",
           "question": "Which section prohibits a procuring entity from initiating procurement without approved budgetary provision and availability of funds?",
-          "options": ["Section 12", "Section 14", "Section 16", "Section 18"],
+          "options": [
+            "Section 12",
+            "Section 14",
+            "Section 16",
+            "Section 18"
+          ],
           "correct": 1,
           "explanation": "Section 14 strictly prohibits procurement without approved budgetary provision [22], [23], [24].",
           "difficulty": "medium",
           "topic": "Public Procurement Act",
-          "keywords": ["budget provision", "section 14", "appropriation"]
+          "keywords": [
+            "budget provision",
+            "section 14",
+            "appropriation"
+          ]
         },
         {
           "id": "ppa_objectives_017",
@@ -221,7 +329,11 @@
           "explanation": "Section 16 emphasizes that all procurement must achieve optimum value for money [25].",
           "difficulty": "easy",
           "topic": "Public Procurement Act",
-          "keywords": ["Value for Money", "section 16", "principles"]
+          "keywords": [
+            "Value for Money",
+            "section 16",
+            "principles"
+          ]
         },
         {
           "id": "ppa_objectives_018",
@@ -274,7 +386,11 @@
           "explanation": "Direct Procurement (Section 42) is permitted only for emergencies or proprietary purchases where only one known source exists [31], [32], [33].",
           "difficulty": "medium",
           "topic": "Public Procurement Act",
-          "keywords": ["Direct Procurement", "emergency", "Section 42"]
+          "keywords": [
+            "Direct Procurement",
+            "emergency",
+            "Section 42"
+          ]
         },
         {
           "id": "ppa_objectives_021",
@@ -308,7 +424,11 @@
           "explanation": "Due Process emphasizes strict compliance with legal, procedural, and administrative requirements throughout the contract process [36], [37].",
           "difficulty": "medium",
           "topic": "Public Procurement Act",
-          "keywords": ["Due Process", "legal compliance", "transparency"]
+          "keywords": [
+            "Due Process",
+            "legal compliance",
+            "transparency"
+          ]
         },
         {
           "id": "ppa_objectives_023",
@@ -323,7 +443,11 @@
           "explanation": "The PPA classifies procurement into Goods (tangible supplies), Works (construction), and Services (advisory/operational) [38].",
           "difficulty": "easy",
           "topic": "Procurement Classification",
-          "keywords": ["Goods", "classification", "supplies"]
+          "keywords": [
+            "Goods",
+            "classification",
+            "supplies"
+          ]
         },
         {
           "id": "ppa_objectives_024",
@@ -338,7 +462,11 @@
           "explanation": "Works are classified as infrastructure projects (construction, rehabilitation, or improvement of physical assets) [38].",
           "difficulty": "easy",
           "topic": "Procurement Classification",
-          "keywords": ["Works", "construction", "classification"]
+          "keywords": [
+            "Works",
+            "construction",
+            "classification"
+          ]
         },
         {
           "id": "ppa_objectives_025",
@@ -353,7 +481,11 @@
           "explanation": "Consultancy Services involve intellectual or advisory tasks and require specific selection methods (Section 43) [38].",
           "difficulty": "easy",
           "topic": "Procurement Classification",
-          "keywords": ["Consultancy Services", "advisory", "Section 43"]
+          "keywords": [
+            "Consultancy Services",
+            "advisory",
+            "Section 43"
+          ]
         },
         {
           "id": "ppa_objectives_026",
@@ -388,27 +520,49 @@
           "explanation": "Needs Assessment precedes planning (Section 21) and determines the project scope, technical specifications, and quantities required, ensuring alignment with the budget [12].",
           "difficulty": "medium",
           "topic": "Procurement Planning",
-          "keywords": ["Needs Assessment", "planning", "justification"]
+          "keywords": [
+            "Needs Assessment",
+            "planning",
+            "justification"
+          ]
         },
         {
           "id": "ppa_objectives_028",
           "question": "Procurement documents and records must be retained for audit and inspection purposes for a minimum period of:",
-          "options": ["2 years", "3 years", "5 years", "7 years"],
+          "options": [
+            "2 years",
+            "3 years",
+            "5 years",
+            "7 years"
+          ],
           "correct": 2,
           "explanation": "Procurement documents must be retained for at least 5 years (Section 38) to support potential audits and inquiries [42], [43], [44].",
           "difficulty": "medium",
           "topic": "Procurement Institutions",
-          "keywords": ["record retention", "5 years", "Section 38"]
+          "keywords": [
+            "record retention",
+            "5 years",
+            "Section 38"
+          ]
         },
         {
           "id": "ppa_objectives_029",
           "question": "The use of **International Competitive Bidding (ICB)** is sanctioned under which Section of the PPA?",
-          "options": ["Section 16", "Section 24", "Section 27", "Section 35"],
+          "options": [
+            "Section 16",
+            "Section 24",
+            "Section 27",
+            "Section 35"
+          ],
           "correct": 2,
           "explanation": "Section 27 provides for International Competitive Bidding when national competitive bidding is inadequate or the required goods/services are unavailable locally [45], [46].",
           "difficulty": "medium",
           "topic": "Procurement Methods",
-          "keywords": ["international bidding", "Section 27", "ICB"]
+          "keywords": [
+            "international bidding",
+            "Section 27",
+            "ICB"
+          ]
         },
         {
           "id": "ppa_objectives_030",
@@ -423,7 +577,11 @@
           "explanation": "The BPP establishes and publishes the Threshold Manual, setting approval limits for Accounting Officers and Tender Boards [47], [48].",
           "difficulty": "medium",
           "topic": "Procurement Institutions",
-          "keywords": ["BPP", "Threshold Manual", "approval limits"]
+          "keywords": [
+            "BPP",
+            "Threshold Manual",
+            "approval limits"
+          ]
         },
         {
           "id": "ppa_objectives_031",
@@ -438,7 +596,11 @@
           "explanation": "Section 35 allows for Domestic Preference in procurement to support local industry [49].",
           "difficulty": "medium",
           "topic": "Procurement Principles",
-          "keywords": ["Domestic Preference", "Section 35", "local content"]
+          "keywords": [
+            "Domestic Preference",
+            "Section 35",
+            "local content"
+          ]
         },
         {
           "id": "ppa_objectives_032",
@@ -453,7 +615,11 @@
           "explanation": "Emergency Procurement (Section 42) is reserved for unforeseen events where competitive delays would compromise life or security [31], [33].",
           "difficulty": "medium",
           "topic": "Procurement Methods",
-          "keywords": ["Emergency Procurement", "Section 42", "urgency"]
+          "keywords": [
+            "Emergency Procurement",
+            "Section 42",
+            "urgency"
+          ]
         },
         {
           "id": "ppa_objectives_033",
@@ -468,12 +634,21 @@
           "explanation": "Emergency procurement must be subject to immediate audit and ratification by submitting a report detailing the necessity to the BPP [50].",
           "difficulty": "hard",
           "topic": "Procurement Methods",
-          "keywords": ["Emergency Procurement", "BPP report", "ratification"]
+          "keywords": [
+            "Emergency Procurement",
+            "BPP report",
+            "ratification"
+          ]
         },
         {
           "id": "ppa_objectives_034",
           "question": "Which section provides for the use of a **Framework Agreement** for repeated acquisitions of commonly used goods or services over a specified period?",
-          "options": ["Section 35", "Section 39", "Section 42", "Section 44"],
+          "options": [
+            "Section 35",
+            "Section 39",
+            "Section 42",
+            "Section 44"
+          ],
           "correct": 3,
           "explanation": "Section 44 provides for Framework Agreements for repeated procurements under pre-agreed terms [51].",
           "difficulty": "medium",
@@ -487,12 +662,21 @@
         {
           "id": "ppa_objectives_035",
           "question": "Which section of the PPA mandates that procuring entities must treat all bidders fairly and equitably?",
-          "options": ["Section 12", "Section 16", "Section 27", "Section 30"],
+          "options": [
+            "Section 12",
+            "Section 16",
+            "Section 27",
+            "Section 30"
+          ],
           "correct": 1,
           "explanation": "Section 16 requires equal and fair treatment of all bidders during the procurement process [52].",
           "difficulty": "medium",
           "topic": "Procurement Principles",
-          "keywords": ["fair treatment", "equity", "Section 16"]
+          "keywords": [
+            "fair treatment",
+            "equity",
+            "Section 16"
+          ]
         },
         {
           "id": "ppa_objectives_036",
@@ -507,7 +691,11 @@
           "explanation": "The NCPP provides policy direction and high-level oversight of the BPP, reporting directly to the President.",
           "difficulty": "medium",
           "topic": "Procurement Institutions",
-          "keywords": ["NCPP", "policy direction", "oversight"]
+          "keywords": [
+            "NCPP",
+            "policy direction",
+            "oversight"
+          ]
         },
         {
           "id": "ppa_objectives_037",
@@ -560,22 +748,40 @@
           "explanation": "Advisory and intellectual tasks are classified as Consultancy Services (Section 43) [38].",
           "difficulty": "easy",
           "topic": "Procurement Classification",
-          "keywords": ["Consultancy Services", "advisory", "classification"]
+          "keywords": [
+            "Consultancy Services",
+            "advisory",
+            "classification"
+          ]
         },
         {
           "id": "ppa_objectives_040",
           "question": "Which section requires procuring entities to publish advertisements for all procurements above specified thresholds in national newspapers?",
-          "options": ["Section 12", "Section 21", "Section 23", "Section 25"],
+          "options": [
+            "Section 12",
+            "Section 21",
+            "Section 23",
+            "Section 25"
+          ],
           "correct": 2,
           "explanation": "Section 23 requires mandatory advertisement of procurement opportunities above thresholds to ensure transparency [54], [55], [56].",
           "difficulty": "medium",
           "topic": "Procurement Principles",
-          "keywords": ["advertisement", "Section 23", "transparency"]
+          "keywords": [
+            "advertisement",
+            "Section 23",
+            "transparency"
+          ]
         },
         {
           "id": "ppa_objectives_041",
           "question": "What is the minimum statutory advertisement period required for bidding opportunities under national competitive bidding?",
-          "options": ["1 week", "2 weeks", "4 weeks", "6 weeks"],
+          "options": [
+            "1 week",
+            "2 weeks",
+            "4 weeks",
+            "6 weeks"
+          ],
           "correct": 2,
           "explanation": "Section 25 requires at least 4 weeks for submission of bids under national competitive bidding [57].",
           "difficulty": "medium",
@@ -589,7 +795,12 @@
         {
           "id": "ppa_objectives_042",
           "question": "The procurement objective that encourages community participation in small-scale, localized projects is provided for in:",
-          "options": ["Section 16", "Section 24", "Section 39", "Section 42"],
+          "options": [
+            "Section 16",
+            "Section 24",
+            "Section 39",
+            "Section 42"
+          ],
           "correct": 2,
           "explanation": "Section 39 provides for community participation in small-scale procurement to encourage local development [58].",
           "difficulty": "medium",
@@ -613,7 +824,12 @@
           "explanation": "Violations of the PPA constitute serious misconduct, leading to severe sanctions (surcharge, dismissal, or criminal charges) against the Accounting Officer or responsible procurement official [59], [60].",
           "difficulty": "medium",
           "topic": "Procurement Institutions",
-          "keywords": ["PPA violation", "sanction", "dismissal", "surcharge"]
+          "keywords": [
+            "PPA violation",
+            "sanction",
+            "dismissal",
+            "surcharge"
+          ]
         },
         {
           "id": "ppa_objectives_044",
@@ -628,7 +844,11 @@
           "explanation": "Contracts exceeding the MTB threshold must be reviewed and approved by the Federal Executive Council (FEC) [61], [43], [48].",
           "difficulty": "medium",
           "topic": "Procurement Thresholds",
-          "keywords": ["MTB", "FEC", "approval limits"]
+          "keywords": [
+            "MTB",
+            "FEC",
+            "approval limits"
+          ]
         },
         {
           "id": "ppa_objectives_045",
@@ -643,7 +863,11 @@
           "explanation": "The database monitors performance and facilitates sanctions like blacklisting, while ensuring bidders meet eligibility requirements (Section 16) [12].",
           "difficulty": "medium",
           "topic": "Procurement Institutions",
-          "keywords": ["national database", "BPP functions", "eligibility"]
+          "keywords": [
+            "national database",
+            "BPP functions",
+            "eligibility"
+          ]
         },
         {
           "id": "ppa_objectives_046",
@@ -658,7 +882,11 @@
           "explanation": "The Audit Trail provides a chronological record of transactions, vital for accountability and traceability, which is supported by the 5-year record retention rule [62], [44].",
           "difficulty": "easy",
           "topic": "Procurement Principles",
-          "keywords": ["Audit Trail", "accountability", "documentation"]
+          "keywords": [
+            "Audit Trail",
+            "accountability",
+            "documentation"
+          ]
         },
         {
           "id": "ppa_objectives_047",
@@ -692,7 +920,11 @@
           "explanation": "Although the PPA favors open bidding, supplementary financial guidelines require at least three quotations for small purchases to ensure basic value for money [63].",
           "difficulty": "medium",
           "topic": "Procurement Methods",
-          "keywords": ["small purchases", "quotations", "Financial Regulations"]
+          "keywords": [
+            "small purchases",
+            "quotations",
+            "Financial Regulations"
+          ]
         },
         {
           "id": "ppa_objectives_049",
@@ -707,7 +939,12 @@
           "explanation": "Section 58 prescribes imprisonment and fines for serious procurement-related fraud and breaches by officials and contractors [64], [65].",
           "difficulty": "hard",
           "topic": "Procurement Institutions",
-          "keywords": ["Section 58", "penalty", "imprisonment", "breach"]
+          "keywords": [
+            "Section 58",
+            "penalty",
+            "imprisonment",
+            "breach"
+          ]
         },
         {
           "id": "ppa_objectives_050",
@@ -734,27 +971,45 @@
     {
       "id": "proc_bidding_evaluation",
       "name": "Bidding, Evaluation & Award",
-      "description": "Bidding processes, evaluation criteria, bid opening, and contract awards",
+      "description": "Bidding rules, evaluation methods, and award procedures.",
       "questions": [
         {
           "id": "ppa_bid_001",
           "question": "Which section of the PPA 2007 requires public advertisement of procurement opportunities above specified thresholds?",
-          "options": ["Section 21", "Section 23", "Section 24", "Section 25"],
+          "options": [
+            "Section 21",
+            "Section 23",
+            "Section 24",
+            "Section 25"
+          ],
           "correct": 1,
           "explanation": "Section 23 requires the advertisement of all procurements above the set thresholds to ensure transparency [1-3].",
           "difficulty": "medium",
           "topic": "Bidding Requirements",
-          "keywords": ["advertisement", "section 23", "transparency"]
+          "keywords": [
+            "advertisement",
+            "section 23",
+            "transparency"
+          ]
         },
         {
           "id": "ppa_bid_002",
           "question": "What is the minimum statutory time frame required for the submission of bids under National Competitive Bidding (NCB)?",
-          "options": ["1 week", "2 weeks", "4 weeks", "6 weeks"],
+          "options": [
+            "1 week",
+            "2 weeks",
+            "4 weeks",
+            "6 weeks"
+          ],
           "correct": 2,
           "explanation": "Section 25 requires at least 4 weeks (28 days) for the submission of bids under national competitive bidding [4].",
           "difficulty": "medium",
           "topic": "Bidding Requirements",
-          "keywords": ["submission time frame", "section 25", "NCB"]
+          "keywords": [
+            "submission time frame",
+            "section 25",
+            "NCB"
+          ]
         },
         {
           "id": "ppa_bid_003",
@@ -769,7 +1024,11 @@
           "explanation": "Section 25 requires procuring entities to use standard bidding documents containing clear specifications and criteria, typically issued by the BPP [5].",
           "difficulty": "easy",
           "topic": "Bidding Requirements",
-          "keywords": ["standard bidding documents", "BPP", "section 25"]
+          "keywords": [
+            "standard bidding documents",
+            "BPP",
+            "section 25"
+          ]
         },
         {
           "id": "ppa_bid_004",
@@ -784,7 +1043,11 @@
           "explanation": "Section 22 provides for pre-qualification of bidders to ensure capability before the formal submission of bids [6].",
           "difficulty": "medium",
           "topic": "Bidding Process",
-          "keywords": ["pre-qualification", "section 22", "bidders"]
+          "keywords": [
+            "pre-qualification",
+            "section 22",
+            "bidders"
+          ]
         },
         {
           "id": "ppa_bid_005",
@@ -799,7 +1062,11 @@
           "explanation": "Section 16 requires bidders to have fulfilled all tax obligations, necessitating the submission of a valid Tax Clearance Certificate (TCC) [7].",
           "difficulty": "medium",
           "topic": "Eligibility",
-          "keywords": ["tax clearance certificate", "eligibility", "section 16"]
+          "keywords": [
+            "tax clearance certificate",
+            "eligibility",
+            "section 16"
+          ]
         },
         {
           "id": "ppa_bid_006",
@@ -814,7 +1081,11 @@
           "explanation": "Section 16 states that eligible contractors must not be in receivership, bankruptcy, or insolvency [8].",
           "difficulty": "medium",
           "topic": "Eligibility",
-          "keywords": ["insolvency", "eligibility", "section 16"]
+          "keywords": [
+            "insolvency",
+            "eligibility",
+            "section 16"
+          ]
         },
         {
           "id": "ppa_bid_007",
@@ -829,27 +1100,49 @@
           "explanation": "Section 28 requires bid security to protect procuring entities from default, such as withdrawal or failure to sign a contract, by bidders [9, 10].",
           "difficulty": "medium",
           "topic": "Bidding Process",
-          "keywords": ["bid security", "section 28", "commitment"]
+          "keywords": [
+            "bid security",
+            "section 28",
+            "commitment"
+          ]
         },
         {
           "id": "ppa_bid_008",
           "question": "What is the typical validity period for bids, unless otherwise specified in the tender documents?",
-          "options": ["30 days", "45 days", "60 days", "90 days"],
+          "options": [
+            "30 days",
+            "45 days",
+            "60 days",
+            "90 days"
+          ],
           "correct": 2,
           "explanation": "Section 26 provides that bids shall remain valid for 60 days unless otherwise stated [9].",
           "difficulty": "medium",
           "topic": "Bidding Process",
-          "keywords": ["bid validity", "section 26", "60 days"]
+          "keywords": [
+            "bid validity",
+            "section 26",
+            "60 days"
+          ]
         },
         {
           "id": "ppa_bid_009",
           "question": "The Bid Opening ceremony must be conducted in public to ensure transparency, as required by which section of the PPA?",
-          "options": ["Section 25", "Section 27", "Section 30", "Section 33"],
+          "options": [
+            "Section 25",
+            "Section 27",
+            "Section 30",
+            "Section 33"
+          ],
           "correct": 1,
           "explanation": "Section 27 requires that bid opening must be done publicly to ensure fairness and transparency [11].",
           "difficulty": "easy",
           "topic": "Bidding Process",
-          "keywords": ["bid opening", "public", "section 27"]
+          "keywords": [
+            "bid opening",
+            "public",
+            "section 27"
+          ]
         },
         {
           "id": "ppa_bid_010",
@@ -864,7 +1157,11 @@
           "explanation": "Bid opening minutes must record the names of bidders, bid prices, and modifications or withdrawals to ensure transparency [11].",
           "difficulty": "medium",
           "topic": "Bidding Process",
-          "keywords": ["bid opening minutes", "section 27", "transparency"]
+          "keywords": [
+            "bid opening minutes",
+            "section 27",
+            "transparency"
+          ]
         },
         {
           "id": "ppa_bid_011",
@@ -879,17 +1176,30 @@
           "explanation": "A responsive bid is one that complies fully with all criteria stated in the bid document and is eligible for evaluation [12-14].",
           "difficulty": "easy",
           "topic": "Bid Evaluation",
-          "keywords": ["responsive bid", "compliance", "evaluation"]
+          "keywords": [
+            "responsive bid",
+            "compliance",
+            "evaluation"
+          ]
         },
         {
           "id": "ppa_bid_012",
           "question": "Which section mandates that the evaluation of bids must be based strictly on criteria and specifications stated in the solicitation documents?",
-          "options": ["Section 25", "Section 30", "Section 33", "Section 37"],
+          "options": [
+            "Section 25",
+            "Section 30",
+            "Section 33",
+            "Section 37"
+          ],
           "correct": 2,
           "explanation": "Section 33 mandates that evaluation of bids must be based strictly on criteria stated in solicitation documents [15, 16].",
           "difficulty": "medium",
           "topic": "Bid Evaluation",
-          "keywords": ["evaluation criteria", "section 33", "strict compliance"]
+          "keywords": [
+            "evaluation criteria",
+            "section 33",
+            "strict compliance"
+          ]
         },
         {
           "id": "ppa_bid_013",
@@ -904,7 +1214,11 @@
           "explanation": "Section 33 prohibits the alteration of procurement documents or bids once they have been opened [17].",
           "difficulty": "medium",
           "topic": "Bid Evaluation",
-          "keywords": ["document alteration", "section 33", "prohibited"]
+          "keywords": [
+            "document alteration",
+            "section 33",
+            "prohibited"
+          ]
         },
         {
           "id": "ppa_bid_014",
@@ -919,7 +1233,10 @@
           "explanation": "Bid evaluation is generally conducted in two stages: technical evaluation (compliance with specifications) and financial evaluation (price comparison) [18, 19].",
           "difficulty": "easy",
           "topic": "Bid Evaluation",
-          "keywords": ["two-stage evaluation", "technical, financial"]
+          "keywords": [
+            "two-stage evaluation",
+            "technical, financial"
+          ]
         },
         {
           "id": "ppa_bid_015",
@@ -962,12 +1279,21 @@
         {
           "id": "ppa_bid_017",
           "question": "What is the maximum percentage of the contract sum allowable as a Mobilization Fee (advance payment) to a contractor?",
-          "options": ["10%", "20%", "30%", "50%"],
+          "options": [
+            "10%",
+            "20%",
+            "30%",
+            "50%"
+          ],
           "correct": 2,
           "explanation": "The mobilization fee is limited to a maximum of 30% of the contract sum [22-26].",
           "difficulty": "medium",
           "topic": "Contract Award",
-          "keywords": ["mobilization fee", "30 percent", "advance payment"]
+          "keywords": [
+            "mobilization fee",
+            "30 percent",
+            "advance payment"
+          ]
         },
         {
           "id": "ppa_bid_018",
@@ -982,7 +1308,11 @@
           "explanation": "Mobilization fees are paid subject to the contractor providing a Performance Bond or Advance Payment Guarantee to secure the funds [23, 25, 26].",
           "difficulty": "medium",
           "topic": "Contract Award",
-          "keywords": ["performance bond", "mobilization fee", "APG"]
+          "keywords": [
+            "performance bond",
+            "mobilization fee",
+            "APG"
+          ]
         },
         {
           "id": "ppa_bid_019",
@@ -1016,27 +1346,49 @@
           "explanation": "Section 31 allows rejection of all bids if none meets the required standards or criteria, leading to cancellation of the proceeding [28].",
           "difficulty": "medium",
           "topic": "Contract Award",
-          "keywords": ["rejection of all bids", "section 31", "cancellation"]
+          "keywords": [
+            "rejection of all bids",
+            "section 31",
+            "cancellation"
+          ]
         },
         {
           "id": "ppa_bid_021",
           "question": "Which section requires that contract award decisions must be communicated to unsuccessful bidders?",
-          "options": ["Section 28", "Section 30", "Section 31", "Section 33"],
+          "options": [
+            "Section 28",
+            "Section 30",
+            "Section 31",
+            "Section 33"
+          ],
           "correct": 1,
           "explanation": "Section 30 requires notifying unsuccessful bidders of the contract award decisions to ensure transparency [29].",
           "difficulty": "medium",
           "topic": "Contract Award",
-          "keywords": ["unsuccessful bidders", "notification", "section 30"]
+          "keywords": [
+            "unsuccessful bidders",
+            "notification",
+            "section 30"
+          ]
         },
         {
           "id": "ppa_bid_022",
           "question": "The BPP is empowered to suspend procurement proceedings if irregularities are found, as provided in:",
-          "options": ["Section 5", "Section 53", "Section 54", "Section 57"],
+          "options": [
+            "Section 5",
+            "Section 53",
+            "Section 54",
+            "Section 57"
+          ],
           "correct": 1,
           "explanation": "Section 53 empowers the BPP to suspend or cancel procurement if irregularities are detected, reinforcing due process [30].",
           "difficulty": "medium",
           "topic": "Oversight",
-          "keywords": ["BPP suspension", "section 53", "irregularities"]
+          "keywords": [
+            "BPP suspension",
+            "section 53",
+            "irregularities"
+          ]
         },
         {
           "id": "ppa_bid_023",
@@ -1051,7 +1403,11 @@
           "explanation": "Technical evaluation checks the bidder’s capacity, experience, and compliance with the MDA’s detailed technical specifications [19].",
           "difficulty": "easy",
           "topic": "Bid Evaluation",
-          "keywords": ["technical evaluation", "capacity", "specifications"]
+          "keywords": [
+            "technical evaluation",
+            "capacity",
+            "specifications"
+          ]
         },
         {
           "id": "ppa_bid_024",
@@ -1066,7 +1422,11 @@
           "explanation": "Only technically responsive bidders proceed to the financial evaluation stage, ensuring only qualified firms compete on price.",
           "difficulty": "medium",
           "topic": "Bid Evaluation",
-          "keywords": ["financial evaluation", "exclusion", "technical failure"]
+          "keywords": [
+            "financial evaluation",
+            "exclusion",
+            "technical failure"
+          ]
         },
         {
           "id": "ppa_bid_025",
@@ -1081,7 +1441,11 @@
           "explanation": "The Procurement Officer manages technical and administrative compliance, including verifying the validity and adequacy of the bid security.",
           "difficulty": "medium",
           "topic": "Bidding Process",
-          "keywords": ["procurement officer", "bid security", "verification"]
+          "keywords": [
+            "procurement officer",
+            "bid security",
+            "verification"
+          ]
         },
         {
           "id": "ppa_bid_026",
@@ -1096,12 +1460,21 @@
           "explanation": "Bid opening minutes must be signed by the procuring entity, BPP representatives, and the bidders present to authenticate the process.",
           "difficulty": "medium",
           "topic": "Bidding Process",
-          "keywords": ["minutes signature", "transparency", "bid opening"]
+          "keywords": [
+            "minutes signature",
+            "transparency",
+            "bid opening"
+          ]
         },
         {
           "id": "ppa_bid_027",
           "question": "Which section requires procuring entities to use standard bidding documents containing clear specifications and criteria?",
-          "options": ["Section 24", "Section 25", "Section 26", "Section 27"],
+          "options": [
+            "Section 24",
+            "Section 25",
+            "Section 26",
+            "Section 27"
+          ],
           "correct": 1,
           "explanation": "Section 25 stipulates the contents and requirements for standard bidding documents [5].",
           "difficulty": "easy",
@@ -1125,7 +1498,11 @@
           "explanation": "Failure to meet statutory eligibility criteria, such as TCC submission (Section 16), renders the bidder ineligible [7].",
           "difficulty": "medium",
           "topic": "Eligibility",
-          "keywords": ["ineligible bidder", "TCC", "Section 16"]
+          "keywords": [
+            "ineligible bidder",
+            "TCC",
+            "Section 16"
+          ]
         },
         {
           "id": "ppa_bid_029",
@@ -1140,7 +1517,10 @@
           "explanation": "The PPA generally requires bids and bid securities to remain valid throughout the process; if the validity lapses, the bidder must be requested to extend it to remain eligible.",
           "difficulty": "hard",
           "topic": "Bidding Process",
-          "keywords": ["bid security extension", "validity lapse"]
+          "keywords": [
+            "bid security extension",
+            "validity lapse"
+          ]
         },
         {
           "id": "ppa_bid_030",
@@ -1155,7 +1535,11 @@
           "explanation": "Section 36 permits negotiations only under limited circumstances, such as single-source procurement or where technical aspects need refinement, but are generally prohibited in competitive bidding [31].",
           "difficulty": "medium",
           "topic": "Contract Award",
-          "keywords": ["negotiations", "section 36", "sole sourcing"]
+          "keywords": [
+            "negotiations",
+            "section 36",
+            "sole sourcing"
+          ]
         },
         {
           "id": "ppa_bid_031",
@@ -1208,12 +1592,21 @@
           "explanation": "Section 5 mandates the BPP to issue a 'Certificate of No Objection' for high-value procurements before a contract award is finalized [33-35].",
           "difficulty": "medium",
           "topic": "Contract Award",
-          "keywords": ["certificate of no objection", "BPP policy", "section 5"]
+          "keywords": [
+            "certificate of no objection",
+            "BPP policy",
+            "section 5"
+          ]
         },
         {
           "id": "ppa_bid_034",
           "question": "The public announcement of awarded contracts above a certain threshold is required by which section of the PPA?",
-          "options": ["Section 25", "Section 28", "Section 32", "Section 37"],
+          "options": [
+            "Section 25",
+            "Section 28",
+            "Section 32",
+            "Section 37"
+          ],
           "correct": 2,
           "explanation": "Section 32 requires the publication of contract awards above thresholds to ensure transparency [36, 37].",
           "difficulty": "medium",
@@ -1237,7 +1630,11 @@
           "explanation": "Section 54 provides a complaint mechanism, requiring prompt submission of complaints to the Complaint Review Committee [35, 38-41].",
           "difficulty": "medium",
           "topic": "Oversight",
-          "keywords": ["complaint mechanism", "section 54", "aggrieved bidders"]
+          "keywords": [
+            "complaint mechanism",
+            "section 54",
+            "aggrieved bidders"
+          ]
         },
         {
           "id": "ppa_bid_036",
@@ -1270,7 +1667,11 @@
           "explanation": "Section 31 requires the publication of the notice of cancellation to maintain transparency [17, 28].",
           "difficulty": "medium",
           "topic": "Contract Award",
-          "keywords": ["cancellation notice", "section 31", "publication"]
+          "keywords": [
+            "cancellation notice",
+            "section 31",
+            "publication"
+          ]
         },
         {
           "id": "ppa_bid_038",
@@ -1285,7 +1686,11 @@
           "explanation": "Pre-qualification checks professional and technical capacity early to ensure only capable bidders proceed to tender [6, 43].",
           "difficulty": "easy",
           "topic": "Bidding Process",
-          "keywords": ["pre-qualification", "technical capacity", "section 22"]
+          "keywords": [
+            "pre-qualification",
+            "technical capacity",
+            "section 22"
+          ]
         },
         {
           "id": "ppa_bid_039",
@@ -1300,7 +1705,11 @@
           "explanation": "Consultancy Services (Section 43) often utilize Quality and Cost Based Selection (QCBS) to balance technical merit with price [44].",
           "difficulty": "medium",
           "topic": "Procurement Methods",
-          "keywords": ["consultancy services", "QCBS", "section 43"]
+          "keywords": [
+            "consultancy services",
+            "QCBS",
+            "section 43"
+          ]
         },
         {
           "id": "ppa_bid_040",
@@ -1315,7 +1724,10 @@
           "explanation": "No payment is processed without the Job Completion Certificate (JCC), confirming satisfactory delivery and acceptance [12, 45-47].",
           "difficulty": "easy",
           "topic": "Contract Implementation",
-          "keywords": ["job completion certificate", "payment verification"]
+          "keywords": [
+            "job completion certificate",
+            "payment verification"
+          ]
         },
         {
           "id": "ppa_bid_041",
@@ -1330,17 +1742,30 @@
           "explanation": "Section 35 allows for domestic preference, giving a marginal scoring advantage to encourage local industry [19, 48, 49].",
           "difficulty": "medium",
           "topic": "Bidding Principles",
-          "keywords": ["domestic preference", "section 35", "local content"]
+          "keywords": [
+            "domestic preference",
+            "section 35",
+            "local content"
+          ]
         },
         {
           "id": "ppa_bid_042",
           "question": "Which section of the PPA mandates that procuring entities must retain procurement documents for at least 5 years?",
-          "options": ["Section 23", "Section 33", "Section 38", "Section 44"],
+          "options": [
+            "Section 23",
+            "Section 33",
+            "Section 38",
+            "Section 44"
+          ],
           "correct": 2,
           "explanation": "Section 38 requires procurement documents to be retained for at least 5 years to support potential audits and inquiries [50, 51].",
           "difficulty": "medium",
           "topic": "Oversight",
-          "keywords": ["record retention", "section 38", "5 years"]
+          "keywords": [
+            "record retention",
+            "section 38",
+            "5 years"
+          ]
         },
         {
           "id": "ppa_bid_043",
@@ -1355,7 +1780,12 @@
           "explanation": "Section 58 prescribes penalties for fraudulent and corrupt practices like bribery, collusion, and bid rigging [52-56].",
           "difficulty": "hard",
           "topic": "Ethics and Sanctions",
-          "keywords": ["section 58", "bribery", "fraud", "penalties"]
+          "keywords": [
+            "section 58",
+            "bribery",
+            "fraud",
+            "penalties"
+          ]
         },
         {
           "id": "ppa_bid_044",
@@ -1370,7 +1800,11 @@
           "explanation": "Section 16 requires bidders to have no criminal record for fraud, verified through the BPP's database and regulatory checks [44, 57].",
           "difficulty": "medium",
           "topic": "Eligibility",
-          "keywords": ["criminal conviction", "section 16", "BPP database"]
+          "keywords": [
+            "criminal conviction",
+            "section 16",
+            "BPP database"
+          ]
         },
         {
           "id": "ppa_bid_045",
@@ -1404,7 +1838,11 @@
           "explanation": "Non-responsive bids, lacking mandatory requirements, are excluded immediately from further consideration to maintain the integrity of the process.",
           "difficulty": "medium",
           "topic": "Bid Evaluation",
-          "keywords": ["non-responsive", "exclusion", "integrity"]
+          "keywords": [
+            "non-responsive",
+            "exclusion",
+            "integrity"
+          ]
         },
         {
           "id": "ppa_bid_047",
@@ -1439,17 +1877,30 @@
           "explanation": "Section 32 requires publication of the contract award in the Procurement Journal to ensure transparency [36, 51].",
           "difficulty": "medium",
           "topic": "Transparency",
-          "keywords": ["procurement journal", "publication", "section 32"]
+          "keywords": [
+            "procurement journal",
+            "publication",
+            "section 32"
+          ]
         },
         {
           "id": "ppa_bid_049",
           "question": "Which section allows a procuring entity to reject all bids if it is determined that the prices quoted are substantially in excess of the estimated budget or market price?",
-          "options": ["Section 28", "Section 31", "Section 35", "Section 40"],
+          "options": [
+            "Section 28",
+            "Section 31",
+            "Section 35",
+            "Section 40"
+          ],
           "correct": 1,
           "explanation": "Section 31 allows the rejection of all bids if there is insufficient competition, bids are too high, or a major irregularity is detected [28].",
           "difficulty": "medium",
           "topic": "Contract Award",
-          "keywords": ["rejection of all bids", "excess price", "section 31"]
+          "keywords": [
+            "rejection of all bids",
+            "excess price",
+            "section 31"
+          ]
         },
         {
           "id": "ppa_bid_050",
@@ -1474,28 +1925,46 @@
     },
     {
       "id": "proc_transparency_ethics",
-      "name": "Transparency, Ethics, & Accountability",
-      "description": "Transparency requirements, ethical standards, conflict of interest, and oversight mechanisms",
+      "name": "Transparency, Ethics & Accountability",
+      "description": "Ethics, transparency, and anti-corruption controls in procurement.",
       "questions": [
         {
           "id": "ppa_ethic_001",
           "question": "Which section of the PPA 2007 prohibits conflict of interest and mandates disclosure by officials?",
-          "options": ["Section 34", "Section 42", "Section 57", "Section 59"],
+          "options": [
+            "Section 34",
+            "Section 42",
+            "Section 57",
+            "Section 59"
+          ],
           "correct": 2,
           "explanation": "Section 57 strictly prohibits conflict of interest in procurement proceedings and requires mandatory disclosure by procurement officials [1, 2].",
           "difficulty": "medium",
           "topic": "Ethics and Conduct",
-          "keywords": ["conflict of interest", "section 57", "disclosure"]
+          "keywords": [
+            "conflict of interest",
+            "section 57",
+            "disclosure"
+          ]
         },
         {
           "id": "ppa_ethic_002",
           "question": "The intentional act of fixing or manipulating bid outcomes to restrict competition is known as collusion or bid rigging, which is prohibited under which section?",
-          "options": ["Section 24", "Section 35", "Section 58", "Section 60"],
+          "options": [
+            "Section 24",
+            "Section 35",
+            "Section 58",
+            "Section 60"
+          ],
           "correct": 2,
           "explanation": "Section 58 prohibits fraudulent practices, including conspiracy to rig bids and collusion among bidders [3-5].",
           "difficulty": "hard",
           "topic": "Accountability and Sanctions",
-          "keywords": ["bid rigging", "collusion", "section 58"]
+          "keywords": [
+            "bid rigging",
+            "collusion",
+            "section 58"
+          ]
         },
         {
           "id": "ppa_ethic_003",
@@ -1510,27 +1979,49 @@
           "explanation": "Section 58 prescribes penalties, including imprisonment and fines, for procurement-related fraud and breaches by officials and contractors [4, 6].",
           "difficulty": "hard",
           "topic": "Accountability and Sanctions",
-          "keywords": ["fraud penalties", "section 58", "imprisonment"]
+          "keywords": [
+            "fraud penalties",
+            "section 58",
+            "imprisonment"
+          ]
         },
         {
           "id": "ppa_ethic_004",
           "question": "Which section of the PPA 2007 mandates that all procurement decisions must be properly documented and recorded?",
-          "options": ["Section 16", "Section 34", "Section 40", "Section 55"],
+          "options": [
+            "Section 16",
+            "Section 34",
+            "Section 40",
+            "Section 55"
+          ],
           "correct": 1,
           "explanation": "Section 34 requires that all procurement decisions, including reasons for the chosen method and rejection of bids, must be properly documented [7].",
           "difficulty": "medium",
           "topic": "Transparency and Documentation",
-          "keywords": ["documentation", "section 34", "transparency"]
+          "keywords": [
+            "documentation",
+            "section 34",
+            "transparency"
+          ]
         },
         {
           "id": "ppa_ethic_005",
           "question": "Procurement documents and records must be retained by the procuring entity for a minimum period of:",
-          "options": ["2 years", "3 years", "5 years", "10 years"],
+          "options": [
+            "2 years",
+            "3 years",
+            "5 years",
+            "10 years"
+          ],
           "correct": 2,
           "explanation": "Section 38 requires that all procurement documents be retained for a minimum of 5 years to facilitate audit and inspection [8].",
           "difficulty": "medium",
           "topic": "Accountability and Documentation",
-          "keywords": ["record retention", "section 38", "audit"]
+          "keywords": [
+            "record retention",
+            "section 38",
+            "audit"
+          ]
         },
         {
           "id": "ppa_ethic_006",
@@ -1545,17 +2036,30 @@
           "explanation": "Section 12 mandates the establishment and publication of procurement journals to ensure wide dissemination of information regarding contracts awarded, supporting transparency [9].",
           "difficulty": "medium",
           "topic": "Transparency",
-          "keywords": ["procurement journal", "section 12", "publication"]
+          "keywords": [
+            "procurement journal",
+            "section 12",
+            "publication"
+          ]
         },
         {
           "id": "ppa_ethic_007",
           "question": "The BPP is statutorily empowered to blacklist or permanently exclude contractors who commit offenses under Section 58. This is based on sanctions provided in:",
-          "options": ["Section 16", "Section 35", "Section 57", "Section 58"],
+          "options": [
+            "Section 16",
+            "Section 35",
+            "Section 57",
+            "Section 58"
+          ],
           "correct": 3,
           "explanation": "Section 57 empowers the BPP to blacklist bidders for engaging in corrupt practices [2, 10].",
           "difficulty": "medium",
           "topic": "Accountability and Sanctions",
-          "keywords": ["blacklisting", "section 57", "corrupt practices"]
+          "keywords": [
+            "blacklisting",
+            "section 57",
+            "corrupt practices"
+          ]
         },
         {
           "id": "ppa_ethic_008",
@@ -1570,7 +2074,11 @@
           "explanation": "To ensure fairness, bid opening minutes must be authenticated by the Procuring Entity, BPP (or relevant body), and the bidders present.",
           "difficulty": "medium",
           "topic": "Transparency",
-          "keywords": ["bid opening", "minutes", "section 27"]
+          "keywords": [
+            "bid opening",
+            "minutes",
+            "section 27"
+          ]
         },
         {
           "id": "ppa_ethic_009",
@@ -1585,7 +2093,11 @@
           "explanation": "Section 16 requires equal and fair treatment of all bidders during procurement, ensuring transparency and fairness [11].",
           "difficulty": "easy",
           "topic": "Ethics and Principles",
-          "keywords": ["fairness", "equity", "section 16"]
+          "keywords": [
+            "fairness",
+            "equity",
+            "section 16"
+          ]
         },
         {
           "id": "ppa_ethic_010",
@@ -1638,7 +2150,11 @@
           "explanation": "The Audit Trail provides a chronological record of transactions, allowing auditors to verify integrity and traceability, ensuring accountability [15].",
           "difficulty": "easy",
           "topic": "Accountability and Documentation",
-          "keywords": ["audit trail", "traceability", "accountability"]
+          "keywords": [
+            "audit trail",
+            "traceability",
+            "accountability"
+          ]
         },
         {
           "id": "ppa_ethic_013",
@@ -1672,7 +2188,11 @@
           "explanation": "Section 6 empowers the BPP to conduct procurement audits of procuring entities to monitor compliance [17].",
           "difficulty": "easy",
           "topic": "Oversight",
-          "keywords": ["BPP", "procurement audit", "section 6"]
+          "keywords": [
+            "BPP",
+            "procurement audit",
+            "section 6"
+          ]
         },
         {
           "id": "ppa_ethic_015",
@@ -1687,7 +2207,11 @@
           "explanation": "Chapter 15 emphasizes integrity and mandates immediate reporting of bribes to the appropriate authority [18, 19].",
           "difficulty": "medium",
           "topic": "Ethics and Conduct (PSR)",
-          "keywords": ["bribe reporting", "PSR Chapter 15", "integrity"]
+          "keywords": [
+            "bribe reporting",
+            "PSR Chapter 15",
+            "integrity"
+          ]
         },
         {
           "id": "ppa_ethic_016",
@@ -1702,7 +2226,11 @@
           "explanation": "Surcharge is the recovery of government losses from the officer's pay, applied when the loss is due to the officer’s fault [20, 21].",
           "difficulty": "medium",
           "topic": "Accountability and Sanctions (FR)",
-          "keywords": ["surcharge", "loss recovery", "financial misconduct"]
+          "keywords": [
+            "surcharge",
+            "loss recovery",
+            "financial misconduct"
+          ]
         },
         {
           "id": "ppa_ethic_017",
@@ -1755,7 +2283,11 @@
           "explanation": "The ICPC monitors compliance with anti-corruption laws and investigates institutional corruption and ethical breaches [26-28].",
           "difficulty": "easy",
           "topic": "Oversight",
-          "keywords": ["ICPC", "institutional corruption", "ethics enforcement"]
+          "keywords": [
+            "ICPC",
+            "institutional corruption",
+            "ethics enforcement"
+          ]
         },
         {
           "id": "ppa_ethic_020",
@@ -1770,7 +2302,11 @@
           "explanation": "During interdiction (temporary suspension pending investigation), an officer is placed on half salary (Rule 020412) [29, 30].",
           "difficulty": "easy",
           "topic": "Accountability (PSR)",
-          "keywords": ["interdiction", "half salary", "disciplinary action"]
+          "keywords": [
+            "interdiction",
+            "half salary",
+            "disciplinary action"
+          ]
         },
         {
           "id": "ppa_ethic_021",
@@ -1785,7 +2321,11 @@
           "explanation": "The publication of contract details in the Procurement Journal (Section 12/32) ensures transparency after award [9, 31].",
           "difficulty": "medium",
           "topic": "Transparency",
-          "keywords": ["procurement journal", "contract award", "publication"]
+          "keywords": [
+            "procurement journal",
+            "contract award",
+            "publication"
+          ]
         },
         {
           "id": "ppa_ethic_022",
@@ -1800,7 +2340,11 @@
           "explanation": "SBDs promote uniform procedures, clarity, and equal treatment of all bidders, supporting the principles of transparency and fairness (Section 25) [32].",
           "difficulty": "easy",
           "topic": "Transparency",
-          "keywords": ["standard bidding documents", "uniformity", "section 25"]
+          "keywords": [
+            "standard bidding documents",
+            "uniformity",
+            "section 25"
+          ]
         },
         {
           "id": "ppa_ethic_023",
@@ -1815,7 +2359,11 @@
           "explanation": "Chapter 15 of the PSR (or Chapter 10 of PSR 2021 cited in the source) deals specifically with Public Service Conduct and Ethics, emphasizing integrity and accountability [33, 34].",
           "difficulty": "easy",
           "topic": "Ethics and Conduct (PSR)",
-          "keywords": ["PSR Chapter 15", "integrity", "ethics"]
+          "keywords": [
+            "PSR Chapter 15",
+            "integrity",
+            "ethics"
+          ]
         },
         {
           "id": "ppa_ethic_024",
@@ -1849,17 +2397,30 @@
           "explanation": "Asset declaration is required upon assumption of duty and every four years thereafter, as mandated by the Fifth Schedule of the Constitution [37-40].",
           "difficulty": "medium",
           "topic": "Ethics and Conduct",
-          "keywords": ["asset declaration", "four years", "Fifth Schedule"]
+          "keywords": [
+            "asset declaration",
+            "four years",
+            "Fifth Schedule"
+          ]
         },
         {
           "id": "ppa_ethic_026",
           "question": "Which agency is primarily responsible for enforcing the asset declaration rules across the public service?",
-          "options": ["EFCC", "BPP", "Code of Conduct Bureau (CCB)", "ICPC"],
+          "options": [
+            "EFCC",
+            "BPP",
+            "Code of Conduct Bureau (CCB)",
+            "ICPC"
+          ],
           "correct": 2,
           "explanation": "The Code of Conduct Bureau (CCB) receives and verifies public officers’ asset declarations [41, 42].",
           "difficulty": "easy",
           "topic": "Oversight",
-          "keywords": ["CCB", "asset declaration", "Fifth Schedule"]
+          "keywords": [
+            "CCB",
+            "asset declaration",
+            "Fifth Schedule"
+          ]
         },
         {
           "id": "ppa_ethic_027",
@@ -1893,7 +2454,11 @@
           "explanation": "The PPA's transparency mandates complement the FOI Act, which grants citizens the right to request public records [44].",
           "difficulty": "medium",
           "topic": "Transparency and Legal Framework",
-          "keywords": ["FOI Act", "transparency", "public records"]
+          "keywords": [
+            "FOI Act",
+            "transparency",
+            "public records"
+          ]
         },
         {
           "id": "ppa_ethic_029",
@@ -1927,7 +2492,11 @@
           "explanation": "Section 58 covers procurement offenses, ensuring penalties for fraudulent and corrupt practices [3-6, 48].",
           "difficulty": "medium",
           "topic": "Accountability and Sanctions",
-          "keywords": ["section 58", "fraud", "collusion"]
+          "keywords": [
+            "section 58",
+            "fraud",
+            "collusion"
+          ]
         },
         {
           "id": "ppa_ethic_031",
@@ -1942,7 +2511,11 @@
           "explanation": "Public officers are prohibited from engaging in any political activities; violations lead to disciplinary action (PSR Chapter 10) [49, 50].",
           "difficulty": "easy",
           "topic": "Ethics and Conduct (PSR)",
-          "keywords": ["political activities", "prohibited", "dismissal"]
+          "keywords": [
+            "political activities",
+            "prohibited",
+            "dismissal"
+          ]
         },
         {
           "id": "ppa_ethic_032",
@@ -1957,7 +2530,11 @@
           "explanation": "Checking the Vote Book (Expenditure Ledger) is mandatory to ensure the remaining balance is adequate, serving as a first line of defense against Over-Expenditure [51, 52].",
           "difficulty": "easy",
           "topic": "Accountability (FR)",
-          "keywords": ["Vote Book", "Over-Expenditure", "commitment check"]
+          "keywords": [
+            "Vote Book",
+            "Over-Expenditure",
+            "commitment check"
+          ]
         },
         {
           "id": "ppa_ethic_033",
@@ -1972,7 +2549,11 @@
           "explanation": "Section 31 requires the procuring entity to publish a notice of the cancellation immediately to ensure transparency and accountability [31].",
           "difficulty": "medium",
           "topic": "Transparency and Sanctions",
-          "keywords": ["cancellation notice", "section 31", "transparency"]
+          "keywords": [
+            "cancellation notice",
+            "section 31",
+            "transparency"
+          ]
         },
         {
           "id": "ppa_ethic_034",
@@ -1987,7 +2568,11 @@
           "explanation": "The EFCC investigates and prosecutes financial crimes, fraud, and money laundering [26, 53-55].",
           "difficulty": "easy",
           "topic": "Oversight",
-          "keywords": ["EFCC", "financial crimes", "prosecution"]
+          "keywords": [
+            "EFCC",
+            "financial crimes",
+            "prosecution"
+          ]
         },
         {
           "id": "ppa_ethic_035",
@@ -2059,7 +2644,11 @@
           "explanation": "A responsive bid is one that complies fully with all specifications and eligibility criteria, making it suitable for subsequent financial comparison [60, 61].",
           "difficulty": "easy",
           "topic": "Transparency and Bidding",
-          "keywords": ["responsive bid", "compliance", "evaluation"]
+          "keywords": [
+            "responsive bid",
+            "compliance",
+            "evaluation"
+          ]
         },
         {
           "id": "ppa_ethic_039",
@@ -2074,7 +2663,11 @@
           "explanation": "TSA consolidates government accounts, ensuring unified cash management, transparency, and blocking revenue leakages [52, 62-64].",
           "difficulty": "easy",
           "topic": "Accountability (FR)",
-          "keywords": ["TSA", "centralization", "leakages"]
+          "keywords": [
+            "TSA",
+            "centralization",
+            "leakages"
+          ]
         },
         {
           "id": "ppa_ethic_040",
@@ -2108,7 +2701,11 @@
           "explanation": "Suspended officers generally do not earn salaries (Rule 100406) [67-71].",
           "difficulty": "medium",
           "topic": "Accountability (PSR)",
-          "keywords": ["suspension", "no salary", "Rule 100406"]
+          "keywords": [
+            "suspension",
+            "no salary",
+            "Rule 100406"
+          ]
         },
         {
           "id": "ppa_ethic_042",
@@ -2123,7 +2720,11 @@
           "explanation": "Section 16 requires bidders to have fulfilled all obligations regarding taxes, pensions, and social security, confirmed via TCC submission [72, 73].",
           "difficulty": "medium",
           "topic": "Accountability and Eligibility",
-          "keywords": ["TCC", "tax obligations", "section 16"]
+          "keywords": [
+            "TCC",
+            "tax obligations",
+            "section 16"
+          ]
         },
         {
           "id": "ppa_ethic_043",
@@ -2138,7 +2739,11 @@
           "explanation": "The Vote Controller certifies that funds are available before incurring expenditure, controlling the obligation against the Vote Book [74, 75].",
           "difficulty": "medium",
           "topic": "Accountability (FR)",
-          "keywords": ["Vote Controller", "fund certification", "Vote Book"]
+          "keywords": [
+            "Vote Controller",
+            "fund certification",
+            "Vote Book"
+          ]
         },
         {
           "id": "ppa_ethic_044",
@@ -2172,7 +2777,11 @@
           "explanation": "The Auditor-General reports on public accounts and unauthorized expenditure, which is the primary basis for PAC oversight [78-80].",
           "difficulty": "medium",
           "topic": "Accountability and Oversight",
-          "keywords": ["PAC", "Auditor-General", "legislative oversight"]
+          "keywords": [
+            "PAC",
+            "Auditor-General",
+            "legislative oversight"
+          ]
         },
         {
           "id": "ppa_ethic_046",
@@ -2225,7 +2834,11 @@
           "explanation": "Rule 040206 allows salary to be withheld in cases of unauthorized absence [69, 84].",
           "difficulty": "medium",
           "topic": "Accountability (PSR)",
-          "keywords": ["loss of pay", "unauthorized absence", "Rule 040206"]
+          "keywords": [
+            "loss of pay",
+            "unauthorized absence",
+            "Rule 040206"
+          ]
         },
         {
           "id": "ppa_ethic_049",
@@ -2240,7 +2853,11 @@
           "explanation": "The BPP regulates and monitors public procurement processes and ensures due process is followed [85-87].",
           "difficulty": "easy",
           "topic": "Oversight",
-          "keywords": ["BPP", "regulation", "compliance"]
+          "keywords": [
+            "BPP",
+            "regulation",
+            "compliance"
+          ]
         },
         {
           "id": "ppa_ethic_050",
@@ -2266,17 +2883,26 @@
     {
       "id": "proc_eligibility_consultants_budgeting",
       "name": "Eligibility, Consultants & Budgeting",
-      "description": "Eligibility criteria for bidders, consultant services procurement, budgetary alignment, and planning mandates",
+      "description": "Eligibility criteria, consultant procurement, and budget alignment.",
       "questions": [
         {
           "id": "ppa_elb_001",
           "question": "Which section of the PPA 2007 mandates that contractors must possess the professional and technical qualifications necessary for contract execution?",
-          "options": ["Section 15", "Section 16", "Section 18", "Section 31"],
+          "options": [
+            "Section 15",
+            "Section 16",
+            "Section 18",
+            "Section 31"
+          ],
           "correct": 1,
           "explanation": "Section 16 mandates that bidders must have the requisite professional and technical capacity and qualifications to perform contracts [1, 2].",
           "difficulty": "medium",
           "topic": "Eligibility",
-          "keywords": ["eligibility", "section 16", "technical capacity"]
+          "keywords": [
+            "eligibility",
+            "section 16",
+            "technical capacity"
+          ]
         },
         {
           "id": "ppa_elb_002",
@@ -2291,7 +2917,11 @@
           "explanation": "Section 16 states that eligible contractors must not be in receivership, bankruptcy, or insolvency [3, 4].",
           "difficulty": "medium",
           "topic": "Eligibility",
-          "keywords": ["insolvency", "section 16", "eligibility criteria"]
+          "keywords": [
+            "insolvency",
+            "section 16",
+            "eligibility criteria"
+          ]
         },
         {
           "id": "ppa_elb_003",
@@ -2306,17 +2936,30 @@
           "explanation": "Section 16 requires bidders to have fulfilled obligations regarding taxes, pensions, and social security contributions, typically confirmed via TCC [4].",
           "difficulty": "medium",
           "topic": "Eligibility",
-          "keywords": ["tax obligations", "section 16", "TCC"]
+          "keywords": [
+            "tax obligations",
+            "section 16",
+            "TCC"
+          ]
         },
         {
           "id": "ppa_elb_004",
           "question": "Which section of the PPA 2007 requires bidders to have no record of criminal conviction for fraud, corruption, or misrepresentation?",
-          "options": ["Section 15", "Section 16", "Section 17", "Section 18"],
+          "options": [
+            "Section 15",
+            "Section 16",
+            "Section 17",
+            "Section 18"
+          ],
           "correct": 1,
           "explanation": "Section 16 requires bidders to have no record of criminal conviction for fraud, corruption, or misrepresentation [5].",
           "difficulty": "medium",
           "topic": "Eligibility",
-          "keywords": ["criminal conviction", "section 16", "eligibility"]
+          "keywords": [
+            "criminal conviction",
+            "section 16",
+            "eligibility"
+          ]
         },
         {
           "id": "ppa_elb_005",
@@ -2331,7 +2974,11 @@
           "explanation": "Post-Qualification is a BPP practice involving the review of bidder’s documentation to confirm eligibility after bid opening [6].",
           "difficulty": "medium",
           "topic": "Eligibility",
-          "keywords": ["post-qualification", "audit", "bidder capacity"]
+          "keywords": [
+            "post-qualification",
+            "audit",
+            "bidder capacity"
+          ]
         },
         {
           "id": "ppa_elb_006",
@@ -2346,7 +2993,11 @@
           "explanation": "Fraudulent submission violates eligibility criteria (Section 16) and procurement ethics (Section 58), rendering the bidder ineligible [4, 5].",
           "difficulty": "medium",
           "topic": "Eligibility and Ethics",
-          "keywords": ["fraud", "ineligible", "TCC"]
+          "keywords": [
+            "fraud",
+            "ineligible",
+            "TCC"
+          ]
         },
         {
           "id": "ppa_elb_007",
@@ -2361,7 +3012,11 @@
           "explanation": "Section 57 empowers the BPP to debar/blacklist contractors for malpractice, meaning they are excluded from all public tenders [7, 8].",
           "difficulty": "medium",
           "topic": "Eligibility and Sanctions",
-          "keywords": ["blacklisting", "debarment", "section 57"]
+          "keywords": [
+            "blacklisting",
+            "debarment",
+            "section 57"
+          ]
         },
         {
           "id": "ppa_elb_008",
@@ -2376,7 +3031,11 @@
           "explanation": "Section 16 requires contractors to demonstrate financial capability alongside technical qualifications as part of eligibility criteria [2, 3].",
           "difficulty": "medium",
           "topic": "Eligibility",
-          "keywords": ["financial capability", "section 16", "capacity"]
+          "keywords": [
+            "financial capability",
+            "section 16",
+            "capacity"
+          ]
         },
         {
           "id": "ppa_elb_009",
@@ -2391,7 +3050,10 @@
           "explanation": "Failure to submit the mandated Performance Bond (Section 29) to secure government payment typically leads to contract termination, as the government is exposed to risk [9].",
           "difficulty": "medium",
           "topic": "Eligibility and Award",
-          "keywords": ["performance bond", "contract termination"]
+          "keywords": [
+            "performance bond",
+            "contract termination"
+          ]
         },
         {
           "id": "ppa_elb_010",
@@ -2406,7 +3068,11 @@
           "explanation": "Pre-qualification ensures that only technically capable bidders receive and respond to the full tender, streamlining the subsequent bid evaluation process [10].",
           "difficulty": "medium",
           "topic": "Eligibility and Bidding",
-          "keywords": ["pre-qualification", "bid evaluation", "section 22"]
+          "keywords": [
+            "pre-qualification",
+            "bid evaluation",
+            "section 22"
+          ]
         },
         {
           "id": "ppa_elb_011",
@@ -2421,12 +3087,21 @@
           "explanation": "Consultancy Services cover specialized intellectual or advisory tasks (Section 43) [11].",
           "difficulty": "easy",
           "topic": "Consultants",
-          "keywords": ["Consultancy Services", "Section 43", "advisory"]
+          "keywords": [
+            "Consultancy Services",
+            "Section 43",
+            "advisory"
+          ]
         },
         {
           "id": "ppa_elb_012",
           "question": "Which section of the PPA 2007 covers the specific procedures for procuring consultant services?",
-          "options": ["Section 41", "Section 42", "Section 43", "Section 45"],
+          "options": [
+            "Section 41",
+            "Section 42",
+            "Section 43",
+            "Section 45"
+          ],
           "correct": 2,
           "explanation": "Section 43 provides procedures for procuring consultant services, including selection and negotiation [11].",
           "difficulty": "medium",
@@ -2450,7 +3125,11 @@
           "explanation": "Consultancy Services often use Quality and Cost Based Selection (QCBS) to balance technical merit with financial proposal (Section 43 implied).",
           "difficulty": "medium",
           "topic": "Consultants",
-          "keywords": ["QCBS", "selection method", "technical expertise"]
+          "keywords": [
+            "QCBS",
+            "selection method",
+            "technical expertise"
+          ]
         },
         {
           "id": "ppa_elb_014",
@@ -2465,7 +3144,11 @@
           "explanation": "Least Cost Selection (LCS) is used for simple tasks where technical inputs are standardized.",
           "difficulty": "medium",
           "topic": "Consultants",
-          "keywords": ["Least Cost Selection", "LCS", "simple consultancy"]
+          "keywords": [
+            "Least Cost Selection",
+            "LCS",
+            "simple consultancy"
+          ]
         },
         {
           "id": "ppa_elb_015",
@@ -2499,7 +3182,11 @@
           "explanation": "Request for Proposals (RFP) is the standard solicitation document used for consulting services, requiring technical and financial proposals.",
           "difficulty": "easy",
           "topic": "Consultants",
-          "keywords": ["RFP", "consulting services", "solicitation"]
+          "keywords": [
+            "RFP",
+            "consulting services",
+            "solicitation"
+          ]
         },
         {
           "id": "ppa_elb_017",
@@ -2514,7 +3201,11 @@
           "explanation": "Consultancy selection involves a two-stage opening: technical proposals are evaluated and graded first, and only qualified proposals proceed to financial opening.",
           "difficulty": "medium",
           "topic": "Consultants",
-          "keywords": ["technical proposal", "two-stage opening", "evaluation"]
+          "keywords": [
+            "technical proposal",
+            "two-stage opening",
+            "evaluation"
+          ]
         },
         {
           "id": "ppa_elb_018",
@@ -2529,7 +3220,11 @@
           "explanation": "Direct Negotiation or Single Source is permitted for highly specialized consultancy services where only one source is capable or available (Section 42 implied).",
           "difficulty": "medium",
           "topic": "Consultants",
-          "keywords": ["direct negotiation", "single source", "specialized"]
+          "keywords": [
+            "direct negotiation",
+            "single source",
+            "specialized"
+          ]
         },
         {
           "id": "ppa_elb_019",
@@ -2544,7 +3239,11 @@
           "explanation": "A firm that prepares the ToR is often barred from bidding on the resulting contract due to a conflict of interest, ensuring fairness (Section 57).",
           "difficulty": "medium",
           "topic": "Consultants and Ethics",
-          "keywords": ["conflict of interest", "ToR", "Section 57"]
+          "keywords": [
+            "conflict of interest",
+            "ToR",
+            "Section 57"
+          ]
         },
         {
           "id": "ppa_elb_020",
@@ -2559,17 +3258,30 @@
           "explanation": "Quality (technical merit) is paramount for consulting services, followed by cost (QCBS principle).",
           "difficulty": "easy",
           "topic": "Consultants",
-          "keywords": ["technical quality", "evaluation weight", "QCBS"]
+          "keywords": [
+            "technical quality",
+            "evaluation weight",
+            "QCBS"
+          ]
         },
         {
           "id": "ppa_elb_021",
           "question": "Which section of the PPA 2007 strictly prohibits a procuring entity from initiating procurement without approved budgetary provision?",
-          "options": ["Section 12", "Section 14", "Section 16", "Section 17"],
+          "options": [
+            "Section 12",
+            "Section 14",
+            "Section 16",
+            "Section 17"
+          ],
           "correct": 1,
           "explanation": "Section 14 prohibits procurement without approved budgetary provision and availability of funds [13-15].",
           "difficulty": "medium",
           "topic": "Budgeting and Planning",
-          "keywords": ["budget provision", "section 14", "appropriation"]
+          "keywords": [
+            "budget provision",
+            "section 14",
+            "appropriation"
+          ]
         },
         {
           "id": "ppa_elb_022",
@@ -2584,7 +3296,11 @@
           "explanation": "Procurement planning must be aligned with appropriated budget provisions to ensure fiscal responsibility and fund availability [16].",
           "difficulty": "medium",
           "topic": "Budgeting and Planning",
-          "keywords": ["procurement planning", "annual budget", "section 14"]
+          "keywords": [
+            "procurement planning",
+            "annual budget",
+            "section 14"
+          ]
         },
         {
           "id": "ppa_elb_023",
@@ -2599,7 +3315,11 @@
           "explanation": "Contract Splitting is prohibited (Section 16, 58(4)) as it undermines transparency and circumvents established approval thresholds [17, 18].",
           "difficulty": "medium",
           "topic": "Budgeting and Ethics",
-          "keywords": ["contract splitting", "thresholds", "section 16"]
+          "keywords": [
+            "contract splitting",
+            "thresholds",
+            "section 16"
+          ]
         },
         {
           "id": "ppa_elb_024",
@@ -2614,7 +3334,11 @@
           "explanation": "The Vote Book (FR 601) must be checked daily to ensure the commitment is within the legal capacity of the approved budget [19, 20].",
           "difficulty": "easy",
           "topic": "Budgeting (FR)",
-          "keywords": ["vote book", "commitment check", "FR"]
+          "keywords": [
+            "vote book",
+            "commitment check",
+            "FR"
+          ]
         },
         {
           "id": "ppa_elb_025",
@@ -2648,7 +3372,11 @@
           "explanation": "Virement is the authorized transfer of funds from one sub-head to another within the same head of expenditure [23].",
           "difficulty": "easy",
           "topic": "Budgeting (FR)",
-          "keywords": ["Virement", "fund transfer", "FR"]
+          "keywords": [
+            "Virement",
+            "fund transfer",
+            "FR"
+          ]
         },
         {
           "id": "ppa_elb_027",
@@ -2663,7 +3391,11 @@
           "explanation": "Virement must be formally approved and backed by a Virement Warrant [24-26].",
           "difficulty": "medium",
           "topic": "Budgeting (FR)",
-          "keywords": ["Virement Warrant", "authorization", "FR"]
+          "keywords": [
+            "Virement Warrant",
+            "authorization",
+            "FR"
+          ]
         },
         {
           "id": "ppa_elb_028",
@@ -2687,12 +3419,21 @@
         {
           "id": "ppa_elb_029",
           "question": "The MDA’s Procurement Planning Committee (PPC) ensures procurement items are correctly classified as Goods, Works, or Services, as required by:",
-          "options": ["The PSR.", "The PPA.", "The FCSC.", "The OHCSF."],
+          "options": [
+            "The PSR.",
+            "The PPA.",
+            "The FCSC.",
+            "The OHCSF."
+          ],
           "correct": 1,
           "explanation": "The PPA classifies procurement into three main categories: Goods, Works, and Services (Implied by the definitions in the PPA framework).",
           "difficulty": "easy",
           "topic": "Planning and Classification",
-          "keywords": ["PPC", "classification", "Goods, Works, Services"]
+          "keywords": [
+            "PPC",
+            "classification",
+            "Goods, Works, Services"
+          ]
         },
         {
           "id": "ppa_elb_030",
@@ -2707,7 +3448,11 @@
           "explanation": "TSA consolidates government accounts, providing cash visibility and confirming fund liquidity, which is crucial for Section 14 compliance [29, 30].",
           "difficulty": "medium",
           "topic": "Budgeting and Transparency",
-          "keywords": ["TSA", "fund availability", "Section 14"]
+          "keywords": [
+            "TSA",
+            "fund availability",
+            "Section 14"
+          ]
         },
         {
           "id": "ppa_elb_031",
@@ -2722,7 +3467,11 @@
           "explanation": "Section 58 prescribes sanctions for fraudulent practices, including blacklisting, ensuring integrity in the evaluation phase [31-34].",
           "difficulty": "medium",
           "topic": "Eligibility and Sanctions",
-          "keywords": ["blacklisting", "section 58", "corrupt practice"]
+          "keywords": [
+            "blacklisting",
+            "section 58",
+            "corrupt practice"
+          ]
         },
         {
           "id": "ppa_elb_032",
@@ -2737,7 +3486,11 @@
           "explanation": "Failure to provide mandatory eligibility documents (Section 16) means the firm is non-responsive and must be excluded from evaluation [4].",
           "difficulty": "easy",
           "topic": "Eligibility",
-          "keywords": ["TCC failure", "exclusion", "section 16"]
+          "keywords": [
+            "TCC failure",
+            "exclusion",
+            "section 16"
+          ]
         },
         {
           "id": "ppa_elb_033",
@@ -2752,7 +3505,11 @@
           "explanation": "The BPP establishes and publishes the Threshold Manual, setting approval limits for Accounting Officers and Tender Boards [35, 36].",
           "difficulty": "medium",
           "topic": "Budgeting and Institutions",
-          "keywords": ["Threshold Manual", "BPP", "approval limits"]
+          "keywords": [
+            "Threshold Manual",
+            "BPP",
+            "approval limits"
+          ]
         },
         {
           "id": "ppa_elb_034",
@@ -2767,7 +3524,11 @@
           "explanation": "Consultancy prioritizes technical capacity and quality highly, often using QCBS, unlike Goods/Works where lowest responsive bid on price is key.",
           "difficulty": "medium",
           "topic": "Consultants",
-          "keywords": ["technical capacity", "quality over cost", "QCBS"]
+          "keywords": [
+            "technical capacity",
+            "quality over cost",
+            "QCBS"
+          ]
         },
         {
           "id": "ppa_elb_035",
@@ -2801,7 +3562,11 @@
           "explanation": "Unauthorized expenditure and financial misconduct attract sanctions, including surcharge to recover the loss or dismissal for serious breaches [37-39].",
           "difficulty": "medium",
           "topic": "Budgeting and Accountability",
-          "keywords": ["surcharge", "excess vote", "dismissal"]
+          "keywords": [
+            "surcharge",
+            "excess vote",
+            "dismissal"
+          ]
         },
         {
           "id": "ppa_elb_037",
@@ -2835,7 +3600,11 @@
           "explanation": "Section 16 mandates that bidders fulfill obligations regarding pensions and social security contributions [4].",
           "difficulty": "medium",
           "topic": "Eligibility",
-          "keywords": ["pension obligations", "section 16", "social security"]
+          "keywords": [
+            "pension obligations",
+            "section 16",
+            "social security"
+          ]
         },
         {
           "id": "ppa_elb_039",
@@ -2850,7 +3619,11 @@
           "explanation": "Procurement planning must be based on approved budget which is derived from the Medium-Term Expenditure Framework (MTEF), focusing on three-year projections [40].",
           "difficulty": "medium",
           "topic": "Budgeting and Planning",
-          "keywords": ["MTEF", "strategic planning", "PPC"]
+          "keywords": [
+            "MTEF",
+            "strategic planning",
+            "PPC"
+          ]
         },
         {
           "id": "ppa_elb_040",
@@ -2865,7 +3638,11 @@
           "explanation": "The Ministerial Tenders Board (MTB) reviews and endorses the Procurement Plan before submission to the next approval level.",
           "difficulty": "medium",
           "topic": "Planning and Institutions",
-          "keywords": ["MTB", "Procurement Plan", "endorsement"]
+          "keywords": [
+            "MTB",
+            "Procurement Plan",
+            "endorsement"
+          ]
         },
         {
           "id": "ppa_elb_041",
@@ -2880,7 +3657,11 @@
           "explanation": "Fair competition ensures the selection process adheres to objective, technical criteria (QCBS), promoting Section 16 principles.",
           "difficulty": "easy",
           "topic": "Consultants and Principles",
-          "keywords": ["fair competition", "objective criteria", "QCBS"]
+          "keywords": [
+            "fair competition",
+            "objective criteria",
+            "QCBS"
+          ]
         },
         {
           "id": "ppa_elb_042",
@@ -2914,7 +3695,11 @@
           "explanation": "The Vote Book is the mechanism for Obligation Control, preventing the MDA from exceeding its financial limits [43-45].",
           "difficulty": "medium",
           "topic": "Budgeting (FR)",
-          "keywords": ["Obligation Control", "Vote Book", "internal control"]
+          "keywords": [
+            "Obligation Control",
+            "Vote Book",
+            "internal control"
+          ]
         },
         {
           "id": "ppa_elb_044",
@@ -2929,7 +3714,11 @@
           "explanation": "Eligibility requires evidence of compliance with pension obligations, confirmed by a Pension Clearance Certificate (Section 16) [4].",
           "difficulty": "medium",
           "topic": "Eligibility",
-          "keywords": ["pension clearance", "section 16", "eligibility"]
+          "keywords": [
+            "pension clearance",
+            "section 16",
+            "eligibility"
+          ]
         },
         {
           "id": "ppa_elb_045",
@@ -2944,7 +3733,11 @@
           "explanation": "Section 53 empowers the BPP to suspend or cancel proceedings if irregularities are detected, ensuring due process [46, 47].",
           "difficulty": "medium",
           "topic": "Consultants and Oversight",
-          "keywords": ["suspension", "cancellation", "section 53"]
+          "keywords": [
+            "suspension",
+            "cancellation",
+            "section 53"
+          ]
         },
         {
           "id": "ppa_elb_046",
@@ -2959,7 +3752,11 @@
           "explanation": "All procurement must be initiated based on funds appropriated by the National Assembly via the Appropriation Act (Section 14) [13, 48].",
           "difficulty": "easy",
           "topic": "Budgeting and Legal Framework",
-          "keywords": ["Appropriation Act", "section 14", "legal framework"]
+          "keywords": [
+            "Appropriation Act",
+            "section 14",
+            "legal framework"
+          ]
         },
         {
           "id": "ppa_elb_047",
@@ -2974,7 +3771,11 @@
           "explanation": "QBS is used for highly complex assignments where the outcome quality far outweighs the cost consideration (Section 43 implied).",
           "difficulty": "medium",
           "topic": "Consultants",
-          "keywords": ["QBS", "Quality-Based Selection", "complex assignment"]
+          "keywords": [
+            "QBS",
+            "Quality-Based Selection",
+            "complex assignment"
+          ]
         },
         {
           "id": "ppa_elb_048",
@@ -2989,7 +3790,11 @@
           "explanation": "Failure to disclose such a relationship violates the ethical mandate against conflict of interest (Section 57 PPA) [49-51].",
           "difficulty": "easy",
           "topic": "Eligibility and Ethics",
-          "keywords": ["conflict of interest", "section 57", "disclosure"]
+          "keywords": [
+            "conflict of interest",
+            "section 57",
+            "disclosure"
+          ]
         },
         {
           "id": "ppa_elb_049",
@@ -3004,7 +3809,11 @@
           "explanation": "The BPP database (Section 9) records performance, classification, and eligibility, but not private details like religious affiliation [52].",
           "difficulty": "medium",
           "topic": "Eligibility and Institutions",
-          "keywords": ["BPP database", "section 9", "eligibility"]
+          "keywords": [
+            "BPP database",
+            "section 9",
+            "eligibility"
+          ]
         },
         {
           "id": "ppa_elb_050",
@@ -3019,34 +3828,56 @@
           "explanation": "Major virement requests, especially if affecting approved programs, require legislative or FEC approval to maintain budget fidelity [53].",
           "difficulty": "medium",
           "topic": "Budgeting and Control",
-          "keywords": ["Virement", "legislative approval", "budget fidelity"]
+          "keywords": [
+            "Virement",
+            "legislative approval",
+            "budget fidelity"
+          ]
         }
       ]
     },
     {
       "id": "proc_implementation_sanctions",
       "name": "Implementation, Monitoring & Sanctions",
-      "description": "Contract implementation, performance monitoring, sanctions for contractors and officers, and dispute resolution.",
+      "description": "Contract implementation, oversight, sanctions, and dispute management.",
       "questions": [
         {
           "id": "ppa_ims_001",
           "question": "Which section of the PPA 2007 requires procuring entities to monitor contract performance to ensure compliance with terms and specifications?",
-          "options": ["Section 33", "Section 35", "Section 38", "Section 45"],
+          "options": [
+            "Section 33",
+            "Section 35",
+            "Section 38",
+            "Section 45"
+          ],
           "correct": 1,
           "explanation": "Section 35 provides guidelines for proper contract implementation and monitoring by procuring entities to ensure compliance with terms and specifications [1, 2].",
           "difficulty": "medium",
           "topic": "Implementation and Monitoring",
-          "keywords": ["contract monitoring", "section 35", "compliance"]
+          "keywords": [
+            "contract monitoring",
+            "section 35",
+            "compliance"
+          ]
         },
         {
           "id": "ppa_ims_002",
           "question": "The PPA mandates that contracts must be executed efficiently and in good faith, which is emphasized in:",
-          "options": ["Section 32", "Section 35", "Section 40", "Section 53"],
+          "options": [
+            "Section 32",
+            "Section 35",
+            "Section 40",
+            "Section 53"
+          ],
           "correct": 1,
           "explanation": "Section 35 emphasizes efficient and good faith implementation of contracts [2].",
           "difficulty": "medium",
           "topic": "Implementation and Ethics",
-          "keywords": ["good faith", "section 35", "implementation"]
+          "keywords": [
+            "good faith",
+            "section 35",
+            "implementation"
+          ]
         },
         {
           "id": "ppa_ims_003",
@@ -3061,7 +3892,11 @@
           "explanation": "Failure to submit the mandated Performance Bond (Section 29) to secure government payment typically leads to contract termination, as the government is exposed to risk [3].",
           "difficulty": "medium",
           "topic": "Implementation and Sanctions",
-          "keywords": ["Performance Bond", "section 29", "termination"]
+          "keywords": [
+            "Performance Bond",
+            "section 29",
+            "termination"
+          ]
         },
         {
           "id": "ppa_ims_004",
@@ -3076,17 +3911,29 @@
           "explanation": "No payment is processed without the Job Completion Certificate (JCC), confirming that work was done or goods were received satisfactorily [4, 5].",
           "difficulty": "easy",
           "topic": "Implementation and Documentation",
-          "keywords": ["Job Completion Certificate", "payment verification"]
+          "keywords": [
+            "Job Completion Certificate",
+            "payment verification"
+          ]
         },
         {
           "id": "ppa_ims_005",
           "question": "Procurement documents and records must be retained by the procuring entity for audit and inspection purposes for a minimum period of:",
-          "options": ["2 years", "3 years", "5 years", "10 years"],
+          "options": [
+            "2 years",
+            "3 years",
+            "5 years",
+            "10 years"
+          ],
           "correct": 2,
           "explanation": "Section 38 requires that all procurement documents be retained for a minimum of 5 years to facilitate audit and inspection [6].",
           "difficulty": "medium",
           "topic": "Monitoring and Accountability",
-          "keywords": ["record retention", "section 38", "5 years"]
+          "keywords": [
+            "record retention",
+            "section 38",
+            "5 years"
+          ]
         },
         {
           "id": "ppa_ims_006",
@@ -3101,7 +3948,11 @@
           "explanation": "Mandatory loss reporting requires notification to the Police, Accountant-General, and Auditor-General for criminal and fiscal accountability [7, 8].",
           "difficulty": "hard",
           "topic": "Monitoring and Sanctions (FR)",
-          "keywords": ["Loss report", "Auditor-General", "Accountant-General"]
+          "keywords": [
+            "Loss report",
+            "Auditor-General",
+            "Accountant-General"
+          ]
         },
         {
           "id": "ppa_ims_007",
@@ -3116,7 +3967,11 @@
           "explanation": "Section 6 of the PPA 2007 empowers the BPP to conduct mandatory procurement audits of procuring entities [9].",
           "difficulty": "easy",
           "topic": "Monitoring and Institutions",
-          "keywords": ["BPP", "procurement audits", "section 6"]
+          "keywords": [
+            "BPP",
+            "procurement audits",
+            "section 6"
+          ]
         },
         {
           "id": "ppa_ims_008",
@@ -3131,7 +3986,11 @@
           "explanation": "Section 58(6) empowers the BPP to blacklist contractors, disqualifying them permanently from future federal tenders [10, 11].",
           "difficulty": "medium",
           "topic": "Contractor Sanctions",
-          "keywords": ["Blacklisting", "Section 58(6)", "sanctions"]
+          "keywords": [
+            "Blacklisting",
+            "Section 58(6)",
+            "sanctions"
+          ]
         },
         {
           "id": "ppa_ims_009",
@@ -3146,7 +4005,11 @@
           "explanation": "Surcharge is the recovery of government losses from the officer's pay, applied when the loss is due to the officer’s fault [12].",
           "difficulty": "medium",
           "topic": "Officer Sanctions (FR)",
-          "keywords": ["Surcharge", "financial loss", "recovery"]
+          "keywords": [
+            "Surcharge",
+            "financial loss",
+            "recovery"
+          ]
         },
         {
           "id": "ppa_ims_010",
@@ -3161,7 +4024,11 @@
           "explanation": "Section 57 strictly prohibits conflict of interest in procurement proceedings and mandates disclosure [13].",
           "difficulty": "easy",
           "topic": "Ethics and Conduct",
-          "keywords": ["Conflict of Interest", "section 57", "ethics"]
+          "keywords": [
+            "Conflict of Interest",
+            "section 57",
+            "ethics"
+          ]
         },
         {
           "id": "ppa_ims_011",
@@ -3214,7 +4081,11 @@
           "explanation": "Section 32 requires the publication of contract awards above thresholds in the Procurement Journal [15, 17].",
           "difficulty": "medium",
           "topic": "Transparency and Publication",
-          "keywords": ["Procurement Journal", "section 32", "publication"]
+          "keywords": [
+            "Procurement Journal",
+            "section 32",
+            "publication"
+          ]
         },
         {
           "id": "ppa_ims_014",
@@ -3229,7 +4100,11 @@
           "explanation": "Section 53 empowers the BPP to suspend or cancel procurement proceedings if irregularities are detected, enforcing due process [11].",
           "difficulty": "medium",
           "topic": "Monitoring and Oversight",
-          "keywords": ["BPP suspension", "section 53", "irregularities"]
+          "keywords": [
+            "BPP suspension",
+            "section 53",
+            "irregularities"
+          ]
         },
         {
           "id": "ppa_ims_015",
@@ -3244,7 +4119,11 @@
           "explanation": "During interdiction, an officer is temporarily removed from duty with half pay pending the outcome of the investigation (Rule 020412/100404) [18-20].",
           "difficulty": "easy",
           "topic": "Officer Sanctions (PSR)",
-          "keywords": ["Interdiction", "half pay", "PSR Rule 100404"]
+          "keywords": [
+            "Interdiction",
+            "half pay",
+            "PSR Rule 100404"
+          ]
         },
         {
           "id": "ppa_ims_016",
@@ -3278,7 +4157,11 @@
           "explanation": "The BPP database monitors contractor performance and eligibility, supporting sanctions like blacklisting [6, 11].",
           "difficulty": "medium",
           "topic": "Monitoring and Institutions",
-          "keywords": ["BPP database", "performance history", "Section 9"]
+          "keywords": [
+            "BPP database",
+            "performance history",
+            "Section 9"
+          ]
         },
         {
           "id": "ppa_ims_018",
@@ -3293,17 +4176,29 @@
           "explanation": "The Procurement Complaint Review Committee handles administrative dispute resolution before legal litigation [23].",
           "difficulty": "easy",
           "topic": "Monitoring and Disputes",
-          "keywords": ["Complaint Review Committee", "dispute resolution"]
+          "keywords": [
+            "Complaint Review Committee",
+            "dispute resolution"
+          ]
         },
         {
           "id": "ppa_ims_019",
           "question": "An officer aggrieved by a disciplinary decision (e.g., reduction in rank) must appeal to the appropriate authority within how many days of the decision being communicated?",
-          "options": ["7 days.", "14 days.", "30 days.", "60 days."],
+          "options": [
+            "7 days.",
+            "14 days.",
+            "30 days.",
+            "60 days."
+          ],
           "correct": 2,
           "explanation": "An officer who wishes to appeal a disciplinary decision must do so within 30 days of the decision being communicated [24, 25].",
           "difficulty": "medium",
           "topic": "Officer Sanctions (PSR)",
-          "keywords": ["appeal", "30 days", "disciplinary decision"]
+          "keywords": [
+            "appeal",
+            "30 days",
+            "disciplinary decision"
+          ]
         },
         {
           "id": "ppa_ims_020",
@@ -3318,7 +4213,11 @@
           "explanation": "Contract variation (Section 35(2)) is permitted only with valid justification and must follow due approval procedures within the legal margin [14, 17].",
           "difficulty": "medium",
           "topic": "Implementation and Requirements",
-          "keywords": ["Contract Variation", "section 35(2)", "legal margin"]
+          "keywords": [
+            "Contract Variation",
+            "section 35(2)",
+            "legal margin"
+          ]
         },
         {
           "id": "ppa_ims_021",
@@ -3333,7 +4232,11 @@
           "explanation": "The Federal Executive Council (FEC) gives the final approval and ratification to revised PSR amendments [26-28].",
           "difficulty": "medium",
           "topic": "Monitoring and Institutions",
-          "keywords": ["FEC", "PSR ratification", "final approval"]
+          "keywords": [
+            "FEC",
+            "PSR ratification",
+            "final approval"
+          ]
         },
         {
           "id": "ppa_ims_022",
@@ -3348,7 +4251,11 @@
           "explanation": "An Audit Alarm necessitates a detailed investigation into the suspected irregularity [29].",
           "difficulty": "medium",
           "topic": "Monitoring and Controls",
-          "keywords": ["Audit Alarm", "investigation", "irregularity"]
+          "keywords": [
+            "Audit Alarm",
+            "investigation",
+            "irregularity"
+          ]
         },
         {
           "id": "ppa_ims_023",
@@ -3363,7 +4270,11 @@
           "explanation": "Misconduct (Rule 100301) covers improper behavior that undermines the image of the service [30, 31].",
           "difficulty": "easy",
           "topic": "Officer Sanctions (PSR)",
-          "keywords": ["Misconduct", "Rule 100301", "insubordination"]
+          "keywords": [
+            "Misconduct",
+            "Rule 100301",
+            "insubordination"
+          ]
         },
         {
           "id": "ppa_ims_024",
@@ -3416,7 +4327,11 @@
           "explanation": "Serious Misconduct (Rule 100401) covers grave offenses incompatible with public service ethics [22, 31].",
           "difficulty": "medium",
           "topic": "Officer Sanctions (PSR)",
-          "keywords": ["Serious Misconduct", "fraud", "corruption"]
+          "keywords": [
+            "Serious Misconduct",
+            "fraud",
+            "corruption"
+          ]
         },
         {
           "id": "ppa_ims_027",
@@ -3451,7 +4366,10 @@
           "explanation": "The Job Completion Certificate (JCC) confirms satisfactory delivery of goods or completion of work before payment authorization [4, 5].",
           "difficulty": "easy",
           "topic": "Implementation and Documentation",
-          "keywords": ["Job Completion Certificate", "delivery confirmation"]
+          "keywords": [
+            "Job Completion Certificate",
+            "delivery confirmation"
+          ]
         },
         {
           "id": "ppa_ims_029",
@@ -3466,7 +4384,11 @@
           "explanation": "The FCSC is vested with powers to appoint, promote, and discipline civil servants up to certain grade levels, including the Directorate Cadre [38].",
           "difficulty": "medium",
           "topic": "Monitoring and Institutions",
-          "keywords": ["FCSC", "Director", "discipline authority"]
+          "keywords": [
+            "FCSC",
+            "Director",
+            "discipline authority"
+          ]
         },
         {
           "id": "ppa_ims_030",
@@ -3481,7 +4403,11 @@
           "explanation": "The Audit Trail documents the flow of transactions, allowing auditors to verify integrity and traceability, ensuring accountability and transparency [4, 39].",
           "difficulty": "easy",
           "topic": "Monitoring and Controls",
-          "keywords": ["Audit Trail", "traceability", "accountability"]
+          "keywords": [
+            "Audit Trail",
+            "traceability",
+            "accountability"
+          ]
         },
         {
           "id": "ppa_ims_031",
@@ -3496,7 +4422,11 @@
           "explanation": "Section 35 emphasizes efficient and good faith implementation of contracts [1, 2].",
           "difficulty": "medium",
           "topic": "Implementation and Monitoring",
-          "keywords": ["Section 35", "efficient execution", "good faith"]
+          "keywords": [
+            "Section 35",
+            "efficient execution",
+            "good faith"
+          ]
         },
         {
           "id": "ppa_ims_032",
@@ -3530,7 +4460,11 @@
           "explanation": "Section 58 prescribes penalties for fraudulent practices, including conspiracy to rig bids and collusion [42].",
           "difficulty": "medium",
           "topic": "Contractor Sanctions",
-          "keywords": ["bid rigging", "section 58", "collusion"]
+          "keywords": [
+            "bid rigging",
+            "section 58",
+            "collusion"
+          ]
         },
         {
           "id": "ppa_ims_034",
@@ -3564,7 +4498,11 @@
           "explanation": "A Warrant provides the authority for the release of funds for both capital and recurrent expenditures [43, 44].",
           "difficulty": "medium",
           "topic": "Implementation and Budgeting",
-          "keywords": ["Warrant", "fund release", "FR 302"]
+          "keywords": [
+            "Warrant",
+            "fund release",
+            "FR 302"
+          ]
         },
         {
           "id": "ppa_ims_036",
@@ -3579,7 +4517,11 @@
           "explanation": "Resignation during a bond period may require repayment of training costs and/or additional service [45].",
           "difficulty": "medium",
           "topic": "Officer Sanctions (PSR)",
-          "keywords": ["training bond", "resignation", "repayment"]
+          "keywords": [
+            "training bond",
+            "resignation",
+            "repayment"
+          ]
         },
         {
           "id": "ppa_ims_037",
@@ -3594,7 +4536,11 @@
           "explanation": "Public officers are prohibited from engaging in political activities; violations lead to disciplinary action, including possible dismissal [46].",
           "difficulty": "easy",
           "topic": "Ethics and Conduct (PSR)",
-          "keywords": ["political activities", "prohibited", "PSR"]
+          "keywords": [
+            "political activities",
+            "prohibited",
+            "PSR"
+          ]
         },
         {
           "id": "ppa_ims_038",
@@ -3628,7 +4574,11 @@
           "explanation": "Suspension pending investigation into gross misconduct is without pay (Rule 100406) [49, 50]. (Note: This is differentiated from Interdiction, which is half pay) [20, 51].",
           "difficulty": "medium",
           "topic": "Officer Sanctions (PSR)",
-          "keywords": ["Suspension", "no pay", "Rule 100406"]
+          "keywords": [
+            "Suspension",
+            "no pay",
+            "Rule 100406"
+          ]
         },
         {
           "id": "ppa_ims_040",
@@ -3652,12 +4602,21 @@
         {
           "id": "ppa_ims_041",
           "question": "For disciplinary action, a formal inquiry (Board of Inquiry) should typically consist of at least how many members to ensure fairness?",
-          "options": ["One.", "Two.", "Three.", "Five."],
+          "options": [
+            "One.",
+            "Two.",
+            "Three.",
+            "Five."
+          ],
           "correct": 2,
           "explanation": "Allegations of misconduct are investigated by a Board of Inquiry with at least three members to ensure impartiality and fairness (Rule 100308(v)) [53].",
           "difficulty": "medium",
           "topic": "Monitoring and Discipline (PSR)",
-          "keywords": ["Board of Inquiry", "three members", "impartiality"]
+          "keywords": [
+            "Board of Inquiry",
+            "three members",
+            "impartiality"
+          ]
         },
         {
           "id": "ppa_ims_042",
@@ -3672,7 +4631,10 @@
           "explanation": "Corruption must be reported through designated anti-corruption units within the service [54].",
           "difficulty": "medium",
           "topic": "Ethics and Conduct (PSR)",
-          "keywords": ["Corruption Reporting", "anti-corruption units"]
+          "keywords": [
+            "Corruption Reporting",
+            "anti-corruption units"
+          ]
         },
         {
           "id": "ppa_ims_043",
@@ -3687,7 +4649,11 @@
           "explanation": "Interdicted officers cannot leave their station without notifying superiors and obtaining approval to travel [55].",
           "difficulty": "medium",
           "topic": "Officer Sanctions (PSR)",
-          "keywords": ["interdicted officer", "travel approval", "Rule 100404"]
+          "keywords": [
+            "interdicted officer",
+            "travel approval",
+            "Rule 100404"
+          ]
         },
         {
           "id": "ppa_ims_044",
@@ -3702,7 +4668,11 @@
           "explanation": "The Audit Trail ensures integrity and traceability, providing a chronological record of transactions to support accountability [4, 39].",
           "difficulty": "easy",
           "topic": "Monitoring and Controls",
-          "keywords": ["Audit Trail", "traceability", "accountability"]
+          "keywords": [
+            "Audit Trail",
+            "traceability",
+            "accountability"
+          ]
         },
         {
           "id": "ppa_ims_045",
@@ -3717,7 +4687,10 @@
           "explanation": "The PSR explicitly prohibits the imposition of fines as a disciplinary punishment for misconduct [56].",
           "difficulty": "medium",
           "topic": "Officer Sanctions (PSR)",
-          "keywords": ["Fines", "prohibited penalties"]
+          "keywords": [
+            "Fines",
+            "prohibited penalties"
+          ]
         },
         {
           "id": "ppa_ims_046",
@@ -3751,17 +4724,30 @@
           "explanation": "The Minister authorizes emergency procurements, subject to later review [10].",
           "difficulty": "medium",
           "topic": "Implementation and Methods",
-          "keywords": ["emergency procurement", "Minister", "approval"]
+          "keywords": [
+            "emergency procurement",
+            "Minister",
+            "approval"
+          ]
         },
         {
           "id": "ppa_ims_048",
           "question": "The PSR requires that appeals against disciplinary decisions must be concluded within a maximum period of:",
-          "options": ["1 month.", "3 months.", "6 months.", "12 months."],
+          "options": [
+            "1 month.",
+            "3 months.",
+            "6 months.",
+            "12 months."
+          ],
           "correct": 2,
           "explanation": "All appeals must be concluded within six months to ensure timely redress and administrative closure [58].",
           "difficulty": "medium",
           "topic": "Monitoring and Disputes (PSR)",
-          "keywords": ["appeal conclusion", "six months", "timely redress"]
+          "keywords": [
+            "appeal conclusion",
+            "six months",
+            "timely redress"
+          ]
         },
         {
           "id": "ppa_ims_049",
@@ -3795,7 +4781,11 @@
           "explanation": "The Office of the Head of Service monitors implementation and compliance with the PSR [60].",
           "difficulty": "easy",
           "topic": "Monitoring and Institutions (PSR)",
-          "keywords": ["OHCSF", "PSR implementation", "monitoring"]
+          "keywords": [
+            "OHCSF",
+            "PSR implementation",
+            "monitoring"
+          ]
         }
       ]
     }

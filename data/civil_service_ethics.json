@@ -7,8 +7,8 @@
   "subcategories": [
     {
       "id": "csh_principles_ethics",
-      "name": "Civil Service Principles and Ethics",
-      "description": "Core principles, values, ethics, and code of conduct for civil servants.",
+      "name": "Civil Service Principles & Ethics",
+      "description": "Core values, ethics, and public service principles.",
       "questions": [
         {
           "id": "csh_principle_001",
@@ -43,17 +43,31 @@
           "explanation": "The handbook emphasizes secrecy, efficiency, and loyalty as core values of civil servants (Implied by core values outlined in CSH sections) [1].",
           "difficulty": "easy",
           "topic": "Civil Service Values",
-          "keywords": ["core values", "secrecy", "efficiency", "loyalty"]
+          "keywords": [
+            "core values",
+            "secrecy",
+            "efficiency",
+            "loyalty"
+          ]
         },
         {
           "id": "csh_principle_003",
           "question": "The Code of Conduct for public officers is primarily outlined in which part of the Civil Service Handbook?",
-          "options": ["Part I.", "Chapter 6.", "Chapter 10.", "Part IV."],
+          "options": [
+            "Part I.",
+            "Chapter 6.",
+            "Chapter 10.",
+            "Part IV."
+          ],
           "correct": 0,
           "explanation": "Part I of the Civil Service Handbook outlines the Code of Conduct for public officers (PSR 100401) [1].",
           "difficulty": "medium",
           "topic": "Code of Conduct",
-          "keywords": ["code of conduct", "civil service handbook", "part I"]
+          "keywords": [
+            "code of conduct",
+            "civil service handbook",
+            "part I"
+          ]
         },
         {
           "id": "csh_principle_004",
@@ -68,7 +82,11 @@
           "explanation": "Civil servants must avoid conflicts of interest, such as owning shares in companies competing for government contracts [2].",
           "difficulty": "medium",
           "topic": "Ethics",
-          "keywords": ["conflict of interest", "ethics", "prohibition"]
+          "keywords": [
+            "conflict of interest",
+            "ethics",
+            "prohibition"
+          ]
         },
         {
           "id": "csh_principle_005",
@@ -83,7 +101,11 @@
           "explanation": "The duty of civil servants is to provide impartial, efficient, and accountable service to the public [3].",
           "difficulty": "easy",
           "topic": "Civil Service Duties",
-          "keywords": ["impartiality", "efficiency", "duties"]
+          "keywords": [
+            "impartiality",
+            "efficiency",
+            "duties"
+          ]
         },
         {
           "id": "csh_principle_006",
@@ -98,7 +120,11 @@
           "explanation": "Political neutrality requires civil servants to serve any government of the day equally, without political bias [4].",
           "difficulty": "medium",
           "topic": "Civil Service Principles",
-          "keywords": ["political neutrality", "ethics", "impartiality"]
+          "keywords": [
+            "political neutrality",
+            "ethics",
+            "impartiality"
+          ]
         },
         {
           "id": "csh_principle_007",
@@ -113,7 +139,11 @@
           "explanation": "Civil servants are prohibited from engaging in partisan politics to maintain neutrality and integrity (PSR 100402(f)).",
           "difficulty": "easy",
           "topic": "Ethics and Conduct",
-          "keywords": ["partisan politics", "prohibited duties", "neutrality"]
+          "keywords": [
+            "partisan politics",
+            "prohibited duties",
+            "neutrality"
+          ]
         },
         {
           "id": "csh_principle_008",
@@ -128,7 +158,11 @@
           "explanation": "Anonymity means civil servants serve the government without seeking personal recognition for policies implemented [5].",
           "difficulty": "medium",
           "topic": "Civil Service Principles",
-          "keywords": ["anonymity", "principles", "recognition"]
+          "keywords": [
+            "anonymity",
+            "principles",
+            "recognition"
+          ]
         },
         {
           "id": "csh_principle_009",
@@ -143,7 +177,11 @@
           "explanation": "Accepting gifts could lead to conflicts of interest and corruption, which is prohibited [6].",
           "difficulty": "medium",
           "topic": "Ethics and Conduct",
-          "keywords": ["gifts", "conflict of interest", "corruption"]
+          "keywords": [
+            "gifts",
+            "conflict of interest",
+            "corruption"
+          ]
         },
         {
           "id": "csh_principle_010",
@@ -158,7 +196,11 @@
           "explanation": "Integrity and accountability are foundational principles (PSR Foreword) [4].",
           "difficulty": "medium",
           "topic": "Leadership Ethics",
-          "keywords": ["leadership", "integrity", "accountability"]
+          "keywords": [
+            "leadership",
+            "integrity",
+            "accountability"
+          ]
         },
         {
           "id": "csh_principle_011",
@@ -173,7 +215,11 @@
           "explanation": "Impartiality guarantees that civil servants serve all citizens fairly without political or personal bias [7].",
           "difficulty": "easy",
           "topic": "Civil Service Principles",
-          "keywords": ["impartiality", "fairness", "bias"]
+          "keywords": [
+            "impartiality",
+            "fairness",
+            "bias"
+          ]
         },
         {
           "id": "csh_principle_012",
@@ -188,7 +234,11 @@
           "explanation": "Neutrality ensures civil servants perform their duties without political bias [4].",
           "difficulty": "easy",
           "topic": "Civil Service Principles",
-          "keywords": ["neutrality", "non-partisan", "principles"]
+          "keywords": [
+            "neutrality",
+            "non-partisan",
+            "principles"
+          ]
         },
         {
           "id": "csh_principle_013",
@@ -203,7 +253,11 @@
           "explanation": "Accountability ensures civil servants remain answerable for their actions and decisions [8].",
           "difficulty": "easy",
           "topic": "Civil Service Principles",
-          "keywords": ["accountability", "answerable", "principles"]
+          "keywords": [
+            "accountability",
+            "answerable",
+            "principles"
+          ]
         },
         {
           "id": "csh_principle_014",
@@ -218,7 +272,11 @@
           "explanation": "The PSR promotes Transparency, Rule of Law, and Accountability as foundational principles [9].",
           "difficulty": "medium",
           "topic": "Ethics and Integrity",
-          "keywords": ["integrity", "accountability", "foundation"]
+          "keywords": [
+            "integrity",
+            "accountability",
+            "foundation"
+          ]
         },
         {
           "id": "csh_principle_015",
@@ -233,7 +291,11 @@
           "explanation": "The Code of Conduct for public officers is contained in the Fifth Schedule of the 1999 Constitution (Implied constitutional mandate).",
           "difficulty": "medium",
           "topic": "Code of Conduct",
-          "keywords": ["fifth schedule", "code of conduct", "constitution"]
+          "keywords": [
+            "fifth schedule",
+            "code of conduct",
+            "constitution"
+          ]
         },
         {
           "id": "csh_principle_016",
@@ -286,7 +348,11 @@
           "explanation": "Impunity (exemption from punishment) directly contradicts civil service principles of accountability and the rule of law [14].",
           "difficulty": "easy",
           "topic": "Civil Service Values",
-          "keywords": ["impunity", "accountability", "contradiction"]
+          "keywords": [
+            "impunity",
+            "accountability",
+            "contradiction"
+          ]
         },
         {
           "id": "csh_principle_019",
@@ -301,7 +367,11 @@
           "explanation": "Permanence ensures that the civil service continues its functions despite political changes, providing stability and institutional memory [5].",
           "difficulty": "medium",
           "topic": "Civil Service Principles",
-          "keywords": ["permanence", "continuity", "political changes"]
+          "keywords": [
+            "permanence",
+            "continuity",
+            "political changes"
+          ]
         },
         {
           "id": "csh_principle_020",
@@ -316,7 +386,11 @@
           "explanation": "Rule 020210 makes it the duty of the Permanent Secretary to ensure newly employed staff sign an Oath of Secrecy [15].",
           "difficulty": "medium",
           "topic": "Ethics and Conduct",
-          "keywords": ["Oath of Secrecy", "PSR 020210", "appointment"]
+          "keywords": [
+            "Oath of Secrecy",
+            "PSR 020210",
+            "appointment"
+          ]
         },
         {
           "id": "csh_principle_021",
@@ -331,7 +405,11 @@
           "explanation": "The prohibition against secret societies is a serious conduct issue (PSR contextually similar to Serious Misconduct leading to dismissal).",
           "difficulty": "hard",
           "topic": "Ethics and Conduct",
-          "keywords": ["secret society", "serious misconduct", "PSR 020212"]
+          "keywords": [
+            "secret society",
+            "serious misconduct",
+            "PSR 020212"
+          ]
         },
         {
           "id": "csh_principle_022",
@@ -346,7 +424,11 @@
           "explanation": "All official documents are government property, not the personal property of officers [16].",
           "difficulty": "medium",
           "topic": "Ethics and Documentation",
-          "keywords": ["official documents", "government property", "records"]
+          "keywords": [
+            "official documents",
+            "government property",
+            "records"
+          ]
         },
         {
           "id": "csh_principle_023",
@@ -361,7 +443,11 @@
           "explanation": "The ultimate duty of civil servants is to serve the public impartially and effectively [3].",
           "difficulty": "easy",
           "topic": "Civil Service Duties",
-          "keywords": ["public service", "impartially", "duty"]
+          "keywords": [
+            "public service",
+            "impartially",
+            "duty"
+          ]
         },
         {
           "id": "csh_principle_024",
@@ -395,7 +481,11 @@
           "explanation": "Nepotism refers to giving undue advantage to family or friends in recruitment and appointments [18].",
           "difficulty": "easy",
           "topic": "Ethics and Conduct",
-          "keywords": ["nepotism", "appointments", "prohibition"]
+          "keywords": [
+            "nepotism",
+            "appointments",
+            "prohibition"
+          ]
         },
         {
           "id": "csh_principle_026",
@@ -410,7 +500,11 @@
           "explanation": "The Official Secrets Act (Cap. 335) enforces secrecy requirements for civil servants handling official matters [19], [20], [21].",
           "difficulty": "medium",
           "topic": "Ethics and Confidentiality",
-          "keywords": ["official secrets act", "secrecy", "confidentiality"]
+          "keywords": [
+            "official secrets act",
+            "secrecy",
+            "confidentiality"
+          ]
         },
         {
           "id": "csh_principle_027",
@@ -425,7 +519,10 @@
           "explanation": "Engaging in partisan political activities is listed as an act of Serious Misconduct (PSR 100402(f), implied).",
           "difficulty": "medium",
           "topic": "Ethics and Conduct",
-          "keywords": ["partisan politics", "serious misconduct"]
+          "keywords": [
+            "partisan politics",
+            "serious misconduct"
+          ]
         },
         {
           "id": "csh_principle_028",
@@ -440,7 +537,11 @@
           "explanation": "Chapter 10 of the PSR covers Discipline, Conduct, and Ethics [22], [23].",
           "difficulty": "easy",
           "topic": "Ethics and Integrity",
-          "keywords": ["PSR Chapter 10", "ethical standards", "conduct"]
+          "keywords": [
+            "PSR Chapter 10",
+            "ethical standards",
+            "conduct"
+          ]
         },
         {
           "id": "csh_principle_029",
@@ -455,7 +556,11 @@
           "explanation": "Efficiency ensures civil servants meet public needs effectively and deliver value for money [3].",
           "difficulty": "easy",
           "topic": "Civil Service Values",
-          "keywords": ["efficiency", "service delivery", "value"]
+          "keywords": [
+            "efficiency",
+            "service delivery",
+            "value"
+          ]
         },
         {
           "id": "csh_principle_030",
@@ -470,7 +575,11 @@
           "explanation": "Chapter 2 emphasizes merit and competence in recruitment and promotions [24]. Promotion eligibility is based on merit and performance [25].",
           "difficulty": "medium",
           "topic": "Civil Service Principles",
-          "keywords": ["meritocracy", "promotion", "chapter 2"]
+          "keywords": [
+            "meritocracy",
+            "promotion",
+            "chapter 2"
+          ]
         },
         {
           "id": "csh_principle_031",
@@ -485,7 +594,11 @@
           "explanation": "PSR 100427 prohibits seeking influence of prominent persons to obtain favors, ensuring decisions are based on merit [10], [11].",
           "difficulty": "medium",
           "topic": "Ethics and Conduct",
-          "keywords": ["seeking influence", "PSR 100427", "merit"]
+          "keywords": [
+            "seeking influence",
+            "PSR 100427",
+            "merit"
+          ]
         },
         {
           "id": "csh_principle_032",
@@ -500,7 +613,10 @@
           "explanation": "Holding more than one full-time paid job is defined as Serious Misconduct (PSR 100402(r), implied).",
           "difficulty": "hard",
           "topic": "Ethics and Conduct",
-          "keywords": ["full-time paid job", "serious misconduct"]
+          "keywords": [
+            "full-time paid job",
+            "serious misconduct"
+          ]
         },
         {
           "id": "csh_principle_033",
@@ -534,7 +650,11 @@
           "explanation": "Integrity, honesty, and transparency are emphasized in the Code of Conduct (PSR Foreword) [9].",
           "difficulty": "easy",
           "topic": "Ethics and Integrity",
-          "keywords": ["integrity", "honesty", "code of conduct"]
+          "keywords": [
+            "integrity",
+            "honesty",
+            "code of conduct"
+          ]
         },
         {
           "id": "csh_principle_035",
@@ -549,17 +669,30 @@
           "explanation": "If an officer is in doubt about the propriety of receiving or retaining a gift, he should consult his Head of Mission or the Permanent Secretary (Foreign Service Regulation No. 8) [26], [27].",
           "difficulty": "medium",
           "topic": "Ethics and Conduct",
-          "keywords": ["gifts", "doubt", "Permanent Secretary"]
+          "keywords": [
+            "gifts",
+            "doubt",
+            "Permanent Secretary"
+          ]
         },
         {
           "id": "csh_principle_036",
           "question": "Which principle guarantees that decisions and processes are open, with records available for accountability?",
-          "options": ["Secrecy.", "Transparency.", "Anonymity.", "Neutrality."],
+          "options": [
+            "Secrecy.",
+            "Transparency.",
+            "Anonymity.",
+            "Neutrality."
+          ],
           "correct": 1,
           "explanation": "Transparency requires that decisions and processes are open, with records available for accountability [8], [9].",
           "difficulty": "medium",
           "topic": "Civil Service Principles",
-          "keywords": ["transparency", "accountability", "open access"]
+          "keywords": [
+            "transparency",
+            "accountability",
+            "open access"
+          ]
         },
         {
           "id": "csh_principle_037",
@@ -593,7 +726,11 @@
           "explanation": "The APER/PAF serves as the primary tool to track, assess, and report on individual performance and accountability (PSR 050402) [28], [29].",
           "difficulty": "medium",
           "topic": "Accountability",
-          "keywords": ["accountability", "APER", "performance management"]
+          "keywords": [
+            "accountability",
+            "APER",
+            "performance management"
+          ]
         },
         {
           "id": "csh_principle_039",
@@ -608,7 +745,11 @@
           "explanation": "Loyalty is essential for ensuring dedication to government policies and programs (Implied core value) [1].",
           "difficulty": "easy",
           "topic": "Civil Service Values",
-          "keywords": ["loyalty", "dedication", "core value"]
+          "keywords": [
+            "loyalty",
+            "dedication",
+            "core value"
+          ]
         },
         {
           "id": "csh_principle_040",
@@ -623,7 +764,11 @@
           "explanation": "PSR 100425 provides exemptions for certain professionals like Medical Practitioners and Law Lecturers to engage in private practice [10], [11].",
           "difficulty": "hard",
           "topic": "Ethics and Conduct",
-          "keywords": ["private practice", "PSR 100425", "exemption"]
+          "keywords": [
+            "private practice",
+            "PSR 100425",
+            "exemption"
+          ]
         },
         {
           "id": "csh_principle_041",
@@ -638,7 +783,11 @@
           "explanation": "The PSR promotes Transparency, Rule of Law, and Accountability [9].",
           "difficulty": "easy",
           "topic": "Civil Service Principles",
-          "keywords": ["transparency", "rule of law", "accountability"]
+          "keywords": [
+            "transparency",
+            "rule of law",
+            "accountability"
+          ]
         },
         {
           "id": "csh_principle_042",
@@ -653,7 +802,11 @@
           "explanation": "Engaging in partisan political activities is Serious Misconduct (PSR 100402(f), implied), which may lead to dismissal.",
           "difficulty": "medium",
           "topic": "Ethics and Sanctions",
-          "keywords": ["partisan politics", "dismissal", "serious misconduct"]
+          "keywords": [
+            "partisan politics",
+            "dismissal",
+            "serious misconduct"
+          ]
         },
         {
           "id": "csh_principle_043",
@@ -688,7 +841,11 @@
           "explanation": "Anonymity means civil servants serve the government without seeking personal recognition for policies implemented [5].",
           "difficulty": "easy",
           "topic": "Civil Service Principles",
-          "keywords": ["anonymity", "political leadership", "blame"]
+          "keywords": [
+            "anonymity",
+            "political leadership",
+            "blame"
+          ]
         },
         {
           "id": "csh_principle_045",
@@ -703,17 +860,30 @@
           "explanation": "PSR 020211 explicitly prohibits public officers from being members of any secret society (Implied rule reference).",
           "difficulty": "medium",
           "topic": "Ethics and Conduct",
-          "keywords": ["secret society", "PSR 020211", "prohibition"]
+          "keywords": [
+            "secret society",
+            "PSR 020211",
+            "prohibition"
+          ]
         },
         {
           "id": "csh_principle_046",
           "question": "The core ethical value that emphasizes professional competency, dedication, and following all lawful instructions is:",
-          "options": ["Secrecy.", "Efficiency.", "Loyalty.", "Anonymity."],
+          "options": [
+            "Secrecy.",
+            "Efficiency.",
+            "Loyalty.",
+            "Anonymity."
+          ],
           "correct": 2,
           "explanation": "Loyalty implies dedication and commitment to the execution of duties and instructions [1].",
           "difficulty": "easy",
           "topic": "Civil Service Values",
-          "keywords": ["loyalty", "professional competency", "value"]
+          "keywords": [
+            "loyalty",
+            "professional competency",
+            "value"
+          ]
         },
         {
           "id": "csh_principle_047",
@@ -728,7 +898,11 @@
           "explanation": "An officer is expected to devote full time during official hours to official duties. This underpins the PSR rule against engaging in multiple full-time jobs.",
           "difficulty": "medium",
           "topic": "Ethics and Conduct",
-          "keywords": ["full time", "official duties", "dedication"]
+          "keywords": [
+            "full time",
+            "official duties",
+            "dedication"
+          ]
         },
         {
           "id": "csh_principle_048",
@@ -743,7 +917,11 @@
           "explanation": "The Code of Conduct requires public officers to declare their assets periodically (upon assumption of duty and every four years, implied constitutional rule).",
           "difficulty": "medium",
           "topic": "Code of Conduct",
-          "keywords": ["asset declaration", "fifth schedule", "four years"]
+          "keywords": [
+            "asset declaration",
+            "fifth schedule",
+            "four years"
+          ]
         },
         {
           "id": "csh_principle_049",
@@ -758,7 +936,11 @@
           "explanation": "Impartial advice ensures ministers make informed decisions based on objective analysis, upholding the principle of Impartiality [7].",
           "difficulty": "medium",
           "topic": "Ethics and Principles",
-          "keywords": ["impartial advice", "objectivity", "ministers"]
+          "keywords": [
+            "impartial advice",
+            "objectivity",
+            "ministers"
+          ]
         },
         {
           "id": "csh_principle_050",
@@ -773,14 +955,18 @@
           "explanation": "The FCSC has ultimate authority on matters of ethical conduct and appeals regarding discipline [30].",
           "difficulty": "medium",
           "topic": "Ethics and Institutions",
-          "keywords": ["FCSC", "final authority", "ethical conduct"]
+          "keywords": [
+            "FCSC",
+            "final authority",
+            "ethical conduct"
+          ]
         }
       ]
     },
     {
       "id": "csh_duties_responsibilities",
-      "name": "Duties and Responsibilities",
-      "description": "Duties of civil servants, role of key institutions, and service delivery principles",
+      "name": "Duties & Responsibilities",
+      "description": "Institutional responsibilities and service obligations.",
       "questions": [
         {
           "id": "csh_duty_001",
@@ -795,7 +981,12 @@
           "explanation": "The Federal Civil Service Commission (FCSC) oversees recruitment, promotions, and discipline of civil servants [30].",
           "difficulty": "easy",
           "topic": "Institutional Roles",
-          "keywords": ["FCSC", "recruitment", "promotion", "discipline"]
+          "keywords": [
+            "FCSC",
+            "recruitment",
+            "promotion",
+            "discipline"
+          ]
         },
         {
           "id": "csh_duty_002",
@@ -810,7 +1001,11 @@
           "explanation": "The ultimate duty of civil servants is to serve the public impartially and effectively [3].",
           "difficulty": "easy",
           "topic": "Civil Service Duties",
-          "keywords": ["public service", "duty", "impartiality"]
+          "keywords": [
+            "public service",
+            "duty",
+            "impartiality"
+          ]
         },
         {
           "id": "csh_duty_003",
@@ -844,7 +1039,11 @@
           "explanation": "Civil servants are prohibited from partisan politics to maintain neutrality and integrity.",
           "difficulty": "easy",
           "topic": "Civil Service Duties",
-          "keywords": ["partisan politics", "prohibited duties", "neutrality"]
+          "keywords": [
+            "partisan politics",
+            "prohibited duties",
+            "neutrality"
+          ]
         },
         {
           "id": "csh_duty_005",
@@ -859,7 +1058,11 @@
           "explanation": "The Civil Service Handbook provides ethical and operational guidance to civil servants to ensure effective service delivery [1].",
           "difficulty": "easy",
           "topic": "Institutional Roles",
-          "keywords": ["Civil Service Handbook", "purpose", "guidance"]
+          "keywords": [
+            "Civil Service Handbook",
+            "purpose",
+            "guidance"
+          ]
         },
         {
           "id": "csh_duty_006",
@@ -874,7 +1077,11 @@
           "explanation": "Impartiality is crucial to guarantee fair and unbiased service to all citizens [7].",
           "difficulty": "easy",
           "topic": "Civil Service Principles",
-          "keywords": ["impartiality", "unbiased service", "principles"]
+          "keywords": [
+            "impartiality",
+            "unbiased service",
+            "principles"
+          ]
         },
         {
           "id": "csh_duty_007",
@@ -889,7 +1096,11 @@
           "explanation": "Impartial advice is necessary to guide policy decisions objectively, ensuring government efficacy [7].",
           "difficulty": "medium",
           "topic": "Civil Service Duties",
-          "keywords": ["impartial advice", "objectivity", "policy decisions"]
+          "keywords": [
+            "impartial advice",
+            "objectivity",
+            "policy decisions"
+          ]
         },
         {
           "id": "csh_duty_008",
@@ -904,17 +1115,31 @@
           "explanation": "Meritocracy is emphasized in recruitment, appointment, and promotion [24], [25].",
           "difficulty": "medium",
           "topic": "Civil Service Principles",
-          "keywords": ["meritocracy", "recruitment", "promotion", "Chapter 2"]
+          "keywords": [
+            "meritocracy",
+            "recruitment",
+            "promotion",
+            "Chapter 2"
+          ]
         },
         {
           "id": "csh_duty_009",
           "question": "Which chapter emphasizes service delivery as the core of civil service responsibilities?",
-          "options": ["Chapter 1", "Chapter 4", "Chapter 6", "Chapter 7"],
+          "options": [
+            "Chapter 1",
+            "Chapter 4",
+            "Chapter 6",
+            "Chapter 7"
+          ],
           "correct": 1,
           "explanation": "Chapter 4 emphasizes service delivery as the key role of civil servants [18].",
           "difficulty": "medium",
           "topic": "Service Delivery",
-          "keywords": ["service delivery", "Chapter 4", "core responsibility"]
+          "keywords": [
+            "service delivery",
+            "Chapter 4",
+            "core responsibility"
+          ]
         },
         {
           "id": "csh_duty_010",
@@ -929,7 +1154,11 @@
           "explanation": "The Registry Unit is responsible for the file movement, correspondence handling, and documentation tracking (Implied administrative function).",
           "difficulty": "medium",
           "topic": "Administrative Procedures",
-          "keywords": ["Registry Unit", "file movement", "documentation"]
+          "keywords": [
+            "Registry Unit",
+            "file movement",
+            "documentation"
+          ]
         },
         {
           "id": "csh_duty_011",
@@ -944,7 +1173,11 @@
           "explanation": "Loyalty ensures dedication to the government and its official policies [1].",
           "difficulty": "easy",
           "topic": "Civil Service Values",
-          "keywords": ["loyalty", "dedication", "government policies"]
+          "keywords": [
+            "loyalty",
+            "dedication",
+            "government policies"
+          ]
         },
         {
           "id": "csh_duty_012",
@@ -959,7 +1192,11 @@
           "explanation": "All official documents are government property, not the personal property of officers [16].",
           "difficulty": "medium",
           "topic": "Administrative Procedures",
-          "keywords": ["official documents", "government property", "records"]
+          "keywords": [
+            "official documents",
+            "government property",
+            "records"
+          ]
         },
         {
           "id": "csh_duty_013",
@@ -974,7 +1211,11 @@
           "explanation": "The Federal Civil Service Commission ensures that civil service operations adhere to the rules (Implied institutional role) [30].",
           "difficulty": "easy",
           "topic": "Institutional Roles",
-          "keywords": ["Civil Service Commission", "adherence", "compliance"]
+          "keywords": [
+            "Civil Service Commission",
+            "adherence",
+            "compliance"
+          ]
         },
         {
           "id": "csh_duty_014",
@@ -989,7 +1230,11 @@
           "explanation": "Efficiency ensures civil servants meet public needs effectively and deliver value for money [3].",
           "difficulty": "easy",
           "topic": "Service Delivery",
-          "keywords": ["efficiency", "service delivery", "value for money"]
+          "keywords": [
+            "efficiency",
+            "service delivery",
+            "value for money"
+          ]
         },
         {
           "id": "csh_duty_015",
@@ -1004,7 +1249,11 @@
           "explanation": "The Permanent Secretary/Head of MDA is responsible for aligning staff development and training with organizational goals.",
           "difficulty": "medium",
           "topic": "Civil Service Duties",
-          "keywords": ["staff development", "training", "Permanent Secretary"]
+          "keywords": [
+            "staff development",
+            "training",
+            "Permanent Secretary"
+          ]
         },
         {
           "id": "csh_duty_016",
@@ -1019,7 +1268,11 @@
           "explanation": "All official communications must follow established hierarchical channels for proper documentation and accountability [32].",
           "difficulty": "medium",
           "topic": "Administrative Procedures",
-          "keywords": ["official communication", "hierarchical channels", "PSR"]
+          "keywords": [
+            "official communication",
+            "hierarchical channels",
+            "PSR"
+          ]
         },
         {
           "id": "csh_duty_017",
@@ -1053,7 +1306,11 @@
           "explanation": "The Scheme of Service defines job roles, qualifications, and promotion pathways for staff [34].",
           "difficulty": "medium",
           "topic": "Administrative Procedures",
-          "keywords": ["Scheme of Service", "career progression", "job roles"]
+          "keywords": [
+            "Scheme of Service",
+            "career progression",
+            "job roles"
+          ]
         },
         {
           "id": "csh_duty_019",
@@ -1068,7 +1325,11 @@
           "explanation": "Anonymity ensures civil servants serve without seeking personal recognition; praise or blame is directed toward the political leadership [5].",
           "difficulty": "medium",
           "topic": "Civil Service Principles",
-          "keywords": ["anonymity", "political leadership", "principles"]
+          "keywords": [
+            "anonymity",
+            "political leadership",
+            "principles"
+          ]
         },
         {
           "id": "csh_duty_020",
@@ -1083,7 +1344,11 @@
           "explanation": "Permanence ensures that the civil service continues its functions despite political changes [5].",
           "difficulty": "medium",
           "topic": "Civil Service Principles",
-          "keywords": ["permanence", "continuity", "political changes"]
+          "keywords": [
+            "permanence",
+            "continuity",
+            "political changes"
+          ]
         },
         {
           "id": "csh_duty_021",
@@ -1098,7 +1363,11 @@
           "explanation": "The OHCSF issues Circulars that clarify policies and implement reforms across MDAs (Implied institutional role) [35].",
           "difficulty": "easy",
           "topic": "Institutional Roles",
-          "keywords": ["OHCSF", "Circulars", "policy implementation"]
+          "keywords": [
+            "OHCSF",
+            "Circulars",
+            "policy implementation"
+          ]
         },
         {
           "id": "csh_duty_022",
@@ -1113,7 +1382,11 @@
           "explanation": "Officers are expected to devote full time during official hours to official duties. Holding more than one full-time paid job is Serious Misconduct (PSR 100402(r)).",
           "difficulty": "medium",
           "topic": "Civil Service Duties",
-          "keywords": ["full time", "official duties", "dedication"]
+          "keywords": [
+            "full time",
+            "official duties",
+            "dedication"
+          ]
         },
         {
           "id": "csh_duty_023",
@@ -1166,7 +1439,11 @@
           "explanation": "Proper handover ensures continuity of duties and accountability in civil service operations [38].",
           "difficulty": "medium",
           "topic": "Administrative Procedures",
-          "keywords": ["handover", "continuity", "accountability"]
+          "keywords": [
+            "handover",
+            "continuity",
+            "accountability"
+          ]
         },
         {
           "id": "csh_duty_026",
@@ -1181,7 +1458,12 @@
           "explanation": "The APER/PAF is the main assessment tool used to assess an officer's competence and guide promotion decisions [28], [29].",
           "difficulty": "easy",
           "topic": "Service Delivery",
-          "keywords": ["APER", "PAF", "promotion", "assessment"]
+          "keywords": [
+            "APER",
+            "PAF",
+            "promotion",
+            "assessment"
+          ]
         },
         {
           "id": "csh_duty_027",
@@ -1196,7 +1478,11 @@
           "explanation": "Focal Offices established in the OHCSF are responsible for identifying and disseminating information for volunteer and internship programmes (PSR 020417) [39], [40].",
           "difficulty": "hard",
           "topic": "Institutional Roles",
-          "keywords": ["OHCSF Focal Office", "volunteerism", "internship"]
+          "keywords": [
+            "OHCSF Focal Office",
+            "volunteerism",
+            "internship"
+          ]
         },
         {
           "id": "csh_duty_028",
@@ -1211,7 +1497,11 @@
           "explanation": "Transparency requires that decisions and processes are open, with records available for accountability [9].",
           "difficulty": "medium",
           "topic": "Civil Service Principles",
-          "keywords": ["transparency", "open access", "accountability"]
+          "keywords": [
+            "transparency",
+            "open access",
+            "accountability"
+          ]
         },
         {
           "id": "csh_duty_029",
@@ -1245,7 +1535,11 @@
           "explanation": "A Minister exercises control of Parastatals at the policy level only through the Board of the Parastatal (PSR 170201) [43], [44].",
           "difficulty": "medium",
           "topic": "Institutional Roles",
-          "keywords": ["Minister", "Parastatals", "policy control"]
+          "keywords": [
+            "Minister",
+            "Parastatals",
+            "policy control"
+          ]
         },
         {
           "id": "csh_duty_031",
@@ -1279,7 +1573,11 @@
           "explanation": "The Junior Staff Committee handles appointments, promotions, and discipline for officers on GL01–06 (PSR 170301) [43], [44].",
           "difficulty": "medium",
           "topic": "Institutional Roles",
-          "keywords": ["Junior Staff Committee", "GL 01–06", "appointments"]
+          "keywords": [
+            "Junior Staff Committee",
+            "GL 01–06",
+            "appointments"
+          ]
         },
         {
           "id": "csh_duty_033",
@@ -1294,7 +1592,11 @@
           "explanation": "Professional development aims to enhance knowledge, skills, attitude, effectiveness, and efficiency of staff (PSR 070101) [45], [46].",
           "difficulty": "easy",
           "topic": "Service Delivery",
-          "keywords": ["professional development", "efficiency", "adaptability"]
+          "keywords": [
+            "professional development",
+            "efficiency",
+            "adaptability"
+          ]
         },
         {
           "id": "csh_duty_034",
@@ -1309,7 +1611,11 @@
           "explanation": "ASCON (Administrative Staff College of Nigeria) provides training and capacity development for civil servants [47], [48].",
           "difficulty": "medium",
           "topic": "Institutional Roles",
-          "keywords": ["ASCON", "training support", "capacity development"]
+          "keywords": [
+            "ASCON",
+            "training support",
+            "capacity development"
+          ]
         },
         {
           "id": "csh_duty_035",
@@ -1343,7 +1649,11 @@
           "explanation": "The cost of entitlements due to the employee whose posting requires a change of duty station shall be borne by the posting MDA (PSR 020607) [36], [37].",
           "difficulty": "medium",
           "topic": "Administrative Procedures",
-          "keywords": ["posting entitlements", "PSR 020607", "transfer"]
+          "keywords": [
+            "posting entitlements",
+            "PSR 020607",
+            "transfer"
+          ]
         },
         {
           "id": "csh_duty_037",
@@ -1358,7 +1668,11 @@
           "explanation": "Teamwork fosters collaboration and enhances service delivery within the civil service [6], [49].",
           "difficulty": "easy",
           "topic": "Civil Service Values",
-          "keywords": ["teamwork", "collaboration", "efficiency"]
+          "keywords": [
+            "teamwork",
+            "collaboration",
+            "efficiency"
+          ]
         },
         {
           "id": "csh_duty_038",
@@ -1373,7 +1687,11 @@
           "explanation": "An officer must report changes in marital status within the required period to update official records (Implied administrative practice).",
           "difficulty": "medium",
           "topic": "Administrative Procedures",
-          "keywords": ["marital status", "reporting", "official records"]
+          "keywords": [
+            "marital status",
+            "reporting",
+            "official records"
+          ]
         },
         {
           "id": "csh_duty_039",
@@ -1388,7 +1706,11 @@
           "explanation": "Promotion is determined by merit, performance, vacancy, and eligibility, and absence of disciplinary issues (PSR 020802(d)) [25].",
           "difficulty": "medium",
           "topic": "Service Delivery",
-          "keywords": ["promotion criteria", "merit", "performance"]
+          "keywords": [
+            "promotion criteria",
+            "merit",
+            "performance"
+          ]
         },
         {
           "id": "csh_duty_040",
@@ -1422,17 +1744,30 @@
           "explanation": "Adverse comments must be conveyed in sympathetic terms to enable and encourage the officer to overcome shortcomings (PSR 050205) [41], [42].",
           "difficulty": "hard",
           "topic": "Administrative Procedures",
-          "keywords": ["adverse comment", "PSR 050205", "sympathetic terms"]
+          "keywords": [
+            "adverse comment",
+            "PSR 050205",
+            "sympathetic terms"
+          ]
         },
         {
           "id": "csh_duty_042",
           "question": "Which PSR Chapter provides guidelines for training and staff development within and outside Nigeria?",
-          "options": ["Chapter 4", "Chapter 7", "Chapter 10", "Chapter 12"],
+          "options": [
+            "Chapter 4",
+            "Chapter 7",
+            "Chapter 10",
+            "Chapter 12"
+          ],
           "correct": 1,
           "explanation": "Chapter 7 of the PSR covers Training and Staff Development within and outside Nigeria [45], [46].",
           "difficulty": "medium",
           "topic": "Service Delivery",
-          "keywords": ["training", "staff development", "Chapter 7"]
+          "keywords": [
+            "training",
+            "staff development",
+            "Chapter 7"
+          ]
         },
         {
           "id": "csh_duty_043",
@@ -1466,7 +1801,11 @@
           "explanation": "Core values including integrity, neutrality, service, discipline, and accountability are found in the Ethics and Values section of the Civil Service Handbook [9].",
           "difficulty": "easy",
           "topic": "Civil Service Values",
-          "keywords": ["integrity", "neutrality", "ethics and values"]
+          "keywords": [
+            "integrity",
+            "neutrality",
+            "ethics and values"
+          ]
         },
         {
           "id": "csh_duty_045",
@@ -1481,7 +1820,11 @@
           "explanation": "Remuneration for non-Public/Civil Servants re-engaged after retirement shall be based on negotiable terms by the parties concerned (PSR 020412) [39], [40].",
           "difficulty": "hard",
           "topic": "Administrative Procedures",
-          "keywords": ["re-engagement", "PSR 020412", "negotiable terms"]
+          "keywords": [
+            "re-engagement",
+            "PSR 020412",
+            "negotiable terms"
+          ]
         },
         {
           "id": "csh_duty_046",
@@ -1496,7 +1839,11 @@
           "explanation": "The OHCSF handles deployments, coordination of postings, and overall service reforms (Implied institutional role) [35].",
           "difficulty": "medium",
           "topic": "Institutional Roles",
-          "keywords": ["OHCSF", "inter-ministerial posting", "reforms"]
+          "keywords": [
+            "OHCSF",
+            "inter-ministerial posting",
+            "reforms"
+          ]
         },
         {
           "id": "csh_duty_047",
@@ -1511,7 +1858,11 @@
           "explanation": "The R&RS aims to institutionalize a culture of excellence and motivate staff by recognizing meritorious service (Implied component of performance management) [54], [9].",
           "difficulty": "medium",
           "topic": "Service Delivery",
-          "keywords": ["Reward and Recognition System", "R&RS", "excellence"]
+          "keywords": [
+            "Reward and Recognition System",
+            "R&RS",
+            "excellence"
+          ]
         },
         {
           "id": "csh_duty_048",
@@ -1526,7 +1877,11 @@
           "explanation": "Continuous capacity development strategies must be in the Public Service Training and Capacity Development Policy (PSR 070103) [45], [46], [55].",
           "difficulty": "hard",
           "topic": "Service Delivery",
-          "keywords": ["capacity development policy", "PSR 070103", "training"]
+          "keywords": [
+            "capacity development policy",
+            "PSR 070103",
+            "training"
+          ]
         },
         {
           "id": "csh_duty_049",
@@ -1541,7 +1896,11 @@
           "explanation": "PSR 020210 makes it the duty of the Permanent Secretary to ensure newly employed staff sign an Oath of Secrecy [15].",
           "difficulty": "medium",
           "topic": "Civil Service Duties",
-          "keywords": ["Oath of Secrecy", "PSR 020210", "Permanent Secretary"]
+          "keywords": [
+            "Oath of Secrecy",
+            "PSR 020210",
+            "Permanent Secretary"
+          ]
         },
         {
           "id": "csh_duty_050",
@@ -1556,14 +1915,18 @@
           "explanation": "Appointments and promotions should ensure merit, credibility, and equal employment opportunity (PSR 170302) [43], [44].",
           "difficulty": "medium",
           "topic": "Civil Service Principles",
-          "keywords": ["meritocracy", "competence", "appointments"]
+          "keywords": [
+            "meritocracy",
+            "competence",
+            "appointments"
+          ]
         }
       ]
     },
     {
       "id": "csh_discipline_conduct",
-      "name": "Discipline and Conduct",
-      "description": "Disciplinary procedures, misconduct, and code of conduct enforcement",
+      "name": "Discipline & Conduct",
+      "description": "Conduct standards and discipline administration.",
       "questions": [
         {
           "id": "csh_disc_001",
@@ -1578,7 +1941,11 @@
           "explanation": "The disciplinary process for civil servants is outlined in Chapter 10 of the PSR [22], [23].",
           "difficulty": "easy",
           "topic": "Disciplinary Framework",
-          "keywords": ["PSR Chapter 10", "disciplinary process", "misconduct"]
+          "keywords": [
+            "PSR Chapter 10",
+            "disciplinary process",
+            "misconduct"
+          ]
         },
         {
           "id": "csh_disc_002",
@@ -1593,7 +1960,11 @@
           "explanation": "The disciplinary process typically begins with the issuance of a written query (PSR 100307) [56], [57], [58], [59].",
           "difficulty": "easy",
           "topic": "Disciplinary Procedures",
-          "keywords": ["query", "first step", "PSR 100307"]
+          "keywords": [
+            "query",
+            "first step",
+            "PSR 100307"
+          ]
         },
         {
           "id": "csh_disc_003",
@@ -1608,7 +1979,11 @@
           "explanation": "Improper behavior like insubordination [60] or habitual lateness [61] is defined as Misconduct (PSR 100301).",
           "difficulty": "medium",
           "topic": "Misconduct Categories",
-          "keywords": ["misconduct", "insubordination", "Rule 100301"]
+          "keywords": [
+            "misconduct",
+            "insubordination",
+            "Rule 100301"
+          ]
         },
         {
           "id": "csh_disc_004",
@@ -1623,7 +1998,11 @@
           "explanation": "Serious wrongdoing, including corruption [60], [62] and unauthorized disclosure of official information [19], [63], [20], [21] constitutes Serious Misconduct (PSR 100401).",
           "difficulty": "medium",
           "topic": "Misconduct Categories",
-          "keywords": ["Serious Misconduct", "fraud", "Rule 100401"]
+          "keywords": [
+            "Serious Misconduct",
+            "fraud",
+            "Rule 100401"
+          ]
         },
         {
           "id": "csh_disc_005",
@@ -1638,7 +2017,11 @@
           "explanation": "Falsification of official records is considered gross misconduct [62].",
           "difficulty": "medium",
           "topic": "Misconduct Categories",
-          "keywords": ["fraud", "gross misconduct", "falsification of records"]
+          "keywords": [
+            "fraud",
+            "gross misconduct",
+            "falsification of records"
+          ]
         },
         {
           "id": "csh_disc_006",
@@ -1653,7 +2036,11 @@
           "explanation": "Unauthorized absence for 14 consecutive days is construed as resignation from the service (PSR 030413, implied rule reference).",
           "difficulty": "hard",
           "topic": "Disciplinary Procedures",
-          "keywords": ["unauthorized absence", "14 days", "resigned"]
+          "keywords": [
+            "unauthorized absence",
+            "14 days",
+            "resigned"
+          ]
         },
         {
           "id": "csh_disc_007",
@@ -1668,17 +2055,30 @@
           "explanation": "Suspension (pending case conclusion for gross offenses) is usually without salary (PSR 100406, implied).",
           "difficulty": "medium",
           "topic": "Disciplinary Status",
-          "keywords": ["suspension", "no pay", "Rule 100406"]
+          "keywords": [
+            "suspension",
+            "no pay",
+            "Rule 100406"
+          ]
         },
         {
           "id": "csh_disc_008",
           "question": "Which penalty for financial misconduct is intended to recover the exact amount of financial loss caused by the officer's negligence?",
-          "options": ["Demotion.", "Surcharge.", "Interdiction.", "Dismissal."],
+          "options": [
+            "Demotion.",
+            "Surcharge.",
+            "Interdiction.",
+            "Dismissal."
+          ],
           "correct": 1,
           "explanation": "Surcharge is the recovery of government losses from the officer's pay, applied when the loss is due to the officer’s fault.",
           "difficulty": "medium",
           "topic": "Sanctions",
-          "keywords": ["surcharge", "recovery of loss", "financial misconduct"]
+          "keywords": [
+            "surcharge",
+            "recovery of loss",
+            "financial misconduct"
+          ]
         },
         {
           "id": "csh_disc_009",
@@ -1693,7 +2093,11 @@
           "explanation": "Allegations of misconduct are typically investigated by a Board of Inquiry with at least three members to ensure impartiality and fairness (Implied due process requirement).",
           "difficulty": "medium",
           "topic": "Disciplinary Procedures",
-          "keywords": ["Board of Inquiry", "three members", "impartiality"]
+          "keywords": [
+            "Board of Inquiry",
+            "three members",
+            "impartiality"
+          ]
         },
         {
           "id": "csh_disc_010",
@@ -1708,7 +2112,11 @@
           "explanation": "Insubordination means refusing to obey lawful instructions from superiors [60].",
           "difficulty": "easy",
           "topic": "Misconduct Categories",
-          "keywords": ["insubordination", "refusal to obey", "misconduct"]
+          "keywords": [
+            "insubordination",
+            "refusal to obey",
+            "misconduct"
+          ]
         },
         {
           "id": "csh_disc_011",
@@ -1742,7 +2150,11 @@
           "explanation": "An Officer must promptly report a criminal charge to his Permanent Secretary/Head of Extra-Ministerial Office (PSR 100409, implied).",
           "difficulty": "medium",
           "topic": "Ethics and Conduct",
-          "keywords": ["criminal charge", "reporting", "PSR 100409"]
+          "keywords": [
+            "criminal charge",
+            "reporting",
+            "PSR 100409"
+          ]
         },
         {
           "id": "csh_disc_013",
@@ -1757,7 +2169,10 @@
           "explanation": "The PSR explicitly prohibits the imposition of fines as a disciplinary punishment (Implied rule reference).",
           "difficulty": "medium",
           "topic": "Sanctions",
-          "keywords": ["fines", "prohibited penalties"]
+          "keywords": [
+            "fines",
+            "prohibited penalties"
+          ]
         },
         {
           "id": "csh_disc_014",
@@ -1772,7 +2187,11 @@
           "explanation": "During interdiction (temporary suspension pending investigation), an officer is placed on half pay (PSR 100404, implied).",
           "difficulty": "easy",
           "topic": "Disciplinary Status",
-          "keywords": ["interdiction", "half pay", "Rule 100404"]
+          "keywords": [
+            "interdiction",
+            "half pay",
+            "Rule 100404"
+          ]
         },
         {
           "id": "csh_disc_015",
@@ -1787,7 +2206,10 @@
           "explanation": "Using government property, such as vehicles, for private business is considered gross misconduct [65].",
           "difficulty": "medium",
           "topic": "Misconduct Categories",
-          "keywords": ["misuse of government property", "gross misconduct"]
+          "keywords": [
+            "misuse of government property",
+            "gross misconduct"
+          ]
         },
         {
           "id": "csh_disc_016",
@@ -1821,7 +2243,11 @@
           "explanation": "Contravention of the prohibition against secret societies is regarded as an act of serious misconduct (PSR 020212, implied).",
           "difficulty": "hard",
           "topic": "Ethics and Conduct",
-          "keywords": ["secret society", "serious misconduct", "PSR 020211"]
+          "keywords": [
+            "secret society",
+            "serious misconduct",
+            "PSR 020211"
+          ]
         },
         {
           "id": "csh_disc_018",
@@ -1836,17 +2262,30 @@
           "explanation": "The FCSC has final authority on appointment, promotion, and discipline for senior officers [30], [68].",
           "difficulty": "medium",
           "topic": "Disciplinary Authority",
-          "keywords": ["FCSC", "final authority", "discipline"]
+          "keywords": [
+            "FCSC",
+            "final authority",
+            "discipline"
+          ]
         },
         {
           "id": "csh_disc_019",
           "question": "An aggrieved officer appealing a disciplinary decision (Chapter 11) must generally have the appeal handled within a maximum period of:",
-          "options": ["30 days.", "Three months.", "Six months.", "One year."],
+          "options": [
+            "30 days.",
+            "Three months.",
+            "Six months.",
+            "One year."
+          ],
           "correct": 2,
           "explanation": "An appeal submitted more than six months after the decision will generally not be entertained unless the delay is explained (PSR 110209(b)), implying a six-month window [69], [70].",
           "difficulty": "medium",
           "topic": "Disciplinary Procedures",
-          "keywords": ["appeals", "six months", "PSR Chapter 11"]
+          "keywords": [
+            "appeals",
+            "six months",
+            "PSR Chapter 11"
+          ]
         },
         {
           "id": "csh_disc_020",
@@ -1861,7 +2300,11 @@
           "explanation": "A petition must contain the required authentication details (signature, name, number) to be accepted. Grounds for rejection include illegibility, pending court case, repetition, or abusive language [69], [70], [71].",
           "difficulty": "hard",
           "topic": "Disciplinary Procedures",
-          "keywords": ["petition rejection", "authentication", "Rule 110208"]
+          "keywords": [
+            "petition rejection",
+            "authentication",
+            "Rule 110208"
+          ]
         },
         {
           "id": "csh_disc_021",
@@ -1876,7 +2319,11 @@
           "explanation": "An increment shall normally be granted unless the officer is on interdiction/suspension or has a disciplinary action pending, or on account of poor performance (PSR 040202) [72], [73].",
           "difficulty": "easy",
           "topic": "Sanctions",
-          "keywords": ["increment withholding", "interdiction", "Rule 040202"]
+          "keywords": [
+            "increment withholding",
+            "interdiction",
+            "Rule 040202"
+          ]
         },
         {
           "id": "csh_disc_022",
@@ -1891,7 +2338,10 @@
           "explanation": "Engaging in partisan political activities is listed as Serious Misconduct (PSR 100402(f), implied).",
           "difficulty": "medium",
           "topic": "Ethics and Conduct",
-          "keywords": ["partisan politics", "Serious Misconduct"]
+          "keywords": [
+            "partisan politics",
+            "Serious Misconduct"
+          ]
         },
         {
           "id": "csh_disc_023",
@@ -1906,7 +2356,11 @@
           "explanation": "The officer must be informed and given the opportunity to defend themselves (implied by due process and natural justice, PSR 100307) [56], [57].",
           "difficulty": "medium",
           "topic": "Disciplinary Procedures",
-          "keywords": ["new misconduct", "right to defend", "PSR 100307"]
+          "keywords": [
+            "new misconduct",
+            "right to defend",
+            "PSR 100307"
+          ]
         },
         {
           "id": "csh_disc_024",
@@ -1921,7 +2375,11 @@
           "explanation": "General Inefficiency consists of a series of omissions or incompetence, the cumulative effect of which shows that the Officer is not capable of discharging efficiently the duties of the office he holds (PSR 100201) [22], [23].",
           "difficulty": "medium",
           "topic": "Misconduct Categories",
-          "keywords": ["General Inefficiency", "incompetence", "Rule 100201"]
+          "keywords": [
+            "General Inefficiency",
+            "incompetence",
+            "Rule 100201"
+          ]
         },
         {
           "id": "csh_disc_025",
@@ -1945,12 +2403,21 @@
         {
           "id": "csh_disc_026",
           "question": "The PSR forbids officers from seeking to influence prominent persons to gain promotion or transfer (PSR 100427), aiming to enforce the principle of:",
-          "options": ["Anonymity.", "Meritocracy.", "Nepotism.", "Neutrality."],
+          "options": [
+            "Anonymity.",
+            "Meritocracy.",
+            "Nepotism.",
+            "Neutrality."
+          ],
           "correct": 1,
           "explanation": "PSR 100427 prohibits seeking influence to ensure appointments and promotions are based on merit [10], [11].",
           "difficulty": "medium",
           "topic": "Ethics and Conduct",
-          "keywords": ["seeking influence", "meritocracy", "PSR 100427"]
+          "keywords": [
+            "seeking influence",
+            "meritocracy",
+            "PSR 100427"
+          ]
         },
         {
           "id": "csh_disc_027",
@@ -1965,7 +2432,11 @@
           "explanation": "Officers must avoid conflicts of interest [2], such as using official information for personal gain.",
           "difficulty": "easy",
           "topic": "Ethics and Conduct",
-          "keywords": ["conflict of interest", "personal gain", "ethics"]
+          "keywords": [
+            "conflict of interest",
+            "personal gain",
+            "ethics"
+          ]
         },
         {
           "id": "csh_disc_028",
@@ -1980,7 +2451,11 @@
           "explanation": "The Permanent Secretary/CEO, as the head of the MDA and disciplinary authority up to delegated levels, issues queries to senior officers within the Ministry (PSR 100307) [56], [57], [58], [59].",
           "difficulty": "medium",
           "topic": "Disciplinary Authority",
-          "keywords": ["Permanent Secretary", "query", "Director"]
+          "keywords": [
+            "Permanent Secretary",
+            "query",
+            "Director"
+          ]
         },
         {
           "id": "csh_disc_029",
@@ -1995,7 +2470,11 @@
           "explanation": "The Code of Conduct Bureau (CCB) receives and verifies public officers’ asset declarations (Constitutional mandate).",
           "difficulty": "medium",
           "topic": "Ethics and Institutions",
-          "keywords": ["CCB", "asset declaration", "Code of Conduct"]
+          "keywords": [
+            "CCB",
+            "asset declaration",
+            "Code of Conduct"
+          ]
         },
         {
           "id": "csh_disc_030",
@@ -2010,7 +2489,11 @@
           "explanation": "The period for deferred increment must not be less than three months nor more than six months (PSR 040205) [72], [73], [74].",
           "difficulty": "medium",
           "topic": "Sanctions",
-          "keywords": ["deferred increment", "six months", "Rule 040205"]
+          "keywords": [
+            "deferred increment",
+            "six months",
+            "Rule 040205"
+          ]
         },
         {
           "id": "csh_disc_031",
@@ -2044,7 +2527,11 @@
           "explanation": "A female officer who interrupts a course of training of not more than six months duration shall be called upon to refund the whole or part of the cost of the course (PSR 070210) [77], [78].",
           "difficulty": "hard",
           "topic": "Ethics and Conduct",
-          "keywords": ["training interruption", "refund", "PSR 070210"]
+          "keywords": [
+            "training interruption",
+            "refund",
+            "PSR 070210"
+          ]
         },
         {
           "id": "csh_disc_033",
@@ -2078,7 +2565,10 @@
           "explanation": "Discipline can apply to both work-related and off-duty conduct that affects the service (Implied scope of PSR Chapter 10) [22], [23].",
           "difficulty": "medium",
           "topic": "Disciplinary Scope",
-          "keywords": ["scope of discipline", "work and off-duty conduct"]
+          "keywords": [
+            "scope of discipline",
+            "work and off-duty conduct"
+          ]
         },
         {
           "id": "csh_disc_035",
@@ -2093,7 +2583,11 @@
           "explanation": "Only officers in supervisory roles (or the Permanent Secretary/CEO) can initiate disciplinary action by issuing a query (PSR 100307) [56], [57], [58], [59].",
           "difficulty": "easy",
           "topic": "Disciplinary Authority",
-          "keywords": ["supervisor", "query issuance", "disciplinary action"]
+          "keywords": [
+            "supervisor",
+            "query issuance",
+            "disciplinary action"
+          ]
         },
         {
           "id": "csh_disc_036",
@@ -2146,7 +2640,11 @@
           "explanation": "Sexual harassment is strictly prohibited under the Code of Conduct and is a serious disciplinary matter (PSR Chapter 10 context) [22], [23].",
           "difficulty": "medium",
           "topic": "Ethics and Conduct",
-          "keywords": ["sexual harassment", "prohibition", "Code of Conduct"]
+          "keywords": [
+            "sexual harassment",
+            "prohibition",
+            "Code of Conduct"
+          ]
         },
         {
           "id": "csh_disc_039",
@@ -2161,7 +2659,11 @@
           "explanation": "Complaints/grievances must be submitted through the appropriate channel, usually starting with the immediate superior (PSR 020606) [36], [37], [80].",
           "difficulty": "medium",
           "topic": "Disciplinary Procedures",
-          "keywords": ["petition approval", "proper channel", "grievances"]
+          "keywords": [
+            "petition approval",
+            "proper channel",
+            "grievances"
+          ]
         },
         {
           "id": "csh_disc_040",
@@ -2195,7 +2697,10 @@
           "explanation": "Officers under investigation may be transferred, subject to FCSC consultation (PSR 110205 context) [71].",
           "difficulty": "medium",
           "topic": "Disciplinary Status",
-          "keywords": ["transfer during investigation", "PSR 110205"]
+          "keywords": [
+            "transfer during investigation",
+            "PSR 110205"
+          ]
         },
         {
           "id": "csh_disc_042",
@@ -2210,7 +2715,11 @@
           "explanation": "The deferment period must not be less than three months nor more than six months (PSR 040205) [72], [73], [74].",
           "difficulty": "medium",
           "topic": "Sanctions",
-          "keywords": ["deferred increment", "six months", "Rule 040205"]
+          "keywords": [
+            "deferred increment",
+            "six months",
+            "Rule 040205"
+          ]
         },
         {
           "id": "csh_disc_043",
@@ -2225,7 +2734,10 @@
           "explanation": "Official communication must follow hierarchical channels [32]; social media is generally prohibited for official correspondence.",
           "difficulty": "easy",
           "topic": "Ethics and Conduct",
-          "keywords": ["social media", "prohibited communication"]
+          "keywords": [
+            "social media",
+            "prohibited communication"
+          ]
         },
         {
           "id": "csh_disc_044",
@@ -2240,7 +2752,10 @@
           "explanation": "Dismissal for misconduct must be supported by investigation findings following due process (PSR 100305, implied) [56], [57].",
           "difficulty": "medium",
           "topic": "Disciplinary Procedures",
-          "keywords": ["Board of Inquiry", "dismissal for misconduct"]
+          "keywords": [
+            "Board of Inquiry",
+            "dismissal for misconduct"
+          ]
         },
         {
           "id": "csh_disc_045",
@@ -2255,7 +2770,10 @@
           "explanation": "The query must be precise, relating to the circumstances of the offense, the rule broken, and the likely penalty (PSR 100307) [56], [57].",
           "difficulty": "medium",
           "topic": "Disciplinary Procedures",
-          "keywords": ["disciplinary query", "Rule 100307"]
+          "keywords": [
+            "disciplinary query",
+            "Rule 100307"
+          ]
         },
         {
           "id": "csh_disc_046",
@@ -2270,7 +2788,10 @@
           "explanation": "The right to defend oneself (PSR 100307) ensures natural justice is upheld [56], [57].",
           "difficulty": "medium",
           "topic": "Disciplinary Principles",
-          "keywords": ["natural justice", "right to defend"]
+          "keywords": [
+            "natural justice",
+            "right to defend"
+          ]
         },
         {
           "id": "csh_disc_047",
@@ -2285,7 +2806,11 @@
           "explanation": "The EFCC (Economic and Financial Crimes Commission) investigates and prosecutes financial crimes and corruption cases [82].",
           "difficulty": "easy",
           "topic": "Ethics and Institutions",
-          "keywords": ["EFCC", "corruption investigation", "prosecution"]
+          "keywords": [
+            "EFCC",
+            "corruption investigation",
+            "prosecution"
+          ]
         },
         {
           "id": "csh_disc_048",
@@ -2300,7 +2825,10 @@
           "explanation": "Holding more than one full-time paid job is listed as an act of Serious Misconduct (PSR 100402(r), implied).",
           "difficulty": "hard",
           "topic": "Ethics and Conduct",
-          "keywords": ["holding paid job", "Serious Misconduct"]
+          "keywords": [
+            "holding paid job",
+            "Serious Misconduct"
+          ]
         },
         {
           "id": "csh_disc_049",
@@ -2315,7 +2843,10 @@
           "explanation": "Demotion (Reduction in Rank) is one of the penalties prescribed under the disciplinary measures outlined in PSR Chapter 10 (Implied sanction).",
           "difficulty": "medium",
           "topic": "Sanctions",
-          "keywords": ["demotion", "reduction in rank"]
+          "keywords": [
+            "demotion",
+            "reduction in rank"
+          ]
         },
         {
           "id": "csh_disc_050",
@@ -2330,14 +2861,18 @@
           "explanation": "The FCSC is the disciplinary authority for senior officers, including the Directorate Cadre [30], [68].",
           "difficulty": "medium",
           "topic": "Disciplinary Authority",
-          "keywords": ["Director discipline", "FCSC", "GL 17"]
+          "keywords": [
+            "Director discipline",
+            "FCSC",
+            "GL 17"
+          ]
         }
       ]
     },
     {
       "id": "csh_performance_training",
-      "name": "Performance and Training",
-      "description": "Performance management, training, development, and career progression.",
+      "name": "Performance & Training",
+      "description": "Performance systems, training, and capacity development.",
       "questions": [
         {
           "id": "csh_pt_001",
@@ -2352,7 +2887,12 @@
           "explanation": "The Annual Performance Evaluation Report (APER/PAF) is the official tool used to evaluate staff performance annually (PSR 050402) [28], [29].",
           "difficulty": "easy",
           "topic": "Performance Management",
-          "keywords": ["APER", "PAF", "performance evaluation", "Rule 050402"]
+          "keywords": [
+            "APER",
+            "PAF",
+            "performance evaluation",
+            "Rule 050402"
+          ]
         },
         {
           "id": "csh_pt_002",
@@ -2387,7 +2927,11 @@
           "explanation": "The incremental date is governed by Rule 040203, which sets it as $1^{st}$ January of the year following at least six months of service or promotion [72], [73].",
           "difficulty": "medium",
           "topic": "Emoluments and Increments",
-          "keywords": ["incremental date", "Rule 040203", "emoluments"]
+          "keywords": [
+            "incremental date",
+            "Rule 040203",
+            "emoluments"
+          ]
         },
         {
           "id": "csh_pt_004",
@@ -2478,7 +3022,12 @@
           "explanation": "An increment shall normally be granted unless the officer is on interdiction/suspension or has a disciplinary action pending [72], [73].",
           "difficulty": "easy",
           "topic": "Emoluments and Increments",
-          "keywords": ["increment", "interdiction", "suspension", "Rule 040202"]
+          "keywords": [
+            "increment",
+            "interdiction",
+            "suspension",
+            "Rule 040202"
+          ]
         },
         {
           "id": "csh_pt_009",
@@ -2493,7 +3042,11 @@
           "explanation": "The deferment period must not be less than three months nor more than six months [72], [73], [74].",
           "difficulty": "medium",
           "topic": "Sanctions and Increments",
-          "keywords": ["deferred increment", "six months", "Rule 040205"]
+          "keywords": [
+            "deferred increment",
+            "six months",
+            "Rule 040205"
+          ]
         },
         {
           "id": "csh_pt_010",
@@ -2527,7 +3080,12 @@
           "explanation": "Sabbatical leave applies to officers on GL 15 and above for a period of twelve (12) calendar months once in five (5) years [83], [84].",
           "difficulty": "medium",
           "topic": "Leave and Training",
-          "keywords": ["sabbatical leave", "GL 15", "12 months", "Rule 120223"]
+          "keywords": [
+            "sabbatical leave",
+            "GL 15",
+            "12 months",
+            "Rule 120223"
+          ]
         },
         {
           "id": "csh_pt_012",
@@ -2561,7 +3119,10 @@
           "explanation": "Promotion examinations are typically required for officers on grade levels 07 to 15 (Implied PSR policy) [47], [48].",
           "difficulty": "medium",
           "topic": "Promotion",
-          "keywords": ["promotion examinations", "GL 07–15"]
+          "keywords": [
+            "promotion examinations",
+            "GL 07–15"
+          ]
         },
         {
           "id": "csh_pt_014",
@@ -2595,7 +3156,11 @@
           "explanation": "The FCSC has the power to set guidelines for all promotions (PSR 020802(a)) [87], [88], [89], [90].",
           "difficulty": "medium",
           "topic": "Promotion and Institutions",
-          "keywords": ["FCSC", "promotion guidelines", "syllabus"]
+          "keywords": [
+            "FCSC",
+            "promotion guidelines",
+            "syllabus"
+          ]
         },
         {
           "id": "csh_pt_016",
@@ -2629,7 +3194,11 @@
           "explanation": "Rule 040102 confirms that emoluments shall, as a general rule, be paid as from the date of assumption of duty [85], [86].",
           "difficulty": "easy",
           "topic": "Emoluments and Increments",
-          "keywords": ["emoluments", "assumption of duty", "Rule 040102"]
+          "keywords": [
+            "emoluments",
+            "assumption of duty",
+            "Rule 040102"
+          ]
         },
         {
           "id": "csh_pt_018",
@@ -2644,7 +3213,11 @@
           "explanation": "Payment of promotion arrears shall be made within the year promotion is effected and calculated from the notional date of promotion [85], [86].",
           "difficulty": "medium",
           "topic": "Emoluments and Increments",
-          "keywords": ["promotion arrears", "notional date", "Rule 040104(iii)"]
+          "keywords": [
+            "promotion arrears",
+            "notional date",
+            "Rule 040104(iii)"
+          ]
         },
         {
           "id": "csh_pt_019",
@@ -2678,7 +3251,11 @@
           "explanation": "Rule 040102 mandates that all Officers shall be placed on the IPPIS platform within two months of assumption of duty [85], [86].",
           "difficulty": "medium",
           "topic": "Emoluments and IPPIS",
-          "keywords": ["IPPIS", "two months", "Rule 040102"]
+          "keywords": [
+            "IPPIS",
+            "two months",
+            "Rule 040102"
+          ]
         },
         {
           "id": "csh_pt_021",
@@ -2693,7 +3270,11 @@
           "explanation": "The FCSC sets definite promotion criteria and guidelines, ensuring uniformity and meritocracy [89], [90].",
           "difficulty": "medium",
           "topic": "Promotion and Institutions",
-          "keywords": ["FCSC", "promotion criteria", "guidelines"]
+          "keywords": [
+            "FCSC",
+            "promotion criteria",
+            "guidelines"
+          ]
         },
         {
           "id": "csh_pt_022",
@@ -2822,7 +3403,11 @@
           "explanation": "Rule 040209 provides that the FCSC may grant one or more special increments to mitigate the effects of withholding increments (Implied rule reference).",
           "difficulty": "hard",
           "topic": "Emoluments and Increments",
-          "keywords": ["special increments", "Rule 040209", "FCSC"]
+          "keywords": [
+            "special increments",
+            "Rule 040209",
+            "FCSC"
+          ]
         },
         {
           "id": "csh_pt_029",
@@ -2895,7 +3480,11 @@
           "explanation": "Aggrieved officers can petition decisions through the proper channels as described in Chapter 11 (Petitions and Appeals) [69], [70].",
           "difficulty": "medium",
           "topic": "Promotion and Appeals",
-          "keywords": ["promotion appeal", "Chapter 11", "aggrieved officers"]
+          "keywords": [
+            "promotion appeal",
+            "Chapter 11",
+            "aggrieved officers"
+          ]
         },
         {
           "id": "csh_pt_033",
@@ -2910,7 +3499,11 @@
           "explanation": "Rule 020413 applies Sabbatical Appointment for the purpose of research and professional development of the Officer [39], [40].",
           "difficulty": "medium",
           "topic": "Leave and Training",
-          "keywords": ["Sabbatical Appointment", "Rule 020413", "GL 15"]
+          "keywords": [
+            "Sabbatical Appointment",
+            "Rule 020413",
+            "GL 15"
+          ]
         },
         {
           "id": "csh_pt_034",
@@ -2944,12 +3537,21 @@
           "explanation": "Training aims to positively impact staff performance in particular and the organization in general [45], [46].",
           "difficulty": "easy",
           "topic": "Training and Development",
-          "keywords": ["training objective", "staff performance", "Rule 070102"]
+          "keywords": [
+            "training objective",
+            "staff performance",
+            "Rule 070102"
+          ]
         },
         {
           "id": "csh_pt_036",
           "question": "What is the maximum duration of study leave with pay that officers may be granted for postgraduate courses?",
-          "options": ["One year.", "Two years.", "Three years.", "Four years."],
+          "options": [
+            "One year.",
+            "Two years.",
+            "Three years.",
+            "Four years."
+          ],
           "correct": 3,
           "explanation": "Officers may be granted study leave with pay subject to a maximum of four years for postgraduate degrees (PSR 070304) [77], [78].",
           "difficulty": "medium",
@@ -2992,7 +3594,10 @@
           "explanation": "The Performance Management Cycle commences immediately after the leadership of each MDA has finalized their annual institutional and departmental goals and targets (PSR 050301) [41], [42].",
           "difficulty": "medium",
           "topic": "Performance Management",
-          "keywords": ["institutional goals", "Performance Management Cycle"]
+          "keywords": [
+            "institutional goals",
+            "Performance Management Cycle"
+          ]
         },
         {
           "id": "csh_pt_039",
@@ -3007,7 +3612,11 @@
           "explanation": "Officers are allowed to reference the Public Service Rules, Financial Regulations, and Civil Service Handbook (PSR 030108) [66], [67].",
           "difficulty": "easy",
           "topic": "Confirmation and Examination",
-          "keywords": ["reference books", "confirmation exam", "PSR, FR, CSH"]
+          "keywords": [
+            "reference books",
+            "confirmation exam",
+            "PSR, FR, CSH"
+          ]
         },
         {
           "id": "csh_pt_040",
@@ -3022,7 +3631,10 @@
           "explanation": "Rule 020802(c) outlines the minimum number of years an officer must spend in a post before being considered eligible for promotion [87], [88].",
           "difficulty": "medium",
           "topic": "Promotion and Eligibility",
-          "keywords": ["minimum years for promotion", "Rule 020802(c)"]
+          "keywords": [
+            "minimum years for promotion",
+            "Rule 020802(c)"
+          ]
         },
         {
           "id": "csh_pt_041",
@@ -3037,7 +3649,11 @@
           "explanation": "Seconded officers can sit promotion exams to avoid stagnation and ensure career progression while away (PSR 020504(h)) [93], [94].",
           "difficulty": "easy",
           "topic": "Promotion and Mobility",
-          "keywords": ["seconded officers", "promotion exam", "stagnation"]
+          "keywords": [
+            "seconded officers",
+            "promotion exam",
+            "stagnation"
+          ]
         },
         {
           "id": "csh_pt_042",
@@ -3090,7 +3706,10 @@
           "explanation": "Failing to meet the minimum tenure requirement renders the officer ineligible for promotion [87], [88].",
           "difficulty": "easy",
           "topic": "Promotion and Eligibility",
-          "keywords": ["ineligible for promotion", "minimum tenure"]
+          "keywords": [
+            "ineligible for promotion",
+            "minimum tenure"
+          ]
         },
         {
           "id": "csh_pt_045",
@@ -3114,12 +3733,21 @@
         {
           "id": "csh_pt_046",
           "question": "If an officer fails a promotion examination, they may be allowed to re-sit the examination after:",
-          "options": ["One month.", "Six months.", "One year.", "Two years."],
+          "options": [
+            "One month.",
+            "Six months.",
+            "One year.",
+            "Two years."
+          ],
           "correct": 1,
           "explanation": "An officer who fails promotion examination may re-sit after six months (Implied PSR policy).",
           "difficulty": "medium",
           "topic": "Promotion and Examination",
-          "keywords": ["re-sit examination", "six months", "promotion exam"]
+          "keywords": [
+            "re-sit examination",
+            "six months",
+            "promotion exam"
+          ]
         },
         {
           "id": "csh_pt_047",
@@ -3172,24 +3800,37 @@
           "explanation": "Adverse comments must be conveyed in sympathetic terms to encourage the officer to overcome shortcomings [41], [42].",
           "difficulty": "medium",
           "topic": "Performance Management",
-          "keywords": ["adverse comment", "sympathetic terms", "Rule 050205"]
+          "keywords": [
+            "adverse comment",
+            "sympathetic terms",
+            "Rule 050205"
+          ]
         },
         {
           "id": "csh_pt_050",
           "question": "The **Departmental Promotion Committee (DPC)** is responsible for promotion matters for officers on which grade levels?",
-          "options": ["GL 01–06.", "GL 07–14.", "GL 15–17.", "All cadres."],
+          "options": [
+            "GL 01–06.",
+            "GL 07–14.",
+            "GL 15–17.",
+            "All cadres."
+          ],
           "correct": 0,
           "explanation": "The Departmental Promotion Committee handles promotion matters for officers on GL 03–06 (Implied institutional role/delegated powers) [87], [88].",
           "difficulty": "medium",
           "topic": "Promotion and Institutions",
-          "keywords": ["DPC", "GL 03–06", "promotion committee"]
+          "keywords": [
+            "DPC",
+            "GL 03–06",
+            "promotion committee"
+          ]
         }
       ]
     },
     {
       "id": "csh_administrative_procedures",
       "name": "Administrative Procedures",
-      "description": "Office procedures, records management, communication, and administrative coordination",
+      "description": "Office procedure, communication, and records workflow.",
       "questions": [
         {
           "id": "csh_ap_001",
@@ -3223,7 +3864,11 @@
           "explanation": "The Registry Unit is responsible for the file movement, correspondence handling, and documentation tracking (Implied administrative function).",
           "difficulty": "medium",
           "topic": "Administrative Procedures",
-          "keywords": ["Registry Unit", "file movement", "documentation"]
+          "keywords": [
+            "Registry Unit",
+            "file movement",
+            "documentation"
+          ]
         },
         {
           "id": "csh_ap_003",
@@ -3238,7 +3883,10 @@
           "explanation": "All official communications must follow established hierarchical channels for proper documentation and accountability [32].",
           "difficulty": "medium",
           "topic": "Administrative Procedures",
-          "keywords": ["official communication", "hierarchical channels"]
+          "keywords": [
+            "official communication",
+            "hierarchical channels"
+          ]
         },
         {
           "id": "csh_ap_004",
@@ -3253,7 +3901,11 @@
           "explanation": "Proper handover ensures continuity of duties and accountability in civil service operations [38].",
           "difficulty": "easy",
           "topic": "Administrative Procedures",
-          "keywords": ["handover", "continuity", "accountability"]
+          "keywords": [
+            "handover",
+            "continuity",
+            "accountability"
+          ]
         },
         {
           "id": "csh_ap_005",
@@ -3268,7 +3920,11 @@
           "explanation": "All official documents are government property, not the personal property of officers [16].",
           "difficulty": "medium",
           "topic": "Administrative Procedures",
-          "keywords": ["official documents", "government property", "records"]
+          "keywords": [
+            "official documents",
+            "government property",
+            "records"
+          ]
         },
         {
           "id": "csh_ap_006",
@@ -3283,7 +3939,11 @@
           "explanation": "The OHCSF issues Establishment Circulars and coordinates service reforms [35].",
           "difficulty": "easy",
           "topic": "Administrative Coordination",
-          "keywords": ["OHCSF", "Establishment Circulars", "service reforms"]
+          "keywords": [
+            "OHCSF",
+            "Establishment Circulars",
+            "service reforms"
+          ]
         },
         {
           "id": "csh_ap_007",
@@ -3317,7 +3977,11 @@
           "explanation": "The Senior Staff Committee handles decisions for officers on GL 07 and above (PSR 170301) [43], [44].",
           "difficulty": "medium",
           "topic": "Administrative Structure",
-          "keywords": ["Senior Staff Committee", "GL 07 and above", "promotion"]
+          "keywords": [
+            "Senior Staff Committee",
+            "GL 07 and above",
+            "promotion"
+          ]
         },
         {
           "id": "csh_ap_009",
@@ -3332,7 +3996,10 @@
           "explanation": "Rule 020802(c) outlines the minimum number of years an officer must spend in a post before being considered eligible for promotion [87], [88].",
           "difficulty": "medium",
           "topic": "Administrative Procedures",
-          "keywords": ["minimum years for promotion", "Rule 020802(c)"]
+          "keywords": [
+            "minimum years for promotion",
+            "Rule 020802(c)"
+          ]
         },
         {
           "id": "csh_ap_010",
@@ -3347,7 +4014,11 @@
           "explanation": "The cost of entitlements due to the employee whose posting requires a change of duty station shall be borne by the posting MDA (PSR 020607) [36], [37].",
           "difficulty": "medium",
           "topic": "Administrative Procedures",
-          "keywords": ["posting entitlements", "posting MDA", "Rule 020607"]
+          "keywords": [
+            "posting entitlements",
+            "posting MDA",
+            "Rule 020607"
+          ]
         },
         {
           "id": "csh_ap_011",
@@ -3381,7 +4052,11 @@
           "explanation": "Rule 020412 covers retired officers re-engaged into career posts; remuneration shall be based on negotiable terms [39], [40].",
           "difficulty": "medium",
           "topic": "Administrative Procedures",
-          "keywords": ["re-engagement", "retired officers", "Rule 020412"]
+          "keywords": [
+            "re-engagement",
+            "retired officers",
+            "Rule 020412"
+          ]
         },
         {
           "id": "csh_ap_013",
@@ -3396,7 +4071,11 @@
           "explanation": "During the period of secondment, the period shall not exceed six years (PSR 020504(h)) [93], [94].",
           "difficulty": "medium",
           "topic": "Administrative Procedures",
-          "keywords": ["secondment period", "six years", "Rule 020504(h)"]
+          "keywords": [
+            "secondment period",
+            "six years",
+            "Rule 020504(h)"
+          ]
         },
         {
           "id": "csh_ap_014",
@@ -3411,7 +4090,11 @@
           "explanation": "Aggrieved officers can petition decisions through the proper channels as described in Chapter 11 (Petitions and Appeals) [69], [70].",
           "difficulty": "medium",
           "topic": "Administrative Procedures",
-          "keywords": ["petitions and appeals", "Chapter 11", "grievances"]
+          "keywords": [
+            "petitions and appeals",
+            "Chapter 11",
+            "grievances"
+          ]
         },
         {
           "id": "csh_ap_015",
@@ -3491,12 +4174,21 @@
         {
           "id": "csh_ap_019",
           "question": "PSR 020704 states that the period of acting appointment shall **not** exceed:",
-          "options": ["One month.", "Six months.", "One year.", "Two years."],
+          "options": [
+            "One month.",
+            "Six months.",
+            "One year.",
+            "Two years."
+          ],
           "correct": 2,
           "explanation": "Recommendations for acting appointment shall not exceed a period of one year [99], [100].",
           "difficulty": "medium",
           "topic": "Administrative Procedures",
-          "keywords": ["acting appointment duration", "one year", "Rule 020704"]
+          "keywords": [
+            "acting appointment duration",
+            "one year",
+            "Rule 020704"
+          ]
         },
         {
           "id": "csh_ap_020",
@@ -3530,7 +4222,10 @@
           "explanation": "The PSR defines Circulars as supplementary directives (Implied rule reference) [101].",
           "difficulty": "easy",
           "topic": "Administrative Procedures",
-          "keywords": ["circulars", "PSR supplementation"]
+          "keywords": [
+            "circulars",
+            "PSR supplementation"
+          ]
         },
         {
           "id": "csh_ap_022",
@@ -3545,7 +4240,11 @@
           "explanation": "Rule 020507 outlines conditions for transfer, ensuring vacancies exist and the move does not jeopardize promotion prospects [93], [94].",
           "difficulty": "medium",
           "topic": "Administrative Procedures",
-          "keywords": ["transfer conditions", "Rule 020507", "vacancy"]
+          "keywords": [
+            "transfer conditions",
+            "Rule 020507",
+            "vacancy"
+          ]
         },
         {
           "id": "csh_ap_023",
@@ -3560,7 +4259,11 @@
           "explanation": "An appeal/petition submitted more than six months late will not be entertained unless such delay is supported by valid reasons (PSR 110209(b)) [69], [70].",
           "difficulty": "hard",
           "topic": "Administrative Procedures",
-          "keywords": ["appeal delay", "six months", "Rule 110209(b)"]
+          "keywords": [
+            "appeal delay",
+            "six months",
+            "Rule 110209(b)"
+          ]
         },
         {
           "id": "csh_ap_024",
@@ -3584,12 +4287,21 @@
         {
           "id": "csh_ap_025",
           "question": "The PSR requires that petitions concerning administrative decisions affecting an officer personally must generally be handled within a maximum period of:",
-          "options": ["30 days.", "Three months.", "Six months.", "One year."],
+          "options": [
+            "30 days.",
+            "Three months.",
+            "Six months.",
+            "One year."
+          ],
           "correct": 2,
           "explanation": "Appeals must generally be handled expeditiously, with six months often serving as the general administrative limit (implied by 110209(b) delay clause) [69], [70].",
           "difficulty": "medium",
           "topic": "Administrative Procedures",
-          "keywords": ["petition resolution time", "six months", "Chapter 11"]
+          "keywords": [
+            "petition resolution time",
+            "six months",
+            "Chapter 11"
+          ]
         },
         {
           "id": "csh_ap_026",
@@ -3604,7 +4316,11 @@
           "explanation": "The receiving Ministry/Extra-Ministerial Office to which the officer is seconded is responsible for furnishing the performance reports [41], [42].",
           "difficulty": "medium",
           "topic": "Administrative Procedures",
-          "keywords": ["secondment report", "receiving MDA", "Rule 050206"]
+          "keywords": [
+            "secondment report",
+            "receiving MDA",
+            "Rule 050206"
+          ]
         },
         {
           "id": "csh_ap_027",
@@ -3638,7 +4354,11 @@
           "explanation": "The Junior Staff Committee handles appointments and discipline of officers on GL 01–06 (PSR 170301) [43], [44].",
           "difficulty": "medium",
           "topic": "Administrative Structure",
-          "keywords": ["Junior Staff Committee", "GL 01–06", "appointments"]
+          "keywords": [
+            "Junior Staff Committee",
+            "GL 01–06",
+            "appointments"
+          ]
         },
         {
           "id": "csh_ap_029",
@@ -3691,7 +4411,11 @@
           "explanation": "The duration for each tenure shall not be more than 4 years (PSR 020612) [36], [37].",
           "difficulty": "hard",
           "topic": "Administrative Procedures",
-          "keywords": ["Trade Union tenure", "four years", "Rule 020612"]
+          "keywords": [
+            "Trade Union tenure",
+            "four years",
+            "Rule 020612"
+          ]
         },
         {
           "id": "csh_ap_032",
@@ -3744,7 +4468,11 @@
           "explanation": "PSR 020210 makes it the duty of the Permanent Secretary to ensure newly employed staff sign an Oath of Secrecy [15].",
           "difficulty": "medium",
           "topic": "Administrative Procedures",
-          "keywords": ["Oath of Secrecy", "PSR 020210", "Permanent Secretary"]
+          "keywords": [
+            "Oath of Secrecy",
+            "PSR 020210",
+            "Permanent Secretary"
+          ]
         },
         {
           "id": "csh_ap_035",
@@ -3759,7 +4487,11 @@
           "explanation": "An Officer on secondment shall be appraised by the MDA he is seconded to (PSR 050206) [93], [94], [41], [42].",
           "difficulty": "medium",
           "topic": "Administrative Procedures",
-          "keywords": ["secondment appraisal", "seconded MDA", "Rule 050206"]
+          "keywords": [
+            "secondment appraisal",
+            "seconded MDA",
+            "Rule 050206"
+          ]
         },
         {
           "id": "csh_ap_036",
@@ -3774,7 +4506,11 @@
           "explanation": "Establishment matters concern appointments, promotion, and discipline (personnel and staffing issues) [14].",
           "difficulty": "easy",
           "topic": "Administrative Procedures",
-          "keywords": ["Establishment Matters", "personnel", "staffing"]
+          "keywords": [
+            "Establishment Matters",
+            "personnel",
+            "staffing"
+          ]
         },
         {
           "id": "csh_ap_037",
@@ -3789,7 +4525,10 @@
           "explanation": "Conditions of Service, Scheme of Service and Organizational Structure for Parastatals shall be approved by the OHCSF (PSR 170103) [104], [105].",
           "difficulty": "medium",
           "topic": "Administrative Structure",
-          "keywords": ["Parastatals Conditions of Service", "OHCSF approval"]
+          "keywords": [
+            "Parastatals Conditions of Service",
+            "OHCSF approval"
+          ]
         },
         {
           "id": "csh_ap_038",
@@ -3804,7 +4543,11 @@
           "explanation": "A Minister exercises control of Parastatals at the policy level only through the Board of the Parastatal (PSR 170201) [43], [44].",
           "difficulty": "medium",
           "topic": "Administrative Structure",
-          "keywords": ["Minister control", "Parastatals", "policy level"]
+          "keywords": [
+            "Minister control",
+            "Parastatals",
+            "policy level"
+          ]
         },
         {
           "id": "csh_ap_039",
@@ -3838,7 +4581,11 @@
           "explanation": "Officers may seek redress where they believe movement was not done in line with the provisions of extant rules [36], [37].",
           "difficulty": "easy",
           "topic": "Administrative Procedures",
-          "keywords": ["posting complaints", "extant rules", "redress"]
+          "keywords": [
+            "posting complaints",
+            "extant rules",
+            "redress"
+          ]
         },
         {
           "id": "csh_ap_041",
@@ -3872,7 +4619,11 @@
           "explanation": "All non-salary allowances shall be paid by receiving MDAs (PSR 020504) [93], [94].",
           "difficulty": "medium",
           "topic": "Administrative Procedures",
-          "keywords": ["secondment allowances", "receiving MDA", "Rule 020504"]
+          "keywords": [
+            "secondment allowances",
+            "receiving MDA",
+            "Rule 020504"
+          ]
         },
         {
           "id": "csh_ap_043",
@@ -3944,7 +4695,11 @@
           "explanation": "Rule 020505 confirms that the emoluments and incremental date of an Officer on transfer are governed by Rule 040103 [93], [94].",
           "difficulty": "medium",
           "topic": "Administrative Procedures",
-          "keywords": ["transfer emoluments", "Rule 020505", "incremental date"]
+          "keywords": [
+            "transfer emoluments",
+            "Rule 020505",
+            "incremental date"
+          ]
         },
         {
           "id": "csh_ap_047",
@@ -3997,7 +4752,11 @@
           "explanation": "The PSR 2021 repeals all previous editions but contains savings provisions for cases already in progress [106].",
           "difficulty": "medium",
           "topic": "Administrative Procedures",
-          "keywords": ["PSR repeal", "previous editions", "savings provisions"]
+          "keywords": [
+            "PSR repeal",
+            "previous editions",
+            "savings provisions"
+          ]
         },
         {
           "id": "csh_ap_050",
@@ -4022,18 +4781,27 @@
     },
     {
       "id": "csh_innovation_technology",
-      "name": "Innovation and Technology",
-      "description": "Innovation, technology adoption, and modernization in civil service",
+      "name": "Innovation & Technology in Service",
+      "description": "Innovation and technology adoption in public administration.",
       "questions": [
         {
           "id": "csh_it_001",
           "question": "Which chapter of the Civil Service Handbook encourages the use of **Information Technology (IT)** in modernizing civil service operations?",
-          "options": ["Chapter 4.", "Chapter 6.", "Chapter 8.", "Chapter 9."],
+          "options": [
+            "Chapter 4.",
+            "Chapter 6.",
+            "Chapter 8.",
+            "Chapter 9."
+          ],
           "correct": 2,
           "explanation": "Chapter 8 encourages the use of IT in modernizing civil service operations and enhancing efficiency [107].",
           "difficulty": "medium",
           "topic": "Innovation and Technology",
-          "keywords": ["IT adoption", "modernization", "Chapter 8"]
+          "keywords": [
+            "IT adoption",
+            "modernization",
+            "Chapter 8"
+          ]
         },
         {
           "id": "csh_it_002",
@@ -4048,7 +4816,11 @@
           "explanation": "IPPIS stands for Integrated Personnel and Payroll Information System [108], [109].",
           "difficulty": "easy",
           "topic": "e-Governance Initiatives",
-          "keywords": ["IPPIS", "payroll system", "acronym"]
+          "keywords": [
+            "IPPIS",
+            "payroll system",
+            "acronym"
+          ]
         },
         {
           "id": "csh_it_003",
@@ -4063,7 +4835,11 @@
           "explanation": "IPPIS automates payroll, eliminates ghost workers, and improves transparency in personnel emoluments [110], [111], [112].",
           "difficulty": "easy",
           "topic": "e-Governance Initiatives",
-          "keywords": ["IPPIS objective", "ghost workers", "payroll automation"]
+          "keywords": [
+            "IPPIS objective",
+            "ghost workers",
+            "payroll automation"
+          ]
         },
         {
           "id": "csh_it_004",
@@ -4078,12 +4854,21 @@
           "explanation": "GIFMIS stands for Government Integrated Financial Management Information System [109], [113].",
           "difficulty": "medium",
           "topic": "e-Governance Initiatives",
-          "keywords": ["GIFMIS", "financial management", "acronym"]
+          "keywords": [
+            "GIFMIS",
+            "financial management",
+            "acronym"
+          ]
         },
         {
           "id": "csh_it_005",
           "question": "Which PSR Chapter introduced the use of **virtual meetings** to enable continuity of government business during emergencies?",
-          "options": ["Chapter 5.", "Chapter 7.", "Chapter 9.", "Chapter 12."],
+          "options": [
+            "Chapter 5.",
+            "Chapter 7.",
+            "Chapter 9.",
+            "Chapter 12."
+          ],
           "correct": 2,
           "explanation": "Chapter 9 of the PSR introduced virtual meetings (PSR 090101) to enable remote work continuity during emergencies [114], [115], [116].",
           "difficulty": "medium",
@@ -4108,7 +4893,11 @@
           "explanation": "TSA consolidates government accounts, blocking leakages and improving transparency [117], [33], [112].",
           "difficulty": "easy",
           "topic": "e-Governance Initiatives",
-          "keywords": ["TSA", "revenue monitoring", "centralization"]
+          "keywords": [
+            "TSA",
+            "revenue monitoring",
+            "centralization"
+          ]
         },
         {
           "id": "csh_it_007",
@@ -4142,7 +4931,11 @@
           "explanation": "CBT-Based Promotion Exams standardize evaluation across cadres [118].",
           "difficulty": "easy",
           "topic": "Innovation and Assessment",
-          "keywords": ["CBT", "standardization", "promotion exams"]
+          "keywords": [
+            "CBT",
+            "standardization",
+            "promotion exams"
+          ]
         },
         {
           "id": "csh_it_009",
@@ -4157,7 +4950,11 @@
           "explanation": "HRMIS stands for Human Resource Management Information System [119], [109].",
           "difficulty": "medium",
           "topic": "e-Governance Initiatives",
-          "keywords": ["HRMIS", "human resource management", "acronym"]
+          "keywords": [
+            "HRMIS",
+            "human resource management",
+            "acronym"
+          ]
         },
         {
           "id": "csh_it_010",
@@ -4172,7 +4969,11 @@
           "explanation": "E-Governance is the use of digital tools to deliver public services and increase efficiency [119].",
           "difficulty": "easy",
           "topic": "Innovation and Technology",
-          "keywords": ["e-Governance", "digital services", "efficiency"]
+          "keywords": [
+            "e-Governance",
+            "digital services",
+            "efficiency"
+          ]
         },
         {
           "id": "csh_it_011",
@@ -4187,7 +4988,11 @@
           "explanation": "Digital Identity Integration links civil servants to biometric databases (NIN) to ensure data accuracy and integrity [120].",
           "difficulty": "medium",
           "topic": "e-Governance Initiatives",
-          "keywords": ["digital identity", "NIN", "data accuracy"]
+          "keywords": [
+            "digital identity",
+            "NIN",
+            "data accuracy"
+          ]
         },
         {
           "id": "csh_it_012",
@@ -4202,7 +5007,11 @@
           "explanation": "Centralized systems like TSA block revenue leakages and ensure unified cash visibility [33].",
           "difficulty": "easy",
           "topic": "e-Governance Initiatives",
-          "keywords": ["TSA", "revenue leakages", "cash visibility"]
+          "keywords": [
+            "TSA",
+            "revenue leakages",
+            "cash visibility"
+          ]
         },
         {
           "id": "csh_it_013",
@@ -4217,7 +5026,11 @@
           "explanation": "Geo-tagging adds GPS data to monitor federal projects, enhancing transparency [118].",
           "difficulty": "medium",
           "topic": "Innovation and Monitoring",
-          "keywords": ["Geo-tagging", "project monitoring", "GPS data"]
+          "keywords": [
+            "Geo-tagging",
+            "project monitoring",
+            "GPS data"
+          ]
         },
         {
           "id": "csh_it_014",
@@ -4251,7 +5064,11 @@
           "explanation": "NITDA regulates ICT policy and standards in Nigeria [88].",
           "difficulty": "easy",
           "topic": "Institutional Roles (IT)",
-          "keywords": ["NITDA", "ICT policy", "regulation [88]"]
+          "keywords": [
+            "NITDA",
+            "ICT policy",
+            "regulation [88]"
+          ]
         },
         {
           "id": "csh_it_016",
@@ -4266,7 +5083,11 @@
           "explanation": "IPPIS uses verified personnel and biometric records to ensure accuracy and prevent fraud [110].",
           "difficulty": "medium",
           "topic": "e-Governance Initiatives",
-          "keywords": ["IPPIS", "biometric records", "accuracy"]
+          "keywords": [
+            "IPPIS",
+            "biometric records",
+            "accuracy"
+          ]
         },
         {
           "id": "csh_it_017",
@@ -4281,7 +5102,11 @@
           "explanation": "Cloud migration enhances security, scalability, and reduces physical infrastructure costs [112].",
           "difficulty": "medium",
           "topic": "Innovation and Technology",
-          "keywords": ["Cloud migration", "data security", "scalability"]
+          "keywords": [
+            "Cloud migration",
+            "data security",
+            "scalability"
+          ]
         },
         {
           "id": "csh_it_018",
@@ -4296,7 +5121,11 @@
           "explanation": "Rule 090101 introduced virtual meetings to ensure government business continuity [114], [115], [116].",
           "difficulty": "medium",
           "topic": "Innovation and Procedures",
-          "keywords": ["virtual meetings", "Rule 090101", "2021 PSR"]
+          "keywords": [
+            "virtual meetings",
+            "Rule 090101",
+            "2021 PSR"
+          ]
         },
         {
           "id": "csh_it_019",
@@ -4311,7 +5140,11 @@
           "explanation": "Cybersecurity monitoring protects systems from digital threats (Implied ICT competence area) [121].",
           "difficulty": "easy",
           "topic": "Innovation and Technology",
-          "keywords": ["cybersecurity", "digital threats", "monitoring"]
+          "keywords": [
+            "cybersecurity",
+            "digital threats",
+            "monitoring"
+          ]
         },
         {
           "id": "csh_it_020",
@@ -4326,7 +5159,11 @@
           "explanation": "The Audit Trail ensures integrity and traceability of all financial transactions [122], [123].",
           "difficulty": "easy",
           "topic": "Monitoring and Accountability (IT)",
-          "keywords": ["Audit Trail", "GIFMIS", "traceability"]
+          "keywords": [
+            "Audit Trail",
+            "GIFMIS",
+            "traceability"
+          ]
         },
         {
           "id": "csh_it_021",
@@ -4341,7 +5178,11 @@
           "explanation": "Digital signatures enhance authentication and security by verifying sender identity and file integrity [124].",
           "difficulty": "medium",
           "topic": "Innovation and Technology",
-          "keywords": ["digital signatures", "authentication", "security"]
+          "keywords": [
+            "digital signatures",
+            "authentication",
+            "security"
+          ]
         },
         {
           "id": "csh_it_022",
@@ -4356,7 +5197,11 @@
           "explanation": "E-Attendance Registers via biometric tracking reduce absenteeism and ensure accurate staff presence records [125].",
           "difficulty": "medium",
           "topic": "Innovation and Performance",
-          "keywords": ["Biometric E-Attendance", "absenteeism", "payroll fraud"]
+          "keywords": [
+            "Biometric E-Attendance",
+            "absenteeism",
+            "payroll fraud"
+          ]
         },
         {
           "id": "csh_it_023",
@@ -4371,7 +5216,11 @@
           "explanation": "The NDPC enforces personal data protection regulations (Implied institutional role) [125].",
           "difficulty": "medium",
           "topic": "Institutional Roles (IT)",
-          "keywords": ["NDPC", "data protection", "regulation"]
+          "keywords": [
+            "NDPC",
+            "data protection",
+            "regulation"
+          ]
         },
         {
           "id": "csh_it_024",
@@ -4389,7 +5238,11 @@
           "explanation": "EDMS enables quick search and retrieval of digital files [112].",
           "difficulty": "easy",
           "topic": "Innovation and Procedures",
-          "keywords": ["EDMS", "digital files", "efficiency"]
+          "keywords": [
+            "EDMS",
+            "digital files",
+            "efficiency"
+          ]
         },
         {
           "id": "csh_it_025",
@@ -4404,7 +5257,11 @@
           "explanation": "EDMS enables quick search and retrieval of digital files, reducing reliance on slow manual processes.",
           "difficulty": "easy",
           "topic": "Innovation and Procedures",
-          "keywords": ["EDMS", "digital files", "efficiency"]
+          "keywords": [
+            "EDMS",
+            "digital files",
+            "efficiency"
+          ]
         },
         {
           "id": "csh_it_026",
@@ -4419,17 +5276,30 @@
           "explanation": "HRMIS manages digital staff records, leave, postings, and promotions [112].",
           "difficulty": "medium",
           "topic": "e-Governance Initiatives",
-          "keywords": ["HRMIS function", "staff records", "postings"]
+          "keywords": [
+            "HRMIS function",
+            "staff records",
+            "postings"
+          ]
         },
         {
           "id": "csh_it_027",
           "question": "Which PSR Chapter highlights the use of information technology for civil service efficiency?",
-          "options": ["Chapter 4.", "Chapter 6.", "Chapter 8.", "Chapter 9."],
+          "options": [
+            "Chapter 4.",
+            "Chapter 6.",
+            "Chapter 8.",
+            "Chapter 9."
+          ],
           "correct": 2,
           "explanation": "Chapter 8 of the CSH encourages the use of IT in modernizing civil service operations [107].",
           "difficulty": "medium",
           "topic": "Innovation and Technology",
-          "keywords": ["IT efficiency", "Chapter 8", "modernization"]
+          "keywords": [
+            "IT efficiency",
+            "Chapter 8",
+            "modernization"
+          ]
         },
         {
           "id": "csh_it_028",
@@ -4444,7 +5314,11 @@
           "explanation": "The OHCSF leads HR reforms and capacity building efforts, often utilizing technology platforms like HRMIS [35].",
           "difficulty": "medium",
           "topic": "Institutional Roles (IT)",
-          "keywords": ["OHCSF role", "HR reforms", "capacity building"]
+          "keywords": [
+            "OHCSF role",
+            "HR reforms",
+            "capacity building"
+          ]
         },
         {
           "id": "csh_it_029",
@@ -4459,7 +5333,11 @@
           "explanation": "A firewall filters network traffic and blocks unauthorized access [121].",
           "difficulty": "easy",
           "topic": "Innovation and Technology",
-          "keywords": ["Firewall", "network security", "unauthorized access"]
+          "keywords": [
+            "Firewall",
+            "network security",
+            "unauthorized access"
+          ]
         },
         {
           "id": "csh_it_030",
@@ -4474,7 +5352,11 @@
           "explanation": "Dashboards visually summarize data trends and KPIs for management review [126].",
           "difficulty": "medium",
           "topic": "Innovation and Monitoring",
-          "keywords": ["digital dashboards", "KPIs", "data visualization"]
+          "keywords": [
+            "digital dashboards",
+            "KPIs",
+            "data visualization"
+          ]
         },
         {
           "id": "csh_it_031",
@@ -4489,7 +5371,12 @@
           "explanation": "Automated, integrated systems fundamentally promote Transparency and Accountability by reducing manual manipulation [33].",
           "difficulty": "easy",
           "topic": "Innovation and Principles",
-          "keywords": ["IPPIS", "GIFMIS", "Transparency", "Accountability"]
+          "keywords": [
+            "IPPIS",
+            "GIFMIS",
+            "Transparency",
+            "Accountability"
+          ]
         },
         {
           "id": "csh_it_032",
@@ -4504,7 +5391,11 @@
           "explanation": "SaaS (Software as a Service) describes software delivered over the internet (Implied ICT knowledge).",
           "difficulty": "medium",
           "topic": "Innovation and Technology",
-          "keywords": ["SaaS", "Software as a Service", "cloud"]
+          "keywords": [
+            "SaaS",
+            "Software as a Service",
+            "cloud"
+          ]
         },
         {
           "id": "csh_it_033",
@@ -4519,7 +5410,11 @@
           "explanation": "SQL (Structured Query Language) is used to manage and query databases [96].",
           "difficulty": "medium",
           "topic": "Innovation and Technology",
-          "keywords": ["SQL", "database query [96]", "HRMIS"]
+          "keywords": [
+            "SQL",
+            "database query [96]",
+            "HRMIS"
+          ]
         },
         {
           "id": "csh_it_034",
@@ -4553,7 +5448,11 @@
           "explanation": "Work-from-Anywhere Pilots aim for flexibility and service continuity during emergencies [125].",
           "difficulty": "medium",
           "topic": "Innovation and Procedures",
-          "keywords": ["Work-from-Anywhere", "flexibility", "continuity"]
+          "keywords": [
+            "Work-from-Anywhere",
+            "flexibility",
+            "continuity"
+          ]
         },
         {
           "id": "csh_it_036",
@@ -4568,7 +5467,11 @@
           "explanation": "Chapter 17 covers the application of the Public Service Rules to Federal Government Parastatals [104], [105].",
           "difficulty": "medium",
           "topic": "Administrative Structure",
-          "keywords": ["Parastatals", "PSR application", "Chapter 17"]
+          "keywords": [
+            "Parastatals",
+            "PSR application",
+            "Chapter 17"
+          ]
         },
         {
           "id": "csh_it_037",
@@ -4583,7 +5486,11 @@
           "explanation": "A Router directs data packets between networks [96].",
           "difficulty": "easy",
           "topic": "Innovation and Technology",
-          "keywords": ["Router", "networking [96]", "data packets"]
+          "keywords": [
+            "Router",
+            "networking [96]",
+            "data packets"
+          ]
         },
         {
           "id": "csh_it_038",
@@ -4617,7 +5524,11 @@
           "explanation": "Phishing is a cyberattack where users are tricked into giving sensitive data [97].",
           "difficulty": "easy",
           "topic": "Innovation and Security",
-          "keywords": ["Phishing", "cybersecurity", "data breach [97]"]
+          "keywords": [
+            "Phishing",
+            "cybersecurity",
+            "data breach [97]"
+          ]
         },
         {
           "id": "csh_it_040",
@@ -4651,7 +5562,10 @@
           "explanation": "Document Scanning and Archiving converts paper records to digital archives [85].",
           "difficulty": "easy",
           "topic": "Innovation and Procedures",
-          "keywords": ["Scanning and Archiving", "digital records [85]"]
+          "keywords": [
+            "Scanning and Archiving",
+            "digital records [85]"
+          ]
         },
         {
           "id": "csh_it_042",
@@ -4666,7 +5580,11 @@
           "explanation": "GIFMIS integrates planning, budgeting, accounting, and reporting across government financial operations [82].",
           "difficulty": "medium",
           "topic": "e-Governance Initiatives",
-          "keywords": ["GIFMIS integration", "budgeting", "reporting [82]"]
+          "keywords": [
+            "GIFMIS integration",
+            "budgeting",
+            "reporting [82]"
+          ]
         },
         {
           "id": "csh_it_043",
@@ -4681,7 +5599,11 @@
           "explanation": "HRMIS is designed to replace manual, paper-based staff record keeping, minimizing errors and loss of documents [82].",
           "difficulty": "easy",
           "topic": "e-Governance Initiatives",
-          "keywords": ["HRMIS", "manual records", "replacement"]
+          "keywords": [
+            "HRMIS",
+            "manual records",
+            "replacement"
+          ]
         },
         {
           "id": "csh_it_044",
@@ -4715,7 +5637,11 @@
           "explanation": "VPNs encrypt data and provide private access over public networks, ensuring secure remote access [100].",
           "difficulty": "medium",
           "topic": "Innovation and Security",
-          "keywords": ["VPN", "secure remote access [100]", "encryption"]
+          "keywords": [
+            "VPN",
+            "secure remote access [100]",
+            "encryption"
+          ]
         },
         {
           "id": "csh_it_046",
@@ -4730,7 +5656,11 @@
           "explanation": "NIN integration ensures unique identification and data integrity [89].",
           "difficulty": "easy",
           "topic": "e-Governance Initiatives",
-          "keywords": ["NIN", "unique identification", "data integrity [89]"]
+          "keywords": [
+            "NIN",
+            "unique identification",
+            "data integrity [89]"
+          ]
         },
         {
           "id": "csh_it_047",
@@ -4745,7 +5675,11 @@
           "explanation": "The Vote Book (FR 601) is the core financial control register [101]. GIFMIS digitizes this function.",
           "difficulty": "easy",
           "topic": "e-Governance Initiatives",
-          "keywords": ["Vote Book", "GIFMIS", "budget control [101]"]
+          "keywords": [
+            "Vote Book",
+            "GIFMIS",
+            "budget control [101]"
+          ]
         },
         {
           "id": "csh_it_048",
@@ -4798,19 +5732,28 @@
           "explanation": "Training on Cyber Hygiene builds awareness against phishing and malware [92].",
           "difficulty": "easy",
           "topic": "Innovation and Security",
-          "keywords": ["Cyber Hygiene", "phishing", "malware [92]"]
+          "keywords": [
+            "Cyber Hygiene",
+            "phishing",
+            "malware [92]"
+          ]
         }
       ]
     },
     {
       "id": "csh_service_delivery_grievance",
-      "name": "Service Delivery and Grievance",
-      "description": "Service delivery principles, grievance handling, and public service excellence",
+      "name": "Service Delivery & Grievance",
+      "description": "Service standards, user experience, and grievance handling.",
       "questions": [
         {
           "id": "csh_sdg_001",
           "question": "Which chapter of the Civil Service Handbook emphasizes **service delivery** as the core of civil service responsibilities?",
-          "options": ["Chapter 1.", "Chapter 4.", "Chapter 6.", "Chapter 9."],
+          "options": [
+            "Chapter 1.",
+            "Chapter 4.",
+            "Chapter 6.",
+            "Chapter 9."
+          ],
           "correct": 1,
           "explanation": "Chapter 4 emphasizes service delivery as the key role of civil servants in meeting citizens' needs [102].",
           "difficulty": "medium",
@@ -4824,42 +5767,76 @@
         {
           "id": "csh_sdg_002",
           "question": "The public service initiative focused on enhancing service quality, timeliness, and customer satisfaction is known as:",
-          "options": ["IPPIS.", "Servicom.", "TSA.", "GIFMIS."],
+          "options": [
+            "IPPIS.",
+            "Servicom.",
+            "TSA.",
+            "GIFMIS."
+          ],
           "correct": 1,
           "explanation": "Servicom (Service Compact with All Nigerians) pledges public service efficiency and citizen-centered delivery [103].",
           "difficulty": "easy",
           "topic": "Service Delivery Principles",
-          "keywords": ["Servicom", "service quality", "citizen-centered [103]"]
+          "keywords": [
+            "Servicom",
+            "service quality",
+            "citizen-centered [103]"
+          ]
         },
         {
           "id": "csh_sdg_003",
           "question": "Which section of the Civil Service Handbook outlines grievance procedures to resolve disputes within the civil service?",
-          "options": ["Chapter 3.", "Chapter 5.", "Chapter 7.", "Chapter 9."],
+          "options": [
+            "Chapter 3.",
+            "Chapter 5.",
+            "Chapter 7.",
+            "Chapter 9."
+          ],
           "correct": 2,
           "explanation": "Chapter 7 provides grievance procedures to resolve disputes within the civil service [104].",
           "difficulty": "medium",
           "topic": "Grievance Handling",
-          "keywords": ["grievance procedures", "Chapter 7 [104]", "disputes"]
+          "keywords": [
+            "grievance procedures",
+            "Chapter 7 [104]",
+            "disputes"
+          ]
         },
         {
           "id": "csh_sdg_004",
           "question": "An aggrieved officer who wishes to appeal a disciplinary decision must generally submit their appeal within how many days of the decision being communicated?",
-          "options": ["7 days.", "14 days.", "30 days.", "60 days."],
+          "options": [
+            "7 days.",
+            "14 days.",
+            "30 days.",
+            "60 days."
+          ],
           "correct": 2,
           "explanation": "Appeals must generally be submitted within 30 days of the decision being communicated.",
           "difficulty": "medium",
           "topic": "Grievance Handling",
-          "keywords": ["appeal deadline", "30 days"]
+          "keywords": [
+            "appeal deadline",
+            "30 days"
+          ]
         },
         {
           "id": "csh_sdg_005",
           "question": "Appeals against promotion bypass should be heard within:",
-          "options": ["30 days.", "60 days.", "90 days.", "120 days."],
+          "options": [
+            "30 days.",
+            "60 days.",
+            "90 days.",
+            "120 days."
+          ],
           "correct": 0,
           "explanation": "Promotion bypass appeals should be heard within 30 days [105].",
           "difficulty": "medium",
           "topic": "Grievance Handling",
-          "keywords": ["promotion bypass appeal", "30 days [105]"]
+          "keywords": [
+            "promotion bypass appeal",
+            "30 days [105]"
+          ]
         },
         {
           "id": "csh_sdg_006",
@@ -4912,17 +5889,29 @@
           "explanation": "The OHCSF handles petitions concerning allowances and similar entitlements [3].",
           "difficulty": "medium",
           "topic": "Grievance Handling",
-          "keywords": ["allowance petitions", "OHCSF [3]"]
+          "keywords": [
+            "allowance petitions",
+            "OHCSF [3]"
+          ]
         },
         {
           "id": "csh_sdg_009",
           "question": "Which principle in the Handbook mandates that decisions and processes are open, with records available for accountability?",
-          "options": ["Secrecy.", "Transparency.", "Anonymity.", "Neutrality."],
+          "options": [
+            "Secrecy.",
+            "Transparency.",
+            "Anonymity.",
+            "Neutrality."
+          ],
           "correct": 1,
           "explanation": "Transparency requires that decisions and processes are open, with records available for accountability.",
           "difficulty": "medium",
           "topic": "Service Delivery Principles",
-          "keywords": ["transparency", "accountability", "open access"]
+          "keywords": [
+            "transparency",
+            "accountability",
+            "open access"
+          ]
         },
         {
           "id": "csh_sdg_010",
@@ -4956,7 +5945,11 @@
           "explanation": "Respecting diversity fosters inclusivity, unity, and fairness in the workplace [106].",
           "difficulty": "easy",
           "topic": "Service Delivery Principles",
-          "keywords": ["diversity", "inclusivity", "fairness [106]"]
+          "keywords": [
+            "diversity",
+            "inclusivity",
+            "fairness [106]"
+          ]
         },
         {
           "id": "csh_sdg_012",
@@ -4971,7 +5964,11 @@
           "explanation": "Efficiency ensures civil servants meet public needs effectively and deliver value for money.",
           "difficulty": "easy",
           "topic": "Service Delivery Principles",
-          "keywords": ["efficiency", "value for money", "service delivery"]
+          "keywords": [
+            "efficiency",
+            "value for money",
+            "service delivery"
+          ]
         },
         {
           "id": "csh_sdg_013",
@@ -4986,17 +5983,30 @@
           "explanation": "Only one petition for review is allowed per matter to prevent frivolous and unending appeals [105].",
           "difficulty": "medium",
           "topic": "Grievance Handling",
-          "keywords": ["petition frequency", "only once [105]", "appeals"]
+          "keywords": [
+            "petition frequency",
+            "only once [105]",
+            "appeals"
+          ]
         },
         {
           "id": "csh_sdg_014",
           "question": "The ethical requirement for accountability in the use of government resources is emphasized in which chapter of the Handbook?",
-          "options": ["Chapter 1.", "Chapter 2.", "Chapter 4.", "Chapter 5."],
+          "options": [
+            "Chapter 1.",
+            "Chapter 2.",
+            "Chapter 4.",
+            "Chapter 5."
+          ],
           "correct": 2,
           "explanation": "Chapter 4 emphasizes accountability in the utilization of government funds and resources [108].",
           "difficulty": "medium",
           "topic": "Service Delivery Principles",
-          "keywords": ["accountability", "resources", "Chapter 4 [108]"]
+          "keywords": [
+            "accountability",
+            "resources",
+            "Chapter 4 [108]"
+          ]
         },
         {
           "id": "csh_sdg_015",
@@ -5068,7 +6078,11 @@
           "explanation": "Anonymity ensures that civil servants do not seek recognition, directing praise or blame for policy outcomes toward the political executive.",
           "difficulty": "easy",
           "topic": "Service Delivery Principles",
-          "keywords": ["anonymity", "political executive", "accountability"]
+          "keywords": [
+            "anonymity",
+            "political executive",
+            "accountability"
+          ]
         },
         {
           "id": "csh_sdg_019",
@@ -5102,7 +6116,10 @@
           "explanation": "Appeals must generally be submitted within 30 days of the decision being communicated, following the time limits for appeals.",
           "difficulty": "medium",
           "topic": "Grievance Handling",
-          "keywords": ["petition submission time", "30 days"]
+          "keywords": [
+            "petition submission time",
+            "30 days"
+          ]
         },
         {
           "id": "csh_sdg_021",
@@ -5136,7 +6153,11 @@
           "explanation": "Meritocracy ensures that appointments and promotions are based on competence, leading to higher quality service delivery [53, 113].",
           "difficulty": "easy",
           "topic": "Service Delivery Principles",
-          "keywords": ["meritocracy", "competence", "service delivery"]
+          "keywords": [
+            "meritocracy",
+            "competence",
+            "service delivery"
+          ]
         },
         {
           "id": "csh_sdg_023",
@@ -5170,7 +6191,11 @@
           "explanation": "R&RS incentivizes high performance and professional excellence, driving improved service delivery.",
           "difficulty": "easy",
           "topic": "Service Delivery Principles",
-          "keywords": ["R&RS", "recognition", "professional excellence"]
+          "keywords": [
+            "R&RS",
+            "recognition",
+            "professional excellence"
+          ]
         },
         {
           "id": "csh_sdg_025",
@@ -5204,7 +6229,11 @@
           "explanation": "Neutrality/Impartiality ensures service is fair and equitable to all citizens.",
           "difficulty": "easy",
           "topic": "Service Delivery Principles",
-          "keywords": ["Neutrality", "Impartiality", "equitable service"]
+          "keywords": [
+            "Neutrality",
+            "Impartiality",
+            "equitable service"
+          ]
         },
         {
           "id": "csh_sdg_027",
@@ -5219,17 +6248,29 @@
           "explanation": "Officers must familiarize themselves and comply strictly with the PSR; ignorance is not an excuse [114].",
           "difficulty": "medium",
           "topic": "Service Delivery and Accountability",
-          "keywords": ["PSR compliance", "uniformity", "Rule 010103 [114]"]
+          "keywords": [
+            "PSR compliance",
+            "uniformity",
+            "Rule 010103 [114]"
+          ]
         },
         {
           "id": "csh_sdg_028",
           "question": "Which PSR Chapter allows an aggrieved officer to petition decisions through the proper channels?",
-          "options": ["Chapter 5.", "Chapter 7.", "Chapter 11.", "Chapter 15."],
+          "options": [
+            "Chapter 5.",
+            "Chapter 7.",
+            "Chapter 11.",
+            "Chapter 15."
+          ],
           "correct": 2,
           "explanation": "Chapter 11 covers Petitions and Appeals, allowing aggrieved officers to seek redress [44, 63, 64].",
           "difficulty": "medium",
           "topic": "Grievance Handling",
-          "keywords": ["Petitions and Appeals", "Chapter 11 [44, 63, 64]"]
+          "keywords": [
+            "Petitions and Appeals",
+            "Chapter 11 [44, 63, 64]"
+          ]
         },
         {
           "id": "csh_sdg_029",
@@ -5244,7 +6285,11 @@
           "explanation": "Accountability ensures civil servants are answerable for their official actions and decisions.",
           "difficulty": "easy",
           "topic": "Service Delivery Principles",
-          "keywords": ["accountability", "answerable", "principles"]
+          "keywords": [
+            "accountability",
+            "answerable",
+            "principles"
+          ]
         },
         {
           "id": "csh_sdg_030",
@@ -5316,7 +6361,11 @@
           "explanation": "Efficiency relies on robust performance management and continuous training to ensure staff competence [82, 116].",
           "difficulty": "easy",
           "topic": "Service Delivery Principles",
-          "keywords": ["efficiency", "performance management", "training"]
+          "keywords": [
+            "efficiency",
+            "performance management",
+            "training"
+          ]
         },
         {
           "id": "csh_sdg_034",
@@ -5331,7 +6380,11 @@
           "explanation": "Core values include integrity, neutrality, service, discipline, and accountability [74, 117].",
           "difficulty": "easy",
           "topic": "Service Delivery Principles",
-          "keywords": ["core values", "accountability", "integrity [74, 117]"]
+          "keywords": [
+            "core values",
+            "accountability",
+            "integrity [74, 117]"
+          ]
         },
         {
           "id": "csh_sdg_035",
@@ -5421,7 +6474,10 @@
           "explanation": "Appeals must be exercised through the appropriate channel in accordance with Chapter 11 (Petitions and Appeals) [27, 28, 44].",
           "difficulty": "medium",
           "topic": "Grievance Handling",
-          "keywords": ["promotion appeal channel", "Chapter 11 [27, 28, 44]"]
+          "keywords": [
+            "promotion appeal channel",
+            "Chapter 11 [27, 28, 44]"
+          ]
         },
         {
           "id": "csh_sdg_040",
@@ -5436,7 +6492,11 @@
           "explanation": "Teamwork enhances collective efficiency and service delivery [104].",
           "difficulty": "easy",
           "topic": "Service Delivery Principles",
-          "keywords": ["Teamwork", "efficiency [104]", "service delivery"]
+          "keywords": [
+            "Teamwork",
+            "efficiency [104]",
+            "service delivery"
+          ]
         },
         {
           "id": "csh_sdg_041",
@@ -5470,7 +6530,11 @@
           "explanation": "Proper record-keeping ensures accountability, transparency, and continuity in civil service operations [118].",
           "difficulty": "easy",
           "topic": "Service Delivery and Accountability",
-          "keywords": ["record-keeping", "continuity [118]", "accountability"]
+          "keywords": [
+            "record-keeping",
+            "continuity [118]",
+            "accountability"
+          ]
         },
         {
           "id": "csh_sdg_043",
@@ -5542,7 +6606,10 @@
           "explanation": "The consideration governing all promotions shall be in accordance with the guidelines set out by the Federal Civil Service Commission [27, 28].",
           "difficulty": "medium",
           "topic": "Grievance Handling",
-          "keywords": ["promotion appeal", "FCSC guidelines [27, 28]"]
+          "keywords": [
+            "promotion appeal",
+            "FCSC guidelines [27, 28]"
+          ]
         },
         {
           "id": "csh_sdg_047",
@@ -5576,7 +6643,11 @@
           "explanation": "The ultimate duty of civil servants is to provide impartial and effective service.",
           "difficulty": "easy",
           "topic": "Service Delivery Principles",
-          "keywords": ["ultimate duty", "impartial service", "effectiveness"]
+          "keywords": [
+            "ultimate duty",
+            "impartial service",
+            "effectiveness"
+          ]
         },
         {
           "id": "csh_sdg_049",
@@ -5591,7 +6662,11 @@
           "explanation": "Compassionate leave (full pay) is granted for up to two weeks for the burial of spouse/child/parent/parent of spouse [37, 38].",
           "difficulty": "medium",
           "topic": "Service Delivery and Leave",
-          "keywords": ["compassionate leave", "burial", "Rule 120233 [37, 38]"]
+          "keywords": [
+            "compassionate leave",
+            "burial",
+            "Rule 120233 [37, 38]"
+          ]
         },
         {
           "id": "csh_sdg_050",
@@ -5613,6 +6688,1595 @@
           ]
         }
       ]
+    },
+    {
+      "name": "Code of Conduct & Ethical Principles",
+      "description": "Professional ethics and conduct standards.",
+      "type": "subcategory",
+      "questions": [
+        {
+          "id": "ethics_001",
+          "question": "Which Nigerian body is responsible for enforcing the Code of Conduct for public officers?",
+          "options": [
+            "ICPC",
+            "Code of Conduct Bureau (CCB)",
+            "EFCC",
+            "Civil Service Commission"
+          ],
+          "correct": 1,
+          "explanation": "The Code of Conduct Bureau (CCB) is mandated by the Constitution to enforce ethical standards for public officers.",
+          "difficulty": "medium",
+          "topic": "Code of Conduct",
+          "keywords": [
+            "ethics",
+            "code of conduct",
+            "CCB"
+          ]
+        },
+        {
+          "id": "ethics_003",
+          "question": "According to the Code of Conduct, public officers are prohibited from:",
+          "options": [
+            "Owning property",
+            "Maintaining foreign bank accounts",
+            "Joining a political party",
+            "Traveling abroad"
+          ],
+          "correct": 1,
+          "explanation": "The Constitution prohibits public officers from maintaining foreign bank accounts.",
+          "difficulty": "medium",
+          "topic": "Code of Conduct",
+          "keywords": [
+            "ethics",
+            "foreign accounts",
+            "code of conduct"
+          ]
+        },
+        {
+          "id": "ethics_008",
+          "question": "The Code of Conduct Bureau is established under which section of the 1999 Constitution?",
+          "options": [
+            "Fifth Schedule",
+            "Second Schedule",
+            "Third Schedule",
+            "First Schedule"
+          ],
+          "correct": 0,
+          "explanation": "The Code of Conduct Bureau is established under the Fifth Schedule of the 1999 Constitution.",
+          "difficulty": "medium",
+          "topic": "Code of Conduct",
+          "keywords": [
+            "ethics",
+            "constitution",
+            "CCB"
+          ]
+        },
+        {
+          "id": "ethics_012",
+          "question": "Which of the following is prohibited under the Code of Conduct for public officers?",
+          "options": [
+            "Engaging in private business without approval",
+            "Taking leave of absence",
+            "Attending workshops",
+            "Receiving salaries"
+          ],
+          "correct": 0,
+          "explanation": "Public officers are prohibited from engaging in private business without appropriate approval.",
+          "difficulty": "medium",
+          "topic": "Code of Conduct",
+          "keywords": [
+            "ethics",
+            "code of conduct",
+            "private business"
+          ]
+        },
+        {
+          "id": "ethics_013",
+          "question": "What is the main role of the Code of Conduct Tribunal (CCT)?",
+          "options": [
+            "Recruitment of civil servants",
+            "Prosecution of public officers for breaches of the Code of Conduct",
+            "Promotion of civil servants",
+            "Approval of budgets"
+          ],
+          "correct": 1,
+          "explanation": "The Code of Conduct Tribunal prosecutes cases of public officers who breach the Code of Conduct.",
+          "difficulty": "medium",
+          "topic": "Code of Conduct",
+          "keywords": [
+            "ethics",
+            "CCT",
+            "prosecution"
+          ]
+        },
+        {
+          "id": "ethics_015",
+          "question": "Which type of gift is prohibited for public officers under the Code of Conduct?",
+          "options": [
+            "Gifts related to official duties",
+            "Family gifts",
+            "Traditional wedding gifts",
+            "Birthday presents"
+          ],
+          "correct": 0,
+          "explanation": "Public officers must not accept gifts related to the performance of their official duties.",
+          "difficulty": "medium",
+          "topic": "Code of Conduct",
+          "keywords": [
+            "ethics",
+            "gifts",
+            "prohibited"
+          ]
+        },
+        {
+          "id": "ethics_024",
+          "question": "Which body is empowered to prosecute public officers for violations of the Code of Conduct?",
+          "options": [
+            "Code of Conduct Tribunal (CCT)",
+            "EFCC",
+            "ICPC",
+            "Civil Service Commission"
+          ],
+          "correct": 0,
+          "explanation": "The CCT prosecutes cases of public officers who breach the Code of Conduct.",
+          "difficulty": "medium",
+          "topic": "Code of Conduct",
+          "keywords": [
+            "ethics",
+            "CCT",
+            "prosecution"
+          ]
+        },
+        {
+          "id": "ethics_026",
+          "question": "Which law guides the Code of Conduct for Public Officers in Nigeria?",
+          "options": [
+            "1999 Constitution (Fifth Schedule)",
+            "Public Procurement Act",
+            "Civil Service Handbook",
+            "Financial Regulations"
+          ],
+          "correct": 0,
+          "explanation": "The 1999 Constitution’s Fifth Schedule provides the Code of Conduct for Public Officers.",
+          "difficulty": "medium",
+          "topic": "Code of Conduct",
+          "keywords": [
+            "ethics",
+            "constitution",
+            "fifth schedule"
+          ]
+        },
+        {
+          "id": "ethics_029",
+          "question": "What is the penalty for violating the Code of Conduct as determined by the CCT?",
+          "options": [
+            "Dismissal or disqualification from public office",
+            "Salary increment",
+            "Automatic promotion",
+            "Annual leave extension"
+          ],
+          "correct": 0,
+          "explanation": "The CCT may dismiss, suspend, or disqualify public officers from holding office if found guilty.",
+          "difficulty": "medium",
+          "topic": "Code of Conduct",
+          "keywords": [
+            "ethics",
+            "CCT",
+            "penalties"
+          ]
+        },
+        {
+          "id": "ethics_040",
+          "question": "Which constitutional provision empowers the CCT to try cases of misconduct?",
+          "options": [
+            "Fifth Schedule of 1999 Constitution",
+            "Public Procurement Act",
+            "Labour Act",
+            "Civil Service Rules"
+          ],
+          "correct": 0,
+          "explanation": "The Fifth Schedule of the 1999 Constitution empowers the CCT to try misconduct cases.",
+          "difficulty": "medium",
+          "topic": "Constitution & Ethics",
+          "keywords": [
+            "ethics",
+            "CCT",
+            "constitution"
+          ]
+        },
+        {
+          "id": "ethics_042",
+          "question": "What must public officers submit to the CCB within three months of assuming office?",
+          "options": [
+            "Asset declaration",
+            "Promotion request",
+            "Pension application",
+            "Loan application"
+          ],
+          "correct": 0,
+          "explanation": "The Code of Conduct requires all public officers to declare their assets within three months of assumption of office.",
+          "difficulty": "medium",
+          "topic": "Code of Conduct",
+          "keywords": [
+            "ethics",
+            "asset declaration",
+            "CCB"
+          ]
+        },
+        {
+          "id": "ethics_046",
+          "question": "Which body can disqualify public officers from holding office due to ethical violations?",
+          "options": [
+            "Code of Conduct Tribunal",
+            "EFCC",
+            "Civil Service Commission",
+            "NCC"
+          ],
+          "correct": 0,
+          "explanation": "The CCT can disqualify public officers from holding office due to breaches of the Code of Conduct.",
+          "difficulty": "medium",
+          "topic": "Code of Conduct",
+          "keywords": [
+            "ethics",
+            "CCT",
+            "disqualification"
+          ]
+        },
+        {
+          "id": "ethics_057",
+          "question": "Which constitutional principle underpins the Code of Conduct for Public Officers?",
+          "options": [
+            "Accountability and transparency",
+            "Federalism",
+            "Sovereignty",
+            "Supremacy of the Constitution"
+          ],
+          "correct": 0,
+          "explanation": "Accountability and transparency form the constitutional basis for the Code of Conduct.",
+          "difficulty": "medium",
+          "topic": "Constitution & Ethics",
+          "keywords": [
+            "ethics",
+            "accountability",
+            "constitution"
+          ]
+        },
+        {
+          "id": "ethics_059",
+          "question": "Which body can recommend removal of a public officer due to unethical conduct?",
+          "options": [
+            "Code of Conduct Tribunal",
+            "Federal Civil Service Commission",
+            "EFCC",
+            "ICPC"
+          ],
+          "correct": 0,
+          "explanation": "The CCT can recommend removal of public officers found guilty of unethical conduct.",
+          "difficulty": "medium",
+          "topic": "Code of Conduct",
+          "keywords": [
+            "ethics",
+            "CCT",
+            "removal"
+          ]
+        },
+        {
+          "id": "ethics_063",
+          "question": "Which body investigates breaches of ethical conduct relating to asset declarations?",
+          "options": [
+            "CCB",
+            "EFCC",
+            "ICPC",
+            "NCC"
+          ],
+          "correct": 0,
+          "explanation": "The Code of Conduct Bureau investigates breaches relating to asset declarations.",
+          "difficulty": "medium",
+          "topic": "Code of Conduct",
+          "keywords": [
+            "ethics",
+            "CCB",
+            "asset declaration"
+          ]
+        },
+        {
+          "id": "ethics_067",
+          "question": "Which body enforces penalties for non-compliance with ethical rules for public officers?",
+          "options": [
+            "CCT",
+            "EFCC",
+            "ICPC",
+            "Civil Service Commission"
+          ],
+          "correct": 0,
+          "explanation": "The Code of Conduct Tribunal enforces penalties for violations of ethical rules.",
+          "difficulty": "medium",
+          "topic": "Code of Conduct",
+          "keywords": [
+            "ethics",
+            "CCT",
+            "penalties"
+          ]
+        },
+        {
+          "id": "ethics_075",
+          "question": "Which body can recommend removal of a public officer due to unethical conduct?",
+          "options": [
+            "CCT",
+            "Federal Civil Service Commission",
+            "EFCC",
+            "ICPC"
+          ],
+          "correct": 0,
+          "explanation": "The CCT can recommend removal of public officers found guilty of unethical conduct.",
+          "difficulty": "medium",
+          "topic": "Code of Conduct",
+          "keywords": [
+            "ethics",
+            "CCT",
+            "removal"
+          ]
+        },
+        {
+          "id": "ethics_081",
+          "question": "What is the foundation of the Code of Conduct for public officers?",
+          "options": [
+            "Personal gain",
+            "Public interest",
+            "Political loyalty",
+            "Family ties"
+          ],
+          "correct": 1,
+          "explanation": "The Code of Conduct emphasizes serving the public interest above personal interests.",
+          "difficulty": "easy",
+          "topic": "Ethics and Code of Conduct",
+          "keywords": [
+            "code of conduct",
+            "public interest",
+            "ethics"
+          ]
+        }
+      ],
+      "id": "eth_code_conduct"
+    },
+    {
+      "name": "Civil Service Values & Integrity",
+      "description": "Integrity, accountability, transparency, and impartiality.",
+      "type": "subcategory",
+      "questions": [
+        {
+          "id": "ethics_002",
+          "question": "According to the Civil Service Handbook, civil servants must uphold which of the following values?",
+          "options": [
+            "Secrecy, efficiency, loyalty",
+            "Corruption, favoritism, nepotism",
+            "Delay, inefficiency, secrecy",
+            "Nonchalance, dishonesty, secrecy"
+          ],
+          "correct": 0,
+          "explanation": "The handbook emphasizes secrecy, efficiency, and loyalty as core values of civil servants.",
+          "difficulty": "easy",
+          "topic": "Civil Service Ethics",
+          "keywords": [
+            "ethics",
+            "values",
+            "secrecy",
+            "efficiency",
+            "loyalty"
+          ]
+        },
+        {
+          "id": "ethics_006",
+          "question": "Civil servants are expected to maintain political neutrality. What does this mean?",
+          "options": [
+            "They can openly campaign for political parties",
+            "They must serve all administrations equally, regardless of political party",
+            "They must reject orders from ruling governments",
+            "They are not allowed to vote"
+          ],
+          "correct": 1,
+          "explanation": "Political neutrality requires civil servants to serve any government of the day equally, without political bias.",
+          "difficulty": "medium",
+          "topic": "Neutrality",
+          "keywords": [
+            "ethics",
+            "political neutrality",
+            "ethics"
+          ]
+        },
+        {
+          "id": "ethics_007",
+          "question": "Which ethical obligation of public servants?",
+          "options": [
+            "Loyalty to the Constitution",
+            "Personal enrichment",
+            "Favoritism",
+            "Secrecy for corruption"
+          ],
+          "correct": 0,
+          "explanation": "Civil servants must remain loyal to the Nigerian Constitution and the government of the day.",
+          "difficulty": "easy",
+          "topic": "Civil Service Values",
+          "keywords": [
+            "ethics",
+            "loyalty",
+            "constitution"
+          ]
+        },
+        {
+          "id": "ethics_009",
+          "question": "Which value requires that civil servants provide unbiased service to all citizens?",
+          "options": [
+            "Transparency",
+            "Impartiality",
+            "Accountability",
+            "Professionalism"
+          ],
+          "correct": 1,
+          "explanation": "Impartiality ensures civil servants serve all citizens without discrimination or favoritism.",
+          "difficulty": "easy",
+          "topic": "Civil Service Values",
+          "keywords": [
+            "ethics",
+            "impartiality",
+            "civil service"
+          ]
+        },
+        {
+          "id": "ethics_011",
+          "question": "Which ethical principle requires honesty and fairness in all official dealings?",
+          "options": [
+            "Professionalism",
+            "Integrity",
+            "Transparency",
+            "Accountability"
+          ],
+          "correct": 1,
+          "explanation": "Integrity requires honesty and fairness in all official dealings.",
+          "difficulty": "medium",
+          "topic": "Civil Service Ethics",
+          "keywords": [
+            "ethics",
+            "integrity",
+            "civil service"
+          ]
+        },
+        {
+          "id": "ethics_014",
+          "question": "Which of these promotes public trust in governance?",
+          "options": [
+            "Transparency",
+            "Secrecy",
+            "Nepotism",
+            "Corruption"
+          ],
+          "correct": 0,
+          "explanation": "Transparency builds public trust by ensuring government activities are open and accessible.",
+          "difficulty": "easy",
+          "topic": "Civil Service Ethics",
+          "keywords": [
+            "ethics",
+            "transparency",
+            "trust"
+          ]
+        },
+        {
+          "id": "ethics_016",
+          "question": "Which ethical principle requires civil servants to put public interest above personal gain?",
+          "options": [
+            "Accountability",
+            "Integrity",
+            "Selflessness",
+            "Transparency"
+          ],
+          "correct": 2,
+          "explanation": "Selflessness ensures civil servants act in the public interest and not for personal enrichment.",
+          "difficulty": "medium",
+          "topic": "Civil Service Values",
+          "keywords": [
+            "ethics",
+            "selflessness",
+            "public interest"
+          ]
+        },
+        {
+          "id": "ethics_018",
+          "question": "Which civil service value requires that civil servants use resources effectively and avoid waste?",
+          "options": [
+            "Transparency",
+            "Efficiency",
+            "Impartiality",
+            "Professionalism"
+          ],
+          "correct": 1,
+          "explanation": "Efficiency ensures that civil servants make the best use of resources and avoid waste.",
+          "difficulty": "medium",
+          "topic": "Civil Service Ethics",
+          "keywords": [
+            "ethics",
+            "efficiency",
+            "civil service"
+          ]
+        },
+        {
+          "id": "ethics_020",
+          "question": "Which ethical principle is violated when a civil servant uses official time for personal business?",
+          "options": [
+            "Efficiency",
+            "Integrity",
+            "Selflessness",
+            "Impartiality"
+          ],
+          "correct": 0,
+          "explanation": "Efficiency requires that official time is used productively and not for personal business.",
+          "difficulty": "medium",
+          "topic": "Civil Service Values",
+          "keywords": [
+            "ethics",
+            "efficiency",
+            "misuse of time"
+          ]
+        },
+        {
+          "id": "ethics_021",
+          "question": "Which ethical principle requires civil servants to provide services without discrimination?",
+          "options": [
+            "Selflessness",
+            "Impartiality",
+            "Integrity",
+            "Transparency"
+          ],
+          "correct": 1,
+          "explanation": "Impartiality means providing fair and equal treatment to all citizens.",
+          "difficulty": "easy",
+          "topic": "Civil Service Ethics",
+          "keywords": [
+            "ethics",
+            "impartiality",
+            "fairness"
+          ]
+        },
+        {
+          "id": "ethics_023",
+          "question": "Which ethical principle prevents public officers from accepting bribes?",
+          "options": [
+            "Transparency",
+            "Integrity",
+            "Selflessness",
+            "Professionalism"
+          ],
+          "correct": 1,
+          "explanation": "Integrity requires that civil servants reject bribes and act honestly in official duties.",
+          "difficulty": "easy",
+          "topic": "Civil Service Ethics",
+          "keywords": [
+            "ethics",
+            "integrity",
+            "bribery"
+          ]
+        },
+        {
+          "id": "ethics_025",
+          "question": "Which civil service principle requires the disclosure of assets by public officers?",
+          "options": [
+            "Impartiality",
+            "Transparency",
+            "Integrity",
+            "Accountability"
+          ],
+          "correct": 3,
+          "explanation": "Accountability requires that public officers declare their assets before and after service.",
+          "difficulty": "medium",
+          "topic": "Civil Service Values",
+          "keywords": [
+            "ethics",
+            "accountability",
+            "asset declaration"
+          ]
+        },
+        {
+          "id": "ethics_028",
+          "question": "Which civil service principle ensures that information is shared openly and not hidden?",
+          "options": [
+            "Impartiality",
+            "Transparency",
+            "Accountability",
+            "Confidentiality"
+          ],
+          "correct": 1,
+          "explanation": "Transparency ensures openness in government dealings and reduces secrecy.",
+          "difficulty": "easy",
+          "topic": "Civil Service Values",
+          "keywords": [
+            "ethics",
+            "transparency",
+            "openness"
+          ]
+        },
+        {
+          "id": "ethics_030",
+          "question": "Which ethical obligation prohibits civil servants from disclosing classified information?",
+          "options": [
+            "Confidentiality",
+            "Accountability",
+            "Integrity",
+            "Transparency"
+          ],
+          "correct": 0,
+          "explanation": "Confidentiality ensures sensitive information is not disclosed unlawfully.",
+          "difficulty": "medium",
+          "topic": "Civil Service Values",
+          "keywords": [
+            "ethics",
+            "confidentiality",
+            "information security"
+          ]
+        },
+        {
+          "id": "ethics_032",
+          "question": "Which principle ensures that civil servants act with professionalism and respect?",
+          "options": [
+            "Integrity",
+            "Professionalism",
+            "Impartiality",
+            "Transparency"
+          ],
+          "correct": 1,
+          "explanation": "Professionalism requires that civil servants conduct themselves with competence and respect.",
+          "difficulty": "easy",
+          "topic": "Civil Service Values",
+          "keywords": [
+            "ethics",
+            "professionalism",
+            "civil service"
+          ]
+        },
+        {
+          "id": "ethics_034",
+          "question": "Which value ensures civil servants are held answerable for their actions?",
+          "options": [
+            "Accountability",
+            "Confidentiality",
+            "Impartiality",
+            "Integrity"
+          ],
+          "correct": 0,
+          "explanation": "Accountability ensures public officers are responsible for their actions and decisions.",
+          "difficulty": "medium",
+          "topic": "Civil Service Ethics",
+          "keywords": [
+            "ethics",
+            "accountability",
+            "responsibility"
+          ]
+        },
+        {
+          "id": "ethics_035",
+          "question": "Which principle requires civil servants to avoid favoritism in hiring and promotions?",
+          "options": [
+            "Transparency",
+            "Impartiality",
+            "Integrity",
+            "Professionalism"
+          ],
+          "correct": 1,
+          "explanation": "Impartiality ensures fair recruitment and promotions without favoritism.",
+          "difficulty": "easy",
+          "topic": "Civil Service Ethics",
+          "keywords": [
+            "ethics",
+            "impartiality",
+            "recruitment"
+          ]
+        },
+        {
+          "id": "ethics_037",
+          "question": "Which ethical principle prohibits civil servants from leaking government secrets?",
+          "options": [
+            "Confidentiality",
+            "Impartiality",
+            "Integrity",
+            "Transparency"
+          ],
+          "correct": 0,
+          "explanation": "Confidentiality prevents civil servants from disclosing sensitive government information.",
+          "difficulty": "medium",
+          "topic": "Civil Service Values",
+          "keywords": [
+            "ethics",
+            "confidentiality",
+            "secrecy"
+          ]
+        },
+        {
+          "id": "ethics_039",
+          "question": "Which civil service principle requires civil servants to avoid discrimination in service delivery?",
+          "options": [
+            "Integrity",
+            "Impartiality",
+            "Transparency",
+            "Efficiency"
+          ],
+          "correct": 1,
+          "explanation": "Impartiality means providing fair and equal treatment to all citizens.",
+          "difficulty": "easy",
+          "topic": "Civil Service Ethics",
+          "keywords": [
+            "ethics",
+            "impartiality",
+            "fairness"
+          ]
+        },
+        {
+          "id": "ethics_041",
+          "question": "Which ethical obligation requires civil servants to respect the rule of law in all activities?",
+          "options": [
+            "Integrity",
+            "Impartiality",
+            "Accountability",
+            "Rule of Law"
+          ],
+          "correct": 3,
+          "explanation": "The rule of law ensures civil servants act within the law and uphold justice.",
+          "difficulty": "medium",
+          "topic": "Civil Service Ethics",
+          "keywords": [
+            "ethics",
+            "rule of law",
+            "civil service"
+          ]
+        },
+        {
+          "id": "ethics_043",
+          "question": "Which ethical obligation prohibits civil servants from taking part in partisan politics?",
+          "options": [
+            "Impartiality",
+            "Integrity",
+            "Confidentiality",
+            "Selflessness"
+          ],
+          "correct": 0,
+          "explanation": "Impartiality requires that civil servants remain neutral and avoid partisan politics.",
+          "difficulty": "medium",
+          "topic": "Civil Service Values",
+          "keywords": [
+            "ethics",
+            "impartiality",
+            "partisan politics"
+          ]
+        },
+        {
+          "id": "ethics_045",
+          "question": "Which value ensures that civil servants use public funds for their intended purpose?",
+          "options": [
+            "Accountability",
+            "Efficiency",
+            "Integrity",
+            "Transparency"
+          ],
+          "correct": 0,
+          "explanation": "Accountability requires that civil servants use public resources responsibly for their intended purposes.",
+          "difficulty": "medium",
+          "topic": "Civil Service Ethics",
+          "keywords": [
+            "ethics",
+            "accountability",
+            "public funds"
+          ]
+        },
+        {
+          "id": "ethics_047",
+          "question": "Which principle requires civil servants to avoid conflicts between official duty and private interests?",
+          "options": [
+            "Integrity",
+            "Transparency",
+            "Selflessness",
+            "Impartiality"
+          ],
+          "correct": 0,
+          "explanation": "Integrity requires avoiding conflicts of interest and maintaining fairness in official duties.",
+          "difficulty": "medium",
+          "topic": "Civil Service Ethics",
+          "keywords": [
+            "ethics",
+            "integrity",
+            "conflict of interest"
+          ]
+        },
+        {
+          "id": "ethics_048",
+          "question": "Which constitutional body ensures ethical conduct in public service?",
+          "options": [
+            "Code of Conduct Bureau",
+            "National Assembly",
+            "INEC",
+            "Federal Character Commission"
+          ],
+          "correct": 0,
+          "explanation": "The Code of Conduct Bureau ensures compliance with ethical standards for public officers.",
+          "difficulty": "easy",
+          "topic": "Constitution & Ethics",
+          "keywords": [
+            "ethics",
+            "CCB",
+            "constitution"
+          ]
+        },
+        {
+          "id": "ethics_049",
+          "question": "Which ethical principle demands that civil servants avoid actions that could discredit the service?",
+          "options": [
+            "Professionalism",
+            "Selflessness",
+            "Confidentiality",
+            "Integrity"
+          ],
+          "correct": 0,
+          "explanation": "Professionalism requires civil servants to conduct themselves in a way that upholds the reputation of the service.",
+          "difficulty": "medium",
+          "topic": "Civil Service Ethics",
+          "keywords": [
+            "ethics",
+            "professionalism",
+            "conduct"
+          ]
+        },
+        {
+          "id": "ethics_051",
+          "question": "Which principle ensures public confidence in the civil service?",
+          "options": [
+            "Transparency",
+            "Impartiality",
+            "Accountability",
+            "All of the above"
+          ],
+          "correct": 3,
+          "explanation": "Transparency, impartiality, and accountability collectively build public trust in the civil service.",
+          "difficulty": "medium",
+          "topic": "Civil Service Ethics",
+          "keywords": [
+            "ethics",
+            "public confidence",
+            "civil service"
+          ]
+        },
+        {
+          "id": "ethics_054",
+          "question": "Which ethical principle requires civil servants to be answerable for their decisions?",
+          "options": [
+            "Accountability",
+            "Integrity",
+            "Impartiality",
+            "Transparency"
+          ],
+          "correct": 0,
+          "explanation": "Accountability requires public officers to be answerable for their decisions and actions.",
+          "difficulty": "medium",
+          "topic": "Civil Service Values",
+          "keywords": [
+            "ethics",
+            "accountability",
+            "responsibility"
+          ]
+        },
+        {
+          "id": "ethics_058",
+          "question": "Which ethical principle requires prompt and efficient service delivery?",
+          "options": [
+            "Efficiency",
+            "Integrity",
+            "Impartiality",
+            "Transparency"
+          ],
+          "correct": 0,
+          "explanation": "Efficiency requires civil servants to deliver services quickly, effectively, and without waste.",
+          "difficulty": "medium",
+          "topic": "Civil Service Ethics",
+          "keywords": [
+            "ethics",
+            "efficiency",
+            "service delivery"
+          ]
+        },
+        {
+          "id": "ethics_060",
+          "question": "Which ethical value discourages corruption and promotes fairness?",
+          "options": [
+            "Integrity",
+            "Impartiality",
+            "Accountability",
+            "Professionalism"
+          ],
+          "correct": 0,
+          "explanation": "Integrity discourages corruption and requires fairness and honesty in service delivery.",
+          "difficulty": "medium",
+          "topic": "Civil Service Ethics",
+          "keywords": [
+            "ethics",
+            "integrity",
+            "anti-corruption"
+          ]
+        },
+        {
+          "id": "ethics_062",
+          "question": "Which principle ensures that civil servants are responsible stewards of public resources?",
+          "options": [
+            "Accountability",
+            "Transparency",
+            "Confidentiality",
+            "Integrity"
+          ],
+          "correct": 0,
+          "explanation": "Accountability ensures civil servants use public resources responsibly and answer for their use.",
+          "difficulty": "medium",
+          "topic": "Civil Service Values",
+          "keywords": [
+            "ethics",
+            "accountability",
+            "stewardship"
+          ]
+        },
+        {
+          "id": "ethics_064",
+          "question": "Which civil service principle ensures openness in government contracting processes?",
+          "options": [
+            "Transparency",
+            "Accountability",
+            "Confidentiality",
+            "Impartiality"
+          ],
+          "correct": 0,
+          "explanation": "Transparency ensures openness and fairness in government contracting and procurement.",
+          "difficulty": "medium",
+          "topic": "Civil Service Values",
+          "keywords": [
+            "ethics",
+            "transparency",
+            "procurement"
+          ]
+        },
+        {
+          "id": "ethics_066",
+          "question": "Which ethical principle requires civil servants to avoid personal bias in decision-making?",
+          "options": [
+            "Impartiality",
+            "Integrity",
+            "Confidentiality",
+            "Efficiency"
+          ],
+          "correct": 0,
+          "explanation": "Impartiality requires decisions to be made without personal bias or favoritism.",
+          "difficulty": "medium",
+          "topic": "Civil Service Values",
+          "keywords": [
+            "ethics",
+            "impartiality",
+            "bias"
+          ]
+        },
+        {
+          "id": "ethics_068",
+          "question": "Which ethical principle ensures that civil servants keep government information secure?",
+          "options": [
+            "Confidentiality",
+            "Accountability",
+            "Selflessness",
+            "Transparency"
+          ],
+          "correct": 0,
+          "explanation": "Confidentiality ensures that sensitive government information is kept secure and not disclosed unlawfully.",
+          "difficulty": "medium",
+          "topic": "Civil Service Values",
+          "keywords": [
+            "ethics",
+            "confidentiality",
+            "secrecy"
+          ]
+        },
+        {
+          "id": "ethics_070",
+          "question": "Which principle ensures fairness in the treatment of colleagues and subordinates?",
+          "options": [
+            "Integrity",
+            "Impartiality",
+            "Professionalism",
+            "Efficiency"
+          ],
+          "correct": 2,
+          "explanation": "Professionalism ensures fair and respectful treatment of colleagues and subordinates.",
+          "difficulty": "medium",
+          "topic": "Civil Service Ethics",
+          "keywords": [
+            "ethics",
+            "professionalism",
+            "fairness"
+          ]
+        },
+        {
+          "id": "ethics_072",
+          "question": "Which ethical principle ensures judicious use of scarce public resources?",
+          "options": [
+            "Efficiency",
+            "Accountability",
+            "Integrity",
+            "Impartiality"
+          ],
+          "correct": 0,
+          "explanation": "Efficiency requires prudent use of scarce public resources to maximize benefits.",
+          "difficulty": "medium",
+          "topic": "Civil Service Ethics",
+          "keywords": [
+            "ethics",
+            "efficiency",
+            "resources"
+          ]
+        },
+        {
+          "id": "ethics_074",
+          "question": "Which ethical principle requires civil servants to be answerable for their decisions?",
+          "options": [
+            "Accountability",
+            "Integrity",
+            "Impartiality",
+            "Transparency"
+          ],
+          "correct": 0,
+          "explanation": "Accountability requires public officers to be answerable for their decisions and actions.",
+          "difficulty": "medium",
+          "topic": "Civil Service Values",
+          "keywords": [
+            "ethics",
+            "accountability",
+            "responsibility"
+          ]
+        },
+        {
+          "id": "ethics_076",
+          "question": "Which ethical principle prohibits favoritism in public service?",
+          "options": [
+            "Impartiality",
+            "Efficiency",
+            "Confidentiality",
+            "Integrity"
+          ],
+          "correct": 0,
+          "explanation": "Impartiality prohibits favoritism and requires fair service to all citizens.",
+          "difficulty": "easy",
+          "topic": "Civil Service Ethics",
+          "keywords": [
+            "ethics",
+            "impartiality",
+            "favoritism"
+          ]
+        },
+        {
+          "id": "ethics_077",
+          "question": "Which principle ensures that civil servants manage public funds responsibly?",
+          "options": [
+            "Accountability",
+            "Confidentiality",
+            "Professionalism",
+            "Impartiality"
+          ],
+          "correct": 0,
+          "explanation": "Accountability ensures responsible and transparent management of public funds.",
+          "difficulty": "medium",
+          "topic": "Civil Service Values",
+          "keywords": [
+            "ethics",
+            "accountability",
+            "public funds"
+          ]
+        },
+        {
+          "id": "ethics_079",
+          "question": "Which ethical value requires that decisions are taken openly and justifiably?",
+          "options": [
+            "Transparency",
+            "Impartiality",
+            "Confidentiality",
+            "Integrity"
+          ],
+          "correct": 0,
+          "explanation": "Transparency ensures openness in decision-making and builds public trust.",
+          "difficulty": "medium",
+          "topic": "Civil Service Values",
+          "keywords": [
+            "ethics",
+            "transparency",
+            "decision-making"
+          ]
+        },
+        {
+          "id": "ethics_084",
+          "question": "Which principle is fundamental to civil service recruitment and promotion?",
+          "options": [
+            "Partisanship",
+            "Merit and fairness",
+            "Arbitrariness",
+            "Nepotism"
+          ],
+          "correct": 1,
+          "explanation": "Recruitment and promotion in the civil service should be based on merit, fairness and transparency.",
+          "difficulty": "easy",
+          "topic": "Ethics and Code of Conduct",
+          "keywords": [
+            "merit",
+            "promotion",
+            "recruitment"
+          ]
+        }
+      ],
+      "id": "eth_values_integrity"
+    },
+    {
+      "name": "Anti-Corruption Measures",
+      "description": "Prevention, enforcement, and anti-corruption systems.",
+      "type": "subcategory",
+      "questions": [
+        {
+          "id": "ethics_005",
+          "question": "Which anti-corruption agency focuses on investigating economic and financial crimes?",
+          "options": [
+            "CCB",
+            "EFCC",
+            "NCC",
+            "NITDA"
+          ],
+          "correct": 1,
+          "explanation": "The EFCC investigates and prosecutes financial crimes such as fraud, money laundering, and corruption.",
+          "difficulty": "medium",
+          "topic": "Anti-Corruption Agencies",
+          "keywords": [
+            "ethics",
+            "EFCC",
+            "anti-corruption"
+          ]
+        },
+        {
+          "id": "ethics_010",
+          "question": "Which agency is empowered to investigate corrupt practices in public institutions?",
+          "options": [
+            "NITDA",
+            "NCC",
+            "ICPC",
+            "INEC"
+          ],
+          "correct": 2,
+          "explanation": "The Independent Corrupt Practices Commission (ICPC) investigates corrupt practices in public institutions.",
+          "difficulty": "medium",
+          "topic": "Anti-Corruption Agencies",
+          "keywords": [
+            "ethics",
+            "ICPC",
+            "corruption"
+          ]
+        },
+        {
+          "id": "ethics_017",
+          "question": "Which Nigerian law established the ICPC?",
+          "options": [
+            "Corrupt Practices and Other Related Offences Act 2000",
+            "Public Procurement Act 2007",
+            "Fiscal Responsibility Act 2007",
+            "Freedom of Information Act 2011"
+          ],
+          "correct": 0,
+          "explanation": "The ICPC was established under the Corrupt Practices and Other Related Offences Act 2000.",
+          "difficulty": "medium",
+          "topic": "Anti-Corruption Laws",
+          "keywords": [
+            "ethics",
+            "ICPC",
+            "anti-corruption law"
+          ]
+        },
+        {
+          "id": "ethics_031",
+          "question": "Which Nigerian agency is mandated to investigate cases of financial integrity among public officers?",
+          "options": [
+            "EFCC",
+            "NITDA",
+            "NCC",
+            "INEC"
+          ],
+          "correct": 0,
+          "explanation": "The EFCC investigates financial crimes such as fraud, embezzlement, and illicit enrichment.",
+          "difficulty": "medium",
+          "topic": "Anti-Corruption Agencies",
+          "keywords": [
+            "ethics",
+            "EFCC",
+            "financial integrity"
+          ]
+        },
+        {
+          "id": "ethics_036",
+          "question": "Which agency investigates and prosecutes corruption in public procurement?",
+          "options": [
+            "BPP",
+            "ICPC",
+            "EFCC",
+            "CCB"
+          ],
+          "correct": 1,
+          "explanation": "The ICPC is empowered to investigate corruption in public procurement and contracts.",
+          "difficulty": "medium",
+          "topic": "Anti-Corruption Agencies",
+          "keywords": [
+            "ethics",
+            "ICPC",
+            "procurement corruption"
+          ]
+        },
+        {
+          "id": "ethics_038",
+          "question": "Which agency is empowered to ensure compliance with Nigeria’s anti-corruption policies?",
+          "options": [
+            "ICPC",
+            "NITDA",
+            "INEC",
+            "NCC"
+          ],
+          "correct": 0,
+          "explanation": "The ICPC ensures compliance with Nigeria’s anti-corruption policies and laws.",
+          "difficulty": "medium",
+          "topic": "Anti-Corruption",
+          "keywords": [
+            "ethics",
+            "ICPC",
+            "compliance"
+          ]
+        },
+        {
+          "id": "ethics_055",
+          "question": "Which agency investigates cases of gratification or bribery in government institutions?",
+          "options": [
+            "ICPC",
+            "CCB",
+            "NCC",
+            "NITDA"
+          ],
+          "correct": 0,
+          "explanation": "The ICPC investigates cases of bribery and gratification involving public officers.",
+          "difficulty": "medium",
+          "topic": "Anti-Corruption Agencies",
+          "keywords": [
+            "ethics",
+            "ICPC",
+            "bribery"
+          ]
+        },
+        {
+          "id": "ethics_065",
+          "question": "Which act makes bribery and corruption criminal offences in Nigeria?",
+          "options": [
+            "Corrupt Practices and Other Related Offences Act 2000",
+            "Labour Act",
+            "Freedom of Information Act",
+            "Public Procurement Act"
+          ],
+          "correct": 0,
+          "explanation": "The Corrupt Practices and Other Related Offences Act criminalizes bribery and corruption.",
+          "difficulty": "medium",
+          "topic": "Anti-Corruption Laws",
+          "keywords": [
+            "ethics",
+            "corruption",
+            "ICPC Act"
+          ]
+        },
+        {
+          "id": "ethics_071",
+          "question": "Which Nigerian agency is mandated to promote ethical values in public service?",
+          "options": [
+            "Code of Conduct Bureau",
+            "INEC",
+            "NITDA",
+            "NCC"
+          ],
+          "correct": 0,
+          "explanation": "The CCB promotes ethical values and monitors compliance by public officers.",
+          "difficulty": "easy",
+          "topic": "Ethics in Governance",
+          "keywords": [
+            "ethics",
+            "CCB",
+            "ethics promotion"
+          ]
+        }
+      ],
+      "id": "eth_anti_corruption"
+    },
+    {
+      "name": "Conflict of Interest",
+      "description": "Recognition and management of conflict scenarios.",
+      "type": "subcategory",
+      "questions": [
+        {
+          "id": "ethics_004",
+          "question": "Which of the following is an example of conflict of interest in the civil service?",
+          "options": [
+            "Awarding contracts to oneself",
+            "Taking annual leave",
+            "Attending official training",
+            "Writing memos"
+          ],
+          "correct": 0,
+          "explanation": "Conflict of interest occurs when a public officer awards contracts or takes decisions for personal benefit.",
+          "difficulty": "easy",
+          "topic": "Conflict of Interest",
+          "keywords": [
+            "ethics",
+            "conflict of interest",
+            "civil service"
+          ]
+        },
+        {
+          "id": "ethics_052",
+          "question": "Which misconduct involves using an official position to obtain undue advantage?",
+          "options": [
+            "Abuse of office",
+            "Conflict of interest",
+            "Nepotism",
+            "Fraud"
+          ],
+          "correct": 0,
+          "explanation": "Abuse of office occurs when an official uses their position for personal advantage or gain.",
+          "difficulty": "medium",
+          "topic": "PSR Misconduct",
+          "keywords": [
+            "ethics",
+            "abuse of office",
+            "misconduct"
+          ]
+        },
+        {
+          "id": "ethics_073",
+          "question": "Which misconduct involves using office resources for private business?",
+          "options": [
+            "Abuse of office",
+            "Forgery",
+            "Conflict of interest",
+            "Falsehood"
+          ],
+          "correct": 0,
+          "explanation": "Abuse of office includes using official resources for personal or private business.",
+          "difficulty": "medium",
+          "topic": "PSR Misconduct",
+          "keywords": [
+            "ethics",
+            "abuse of office",
+            "resources"
+          ]
+        },
+        {
+          "id": "ethics_080",
+          "question": "Which misconduct involves unauthorized use of official vehicles?",
+          "options": [
+            "Abuse of office",
+            "Forgery",
+            "Insubordination",
+            "Conflict of interest"
+          ],
+          "correct": 0,
+          "explanation": "Unauthorized use of official vehicles constitutes abuse of office and misconduct.",
+          "difficulty": "medium",
+          "topic": "PSR Misconduct",
+          "keywords": [
+            "ethics",
+            "official vehicles",
+            "abuse of office"
+          ]
+        }
+      ],
+      "id": "eth_conflict_interest"
+    },
+    {
+      "name": "Misconduct & Discipline",
+      "description": "Misconduct types and related corrective processes.",
+      "type": "subcategory",
+      "questions": [
+        {
+          "id": "ethics_019",
+          "question": "Which of these is considered misconduct under the Public Service Rules?",
+          "options": [
+            "Corruption",
+            "Annual leave",
+            "Promotion",
+            "Training attendance"
+          ],
+          "correct": 0,
+          "explanation": "Corruption is classified as misconduct and attracts disciplinary measures under the Public Service Rules.",
+          "difficulty": "easy",
+          "topic": "PSR & Ethics",
+          "keywords": [
+            "ethics",
+            "misconduct",
+            "PSR"
+          ]
+        },
+        {
+          "id": "ethics_050",
+          "question": "Which type of misconduct involves deliberate misrepresentation of facts?",
+          "options": [
+            "Falsehood",
+            "Conflict of interest",
+            "Bribery",
+            "Favoritism"
+          ],
+          "correct": 0,
+          "explanation": "Falsehood is misconduct involving intentional misrepresentation of facts.",
+          "difficulty": "medium",
+          "topic": "PSR Misconduct",
+          "keywords": [
+            "ethics",
+            "falsehood",
+            "misconduct"
+          ]
+        },
+        {
+          "id": "ethics_053",
+          "question": "Which civil service rule prohibits acceptance of double remuneration?",
+          "options": [
+            "Public Service Rules",
+            "Financial Regulations",
+            "Procurement Act",
+            "Labour Act"
+          ],
+          "correct": 0,
+          "explanation": "The Public Service Rules prohibit public officers from receiving double pay from government sources.",
+          "difficulty": "medium",
+          "topic": "PSR & Ethics",
+          "keywords": [
+            "ethics",
+            "double remuneration",
+            "PSR"
+          ]
+        },
+        {
+          "id": "ethics_056",
+          "question": "Which misconduct involves divulging official secrets without authorization?",
+          "options": [
+            "Divulging official information",
+            "Falsehood",
+            "Abuse of office",
+            "Absenteeism"
+          ],
+          "correct": 0,
+          "explanation": "Divulging official information without authorization is a form of serious misconduct.",
+          "difficulty": "medium",
+          "topic": "PSR Misconduct",
+          "keywords": [
+            "ethics",
+            "official secrets",
+            "misconduct"
+          ]
+        },
+        {
+          "id": "ethics_061",
+          "question": "Which misconduct involves unauthorized absence from duty?",
+          "options": [
+            "Absenteeism",
+            "Abuse of office",
+            "Conflict of interest",
+            "Corruption"
+          ],
+          "correct": 0,
+          "explanation": "Absenteeism is misconduct where a public officer fails to report to duty without permission.",
+          "difficulty": "easy",
+          "topic": "PSR Misconduct",
+          "keywords": [
+            "ethics",
+            "absenteeism",
+            "misconduct"
+          ]
+        },
+        {
+          "id": "ethics_069",
+          "question": "Which misconduct involves falsifying records for personal advantage?",
+          "options": [
+            "Forgery",
+            "Conflict of interest",
+            "Bribery",
+            "Absenteeism"
+          ],
+          "correct": 0,
+          "explanation": "Forgery is misconduct involving falsification of official records.",
+          "difficulty": "medium",
+          "topic": "PSR Misconduct",
+          "keywords": [
+            "ethics",
+            "forgery",
+            "misconduct"
+          ]
+        },
+        {
+          "id": "ethics_078",
+          "question": "Which misconduct involves deliberate non-compliance with lawful orders?",
+          "options": [
+            "Insubordination",
+            "Forgery",
+            "Insubordination",
+            "Conflict of interest"
+          ],
+          "correct": 0,
+          "explanation": "Insubordination is deliberate refusal to comply with lawful orders from superiors.",
+          "difficulty": "medium",
+          "topic": "PSR Misconduct",
+          "keywords": [
+            "ethics",
+            "insubordination",
+            "misconduct"
+          ]
+        }
+      ],
+      "id": "eth_misconduct"
+    },
+    {
+      "name": "General Ethics",
+      "description": "General ethical reasoning for public officers.",
+      "type": "subcategory",
+      "questions": [
+        {
+          "id": "ethics_082",
+          "question": "Which document sets out the duties, responsibilities and conduct of civil servants?",
+          "options": [
+            "Public Service Rules",
+            "Criminal Code",
+            "Companies and Allied Matters Act",
+            "Public Procurement Act"
+          ],
+          "correct": 0,
+          "explanation": "The Public Service Rules set out terms and conditions, conduct, duties and responsibilities for civil servants.",
+          "difficulty": "medium",
+          "topic": "Ethics and Code of Conduct",
+          "keywords": [
+            "public service rules",
+            "civil service",
+            "conduct"
+          ]
+        },
+        {
+          "id": "ethics_083",
+          "question": "What does 'Estacode' relate to in civil service practice?",
+          "options": [
+            "Staff recruitment",
+            "Official travel allowances and entitlements",
+            "Procurement thresholds",
+            "Performance appraisal"
+          ],
+          "correct": 1,
+          "explanation": "Estacode is the set of rules on official travel and allowances in the civil/public service.",
+          "difficulty": "medium",
+          "topic": "Ethics and Code of Conduct",
+          "keywords": [
+            "estacode",
+            "allowances",
+            "travel"
+          ]
+        },
+        {
+          "id": "ethics_085",
+          "question": "Which of the following is a best-practice principle for official correspondence retention?",
+          "options": [
+            "Retain only outgoing mail",
+            "Keep both incoming and outgoing official correspondence for the prescribed retention period",
+            "Destroy all documents immediately",
+            "Keep only electronic copies without backups"
+          ],
+          "correct": 1,
+          "explanation": "Good records management requires retention of official incoming and outgoing correspondence for specified retention schedules and proper archiving.",
+          "difficulty": "medium",
+          "topic": "Ethics and Code of Conduct",
+          "keywords": [
+            "records retention",
+            "correspondence",
+            "archiving"
+          ]
+        }
+      ],
+      "id": "eth_general"
     }
   ]
 }

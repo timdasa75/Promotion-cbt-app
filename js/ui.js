@@ -1,12 +1,18 @@
 // ui.js - Module for UI management
 
+import {
+  collectSubcategories,
+  fetchTopicDataFilesWithReport,
+} from "./topicSources.js";
+import { debugLog } from "./logger.js";
+
 // Track current screen
 let currentScreenId = "topicSelectionScreen";
 
 // Show a specific screen with animation
 export function showScreen(screenId) {
   window.scrollTo(0, 0);
-  console.log(`Switching to screen: ${screenId}`);
+  debugLog(`Switching to screen: ${screenId}`);
   return new Promise((resolve, reject) => {
     // Validate input
     if (!screenId) {
@@ -25,7 +31,7 @@ export function showScreen(screenId) {
 
     // Prevent showing the same screen
     if (currentScreenId === screenId) {
-      console.log(`Already on screen: ${screenId}`);
+      debugLog(`Already on screen: ${screenId}`);
       resolve();
       return;
     }
@@ -38,14 +44,14 @@ export function showScreen(screenId) {
 
     // Show new screen immediately to start transition
     targetScreen.classList.remove("hidden");
-    console.log(`Made ${screenId} visible`);
+    debugLog(`Made ${screenId} visible`);
 
     // Trigger animation frame for smooth transition
     requestAnimationFrame(() => {
       // Add active class after a brief delay to ensure transition triggers
       setTimeout(() => {
         targetScreen.classList.add("active");
-        console.log(`Activated ${screenId}`);
+        debugLog(`Activated ${screenId}`);
 
         // Update current screen tracking
         currentScreenId = screenId;
@@ -83,6 +89,25 @@ export function showError(message) {
   }, 5000);
 }
 
+
+
+export function showWarning(message) {
+  const warningDiv = document.createElement("div");
+  warningDiv.className = "warning-message";
+  warningDiv.textContent = message;
+
+  const container = document.querySelector(".app-container");
+  if (container) {
+    container.insertBefore(warningDiv, container.firstChild);
+  } else {
+    document.body.insertBefore(warningDiv, document.body.firstChild);
+  }
+
+  setTimeout(() => {
+    warningDiv.remove();
+  }, 6000);
+}
+
 // Display categories for a topic
 export async function displayCategories(topic, onSelect) {
   const categoryList = document.getElementById("categoryList");
@@ -95,51 +120,34 @@ export async function displayCategories(topic, onSelect) {
   categoryList.innerHTML = '<div class="loading">Loading categories...</div>';
 
   try {
-    // Load topic data to get categories with proper path construction
-    const getBaseUrl = () => {
-      const pathParts = window.location.pathname.split("/");
-      if (pathParts[1] === "Promotion-cbt-app") {
-        return "/Promotion-cbt-app";
-      }
-      return "";
-    };
-    const BASE_URL = getBaseUrl();
-    const filePath = `${BASE_URL}/${topic.file}`;
-    const response = await fetch(filePath);
-    const topicData = await response.json();
+    const sourceLoadResult = await fetchTopicDataFilesWithReport(topic, {
+      tolerateFailures: true,
+    });
+
+    const { payloads: topicDataFiles, failedFiles, totalFiles } = sourceLoadResult;
+
+    if (failedFiles.length > 0) {
+      showWarning(`Some topic sources could not be loaded (${totalFiles - failedFiles.length}/${totalFiles} available).`);
+    }
+
+    if (!topicDataFiles.length) {
+      throw new Error("No topic data sources could be loaded.");
+    }
 
     categoryList.innerHTML = "";
 
+    if (failedFiles.length > 0) {
+      const warning = document.createElement("div");
+      warning.className = "warning-message inline-warning";
+      warning.textContent = `Some content sources are unavailable for now (${totalFiles - failedFiles.length}/${totalFiles} loaded).`;
+      categoryList.appendChild(warning);
+    }
+
     let subcategoriesToDisplay = [];
 
-    if (topicData.hasSubcategories && topicData.subcategories && Array.isArray(topicData.subcategories)) {
-      // Handle structure with hasSubcategories and subcategories array (like current affairs)
-      subcategoriesToDisplay = topicData.subcategories;
-    } else if (topicData.subcategories && Array.isArray(topicData.subcategories)) {
-      subcategoriesToDisplay = topicData.subcategories;
-    } else if (Array.isArray(topicData)) {
-      // Handle direct array of subcategories (e.g., psr.json)
-      subcategoriesToDisplay = topicData;
-    } else if (topicData.domains && Array.isArray(topicData.domains)) {
-      // Handle structure with domains and nested topics (e.g., financial.json)
-      topicData.domains.forEach((domain) => {
-        if (domain.topics && Array.isArray(domain.topics)) {
-          subcategoriesToDisplay = subcategoriesToDisplay.concat(domain.topics);
-        }
-      });
-    } else if (topicData.psr_categories) {
-      // Handle legacy structure with psr_categories
-      subcategoriesToDisplay = Object.keys(topicData.psr_categories).map(
-        (key) => ({
-          id: key,
-          name: topicData.psr_categories[key].name || key,
-          description:
-            topicData.psr_categories[key].description ||
-            "No description available",
-          questions: topicData.psr_categories[key].questions,
-        }),
-      );
-    }
+    topicDataFiles.forEach((topicData) => {
+      subcategoriesToDisplay = subcategoriesToDisplay.concat(collectSubcategories(topicData));
+    });
 
     if (subcategoriesToDisplay.length > 0) {
       // Use Promise.all to handle all async operations first
@@ -238,7 +246,7 @@ export async function displayCategories(topic, onSelect) {
 
 // Display available topics
 export async function displayTopics(topics, onSelect) {
-  console.log("Displaying topics:", topics);
+  debugLog("Displaying topics:", topics);
   const topicList = document.getElementById("topicList");
   if (!topicList) {
     console.error("Topic list container not found");
@@ -259,14 +267,14 @@ export async function displayTopics(topics, onSelect) {
   try {
     const dataModule = await import("./data.js");
     counts = await dataModule.getTopicQuestionCounts(topics);
-    console.log("Question counts:", counts);
+    debugLog("Question counts:", counts);
   } catch (e) {
     console.error("Error getting question counts:", e);
     // fallback: all zero
     topics.forEach((t) => (counts[t.id] = 0));
   }
 
-  console.log("Creating topic cards for", topics.length, "topics");
+  debugLog("Creating topic cards for", topics.length, "topics");
   topics.forEach((topic, index) => {
     const topicCard = document.createElement("div");
     topicCard.className = "topic-card ripple scale-on-hover";
@@ -294,9 +302,9 @@ export async function displayTopics(topics, onSelect) {
       if (onSelect) onSelect(topic);
     });
     topicList.appendChild(topicCard);
-    console.log("Added topic card:", topic.name);
+    debugLog("Added topic card:", topic.name);
   });
-  console.log("Showing topic selection screen");
+  debugLog("Showing topic selection screen");
   // Make sure the screen is visible
   const topicSelectionScreen = document.getElementById("topicSelectionScreen");
   if (topicSelectionScreen) {
@@ -320,41 +328,22 @@ export async function getTotalQuestionCount(topic) {
 // Select a topic and show category selection (then mode selection)
 export async function selectTopic(topic) {
   try {
-    const getBaseUrl = () => {
-      const pathParts = window.location.pathname.split("/");
-      if (pathParts[1] === "Promotion-cbt-app") {
-        return "/Promotion-cbt-app";
-      }
-      return "";
-    };
-    const BASE_URL = getBaseUrl();
-    const filePath = `${BASE_URL}/${topic.file}`;
-    const response = await fetch(filePath);
-    const topicData = await response.json();
+    const sourceLoadResult = await fetchTopicDataFilesWithReport(topic, {
+      tolerateFailures: true,
+    });
+
+    const { payloads: topicDataFiles } = sourceLoadResult;
+
+    if (!topicDataFiles.length) {
+      throw new Error("No topic data sources could be loaded.");
+    }
 
     let hasSubcategories = false;
-    if (Array.isArray(topicData) && topicData.length > 0) {
-      hasSubcategories = true; // psr.json is a direct array of subcategories
-    } else if (
-      topicData.domains &&
-      Array.isArray(topicData.domains) &&
-      topicData.domains.some(
-        (domain) => domain.topics && domain.topics.length > 0,
-      )
-    ) {
-      hasSubcategories = true; // financial.json has domains with topics
-    } else if (
-      topicData.hasSubcategories &&
-      topicData.subcategories &&
-      Array.isArray(topicData.subcategories) &&
-      topicData.subcategories.length > 0
-    ) {
-      hasSubcategories = true; // Other topics with hasSubcategories
-    } else if (
-      topicData.psr_categories &&
-      Object.keys(topicData.psr_categories).length > 0
-    ) {
-      hasSubcategories = true; // Legacy psr_categories
+    for (const topicData of topicDataFiles) {
+      if (collectSubcategories(topicData).length > 0) {
+        hasSubcategories = true;
+        break;
+      }
     }
 
     // Check if the topic has subcategories

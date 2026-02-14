@@ -6,8 +6,8 @@
   "icon": "🎯",
   "subcategories": [
     {
-      "name": "Numerical and Mathematical Competencies",
-      "description": "Questions involving calculations, percentages, ratios, fractions, and basic math.",
+      "name": "Numerical & Mathematical Reasoning",
+      "description": "Applied numerical reasoning and quantitative judgement.",
       "type": "subcategory",
       "questions": [
         {
@@ -1142,11 +1142,12 @@
             "division"
           ]
         }
-      ]
+      ],
+      "id": "comp_numerical_reasoning"
     },
     {
-      "name": "Verbal and Reasoning Competencies",
-      "description": "Questions involving language, synonyms, antonyms, analogies, and verbal reasoning.",
+      "name": "Verbal & Analytical Reasoning",
+      "description": "Verbal analysis, logical comprehension, and critical reasoning.",
       "type": "subcategory",
       "questions": [
         {
@@ -2284,7 +2285,8 @@
             "bread"
           ]
         }
-      ]
+      ],
+      "id": "comp_verbal_reasoning"
     }
   ]
 }

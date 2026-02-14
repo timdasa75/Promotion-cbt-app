@@ -6,8 +6,8 @@
   "icon": "📊",
   "subcategories": [
     {
-      "name": "Constitution and Governance",
-      "description": "Constitutional provisions, arms of government, separation of powers, and fundamental rights.",
+      "name": "Policy Formulation & Cycle",
+      "description": "Policy lifecycle stages and governance checkpoints.",
       "type": "subcategory",
       "questions": [
         {
@@ -1505,11 +1505,12 @@
             "file"
           ]
         }
-      ]
+      ],
+      "id": "pol_formulation_cycle"
     },
     {
-      "name": "Nigerian States and Capitals",
-      "description": "State capitals, nicknames, and geographical information about Nigerian states.",
+      "name": "Policy Analysis Methods",
+      "description": "Methods for policy analysis, option appraisal, and advice.",
       "type": "subcategory",
       "questions": [
         {
@@ -2329,11 +2330,12 @@
             "nicknames"
           ]
         }
-      ]
+      ],
+      "id": "pol_analysis_methods"
     },
     {
-      "name": "Public Service Rules and Administration",
-      "description": "Public Service Rules, appointments, promotions, retirement, and administrative procedures.",
+      "name": "Policy Implementation & Evaluation",
+      "description": "Execution strategy and impact evaluation approaches.",
       "type": "subcategory",
       "questions": [
         {
@@ -3075,11 +3077,12 @@
             "file"
           ]
         }
-      ]
+      ],
+      "id": "pol_implementation_evaluation"
     },
     {
-      "name": "Current Affairs and Leadership",
-      "description": "Current Nigerian leaders, minimum wage, and contemporary governance issues.",
+      "name": "Public Sector Planning",
+      "description": "Planning frameworks and public sector strategy linkage.",
       "type": "subcategory",
       "questions": [
         {
@@ -3196,7 +3199,8 @@
             "nigeria"
           ]
         }
-      ]
+      ],
+      "id": "pol_public_sector_planning"
     }
   ]
 }

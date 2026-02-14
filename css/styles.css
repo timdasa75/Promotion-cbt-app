@@ -25,25 +25,38 @@ html {
    ==================== */
 :root {
     /* Core Colors */
-    --color-primary: #007A4D; /* A slightly darker, more saturated green */
-    --color-primary-dark: #005C3A;
-    --color-primary-light: #00A86B;
-    --color-accent: #FDB813; /* A vibrant gold */
-    --color-text-dark: #1A1A1A; /* A very dark gray for text */
-    --color-text-light: #FFFFFF;
-    --color-text-secondary: #555555;
-    --color-background-light: #F7F7F7;
-    --color-border-light: #E0E0E0;
+    --color-primary: #007a4d;
+    --color-primary-dark: #005c3a;
+    --color-primary-light: #00a86b;
+    --color-accent: #fdb813;
+    --color-text-dark: #1a1a1a;
+    --color-text-light: #ffffff;
+    --color-text-secondary: #4f5b66;
+    --color-background-light: #f6f8fa;
+    --color-border-light: #d7dee5;
     --surface-white: var(--color-surface);
     --dark-green-text: var(--color-primary-dark);
-    --light-green-bg: rgba(0, 122, 77, 0.1);
+    --light-green-bg: rgba(0, 122, 77, 0.12);
     --nigerian-green: var(--color-primary);
+    --color-on-primary: #ffffff;
+    --color-on-status: #ffffff;
+    --color-on-warning: #1a1a1a;
+    --color-disabled-bg: #9aa5b1;
+    --color-disabled-text: #ffffff;
+    --color-primary-alpha-10: rgba(0, 122, 77, 0.1);
+    --color-primary-alpha-15: rgba(0, 122, 77, 0.15);
+    --state-error-bg: #fdecec;
+    --state-error-border: #f5b5b5;
+    --state-error-text: #8f1d1d;
+    --state-warning-bg: #fff4dc;
+    --state-warning-border: #ffd79a;
+    --state-warning-text: #6f4b00;
 
     /* Surface Colors */
-    --color-background: #F0FFF0;
-    --color-surface: #FFFFFF;
-    --color-card-background: #E8F5E8;  /* Light green card background */
-    --color-card-border: #A0D8A0;      /* Green card border */
+    --color-background: #f3fbf6;
+    --color-surface: #ffffff;
+    --color-card-background: #edf8ef;
+    --color-card-border: #9acaaa;
     --color-shadow: rgba(0, 0, 0, 0.1);
 
     /* Typography */
@@ -74,11 +87,11 @@ html {
     --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     /* Status Colors */
-    --info-color: #29b6f6;
-    --warning-color: #ffa726;
-    --success-color: #81C784;
+    --info-color: #1e88e5;
+    --warning-color: #f59e0b;
+    --success-color: #2e7d32;
     --accent-color-red: #ef5350;
-    --error-color: #dc3545;
+    --error-color: #c62828;
     --gradient-primary: linear-gradient(
         135deg,
         var(--color-primary) 0%,
@@ -114,32 +127,45 @@ html {
         var(--color-primary) 100%
     );
     --gradient-counter: linear-gradient(135deg, rgba(46, 142, 60, 0.2) 0%, rgba(255, 255, 255, 0.8) 100%);
-    --success-gradient: linear-gradient(135deg, var(--success-color), #4CAF50);
-    --info-gradient: linear-gradient(135deg, var(--info-color), #2196F3);
-    --warning-gradient: linear-gradient(135deg, var(--warning-color), #FF9800);
-    --error-gradient: linear-gradient(135deg, var(--error-color), #F44336);
+    --success-gradient: linear-gradient(135deg, var(--success-color), #388e3c);
+    --info-gradient: linear-gradient(135deg, var(--info-color), #1976d2);
+    --warning-gradient: linear-gradient(135deg, var(--warning-color), #ea8b0c);
+    --error-gradient: linear-gradient(135deg, var(--error-color), #b71c1c);
 }
 
 /* Dark Mode Styles */
 .dark-mode {
-    --color-primary: #388E3C; /* A muted green for better visibility */
-    --color-primary-dark: #1B5E20;
-    --color-primary-light: #66BB6A;
-    --color-accent: #FFD600; /* A brighter gold for the accent */
-    --color-text-dark: #FFFFFF; /* Pure white for maximum contrast */
-    --color-text-light: #121212;
-    --color-text-secondary: #B0B0B0; /* A lighter gray for secondary text */
-    --color-background-light: #1E1E1E;
-    --color-border-light: #333333; /* A lighter border color */
+    --color-primary: #4caf50;
+    --color-primary-dark: #2e7d32;
+    --color-primary-light: #6fcf73;
+    --color-accent: #ffd54f;
+    --color-text-dark: #f5f7fa;
+    --color-text-light: #ffffff;
+    --color-text-secondary: #c2ccd6;
+    --color-background-light: #1d242c;
+    --color-border-light: #3a4654;
     --surface-white: var(--color-surface);
     --dark-green-text: var(--color-primary-light);
-    --light-green-bg: rgba(56, 142, 60, 0.1);
+    --light-green-bg: rgba(76, 175, 80, 0.18);
     --nigerian-green: var(--color-primary);
+    --color-on-primary: #0f141a;
+    --color-on-status: #ffffff;
+    --color-on-warning: #10151b;
+    --color-disabled-bg: #5f6c78;
+    --color-disabled-text: #e6edf3;
+    --color-primary-alpha-10: rgba(76, 175, 80, 0.16);
+    --color-primary-alpha-15: rgba(76, 175, 80, 0.22);
+    --state-error-bg: #4a1f1f;
+    --state-error-border: #8f3a3a;
+    --state-error-text: #ffd0d0;
+    --state-warning-bg: #4a3a1f;
+    --state-warning-border: #8e6a2c;
+    --state-warning-text: #ffe1a6;
 
-    --color-background: #121212;
-    --color-surface: #1E1E1E;
-    --color-card-background: #2C2C2C;  /* A lighter dark gray for cards */
-    --color-card-border: #444444;      /* A lighter border for cards */
+    --color-background: #11161c;
+    --color-surface: #1a2129;
+    --color-card-background: #232c35;
+    --color-card-border: #3a4654;
     --color-shadow: rgba(0, 0, 0, 0.7);
 
     --shadow: 0 4px 20px var(--color-shadow);
@@ -153,10 +179,10 @@ html {
         var(--color-primary-light) 100%
     );
     --gradient-counter: linear-gradient(135deg, rgba(56, 142, 60, 0.15) 0%, rgba(44, 44, 44, 0.8) 100%);
-    --success-gradient: linear-gradient(135deg, #4CAF50, var(--success-color));
-    --info-gradient: linear-gradient(135deg, #2196F3, var(--info-color));
-    --warning-gradient: linear-gradient(135deg, #FF9800, var(--warning-color));
-    --error-gradient: linear-gradient(135deg, #F44336, var(--error-color));
+    --success-gradient: linear-gradient(135deg, #3f9143, var(--success-color));
+    --info-gradient: linear-gradient(135deg, #1d7fd6, var(--info-color));
+    --warning-gradient: linear-gradient(135deg, #d98208, var(--warning-color));
+    --error-gradient: linear-gradient(135deg, #ad2525, var(--error-color));
 }
 
 /* ==================== 
@@ -289,7 +315,7 @@ body.dark-mode::before {
     border-radius: var(--border-radius);
     border: none;
     background: var(--gradient-primary);
-    color: var(--color-text-light);
+    color: var(--color-on-primary);
     cursor: pointer;
     font-weight: 600;
     font-size: 0.9rem;
@@ -336,7 +362,8 @@ body.dark-mode::before {
     opacity: 0.5;
     cursor: not-allowed;
     transform: none;
-    background: #a9a9a9;
+    background: var(--color-disabled-bg);
+    color: var(--color-disabled-text);
     box-shadow: none;
 }
 
@@ -358,7 +385,7 @@ body.dark-mode::before {
 
 .btn-outline:hover:not(:disabled),
 .btn-outline:focus {
-    background: rgba(0, 168, 89, 0.1);
+    background: var(--color-primary-alpha-10);
     color: var(--color-text-dark);
 }
 
@@ -424,7 +451,7 @@ body.dark-mode::before {
 .option-btn:hover,
 .option-btn:focus {
     background: var(--color-primary-light);
-    color: var(--color-text-light);
+    color: var(--color-on-primary);
     border-color: var(--color-primary-dark);
     transform: translateY(-3px) scale(1.02);
     box-shadow: 0 8px 25px rgba(104, 159, 56, 0.5);
@@ -432,7 +459,7 @@ body.dark-mode::before {
 
 .option-btn.selected {
     background: var(--color-primary);
-    color: var(--color-text-light);
+    color: var(--color-on-primary);
     border-color: var(--color-primary-dark);
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(104, 159, 56, 0.5);
@@ -440,7 +467,7 @@ body.dark-mode::before {
 
 .option-btn.selected .option-letter {
     background: var(--color-primary-dark);
-    color: white;
+    color: var(--color-on-primary);
     box-shadow: 0 2px 8px rgba(0, 122, 77, 0.4);
     transform: scale(1.1);
 }
@@ -448,7 +475,7 @@ body.dark-mode::before {
 .option-btn .option-letter {
     font-weight: bold;
     background: var(--gradient-primary);
-    color: var(--color-text-light);
+    color: var(--color-on-primary);
     width: 36px;
     height: 36px;
     display: inline-flex;
@@ -489,7 +516,7 @@ body.dark-mode::before {
 
 .option-btn.user-incorrect {
     background: var(--error-color);
-    color: var(--color-text-light);
+    color: var(--color-on-status);
     border-color: var(--accent-color-red);
 }
 
@@ -644,7 +671,7 @@ body.dark-mode::before {
 }
 
 .section-title::before {
-    content: "🎓";
+    content: "\1F393";
     position: absolute;
     left: 15px;
     top: 50%;
@@ -907,7 +934,7 @@ body.dark-mode::before {
 }
 
 .question-counter::before {
-    content: "❓";
+    content: "\2753";
     margin-right: 10px;
     font-size: 1.2rem;
     animation: questionIconPulse 1s infinite;
@@ -1098,7 +1125,7 @@ body.dark-mode::before {
 }
 
 .timer::before {
-    content: "⏰";
+    content: "\23F0";
     margin-right: 8px;
     font-size: 1.1rem;
     animation: timerIconPulse 1s infinite;
@@ -1140,7 +1167,7 @@ body.dark-mode::before {
 }
 
 .modern-timer::before {
-    content: "⏱️";
+    content: "\23F1\FE0F";
     margin-right: 8px;
     font-size: 1.1rem;
     animation: modernTimerIconPulse 1s infinite;
@@ -1198,7 +1225,7 @@ body.dark-mode::before {
 .question-number {
     font-weight: bold;
     background: var(--gradient-primary);
-    color: var(--color-text-light);
+    color: var(--color-on-primary);
     width: 36px;
     height: 36px;
     display: inline-flex;
@@ -1526,7 +1553,7 @@ body.dark-mode::before {
 }
 
 .results .section-title::before {
-    content: "🏆";
+    content: "\1F3C6";
     position: absolute;
     left: 20px;
     top: 50%;
@@ -1645,43 +1672,43 @@ body.dark-mode::before {
 }
 
 .performance.excellent::before {
-    content: '🏆';
+    content: '\1F3C6';
 }
 
 .performance.excellent {
     background: var(--success-gradient);
     border-color: var(--success-color);
-    color: var(--color-text-light);
+    color: var(--color-on-status);
 }
 
 .performance.good::before {
-    content: '👍';
+    content: '\1F44D';
 }
 
 .performance.good {
     background: var(--info-gradient);
     border-color: var(--info-color);
-    color: var(--color-text-light);
+    color: var(--color-on-status);
 }
 
 .performance.average::before {
-    content: '🤔';
+    content: '\1F914';
 }
 
 .performance.average {
     background: var(--warning-gradient);
     border-color: var(--warning-color);
-    color: var(--color-text-light);
+    color: var(--color-on-warning);
 }
 
 .performance.poor::before {
-    content: '😥';
+    content: '\1F625';
 }
 
 .performance.poor {
     background: var(--error-gradient);
     border-color: var(--error-color);
-    color: var(--color-text-light);
+    color: var(--color-on-status);
 }
 
 @keyframes performancePopIn {
@@ -1863,9 +1890,9 @@ body.dark-mode::before {
 }
 
 .recommendation.improvement {
-    background: rgba(255, 152, 0, 0.1);
-    border: 1px solid var(--warning-color);
-    color: var(--color-text-dark);
+    background: var(--state-warning-bg);
+    border: 1px solid var(--state-warning-border);
+    color: var(--state-warning-text);
 }
 
 .buttons-container .btn {
@@ -2019,7 +2046,7 @@ body.dark-mode::before {
    ==================== */
 .modern-timer.urgent {
     animation: timerUrgent 1s infinite;
-    border-color: #ef5350;
+    border-color: var(--error-color);
     box-shadow: 0 0 15px rgba(239, 83, 80, 0.4);
 }
 
@@ -2079,19 +2106,19 @@ body.dark-mode::before {
 
 #reviewNavigator .nav-btn.correct {
     background: var(--success-color);
-    color: white;
+    color: var(--color-on-status);
     border-color: var(--success-color);
 }
 
 #reviewNavigator .nav-btn.incorrect {
     background: var(--error-color);
-    color: white;
+    color: var(--color-on-status);
     border-color: var(--error-color);
 }
 
 #reviewNavigator .nav-btn.unanswered {
     background: var(--color-text-secondary);
-    color: white;
+    color: var(--color-on-status);
 }
 
 #reviewNavigator .nav-btn.current {
@@ -2126,7 +2153,7 @@ body.dark-mode::before {
 
 #questionMap .nav-btn.answered {
     background: var(--color-primary);
-    color: white;
+    color: var(--color-on-primary);
     border-color: var(--color-primary);
 }
 
@@ -2158,7 +2185,7 @@ body.dark-mode::before {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
     font-size: 1.2rem;
-    color: white;
+    color: var(--color-on-primary);
 }
 
 .theme-toggle-btn:hover {
@@ -2173,3 +2200,4 @@ body.dark-mode::before {
 .theme-toggle-btn:hover .theme-icon {
     transform: rotate(25deg);
 }
+
