@@ -33,6 +33,36 @@ An interactive CBT practice application for Nigerian civil service promotion exa
    ```
 2. Open `index.html` in your browser
 
+## Sync Cloud Changes to Your Local Repository
+
+If updates were made in the cloud (for example on GitHub) and you want them on your local machine:
+
+1. Ensure a remote is configured:
+   ```bash
+   git remote -v
+   ```
+2. If no remote appears, add one:
+   ```bash
+   git remote add origin <your-repository-url>
+   ```
+3. Fetch latest updates from the cloud:
+   ```bash
+   git fetch origin
+   ```
+4. Switch to your branch (example uses `main`) and pull:
+   ```bash
+   git checkout main
+   git pull origin main
+   ```
+
+If you have local uncommitted work, stash first:
+
+```bash
+git stash
+git pull origin main
+git stash pop
+```
+
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
