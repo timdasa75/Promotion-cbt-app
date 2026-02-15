@@ -1,0 +1,29 @@
+{
+  "name": "promotion-cbt-app",
+  "version": "1.0.0",
+  "description": "An interactive CBT practice application for Nigerian civil service promotion exams at the directorate level.",
+  "main": "playwright.config.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "playwright test",
+    "test:smoke": "playwright test tests/smoke.spec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/timdasa75/Promotion-cbt-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/timdasa75/Promotion-cbt-app/issues"
+  },
+  "homepage": "https://github.com/timdasa75/Promotion-cbt-app#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.58.2"
+  }
+}

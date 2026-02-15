@@ -55,6 +55,9 @@ export function showScreen(screenId) {
 
         // Update current screen tracking
         currentScreenId = screenId;
+        document.dispatchEvent(
+          new CustomEvent("screenchange", { detail: { screenId } }),
+        );
 
         // Show/hide quiz header
         const quizHeader = document.getElementById("quizHeader");

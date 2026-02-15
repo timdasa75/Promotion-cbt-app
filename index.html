@@ -46,21 +46,21 @@
 
                 <section id="topicSelectionScreen" class="screen active">
                     <div class="dashboard-grid">
-                        <article class="card stat-card"><p>Total Attempts</p><h3>42</h3></article>
-                        <article class="card stat-card"><p>Average Score</p><h3>74%</h3></article>
-                        <article class="card stat-card"><p>Current Streak</p><h3>6 days</h3><span class="badge-streak">On Track</span></article>
+                        <article class="card stat-card"><p>Total Attempts</p><h3 id="totalAttemptsStat">0</h3></article>
+                        <article class="card stat-card"><p>Average Score</p><h3 id="averageScoreStat">-</h3></article>
+                        <article class="card stat-card"><p>Current Streak</p><h3 id="streakStat">0 days</h3><span class="badge-streak" id="streakStatusBadge">Start today</span></article>
                     </div>
                     <div class="dashboard-grid two-col">
                         <article class="card recommendation-card" id="resumeSessionCard">
                             <p class="eyebrow">Continue Last Session</p>
-                            <h3>Public Service Rules</h3>
-                            <p>18 of 40 questions answered in Practice Mode.</p>
+                            <h3 id="continueTopicTitle">No session yet</h3>
+                            <p id="continueTopicMeta">Start a topic to track session continuity.</p>
                             <button class="btn btn-secondary" id="resumeSessionBtn" type="button">Resume Session</button>
                         </article>
                         <article class="card recommendation-card emphasis" id="recommendedTopicCard">
                             <p class="eyebrow">Recommended Next Topic</p>
-                            <h3>Financial Regulations</h3>
-                            <p>Your weakest recent area: budget controls and treasury process.</p>
+                            <h3 id="recommendedTopicTitle">Start with Public Service Rules</h3>
+                            <p id="recommendedTopicMeta">Recommendation will adapt to your weakest area after a few attempts.</p>
                             <button class="btn btn-primary" id="startRecommendationBtn" type="button">Start Recommendation</button>
                         </article>
                     </div>

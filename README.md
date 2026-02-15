@@ -31,7 +31,26 @@ An interactive CBT practice application for Nigerian civil service promotion exa
    ```bash
    git clone https://github.com/your-username/your-repo-name.git
    ```
-2. Open `index.html` in your browser
+2. Install test dependencies:
+   ```bash
+   npm install
+   ```
+3. Run a local server:
+   ```bash
+   python -m http.server 4173
+   ```
+4. Open:
+   ```text
+   http://127.0.0.1:4173/
+   ```
+
+## Smoke Tests (Playwright)
+
+Run the automated smoke suite:
+
+```bash
+npm run test:smoke
+```
 
 ## Sync Cloud Changes to Your Local Repository
 
