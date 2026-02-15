@@ -72,6 +72,9 @@ const quizState = {
   timeLeft: 0,
 };
 
+let reviewContext = "study"; // "study" (pre-quiz) or "session" (post-quiz)
+let lastCompletedSession = null;
+
 /**
  * DOM Elements cache
  */
@@ -357,16 +360,21 @@ function showQuestion() {
         // Different behavior based on mode
         if (currentMode === "review") {
           button.disabled = true;
-          // In review mode, show user's actual answer and whether it was correct
           const originalQuestionIndex = quizState.originalQuestions.indexOf(question);
-          if (quizState.userAnswers[originalQuestionIndex] !== undefined) {
+
+          if (reviewContext === "study") {
+            // Pre-quiz review: always reveal the correct answer and explanation.
+            if (index === question.correct) {
+              button.classList.add("correct");
+            }
+          } else if (quizState.userAnswers[originalQuestionIndex] !== undefined) {
+            // Post-quiz review: show user's answer state for the completed session.
             if (quizState.userAnswers[originalQuestionIndex] === index) {
               button.classList.add("selected");
               if (index !== question.correct) {
-                button.classList.add("user-incorrect"); // User selected wrong answer
+                button.classList.add("user-incorrect");
               }
             }
-            // Also show the correct answer
             if (index === question.correct) {
               button.classList.add("correct");
             }
@@ -420,6 +428,15 @@ function showQuestion() {
         updateNavigation();
       }, 100);
     }
+
+    if (currentMode === "review") {
+      showExplanation();
+      const reviewExplanationDiv = document.getElementById("explanation");
+      if (reviewExplanationDiv) {
+        reviewExplanationDiv.classList.add("show");
+        reviewExplanationDiv.style.display = "block";
+      }
+    }
   } else {
     optionsContainer.innerHTML =
       '<div class="error-message">No options found for this question.</div>';
@@ -428,7 +445,7 @@ function showQuestion() {
   // Update navigation and progress
   updateNavigation();
   updateProgress();
-  if (currentMode !== "review") {
+  if (currentMode !== "review" || reviewContext === "study") {
     showQuestionMap();
   }
 }
@@ -518,7 +535,7 @@ function updateNavigation() {
   prevButton.textContent = "Previous";
 
   if (currentMode === "review") {
-    // In review mode, next button is always enabled
+    // In review mode, next button is always enabled (study/session).
     nextButton.disabled = false;
     submitButton.style.display = "none";
     nextButton.style.display = "inline-flex";
@@ -579,9 +596,16 @@ function updateNavigation() {
   // Handle last question
   if (quizState.currentQuestionIndex === quizState.allQuestions.length - 1) {
     if (currentMode === "review") {
-      nextButton.textContent = "End Review";
+      nextButton.textContent =
+        reviewContext === "study" ? "End Study Review" : "End Review";
       nextButton.onclick = () => {
-        if (!nextButton.disabled) showResults();
+        if (!nextButton.disabled) {
+          if (reviewContext === "study") {
+            showScreen("modeSelectionScreen");
+          } else {
+            showScreen("resultsScreen");
+          }
+        }
       };
     } else if (currentMode === "exam") {
       nextButton.textContent = "Submit Exam";
@@ -827,20 +851,10 @@ function showResults() {
   }
 
   if (currentMode === "review") {
-    finalScore.textContent = "Review Complete";
-    performanceText.textContent =
-      "You have reviewed all questions and answers.";
-    if (correctCount) correctCount.parentElement.style.display = "none";
-    if (wrongCount) wrongCount.parentElement.style.display = "none";
-    if (unansweredCount) unansweredCount.parentElement.style.display = "none";
-    if (timeSpent) timeSpent.parentElement.style.display = "none";
-    
-    // Hide the review incorrect button if it's already shown
-    const reviewIncorrectResultsBtn = document.getElementById("reviewIncorrectResultsBtn");
-    if (reviewIncorrectResultsBtn) {
-      reviewIncorrectResultsBtn.classList.add("hidden");
+    if (reviewContext === "study") {
+      showScreen("modeSelectionScreen");
+      return;
     }
-
     showScreen("resultsScreen");
     return;
   }
@@ -863,6 +877,14 @@ function showResults() {
   }
   const scorePercentage = Math.round((quizState.score / quizState.allQuestions.length) * 100);
   finalScore.textContent = `${scorePercentage}%`;
+
+  // Capture the just-completed quiz session for post-quiz review filters.
+  lastCompletedSession = {
+    questions: [...quizState.originalQuestions],
+    userAnswers: [...quizState.userAnswers],
+    topicId: currentTopic?.id || null,
+    sourceMode: currentMode,
+  };
 
   const progressSummary = recordAttemptResult({
     topicId: currentTopic?.id,
@@ -966,9 +988,7 @@ function showResults() {
     if (quizState.incorrectAnswers.length > 0) {
       reviewIncorrectResultsBtn.classList.remove("hidden");
       reviewIncorrectResultsBtn.onclick = () => {
-        currentMode = "review";
-        initializeQuiz();
-        applyReviewFilter("incorrect");
+        startPostQuizReview("incorrect");
       };
     } else {
       reviewIncorrectResultsBtn.classList.add("hidden");
@@ -978,9 +998,7 @@ function showResults() {
   const reviewAnswersBtn = document.getElementById("reviewAnswersBtn");
   if (reviewAnswersBtn) {
     reviewAnswersBtn.onclick = () => {
-      currentMode = "review";
-      initializeQuiz();
-      applyReviewFilter("all");
+      startPostQuizReview("all");
     };
   }
 
@@ -998,6 +1016,9 @@ export function setCurrentTopic(topic) {
 export function setCurrentMode(mode) {
   debugLog("setCurrentMode called with:", mode);
   currentMode = mode;
+  if (mode === "review") {
+    reviewContext = "study";
+  }
   
   // Update the quiz mode display in the header
   const quizModeDisplay = document.getElementById("quizModeDisplay");
@@ -1029,7 +1050,7 @@ export async function loadQuestions(questions = null) {
   if (questions) {
     quizState.allQuestions = questions;
     quizState.originalQuestions = questions;
-    initializeQuiz();
+    initializeQuiz({ context: currentMode === "review" ? "study" : "session" });
     return;
   }
 
@@ -1076,7 +1097,7 @@ export async function loadQuestions(questions = null) {
       quizState.allQuestions = quizState.allQuestions.slice(0, 40);
     }
 
-    initializeQuiz();
+    initializeQuiz({ context: currentMode === "review" ? "study" : "session" });
   } catch (error) {
     console.error("Error loading questions:", error);
     showError("Failed to load questions. Please try again.");
@@ -1086,16 +1107,31 @@ export async function loadQuestions(questions = null) {
 
 let reviewFilter = "all";
 
+function startPostQuizReview(filter = "all") {
+  if (!lastCompletedSession || !lastCompletedSession.questions?.length) {
+    showError("No completed quiz session available for review.");
+    return;
+  }
+
+  currentMode = "review";
+  reviewContext = "session";
+  quizState.allQuestions = [...lastCompletedSession.questions];
+  quizState.originalQuestions = [...lastCompletedSession.questions];
+  quizState.userAnswers = [...lastCompletedSession.userAnswers];
+  quizState.currentQuestionIndex = 0;
+  quizState.feedbackShown = new Array(quizState.allQuestions.length).fill(true);
+
+  initializeQuiz({ preserveAnswers: true, context: "session", keepOriginalQuestions: true });
+  applyReviewFilter(filter);
+}
+
 function jumpToQuestion(index) {
     if (currentMode === "review") {
-        const question = quizState.originalQuestions[index];
-        const filteredIndex = quizState.allQuestions.indexOf(question);
-        if (filteredIndex !== -1) {
-            quizState.currentQuestionIndex = filteredIndex;
-            showQuestion();
+        if (index < 0 || index >= quizState.allQuestions.length) return;
+        quizState.currentQuestionIndex = index;
+        showQuestion();
+        if (reviewContext === "session") {
             showReviewControls();
-        } else {
-            showError("Question not found in current filter.");
         }
     } else {
         quizState.currentQuestionIndex = index;
@@ -1104,6 +1140,9 @@ function jumpToQuestion(index) {
 }
 
 function applyReviewFilter(filter) {
+    if (currentMode !== "review" || reviewContext !== "session") {
+        return;
+    }
     reviewFilter = filter;
     quizState.allQuestions = getFilteredQuestions();
     quizState.currentQuestionIndex = 0;
@@ -1136,19 +1175,37 @@ document.getElementById("reviewUnansweredBtn").onclick = () => applyReviewFilter
 function showReviewControls() {
     const reviewControls = document.getElementById("reviewControls");
     const reviewNavigator = document.getElementById("reviewNavigator");
+    const reviewFilters = document.getElementById("reviewFilters");
 
     if (reviewControls && reviewNavigator) {
+        if (reviewContext !== "session") {
+            reviewControls.classList.add("hidden");
+            return;
+        }
+
         reviewControls.classList.remove("hidden");
         reviewNavigator.innerHTML = "";
 
-        quizState.originalQuestions.forEach((_, index) => {
+        if (reviewFilters) {
+            reviewFilters.querySelectorAll(".chip").forEach((chip) => chip.classList.remove("active"));
+            const activeMap = {
+                all: "reviewAllBtn",
+                correct: "reviewCorrectBtn",
+                incorrect: "reviewIncorrectBtn",
+                unanswered: "reviewUnansweredBtn",
+            };
+            const activeChip = document.getElementById(activeMap[reviewFilter]);
+            if (activeChip) activeChip.classList.add("active");
+        }
+
+        quizState.allQuestions.forEach((question, index) => {
             const navBtn = document.createElement("button");
             navBtn.className = "nav-btn";
             navBtn.textContent = index + 1;
             navBtn.onclick = () => jumpToQuestion(index);
 
-            const answer = quizState.userAnswers[index];
-            const question = quizState.originalQuestions[index];
+            const originalIndex = quizState.originalQuestions.indexOf(question);
+            const answer = quizState.userAnswers[originalIndex];
 
             if (answer === undefined) {
                 navBtn.classList.add("unanswered");
@@ -1158,7 +1215,7 @@ function showReviewControls() {
                 navBtn.classList.add("incorrect");
             }
 
-            if (quizState.allQuestions[quizState.currentQuestionIndex] === quizState.originalQuestions[index]) {
+            if (index === quizState.currentQuestionIndex) {
                 navBtn.classList.add("current");
             }
 
@@ -1194,11 +1251,22 @@ function showQuestionMap() {
 }
 
 // Initialize the quiz
-function initializeQuiz() {
-  quizState.originalQuestions = [...quizState.allQuestions];
+function initializeQuiz(options = {}) {
+  const {
+    preserveAnswers = false,
+    context = "study",
+    keepOriginalQuestions = false,
+  } = options;
+
+  reviewContext = context;
+  if (!keepOriginalQuestions) {
+    quizState.originalQuestions = [...quizState.allQuestions];
+  }
   quizState.currentQuestionIndex = 0;
   quizState.score = 0;
-  quizState.userAnswers = [];
+  if (!preserveAnswers) {
+    quizState.userAnswers = [];
+  }
   // Initialize feedbackShown array to track if feedback has been shown for each question
   quizState.feedbackShown = new Array(quizState.allQuestions.length).fill(false);
 
@@ -1208,16 +1276,16 @@ function initializeQuiz() {
   // Now that the screen is shown, get DOM elements
   getDOMElements();
 
-  if (currentMode === "review") {
+  if (currentMode === "review" && reviewContext === "session") {
     showReviewControls();
     const questionMap = document.getElementById("questionMap");
-    if(questionMap) {
-        questionMap.classList.add("hidden");
+    if (questionMap) {
+      questionMap.classList.add("hidden");
     }
   } else {
     const reviewControls = document.getElementById("reviewControls");
-    if(reviewControls) {
-        reviewControls.classList.add("hidden");
+    if (reviewControls) {
+      reviewControls.classList.add("hidden");
     }
     showQuestionMap();
   }
