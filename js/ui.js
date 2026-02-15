@@ -7,7 +7,7 @@ import {
 import { debugLog } from "./logger.js";
 
 // Track current screen
-let currentScreenId = "topicSelectionScreen";
+let currentScreenId = "splashScreen";
 
 // Show a specific screen with animation
 export function showScreen(screenId) {
@@ -307,14 +307,7 @@ export async function displayTopics(topics, onSelect) {
     topicList.appendChild(topicCard);
     debugLog("Added topic card:", topic.name);
   });
-  debugLog("Showing topic selection screen");
-  // Make sure the screen is visible
-  const topicSelectionScreen = document.getElementById("topicSelectionScreen");
-  if (topicSelectionScreen) {
-    topicSelectionScreen.classList.remove("hidden");
-    topicSelectionScreen.classList.add("active");
-  }
-  showScreen("topicSelectionScreen");
+  debugLog("Topic list populated");
 }
 
 // Get total question count for a topic

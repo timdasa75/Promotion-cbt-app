@@ -1,7 +1,7 @@
 // app.js - Main application module
 
 import { loadData } from "./data.js";
-import { displayTopics, selectTopic, showError, showWarning } from "./ui.js";
+import { displayTopics, selectTopic, showError, showScreen, showWarning } from "./ui.js";
 import {
   loadQuestions,
   setCurrentTopic,
@@ -181,6 +181,7 @@ function refreshDashboardInsights() {
   const continueTopicMeta = document.getElementById("continueTopicMeta");
   const recommendedTopicTitle = document.getElementById("recommendedTopicTitle");
   const recommendedTopicMeta = document.getElementById("recommendedTopicMeta");
+  const splashResumeBtn = document.getElementById("splashResumeBtn");
 
   if (totalAttemptsStat) totalAttemptsStat.textContent = String(totalAttempts);
   if (averageScoreStat) {
@@ -216,6 +217,11 @@ function refreshDashboardInsights() {
         ? "Based on your weakest average score area."
         : "Recommendation will adapt after your first attempts.";
   }
+
+  if (splashResumeBtn) {
+    const canResume = Boolean(latestAttempt?.topicId);
+    splashResumeBtn.classList.toggle("hidden", !canResume);
+  }
 }
 
 async function resumeLastSession() {
@@ -247,6 +253,8 @@ async function startRecommendation() {
 }
 
 function initializeDashboardActions() {
+  const startLearningBtn = document.getElementById("startLearningBtn");
+  const splashResumeBtn = document.getElementById("splashResumeBtn");
   const resumeBtn = document.getElementById("resumeSessionBtn");
   const resumeCard = document.getElementById("resumeSessionCard");
   const recommendationBtn = document.getElementById("startRecommendationBtn");
@@ -254,6 +262,18 @@ function initializeDashboardActions() {
   const filterDocumentBtn = document.getElementById("filterDocumentBtn");
   const filterCompetencyBtn = document.getElementById("filterCompetencyBtn");
   const filterRecentBtn = document.getElementById("filterRecentBtn");
+
+  if (startLearningBtn) {
+    startLearningBtn.addEventListener("click", () => {
+      showScreen("topicSelectionScreen");
+    });
+  }
+
+  if (splashResumeBtn) {
+    splashResumeBtn.addEventListener("click", () => {
+      resumeLastSession();
+    });
+  }
 
   if (resumeBtn) {
     resumeBtn.addEventListener("click", () => {

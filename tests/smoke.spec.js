@@ -2,9 +2,11 @@ import { test, expect } from "@playwright/test";
 
 test("dashboard filters and action buttons are interactive", async ({ page }) => {
   await page.goto("/");
-  await expect(page.locator("#topicList .topic-card").first()).toBeVisible();
+  await page.click("#startLearningBtn");
+  await expect(page.locator("#topicSelectionScreen")).toBeVisible();
+  await expect(page.locator("#topicList .topic-card:not(.hidden)").first()).toBeVisible();
 
-  const allCards = page.locator("#topicList .topic-card");
+  const allCards = page.locator("#topicList .topic-card:not(.hidden)");
   const totalCards = await allCards.count();
   expect(totalCards).toBeGreaterThan(0);
 
@@ -22,9 +24,11 @@ test("dashboard filters and action buttons are interactive", async ({ page }) =>
 
 test("review mode acts as pre-quiz study with answers and explanations visible", async ({ page }) => {
   await page.goto("/");
-  await expect(page.locator("#topicList .topic-card").first()).toBeVisible();
+  await page.click("#startLearningBtn");
+  await expect(page.locator("#topicSelectionScreen")).toBeVisible();
+  await expect(page.locator("#topicList .topic-card:not(.hidden)").first()).toBeVisible();
 
-  await page.locator("#topicList .topic-card").first().click();
+  await page.locator("#topicList .topic-card:not(.hidden)").first().click();
   await expect(page.locator("#categorySelectionScreen")).toBeVisible();
   await page.click("#selectAllCategoryBtn");
 
@@ -70,6 +74,8 @@ test("dashboard stats hydrate from stored progress data", async ({ page }) => {
   });
 
   await page.goto("/");
+  await page.click("#startLearningBtn");
+  await expect(page.locator("#topicSelectionScreen")).toBeVisible();
   await expect(page.locator("#totalAttemptsStat")).toHaveText("2");
   await expect(page.locator("#averageScoreStat")).toHaveText("65%");
   await expect(page.locator("#continueTopicTitle")).toContainText("Financial Regulations");

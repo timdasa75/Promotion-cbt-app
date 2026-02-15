@@ -147,8 +147,10 @@ function calculateProgressInsights(summary, currentTopicId) {
     avgScore: Math.round(entry.scores.reduce((acc, score) => acc + score, 0) / entry.scores.length),
   }));
 
-  const weakestTopic = topicAverages.length
-    ? topicAverages.sort((a, b) => a.avgScore - b.avgScore)[0]
+  const sortedByScore = [...topicAverages].sort((a, b) => a.avgScore - b.avgScore);
+  const weakestTopic = sortedByScore.length ? sortedByScore[0] : null;
+  const strongestTopic = sortedByScore.length
+    ? sortedByScore[sortedByScore.length - 1]
     : null;
 
   const recommendedTopic = weakestTopic && weakestTopic.topicId !== currentTopicId
@@ -158,6 +160,7 @@ function calculateProgressInsights(summary, currentTopicId) {
   return {
     attemptsCount: attempts.length,
     avgRecentScore,
+    strongestTopic,
     weakestTopic,
     recommendedTopic,
   };
@@ -936,8 +939,11 @@ function showResults() {
     document.getElementById("categoryBreakdown") ||
     document.createElement("div");
   analyticsDiv.id = "categoryBreakdown";
-  analyticsDiv.innerHTML = `
-        <h3>📊 Performance Analysis</h3>
+    analyticsDiv.innerHTML = `
+        <div class="section-head screen-header">
+            <h2>Performance Insights</h2>
+            <p>Track your strengths, weak points, and best next step.</p>
+        </div>
         <div class="analytics-grid">
             <div class="analytic-item">
                 <div class="analytic-value">${scorePercentage}%</div>
@@ -956,22 +962,30 @@ function showResults() {
                 <div class="analytic-label">Unanswered</div>
             </div>
         </div>
-        <div class="analytics-grid progress-grid">
-            <div class="analytic-item">
-                <div class="analytic-value">${progressInsights.attemptsCount}</div>
-                <div class="analytic-label">Total Attempts</div>
-            </div>
-            <div class="analytic-item">
-                <div class="analytic-value">${progressInsights.avgRecentScore ?? "-"}${progressInsights.avgRecentScore !== null ? "%" : ""}</div>
-                <div class="analytic-label">Recent Avg (last 5)</div>
-            </div>
-            <div class="analytic-item">
-                <div class="analytic-value">${progressInsights.weakestTopic ? `${progressInsights.weakestTopic.avgScore}%` : "-"}</div>
-                <div class="analytic-label">Weakest Topic Avg</div>
-            </div>
+        <div class="insight-grid">
+            <article class="insight-card strongest">
+                <p class="eyebrow">Strongest Area</p>
+                <h3>${progressInsights.strongestTopic?.topicName || "Not enough data yet"}</h3>
+                <p>${progressInsights.strongestTopic ? `${progressInsights.strongestTopic.avgScore}% average` : "Complete more sessions to unlock this insight."}</p>
+            </article>
+            <article class="insight-card weakest">
+                <p class="eyebrow">Weakest Area</p>
+                <h3>${progressInsights.weakestTopic?.topicName || "Not enough data yet"}</h3>
+                <p>${progressInsights.weakestTopic ? `${progressInsights.weakestTopic.avgScore}% average` : "Complete more sessions to unlock this insight."}</p>
+            </article>
+            <article class="insight-card trend">
+                <p class="eyebrow">Recent Trend</p>
+                <h3>${progressInsights.avgRecentScore ?? "-"}${progressInsights.avgRecentScore !== null ? "%" : ""}</h3>
+                <p>Based on your latest 5 attempts across topics.</p>
+            </article>
+            <article class="insight-card trend">
+                <p class="eyebrow">Total Attempts</p>
+                <h3>${progressInsights.attemptsCount}</h3>
+                <p>Consistent practice improves retention and exam speed.</p>
+            </article>
         </div>
         <div class="recommendation ${scorePercentage >= 70 ? "success" : "improvement"}">
-            <strong>Recommendation:</strong> ${progressInsights.recommendedTopic ? `Prioritize ${progressInsights.recommendedTopic} next.` : (scorePercentage >= 70 ? "You're ready for the next level!" : "Consider reviewing this topic before advancing.")}
+            <strong>Recommended Next Action:</strong> ${progressInsights.recommendedTopic ? `Prioritize ${progressInsights.recommendedTopic} next.` : (scorePercentage >= 70 ? "You are ready for a timed drill in your next session." : "Review mistakes first, then retake this topic in Practice mode.")}
         </div>
     `;
 
@@ -1332,3 +1346,5 @@ function initializeQuiz(options = {}) {
   // Initialize progress bar
   updateProgress();
 }
+
+

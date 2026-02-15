@@ -35,16 +35,27 @@
                 </button>
             </header>
             <main>
-                <section id="splashScreen" class="screen hidden">
+                <section id="splashScreen" class="screen active">
                     <div class="hero-panel">
+                        <div class="welcome-emblem" aria-hidden="true">
+                            <div class="welcome-emblem-pillars"><span></span><span></span><span></span></div>
+                            <div class="welcome-emblem-base"></div>
+                        </div>
                         <p class="eyebrow">Welcome</p>
-                        <h2>Prepare confidently for your promotion examinations.</h2>
-                        <p>Study official documents, build competency mastery, and practice in exam-ready conditions.</p>
-                        <button class="btn btn-primary" onclick="showScreen('topicSelectionScreen')">Start Learning</button>
+                        <h2>Promotion CBT</h2>
+                        <p class="hero-copy">Master your Nigerian Civil Service promotion exams with confidence.</p>
+                        <div class="button-row">
+                            <button class="btn btn-primary" id="startLearningBtn" onclick="showScreen('topicSelectionScreen')" type="button">Start Learning</button>
+                            <button class="btn btn-secondary hidden" id="splashResumeBtn" type="button">Resume Last Session</button>
+                        </div>
+                        <div class="hero-meta-box">
+                            <p class="hero-meta">10 core topics - Practice, Exam, and Review modes</p>
+                        </div>
+                        <p class="hero-meta legal">Federal Civil Service - CBT Prep Platform</p>
                     </div>
                 </section>
 
-                <section id="topicSelectionScreen" class="screen active">
+                <section id="topicSelectionScreen" class="screen hidden">
                     <div class="dashboard-grid">
                         <article class="card stat-card"><p>Total Attempts</p><h3 id="totalAttemptsStat">0</h3></article>
                         <article class="card stat-card"><p>Average Score</p><h3 id="averageScoreStat">-</h3></article>
@@ -75,7 +86,7 @@
                         </div>
                     </div>
                     <div class="card">
-                        <div class="section-head"><h2>Topic Selection</h2><p>10 core topics aligned to civil service standards.</p></div>
+                        <div class="section-head screen-header"><h2>Topic Selection</h2><p>10 core topics aligned to civil service standards.</p></div>
                         <div class="topic-highlight-row"><span class="pill">PSR</span><span class="pill">FR</span><span class="pill">PPA</span><span class="pill">Constitutional and Legal</span></div>
                         <div class="card-container" id="topicList">
                             <div class="loading-skeleton-grid" aria-hidden="true"><div class="skeleton-card"></div><div class="skeleton-card"></div><div class="skeleton-card"></div><div class="skeleton-card"></div></div>
@@ -96,7 +107,7 @@
                         <div class="summary-metrics"><span>Total Questions: <strong>124</strong></span><span>Confidence: <strong>68%</strong></span></div>
                     </div>
                     <div class="card">
-                        <div class="section-head"><h2>Subcategories</h2><p>Topic selected: <span id="selectedTopicForCategory">-</span></p></div>
+                        <div class="section-head screen-header"><h2>Subcategories</h2><p>Topic selected: <span id="selectedTopicForCategory">-</span></p></div>
                         <div class="card-container" id="categoryList"><div class="loading">Loading categories...</div></div>
                         <div class="button-row"><button class="btn btn-secondary" id="backToTopicBtn" type="button">Back</button><button class="btn btn-primary" id="selectAllCategoryBtn" type="button">Select All</button></div>
                     </div>
@@ -104,7 +115,7 @@
 
                 <section id="modeSelectionScreen" class="screen hidden">
                     <div class="card">
-                        <div class="section-head">
+                        <div class="section-head screen-header">
                             <h2 id="modeQuizTitle">Mode Selection</h2>
                             <p id="modeQuizDescription">Choose how to learn for <span id="selectedTopicName">this topic</span>.</p>
                         </div>
@@ -174,7 +185,7 @@
 
                 <section id="reviewMistakesScreen" class="screen hidden">
                     <div class="card">
-                        <div class="section-head"><h2>Review Mistakes</h2><p>Filter incorrect responses by topic, subcategory, and difficulty.</p></div>
+                        <div class="section-head screen-header"><h2>Review Mistakes</h2><p>Filter incorrect responses by topic, subcategory, and difficulty.</p></div>
                         <div class="toolbar-row">
                             <select aria-label="Filter by topic"><option>All Topics</option><option>PSR</option><option>Financial Regulations</option></select>
                             <select aria-label="Filter by subcategory"><option>All Subcategories</option><option>Appointments</option><option>Discipline</option></select>
@@ -200,11 +211,11 @@
 
                 <section id="analyticsScreen" class="screen hidden">
                     <div class="dashboard-grid two-col">
-                        <article class="card"><div class="section-head"><h2>Score Trend</h2><p>Performance over the last 8 attempts.</p></div><div class="chart-placeholder line-chart"><span>Trend Chart</span></div></article>
-                        <article class="card"><div class="section-head"><h2>Weekly Consistency</h2><p>Daily study activity this week.</p></div><div class="chart-placeholder bar-chart"><span>Activity Bars</span></div></article>
+                        <article class="card"><div class="section-head screen-header"><h2>Score Trend</h2><p>Performance over the last 8 attempts.</p></div><div class="chart-placeholder line-chart"><span>Trend Chart</span></div></article>
+                        <article class="card"><div class="section-head screen-header"><h2>Weekly Consistency</h2><p>Daily study activity this week.</p></div><div class="chart-placeholder bar-chart"><span>Activity Bars</span></div></article>
                     </div>
                     <div class="card">
-                        <div class="section-head"><h2>Topic Mastery Heatmap</h2><p>Confidence map by core topic.</p></div>
+                        <div class="section-head screen-header"><h2>Topic Mastery Heatmap</h2><p>Confidence map by core topic.</p></div>
                         <div class="heatmap-grid"><span>PSR 82%</span><span>FR 56%</span><span>PPA 69%</span><span>Constitution 71%</span><span>Ethics 77%</span><span>ICT 64%</span><span>Leadership 59%</span><span>Policy 73%</span></div>
                     </div>
                     <div class="card recommendation-card emphasis">
