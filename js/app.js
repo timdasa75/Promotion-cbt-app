@@ -1,7 +1,7 @@
 // app.js - Main application module
 
 import { loadData } from "./data.js";
-import { displayTopics, selectTopic, showScreen, showError } from "./ui.js";
+import { displayTopics, selectTopic, showError } from "./ui.js";
 import {
   loadQuestions,
   setCurrentTopic,
@@ -11,14 +11,12 @@ import {
 } from "./quiz.js";
 import { debugLog } from "./logger.js";
 
-// Global variables
 let currentTopic = null;
 
-// Initialize the app
 async function init() {
   try {
     debugLog("Initializing app...");
-    const topicsData = await loadData(); // Renamed to avoid conflict with imported topics
+    const topicsData = await loadData();
     debugLog("Loaded topics:", topicsData);
     if (!topicsData || topicsData.length === 0) {
       console.error("No topics loaded");
@@ -33,22 +31,19 @@ async function init() {
   }
 }
 
-// Handle topic selection from UI
 async function handleTopicSelect(topic) {
   currentTopic = topic;
-  setCurrentTopic(topic); // Update currentTopic in quiz.js module
-
-  // Call the ui.js selectTopic function which handles categories properly
+  setCurrentTopic(topic);
   await selectTopic(topic);
 
-  // Attach event listeners for mode cards after modeSelectionScreen is likely shown
-  // This needs to be done dynamically because the elements might not exist on initial DOMContentLoaded
-  document.getElementById("practiceModeCard").onclick = () =>
-    startQuiz("practice");
-  document.getElementById("examModeCard").onclick = () => startQuiz("exam");
-  document.getElementById("reviewModeCard").onclick = () => startQuiz("review");
+  const practiceModeCard = document.getElementById("practiceModeCard");
+  const examModeCard = document.getElementById("examModeCard");
+  const reviewModeCard = document.getElementById("reviewModeCard");
 
-  // Ensure quiz title and description are updated for mode selection screen
+  if (practiceModeCard) practiceModeCard.onclick = () => startQuiz("practice");
+  if (examModeCard) examModeCard.onclick = () => startQuiz("exam");
+  if (reviewModeCard) reviewModeCard.onclick = () => startQuiz("review");
+
   const quizTitle = document.getElementById("modeQuizTitle");
   const quizDescription = document.getElementById("modeQuizDescription");
   const selectedTopicName = document.getElementById("selectedTopicName");
@@ -57,17 +52,15 @@ async function handleTopicSelect(topic) {
   if (selectedTopicName) selectedTopicName.textContent = topic.name;
 }
 
-// Start the quiz with selected mode
 function startQuiz(mode) {
   if (!currentTopic) {
     showError("No topic selected.");
     return;
   }
   setCurrentMode(mode);
-  loadQuestions(); // loadQuestions in quiz.js will use its internal currentTopic and currentMode
+  loadQuestions();
 }
 
-// Initialize result screen buttons
 function initializeResultButtons() {
   const retakeQuizBtn = document.getElementById("retakeQuizBtn");
   const reviewAnswersBtn = document.getElementById("reviewAnswersBtn");
@@ -91,41 +84,38 @@ function initializeResultButtons() {
   }
 }
 
-// Make startQuiz globally accessible (for onclick attributes if any are still used, but prefer event listeners)
 window.startQuiz = startQuiz;
 
-  // Initialize on page load
 document.addEventListener("DOMContentLoaded", function () {
   init();
   initializeResultButtons();
 
-  // Dark Mode Toggle
-  const themeToggle = document.getElementById('themeToggle');
-  const themeIcon = document.querySelector('.theme-icon');
+  const themeToggle = document.getElementById("themeToggle");
+  const themeIcon = document.querySelector(".theme-icon");
   const body = document.body;
 
-  // Check for saved theme preference or respect OS preference
-  const savedTheme = localStorage.getItem('theme');
-  const osDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const savedTheme = localStorage.getItem("theme");
+  const osDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
-  if (savedTheme === 'dark' || (!savedTheme && osDark)) {
-      body.classList.add('dark-mode');
-      themeIcon.textContent = '🌙';
+  if (savedTheme === "dark" || (!savedTheme && osDark)) {
+    body.classList.add("dark-mode");
+    if (themeIcon) themeIcon.textContent = "Dark";
   } else {
-      // Ensure light mode is set by default
-      body.classList.remove('dark-mode');
-      themeIcon.textContent = '☀️';
+    body.classList.remove("dark-mode");
+    if (themeIcon) themeIcon.textContent = "Light";
   }
 
-  themeToggle.addEventListener('click', () => {
-      body.classList.toggle('dark-mode');
+  if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+      body.classList.toggle("dark-mode");
 
-      if (body.classList.contains('dark-mode')) {
-          themeIcon.textContent = '🌙';
-          localStorage.setItem('theme', 'dark');
+      if (body.classList.contains("dark-mode")) {
+        if (themeIcon) themeIcon.textContent = "Dark";
+        localStorage.setItem("theme", "dark");
       } else {
-          themeIcon.textContent = '☀️';
-          localStorage.setItem('theme', 'light');
+        if (themeIcon) themeIcon.textContent = "Light";
+        localStorage.setItem("theme", "light");
       }
-  });
+    });
+  }
 });

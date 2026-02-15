@@ -5,9 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta
             name="description"
-            content="Directorate Levels Promotion CBT Practice Application"
+            content="Promotion CBT for Nigerian Federal Civil Service exam preparation"
         />
-        <title>Directorate Levels Promotion CBT Practice</title>
+        <title>Promotion CBT</title>
         <link rel="stylesheet" href="css/normalize.css" />
         <link rel="stylesheet" href="css/fonts.css" />
         <link rel="stylesheet" href="css/styles.css" />
@@ -15,268 +15,235 @@
     </head>
     <body>
         <script>
-            // Detect if we're running locally or on GitHub Pages
             window.BASE_URL =
                 window.location.hostname === "127.0.0.1" ||
                 window.location.hostname === "localhost"
                     ? ""
                     : "/Promotion-cbt-app";
-            console.log("BASE_URL set to:", window.BASE_URL);
-            console.log("Hostname:", window.location.hostname);
-            console.log("Port:", window.location.port);
-            console.log("Protocol:", window.location.protocol);
         </script>
         <div class="app-container">
-            <!-- Topic Selection Screen -->
-            <div id="topicSelectionScreen" class="screen active">
-                <header class="header">
-                    <h1>🇳🇬 Directorate Levels Promotion CBT Practice</h1>
-                    <p>Select a topic to begin</p>
-                    <div class="theme-toggle-container">
-                        <button
-                            id="themeToggle"
-                            class="theme-toggle-btn"
-                            aria-label="Toggle dark mode"
-                        >
-                            <span class="theme-icon">☀️</span>
-                        </button>
-                    </div>
-                    <div class="nigerian-flag">
-                        <div class="green-stripe"></div>
-                        <div class="white-stripe"></div>
-                        <div class="green-stripe"></div>
-                    </div>
-                </header>
-                <div class="quiz-card">
-                    <h2 class="section-title">Available Topics</h2>
-                    <div class="card-container" id="topicList">
-                        <div class="loading">Loading topics...</div>
+            <header class="app-shell-header">
+                <div class="brand-block">
+                    <div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+                    <div>
+                        <p class="brand-eyebrow">Federal Civil Service Learning Suite</p>
+                        <h1>Promotion CBT</h1>
                     </div>
                 </div>
-            </div>
+                <button id="themeToggle" class="icon-button" aria-label="Toggle light and dark theme" type="button">
+                    <span class="theme-icon">Light</span>
+                </button>
+            </header>
+            <main>
+                <section id="splashScreen" class="screen hidden">
+                    <div class="hero-panel">
+                        <p class="eyebrow">Welcome</p>
+                        <h2>Prepare confidently for your promotion examinations.</h2>
+                        <p>Study official documents, build competency mastery, and practice in exam-ready conditions.</p>
+                        <button class="btn btn-primary" onclick="showScreen('topicSelectionScreen')">Start Learning</button>
+                    </div>
+                </section>
 
-            <!-- Category Selection Screen -->
-            <div id="categorySelectionScreen" class="screen hidden">
-                <header class="header">
-                    <h1 id="categoryQuizTitle">Select Category</h1>
-                    <p id="categoryQuizDescription">
-                        Choose a category from
-                        <span id="selectedTopicForCategory"></span>
-                    </p>
-                    <div class="nigerian-flag">
-                        <div class="green-stripe"></div>
-                        <div class="white-stripe"></div>
-                        <div class="green-stripe"></div>
+                <section id="topicSelectionScreen" class="screen active">
+                    <div class="dashboard-grid">
+                        <article class="card stat-card"><p>Total Attempts</p><h3>42</h3></article>
+                        <article class="card stat-card"><p>Average Score</p><h3>74%</h3></article>
+                        <article class="card stat-card"><p>Current Streak</p><h3>6 days</h3><span class="badge-streak">On Track</span></article>
                     </div>
-                </header>
-                <div class="quiz-card">
-                    <h2 class="section-title">Select Category</h2>
-                    <div class="card-container" id="categoryList">
-                        <div class="loading">Loading categories...</div>
+                    <div class="dashboard-grid two-col">
+                        <article class="card recommendation-card">
+                            <p class="eyebrow">Continue Last Session</p>
+                            <h3>Public Service Rules</h3>
+                            <p>18 of 40 questions answered in Practice Mode.</p>
+                            <button class="btn btn-secondary" type="button">Resume Session</button>
+                        </article>
+                        <article class="card recommendation-card emphasis">
+                            <p class="eyebrow">Recommended Next Topic</p>
+                            <h3>Financial Regulations</h3>
+                            <p>Your weakest recent area: budget controls and treasury process.</p>
+                            <button class="btn btn-primary" type="button">Start Recommendation</button>
+                        </article>
                     </div>
-                    <div class="buttons-container">
-                        <button class="btn btn-outline" id="backToTopicBtn">
-                            ← Change Topic
-                        </button>
-                        <button
-                            class="btn btn-outline"
-                            id="selectAllCategoryBtn"
-                        >
-                            Select All Categories
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Mode Selection Screen -->
-            <div id="modeSelectionScreen" class="screen hidden">
-                <header class="header">
-                    <h1 id="modeQuizTitle">Quiz Mode</h1>
-                    <p id="modeQuizDescription">
-                        Choose how you want to practice for
-                        <span id="selectedTopicName"></span>
-                    </p>
-                    <div class="nigerian-flag">
-                        <div class="green-stripe"></div>
-                        <div class="white-stripe"></div>
-                        <div class="green-stripe"></div>
-                    </div>
-                </header>
-                <div class="quiz-card">
-                    <h2 class="section-title">Select Quiz Mode</h2>
-                    <div class="card-container">
-                        <div class="unified-card" id="practiceModeCard">
-                            <div class="mode-icon">📚</div>
-                            <h3>Practice Mode</h3>
-                            <p>
-                                Learn with immediate feedback. Unlimited time.
-                            </p>
-                        </div>
-                        <div class="unified-card" id="examModeCard">
-                            <div class="mode-icon">⏱️</div>
-                            <h3>Exam Mode</h3>
-                            <p>Timed test. No immediate feedback.</p>
-                        </div>
-                        <div class="unified-card" id="reviewModeCard">
-                            <div class="mode-icon">🔍</div>
-                            <h3>Review Mode</h3>
-                            <p>
-                                Review all questions and answers without
-                                scoring.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="buttons-container">
-                        <button class="btn btn-outline" id="backToCategoryBtn">
-                            ← Change Category
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Quiz Screen -->
-            <div id="quizScreen" class="screen hidden">
-                <header class="header">
-                    <h1 id="quizScreenTitle">Quiz Mode</h1>
-                    <p id="quizScreenDescription">Active quiz session (<span id="quizModeDisplay">mode</span>)</p>
-                    <div class="nigerian-flag">
-                        <div class="green-stripe"></div>
-                        <div class="white-stripe"></div>
-                        <div class="green-stripe"></div>
-                    </div>
-                </header>
-
-                <div class="progress-bar">
-                    <div class="progress-fill" id="progressFill"></div>
-                </div>
-
-                <div class="quiz-card">
-                    <div id="questionMap" class="hidden"></div>
-                    <div id="reviewControls" class="hidden">
-                        <div id="reviewFilters">
-                            <button id="reviewAllBtn" class="btn btn-outline">All</button>
-                            <button id="reviewCorrectBtn" class="btn btn-outline">Correct</button>
-                            <button id="reviewIncorrectBtn" class="btn btn-outline">Incorrect</button>
-                            <button id="reviewUnansweredBtn" class="btn btn-outline">Unanswered</button>
-                        </div>
-                        <div id="reviewNavigator"></div>
-                    </div>
-                    <div class="quiz-header-row">
-                        <div class="quiz-topic-title" id="quizTopicTitle">
-                            Topic: Loading...
-                        </div>
-                        <div class="timer-container">
-                            <div id="timerDisplay" class="timer">
-                                <span id="timeLeft">00:00</span>
+                    <div class="card">
+                        <div class="toolbar-row">
+                            <label class="search-wrap" for="topicSearch"><input id="topicSearch" type="search" placeholder="Search topics, laws, competencies" /></label>
+                            <div class="chip-row" role="group" aria-label="Topic filters">
+                                <button class="chip active" type="button">Document-based</button>
+                                <button class="chip" type="button">Competency-based</button>
+                                <button class="chip" type="button">Recent</button>
                             </div>
                         </div>
-                        <div class="question-counter" title="Question Counter">
-                            <span id="currentQ">0</span> <span>of</span>
-                            <span id="totalQ">0</span>
+                    </div>
+                    <div class="card">
+                        <div class="section-head"><h2>Topic Selection</h2><p>10 core topics aligned to civil service standards.</p></div>
+                        <div class="topic-highlight-row"><span class="pill">PSR</span><span class="pill">FR</span><span class="pill">PPA</span><span class="pill">Constitutional and Legal</span></div>
+                        <div class="card-container" id="topicList">
+                            <div class="loading-skeleton-grid" aria-hidden="true"><div class="skeleton-card"></div><div class="skeleton-card"></div><div class="skeleton-card"></div><div class="skeleton-card"></div></div>
+                            <div class="loading">Loading topics...</div>
                         </div>
                     </div>
-
-                <div class="question-text-fullwidth" id="questionText">
-                    Loading question...
-                </div>
-
-                <div class="quiz-content-grid">
-                    <div class="quiz-main-column">
-                        <div class="options-grid" id="optionsContainer"></div>
+                    <div class="screen-nav-row">
+                        <button class="btn btn-ghost" onclick="showScreen('analyticsScreen')" type="button">Analytics</button>
+                        <button class="btn btn-ghost" onclick="showScreen('reviewMistakesScreen')" type="button">Review Mistakes</button>
+                        <button class="btn btn-ghost" onclick="showScreen('profileScreen')" type="button">Profile and Settings</button>
+                        <button class="btn btn-ghost" onclick="showScreen('statesScreen')" type="button">Empty/Error States</button>
                     </div>
-                    <div class="quiz-explanation-column">
-                        <div class="explanation" id="explanation"></div>
+                </section>
+
+                <section id="categorySelectionScreen" class="screen hidden">
+                    <div class="card sticky-summary">
+                        <div><p class="eyebrow">Topic Summary</p><h2 id="categoryQuizTitle">Selected Topic</h2><p id="categoryQuizDescription">Choose a subcategory to continue.</p></div>
+                        <div class="summary-metrics"><span>Total Questions: <strong>124</strong></span><span>Confidence: <strong>68%</strong></span></div>
                     </div>
-                </div>
-
-                <div class="quiz-nav-buttons">
-                    <button class="btn btn-secondary" id="prevBtn">
-                        Previous
-                    </button>
-                    <button class="btn" id="submitBtn" disabled>Submit</button>
-                    <button class="btn" id="nextBtn">Next</button>
-                </div>
-            </div>
-        </div>
-
-            <!-- Results Screen -->
-            <div id="resultsScreen" class="screen hidden">
-                <header class="header">
-                    <h1>Quiz Results</h1>
-                    <p>Your quiz performance summary</p>
-                    <div class="nigerian-flag">
-                        <div class="green-stripe"></div>
-                        <div class="white-stripe"></div>
-                        <div class="green-stripe"></div>
+                    <div class="card">
+                        <div class="section-head"><h2>Subcategories</h2><p>Topic selected: <span id="selectedTopicForCategory">-</span></p></div>
+                        <div class="card-container" id="categoryList"><div class="loading">Loading categories...</div></div>
+                        <div class="button-row"><button class="btn btn-secondary" id="backToTopicBtn" type="button">Back</button><button class="btn btn-primary" id="selectAllCategoryBtn" type="button">Select All</button></div>
                     </div>
-                </header>
-                <div class="quiz-card">
-                    <div class="results">
-                        <h2 class="section-title">Quiz Results</h2>
-                        <div class="score" id="finalScore">0%</div>
-                        <div class="performance" id="performanceText">
-                            Calculating your performance...
+                </section>
+
+                <section id="modeSelectionScreen" class="screen hidden">
+                    <div class="card">
+                        <div class="section-head">
+                            <h2 id="modeQuizTitle">Mode Selection</h2>
+                            <p id="modeQuizDescription">Choose how to learn for <span id="selectedTopicName">this topic</span>.</p>
                         </div>
-
-                    <div class="card-container" id="resultsStats">
-                        <div class="unified-card">
-                            <div class="stat-number" id="correctCount">0</div>
-
-                            <div class="stat-label">Correct Answers</div>
+                        <div class="mode-grid">
+                            <article class="mode-card" id="practiceModeCard" tabindex="0"><h3>Practice Mode</h3><p>Instant feedback with explanation panels.</p><p class="meta">Recommended: 20-30 minutes</p></article>
+                            <article class="mode-card" id="examModeCard" tabindex="0"><h3>Exam Mode</h3><p>Timed attempt with no immediate answer reveal.</p><p class="meta">Recommended: 30-45 minutes</p></article>
+                            <article class="mode-card" id="reviewModeCard" tabindex="0"><h3>Review Mode</h3><p>Focus only on missed or uncertain questions.</p><p class="meta">Recommended: 15-20 minutes</p></article>
                         </div>
+                        <div class="button-row"><button class="btn btn-secondary" id="backToCategoryBtn" type="button">Back to Categories</button></div>
+                    </div>
+                </section>
 
-                        <div class="unified-card">
-                            <div class="stat-number" id="wrongCount">0</div>
-
-                            <div class="stat-label">Wrong Answers</div>
+                <section id="quizScreen" class="screen hidden">
+                    <div class="card quiz-shell">
+                        <div class="quiz-topbar">
+                            <button class="btn btn-ghost" onclick="showScreen('modeSelectionScreen')" type="button">Back</button>
+                            <p id="quizTopicTitle">Topic: Loading...</p>
+                            <div class="timer-wrap" id="timerDisplay" title="Remaining time"><span class="timer-badge">Timer</span><span id="timeLeft">00:00</span></div>
+                            <p class="progress-label"><span id="currentQ">0</span>/<span id="totalQ">0</span> <span id="quizModeDisplay">Practice</span></p>
                         </div>
-
-                        <div class="unified-card">
-                            <div class="stat-number" id="unansweredCount">
-                                0
+                        <div class="progress-track" aria-label="Quiz progress"><div class="progress-fill" id="progressFill"></div></div>
+                        <div id="questionMap" class="quiz-palette hidden"></div>
+                        <div id="reviewControls" class="hidden review-controls">
+                            <div id="reviewFilters" class="chip-row">
+                                <button id="reviewAllBtn" class="chip" type="button">All</button>
+                                <button id="reviewCorrectBtn" class="chip" type="button">Correct</button>
+                                <button id="reviewIncorrectBtn" class="chip" type="button">Incorrect</button>
+                                <button id="reviewUnansweredBtn" class="chip" type="button">Unanswered</button>
                             </div>
-
-                            <div class="stat-label">Unanswered</div>
+                            <div id="reviewNavigator"></div>
                         </div>
-
-                        <div class="unified-card">
-                            <div class="stat-number" id="timeSpent">00:00</div>
-
-                            <div class="stat-label">Time Spent</div>
+                        <article class="question-card" id="questionText">Loading question...</article>
+                        <div class="quiz-content-grid">
+                            <div class="quiz-main-column"><div class="options-grid" id="optionsContainer"></div></div>
+                            <aside class="quiz-explanation-column"><div class="explanation" id="explanation"></div></aside>
+                        </div>
+                        <div class="button-row quiz-actions">
+                            <button class="btn btn-secondary" id="prevBtn" type="button">Previous</button>
+                            <button class="btn btn-ghost" id="flagBtn" type="button">Flag for Review</button>
+                            <button class="btn btn-primary" id="submitBtn" type="button" disabled>Submit</button>
+                            <button class="btn btn-primary" id="nextBtn" type="button">Next</button>
                         </div>
                     </div>
-                    <div id="categoryBreakdown" style="margin-top: 30px"></div>
+                </section>
 
-                    <div class="buttons-container">
-                        <button class="btn" id="retakeQuizBtn">
-                            Try Again
-                        </button>
-                        <button class="btn btn-secondary" id="reviewAnswersBtn">
-                            Review Answers
-                        </button>
-                        <button
-                            class="btn btn-secondary hidden"
-                            id="reviewIncorrectResultsBtn"
-                        >
-                            Review Incorrect
-                        </button>
-                        <button
-                            class="btn btn-outline"
-                            onclick="showScreen('topicSelectionScreen')"
-                        >
-                            Back to Topics
-                        </button>
+                <section id="resultsScreen" class="screen hidden">
+                    <div class="card result-hero">
+                        <p class="eyebrow">Results Summary</p>
+                        <h2 id="finalScore">0%</h2>
+                        <p id="performanceText">Your performance summary appears here.</p>
+                        <p class="result-tag">Pass mark: 60%</p>
                     </div>
-                </div>
-            </div>
-        </div>
+                    <div class="dashboard-grid" id="resultsStats">
+                        <article class="card stat-card"><p>Correct</p><h3 id="correctCount">0</h3></article>
+                        <article class="card stat-card"><p>Wrong</p><h3 id="wrongCount">0</h3></article>
+                        <article class="card stat-card"><p>Unanswered</p><h3 id="unansweredCount">0</h3></article>
+                        <article class="card stat-card"><p>Time Spent</p><h3 id="timeSpent">00:00</h3></article>
+                    </div>
+                    <div class="card" id="categoryBreakdown"></div>
+                    <div class="button-row">
+                        <button class="btn btn-primary" id="retakeQuizBtn" type="button">Retake</button>
+                        <button class="btn btn-secondary" id="reviewAnswersBtn" type="button">Review Mistakes</button>
+                        <button class="btn btn-ghost hidden" id="reviewIncorrectResultsBtn" type="button">Review Incorrect</button>
+                        <button class="btn btn-ghost" onclick="showScreen('topicSelectionScreen')" type="button">Dashboard</button>
+                    </div>
+                </section>
 
+                <section id="reviewMistakesScreen" class="screen hidden">
+                    <div class="card">
+                        <div class="section-head"><h2>Review Mistakes</h2><p>Filter incorrect responses by topic, subcategory, and difficulty.</p></div>
+                        <div class="toolbar-row">
+                            <select aria-label="Filter by topic"><option>All Topics</option><option>PSR</option><option>Financial Regulations</option></select>
+                            <select aria-label="Filter by subcategory"><option>All Subcategories</option><option>Appointments</option><option>Discipline</option></select>
+                            <select aria-label="Filter by difficulty"><option>All Difficulty</option><option>Easy</option><option>Medium</option><option>Hard</option></select>
+                        </div>
+                        <div class="mistake-list">
+                            <article class="mistake-item">
+                                <h3>Which authority approves transfer postings above GL14?</h3>
+                                <p><strong>Your answer:</strong> Head of Department</p>
+                                <p><strong>Correct answer:</strong> Federal Civil Service Commission</p>
+                                <details><summary>View explanation</summary><p>The PSR grants this approval to the Commission for specific cadre levels.</p></details>
+                            </article>
+                            <article class="mistake-item">
+                                <h3>Under FR, what is the timeline for retirement benefit documentation?</h3>
+                                <p><strong>Your answer:</strong> 90 days</p>
+                                <p><strong>Correct answer:</strong> 6 months before retirement</p>
+                                <details><summary>View explanation</summary><p>FR process guidance requires early filing to avoid payment delays.</p></details>
+                            </article>
+                        </div>
+                        <div class="button-row"><button class="btn btn-ghost" onclick="showScreen('topicSelectionScreen')" type="button">Back</button></div>
+                    </div>
+                </section>
 
+                <section id="analyticsScreen" class="screen hidden">
+                    <div class="dashboard-grid two-col">
+                        <article class="card"><div class="section-head"><h2>Score Trend</h2><p>Performance over the last 8 attempts.</p></div><div class="chart-placeholder line-chart"><span>Trend Chart</span></div></article>
+                        <article class="card"><div class="section-head"><h2>Weekly Consistency</h2><p>Daily study activity this week.</p></div><div class="chart-placeholder bar-chart"><span>Activity Bars</span></div></article>
+                    </div>
+                    <div class="card">
+                        <div class="section-head"><h2>Topic Mastery Heatmap</h2><p>Confidence map by core topic.</p></div>
+                        <div class="heatmap-grid"><span>PSR 82%</span><span>FR 56%</span><span>PPA 69%</span><span>Constitution 71%</span><span>Ethics 77%</span><span>ICT 64%</span><span>Leadership 59%</span><span>Policy 73%</span></div>
+                    </div>
+                    <div class="card recommendation-card emphasis">
+                        <p class="eyebrow">Smart Recommendation</p>
+                        <h3>Run a 20-question Exam Mode drill on Financial Regulations.</h3>
+                        <p>Your trend improves in Practice Mode but drops under time pressure.</p>
+                    </div>
+                    <div class="button-row"><button class="btn btn-ghost" onclick="showScreen('topicSelectionScreen')" type="button">Back</button></div>
+                </section>
 
-            <!-- Error Message Display -->
+                <section id="profileScreen" class="screen hidden">
+                    <div class="dashboard-grid two-col">
+                        <article class="card">
+                            <div class="profile-head"><div class="avatar" aria-hidden="true">TU</div><div><h2>Tim User</h2><p>Directorate Cadre Candidate</p></div></div>
+                            <div class="setting-row"><span>Theme</span><button class="btn btn-ghost" onclick="document.getElementById('themeToggle').click()" type="button">Toggle Light/Dark</button></div>
+                            <div class="setting-row"><span>Daily Reminder</span><label class="switch"><input type="checkbox" checked /><span></span></label></div>
+                            <div class="setting-row"><span>Exam Countdown Alerts</span><label class="switch"><input type="checkbox" checked /><span></span></label></div>
+                        </article>
+                        <article class="card">
+                            <h2>Privacy and Data</h2>
+                            <p class="inline-warning">Progress data is stored locally in this browser.</p>
+                            <div class="button-row stacked"><button class="btn btn-secondary" type="button">Export Progress</button><button class="btn btn-destructive" type="button">Reset All Progress</button></div>
+                        </article>
+                    </div>
+                    <div class="button-row"><button class="btn btn-ghost" onclick="showScreen('topicSelectionScreen')" type="button">Back</button></div>
+                </section>
+
+                <section id="statesScreen" class="screen hidden">
+                    <div class="dashboard-grid two-col">
+                        <article class="card state-card"><h2>No Data Yet</h2><p>Start your first quiz to see progress analytics.</p><button class="btn btn-primary" onclick="showScreen('topicSelectionScreen')" type="button">Start First Quiz</button></article>
+                        <article class="card state-card error"><h2>Network Error</h2><p>Unable to load content. Check your connection and retry.</p><button class="btn btn-secondary" type="button">Retry</button></article>
+                    </div>
+                    <div class="card warning-card"><h2>Partial Content Warning</h2><p class="inline-warning">Some data files are unavailable. Available categories will still load.</p></div>
+                    <div class="button-row"><button class="btn btn-ghost" onclick="showScreen('topicSelectionScreen')" type="button">Back</button></div>
+                </section>
+            </main>
+
             <div id="errorMessageContainer" class="hidden"></div>
         </div>
-
         <script type="module" src="js/app.js"></script>
         <script type="module" src="js/init.js"></script>
     </body>
