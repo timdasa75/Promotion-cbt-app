@@ -445,6 +445,9 @@ function updateAuthUI() {
   const user = getCurrentUser();
   const authActionLabel = document.getElementById("authActionLabel");
   const authModeHint = document.getElementById("authModeHint");
+  const profileDisplayName = document.getElementById("profileDisplayName");
+  const profileSubtitle = document.getElementById("profileSubtitle");
+  const profileAvatar = document.getElementById("profileAvatar");
   if (authActionLabel) {
     authActionLabel.textContent = user ? getAuthSummaryLabel() : "Login";
   }
@@ -455,6 +458,43 @@ function updateAuthUI() {
         ? "Auth mode: Cloud (multi-device)"
         : "Auth mode: Local (single-device)";
   }
+  if (profileDisplayName) {
+    profileDisplayName.textContent = user?.name || "Guest User";
+  }
+  if (profileSubtitle) {
+    profileSubtitle.textContent = user?.email || "Login to manage your profile";
+  }
+  if (profileAvatar) {
+    const seed = user?.name || user?.email || "GU";
+    const initials = seed
+      .split(" ")
+      .filter(Boolean)
+      .slice(0, 2)
+      .map((part) => part[0]?.toUpperCase() || "")
+      .join("");
+    profileAvatar.textContent = initials || "GU";
+  }
+}
+
+function closeAccountMenu() {
+  const accountMenu = document.getElementById("accountMenu");
+  if (accountMenu) accountMenu.classList.add("hidden");
+}
+
+function toggleAccountMenu() {
+  const accountMenu = document.getElementById("accountMenu");
+  if (!accountMenu) return;
+  accountMenu.classList.toggle("hidden");
+}
+
+async function performLogout() {
+  logoutUser();
+  closeAccountMenu();
+  currentTopic = null;
+  updateAuthUI();
+  refreshDashboardInsights();
+  await refreshAccessibleTopics();
+  showScreen("splashScreen");
 }
 
 function initializeAuthUI() {
@@ -466,19 +506,44 @@ function initializeAuthUI() {
   const loginForm = document.getElementById("loginForm");
   const registerForm = document.getElementById("registerForm");
   const forgotPasswordBtn = document.getElementById("forgotPasswordBtn");
+  const accountMenu = document.getElementById("accountMenu");
+  const accountMenuProfileBtn = document.getElementById("accountMenuProfileBtn");
+  const accountMenuLogoutBtn = document.getElementById("accountMenuLogoutBtn");
+  const changePasswordBtn = document.getElementById("changePasswordBtn");
+  const profileLogoutBtn = document.getElementById("profileLogoutBtn");
 
   if (authActionBtn) {
     authActionBtn.addEventListener("click", async () => {
       if (getCurrentUser()) {
-        logoutUser();
-        currentTopic = null;
-        updateAuthUI();
-        refreshDashboardInsights();
-        await refreshAccessibleTopics();
-        showScreen("splashScreen");
+        toggleAccountMenu();
       } else {
         openAuthModal("login");
       }
+    });
+  }
+
+  if (accountMenu) {
+    document.addEventListener("click", (event) => {
+      if (
+        !accountMenu.classList.contains("hidden") &&
+        !accountMenu.contains(event.target) &&
+        !authActionBtn?.contains(event.target)
+      ) {
+        closeAccountMenu();
+      }
+    });
+  }
+
+  if (accountMenuProfileBtn) {
+    accountMenuProfileBtn.addEventListener("click", () => {
+      closeAccountMenu();
+      showScreen("profileScreen");
+    });
+  }
+
+  if (accountMenuLogoutBtn) {
+    accountMenuLogoutBtn.addEventListener("click", async () => {
+      await performLogout();
     });
   }
 
@@ -503,6 +568,7 @@ function initializeAuthUI() {
       try {
         await loginUser({ email, password });
         updateAuthUI();
+        closeAccountMenu();
         refreshDashboardInsights();
         await refreshAccessibleTopics();
         closeAuthModal();
@@ -528,6 +594,7 @@ function initializeAuthUI() {
       try {
         await registerUser({ name, email, password });
         updateAuthUI();
+        closeAccountMenu();
         refreshDashboardInsights();
         await refreshAccessibleTopics();
         setAuthMessage("Account created successfully.", "success");
@@ -554,6 +621,29 @@ function initializeAuthUI() {
       } catch (error) {
         setAuthMessage(error.message || "Unable to send password reset link.");
       }
+    });
+  }
+
+  if (changePasswordBtn) {
+    changePasswordBtn.addEventListener("click", async () => {
+      const user = getCurrentUser();
+      const email = user?.email || "";
+      if (!email) {
+        showWarning("Login is required to change password.");
+        return;
+      }
+      try {
+        await requestPasswordReset(email, window.location.href);
+        showWarning("Password reset link sent to your registered email.");
+      } catch (error) {
+        showError(error.message || "Unable to send password reset link.");
+      }
+    });
+  }
+
+  if (profileLogoutBtn) {
+    profileLogoutBtn.addEventListener("click", async () => {
+      await performLogout();
     });
   }
 }

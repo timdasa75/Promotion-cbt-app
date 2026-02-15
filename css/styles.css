@@ -115,6 +115,45 @@ body {
 .header-actions {
     display: inline-flex;
     gap: var(--space-2);
+    position: relative;
+}
+
+.account-menu {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 8px);
+    min-width: 190px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--card);
+    box-shadow: var(--shadow);
+    padding: 8px;
+    z-index: 25;
+    display: grid;
+    gap: 6px;
+}
+
+.account-menu-item {
+    border: 1px solid var(--line);
+    background: var(--card);
+    color: var(--ink-900);
+    border-radius: 10px;
+    min-height: 40px;
+    padding: 0 10px;
+    text-align: left;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.account-menu-item:hover,
+.account-menu-item:focus-visible {
+    border-color: var(--green-700);
+    background: color-mix(in srgb, var(--green-700) 10%, var(--card));
+}
+
+.account-menu-item.danger {
+    color: var(--danger);
+    border-color: color-mix(in srgb, var(--danger) 30%, var(--line));
 }
 
 .brand-block {

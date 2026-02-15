@@ -42,12 +42,16 @@
                     </div>
                 </div>
                 <div class="header-actions">
-                    <button id="authActionBtn" class="icon-button" aria-label="Login or logout" type="button">
+                    <button id="authActionBtn" class="icon-button" aria-label="Account options" type="button">
                         <span id="authActionLabel">Login</span>
                     </button>
                     <button id="themeToggle" class="icon-button" aria-label="Toggle light and dark theme" type="button">
                         <span class="theme-icon">Light</span>
                     </button>
+                    <div class="account-menu hidden" id="accountMenu">
+                        <button class="account-menu-item" id="accountMenuProfileBtn" type="button">Profile Settings</button>
+                        <button class="account-menu-item danger" id="accountMenuLogoutBtn" type="button">Logout</button>
+                    </div>
                 </div>
             </header>
             <main>
@@ -246,7 +250,8 @@
                 <section id="profileScreen" class="screen hidden">
                     <div class="dashboard-grid two-col">
                         <article class="card">
-                            <div class="profile-head"><div class="avatar" aria-hidden="true">TU</div><div><h2>Tim User</h2><p>Directorate Cadre Candidate</p></div></div>
+                            <div class="profile-head"><div class="avatar" id="profileAvatar" aria-hidden="true">TU</div><div><h2 id="profileDisplayName">Tim User</h2><p id="profileSubtitle">Directorate Cadre Candidate</p></div></div>
+                            <div class="button-row"><button class="btn btn-secondary" id="changePasswordBtn" type="button">Change Password</button><button class="btn btn-destructive" id="profileLogoutBtn" type="button">Logout</button></div>
                             <div class="setting-row"><span>Theme</span><button class="btn btn-ghost" onclick="document.getElementById('themeToggle').click()" type="button">Toggle Light/Dark</button></div>
                             <div class="setting-row"><span>Daily Reminder</span><label class="switch"><input type="checkbox" checked /><span></span></label></div>
                             <div class="setting-row"><span>Exam Countdown Alerts</span><label class="switch"><input type="checkbox" checked /><span></span></label></div>
