@@ -112,6 +112,11 @@ body {
     margin-bottom: var(--space-3);
 }
 
+.header-actions {
+    display: inline-flex;
+    gap: var(--space-2);
+}
+
 .brand-block {
     display: flex;
     align-items: center;
@@ -171,6 +176,80 @@ body {
     display: grid;
     gap: var(--space-3);
     animation: fade-up 0.26s ease;
+}
+
+.auth-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    background: rgba(13, 20, 17, 0.5);
+    display: grid;
+    place-items: center;
+    padding: var(--space-2);
+}
+
+.auth-modal-card {
+    width: min(100%, 460px);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    padding: var(--space-3);
+    display: grid;
+    gap: var(--space-2);
+    position: relative;
+}
+
+.auth-close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    border: 1px solid var(--line);
+    background: var(--card);
+    color: var(--ink-700);
+    width: 32px;
+    height: 32px;
+    border-radius: 999px;
+    cursor: pointer;
+}
+
+.auth-form {
+    display: grid;
+    gap: var(--space-2);
+}
+
+.auth-field {
+    display: grid;
+    gap: 6px;
+}
+
+.auth-field span {
+    font-size: 0.84rem;
+    font-weight: 700;
+    color: var(--ink-700);
+}
+
+.auth-tabs {
+    justify-content: flex-start;
+}
+
+.auth-message {
+    margin: 0;
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 0.9rem;
+}
+
+.auth-message.error {
+    background: var(--danger-bg);
+    color: var(--danger);
+    border: 1px solid color-mix(in srgb, var(--danger) 45%, var(--line));
+}
+
+.auth-message.success {
+    background: var(--ok-bg);
+    color: var(--ok);
+    border: 1px solid color-mix(in srgb, var(--ok) 45%, var(--line));
 }
 
 .screen > * {
@@ -525,6 +604,33 @@ select {
     padding: var(--space-2);
     min-height: 120px;
     transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.topic-card.locked {
+    opacity: 0.78;
+    border-style: dashed;
+    border-color: color-mix(in srgb, var(--ink-500) 40%, var(--line));
+    background: color-mix(in srgb, var(--ink-500) 4%, var(--card));
+}
+
+.topic-card.locked:hover,
+.topic-card.locked:focus {
+    transform: none;
+    box-shadow: none;
+    border-color: color-mix(in srgb, var(--ink-500) 40%, var(--line));
+}
+
+.lock-badge {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 8px;
+    padding: 3px 8px;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--ink-500) 42%, var(--line));
+    color: var(--ink-700);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
 }
 
 .topic-card:hover,

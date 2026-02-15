@@ -3,6 +3,11 @@
 import { showScreen, showError } from "./ui.js";
 import { extractQuestionsByCategory, fetchTopicDataFiles } from "./topicSources.js";
 import { debugLog } from "./logger.js";
+import {
+  getCurrentEntitlement,
+  getCurrentUser,
+  getProgressStorageKeyForCurrentUser,
+} from "./auth.js";
 
 /**
  * Markdown parser for basic formatting
@@ -79,11 +84,9 @@ let lastCompletedSession = null;
  * DOM Elements cache
  */
 
-const PROGRESS_STORAGE_KEY = "cbt_progress_summary_v1";
-
 function readProgressSummary() {
   try {
-    const raw = window.localStorage.getItem(PROGRESS_STORAGE_KEY);
+    const raw = window.localStorage.getItem(getProgressStorageKeyForCurrentUser());
     if (!raw) return { attempts: [] };
     const parsed = JSON.parse(raw);
     if (!parsed || !Array.isArray(parsed.attempts)) return { attempts: [] };
@@ -95,13 +98,15 @@ function readProgressSummary() {
 
 function saveProgressSummary(summary) {
   try {
-    window.localStorage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(summary));
+    window.localStorage.setItem(getProgressStorageKeyForCurrentUser(), JSON.stringify(summary));
   } catch (error) {
     console.warn("Unable to persist progress summary", error);
   }
 }
 
 function recordAttemptResult({ topicId, topicName, mode, scorePercentage, totalQuestions }) {
+  const user = getCurrentUser();
+  if (!user) return { attempts: [] };
   const summary = readProgressSummary();
   summary.attempts.push({
     topicId,
@@ -1074,6 +1079,10 @@ export async function loadQuestions(questions = null) {
       throw new Error("Invalid topic selected");
     }
 
+    if (!getCurrentUser()) {
+      throw new Error("Please login to continue.");
+    }
+
     const quizContainer = document.getElementById("quizScreen");
     if (!quizContainer) {
       throw new Error("Quiz screen element not found");
@@ -1093,11 +1102,25 @@ export async function loadQuestions(questions = null) {
     }
 
     const selectedCategory = currentTopic.selectedCategory || "all";
+    const entitlement = getCurrentEntitlement();
+    const extractionOptions = {
+      allowedCategoryIds:
+        Array.isArray(currentTopic.allowedCategoryIds) &&
+        currentTopic.allowedCategoryIds.length
+          ? currentTopic.allowedCategoryIds
+          : null,
+      maxQuestionsPerSubcategory:
+        typeof entitlement.maxQuestionsPerSubcategory === "number"
+          ? entitlement.maxQuestionsPerSubcategory
+          : null,
+    };
     const topicDataFiles = await fetchTopicDataFiles(currentTopic, { tolerateFailures: true });
 
     quizState.allQuestions = [];
     topicDataFiles.forEach((topicData) => {
-      quizState.allQuestions.push(...extractQuestionsByCategory(topicData, selectedCategory));
+      quizState.allQuestions.push(
+        ...extractQuestionsByCategory(topicData, selectedCategory, extractionOptions),
+      );
     });
 
     if (quizState.allQuestions.length === 0) {

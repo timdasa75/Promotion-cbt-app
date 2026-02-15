@@ -30,9 +30,14 @@
                         <h1>Promotion CBT</h1>
                     </div>
                 </div>
-                <button id="themeToggle" class="icon-button" aria-label="Toggle light and dark theme" type="button">
-                    <span class="theme-icon">Light</span>
-                </button>
+                <div class="header-actions">
+                    <button id="authActionBtn" class="icon-button" aria-label="Login or logout" type="button">
+                        <span id="authActionLabel">Login</span>
+                    </button>
+                    <button id="themeToggle" class="icon-button" aria-label="Toggle light and dark theme" type="button">
+                        <span class="theme-icon">Light</span>
+                    </button>
+                </div>
             </header>
             <main>
                 <section id="splashScreen" class="screen active">
@@ -45,7 +50,7 @@
                         <h2>Promotion CBT</h2>
                         <p class="hero-copy">Master your Nigerian Civil Service promotion exams with confidence.</p>
                         <div class="button-row">
-                            <button class="btn btn-primary" id="startLearningBtn" onclick="showScreen('topicSelectionScreen')" type="button">Start Learning</button>
+                            <button class="btn btn-primary" id="startLearningBtn" type="button">Start Learning</button>
                             <button class="btn btn-secondary hidden" id="splashResumeBtn" type="button">Resume Last Session</button>
                         </div>
                         <div class="hero-meta-box">
@@ -56,6 +61,7 @@
                 </section>
 
                 <section id="topicSelectionScreen" class="screen hidden">
+                    <div class="card inline-warning hidden" id="freePlanNotice"></div>
                     <div class="dashboard-grid">
                         <article class="card stat-card"><p>Total Attempts</p><h3 id="totalAttemptsStat">0</h3></article>
                         <article class="card stat-card"><p>Average Score</p><h3 id="averageScoreStat">-</h3></article>
@@ -254,6 +260,54 @@
             </main>
 
             <div id="errorMessageContainer" class="hidden"></div>
+        </div>
+
+        <div class="auth-modal hidden" id="authModal" role="dialog" aria-modal="true" aria-labelledby="authModalTitle">
+            <div class="auth-modal-card">
+                <button class="auth-close" id="authCloseBtn" type="button" aria-label="Close authentication panel">×</button>
+                <div class="section-head screen-header">
+                    <h2 id="authModalTitle">Access Promotion CBT</h2>
+                    <p>Register or login with your email to continue.</p>
+                </div>
+                <div class="chip-row auth-tabs" role="tablist" aria-label="Authentication tabs">
+                    <button class="chip active" id="authTabLogin" type="button">Login</button>
+                    <button class="chip" id="authTabRegister" type="button">Register</button>
+                </div>
+
+                <form id="loginForm" class="auth-form">
+                    <label class="auth-field">
+                        <span>Email</span>
+                        <input id="loginEmail" type="email" autocomplete="email" required />
+                    </label>
+                    <label class="auth-field">
+                        <span>Password</span>
+                        <input id="loginPassword" type="password" autocomplete="current-password" required />
+                    </label>
+                    <button class="btn btn-primary" type="submit">Login</button>
+                </form>
+
+                <form id="registerForm" class="auth-form hidden">
+                    <label class="auth-field">
+                        <span>Full Name</span>
+                        <input id="registerName" type="text" autocomplete="name" required />
+                    </label>
+                    <label class="auth-field">
+                        <span>Email</span>
+                        <input id="registerEmail" type="email" autocomplete="email" required />
+                    </label>
+                    <label class="auth-field">
+                        <span>Password</span>
+                        <input id="registerPassword" type="password" minlength="8" autocomplete="new-password" required />
+                    </label>
+                    <label class="auth-field">
+                        <span>Confirm Password</span>
+                        <input id="registerConfirmPassword" type="password" minlength="8" autocomplete="new-password" required />
+                    </label>
+                    <button class="btn btn-primary" type="submit">Create Account</button>
+                </form>
+
+                <p class="auth-message hidden" id="authMessage"></p>
+            </div>
         </div>
         <script type="module" src="js/app.js"></script>
         <script type="module" src="js/init.js"></script>

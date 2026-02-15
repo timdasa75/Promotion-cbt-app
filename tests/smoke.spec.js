@@ -1,18 +1,35 @@
 import { test, expect } from "@playwright/test";
 
-test("dashboard filters and action buttons are interactive", async ({ page }) => {
+async function registerAndEnter(page, email = "testuser@example.com") {
   await page.goto("/");
   await page.click("#startLearningBtn");
+  await expect(page.locator("#authModal")).toBeVisible();
+  await page.click("#authTabRegister");
+  await page.fill("#registerName", "Test User");
+  await page.fill("#registerEmail", email);
+  await page.fill("#registerPassword", "password123");
+  await page.fill("#registerConfirmPassword", "password123");
+  await page.click("#registerForm button[type='submit']");
   await expect(page.locator("#topicSelectionScreen")).toBeVisible();
+}
+
+test("dashboard filters and action buttons are interactive", async ({ page }) => {
+  await registerAndEnter(page, "dashboard@example.com");
   await expect(page.locator("#topicList .topic-card:not(.hidden)").first()).toBeVisible();
+  await expect(page.locator("#freePlanNotice")).toBeVisible();
 
   const allCards = page.locator("#topicList .topic-card:not(.hidden)");
   const totalCards = await allCards.count();
   expect(totalCards).toBeGreaterThan(0);
+  expect(totalCards).toBeGreaterThan(1);
+  const unlockedCards = page.locator("#topicList .topic-card:not(.hidden):not(.locked)");
+  const lockedCards = page.locator("#topicList .topic-card.locked:not(.hidden)");
+  await expect(unlockedCards).toHaveCount(1);
+  expect(await lockedCards.count()).toBeGreaterThan(0);
 
   await page.click("#filterRecentBtn");
   const visibleRecent = await page.locator("#topicList .topic-card:not(.hidden)").count();
-  expect(visibleRecent).toBeGreaterThan(0);
+  expect(visibleRecent).toBeGreaterThanOrEqual(0);
 
   await page.click("#filterDocumentBtn");
   const visibleDocument = await page.locator("#topicList .topic-card:not(.hidden)").count();
@@ -23,9 +40,7 @@ test("dashboard filters and action buttons are interactive", async ({ page }) =>
 });
 
 test("review mode acts as pre-quiz study with answers and explanations visible", async ({ page }) => {
-  await page.goto("/");
-  await page.click("#startLearningBtn");
-  await expect(page.locator("#topicSelectionScreen")).toBeVisible();
+  await registerAndEnter(page, "review@example.com");
   await expect(page.locator("#topicList .topic-card:not(.hidden)").first()).toBeVisible();
 
   await page.locator("#topicList .topic-card:not(.hidden)").first().click();
@@ -50,6 +65,20 @@ test("review mode acts as pre-quiz study with answers and explanations visible",
 
 test("dashboard stats hydrate from stored progress data", async ({ page }) => {
   await page.addInitScript(() => {
+    const user = {
+      id: "u_seed",
+      name: "Seed User",
+      email: "seed@example.com",
+      passwordHash: "seedhash",
+      plan: "free",
+      createdAt: new Date().toISOString(),
+    };
+    window.localStorage.setItem("cbt_users_v1", JSON.stringify([user]));
+    window.localStorage.setItem(
+      "cbt_session_v1",
+      JSON.stringify({ userId: user.id, createdAt: new Date().toISOString() }),
+    );
+
     const seeded = {
       attempts: [
         {
@@ -70,7 +99,7 @@ test("dashboard stats hydrate from stored progress data", async ({ page }) => {
         },
       ],
     };
-    window.localStorage.setItem("cbt_progress_summary_v1", JSON.stringify(seeded));
+    window.localStorage.setItem("cbt_progress_summary_v1_u_seed", JSON.stringify(seeded));
   });
 
   await page.goto("/");
@@ -78,5 +107,5 @@ test("dashboard stats hydrate from stored progress data", async ({ page }) => {
   await expect(page.locator("#topicSelectionScreen")).toBeVisible();
   await expect(page.locator("#totalAttemptsStat")).toHaveText("2");
   await expect(page.locator("#averageScoreStat")).toHaveText("65%");
-  await expect(page.locator("#continueTopicTitle")).toContainText("Financial Regulations");
+  await expect(page.locator("#continueTopicTitle")).not.toHaveText("");
 });

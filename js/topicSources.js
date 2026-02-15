@@ -115,15 +115,28 @@ export function countQuestionsFromTopicData(data) {
   }, 0);
 }
 
-export function extractQuestionsByCategory(data, selectedCategory = 'all') {
+export function extractQuestionsByCategory(data, selectedCategory = "all", options = {}) {
+  const { allowedCategoryIds = null, maxQuestionsPerSubcategory = null } = options;
   const subcategories = collectSubcategories(data);
+  const allowedSet =
+    Array.isArray(allowedCategoryIds) && allowedCategoryIds.length
+      ? new Set(allowedCategoryIds)
+      : null;
 
-  if (selectedCategory === 'all') {
-    return subcategories.flatMap((subcategory) =>
-      subcategory?.questions && Array.isArray(subcategory.questions) ? subcategory.questions : [],
-    );
+  if (selectedCategory === "all") {
+    return subcategories.flatMap((subcategory) => {
+      if (!subcategory?.questions || !Array.isArray(subcategory.questions)) return [];
+      if (allowedSet && !allowedSet.has(subcategory.id)) return [];
+      return typeof maxQuestionsPerSubcategory === "number"
+        ? subcategory.questions.slice(0, maxQuestionsPerSubcategory)
+        : subcategory.questions;
+    });
   }
 
   const selected = subcategories.find((subcategory) => subcategory?.id === selectedCategory);
-  return selected?.questions && Array.isArray(selected.questions) ? selected.questions : [];
+  if (!selected?.questions || !Array.isArray(selected.questions)) return [];
+  if (allowedSet && !allowedSet.has(selected.id)) return [];
+  return typeof maxQuestionsPerSubcategory === "number"
+    ? selected.questions.slice(0, maxQuestionsPerSubcategory)
+    : selected.questions;
 }

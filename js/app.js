@@ -10,27 +10,35 @@ import {
   retakeFullQuiz,
 } from "./quiz.js";
 import { debugLog } from "./logger.js";
+import {
+  getAccessibleTopics,
+  getAuthSummaryLabel,
+  getCurrentUser,
+  getProgressStorageKeyForCurrentUser,
+  loginUser,
+  logoutUser,
+  registerUser,
+} from "./auth.js";
 
 let currentTopic = null;
 let cachedTopics = [];
+let allTopics = [];
 let recommendedTopicId = null;
 let lastSessionTopicId = null;
-
-const PROGRESS_STORAGE_KEY = "cbt_progress_summary_v1";
 
 async function init() {
   try {
     debugLog("Initializing app...");
     const topicsData = await loadData();
-    cachedTopics = Array.isArray(topicsData) ? topicsData : [];
+    allTopics = Array.isArray(topicsData) ? topicsData : [];
+    cachedTopics = allTopics;
     debugLog("Loaded topics:", topicsData);
     if (!topicsData || topicsData.length === 0) {
       console.error("No topics loaded");
       showError("No topics available. Please check data files.");
       return;
     }
-    await displayTopics(topicsData, handleTopicSelect);
-    initializeDashboardActions();
+    await displayTopics(cachedTopics, handleTopicSelect);
     refreshDashboardInsights();
     debugLog("Displayed topics");
   } catch (error) {
@@ -78,7 +86,7 @@ function applyTopicFilter(filter) {
 
 function getLatestAttemptTopic() {
   try {
-    const raw = localStorage.getItem(PROGRESS_STORAGE_KEY);
+    const raw = localStorage.getItem(getProgressStorageKeyForCurrentUser());
     if (!raw) return null;
     const parsed = JSON.parse(raw);
     if (!parsed || !Array.isArray(parsed.attempts) || !parsed.attempts.length) {
@@ -93,7 +101,7 @@ function getLatestAttemptTopic() {
 
 function readProgressSummary() {
   try {
-    const raw = localStorage.getItem(PROGRESS_STORAGE_KEY);
+    const raw = localStorage.getItem(getProgressStorageKeyForCurrentUser());
     if (!raw) return { attempts: [] };
     const parsed = JSON.parse(raw);
     if (!parsed || !Array.isArray(parsed.attempts)) return { attempts: [] };
@@ -104,7 +112,7 @@ function readProgressSummary() {
 }
 
 function getTopicNameById(topicId) {
-  const topic = cachedTopics.find((entry) => entry.id === topicId);
+  const topic = allTopics.find((entry) => entry.id === topicId);
   return topic ? topic.name : "Unknown topic";
 }
 
@@ -154,6 +162,7 @@ function getWeakestTopicId(attempts) {
 }
 
 function refreshDashboardInsights() {
+  const currentUser = getCurrentUser();
   const summary = readProgressSummary();
   const attempts = summary.attempts || [];
 
@@ -171,7 +180,7 @@ function refreshDashboardInsights() {
   const latestAttempt = totalAttempts ? attempts[totalAttempts - 1] : null;
 
   lastSessionTopicId = latestAttempt?.topicId || null;
-  recommendedTopicId = getWeakestTopicId(attempts) || "psr";
+  recommendedTopicId = getWeakestTopicId(attempts) || cachedTopics[0]?.id || "psr";
 
   const totalAttemptsStat = document.getElementById("totalAttemptsStat");
   const averageScoreStat = document.getElementById("averageScoreStat");
@@ -219,7 +228,7 @@ function refreshDashboardInsights() {
   }
 
   if (splashResumeBtn) {
-    const canResume = Boolean(latestAttempt?.topicId);
+    const canResume = Boolean(currentUser && latestAttempt?.topicId);
     splashResumeBtn.classList.toggle("hidden", !canResume);
   }
 }
@@ -265,18 +274,30 @@ function initializeDashboardActions() {
 
   if (startLearningBtn) {
     startLearningBtn.addEventListener("click", () => {
+      if (!getCurrentUser()) {
+        openAuthModal("login");
+        return;
+      }
       showScreen("topicSelectionScreen");
     });
   }
 
   if (splashResumeBtn) {
     splashResumeBtn.addEventListener("click", () => {
+      if (!getCurrentUser()) {
+        openAuthModal("login");
+        return;
+      }
       resumeLastSession();
     });
   }
 
   if (resumeBtn) {
     resumeBtn.addEventListener("click", () => {
+      if (!getCurrentUser()) {
+        openAuthModal("login");
+        return;
+      }
       resumeLastSession();
     });
   }
@@ -289,12 +310,20 @@ function initializeDashboardActions() {
 
   if (recommendationBtn) {
     recommendationBtn.addEventListener("click", () => {
+      if (!getCurrentUser()) {
+        openAuthModal("login");
+        return;
+      }
       startRecommendation();
     });
   }
   if (recommendationCard) {
     recommendationCard.addEventListener("click", (event) => {
       if (event.target.closest("button")) return;
+      if (!getCurrentUser()) {
+        openAuthModal("login");
+        return;
+      }
       startRecommendation();
     });
   }
@@ -318,7 +347,20 @@ function initializeDashboardActions() {
   }
 }
 
+function isTopicUnlocked(topic) {
+  const unlocked = getAccessibleTopics(allTopics);
+  return unlocked.some((entry) => entry.id === topic?.id);
+}
+
 async function handleTopicSelect(topic) {
+  if (!getCurrentUser()) {
+    openAuthModal("login");
+    return;
+  }
+  if (!isTopicUnlocked(topic)) {
+    showWarning("This topic is locked on Free plan. Upgrade to access all topics.");
+    return;
+  }
   currentTopic = topic;
   setCurrentTopic(topic);
   await selectTopic(topic);
@@ -340,12 +382,153 @@ async function handleTopicSelect(topic) {
 }
 
 function startQuiz(mode) {
+  if (!getCurrentUser()) {
+    openAuthModal("login");
+    return;
+  }
   if (!currentTopic) {
     showError("No topic selected.");
     return;
   }
   setCurrentMode(mode);
   loadQuestions();
+}
+
+function setAuthMessage(message, type = "error") {
+  const authMessage = document.getElementById("authMessage");
+  if (!authMessage) return;
+  if (!message) {
+    authMessage.textContent = "";
+    authMessage.className = "auth-message hidden";
+    return;
+  }
+  authMessage.textContent = message;
+  authMessage.className = `auth-message ${type}`;
+}
+
+function setActiveAuthTab(mode) {
+  const isRegister = mode === "register";
+  const loginForm = document.getElementById("loginForm");
+  const registerForm = document.getElementById("registerForm");
+  const loginTab = document.getElementById("authTabLogin");
+  const registerTab = document.getElementById("authTabRegister");
+
+  if (loginForm) loginForm.classList.toggle("hidden", isRegister);
+  if (registerForm) registerForm.classList.toggle("hidden", !isRegister);
+  if (loginTab) loginTab.classList.toggle("active", !isRegister);
+  if (registerTab) registerTab.classList.toggle("active", isRegister);
+  setAuthMessage("");
+}
+
+function openAuthModal(mode = "login") {
+  const modal = document.getElementById("authModal");
+  if (!modal) return;
+  setActiveAuthTab(mode);
+  modal.classList.remove("hidden");
+}
+
+function closeAuthModal() {
+  const modal = document.getElementById("authModal");
+  if (!modal) return;
+  modal.classList.add("hidden");
+  setAuthMessage("");
+}
+
+async function refreshAccessibleTopics() {
+  cachedTopics = allTopics;
+  await displayTopics(cachedTopics, handleTopicSelect);
+}
+
+function updateAuthUI() {
+  const user = getCurrentUser();
+  const authActionLabel = document.getElementById("authActionLabel");
+  if (authActionLabel) {
+    authActionLabel.textContent = user ? getAuthSummaryLabel() : "Login";
+  }
+}
+
+function initializeAuthUI() {
+  const authActionBtn = document.getElementById("authActionBtn");
+  const authCloseBtn = document.getElementById("authCloseBtn");
+  const authModal = document.getElementById("authModal");
+  const loginTab = document.getElementById("authTabLogin");
+  const registerTab = document.getElementById("authTabRegister");
+  const loginForm = document.getElementById("loginForm");
+  const registerForm = document.getElementById("registerForm");
+
+  if (authActionBtn) {
+    authActionBtn.addEventListener("click", async () => {
+      if (getCurrentUser()) {
+        logoutUser();
+        currentTopic = null;
+        updateAuthUI();
+        refreshDashboardInsights();
+        await refreshAccessibleTopics();
+        showScreen("splashScreen");
+      } else {
+        openAuthModal("login");
+      }
+    });
+  }
+
+  if (authCloseBtn) {
+    authCloseBtn.addEventListener("click", closeAuthModal);
+  }
+
+  if (authModal) {
+    authModal.addEventListener("click", (event) => {
+      if (event.target === authModal) closeAuthModal();
+    });
+  }
+
+  if (loginTab) loginTab.addEventListener("click", () => setActiveAuthTab("login"));
+  if (registerTab) registerTab.addEventListener("click", () => setActiveAuthTab("register"));
+
+  if (loginForm) {
+    loginForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const email = document.getElementById("loginEmail")?.value || "";
+      const password = document.getElementById("loginPassword")?.value || "";
+      try {
+        await loginUser({ email, password });
+        updateAuthUI();
+        refreshDashboardInsights();
+        await refreshAccessibleTopics();
+        closeAuthModal();
+        showScreen("topicSelectionScreen");
+      } catch (error) {
+        setAuthMessage(error.message || "Login failed.");
+      }
+    });
+  }
+
+  if (registerForm) {
+    registerForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const name = document.getElementById("registerName")?.value || "";
+      const email = document.getElementById("registerEmail")?.value || "";
+      const password = document.getElementById("registerPassword")?.value || "";
+      const confirmPassword =
+        document.getElementById("registerConfirmPassword")?.value || "";
+      if (password !== confirmPassword) {
+        setAuthMessage("Passwords do not match.");
+        return;
+      }
+      try {
+        await registerUser({ name, email, password });
+        updateAuthUI();
+        refreshDashboardInsights();
+        await refreshAccessibleTopics();
+        setAuthMessage("Account created successfully.", "success");
+        setTimeout(() => {
+          closeAuthModal();
+          showScreen("topicSelectionScreen");
+        }, 450);
+      } catch (error) {
+        setAuthMessage(error.message || "Registration failed.");
+      }
+    });
+  }
 }
 
 function initializeResultButtons() {
@@ -365,6 +548,9 @@ function initializeResultButtons() {
 window.startQuiz = startQuiz;
 
 document.addEventListener("DOMContentLoaded", function () {
+  initializeDashboardActions();
+  initializeAuthUI();
+  updateAuthUI();
   init();
   initializeResultButtons();
   refreshDashboardInsights();

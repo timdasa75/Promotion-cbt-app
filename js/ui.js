@@ -4,6 +4,11 @@ import {
   collectSubcategories,
   fetchTopicDataFilesWithReport,
 } from "./topicSources.js";
+import {
+  getAccessibleTopics,
+  getCurrentEntitlement,
+  isAuthenticated,
+} from "./auth.js";
 import { debugLog } from "./logger.js";
 
 // Track current screen
@@ -114,12 +119,12 @@ export function showWarning(message) {
 // Display categories for a topic
 export async function displayCategories(topic, onSelect) {
   const categoryList = document.getElementById("categoryList");
+  let unlockedSubcategories = [];
   if (!categoryList) {
     console.error("Category list container not found");
     return;
   }
 
-  // Show loading indicator
   categoryList.innerHTML = '<div class="loading">Loading categories...</div>';
 
   try {
@@ -152,29 +157,53 @@ export async function displayCategories(topic, onSelect) {
       subcategoriesToDisplay = subcategoriesToDisplay.concat(collectSubcategories(topicData));
     });
 
+    const entitlement = getCurrentEntitlement();
+    const categoryLimit = entitlement.maxSubcategories;
+    const countSubcategoryQuestions = (subcategory) => {
+      if (!subcategory) return 0;
+      if (
+        subcategory.id === "ca_general" &&
+        Array.isArray(subcategory.questions) &&
+        subcategory.questions.length > 0 &&
+        Array.isArray(subcategory.questions[0]?.ca_general)
+      ) {
+        return subcategory.questions[0].ca_general.length;
+      }
+      if (Array.isArray(subcategory.questions)) {
+        return subcategory.questions.length;
+      }
+      return 0;
+    };
+
+    unlockedSubcategories =
+      typeof categoryLimit === "number"
+        ? subcategoriesToDisplay.slice(0, categoryLimit)
+        : [...subcategoriesToDisplay];
+    const unlockedCategoryIds = new Set(
+      unlockedSubcategories.map((subcategory) => subcategory.id),
+    );
+
     if (subcategoriesToDisplay.length > 0) {
-      // Use Promise.all to handle all async operations first
       const categoryCards = await Promise.all(
         subcategoriesToDisplay.map(async (subcategory, index) => {
-          // Calculate the count based on the questions in the subcategory
-          let count = 0;
-          if (subcategory.id === "ca_general" && subcategory.questions && subcategory.questions.length > 0 && subcategory.questions[0].ca_general) {
-            count = subcategory.questions[0].ca_general.length;
-          } else if (subcategory.questions && Array.isArray(subcategory.questions)) {
-            count = subcategory.questions.length;
-          }
+          const isUnlocked = unlockedCategoryIds.has(subcategory.id);
+          const count = countSubcategoryQuestions(subcategory);
 
           const categoryCard = document.createElement("div");
           categoryCard.className = "topic-card ripple scale-on-hover";
+          if (!isUnlocked) {
+            categoryCard.classList.add("locked");
+          }
           categoryCard.style.setProperty("--animation-order", index);
           const name = subcategory.name
             .replace(/^[A-Z]\.\s/, "")
             .replace(/ \(\d+ Questions\)/, "");
           categoryCard.innerHTML = `
               <div class="card-content">
-                  <div class="topic-icon">${subcategory.icon || "📁"}</div>
+                  <div class="topic-icon">${subcategory.icon || "&#128193;"}</div>
                   <h3 class="topic-title">${name}</h3>
                   <p class="topic-description">${subcategory.description || "No description available"}</p>
+                  ${!isUnlocked ? '<span class="lock-badge">Locked on Free</span>' : ""}
               </div>
               <div class="card-footer">
                   <div class="question-count">
@@ -183,32 +212,40 @@ export async function displayCategories(topic, onSelect) {
               </div>
           `;
           categoryCard.addEventListener("click", () => {
+            if (!isUnlocked) {
+              showWarning(
+                "This subtopic is locked on Free plan. Upgrade to access all subtopics.",
+              );
+              return;
+            }
             document
               .querySelectorAll(".topic-card")
               .forEach((card) => card.classList.remove("active"));
             categoryCard.classList.add("active");
-            if (onSelect) onSelect(subcategory);
+            if (onSelect) onSelect(subcategory, unlockedSubcategories);
           });
 
           return categoryCard;
         }),
       );
 
-      // Append all cards to the category list
       categoryCards.forEach((card) => categoryList.appendChild(card));
 
-      // Add "All Categories" option
       const allCategoryCard = document.createElement("div");
       allCategoryCard.className = "topic-card ripple scale-on-hover";
       allCategoryCard.style.setProperty(
         "--animation-order",
         subcategoriesToDisplay.length,
       );
+      const totalQuestionsInTopic = subcategoriesToDisplay.reduce(
+        (sum, entry) => sum + countSubcategoryQuestions(entry),
+        0,
+      );
       allCategoryCard.innerHTML = `
-                <div class="topic-icon">📚</div>
+                <div class="topic-icon">&#128218;</div>
                 <h3 class="topic-title">All Categories</h3>
                 <p class="topic-description">Practice with questions from all categories</p>
-                <div class="topic-count">All available questions</div>
+                <div class="topic-count"><strong>${totalQuestionsInTopic}</strong> total questions in this topic</div>
 
             `;
       allCategoryCard.addEventListener("click", () => {
@@ -216,12 +253,11 @@ export async function displayCategories(topic, onSelect) {
           .querySelectorAll(".topic-card")
           .forEach((card) => card.classList.remove("active"));
         allCategoryCard.classList.add("active");
-        if (onSelect) onSelect({ id: "all", name: "All Categories" });
+        if (onSelect) onSelect({ id: "all", name: "All Categories" }, unlockedSubcategories);
       });
       categoryList.appendChild(allCategoryCard);
     } else {
-      // If no subcategories, just load all questions (this case might be rare now)
-      if (onSelect) onSelect({ id: "all", name: "All Questions" });
+      if (onSelect) onSelect({ id: "all", name: "All Questions" }, []);
     }
   } catch (error) {
     console.error("Error loading categories:", error);
@@ -229,7 +265,6 @@ export async function displayCategories(topic, onSelect) {
       '<div class="error-message">Failed to load categories. Please try again later.</div>';
   }
 
-  // Add event listeners for back buttons
   const backToTopicBtn = document.getElementById("backToTopicBtn");
   if (backToTopicBtn) {
     backToTopicBtn.addEventListener("click", () => {
@@ -240,7 +275,7 @@ export async function displayCategories(topic, onSelect) {
   const selectAllCategoryBtn = document.getElementById("selectAllCategoryBtn");
   if (selectAllCategoryBtn) {
     selectAllCategoryBtn.addEventListener("click", () => {
-      if (onSelect) onSelect({ id: "all", name: "All Categories" });
+      if (onSelect) onSelect({ id: "all", name: "All Categories" }, unlockedSubcategories);
     });
   }
 
@@ -255,7 +290,6 @@ export async function displayTopics(topics, onSelect) {
     console.error("Topic list container not found");
     return;
   }
-  // Show loading spinner
   topicList.innerHTML = '<div class="loading">Loading topics...</div>';
   await new Promise((resolve) => setTimeout(resolve, 500));
   topicList.innerHTML = "";
@@ -265,7 +299,6 @@ export async function displayTopics(topics, onSelect) {
     return;
   }
 
-  // Get question counts for topics
   let counts = {};
   try {
     const dataModule = await import("./data.js");
@@ -273,23 +306,32 @@ export async function displayTopics(topics, onSelect) {
     debugLog("Question counts:", counts);
   } catch (e) {
     console.error("Error getting question counts:", e);
-    // fallback: all zero
     topics.forEach((t) => (counts[t.id] = 0));
   }
 
   debugLog("Creating topic cards for", topics.length, "topics");
+  const entitlement = getCurrentEntitlement();
+  const topicLimit = entitlement.maxTopics;
+  const unlockedTopics = getAccessibleTopics(topics);
+  const unlockedTopicIds = new Set(unlockedTopics.map((topic) => topic.id));
+
   topics.forEach((topic, index) => {
+    const isUnlocked = unlockedTopicIds.has(topic.id);
     const topicCard = document.createElement("div");
     topicCard.className = "topic-card ripple scale-on-hover";
+    if (!isUnlocked) {
+      topicCard.classList.add("locked");
+    }
     topicCard.style.setProperty("--animation-order", index);
     const name = topic.name
       .replace(/^[A-Z]\.\s/, "")
       .replace(/ \(\d+ Questions\)/, "");
     topicCard.innerHTML = `
         <div class="card-content">
-            <div class="topic-icon">${topic.icon || "📚"}</div>
+            <div class="topic-icon">${topic.icon || "&#128218;"}</div>
             <h3 class="topic-title">${name}</h3>
             <p class="topic-description">${topic.description || "No description available"}</p>
+            ${!isUnlocked ? '<span class="lock-badge">Locked on Free</span>' : ""}
         </div>
         <div class="card-footer">
             <div class="question-count">
@@ -298,6 +340,10 @@ export async function displayTopics(topics, onSelect) {
         </div>
     `;
     topicCard.addEventListener("click", () => {
+      if (!isUnlocked) {
+        showWarning("This topic is locked on Free plan. Upgrade to access all topics.");
+        return;
+      }
       document
         .querySelectorAll(".topic-card")
         .forEach((card) => card.classList.remove("active"));
@@ -308,6 +354,20 @@ export async function displayTopics(topics, onSelect) {
     debugLog("Added topic card:", topic.name);
   });
   debugLog("Topic list populated");
+
+  const topicSelectionScreen = document.getElementById("topicSelectionScreen");
+  const freePlanNotice = document.getElementById("freePlanNotice");
+  if (topicSelectionScreen && freePlanNotice) {
+    if (!isAuthenticated()) {
+      freePlanNotice.classList.add("hidden");
+    } else if (typeof topicLimit === "number") {
+      freePlanNotice.classList.remove("hidden");
+      freePlanNotice.textContent =
+        `Free plan active: all topics visible, ${topicLimit} topic unlocked, ${entitlement.maxSubcategories} subtopics unlocked, ${entitlement.maxQuestionsPerSubcategory} questions per unlocked subtopic.`;
+    } else {
+      freePlanNotice.classList.add("hidden");
+    }
+  }
 }
 
 // Get total question count for a topic
@@ -360,9 +420,16 @@ export async function selectTopic(topic) {
         selectedTopicForCategory.textContent = topic.name;
 
       // Load and display categories for the selected topic
-      await displayCategories(topic, (selectedCategory) => {
+      await displayCategories(topic, (selectedCategory, visibleSubcategories = []) => {
         // Store the selected category in the topic object
         topic.selectedCategory = selectedCategory.id || "all";
+        if (Array.isArray(visibleSubcategories) && visibleSubcategories.length) {
+          topic.allowedCategoryIds = visibleSubcategories
+            .map((entry) => (entry && typeof entry === "object" ? entry.id : null))
+            .filter(Boolean);
+        } else {
+          topic.allowedCategoryIds = null;
+        }
         showScreen("modeSelectionScreen");
       });
     } else {
@@ -377,6 +444,7 @@ export async function selectTopic(topic) {
 
       // Set selected category to 'all' since there are no specific categories
       topic.selectedCategory = "all";
+      topic.allowedCategoryIds = null;
       showScreen("modeSelectionScreen");
     }
 
@@ -399,9 +467,11 @@ export async function selectTopic(topic) {
     if (selectedTopicName) selectedTopicName.textContent = topic.name;
 
     topic.selectedCategory = "all";
+    topic.allowedCategoryIds = null;
     showScreen("modeSelectionScreen");
   }
 }
 
 // Make functions available globally for HTML onclick handlers
 window.showScreen = showScreen;
+
