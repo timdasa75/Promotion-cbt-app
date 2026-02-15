@@ -110,9 +110,23 @@ export function collectSubcategories(data) {
 
 export function countQuestionsFromTopicData(data) {
   return collectSubcategories(data).reduce((sum, subcat) => {
-    if (subcat?.questions && Array.isArray(subcat.questions)) return sum + subcat.questions.length;
-    return sum;
+    return sum + getQuestionsFromSubcategory(subcat).length;
   }, 0);
+}
+
+export function getQuestionsFromSubcategory(subcategory) {
+  if (!subcategory?.questions || !Array.isArray(subcategory.questions)) return [];
+
+  // Some data files (e.g. current affairs) nest actual question rows under a key.
+  if (
+    subcategory.id === "ca_general" &&
+    subcategory.questions.length > 0 &&
+    Array.isArray(subcategory.questions[0]?.ca_general)
+  ) {
+    return subcategory.questions[0].ca_general;
+  }
+
+  return subcategory.questions;
 }
 
 export function extractQuestionsByCategory(data, selectedCategory = "all", options = {}) {
@@ -125,18 +139,20 @@ export function extractQuestionsByCategory(data, selectedCategory = "all", optio
 
   if (selectedCategory === "all") {
     return subcategories.flatMap((subcategory) => {
-      if (!subcategory?.questions || !Array.isArray(subcategory.questions)) return [];
+      const questions = getQuestionsFromSubcategory(subcategory);
+      if (!questions.length) return [];
       if (allowedSet && !allowedSet.has(subcategory.id)) return [];
       return typeof maxQuestionsPerSubcategory === "number"
-        ? subcategory.questions.slice(0, maxQuestionsPerSubcategory)
-        : subcategory.questions;
+        ? questions.slice(0, maxQuestionsPerSubcategory)
+        : questions;
     });
   }
 
   const selected = subcategories.find((subcategory) => subcategory?.id === selectedCategory);
-  if (!selected?.questions || !Array.isArray(selected.questions)) return [];
+  const questions = getQuestionsFromSubcategory(selected);
+  if (!questions.length) return [];
   if (allowedSet && !allowedSet.has(selected.id)) return [];
   return typeof maxQuestionsPerSubcategory === "number"
-    ? selected.questions.slice(0, maxQuestionsPerSubcategory)
-    : selected.questions;
+    ? questions.slice(0, maxQuestionsPerSubcategory)
+    : questions;
 }

@@ -13,10 +13,12 @@ import { debugLog } from "./logger.js";
 import {
   getAccessibleTopics,
   getAuthSummaryLabel,
+  getAuthProviderLabel,
   getCurrentUser,
   getProgressStorageKeyForCurrentUser,
   loginUser,
   logoutUser,
+  requestPasswordReset,
   registerUser,
 } from "./auth.js";
 
@@ -442,8 +444,16 @@ async function refreshAccessibleTopics() {
 function updateAuthUI() {
   const user = getCurrentUser();
   const authActionLabel = document.getElementById("authActionLabel");
+  const authModeHint = document.getElementById("authModeHint");
   if (authActionLabel) {
     authActionLabel.textContent = user ? getAuthSummaryLabel() : "Login";
+  }
+  if (authModeHint) {
+    const provider = getAuthProviderLabel();
+    authModeHint.textContent =
+      provider === "Cloud"
+        ? "Auth mode: Cloud (multi-device)"
+        : "Auth mode: Local (single-device)";
   }
 }
 
@@ -455,6 +465,7 @@ function initializeAuthUI() {
   const registerTab = document.getElementById("authTabRegister");
   const loginForm = document.getElementById("loginForm");
   const registerForm = document.getElementById("registerForm");
+  const forgotPasswordBtn = document.getElementById("forgotPasswordBtn");
 
   if (authActionBtn) {
     authActionBtn.addEventListener("click", async () => {
@@ -526,6 +537,22 @@ function initializeAuthUI() {
         }, 450);
       } catch (error) {
         setAuthMessage(error.message || "Registration failed.");
+      }
+    });
+  }
+
+  if (forgotPasswordBtn) {
+    forgotPasswordBtn.addEventListener("click", async () => {
+      const email = document.getElementById("loginEmail")?.value || "";
+      if (!email) {
+        setAuthMessage("Enter your email first, then click Forgot password.");
+        return;
+      }
+      try {
+        await requestPasswordReset(email, window.location.href);
+        setAuthMessage("Password reset link sent. Check your email inbox.", "success");
+      } catch (error) {
+        setAuthMessage(error.message || "Unable to send password reset link.");
       }
     });
   }

@@ -52,6 +52,40 @@ Run the automated smoke suite:
 npm run test:smoke
 ```
 
+## Supabase Cloud Auth Setup (Multi-Device Login)
+
+The app supports two auth modes:
+
+- `Local` (default): account is stored in browser storage on one device.
+- `Cloud` (Supabase): same account works across desktop/mobile browsers.
+
+To enable `Cloud` mode:
+
+1. Create a Supabase project: https://supabase.com
+2. In Supabase, open `Project Settings -> API` and copy:
+   - `Project URL`
+   - `anon public key`
+3. Open `index.html` and set:
+   ```html
+   window.PROMOTION_CBT_AUTH = {
+     supabaseUrl: "https://YOUR_PROJECT_ID.supabase.co",
+     supabaseAnonKey: "YOUR_SUPABASE_ANON_KEY",
+   };
+   ```
+4. In Supabase, open `Authentication -> Providers -> Email` and enable the Email provider.
+5. Optional: disable email confirmation if you want immediate login after signup.
+6. Refresh/redeploy the app.
+
+If configured correctly, the auth modal shows:
+- `Auth mode: Cloud (multi-device)`
+
+Detailed setup guide:
+- `docs/supabase-auth-setup.md`
+
+Plan sync:
+- The app reads user plan (`free`/`premium`) from Supabase metadata and optional `profiles.plan`.
+- See SQL setup in `docs/supabase-auth-setup.md`.
+
 ## Sync Cloud Changes to Your Local Repository
 
 If updates were made in the cloud (for example on GitHub) and you want them on your local machine:
@@ -84,7 +118,7 @@ git stash pop
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions are welcome. Please feel free to submit a Pull Request.
 
 ## URL Shortener
 
@@ -97,10 +131,16 @@ For easier sharing, you can use a URL shortener to create a more user-friendly l
 ## Troubleshooting
 
 If the topics are not loading when you access the application:
-1. Check browser console for errors (F12 → Console)
+1. Check browser console for errors (`F12 -> Console`)
 2. Verify GitHub Pages is enabled in repository settings
 3. Wait a few minutes after deployment for GitHub Pages to build the site
-4. Ensure all data files are properly formatted JSON files in the data/ directory
+4. Ensure all data files are properly formatted JSON files in the `data/` directory
+
+If login works on one device but fails on another:
+1. Confirm auth modal shows `Cloud (multi-device)`, not `Local (single-device)`
+2. Verify `supabaseUrl` and `supabaseAnonKey` in `index.html`
+3. Confirm Email provider is enabled in Supabase
+4. If email confirmation is enabled, confirm the email before login
 
 ## License
 
@@ -109,7 +149,6 @@ This project is open source and available under the [MIT License](LICENSE).
 ## Known Issues and Fixes
 
 - Fixed JavaScript syntax error that was preventing topics from loading properly
-
 
 ## Refactor Roadmap
 

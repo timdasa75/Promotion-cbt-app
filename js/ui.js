@@ -1,8 +1,10 @@
 // ui.js - Module for UI management
 
 import {
+  countQuestionsFromTopicData,
   collectSubcategories,
   fetchTopicDataFilesWithReport,
+  getQuestionsFromSubcategory,
 } from "./topicSources.js";
 import {
   getAccessibleTopics,
@@ -159,21 +161,8 @@ export async function displayCategories(topic, onSelect) {
 
     const entitlement = getCurrentEntitlement();
     const categoryLimit = entitlement.maxSubcategories;
-    const countSubcategoryQuestions = (subcategory) => {
-      if (!subcategory) return 0;
-      if (
-        subcategory.id === "ca_general" &&
-        Array.isArray(subcategory.questions) &&
-        subcategory.questions.length > 0 &&
-        Array.isArray(subcategory.questions[0]?.ca_general)
-      ) {
-        return subcategory.questions[0].ca_general.length;
-      }
-      if (Array.isArray(subcategory.questions)) {
-        return subcategory.questions.length;
-      }
-      return 0;
-    };
+    const countSubcategoryQuestions = (subcategory) =>
+      getQuestionsFromSubcategory(subcategory).length;
 
     unlockedSubcategories =
       typeof categoryLimit === "number"
@@ -393,6 +382,15 @@ export async function selectTopic(topic) {
     if (!topicDataFiles.length) {
       throw new Error("No topic data sources could be loaded.");
     }
+
+    const topicTotalQuestions = topicDataFiles.reduce(
+      (sum, topicData) => sum + countQuestionsFromTopicData(topicData),
+      0,
+    );
+    const categoryTotalQuestions = document.getElementById("categoryTotalQuestions");
+    const categoryConfidenceScore = document.getElementById("categoryConfidenceScore");
+    if (categoryTotalQuestions) categoryTotalQuestions.textContent = String(topicTotalQuestions);
+    if (categoryConfidenceScore) categoryConfidenceScore.textContent = "--";
 
     let hasSubcategories = false;
     for (const topicData of topicDataFiles) {

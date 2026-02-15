@@ -20,6 +20,17 @@
                 window.location.hostname === "localhost"
                     ? ""
                     : "/Promotion-cbt-app";
+            // Optional cloud auth config (Supabase).
+            // Leave empty to keep local-only auth.
+            // Example:
+            // window.PROMOTION_CBT_AUTH = {
+            //   supabaseUrl: "https://YOUR_PROJECT_ID.supabase.co",
+            //   supabaseAnonKey: "YOUR_SUPABASE_ANON_KEY",
+            // };
+            window.PROMOTION_CBT_AUTH = window.PROMOTION_CBT_AUTH || {
+                supabaseUrl: "https://ezaxdtbiwitcxrpbujro.supabase.co",
+                supabaseAnonKey: "sb_publishable_LUxDCM6xBzRkDZXYIUbBMA_hymVl9YY",
+            };
         </script>
         <div class="app-container">
             <header class="app-shell-header">
@@ -110,7 +121,7 @@
                 <section id="categorySelectionScreen" class="screen hidden">
                     <div class="card sticky-summary">
                         <div><p class="eyebrow">Topic Summary</p><h2 id="categoryQuizTitle">Selected Topic</h2><p id="categoryQuizDescription">Choose a subcategory to continue.</p></div>
-                        <div class="summary-metrics"><span>Total Questions: <strong>124</strong></span><span>Confidence: <strong>68%</strong></span></div>
+                        <div class="summary-metrics"><span>Total Questions: <strong id="categoryTotalQuestions">0</strong></span><span>Confidence: <strong id="categoryConfidenceScore">--</strong></span></div>
                     </div>
                     <div class="card">
                         <div class="section-head screen-header"><h2>Subcategories</h2><p>Topic selected: <span id="selectedTopicForCategory">-</span></p></div>
@@ -268,6 +279,7 @@
                 <div class="section-head screen-header">
                     <h2 id="authModalTitle">Access Promotion CBT</h2>
                     <p>Register or login with your email to continue.</p>
+                    <p class="hero-meta" id="authModeHint">Auth mode: Local (single-device)</p>
                 </div>
                 <div class="chip-row auth-tabs" role="tablist" aria-label="Authentication tabs">
                     <button class="chip active" id="authTabLogin" type="button">Login</button>
@@ -283,6 +295,7 @@
                         <span>Password</span>
                         <input id="loginPassword" type="password" autocomplete="current-password" required />
                     </label>
+                    <button class="btn btn-ghost" id="forgotPasswordBtn" type="button">Forgot password?</button>
                     <button class="btn btn-primary" type="submit">Login</button>
                 </form>
 

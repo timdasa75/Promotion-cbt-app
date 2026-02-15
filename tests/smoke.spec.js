@@ -1,6 +1,9 @@
 import { test, expect } from "@playwright/test";
 
 async function registerAndEnter(page, email = "testuser@example.com") {
+  await page.addInitScript(() => {
+    window.PROMOTION_CBT_AUTH = { supabaseUrl: "", supabaseAnonKey: "" };
+  });
   await page.goto("/");
   await page.click("#startLearningBtn");
   await expect(page.locator("#authModal")).toBeVisible();
