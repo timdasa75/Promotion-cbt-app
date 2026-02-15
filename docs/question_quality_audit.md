@@ -1,0 +1,242 @@
+# Question Quality Audit
+
+## Summary
+- Total questions scanned: **4650**
+- Duplicate question IDs: **0**
+- Exact duplicate text groups: **89**
+- Near duplicate pairs: **219**
+- Relevance flags: **1223**
+
+## Top Duplicate ID Findings
+- None
+
+## Top Exact Duplicate Question Text Findings
+- "all decisions on deferment or withholding of increment and stoppage of salaries must be communicated to the officer concerned within what pe..." -> NGPD_032 [general_current_affairs/ca_national_governance], IRA_148 [general_current_affairs/ca_international_affairs], NEKP_172 [general_current_affairs/ca_national_events]
+- "all newly employed officers must be placed on the ippis platform within a maximum period of" -> CIRC_PPC_002 [psr/circ_personnel_performance], fin_bgt_014 [financial_regulations/fin_budgeting], clg_gc_091 [constitutional_law/clg_general_competency], ict_eg_002 [ict_management/ict_e_governance]
+- "an officer on duty visit outside nigeria is eligible to receive estacode allowance what additional allocation is given if the officer incurs..." -> IRA_128 [general_current_affairs/ca_international_affairs], NEKP_166 [general_current_affairs/ca_national_events]
+- "nigeria adopted the presidential system of government in which year" -> policy_constitution_002 [policy_analysis/pol_formulation_cycle], ca_general_012 [general_current_affairs/ca_general]
+- "nigeria is a member of which regional economic community" -> policy_constitution_025 [policy_analysis/pol_formulation_cycle], ca_general_005 [general_current_affairs/ca_general]
+- "nigeria is divided into how many geopolitical zones" -> policy_constitution_027 [policy_analysis/pol_formulation_cycle], ca_general_035 [general_current_affairs/ca_general]
+- "nigeria joined the united nations in which year" -> policy_constitution_017 [policy_analysis/pol_formulation_cycle], ca_general_026 [general_current_affairs/ca_general]
+- "nigeria operates under how many tiers of government" -> policy_constitution_010 [policy_analysis/pol_formulation_cycle], ca_general_049 [general_current_affairs/ca_general]
+- "the fcsc makes appointments to posts graded gl 07 17 the deadline for application submissions is six weeks from the date of advertisement pl..." -> IRA_129 [general_current_affairs/ca_international_affairs], NEKP_170 [general_current_affairs/ca_national_events]
+- "the final authority to restore a deferred increment which requires assessing service improvement and conduct lies with the" -> fin_aud_012 [financial_regulations/fin_audits_sanctions], clg_lc_057 [constitutional_law/clg_legal_compliance]
+- "the junior staff committee jsc handles all appointments promotions and discipline matters for officers on which grade levels" -> csh_duty_032 [civil_service_admin/csh_duties_responsibilities], csh_ap_028 [civil_service_admin/csh_administrative_procedures]
+- "the legal instrument enacted by the national assembly that authorizes the federal government to withdraw funds from the consolidated revenue..." -> fin_bgt_002 [financial_regulations/fin_budgeting], clg_lc_045 [constitutional_law/clg_legal_compliance]
+- "the loss of government funds or property must be communicated immediately to" -> fin_aud_003 [financial_regulations/fin_audits_sanctions], ict_sec_050 [ict_management/ict_security]
+- "the psr permits an officer to appeal a disciplinary decision through the proper channels as described in" -> csh_disc_040 [civil_service_admin/csh_discipline_conduct], csh_ap_014 [civil_service_admin/csh_administrative_procedures]
+- "the total amount of funds allocated for staff salaries personnel emoluments in the budget is controlled primarily by data sourced from which..." -> fin_bgt_030 [financial_regulations/fin_budgeting], fin_gen_046 [financial_regulations/fin_general]
+- "what does ps commonly denote on internal memos in civil service" -> policy_constitution_054 [policy_analysis/pol_formulation_cycle], policy_psr_028 [policy_analysis/pol_implementation_evaluation]
+- "what does ssl tls refer to" -> ict_f_068 [ict_management/ict_fundamentals], ict_sec_073 [ict_management/ict_security]
+- "what does the psr mandate regarding the gender of terms like officer and staff" -> NGPD_045 [general_current_affairs/ca_national_governance], NEKP_161 [general_current_affairs/ca_national_events]
+- "what is the acronym for the agency that oversees ict policy and development in nigeria" -> ict_eg_060 [ict_management/ict_e_governance], ict_sec_069 [ict_management/ict_security], ict_li_048 [ict_management/ict_literacy_innovation]
+- "what is the capital of borno state" -> policy_states_009 [policy_analysis/pol_analysis_methods], ca_general_015 [general_current_affairs/ca_general]
+- "what is the capital of cross river state" -> policy_states_011 [policy_analysis/pol_analysis_methods], ca_general_017 [general_current_affairs/ca_general]
+- "what is the capital of gombe state" -> policy_states_015 [policy_analysis/pol_analysis_methods], ca_general_022 [general_current_affairs/ca_general]
+- "what is the capital of kogi state" -> policy_states_013 [policy_analysis/pol_analysis_methods], ca_general_020 [general_current_affairs/ca_general]
+- "what is the capital of nasarawa state" -> policy_states_004 [policy_analysis/pol_analysis_methods], ca_general_007 [general_current_affairs/ca_general]
+- "what is the capital of niger state" -> policy_states_032 [policy_analysis/pol_analysis_methods], ca_general_050 [general_current_affairs/ca_general]
+
+## Top Near Duplicate Pairs
+- sim=0.9876 :: `clg_gc_088` (psr/psr_general_admin) <-> `ict_li_065` (psr/psr_general_admin)
+- sim=0.9874 :: `psr_discipline_gen_018` (psr/psr_discipline) <-> `csh_discipline_conduct_gen_018` (civil_service_admin/csh_discipline_conduct)
+- sim=0.9865 :: `psr_discipline_gen_015` (psr/psr_discipline) <-> `csh_discipline_conduct_gen_015` (civil_service_admin/csh_discipline_conduct)
+- sim=0.9864 :: `psr_discipline_gen_013` (psr/psr_discipline) <-> `csh_discipline_conduct_gen_013` (civil_service_admin/csh_discipline_conduct)
+- sim=0.9863 :: `psr_discipline_gen_010` (psr/psr_discipline) <-> `csh_discipline_conduct_gen_010` (civil_service_admin/csh_discipline_conduct)
+- sim=0.9776 :: `psr_discipline_gen_003` (psr/psr_discipline) <-> `csh_discipline_conduct_gen_003` (civil_service_admin/csh_discipline_conduct)
+- sim=0.975 :: `psr_discipline_gen_020` (psr/psr_discipline) <-> `csh_discipline_conduct_gen_020` (civil_service_admin/csh_discipline_conduct)
+- sim=0.9632 :: `neg_principles_outcomes_gen_002` (leadership_management/neg_principles_outcomes) <-> `neg_principles_outcomes_gen_037` (leadership_management/neg_principles_outcomes)
+- sim=0.9621 :: `neg_structure_bodies_gen_002` (leadership_management/neg_structure_bodies) <-> `neg_structure_bodies_gen_037` (leadership_management/neg_structure_bodies)
+- sim=0.9592 :: `policy_states_006` (policy_analysis/pol_analysis_methods) <-> `policy_states_016` (policy_analysis/pol_analysis_methods)
+- sim=0.9592 :: `policy_states_006` (policy_analysis/pol_analysis_methods) <-> `ca_general_031` (general_current_affairs/ca_general)
+- sim=0.9592 :: `policy_states_016` (policy_analysis/pol_analysis_methods) <-> `ca_general_009` (general_current_affairs/ca_general)
+- sim=0.9592 :: `ca_general_009` (general_current_affairs/ca_general) <-> `ca_general_031` (general_current_affairs/ca_general)
+- sim=0.959 :: `eth_anti_corruption_gen_002` (civil_service_admin/eth_anti_corruption) <-> `eth_anti_corruption_gen_037` (civil_service_admin/eth_anti_corruption)
+- sim=0.958 :: `csh_duty_012` (civil_service_admin/csh_duties_responsibilities) <-> `csh_ap_005` (civil_service_admin/csh_administrative_procedures)
+- sim=0.9576 :: `neg_principles_outcomes_gen_025` (leadership_management/neg_principles_outcomes) <-> `neg_principles_outcomes_gen_035` (leadership_management/neg_principles_outcomes)
+- sim=0.9576 :: `pol_public_sector_planning_gen_002` (policy_analysis/pol_public_sector_planning) <-> `pol_public_sector_planning_gen_037` (policy_analysis/pol_public_sector_planning)
+- sim=0.9569 :: `neg_structure_bodies_gen_025` (leadership_management/neg_structure_bodies) <-> `neg_structure_bodies_gen_035` (leadership_management/neg_structure_bodies)
+- sim=0.9569 :: `neg_dispute_law_gen_025` (leadership_management/neg_dispute_law) <-> `neg_dispute_law_gen_035` (leadership_management/neg_dispute_law)
+- sim=0.9569 :: `eth_misconduct_gen_002` (civil_service_admin/eth_misconduct) <-> `eth_misconduct_gen_037` (civil_service_admin/eth_misconduct)
+- sim=0.9561 :: `eth_conflict_interest_gen_002` (civil_service_admin/eth_conflict_interest) <-> `eth_conflict_interest_gen_037` (civil_service_admin/eth_conflict_interest)
+- sim=0.9554 :: `lead_management_performance_gen_013` (leadership_management/lead_management_performance) <-> `lead_management_performance_gen_023` (leadership_management/lead_management_performance)
+- sim=0.955 :: `neg_principles_outcomes_gen_007` (leadership_management/neg_principles_outcomes) <-> `neg_principles_outcomes_gen_017` (leadership_management/neg_principles_outcomes)
+- sim=0.9541 :: `lead_strategic_management_gen_009` (leadership_management/lead_strategic_management) <-> `lead_strategic_management_gen_019` (leadership_management/lead_strategic_management)
+- sim=0.9541 :: `neg_structure_bodies_gen_007` (leadership_management/neg_structure_bodies) <-> `neg_structure_bodies_gen_017` (leadership_management/neg_structure_bodies)
+- sim=0.9541 :: `neg_dispute_law_gen_007` (leadership_management/neg_dispute_law) <-> `neg_dispute_law_gen_017` (leadership_management/neg_dispute_law)
+- sim=0.9537 :: `lead_principles_styles_gen_008` (leadership_management/lead_principles_styles) <-> `lead_principles_styles_gen_018` (leadership_management/lead_principles_styles)
+- sim=0.951 :: `eth_general_gen_002` (civil_service_admin/eth_general) <-> `eth_general_gen_037` (civil_service_admin/eth_general)
+- sim=0.9474 :: `psr_ethics_gen_018` (psr/psr_ethics) <-> `eth_general_gen_018` (civil_service_admin/eth_general)
+- sim=0.9474 :: `clg_gc_090` (constitutional_law/clg_general_competency) <-> `leadership_mpf_029` (leadership_management/lead_management_performance)
+- sim=0.9469 :: `eth_misconduct_gen_017` (civil_service_admin/eth_misconduct) <-> `eth_misconduct_gen_042` (civil_service_admin/eth_misconduct)
+- sim=0.9469 :: `pol_public_sector_planning_gen_019` (policy_analysis/pol_public_sector_planning) <-> `pol_public_sector_planning_gen_044` (policy_analysis/pol_public_sector_planning)
+- sim=0.9465 :: `clg_general_competency_gen_055` (constitutional_law/clg_general_competency) <-> `eth_general_gen_058` (civil_service_admin/eth_general)
+- sim=0.9463 :: `eth_conflict_interest_gen_017` (civil_service_admin/eth_conflict_interest) <-> `eth_conflict_interest_gen_042` (civil_service_admin/eth_conflict_interest)
+- sim=0.9451 :: `eth_general_gen_018` (civil_service_admin/eth_general) <-> `ca_general_gen_018` (general_current_affairs/ca_general)
+- sim=0.9447 :: `pol_public_sector_planning_gen_001` (policy_analysis/pol_public_sector_planning) <-> `pol_public_sector_planning_gen_026` (policy_analysis/pol_public_sector_planning)
+- sim=0.9435 :: `neg_structure_bodies_gen_003` (leadership_management/neg_structure_bodies) <-> `neg_structure_bodies_gen_038` (leadership_management/neg_structure_bodies)
+- sim=0.9434 :: `psr_ethics_gen_015` (psr/psr_ethics) <-> `eth_general_gen_015` (civil_service_admin/eth_general)
+- sim=0.943 :: `eth_general_gen_017` (civil_service_admin/eth_general) <-> `eth_general_gen_042` (civil_service_admin/eth_general)
+- sim=0.9429 :: `psr_ethics_gen_013` (psr/psr_ethics) <-> `eth_general_gen_013` (civil_service_admin/eth_general)
+
+## Top Relevance Flags
+- `fin_pro_023` [financial_regulations/fin_procurement] (own_topic=0, own_sub=0, best_other=procurement_act:5) -> low_own_topic_subcategory_overlap, looks_closer_to:procurement_act
+  - The award of a contract following evaluation is required by Section 33 to be granted to the:
+- `clg_gc_070` [constitutional_law/clg_general_competency] (own_topic=0, own_sub=0, best_other=psr:5) -> low_own_topic_subcategory_overlap, looks_closer_to:psr
+  - The concept of **Meritocracy** in the Civil Service Handbook emphasizes that appointments and promotions must be based on:
+- `leadership_mpf_029` [leadership_management/lead_management_performance] (own_topic=0, own_sub=0, best_other=psr:5) -> low_own_topic_subcategory_overlap, looks_closer_to:psr
+  - The maximum duration of study leave with pay that may be granted to a Confirmed Officer is:
+- `ict_eg_024` [ict_management/ict_e_governance] (own_topic=0, own_sub=0, best_other=financial_regulations:5) -> low_own_topic_subcategory_overlap, looks_closer_to:financial_regulations
+  - Which financial platform controls the total amount of funds allocated for staff salaries (Personnel Emoluments) in the budget?
+- `fin_pro_042` [financial_regulations/fin_procurement] (own_topic=0, own_sub=0, best_other=procurement_act:4) -> low_own_topic_subcategory_overlap, looks_closer_to:procurement_act
+  - Which section provides guidelines for proper contract implementation and monitoring by procuring entities?
+- `ppa_elb_026` [procurement_act/proc_eligibility_consultants_budgeting] (own_topic=0, own_sub=0, best_other=financial_regulations:4) -> low_own_topic_subcategory_overlap, looks_closer_to:financial_regulations
+  - The process by which funds are legally moved between budget subheads within the same expenditure head is known as:
+- `ppa_ims_027` [procurement_act/proc_implementation_sanctions] (own_topic=0, own_sub=0, best_other=psr:4) -> low_own_topic_subcategory_overlap, looks_closer_to:psr
+  - An officer who is absent from duty without leave for 14 consecutive days may be deemed by the Service to have:
+- `ppa_ims_032` [procurement_act/proc_implementation_sanctions] (own_topic=0, own_sub=0, best_other=civil_service_admin:4) -> low_own_topic_subcategory_overlap, looks_closer_to:civil_service_admin
+  - The final authority on matters of ethical conduct and compliance with the PSR, particularly concerning disciplinary appeals, rests with the:
+- `leadership_lsm_014` [leadership_management/lead_principles_styles] (own_topic=0, own_sub=0, best_other=civil_service_admin:4) -> low_own_topic_subcategory_overlap, looks_closer_to:civil_service_admin
+  - What ethical principle ensures that civil servants serve all citizens fairly without political or personal bias?
+- `leadership_lsm_031` [leadership_management/lead_principles_styles] (own_topic=0, own_sub=0, best_other=civil_service_admin:4) -> low_own_topic_subcategory_overlap, looks_closer_to:civil_service_admin
+  - Which ethical concept requires that public officials, including leaders, regularly disclose their assets and liabilities?
+- `NGPD_004` [general_current_affairs/ca_national_governance] (own_topic=0, own_sub=0, best_other=psr:4) -> low_own_topic_subcategory_overlap, looks_closer_to:psr
+  - What is the consequence for an officer who changes their date of birth recorded upon appointment throughout their career?
+- `NGPD_006` [general_current_affairs/ca_national_governance] (own_topic=0, own_sub=0, best_other=psr:4) -> low_own_topic_subcategory_overlap, looks_closer_to:psr
+  - Which officer category is handled by the Junior Staff Committee (JSC) of each Ministry/Office regarding appointments?
+- `NGPD_023` [general_current_affairs/ca_national_governance] (own_topic=0, own_sub=0, best_other=psr:4) -> low_own_topic_subcategory_overlap, looks_closer_to:psr
+  - What is the penalty for an officer who accepts a paid appointment during leave of absence without prior approval?
+- `fin_pro_021` [financial_regulations/fin_procurement] (own_topic=0, own_sub=0, best_other=procurement_act:3) -> low_own_topic_subcategory_overlap, looks_closer_to:procurement_act
+  - The essential administrative procedure principle that ensures capability and eligibility is assessed before the formal submission of competitive bids is:
+- `fin_pro_022` [financial_regulations/fin_procurement] (own_topic=0, own_sub=0, best_other=procurement_act:3) -> low_own_topic_subcategory_overlap, looks_closer_to:procurement_act
+  - Which section mandates that evaluation of bids must be based strictly on criteria stated in the solicitation documents?
+- `fin_pro_026` [financial_regulations/fin_procurement] (own_topic=0, own_sub=0, best_other=procurement_act:3) -> low_own_topic_subcategory_overlap, looks_closer_to:procurement_act
+  - Which section requires the publication of contract awards above certain thresholds to ensure transparency?
+- `ppa_ethic_029` [procurement_act/proc_transparency_ethics] (own_topic=0, own_sub=0, best_other=psr:3) -> low_own_topic_subcategory_overlap, looks_closer_to:psr
+  - Who has the final authority to discipline Directors (GL 17) in the Federal Civil Service?
+- `ppa_ethic_040` [procurement_act/proc_transparency_ethics] (own_topic=0, own_sub=0, best_other=civil_service_admin:3) -> low_own_topic_subcategory_overlap, looks_closer_to:civil_service_admin
+  - The prohibition on using official information for personal gain is a core ethical principle under which constitutional instrument?
+- `ppa_ethic_043` [procurement_act/proc_transparency_ethics] (own_topic=0, own_sub=0, best_other=financial_regulations:3) -> low_own_topic_subcategory_overlap, looks_closer_to:financial_regulations
+  - Who must certify that funds are available in the budget before any expenditure or commitment is legally incurred?
+- `ppa_ethic_048` [procurement_act/proc_transparency_ethics] (own_topic=0, own_sub=0, best_other=psr:3) -> low_own_topic_subcategory_overlap, looks_closer_to:psr
+  - Which specific PSR Rule covers the penalty of **Loss of Pay** for unauthorized absence from duty?
+- `ppa_elb_019` [procurement_act/proc_eligibility_consultants_budgeting] (own_topic=0, own_sub=0, best_other=civil_service_admin:3) -> low_own_topic_subcategory_overlap, looks_closer_to:civil_service_admin
+  - In the context of consultancy, which ethical concern must be verified before engaging a firm that previously helped the MDA draft the Terms of Reference (ToR) for the same project?
+- `ppa_ims_015` [procurement_act/proc_implementation_sanctions] (own_topic=0, own_sub=0, best_other=psr:3) -> low_own_topic_subcategory_overlap, looks_closer_to:psr
+  - An officer under **Interdiction** (temporary suspension pending investigation) receives which payment status, according to the PSR?
+- `ppa_ims_024` [procurement_act/proc_implementation_sanctions] (own_topic=0, own_sub=0, best_other=psr:3) -> low_own_topic_subcategory_overlap, looks_closer_to:psr
+  - The ultimate disciplinary penalty for Serious Misconduct that results in the loss of all claims to retirement benefits is:
+- `ppa_ims_035` [procurement_act/proc_implementation_sanctions] (own_topic=0, own_sub=0, best_other=financial_regulations:3) -> low_own_topic_subcategory_overlap, looks_closer_to:financial_regulations
+  - What document serves as the formal authorization for the release of funds from the Treasury to the MDAs for execution of budgeted projects?
+- `ppa_ims_038` [procurement_act/proc_implementation_sanctions] (own_topic=0, own_sub=0, best_other=psr:3) -> low_own_topic_subcategory_overlap, looks_closer_to:psr
+  - The MDA’s **Senior Staff Committee (SSC)** handles promotion and disciplinary cases for officers on which grade levels?
+- `ppa_ims_039` [procurement_act/proc_implementation_sanctions] (own_topic=0, own_sub=0, best_other=psr:3) -> low_own_topic_subcategory_overlap, looks_closer_to:psr
+  - An officer placed under **Suspension** pending investigation into Gross Misconduct receives:
+- `clg_con_013` [constitutional_law/clg_constitutional_governance] (own_topic=0, own_sub=0, best_other=psr:3) -> low_own_topic_subcategory_overlap, looks_closer_to:psr
+  - Which body ensures that recruitment and disciplinary standards are maintained across the Federal Civil Service?
+- `clg_con_014` [constitutional_law/clg_constitutional_governance] (own_topic=0, own_sub=0, best_other=psr:3) -> low_own_topic_subcategory_overlap, looks_closer_to:psr
+  - The PSR 2021 mandates that matters not covered in its provisions should be referred to whom for appropriate direction?
+- `clg_lc_024` [constitutional_law/clg_legal_compliance] (own_topic=0, own_sub=0, best_other=procurement_act:3) -> low_own_topic_subcategory_overlap, looks_closer_to:procurement_act
+  - Which body is empowered to blacklist or debar contracting firms found guilty of corrupt practices or fraudulent misrepresentation during a bidding process?
+- `clg_lc_027` [constitutional_law/clg_legal_compliance] (own_topic=0, own_sub=0, best_other=financial_regulations:3) -> low_own_topic_subcategory_overlap, looks_closer_to:financial_regulations
+  - The penalty of **Surcharge** is imposed on an officer to recover:
+- `clg_lc_049` [constitutional_law/clg_legal_compliance] (own_topic=0, own_sub=0, best_other=psr:3) -> low_own_topic_subcategory_overlap, looks_closer_to:psr
+  - If an officer is required to present himself for examination by a Medical Board and fails to comply with the instructions, they are liable to be treated as having been:
+- `clg_lc_058` [constitutional_law/clg_legal_compliance] (own_topic=0, own_sub=0, best_other=psr:3) -> low_own_topic_subcategory_overlap, looks_closer_to:psr
+  - What happens if an Officer who has accepted a course of instruction abroad receives a salary from an employer in the overseas country during the training period?
+- `clg_lc_059` [constitutional_law/clg_legal_compliance] (own_topic=0, own_sub=0, best_other=financial_regulations:3) -> low_own_topic_subcategory_overlap, looks_closer_to:financial_regulations
+  - The separation of roles—authorization, custody, and recording—in financial transactions is the first control measure against fraud, known as:
+- `clg_gc_078` [constitutional_law/clg_general_competency] (own_topic=0, own_sub=0, best_other=psr:3) -> low_own_topic_subcategory_overlap, looks_closer_to:psr
+  - The period of service rendered during **study leave without pay** shall be regarded as:
+- `clg_gc_082` [constitutional_law/clg_general_competency] (own_topic=0, own_sub=0, best_other=psr:3) -> low_own_topic_subcategory_overlap, looks_closer_to:psr
+  - In the civil service, **Seniority** is primarily determined by:
+- `clg_gc_090` [constitutional_law/clg_general_competency] (own_topic=0, own_sub=0, best_other=psr:3) -> low_own_topic_subcategory_overlap, looks_closer_to:psr
+  - The maximum duration of **study leave with pay** that may be granted to an Officer is:
+- `clg_gc_098` [constitutional_law/clg_general_competency] (own_topic=0, own_sub=0, best_other=psr:3) -> low_own_topic_subcategory_overlap, looks_closer_to:psr
+  - The mandatory requirement for promotion eligibility, in addition to merit and seniority, is that the officer must have undergone:
+- `clg_gc_100` [constitutional_law/clg_general_competency] (own_topic=0, own_sub=0, best_other=psr:3) -> low_own_topic_subcategory_overlap, looks_closer_to:psr
+  - Who must approve the release of any Officer on study leave, whether paid or unpaid, upon the recommendation of the Officer’s Permanent Secretary/Head of Extra Ministerial Office?
+- `csh_principle_020` [civil_service_admin/csh_principles_ethics] (own_topic=0, own_sub=0, best_other=psr:3) -> low_own_topic_subcategory_overlap, looks_closer_to:psr
+  - Upon appointment, every officer is statutorily required to sign which document in line with PSR 020210?
+- `csh_disc_036` [civil_service_admin/csh_discipline_conduct] (own_topic=0, own_sub=0, best_other=psr:3) -> low_own_topic_subcategory_overlap, looks_closer_to:psr
+  - If an officer’s salary is withheld due to unauthorized absence, the sanction is specifically governed by which PSR Rule?
+- `csh_pt_016` [civil_service_admin/csh_performance_training] (own_topic=0, own_sub=0, best_other=psr:3) -> low_own_topic_subcategory_overlap, looks_closer_to:psr
+  - PSR Rule 070101 defines staff development as the policy of enhancing the knowledge, skills, attitude, effectiveness, and efficiency of staff to meet:
+- `csh_pt_018` [civil_service_admin/csh_performance_training] (own_topic=0, own_sub=0, best_other=psr:3) -> low_own_topic_subcategory_overlap, looks_closer_to:psr
+  - The payment of promotion arrears to an officer (PSR 040104(iii)) is calculated from the:
+- `csh_pt_022` [civil_service_admin/csh_performance_training] (own_topic=0, own_sub=0, best_other=psr:3) -> low_own_topic_subcategory_overlap, looks_closer_to:psr
+  - Which PSR rule stipulates that an officer who fails to take the confirmation examination after 3 years of first appointment is required to resign?
+- `csh_pt_040` [civil_service_admin/csh_performance_training] (own_topic=0, own_sub=0, best_other=psr:3) -> low_own_topic_subcategory_overlap, looks_closer_to:psr
+  - Which PSR rule outlines the minimum number of years an officer must spend in a post before being considered eligible for promotion?
+- `csh_ap_017` [civil_service_admin/csh_administrative_procedures] (own_topic=0, own_sub=0, best_other=psr:3) -> low_own_topic_subcategory_overlap, looks_closer_to:psr
+  - The PSR defines **Acting Appointment** (PSR 020703) as being **NOT** intended as a means of testing the suitability of Officers for promotion, but normally made only in order to fi...
+- `csh_ap_018` [civil_service_admin/csh_administrative_procedures] (own_topic=0, own_sub=0, best_other=psr:3) -> low_own_topic_subcategory_overlap, looks_closer_to:psr
+  - The date on which an acting appointment commences will not be earlier than the date the officer takes over from the substantive holder or:
+- `csh_ap_029` [civil_service_admin/csh_administrative_procedures] (own_topic=0, own_sub=0, best_other=psr:3) -> low_own_topic_subcategory_overlap, looks_closer_to:psr
+  - Which PSR rule covers the conditions for an officer to be considered for transfer-on-promotion?
+- `csh_ap_042` [civil_service_admin/csh_administrative_procedures] (own_topic=0, own_sub=0, best_other=psr:3) -> low_own_topic_subcategory_overlap, looks_closer_to:psr
+  - The PSR requires that where an officer is seconded or posted, all non-salary allowances shall be paid by:
+- `csh_it_031` [civil_service_admin/csh_innovation_technology] (own_topic=0, own_sub=0, best_other=procurement_act:3) -> low_own_topic_subcategory_overlap, looks_closer_to:procurement_act
+  - Which core principle of the PSR is directly supported by the implementation of the IPPIS and GIFMIS systems?
+- `csh_it_042` [civil_service_admin/csh_innovation_technology] (own_topic=0, own_sub=0, best_other=financial_regulations:3) -> low_own_topic_subcategory_overlap, looks_closer_to:financial_regulations
+  - In the context of government financial management, **GIFMIS** integrates which of the following functions?
+- `csh_it_047` [civil_service_admin/csh_innovation_technology] (own_topic=0, own_sub=0, best_other=financial_regulations:3) -> low_own_topic_subcategory_overlap, looks_closer_to:financial_regulations
+  - The core component that automates the tracking of budget allocations, expenditures, and balances per subhead (FR 601) is represented digitally in the **GIFMIS** system by the:
+- `csh_sdg_031` [civil_service_admin/csh_service_delivery_grievance] (own_topic=0, own_sub=0, best_other=psr:3) -> low_own_topic_subcategory_overlap, looks_closer_to:psr
+  - Which body must an officer appeal to if they are dissatisfied with a promotion exercise (PSR practice)?
+- `csh_sdg_037` [civil_service_admin/csh_service_delivery_grievance] (own_topic=0, own_sub=0, best_other=psr:3) -> low_own_topic_subcategory_overlap, looks_closer_to:psr
+  - Which PSR rule covers the prohibition on seeking influence of prominent persons to gain appointment, transfer, promotion, or postings?
+- `csh_sdg_039` [civil_service_admin/csh_service_delivery_grievance] (own_topic=0, own_sub=0, best_other=psr:3) -> low_own_topic_subcategory_overlap, looks_closer_to:psr
+  - The PSR requires that an officer on promotion who is dissatisfied with the outcome must exercise their right of appeal through:
+- `csh_sdg_049` [civil_service_admin/csh_service_delivery_grievance] (own_topic=0, own_sub=0, best_other=psr:3) -> low_own_topic_subcategory_overlap, looks_closer_to:psr
+  - PSR Rule 120233 allows for special leave with full pay for a period up to two weeks on **compassionate grounds** for:
+- `leadership_lsm_013` [leadership_management/lead_principles_styles] (own_topic=0, own_sub=0, best_other=civil_service_admin:3) -> low_own_topic_subcategory_overlap, looks_closer_to:civil_service_admin
+  - According to the Civil Service Handbook (CSH), which three core values must civil servants uphold?
+- `leadership_lsm_017` [leadership_management/lead_principles_styles] (own_topic=0, own_sub=0, best_other=psr:3) -> low_own_topic_subcategory_overlap, looks_closer_to:psr
+  - According to the PSR, an officer must make a statutory declaration renouncing membership in any secret society, and contravention may lead to:
+- `leadership_lsm_020` [leadership_management/lead_principles_styles] (own_topic=0, own_sub=0, best_other=procurement_act:3) -> low_own_topic_subcategory_overlap, looks_closer_to:procurement_act
+  - The PPA's Section 57 mandates disclosure of potential conflicts of interest in procurement proceedings by:
+- `leadership_lsm_024` [leadership_management/lead_principles_styles] (own_topic=0, own_sub=0, best_other=civil_service_admin:3) -> low_own_topic_subcategory_overlap, looks_closer_to:civil_service_admin
+  - In the Civil Service Handbook, **Nepotism** is explicitly discouraged because it violates the principle of:
+- `leadership_lsm_041` [leadership_management/lead_principles_styles] (own_topic=0, own_sub=0, best_other=psr:3) -> low_own_topic_subcategory_overlap, looks_closer_to:psr
+  - When faced with **General Inefficiency** in a subordinate (Rule 100201), the leader's initial disciplinary step should be to:
+- `leadership_smp_027` [leadership_management/lead_strategic_management] (own_topic=0, own_sub=0, best_other=ict_management:3) -> low_own_topic_subcategory_overlap, looks_closer_to:ict_management
+  - The concept of **Digital Identity Integration** (linking staff records to NIN and biometrics) strategically aims to:
+- `leadership_smp_047` [leadership_management/lead_strategic_management] (own_topic=0, own_sub=0, best_other=psr:3) -> low_own_topic_subcategory_overlap, looks_closer_to:psr
+  - The development of a new **Scheme of Service** for a professional cadre is strategically important because it links:
+- `leadership_mpf_022` [leadership_management/lead_management_performance] (own_topic=0, own_sub=0, best_other=financial_regulations:3) -> low_own_topic_subcategory_overlap, looks_closer_to:financial_regulations
+  - When an MDA incurs expenditure that exceeds its approved budget allocation (Over-Expenditure), this liability must ultimately be covered by:
+- `leadership_mpf_023` [leadership_management/lead_management_performance] (own_topic=0, own_sub=0, best_other=psr:3) -> low_own_topic_subcategory_overlap, looks_closer_to:psr
+  - Which of the following documents is **NOT** allowed as a reference book for officers on GL 07 and above during the compulsory confirmation examination?
+- `leadership_mpf_025` [leadership_management/lead_management_performance] (own_topic=0, own_sub=0, best_other=psr:3) -> low_own_topic_subcategory_overlap, looks_closer_to:psr
+  - The process of Staff Development (Rule 070101) is defined as enhancing the knowledge, skills, and effectiveness of staff in order to meet their career goals and prepare them for:
+- `leadership_mpf_027` [leadership_management/lead_management_performance] (own_topic=0, own_sub=0, best_other=financial_regulations:3) -> low_own_topic_subcategory_overlap, looks_closer_to:financial_regulations
+  - Who is primarily responsible for maintaining the departmental Vote Ledger (Vote Book) and monitoring budgetary allocations and commitments?
+- `leadership_mpf_033` [leadership_management/lead_management_performance] (own_topic=0, own_sub=0, best_other=psr:3) -> low_own_topic_subcategory_overlap, looks_closer_to:psr
+  - According to the PSR, an Officer on an incremental grade level shall normally be granted an increment unless he is under interdiction/suspension or:
+- `leadership_mpf_035` [leadership_management/lead_management_performance] (own_topic=0, own_sub=0, best_other=psr:3) -> low_own_topic_subcategory_overlap, looks_closer_to:psr
+  - What is the consequence for an officer's unauthorized absence from duty (A.W.O.L.)?
+- `leadership_mpf_048` [leadership_management/lead_management_performance] (own_topic=0, own_sub=0, best_other=psr:3) -> low_own_topic_subcategory_overlap, looks_closer_to:psr
+  - The mandatory retirement age in the Federal Civil Service is:
+- `ict_sec_043` [ict_management/ict_security] (own_topic=0, own_sub=0, best_other=financial_regulations:3) -> low_own_topic_subcategory_overlap, looks_closer_to:financial_regulations
+  - Which type of audit is conducted **after** expenditure is incurred to verify its legality and proper classification?
+- `ict_sec_054` [ict_management/ict_security] (own_topic=0, own_sub=0, best_other=procurement_act:3) -> low_own_topic_subcategory_overlap, looks_closer_to:procurement_act
+  - The maximum penalty for procurement fraud, bid rigging, or collusion (PPA Section 58) for an officer may include:
+- `ict_sec_058` [ict_management/ict_security] (own_topic=0, own_sub=0, best_other=financial_regulations:3) -> low_own_topic_subcategory_overlap, looks_closer_to:financial_regulations
+  - The separation of duties in financial systems aims to prevent:
+- `ict_sec_067` [ict_management/ict_security] (own_topic=0, own_sub=0, best_other=financial_regulations:3) -> low_own_topic_subcategory_overlap, looks_closer_to:financial_regulations
+  - The Audit Trail is the sequential documentation of financial transactions intended to ensure:
+- `ict_li_063` [ict_management/ict_literacy_innovation] (own_topic=0, own_sub=0, best_other=psr:3) -> low_own_topic_subcategory_overlap, looks_closer_to:psr
+  - If an officer is required to present himself to an approved Healthcare Provider for a Special Medical Test (Rule 130105), the test determines if the officer is capable of performin...
+- `ict_li_072` [ict_management/ict_literacy_innovation] (own_topic=0, own_sub=0, best_other=psr:3) -> low_own_topic_subcategory_overlap, looks_closer_to:psr
+  - What is the PSR rule regarding an officer who receives a salary from an employer in an overseas country while undergoing a Government-approved training course?
+- `PSIR_053` [general_current_affairs/ca_public_service_reforms] (own_topic=0, own_sub=0, best_other=psr:3) -> low_own_topic_subcategory_overlap, looks_closer_to:psr
+  - What mandatory duty must a **Contract Officer** undertake as a condition for their offer of appointment?
+- `PSIR_054` [general_current_affairs/ca_public_service_reforms] (own_topic=0, own_sub=0, best_other=psr:3) -> low_own_topic_subcategory_overlap, looks_closer_to:psr
+  - Where retired officers are re-engaged into career posts, on what grade level shall their appointment be made?
+- `PSIR_066` [general_current_affairs/ca_public_service_reforms] (own_topic=0, own_sub=0, best_other=psr:3) -> low_own_topic_subcategory_overlap, looks_closer_to:psr
+  - What grade level must an officer be on to be eligible for Sabbatical Appointment?
+- `PSIR_070` [general_current_affairs/ca_public_service_reforms] (own_topic=0, own_sub=0, best_other=psr:3) -> low_own_topic_subcategory_overlap, looks_closer_to:psr
+  - What must an officer submit upon return from annual leave to their Permanent Secretary/Head of Extra-Ministerial Office?
+- `PSIR_076` [general_current_affairs/ca_public_service_reforms] (own_topic=0, own_sub=0, best_other=financial_regulations:3) -> low_own_topic_subcategory_overlap, looks_closer_to:financial_regulations
+  - Under the Performance Management System (PMS), performance expectations shall be based on the detailed contents captured in which document?

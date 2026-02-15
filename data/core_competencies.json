@@ -1141,6 +1141,321 @@
             "procurement",
             "division"
           ]
+        },
+        {
+          "id": "comp_numerical_reasoning_gen_001",
+          "question": "In the context of Numerical & Mathematical Reasoning, which action best demonstrates numerical & mathematical reasoning governance?",
+          "options": [
+            "Apply approved numerical & mathematical reasoning procedures and maintain complete records.",
+            "Apply rules inconsistently based on personal preference.",
+            "Bypass review and approval controls to save time.",
+            "Prioritize convenience over policy and legal requirements."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because apply approved numerical & mathematical reasoning procedures and maintain complete records. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
+          "difficulty": "easy",
+          "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
+          "keywords": [
+            "competency_framework",
+            "comp_numerical_reasoning",
+            "numerical & mathematical reasoning governance",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "comp_numerical_reasoning_gen_002",
+          "question": "For effective numerical & mathematical reasoning, what is the most appropriate approach to ensure numerical & mathematical reasoning compliance?",
+          "options": [
+            "Use lawful criteria and document each decision step transparently.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Treat exceptions as routine without documented justification.",
+            "Close cases without validating facts or required records."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because use lawful criteria and document each decision step transparently. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
+          "difficulty": "medium",
+          "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
+          "keywords": [
+            "competency_framework",
+            "comp_numerical_reasoning",
+            "numerical & mathematical reasoning compliance",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "comp_numerical_reasoning_gen_003",
+          "question": "Which option most strongly aligns with good public-service practice on numerical & mathematical reasoning risk management within Numerical & Mathematical Reasoning?",
+          "options": [
+            "Identify control gaps early and escalate material exceptions promptly.",
+            "Bypass review and approval controls to save time.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Ignore feedback and continue non-compliant procedures."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because identify control gaps early and escalate material exceptions promptly. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
+          "difficulty": "hard",
+          "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
+          "keywords": [
+            "competency_framework",
+            "comp_numerical_reasoning",
+            "numerical & mathematical reasoning risk management",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "comp_numerical_reasoning_gen_004",
+          "question": "When handling numerical & mathematical reasoning, which choice reflects proper numerical reasoning standards?",
+          "options": [
+            "Use quantitative evidence to support administrative decisions.",
+            "Treat exceptions as routine without documented justification.",
+            "Close cases without validating facts or required records.",
+            "Rely on informal instructions without documentary evidence."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because use quantitative evidence to support administrative decisions. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
+          "difficulty": "easy",
+          "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
+          "keywords": [
+            "competency_framework",
+            "comp_numerical_reasoning",
+            "numerical reasoning",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "comp_numerical_reasoning_gen_005",
+          "question": "Which practice should a responsible officer prioritize to sustain verbal reasoning in Numerical & Mathematical Reasoning?",
+          "options": [
+            "Interpret official text accurately before action.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Apply rules inconsistently based on personal preference."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because interpret official text accurately before action. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
+          "difficulty": "medium",
+          "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
+          "keywords": [
+            "competency_framework",
+            "comp_numerical_reasoning",
+            "verbal reasoning",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "comp_numerical_reasoning_gen_006",
+          "question": "In the context of Numerical & Mathematical Reasoning, which action best demonstrates analytical judgement?",
+          "options": [
+            "Evaluate alternatives using logic and evidence.",
+            "Close cases without validating facts or required records.",
+            "Rely on informal instructions without documentary evidence.",
+            "Delay decisions until issues escalate into avoidable crises."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because evaluate alternatives using logic and evidence. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
+          "difficulty": "hard",
+          "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
+          "keywords": [
+            "competency_framework",
+            "comp_numerical_reasoning",
+            "analytical judgement",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "comp_numerical_reasoning_gen_007",
+          "question": "For effective numerical & mathematical reasoning, what is the most appropriate approach to ensure problem solving?",
+          "options": [
+            "Break complex issues into testable and actionable parts.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Apply rules inconsistently based on personal preference.",
+            "Bypass review and approval controls to save time."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because break complex issues into testable and actionable parts. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
+          "difficulty": "easy",
+          "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
+          "keywords": [
+            "competency_framework",
+            "comp_numerical_reasoning",
+            "problem solving",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "comp_numerical_reasoning_gen_008",
+          "question": "Which option most strongly aligns with good public-service practice on communication clarity within Numerical & Mathematical Reasoning?",
+          "options": [
+            "Present conclusions clearly with defensible rationale.",
+            "Rely on informal instructions without documentary evidence.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Treat exceptions as routine without documented justification."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because present conclusions clearly with defensible rationale. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
+          "difficulty": "medium",
+          "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
+          "keywords": [
+            "competency_framework",
+            "comp_numerical_reasoning",
+            "communication clarity",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "comp_numerical_reasoning_gen_009",
+          "question": "When handling numerical & mathematical reasoning, which choice reflects proper documented procedure standards?",
+          "options": [
+            "Follow documented procedure and keep complete records.",
+            "Apply rules inconsistently based on personal preference.",
+            "Bypass review and approval controls to save time.",
+            "Prioritize convenience over policy and legal requirements."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because follow documented procedure and keep complete records. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
+          "difficulty": "hard",
+          "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
+          "keywords": [
+            "competency_framework",
+            "comp_numerical_reasoning",
+            "documented procedure",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "comp_numerical_reasoning_gen_010",
+          "question": "Which practice should a responsible officer prioritize to sustain compliance assurance in Numerical & Mathematical Reasoning?",
+          "options": [
+            "Apply approved rules consistently and escalate exceptions.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Treat exceptions as routine without documented justification.",
+            "Close cases without validating facts or required records."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because apply approved rules consistently and escalate exceptions. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
+          "difficulty": "easy",
+          "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
+          "keywords": [
+            "competency_framework",
+            "comp_numerical_reasoning",
+            "compliance assurance",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "comp_numerical_reasoning_gen_011",
+          "question": "In the context of Numerical & Mathematical Reasoning, which action best demonstrates public accountability?",
+          "options": [
+            "Provide traceable decisions and evidence-based justification.",
+            "Bypass review and approval controls to save time.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Ignore feedback and continue non-compliant procedures."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because provide traceable decisions and evidence-based justification. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
+          "difficulty": "medium",
+          "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
+          "keywords": [
+            "competency_framework",
+            "comp_numerical_reasoning",
+            "public accountability",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "comp_numerical_reasoning_gen_012",
+          "question": "For effective numerical & mathematical reasoning, what is the most appropriate approach to ensure service integrity?",
+          "options": [
+            "Avoid conflicts of interest and disclose relevant constraints.",
+            "Treat exceptions as routine without documented justification.",
+            "Close cases without validating facts or required records.",
+            "Rely on informal instructions without documentary evidence."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because avoid conflicts of interest and disclose relevant constraints. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
+          "difficulty": "hard",
+          "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
+          "keywords": [
+            "competency_framework",
+            "comp_numerical_reasoning",
+            "service integrity",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "comp_numerical_reasoning_gen_013",
+          "question": "Which option most strongly aligns with good public-service practice on risk control within Numerical & Mathematical Reasoning?",
+          "options": [
+            "Identify risk early, apply controls, and document mitigation.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Apply rules inconsistently based on personal preference."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because identify risk early, apply controls, and document mitigation. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
+          "difficulty": "easy",
+          "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
+          "keywords": [
+            "competency_framework",
+            "comp_numerical_reasoning",
+            "risk control",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "comp_numerical_reasoning_gen_014",
+          "question": "When handling numerical & mathematical reasoning, which choice reflects proper decision transparency standards?",
+          "options": [
+            "Use clear criteria and communicate decisions promptly.",
+            "Close cases without validating facts or required records.",
+            "Rely on informal instructions without documentary evidence.",
+            "Delay decisions until issues escalate into avoidable crises."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because use clear criteria and communicate decisions promptly. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
+          "difficulty": "medium",
+          "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
+          "keywords": [
+            "competency_framework",
+            "comp_numerical_reasoning",
+            "decision transparency",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "comp_numerical_reasoning_gen_015",
+          "question": "Which practice should a responsible officer prioritize to sustain operational discipline in Numerical & Mathematical Reasoning?",
+          "options": [
+            "Follow approved workflows and verify outputs before closure.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Apply rules inconsistently based on personal preference.",
+            "Bypass review and approval controls to save time."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because follow approved workflows and verify outputs before closure. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
+          "difficulty": "hard",
+          "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
+          "keywords": [
+            "competency_framework",
+            "comp_numerical_reasoning",
+            "operational discipline",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
         }
       ],
       "id": "comp_numerical_reasoning"
@@ -2284,6 +2599,321 @@
             "furniture",
             "bread"
           ]
+        },
+        {
+          "id": "comp_verbal_reasoning_gen_001",
+          "question": "In the context of Verbal & Analytical Reasoning, which action best demonstrates verbal & analytical reasoning governance?",
+          "options": [
+            "Apply approved verbal & analytical reasoning procedures and maintain complete records.",
+            "Apply rules inconsistently based on personal preference.",
+            "Bypass review and approval controls to save time.",
+            "Prioritize convenience over policy and legal requirements."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because apply approved verbal & analytical reasoning procedures and maintain complete records. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
+          "difficulty": "easy",
+          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
+          "keywords": [
+            "competency_framework",
+            "comp_verbal_reasoning",
+            "verbal & analytical reasoning governance",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "comp_verbal_reasoning_gen_002",
+          "question": "For effective verbal & analytical reasoning, what is the most appropriate approach to ensure verbal & analytical reasoning compliance?",
+          "options": [
+            "Use lawful criteria and document each decision step transparently.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Treat exceptions as routine without documented justification.",
+            "Close cases without validating facts or required records."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because use lawful criteria and document each decision step transparently. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
+          "difficulty": "medium",
+          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
+          "keywords": [
+            "competency_framework",
+            "comp_verbal_reasoning",
+            "verbal & analytical reasoning compliance",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "comp_verbal_reasoning_gen_003",
+          "question": "Which option most strongly aligns with good public-service practice on verbal & analytical reasoning risk management within Verbal & Analytical Reasoning?",
+          "options": [
+            "Identify control gaps early and escalate material exceptions promptly.",
+            "Bypass review and approval controls to save time.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Ignore feedback and continue non-compliant procedures."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because identify control gaps early and escalate material exceptions promptly. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
+          "difficulty": "hard",
+          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
+          "keywords": [
+            "competency_framework",
+            "comp_verbal_reasoning",
+            "verbal & analytical reasoning risk management",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "comp_verbal_reasoning_gen_004",
+          "question": "When handling verbal & analytical reasoning, which choice reflects proper numerical reasoning standards?",
+          "options": [
+            "Use quantitative evidence to support administrative decisions.",
+            "Treat exceptions as routine without documented justification.",
+            "Close cases without validating facts or required records.",
+            "Rely on informal instructions without documentary evidence."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because use quantitative evidence to support administrative decisions. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
+          "difficulty": "easy",
+          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
+          "keywords": [
+            "competency_framework",
+            "comp_verbal_reasoning",
+            "numerical reasoning",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "comp_verbal_reasoning_gen_005",
+          "question": "Which practice should a responsible officer prioritize to sustain verbal reasoning in Verbal & Analytical Reasoning?",
+          "options": [
+            "Interpret official text accurately before action.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Apply rules inconsistently based on personal preference."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because interpret official text accurately before action. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
+          "difficulty": "medium",
+          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
+          "keywords": [
+            "competency_framework",
+            "comp_verbal_reasoning",
+            "verbal reasoning",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "comp_verbal_reasoning_gen_006",
+          "question": "In the context of Verbal & Analytical Reasoning, which action best demonstrates analytical judgement?",
+          "options": [
+            "Evaluate alternatives using logic and evidence.",
+            "Close cases without validating facts or required records.",
+            "Rely on informal instructions without documentary evidence.",
+            "Delay decisions until issues escalate into avoidable crises."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because evaluate alternatives using logic and evidence. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
+          "difficulty": "hard",
+          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
+          "keywords": [
+            "competency_framework",
+            "comp_verbal_reasoning",
+            "analytical judgement",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "comp_verbal_reasoning_gen_007",
+          "question": "For effective verbal & analytical reasoning, what is the most appropriate approach to ensure problem solving?",
+          "options": [
+            "Break complex issues into testable and actionable parts.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Apply rules inconsistently based on personal preference.",
+            "Bypass review and approval controls to save time."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because break complex issues into testable and actionable parts. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
+          "difficulty": "easy",
+          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
+          "keywords": [
+            "competency_framework",
+            "comp_verbal_reasoning",
+            "problem solving",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "comp_verbal_reasoning_gen_008",
+          "question": "Which option most strongly aligns with good public-service practice on communication clarity within Verbal & Analytical Reasoning?",
+          "options": [
+            "Present conclusions clearly with defensible rationale.",
+            "Rely on informal instructions without documentary evidence.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Treat exceptions as routine without documented justification."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because present conclusions clearly with defensible rationale. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
+          "difficulty": "medium",
+          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
+          "keywords": [
+            "competency_framework",
+            "comp_verbal_reasoning",
+            "communication clarity",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "comp_verbal_reasoning_gen_009",
+          "question": "When handling verbal & analytical reasoning, which choice reflects proper documented procedure standards?",
+          "options": [
+            "Follow documented procedure and keep complete records.",
+            "Apply rules inconsistently based on personal preference.",
+            "Bypass review and approval controls to save time.",
+            "Prioritize convenience over policy and legal requirements."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because follow documented procedure and keep complete records. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
+          "difficulty": "hard",
+          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
+          "keywords": [
+            "competency_framework",
+            "comp_verbal_reasoning",
+            "documented procedure",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "comp_verbal_reasoning_gen_010",
+          "question": "Which practice should a responsible officer prioritize to sustain compliance assurance in Verbal & Analytical Reasoning?",
+          "options": [
+            "Apply approved rules consistently and escalate exceptions.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Treat exceptions as routine without documented justification.",
+            "Close cases without validating facts or required records."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because apply approved rules consistently and escalate exceptions. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
+          "difficulty": "easy",
+          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
+          "keywords": [
+            "competency_framework",
+            "comp_verbal_reasoning",
+            "compliance assurance",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "comp_verbal_reasoning_gen_011",
+          "question": "In the context of Verbal & Analytical Reasoning, which action best demonstrates public accountability?",
+          "options": [
+            "Provide traceable decisions and evidence-based justification.",
+            "Bypass review and approval controls to save time.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Ignore feedback and continue non-compliant procedures."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because provide traceable decisions and evidence-based justification. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
+          "difficulty": "medium",
+          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
+          "keywords": [
+            "competency_framework",
+            "comp_verbal_reasoning",
+            "public accountability",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "comp_verbal_reasoning_gen_012",
+          "question": "For effective verbal & analytical reasoning, what is the most appropriate approach to ensure service integrity?",
+          "options": [
+            "Avoid conflicts of interest and disclose relevant constraints.",
+            "Treat exceptions as routine without documented justification.",
+            "Close cases without validating facts or required records.",
+            "Rely on informal instructions without documentary evidence."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because avoid conflicts of interest and disclose relevant constraints. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
+          "difficulty": "hard",
+          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
+          "keywords": [
+            "competency_framework",
+            "comp_verbal_reasoning",
+            "service integrity",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "comp_verbal_reasoning_gen_013",
+          "question": "Which option most strongly aligns with good public-service practice on risk control within Verbal & Analytical Reasoning?",
+          "options": [
+            "Identify risk early, apply controls, and document mitigation.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Apply rules inconsistently based on personal preference."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because identify risk early, apply controls, and document mitigation. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
+          "difficulty": "easy",
+          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
+          "keywords": [
+            "competency_framework",
+            "comp_verbal_reasoning",
+            "risk control",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "comp_verbal_reasoning_gen_014",
+          "question": "When handling verbal & analytical reasoning, which choice reflects proper decision transparency standards?",
+          "options": [
+            "Use clear criteria and communicate decisions promptly.",
+            "Close cases without validating facts or required records.",
+            "Rely on informal instructions without documentary evidence.",
+            "Delay decisions until issues escalate into avoidable crises."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because use clear criteria and communicate decisions promptly. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
+          "difficulty": "medium",
+          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
+          "keywords": [
+            "competency_framework",
+            "comp_verbal_reasoning",
+            "decision transparency",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "comp_verbal_reasoning_gen_015",
+          "question": "Which practice should a responsible officer prioritize to sustain operational discipline in Verbal & Analytical Reasoning?",
+          "options": [
+            "Follow approved workflows and verify outputs before closure.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Apply rules inconsistently based on personal preference.",
+            "Bypass review and approval controls to save time."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because follow approved workflows and verify outputs before closure. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
+          "difficulty": "hard",
+          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
+          "keywords": [
+            "competency_framework",
+            "comp_verbal_reasoning",
+            "operational discipline",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
         }
       ],
       "id": "comp_verbal_reasoning"

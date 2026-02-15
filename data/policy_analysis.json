@@ -1221,289 +1221,235 @@
           ]
         },
         {
-          "id": "policy_constitution_065",
-          "question": "Which of these is a primary function of the Office of the Head of Service?",
+          "id": "pol_formulation_cycle_gen_001",
+          "question": "In the context of Policy Formulation & Cycle, which action best demonstrates policy formulation & cycle governance?",
           "options": [
-            "Conduct criminal trials",
-            "Manage and coordinate the civil service",
-            "Enact fiscal policy",
-            "Appoint state governors"
-          ],
-          "correct": 1,
-          "explanation": "The Office of the Head of Service coordinates civil service activities, human resource policies, postings and discipline.",
-          "difficulty": "medium",
-          "topic": "Governance and Public Policy",
-          "keywords": [
-            "head of service",
-            "coordination",
-            "civil service"
-          ]
-        },
-        {
-          "id": "policy_constitution_066",
-          "question": "Which of these is a valid method to index files for retrieval?",
-          "options": [
-            "Chronological, Alphabetical, Numerical or Subject-based indexing",
-            "Only using color tags",
-            "Only by staff name",
-            "Only by department code"
+            "Apply approved policy formulation & cycle procedures and maintain complete records.",
+            "Apply rules inconsistently based on personal preference.",
+            "Bypass review and approval controls to save time.",
+            "Prioritize convenience over policy and legal requirements."
           ],
           "correct": 0,
-          "explanation": "Files may be indexed chronologically, alphabetically, numerically or by subject for efficient retrieval.",
+          "explanation": "This is correct because apply approved policy formulation & cycle procedures and maintain complete records. It strengthens compliance, consistency, and accountability in policy formulation & cycle.",
           "difficulty": "easy",
-          "topic": "Governance and Public Policy",
+          "chapter": "Policy Formulation & Cycle - Expansion Set",
           "keywords": [
-            "indexing",
-            "filing",
-            "records management"
-          ]
+            "policy_analysis",
+            "pol_formulation_cycle",
+            "policy formulation & cycle governance",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
         },
         {
-          "id": "policy_constitution_067",
-          "question": "Which of these best describes 'service book' in civil service records?",
+          "id": "pol_formulation_cycle_gen_002",
+          "question": "For effective policy formulation & cycle, what is the most appropriate approach to ensure policy formulation & cycle compliance?",
           "options": [
-            "A list of available office services",
-            "A record of an officer's employment history, promotions and postings",
-            "A procurement catalogue",
-            "A payroll summary"
+            "Use lawful criteria and document each decision step transparently.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Treat exceptions as routine without documented justification.",
+            "Close cases without validating facts or required records."
           ],
-          "correct": 1,
-          "explanation": "A service book documents an officer’s entire career record, including postings, promotions and training.",
+          "correct": 0,
+          "explanation": "This is correct because use lawful criteria and document each decision step transparently. It strengthens compliance, consistency, and accountability in policy formulation & cycle.",
           "difficulty": "medium",
-          "topic": "Governance and Public Policy",
+          "chapter": "Policy Formulation & Cycle - Expansion Set",
           "keywords": [
-            "service book",
-            "career record",
-            "civil servant"
-          ]
+            "policy_analysis",
+            "pol_formulation_cycle",
+            "policy formulation & cycle compliance",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
         },
         {
-          "id": "policy_constitution_068",
-          "question": "Which federal agency publishes procurement guidelines and monitors compliance?",
+          "id": "pol_formulation_cycle_gen_003",
+          "question": "Which option most strongly aligns with good public-service practice on policy formulation & cycle risk management within Policy Formulation & Cycle?",
           "options": [
-            "EFCC",
-            "Bureau of Public Procurement (BPP)",
-            "Central Bank",
-            "Federal Civil Service Commission"
+            "Identify control gaps early and escalate material exceptions promptly.",
+            "Bypass review and approval controls to save time.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Ignore feedback and continue non-compliant procedures."
           ],
-          "correct": 1,
-          "explanation": "The BPP issues procurement guidelines and monitors compliance with the Public Procurement Act.",
+          "correct": 0,
+          "explanation": "This is correct because identify control gaps early and escalate material exceptions promptly. It strengthens compliance, consistency, and accountability in policy formulation & cycle.",
+          "difficulty": "hard",
+          "chapter": "Policy Formulation & Cycle - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_formulation_cycle",
+            "policy formulation & cycle risk management",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_formulation_cycle_gen_004",
+          "question": "When handling policy formulation & cycle, which choice reflects proper policy formulation standards?",
+          "options": [
+            "Define the problem, options, and decision criteria clearly.",
+            "Treat exceptions as routine without documented justification.",
+            "Close cases without validating facts or required records.",
+            "Rely on informal instructions without documentary evidence."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because define the problem, options, and decision criteria clearly. It strengthens compliance, consistency, and accountability in policy formulation & cycle.",
+          "difficulty": "easy",
+          "chapter": "Policy Formulation & Cycle - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_formulation_cycle",
+            "policy formulation",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_formulation_cycle_gen_005",
+          "question": "Which practice should a responsible officer prioritize to sustain implementation planning in Policy Formulation & Cycle?",
+          "options": [
+            "Assign responsibilities, timelines, and performance metrics.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Apply rules inconsistently based on personal preference."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because assign responsibilities, timelines, and performance metrics. It strengthens compliance, consistency, and accountability in policy formulation & cycle.",
           "difficulty": "medium",
-          "topic": "Governance and Public Policy",
+          "chapter": "Policy Formulation & Cycle - Expansion Set",
           "keywords": [
-            "bpp",
-            "procurement",
-            "guidelines"
-          ]
+            "policy_analysis",
+            "pol_formulation_cycle",
+            "implementation planning",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
         },
         {
-          "id": "policy_constitution_069",
-          "question": "What does 'PS' commonly denote on internal memos in civil service?",
+          "id": "pol_formulation_cycle_gen_006",
+          "question": "In the context of Policy Formulation & Cycle, which action best demonstrates impact evaluation?",
           "options": [
-            "Personal Secretary",
-            "Permanent Secretary",
-            "Post Script",
-            "Public Service"
+            "Measure outcomes against baseline and policy objectives.",
+            "Close cases without validating facts or required records.",
+            "Rely on informal instructions without documentary evidence.",
+            "Delay decisions until issues escalate into avoidable crises."
           ],
-          "correct": 1,
-          "explanation": "In civil service memos, 'P.S.' most often denotes 'Permanent Secretary'.",
+          "correct": 0,
+          "explanation": "This is correct because measure outcomes against baseline and policy objectives. It strengthens compliance, consistency, and accountability in policy formulation & cycle.",
+          "difficulty": "hard",
+          "chapter": "Policy Formulation & Cycle - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_formulation_cycle",
+            "impact evaluation",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_formulation_cycle_gen_007",
+          "question": "For effective policy formulation & cycle, what is the most appropriate approach to ensure evidence quality?",
+          "options": [
+            "Use credible data sources and validate assumptions.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Apply rules inconsistently based on personal preference.",
+            "Bypass review and approval controls to save time."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because use credible data sources and validate assumptions. It strengthens compliance, consistency, and accountability in policy formulation & cycle.",
           "difficulty": "easy",
-          "topic": "Governance and Public Policy",
+          "chapter": "Policy Formulation & Cycle - Expansion Set",
           "keywords": [
-            "ps",
-            "permanent secretary",
-            "abbreviation"
-          ]
+            "policy_analysis",
+            "pol_formulation_cycle",
+            "evidence quality",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
         },
         {
-          "id": "policy_constitution_070",
-          "question": "Which is the primary purpose of an office diary?",
+          "id": "pol_formulation_cycle_gen_008",
+          "question": "Which option most strongly aligns with good public-service practice on public-sector planning within Policy Formulation & Cycle?",
           "options": [
-            "File storage",
-            "Schedule and record official appointments and engagements",
-            "Payroll processing",
-            "Procurement records"
+            "Align plans with budget, legal mandate, and service priorities.",
+            "Rely on informal instructions without documentary evidence.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Treat exceptions as routine without documented justification."
           ],
-          "correct": 1,
-          "explanation": "An office diary is used to schedule and record official appointments, meetings and activities.",
-          "difficulty": "easy",
-          "topic": "Governance and Public Policy",
-          "keywords": [
-            "office diary",
-            "scheduling",
-            "appointments"
-          ]
-        },
-        {
-          "id": "policy_constitution_071",
-          "question": "Which statement best defines 'virement' in public finance?",
-          "options": [
-            "An external loan",
-            "Transfer of funds from one budget head to another with approval",
-            "An imprest process",
-            "A procurement method"
-          ],
-          "correct": 1,
-          "explanation": "Virement is the authorized transfer of funds within the approved budget from one head to another.",
+          "correct": 0,
+          "explanation": "This is correct because align plans with budget, legal mandate, and service priorities. It strengthens compliance, consistency, and accountability in policy formulation & cycle.",
           "difficulty": "medium",
-          "topic": "Governance and Public Policy",
+          "chapter": "Policy Formulation & Cycle - Expansion Set",
           "keywords": [
-            "virement",
-            "budget",
-            "transfer"
-          ]
+            "policy_analysis",
+            "pol_formulation_cycle",
+            "public-sector planning",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
         },
         {
-          "id": "policy_constitution_072",
-          "question": "Which course of action should a registry take when it receives classified material addressed to another ministry?",
+          "id": "pol_formulation_cycle_gen_009",
+          "question": "When handling policy formulation & cycle, which choice reflects proper documented procedure standards?",
           "options": [
-            "Open and read it",
-            "Forward immediately to the intended recipient without recording",
-            "Record receipt and dispatch through secure channel to the intended ministry",
-            "Publish its contents internally"
+            "Follow documented procedure and keep complete records.",
+            "Apply rules inconsistently based on personal preference.",
+            "Bypass review and approval controls to save time.",
+            "Prioritize convenience over policy and legal requirements."
           ],
-          "correct": 2,
-          "explanation": "Classified material must be recorded on receipt and securely forwarded by approved channels to the intended recipient, maintaining chain-of-custody.",
+          "correct": 0,
+          "explanation": "This is correct because follow documented procedure and keep complete records. It strengthens compliance, consistency, and accountability in policy formulation & cycle.",
+          "difficulty": "hard",
+          "chapter": "Policy Formulation & Cycle - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_formulation_cycle",
+            "documented procedure",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_formulation_cycle_gen_010",
+          "question": "Which practice should a responsible officer prioritize to sustain compliance assurance in Policy Formulation & Cycle?",
+          "options": [
+            "Apply approved rules consistently and escalate exceptions.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Treat exceptions as routine without documented justification.",
+            "Close cases without validating facts or required records."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because apply approved rules consistently and escalate exceptions. It strengthens compliance, consistency, and accountability in policy formulation & cycle.",
+          "difficulty": "easy",
+          "chapter": "Policy Formulation & Cycle - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_formulation_cycle",
+            "compliance assurance",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_formulation_cycle_gen_011",
+          "question": "In the context of Policy Formulation & Cycle, which action best demonstrates public accountability?",
+          "options": [
+            "Provide traceable decisions and evidence-based justification.",
+            "Bypass review and approval controls to save time.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Ignore feedback and continue non-compliant procedures."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because provide traceable decisions and evidence-based justification. It strengthens compliance, consistency, and accountability in policy formulation & cycle.",
           "difficulty": "medium",
-          "topic": "Governance and Public Policy",
+          "chapter": "Policy Formulation & Cycle - Expansion Set",
           "keywords": [
-            "classified",
-            "registry",
-            "secure dispatch"
-          ]
-        },
-        {
-          "id": "policy_constitution_073",
-          "question": "Which of these is part of a good filing practice?",
-          "options": [
-            "Leaving files unlabelled",
-            "Numbering files, keeping indexes and using subject codes",
-            "Storing everything on desk tops",
-            "Mixing confidential with public files"
+            "policy_analysis",
+            "pol_formulation_cycle",
+            "public accountability",
+            "quality-expansion"
           ],
-          "correct": 1,
-          "explanation": "Numbering, indexing and subject coding are core to good filing practice for retrievability and control.",
-          "difficulty": "easy",
-          "topic": "Governance and Public Policy",
-          "keywords": [
-            "filing practice",
-            "index",
-            "subject code"
-          ]
-        },
-        {
-          "id": "policy_constitution_074",
-          "question": "Which statement about 'confidential files' is correct?",
-          "options": [
-            "They can be left on public notice boards",
-            "They require restricted access and secure storage",
-            "They must be emailed to all staff",
-            "They are the same as public circulars"
-          ],
-          "correct": 1,
-          "explanation": "Confidential files contain sensitive material and must be stored securely with restricted access.",
-          "difficulty": "easy",
-          "topic": "Governance and Public Policy",
-          "keywords": [
-            "confidential",
-            "secure storage",
-            "access control"
-          ]
-        },
-        {
-          "id": "policy_constitution_075",
-          "question": "Which of these is NOT normally included in minutes of a meeting?",
-          "options": [
-            "Major decisions and assigned action points",
-            "Names of attendees",
-            "Exact verbatim transcript of casual comments",
-            "Date and time of meeting"
-          ],
-          "correct": 2,
-          "explanation": "Minutes summarise decisions and action points; they are not necessarily verbatim transcripts of casual comments.",
-          "difficulty": "easy",
-          "topic": "Governance and Public Policy",
-          "keywords": [
-            "minutes",
-            "meetings",
-            "documentation"
-          ]
-        },
-        {
-          "id": "policy_constitution_076",
-          "question": "Which term refers to the routine checking and verification of financial and administrative records within an organisation?",
-          "options": [
-            "Certification",
-            "Internal audit",
-            "Procurement",
-            "Virement"
-          ],
-          "correct": 1,
-          "explanation": "Internal audit is the process of independently checking and verifying organisational records and controls.",
-          "difficulty": "medium",
-          "topic": "Governance and Public Policy",
-          "keywords": [
-            "internal audit",
-            "verification",
-            "controls"
-          ]
-        },
-        {
-          "id": "policy_constitution_077",
-          "question": "Which of these is a good practice when drafting official correspondence?",
-          "options": [
-            "Use informal language and emojis",
-            "Be concise, use formal tone, include reference numbers and clear signature",
-            "Avoid dates",
-            "Use personal opinions heavily"
-          ],
-          "correct": 1,
-          "explanation": "Official correspondence should be concise, formal, include references, dates and authorised signatures.",
-          "difficulty": "easy",
-          "topic": "Governance and Public Policy",
-          "keywords": [
-            "correspondence",
-            "formal",
-            "best practice"
-          ]
-        },
-        {
-          "id": "policy_constitution_078",
-          "question": "Which term best describes the act of returning unspent budget balance at year end to the Treasury?",
-          "options": [
-            "Appropriation",
-            "Remittance to Consolidated Revenue/ Treasury Single Account",
-            "Imprest",
-            "Virement"
-          ],
-          "correct": 1,
-          "explanation": "Unspent balances at year-end are remitted to the Consolidated Revenue Fund or Treasury Single Account as required by public finance rules.",
-          "difficulty": "medium",
-          "topic": "Governance and Public Policy",
-          "keywords": [
-            "unspent balances",
-            "tsa",
-            "consolidated revenue"
-          ]
-        },
-        {
-          "id": "policy_constitution_079",
-          "question": "Which of these abbreviations commonly appears on file covers to indicate urgency?",
-          "options": [
-            "FYI",
-            "UFS",
-            "TBC",
-            "N/A"
-          ],
-          "correct": 1,
-          "explanation": "UFS ('Urgent For Signature' or 'Urgent For Service') is commonly used to denote urgency on files.",
-          "difficulty": "easy",
-          "topic": "Governance and Public Policy",
-          "keywords": [
-            "ufs",
-            "urgent",
-            "file"
-          ]
+          "source": "generated_draft"
         }
       ],
       "id": "pol_formulation_cycle"
@@ -2329,6 +2275,678 @@
             "big heart",
             "nicknames"
           ]
+        },
+        {
+          "id": "pol_analysis_methods_gen_001",
+          "question": "In the context of Policy Analysis Methods, which action best demonstrates policy analysis methods governance?",
+          "options": [
+            "Apply approved policy analysis methods procedures and maintain complete records.",
+            "Apply rules inconsistently based on personal preference.",
+            "Bypass review and approval controls to save time.",
+            "Prioritize convenience over policy and legal requirements."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because apply approved policy analysis methods procedures and maintain complete records. It strengthens compliance, consistency, and accountability in policy analysis methods.",
+          "difficulty": "easy",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_analysis_methods",
+            "policy analysis methods governance",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_analysis_methods_gen_002",
+          "question": "For effective policy analysis methods, what is the most appropriate approach to ensure policy analysis methods compliance?",
+          "options": [
+            "Use lawful criteria and document each decision step transparently.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Treat exceptions as routine without documented justification.",
+            "Close cases without validating facts or required records."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because use lawful criteria and document each decision step transparently. It strengthens compliance, consistency, and accountability in policy analysis methods.",
+          "difficulty": "medium",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_analysis_methods",
+            "policy analysis methods compliance",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_analysis_methods_gen_003",
+          "question": "Which option most strongly aligns with good public-service practice on policy analysis methods risk management within Policy Analysis Methods?",
+          "options": [
+            "Identify control gaps early and escalate material exceptions promptly.",
+            "Bypass review and approval controls to save time.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Ignore feedback and continue non-compliant procedures."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because identify control gaps early and escalate material exceptions promptly. It strengthens compliance, consistency, and accountability in policy analysis methods.",
+          "difficulty": "hard",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_analysis_methods",
+            "policy analysis methods risk management",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_analysis_methods_gen_004",
+          "question": "When handling policy analysis methods, which choice reflects proper policy formulation standards?",
+          "options": [
+            "Define the problem, options, and decision criteria clearly.",
+            "Treat exceptions as routine without documented justification.",
+            "Close cases without validating facts or required records.",
+            "Rely on informal instructions without documentary evidence."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because define the problem, options, and decision criteria clearly. It strengthens compliance, consistency, and accountability in policy analysis methods.",
+          "difficulty": "easy",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_analysis_methods",
+            "policy formulation",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_analysis_methods_gen_005",
+          "question": "Which practice should a responsible officer prioritize to sustain implementation planning in Policy Analysis Methods?",
+          "options": [
+            "Assign responsibilities, timelines, and performance metrics.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Apply rules inconsistently based on personal preference."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because assign responsibilities, timelines, and performance metrics. It strengthens compliance, consistency, and accountability in policy analysis methods.",
+          "difficulty": "medium",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_analysis_methods",
+            "implementation planning",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_analysis_methods_gen_006",
+          "question": "In the context of Policy Analysis Methods, which action best demonstrates impact evaluation?",
+          "options": [
+            "Measure outcomes against baseline and policy objectives.",
+            "Close cases without validating facts or required records.",
+            "Rely on informal instructions without documentary evidence.",
+            "Delay decisions until issues escalate into avoidable crises."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because measure outcomes against baseline and policy objectives. It strengthens compliance, consistency, and accountability in policy analysis methods.",
+          "difficulty": "hard",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_analysis_methods",
+            "impact evaluation",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_analysis_methods_gen_007",
+          "question": "For effective policy analysis methods, what is the most appropriate approach to ensure evidence quality?",
+          "options": [
+            "Use credible data sources and validate assumptions.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Apply rules inconsistently based on personal preference.",
+            "Bypass review and approval controls to save time."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because use credible data sources and validate assumptions. It strengthens compliance, consistency, and accountability in policy analysis methods.",
+          "difficulty": "easy",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_analysis_methods",
+            "evidence quality",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_analysis_methods_gen_015",
+          "question": "Which option most strongly aligns with good public-service practice on public-sector planning within Policy Analysis Methods?",
+          "options": [
+            "Align plans with budget, legal mandate, and service priorities.",
+            "Rely on informal instructions without documentary evidence.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Treat exceptions as routine without documented justification."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because align plans with budget, legal mandate, and service priorities. It strengthens compliance, consistency, and accountability in policy analysis methods.",
+          "difficulty": "medium",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_analysis_methods",
+            "public-sector planning",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_analysis_methods_gen_016",
+          "question": "When handling policy analysis methods, which choice reflects proper documented procedure standards?",
+          "options": [
+            "Follow documented procedure and keep complete records.",
+            "Apply rules inconsistently based on personal preference.",
+            "Bypass review and approval controls to save time.",
+            "Prioritize convenience over policy and legal requirements."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because follow documented procedure and keep complete records. It strengthens compliance, consistency, and accountability in policy analysis methods.",
+          "difficulty": "hard",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_analysis_methods",
+            "documented procedure",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_analysis_methods_gen_017",
+          "question": "Which practice should a responsible officer prioritize to sustain compliance assurance in Policy Analysis Methods?",
+          "options": [
+            "Apply approved rules consistently and escalate exceptions.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Treat exceptions as routine without documented justification.",
+            "Close cases without validating facts or required records."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because apply approved rules consistently and escalate exceptions. It strengthens compliance, consistency, and accountability in policy analysis methods.",
+          "difficulty": "easy",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_analysis_methods",
+            "compliance assurance",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_analysis_methods_gen_018",
+          "question": "In the context of Policy Analysis Methods, which action best demonstrates public accountability?",
+          "options": [
+            "Provide traceable decisions and evidence-based justification.",
+            "Bypass review and approval controls to save time.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Ignore feedback and continue non-compliant procedures."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because provide traceable decisions and evidence-based justification. It strengthens compliance, consistency, and accountability in policy analysis methods.",
+          "difficulty": "medium",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_analysis_methods",
+            "public accountability",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_analysis_methods_gen_019",
+          "question": "For effective policy analysis methods, what is the most appropriate approach to ensure service integrity?",
+          "options": [
+            "Avoid conflicts of interest and disclose relevant constraints.",
+            "Treat exceptions as routine without documented justification.",
+            "Close cases without validating facts or required records.",
+            "Rely on informal instructions without documentary evidence."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because avoid conflicts of interest and disclose relevant constraints. It strengthens compliance, consistency, and accountability in policy analysis methods.",
+          "difficulty": "hard",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_analysis_methods",
+            "service integrity",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_analysis_methods_gen_020",
+          "question": "Which option most strongly aligns with good public-service practice on risk control within Policy Analysis Methods?",
+          "options": [
+            "Identify risk early, apply controls, and document mitigation.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Apply rules inconsistently based on personal preference."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because identify risk early, apply controls, and document mitigation. It strengthens compliance, consistency, and accountability in policy analysis methods.",
+          "difficulty": "easy",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_analysis_methods",
+            "risk control",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_analysis_methods_gen_021",
+          "question": "When handling policy analysis methods, which choice reflects proper decision transparency standards?",
+          "options": [
+            "Use clear criteria and communicate decisions promptly.",
+            "Close cases without validating facts or required records.",
+            "Rely on informal instructions without documentary evidence.",
+            "Delay decisions until issues escalate into avoidable crises."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because use clear criteria and communicate decisions promptly. It strengthens compliance, consistency, and accountability in policy analysis methods.",
+          "difficulty": "medium",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_analysis_methods",
+            "decision transparency",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_analysis_methods_gen_022",
+          "question": "Which practice should a responsible officer prioritize to sustain operational discipline in Policy Analysis Methods?",
+          "options": [
+            "Follow approved workflows and verify outputs before closure.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Apply rules inconsistently based on personal preference.",
+            "Bypass review and approval controls to save time."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because follow approved workflows and verify outputs before closure. It strengthens compliance, consistency, and accountability in policy analysis methods.",
+          "difficulty": "hard",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_analysis_methods",
+            "operational discipline",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_analysis_methods_gen_023",
+          "question": "In the context of Policy Analysis Methods, which action best demonstrates citizen-focused service?",
+          "options": [
+            "Balance legality, fairness, timeliness, and service quality.",
+            "Rely on informal instructions without documentary evidence.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Treat exceptions as routine without documented justification."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because balance legality, fairness, timeliness, and service quality. It strengthens compliance, consistency, and accountability in policy analysis methods.",
+          "difficulty": "easy",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_analysis_methods",
+            "citizen-focused service",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_analysis_methods_gen_024",
+          "question": "For effective policy analysis methods, what is the most appropriate approach to ensure record management?",
+          "options": [
+            "Maintain accurate files and update status at each control point.",
+            "Apply rules inconsistently based on personal preference.",
+            "Bypass review and approval controls to save time.",
+            "Prioritize convenience over policy and legal requirements."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because maintain accurate files and update status at each control point. It strengthens compliance, consistency, and accountability in policy analysis methods.",
+          "difficulty": "medium",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_analysis_methods",
+            "record management",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_analysis_methods_gen_025",
+          "question": "Which option most strongly aligns with good public-service practice on performance standards within Policy Analysis Methods?",
+          "options": [
+            "Set measurable targets, monitor progress, and correct deviations.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Treat exceptions as routine without documented justification.",
+            "Close cases without validating facts or required records."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because set measurable targets, monitor progress, and correct deviations. It strengthens compliance, consistency, and accountability in policy analysis methods.",
+          "difficulty": "hard",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_analysis_methods",
+            "performance standards",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_analysis_methods_gen_026",
+          "question": "When handling policy analysis methods, which choice reflects proper policy analysis methods governance standards?",
+          "options": [
+            "Apply approved policy analysis methods procedures and maintain complete records.",
+            "Bypass review and approval controls to save time.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Ignore feedback and continue non-compliant procedures."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because apply approved policy analysis methods procedures and maintain complete records. It strengthens compliance, consistency, and accountability in policy analysis methods.",
+          "difficulty": "easy",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_analysis_methods",
+            "policy analysis methods governance",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_analysis_methods_gen_027",
+          "question": "Which practice should a responsible officer prioritize to sustain policy analysis methods compliance in Policy Analysis Methods?",
+          "options": [
+            "Use lawful criteria and document each decision step transparently.",
+            "Treat exceptions as routine without documented justification.",
+            "Close cases without validating facts or required records.",
+            "Rely on informal instructions without documentary evidence."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because use lawful criteria and document each decision step transparently. It strengthens compliance, consistency, and accountability in policy analysis methods.",
+          "difficulty": "medium",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_analysis_methods",
+            "policy analysis methods compliance",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_analysis_methods_gen_028",
+          "question": "In the context of Policy Analysis Methods, which action best demonstrates policy analysis methods risk management?",
+          "options": [
+            "Identify control gaps early and escalate material exceptions promptly.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Apply rules inconsistently based on personal preference."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because identify control gaps early and escalate material exceptions promptly. It strengthens compliance, consistency, and accountability in policy analysis methods.",
+          "difficulty": "hard",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_analysis_methods",
+            "policy analysis methods risk management",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_analysis_methods_gen_029",
+          "question": "For effective policy analysis methods, what is the most appropriate approach to ensure policy formulation?",
+          "options": [
+            "Define the problem, options, and decision criteria clearly.",
+            "Close cases without validating facts or required records.",
+            "Rely on informal instructions without documentary evidence.",
+            "Delay decisions until issues escalate into avoidable crises."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because define the problem, options, and decision criteria clearly. It strengthens compliance, consistency, and accountability in policy analysis methods.",
+          "difficulty": "easy",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_analysis_methods",
+            "policy formulation",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_analysis_methods_gen_030",
+          "question": "Which option most strongly aligns with good public-service practice on implementation planning within Policy Analysis Methods?",
+          "options": [
+            "Assign responsibilities, timelines, and performance metrics.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Apply rules inconsistently based on personal preference.",
+            "Bypass review and approval controls to save time."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because assign responsibilities, timelines, and performance metrics. It strengthens compliance, consistency, and accountability in policy analysis methods.",
+          "difficulty": "medium",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_analysis_methods",
+            "implementation planning",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_analysis_methods_gen_031",
+          "question": "When handling policy analysis methods, which choice reflects proper impact evaluation standards?",
+          "options": [
+            "Measure outcomes against baseline and policy objectives.",
+            "Rely on informal instructions without documentary evidence.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Treat exceptions as routine without documented justification."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because measure outcomes against baseline and policy objectives. It strengthens compliance, consistency, and accountability in policy analysis methods.",
+          "difficulty": "hard",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_analysis_methods",
+            "impact evaluation",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_analysis_methods_gen_032",
+          "question": "Which practice should a responsible officer prioritize to sustain evidence quality in Policy Analysis Methods?",
+          "options": [
+            "Use credible data sources and validate assumptions.",
+            "Apply rules inconsistently based on personal preference.",
+            "Bypass review and approval controls to save time.",
+            "Prioritize convenience over policy and legal requirements."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because use credible data sources and validate assumptions. It strengthens compliance, consistency, and accountability in policy analysis methods.",
+          "difficulty": "easy",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_analysis_methods",
+            "evidence quality",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_analysis_methods_gen_033",
+          "question": "A desk officer handling Policy Analysis Methods receives a case that requires policy analysis methods governance. What should be done first? while maintaining fairness and legal compliance?",
+          "options": [
+            "Apply rules inconsistently based on personal preference.",
+            "Apply approved policy analysis methods procedures and maintain complete records.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Bypass review and approval controls to save time."
+          ],
+          "correct": 1,
+          "explanation": "This is correct because apply approved policy analysis methods procedures and maintain complete records. It strengthens compliance, consistency, and accountability in policy analysis methods.",
+          "difficulty": "easy",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_analysis_methods",
+            "policy analysis methods governance",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_analysis_methods_gen_034",
+          "question": "During routine policy analysis methods operations, which approach best ensures policy analysis methods compliance? in line with public-sector accountability expectations?",
+          "options": [
+            "Use lawful criteria and document each decision step transparently.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Close cases without validating facts or required records.",
+            "Treat exceptions as routine without documented justification."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because use lawful criteria and document each decision step transparently. It strengthens compliance, consistency, and accountability in policy analysis methods.",
+          "difficulty": "hard",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_analysis_methods",
+            "policy analysis methods compliance",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_analysis_methods_gen_035",
+          "question": "A supervisor is reviewing compliance gaps in Policy Analysis Methods. Which action most directly strengthens policy analysis methods risk management? while preserving records for audit and oversight?",
+          "options": [
+            "Bypass review and approval controls to save time.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Identify control gaps early and escalate material exceptions promptly.",
+            "Prioritize convenience over policy and legal requirements."
+          ],
+          "correct": 2,
+          "explanation": "This is correct because identify control gaps early and escalate material exceptions promptly. It strengthens compliance, consistency, and accountability in policy analysis methods.",
+          "difficulty": "medium",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_analysis_methods",
+            "policy analysis methods risk management",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_analysis_methods_gen_036",
+          "question": "When applying rules in policy analysis methods, which option aligns best with policy formulation standards? while maintaining fairness and legal compliance?",
+          "options": [
+            "Define the problem, options, and decision criteria clearly.",
+            "Close cases without validating facts or required records.",
+            "Treat exceptions as routine without documented justification.",
+            "Rely on informal instructions without documentary evidence."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because define the problem, options, and decision criteria clearly. It strengthens compliance, consistency, and accountability in policy analysis methods.",
+          "difficulty": "easy",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_analysis_methods",
+            "policy formulation",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_analysis_methods_gen_037",
+          "question": "To improve accountability in policy analysis methods, which practice best supports implementation planning? in line with public-sector accountability expectations?",
+          "options": [
+            "Apply rules inconsistently based on personal preference.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Assign responsibilities, timelines, and performance metrics."
+          ],
+          "correct": 3,
+          "explanation": "This is correct because assign responsibilities, timelines, and performance metrics. It strengthens compliance, consistency, and accountability in policy analysis methods.",
+          "difficulty": "hard",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_analysis_methods",
+            "implementation planning",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_analysis_methods_gen_038",
+          "question": "A ministry unit is updating its workflow for policy analysis methods. Which choice most effectively promotes impact evaluation? while preserving records for audit and oversight?",
+          "options": [
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Close cases without validating facts or required records.",
+            "Rely on informal instructions without documentary evidence.",
+            "Measure outcomes against baseline and policy objectives."
+          ],
+          "correct": 3,
+          "explanation": "This is correct because measure outcomes against baseline and policy objectives. It strengthens compliance, consistency, and accountability in policy analysis methods.",
+          "difficulty": "medium",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_analysis_methods",
+            "impact evaluation",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_analysis_methods_gen_039",
+          "question": "In a time-sensitive file under Policy Analysis Methods, which step best preserves evidence quality without breaching process? while maintaining fairness and legal compliance?",
+          "options": [
+            "Ignore feedback and continue non-compliant procedures.",
+            "Use credible data sources and validate assumptions.",
+            "Apply rules inconsistently based on personal preference.",
+            "Bypass review and approval controls to save time."
+          ],
+          "correct": 1,
+          "explanation": "This is correct because use credible data sources and validate assumptions. It strengthens compliance, consistency, and accountability in policy analysis methods.",
+          "difficulty": "easy",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_analysis_methods",
+            "evidence quality",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
         }
       ],
       "id": "pol_analysis_methods"
@@ -3076,6 +3694,783 @@
             "urgent",
             "file"
           ]
+        },
+        {
+          "id": "pol_implementation_evaluation_gen_001",
+          "question": "In the context of Policy Implementation & Evaluation, which action best demonstrates policy implementation & evaluation governance?",
+          "options": [
+            "Apply approved policy implementation & evaluation procedures and maintain complete records.",
+            "Apply rules inconsistently based on personal preference.",
+            "Bypass review and approval controls to save time.",
+            "Prioritize convenience over policy and legal requirements."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because apply approved policy implementation & evaluation procedures and maintain complete records. It strengthens compliance, consistency, and accountability in policy implementation & evaluation.",
+          "difficulty": "easy",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_implementation_evaluation",
+            "policy implementation & evaluation governance",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_implementation_evaluation_gen_002",
+          "question": "For effective policy implementation & evaluation, what is the most appropriate approach to ensure policy implementation & evaluation compliance?",
+          "options": [
+            "Use lawful criteria and document each decision step transparently.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Treat exceptions as routine without documented justification.",
+            "Close cases without validating facts or required records."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because use lawful criteria and document each decision step transparently. It strengthens compliance, consistency, and accountability in policy implementation & evaluation.",
+          "difficulty": "medium",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_implementation_evaluation",
+            "policy implementation & evaluation compliance",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_implementation_evaluation_gen_003",
+          "question": "Which option most strongly aligns with good public-service practice on policy implementation & evaluation risk management within Policy Implementation & Evaluation?",
+          "options": [
+            "Identify control gaps early and escalate material exceptions promptly.",
+            "Bypass review and approval controls to save time.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Ignore feedback and continue non-compliant procedures."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because identify control gaps early and escalate material exceptions promptly. It strengthens compliance, consistency, and accountability in policy implementation & evaluation.",
+          "difficulty": "hard",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_implementation_evaluation",
+            "policy implementation & evaluation risk management",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_implementation_evaluation_gen_004",
+          "question": "When handling policy implementation & evaluation, which choice reflects proper policy formulation standards?",
+          "options": [
+            "Define the problem, options, and decision criteria clearly.",
+            "Treat exceptions as routine without documented justification.",
+            "Close cases without validating facts or required records.",
+            "Rely on informal instructions without documentary evidence."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because define the problem, options, and decision criteria clearly. It strengthens compliance, consistency, and accountability in policy implementation & evaluation.",
+          "difficulty": "easy",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_implementation_evaluation",
+            "policy formulation",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_implementation_evaluation_gen_005",
+          "question": "Which practice should a responsible officer prioritize to sustain implementation planning in Policy Implementation & Evaluation?",
+          "options": [
+            "Assign responsibilities, timelines, and performance metrics.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Apply rules inconsistently based on personal preference."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because assign responsibilities, timelines, and performance metrics. It strengthens compliance, consistency, and accountability in policy implementation & evaluation.",
+          "difficulty": "medium",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_implementation_evaluation",
+            "implementation planning",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_implementation_evaluation_gen_006",
+          "question": "In the context of Policy Implementation & Evaluation, which action best demonstrates impact evaluation?",
+          "options": [
+            "Measure outcomes against baseline and policy objectives.",
+            "Close cases without validating facts or required records.",
+            "Rely on informal instructions without documentary evidence.",
+            "Delay decisions until issues escalate into avoidable crises."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because measure outcomes against baseline and policy objectives. It strengthens compliance, consistency, and accountability in policy implementation & evaluation.",
+          "difficulty": "hard",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_implementation_evaluation",
+            "impact evaluation",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_implementation_evaluation_gen_007",
+          "question": "For effective policy implementation & evaluation, what is the most appropriate approach to ensure evidence quality?",
+          "options": [
+            "Use credible data sources and validate assumptions.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Apply rules inconsistently based on personal preference.",
+            "Bypass review and approval controls to save time."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because use credible data sources and validate assumptions. It strengthens compliance, consistency, and accountability in policy implementation & evaluation.",
+          "difficulty": "easy",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_implementation_evaluation",
+            "evidence quality",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_implementation_evaluation_gen_008",
+          "question": "Which option most strongly aligns with good public-service practice on public-sector planning within Policy Implementation & Evaluation?",
+          "options": [
+            "Align plans with budget, legal mandate, and service priorities.",
+            "Rely on informal instructions without documentary evidence.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Treat exceptions as routine without documented justification."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because align plans with budget, legal mandate, and service priorities. It strengthens compliance, consistency, and accountability in policy implementation & evaluation.",
+          "difficulty": "medium",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_implementation_evaluation",
+            "public-sector planning",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_implementation_evaluation_gen_009",
+          "question": "When handling policy implementation & evaluation, which choice reflects proper documented procedure standards?",
+          "options": [
+            "Follow documented procedure and keep complete records.",
+            "Apply rules inconsistently based on personal preference.",
+            "Bypass review and approval controls to save time.",
+            "Prioritize convenience over policy and legal requirements."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because follow documented procedure and keep complete records. It strengthens compliance, consistency, and accountability in policy implementation & evaluation.",
+          "difficulty": "hard",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_implementation_evaluation",
+            "documented procedure",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_implementation_evaluation_gen_010",
+          "question": "Which practice should a responsible officer prioritize to sustain compliance assurance in Policy Implementation & Evaluation?",
+          "options": [
+            "Apply approved rules consistently and escalate exceptions.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Treat exceptions as routine without documented justification.",
+            "Close cases without validating facts or required records."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because apply approved rules consistently and escalate exceptions. It strengthens compliance, consistency, and accountability in policy implementation & evaluation.",
+          "difficulty": "easy",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_implementation_evaluation",
+            "compliance assurance",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_implementation_evaluation_gen_011",
+          "question": "In the context of Policy Implementation & Evaluation, which action best demonstrates public accountability?",
+          "options": [
+            "Provide traceable decisions and evidence-based justification.",
+            "Bypass review and approval controls to save time.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Ignore feedback and continue non-compliant procedures."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because provide traceable decisions and evidence-based justification. It strengthens compliance, consistency, and accountability in policy implementation & evaluation.",
+          "difficulty": "medium",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_implementation_evaluation",
+            "public accountability",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_implementation_evaluation_gen_012",
+          "question": "For effective policy implementation & evaluation, what is the most appropriate approach to ensure service integrity?",
+          "options": [
+            "Avoid conflicts of interest and disclose relevant constraints.",
+            "Treat exceptions as routine without documented justification.",
+            "Close cases without validating facts or required records.",
+            "Rely on informal instructions without documentary evidence."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because avoid conflicts of interest and disclose relevant constraints. It strengthens compliance, consistency, and accountability in policy implementation & evaluation.",
+          "difficulty": "hard",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_implementation_evaluation",
+            "service integrity",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_implementation_evaluation_gen_025",
+          "question": "Which option most strongly aligns with good public-service practice on risk control within Policy Implementation & Evaluation?",
+          "options": [
+            "Identify risk early, apply controls, and document mitigation.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Apply rules inconsistently based on personal preference."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because identify risk early, apply controls, and document mitigation. It strengthens compliance, consistency, and accountability in policy implementation & evaluation.",
+          "difficulty": "easy",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_implementation_evaluation",
+            "risk control",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_implementation_evaluation_gen_026",
+          "question": "When handling policy implementation & evaluation, which choice reflects proper decision transparency standards?",
+          "options": [
+            "Use clear criteria and communicate decisions promptly.",
+            "Close cases without validating facts or required records.",
+            "Rely on informal instructions without documentary evidence.",
+            "Delay decisions until issues escalate into avoidable crises."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because use clear criteria and communicate decisions promptly. It strengthens compliance, consistency, and accountability in policy implementation & evaluation.",
+          "difficulty": "medium",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_implementation_evaluation",
+            "decision transparency",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_implementation_evaluation_gen_027",
+          "question": "Which practice should a responsible officer prioritize to sustain operational discipline in Policy Implementation & Evaluation?",
+          "options": [
+            "Follow approved workflows and verify outputs before closure.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Apply rules inconsistently based on personal preference.",
+            "Bypass review and approval controls to save time."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because follow approved workflows and verify outputs before closure. It strengthens compliance, consistency, and accountability in policy implementation & evaluation.",
+          "difficulty": "hard",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_implementation_evaluation",
+            "operational discipline",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_implementation_evaluation_gen_028",
+          "question": "In the context of Policy Implementation & Evaluation, which action best demonstrates citizen-focused service?",
+          "options": [
+            "Balance legality, fairness, timeliness, and service quality.",
+            "Rely on informal instructions without documentary evidence.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Treat exceptions as routine without documented justification."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because balance legality, fairness, timeliness, and service quality. It strengthens compliance, consistency, and accountability in policy implementation & evaluation.",
+          "difficulty": "easy",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_implementation_evaluation",
+            "citizen-focused service",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_implementation_evaluation_gen_029",
+          "question": "For effective policy implementation & evaluation, what is the most appropriate approach to ensure record management?",
+          "options": [
+            "Maintain accurate files and update status at each control point.",
+            "Apply rules inconsistently based on personal preference.",
+            "Bypass review and approval controls to save time.",
+            "Prioritize convenience over policy and legal requirements."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because maintain accurate files and update status at each control point. It strengthens compliance, consistency, and accountability in policy implementation & evaluation.",
+          "difficulty": "medium",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_implementation_evaluation",
+            "record management",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_implementation_evaluation_gen_030",
+          "question": "Which option most strongly aligns with good public-service practice on performance standards within Policy Implementation & Evaluation?",
+          "options": [
+            "Set measurable targets, monitor progress, and correct deviations.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Treat exceptions as routine without documented justification.",
+            "Close cases without validating facts or required records."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because set measurable targets, monitor progress, and correct deviations. It strengthens compliance, consistency, and accountability in policy implementation & evaluation.",
+          "difficulty": "hard",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_implementation_evaluation",
+            "performance standards",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_implementation_evaluation_gen_031",
+          "question": "When handling policy implementation & evaluation, which choice reflects proper policy implementation & evaluation governance standards?",
+          "options": [
+            "Apply approved policy implementation & evaluation procedures and maintain complete records.",
+            "Bypass review and approval controls to save time.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Ignore feedback and continue non-compliant procedures."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because apply approved policy implementation & evaluation procedures and maintain complete records. It strengthens compliance, consistency, and accountability in policy implementation & evaluation.",
+          "difficulty": "easy",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_implementation_evaluation",
+            "policy implementation & evaluation governance",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_implementation_evaluation_gen_032",
+          "question": "Which practice should a responsible officer prioritize to sustain policy implementation & evaluation compliance in Policy Implementation & Evaluation?",
+          "options": [
+            "Use lawful criteria and document each decision step transparently.",
+            "Treat exceptions as routine without documented justification.",
+            "Close cases without validating facts or required records.",
+            "Rely on informal instructions without documentary evidence."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because use lawful criteria and document each decision step transparently. It strengthens compliance, consistency, and accountability in policy implementation & evaluation.",
+          "difficulty": "medium",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_implementation_evaluation",
+            "policy implementation & evaluation compliance",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_implementation_evaluation_gen_033",
+          "question": "In the context of Policy Implementation & Evaluation, which action best demonstrates policy implementation & evaluation risk management?",
+          "options": [
+            "Identify control gaps early and escalate material exceptions promptly.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Apply rules inconsistently based on personal preference."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because identify control gaps early and escalate material exceptions promptly. It strengthens compliance, consistency, and accountability in policy implementation & evaluation.",
+          "difficulty": "hard",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_implementation_evaluation",
+            "policy implementation & evaluation risk management",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_implementation_evaluation_gen_034",
+          "question": "For effective policy implementation & evaluation, what is the most appropriate approach to ensure policy formulation?",
+          "options": [
+            "Define the problem, options, and decision criteria clearly.",
+            "Close cases without validating facts or required records.",
+            "Rely on informal instructions without documentary evidence.",
+            "Delay decisions until issues escalate into avoidable crises."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because define the problem, options, and decision criteria clearly. It strengthens compliance, consistency, and accountability in policy implementation & evaluation.",
+          "difficulty": "easy",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_implementation_evaluation",
+            "policy formulation",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_implementation_evaluation_gen_035",
+          "question": "Which option most strongly aligns with good public-service practice on implementation planning within Policy Implementation & Evaluation?",
+          "options": [
+            "Assign responsibilities, timelines, and performance metrics.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Apply rules inconsistently based on personal preference.",
+            "Bypass review and approval controls to save time."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because assign responsibilities, timelines, and performance metrics. It strengthens compliance, consistency, and accountability in policy implementation & evaluation.",
+          "difficulty": "medium",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_implementation_evaluation",
+            "implementation planning",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_implementation_evaluation_gen_036",
+          "question": "When handling policy implementation & evaluation, which choice reflects proper impact evaluation standards?",
+          "options": [
+            "Measure outcomes against baseline and policy objectives.",
+            "Rely on informal instructions without documentary evidence.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Treat exceptions as routine without documented justification."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because measure outcomes against baseline and policy objectives. It strengthens compliance, consistency, and accountability in policy implementation & evaluation.",
+          "difficulty": "hard",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_implementation_evaluation",
+            "impact evaluation",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_implementation_evaluation_gen_037",
+          "question": "Which practice should a responsible officer prioritize to sustain evidence quality in Policy Implementation & Evaluation?",
+          "options": [
+            "Use credible data sources and validate assumptions.",
+            "Apply rules inconsistently based on personal preference.",
+            "Bypass review and approval controls to save time.",
+            "Prioritize convenience over policy and legal requirements."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because use credible data sources and validate assumptions. It strengthens compliance, consistency, and accountability in policy implementation & evaluation.",
+          "difficulty": "easy",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_implementation_evaluation",
+            "evidence quality",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_implementation_evaluation_gen_038",
+          "question": "A desk officer handling Policy Implementation & Evaluation receives a case that requires policy implementation & evaluation governance. What should be done first? while maintaining fairness and legal compliance?",
+          "options": [
+            "Apply approved policy implementation & evaluation procedures and maintain complete records.",
+            "Bypass review and approval controls to save time.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Apply rules inconsistently based on personal preference."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because apply approved policy implementation & evaluation procedures and maintain complete records. It strengthens compliance, consistency, and accountability in policy implementation & evaluation.",
+          "difficulty": "easy",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_implementation_evaluation",
+            "policy implementation & evaluation governance",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_implementation_evaluation_gen_039",
+          "question": "During routine policy implementation & evaluation operations, which approach best ensures policy implementation & evaluation compliance? in line with public-sector accountability expectations?",
+          "options": [
+            "Close cases without validating facts or required records.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Treat exceptions as routine without documented justification.",
+            "Use lawful criteria and document each decision step transparently."
+          ],
+          "correct": 3,
+          "explanation": "This is correct because use lawful criteria and document each decision step transparently. It strengthens compliance, consistency, and accountability in policy implementation & evaluation.",
+          "difficulty": "hard",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_implementation_evaluation",
+            "policy implementation & evaluation compliance",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_implementation_evaluation_gen_040",
+          "question": "A supervisor is reviewing compliance gaps in Policy Implementation & Evaluation. Which action most directly strengthens policy implementation & evaluation risk management? while preserving records for audit and oversight?",
+          "options": [
+            "Ignore feedback and continue non-compliant procedures.",
+            "Identify control gaps early and escalate material exceptions promptly.",
+            "Bypass review and approval controls to save time.",
+            "Prioritize convenience over policy and legal requirements."
+          ],
+          "correct": 1,
+          "explanation": "This is correct because identify control gaps early and escalate material exceptions promptly. It strengthens compliance, consistency, and accountability in policy implementation & evaluation.",
+          "difficulty": "medium",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_implementation_evaluation",
+            "policy implementation & evaluation risk management",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_implementation_evaluation_gen_041",
+          "question": "When applying rules in policy implementation & evaluation, which option aligns best with policy formulation standards? while maintaining fairness and legal compliance?",
+          "options": [
+            "Close cases without validating facts or required records.",
+            "Define the problem, options, and decision criteria clearly.",
+            "Rely on informal instructions without documentary evidence.",
+            "Treat exceptions as routine without documented justification."
+          ],
+          "correct": 1,
+          "explanation": "This is correct because define the problem, options, and decision criteria clearly. It strengthens compliance, consistency, and accountability in policy implementation & evaluation.",
+          "difficulty": "easy",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_implementation_evaluation",
+            "policy formulation",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_implementation_evaluation_gen_042",
+          "question": "To improve accountability in policy implementation & evaluation, which practice best supports implementation planning? in line with public-sector accountability expectations?",
+          "options": [
+            "Prioritize convenience over policy and legal requirements.",
+            "Assign responsibilities, timelines, and performance metrics.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Apply rules inconsistently based on personal preference."
+          ],
+          "correct": 1,
+          "explanation": "This is correct because assign responsibilities, timelines, and performance metrics. It strengthens compliance, consistency, and accountability in policy implementation & evaluation.",
+          "difficulty": "hard",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_implementation_evaluation",
+            "implementation planning",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_implementation_evaluation_gen_043",
+          "question": "A ministry unit is updating its workflow for policy implementation & evaluation. Which choice most effectively promotes impact evaluation? while preserving records for audit and oversight?",
+          "options": [
+            "Rely on informal instructions without documentary evidence.",
+            "Measure outcomes against baseline and policy objectives.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Close cases without validating facts or required records."
+          ],
+          "correct": 1,
+          "explanation": "This is correct because measure outcomes against baseline and policy objectives. It strengthens compliance, consistency, and accountability in policy implementation & evaluation.",
+          "difficulty": "medium",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_implementation_evaluation",
+            "impact evaluation",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_implementation_evaluation_gen_044",
+          "question": "In a time-sensitive file under Policy Implementation & Evaluation, which step best preserves evidence quality without breaching process? while maintaining fairness and legal compliance?",
+          "options": [
+            "Bypass review and approval controls to save time.",
+            "Apply rules inconsistently based on personal preference.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Use credible data sources and validate assumptions."
+          ],
+          "correct": 3,
+          "explanation": "This is correct because use credible data sources and validate assumptions. It strengthens compliance, consistency, and accountability in policy implementation & evaluation.",
+          "difficulty": "easy",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_implementation_evaluation",
+            "evidence quality",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_implementation_evaluation_gen_045",
+          "question": "Which of the following is the strongest control action for public-sector planning in policy implementation & evaluation? in line with public-sector accountability expectations?",
+          "options": [
+            "Rely on informal instructions without documentary evidence.",
+            "Align plans with budget, legal mandate, and service priorities.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Treat exceptions as routine without documented justification."
+          ],
+          "correct": 1,
+          "explanation": "This is correct because align plans with budget, legal mandate, and service priorities. It strengthens compliance, consistency, and accountability in policy implementation & evaluation.",
+          "difficulty": "hard",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_implementation_evaluation",
+            "public-sector planning",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_implementation_evaluation_gen_046",
+          "question": "A desk officer handling Policy Implementation & Evaluation receives a case that requires documented procedure. What should be done first? within approved timelines and governance standards?",
+          "options": [
+            "Follow documented procedure and keep complete records.",
+            "Bypass review and approval controls to save time.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Apply rules inconsistently based on personal preference."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because follow documented procedure and keep complete records. It strengthens compliance, consistency, and accountability in policy implementation & evaluation.",
+          "difficulty": "medium",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_implementation_evaluation",
+            "documented procedure",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_implementation_evaluation_gen_047",
+          "question": "During routine policy implementation & evaluation operations, which approach best ensures compliance assurance? under standard approval and documentation controls?",
+          "options": [
+            "Close cases without validating facts or required records.",
+            "Treat exceptions as routine without documented justification.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Apply approved rules consistently and escalate exceptions."
+          ],
+          "correct": 3,
+          "explanation": "This is correct because apply approved rules consistently and escalate exceptions. It strengthens compliance, consistency, and accountability in policy implementation & evaluation.",
+          "difficulty": "easy",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_implementation_evaluation",
+            "compliance assurance",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_implementation_evaluation_gen_048",
+          "question": "A supervisor is reviewing compliance gaps in Policy Implementation & Evaluation. Which action most directly strengthens public accountability? without bypassing established review procedures?",
+          "options": [
+            "Bypass review and approval controls to save time.",
+            "Provide traceable decisions and evidence-based justification.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Ignore feedback and continue non-compliant procedures."
+          ],
+          "correct": 1,
+          "explanation": "This is correct because provide traceable decisions and evidence-based justification. It strengthens compliance, consistency, and accountability in policy implementation & evaluation.",
+          "difficulty": "hard",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_implementation_evaluation",
+            "public accountability",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_implementation_evaluation_gen_049",
+          "question": "When applying rules in policy implementation & evaluation, which option aligns best with service integrity standards? within approved timelines and governance standards?",
+          "options": [
+            "Avoid conflicts of interest and disclose relevant constraints.",
+            "Rely on informal instructions without documentary evidence.",
+            "Close cases without validating facts or required records.",
+            "Treat exceptions as routine without documented justification."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because avoid conflicts of interest and disclose relevant constraints. It strengthens compliance, consistency, and accountability in policy implementation & evaluation.",
+          "difficulty": "medium",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_implementation_evaluation",
+            "service integrity",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
         }
       ],
       "id": "pol_implementation_evaluation"
@@ -3198,6 +4593,1455 @@
             "labour",
             "nigeria"
           ]
+        },
+        {
+          "id": "pol_public_sector_planning_gen_001",
+          "question": "In the context of Public Sector Planning, which action best demonstrates public sector planning governance?",
+          "options": [
+            "Apply approved public sector planning procedures and maintain complete records.",
+            "Apply rules inconsistently based on personal preference.",
+            "Bypass review and approval controls to save time.",
+            "Prioritize convenience over policy and legal requirements."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because apply approved public sector planning procedures and maintain complete records. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "easy",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "public sector planning governance",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_002",
+          "question": "For effective public sector planning, what is the most appropriate approach to ensure public sector planning compliance?",
+          "options": [
+            "Use lawful criteria and document each decision step transparently.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Treat exceptions as routine without documented justification.",
+            "Close cases without validating facts or required records."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because use lawful criteria and document each decision step transparently. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "medium",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "public sector planning compliance",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_003",
+          "question": "Which option most strongly aligns with good public-service practice on public sector planning risk management within Public Sector Planning?",
+          "options": [
+            "Identify control gaps early and escalate material exceptions promptly.",
+            "Bypass review and approval controls to save time.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Ignore feedback and continue non-compliant procedures."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because identify control gaps early and escalate material exceptions promptly. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "hard",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "public sector planning risk management",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_004",
+          "question": "When handling public sector planning, which choice reflects proper policy formulation standards?",
+          "options": [
+            "Define the problem, options, and decision criteria clearly.",
+            "Treat exceptions as routine without documented justification.",
+            "Close cases without validating facts or required records.",
+            "Rely on informal instructions without documentary evidence."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because define the problem, options, and decision criteria clearly. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "easy",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "policy formulation",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_005",
+          "question": "Which practice should a responsible officer prioritize to sustain implementation planning in Public Sector Planning?",
+          "options": [
+            "Assign responsibilities, timelines, and performance metrics.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Apply rules inconsistently based on personal preference."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because assign responsibilities, timelines, and performance metrics. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "medium",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "implementation planning",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_006",
+          "question": "In the context of Public Sector Planning, which action best demonstrates impact evaluation?",
+          "options": [
+            "Measure outcomes against baseline and policy objectives.",
+            "Close cases without validating facts or required records.",
+            "Rely on informal instructions without documentary evidence.",
+            "Delay decisions until issues escalate into avoidable crises."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because measure outcomes against baseline and policy objectives. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "hard",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "impact evaluation",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_007",
+          "question": "For effective public sector planning, what is the most appropriate approach to ensure evidence quality?",
+          "options": [
+            "Use credible data sources and validate assumptions.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Apply rules inconsistently based on personal preference.",
+            "Bypass review and approval controls to save time."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because use credible data sources and validate assumptions. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "easy",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "evidence quality",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_008",
+          "question": "Which option most strongly aligns with good public-service practice on public-sector planning within Public Sector Planning?",
+          "options": [
+            "Align plans with budget, legal mandate, and service priorities.",
+            "Rely on informal instructions without documentary evidence.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Treat exceptions as routine without documented justification."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because align plans with budget, legal mandate, and service priorities. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "medium",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "public-sector planning",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_009",
+          "question": "When handling public sector planning, which choice reflects proper documented procedure standards?",
+          "options": [
+            "Follow documented procedure and keep complete records.",
+            "Apply rules inconsistently based on personal preference.",
+            "Bypass review and approval controls to save time.",
+            "Prioritize convenience over policy and legal requirements."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because follow documented procedure and keep complete records. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "hard",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "documented procedure",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_010",
+          "question": "Which practice should a responsible officer prioritize to sustain compliance assurance in Public Sector Planning?",
+          "options": [
+            "Apply approved rules consistently and escalate exceptions.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Treat exceptions as routine without documented justification.",
+            "Close cases without validating facts or required records."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because apply approved rules consistently and escalate exceptions. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "easy",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "compliance assurance",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_011",
+          "question": "In the context of Public Sector Planning, which action best demonstrates public accountability?",
+          "options": [
+            "Provide traceable decisions and evidence-based justification.",
+            "Bypass review and approval controls to save time.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Ignore feedback and continue non-compliant procedures."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because provide traceable decisions and evidence-based justification. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "medium",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "public accountability",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_012",
+          "question": "For effective public sector planning, what is the most appropriate approach to ensure service integrity?",
+          "options": [
+            "Avoid conflicts of interest and disclose relevant constraints.",
+            "Treat exceptions as routine without documented justification.",
+            "Close cases without validating facts or required records.",
+            "Rely on informal instructions without documentary evidence."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because avoid conflicts of interest and disclose relevant constraints. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "hard",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "service integrity",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_013",
+          "question": "Which option most strongly aligns with good public-service practice on risk control within Public Sector Planning?",
+          "options": [
+            "Identify risk early, apply controls, and document mitigation.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Apply rules inconsistently based on personal preference."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because identify risk early, apply controls, and document mitigation. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "easy",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "risk control",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_014",
+          "question": "When handling public sector planning, which choice reflects proper decision transparency standards?",
+          "options": [
+            "Use clear criteria and communicate decisions promptly.",
+            "Close cases without validating facts or required records.",
+            "Rely on informal instructions without documentary evidence.",
+            "Delay decisions until issues escalate into avoidable crises."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because use clear criteria and communicate decisions promptly. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "medium",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "decision transparency",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_015",
+          "question": "Which practice should a responsible officer prioritize to sustain operational discipline in Public Sector Planning?",
+          "options": [
+            "Follow approved workflows and verify outputs before closure.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Apply rules inconsistently based on personal preference.",
+            "Bypass review and approval controls to save time."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because follow approved workflows and verify outputs before closure. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "hard",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "operational discipline",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_016",
+          "question": "In the context of Public Sector Planning, which action best demonstrates citizen-focused service?",
+          "options": [
+            "Balance legality, fairness, timeliness, and service quality.",
+            "Rely on informal instructions without documentary evidence.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Treat exceptions as routine without documented justification."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because balance legality, fairness, timeliness, and service quality. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "easy",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "citizen-focused service",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_017",
+          "question": "For effective public sector planning, what is the most appropriate approach to ensure record management?",
+          "options": [
+            "Maintain accurate files and update status at each control point.",
+            "Apply rules inconsistently based on personal preference.",
+            "Bypass review and approval controls to save time.",
+            "Prioritize convenience over policy and legal requirements."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because maintain accurate files and update status at each control point. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "medium",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "record management",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_018",
+          "question": "Which option most strongly aligns with good public-service practice on performance standards within Public Sector Planning?",
+          "options": [
+            "Set measurable targets, monitor progress, and correct deviations.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Treat exceptions as routine without documented justification.",
+            "Close cases without validating facts or required records."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because set measurable targets, monitor progress, and correct deviations. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "hard",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "performance standards",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_019",
+          "question": "When handling public sector planning, which choice reflects proper public sector planning governance standards?",
+          "options": [
+            "Apply approved public sector planning procedures and maintain complete records.",
+            "Bypass review and approval controls to save time.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Ignore feedback and continue non-compliant procedures."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because apply approved public sector planning procedures and maintain complete records. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "easy",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "public sector planning governance",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_020",
+          "question": "Which practice should a responsible officer prioritize to sustain public sector planning compliance in Public Sector Planning?",
+          "options": [
+            "Use lawful criteria and document each decision step transparently.",
+            "Treat exceptions as routine without documented justification.",
+            "Close cases without validating facts or required records.",
+            "Rely on informal instructions without documentary evidence."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because use lawful criteria and document each decision step transparently. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "medium",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "public sector planning compliance",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_021",
+          "question": "In the context of Public Sector Planning, which action best demonstrates public sector planning risk management?",
+          "options": [
+            "Identify control gaps early and escalate material exceptions promptly.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Apply rules inconsistently based on personal preference."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because identify control gaps early and escalate material exceptions promptly. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "hard",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "public sector planning risk management",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_022",
+          "question": "For effective public sector planning, what is the most appropriate approach to ensure policy formulation?",
+          "options": [
+            "Define the problem, options, and decision criteria clearly.",
+            "Close cases without validating facts or required records.",
+            "Rely on informal instructions without documentary evidence.",
+            "Delay decisions until issues escalate into avoidable crises."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because define the problem, options, and decision criteria clearly. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "easy",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "policy formulation",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_023",
+          "question": "Which option most strongly aligns with good public-service practice on implementation planning within Public Sector Planning?",
+          "options": [
+            "Assign responsibilities, timelines, and performance metrics.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Apply rules inconsistently based on personal preference.",
+            "Bypass review and approval controls to save time."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because assign responsibilities, timelines, and performance metrics. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "medium",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "implementation planning",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_024",
+          "question": "When handling public sector planning, which choice reflects proper impact evaluation standards?",
+          "options": [
+            "Measure outcomes against baseline and policy objectives.",
+            "Rely on informal instructions without documentary evidence.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Treat exceptions as routine without documented justification."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because measure outcomes against baseline and policy objectives. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "hard",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "impact evaluation",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_025",
+          "question": "Which practice should a responsible officer prioritize to sustain evidence quality in Public Sector Planning?",
+          "options": [
+            "Use credible data sources and validate assumptions.",
+            "Apply rules inconsistently based on personal preference.",
+            "Bypass review and approval controls to save time.",
+            "Prioritize convenience over policy and legal requirements."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because use credible data sources and validate assumptions. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "easy",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "evidence quality",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_026",
+          "question": "In the context of Public Sector Planning, which action best demonstrates public-sector planning?",
+          "options": [
+            "Align plans with budget, legal mandate, and service priorities.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Treat exceptions as routine without documented justification.",
+            "Close cases without validating facts or required records."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because align plans with budget, legal mandate, and service priorities. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "medium",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "public-sector planning",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_027",
+          "question": "For effective public sector planning, what is the most appropriate approach to ensure documented procedure?",
+          "options": [
+            "Follow documented procedure and keep complete records.",
+            "Bypass review and approval controls to save time.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Ignore feedback and continue non-compliant procedures."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because follow documented procedure and keep complete records. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "hard",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "documented procedure",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_028",
+          "question": "Which option most strongly aligns with good public-service practice on compliance assurance within Public Sector Planning?",
+          "options": [
+            "Apply approved rules consistently and escalate exceptions.",
+            "Treat exceptions as routine without documented justification.",
+            "Close cases without validating facts or required records.",
+            "Rely on informal instructions without documentary evidence."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because apply approved rules consistently and escalate exceptions. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "easy",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "compliance assurance",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_029",
+          "question": "When handling public sector planning, which choice reflects proper public accountability standards?",
+          "options": [
+            "Provide traceable decisions and evidence-based justification.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Apply rules inconsistently based on personal preference."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because provide traceable decisions and evidence-based justification. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "medium",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "public accountability",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_030",
+          "question": "Which practice should a responsible officer prioritize to sustain service integrity in Public Sector Planning?",
+          "options": [
+            "Avoid conflicts of interest and disclose relevant constraints.",
+            "Close cases without validating facts or required records.",
+            "Rely on informal instructions without documentary evidence.",
+            "Delay decisions until issues escalate into avoidable crises."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because avoid conflicts of interest and disclose relevant constraints. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "hard",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "service integrity",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_031",
+          "question": "In the context of Public Sector Planning, which action best demonstrates risk control?",
+          "options": [
+            "Identify risk early, apply controls, and document mitigation.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Apply rules inconsistently based on personal preference.",
+            "Bypass review and approval controls to save time."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because identify risk early, apply controls, and document mitigation. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "easy",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "risk control",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_032",
+          "question": "For effective public sector planning, what is the most appropriate approach to ensure decision transparency?",
+          "options": [
+            "Use clear criteria and communicate decisions promptly.",
+            "Rely on informal instructions without documentary evidence.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Treat exceptions as routine without documented justification."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because use clear criteria and communicate decisions promptly. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "medium",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "decision transparency",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_033",
+          "question": "Which option most strongly aligns with good public-service practice on operational discipline within Public Sector Planning?",
+          "options": [
+            "Follow approved workflows and verify outputs before closure.",
+            "Apply rules inconsistently based on personal preference.",
+            "Bypass review and approval controls to save time.",
+            "Prioritize convenience over policy and legal requirements."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because follow approved workflows and verify outputs before closure. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "hard",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "operational discipline",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_034",
+          "question": "When handling public sector planning, which choice reflects proper citizen-focused service standards?",
+          "options": [
+            "Balance legality, fairness, timeliness, and service quality.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Treat exceptions as routine without documented justification.",
+            "Close cases without validating facts or required records."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because balance legality, fairness, timeliness, and service quality. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "easy",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "citizen-focused service",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_035",
+          "question": "Which practice should a responsible officer prioritize to sustain record management in Public Sector Planning?",
+          "options": [
+            "Maintain accurate files and update status at each control point.",
+            "Bypass review and approval controls to save time.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Ignore feedback and continue non-compliant procedures."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because maintain accurate files and update status at each control point. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "medium",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "record management",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_036",
+          "question": "In the context of Public Sector Planning, which action best demonstrates performance standards?",
+          "options": [
+            "Set measurable targets, monitor progress, and correct deviations.",
+            "Treat exceptions as routine without documented justification.",
+            "Close cases without validating facts or required records.",
+            "Rely on informal instructions without documentary evidence."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because set measurable targets, monitor progress, and correct deviations. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "hard",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "performance standards",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_037",
+          "question": "For effective public sector planning, what is the most appropriate approach to ensure public sector planning governance?",
+          "options": [
+            "Apply approved public sector planning procedures and maintain complete records.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Apply rules inconsistently based on personal preference."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because apply approved public sector planning procedures and maintain complete records. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "easy",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "public sector planning governance",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_038",
+          "question": "Which option most strongly aligns with good public-service practice on public sector planning compliance within Public Sector Planning?",
+          "options": [
+            "Use lawful criteria and document each decision step transparently.",
+            "Close cases without validating facts or required records.",
+            "Rely on informal instructions without documentary evidence.",
+            "Delay decisions until issues escalate into avoidable crises."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because use lawful criteria and document each decision step transparently. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "medium",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "public sector planning compliance",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_039",
+          "question": "When handling public sector planning, which choice reflects proper public sector planning risk management standards?",
+          "options": [
+            "Identify control gaps early and escalate material exceptions promptly.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Apply rules inconsistently based on personal preference.",
+            "Bypass review and approval controls to save time."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because identify control gaps early and escalate material exceptions promptly. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "hard",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "public sector planning risk management",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_040",
+          "question": "Which practice should a responsible officer prioritize to sustain policy formulation in Public Sector Planning?",
+          "options": [
+            "Define the problem, options, and decision criteria clearly.",
+            "Rely on informal instructions without documentary evidence.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Treat exceptions as routine without documented justification."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because define the problem, options, and decision criteria clearly. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "easy",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "policy formulation",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_041",
+          "question": "In the context of Public Sector Planning, which action best demonstrates implementation planning?",
+          "options": [
+            "Assign responsibilities, timelines, and performance metrics.",
+            "Apply rules inconsistently based on personal preference.",
+            "Bypass review and approval controls to save time.",
+            "Prioritize convenience over policy and legal requirements."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because assign responsibilities, timelines, and performance metrics. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "medium",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "implementation planning",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_042",
+          "question": "For effective public sector planning, what is the most appropriate approach to ensure impact evaluation?",
+          "options": [
+            "Measure outcomes against baseline and policy objectives.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Treat exceptions as routine without documented justification.",
+            "Close cases without validating facts or required records."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because measure outcomes against baseline and policy objectives. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "hard",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "impact evaluation",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_043",
+          "question": "Which option most strongly aligns with good public-service practice on evidence quality within Public Sector Planning?",
+          "options": [
+            "Use credible data sources and validate assumptions.",
+            "Bypass review and approval controls to save time.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Ignore feedback and continue non-compliant procedures."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because use credible data sources and validate assumptions. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "easy",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "evidence quality",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_044",
+          "question": "When handling public sector planning, which choice reflects proper public-sector planning standards?",
+          "options": [
+            "Align plans with budget, legal mandate, and service priorities.",
+            "Treat exceptions as routine without documented justification.",
+            "Close cases without validating facts or required records.",
+            "Rely on informal instructions without documentary evidence."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because align plans with budget, legal mandate, and service priorities. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "medium",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "public-sector planning",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_045",
+          "question": "A desk officer handling Public Sector Planning receives a case that requires public sector planning governance. What should be done first? while maintaining fairness and legal compliance?",
+          "options": [
+            "Apply rules inconsistently based on personal preference.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Apply approved public sector planning procedures and maintain complete records.",
+            "Bypass review and approval controls to save time."
+          ],
+          "correct": 2,
+          "explanation": "This is correct because apply approved public sector planning procedures and maintain complete records. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "easy",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "public sector planning governance",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_046",
+          "question": "During routine public sector planning operations, which approach best ensures public sector planning compliance? in line with public-sector accountability expectations?",
+          "options": [
+            "Use lawful criteria and document each decision step transparently.",
+            "Treat exceptions as routine without documented justification.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Close cases without validating facts or required records."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because use lawful criteria and document each decision step transparently. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "hard",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "public sector planning compliance",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_047",
+          "question": "A supervisor is reviewing compliance gaps in Public Sector Planning. Which action most directly strengthens public sector planning risk management? while preserving records for audit and oversight?",
+          "options": [
+            "Prioritize convenience over policy and legal requirements.",
+            "Identify control gaps early and escalate material exceptions promptly.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Bypass review and approval controls to save time."
+          ],
+          "correct": 1,
+          "explanation": "This is correct because identify control gaps early and escalate material exceptions promptly. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "medium",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "public sector planning risk management",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_048",
+          "question": "When applying rules in public sector planning, which option aligns best with policy formulation standards? while maintaining fairness and legal compliance?",
+          "options": [
+            "Rely on informal instructions without documentary evidence.",
+            "Define the problem, options, and decision criteria clearly.",
+            "Close cases without validating facts or required records.",
+            "Treat exceptions as routine without documented justification."
+          ],
+          "correct": 1,
+          "explanation": "This is correct because define the problem, options, and decision criteria clearly. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "easy",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "policy formulation",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_049",
+          "question": "To improve accountability in public sector planning, which practice best supports implementation planning? in line with public-sector accountability expectations?",
+          "options": [
+            "Assign responsibilities, timelines, and performance metrics.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Apply rules inconsistently based on personal preference."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because assign responsibilities, timelines, and performance metrics. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "hard",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "implementation planning",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_050",
+          "question": "A ministry unit is updating its workflow for public sector planning. Which choice most effectively promotes impact evaluation? while preserving records for audit and oversight?",
+          "options": [
+            "Close cases without validating facts or required records.",
+            "Measure outcomes against baseline and policy objectives.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Rely on informal instructions without documentary evidence."
+          ],
+          "correct": 1,
+          "explanation": "This is correct because measure outcomes against baseline and policy objectives. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "medium",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "impact evaluation",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_051",
+          "question": "In a time-sensitive file under Public Sector Planning, which step best preserves evidence quality without breaching process? while maintaining fairness and legal compliance?",
+          "options": [
+            "Ignore feedback and continue non-compliant procedures.",
+            "Use credible data sources and validate assumptions.",
+            "Bypass review and approval controls to save time.",
+            "Apply rules inconsistently based on personal preference."
+          ],
+          "correct": 1,
+          "explanation": "This is correct because use credible data sources and validate assumptions. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "easy",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "evidence quality",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_052",
+          "question": "Which of the following is the strongest control action for public-sector planning in public sector planning? in line with public-sector accountability expectations?",
+          "options": [
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Treat exceptions as routine without documented justification.",
+            "Align plans with budget, legal mandate, and service priorities.",
+            "Rely on informal instructions without documentary evidence."
+          ],
+          "correct": 2,
+          "explanation": "This is correct because align plans with budget, legal mandate, and service priorities. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "hard",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "public-sector planning",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_053",
+          "question": "A desk officer handling Public Sector Planning receives a case that requires documented procedure. What should be done first? within approved timelines and governance standards?",
+          "options": [
+            "Follow documented procedure and keep complete records.",
+            "Apply rules inconsistently based on personal preference.",
+            "Bypass review and approval controls to save time.",
+            "Prioritize convenience over policy and legal requirements."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because follow documented procedure and keep complete records. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "medium",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "documented procedure",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_054",
+          "question": "During routine public sector planning operations, which approach best ensures compliance assurance? under standard approval and documentation controls?",
+          "options": [
+            "Close cases without validating facts or required records.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Apply approved rules consistently and escalate exceptions.",
+            "Treat exceptions as routine without documented justification."
+          ],
+          "correct": 2,
+          "explanation": "This is correct because apply approved rules consistently and escalate exceptions. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "easy",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "compliance assurance",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_055",
+          "question": "A supervisor is reviewing compliance gaps in Public Sector Planning. Which action most directly strengthens public accountability? without bypassing established review procedures?",
+          "options": [
+            "Prioritize convenience over policy and legal requirements.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Bypass review and approval controls to save time.",
+            "Provide traceable decisions and evidence-based justification."
+          ],
+          "correct": 3,
+          "explanation": "This is correct because provide traceable decisions and evidence-based justification. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "hard",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "public accountability",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_056",
+          "question": "When applying rules in public sector planning, which option aligns best with service integrity standards? within approved timelines and governance standards?",
+          "options": [
+            "Rely on informal instructions without documentary evidence.",
+            "Close cases without validating facts or required records.",
+            "Treat exceptions as routine without documented justification.",
+            "Avoid conflicts of interest and disclose relevant constraints."
+          ],
+          "correct": 3,
+          "explanation": "This is correct because avoid conflicts of interest and disclose relevant constraints. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "medium",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "service integrity",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_057",
+          "question": "To improve accountability in public sector planning, which practice best supports risk control? under standard approval and documentation controls?",
+          "options": [
+            "Apply rules inconsistently based on personal preference.",
+            "Identify risk early, apply controls, and document mitigation.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Ignore feedback and continue non-compliant procedures."
+          ],
+          "correct": 1,
+          "explanation": "This is correct because identify risk early, apply controls, and document mitigation. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "easy",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "risk control",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_058",
+          "question": "A ministry unit is updating its workflow for public sector planning. Which choice most effectively promotes decision transparency? without bypassing established review procedures?",
+          "options": [
+            "Close cases without validating facts or required records.",
+            "Use clear criteria and communicate decisions promptly.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Rely on informal instructions without documentary evidence."
+          ],
+          "correct": 1,
+          "explanation": "This is correct because use clear criteria and communicate decisions promptly. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "hard",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "decision transparency",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_059",
+          "question": "In a time-sensitive file under Public Sector Planning, which step best preserves operational discipline without breaching process? within approved timelines and governance standards?",
+          "options": [
+            "Apply rules inconsistently based on personal preference.",
+            "Bypass review and approval controls to save time.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Follow approved workflows and verify outputs before closure."
+          ],
+          "correct": 3,
+          "explanation": "This is correct because follow approved workflows and verify outputs before closure. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "medium",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "operational discipline",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_060",
+          "question": "Which of the following is the strongest control action for citizen-focused service in public sector planning? under standard approval and documentation controls?",
+          "options": [
+            "Treat exceptions as routine without documented justification.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Rely on informal instructions without documentary evidence.",
+            "Balance legality, fairness, timeliness, and service quality."
+          ],
+          "correct": 3,
+          "explanation": "This is correct because balance legality, fairness, timeliness, and service quality. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "easy",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "citizen-focused service",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_061",
+          "question": "A desk officer handling Public Sector Planning receives a case that requires record management. What should be done first? while preserving records for audit and oversight?",
+          "options": [
+            "Prioritize convenience over policy and legal requirements.",
+            "Apply rules inconsistently based on personal preference.",
+            "Bypass review and approval controls to save time.",
+            "Maintain accurate files and update status at each control point."
+          ],
+          "correct": 3,
+          "explanation": "This is correct because maintain accurate files and update status at each control point. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "hard",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "record management",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_062",
+          "question": "During routine public sector planning operations, which approach best ensures performance standards? while maintaining fairness and legal compliance?",
+          "options": [
+            "Set measurable targets, monitor progress, and correct deviations.",
+            "Close cases without validating facts or required records.",
+            "Treat exceptions as routine without documented justification.",
+            "Delay decisions until issues escalate into avoidable crises."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because set measurable targets, monitor progress, and correct deviations. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "medium",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "performance standards",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_063",
+          "question": "A supervisor is reviewing compliance gaps in Public Sector Planning. Which action most directly strengthens public sector planning governance? in line with public-sector accountability expectations?",
+          "options": [
+            "Ignore feedback and continue non-compliant procedures.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Apply approved public sector planning procedures and maintain complete records.",
+            "Bypass review and approval controls to save time."
+          ],
+          "correct": 2,
+          "explanation": "This is correct because apply approved public sector planning procedures and maintain complete records. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "easy",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "public sector planning governance",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_064",
+          "question": "When applying rules in public sector planning, which option aligns best with public sector planning compliance standards? while preserving records for audit and oversight?",
+          "options": [
+            "Treat exceptions as routine without documented justification.",
+            "Rely on informal instructions without documentary evidence.",
+            "Close cases without validating facts or required records.",
+            "Use lawful criteria and document each decision step transparently."
+          ],
+          "correct": 3,
+          "explanation": "This is correct because use lawful criteria and document each decision step transparently. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "hard",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "public sector planning compliance",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_065",
+          "question": "To improve accountability in public sector planning, which practice best supports public sector planning risk management? while maintaining fairness and legal compliance?",
+          "options": [
+            "Apply rules inconsistently based on personal preference.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Identify control gaps early and escalate material exceptions promptly.",
+            "Prioritize convenience over policy and legal requirements."
+          ],
+          "correct": 2,
+          "explanation": "This is correct because identify control gaps early and escalate material exceptions promptly. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "medium",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "public sector planning risk management",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_066",
+          "question": "A ministry unit is updating its workflow for public sector planning. Which choice most effectively promotes policy formulation? in line with public-sector accountability expectations?",
+          "options": [
+            "Rely on informal instructions without documentary evidence.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Define the problem, options, and decision criteria clearly.",
+            "Close cases without validating facts or required records."
+          ],
+          "correct": 2,
+          "explanation": "This is correct because define the problem, options, and decision criteria clearly. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "easy",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "policy formulation",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_067",
+          "question": "In a time-sensitive file under Public Sector Planning, which step best preserves implementation planning without breaching process? while preserving records for audit and oversight?",
+          "options": [
+            "Apply rules inconsistently based on personal preference.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Assign responsibilities, timelines, and performance metrics.",
+            "Bypass review and approval controls to save time."
+          ],
+          "correct": 2,
+          "explanation": "This is correct because assign responsibilities, timelines, and performance metrics. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "hard",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "implementation planning",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_068",
+          "question": "Which of the following is the strongest control action for impact evaluation in public sector planning? while maintaining fairness and legal compliance?",
+          "options": [
+            "Rely on informal instructions without documentary evidence.",
+            "Measure outcomes against baseline and policy objectives.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Treat exceptions as routine without documented justification."
+          ],
+          "correct": 1,
+          "explanation": "This is correct because measure outcomes against baseline and policy objectives. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "medium",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "impact evaluation",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_069",
+          "question": "A desk officer handling Public Sector Planning receives a case that requires evidence quality. What should be done first? without bypassing established review procedures?",
+          "options": [
+            "Use credible data sources and validate assumptions.",
+            "Apply rules inconsistently based on personal preference.",
+            "Bypass review and approval controls to save time.",
+            "Prioritize convenience over policy and legal requirements."
+          ],
+          "correct": 0,
+          "explanation": "This is correct because use credible data sources and validate assumptions. It strengthens compliance, consistency, and accountability in public sector planning.",
+          "difficulty": "easy",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "policy_analysis",
+            "pol_public_sector_planning",
+            "evidence quality",
+            "quality-expansion"
+          ],
+          "source": "generated_draft"
         }
       ],
       "id": "pol_public_sector_planning"

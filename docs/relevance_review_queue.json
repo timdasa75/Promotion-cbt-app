@@ -1,0 +1,743 @@
+{
+  "count": 41,
+  "items": [
+    {
+      "question_id": "clg_gc_068",
+      "source_topic": "constitutional_law",
+      "source_subcategory": "clg_general_competency",
+      "source_file": "data/constitutional_foi.json",
+      "question": "The movement of funds from one specified budget subhead to another **within the same expenditure vote**, authorized by a Warrant, is known as:",
+      "suggested_target_topic": "financial_regulations",
+      "scores": {
+        "own_topic": 0,
+        "own_subcategory": 0,
+        "best_other": 7
+      },
+      "reasons": [
+        "low_own_topic_subcategory_overlap",
+        "looks_closer_to:financial_regulations"
+      ],
+      "recommended_action": "manual_review"
+    },
+    {
+      "question_id": "csh_ap_047",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_administrative_procedures",
+      "source_file": "data/civil_service_ethics.json",
+      "question": "The PSR requires that where the Head of a Department is not available for a period spanning one month (due to approved assignment or leave), the most senior officer is mandated to oversee the Office of the Head of the Department. This is covered by:",
+      "suggested_target_topic": "psr",
+      "scores": {
+        "own_topic": 0,
+        "own_subcategory": 0,
+        "best_other": 5
+      },
+      "reasons": [
+        "low_own_topic_subcategory_overlap",
+        "looks_closer_to:psr"
+      ],
+      "recommended_action": "manual_review"
+    },
+    {
+      "question_id": "csh_sdg_044",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_service_delivery_grievance",
+      "source_file": "data/civil_service_ethics.json",
+      "question": "The PSR provides that an officer may be granted **Leave of Absence** on grounds of public policy. The leave shall be approved by:",
+      "suggested_target_topic": "psr",
+      "scores": {
+        "own_topic": 0,
+        "own_subcategory": 0,
+        "best_other": 5
+      },
+      "reasons": [
+        "low_own_topic_subcategory_overlap",
+        "looks_closer_to:psr"
+      ],
+      "recommended_action": "manual_review"
+    },
+    {
+      "question_id": "clg_gc_070",
+      "source_topic": "constitutional_law",
+      "source_subcategory": "clg_general_competency",
+      "source_file": "data/constitutional_foi.json",
+      "question": "The concept of **Meritocracy** in the Civil Service Handbook emphasizes that appointments and promotions must be based on:",
+      "suggested_target_topic": "psr",
+      "scores": {
+        "own_topic": 0,
+        "own_subcategory": 0,
+        "best_other": 5
+      },
+      "reasons": [
+        "low_own_topic_subcategory_overlap",
+        "looks_closer_to:psr"
+      ],
+      "recommended_action": "manual_review"
+    },
+    {
+      "question_id": "clg_gc_088",
+      "source_topic": "constitutional_law",
+      "source_subcategory": "clg_general_competency",
+      "source_file": "data/constitutional_foi.json",
+      "question": "The three types of study leave listed in the PSR (Rule 120226) are Leave for In-Service Training, Study Leave without Pay, and:",
+      "suggested_target_topic": "psr",
+      "scores": {
+        "own_topic": 0,
+        "own_subcategory": 0,
+        "best_other": 5
+      },
+      "reasons": [
+        "low_own_topic_subcategory_overlap",
+        "looks_closer_to:psr"
+      ],
+      "recommended_action": "manual_review"
+    },
+    {
+      "question_id": "fin_pro_023",
+      "source_topic": "financial_regulations",
+      "source_subcategory": "fin_procurement",
+      "source_file": "data/financial_regulations.json",
+      "question": "The award of a contract following evaluation is required by Section 33 to be granted to the:",
+      "suggested_target_topic": "procurement_act",
+      "scores": {
+        "own_topic": 0,
+        "own_subcategory": 0,
+        "best_other": 5
+      },
+      "reasons": [
+        "low_own_topic_subcategory_overlap",
+        "looks_closer_to:procurement_act"
+      ],
+      "recommended_action": "manual_review"
+    },
+    {
+      "question_id": "ict_eg_024",
+      "source_topic": "ict_management",
+      "source_subcategory": "ict_e_governance",
+      "source_file": "data/ict_digital.json",
+      "question": "Which financial platform controls the total amount of funds allocated for staff salaries (Personnel Emoluments) in the budget?",
+      "suggested_target_topic": "financial_regulations",
+      "scores": {
+        "own_topic": 0,
+        "own_subcategory": 0,
+        "best_other": 5
+      },
+      "reasons": [
+        "low_own_topic_subcategory_overlap",
+        "looks_closer_to:financial_regulations"
+      ],
+      "recommended_action": "manual_review"
+    },
+    {
+      "question_id": "ict_li_034",
+      "source_topic": "ict_management",
+      "source_subcategory": "ict_literacy_innovation",
+      "source_file": "data/ict_digital.json",
+      "question": "The three types of study leave listed in the PSR (Rule 120226) are Leave for In-Service Training, Study Leave without Pay, and:",
+      "suggested_target_topic": "psr",
+      "scores": {
+        "own_topic": 0,
+        "own_subcategory": 0,
+        "best_other": 5
+      },
+      "reasons": [
+        "low_own_topic_subcategory_overlap",
+        "looks_closer_to:psr"
+      ],
+      "recommended_action": "manual_review"
+    },
+    {
+      "question_id": "ict_li_065",
+      "source_topic": "ict_management",
+      "source_subcategory": "ict_literacy_innovation",
+      "source_file": "data/ict_digital.json",
+      "question": "The three types of study leave listed in the PSR (Rule 120226) are Leave for In-Service Training, Study Leave with Pay, and:",
+      "suggested_target_topic": "psr",
+      "scores": {
+        "own_topic": 0,
+        "own_subcategory": 0,
+        "best_other": 5
+      },
+      "reasons": [
+        "low_own_topic_subcategory_overlap",
+        "looks_closer_to:psr"
+      ],
+      "recommended_action": "manual_review"
+    },
+    {
+      "question_id": "leadership_smp_036",
+      "source_topic": "leadership_management",
+      "source_subcategory": "lead_strategic_management",
+      "source_file": "data/leadership_negotiation.json",
+      "question": "The Nigerian Public Procurement Act (PPA) strategically emphasizes **Open Competitive Bidding** as the default method to promote:",
+      "suggested_target_topic": "procurement_act",
+      "scores": {
+        "own_topic": 0,
+        "own_subcategory": 0,
+        "best_other": 5
+      },
+      "reasons": [
+        "low_own_topic_subcategory_overlap",
+        "looks_closer_to:procurement_act"
+      ],
+      "recommended_action": "manual_review"
+    },
+    {
+      "question_id": "leadership_mpf_014",
+      "source_topic": "leadership_management",
+      "source_subcategory": "lead_management_performance",
+      "source_file": "data/leadership_negotiation.json",
+      "question": "The three types of study leave listed in the PSR (Rule 120226) are Leave for In-Service Training, Study Leave without Pay, and:",
+      "suggested_target_topic": "psr",
+      "scores": {
+        "own_topic": 0,
+        "own_subcategory": 0,
+        "best_other": 5
+      },
+      "reasons": [
+        "low_own_topic_subcategory_overlap",
+        "looks_closer_to:psr"
+      ],
+      "recommended_action": "manual_review"
+    },
+    {
+      "question_id": "leadership_mpf_029",
+      "source_topic": "leadership_management",
+      "source_subcategory": "lead_management_performance",
+      "source_file": "data/leadership_negotiation.json",
+      "question": "The maximum duration of study leave with pay that may be granted to a Confirmed Officer is:",
+      "suggested_target_topic": "psr",
+      "scores": {
+        "own_topic": 0,
+        "own_subcategory": 0,
+        "best_other": 5
+      },
+      "reasons": [
+        "low_own_topic_subcategory_overlap",
+        "looks_closer_to:psr"
+      ],
+      "recommended_action": "manual_review"
+    },
+    {
+      "question_id": "ppa_ims_029",
+      "source_topic": "procurement_act",
+      "source_subcategory": "proc_implementation_sanctions",
+      "source_file": "data/public_procurement.json",
+      "question": "The final authority responsible for the appointment, promotion, and discipline of Directors (GL 17) in the Federal Civil Service is the:",
+      "suggested_target_topic": "psr",
+      "scores": {
+        "own_topic": 0,
+        "own_subcategory": 0,
+        "best_other": 5
+      },
+      "reasons": [
+        "low_own_topic_subcategory_overlap",
+        "looks_closer_to:psr"
+      ],
+      "recommended_action": "manual_review"
+    },
+    {
+      "question_id": "csh_principle_016",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_principles_ethics",
+      "source_file": "data/civil_service_ethics.json",
+      "question": "Under PSR Rule 100429, an officer on leave of absence must obtain express approval before engaging in:",
+      "suggested_target_topic": "psr",
+      "scores": {
+        "own_topic": 0,
+        "own_subcategory": 0,
+        "best_other": 4
+      },
+      "reasons": [
+        "low_own_topic_subcategory_overlap",
+        "looks_closer_to:psr"
+      ],
+      "recommended_action": "manual_review"
+    },
+    {
+      "question_id": "csh_pt_011",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_performance_training",
+      "source_file": "data/civil_service_ethics.json",
+      "question": "What is the maximum period of sabbatical leave permitted for an officer on GL 15 and above (PSR 120223)?",
+      "suggested_target_topic": "psr",
+      "scores": {
+        "own_topic": 0,
+        "own_subcategory": 0,
+        "best_other": 4
+      },
+      "reasons": [
+        "low_own_topic_subcategory_overlap",
+        "looks_closer_to:psr"
+      ],
+      "recommended_action": "manual_review"
+    },
+    {
+      "question_id": "csh_pt_033",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_performance_training",
+      "source_file": "data/civil_service_ethics.json",
+      "question": "Which PSR rule allows for the **Sabbatical Appointment** of an officer on GL 15 and above?",
+      "suggested_target_topic": "psr",
+      "scores": {
+        "own_topic": 0,
+        "own_subcategory": 0,
+        "best_other": 4
+      },
+      "reasons": [
+        "low_own_topic_subcategory_overlap",
+        "looks_closer_to:psr"
+      ],
+      "recommended_action": "manual_review"
+    },
+    {
+      "question_id": "csh_pt_044",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_performance_training",
+      "source_file": "data/civil_service_ethics.json",
+      "question": "What is the consequence if an officer fails to meet the minimum years required in a post before promotion eligibility (PSR 020802(c))?",
+      "suggested_target_topic": "psr",
+      "scores": {
+        "own_topic": 0,
+        "own_subcategory": 0,
+        "best_other": 4
+      },
+      "reasons": [
+        "low_own_topic_subcategory_overlap",
+        "looks_closer_to:psr"
+      ],
+      "recommended_action": "manual_review"
+    },
+    {
+      "question_id": "csh_ap_020",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_administrative_procedures",
+      "source_file": "data/civil_service_ethics.json",
+      "question": "Which of the following is NOT a category of Leave of Absence on grounds of public policy (PSR 120236)?",
+      "suggested_target_topic": "psr",
+      "scores": {
+        "own_topic": 0,
+        "own_subcategory": 0,
+        "best_other": 4
+      },
+      "reasons": [
+        "low_own_topic_subcategory_overlap",
+        "looks_closer_to:psr"
+      ],
+      "recommended_action": "manual_review"
+    },
+    {
+      "question_id": "csh_ap_033",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_administrative_procedures",
+      "source_file": "data/civil_service_ethics.json",
+      "question": "PSR Rule 120235 prohibits an officer on **leave of absence** from accepting:",
+      "suggested_target_topic": "psr",
+      "scores": {
+        "own_topic": 0,
+        "own_subcategory": 0,
+        "best_other": 4
+      },
+      "reasons": [
+        "low_own_topic_subcategory_overlap",
+        "looks_closer_to:psr"
+      ],
+      "recommended_action": "manual_review"
+    },
+    {
+      "question_id": "clg_lc_054",
+      "source_topic": "constitutional_law",
+      "source_subcategory": "clg_legal_compliance",
+      "source_file": "data/constitutional_foi.json",
+      "question": "In disciplinary matters, which misconduct is classified as **Gross Misconduct** according to the Civil Service Handbook?",
+      "suggested_target_topic": "civil_service_admin",
+      "scores": {
+        "own_topic": 0,
+        "own_subcategory": 0,
+        "best_other": 4
+      },
+      "reasons": [
+        "low_own_topic_subcategory_overlap",
+        "looks_closer_to:civil_service_admin"
+      ],
+      "recommended_action": "manual_review"
+    },
+    {
+      "question_id": "clg_gc_072",
+      "source_topic": "constitutional_law",
+      "source_subcategory": "clg_general_competency",
+      "source_file": "data/constitutional_foi.json",
+      "question": "The use of the Government Integrated Financial Management Information System (GIFMIS) primarily supports the financial management process by providing:",
+      "suggested_target_topic": "financial_regulations",
+      "scores": {
+        "own_topic": 0,
+        "own_subcategory": 0,
+        "best_other": 4
+      },
+      "reasons": [
+        "low_own_topic_subcategory_overlap",
+        "looks_closer_to:financial_regulations"
+      ],
+      "recommended_action": "manual_review"
+    },
+    {
+      "question_id": "clg_gc_092",
+      "source_topic": "constitutional_law",
+      "source_subcategory": "clg_general_competency",
+      "source_file": "data/constitutional_foi.json",
+      "question": "Which chapter of the Civil Service Handbook provides grievance procedures to resolve disputes within the civil service?",
+      "suggested_target_topic": "civil_service_admin",
+      "scores": {
+        "own_topic": 0,
+        "own_subcategory": 0,
+        "best_other": 4
+      },
+      "reasons": [
+        "low_own_topic_subcategory_overlap",
+        "looks_closer_to:civil_service_admin"
+      ],
+      "recommended_action": "manual_review"
+    },
+    {
+      "question_id": "fin_pro_019",
+      "source_topic": "financial_regulations",
+      "source_subcategory": "fin_procurement",
+      "source_file": "data/financial_regulations.json",
+      "question": "Which section empowers the BPP to issue a 'Certificate of No Objection' before a contract award can be finalized?",
+      "suggested_target_topic": "procurement_act",
+      "scores": {
+        "own_topic": 0,
+        "own_subcategory": 0,
+        "best_other": 4
+      },
+      "reasons": [
+        "low_own_topic_subcategory_overlap",
+        "looks_closer_to:procurement_act"
+      ],
+      "recommended_action": "manual_review"
+    },
+    {
+      "question_id": "fin_pro_038",
+      "source_topic": "financial_regulations",
+      "source_subcategory": "fin_procurement",
+      "source_file": "data/financial_regulations.json",
+      "question": "What is the primary purpose of holding a public bid opening ceremony?",
+      "suggested_target_topic": "procurement_act",
+      "scores": {
+        "own_topic": 0,
+        "own_subcategory": 0,
+        "best_other": 4
+      },
+      "reasons": [
+        "low_own_topic_subcategory_overlap",
+        "looks_closer_to:procurement_act"
+      ],
+      "recommended_action": "manual_review"
+    },
+    {
+      "question_id": "fin_pro_042",
+      "source_topic": "financial_regulations",
+      "source_subcategory": "fin_procurement",
+      "source_file": "data/financial_regulations.json",
+      "question": "Which section provides guidelines for proper contract implementation and monitoring by procuring entities?",
+      "suggested_target_topic": "procurement_act",
+      "scores": {
+        "own_topic": 0,
+        "own_subcategory": 0,
+        "best_other": 4
+      },
+      "reasons": [
+        "low_own_topic_subcategory_overlap",
+        "looks_closer_to:procurement_act"
+      ],
+      "recommended_action": "manual_review"
+    },
+    {
+      "question_id": "PSIR_079",
+      "source_topic": "general_current_affairs",
+      "source_subcategory": "ca_public_service_reforms",
+      "source_file": "data/general_current_affairs.json",
+      "question": "What is the maximum number of days a newly appointed Officer on GL.07–17 is expected to complete the confirmation examination after taking up their appointment in the Ministry/Extra-Ministerial Office?",
+      "suggested_target_topic": "psr",
+      "scores": {
+        "own_topic": 0,
+        "own_subcategory": 0,
+        "best_other": 4
+      },
+      "reasons": [
+        "low_own_topic_subcategory_overlap",
+        "looks_closer_to:psr"
+      ],
+      "recommended_action": "manual_review"
+    },
+    {
+      "question_id": "NGPD_004",
+      "source_topic": "general_current_affairs",
+      "source_subcategory": "ca_national_governance",
+      "source_file": "data/general_current_affairs.json",
+      "question": "What is the consequence for an officer who changes their date of birth recorded upon appointment throughout their career?",
+      "suggested_target_topic": "psr",
+      "scores": {
+        "own_topic": 0,
+        "own_subcategory": 0,
+        "best_other": 4
+      },
+      "reasons": [
+        "low_own_topic_subcategory_overlap",
+        "looks_closer_to:psr"
+      ],
+      "recommended_action": "manual_review"
+    },
+    {
+      "question_id": "NGPD_006",
+      "source_topic": "general_current_affairs",
+      "source_subcategory": "ca_national_governance",
+      "source_file": "data/general_current_affairs.json",
+      "question": "Which officer category is handled by the Junior Staff Committee (JSC) of each Ministry/Office regarding appointments?",
+      "suggested_target_topic": "psr",
+      "scores": {
+        "own_topic": 0,
+        "own_subcategory": 0,
+        "best_other": 4
+      },
+      "reasons": [
+        "low_own_topic_subcategory_overlap",
+        "looks_closer_to:psr"
+      ],
+      "recommended_action": "manual_review"
+    },
+    {
+      "question_id": "NGPD_023",
+      "source_topic": "general_current_affairs",
+      "source_subcategory": "ca_national_governance",
+      "source_file": "data/general_current_affairs.json",
+      "question": "What is the penalty for an officer who accepts a paid appointment during leave of absence without prior approval?",
+      "suggested_target_topic": "psr",
+      "scores": {
+        "own_topic": 0,
+        "own_subcategory": 0,
+        "best_other": 4
+      },
+      "reasons": [
+        "low_own_topic_subcategory_overlap",
+        "looks_closer_to:psr"
+      ],
+      "recommended_action": "manual_review"
+    },
+    {
+      "question_id": "ict_li_049",
+      "source_topic": "ict_management",
+      "source_subcategory": "ict_literacy_innovation",
+      "source_file": "data/ict_digital.json",
+      "question": "Which institution provides training and capacity development support for civil servants for career advancement beyond GL 10?",
+      "suggested_target_topic": "psr",
+      "scores": {
+        "own_topic": 0,
+        "own_subcategory": 0,
+        "best_other": 4
+      },
+      "reasons": [
+        "low_own_topic_subcategory_overlap",
+        "looks_closer_to:psr"
+      ],
+      "recommended_action": "manual_review"
+    },
+    {
+      "question_id": "ict_li_057",
+      "source_topic": "ict_management",
+      "source_subcategory": "ict_literacy_innovation",
+      "source_file": "data/ict_digital.json",
+      "question": "Which of the following is NOT a core value of civil servants, according to the Civil Service Handbook?",
+      "suggested_target_topic": "civil_service_admin",
+      "scores": {
+        "own_topic": 0,
+        "own_subcategory": 0,
+        "best_other": 4
+      },
+      "reasons": [
+        "low_own_topic_subcategory_overlap",
+        "looks_closer_to:civil_service_admin"
+      ],
+      "recommended_action": "manual_review"
+    },
+    {
+      "question_id": "ict_li_059",
+      "source_topic": "ict_management",
+      "source_subcategory": "ict_literacy_innovation",
+      "source_file": "data/ict_digital.json",
+      "question": "What is the consequence for an MDA that incurs **Over-Expenditure** (spending beyond the approved budget)?",
+      "suggested_target_topic": "financial_regulations",
+      "scores": {
+        "own_topic": 0,
+        "own_subcategory": 0,
+        "best_other": 4
+      },
+      "reasons": [
+        "low_own_topic_subcategory_overlap",
+        "looks_closer_to:financial_regulations"
+      ],
+      "recommended_action": "manual_review"
+    },
+    {
+      "question_id": "leadership_lsm_012",
+      "source_topic": "leadership_management",
+      "source_subcategory": "lead_principles_styles",
+      "source_file": "data/leadership_negotiation.json",
+      "question": "Which PSR rule strictly prohibits an officer from seeking the influence of prominent persons for obtaining consideration in matters connected with promotion or postings?",
+      "suggested_target_topic": "psr",
+      "scores": {
+        "own_topic": 0,
+        "own_subcategory": 0,
+        "best_other": 4
+      },
+      "reasons": [
+        "low_own_topic_subcategory_overlap",
+        "looks_closer_to:psr"
+      ],
+      "recommended_action": "manual_review"
+    },
+    {
+      "question_id": "leadership_lsm_014",
+      "source_topic": "leadership_management",
+      "source_subcategory": "lead_principles_styles",
+      "source_file": "data/leadership_negotiation.json",
+      "question": "What ethical principle ensures that civil servants serve all citizens fairly without political or personal bias?",
+      "suggested_target_topic": "civil_service_admin",
+      "scores": {
+        "own_topic": 0,
+        "own_subcategory": 0,
+        "best_other": 4
+      },
+      "reasons": [
+        "low_own_topic_subcategory_overlap",
+        "looks_closer_to:civil_service_admin"
+      ],
+      "recommended_action": "manual_review"
+    },
+    {
+      "question_id": "leadership_lsm_031",
+      "source_topic": "leadership_management",
+      "source_subcategory": "lead_principles_styles",
+      "source_file": "data/leadership_negotiation.json",
+      "question": "Which ethical concept requires that public officials, including leaders, regularly disclose their assets and liabilities?",
+      "suggested_target_topic": "civil_service_admin",
+      "scores": {
+        "own_topic": 0,
+        "own_subcategory": 0,
+        "best_other": 4
+      },
+      "reasons": [
+        "low_own_topic_subcategory_overlap",
+        "looks_closer_to:civil_service_admin"
+      ],
+      "recommended_action": "manual_review"
+    },
+    {
+      "question_id": "leadership_smp_014",
+      "source_topic": "leadership_management",
+      "source_subcategory": "lead_strategic_management",
+      "source_file": "data/leadership_negotiation.json",
+      "question": "The final authority for ratifying amendments to the Public Service Rules (PSR), based on recommendations from the National Council on Establishments (NCE), is the:",
+      "suggested_target_topic": "psr",
+      "scores": {
+        "own_topic": 0,
+        "own_subcategory": 0,
+        "best_other": 4
+      },
+      "reasons": [
+        "low_own_topic_subcategory_overlap",
+        "looks_closer_to:psr"
+      ],
+      "recommended_action": "manual_review"
+    },
+    {
+      "question_id": "leadership_mpf_041",
+      "source_topic": "leadership_management",
+      "source_subcategory": "lead_management_performance",
+      "source_file": "data/leadership_negotiation.json",
+      "question": "The three types of leave of absence (Rule 120236) include Leave of Absence to join spouse on grounds of public policy, and:",
+      "suggested_target_topic": "psr",
+      "scores": {
+        "own_topic": 0,
+        "own_subcategory": 0,
+        "best_other": 4
+      },
+      "reasons": [
+        "low_own_topic_subcategory_overlap",
+        "looks_closer_to:psr"
+      ],
+      "recommended_action": "manual_review"
+    },
+    {
+      "question_id": "ppa_elb_026",
+      "source_topic": "procurement_act",
+      "source_subcategory": "proc_eligibility_consultants_budgeting",
+      "source_file": "data/public_procurement.json",
+      "question": "The process by which funds are legally moved between budget subheads within the same expenditure head is known as:",
+      "suggested_target_topic": "financial_regulations",
+      "scores": {
+        "own_topic": 0,
+        "own_subcategory": 0,
+        "best_other": 4
+      },
+      "reasons": [
+        "low_own_topic_subcategory_overlap",
+        "looks_closer_to:financial_regulations"
+      ],
+      "recommended_action": "manual_review"
+    },
+    {
+      "question_id": "ppa_ims_027",
+      "source_topic": "procurement_act",
+      "source_subcategory": "proc_implementation_sanctions",
+      "source_file": "data/public_procurement.json",
+      "question": "An officer who is absent from duty without leave for 14 consecutive days may be deemed by the Service to have:",
+      "suggested_target_topic": "psr",
+      "scores": {
+        "own_topic": 0,
+        "own_subcategory": 0,
+        "best_other": 4
+      },
+      "reasons": [
+        "low_own_topic_subcategory_overlap",
+        "looks_closer_to:psr"
+      ],
+      "recommended_action": "manual_review"
+    },
+    {
+      "question_id": "ppa_ims_032",
+      "source_topic": "procurement_act",
+      "source_subcategory": "proc_implementation_sanctions",
+      "source_file": "data/public_procurement.json",
+      "question": "The final authority on matters of ethical conduct and compliance with the PSR, particularly concerning disciplinary appeals, rests with the:",
+      "suggested_target_topic": "civil_service_admin",
+      "scores": {
+        "own_topic": 0,
+        "own_subcategory": 0,
+        "best_other": 4
+      },
+      "reasons": [
+        "low_own_topic_subcategory_overlap",
+        "looks_closer_to:civil_service_admin"
+      ],
+      "recommended_action": "manual_review"
+    },
+    {
+      "question_id": "ppa_ims_046",
+      "source_topic": "procurement_act",
+      "source_subcategory": "proc_implementation_sanctions",
+      "source_file": "data/public_procurement.json",
+      "question": "Unauthorized use of government transport facilities or allowances by an officer is classified under the PSR as:",
+      "suggested_target_topic": "psr",
+      "scores": {
+        "own_topic": 0,
+        "own_subcategory": 0,
+        "best_other": 4
+      },
+      "reasons": [
+        "low_own_topic_subcategory_overlap",
+        "looks_closer_to:psr"
+      ],
+      "recommended_action": "manual_review"
+    }
+  ]
+}

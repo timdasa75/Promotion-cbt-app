@@ -1,0 +1,238 @@
+{
+  "summary": {
+    "processed_actions": 27,
+    "moved": 25,
+    "removed_source_duplicates": 2,
+    "skipped_move_failed": 0,
+    "files_changed": 8,
+    "applied": true
+  },
+  "changed_files": [
+    "data/civil_service_ethics.json",
+    "data/constitutional_foi.json",
+    "data/financial_regulations.json",
+    "data/general_current_affairs.json",
+    "data/ict_digital.json",
+    "data/leadership_negotiation.json",
+    "data/psr_rules.json",
+    "data/public_procurement.json"
+  ],
+  "actions": [
+    {
+      "action": "move_to_target",
+      "question_id": "clg_gc_068",
+      "source_topic": "constitutional_law",
+      "source_subcategory": "clg_general_competency",
+      "target_topic": "financial_regulations",
+      "reason": "high_confidence_signal_matched"
+    },
+    {
+      "action": "move_to_target",
+      "question_id": "csh_ap_047",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_administrative_procedures",
+      "target_topic": "psr",
+      "reason": "high_confidence_signal_matched"
+    },
+    {
+      "action": "move_to_target",
+      "question_id": "csh_sdg_044",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_service_delivery_grievance",
+      "target_topic": "psr",
+      "reason": "high_confidence_signal_matched"
+    },
+    {
+      "action": "move_to_target",
+      "question_id": "clg_gc_088",
+      "source_topic": "constitutional_law",
+      "source_subcategory": "clg_general_competency",
+      "target_topic": "psr",
+      "reason": "high_confidence_signal_matched"
+    },
+    {
+      "action": "remove_source_duplicate",
+      "question_id": "ict_li_034",
+      "source_topic": "ict_management",
+      "source_subcategory": "ict_literacy_innovation",
+      "target_topic": "psr",
+      "reason": "equivalent_exists_in_target_topic"
+    },
+    {
+      "action": "move_to_target",
+      "question_id": "ict_li_065",
+      "source_topic": "ict_management",
+      "source_subcategory": "ict_literacy_innovation",
+      "target_topic": "psr",
+      "reason": "high_confidence_signal_matched"
+    },
+    {
+      "action": "move_to_target",
+      "question_id": "leadership_smp_036",
+      "source_topic": "leadership_management",
+      "source_subcategory": "lead_strategic_management",
+      "target_topic": "procurement_act",
+      "reason": "high_confidence_signal_matched"
+    },
+    {
+      "action": "remove_source_duplicate",
+      "question_id": "leadership_mpf_014",
+      "source_topic": "leadership_management",
+      "source_subcategory": "lead_management_performance",
+      "target_topic": "psr",
+      "reason": "equivalent_exists_in_target_topic"
+    },
+    {
+      "action": "move_to_target",
+      "question_id": "ppa_ims_029",
+      "source_topic": "procurement_act",
+      "source_subcategory": "proc_implementation_sanctions",
+      "target_topic": "psr",
+      "reason": "high_confidence_signal_matched"
+    },
+    {
+      "action": "move_to_target",
+      "question_id": "csh_principle_016",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_principles_ethics",
+      "target_topic": "psr",
+      "reason": "high_confidence_signal_matched"
+    },
+    {
+      "action": "move_to_target",
+      "question_id": "csh_pt_011",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_performance_training",
+      "target_topic": "psr",
+      "reason": "high_confidence_signal_matched"
+    },
+    {
+      "action": "move_to_target",
+      "question_id": "csh_pt_033",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_performance_training",
+      "target_topic": "psr",
+      "reason": "high_confidence_signal_matched"
+    },
+    {
+      "action": "move_to_target",
+      "question_id": "csh_pt_044",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_performance_training",
+      "target_topic": "psr",
+      "reason": "high_confidence_signal_matched"
+    },
+    {
+      "action": "move_to_target",
+      "question_id": "csh_ap_020",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_administrative_procedures",
+      "target_topic": "psr",
+      "reason": "high_confidence_signal_matched"
+    },
+    {
+      "action": "move_to_target",
+      "question_id": "csh_ap_033",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_administrative_procedures",
+      "target_topic": "psr",
+      "reason": "high_confidence_signal_matched"
+    },
+    {
+      "action": "move_to_target",
+      "question_id": "clg_lc_054",
+      "source_topic": "constitutional_law",
+      "source_subcategory": "clg_legal_compliance",
+      "target_topic": "civil_service_admin",
+      "reason": "high_confidence_signal_matched"
+    },
+    {
+      "action": "move_to_target",
+      "question_id": "clg_gc_072",
+      "source_topic": "constitutional_law",
+      "source_subcategory": "clg_general_competency",
+      "target_topic": "financial_regulations",
+      "reason": "high_confidence_signal_matched"
+    },
+    {
+      "action": "move_to_target",
+      "question_id": "clg_gc_092",
+      "source_topic": "constitutional_law",
+      "source_subcategory": "clg_general_competency",
+      "target_topic": "civil_service_admin",
+      "reason": "high_confidence_signal_matched"
+    },
+    {
+      "action": "move_to_target",
+      "question_id": "fin_pro_019",
+      "source_topic": "financial_regulations",
+      "source_subcategory": "fin_procurement",
+      "target_topic": "procurement_act",
+      "reason": "high_confidence_signal_matched"
+    },
+    {
+      "action": "move_to_target",
+      "question_id": "fin_pro_038",
+      "source_topic": "financial_regulations",
+      "source_subcategory": "fin_procurement",
+      "target_topic": "procurement_act",
+      "reason": "high_confidence_signal_matched"
+    },
+    {
+      "action": "move_to_target",
+      "question_id": "PSIR_079",
+      "source_topic": "general_current_affairs",
+      "source_subcategory": "ca_public_service_reforms",
+      "target_topic": "psr",
+      "reason": "high_confidence_signal_matched"
+    },
+    {
+      "action": "move_to_target",
+      "question_id": "ict_li_049",
+      "source_topic": "ict_management",
+      "source_subcategory": "ict_literacy_innovation",
+      "target_topic": "psr",
+      "reason": "high_confidence_signal_matched"
+    },
+    {
+      "action": "move_to_target",
+      "question_id": "ict_li_057",
+      "source_topic": "ict_management",
+      "source_subcategory": "ict_literacy_innovation",
+      "target_topic": "civil_service_admin",
+      "reason": "high_confidence_signal_matched"
+    },
+    {
+      "action": "move_to_target",
+      "question_id": "leadership_lsm_012",
+      "source_topic": "leadership_management",
+      "source_subcategory": "lead_principles_styles",
+      "target_topic": "psr",
+      "reason": "high_confidence_signal_matched"
+    },
+    {
+      "action": "move_to_target",
+      "question_id": "leadership_smp_014",
+      "source_topic": "leadership_management",
+      "source_subcategory": "lead_strategic_management",
+      "target_topic": "psr",
+      "reason": "high_confidence_signal_matched"
+    },
+    {
+      "action": "move_to_target",
+      "question_id": "leadership_mpf_041",
+      "source_topic": "leadership_management",
+      "source_subcategory": "lead_management_performance",
+      "target_topic": "psr",
+      "reason": "high_confidence_signal_matched"
+    },
+    {
+      "action": "move_to_target",
+      "question_id": "ppa_ims_046",
+      "source_topic": "procurement_act",
+      "source_subcategory": "proc_implementation_sanctions",
+      "target_topic": "psr",
+      "reason": "high_confidence_signal_matched"
+    }
+  ]
+}

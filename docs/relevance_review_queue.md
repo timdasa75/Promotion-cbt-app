@@ -1,0 +1,127 @@
+# Relevance Review Queue
+
+- Total high-confidence manual review items: **41**
+
+- `clg_gc_068` [constitutional_law/clg_general_competency] -> suggested `financial_regulations`
+  - scores: own_topic=0, own_sub=0, best_other=7
+  - The movement of funds from one specified budget subhead to another **within the same expenditure vote**, authorized by a Warrant, is known as:
+- `csh_ap_047` [civil_service_admin/csh_administrative_procedures] -> suggested `psr`
+  - scores: own_topic=0, own_sub=0, best_other=5
+  - The PSR requires that where the Head of a Department is not available for a period spanning one month (due to approved assignment or leave), the most senior officer is mandated to ...
+- `csh_sdg_044` [civil_service_admin/csh_service_delivery_grievance] -> suggested `psr`
+  - scores: own_topic=0, own_sub=0, best_other=5
+  - The PSR provides that an officer may be granted **Leave of Absence** on grounds of public policy. The leave shall be approved by:
+- `clg_gc_070` [constitutional_law/clg_general_competency] -> suggested `psr`
+  - scores: own_topic=0, own_sub=0, best_other=5
+  - The concept of **Meritocracy** in the Civil Service Handbook emphasizes that appointments and promotions must be based on:
+- `clg_gc_088` [constitutional_law/clg_general_competency] -> suggested `psr`
+  - scores: own_topic=0, own_sub=0, best_other=5
+  - The three types of study leave listed in the PSR (Rule 120226) are Leave for In-Service Training, Study Leave without Pay, and:
+- `fin_pro_023` [financial_regulations/fin_procurement] -> suggested `procurement_act`
+  - scores: own_topic=0, own_sub=0, best_other=5
+  - The award of a contract following evaluation is required by Section 33 to be granted to the:
+- `ict_eg_024` [ict_management/ict_e_governance] -> suggested `financial_regulations`
+  - scores: own_topic=0, own_sub=0, best_other=5
+  - Which financial platform controls the total amount of funds allocated for staff salaries (Personnel Emoluments) in the budget?
+- `ict_li_034` [ict_management/ict_literacy_innovation] -> suggested `psr`
+  - scores: own_topic=0, own_sub=0, best_other=5
+  - The three types of study leave listed in the PSR (Rule 120226) are Leave for In-Service Training, Study Leave without Pay, and:
+- `ict_li_065` [ict_management/ict_literacy_innovation] -> suggested `psr`
+  - scores: own_topic=0, own_sub=0, best_other=5
+  - The three types of study leave listed in the PSR (Rule 120226) are Leave for In-Service Training, Study Leave with Pay, and:
+- `leadership_smp_036` [leadership_management/lead_strategic_management] -> suggested `procurement_act`
+  - scores: own_topic=0, own_sub=0, best_other=5
+  - The Nigerian Public Procurement Act (PPA) strategically emphasizes **Open Competitive Bidding** as the default method to promote:
+- `leadership_mpf_014` [leadership_management/lead_management_performance] -> suggested `psr`
+  - scores: own_topic=0, own_sub=0, best_other=5
+  - The three types of study leave listed in the PSR (Rule 120226) are Leave for In-Service Training, Study Leave without Pay, and:
+- `leadership_mpf_029` [leadership_management/lead_management_performance] -> suggested `psr`
+  - scores: own_topic=0, own_sub=0, best_other=5
+  - The maximum duration of study leave with pay that may be granted to a Confirmed Officer is:
+- `ppa_ims_029` [procurement_act/proc_implementation_sanctions] -> suggested `psr`
+  - scores: own_topic=0, own_sub=0, best_other=5
+  - The final authority responsible for the appointment, promotion, and discipline of Directors (GL 17) in the Federal Civil Service is the:
+- `csh_principle_016` [civil_service_admin/csh_principles_ethics] -> suggested `psr`
+  - scores: own_topic=0, own_sub=0, best_other=4
+  - Under PSR Rule 100429, an officer on leave of absence must obtain express approval before engaging in:
+- `csh_pt_011` [civil_service_admin/csh_performance_training] -> suggested `psr`
+  - scores: own_topic=0, own_sub=0, best_other=4
+  - What is the maximum period of sabbatical leave permitted for an officer on GL 15 and above (PSR 120223)?
+- `csh_pt_033` [civil_service_admin/csh_performance_training] -> suggested `psr`
+  - scores: own_topic=0, own_sub=0, best_other=4
+  - Which PSR rule allows for the **Sabbatical Appointment** of an officer on GL 15 and above?
+- `csh_pt_044` [civil_service_admin/csh_performance_training] -> suggested `psr`
+  - scores: own_topic=0, own_sub=0, best_other=4
+  - What is the consequence if an officer fails to meet the minimum years required in a post before promotion eligibility (PSR 020802(c))?
+- `csh_ap_020` [civil_service_admin/csh_administrative_procedures] -> suggested `psr`
+  - scores: own_topic=0, own_sub=0, best_other=4
+  - Which of the following is NOT a category of Leave of Absence on grounds of public policy (PSR 120236)?
+- `csh_ap_033` [civil_service_admin/csh_administrative_procedures] -> suggested `psr`
+  - scores: own_topic=0, own_sub=0, best_other=4
+  - PSR Rule 120235 prohibits an officer on **leave of absence** from accepting:
+- `clg_lc_054` [constitutional_law/clg_legal_compliance] -> suggested `civil_service_admin`
+  - scores: own_topic=0, own_sub=0, best_other=4
+  - In disciplinary matters, which misconduct is classified as **Gross Misconduct** according to the Civil Service Handbook?
+- `clg_gc_072` [constitutional_law/clg_general_competency] -> suggested `financial_regulations`
+  - scores: own_topic=0, own_sub=0, best_other=4
+  - The use of the Government Integrated Financial Management Information System (GIFMIS) primarily supports the financial management process by providing:
+- `clg_gc_092` [constitutional_law/clg_general_competency] -> suggested `civil_service_admin`
+  - scores: own_topic=0, own_sub=0, best_other=4
+  - Which chapter of the Civil Service Handbook provides grievance procedures to resolve disputes within the civil service?
+- `fin_pro_019` [financial_regulations/fin_procurement] -> suggested `procurement_act`
+  - scores: own_topic=0, own_sub=0, best_other=4
+  - Which section empowers the BPP to issue a 'Certificate of No Objection' before a contract award can be finalized?
+- `fin_pro_038` [financial_regulations/fin_procurement] -> suggested `procurement_act`
+  - scores: own_topic=0, own_sub=0, best_other=4
+  - What is the primary purpose of holding a public bid opening ceremony?
+- `fin_pro_042` [financial_regulations/fin_procurement] -> suggested `procurement_act`
+  - scores: own_topic=0, own_sub=0, best_other=4
+  - Which section provides guidelines for proper contract implementation and monitoring by procuring entities?
+- `PSIR_079` [general_current_affairs/ca_public_service_reforms] -> suggested `psr`
+  - scores: own_topic=0, own_sub=0, best_other=4
+  - What is the maximum number of days a newly appointed Officer on GL.07–17 is expected to complete the confirmation examination after taking up their appointment in the Ministry/Extr...
+- `NGPD_004` [general_current_affairs/ca_national_governance] -> suggested `psr`
+  - scores: own_topic=0, own_sub=0, best_other=4
+  - What is the consequence for an officer who changes their date of birth recorded upon appointment throughout their career?
+- `NGPD_006` [general_current_affairs/ca_national_governance] -> suggested `psr`
+  - scores: own_topic=0, own_sub=0, best_other=4
+  - Which officer category is handled by the Junior Staff Committee (JSC) of each Ministry/Office regarding appointments?
+- `NGPD_023` [general_current_affairs/ca_national_governance] -> suggested `psr`
+  - scores: own_topic=0, own_sub=0, best_other=4
+  - What is the penalty for an officer who accepts a paid appointment during leave of absence without prior approval?
+- `ict_li_049` [ict_management/ict_literacy_innovation] -> suggested `psr`
+  - scores: own_topic=0, own_sub=0, best_other=4
+  - Which institution provides training and capacity development support for civil servants for career advancement beyond GL 10?
+- `ict_li_057` [ict_management/ict_literacy_innovation] -> suggested `civil_service_admin`
+  - scores: own_topic=0, own_sub=0, best_other=4
+  - Which of the following is NOT a core value of civil servants, according to the Civil Service Handbook?
+- `ict_li_059` [ict_management/ict_literacy_innovation] -> suggested `financial_regulations`
+  - scores: own_topic=0, own_sub=0, best_other=4
+  - What is the consequence for an MDA that incurs **Over-Expenditure** (spending beyond the approved budget)?
+- `leadership_lsm_012` [leadership_management/lead_principles_styles] -> suggested `psr`
+  - scores: own_topic=0, own_sub=0, best_other=4
+  - Which PSR rule strictly prohibits an officer from seeking the influence of prominent persons for obtaining consideration in matters connected with promotion or postings?
+- `leadership_lsm_014` [leadership_management/lead_principles_styles] -> suggested `civil_service_admin`
+  - scores: own_topic=0, own_sub=0, best_other=4
+  - What ethical principle ensures that civil servants serve all citizens fairly without political or personal bias?
+- `leadership_lsm_031` [leadership_management/lead_principles_styles] -> suggested `civil_service_admin`
+  - scores: own_topic=0, own_sub=0, best_other=4
+  - Which ethical concept requires that public officials, including leaders, regularly disclose their assets and liabilities?
+- `leadership_smp_014` [leadership_management/lead_strategic_management] -> suggested `psr`
+  - scores: own_topic=0, own_sub=0, best_other=4
+  - The final authority for ratifying amendments to the Public Service Rules (PSR), based on recommendations from the National Council on Establishments (NCE), is the:
+- `leadership_mpf_041` [leadership_management/lead_management_performance] -> suggested `psr`
+  - scores: own_topic=0, own_sub=0, best_other=4
+  - The three types of leave of absence (Rule 120236) include Leave of Absence to join spouse on grounds of public policy, and:
+- `ppa_elb_026` [procurement_act/proc_eligibility_consultants_budgeting] -> suggested `financial_regulations`
+  - scores: own_topic=0, own_sub=0, best_other=4
+  - The process by which funds are legally moved between budget subheads within the same expenditure head is known as:
+- `ppa_ims_027` [procurement_act/proc_implementation_sanctions] -> suggested `psr`
+  - scores: own_topic=0, own_sub=0, best_other=4
+  - An officer who is absent from duty without leave for 14 consecutive days may be deemed by the Service to have:
+- `ppa_ims_032` [procurement_act/proc_implementation_sanctions] -> suggested `civil_service_admin`
+  - scores: own_topic=0, own_sub=0, best_other=4
+  - The final authority on matters of ethical conduct and compliance with the PSR, particularly concerning disciplinary appeals, rests with the:
+- `ppa_ims_046` [procurement_act/proc_implementation_sanctions] -> suggested `psr`
+  - scores: own_topic=0, own_sub=0, best_other=4
+  - Unauthorized use of government transport facilities or allowances by an officer is classified under the PSR as:

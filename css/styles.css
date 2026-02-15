@@ -631,6 +631,7 @@ select:focus-visible,
     cursor: pointer;
     margin-bottom: 8px;
     min-height: 50px;
+    text-align: left;
 }
 
 .option-letter {
@@ -642,6 +643,16 @@ select:focus-visible,
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+}
+
+.option-text {
+    flex: 1;
+    align-self: flex-start;
+    text-align: left;
+}
+
+.option-text p {
+    margin: 0;
 }
 
 .option-btn.selected {

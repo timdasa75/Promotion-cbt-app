@@ -1,0 +1,1012 @@
+# Safe Duplicate Cleanup Proposal
+
+## Summary
+- Duplicate questions removed (same topic/subcategory): **445**
+- Topic files changed: **8**
+- Cross-topic duplicate groups kept for manual review: **56**
+
+## Auto-Removal List
+- `circ_appointments_tenure_discipline_gen_034` [psr/circ_appointments_tenure_discipline] in `data/psr_rules.json`
+  - In the context of Circulars: Appointments, Tenure & Discipline, which action best demonstrates circulars: appointments, tenure & discipline governance?
+- `circ_appointments_tenure_discipline_gen_035` [psr/circ_appointments_tenure_discipline] in `data/psr_rules.json`
+  - For effective circulars: appointments, tenure & discipline, what is the most appropriate approach to ensure circulars: appointments, tenure & discipline compliance?
+- `circ_appointments_tenure_discipline_gen_036` [psr/circ_appointments_tenure_discipline] in `data/psr_rules.json`
+  - Which option most strongly aligns with good public-service practice on circulars: appointments, tenure & discipline risk management within Circulars: Appointments, Tenure & Discipl...
+- `circ_appointments_tenure_discipline_gen_037` [psr/circ_appointments_tenure_discipline] in `data/psr_rules.json`
+  - When handling circulars: appointments, tenure & discipline, which choice reflects proper appointment governance standards?
+- `circ_appointments_tenure_discipline_gen_038` [psr/circ_appointments_tenure_discipline] in `data/psr_rules.json`
+  - Which practice should a responsible officer prioritize to sustain disciplinary process in Circulars: Appointments, Tenure & Discipline?
+- `circ_appointments_tenure_discipline_gen_039` [psr/circ_appointments_tenure_discipline] in `data/psr_rules.json`
+  - In the context of Circulars: Appointments, Tenure & Discipline, which action best demonstrates leave administration?
+- `circ_appointments_tenure_discipline_gen_040` [psr/circ_appointments_tenure_discipline] in `data/psr_rules.json`
+  - For effective circulars: appointments, tenure & discipline, what is the most appropriate approach to ensure promotion standards?
+- `circ_appointments_tenure_discipline_gen_041` [psr/circ_appointments_tenure_discipline] in `data/psr_rules.json`
+  - Which option most strongly aligns with good public-service practice on circular compliance within Circulars: Appointments, Tenure & Discipline?
+- `circ_appointments_tenure_discipline_gen_042` [psr/circ_appointments_tenure_discipline] in `data/psr_rules.json`
+  - When handling circulars: appointments, tenure & discipline, which choice reflects proper documented procedure standards?
+- `circ_appointments_tenure_discipline_gen_043` [psr/circ_appointments_tenure_discipline] in `data/psr_rules.json`
+  - Which practice should a responsible officer prioritize to sustain compliance assurance in Circulars: Appointments, Tenure & Discipline?
+- `circ_appointments_tenure_discipline_gen_044` [psr/circ_appointments_tenure_discipline] in `data/psr_rules.json`
+  - In the context of Circulars: Appointments, Tenure & Discipline, which action best demonstrates public accountability?
+- `circ_appointments_tenure_discipline_gen_045` [psr/circ_appointments_tenure_discipline] in `data/psr_rules.json`
+  - For effective circulars: appointments, tenure & discipline, what is the most appropriate approach to ensure service integrity?
+- `circ_appointments_tenure_discipline_gen_046` [psr/circ_appointments_tenure_discipline] in `data/psr_rules.json`
+  - Which option most strongly aligns with good public-service practice on risk control within Circulars: Appointments, Tenure & Discipline?
+- `circ_appointments_tenure_discipline_gen_047` [psr/circ_appointments_tenure_discipline] in `data/psr_rules.json`
+  - When handling circulars: appointments, tenure & discipline, which choice reflects proper decision transparency standards?
+- `circ_appointments_tenure_discipline_gen_048` [psr/circ_appointments_tenure_discipline] in `data/psr_rules.json`
+  - Which practice should a responsible officer prioritize to sustain operational discipline in Circulars: Appointments, Tenure & Discipline?
+- `circ_appointments_tenure_discipline_gen_049` [psr/circ_appointments_tenure_discipline] in `data/psr_rules.json`
+  - In the context of Circulars: Appointments, Tenure & Discipline, which action best demonstrates citizen-focused service?
+- `circ_appointments_tenure_discipline_gen_050` [psr/circ_appointments_tenure_discipline] in `data/psr_rules.json`
+  - For effective circulars: appointments, tenure & discipline, what is the most appropriate approach to ensure record management?
+- `circ_appointments_tenure_discipline_gen_051` [psr/circ_appointments_tenure_discipline] in `data/psr_rules.json`
+  - Which option most strongly aligns with good public-service practice on performance standards within Circulars: Appointments, Tenure & Discipline?
+- `circ_appointments_tenure_discipline_gen_052` [psr/circ_appointments_tenure_discipline] in `data/psr_rules.json`
+  - When handling circulars: appointments, tenure & discipline, which choice reflects proper circulars: appointments, tenure & discipline governance standards?
+- `circ_appointments_tenure_discipline_gen_053` [psr/circ_appointments_tenure_discipline] in `data/psr_rules.json`
+  - Which practice should a responsible officer prioritize to sustain circulars: appointments, tenure & discipline compliance in Circulars: Appointments, Tenure & Discipline?
+- `circ_appointments_tenure_discipline_gen_054` [psr/circ_appointments_tenure_discipline] in `data/psr_rules.json`
+  - In the context of Circulars: Appointments, Tenure & Discipline, which action best demonstrates circulars: appointments, tenure & discipline risk management?
+- `circ_appointments_tenure_discipline_gen_055` [psr/circ_appointments_tenure_discipline] in `data/psr_rules.json`
+  - For effective circulars: appointments, tenure & discipline, what is the most appropriate approach to ensure appointment governance?
+- `circ_appointments_tenure_discipline_gen_056` [psr/circ_appointments_tenure_discipline] in `data/psr_rules.json`
+  - Which option most strongly aligns with good public-service practice on disciplinary process within Circulars: Appointments, Tenure & Discipline?
+- `circ_appointments_tenure_discipline_gen_057` [psr/circ_appointments_tenure_discipline] in `data/psr_rules.json`
+  - When handling circulars: appointments, tenure & discipline, which choice reflects proper leave administration standards?
+- `circ_appointments_tenure_discipline_gen_058` [psr/circ_appointments_tenure_discipline] in `data/psr_rules.json`
+  - Which practice should a responsible officer prioritize to sustain promotion standards in Circulars: Appointments, Tenure & Discipline?
+- `circ_leave_welfare_allowances_gen_035` [psr/circ_leave_welfare_allowances] in `data/psr_rules.json`
+  - In the context of Circulars: Leave, Welfare & Allowances, which action best demonstrates circulars: leave, welfare & allowances governance?
+- `circ_leave_welfare_allowances_gen_036` [psr/circ_leave_welfare_allowances] in `data/psr_rules.json`
+  - For effective circulars: leave, welfare & allowances, what is the most appropriate approach to ensure circulars: leave, welfare & allowances compliance?
+- `circ_leave_welfare_allowances_gen_037` [psr/circ_leave_welfare_allowances] in `data/psr_rules.json`
+  - Which option most strongly aligns with good public-service practice on circulars: leave, welfare & allowances risk management within Circulars: Leave, Welfare & Allowances?
+- `circ_leave_welfare_allowances_gen_038` [psr/circ_leave_welfare_allowances] in `data/psr_rules.json`
+  - When handling circulars: leave, welfare & allowances, which choice reflects proper appointment governance standards?
+- `circ_leave_welfare_allowances_gen_039` [psr/circ_leave_welfare_allowances] in `data/psr_rules.json`
+  - Which practice should a responsible officer prioritize to sustain disciplinary process in Circulars: Leave, Welfare & Allowances?
+- `circ_leave_welfare_allowances_gen_040` [psr/circ_leave_welfare_allowances] in `data/psr_rules.json`
+  - In the context of Circulars: Leave, Welfare & Allowances, which action best demonstrates leave administration?
+- `circ_leave_welfare_allowances_gen_041` [psr/circ_leave_welfare_allowances] in `data/psr_rules.json`
+  - For effective circulars: leave, welfare & allowances, what is the most appropriate approach to ensure promotion standards?
+- `circ_leave_welfare_allowances_gen_042` [psr/circ_leave_welfare_allowances] in `data/psr_rules.json`
+  - Which option most strongly aligns with good public-service practice on circular compliance within Circulars: Leave, Welfare & Allowances?
+- `circ_leave_welfare_allowances_gen_043` [psr/circ_leave_welfare_allowances] in `data/psr_rules.json`
+  - When handling circulars: leave, welfare & allowances, which choice reflects proper documented procedure standards?
+- `circ_leave_welfare_allowances_gen_044` [psr/circ_leave_welfare_allowances] in `data/psr_rules.json`
+  - Which practice should a responsible officer prioritize to sustain compliance assurance in Circulars: Leave, Welfare & Allowances?
+- `circ_leave_welfare_allowances_gen_045` [psr/circ_leave_welfare_allowances] in `data/psr_rules.json`
+  - In the context of Circulars: Leave, Welfare & Allowances, which action best demonstrates public accountability?
+- `circ_leave_welfare_allowances_gen_046` [psr/circ_leave_welfare_allowances] in `data/psr_rules.json`
+  - For effective circulars: leave, welfare & allowances, what is the most appropriate approach to ensure service integrity?
+- `circ_leave_welfare_allowances_gen_047` [psr/circ_leave_welfare_allowances] in `data/psr_rules.json`
+  - Which option most strongly aligns with good public-service practice on risk control within Circulars: Leave, Welfare & Allowances?
+- `circ_leave_welfare_allowances_gen_048` [psr/circ_leave_welfare_allowances] in `data/psr_rules.json`
+  - When handling circulars: leave, welfare & allowances, which choice reflects proper decision transparency standards?
+- `circ_leave_welfare_allowances_gen_049` [psr/circ_leave_welfare_allowances] in `data/psr_rules.json`
+  - Which practice should a responsible officer prioritize to sustain operational discipline in Circulars: Leave, Welfare & Allowances?
+- `circ_leave_welfare_allowances_gen_050` [psr/circ_leave_welfare_allowances] in `data/psr_rules.json`
+  - In the context of Circulars: Leave, Welfare & Allowances, which action best demonstrates citizen-focused service?
+- `circ_leave_welfare_allowances_gen_051` [psr/circ_leave_welfare_allowances] in `data/psr_rules.json`
+  - For effective circulars: leave, welfare & allowances, what is the most appropriate approach to ensure record management?
+- `circ_leave_welfare_allowances_gen_052` [psr/circ_leave_welfare_allowances] in `data/psr_rules.json`
+  - Which option most strongly aligns with good public-service practice on performance standards within Circulars: Leave, Welfare & Allowances?
+- `circ_leave_welfare_allowances_gen_053` [psr/circ_leave_welfare_allowances] in `data/psr_rules.json`
+  - When handling circulars: leave, welfare & allowances, which choice reflects proper circulars: leave, welfare & allowances governance standards?
+- `circ_leave_welfare_allowances_gen_054` [psr/circ_leave_welfare_allowances] in `data/psr_rules.json`
+  - Which practice should a responsible officer prioritize to sustain circulars: leave, welfare & allowances compliance in Circulars: Leave, Welfare & Allowances?
+- `circ_leave_welfare_allowances_gen_055` [psr/circ_leave_welfare_allowances] in `data/psr_rules.json`
+  - In the context of Circulars: Leave, Welfare & Allowances, which action best demonstrates circulars: leave, welfare & allowances risk management?
+- `circ_leave_welfare_allowances_gen_056` [psr/circ_leave_welfare_allowances] in `data/psr_rules.json`
+  - For effective circulars: leave, welfare & allowances, what is the most appropriate approach to ensure appointment governance?
+- `circ_leave_welfare_allowances_gen_057` [psr/circ_leave_welfare_allowances] in `data/psr_rules.json`
+  - Which option most strongly aligns with good public-service practice on disciplinary process within Circulars: Leave, Welfare & Allowances?
+- `circ_leave_welfare_allowances_gen_058` [psr/circ_leave_welfare_allowances] in `data/psr_rules.json`
+  - When handling circulars: leave, welfare & allowances, which choice reflects proper leave administration standards?
+- `circ_leave_welfare_allowances_gen_059` [psr/circ_leave_welfare_allowances] in `data/psr_rules.json`
+  - Which practice should a responsible officer prioritize to sustain promotion standards in Circulars: Leave, Welfare & Allowances?
+- `circ_personnel_performance_gen_035` [psr/circ_personnel_performance] in `data/psr_rules.json`
+  - In the context of Circulars: Personnel, Performance & Reforms, which action best demonstrates circulars: personnel, performance & reforms governance?
+- `circ_personnel_performance_gen_036` [psr/circ_personnel_performance] in `data/psr_rules.json`
+  - For effective circulars: personnel, performance & reforms, what is the most appropriate approach to ensure circulars: personnel, performance & reforms compliance?
+- `circ_personnel_performance_gen_037` [psr/circ_personnel_performance] in `data/psr_rules.json`
+  - Which option most strongly aligns with good public-service practice on circulars: personnel, performance & reforms risk management within Circulars: Personnel, Performance & Reform...
+- `circ_personnel_performance_gen_038` [psr/circ_personnel_performance] in `data/psr_rules.json`
+  - When handling circulars: personnel, performance & reforms, which choice reflects proper appointment governance standards?
+- `circ_personnel_performance_gen_039` [psr/circ_personnel_performance] in `data/psr_rules.json`
+  - Which practice should a responsible officer prioritize to sustain disciplinary process in Circulars: Personnel, Performance & Reforms?
+- `circ_personnel_performance_gen_040` [psr/circ_personnel_performance] in `data/psr_rules.json`
+  - In the context of Circulars: Personnel, Performance & Reforms, which action best demonstrates leave administration?
+- `circ_personnel_performance_gen_041` [psr/circ_personnel_performance] in `data/psr_rules.json`
+  - For effective circulars: personnel, performance & reforms, what is the most appropriate approach to ensure promotion standards?
+- `circ_personnel_performance_gen_042` [psr/circ_personnel_performance] in `data/psr_rules.json`
+  - Which option most strongly aligns with good public-service practice on circular compliance within Circulars: Personnel, Performance & Reforms?
+- `circ_personnel_performance_gen_043` [psr/circ_personnel_performance] in `data/psr_rules.json`
+  - When handling circulars: personnel, performance & reforms, which choice reflects proper documented procedure standards?
+- `circ_personnel_performance_gen_044` [psr/circ_personnel_performance] in `data/psr_rules.json`
+  - Which practice should a responsible officer prioritize to sustain compliance assurance in Circulars: Personnel, Performance & Reforms?
+- `circ_personnel_performance_gen_045` [psr/circ_personnel_performance] in `data/psr_rules.json`
+  - In the context of Circulars: Personnel, Performance & Reforms, which action best demonstrates public accountability?
+- `circ_personnel_performance_gen_046` [psr/circ_personnel_performance] in `data/psr_rules.json`
+  - For effective circulars: personnel, performance & reforms, what is the most appropriate approach to ensure service integrity?
+- `circ_personnel_performance_gen_047` [psr/circ_personnel_performance] in `data/psr_rules.json`
+  - Which option most strongly aligns with good public-service practice on risk control within Circulars: Personnel, Performance & Reforms?
+- `circ_personnel_performance_gen_048` [psr/circ_personnel_performance] in `data/psr_rules.json`
+  - When handling circulars: personnel, performance & reforms, which choice reflects proper decision transparency standards?
+- `circ_personnel_performance_gen_049` [psr/circ_personnel_performance] in `data/psr_rules.json`
+  - Which practice should a responsible officer prioritize to sustain operational discipline in Circulars: Personnel, Performance & Reforms?
+- `circ_personnel_performance_gen_050` [psr/circ_personnel_performance] in `data/psr_rules.json`
+  - In the context of Circulars: Personnel, Performance & Reforms, which action best demonstrates citizen-focused service?
+- `circ_personnel_performance_gen_051` [psr/circ_personnel_performance] in `data/psr_rules.json`
+  - For effective circulars: personnel, performance & reforms, what is the most appropriate approach to ensure record management?
+- `circ_personnel_performance_gen_052` [psr/circ_personnel_performance] in `data/psr_rules.json`
+  - Which option most strongly aligns with good public-service practice on performance standards within Circulars: Personnel, Performance & Reforms?
+- `circ_personnel_performance_gen_053` [psr/circ_personnel_performance] in `data/psr_rules.json`
+  - When handling circulars: personnel, performance & reforms, which choice reflects proper circulars: personnel, performance & reforms governance standards?
+- `circ_personnel_performance_gen_054` [psr/circ_personnel_performance] in `data/psr_rules.json`
+  - Which practice should a responsible officer prioritize to sustain circulars: personnel, performance & reforms compliance in Circulars: Personnel, Performance & Reforms?
+- `circ_personnel_performance_gen_055` [psr/circ_personnel_performance] in `data/psr_rules.json`
+  - In the context of Circulars: Personnel, Performance & Reforms, which action best demonstrates circulars: personnel, performance & reforms risk management?
+- `circ_personnel_performance_gen_056` [psr/circ_personnel_performance] in `data/psr_rules.json`
+  - For effective circulars: personnel, performance & reforms, what is the most appropriate approach to ensure appointment governance?
+- `circ_personnel_performance_gen_057` [psr/circ_personnel_performance] in `data/psr_rules.json`
+  - Which option most strongly aligns with good public-service practice on disciplinary process within Circulars: Personnel, Performance & Reforms?
+- `circ_personnel_performance_gen_058` [psr/circ_personnel_performance] in `data/psr_rules.json`
+  - When handling circulars: personnel, performance & reforms, which choice reflects proper leave administration standards?
+- `circ_personnel_performance_gen_059` [psr/circ_personnel_performance] in `data/psr_rules.json`
+  - Which practice should a responsible officer prioritize to sustain promotion standards in Circulars: Personnel, Performance & Reforms?
+- `fin_procurement_gen_030` [financial_regulations/fin_procurement] in `data/financial_regulations.json`
+  - In the context of Procurement Under Financial Controls, which action best demonstrates procurement under financial controls governance?
+- `fin_procurement_gen_031` [financial_regulations/fin_procurement] in `data/financial_regulations.json`
+  - For effective procurement under financial controls, what is the most appropriate approach to ensure procurement under financial controls compliance?
+- `fin_procurement_gen_032` [financial_regulations/fin_procurement] in `data/financial_regulations.json`
+  - Which option most strongly aligns with good public-service practice on procurement under financial controls risk management within Procurement Under Financial Controls?
+- `fin_procurement_gen_033` [financial_regulations/fin_procurement] in `data/financial_regulations.json`
+  - When handling procurement under financial controls, which choice reflects proper vote book control standards?
+- `proc_implementation_sanctions_gen_029` [procurement_act/proc_implementation_sanctions] in `data/public_procurement.json`
+  - In the context of Implementation, Monitoring & Sanctions, which action best demonstrates implementation, monitoring & sanctions governance?
+- `proc_implementation_sanctions_gen_030` [procurement_act/proc_implementation_sanctions] in `data/public_procurement.json`
+  - For effective implementation, monitoring & sanctions, what is the most appropriate approach to ensure implementation, monitoring & sanctions compliance?
+- `proc_implementation_sanctions_gen_031` [procurement_act/proc_implementation_sanctions] in `data/public_procurement.json`
+  - Which option most strongly aligns with good public-service practice on implementation, monitoring & sanctions risk management within Implementation, Monitoring & Sanctions?
+- `clg_constitutional_governance_gen_031` [constitutional_law/clg_constitutional_governance] in `data/constitutional_foi.json`
+  - In the context of Constitutional Structure, Bodies & Principles, which action best demonstrates constitutional structure, bodies & principles governance?
+- `clg_constitutional_governance_gen_032` [constitutional_law/clg_constitutional_governance] in `data/constitutional_foi.json`
+  - For effective constitutional structure, bodies & principles, what is the most appropriate approach to ensure constitutional structure, bodies & principles compliance?
+- `clg_constitutional_governance_gen_033` [constitutional_law/clg_constitutional_governance] in `data/constitutional_foi.json`
+  - Which option most strongly aligns with good public-service practice on constitutional structure, bodies & principles risk management within Constitutional Structure, Bodies & Princ...
+- `clg_constitutional_governance_gen_034` [constitutional_law/clg_constitutional_governance] in `data/constitutional_foi.json`
+  - When handling constitutional structure, bodies & principles, which choice reflects proper constitutional supremacy standards?
+- `clg_constitutional_governance_gen_035` [constitutional_law/clg_constitutional_governance] in `data/constitutional_foi.json`
+  - Which practice should a responsible officer prioritize to sustain legal compliance in Constitutional Structure, Bodies & Principles?
+- `clg_constitutional_governance_gen_036` [constitutional_law/clg_constitutional_governance] in `data/constitutional_foi.json`
+  - In the context of Constitutional Structure, Bodies & Principles, which action best demonstrates foi obligations?
+- `clg_constitutional_governance_gen_037` [constitutional_law/clg_constitutional_governance] in `data/constitutional_foi.json`
+  - For effective constitutional structure, bodies & principles, what is the most appropriate approach to ensure rights balancing?
+- `clg_constitutional_governance_gen_038` [constitutional_law/clg_constitutional_governance] in `data/constitutional_foi.json`
+  - Which option most strongly aligns with good public-service practice on public law standards within Constitutional Structure, Bodies & Principles?
+- `clg_constitutional_governance_gen_039` [constitutional_law/clg_constitutional_governance] in `data/constitutional_foi.json`
+  - When handling constitutional structure, bodies & principles, which choice reflects proper documented procedure standards?
+- `clg_constitutional_governance_gen_040` [constitutional_law/clg_constitutional_governance] in `data/constitutional_foi.json`
+  - Which practice should a responsible officer prioritize to sustain compliance assurance in Constitutional Structure, Bodies & Principles?
+- `clg_constitutional_governance_gen_041` [constitutional_law/clg_constitutional_governance] in `data/constitutional_foi.json`
+  - In the context of Constitutional Structure, Bodies & Principles, which action best demonstrates public accountability?
+- `clg_constitutional_governance_gen_042` [constitutional_law/clg_constitutional_governance] in `data/constitutional_foi.json`
+  - For effective constitutional structure, bodies & principles, what is the most appropriate approach to ensure service integrity?
+- `clg_constitutional_governance_gen_043` [constitutional_law/clg_constitutional_governance] in `data/constitutional_foi.json`
+  - Which option most strongly aligns with good public-service practice on risk control within Constitutional Structure, Bodies & Principles?
+- `clg_constitutional_governance_gen_044` [constitutional_law/clg_constitutional_governance] in `data/constitutional_foi.json`
+  - When handling constitutional structure, bodies & principles, which choice reflects proper decision transparency standards?
+- `clg_constitutional_governance_gen_045` [constitutional_law/clg_constitutional_governance] in `data/constitutional_foi.json`
+  - Which practice should a responsible officer prioritize to sustain operational discipline in Constitutional Structure, Bodies & Principles?
+- `clg_constitutional_governance_gen_046` [constitutional_law/clg_constitutional_governance] in `data/constitutional_foi.json`
+  - In the context of Constitutional Structure, Bodies & Principles, which action best demonstrates citizen-focused service?
+- `clg_constitutional_governance_gen_047` [constitutional_law/clg_constitutional_governance] in `data/constitutional_foi.json`
+  - For effective constitutional structure, bodies & principles, what is the most appropriate approach to ensure record management?
+- `clg_constitutional_governance_gen_048` [constitutional_law/clg_constitutional_governance] in `data/constitutional_foi.json`
+  - Which option most strongly aligns with good public-service practice on performance standards within Constitutional Structure, Bodies & Principles?
+- `clg_constitutional_governance_gen_049` [constitutional_law/clg_constitutional_governance] in `data/constitutional_foi.json`
+  - When handling constitutional structure, bodies & principles, which choice reflects proper constitutional structure, bodies & principles governance standards?
+- `clg_constitutional_governance_gen_050` [constitutional_law/clg_constitutional_governance] in `data/constitutional_foi.json`
+  - Which practice should a responsible officer prioritize to sustain constitutional structure, bodies & principles compliance in Constitutional Structure, Bodies & Principles?
+- `clg_constitutional_governance_gen_051` [constitutional_law/clg_constitutional_governance] in `data/constitutional_foi.json`
+  - In the context of Constitutional Structure, Bodies & Principles, which action best demonstrates constitutional structure, bodies & principles risk management?
+- `clg_constitutional_governance_gen_052` [constitutional_law/clg_constitutional_governance] in `data/constitutional_foi.json`
+  - For effective constitutional structure, bodies & principles, what is the most appropriate approach to ensure constitutional supremacy?
+- `clg_constitutional_governance_gen_053` [constitutional_law/clg_constitutional_governance] in `data/constitutional_foi.json`
+  - Which option most strongly aligns with good public-service practice on legal compliance within Constitutional Structure, Bodies & Principles?
+- `clg_constitutional_governance_gen_054` [constitutional_law/clg_constitutional_governance] in `data/constitutional_foi.json`
+  - When handling constitutional structure, bodies & principles, which choice reflects proper foi obligations standards?
+- `clg_constitutional_governance_gen_055` [constitutional_law/clg_constitutional_governance] in `data/constitutional_foi.json`
+  - Which practice should a responsible officer prioritize to sustain rights balancing in Constitutional Structure, Bodies & Principles?
+- `clg_legal_compliance_gen_039` [constitutional_law/clg_legal_compliance] in `data/constitutional_foi.json`
+  - In the context of Legal Frameworks & Statutory Compliance, which action best demonstrates legal frameworks & statutory compliance governance?
+- `clg_legal_compliance_gen_040` [constitutional_law/clg_legal_compliance] in `data/constitutional_foi.json`
+  - For effective legal frameworks & statutory compliance, what is the most appropriate approach to ensure legal frameworks & statutory compliance compliance?
+- `clg_legal_compliance_gen_041` [constitutional_law/clg_legal_compliance] in `data/constitutional_foi.json`
+  - Which option most strongly aligns with good public-service practice on legal frameworks & statutory compliance risk management within Legal Frameworks & Statutory Compliance?
+- `clg_legal_compliance_gen_042` [constitutional_law/clg_legal_compliance] in `data/constitutional_foi.json`
+  - When handling legal frameworks & statutory compliance, which choice reflects proper constitutional supremacy standards?
+- `clg_legal_compliance_gen_043` [constitutional_law/clg_legal_compliance] in `data/constitutional_foi.json`
+  - Which practice should a responsible officer prioritize to sustain legal compliance in Legal Frameworks & Statutory Compliance?
+- `clg_legal_compliance_gen_044` [constitutional_law/clg_legal_compliance] in `data/constitutional_foi.json`
+  - In the context of Legal Frameworks & Statutory Compliance, which action best demonstrates foi obligations?
+- `clg_legal_compliance_gen_045` [constitutional_law/clg_legal_compliance] in `data/constitutional_foi.json`
+  - For effective legal frameworks & statutory compliance, what is the most appropriate approach to ensure rights balancing?
+- `clg_legal_compliance_gen_046` [constitutional_law/clg_legal_compliance] in `data/constitutional_foi.json`
+  - Which option most strongly aligns with good public-service practice on public law standards within Legal Frameworks & Statutory Compliance?
+- `clg_legal_compliance_gen_047` [constitutional_law/clg_legal_compliance] in `data/constitutional_foi.json`
+  - When handling legal frameworks & statutory compliance, which choice reflects proper documented procedure standards?
+- `clg_legal_compliance_gen_048` [constitutional_law/clg_legal_compliance] in `data/constitutional_foi.json`
+  - Which practice should a responsible officer prioritize to sustain compliance assurance in Legal Frameworks & Statutory Compliance?
+- `clg_legal_compliance_gen_049` [constitutional_law/clg_legal_compliance] in `data/constitutional_foi.json`
+  - In the context of Legal Frameworks & Statutory Compliance, which action best demonstrates public accountability?
+- `clg_legal_compliance_gen_050` [constitutional_law/clg_legal_compliance] in `data/constitutional_foi.json`
+  - For effective legal frameworks & statutory compliance, what is the most appropriate approach to ensure service integrity?
+- `clg_legal_compliance_gen_051` [constitutional_law/clg_legal_compliance] in `data/constitutional_foi.json`
+  - Which option most strongly aligns with good public-service practice on risk control within Legal Frameworks & Statutory Compliance?
+- `clg_general_competency_gen_045` [constitutional_law/clg_general_competency] in `data/constitutional_foi.json`
+  - In the context of General Competency, Ethics & Reforms, which action best demonstrates general competency, ethics & reforms governance?
+- `clg_general_competency_gen_046` [constitutional_law/clg_general_competency] in `data/constitutional_foi.json`
+  - For effective general competency, ethics & reforms, what is the most appropriate approach to ensure general competency, ethics & reforms compliance?
+- `clg_general_competency_gen_047` [constitutional_law/clg_general_competency] in `data/constitutional_foi.json`
+  - Which option most strongly aligns with good public-service practice on general competency, ethics & reforms risk management within General Competency, Ethics & Reforms?
+- `clg_general_competency_gen_048` [constitutional_law/clg_general_competency] in `data/constitutional_foi.json`
+  - When handling general competency, ethics & reforms, which choice reflects proper constitutional supremacy standards?
+- `clg_general_competency_gen_049` [constitutional_law/clg_general_competency] in `data/constitutional_foi.json`
+  - Which practice should a responsible officer prioritize to sustain legal compliance in General Competency, Ethics & Reforms?
+- `clg_general_competency_gen_050` [constitutional_law/clg_general_competency] in `data/constitutional_foi.json`
+  - In the context of General Competency, Ethics & Reforms, which action best demonstrates foi obligations?
+- `clg_general_competency_gen_051` [constitutional_law/clg_general_competency] in `data/constitutional_foi.json`
+  - For effective general competency, ethics & reforms, what is the most appropriate approach to ensure rights balancing?
+- `clg_general_competency_gen_052` [constitutional_law/clg_general_competency] in `data/constitutional_foi.json`
+  - Which option most strongly aligns with good public-service practice on public law standards within General Competency, Ethics & Reforms?
+- `clg_general_competency_gen_053` [constitutional_law/clg_general_competency] in `data/constitutional_foi.json`
+  - When handling general competency, ethics & reforms, which choice reflects proper documented procedure standards?
+- `clg_general_competency_gen_054` [constitutional_law/clg_general_competency] in `data/constitutional_foi.json`
+  - Which practice should a responsible officer prioritize to sustain compliance assurance in General Competency, Ethics & Reforms?
+- `clg_general_competency_gen_055` [constitutional_law/clg_general_competency] in `data/constitutional_foi.json`
+  - In the context of General Competency, Ethics & Reforms, which action best demonstrates public accountability?
+- `clg_general_competency_gen_056` [constitutional_law/clg_general_competency] in `data/constitutional_foi.json`
+  - For effective general competency, ethics & reforms, what is the most appropriate approach to ensure service integrity?
+- `clg_general_competency_gen_057` [constitutional_law/clg_general_competency] in `data/constitutional_foi.json`
+  - Which option most strongly aligns with good public-service practice on risk control within General Competency, Ethics & Reforms?
+- `clg_general_competency_gen_058` [constitutional_law/clg_general_competency] in `data/constitutional_foi.json`
+  - When handling general competency, ethics & reforms, which choice reflects proper decision transparency standards?
+- `clg_general_competency_gen_059` [constitutional_law/clg_general_competency] in `data/constitutional_foi.json`
+  - Which practice should a responsible officer prioritize to sustain operational discipline in General Competency, Ethics & Reforms?
+- `clg_general_competency_gen_060` [constitutional_law/clg_general_competency] in `data/constitutional_foi.json`
+  - In the context of General Competency, Ethics & Reforms, which action best demonstrates citizen-focused service?
+- `clg_general_competency_gen_061` [constitutional_law/clg_general_competency] in `data/constitutional_foi.json`
+  - For effective general competency, ethics & reforms, what is the most appropriate approach to ensure record management?
+- `clg_general_competency_gen_062` [constitutional_law/clg_general_competency] in `data/constitutional_foi.json`
+  - Which option most strongly aligns with good public-service practice on performance standards within General Competency, Ethics & Reforms?
+- `clg_general_competency_gen_063` [constitutional_law/clg_general_competency] in `data/constitutional_foi.json`
+  - When handling general competency, ethics & reforms, which choice reflects proper general competency, ethics & reforms governance standards?
+- `csh_principles_ethics_gen_027` [civil_service_admin/csh_principles_ethics] in `data/civil_service_ethics.json`
+  - In the context of Civil Service Principles & Ethics, which action best demonstrates civil service principles & ethics governance?
+- `csh_performance_training_gen_031` [civil_service_admin/csh_performance_training] in `data/civil_service_ethics.json`
+  - In the context of Performance & Training, which action best demonstrates performance & training governance?
+- `csh_performance_training_gen_032` [civil_service_admin/csh_performance_training] in `data/civil_service_ethics.json`
+  - For effective performance & training, what is the most appropriate approach to ensure performance & training compliance?
+- `csh_performance_training_gen_033` [civil_service_admin/csh_performance_training] in `data/civil_service_ethics.json`
+  - Which option most strongly aligns with good public-service practice on performance & training risk management within Performance & Training?
+- `csh_performance_training_gen_034` [civil_service_admin/csh_performance_training] in `data/civil_service_ethics.json`
+  - When handling performance & training, which choice reflects proper administrative ethics standards?
+- `csh_performance_training_gen_035` [civil_service_admin/csh_performance_training] in `data/civil_service_ethics.json`
+  - Which practice should a responsible officer prioritize to sustain grievance handling in Performance & Training?
+- `csh_administrative_procedures_gen_027` [civil_service_admin/csh_administrative_procedures] in `data/civil_service_ethics.json`
+  - In the context of Administrative Procedures, which action best demonstrates administrative procedures governance?
+- `csh_service_delivery_grievance_gen_027` [civil_service_admin/csh_service_delivery_grievance] in `data/civil_service_ethics.json`
+  - In the context of Service Delivery & Grievance, which action best demonstrates service delivery & grievance governance?
+- `eth_code_conduct_gen_034` [civil_service_admin/eth_code_conduct] in `data/civil_service_ethics.json`
+  - In the context of Code of Conduct & Ethical Principles, which action best demonstrates code of conduct & ethical principles governance?
+- `eth_code_conduct_gen_035` [civil_service_admin/eth_code_conduct] in `data/civil_service_ethics.json`
+  - For effective code of conduct & ethical principles, what is the most appropriate approach to ensure code of conduct & ethical principles compliance?
+- `eth_code_conduct_gen_036` [civil_service_admin/eth_code_conduct] in `data/civil_service_ethics.json`
+  - Which option most strongly aligns with good public-service practice on code of conduct & ethical principles risk management within Code of Conduct & Ethical Principles?
+- `eth_code_conduct_gen_037` [civil_service_admin/eth_code_conduct] in `data/civil_service_ethics.json`
+  - When handling code of conduct & ethical principles, which choice reflects proper administrative ethics standards?
+- `eth_code_conduct_gen_038` [civil_service_admin/eth_code_conduct] in `data/civil_service_ethics.json`
+  - Which practice should a responsible officer prioritize to sustain grievance handling in Code of Conduct & Ethical Principles?
+- `eth_code_conduct_gen_039` [civil_service_admin/eth_code_conduct] in `data/civil_service_ethics.json`
+  - In the context of Code of Conduct & Ethical Principles, which action best demonstrates performance management?
+- `eth_code_conduct_gen_040` [civil_service_admin/eth_code_conduct] in `data/civil_service_ethics.json`
+  - For effective code of conduct & ethical principles, what is the most appropriate approach to ensure discipline and conduct?
+- `eth_code_conduct_gen_041` [civil_service_admin/eth_code_conduct] in `data/civil_service_ethics.json`
+  - Which option most strongly aligns with good public-service practice on anti-corruption safeguards within Code of Conduct & Ethical Principles?
+- `eth_code_conduct_gen_042` [civil_service_admin/eth_code_conduct] in `data/civil_service_ethics.json`
+  - When handling code of conduct & ethical principles, which choice reflects proper documented procedure standards?
+- `eth_code_conduct_gen_043` [civil_service_admin/eth_code_conduct] in `data/civil_service_ethics.json`
+  - Which practice should a responsible officer prioritize to sustain compliance assurance in Code of Conduct & Ethical Principles?
+- `eth_code_conduct_gen_044` [civil_service_admin/eth_code_conduct] in `data/civil_service_ethics.json`
+  - In the context of Code of Conduct & Ethical Principles, which action best demonstrates public accountability?
+- `eth_code_conduct_gen_045` [civil_service_admin/eth_code_conduct] in `data/civil_service_ethics.json`
+  - For effective code of conduct & ethical principles, what is the most appropriate approach to ensure service integrity?
+- `eth_code_conduct_gen_046` [civil_service_admin/eth_code_conduct] in `data/civil_service_ethics.json`
+  - Which option most strongly aligns with good public-service practice on risk control within Code of Conduct & Ethical Principles?
+- `eth_code_conduct_gen_047` [civil_service_admin/eth_code_conduct] in `data/civil_service_ethics.json`
+  - When handling code of conduct & ethical principles, which choice reflects proper decision transparency standards?
+- `eth_code_conduct_gen_048` [civil_service_admin/eth_code_conduct] in `data/civil_service_ethics.json`
+  - Which practice should a responsible officer prioritize to sustain operational discipline in Code of Conduct & Ethical Principles?
+- `eth_code_conduct_gen_049` [civil_service_admin/eth_code_conduct] in `data/civil_service_ethics.json`
+  - In the context of Code of Conduct & Ethical Principles, which action best demonstrates citizen-focused service?
+- `eth_code_conduct_gen_050` [civil_service_admin/eth_code_conduct] in `data/civil_service_ethics.json`
+  - For effective code of conduct & ethical principles, what is the most appropriate approach to ensure record management?
+- `eth_code_conduct_gen_051` [civil_service_admin/eth_code_conduct] in `data/civil_service_ethics.json`
+  - Which option most strongly aligns with good public-service practice on performance standards within Code of Conduct & Ethical Principles?
+- `eth_code_conduct_gen_052` [civil_service_admin/eth_code_conduct] in `data/civil_service_ethics.json`
+  - When handling code of conduct & ethical principles, which choice reflects proper code of conduct & ethical principles governance standards?
+- `eth_code_conduct_gen_053` [civil_service_admin/eth_code_conduct] in `data/civil_service_ethics.json`
+  - Which practice should a responsible officer prioritize to sustain code of conduct & ethical principles compliance in Code of Conduct & Ethical Principles?
+- `eth_code_conduct_gen_054` [civil_service_admin/eth_code_conduct] in `data/civil_service_ethics.json`
+  - In the context of Code of Conduct & Ethical Principles, which action best demonstrates code of conduct & ethical principles risk management?
+- `eth_code_conduct_gen_055` [civil_service_admin/eth_code_conduct] in `data/civil_service_ethics.json`
+  - For effective code of conduct & ethical principles, what is the most appropriate approach to ensure administrative ethics?
+- `eth_code_conduct_gen_056` [civil_service_admin/eth_code_conduct] in `data/civil_service_ethics.json`
+  - Which option most strongly aligns with good public-service practice on grievance handling within Code of Conduct & Ethical Principles?
+- `eth_code_conduct_gen_057` [civil_service_admin/eth_code_conduct] in `data/civil_service_ethics.json`
+  - When handling code of conduct & ethical principles, which choice reflects proper performance management standards?
+- `eth_code_conduct_gen_058` [civil_service_admin/eth_code_conduct] in `data/civil_service_ethics.json`
+  - Which practice should a responsible officer prioritize to sustain discipline and conduct in Code of Conduct & Ethical Principles?
+- `eth_values_integrity_gen_037` [civil_service_admin/eth_values_integrity] in `data/civil_service_ethics.json`
+  - In the context of Civil Service Values & Integrity, which action best demonstrates civil service values & integrity governance?
+- `eth_values_integrity_gen_038` [civil_service_admin/eth_values_integrity] in `data/civil_service_ethics.json`
+  - For effective civil service values & integrity, what is the most appropriate approach to ensure civil service values & integrity compliance?
+- `eth_values_integrity_gen_039` [civil_service_admin/eth_values_integrity] in `data/civil_service_ethics.json`
+  - Which option most strongly aligns with good public-service practice on civil service values & integrity risk management within Civil Service Values & Integrity?
+- `eth_values_integrity_gen_040` [civil_service_admin/eth_values_integrity] in `data/civil_service_ethics.json`
+  - When handling civil service values & integrity, which choice reflects proper administrative ethics standards?
+- `eth_values_integrity_gen_041` [civil_service_admin/eth_values_integrity] in `data/civil_service_ethics.json`
+  - Which practice should a responsible officer prioritize to sustain grievance handling in Civil Service Values & Integrity?
+- `eth_values_integrity_gen_042` [civil_service_admin/eth_values_integrity] in `data/civil_service_ethics.json`
+  - In the context of Civil Service Values & Integrity, which action best demonstrates performance management?
+- `eth_values_integrity_gen_043` [civil_service_admin/eth_values_integrity] in `data/civil_service_ethics.json`
+  - For effective civil service values & integrity, what is the most appropriate approach to ensure discipline and conduct?
+- `eth_values_integrity_gen_044` [civil_service_admin/eth_values_integrity] in `data/civil_service_ethics.json`
+  - Which option most strongly aligns with good public-service practice on anti-corruption safeguards within Civil Service Values & Integrity?
+- `eth_values_integrity_gen_045` [civil_service_admin/eth_values_integrity] in `data/civil_service_ethics.json`
+  - When handling civil service values & integrity, which choice reflects proper documented procedure standards?
+- `eth_values_integrity_gen_046` [civil_service_admin/eth_values_integrity] in `data/civil_service_ethics.json`
+  - Which practice should a responsible officer prioritize to sustain compliance assurance in Civil Service Values & Integrity?
+- `eth_values_integrity_gen_047` [civil_service_admin/eth_values_integrity] in `data/civil_service_ethics.json`
+  - In the context of Civil Service Values & Integrity, which action best demonstrates public accountability?
+- `eth_anti_corruption_gen_042` [civil_service_admin/eth_anti_corruption] in `data/civil_service_ethics.json`
+  - In the context of Anti-Corruption Measures, which action best demonstrates anti-corruption measures governance?
+- `eth_anti_corruption_gen_043` [civil_service_admin/eth_anti_corruption] in `data/civil_service_ethics.json`
+  - For effective anti-corruption measures, what is the most appropriate approach to ensure anti-corruption measures compliance?
+- `eth_anti_corruption_gen_044` [civil_service_admin/eth_anti_corruption] in `data/civil_service_ethics.json`
+  - Which option most strongly aligns with good public-service practice on anti-corruption measures risk management within Anti-Corruption Measures?
+- `eth_anti_corruption_gen_045` [civil_service_admin/eth_anti_corruption] in `data/civil_service_ethics.json`
+  - When handling anti-corruption measures, which choice reflects proper administrative ethics standards?
+- `eth_anti_corruption_gen_046` [civil_service_admin/eth_anti_corruption] in `data/civil_service_ethics.json`
+  - Which practice should a responsible officer prioritize to sustain grievance handling in Anti-Corruption Measures?
+- `eth_anti_corruption_gen_047` [civil_service_admin/eth_anti_corruption] in `data/civil_service_ethics.json`
+  - In the context of Anti-Corruption Measures, which action best demonstrates performance management?
+- `eth_anti_corruption_gen_048` [civil_service_admin/eth_anti_corruption] in `data/civil_service_ethics.json`
+  - For effective anti-corruption measures, what is the most appropriate approach to ensure discipline and conduct?
+- `eth_anti_corruption_gen_049` [civil_service_admin/eth_anti_corruption] in `data/civil_service_ethics.json`
+  - Which option most strongly aligns with good public-service practice on anti-corruption safeguards within Anti-Corruption Measures?
+- `eth_anti_corruption_gen_050` [civil_service_admin/eth_anti_corruption] in `data/civil_service_ethics.json`
+  - When handling anti-corruption measures, which choice reflects proper documented procedure standards?
+- `eth_anti_corruption_gen_051` [civil_service_admin/eth_anti_corruption] in `data/civil_service_ethics.json`
+  - Which practice should a responsible officer prioritize to sustain compliance assurance in Anti-Corruption Measures?
+- `eth_anti_corruption_gen_052` [civil_service_admin/eth_anti_corruption] in `data/civil_service_ethics.json`
+  - In the context of Anti-Corruption Measures, which action best demonstrates public accountability?
+- `eth_anti_corruption_gen_053` [civil_service_admin/eth_anti_corruption] in `data/civil_service_ethics.json`
+  - For effective anti-corruption measures, what is the most appropriate approach to ensure service integrity?
+- `eth_anti_corruption_gen_054` [civil_service_admin/eth_anti_corruption] in `data/civil_service_ethics.json`
+  - Which option most strongly aligns with good public-service practice on risk control within Anti-Corruption Measures?
+- `eth_anti_corruption_gen_055` [civil_service_admin/eth_anti_corruption] in `data/civil_service_ethics.json`
+  - When handling anti-corruption measures, which choice reflects proper decision transparency standards?
+- `eth_anti_corruption_gen_056` [civil_service_admin/eth_anti_corruption] in `data/civil_service_ethics.json`
+  - Which practice should a responsible officer prioritize to sustain operational discipline in Anti-Corruption Measures?
+- `eth_anti_corruption_gen_057` [civil_service_admin/eth_anti_corruption] in `data/civil_service_ethics.json`
+  - In the context of Anti-Corruption Measures, which action best demonstrates citizen-focused service?
+- `eth_anti_corruption_gen_058` [civil_service_admin/eth_anti_corruption] in `data/civil_service_ethics.json`
+  - For effective anti-corruption measures, what is the most appropriate approach to ensure record management?
+- `eth_anti_corruption_gen_059` [civil_service_admin/eth_anti_corruption] in `data/civil_service_ethics.json`
+  - Which option most strongly aligns with good public-service practice on performance standards within Anti-Corruption Measures?
+- `eth_anti_corruption_gen_060` [civil_service_admin/eth_anti_corruption] in `data/civil_service_ethics.json`
+  - When handling anti-corruption measures, which choice reflects proper anti-corruption measures governance standards?
+- `eth_anti_corruption_gen_061` [civil_service_admin/eth_anti_corruption] in `data/civil_service_ethics.json`
+  - Which practice should a responsible officer prioritize to sustain anti-corruption measures compliance in Anti-Corruption Measures?
+- `eth_anti_corruption_gen_062` [civil_service_admin/eth_anti_corruption] in `data/civil_service_ethics.json`
+  - In the context of Anti-Corruption Measures, which action best demonstrates anti-corruption measures risk management?
+- `eth_anti_corruption_gen_063` [civil_service_admin/eth_anti_corruption] in `data/civil_service_ethics.json`
+  - For effective anti-corruption measures, what is the most appropriate approach to ensure administrative ethics?
+- `eth_anti_corruption_gen_064` [civil_service_admin/eth_anti_corruption] in `data/civil_service_ethics.json`
+  - Which option most strongly aligns with good public-service practice on grievance handling within Anti-Corruption Measures?
+- `eth_anti_corruption_gen_065` [civil_service_admin/eth_anti_corruption] in `data/civil_service_ethics.json`
+  - When handling anti-corruption measures, which choice reflects proper performance management standards?
+- `eth_anti_corruption_gen_066` [civil_service_admin/eth_anti_corruption] in `data/civil_service_ethics.json`
+  - Which practice should a responsible officer prioritize to sustain discipline and conduct in Anti-Corruption Measures?
+- `eth_conflict_interest_gen_047` [civil_service_admin/eth_conflict_interest] in `data/civil_service_ethics.json`
+  - In the context of Conflict of Interest, which action best demonstrates conflict of interest governance?
+- `eth_conflict_interest_gen_048` [civil_service_admin/eth_conflict_interest] in `data/civil_service_ethics.json`
+  - For effective conflict of interest, what is the most appropriate approach to ensure conflict of interest compliance?
+- `eth_conflict_interest_gen_049` [civil_service_admin/eth_conflict_interest] in `data/civil_service_ethics.json`
+  - Which option most strongly aligns with good public-service practice on conflict of interest risk management within Conflict of Interest?
+- `eth_conflict_interest_gen_050` [civil_service_admin/eth_conflict_interest] in `data/civil_service_ethics.json`
+  - When handling conflict of interest, which choice reflects proper administrative ethics standards?
+- `eth_conflict_interest_gen_051` [civil_service_admin/eth_conflict_interest] in `data/civil_service_ethics.json`
+  - Which practice should a responsible officer prioritize to sustain grievance handling in Conflict of Interest?
+- `eth_conflict_interest_gen_052` [civil_service_admin/eth_conflict_interest] in `data/civil_service_ethics.json`
+  - In the context of Conflict of Interest, which action best demonstrates performance management?
+- `eth_conflict_interest_gen_053` [civil_service_admin/eth_conflict_interest] in `data/civil_service_ethics.json`
+  - For effective conflict of interest, what is the most appropriate approach to ensure discipline and conduct?
+- `eth_conflict_interest_gen_054` [civil_service_admin/eth_conflict_interest] in `data/civil_service_ethics.json`
+  - Which option most strongly aligns with good public-service practice on anti-corruption safeguards within Conflict of Interest?
+- `eth_conflict_interest_gen_055` [civil_service_admin/eth_conflict_interest] in `data/civil_service_ethics.json`
+  - When handling conflict of interest, which choice reflects proper documented procedure standards?
+- `eth_conflict_interest_gen_056` [civil_service_admin/eth_conflict_interest] in `data/civil_service_ethics.json`
+  - Which practice should a responsible officer prioritize to sustain compliance assurance in Conflict of Interest?
+- `eth_conflict_interest_gen_057` [civil_service_admin/eth_conflict_interest] in `data/civil_service_ethics.json`
+  - In the context of Conflict of Interest, which action best demonstrates public accountability?
+- `eth_conflict_interest_gen_058` [civil_service_admin/eth_conflict_interest] in `data/civil_service_ethics.json`
+  - For effective conflict of interest, what is the most appropriate approach to ensure service integrity?
+- `eth_conflict_interest_gen_059` [civil_service_admin/eth_conflict_interest] in `data/civil_service_ethics.json`
+  - Which option most strongly aligns with good public-service practice on risk control within Conflict of Interest?
+- `eth_conflict_interest_gen_060` [civil_service_admin/eth_conflict_interest] in `data/civil_service_ethics.json`
+  - When handling conflict of interest, which choice reflects proper decision transparency standards?
+- `eth_conflict_interest_gen_061` [civil_service_admin/eth_conflict_interest] in `data/civil_service_ethics.json`
+  - Which practice should a responsible officer prioritize to sustain operational discipline in Conflict of Interest?
+- `eth_conflict_interest_gen_062` [civil_service_admin/eth_conflict_interest] in `data/civil_service_ethics.json`
+  - In the context of Conflict of Interest, which action best demonstrates citizen-focused service?
+- `eth_conflict_interest_gen_063` [civil_service_admin/eth_conflict_interest] in `data/civil_service_ethics.json`
+  - For effective conflict of interest, what is the most appropriate approach to ensure record management?
+- `eth_conflict_interest_gen_064` [civil_service_admin/eth_conflict_interest] in `data/civil_service_ethics.json`
+  - Which option most strongly aligns with good public-service practice on performance standards within Conflict of Interest?
+- `eth_conflict_interest_gen_065` [civil_service_admin/eth_conflict_interest] in `data/civil_service_ethics.json`
+  - When handling conflict of interest, which choice reflects proper conflict of interest governance standards?
+- `eth_conflict_interest_gen_066` [civil_service_admin/eth_conflict_interest] in `data/civil_service_ethics.json`
+  - Which practice should a responsible officer prioritize to sustain conflict of interest compliance in Conflict of Interest?
+- `eth_conflict_interest_gen_067` [civil_service_admin/eth_conflict_interest] in `data/civil_service_ethics.json`
+  - In the context of Conflict of Interest, which action best demonstrates conflict of interest risk management?
+- `eth_conflict_interest_gen_068` [civil_service_admin/eth_conflict_interest] in `data/civil_service_ethics.json`
+  - For effective conflict of interest, what is the most appropriate approach to ensure administrative ethics?
+- `eth_conflict_interest_gen_069` [civil_service_admin/eth_conflict_interest] in `data/civil_service_ethics.json`
+  - Which option most strongly aligns with good public-service practice on grievance handling within Conflict of Interest?
+- `eth_conflict_interest_gen_070` [civil_service_admin/eth_conflict_interest] in `data/civil_service_ethics.json`
+  - When handling conflict of interest, which choice reflects proper performance management standards?
+- `eth_conflict_interest_gen_071` [civil_service_admin/eth_conflict_interest] in `data/civil_service_ethics.json`
+  - Which practice should a responsible officer prioritize to sustain discipline and conduct in Conflict of Interest?
+- `eth_misconduct_gen_044` [civil_service_admin/eth_misconduct] in `data/civil_service_ethics.json`
+  - In the context of Misconduct & Discipline, which action best demonstrates misconduct & discipline governance?
+- `eth_misconduct_gen_045` [civil_service_admin/eth_misconduct] in `data/civil_service_ethics.json`
+  - For effective misconduct & discipline, what is the most appropriate approach to ensure misconduct & discipline compliance?
+- `eth_misconduct_gen_046` [civil_service_admin/eth_misconduct] in `data/civil_service_ethics.json`
+  - Which option most strongly aligns with good public-service practice on misconduct & discipline risk management within Misconduct & Discipline?
+- `eth_misconduct_gen_047` [civil_service_admin/eth_misconduct] in `data/civil_service_ethics.json`
+  - When handling misconduct & discipline, which choice reflects proper administrative ethics standards?
+- `eth_misconduct_gen_048` [civil_service_admin/eth_misconduct] in `data/civil_service_ethics.json`
+  - Which practice should a responsible officer prioritize to sustain grievance handling in Misconduct & Discipline?
+- `eth_misconduct_gen_049` [civil_service_admin/eth_misconduct] in `data/civil_service_ethics.json`
+  - In the context of Misconduct & Discipline, which action best demonstrates performance management?
+- `eth_misconduct_gen_050` [civil_service_admin/eth_misconduct] in `data/civil_service_ethics.json`
+  - For effective misconduct & discipline, what is the most appropriate approach to ensure discipline and conduct?
+- `eth_misconduct_gen_051` [civil_service_admin/eth_misconduct] in `data/civil_service_ethics.json`
+  - Which option most strongly aligns with good public-service practice on anti-corruption safeguards within Misconduct & Discipline?
+- `eth_misconduct_gen_052` [civil_service_admin/eth_misconduct] in `data/civil_service_ethics.json`
+  - When handling misconduct & discipline, which choice reflects proper documented procedure standards?
+- `eth_misconduct_gen_053` [civil_service_admin/eth_misconduct] in `data/civil_service_ethics.json`
+  - Which practice should a responsible officer prioritize to sustain compliance assurance in Misconduct & Discipline?
+- `eth_misconduct_gen_054` [civil_service_admin/eth_misconduct] in `data/civil_service_ethics.json`
+  - In the context of Misconduct & Discipline, which action best demonstrates public accountability?
+- `eth_misconduct_gen_055` [civil_service_admin/eth_misconduct] in `data/civil_service_ethics.json`
+  - For effective misconduct & discipline, what is the most appropriate approach to ensure service integrity?
+- `eth_misconduct_gen_056` [civil_service_admin/eth_misconduct] in `data/civil_service_ethics.json`
+  - Which option most strongly aligns with good public-service practice on risk control within Misconduct & Discipline?
+- `eth_misconduct_gen_057` [civil_service_admin/eth_misconduct] in `data/civil_service_ethics.json`
+  - When handling misconduct & discipline, which choice reflects proper decision transparency standards?
+- `eth_misconduct_gen_058` [civil_service_admin/eth_misconduct] in `data/civil_service_ethics.json`
+  - Which practice should a responsible officer prioritize to sustain operational discipline in Misconduct & Discipline?
+- `eth_misconduct_gen_059` [civil_service_admin/eth_misconduct] in `data/civil_service_ethics.json`
+  - In the context of Misconduct & Discipline, which action best demonstrates citizen-focused service?
+- `eth_misconduct_gen_060` [civil_service_admin/eth_misconduct] in `data/civil_service_ethics.json`
+  - For effective misconduct & discipline, what is the most appropriate approach to ensure record management?
+- `eth_misconduct_gen_061` [civil_service_admin/eth_misconduct] in `data/civil_service_ethics.json`
+  - Which option most strongly aligns with good public-service practice on performance standards within Misconduct & Discipline?
+- `eth_misconduct_gen_062` [civil_service_admin/eth_misconduct] in `data/civil_service_ethics.json`
+  - When handling misconduct & discipline, which choice reflects proper misconduct & discipline governance standards?
+- `eth_misconduct_gen_063` [civil_service_admin/eth_misconduct] in `data/civil_service_ethics.json`
+  - Which practice should a responsible officer prioritize to sustain misconduct & discipline compliance in Misconduct & Discipline?
+- `eth_misconduct_gen_064` [civil_service_admin/eth_misconduct] in `data/civil_service_ethics.json`
+  - In the context of Misconduct & Discipline, which action best demonstrates misconduct & discipline risk management?
+- `eth_misconduct_gen_065` [civil_service_admin/eth_misconduct] in `data/civil_service_ethics.json`
+  - For effective misconduct & discipline, what is the most appropriate approach to ensure administrative ethics?
+- `eth_misconduct_gen_066` [civil_service_admin/eth_misconduct] in `data/civil_service_ethics.json`
+  - Which option most strongly aligns with good public-service practice on grievance handling within Misconduct & Discipline?
+- `eth_misconduct_gen_067` [civil_service_admin/eth_misconduct] in `data/civil_service_ethics.json`
+  - When handling misconduct & discipline, which choice reflects proper performance management standards?
+- `eth_misconduct_gen_068` [civil_service_admin/eth_misconduct] in `data/civil_service_ethics.json`
+  - Which practice should a responsible officer prioritize to sustain discipline and conduct in Misconduct & Discipline?
+- `eth_general_gen_048` [civil_service_admin/eth_general] in `data/civil_service_ethics.json`
+  - In the context of General Ethics, which action best demonstrates general ethics governance?
+- `eth_general_gen_049` [civil_service_admin/eth_general] in `data/civil_service_ethics.json`
+  - For effective general ethics, what is the most appropriate approach to ensure general ethics compliance?
+- `eth_general_gen_050` [civil_service_admin/eth_general] in `data/civil_service_ethics.json`
+  - Which option most strongly aligns with good public-service practice on general ethics risk management within General Ethics?
+- `eth_general_gen_051` [civil_service_admin/eth_general] in `data/civil_service_ethics.json`
+  - When handling general ethics, which choice reflects proper administrative ethics standards?
+- `eth_general_gen_052` [civil_service_admin/eth_general] in `data/civil_service_ethics.json`
+  - Which practice should a responsible officer prioritize to sustain grievance handling in General Ethics?
+- `eth_general_gen_053` [civil_service_admin/eth_general] in `data/civil_service_ethics.json`
+  - In the context of General Ethics, which action best demonstrates performance management?
+- `eth_general_gen_054` [civil_service_admin/eth_general] in `data/civil_service_ethics.json`
+  - For effective general ethics, what is the most appropriate approach to ensure discipline and conduct?
+- `eth_general_gen_055` [civil_service_admin/eth_general] in `data/civil_service_ethics.json`
+  - Which option most strongly aligns with good public-service practice on anti-corruption safeguards within General Ethics?
+- `eth_general_gen_056` [civil_service_admin/eth_general] in `data/civil_service_ethics.json`
+  - When handling general ethics, which choice reflects proper documented procedure standards?
+- `eth_general_gen_057` [civil_service_admin/eth_general] in `data/civil_service_ethics.json`
+  - Which practice should a responsible officer prioritize to sustain compliance assurance in General Ethics?
+- `eth_general_gen_058` [civil_service_admin/eth_general] in `data/civil_service_ethics.json`
+  - In the context of General Ethics, which action best demonstrates public accountability?
+- `eth_general_gen_059` [civil_service_admin/eth_general] in `data/civil_service_ethics.json`
+  - For effective general ethics, what is the most appropriate approach to ensure service integrity?
+- `eth_general_gen_060` [civil_service_admin/eth_general] in `data/civil_service_ethics.json`
+  - Which option most strongly aligns with good public-service practice on risk control within General Ethics?
+- `eth_general_gen_061` [civil_service_admin/eth_general] in `data/civil_service_ethics.json`
+  - When handling general ethics, which choice reflects proper decision transparency standards?
+- `eth_general_gen_062` [civil_service_admin/eth_general] in `data/civil_service_ethics.json`
+  - Which practice should a responsible officer prioritize to sustain operational discipline in General Ethics?
+- `eth_general_gen_063` [civil_service_admin/eth_general] in `data/civil_service_ethics.json`
+  - In the context of General Ethics, which action best demonstrates citizen-focused service?
+- `eth_general_gen_064` [civil_service_admin/eth_general] in `data/civil_service_ethics.json`
+  - For effective general ethics, what is the most appropriate approach to ensure record management?
+- `eth_general_gen_065` [civil_service_admin/eth_general] in `data/civil_service_ethics.json`
+  - Which option most strongly aligns with good public-service practice on performance standards within General Ethics?
+- `eth_general_gen_066` [civil_service_admin/eth_general] in `data/civil_service_ethics.json`
+  - When handling general ethics, which choice reflects proper general ethics governance standards?
+- `eth_general_gen_067` [civil_service_admin/eth_general] in `data/civil_service_ethics.json`
+  - Which practice should a responsible officer prioritize to sustain general ethics compliance in General Ethics?
+- `eth_general_gen_068` [civil_service_admin/eth_general] in `data/civil_service_ethics.json`
+  - In the context of General Ethics, which action best demonstrates general ethics risk management?
+- `eth_general_gen_069` [civil_service_admin/eth_general] in `data/civil_service_ethics.json`
+  - For effective general ethics, what is the most appropriate approach to ensure administrative ethics?
+- `eth_general_gen_070` [civil_service_admin/eth_general] in `data/civil_service_ethics.json`
+  - Which option most strongly aligns with good public-service practice on grievance handling within General Ethics?
+- `eth_general_gen_071` [civil_service_admin/eth_general] in `data/civil_service_ethics.json`
+  - When handling general ethics, which choice reflects proper performance management standards?
+- `eth_general_gen_072` [civil_service_admin/eth_general] in `data/civil_service_ethics.json`
+  - Which practice should a responsible officer prioritize to sustain discipline and conduct in General Ethics?
+- `lead_principles_styles_gen_027` [leadership_management/lead_principles_styles] in `data/leadership_negotiation.json`
+  - In the context of Leadership Principles & Styles, which action best demonstrates leadership principles & styles governance?
+- `lead_strategic_management_gen_028` [leadership_management/lead_strategic_management] in `data/leadership_negotiation.json`
+  - In the context of Strategic Management & Planning, which action best demonstrates strategic management & planning governance?
+- `lead_strategic_management_gen_029` [leadership_management/lead_strategic_management] in `data/leadership_negotiation.json`
+  - For effective strategic management & planning, what is the most appropriate approach to ensure strategic management & planning compliance?
+- `lead_management_performance_gen_032` [leadership_management/lead_management_performance] in `data/leadership_negotiation.json`
+  - In the context of Management Functions & Performance, which action best demonstrates management functions & performance governance?
+- `lead_management_performance_gen_033` [leadership_management/lead_management_performance] in `data/leadership_negotiation.json`
+  - For effective management functions & performance, what is the most appropriate approach to ensure management functions & performance compliance?
+- `lead_management_performance_gen_034` [leadership_management/lead_management_performance] in `data/leadership_negotiation.json`
+  - Which option most strongly aligns with good public-service practice on management functions & performance risk management within Management Functions & Performance?
+- `lead_management_performance_gen_035` [leadership_management/lead_management_performance] in `data/leadership_negotiation.json`
+  - When handling management functions & performance, which choice reflects proper strategic alignment standards?
+- `lead_management_performance_gen_036` [leadership_management/lead_management_performance] in `data/leadership_negotiation.json`
+  - Which practice should a responsible officer prioritize to sustain stakeholder negotiation in Management Functions & Performance?
+- `lead_management_performance_gen_037` [leadership_management/lead_management_performance] in `data/leadership_negotiation.json`
+  - In the context of Management Functions & Performance, which action best demonstrates team leadership?
+- `neg_principles_outcomes_gen_038` [leadership_management/neg_principles_outcomes] in `data/leadership_negotiation.json`
+  - In the context of Negotiation Principles & Outcomes, which action best demonstrates negotiation principles & outcomes governance?
+- `neg_principles_outcomes_gen_039` [leadership_management/neg_principles_outcomes] in `data/leadership_negotiation.json`
+  - For effective negotiation principles & outcomes, what is the most appropriate approach to ensure negotiation principles & outcomes compliance?
+- `neg_principles_outcomes_gen_040` [leadership_management/neg_principles_outcomes] in `data/leadership_negotiation.json`
+  - Which option most strongly aligns with good public-service practice on negotiation principles & outcomes risk management within Negotiation Principles & Outcomes?
+- `neg_principles_outcomes_gen_041` [leadership_management/neg_principles_outcomes] in `data/leadership_negotiation.json`
+  - When handling negotiation principles & outcomes, which choice reflects proper strategic alignment standards?
+- `neg_principles_outcomes_gen_042` [leadership_management/neg_principles_outcomes] in `data/leadership_negotiation.json`
+  - Which practice should a responsible officer prioritize to sustain stakeholder negotiation in Negotiation Principles & Outcomes?
+- `neg_principles_outcomes_gen_043` [leadership_management/neg_principles_outcomes] in `data/leadership_negotiation.json`
+  - In the context of Negotiation Principles & Outcomes, which action best demonstrates team leadership?
+- `neg_principles_outcomes_gen_044` [leadership_management/neg_principles_outcomes] in `data/leadership_negotiation.json`
+  - For effective negotiation principles & outcomes, what is the most appropriate approach to ensure change management?
+- `neg_principles_outcomes_gen_045` [leadership_management/neg_principles_outcomes] in `data/leadership_negotiation.json`
+  - Which option most strongly aligns with good public-service practice on dispute resolution within Negotiation Principles & Outcomes?
+- `neg_principles_outcomes_gen_046` [leadership_management/neg_principles_outcomes] in `data/leadership_negotiation.json`
+  - When handling negotiation principles & outcomes, which choice reflects proper documented procedure standards?
+- `neg_principles_outcomes_gen_047` [leadership_management/neg_principles_outcomes] in `data/leadership_negotiation.json`
+  - Which practice should a responsible officer prioritize to sustain compliance assurance in Negotiation Principles & Outcomes?
+- `neg_principles_outcomes_gen_048` [leadership_management/neg_principles_outcomes] in `data/leadership_negotiation.json`
+  - In the context of Negotiation Principles & Outcomes, which action best demonstrates public accountability?
+- `neg_principles_outcomes_gen_049` [leadership_management/neg_principles_outcomes] in `data/leadership_negotiation.json`
+  - For effective negotiation principles & outcomes, what is the most appropriate approach to ensure service integrity?
+- `neg_principles_outcomes_gen_050` [leadership_management/neg_principles_outcomes] in `data/leadership_negotiation.json`
+  - Which option most strongly aligns with good public-service practice on risk control within Negotiation Principles & Outcomes?
+- `neg_principles_outcomes_gen_051` [leadership_management/neg_principles_outcomes] in `data/leadership_negotiation.json`
+  - When handling negotiation principles & outcomes, which choice reflects proper decision transparency standards?
+- `neg_principles_outcomes_gen_052` [leadership_management/neg_principles_outcomes] in `data/leadership_negotiation.json`
+  - Which practice should a responsible officer prioritize to sustain operational discipline in Negotiation Principles & Outcomes?
+- `neg_principles_outcomes_gen_053` [leadership_management/neg_principles_outcomes] in `data/leadership_negotiation.json`
+  - In the context of Negotiation Principles & Outcomes, which action best demonstrates citizen-focused service?
+- `neg_principles_outcomes_gen_054` [leadership_management/neg_principles_outcomes] in `data/leadership_negotiation.json`
+  - For effective negotiation principles & outcomes, what is the most appropriate approach to ensure record management?
+- `neg_principles_outcomes_gen_055` [leadership_management/neg_principles_outcomes] in `data/leadership_negotiation.json`
+  - Which option most strongly aligns with good public-service practice on performance standards within Negotiation Principles & Outcomes?
+- `neg_principles_outcomes_gen_056` [leadership_management/neg_principles_outcomes] in `data/leadership_negotiation.json`
+  - When handling negotiation principles & outcomes, which choice reflects proper negotiation principles & outcomes governance standards?
+- `neg_principles_outcomes_gen_057` [leadership_management/neg_principles_outcomes] in `data/leadership_negotiation.json`
+  - Which practice should a responsible officer prioritize to sustain negotiation principles & outcomes compliance in Negotiation Principles & Outcomes?
+- `neg_principles_outcomes_gen_058` [leadership_management/neg_principles_outcomes] in `data/leadership_negotiation.json`
+  - In the context of Negotiation Principles & Outcomes, which action best demonstrates negotiation principles & outcomes risk management?
+- `neg_principles_outcomes_gen_059` [leadership_management/neg_principles_outcomes] in `data/leadership_negotiation.json`
+  - For effective negotiation principles & outcomes, what is the most appropriate approach to ensure strategic alignment?
+- `neg_principles_outcomes_gen_060` [leadership_management/neg_principles_outcomes] in `data/leadership_negotiation.json`
+  - Which option most strongly aligns with good public-service practice on stakeholder negotiation within Negotiation Principles & Outcomes?
+- `neg_principles_outcomes_gen_061` [leadership_management/neg_principles_outcomes] in `data/leadership_negotiation.json`
+  - When handling negotiation principles & outcomes, which choice reflects proper team leadership standards?
+- `neg_principles_outcomes_gen_062` [leadership_management/neg_principles_outcomes] in `data/leadership_negotiation.json`
+  - Which practice should a responsible officer prioritize to sustain change management in Negotiation Principles & Outcomes?
+- `neg_structure_bodies_gen_039` [leadership_management/neg_structure_bodies] in `data/leadership_negotiation.json`
+  - In the context of Negotiating Structures & Bodies, which action best demonstrates negotiating structures & bodies governance?
+- `neg_structure_bodies_gen_040` [leadership_management/neg_structure_bodies] in `data/leadership_negotiation.json`
+  - For effective negotiating structures & bodies, what is the most appropriate approach to ensure negotiating structures & bodies compliance?
+- `neg_structure_bodies_gen_041` [leadership_management/neg_structure_bodies] in `data/leadership_negotiation.json`
+  - Which option most strongly aligns with good public-service practice on negotiating structures & bodies risk management within Negotiating Structures & Bodies?
+- `neg_structure_bodies_gen_042` [leadership_management/neg_structure_bodies] in `data/leadership_negotiation.json`
+  - When handling negotiating structures & bodies, which choice reflects proper strategic alignment standards?
+- `neg_structure_bodies_gen_043` [leadership_management/neg_structure_bodies] in `data/leadership_negotiation.json`
+  - Which practice should a responsible officer prioritize to sustain stakeholder negotiation in Negotiating Structures & Bodies?
+- `neg_structure_bodies_gen_044` [leadership_management/neg_structure_bodies] in `data/leadership_negotiation.json`
+  - In the context of Negotiating Structures & Bodies, which action best demonstrates team leadership?
+- `neg_structure_bodies_gen_045` [leadership_management/neg_structure_bodies] in `data/leadership_negotiation.json`
+  - For effective negotiating structures & bodies, what is the most appropriate approach to ensure change management?
+- `neg_structure_bodies_gen_046` [leadership_management/neg_structure_bodies] in `data/leadership_negotiation.json`
+  - Which option most strongly aligns with good public-service practice on dispute resolution within Negotiating Structures & Bodies?
+- `neg_structure_bodies_gen_047` [leadership_management/neg_structure_bodies] in `data/leadership_negotiation.json`
+  - When handling negotiating structures & bodies, which choice reflects proper documented procedure standards?
+- `neg_structure_bodies_gen_048` [leadership_management/neg_structure_bodies] in `data/leadership_negotiation.json`
+  - Which practice should a responsible officer prioritize to sustain compliance assurance in Negotiating Structures & Bodies?
+- `neg_structure_bodies_gen_049` [leadership_management/neg_structure_bodies] in `data/leadership_negotiation.json`
+  - In the context of Negotiating Structures & Bodies, which action best demonstrates public accountability?
+- `neg_structure_bodies_gen_050` [leadership_management/neg_structure_bodies] in `data/leadership_negotiation.json`
+  - For effective negotiating structures & bodies, what is the most appropriate approach to ensure service integrity?
+- `neg_structure_bodies_gen_051` [leadership_management/neg_structure_bodies] in `data/leadership_negotiation.json`
+  - Which option most strongly aligns with good public-service practice on risk control within Negotiating Structures & Bodies?
+- `neg_structure_bodies_gen_052` [leadership_management/neg_structure_bodies] in `data/leadership_negotiation.json`
+  - When handling negotiating structures & bodies, which choice reflects proper decision transparency standards?
+- `neg_structure_bodies_gen_053` [leadership_management/neg_structure_bodies] in `data/leadership_negotiation.json`
+  - Which practice should a responsible officer prioritize to sustain operational discipline in Negotiating Structures & Bodies?
+- `neg_structure_bodies_gen_054` [leadership_management/neg_structure_bodies] in `data/leadership_negotiation.json`
+  - In the context of Negotiating Structures & Bodies, which action best demonstrates citizen-focused service?
+- `neg_structure_bodies_gen_055` [leadership_management/neg_structure_bodies] in `data/leadership_negotiation.json`
+  - For effective negotiating structures & bodies, what is the most appropriate approach to ensure record management?
+- `neg_structure_bodies_gen_056` [leadership_management/neg_structure_bodies] in `data/leadership_negotiation.json`
+  - Which option most strongly aligns with good public-service practice on performance standards within Negotiating Structures & Bodies?
+- `neg_structure_bodies_gen_057` [leadership_management/neg_structure_bodies] in `data/leadership_negotiation.json`
+  - When handling negotiating structures & bodies, which choice reflects proper negotiating structures & bodies governance standards?
+- `neg_structure_bodies_gen_058` [leadership_management/neg_structure_bodies] in `data/leadership_negotiation.json`
+  - Which practice should a responsible officer prioritize to sustain negotiating structures & bodies compliance in Negotiating Structures & Bodies?
+- `neg_structure_bodies_gen_059` [leadership_management/neg_structure_bodies] in `data/leadership_negotiation.json`
+  - In the context of Negotiating Structures & Bodies, which action best demonstrates negotiating structures & bodies risk management?
+- `neg_structure_bodies_gen_060` [leadership_management/neg_structure_bodies] in `data/leadership_negotiation.json`
+  - For effective negotiating structures & bodies, what is the most appropriate approach to ensure strategic alignment?
+- `neg_structure_bodies_gen_061` [leadership_management/neg_structure_bodies] in `data/leadership_negotiation.json`
+  - Which option most strongly aligns with good public-service practice on stakeholder negotiation within Negotiating Structures & Bodies?
+- `neg_structure_bodies_gen_062` [leadership_management/neg_structure_bodies] in `data/leadership_negotiation.json`
+  - When handling negotiating structures & bodies, which choice reflects proper team leadership standards?
+- `neg_structure_bodies_gen_063` [leadership_management/neg_structure_bodies] in `data/leadership_negotiation.json`
+  - Which practice should a responsible officer prioritize to sustain change management in Negotiating Structures & Bodies?
+- `neg_dispute_law_gen_037` [leadership_management/neg_dispute_law] in `data/leadership_negotiation.json`
+  - In the context of Dispute Resolution & Labour Law, which action best demonstrates dispute resolution & labour law governance?
+- `neg_dispute_law_gen_038` [leadership_management/neg_dispute_law] in `data/leadership_negotiation.json`
+  - For effective dispute resolution & labour law, what is the most appropriate approach to ensure dispute resolution & labour law compliance?
+- `neg_dispute_law_gen_039` [leadership_management/neg_dispute_law] in `data/leadership_negotiation.json`
+  - Which option most strongly aligns with good public-service practice on dispute resolution & labour law risk management within Dispute Resolution & Labour Law?
+- `neg_dispute_law_gen_040` [leadership_management/neg_dispute_law] in `data/leadership_negotiation.json`
+  - When handling dispute resolution & labour law, which choice reflects proper strategic alignment standards?
+- `neg_dispute_law_gen_041` [leadership_management/neg_dispute_law] in `data/leadership_negotiation.json`
+  - Which practice should a responsible officer prioritize to sustain stakeholder negotiation in Dispute Resolution & Labour Law?
+- `neg_dispute_law_gen_042` [leadership_management/neg_dispute_law] in `data/leadership_negotiation.json`
+  - In the context of Dispute Resolution & Labour Law, which action best demonstrates team leadership?
+- `neg_dispute_law_gen_043` [leadership_management/neg_dispute_law] in `data/leadership_negotiation.json`
+  - For effective dispute resolution & labour law, what is the most appropriate approach to ensure change management?
+- `neg_dispute_law_gen_044` [leadership_management/neg_dispute_law] in `data/leadership_negotiation.json`
+  - Which option most strongly aligns with good public-service practice on dispute resolution within Dispute Resolution & Labour Law?
+- `neg_dispute_law_gen_045` [leadership_management/neg_dispute_law] in `data/leadership_negotiation.json`
+  - When handling dispute resolution & labour law, which choice reflects proper documented procedure standards?
+- `neg_dispute_law_gen_046` [leadership_management/neg_dispute_law] in `data/leadership_negotiation.json`
+  - Which practice should a responsible officer prioritize to sustain compliance assurance in Dispute Resolution & Labour Law?
+- `neg_dispute_law_gen_047` [leadership_management/neg_dispute_law] in `data/leadership_negotiation.json`
+  - In the context of Dispute Resolution & Labour Law, which action best demonstrates public accountability?
+- `neg_dispute_law_gen_048` [leadership_management/neg_dispute_law] in `data/leadership_negotiation.json`
+  - For effective dispute resolution & labour law, what is the most appropriate approach to ensure service integrity?
+- `neg_dispute_law_gen_049` [leadership_management/neg_dispute_law] in `data/leadership_negotiation.json`
+  - Which option most strongly aligns with good public-service practice on risk control within Dispute Resolution & Labour Law?
+- `neg_dispute_law_gen_050` [leadership_management/neg_dispute_law] in `data/leadership_negotiation.json`
+  - When handling dispute resolution & labour law, which choice reflects proper decision transparency standards?
+- `neg_dispute_law_gen_051` [leadership_management/neg_dispute_law] in `data/leadership_negotiation.json`
+  - Which practice should a responsible officer prioritize to sustain operational discipline in Dispute Resolution & Labour Law?
+- `neg_dispute_law_gen_052` [leadership_management/neg_dispute_law] in `data/leadership_negotiation.json`
+  - In the context of Dispute Resolution & Labour Law, which action best demonstrates citizen-focused service?
+- `neg_dispute_law_gen_053` [leadership_management/neg_dispute_law] in `data/leadership_negotiation.json`
+  - For effective dispute resolution & labour law, what is the most appropriate approach to ensure record management?
+- `neg_dispute_law_gen_054` [leadership_management/neg_dispute_law] in `data/leadership_negotiation.json`
+  - Which option most strongly aligns with good public-service practice on performance standards within Dispute Resolution & Labour Law?
+- `neg_dispute_law_gen_055` [leadership_management/neg_dispute_law] in `data/leadership_negotiation.json`
+  - When handling dispute resolution & labour law, which choice reflects proper dispute resolution & labour law governance standards?
+- `neg_dispute_law_gen_056` [leadership_management/neg_dispute_law] in `data/leadership_negotiation.json`
+  - Which practice should a responsible officer prioritize to sustain dispute resolution & labour law compliance in Dispute Resolution & Labour Law?
+- `neg_dispute_law_gen_057` [leadership_management/neg_dispute_law] in `data/leadership_negotiation.json`
+  - In the context of Dispute Resolution & Labour Law, which action best demonstrates dispute resolution & labour law risk management?
+- `neg_dispute_law_gen_058` [leadership_management/neg_dispute_law] in `data/leadership_negotiation.json`
+  - For effective dispute resolution & labour law, what is the most appropriate approach to ensure strategic alignment?
+- `neg_dispute_law_gen_059` [leadership_management/neg_dispute_law] in `data/leadership_negotiation.json`
+  - Which option most strongly aligns with good public-service practice on stakeholder negotiation within Dispute Resolution & Labour Law?
+- `neg_dispute_law_gen_060` [leadership_management/neg_dispute_law] in `data/leadership_negotiation.json`
+  - When handling dispute resolution & labour law, which choice reflects proper team leadership standards?
+- `neg_dispute_law_gen_061` [leadership_management/neg_dispute_law] in `data/leadership_negotiation.json`
+  - Which practice should a responsible officer prioritize to sustain change management in Dispute Resolution & Labour Law?
+- `pol_analysis_methods_gen_033` [policy_analysis/pol_analysis_methods] in `data/policy_analysis.json`
+  - In the context of Policy Analysis Methods, which action best demonstrates policy analysis methods governance?
+- `pol_analysis_methods_gen_034` [policy_analysis/pol_analysis_methods] in `data/policy_analysis.json`
+  - For effective policy analysis methods, what is the most appropriate approach to ensure policy analysis methods compliance?
+- `pol_analysis_methods_gen_035` [policy_analysis/pol_analysis_methods] in `data/policy_analysis.json`
+  - Which option most strongly aligns with good public-service practice on policy analysis methods risk management within Policy Analysis Methods?
+- `pol_analysis_methods_gen_036` [policy_analysis/pol_analysis_methods] in `data/policy_analysis.json`
+  - When handling policy analysis methods, which choice reflects proper policy formulation standards?
+- `pol_analysis_methods_gen_037` [policy_analysis/pol_analysis_methods] in `data/policy_analysis.json`
+  - Which practice should a responsible officer prioritize to sustain implementation planning in Policy Analysis Methods?
+- `pol_analysis_methods_gen_038` [policy_analysis/pol_analysis_methods] in `data/policy_analysis.json`
+  - In the context of Policy Analysis Methods, which action best demonstrates impact evaluation?
+- `pol_analysis_methods_gen_039` [policy_analysis/pol_analysis_methods] in `data/policy_analysis.json`
+  - For effective policy analysis methods, what is the most appropriate approach to ensure evidence quality?
+- `pol_implementation_evaluation_gen_038` [policy_analysis/pol_implementation_evaluation] in `data/policy_analysis.json`
+  - In the context of Policy Implementation & Evaluation, which action best demonstrates policy implementation & evaluation governance?
+- `pol_implementation_evaluation_gen_039` [policy_analysis/pol_implementation_evaluation] in `data/policy_analysis.json`
+  - For effective policy implementation & evaluation, what is the most appropriate approach to ensure policy implementation & evaluation compliance?
+- `pol_implementation_evaluation_gen_040` [policy_analysis/pol_implementation_evaluation] in `data/policy_analysis.json`
+  - Which option most strongly aligns with good public-service practice on policy implementation & evaluation risk management within Policy Implementation & Evaluation?
+- `pol_implementation_evaluation_gen_041` [policy_analysis/pol_implementation_evaluation] in `data/policy_analysis.json`
+  - When handling policy implementation & evaluation, which choice reflects proper policy formulation standards?
+- `pol_implementation_evaluation_gen_042` [policy_analysis/pol_implementation_evaluation] in `data/policy_analysis.json`
+  - Which practice should a responsible officer prioritize to sustain implementation planning in Policy Implementation & Evaluation?
+- `pol_implementation_evaluation_gen_043` [policy_analysis/pol_implementation_evaluation] in `data/policy_analysis.json`
+  - In the context of Policy Implementation & Evaluation, which action best demonstrates impact evaluation?
+- `pol_implementation_evaluation_gen_044` [policy_analysis/pol_implementation_evaluation] in `data/policy_analysis.json`
+  - For effective policy implementation & evaluation, what is the most appropriate approach to ensure evidence quality?
+- `pol_implementation_evaluation_gen_045` [policy_analysis/pol_implementation_evaluation] in `data/policy_analysis.json`
+  - Which option most strongly aligns with good public-service practice on public-sector planning within Policy Implementation & Evaluation?
+- `pol_implementation_evaluation_gen_046` [policy_analysis/pol_implementation_evaluation] in `data/policy_analysis.json`
+  - When handling policy implementation & evaluation, which choice reflects proper documented procedure standards?
+- `pol_implementation_evaluation_gen_047` [policy_analysis/pol_implementation_evaluation] in `data/policy_analysis.json`
+  - Which practice should a responsible officer prioritize to sustain compliance assurance in Policy Implementation & Evaluation?
+- `pol_implementation_evaluation_gen_048` [policy_analysis/pol_implementation_evaluation] in `data/policy_analysis.json`
+  - In the context of Policy Implementation & Evaluation, which action best demonstrates public accountability?
+- `pol_implementation_evaluation_gen_049` [policy_analysis/pol_implementation_evaluation] in `data/policy_analysis.json`
+  - For effective policy implementation & evaluation, what is the most appropriate approach to ensure service integrity?
+- `pol_public_sector_planning_gen_045` [policy_analysis/pol_public_sector_planning] in `data/policy_analysis.json`
+  - In the context of Public Sector Planning, which action best demonstrates public sector planning governance?
+- `pol_public_sector_planning_gen_046` [policy_analysis/pol_public_sector_planning] in `data/policy_analysis.json`
+  - For effective public sector planning, what is the most appropriate approach to ensure public sector planning compliance?
+- `pol_public_sector_planning_gen_047` [policy_analysis/pol_public_sector_planning] in `data/policy_analysis.json`
+  - Which option most strongly aligns with good public-service practice on public sector planning risk management within Public Sector Planning?
+- `pol_public_sector_planning_gen_048` [policy_analysis/pol_public_sector_planning] in `data/policy_analysis.json`
+  - When handling public sector planning, which choice reflects proper policy formulation standards?
+- `pol_public_sector_planning_gen_049` [policy_analysis/pol_public_sector_planning] in `data/policy_analysis.json`
+  - Which practice should a responsible officer prioritize to sustain implementation planning in Public Sector Planning?
+- `pol_public_sector_planning_gen_050` [policy_analysis/pol_public_sector_planning] in `data/policy_analysis.json`
+  - In the context of Public Sector Planning, which action best demonstrates impact evaluation?
+- `pol_public_sector_planning_gen_051` [policy_analysis/pol_public_sector_planning] in `data/policy_analysis.json`
+  - For effective public sector planning, what is the most appropriate approach to ensure evidence quality?
+- `pol_public_sector_planning_gen_052` [policy_analysis/pol_public_sector_planning] in `data/policy_analysis.json`
+  - Which option most strongly aligns with good public-service practice on public-sector planning within Public Sector Planning?
+- `pol_public_sector_planning_gen_053` [policy_analysis/pol_public_sector_planning] in `data/policy_analysis.json`
+  - When handling public sector planning, which choice reflects proper documented procedure standards?
+- `pol_public_sector_planning_gen_054` [policy_analysis/pol_public_sector_planning] in `data/policy_analysis.json`
+  - Which practice should a responsible officer prioritize to sustain compliance assurance in Public Sector Planning?
+- `pol_public_sector_planning_gen_055` [policy_analysis/pol_public_sector_planning] in `data/policy_analysis.json`
+  - In the context of Public Sector Planning, which action best demonstrates public accountability?
+- `pol_public_sector_planning_gen_056` [policy_analysis/pol_public_sector_planning] in `data/policy_analysis.json`
+  - For effective public sector planning, what is the most appropriate approach to ensure service integrity?
+- `pol_public_sector_planning_gen_057` [policy_analysis/pol_public_sector_planning] in `data/policy_analysis.json`
+  - Which option most strongly aligns with good public-service practice on risk control within Public Sector Planning?
+- `pol_public_sector_planning_gen_058` [policy_analysis/pol_public_sector_planning] in `data/policy_analysis.json`
+  - When handling public sector planning, which choice reflects proper decision transparency standards?
+- `pol_public_sector_planning_gen_059` [policy_analysis/pol_public_sector_planning] in `data/policy_analysis.json`
+  - Which practice should a responsible officer prioritize to sustain operational discipline in Public Sector Planning?
+- `pol_public_sector_planning_gen_060` [policy_analysis/pol_public_sector_planning] in `data/policy_analysis.json`
+  - In the context of Public Sector Planning, which action best demonstrates citizen-focused service?
+- `pol_public_sector_planning_gen_061` [policy_analysis/pol_public_sector_planning] in `data/policy_analysis.json`
+  - For effective public sector planning, what is the most appropriate approach to ensure record management?
+- `pol_public_sector_planning_gen_062` [policy_analysis/pol_public_sector_planning] in `data/policy_analysis.json`
+  - Which option most strongly aligns with good public-service practice on performance standards within Public Sector Planning?
+- `pol_public_sector_planning_gen_063` [policy_analysis/pol_public_sector_planning] in `data/policy_analysis.json`
+  - When handling public sector planning, which choice reflects proper public sector planning governance standards?
+- `pol_public_sector_planning_gen_064` [policy_analysis/pol_public_sector_planning] in `data/policy_analysis.json`
+  - Which practice should a responsible officer prioritize to sustain public sector planning compliance in Public Sector Planning?
+- `pol_public_sector_planning_gen_065` [policy_analysis/pol_public_sector_planning] in `data/policy_analysis.json`
+  - In the context of Public Sector Planning, which action best demonstrates public sector planning risk management?
+- `pol_public_sector_planning_gen_066` [policy_analysis/pol_public_sector_planning] in `data/policy_analysis.json`
+  - For effective public sector planning, what is the most appropriate approach to ensure policy formulation?
+- `pol_public_sector_planning_gen_067` [policy_analysis/pol_public_sector_planning] in `data/policy_analysis.json`
+  - Which option most strongly aligns with good public-service practice on implementation planning within Public Sector Planning?
+- `pol_public_sector_planning_gen_068` [policy_analysis/pol_public_sector_planning] in `data/policy_analysis.json`
+  - When handling public sector planning, which choice reflects proper impact evaluation standards?
+- `pol_public_sector_planning_gen_069` [policy_analysis/pol_public_sector_planning] in `data/policy_analysis.json`
+  - Which practice should a responsible officer prioritize to sustain evidence quality in Public Sector Planning?
+- `ca_public_service_reforms_gen_027` [general_current_affairs/ca_public_service_reforms] in `data/general_current_affairs.json`
+  - In the context of Public Service & Institutional Reforms, which action best demonstrates public service & institutional reforms governance?
+- `ca_international_affairs_gen_034` [general_current_affairs/ca_international_affairs] in `data/general_current_affairs.json`
+  - In the context of International & Regional Affairs, which action best demonstrates international & regional affairs governance?
+- `ca_international_affairs_gen_035` [general_current_affairs/ca_international_affairs] in `data/general_current_affairs.json`
+  - For effective international & regional affairs, what is the most appropriate approach to ensure international & regional affairs compliance?
+- `ca_international_affairs_gen_036` [general_current_affairs/ca_international_affairs] in `data/general_current_affairs.json`
+  - Which option most strongly aligns with good public-service practice on international & regional affairs risk management within International & Regional Affairs?
+- `ca_international_affairs_gen_037` [general_current_affairs/ca_international_affairs] in `data/general_current_affairs.json`
+  - When handling international & regional affairs, which choice reflects proper institutional awareness standards?
+- `ca_international_affairs_gen_038` [general_current_affairs/ca_international_affairs] in `data/general_current_affairs.json`
+  - Which practice should a responsible officer prioritize to sustain national governance updates in International & Regional Affairs?
+- `ca_international_affairs_gen_039` [general_current_affairs/ca_international_affairs] in `data/general_current_affairs.json`
+  - In the context of International & Regional Affairs, which action best demonstrates regional and global context?
+- `ca_international_affairs_gen_040` [general_current_affairs/ca_international_affairs] in `data/general_current_affairs.json`
+  - For effective international & regional affairs, what is the most appropriate approach to ensure public communication literacy?
+- `ca_international_affairs_gen_041` [general_current_affairs/ca_international_affairs] in `data/general_current_affairs.json`
+  - Which option most strongly aligns with good public-service practice on civic relevance within International & Regional Affairs?
+- `ca_national_events_gen_028` [general_current_affairs/ca_national_events] in `data/general_current_affairs.json`
+  - In the context of National Events & Key Personalities, which action best demonstrates national events & key personalities governance?
+- `ca_national_events_gen_029` [general_current_affairs/ca_national_events] in `data/general_current_affairs.json`
+  - For effective national events & key personalities, what is the most appropriate approach to ensure national events & key personalities compliance?
+- `ca_national_events_gen_030` [general_current_affairs/ca_national_events] in `data/general_current_affairs.json`
+  - Which option most strongly aligns with good public-service practice on national events & key personalities risk management within National Events & Key Personalities?
+- `ca_national_events_gen_031` [general_current_affairs/ca_national_events] in `data/general_current_affairs.json`
+  - When handling national events & key personalities, which choice reflects proper institutional awareness standards?
+- `ca_national_events_gen_032` [general_current_affairs/ca_national_events] in `data/general_current_affairs.json`
+  - Which practice should a responsible officer prioritize to sustain national governance updates in National Events & Key Personalities?
+- `ca_national_events_gen_033` [general_current_affairs/ca_national_events] in `data/general_current_affairs.json`
+  - In the context of National Events & Key Personalities, which action best demonstrates regional and global context?
+- `ca_national_events_gen_034` [general_current_affairs/ca_national_events] in `data/general_current_affairs.json`
+  - For effective national events & key personalities, what is the most appropriate approach to ensure public communication literacy?
+- `ca_national_events_gen_035` [general_current_affairs/ca_national_events] in `data/general_current_affairs.json`
+  - Which option most strongly aligns with good public-service practice on civic relevance within National Events & Key Personalities?
+- `ca_national_events_gen_036` [general_current_affairs/ca_national_events] in `data/general_current_affairs.json`
+  - When handling national events & key personalities, which choice reflects proper documented procedure standards?
+- `ca_national_events_gen_037` [general_current_affairs/ca_national_events] in `data/general_current_affairs.json`
+  - Which practice should a responsible officer prioritize to sustain compliance assurance in National Events & Key Personalities?
+- `ca_national_events_gen_038` [general_current_affairs/ca_national_events] in `data/general_current_affairs.json`
+  - In the context of National Events & Key Personalities, which action best demonstrates public accountability?
+- `ca_national_events_gen_039` [general_current_affairs/ca_national_events] in `data/general_current_affairs.json`
+  - For effective national events & key personalities, what is the most appropriate approach to ensure service integrity?
+- `ca_national_events_gen_040` [general_current_affairs/ca_national_events] in `data/general_current_affairs.json`
+  - Which option most strongly aligns with good public-service practice on risk control within National Events & Key Personalities?
+- `ca_national_events_gen_041` [general_current_affairs/ca_national_events] in `data/general_current_affairs.json`
+  - When handling national events & key personalities, which choice reflects proper decision transparency standards?
+- `ca_national_events_gen_042` [general_current_affairs/ca_national_events] in `data/general_current_affairs.json`
+  - Which practice should a responsible officer prioritize to sustain operational discipline in National Events & Key Personalities?
+- `ca_national_events_gen_043` [general_current_affairs/ca_national_events] in `data/general_current_affairs.json`
+  - In the context of National Events & Key Personalities, which action best demonstrates citizen-focused service?
+- `ca_national_events_gen_044` [general_current_affairs/ca_national_events] in `data/general_current_affairs.json`
+  - For effective national events & key personalities, what is the most appropriate approach to ensure record management?
+- `ca_national_events_gen_045` [general_current_affairs/ca_national_events] in `data/general_current_affairs.json`
+  - Which option most strongly aligns with good public-service practice on performance standards within National Events & Key Personalities?
+- `ca_national_events_gen_046` [general_current_affairs/ca_national_events] in `data/general_current_affairs.json`
+  - When handling national events & key personalities, which choice reflects proper national events & key personalities governance standards?
+- `ca_national_events_gen_047` [general_current_affairs/ca_national_events] in `data/general_current_affairs.json`
+  - Which practice should a responsible officer prioritize to sustain national events & key personalities compliance in National Events & Key Personalities?
+- `ca_national_events_gen_048` [general_current_affairs/ca_national_events] in `data/general_current_affairs.json`
+  - In the context of National Events & Key Personalities, which action best demonstrates national events & key personalities risk management?
+- `ca_national_events_gen_049` [general_current_affairs/ca_national_events] in `data/general_current_affairs.json`
+  - For effective national events & key personalities, what is the most appropriate approach to ensure institutional awareness?
+- `ca_national_events_gen_050` [general_current_affairs/ca_national_events] in `data/general_current_affairs.json`
+  - Which option most strongly aligns with good public-service practice on national governance updates within National Events & Key Personalities?
+- `ca_national_events_gen_051` [general_current_affairs/ca_national_events] in `data/general_current_affairs.json`
+  - When handling national events & key personalities, which choice reflects proper regional and global context standards?
+- `ca_national_events_gen_052` [general_current_affairs/ca_national_events] in `data/general_current_affairs.json`
+  - Which practice should a responsible officer prioritize to sustain public communication literacy in National Events & Key Personalities?
+
+## Cross-Topic Duplicates (Manual Review)
+- occurrences=4 :: "all newly employed officers must be placed on the ippis platform within a maximum period of"
+  - CIRC_PPC_002 [psr/circ_personnel_performance], fin_bgt_014 [financial_regulations/fin_budgeting], clg_gc_091 [constitutional_law/clg_general_competency], ict_eg_002 [ict_management/ict_e_governance]
+- occurrences=3 :: "which officer must sign all payment vouchers before payments are processed confirming the correctness and classification of the transaction"
+  - fin_bgt_018 [financial_regulations/fin_budgeting], fin_gen_010 [financial_regulations/fin_general], leadership_mpf_037 [leadership_management/lead_management_performance]
+- occurrences=2 :: "who must approve the release of any officer on study leave whether paid or unpaid upon the recommendation of the officer s permanent secretary head of..."
+  - CIRC_ATD_013 [psr/circ_appointments_tenure_discipline], clg_gc_100 [constitutional_law/clg_general_competency]
+- occurrences=2 :: "the legal instrument enacted by the national assembly that authorizes the federal government to withdraw funds from the consolidated revenue fund crf ..."
+  - fin_bgt_002 [financial_regulations/fin_budgeting], clg_lc_045 [constitutional_law/clg_legal_compliance]
+- occurrences=2 :: "the loss of government funds or property must be communicated immediately to"
+  - fin_aud_003 [financial_regulations/fin_audits_sanctions], ict_sec_050 [ict_management/ict_security]
+- occurrences=2 :: "the final authority to restore a deferred increment which requires assessing service improvement and conduct lies with the"
+  - fin_aud_012 [financial_regulations/fin_audits_sanctions], clg_lc_057 [constitutional_law/clg_legal_compliance]
+- occurrences=2 :: "what is the mandatory retirement age for all grades in the service"
+  - csh_ap_015 [civil_service_admin/csh_administrative_procedures], PSIR_067 [general_current_affairs/ca_public_service_reforms]
+- occurrences=2 :: "nigeria adopted the presidential system of government in which year"
+  - policy_constitution_002 [policy_analysis/pol_formulation_cycle], ca_general_012 [general_current_affairs/ca_general]
+- occurrences=2 :: "nigeria operates under how many tiers of government"
+  - policy_constitution_010 [policy_analysis/pol_formulation_cycle], ca_general_049 [general_current_affairs/ca_general]
+- occurrences=2 :: "nigeria joined the united nations in which year"
+  - policy_constitution_017 [policy_analysis/pol_formulation_cycle], ca_general_026 [general_current_affairs/ca_general]
+- occurrences=2 :: "who was nigeria s first civilian president"
+  - policy_constitution_019 [policy_analysis/pol_formulation_cycle], ca_general_047 [general_current_affairs/ca_general]
+- occurrences=2 :: "which nigerian leader introduced the structural adjustment programme sap in 1986"
+  - policy_constitution_021 [policy_analysis/pol_formulation_cycle], ca_general_019 [general_current_affairs/ca_general]
+- occurrences=2 :: "nigeria is a member of which regional economic community"
+  - policy_constitution_025 [policy_analysis/pol_formulation_cycle], ca_general_005 [general_current_affairs/ca_general]
+- occurrences=2 :: "which international organization is headquartered in abuja nigeria"
+  - policy_constitution_026 [policy_analysis/pol_formulation_cycle], ca_general_014 [general_current_affairs/ca_general]
+- occurrences=2 :: "nigeria is divided into how many geopolitical zones"
+  - policy_constitution_027 [policy_analysis/pol_formulation_cycle], ca_general_035 [general_current_affairs/ca_general]
+- occurrences=2 :: "which nigerian state is officially known as the centre of excellence"
+  - policy_states_001 [policy_analysis/pol_analysis_methods], ca_general_001 [general_current_affairs/ca_general]
+- occurrences=2 :: "which nigerian city is known as the coal city"
+  - policy_states_002 [policy_analysis/pol_analysis_methods], ca_general_003 [general_current_affairs/ca_general]
+- occurrences=2 :: "which nigerian state is called the gateway state"
+  - policy_states_003 [policy_analysis/pol_analysis_methods], ca_general_006 [general_current_affairs/ca_general]
+- occurrences=2 :: "what is the capital of nasarawa state"
+  - policy_states_004 [policy_analysis/pol_analysis_methods], ca_general_007 [general_current_affairs/ca_general]
+- occurrences=2 :: "which nigerian city is nicknamed tin city"
+  - policy_states_005 [policy_analysis/pol_analysis_methods], ca_general_008 [general_current_affairs/ca_general]
+- occurrences=2 :: "which nigerian state is called the land of equity"
+  - policy_states_006 [policy_analysis/pol_analysis_methods], ca_general_009 [general_current_affairs/ca_general]
+- occurrences=2 :: "which nigerian state is called the sunshine state"
+  - policy_states_007 [policy_analysis/pol_analysis_methods], ca_general_011 [general_current_affairs/ca_general]
+- occurrences=2 :: "which nigerian state is known as the land of promise"
+  - policy_states_008 [policy_analysis/pol_analysis_methods], ca_general_013 [general_current_affairs/ca_general]
+- occurrences=2 :: "what is the capital of borno state"
+  - policy_states_009 [policy_analysis/pol_analysis_methods], ca_general_015 [general_current_affairs/ca_general]
+- occurrences=2 :: "which nigerian state is nicknamed the food basket of the nation"
+  - policy_states_010 [policy_analysis/pol_analysis_methods], ca_general_016 [general_current_affairs/ca_general]
+- occurrences=2 :: "what is the capital of cross river state"
+  - policy_states_011 [policy_analysis/pol_analysis_methods], ca_general_017 [general_current_affairs/ca_general]
+- occurrences=2 :: "which nigerian state is nicknamed the home of peace"
+  - policy_states_012 [policy_analysis/pol_analysis_methods], ca_general_018 [general_current_affairs/ca_general]
+- occurrences=2 :: "what is the capital of kogi state"
+  - policy_states_013 [policy_analysis/pol_analysis_methods], ca_general_020 [general_current_affairs/ca_general]
+- occurrences=2 :: "which nigerian state is known as the confluence state"
+  - policy_states_014 [policy_analysis/pol_analysis_methods], ca_general_021 [general_current_affairs/ca_general]
+- occurrences=2 :: "what is the capital of gombe state"
+  - policy_states_015 [policy_analysis/pol_analysis_methods], ca_general_022 [general_current_affairs/ca_general]
+- occurrences=2 :: "which nigerian state is called the land of beauty"
+  - policy_states_016 [policy_analysis/pol_analysis_methods], ca_general_031 [general_current_affairs/ca_general]
+- occurrences=2 :: "which nigerian city is called the ancient city"
+  - policy_states_017 [policy_analysis/pol_analysis_methods], ca_general_032 [general_current_affairs/ca_general]
+- occurrences=2 :: "which nigerian state is nicknamed the hospitality state"
+  - policy_states_018 [policy_analysis/pol_analysis_methods], ca_general_034 [general_current_affairs/ca_general]
+- occurrences=2 :: "which nigerian city is the capital of anambra state"
+  - policy_states_019 [policy_analysis/pol_analysis_methods], ca_general_028 [general_current_affairs/ca_general]
+- occurrences=2 :: "which nigerian state is nicknamed the home of solid minerals"
+  - policy_states_020 [policy_analysis/pol_analysis_methods], ca_general_029 [general_current_affairs/ca_general]
+- occurrences=2 :: "what is the capital of yobe state"
+  - policy_states_021 [policy_analysis/pol_analysis_methods], ca_general_030 [general_current_affairs/ca_general]
+- occurrences=2 :: "which nigerian state is called the land of honour and integrity"
+  - policy_states_022 [policy_analysis/pol_analysis_methods], ca_general_037 [general_current_affairs/ca_general]
+- occurrences=2 :: "which nigerian city is the capital of katsina state"
+  - policy_states_023 [policy_analysis/pol_analysis_methods], ca_general_038 [general_current_affairs/ca_general]
+- occurrences=2 :: "which nigerian state is nicknamed the treasure base of the nation"
+  - policy_states_024 [policy_analysis/pol_analysis_methods], ca_general_039 [general_current_affairs/ca_general]
+- occurrences=2 :: "which nigerian city is called the ancient city of benin"
+  - policy_states_025 [policy_analysis/pol_analysis_methods], ca_general_040 [general_current_affairs/ca_general]
+- occurrences=2 :: "which nigerian state is nicknamed the land of courage"
+  - policy_states_026 [policy_analysis/pol_analysis_methods], ca_general_041 [general_current_affairs/ca_general]
+- occurrences=2 :: "which nigerian city is the capital of ebonyi state"
+  - policy_states_027 [policy_analysis/pol_analysis_methods], ca_general_042 [general_current_affairs/ca_general]
+- occurrences=2 :: "which nigerian state is called the home of peace and tourism"
+  - policy_states_028 [policy_analysis/pol_analysis_methods], ca_general_044 [general_current_affairs/ca_general]
+- occurrences=2 :: "which nigerian city is nicknamed the city of excellence"
+  - policy_states_029 [policy_analysis/pol_analysis_methods], ca_general_045 [general_current_affairs/ca_general]
+- occurrences=2 :: "which nigerian state is called the power state"
+  - policy_states_030 [policy_analysis/pol_analysis_methods], ca_general_046 [general_current_affairs/ca_general]
+- occurrences=2 :: "which nigerian state is called the salt of the nation"
+  - policy_states_031 [policy_analysis/pol_analysis_methods], ca_general_048 [general_current_affairs/ca_general]
+- occurrences=2 :: "what is the capital of niger state"
+  - policy_states_032 [policy_analysis/pol_analysis_methods], ca_general_050 [general_current_affairs/ca_general]
+- occurrences=2 :: "which nigerian city is nicknamed the garden city"
+  - policy_states_041 [policy_analysis/pol_analysis_methods], ca_general_036 [general_current_affairs/ca_general]
+- occurrences=2 :: "which nigerian city is called the centre of learning"
+  - policy_states_042 [policy_analysis/pol_analysis_methods], ca_general_025 [general_current_affairs/ca_general]
+- occurrences=2 :: "which nigerian state is called the big heart"
+  - policy_states_043 [policy_analysis/pol_analysis_methods], ca_general_027 [general_current_affairs/ca_general]
+- occurrences=2 :: "who is the current head of the civil service of the federation as of 2025"
+  - policy_current_001 [policy_analysis/pol_public_sector_planning], ca_general_002 [general_current_affairs/ca_general]
+- occurrences=2 :: "who is the current president of nigeria as of 2025"
+  - policy_current_002 [policy_analysis/pol_public_sector_planning], ca_general_004 [general_current_affairs/ca_general]
+- occurrences=2 :: "who is the current vice president of nigeria as of 2025"
+  - policy_current_003 [policy_analysis/pol_public_sector_planning], ca_general_023 [general_current_affairs/ca_general]
+- occurrences=2 :: "who is the current senate president of nigeria as of 2025"
+  - policy_current_004 [policy_analysis/pol_public_sector_planning], ca_general_033 [general_current_affairs/ca_general]
+- occurrences=2 :: "who is the current speaker of the house of representatives as of 2025"
+  - policy_current_005 [policy_analysis/pol_public_sector_planning], ca_general_043 [general_current_affairs/ca_general]
+- occurrences=2 :: "what is the current minimum wage in nigeria as of 2025"
+  - policy_current_006 [policy_analysis/pol_public_sector_planning], ca_general_010 [general_current_affairs/ca_general]

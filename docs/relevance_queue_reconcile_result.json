@@ -1,0 +1,100 @@
+{
+  "summary": {
+    "removed_leftovers": 12,
+    "files_changed": 6
+  },
+  "changed_files": [
+    "data/civil_service_ethics.json",
+    "data/constitutional_foi.json",
+    "data/financial_regulations.json",
+    "data/ict_digital.json",
+    "data/leadership_negotiation.json",
+    "data/public_procurement.json"
+  ],
+  "removals": [
+    {
+      "question_id": "clg_gc_088",
+      "source_topic": "constitutional_law",
+      "source_subcategory": "clg_general_competency",
+      "target_topic": "psr",
+      "question": "The three types of study leave listed in the PSR (Rule 120226) are Leave for In-Service Training, Study Leave without Pay, and:"
+    },
+    {
+      "question_id": "ict_li_065",
+      "source_topic": "ict_management",
+      "source_subcategory": "ict_literacy_innovation",
+      "target_topic": "psr",
+      "question": "The three types of study leave listed in the PSR (Rule 120226) are Leave for In-Service Training, Study Leave with Pay, and:"
+    },
+    {
+      "question_id": "csh_pt_033",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_performance_training",
+      "target_topic": "psr",
+      "question": "Which PSR rule allows for the **Sabbatical Appointment** of an officer on GL 15 and above?"
+    },
+    {
+      "question_id": "csh_pt_044",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_performance_training",
+      "target_topic": "psr",
+      "question": "What is the consequence if an officer fails to meet the minimum years required in a post before promotion eligibility (PSR 020802(c))?"
+    },
+    {
+      "question_id": "csh_ap_033",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_administrative_procedures",
+      "target_topic": "psr",
+      "question": "PSR Rule 120235 prohibits an officer on **leave of absence** from accepting:"
+    },
+    {
+      "question_id": "clg_gc_072",
+      "source_topic": "constitutional_law",
+      "source_subcategory": "clg_general_competency",
+      "target_topic": "financial_regulations",
+      "question": "The use of the Government Integrated Financial Management Information System (GIFMIS) primarily supports the financial management process by providing:"
+    },
+    {
+      "question_id": "clg_gc_092",
+      "source_topic": "constitutional_law",
+      "source_subcategory": "clg_general_competency",
+      "target_topic": "civil_service_admin",
+      "question": "Which chapter of the Civil Service Handbook provides grievance procedures to resolve disputes within the civil service?"
+    },
+    {
+      "question_id": "fin_pro_038",
+      "source_topic": "financial_regulations",
+      "source_subcategory": "fin_procurement",
+      "target_topic": "procurement_act",
+      "question": "What is the primary purpose of holding a public bid opening ceremony?"
+    },
+    {
+      "question_id": "ict_li_049",
+      "source_topic": "ict_management",
+      "source_subcategory": "ict_literacy_innovation",
+      "target_topic": "psr",
+      "question": "Which institution provides training and capacity development support for civil servants for career advancement beyond GL 10?"
+    },
+    {
+      "question_id": "ict_li_057",
+      "source_topic": "ict_management",
+      "source_subcategory": "ict_literacy_innovation",
+      "target_topic": "civil_service_admin",
+      "question": "Which of the following is NOT a core value of civil servants, according to the Civil Service Handbook?"
+    },
+    {
+      "question_id": "leadership_mpf_041",
+      "source_topic": "leadership_management",
+      "source_subcategory": "lead_management_performance",
+      "target_topic": "psr",
+      "question": "The three types of leave of absence (Rule 120236) include Leave of Absence to join spouse on grounds of public policy, and:"
+    },
+    {
+      "question_id": "ppa_ims_046",
+      "source_topic": "procurement_act",
+      "source_subcategory": "proc_implementation_sanctions",
+      "target_topic": "psr",
+      "question": "Unauthorized use of government transport facilities or allowances by an officer is classified under the PSR as:"
+    }
+  ]
+}

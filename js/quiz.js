@@ -354,7 +354,7 @@ function showQuestion() {
         button.className = "option-btn";
         button.innerHTML = `
                   <span class="option-letter">${String.fromCharCode(65 + index)}</span>
-                  ${parseMarkdown(option)}
+                  <div class="option-text">${parseMarkdown(option)}</div>
               `;
   
         // Different behavior based on mode
