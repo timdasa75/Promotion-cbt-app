@@ -51,26 +51,26 @@
                         <article class="card stat-card"><p>Current Streak</p><h3>6 days</h3><span class="badge-streak">On Track</span></article>
                     </div>
                     <div class="dashboard-grid two-col">
-                        <article class="card recommendation-card">
+                        <article class="card recommendation-card" id="resumeSessionCard">
                             <p class="eyebrow">Continue Last Session</p>
                             <h3>Public Service Rules</h3>
                             <p>18 of 40 questions answered in Practice Mode.</p>
-                            <button class="btn btn-secondary" type="button">Resume Session</button>
+                            <button class="btn btn-secondary" id="resumeSessionBtn" type="button">Resume Session</button>
                         </article>
-                        <article class="card recommendation-card emphasis">
+                        <article class="card recommendation-card emphasis" id="recommendedTopicCard">
                             <p class="eyebrow">Recommended Next Topic</p>
                             <h3>Financial Regulations</h3>
                             <p>Your weakest recent area: budget controls and treasury process.</p>
-                            <button class="btn btn-primary" type="button">Start Recommendation</button>
+                            <button class="btn btn-primary" id="startRecommendationBtn" type="button">Start Recommendation</button>
                         </article>
                     </div>
                     <div class="card">
                         <div class="toolbar-row">
                             <label class="search-wrap" for="topicSearch"><input id="topicSearch" type="search" placeholder="Search topics, laws, competencies" /></label>
                             <div class="chip-row" role="group" aria-label="Topic filters">
-                                <button class="chip active" type="button">Document-based</button>
-                                <button class="chip" type="button">Competency-based</button>
-                                <button class="chip" type="button">Recent</button>
+                                <button class="chip active" id="filterDocumentBtn" type="button">Document-based</button>
+                                <button class="chip" id="filterCompetencyBtn" type="button">Competency-based</button>
+                                <button class="chip" id="filterRecentBtn" type="button">Recent</button>
                             </div>
                         </div>
                     </div>
@@ -111,7 +111,7 @@
                         <div class="mode-grid">
                             <article class="mode-card" id="practiceModeCard" tabindex="0"><h3>Practice Mode</h3><p>Instant feedback with explanation panels.</p><p class="meta">Recommended: 20-30 minutes</p></article>
                             <article class="mode-card" id="examModeCard" tabindex="0"><h3>Exam Mode</h3><p>Timed attempt with no immediate answer reveal.</p><p class="meta">Recommended: 30-45 minutes</p></article>
-                            <article class="mode-card" id="reviewModeCard" tabindex="0"><h3>Review Mode</h3><p>Focus only on missed or uncertain questions.</p><p class="meta">Recommended: 15-20 minutes</p></article>
+                            <article class="mode-card" id="reviewModeCard" tabindex="0"><h3>Review Mode</h3><p>Pre-quiz study session with answers and explanations visible.</p><p class="meta">Recommended: 15-20 minutes</p></article>
                         </div>
                         <div class="button-row"><button class="btn btn-secondary" id="backToCategoryBtn" type="button">Back to Categories</button></div>
                     </div>
@@ -131,7 +131,7 @@
                             <div id="reviewFilters" class="chip-row">
                                 <button id="reviewAllBtn" class="chip" type="button">All</button>
                                 <button id="reviewCorrectBtn" class="chip" type="button">Correct</button>
-                                <button id="reviewIncorrectBtn" class="chip" type="button">Incorrect</button>
+                                <button id="reviewIncorrectBtn" class="chip" type="button">Wrong</button>
                                 <button id="reviewUnansweredBtn" class="chip" type="button">Unanswered</button>
                             </div>
                             <div id="reviewNavigator"></div>
@@ -166,7 +166,7 @@
                     <div class="card" id="categoryBreakdown"></div>
                     <div class="button-row">
                         <button class="btn btn-primary" id="retakeQuizBtn" type="button">Retake</button>
-                        <button class="btn btn-secondary" id="reviewAnswersBtn" type="button">Review Mistakes</button>
+                        <button class="btn btn-secondary" id="reviewAnswersBtn" type="button">Review Last Session</button>
                         <button class="btn btn-ghost hidden" id="reviewIncorrectResultsBtn" type="button">Review Incorrect</button>
                         <button class="btn btn-ghost" onclick="showScreen('topicSelectionScreen')" type="button">Dashboard</button>
                     </div>

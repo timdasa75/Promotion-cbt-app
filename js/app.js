@@ -1,7 +1,7 @@
 // app.js - Main application module
 
 import { loadData } from "./data.js";
-import { displayTopics, selectTopic, showError } from "./ui.js";
+import { displayTopics, selectTopic, showError, showWarning } from "./ui.js";
 import {
   loadQuestions,
   setCurrentTopic,
@@ -12,11 +12,15 @@ import {
 import { debugLog } from "./logger.js";
 
 let currentTopic = null;
+let cachedTopics = [];
+
+const PROGRESS_STORAGE_KEY = "cbt_progress_summary_v1";
 
 async function init() {
   try {
     debugLog("Initializing app...");
     const topicsData = await loadData();
+    cachedTopics = Array.isArray(topicsData) ? topicsData : [];
     debugLog("Loaded topics:", topicsData);
     if (!topicsData || topicsData.length === 0) {
       console.error("No topics loaded");
@@ -24,10 +28,144 @@ async function init() {
       return;
     }
     await displayTopics(topicsData, handleTopicSelect);
+    initializeDashboardActions();
     debugLog("Displayed topics");
   } catch (error) {
     console.error("Error initializing app:", error);
     showError("Failed to load quiz data. Please try again later.");
+  }
+}
+
+function classifyTopic(topic) {
+  const id = topic?.id || "";
+  const documentIds = new Set([
+    "psr",
+    "financial_regulations",
+    "procurement_act",
+    "constitutional_law",
+  ]);
+  const recentIds = new Set(["general_current_affairs"]);
+  if (recentIds.has(id)) return "recent";
+  if (id === "competency_framework") return "competency";
+  if (documentIds.has(id)) return "document";
+  return "competency";
+}
+
+function applyTopicFilter(filter) {
+  const topicCards = Array.from(document.querySelectorAll("#topicList .topic-card"));
+  if (!topicCards.length) return;
+
+  const chipMap = {
+    document: document.getElementById("filterDocumentBtn"),
+    competency: document.getElementById("filterCompetencyBtn"),
+    recent: document.getElementById("filterRecentBtn"),
+  };
+
+  Object.entries(chipMap).forEach(([key, chip]) => {
+    if (!chip) return;
+    chip.classList.toggle("active", key === filter);
+  });
+
+  topicCards.forEach((card, index) => {
+    const topic = cachedTopics[index];
+    const topicType = classifyTopic(topic);
+    card.classList.toggle("hidden", topicType !== filter);
+  });
+}
+
+function getLatestAttemptTopic() {
+  try {
+    const raw = localStorage.getItem(PROGRESS_STORAGE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    if (!parsed || !Array.isArray(parsed.attempts) || !parsed.attempts.length) {
+      return null;
+    }
+    const latestAttempt = parsed.attempts[parsed.attempts.length - 1];
+    return latestAttempt?.topicId || null;
+  } catch (error) {
+    return null;
+  }
+}
+
+async function resumeLastSession() {
+  if (!cachedTopics.length) {
+    showError("Topics are still loading. Please try again.");
+    return;
+  }
+
+  const lastTopicId = getLatestAttemptTopic();
+  const topic = cachedTopics.find((t) => t.id === lastTopicId) || cachedTopics[0];
+
+  if (!lastTopicId) {
+    showWarning("No previous session found yet. Starting with your first topic.");
+  }
+
+  await handleTopicSelect(topic);
+}
+
+async function startRecommendation() {
+  if (!cachedTopics.length) {
+    showError("Topics are still loading. Please try again.");
+    return;
+  }
+
+  const preferredIds = ["financial_regulations", "psr", "procurement_act"];
+  const topic =
+    cachedTopics.find((t) => preferredIds.includes(t.id)) || cachedTopics[0];
+
+  await handleTopicSelect(topic);
+}
+
+function initializeDashboardActions() {
+  const resumeBtn = document.getElementById("resumeSessionBtn");
+  const resumeCard = document.getElementById("resumeSessionCard");
+  const recommendationBtn = document.getElementById("startRecommendationBtn");
+  const recommendationCard = document.getElementById("recommendedTopicCard");
+  const filterDocumentBtn = document.getElementById("filterDocumentBtn");
+  const filterCompetencyBtn = document.getElementById("filterCompetencyBtn");
+  const filterRecentBtn = document.getElementById("filterRecentBtn");
+
+  if (resumeBtn) {
+    resumeBtn.addEventListener("click", () => {
+      resumeLastSession();
+    });
+  }
+  if (resumeCard) {
+    resumeCard.addEventListener("click", (event) => {
+      if (event.target.closest("button")) return;
+      resumeLastSession();
+    });
+  }
+
+  if (recommendationBtn) {
+    recommendationBtn.addEventListener("click", () => {
+      startRecommendation();
+    });
+  }
+  if (recommendationCard) {
+    recommendationCard.addEventListener("click", (event) => {
+      if (event.target.closest("button")) return;
+      startRecommendation();
+    });
+  }
+
+  if (filterDocumentBtn) {
+    filterDocumentBtn.addEventListener("click", () => {
+      applyTopicFilter("document");
+    });
+  }
+
+  if (filterCompetencyBtn) {
+    filterCompetencyBtn.addEventListener("click", () => {
+      applyTopicFilter("competency");
+    });
+  }
+
+  if (filterRecentBtn) {
+    filterRecentBtn.addEventListener("click", () => {
+      applyTopicFilter("recent");
+    });
   }
 }
 
@@ -63,7 +201,6 @@ function startQuiz(mode) {
 
 function initializeResultButtons() {
   const retakeQuizBtn = document.getElementById("retakeQuizBtn");
-  const reviewAnswersBtn = document.getElementById("reviewAnswersBtn");
 
   if (retakeQuizBtn) {
     retakeQuizBtn.addEventListener("click", () => {
@@ -71,14 +208,6 @@ function initializeResultButtons() {
         if (!retakeFullQuiz()) {
           startQuiz(getCurrentMode());
         }
-      }
-    });
-  }
-
-  if (reviewAnswersBtn) {
-    reviewAnswersBtn.addEventListener("click", () => {
-      if (currentTopic) {
-        startQuiz("review");
       }
     });
   }
