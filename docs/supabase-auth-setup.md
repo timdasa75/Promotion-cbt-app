@@ -82,7 +82,7 @@ to authenticated
 using (auth.uid() = id);
 ```
 
-Optional upsert policy if you want client-side updates later:
+Required upsert policy (needed so each logged-in user can create/update their own profile row, which powers admin user listing):
 
 ```sql
 create policy "Users can upsert own profile"
@@ -102,6 +102,67 @@ on conflict (id) do update set
   plan = excluded.plan,
   updated_at = now();
 ```
+
+## 6b. Admin Role + User Directory (Recommended)
+
+To power the in-app admin directory (`Users and Account Status`) in Cloud mode, extend `profiles`:
+
+```sql
+alter table public.profiles
+add column if not exists email text,
+add column if not exists role text not null default 'user' check (role in ('user','admin')),
+add column if not exists status text not null default 'active' check (status in ('active','suspended')),
+add column if not exists created_at timestamptz not null default now(),
+add column if not exists last_seen_at timestamptz;
+```
+
+Backfill email from `auth.users`:
+
+```sql
+update public.profiles p
+set email = u.email
+from auth.users u
+where p.id = u.id
+  and (p.email is null or p.email = '');
+```
+
+Create admin-read policy for directory view:
+
+```sql
+create policy "Admins can read all profiles"
+on public.profiles
+for select
+to authenticated
+using (
+  exists (
+    select 1
+    from public.profiles me
+    where me.id = auth.uid()
+      and me.role = 'admin'
+  )
+);
+```
+
+Assign main administrator:
+
+```sql
+update public.profiles
+set role = 'admin'
+where email = 'timdasa75@gmail.com';
+```
+
+Optional: ensure `status` defaults to active for existing rows:
+
+```sql
+update public.profiles
+set status = 'active'
+where status is null;
+```
+
+Note:
+- The app now includes `timdasa75@gmail.com` as a default frontend admin allow-list email.
+- On signup/login, the app now auto-upserts a user's `profiles` row (`id`, `email`, `plan`, `role`, `status`, `last_seen_at`).
+- Cloud directory still depends on Supabase RLS policy above; otherwise app falls back to local directory view.
 
 ## 7. Password Reset
 

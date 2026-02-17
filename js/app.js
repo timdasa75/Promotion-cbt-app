@@ -11,15 +11,20 @@ import {
 } from "./quiz.js";
 import { debugLog } from "./logger.js";
 import {
+  clearLocalPlanOverride,
   getAccessibleTopics,
+  getAdminUserDirectory,
   getAuthSummaryLabel,
   getAuthProviderLabel,
   getCurrentUser,
+  getLocalPlanOverrides,
   getProgressStorageKeyForCurrentUser,
+  isCurrentUserAdmin,
   loginUser,
   logoutUser,
   requestPasswordReset,
   registerUser,
+  setLocalPlanOverride,
 } from "./auth.js";
 
 let currentTopic = null;
@@ -27,6 +32,8 @@ let cachedTopics = [];
 let allTopics = [];
 let recommendedTopicId = null;
 let lastSessionTopicId = null;
+let adminDirectoryUsers = [];
+const UPGRADE_REQUESTS_STORAGE_KEY = "cbt_upgrade_requests_v1";
 
 async function init() {
   try {
@@ -69,6 +76,7 @@ function applyTopicFilter(filter) {
   if (!topicCards.length) return;
 
   const chipMap = {
+    all: document.getElementById("filterAllBtn"),
     document: document.getElementById("filterDocumentBtn"),
     competency: document.getElementById("filterCompetencyBtn"),
     recent: document.getElementById("filterRecentBtn"),
@@ -82,7 +90,8 @@ function applyTopicFilter(filter) {
   topicCards.forEach((card, index) => {
     const topic = cachedTopics[index];
     const topicType = classifyTopic(topic);
-    card.classList.toggle("hidden", topicType !== filter);
+    const shouldShow = filter === "all" || topicType === filter;
+    card.classList.toggle("hidden", !shouldShow);
   });
 }
 
@@ -111,6 +120,21 @@ function readProgressSummary() {
   } catch (error) {
     return { attempts: [] };
   }
+}
+
+function readUpgradeRequests() {
+  try {
+    const raw = localStorage.getItem(UPGRADE_REQUESTS_STORAGE_KEY);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch (error) {
+    return [];
+  }
+}
+
+function writeUpgradeRequests(requests) {
+  localStorage.setItem(UPGRADE_REQUESTS_STORAGE_KEY, JSON.stringify(requests || []));
 }
 
 function getTopicNameById(topicId) {
@@ -270,9 +294,11 @@ function initializeDashboardActions() {
   const resumeCard = document.getElementById("resumeSessionCard");
   const recommendationBtn = document.getElementById("startRecommendationBtn");
   const recommendationCard = document.getElementById("recommendedTopicCard");
+  const filterAllBtn = document.getElementById("filterAllBtn");
   const filterDocumentBtn = document.getElementById("filterDocumentBtn");
   const filterCompetencyBtn = document.getElementById("filterCompetencyBtn");
   const filterRecentBtn = document.getElementById("filterRecentBtn");
+  const openAdminBtn = document.getElementById("openAdminBtn");
 
   if (startLearningBtn) {
     startLearningBtn.addEventListener("click", () => {
@@ -330,6 +356,12 @@ function initializeDashboardActions() {
     });
   }
 
+  if (filterAllBtn) {
+    filterAllBtn.addEventListener("click", () => {
+      applyTopicFilter("all");
+    });
+  }
+
   if (filterDocumentBtn) {
     filterDocumentBtn.addEventListener("click", () => {
       applyTopicFilter("document");
@@ -345,6 +377,19 @@ function initializeDashboardActions() {
   if (filterRecentBtn) {
     filterRecentBtn.addEventListener("click", () => {
       applyTopicFilter("recent");
+    });
+  }
+
+  if (openAdminBtn) {
+    openAdminBtn.addEventListener("click", async () => {
+      if (!isCurrentUserAdmin()) {
+        showWarning("Admin access is restricted.");
+        return;
+      }
+      renderAdminRequests();
+      renderAdminOverrides();
+      await refreshAdminUserDirectory();
+      showScreen("adminScreen");
     });
   }
 }
@@ -448,6 +493,9 @@ function updateAuthUI() {
   const profileDisplayName = document.getElementById("profileDisplayName");
   const profileSubtitle = document.getElementById("profileSubtitle");
   const profileAvatar = document.getElementById("profileAvatar");
+  const accountMenuAdminBtn = document.getElementById("accountMenuAdminBtn");
+  const openAdminBtn = document.getElementById("openAdminBtn");
+  const isAdmin = isCurrentUserAdmin();
   if (authActionLabel) {
     authActionLabel.textContent = user ? getAuthSummaryLabel() : "Login";
   }
@@ -473,6 +521,223 @@ function updateAuthUI() {
       .map((part) => part[0]?.toUpperCase() || "")
       .join("");
     profileAvatar.textContent = initials || "GU";
+  }
+  if (accountMenuAdminBtn) {
+    accountMenuAdminBtn.classList.toggle("hidden", !isAdmin);
+  }
+  if (openAdminBtn) {
+    openAdminBtn.classList.toggle("hidden", !isAdmin);
+  }
+}
+
+function renderAdminOverrides() {
+  const container = document.getElementById("adminOverrideList");
+  if (!container) return;
+  container.innerHTML = "";
+  const overrides = getLocalPlanOverrides();
+  const entries = Object.entries(overrides);
+  if (!entries.length) {
+    container.innerHTML = '<div class="admin-request-item"><p class="meta">No local overrides yet.</p></div>';
+    return;
+  }
+
+  entries.forEach(([email, plan]) => {
+    const card = document.createElement("div");
+    card.className = "admin-request-item";
+    card.innerHTML = `
+      <div><strong>${email}</strong></div>
+      <div class="meta">Current override: <span class="admin-badge ${plan === "premium" ? "approved" : "pending"}">${plan}</span></div>
+      <div class="button-row">
+        <button class="btn btn-ghost" data-clear-email="${email}" type="button">Clear Override</button>
+      </div>
+    `;
+    const clearBtn = card.querySelector("[data-clear-email]");
+    if (clearBtn) {
+      clearBtn.addEventListener("click", async () => {
+        clearLocalPlanOverride(email);
+        updateAuthUI();
+        refreshDashboardInsights();
+        await refreshAccessibleTopics();
+        renderAdminOverrides();
+      });
+    }
+    container.appendChild(card);
+  });
+}
+
+function renderAdminRequests() {
+  const container = document.getElementById("adminRequestList");
+  if (!container) return;
+  const requests = readUpgradeRequests();
+  container.innerHTML = "";
+  if (!requests.length) {
+    container.innerHTML = '<div class="admin-request-item"><p class="meta">No upgrade requests submitted yet.</p></div>';
+    return;
+  }
+
+  requests
+    .slice()
+    .reverse()
+    .forEach((request) => {
+      const card = document.createElement("div");
+      card.className = "admin-request-item";
+      const statusClass =
+        request.status === "approved"
+          ? "approved"
+          : request.status === "rejected"
+            ? "rejected"
+            : "pending";
+      card.innerHTML = `
+        <div class="button-row">
+          <strong>${request.email}</strong>
+          <span class="admin-badge ${statusClass}">${request.status || "pending"}</span>
+        </div>
+        <div class="meta">Submitted: ${new Date(request.createdAt).toLocaleString()}</div>
+        <div class="meta">Ref: ${request.reference || "-"}</div>
+        <div class="meta">Amount: ${request.amount || "-"}</div>
+        <div class="meta">Note: ${request.note || "-"}</div>
+        <div class="button-row">
+          <button class="btn btn-secondary" data-approve-id="${request.id}" type="button">Approve</button>
+          <button class="btn btn-ghost" data-reject-id="${request.id}" type="button">Reject</button>
+        </div>
+      `;
+
+      const approveBtn = card.querySelector("[data-approve-id]");
+      const rejectBtn = card.querySelector("[data-reject-id]");
+      if (approveBtn) {
+        approveBtn.addEventListener("click", async () => {
+          const next = readUpgradeRequests().map((entry) =>
+            entry.id === request.id
+              ? { ...entry, status: "approved", reviewedAt: new Date().toISOString() }
+              : entry,
+          );
+          writeUpgradeRequests(next);
+          setLocalPlanOverride(request.email, "premium");
+          updateAuthUI();
+          refreshDashboardInsights();
+          await refreshAccessibleTopics();
+          renderAdminRequests();
+          renderAdminOverrides();
+        });
+      }
+      if (rejectBtn) {
+        rejectBtn.addEventListener("click", () => {
+          const next = readUpgradeRequests().map((entry) =>
+            entry.id === request.id
+              ? { ...entry, status: "rejected", reviewedAt: new Date().toISOString() }
+              : entry,
+          );
+          writeUpgradeRequests(next);
+          renderAdminRequests();
+        });
+      }
+      container.appendChild(card);
+    });
+}
+
+function formatDateTime(value) {
+  if (!value) return "-";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "-";
+  return date.toLocaleString();
+}
+
+function renderAdminUserDirectory() {
+  const container = document.getElementById("adminUserList");
+  const searchInput = document.getElementById("adminUserSearch");
+  const statusFilter = document.getElementById("adminStatusFilter");
+  const sourceLabel = document.getElementById("adminUserSource");
+  if (!container) return;
+
+  const query = String(searchInput?.value || "").trim().toLowerCase();
+  const status = String(statusFilter?.value || "all").toLowerCase();
+  const filtered = adminDirectoryUsers.filter((entry) => {
+    const emailMatch = !query || String(entry.email || "").toLowerCase().includes(query);
+    const statusMatch = status === "all" || entry.status === status;
+    return emailMatch && statusMatch;
+  });
+
+  container.innerHTML = "";
+  if (!filtered.length) {
+    container.innerHTML =
+      '<div class="admin-request-item"><p class="meta">No users match the current filter.</p></div>';
+    if (sourceLabel && !adminDirectoryUsers.length) {
+      sourceLabel.textContent = "Source: unavailable";
+    }
+    return;
+  }
+
+  const tableWrap = document.createElement("div");
+  tableWrap.className = "admin-table-wrap";
+
+  const table = document.createElement("table");
+  table.className = "admin-user-table";
+  table.innerHTML = `
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Plan</th>
+        <th>Status</th>
+        <th>Created</th>
+        <th>Last Seen</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  `;
+
+  const tbody = table.querySelector("tbody");
+  filtered.forEach((entry) => {
+    const row = document.createElement("tr");
+    const roleClass = entry.role === "admin" ? "approved" : "pending";
+    const planClass = entry.plan === "premium" ? "approved" : "pending";
+    const statusClass = entry.status === "suspended" ? "rejected" : "approved";
+    row.innerHTML = `
+      <td class="email-cell">${entry.email}</td>
+      <td><span class="admin-badge ${roleClass}">${entry.role}</span></td>
+      <td><span class="admin-badge ${planClass}">${entry.plan}</span></td>
+      <td><span class="admin-badge ${statusClass}">${entry.status}</span></td>
+      <td>${formatDateTime(entry.createdAt)}</td>
+      <td>${formatDateTime(entry.lastSeenAt)}</td>
+    `;
+    tbody.appendChild(row);
+  });
+
+  tableWrap.appendChild(table);
+  container.appendChild(tableWrap);
+}
+
+async function refreshAdminUserDirectory() {
+  if (!isCurrentUserAdmin()) return;
+  const notice = document.getElementById("adminUserDirectoryNotice");
+  const sourceLabel = document.getElementById("adminUserSource");
+  try {
+    const result = await getAdminUserDirectory();
+    adminDirectoryUsers = Array.isArray(result.users) ? result.users : [];
+    renderAdminUserDirectory();
+    if (sourceLabel) {
+      sourceLabel.textContent =
+        result.source === "cloud" ? "Source: Cloud profiles" : "Source: Local fallback";
+    }
+    if (notice) {
+      if (result.warning) {
+        notice.textContent = result.warning;
+        notice.classList.remove("hidden");
+      } else {
+        notice.textContent = "";
+        notice.classList.add("hidden");
+      }
+    }
+  } catch (error) {
+    adminDirectoryUsers = [];
+    renderAdminUserDirectory();
+    if (sourceLabel) {
+      sourceLabel.textContent = "Source: unavailable";
+    }
+    if (notice) {
+      notice.textContent = error.message || "Unable to load admin user directory.";
+      notice.classList.remove("hidden");
+    }
   }
 }
 
@@ -507,10 +772,16 @@ function initializeAuthUI() {
   const registerForm = document.getElementById("registerForm");
   const forgotPasswordBtn = document.getElementById("forgotPasswordBtn");
   const accountMenu = document.getElementById("accountMenu");
+  const accountMenuAdminBtn = document.getElementById("accountMenuAdminBtn");
   const accountMenuProfileBtn = document.getElementById("accountMenuProfileBtn");
   const accountMenuLogoutBtn = document.getElementById("accountMenuLogoutBtn");
   const changePasswordBtn = document.getElementById("changePasswordBtn");
   const profileLogoutBtn = document.getElementById("profileLogoutBtn");
+  const submitUpgradeEvidenceBtn = document.getElementById("submitUpgradeEvidenceBtn");
+  const applyPlanOverrideBtn = document.getElementById("applyPlanOverrideBtn");
+  const refreshAdminUsersBtn = document.getElementById("refreshAdminUsersBtn");
+  const adminUserSearch = document.getElementById("adminUserSearch");
+  const adminStatusFilter = document.getElementById("adminStatusFilter");
 
   if (authActionBtn) {
     authActionBtn.addEventListener("click", async () => {
@@ -538,6 +809,20 @@ function initializeAuthUI() {
     accountMenuProfileBtn.addEventListener("click", () => {
       closeAccountMenu();
       showScreen("profileScreen");
+    });
+  }
+
+  if (accountMenuAdminBtn) {
+    accountMenuAdminBtn.addEventListener("click", async () => {
+      closeAccountMenu();
+      if (!isCurrentUserAdmin()) {
+        showWarning("Admin access is restricted.");
+        return;
+      }
+      renderAdminRequests();
+      renderAdminOverrides();
+      await refreshAdminUserDirectory();
+      showScreen("adminScreen");
     });
   }
 
@@ -646,6 +931,76 @@ function initializeAuthUI() {
       await performLogout();
     });
   }
+
+  if (submitUpgradeEvidenceBtn) {
+    submitUpgradeEvidenceBtn.addEventListener("click", () => {
+      const user = getCurrentUser();
+      if (!user?.email) {
+        showWarning("Login is required before submitting upgrade evidence.");
+        return;
+      }
+      const reference = document.getElementById("upgradePaymentReference")?.value || "";
+      const amount = document.getElementById("upgradeAmountPaid")?.value || "";
+      const next = readUpgradeRequests();
+      next.push({
+        id: `req_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`,
+        email: user.email,
+        reference: String(reference).trim(),
+        amount: String(amount).trim(),
+        note: "Submitted from profile screen",
+        status: "pending",
+        createdAt: new Date().toISOString(),
+      });
+      writeUpgradeRequests(next);
+      showWarning("Upgrade evidence submitted. Admin review is pending.");
+      const refInput = document.getElementById("upgradePaymentReference");
+      const amtInput = document.getElementById("upgradeAmountPaid");
+      if (refInput) refInput.value = "";
+      if (amtInput) amtInput.value = "";
+      if (isCurrentUserAdmin()) {
+        renderAdminRequests();
+      }
+    });
+  }
+
+  if (applyPlanOverrideBtn) {
+    applyPlanOverrideBtn.addEventListener("click", async () => {
+      if (!isCurrentUserAdmin()) {
+        showWarning("Admin access is restricted.");
+        return;
+      }
+      const email = document.getElementById("adminOverrideEmail")?.value || "";
+      const plan = document.getElementById("adminOverridePlan")?.value || "free";
+      try {
+        setLocalPlanOverride(email, plan);
+        updateAuthUI();
+        refreshDashboardInsights();
+        await refreshAccessibleTopics();
+        renderAdminOverrides();
+        showWarning("Plan override applied.");
+      } catch (error) {
+        showError(error.message || "Failed to apply override.");
+      }
+    });
+  }
+
+  if (refreshAdminUsersBtn) {
+    refreshAdminUsersBtn.addEventListener("click", async () => {
+      await refreshAdminUserDirectory();
+    });
+  }
+
+  if (adminUserSearch) {
+    adminUserSearch.addEventListener("input", () => {
+      renderAdminUserDirectory();
+    });
+  }
+
+  if (adminStatusFilter) {
+    adminStatusFilter.addEventListener("change", () => {
+      renderAdminUserDirectory();
+    });
+  }
 }
 
 function initializeResultButtons() {
@@ -671,6 +1026,11 @@ document.addEventListener("DOMContentLoaded", function () {
   init();
   initializeResultButtons();
   refreshDashboardInsights();
+  if (isCurrentUserAdmin()) {
+    renderAdminRequests();
+    renderAdminOverrides();
+    refreshAdminUserDirectory();
+  }
 
   document.addEventListener("screenchange", (event) => {
     if (event?.detail?.screenId === "topicSelectionScreen") {

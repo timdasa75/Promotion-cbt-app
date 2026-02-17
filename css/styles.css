@@ -213,7 +213,7 @@ body {
 
 .screen {
     display: grid;
-    gap: var(--space-3);
+    gap: var(--space-4);
     animation: fade-up 0.26s ease;
 }
 
@@ -336,6 +336,10 @@ body {
     padding: var(--space-3);
     box-shadow: var(--shadow);
     margin-bottom: 0;
+}
+
+.card > * + * {
+    margin-top: var(--space-2);
 }
 
 .hero-panel {
@@ -562,6 +566,14 @@ body {
     align-items: center;
 }
 
+.button-row {
+    margin-top: var(--space-2);
+}
+
+.button-row.stacked {
+    margin-top: var(--space-3);
+}
+
 .search-wrap,
 .search-wrap input,
 select {
@@ -775,7 +787,7 @@ select:focus-visible,
     flex-direction: column;
     gap: var(--space-1);
     color: var(--ink-700);
-    margin-top: 8px;
+    margin-top: var(--space-2);
 }
 
 .quiz-shell {
@@ -1143,6 +1155,97 @@ select:focus-visible,
     border-radius: 12px;
     padding: var(--space-2);
     background: var(--card);
+}
+
+.admin-request-item {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--card);
+    padding: var(--space-2);
+    display: grid;
+    gap: 8px;
+}
+
+.admin-request-item .meta {
+    font-size: 0.84rem;
+    color: var(--ink-700);
+}
+
+.admin-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    border: 1px solid var(--line);
+}
+
+.admin-badge.pending {
+    color: var(--warning);
+    border-color: color-mix(in srgb, var(--warning) 45%, var(--line));
+    background: var(--warning-bg);
+}
+
+.admin-badge.approved {
+    color: var(--ok);
+    border-color: color-mix(in srgb, var(--ok) 45%, var(--line));
+    background: var(--ok-bg);
+}
+
+.admin-badge.rejected {
+    color: var(--danger);
+    border-color: color-mix(in srgb, var(--danger) 45%, var(--line));
+    background: var(--danger-bg);
+}
+
+.admin-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--card);
+}
+
+.admin-user-table {
+    width: 100%;
+    min-width: 760px;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.admin-user-table th,
+.admin-user-table td {
+    text-align: left;
+    vertical-align: top;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--line);
+}
+
+.admin-user-table th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--ink-600);
+    background: color-mix(in srgb, var(--surface) 88%, var(--card));
+}
+
+.admin-user-table tbody tr:nth-child(even) {
+    background: color-mix(in srgb, var(--card) 80%, var(--surface));
+}
+
+.admin-user-table tbody tr:hover {
+    background: color-mix(in srgb, var(--green-700) 10%, var(--surface));
+}
+
+.admin-user-table .email-cell {
+    font-weight: 600;
+    color: var(--ink-900);
+    white-space: nowrap;
 }
 
 .chart-placeholder {

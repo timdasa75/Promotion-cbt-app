@@ -31,6 +31,7 @@
                 supabaseUrl: "https://ezaxdtbiwitcxrpbujro.supabase.co",
                 supabaseAnonKey: "sb_publishable_LUxDCM6xBzRkDZXYIUbBMA_hymVl9YY",
             };
+            window.PROMOTION_CBT_ADMIN_EMAILS = window.PROMOTION_CBT_ADMIN_EMAILS || ["timdasa75@gmail.com"];
         </script>
         <div class="app-container">
             <header class="app-shell-header">
@@ -49,6 +50,7 @@
                         <span class="theme-icon">Light</span>
                     </button>
                     <div class="account-menu hidden" id="accountMenu">
+                        <button class="account-menu-item hidden" id="accountMenuAdminBtn" type="button">Admin Panel</button>
                         <button class="account-menu-item" id="accountMenuProfileBtn" type="button">Profile Settings</button>
                         <button class="account-menu-item danger" id="accountMenuLogoutBtn" type="button">Logout</button>
                     </div>
@@ -100,7 +102,8 @@
                         <div class="toolbar-row">
                             <label class="search-wrap" for="topicSearch"><input id="topicSearch" type="search" placeholder="Search topics, laws, competencies" /></label>
                             <div class="chip-row" role="group" aria-label="Topic filters">
-                                <button class="chip active" id="filterDocumentBtn" type="button">Document-based</button>
+                                <button class="chip active" id="filterAllBtn" type="button">All</button>
+                                <button class="chip" id="filterDocumentBtn" type="button">Document-based</button>
                                 <button class="chip" id="filterCompetencyBtn" type="button">Competency-based</button>
                                 <button class="chip" id="filterRecentBtn" type="button">Recent</button>
                             </div>
@@ -118,6 +121,7 @@
                         <button class="btn btn-ghost" onclick="showScreen('analyticsScreen')" type="button">Analytics</button>
                         <button class="btn btn-ghost" onclick="showScreen('reviewMistakesScreen')" type="button">Review Mistakes</button>
                         <button class="btn btn-ghost" onclick="showScreen('profileScreen')" type="button">Profile and Settings</button>
+                        <button class="btn btn-ghost hidden" id="openAdminBtn" type="button">Admin</button>
                         <button class="btn btn-ghost" onclick="showScreen('statesScreen')" type="button">Empty/Error States</button>
                     </div>
                 </section>
@@ -259,6 +263,17 @@
                         <article class="card">
                             <h2>Privacy and Data</h2>
                             <p class="inline-warning">Progress data is stored locally in this browser.</p>
+                            <div class="auth-form">
+                                <label class="auth-field">
+                                    <span>Payment Reference (Optional)</span>
+                                    <input id="upgradePaymentReference" type="text" placeholder="Bank transfer reference" />
+                                </label>
+                                <label class="auth-field">
+                                    <span>Amount Paid (Optional)</span>
+                                    <input id="upgradeAmountPaid" type="text" placeholder="e.g. 5000" />
+                                </label>
+                                <button class="btn btn-secondary" id="submitUpgradeEvidenceBtn" type="button">Submit Upgrade Evidence</button>
+                            </div>
                             <div class="button-row stacked"><button class="btn btn-secondary" type="button">Export Progress</button><button class="btn btn-destructive" type="button">Reset All Progress</button></div>
                         </article>
                     </div>
@@ -271,6 +286,63 @@
                         <article class="card state-card error"><h2>Network Error</h2><p>Unable to load content. Check your connection and retry.</p><button class="btn btn-secondary" type="button">Retry</button></article>
                     </div>
                     <div class="card warning-card"><h2>Partial Content Warning</h2><p class="inline-warning">Some data files are unavailable. Available categories will still load.</p></div>
+                    <div class="button-row"><button class="btn btn-ghost" onclick="showScreen('topicSelectionScreen')" type="button">Back</button></div>
+                </section>
+
+                <section id="adminScreen" class="screen hidden">
+                    <div class="card">
+                        <div class="section-head screen-header">
+                            <h2>Admin Panel</h2>
+                            <p>Manual subscription review and plan controls.</p>
+                        </div>
+                        <p class="inline-warning">This panel is for configured admin emails only.</p>
+                    </div>
+                    <div class="dashboard-grid two-col">
+                        <article class="card">
+                            <h3>Manual Upgrade Requests</h3>
+                            <p class="eyebrow">Bank transfer evidence queue</p>
+                            <div id="adminRequestList" class="mistake-list"></div>
+                        </article>
+                        <article class="card">
+                            <h3>Plan Override</h3>
+                            <p class="eyebrow">Apply immediate access updates</p>
+                            <div class="auth-form">
+                                <label class="auth-field">
+                                    <span>User Email</span>
+                                    <input id="adminOverrideEmail" type="email" placeholder="user@email.com" />
+                                </label>
+                                <label class="auth-field">
+                                    <span>Plan</span>
+                                    <select id="adminOverridePlan">
+                                        <option value="free">Free</option>
+                                        <option value="premium">Premium</option>
+                                    </select>
+                                </label>
+                                <button class="btn btn-primary" id="applyPlanOverrideBtn" type="button">Apply Override</button>
+                            </div>
+                            <div id="adminOverrideList" class="mistake-list"></div>
+                        </article>
+                    </div>
+                    <div class="card">
+                        <div class="section-head screen-header">
+                            <h3>Users and Account Status</h3>
+                            <p>Exclusive directory view for administrator accounts.</p>
+                        </div>
+                        <p class="hero-meta" id="adminUserSource">Source: loading...</p>
+                        <p class="inline-warning hidden" id="adminUserDirectoryNotice"></p>
+                        <div class="toolbar-row">
+                            <label class="search-wrap" for="adminUserSearch">
+                                <input id="adminUserSearch" type="search" placeholder="Search user email" />
+                            </label>
+                            <select id="adminStatusFilter" aria-label="Filter user status">
+                                <option value="all">All Statuses</option>
+                                <option value="active">Active</option>
+                                <option value="suspended">Suspended</option>
+                            </select>
+                            <button class="btn btn-secondary" id="refreshAdminUsersBtn" type="button">Refresh</button>
+                        </div>
+                        <div id="adminUserList" class="mistake-list"></div>
+                    </div>
                     <div class="button-row"><button class="btn btn-ghost" onclick="showScreen('topicSelectionScreen')" type="button">Back</button></div>
                 </section>
             </main>

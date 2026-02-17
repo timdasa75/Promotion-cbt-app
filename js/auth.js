@@ -2,6 +2,8 @@
 
 const USERS_STORAGE_KEY = "cbt_users_v1";
 const SESSION_STORAGE_KEY = "cbt_session_v1";
+const PLAN_OVERRIDES_STORAGE_KEY = "cbt_plan_overrides_v1";
+const DEFAULT_ADMIN_EMAILS = ["timdasa75@gmail.com"];
 
 const FREE_PLAN = {
   id: "free",
@@ -42,6 +44,21 @@ function readUsers() {
   } catch (error) {
     return [];
   }
+}
+
+function readPlanOverrides() {
+  try {
+    const raw = localStorage.getItem(PLAN_OVERRIDES_STORAGE_KEY);
+    if (!raw) return {};
+    const parsed = JSON.parse(raw);
+    return parsed && typeof parsed === "object" ? parsed : {};
+  } catch (error) {
+    return {};
+  }
+}
+
+function writePlanOverrides(overrides) {
+  localStorage.setItem(PLAN_OVERRIDES_STORAGE_KEY, JSON.stringify(overrides || {}));
 }
 
 function writeUsers(users) {
@@ -179,6 +196,14 @@ function sanitizeCloudUser(user) {
   };
 }
 
+function applyPlanOverrideForEmail(user) {
+  if (!user?.email) return user;
+  const overrides = readPlanOverrides();
+  const overridePlan = overrides[normalizeEmail(user.email)];
+  if (!overridePlan) return user;
+  return { ...user, plan: overridePlan };
+}
+
 function writeCloudSessionFromPayload(payload) {
   // Supabase can return either:
   // 1) { session: {...}, user: {...} } (e.g. signup)
@@ -257,6 +282,36 @@ async function syncCloudPlanInSession(session) {
   return updated;
 }
 
+async function ensureCloudProfileInSession(session) {
+  if (!session?.provider || session.provider !== "supabase") return session;
+  if (!session?.accessToken || !session?.user?.id || !session?.user?.email) {
+    return session;
+  }
+
+  const email = normalizeEmail(session.user.email);
+  const isAdmin = getConfiguredAdminEmails().includes(email);
+  const payload = {
+    id: session.user.id,
+    email,
+    plan: session.user.plan === "premium" ? "premium" : "free",
+    role: isAdmin ? "admin" : "user",
+    status: "active",
+    last_seen_at: new Date().toISOString(),
+  };
+
+  try {
+    await supabaseRestRequest("profiles?on_conflict=id", {
+      method: "POST",
+      accessToken: session.accessToken,
+      body: [payload],
+    });
+  } catch (error) {
+    // If profiles table/policies are not configured yet, continue without blocking auth.
+  }
+
+  return session;
+}
+
 async function refreshCloudUserInSession(session) {
   if (!session?.accessToken) return null;
   const payload = await supabaseRequest("user", {
@@ -265,7 +320,9 @@ async function refreshCloudUserInSession(session) {
   });
   const user = sanitizeCloudUser(payload);
   if (!user) return null;
-  const updated = await syncCloudPlanInSession({ ...session, user });
+  const sessionWithUser = { ...session, user };
+  await ensureCloudProfileInSession(sessionWithUser);
+  const updated = await syncCloudPlanInSession(sessionWithUser);
   writeSession(updated);
   return updated;
 }
@@ -299,6 +356,7 @@ async function registerUserCloud({ name, email, password }) {
   if (!saved) {
     throw new Error("Account created. Check your email to confirm before login.");
   }
+  await ensureCloudProfileInSession(saved);
   const synced = await syncCloudPlanInSession(saved);
   return synced.user;
 }
@@ -322,6 +380,7 @@ async function loginUserCloud({ email, password }) {
   if (!saved) {
     throw new Error("Login failed.");
   }
+  await ensureCloudProfileInSession(saved);
   const synced = await syncCloudPlanInSession(saved);
   return synced.user;
 }
@@ -467,12 +526,12 @@ export function getCurrentUser() {
     if (session.user && !session.user.plan && session.accessToken) {
       syncCloudPlanInSession(session).catch(() => {});
     }
-    return session.user || null;
+    return applyPlanOverrideForEmail(session.user || null);
   }
 
   const users = readUsers();
   const user = users.find((u) => u.id === session.userId);
-  return sanitizeUserLocal(user);
+  return applyPlanOverrideForEmail(sanitizeUserLocal(user));
 }
 
 export function isAuthenticated() {
@@ -482,6 +541,7 @@ export function isAuthenticated() {
 export function getCurrentEntitlement() {
   const user = getCurrentUser();
   if (!user) return FREE_PLAN;
+  if (isCurrentUserAdmin()) return PREMIUM_PLAN;
   return user.plan === "premium" ? PREMIUM_PLAN : FREE_PLAN;
 }
 
@@ -500,9 +560,156 @@ export function getProgressStorageKeyForCurrentUser() {
 export function getAuthSummaryLabel() {
   const user = getCurrentUser();
   if (!user) return "Login";
+  if (isCurrentUserAdmin()) return `${user.name} (Admin)`;
   return user.plan === "premium" ? `${user.name} (Premium)` : `${user.name} (Free)`;
 }
 
 export function getAuthProviderLabel() {
   return isCloudAuthEnabled() ? "Cloud" : "Local";
+}
+
+export function getLocalPlanOverrides() {
+  return readPlanOverrides();
+}
+
+export function setLocalPlanOverride(email, plan) {
+  const normalizedEmail = normalizeEmail(email);
+  if (!normalizedEmail || !normalizedEmail.includes("@")) {
+    throw new Error("Valid email is required.");
+  }
+  const normalizedPlan = String(plan || "").toLowerCase();
+  if (normalizedPlan !== "free" && normalizedPlan !== "premium") {
+    throw new Error("Plan must be free or premium.");
+  }
+  const overrides = readPlanOverrides();
+  overrides[normalizedEmail] = normalizedPlan;
+  writePlanOverrides(overrides);
+}
+
+export function clearLocalPlanOverride(email) {
+  const normalizedEmail = normalizeEmail(email);
+  const overrides = readPlanOverrides();
+  if (normalizedEmail in overrides) {
+    delete overrides[normalizedEmail];
+    writePlanOverrides(overrides);
+  }
+}
+
+export function getConfiguredAdminEmails() {
+  const configured = Array.isArray(window.PROMOTION_CBT_ADMIN_EMAILS)
+    ? window.PROMOTION_CBT_ADMIN_EMAILS
+    : [];
+  const normalized = [...DEFAULT_ADMIN_EMAILS, ...configured]
+    .map((entry) => normalizeEmail(entry))
+    .filter(Boolean);
+  return Array.from(new Set(normalized));
+}
+
+export function isCurrentUserAdmin() {
+  const user = getCurrentUser();
+  if (!user?.email) return false;
+  const adminEmails = getConfiguredAdminEmails();
+  return adminEmails.includes(normalizeEmail(user.email));
+}
+
+function buildLocalUserDirectory() {
+  const users = readUsers();
+  const overrides = readPlanOverrides();
+  const adminSet = new Set(getConfiguredAdminEmails());
+  const current = getCurrentUser();
+  const currentEmail = normalizeEmail(current?.email || "");
+  const currentPlan = current?.plan || "free";
+  const map = new Map();
+
+  users.forEach((user) => {
+    const email = normalizeEmail(user.email);
+    if (!email) return;
+    const overridePlan = overrides[email];
+    map.set(email, {
+      id: user.id || email,
+      email,
+      plan: overridePlan || user.plan || "free",
+      status: "active",
+      role: adminSet.has(email) ? "admin" : "user",
+      createdAt: user.createdAt || "",
+      lastSeenAt: "",
+      source: "local",
+    });
+  });
+
+  if (currentEmail && !map.has(currentEmail)) {
+    map.set(currentEmail, {
+      id: current?.id || currentEmail,
+      email: currentEmail,
+      plan: overrides[currentEmail] || currentPlan,
+      status: "active",
+      role: adminSet.has(currentEmail) ? "admin" : "user",
+      createdAt: current?.createdAt || "",
+      lastSeenAt: "",
+      source: "session",
+    });
+  }
+
+  return Array.from(map.values()).sort((a, b) => {
+    const aTime = Date.parse(a.createdAt || "") || 0;
+    const bTime = Date.parse(b.createdAt || "") || 0;
+    return bTime - aTime;
+  });
+}
+
+function normalizeDirectoryRow(row) {
+  const email = normalizeEmail(row?.email || "");
+  const role = String(row?.role || "user").toLowerCase();
+  const status = String(row?.status || "active").toLowerCase();
+  const plan = String(row?.plan || "free").toLowerCase();
+  return {
+    id: row?.id || email || `user_${Math.random().toString(36).slice(2, 8)}`,
+    email: email || "unknown@email",
+    role: role === "admin" ? "admin" : "user",
+    status: status === "suspended" ? "suspended" : "active",
+    plan: plan === "premium" ? "premium" : "free",
+    createdAt: row?.created_at || row?.createdAt || "",
+    lastSeenAt: row?.last_seen_at || row?.lastSeenAt || "",
+    source: "cloud",
+  };
+}
+
+export async function getAdminUserDirectory() {
+  if (!isCurrentUserAdmin()) {
+    throw new Error("Admin access is required.");
+  }
+
+  const session = readSession();
+  if (isCloudAuthEnabled() && session?.provider === "supabase" && session.accessToken) {
+    try {
+      const rows = await supabaseRestRequest(
+        "profiles?select=id,email,plan,role,status,created_at,last_seen_at&order=created_at.desc.nullslast",
+        {
+          method: "GET",
+          accessToken: session.accessToken,
+        },
+      );
+      if (!Array.isArray(rows)) {
+        throw new Error("Unexpected profiles response format.");
+      }
+      return {
+        users: rows.map(normalizeDirectoryRow),
+        source: "cloud",
+        warning: "",
+      };
+    } catch (error) {
+      return {
+        users: buildLocalUserDirectory(),
+        source: "local",
+        warning:
+          "Cloud user directory unavailable. Configure profiles table with email/role/status columns and admin read policy.",
+      };
+    }
+  }
+
+  return {
+    users: buildLocalUserDirectory(),
+    source: "local",
+    warning: "",
+  };
 }

@@ -401,10 +401,6 @@ function showQuestion() {
         if (quizState.userAnswers[originalQuestionIndex] !== undefined) {
           if (quizState.userAnswers[originalQuestionIndex] === index) {
             button.classList.add("selected");
-            // In exam and review modes, keep the button disabled after selection
-            if (currentMode === "exam") {
-              button.disabled = true;
-            }
           }
   
           // In practice and review modes, show correct/incorrect feedback
@@ -469,14 +465,9 @@ function selectOption(selectedIndex) {
   if (currentMode === "exam") {
     quizState.userAnswers[quizState.currentQuestionIndex] = selectedIndex;
 
-    // Disable all options to prevent changing answer
     const options = document.querySelectorAll(".option-btn");
-    options.forEach((option) => {
-      option.disabled = true;
-    });
-
-    // Mark selected option without showing if it's correct/incorrect
     options.forEach((option, index) => {
+      option.classList.remove("selected");
       if (index === selectedIndex) {
         option.classList.add("selected");
       }
@@ -554,13 +545,11 @@ function updateNavigation() {
       if (!prevButton.disabled) previousQuestion();
     };
   } else if (currentMode === "exam") {
-    // In exam mode, disable previous button after answering to prevent going back
-    prevButton.disabled =
-      quizState.userAnswers[quizState.currentQuestionIndex] !== undefined ||
-      quizState.currentQuestionIndex === 0;
+    // In exam mode, allow answer revision before final exam submission.
+    prevButton.disabled = quizState.currentQuestionIndex === 0;
     prevButton.setAttribute("aria-disabled", prevButton.disabled);
     prevButton.title = prevButton.disabled
-      ? "Cannot go back after answering"
+      ? "No previous question"
       : "Go to previous question";
 
     // Enable next button once an answer is selected
