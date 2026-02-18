@@ -35,6 +35,32 @@ function parseMarkdown(text) {
   return `<p>${html}</p>`;
 }
 
+function normalizeExplanationText(text) {
+  if (!text || typeof text !== "string") return "No explanation available.";
+
+  let normalized = text.trim();
+
+  // Remove answer-judgment lead-ins so rationale stays neutral for all outcomes.
+  normalized = normalized.replace(
+    /^(this\s+is\s+correct\s+because|this\s+is\s+incorrect\s+because|correct\s+because|incorrect\s+because)\s*/i,
+    "",
+  );
+  normalized = normalized.replace(/^(correct|incorrect)\s*[:.-]\s*/i, "");
+  normalized = normalized.replace(/^(this\s+means|this\s+is\s+because)\s*/i, "");
+
+  // Clean accidental duplicate punctuation and spacing artifacts from generated content.
+  normalized = normalized.replace(/\s{2,}/g, " ");
+  normalized = normalized.replace(/,\s*\./g, ".");
+  normalized = normalized.replace(/\.\s*\./g, ".");
+
+  normalized = normalized.trim();
+  if (!normalized) return "No explanation available.";
+
+  // Ensure sentence starts cleanly.
+  normalized = normalized.charAt(0).toUpperCase() + normalized.slice(1);
+  return normalized;
+}
+
 function clearOptionFeedbackLabel(optionEl) {
   if (!optionEl) return;
   const existing = optionEl.querySelector(".option-feedback-label");
@@ -841,9 +867,38 @@ function showExplanation() {
   if (!explanationDiv) return;
 
   const question = quizState.allQuestions[quizState.currentQuestionIndex];
+  const selectedIndex = quizState.userAnswers[quizState.currentQuestionIndex];
+  const hasAnswered = selectedIndex !== undefined;
+  const isCorrect = hasAnswered && selectedIndex === question.correct;
+  const correctLetter = String.fromCharCode(65 + question.correct);
+  const selectedLetter = hasAnswered ? String.fromCharCode(65 + selectedIndex) : null;
+  const selectedText = hasAnswered ? question.options?.[selectedIndex] || "" : "";
+  const correctText = question.options?.[question.correct] || "";
+
+  let statusPanel = "";
+  if (currentMode === "practice" && hasAnswered) {
+    statusPanel = `
+      <section class="feedback-status ${isCorrect ? "feedback-status-correct" : "feedback-status-incorrect"}">
+        <p class="feedback-verdict"><strong>${isCorrect ? "Correct response" : "Incorrect response"}</strong></p>
+        <p><strong>Your answer:</strong> Option ${selectedLetter} ${selectedText ? `- ${selectedText}` : ""}</p>
+        ${isCorrect ? "" : `<p><strong>Expected answer:</strong> Option ${correctLetter} ${correctText ? `- ${correctText}` : ""}</p>`}
+      </section>
+    `;
+  } else if (currentMode === "review") {
+    statusPanel = `
+      <section class="feedback-status">
+        <p class="feedback-verdict"><strong>Reference answer</strong></p>
+        <p><strong>Correct answer:</strong> Option ${correctLetter} ${correctText ? `- ${correctText}` : ""}</p>
+      </section>
+    `;
+  }
+
   explanationDiv.innerHTML = `
-        <h4>Explanation:</h4>
-        <p>${parseMarkdown(question.explanation || "No explanation available.")}</p>
+        <h4>Rationale</h4>
+        ${statusPanel}
+        <div class="explanation-body">${parseMarkdown(
+          normalizeExplanationText(question.explanation),
+        )}</div>
     `;
 }
 

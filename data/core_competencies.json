@@ -552,7 +552,7 @@
             "4 hours 0 minutes."
           ],
           "correct": 1,
-          "explanation": "Rates: A=1/6, B=1/8. Combined rate = 1/6 + 1/8 = (4+3)/24 = 7/24. Time = 24/7 hours = 3.428571... hours. 0.428571×60 ≈ 25.714 ≈ 26 minutes → 3h 26m.",
+          "explanation": "Rates: A=1/6, B=1/8. Combined rate = 1/6 + 1/8 = (4+3)/24 = 7/24. Time = 24/7 hours = 3.428571.. hours. 0.428571×60 ≈ 25.714 ≈ 26 minutes → 3h 26m.",
           "difficulty": "easy",
           "topic": "Competency Framework",
           "keywords": [
@@ -873,7 +873,7 @@
             "₦4,500.00."
           ],
           "correct": 1,
-          "explanation": "Hourly rate = 120,000 ÷ (22×8) = 120,000 ÷ 176 = ₦681.818... Overtime rate = 2×681.818 = ₦1,363.636... For 3 hours = 1,363.636×3 ≈ ₦4,090.91. (None of the options match — correct final ≈ ₦4,090.91).",
+          "explanation": "Hourly rate = 120,000 ÷ (22×8) = 120,000 ÷ 176 = ₦681.818.. Overtime rate = 2×681.818 = ₦1,363.636.. For 3 hours = 1,363.636×3 ≈ ₦4,090.91. (None of the options match — correct final ≈ ₦4,090.91).",
           "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
@@ -986,7 +986,7 @@
             "250."
           ],
           "correct": 2,
-          "explanation": "x + 3x = 4x = 800 ⇒ x = 800 ÷ 4 = 200.",
+          "explanation": "X + 3x = 4x = 800 ⇒ x = 800 ÷ 4 = 200.",
           "difficulty": "easy",
           "topic": "Competency Framework",
           "keywords": [
@@ -1078,7 +1078,7 @@
             "4.21%."
           ],
           "correct": 1,
-          "explanation": "Change = 800 − 760 = 40. % change = (40 ÷ 760)×100 = 5.263157... ≈ 5.26%.",
+          "explanation": "Change = 800 − 760 = 40. % change = (40 ÷ 760)×100 = 5.263157.. ≈ 5.26%.",
           "difficulty": "easy",
           "topic": "Competency Framework",
           "keywords": [
@@ -1152,7 +1152,7 @@
             "Prioritize convenience over policy and legal requirements."
           ],
           "correct": 0,
-          "explanation": "This is correct because apply approved numerical & mathematical reasoning procedures and maintain complete records. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
+          "explanation": "Apply approved numerical & mathematical reasoning procedures and maintain complete records. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
           "difficulty": "easy",
           "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
           "keywords": [
@@ -1173,7 +1173,7 @@
             "Close cases without validating facts or required records."
           ],
           "correct": 0,
-          "explanation": "This is correct because use lawful criteria and document each decision step transparently. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
+          "explanation": "Use lawful criteria and document each decision step transparently. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
           "difficulty": "medium",
           "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
           "keywords": [
@@ -1194,7 +1194,7 @@
             "Ignore feedback and continue non-compliant procedures."
           ],
           "correct": 0,
-          "explanation": "This is correct because identify control gaps early and escalate material exceptions promptly. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
+          "explanation": "Identify control gaps early and escalate material exceptions promptly. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
           "difficulty": "easy",
           "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
           "keywords": [
@@ -1215,7 +1215,7 @@
             "Rely on informal instructions without documentary evidence."
           ],
           "correct": 0,
-          "explanation": "This is correct because use quantitative evidence to support administrative decisions. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
+          "explanation": "Use quantitative evidence to support administrative decisions. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
           "difficulty": "medium",
           "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
           "keywords": [
@@ -1236,7 +1236,7 @@
             "Apply rules inconsistently based on personal preference."
           ],
           "correct": 0,
-          "explanation": "This is correct because interpret official text accurately before action. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
+          "explanation": "Interpret official text accurately before action. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
           "difficulty": "medium",
           "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
           "keywords": [
@@ -1257,7 +1257,7 @@
             "Delay decisions until issues escalate into avoidable crises."
           ],
           "correct": 0,
-          "explanation": "This is correct because evaluate alternatives using logic and evidence. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
+          "explanation": "Evaluate alternatives using logic and evidence. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
           "difficulty": "hard",
           "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
           "keywords": [
@@ -1278,7 +1278,7 @@
             "Bypass review and approval controls to save time."
           ],
           "correct": 0,
-          "explanation": "This is correct because break complex issues into testable and actionable parts. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
+          "explanation": "Break complex issues into testable and actionable parts. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
           "difficulty": "medium",
           "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
           "keywords": [
@@ -1299,7 +1299,7 @@
             "Treat exceptions as routine without documented justification."
           ],
           "correct": 0,
-          "explanation": "This is correct because present conclusions clearly with defensible rationale. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
+          "explanation": "Present conclusions clearly with defensible rationale. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
           "difficulty": "medium",
           "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
           "keywords": [
@@ -1320,7 +1320,7 @@
             "Prioritize convenience over policy and legal requirements."
           ],
           "correct": 0,
-          "explanation": "This is correct because follow documented procedure and keep complete records. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
+          "explanation": "Follow documented procedure and keep complete records. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
           "difficulty": "medium",
           "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
           "keywords": [
@@ -1341,7 +1341,7 @@
             "Close cases without validating facts or required records."
           ],
           "correct": 0,
-          "explanation": "This is correct because apply approved rules consistently and escalate exceptions. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
+          "explanation": "Apply approved rules consistently and escalate exceptions. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
           "difficulty": "easy",
           "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
           "keywords": [
@@ -1362,7 +1362,7 @@
             "Ignore feedback and continue non-compliant procedures."
           ],
           "correct": 0,
-          "explanation": "This is correct because provide traceable decisions and evidence-based justification. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
+          "explanation": "Provide traceable decisions and evidence-based justification. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
           "difficulty": "easy",
           "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
           "keywords": [
@@ -1383,7 +1383,7 @@
             "Rely on informal instructions without documentary evidence."
           ],
           "correct": 0,
-          "explanation": "This is correct because avoid conflicts of interest and disclose relevant constraints. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
+          "explanation": "Avoid conflicts of interest and disclose relevant constraints. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
           "difficulty": "hard",
           "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
           "keywords": [
@@ -1404,7 +1404,7 @@
             "Apply rules inconsistently based on personal preference."
           ],
           "correct": 0,
-          "explanation": "This is correct because identify risk early, apply controls, and document mitigation. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
+          "explanation": "Identify risk early, apply controls, and document mitigation. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
           "difficulty": "medium",
           "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
           "keywords": [
@@ -1425,7 +1425,7 @@
             "Delay decisions until issues escalate into avoidable crises."
           ],
           "correct": 0,
-          "explanation": "This is correct because use clear criteria and communicate decisions promptly. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
+          "explanation": "Use clear criteria and communicate decisions promptly. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
           "difficulty": "medium",
           "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
           "keywords": [
@@ -1446,7 +1446,7 @@
             "Bypass review and approval controls to save time."
           ],
           "correct": 0,
-          "explanation": "This is correct because follow approved workflows and verify outputs before closure. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
+          "explanation": "Follow approved workflows and verify outputs before closure. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
           "difficulty": "easy",
           "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
           "keywords": [
@@ -2610,7 +2610,7 @@
             "Prioritize convenience over policy and legal requirements."
           ],
           "correct": 0,
-          "explanation": "This is correct because apply approved verbal & analytical reasoning procedures and maintain complete records. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
+          "explanation": "Apply approved verbal & analytical reasoning procedures and maintain complete records. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
           "difficulty": "easy",
           "chapter": "Verbal & Analytical Reasoning - Expansion Set",
           "keywords": [
@@ -2631,7 +2631,7 @@
             "Close cases without validating facts or required records."
           ],
           "correct": 0,
-          "explanation": "This is correct because use lawful criteria and document each decision step transparently. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
+          "explanation": "Use lawful criteria and document each decision step transparently. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
           "difficulty": "easy",
           "chapter": "Verbal & Analytical Reasoning - Expansion Set",
           "keywords": [
@@ -2652,7 +2652,7 @@
             "Ignore feedback and continue non-compliant procedures."
           ],
           "correct": 0,
-          "explanation": "This is correct because identify control gaps early and escalate material exceptions promptly. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
+          "explanation": "Identify control gaps early and escalate material exceptions promptly. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
           "difficulty": "medium",
           "chapter": "Verbal & Analytical Reasoning - Expansion Set",
           "keywords": [
@@ -2673,7 +2673,7 @@
             "Rely on informal instructions without documentary evidence."
           ],
           "correct": 0,
-          "explanation": "This is correct because use quantitative evidence to support administrative decisions. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
+          "explanation": "Use quantitative evidence to support administrative decisions. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
           "difficulty": "medium",
           "chapter": "Verbal & Analytical Reasoning - Expansion Set",
           "keywords": [
@@ -2694,7 +2694,7 @@
             "Apply rules inconsistently based on personal preference."
           ],
           "correct": 0,
-          "explanation": "This is correct because interpret official text accurately before action. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
+          "explanation": "Interpret official text accurately before action. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
           "difficulty": "easy",
           "chapter": "Verbal & Analytical Reasoning - Expansion Set",
           "keywords": [
@@ -2715,7 +2715,7 @@
             "Delay decisions until issues escalate into avoidable crises."
           ],
           "correct": 0,
-          "explanation": "This is correct because evaluate alternatives using logic and evidence. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
+          "explanation": "Evaluate alternatives using logic and evidence. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
           "difficulty": "medium",
           "chapter": "Verbal & Analytical Reasoning - Expansion Set",
           "keywords": [
@@ -2736,7 +2736,7 @@
             "Bypass review and approval controls to save time."
           ],
           "correct": 0,
-          "explanation": "This is correct because break complex issues into testable and actionable parts. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
+          "explanation": "Break complex issues into testable and actionable parts. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
           "difficulty": "medium",
           "chapter": "Verbal & Analytical Reasoning - Expansion Set",
           "keywords": [
@@ -2757,7 +2757,7 @@
             "Treat exceptions as routine without documented justification."
           ],
           "correct": 0,
-          "explanation": "This is correct because present conclusions clearly with defensible rationale. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
+          "explanation": "Present conclusions clearly with defensible rationale. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
           "difficulty": "medium",
           "chapter": "Verbal & Analytical Reasoning - Expansion Set",
           "keywords": [
@@ -2778,7 +2778,7 @@
             "Prioritize convenience over policy and legal requirements."
           ],
           "correct": 0,
-          "explanation": "This is correct because follow documented procedure and keep complete records. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
+          "explanation": "Follow documented procedure and keep complete records. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
           "difficulty": "medium",
           "chapter": "Verbal & Analytical Reasoning - Expansion Set",
           "keywords": [
@@ -2799,7 +2799,7 @@
             "Close cases without validating facts or required records."
           ],
           "correct": 0,
-          "explanation": "This is correct because apply approved rules consistently and escalate exceptions. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
+          "explanation": "Apply approved rules consistently and escalate exceptions. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
           "difficulty": "medium",
           "chapter": "Verbal & Analytical Reasoning - Expansion Set",
           "keywords": [
@@ -2820,7 +2820,7 @@
             "Ignore feedback and continue non-compliant procedures."
           ],
           "correct": 0,
-          "explanation": "This is correct because provide traceable decisions and evidence-based justification. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
+          "explanation": "Provide traceable decisions and evidence-based justification. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
           "difficulty": "medium",
           "chapter": "Verbal & Analytical Reasoning - Expansion Set",
           "keywords": [
@@ -2841,7 +2841,7 @@
             "Rely on informal instructions without documentary evidence."
           ],
           "correct": 0,
-          "explanation": "This is correct because avoid conflicts of interest and disclose relevant constraints. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
+          "explanation": "Avoid conflicts of interest and disclose relevant constraints. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
           "difficulty": "medium",
           "chapter": "Verbal & Analytical Reasoning - Expansion Set",
           "keywords": [
@@ -2862,7 +2862,7 @@
             "Apply rules inconsistently based on personal preference."
           ],
           "correct": 0,
-          "explanation": "This is correct because identify risk early, apply controls, and document mitigation. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
+          "explanation": "Identify risk early, apply controls, and document mitigation. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
           "difficulty": "easy",
           "chapter": "Verbal & Analytical Reasoning - Expansion Set",
           "keywords": [
@@ -2883,7 +2883,7 @@
             "Delay decisions until issues escalate into avoidable crises."
           ],
           "correct": 0,
-          "explanation": "This is correct because use clear criteria and communicate decisions promptly. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
+          "explanation": "Use clear criteria and communicate decisions promptly. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
           "difficulty": "easy",
           "chapter": "Verbal & Analytical Reasoning - Expansion Set",
           "keywords": [
@@ -2904,7 +2904,7 @@
             "Bypass review and approval controls to save time."
           ],
           "correct": 0,
-          "explanation": "This is correct because follow approved workflows and verify outputs before closure. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
+          "explanation": "Follow approved workflows and verify outputs before closure. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
           "difficulty": "medium",
           "chapter": "Verbal & Analytical Reasoning - Expansion Set",
           "keywords": [

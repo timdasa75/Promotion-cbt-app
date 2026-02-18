@@ -316,7 +316,7 @@
             "Reprimand, subject to existing regulatory standards."
           ],
           "correct": 2,
-          "explanation": "Concealment of any of the facts... or any false statement... shall be regarded as sufficient grounds for non-employment or for subsequent termination of appointment without notice.",
+          "explanation": "Concealment of any of the facts.. or any false statement.. shall be regarded as sufficient grounds for non-employment or for subsequent termination of appointment without notice.",
           "difficulty": "easy",
           "chapter": "Statement on Appointment",
           "keywords": [
@@ -554,7 +554,7 @@
             "Six years total."
           ],
           "correct": 0,
-          "explanation": "A Director... shall compulsively retire upon serving eight years on the post; and a Permanent Secretary shall hold office for a term of four years and renewable for a further term of four years. (The Director rule mentions 8 years, while the PS rule mentions 4+4 years).",
+          "explanation": "A Director.. shall compulsively retire upon serving eight years on the post; and a Permanent Secretary shall hold office for a term of four years and renewable for a further term of four years. (The Director rule mentions 8 years, while the PS rule mentions 4+4 years).",
           "difficulty": "easy",
           "chapter": "Tenure Policy",
           "keywords": [
@@ -666,7 +666,7 @@
             "Only drivers attached exclusively to ministers and heads of agencies."
           ],
           "correct": 1,
-          "explanation": "Non-accident bonus shall be paid at the rate of N50,000.00 per annum, for drivers who are not involved in an accident... and have been driving for a period of not less than six months in a year.",
+          "explanation": "Non-accident bonus shall be paid at the rate of N50,000.00 per annum, for drivers who are not involved in an accident.. and have been driving for a period of not less than six months in a year.",
           "difficulty": "medium",
           "chapter": "Non-Accident Bonus",
           "keywords": [
@@ -685,7 +685,7 @@
             "Duty Tour Allowance."
           ],
           "correct": 2,
-          "explanation": "Rewards for each of the awards shall be in the form of certificates, letter of recommendation, engraved plaques or trophies, medals, cash gifts, sponsorship....",
+          "explanation": "Rewards for each of the awards shall be in the form of certificates, letter of recommendation, engraved plaques or trophies, medals, cash gifts, sponsorship..",
           "difficulty": "easy",
           "chapter": "Form of Reward",
           "keywords": [
@@ -704,7 +704,7 @@
             "To replace permanent staff with contract staff."
           ],
           "correct": 1,
-          "explanation": "Objectives of Staff Development... to enhance the knowledge, skills, attitude, effectiveness and efficiency of staff.",
+          "explanation": "Objectives of Staff Development.. to enhance the knowledge, skills, attitude, effectiveness and efficiency of staff.",
           "difficulty": "hard",
           "chapter": "Staff Development Objectives",
           "keywords": [
@@ -797,7 +797,7 @@
             "Within public service systems, sent to the national assembly in standard administrative workflow."
           ],
           "correct": 2,
-          "explanation": "All records generated during any of the phases of the annual Performance Management cycle... shall be administered in line with good administrative document and data management practices.",
+          "explanation": "All records generated during any of the phases of the annual Performance Management cycle.. shall be administered in line with good administrative document and data management practices.",
           "difficulty": "easy",
           "chapter": "Record Management",
           "keywords": [
@@ -909,7 +909,7 @@
             "Close cases without validating facts or required records."
           ],
           "correct": 0,
-          "explanation": "This is correct because use lawful criteria and document each decision step transparently. It strengthens compliance, consistency, and accountability in public service & institutional reforms.",
+          "explanation": "Use lawful criteria and document each decision step transparently. It strengthens compliance, consistency, and accountability in public service & institutional reforms.",
           "difficulty": "medium",
           "chapter": "Public Service & Institutional Reforms - Expansion Set",
           "keywords": [
@@ -930,7 +930,7 @@
             "Ignore feedback and continue non-compliant procedures."
           ],
           "correct": 0,
-          "explanation": "This is correct because identify control gaps early and escalate material exceptions promptly. It strengthens compliance, consistency, and accountability in public service & institutional reforms.",
+          "explanation": "Identify control gaps early and escalate material exceptions promptly. It strengthens compliance, consistency, and accountability in public service & institutional reforms.",
           "difficulty": "medium",
           "chapter": "Public Service & Institutional Reforms - Expansion Set",
           "keywords": [
@@ -951,7 +951,7 @@
             "Rely on informal instructions without documentary evidence."
           ],
           "correct": 0,
-          "explanation": "This is correct because interpret current developments through verified public sources. It strengthens compliance, consistency, and accountability in public service & institutional reforms.",
+          "explanation": "Interpret current developments through verified public sources. It strengthens compliance, consistency, and accountability in public service & institutional reforms.",
           "difficulty": "easy",
           "chapter": "Public Service & Institutional Reforms - Expansion Set",
           "keywords": [
@@ -972,7 +972,7 @@
             "Apply rules inconsistently based on personal preference."
           ],
           "correct": 0,
-          "explanation": "This is correct because track policy changes and implications for service delivery. It strengthens compliance, consistency, and accountability in public service & institutional reforms.",
+          "explanation": "Track policy changes and implications for service delivery. It strengthens compliance, consistency, and accountability in public service & institutional reforms.",
           "difficulty": "easy",
           "chapter": "Public Service & Institutional Reforms - Expansion Set",
           "keywords": [
@@ -993,7 +993,7 @@
             "Delay decisions until issues escalate into avoidable crises."
           ],
           "correct": 0,
-          "explanation": "This is correct because relate international events to national administrative priorities. It strengthens compliance, consistency, and accountability in public service & institutional reforms.",
+          "explanation": "Relate international events to national administrative priorities. It strengthens compliance, consistency, and accountability in public service & institutional reforms.",
           "difficulty": "easy",
           "chapter": "Public Service & Institutional Reforms - Expansion Set",
           "keywords": [
@@ -1014,7 +1014,7 @@
             "Bypass review and approval controls to save time."
           ],
           "correct": 0,
-          "explanation": "This is correct because differentiate verified updates from misinformation. It strengthens compliance, consistency, and accountability in public service & institutional reforms.",
+          "explanation": "Differentiate verified updates from misinformation. It strengthens compliance, consistency, and accountability in public service & institutional reforms.",
           "difficulty": "hard",
           "chapter": "Public Service & Institutional Reforms - Expansion Set",
           "keywords": [
@@ -1035,7 +1035,7 @@
             "Treat exceptions as routine without documented justification."
           ],
           "correct": 0,
-          "explanation": "This is correct because connect current affairs to public-sector responsibilities. It strengthens compliance, consistency, and accountability in public service & institutional reforms.",
+          "explanation": "Connect current affairs to public-sector responsibilities. It strengthens compliance, consistency, and accountability in public service & institutional reforms.",
           "difficulty": "medium",
           "chapter": "Public Service & Institutional Reforms - Expansion Set",
           "keywords": [
@@ -1056,7 +1056,7 @@
             "Prioritize convenience over policy and legal requirements."
           ],
           "correct": 0,
-          "explanation": "This is correct because follow documented procedure and keep complete records. It strengthens compliance, consistency, and accountability in public service & institutional reforms.",
+          "explanation": "Follow documented procedure and keep complete records. It strengthens compliance, consistency, and accountability in public service & institutional reforms.",
           "difficulty": "easy",
           "chapter": "Public Service & Institutional Reforms - Expansion Set",
           "keywords": [
@@ -1077,7 +1077,7 @@
             "Close cases without validating facts or required records."
           ],
           "correct": 0,
-          "explanation": "This is correct because apply approved rules consistently and escalate exceptions. It strengthens compliance, consistency, and accountability in public service & institutional reforms.",
+          "explanation": "Apply approved rules consistently and escalate exceptions. It strengthens compliance, consistency, and accountability in public service & institutional reforms.",
           "difficulty": "hard",
           "chapter": "Public Service & Institutional Reforms - Expansion Set",
           "keywords": [
@@ -1098,7 +1098,7 @@
             "Ignore feedback and continue non-compliant procedures."
           ],
           "correct": 0,
-          "explanation": "This is correct because provide traceable decisions and evidence-based justification. It strengthens compliance, consistency, and accountability in public service & institutional reforms.",
+          "explanation": "Provide traceable decisions and evidence-based justification. It strengthens compliance, consistency, and accountability in public service & institutional reforms.",
           "difficulty": "medium",
           "chapter": "Public Service & Institutional Reforms - Expansion Set",
           "keywords": [
@@ -1119,7 +1119,7 @@
             "Rely on informal instructions without documentary evidence."
           ],
           "correct": 0,
-          "explanation": "This is correct because avoid conflicts of interest and disclose relevant constraints. It strengthens compliance, consistency, and accountability in public service & institutional reforms.",
+          "explanation": "Avoid conflicts of interest and disclose relevant constraints. It strengthens compliance, consistency, and accountability in public service & institutional reforms.",
           "difficulty": "medium",
           "chapter": "Public Service & Institutional Reforms - Expansion Set",
           "keywords": [
@@ -1140,7 +1140,7 @@
             "Apply rules inconsistently based on personal preference."
           ],
           "correct": 0,
-          "explanation": "This is correct because identify risk early, apply controls, and document mitigation. It strengthens compliance, consistency, and accountability in public service & institutional reforms.",
+          "explanation": "Identify risk early, apply controls, and document mitigation. It strengthens compliance, consistency, and accountability in public service & institutional reforms.",
           "difficulty": "hard",
           "chapter": "Public Service & Institutional Reforms - Expansion Set",
           "keywords": [
@@ -1161,7 +1161,7 @@
             "Delay decisions until issues escalate into avoidable crises."
           ],
           "correct": 0,
-          "explanation": "This is correct because use clear criteria and communicate decisions promptly. It strengthens compliance, consistency, and accountability in public service & institutional reforms.",
+          "explanation": "Use clear criteria and communicate decisions promptly. It strengthens compliance, consistency, and accountability in public service & institutional reforms.",
           "difficulty": "medium",
           "chapter": "Public Service & Institutional Reforms - Expansion Set",
           "keywords": [
@@ -1182,7 +1182,7 @@
             "Bypass review and approval controls to save time."
           ],
           "correct": 0,
-          "explanation": "This is correct because follow approved workflows and verify outputs before closure. It strengthens compliance, consistency, and accountability in public service & institutional reforms.",
+          "explanation": "Follow approved workflows and verify outputs before closure. It strengthens compliance, consistency, and accountability in public service & institutional reforms.",
           "difficulty": "easy",
           "chapter": "Public Service & Institutional Reforms - Expansion Set",
           "keywords": [
@@ -1203,7 +1203,7 @@
             "Treat exceptions as routine without documented justification."
           ],
           "correct": 0,
-          "explanation": "This is correct because balance legality, fairness, timeliness, and service quality. It strengthens compliance, consistency, and accountability in public service & institutional reforms.",
+          "explanation": "Balance legality, fairness, timeliness, and service quality. It strengthens compliance, consistency, and accountability in public service & institutional reforms.",
           "difficulty": "easy",
           "chapter": "Public Service & Institutional Reforms - Expansion Set",
           "keywords": [
@@ -1224,7 +1224,7 @@
             "Prioritize convenience over policy and legal requirements."
           ],
           "correct": 0,
-          "explanation": "This is correct because maintain accurate files and update status at each control point. It strengthens compliance, consistency, and accountability in public service & institutional reforms.",
+          "explanation": "Maintain accurate files and update status at each control point. It strengthens compliance, consistency, and accountability in public service & institutional reforms.",
           "difficulty": "medium",
           "chapter": "Public Service & Institutional Reforms - Expansion Set",
           "keywords": [
@@ -1245,7 +1245,7 @@
             "Close cases without validating facts or required records."
           ],
           "correct": 0,
-          "explanation": "This is correct because set measurable targets, monitor progress, and correct deviations. It strengthens compliance, consistency, and accountability in public service & institutional reforms.",
+          "explanation": "Set measurable targets, monitor progress, and correct deviations. It strengthens compliance, consistency, and accountability in public service & institutional reforms.",
           "difficulty": "medium",
           "chapter": "Public Service & Institutional Reforms - Expansion Set",
           "keywords": [
@@ -1266,7 +1266,7 @@
             "Rely on informal instructions without documentary evidence."
           ],
           "correct": 0,
-          "explanation": "This is correct because use lawful criteria and document each decision step transparently. It strengthens compliance, consistency, and accountability in public service & institutional reforms.",
+          "explanation": "Use lawful criteria and document each decision step transparently. It strengthens compliance, consistency, and accountability in public service & institutional reforms.",
           "difficulty": "medium",
           "chapter": "Public Service & Institutional Reforms - Expansion Set",
           "keywords": [
@@ -1287,7 +1287,7 @@
             "Apply rules inconsistently based on personal preference."
           ],
           "correct": 0,
-          "explanation": "This is correct because identify control gaps early and escalate material exceptions promptly. It strengthens compliance, consistency, and accountability in public service & institutional reforms.",
+          "explanation": "Identify control gaps early and escalate material exceptions promptly. It strengthens compliance, consistency, and accountability in public service & institutional reforms.",
           "difficulty": "easy",
           "chapter": "Public Service & Institutional Reforms - Expansion Set",
           "keywords": [
@@ -1308,7 +1308,7 @@
             "Delay decisions until issues escalate into avoidable crises."
           ],
           "correct": 0,
-          "explanation": "This is correct because interpret current developments through verified public sources. It strengthens compliance, consistency, and accountability in public service & institutional reforms.",
+          "explanation": "Interpret current developments through verified public sources. It strengthens compliance, consistency, and accountability in public service & institutional reforms.",
           "difficulty": "medium",
           "chapter": "Public Service & Institutional Reforms - Expansion Set",
           "keywords": [
@@ -1329,7 +1329,7 @@
             "Bypass review and approval controls to save time."
           ],
           "correct": 0,
-          "explanation": "This is correct because track policy changes and implications for service delivery. It strengthens compliance, consistency, and accountability in public service & institutional reforms.",
+          "explanation": "Track policy changes and implications for service delivery. It strengthens compliance, consistency, and accountability in public service & institutional reforms.",
           "difficulty": "medium",
           "chapter": "Public Service & Institutional Reforms - Expansion Set",
           "keywords": [
@@ -1350,7 +1350,7 @@
             "Treat exceptions as routine without documented justification."
           ],
           "correct": 0,
-          "explanation": "This is correct because relate international events to national administrative priorities. It strengthens compliance, consistency, and accountability in public service & institutional reforms.",
+          "explanation": "Relate international events to national administrative priorities. It strengthens compliance, consistency, and accountability in public service & institutional reforms.",
           "difficulty": "hard",
           "chapter": "Public Service & Institutional Reforms - Expansion Set",
           "keywords": [
@@ -1371,7 +1371,7 @@
             "Prioritize convenience over policy and legal requirements."
           ],
           "correct": 0,
-          "explanation": "This is correct because differentiate verified updates from misinformation. It strengthens compliance, consistency, and accountability in public service & institutional reforms.",
+          "explanation": "Differentiate verified updates from misinformation. It strengthens compliance, consistency, and accountability in public service & institutional reforms.",
           "difficulty": "medium",
           "chapter": "Public Service & Institutional Reforms - Expansion Set",
           "keywords": [
@@ -1392,7 +1392,7 @@
             "Apply discretionary shortcuts to accelerate closure regardless of controls."
           ],
           "correct": 1,
-          "explanation": "This is correct because rely on credible official sources and confirm facts before conclusions.",
+          "explanation": "Rely on credible official sources and confirm facts before conclusions.",
           "difficulty": "easy",
           "topic": "Public Service & Institutional Reforms",
           "keywords": [
@@ -1413,7 +1413,7 @@
             "Treat exceptions as normal practice without written justification."
           ],
           "correct": 0,
-          "explanation": "This is correct because rely on credible official sources and confirm facts before conclusions.",
+          "explanation": "Rely on credible official sources and confirm facts before conclusions.",
           "difficulty": "hard",
           "topic": "Public Service & Institutional Reforms",
           "keywords": [
@@ -1434,7 +1434,7 @@
             "Rely on credible official sources and confirm facts before conclusions."
           ],
           "correct": 3,
-          "explanation": "This is correct because rely on credible official sources and confirm facts before conclusions.",
+          "explanation": "Rely on credible official sources and confirm facts before conclusions.",
           "difficulty": "medium",
           "topic": "Public Service & Institutional Reforms",
           "keywords": [
@@ -1455,7 +1455,7 @@
             "Delay documentation until after implementation."
           ],
           "correct": 0,
-          "explanation": "This is correct because use verified official sources and state implications for public service.",
+          "explanation": "Use verified official sources and state implications for public service.",
           "difficulty": "medium",
           "topic": "Public Service & Institutional Reforms",
           "keywords": [
@@ -1651,7 +1651,7 @@
             "Termination."
           ],
           "correct": 2,
-          "explanation": "Interdiction means the temporary removal of an officer... during which he shall be placed on half salary.",
+          "explanation": "Interdiction means the temporary removal of an officer.. during which he shall be placed on half salary.",
           "difficulty": "medium",
           "chapter": "General Definitions",
           "keywords": [
@@ -1763,7 +1763,7 @@
             "The National Assembly."
           ],
           "correct": 1,
-          "explanation": "Security of Government data/information... shall be conducted in line with the Guidelines prescribed from time to time by the Federal Ministry of Communications and Digital Economy.",
+          "explanation": "Security of Government data/information.. shall be conducted in line with the Guidelines prescribed from time to time by the Federal Ministry of Communications and Digital Economy.",
           "difficulty": "medium",
           "chapter": "Security of Data (Virtual Meetings)",
           "keywords": [
@@ -1820,7 +1820,7 @@
             "Publish them immediately, subject to existing regulatory standards."
           ],
           "correct": 1,
-          "explanation": "Historical manuscripts... shall not be appropriated to his own use, but their existence must be reported to Permanent Secretary/ Head of Extra Ministerial Office in order that steps may be taken for their examination and preservation.",
+          "explanation": "Historical manuscripts.. shall not be appropriated to his own use, but their existence must be reported to Permanent Secretary/ Head of Extra Ministerial Office in order that steps may be taken for their examination and preservation.",
           "difficulty": "medium",
           "chapter": "Historical Documents",
           "keywords": [
@@ -1933,7 +1933,7 @@
             "A temporary transfer to a non-sensitive post, subject to existing regulatory standards."
           ],
           "correct": 2,
-          "explanation": "Suspension means removal of an Officer from performing the duties of his office... during which period he shall earn no salary.",
+          "explanation": "Suspension means removal of an Officer from performing the duties of his office.. during which period he shall earn no salary.",
           "difficulty": "medium",
           "chapter": "General Definitions",
           "keywords": [
@@ -2044,7 +2044,7 @@
             "Three months."
           ],
           "correct": 0,
-          "explanation": "All decisions on deferment or withholding of increment and stoppage of salaries shall be communicated... to the Officer concerned within two weeks.",
+          "explanation": "All decisions on deferment or withholding of increment and stoppage of salaries shall be communicated.. to the Officer concerned within two weeks.",
           "difficulty": "easy",
           "chapter": "Communication of Deferment",
           "keywords": [
@@ -2155,7 +2155,7 @@
             "Half of their pension."
           ],
           "correct": 1,
-          "explanation": "The ultimate penalty for serious misconduct is dismissal. An Officer who is dismissed forfeits all claims to retiring benefits, leave or transport grant etc..",
+          "explanation": "The ultimate penalty for serious misconduct is dismissal. An Officer who is dismissed forfeits all claims to retiring benefits, leave or transport grant etc.",
           "difficulty": "easy",
           "chapter": "Dismissal Effects",
           "keywords": [
@@ -2174,7 +2174,7 @@
             "Board/Council."
           ],
           "correct": 1,
-          "explanation": "The Board/Council of a parastatal shall approve promotion in respect of Senior Staff... while the promotion in respect of junior staff shall be delegated to Chief Executive Officer of the Agency on the recommendation of Junior Staff Committee.",
+          "explanation": "The Board/Council of a parastatal shall approve promotion in respect of Senior Staff.. while the promotion in respect of junior staff shall be delegated to Chief Executive Officer of the Agency on the recommendation of Junior Staff Committee.",
           "difficulty": "hard",
           "chapter": "Parastatal Staffing",
           "keywords": [
@@ -2230,7 +2230,7 @@
             "A personal letter of apology, subject to existing regulatory standards."
           ],
           "correct": 2,
-          "explanation": "Any prolonged absence from duty on ground of illness should be supported with... Medical Certificate of Treatment duly authorized by an approved Healthcare Provider.",
+          "explanation": "Any prolonged absence from duty on ground of illness should be supported with.. Medical Certificate of Treatment duly authorized by an approved Healthcare Provider.",
           "difficulty": "medium",
           "chapter": "Absence on Account of Illness",
           "keywords": [
@@ -2399,7 +2399,7 @@
             "Close cases without validating facts or required records."
           ],
           "correct": 0,
-          "explanation": "This is correct because use lawful criteria and document each decision step transparently. It strengthens compliance, consistency, and accountability in national governance & policy developments.",
+          "explanation": "Use lawful criteria and document each decision step transparently. It strengthens compliance, consistency, and accountability in national governance & policy developments.",
           "difficulty": "easy",
           "chapter": "National Governance & Policy Developments - Expansion Set",
           "keywords": [
@@ -2420,7 +2420,7 @@
             "Ignore feedback and continue non-compliant procedures."
           ],
           "correct": 0,
-          "explanation": "This is correct because identify control gaps early and escalate material exceptions promptly. It strengthens compliance, consistency, and accountability in national governance & policy developments.",
+          "explanation": "Identify control gaps early and escalate material exceptions promptly. It strengthens compliance, consistency, and accountability in national governance & policy developments.",
           "difficulty": "easy",
           "chapter": "National Governance & Policy Developments - Expansion Set",
           "keywords": [
@@ -2441,7 +2441,7 @@
             "Rely on informal instructions without documentary evidence."
           ],
           "correct": 0,
-          "explanation": "This is correct because interpret current developments through verified public sources. It strengthens compliance, consistency, and accountability in national governance & policy developments.",
+          "explanation": "Interpret current developments through verified public sources. It strengthens compliance, consistency, and accountability in national governance & policy developments.",
           "difficulty": "easy",
           "chapter": "National Governance & Policy Developments - Expansion Set",
           "keywords": [
@@ -2462,7 +2462,7 @@
             "Apply rules inconsistently based on personal preference."
           ],
           "correct": 0,
-          "explanation": "This is correct because track policy changes and implications for service delivery. It strengthens compliance, consistency, and accountability in national governance & policy developments.",
+          "explanation": "Track policy changes and implications for service delivery. It strengthens compliance, consistency, and accountability in national governance & policy developments.",
           "difficulty": "medium",
           "chapter": "National Governance & Policy Developments - Expansion Set",
           "keywords": [
@@ -2483,7 +2483,7 @@
             "Delay decisions until issues escalate into avoidable crises."
           ],
           "correct": 0,
-          "explanation": "This is correct because relate international events to national administrative priorities. It strengthens compliance, consistency, and accountability in national governance & policy developments.",
+          "explanation": "Relate international events to national administrative priorities. It strengthens compliance, consistency, and accountability in national governance & policy developments.",
           "difficulty": "medium",
           "chapter": "National Governance & Policy Developments - Expansion Set",
           "keywords": [
@@ -2504,7 +2504,7 @@
             "Bypass review and approval controls to save time."
           ],
           "correct": 0,
-          "explanation": "This is correct because differentiate verified updates from misinformation. It strengthens compliance, consistency, and accountability in national governance & policy developments.",
+          "explanation": "Differentiate verified updates from misinformation. It strengthens compliance, consistency, and accountability in national governance & policy developments.",
           "difficulty": "easy",
           "chapter": "National Governance & Policy Developments - Expansion Set",
           "keywords": [
@@ -2525,7 +2525,7 @@
             "Treat exceptions as routine without documented justification."
           ],
           "correct": 0,
-          "explanation": "This is correct because connect current affairs to public-sector responsibilities. It strengthens compliance, consistency, and accountability in national governance & policy developments.",
+          "explanation": "Connect current affairs to public-sector responsibilities. It strengthens compliance, consistency, and accountability in national governance & policy developments.",
           "difficulty": "medium",
           "chapter": "National Governance & Policy Developments - Expansion Set",
           "keywords": [
@@ -2546,7 +2546,7 @@
             "Prioritize convenience over policy and legal requirements."
           ],
           "correct": 0,
-          "explanation": "This is correct because follow documented procedure and keep complete records. It strengthens compliance, consistency, and accountability in national governance & policy developments.",
+          "explanation": "Follow documented procedure and keep complete records. It strengthens compliance, consistency, and accountability in national governance & policy developments.",
           "difficulty": "medium",
           "chapter": "National Governance & Policy Developments - Expansion Set",
           "keywords": [
@@ -2567,7 +2567,7 @@
             "Close cases without validating facts or required records."
           ],
           "correct": 0,
-          "explanation": "This is correct because apply approved rules consistently and escalate exceptions. It strengthens compliance, consistency, and accountability in national governance & policy developments.",
+          "explanation": "Apply approved rules consistently and escalate exceptions. It strengthens compliance, consistency, and accountability in national governance & policy developments.",
           "difficulty": "easy",
           "chapter": "National Governance & Policy Developments - Expansion Set",
           "keywords": [
@@ -2588,7 +2588,7 @@
             "Ignore feedback and continue non-compliant procedures."
           ],
           "correct": 0,
-          "explanation": "This is correct because provide traceable decisions and evidence-based justification. It strengthens compliance, consistency, and accountability in national governance & policy developments.",
+          "explanation": "Provide traceable decisions and evidence-based justification. It strengthens compliance, consistency, and accountability in national governance & policy developments.",
           "difficulty": "easy",
           "chapter": "National Governance & Policy Developments - Expansion Set",
           "keywords": [
@@ -2609,7 +2609,7 @@
             "Rely on informal instructions without documentary evidence."
           ],
           "correct": 0,
-          "explanation": "This is correct because avoid conflicts of interest and disclose relevant constraints. It strengthens compliance, consistency, and accountability in national governance & policy developments.",
+          "explanation": "Avoid conflicts of interest and disclose relevant constraints. It strengthens compliance, consistency, and accountability in national governance & policy developments.",
           "difficulty": "hard",
           "chapter": "National Governance & Policy Developments - Expansion Set",
           "keywords": [
@@ -2630,7 +2630,7 @@
             "Apply rules inconsistently based on personal preference."
           ],
           "correct": 0,
-          "explanation": "This is correct because identify risk early, apply controls, and document mitigation. It strengthens compliance, consistency, and accountability in national governance & policy developments.",
+          "explanation": "Identify risk early, apply controls, and document mitigation. It strengthens compliance, consistency, and accountability in national governance & policy developments.",
           "difficulty": "medium",
           "chapter": "National Governance & Policy Developments - Expansion Set",
           "keywords": [
@@ -2651,7 +2651,7 @@
             "Delay decisions until issues escalate into avoidable crises."
           ],
           "correct": 0,
-          "explanation": "This is correct because use clear criteria and communicate decisions promptly. It strengthens compliance, consistency, and accountability in national governance & policy developments.",
+          "explanation": "Use clear criteria and communicate decisions promptly. It strengthens compliance, consistency, and accountability in national governance & policy developments.",
           "difficulty": "hard",
           "chapter": "National Governance & Policy Developments - Expansion Set",
           "keywords": [
@@ -2672,7 +2672,7 @@
             "Bypass review and approval controls to save time."
           ],
           "correct": 0,
-          "explanation": "This is correct because follow approved workflows and verify outputs before closure. It strengthens compliance, consistency, and accountability in national governance & policy developments.",
+          "explanation": "Follow approved workflows and verify outputs before closure. It strengthens compliance, consistency, and accountability in national governance & policy developments.",
           "difficulty": "easy",
           "chapter": "National Governance & Policy Developments - Expansion Set",
           "keywords": [
@@ -2693,7 +2693,7 @@
             "Treat exceptions as routine without documented justification."
           ],
           "correct": 0,
-          "explanation": "This is correct because balance legality, fairness, timeliness, and service quality. It strengthens compliance, consistency, and accountability in national governance & policy developments.",
+          "explanation": "Balance legality, fairness, timeliness, and service quality. It strengthens compliance, consistency, and accountability in national governance & policy developments.",
           "difficulty": "easy",
           "chapter": "National Governance & Policy Developments - Expansion Set",
           "keywords": [
@@ -2714,7 +2714,7 @@
             "Prioritize convenience over policy and legal requirements."
           ],
           "correct": 0,
-          "explanation": "This is correct because maintain accurate files and update status at each control point. It strengthens compliance, consistency, and accountability in national governance & policy developments.",
+          "explanation": "Maintain accurate files and update status at each control point. It strengthens compliance, consistency, and accountability in national governance & policy developments.",
           "difficulty": "easy",
           "chapter": "National Governance & Policy Developments - Expansion Set",
           "keywords": [
@@ -2735,7 +2735,7 @@
             "Close cases without validating facts or required records."
           ],
           "correct": 0,
-          "explanation": "This is correct because set measurable targets, monitor progress, and correct deviations. It strengthens compliance, consistency, and accountability in national governance & policy developments.",
+          "explanation": "Set measurable targets, monitor progress, and correct deviations. It strengthens compliance, consistency, and accountability in national governance & policy developments.",
           "difficulty": "hard",
           "chapter": "National Governance & Policy Developments - Expansion Set",
           "keywords": [
@@ -2756,7 +2756,7 @@
             "Rely on informal instructions without documentary evidence."
           ],
           "correct": 0,
-          "explanation": "This is correct because use lawful criteria and document each decision step transparently. It strengthens compliance, consistency, and accountability in national governance & policy developments.",
+          "explanation": "Use lawful criteria and document each decision step transparently. It strengthens compliance, consistency, and accountability in national governance & policy developments.",
           "difficulty": "medium",
           "chapter": "National Governance & Policy Developments - Expansion Set",
           "keywords": [
@@ -2777,7 +2777,7 @@
             "Apply rules inconsistently based on personal preference."
           ],
           "correct": 0,
-          "explanation": "This is correct because identify control gaps early and escalate material exceptions promptly. It strengthens compliance, consistency, and accountability in national governance & policy developments.",
+          "explanation": "Identify control gaps early and escalate material exceptions promptly. It strengthens compliance, consistency, and accountability in national governance & policy developments.",
           "difficulty": "hard",
           "chapter": "National Governance & Policy Developments - Expansion Set",
           "keywords": [
@@ -2798,7 +2798,7 @@
             "Delay decisions until issues escalate into avoidable crises."
           ],
           "correct": 0,
-          "explanation": "This is correct because interpret current developments through verified public sources. It strengthens compliance, consistency, and accountability in national governance & policy developments.",
+          "explanation": "Interpret current developments through verified public sources. It strengthens compliance, consistency, and accountability in national governance & policy developments.",
           "difficulty": "easy",
           "chapter": "National Governance & Policy Developments - Expansion Set",
           "keywords": [
@@ -2819,7 +2819,7 @@
             "Bypass review and approval controls to save time."
           ],
           "correct": 0,
-          "explanation": "This is correct because track policy changes and implications for service delivery. It strengthens compliance, consistency, and accountability in national governance & policy developments.",
+          "explanation": "Track policy changes and implications for service delivery. It strengthens compliance, consistency, and accountability in national governance & policy developments.",
           "difficulty": "easy",
           "chapter": "National Governance & Policy Developments - Expansion Set",
           "keywords": [
@@ -2840,7 +2840,7 @@
             "Treat exceptions as routine without documented justification."
           ],
           "correct": 0,
-          "explanation": "This is correct because relate international events to national administrative priorities. It strengthens compliance, consistency, and accountability in national governance & policy developments.",
+          "explanation": "Relate international events to national administrative priorities. It strengthens compliance, consistency, and accountability in national governance & policy developments.",
           "difficulty": "medium",
           "chapter": "National Governance & Policy Developments - Expansion Set",
           "keywords": [
@@ -2861,7 +2861,7 @@
             "Prioritize convenience over policy and legal requirements."
           ],
           "correct": 0,
-          "explanation": "This is correct because differentiate verified updates from misinformation. It strengthens compliance, consistency, and accountability in national governance & policy developments.",
+          "explanation": "Differentiate verified updates from misinformation. It strengthens compliance, consistency, and accountability in national governance & policy developments.",
           "difficulty": "easy",
           "chapter": "National Governance & Policy Developments - Expansion Set",
           "keywords": [
@@ -2882,7 +2882,7 @@
             "Bypass review checkpoints where timelines are tight."
           ],
           "correct": 2,
-          "explanation": "This is correct because rely on credible official sources and confirm facts before conclusions.",
+          "explanation": "Rely on credible official sources and confirm facts before conclusions.",
           "difficulty": "easy",
           "topic": "National Governance & Policy Developments",
           "keywords": [
@@ -2903,7 +2903,7 @@
             "Proceed without validating source records and decision criteria."
           ],
           "correct": 0,
-          "explanation": "This is correct because rely on credible official sources and confirm facts before conclusions.",
+          "explanation": "Rely on credible official sources and confirm facts before conclusions.",
           "difficulty": "medium",
           "topic": "National Governance & Policy Developments",
           "keywords": [
@@ -2924,7 +2924,7 @@
             "Use inconsistent criteria across similar cases in the same period."
           ],
           "correct": 0,
-          "explanation": "This is correct because rely on credible official sources and confirm facts before conclusions.",
+          "explanation": "Rely on credible official sources and confirm facts before conclusions.",
           "difficulty": "easy",
           "topic": "National Governance & Policy Developments",
           "keywords": [
@@ -3285,7 +3285,7 @@
             "The officer must have served 20 years."
           ],
           "correct": 1,
-          "explanation": "Government will bear the expenses... provided that a Nigerian Officer urgently needs a specialist attention outside that country, certified by the Head of Mission based on medical opinion.",
+          "explanation": "Government will bear the expenses.. provided that a Nigerian Officer urgently needs a specialist attention outside that country, certified by the Head of Mission based on medical opinion.",
           "difficulty": "easy",
           "chapter": "Overseas Medical Treatment",
           "keywords": [
@@ -3472,7 +3472,7 @@
             "No children."
           ],
           "correct": 2,
-          "explanation": "An Officer proceeding or returning from an overseas posting... is eligible for free air passage or sea passage as laid down in the Public Service Rules or extant Circulars for self, wife and four children.",
+          "explanation": "An Officer proceeding or returning from an overseas posting.. is eligible for free air passage or sea passage as laid down in the Public Service Rules or extant Circulars for self, wife and four children.",
           "difficulty": "medium",
           "chapter": "Overseas Posting Passage",
           "keywords": [
@@ -3545,7 +3545,7 @@
             "Overseeing discipline of all public officers, subject to existing regulatory standards."
           ],
           "correct": 2,
-          "explanation": "Functions of the National Council on Establishment: ensures periodic review/update of the Schemes of Service; approves new cadres....",
+          "explanation": "Functions of the National Council on Establishment: ensures periodic review/update of the Schemes of Service; approves new cadres..",
           "difficulty": "medium",
           "chapter": "NCE Functions",
           "keywords": [
@@ -3563,7 +3563,7 @@
             "The National Assembly."
           ],
           "correct": 1,
-          "explanation": "Security of Government data/information... shall be conducted in line with the Guidelines prescribed from time to time by the Federal Ministry of Communications and Digital Economy.",
+          "explanation": "Security of Government data/information.. shall be conducted in line with the Guidelines prescribed from time to time by the Federal Ministry of Communications and Digital Economy.",
           "difficulty": "medium",
           "chapter": "Security of Data (Virtual Meetings)",
           "keywords": [
@@ -3600,7 +3600,7 @@
             "Publish them immediately, subject to existing regulatory standards."
           ],
           "correct": 1,
-          "explanation": "Historical manuscripts... shall not be appropriated to his own use, but their existence must be reported to Permanent Secretary/ Head of Extra Ministerial Office in order that steps may be taken for their examination and preservation.",
+          "explanation": "Historical manuscripts.. shall not be appropriated to his own use, but their existence must be reported to Permanent Secretary/ Head of Extra Ministerial Office in order that steps may be taken for their examination and preservation.",
           "difficulty": "medium",
           "chapter": "Historical Documents",
           "keywords": [
@@ -3638,7 +3638,7 @@
             "Three months."
           ],
           "correct": 0,
-          "explanation": "All decisions on deferment or withholding of increment and stoppage of salaries shall be communicated... to the Officer concerned within two weeks.",
+          "explanation": "All decisions on deferment or withholding of increment and stoppage of salaries shall be communicated.. to the Officer concerned within two weeks.",
           "difficulty": "medium",
           "chapter": "Communication of Deferment",
           "keywords": [
@@ -3657,7 +3657,7 @@
             "Prioritize convenience over policy and legal requirements."
           ],
           "correct": 0,
-          "explanation": "This is correct because apply approved international & regional affairs procedures and maintain complete records. It strengthens compliance, consistency, and accountability in international & regional affairs.",
+          "explanation": "Apply approved international & regional affairs procedures and maintain complete records. It strengthens compliance, consistency, and accountability in international & regional affairs.",
           "difficulty": "medium",
           "chapter": "International & Regional Affairs - Expansion Set",
           "keywords": [
@@ -3678,7 +3678,7 @@
             "Close cases without validating facts or required records."
           ],
           "correct": 0,
-          "explanation": "This is correct because use lawful criteria and document each decision step transparently. It strengthens compliance, consistency, and accountability in international & regional affairs.",
+          "explanation": "Use lawful criteria and document each decision step transparently. It strengthens compliance, consistency, and accountability in international & regional affairs.",
           "difficulty": "hard",
           "chapter": "International & Regional Affairs - Expansion Set",
           "keywords": [
@@ -3699,7 +3699,7 @@
             "Ignore feedback and continue non-compliant procedures."
           ],
           "correct": 0,
-          "explanation": "This is correct because identify control gaps early and escalate material exceptions promptly. It strengthens compliance, consistency, and accountability in international & regional affairs.",
+          "explanation": "Identify control gaps early and escalate material exceptions promptly. It strengthens compliance, consistency, and accountability in international & regional affairs.",
           "difficulty": "medium",
           "chapter": "International & Regional Affairs - Expansion Set",
           "keywords": [
@@ -3720,7 +3720,7 @@
             "Rely on informal instructions without documentary evidence."
           ],
           "correct": 0,
-          "explanation": "This is correct because interpret current developments through verified public sources. It strengthens compliance, consistency, and accountability in international & regional affairs.",
+          "explanation": "Interpret current developments through verified public sources. It strengthens compliance, consistency, and accountability in international & regional affairs.",
           "difficulty": "easy",
           "chapter": "International & Regional Affairs - Expansion Set",
           "keywords": [
@@ -3741,7 +3741,7 @@
             "Apply rules inconsistently based on personal preference."
           ],
           "correct": 0,
-          "explanation": "This is correct because track policy changes and implications for service delivery. It strengthens compliance, consistency, and accountability in international & regional affairs.",
+          "explanation": "Track policy changes and implications for service delivery. It strengthens compliance, consistency, and accountability in international & regional affairs.",
           "difficulty": "easy",
           "chapter": "International & Regional Affairs - Expansion Set",
           "keywords": [
@@ -3762,7 +3762,7 @@
             "Delay decisions until issues escalate into avoidable crises."
           ],
           "correct": 0,
-          "explanation": "This is correct because relate international events to national administrative priorities. It strengthens compliance, consistency, and accountability in international & regional affairs.",
+          "explanation": "Relate international events to national administrative priorities. It strengthens compliance, consistency, and accountability in international & regional affairs.",
           "difficulty": "easy",
           "chapter": "International & Regional Affairs - Expansion Set",
           "keywords": [
@@ -3783,7 +3783,7 @@
             "Bypass review and approval controls to save time."
           ],
           "correct": 0,
-          "explanation": "This is correct because differentiate verified updates from misinformation. It strengthens compliance, consistency, and accountability in international & regional affairs.",
+          "explanation": "Differentiate verified updates from misinformation. It strengthens compliance, consistency, and accountability in international & regional affairs.",
           "difficulty": "easy",
           "chapter": "International & Regional Affairs - Expansion Set",
           "keywords": [
@@ -3804,7 +3804,7 @@
             "Treat exceptions as routine without documented justification."
           ],
           "correct": 0,
-          "explanation": "This is correct because connect current affairs to public-sector responsibilities. It strengthens compliance, consistency, and accountability in international & regional affairs.",
+          "explanation": "Connect current affairs to public-sector responsibilities. It strengthens compliance, consistency, and accountability in international & regional affairs.",
           "difficulty": "easy",
           "chapter": "International & Regional Affairs - Expansion Set",
           "keywords": [
@@ -3825,7 +3825,7 @@
             "Prioritize convenience over policy and legal requirements."
           ],
           "correct": 0,
-          "explanation": "This is correct because follow documented procedure and keep complete records. It strengthens compliance, consistency, and accountability in international & regional affairs.",
+          "explanation": "Follow documented procedure and keep complete records. It strengthens compliance, consistency, and accountability in international & regional affairs.",
           "difficulty": "hard",
           "chapter": "International & Regional Affairs - Expansion Set",
           "keywords": [
@@ -3846,7 +3846,7 @@
             "Close cases without validating facts or required records."
           ],
           "correct": 0,
-          "explanation": "This is correct because apply approved rules consistently and escalate exceptions. It strengthens compliance, consistency, and accountability in international & regional affairs.",
+          "explanation": "Apply approved rules consistently and escalate exceptions. It strengthens compliance, consistency, and accountability in international & regional affairs.",
           "difficulty": "medium",
           "chapter": "International & Regional Affairs - Expansion Set",
           "keywords": [
@@ -3867,7 +3867,7 @@
             "Ignore feedback and continue non-compliant procedures."
           ],
           "correct": 0,
-          "explanation": "This is correct because provide traceable decisions and evidence-based justification. It strengthens compliance, consistency, and accountability in international & regional affairs.",
+          "explanation": "Provide traceable decisions and evidence-based justification. It strengthens compliance, consistency, and accountability in international & regional affairs.",
           "difficulty": "medium",
           "chapter": "International & Regional Affairs - Expansion Set",
           "keywords": [
@@ -3888,7 +3888,7 @@
             "Rely on informal instructions without documentary evidence."
           ],
           "correct": 0,
-          "explanation": "This is correct because avoid conflicts of interest and disclose relevant constraints. It strengthens compliance, consistency, and accountability in international & regional affairs.",
+          "explanation": "Avoid conflicts of interest and disclose relevant constraints. It strengthens compliance, consistency, and accountability in international & regional affairs.",
           "difficulty": "hard",
           "chapter": "International & Regional Affairs - Expansion Set",
           "keywords": [
@@ -3909,7 +3909,7 @@
             "Apply rules inconsistently based on personal preference."
           ],
           "correct": 0,
-          "explanation": "This is correct because identify risk early, apply controls, and document mitigation. It strengthens compliance, consistency, and accountability in international & regional affairs.",
+          "explanation": "Identify risk early, apply controls, and document mitigation. It strengthens compliance, consistency, and accountability in international & regional affairs.",
           "difficulty": "easy",
           "chapter": "International & Regional Affairs - Expansion Set",
           "keywords": [
@@ -3930,7 +3930,7 @@
             "Delay decisions until issues escalate into avoidable crises."
           ],
           "correct": 0,
-          "explanation": "This is correct because use clear criteria and communicate decisions promptly. It strengthens compliance, consistency, and accountability in international & regional affairs.",
+          "explanation": "Use clear criteria and communicate decisions promptly. It strengthens compliance, consistency, and accountability in international & regional affairs.",
           "difficulty": "medium",
           "chapter": "International & Regional Affairs - Expansion Set",
           "keywords": [
@@ -3951,7 +3951,7 @@
             "Bypass review and approval controls to save time."
           ],
           "correct": 0,
-          "explanation": "This is correct because follow approved workflows and verify outputs before closure. It strengthens compliance, consistency, and accountability in international & regional affairs.",
+          "explanation": "Follow approved workflows and verify outputs before closure. It strengthens compliance, consistency, and accountability in international & regional affairs.",
           "difficulty": "easy",
           "chapter": "International & Regional Affairs - Expansion Set",
           "keywords": [
@@ -3972,7 +3972,7 @@
             "Treat exceptions as routine without documented justification."
           ],
           "correct": 0,
-          "explanation": "This is correct because balance legality, fairness, timeliness, and service quality. It strengthens compliance, consistency, and accountability in international & regional affairs.",
+          "explanation": "Balance legality, fairness, timeliness, and service quality. It strengthens compliance, consistency, and accountability in international & regional affairs.",
           "difficulty": "easy",
           "chapter": "International & Regional Affairs - Expansion Set",
           "keywords": [
@@ -3993,7 +3993,7 @@
             "Prioritize convenience over policy and legal requirements."
           ],
           "correct": 0,
-          "explanation": "This is correct because maintain accurate files and update status at each control point. It strengthens compliance, consistency, and accountability in international & regional affairs.",
+          "explanation": "Maintain accurate files and update status at each control point. It strengthens compliance, consistency, and accountability in international & regional affairs.",
           "difficulty": "easy",
           "chapter": "International & Regional Affairs - Expansion Set",
           "keywords": [
@@ -4014,7 +4014,7 @@
             "Close cases without validating facts or required records."
           ],
           "correct": 0,
-          "explanation": "This is correct because set measurable targets, monitor progress, and correct deviations. It strengthens compliance, consistency, and accountability in international & regional affairs.",
+          "explanation": "Set measurable targets, monitor progress, and correct deviations. It strengthens compliance, consistency, and accountability in international & regional affairs.",
           "difficulty": "medium",
           "chapter": "International & Regional Affairs - Expansion Set",
           "keywords": [
@@ -4035,7 +4035,7 @@
             "Ignore feedback and continue non-compliant procedures."
           ],
           "correct": 0,
-          "explanation": "This is correct because apply approved international & regional affairs procedures and maintain complete records. It strengthens compliance, consistency, and accountability in international & regional affairs.",
+          "explanation": "Apply approved international & regional affairs procedures and maintain complete records. It strengthens compliance, consistency, and accountability in international & regional affairs.",
           "difficulty": "easy",
           "chapter": "International & Regional Affairs - Expansion Set",
           "keywords": [
@@ -4056,7 +4056,7 @@
             "Rely on informal instructions without documentary evidence."
           ],
           "correct": 0,
-          "explanation": "This is correct because use lawful criteria and document each decision step transparently. It strengthens compliance, consistency, and accountability in international & regional affairs.",
+          "explanation": "Use lawful criteria and document each decision step transparently. It strengthens compliance, consistency, and accountability in international & regional affairs.",
           "difficulty": "easy",
           "chapter": "International & Regional Affairs - Expansion Set",
           "keywords": [
@@ -4077,7 +4077,7 @@
             "Apply rules inconsistently based on personal preference."
           ],
           "correct": 0,
-          "explanation": "This is correct because identify control gaps early and escalate material exceptions promptly. It strengthens compliance, consistency, and accountability in international & regional affairs.",
+          "explanation": "Identify control gaps early and escalate material exceptions promptly. It strengthens compliance, consistency, and accountability in international & regional affairs.",
           "difficulty": "medium",
           "chapter": "International & Regional Affairs - Expansion Set",
           "keywords": [
@@ -4098,7 +4098,7 @@
             "Delay decisions until issues escalate into avoidable crises."
           ],
           "correct": 0,
-          "explanation": "This is correct because interpret current developments through verified public sources. It strengthens compliance, consistency, and accountability in international & regional affairs.",
+          "explanation": "Interpret current developments through verified public sources. It strengthens compliance, consistency, and accountability in international & regional affairs.",
           "difficulty": "hard",
           "chapter": "International & Regional Affairs - Expansion Set",
           "keywords": [
@@ -4119,7 +4119,7 @@
             "Bypass review and approval controls to save time."
           ],
           "correct": 0,
-          "explanation": "This is correct because track policy changes and implications for service delivery. It strengthens compliance, consistency, and accountability in international & regional affairs.",
+          "explanation": "Track policy changes and implications for service delivery. It strengthens compliance, consistency, and accountability in international & regional affairs.",
           "difficulty": "easy",
           "chapter": "International & Regional Affairs - Expansion Set",
           "keywords": [
@@ -4140,7 +4140,7 @@
             "Treat exceptions as routine without documented justification."
           ],
           "correct": 0,
-          "explanation": "This is correct because relate international events to national administrative priorities. It strengthens compliance, consistency, and accountability in international & regional affairs.",
+          "explanation": "Relate international events to national administrative priorities. It strengthens compliance, consistency, and accountability in international & regional affairs.",
           "difficulty": "medium",
           "chapter": "International & Regional Affairs - Expansion Set",
           "keywords": [
@@ -4161,7 +4161,7 @@
             "Prioritize convenience over policy and legal requirements."
           ],
           "correct": 0,
-          "explanation": "This is correct because differentiate verified updates from misinformation. It strengthens compliance, consistency, and accountability in international & regional affairs.",
+          "explanation": "Differentiate verified updates from misinformation. It strengthens compliance, consistency, and accountability in international & regional affairs.",
           "difficulty": "medium",
           "chapter": "International & Regional Affairs - Expansion Set",
           "keywords": [
@@ -4182,7 +4182,7 @@
             "Prioritize convenience over policy and legal requirements."
           ],
           "correct": 2,
-          "explanation": "This is correct because apply approved international & regional affairs procedures and maintain complete records. It strengthens compliance, consistency, and accountability in international & regional affairs.",
+          "explanation": "Apply approved international & regional affairs procedures and maintain complete records. It strengthens compliance, consistency, and accountability in international & regional affairs.",
           "difficulty": "easy",
           "chapter": "International & Regional Affairs - Expansion Set",
           "keywords": [
@@ -4203,7 +4203,7 @@
             "Treat exceptions as routine without documented justification."
           ],
           "correct": 2,
-          "explanation": "This is correct because use lawful criteria and document each decision step transparently. It strengthens compliance, consistency, and accountability in international & regional affairs.",
+          "explanation": "Use lawful criteria and document each decision step transparently. It strengthens compliance, consistency, and accountability in international & regional affairs.",
           "difficulty": "hard",
           "chapter": "International & Regional Affairs - Expansion Set",
           "keywords": [
@@ -4224,7 +4224,7 @@
             "Bypass review and approval controls to save time."
           ],
           "correct": 1,
-          "explanation": "This is correct because identify control gaps early and escalate material exceptions promptly. It strengthens compliance, consistency, and accountability in international & regional affairs.",
+          "explanation": "Identify control gaps early and escalate material exceptions promptly. It strengthens compliance, consistency, and accountability in international & regional affairs.",
           "difficulty": "easy",
           "chapter": "International & Regional Affairs - Expansion Set",
           "keywords": [
@@ -4245,7 +4245,7 @@
             "Treat exceptions as routine without documented justification."
           ],
           "correct": 0,
-          "explanation": "This is correct because interpret current developments through verified public sources. It strengthens compliance, consistency, and accountability in international & regional affairs.",
+          "explanation": "Interpret current developments through verified public sources. It strengthens compliance, consistency, and accountability in international & regional affairs.",
           "difficulty": "medium",
           "chapter": "International & Regional Affairs - Expansion Set",
           "keywords": [
@@ -4266,7 +4266,7 @@
             "Apply rules inconsistently based on personal preference."
           ],
           "correct": 1,
-          "explanation": "This is correct because track policy changes and implications for service delivery. It strengthens compliance, consistency, and accountability in international & regional affairs.",
+          "explanation": "Track policy changes and implications for service delivery. It strengthens compliance, consistency, and accountability in international & regional affairs.",
           "difficulty": "medium",
           "chapter": "International & Regional Affairs - Expansion Set",
           "keywords": [
@@ -4287,7 +4287,7 @@
             "Close cases without validating facts or required records."
           ],
           "correct": 0,
-          "explanation": "This is correct because relate international events to national administrative priorities. It strengthens compliance, consistency, and accountability in international & regional affairs.",
+          "explanation": "Relate international events to national administrative priorities. It strengthens compliance, consistency, and accountability in international & regional affairs.",
           "difficulty": "medium",
           "chapter": "International & Regional Affairs - Expansion Set",
           "keywords": [
@@ -4308,7 +4308,7 @@
             "Ignore feedback and continue non-compliant procedures."
           ],
           "correct": 2,
-          "explanation": "This is correct because differentiate verified updates from misinformation. It strengthens compliance, consistency, and accountability in international & regional affairs.",
+          "explanation": "Differentiate verified updates from misinformation. It strengthens compliance, consistency, and accountability in international & regional affairs.",
           "difficulty": "medium",
           "chapter": "International & Regional Affairs - Expansion Set",
           "keywords": [
@@ -4329,7 +4329,7 @@
             "Connect current affairs to public-sector responsibilities."
           ],
           "correct": 3,
-          "explanation": "This is correct because connect current affairs to public-sector responsibilities. It strengthens compliance, consistency, and accountability in international & regional affairs.",
+          "explanation": "Connect current affairs to public-sector responsibilities. It strengthens compliance, consistency, and accountability in international & regional affairs.",
           "difficulty": "easy",
           "chapter": "International & Regional Affairs - Expansion Set",
           "keywords": [
@@ -4350,7 +4350,7 @@
             "Apply discretionary shortcuts to accelerate closure regardless of controls."
           ],
           "correct": 0,
-          "explanation": "This is correct because rely on credible official sources and confirm facts before conclusions.",
+          "explanation": "Rely on credible official sources and confirm facts before conclusions.",
           "difficulty": "easy",
           "topic": "International & Regional Affairs",
           "keywords": [
@@ -4371,7 +4371,7 @@
             "Treat exceptions as normal practice without written justification."
           ],
           "correct": 0,
-          "explanation": "This is correct because rely on credible official sources and confirm facts before conclusions.",
+          "explanation": "Rely on credible official sources and confirm facts before conclusions.",
           "difficulty": "easy",
           "topic": "International & Regional Affairs",
           "keywords": [
@@ -4392,7 +4392,7 @@
             "Bypass review checkpoints where timelines are tight."
           ],
           "correct": 2,
-          "explanation": "This is correct because rely on credible official sources and confirm facts before conclusions.",
+          "explanation": "Rely on credible official sources and confirm facts before conclusions.",
           "difficulty": "medium",
           "topic": "International & Regional Affairs",
           "keywords": [
@@ -4413,7 +4413,7 @@
             "Rely on credible official sources and confirm facts before conclusions."
           ],
           "correct": 3,
-          "explanation": "This is correct because rely on credible official sources and confirm facts before conclusions.",
+          "explanation": "Rely on credible official sources and confirm facts before conclusions.",
           "difficulty": "easy",
           "topic": "International & Regional Affairs",
           "keywords": [
@@ -4496,7 +4496,7 @@
             "EndSARS protests."
           ],
           "correct": 1,
-          "explanation": "Emerging issues such as Performance Management System, Volunteerism, Virtual Meetings/Engagements... are products of our recent experience in the management of COVID-19 Pandemic and many others.",
+          "explanation": "Emerging issues such as Performance Management System, Volunteerism, Virtual Meetings/Engagements.. are products of our recent experience in the management of COVID-19 Pandemic and many others.",
           "difficulty": "medium",
           "chapter": "PSR Rationale",
           "keywords": [
@@ -4550,7 +4550,7 @@
             "The date of the FCSC approval, subject to existing regulatory standards."
           ],
           "correct": 0,
-          "explanation": "The termination of appointment... if the Officer is eligible for vacation leave in respect of his service to date, such leave may be granted... The appointment will be effected by means of a month's notice.",
+          "explanation": "The termination of appointment.. if the Officer is eligible for vacation leave in respect of his service to date, such leave may be granted.. The appointment will be effected by means of a month's notice.",
           "difficulty": "medium",
           "chapter": "Termination/Retirement",
           "keywords": [
@@ -4568,7 +4568,7 @@
             "Transfer to a new post, subject to existing regulatory standards."
           ],
           "correct": 1,
-          "explanation": "Interdiction means the temporary removal of an officer... during which he shall be placed on half salary.",
+          "explanation": "Interdiction means the temporary removal of an officer.. during which he shall be placed on half salary.",
           "difficulty": "easy",
           "chapter": "General Definitions",
           "keywords": [
@@ -4732,7 +4732,7 @@
             "Publish them immediately, subject to existing regulatory standards."
           ],
           "correct": 1,
-          "explanation": "Historical manuscripts... shall not be appropriated to his own use, but their existence must be reported to Permanent Secretary/ Head of Extra Ministerial Office in order that steps may be taken for their examination and preservation.",
+          "explanation": "Historical manuscripts.. shall not be appropriated to his own use, but their existence must be reported to Permanent Secretary/ Head of Extra Ministerial Office in order that steps may be taken for their examination and preservation.",
           "difficulty": "medium",
           "chapter": "Historical Documents",
           "keywords": [
@@ -4827,7 +4827,7 @@
             "Three months."
           ],
           "correct": 0,
-          "explanation": "All decisions on deferment or withholding of increment and stoppage of salaries shall be communicated... to the Officer concerned within two weeks.",
+          "explanation": "All decisions on deferment or withholding of increment and stoppage of salaries shall be communicated.. to the Officer concerned within two weeks.",
           "difficulty": "easy",
           "chapter": "Communication of Deferment",
           "keywords": [
@@ -4865,7 +4865,7 @@
             "Close cases without validating facts or required records."
           ],
           "correct": 0,
-          "explanation": "This is correct because use lawful criteria and document each decision step transparently. It strengthens compliance, consistency, and accountability in national events & key personalities.",
+          "explanation": "Use lawful criteria and document each decision step transparently. It strengthens compliance, consistency, and accountability in national events & key personalities.",
           "difficulty": "easy",
           "chapter": "National Events & Key Personalities - Expansion Set",
           "keywords": [
@@ -4886,7 +4886,7 @@
             "Ignore feedback and continue non-compliant procedures."
           ],
           "correct": 0,
-          "explanation": "This is correct because identify control gaps early and escalate material exceptions promptly. It strengthens compliance, consistency, and accountability in national events & key personalities.",
+          "explanation": "Identify control gaps early and escalate material exceptions promptly. It strengthens compliance, consistency, and accountability in national events & key personalities.",
           "difficulty": "hard",
           "chapter": "National Events & Key Personalities - Expansion Set",
           "keywords": [
@@ -4907,7 +4907,7 @@
             "Rely on informal instructions without documentary evidence."
           ],
           "correct": 0,
-          "explanation": "This is correct because interpret current developments through verified public sources. It strengthens compliance, consistency, and accountability in national events & key personalities.",
+          "explanation": "Interpret current developments through verified public sources. It strengthens compliance, consistency, and accountability in national events & key personalities.",
           "difficulty": "easy",
           "chapter": "National Events & Key Personalities - Expansion Set",
           "keywords": [
@@ -4928,7 +4928,7 @@
             "Apply rules inconsistently based on personal preference."
           ],
           "correct": 0,
-          "explanation": "This is correct because track policy changes and implications for service delivery. It strengthens compliance, consistency, and accountability in national events & key personalities.",
+          "explanation": "Track policy changes and implications for service delivery. It strengthens compliance, consistency, and accountability in national events & key personalities.",
           "difficulty": "hard",
           "chapter": "National Events & Key Personalities - Expansion Set",
           "keywords": [
@@ -4949,7 +4949,7 @@
             "Delay decisions until issues escalate into avoidable crises."
           ],
           "correct": 0,
-          "explanation": "This is correct because relate international events to national administrative priorities. It strengthens compliance, consistency, and accountability in national events & key personalities.",
+          "explanation": "Relate international events to national administrative priorities. It strengthens compliance, consistency, and accountability in national events & key personalities.",
           "difficulty": "medium",
           "chapter": "National Events & Key Personalities - Expansion Set",
           "keywords": [
@@ -4970,7 +4970,7 @@
             "Bypass review and approval controls to save time."
           ],
           "correct": 0,
-          "explanation": "This is correct because differentiate verified updates from misinformation. It strengthens compliance, consistency, and accountability in national events & key personalities.",
+          "explanation": "Differentiate verified updates from misinformation. It strengthens compliance, consistency, and accountability in national events & key personalities.",
           "difficulty": "medium",
           "chapter": "National Events & Key Personalities - Expansion Set",
           "keywords": [
@@ -4991,7 +4991,7 @@
             "Treat exceptions as routine without documented justification."
           ],
           "correct": 0,
-          "explanation": "This is correct because connect current affairs to public-sector responsibilities. It strengthens compliance, consistency, and accountability in national events & key personalities.",
+          "explanation": "Connect current affairs to public-sector responsibilities. It strengthens compliance, consistency, and accountability in national events & key personalities.",
           "difficulty": "medium",
           "chapter": "National Events & Key Personalities - Expansion Set",
           "keywords": [
@@ -5012,7 +5012,7 @@
             "Prioritize convenience over policy and legal requirements."
           ],
           "correct": 0,
-          "explanation": "This is correct because follow documented procedure and keep complete records. It strengthens compliance, consistency, and accountability in national events & key personalities.",
+          "explanation": "Follow documented procedure and keep complete records. It strengthens compliance, consistency, and accountability in national events & key personalities.",
           "difficulty": "easy",
           "chapter": "National Events & Key Personalities - Expansion Set",
           "keywords": [
@@ -5033,7 +5033,7 @@
             "Close cases without validating facts or required records."
           ],
           "correct": 0,
-          "explanation": "This is correct because apply approved rules consistently and escalate exceptions. It strengthens compliance, consistency, and accountability in national events & key personalities.",
+          "explanation": "Apply approved rules consistently and escalate exceptions. It strengthens compliance, consistency, and accountability in national events & key personalities.",
           "difficulty": "medium",
           "chapter": "National Events & Key Personalities - Expansion Set",
           "keywords": [
@@ -5054,7 +5054,7 @@
             "Ignore feedback and continue non-compliant procedures."
           ],
           "correct": 0,
-          "explanation": "This is correct because provide traceable decisions and evidence-based justification. It strengthens compliance, consistency, and accountability in national events & key personalities.",
+          "explanation": "Provide traceable decisions and evidence-based justification. It strengthens compliance, consistency, and accountability in national events & key personalities.",
           "difficulty": "easy",
           "chapter": "National Events & Key Personalities - Expansion Set",
           "keywords": [
@@ -5075,7 +5075,7 @@
             "Rely on informal instructions without documentary evidence."
           ],
           "correct": 0,
-          "explanation": "This is correct because avoid conflicts of interest and disclose relevant constraints. It strengthens compliance, consistency, and accountability in national events & key personalities.",
+          "explanation": "Avoid conflicts of interest and disclose relevant constraints. It strengthens compliance, consistency, and accountability in national events & key personalities.",
           "difficulty": "medium",
           "chapter": "National Events & Key Personalities - Expansion Set",
           "keywords": [
@@ -5096,7 +5096,7 @@
             "Apply rules inconsistently based on personal preference."
           ],
           "correct": 0,
-          "explanation": "This is correct because identify risk early, apply controls, and document mitigation. It strengthens compliance, consistency, and accountability in national events & key personalities.",
+          "explanation": "Identify risk early, apply controls, and document mitigation. It strengthens compliance, consistency, and accountability in national events & key personalities.",
           "difficulty": "medium",
           "chapter": "National Events & Key Personalities - Expansion Set",
           "keywords": [
@@ -5117,7 +5117,7 @@
             "Delay decisions until issues escalate into avoidable crises."
           ],
           "correct": 0,
-          "explanation": "This is correct because use clear criteria and communicate decisions promptly. It strengthens compliance, consistency, and accountability in national events & key personalities.",
+          "explanation": "Use clear criteria and communicate decisions promptly. It strengthens compliance, consistency, and accountability in national events & key personalities.",
           "difficulty": "easy",
           "chapter": "National Events & Key Personalities - Expansion Set",
           "keywords": [
@@ -5138,7 +5138,7 @@
             "Bypass review and approval controls to save time."
           ],
           "correct": 0,
-          "explanation": "This is correct because follow approved workflows and verify outputs before closure. It strengthens compliance, consistency, and accountability in national events & key personalities.",
+          "explanation": "Follow approved workflows and verify outputs before closure. It strengthens compliance, consistency, and accountability in national events & key personalities.",
           "difficulty": "easy",
           "chapter": "National Events & Key Personalities - Expansion Set",
           "keywords": [
@@ -5159,7 +5159,7 @@
             "Treat exceptions as routine without documented justification."
           ],
           "correct": 0,
-          "explanation": "This is correct because balance legality, fairness, timeliness, and service quality. It strengthens compliance, consistency, and accountability in national events & key personalities.",
+          "explanation": "Balance legality, fairness, timeliness, and service quality. It strengthens compliance, consistency, and accountability in national events & key personalities.",
           "difficulty": "medium",
           "chapter": "National Events & Key Personalities - Expansion Set",
           "keywords": [
@@ -5180,7 +5180,7 @@
             "Prioritize convenience over policy and legal requirements."
           ],
           "correct": 0,
-          "explanation": "This is correct because maintain accurate files and update status at each control point. It strengthens compliance, consistency, and accountability in national events & key personalities.",
+          "explanation": "Maintain accurate files and update status at each control point. It strengthens compliance, consistency, and accountability in national events & key personalities.",
           "difficulty": "medium",
           "chapter": "National Events & Key Personalities - Expansion Set",
           "keywords": [
@@ -5201,7 +5201,7 @@
             "Close cases without validating facts or required records."
           ],
           "correct": 0,
-          "explanation": "This is correct because set measurable targets, monitor progress, and correct deviations. It strengthens compliance, consistency, and accountability in national events & key personalities.",
+          "explanation": "Set measurable targets, monitor progress, and correct deviations. It strengthens compliance, consistency, and accountability in national events & key personalities.",
           "difficulty": "hard",
           "chapter": "National Events & Key Personalities - Expansion Set",
           "keywords": [
@@ -5222,7 +5222,7 @@
             "Rely on informal instructions without documentary evidence."
           ],
           "correct": 0,
-          "explanation": "This is correct because use lawful criteria and document each decision step transparently. It strengthens compliance, consistency, and accountability in national events & key personalities.",
+          "explanation": "Use lawful criteria and document each decision step transparently. It strengthens compliance, consistency, and accountability in national events & key personalities.",
           "difficulty": "medium",
           "chapter": "National Events & Key Personalities - Expansion Set",
           "keywords": [
@@ -5243,7 +5243,7 @@
             "Apply rules inconsistently based on personal preference."
           ],
           "correct": 0,
-          "explanation": "This is correct because identify control gaps early and escalate material exceptions promptly. It strengthens compliance, consistency, and accountability in national events & key personalities.",
+          "explanation": "Identify control gaps early and escalate material exceptions promptly. It strengthens compliance, consistency, and accountability in national events & key personalities.",
           "difficulty": "hard",
           "chapter": "National Events & Key Personalities - Expansion Set",
           "keywords": [
@@ -5264,7 +5264,7 @@
             "Delay decisions until issues escalate into avoidable crises."
           ],
           "correct": 0,
-          "explanation": "This is correct because interpret current developments through verified public sources. It strengthens compliance, consistency, and accountability in national events & key personalities.",
+          "explanation": "Interpret current developments through verified public sources. It strengthens compliance, consistency, and accountability in national events & key personalities.",
           "difficulty": "medium",
           "chapter": "National Events & Key Personalities - Expansion Set",
           "keywords": [
@@ -5285,7 +5285,7 @@
             "Bypass review and approval controls to save time."
           ],
           "correct": 0,
-          "explanation": "This is correct because track policy changes and implications for service delivery. It strengthens compliance, consistency, and accountability in national events & key personalities.",
+          "explanation": "Track policy changes and implications for service delivery. It strengthens compliance, consistency, and accountability in national events & key personalities.",
           "difficulty": "medium",
           "chapter": "National Events & Key Personalities - Expansion Set",
           "keywords": [
@@ -5306,7 +5306,7 @@
             "Treat exceptions as routine without documented justification."
           ],
           "correct": 0,
-          "explanation": "This is correct because relate international events to national administrative priorities. It strengthens compliance, consistency, and accountability in national events & key personalities.",
+          "explanation": "Relate international events to national administrative priorities. It strengthens compliance, consistency, and accountability in national events & key personalities.",
           "difficulty": "easy",
           "chapter": "National Events & Key Personalities - Expansion Set",
           "keywords": [
@@ -5327,7 +5327,7 @@
             "Prioritize convenience over policy and legal requirements."
           ],
           "correct": 0,
-          "explanation": "This is correct because differentiate verified updates from misinformation. It strengthens compliance, consistency, and accountability in national events & key personalities.",
+          "explanation": "Differentiate verified updates from misinformation. It strengthens compliance, consistency, and accountability in national events & key personalities.",
           "difficulty": "hard",
           "chapter": "National Events & Key Personalities - Expansion Set",
           "keywords": [
@@ -5348,7 +5348,7 @@
             "Close cases without validating facts or required records."
           ],
           "correct": 0,
-          "explanation": "This is correct because connect current affairs to public-sector responsibilities. It strengthens compliance, consistency, and accountability in national events & key personalities.",
+          "explanation": "Connect current affairs to public-sector responsibilities. It strengthens compliance, consistency, and accountability in national events & key personalities.",
           "difficulty": "medium",
           "chapter": "National Events & Key Personalities - Expansion Set",
           "keywords": [
@@ -5369,7 +5369,7 @@
             "Ignore feedback and continue non-compliant procedures."
           ],
           "correct": 0,
-          "explanation": "This is correct because follow documented procedure and keep complete records. It strengthens compliance, consistency, and accountability in national events & key personalities.",
+          "explanation": "Follow documented procedure and keep complete records. It strengthens compliance, consistency, and accountability in national events & key personalities.",
           "difficulty": "medium",
           "chapter": "National Events & Key Personalities - Expansion Set",
           "keywords": [
@@ -5390,7 +5390,7 @@
             "Delay decisions until issues escalate into avoidable crises."
           ],
           "correct": 0,
-          "explanation": "This is correct because use lawful criteria and document each decision step transparently. It strengthens compliance, consistency, and accountability in national events & key personalities.",
+          "explanation": "Use lawful criteria and document each decision step transparently. It strengthens compliance, consistency, and accountability in national events & key personalities.",
           "difficulty": "medium",
           "chapter": "National Events & Key Personalities - Expansion Set",
           "keywords": [
@@ -5411,7 +5411,7 @@
             "Ignore feedback and continue non-compliant procedures."
           ],
           "correct": 0,
-          "explanation": "This is correct because identify control gaps early and escalate material exceptions promptly. It strengthens compliance, consistency, and accountability in national events & key personalities.",
+          "explanation": "Identify control gaps early and escalate material exceptions promptly. It strengthens compliance, consistency, and accountability in national events & key personalities.",
           "difficulty": "medium",
           "chapter": "National Events & Key Personalities - Expansion Set",
           "keywords": [
@@ -5432,7 +5432,7 @@
             "Rely on informal instructions without documentary evidence."
           ],
           "correct": 2,
-          "explanation": "This is correct because interpret current developments through verified public sources. It strengthens compliance, consistency, and accountability in national events & key personalities.",
+          "explanation": "Interpret current developments through verified public sources. It strengthens compliance, consistency, and accountability in national events & key personalities.",
           "difficulty": "medium",
           "chapter": "National Events & Key Personalities - Expansion Set",
           "keywords": [
@@ -5453,7 +5453,7 @@
             "Ignore feedback and continue non-compliant procedures."
           ],
           "correct": 0,
-          "explanation": "This is correct because track policy changes and implications for service delivery. It strengthens compliance, consistency, and accountability in national events & key personalities.",
+          "explanation": "Track policy changes and implications for service delivery. It strengthens compliance, consistency, and accountability in national events & key personalities.",
           "difficulty": "medium",
           "chapter": "National Events & Key Personalities - Expansion Set",
           "keywords": [
@@ -5474,7 +5474,7 @@
             "Relate international events to national administrative priorities."
           ],
           "correct": 3,
-          "explanation": "This is correct because relate international events to national administrative priorities. It strengthens compliance, consistency, and accountability in national events & key personalities.",
+          "explanation": "Relate international events to national administrative priorities. It strengthens compliance, consistency, and accountability in national events & key personalities.",
           "difficulty": "medium",
           "chapter": "National Events & Key Personalities - Expansion Set",
           "keywords": [
@@ -5495,7 +5495,7 @@
             "Apply rules inconsistently based on personal preference."
           ],
           "correct": 1,
-          "explanation": "This is correct because differentiate verified updates from misinformation. It strengthens compliance, consistency, and accountability in national events & key personalities.",
+          "explanation": "Differentiate verified updates from misinformation. It strengthens compliance, consistency, and accountability in national events & key personalities.",
           "difficulty": "easy",
           "chapter": "National Events & Key Personalities - Expansion Set",
           "keywords": [
@@ -5516,7 +5516,7 @@
             "Delay decisions until issues escalate into avoidable crises."
           ],
           "correct": 1,
-          "explanation": "This is correct because connect current affairs to public-sector responsibilities. It strengthens compliance, consistency, and accountability in national events & key personalities.",
+          "explanation": "Connect current affairs to public-sector responsibilities. It strengthens compliance, consistency, and accountability in national events & key personalities.",
           "difficulty": "medium",
           "chapter": "National Events & Key Personalities - Expansion Set",
           "keywords": [
@@ -5537,7 +5537,7 @@
             "Apply rules inconsistently based on personal preference."
           ],
           "correct": 0,
-          "explanation": "This is correct because follow documented procedure and keep complete records. It strengthens compliance, consistency, and accountability in national events & key personalities.",
+          "explanation": "Follow documented procedure and keep complete records. It strengthens compliance, consistency, and accountability in national events & key personalities.",
           "difficulty": "easy",
           "chapter": "National Events & Key Personalities - Expansion Set",
           "keywords": [
@@ -5558,7 +5558,7 @@
             "Close cases without validating facts or required records."
           ],
           "correct": 0,
-          "explanation": "This is correct because apply approved rules consistently and escalate exceptions. It strengthens compliance, consistency, and accountability in national events & key personalities.",
+          "explanation": "Apply approved rules consistently and escalate exceptions. It strengthens compliance, consistency, and accountability in national events & key personalities.",
           "difficulty": "medium",
           "chapter": "National Events & Key Personalities - Expansion Set",
           "keywords": [
@@ -5579,7 +5579,7 @@
             "Bypass review and approval controls to save time."
           ],
           "correct": 2,
-          "explanation": "This is correct because provide traceable decisions and evidence-based justification. It strengthens compliance, consistency, and accountability in national events & key personalities.",
+          "explanation": "Provide traceable decisions and evidence-based justification. It strengthens compliance, consistency, and accountability in national events & key personalities.",
           "difficulty": "hard",
           "chapter": "National Events & Key Personalities - Expansion Set",
           "keywords": [
@@ -5600,7 +5600,7 @@
             "Treat exceptions as routine without documented justification."
           ],
           "correct": 0,
-          "explanation": "This is correct because avoid conflicts of interest and disclose relevant constraints. It strengthens compliance, consistency, and accountability in national events & key personalities.",
+          "explanation": "Avoid conflicts of interest and disclose relevant constraints. It strengthens compliance, consistency, and accountability in national events & key personalities.",
           "difficulty": "hard",
           "chapter": "National Events & Key Personalities - Expansion Set",
           "keywords": [
@@ -5621,7 +5621,7 @@
             "Identify risk early, apply controls, and document mitigation."
           ],
           "correct": 3,
-          "explanation": "This is correct because identify risk early, apply controls, and document mitigation. It strengthens compliance, consistency, and accountability in national events & key personalities.",
+          "explanation": "Identify risk early, apply controls, and document mitigation. It strengthens compliance, consistency, and accountability in national events & key personalities.",
           "difficulty": "easy",
           "chapter": "National Events & Key Personalities - Expansion Set",
           "keywords": [
@@ -5642,7 +5642,7 @@
             "Delay decisions until issues escalate into avoidable crises."
           ],
           "correct": 1,
-          "explanation": "This is correct because use clear criteria and communicate decisions promptly. It strengthens compliance, consistency, and accountability in national events & key personalities.",
+          "explanation": "Use clear criteria and communicate decisions promptly. It strengthens compliance, consistency, and accountability in national events & key personalities.",
           "difficulty": "medium",
           "chapter": "National Events & Key Personalities - Expansion Set",
           "keywords": [
@@ -5663,7 +5663,7 @@
             "Follow approved workflows and verify outputs before closure."
           ],
           "correct": 3,
-          "explanation": "This is correct because follow approved workflows and verify outputs before closure. It strengthens compliance, consistency, and accountability in national events & key personalities.",
+          "explanation": "Follow approved workflows and verify outputs before closure. It strengthens compliance, consistency, and accountability in national events & key personalities.",
           "difficulty": "easy",
           "chapter": "National Events & Key Personalities - Expansion Set",
           "keywords": [
@@ -5684,7 +5684,7 @@
             "Delay decisions until issues escalate into avoidable crises."
           ],
           "correct": 0,
-          "explanation": "This is correct because balance legality, fairness, timeliness, and service quality. It strengthens compliance, consistency, and accountability in national events & key personalities.",
+          "explanation": "Balance legality, fairness, timeliness, and service quality. It strengthens compliance, consistency, and accountability in national events & key personalities.",
           "difficulty": "medium",
           "chapter": "National Events & Key Personalities - Expansion Set",
           "keywords": [
@@ -5705,7 +5705,7 @@
             "Maintain accurate files and update status at each control point."
           ],
           "correct": 3,
-          "explanation": "This is correct because maintain accurate files and update status at each control point. It strengthens compliance, consistency, and accountability in national events & key personalities.",
+          "explanation": "Maintain accurate files and update status at each control point. It strengthens compliance, consistency, and accountability in national events & key personalities.",
           "difficulty": "medium",
           "chapter": "National Events & Key Personalities - Expansion Set",
           "keywords": [
@@ -5726,7 +5726,7 @@
             "Close cases without validating facts or required records."
           ],
           "correct": 1,
-          "explanation": "This is correct because set measurable targets, monitor progress, and correct deviations. It strengthens compliance, consistency, and accountability in national events & key personalities.",
+          "explanation": "Set measurable targets, monitor progress, and correct deviations. It strengthens compliance, consistency, and accountability in national events & key personalities.",
           "difficulty": "medium",
           "chapter": "National Events & Key Personalities - Expansion Set",
           "keywords": [
@@ -5747,7 +5747,7 @@
             "Close cases without validating facts or required records."
           ],
           "correct": 2,
-          "explanation": "This is correct because use lawful criteria and document each decision step transparently. It strengthens compliance, consistency, and accountability in national events & key personalities.",
+          "explanation": "Use lawful criteria and document each decision step transparently. It strengthens compliance, consistency, and accountability in national events & key personalities.",
           "difficulty": "medium",
           "chapter": "National Events & Key Personalities - Expansion Set",
           "keywords": [
@@ -5768,7 +5768,7 @@
             "Ignore feedback and continue non-compliant procedures."
           ],
           "correct": 1,
-          "explanation": "This is correct because identify control gaps early and escalate material exceptions promptly. It strengthens compliance, consistency, and accountability in national events & key personalities.",
+          "explanation": "Identify control gaps early and escalate material exceptions promptly. It strengthens compliance, consistency, and accountability in national events & key personalities.",
           "difficulty": "easy",
           "chapter": "National Events & Key Personalities - Expansion Set",
           "keywords": [
@@ -5789,7 +5789,7 @@
             "Delay decisions until issues escalate into avoidable crises."
           ],
           "correct": 1,
-          "explanation": "This is correct because interpret current developments through verified public sources. It strengthens compliance, consistency, and accountability in national events & key personalities.",
+          "explanation": "Interpret current developments through verified public sources. It strengthens compliance, consistency, and accountability in national events & key personalities.",
           "difficulty": "hard",
           "chapter": "National Events & Key Personalities - Expansion Set",
           "keywords": [
@@ -5810,7 +5810,7 @@
             "Bypass review and approval controls to save time."
           ],
           "correct": 0,
-          "explanation": "This is correct because track policy changes and implications for service delivery. It strengthens compliance, consistency, and accountability in national events & key personalities.",
+          "explanation": "Track policy changes and implications for service delivery. It strengthens compliance, consistency, and accountability in national events & key personalities.",
           "difficulty": "easy",
           "chapter": "National Events & Key Personalities - Expansion Set",
           "keywords": [
@@ -5831,7 +5831,7 @@
             "Delay decisions until issues escalate into avoidable crises."
           ],
           "correct": 2,
-          "explanation": "This is correct because relate international events to national administrative priorities. It strengthens compliance, consistency, and accountability in national events & key personalities.",
+          "explanation": "Relate international events to national administrative priorities. It strengthens compliance, consistency, and accountability in national events & key personalities.",
           "difficulty": "easy",
           "chapter": "National Events & Key Personalities - Expansion Set",
           "keywords": [
@@ -5852,7 +5852,7 @@
             "Prioritize convenience over policy and legal requirements."
           ],
           "correct": 1,
-          "explanation": "This is correct because differentiate verified updates from misinformation. It strengthens compliance, consistency, and accountability in national events & key personalities.",
+          "explanation": "Differentiate verified updates from misinformation. It strengthens compliance, consistency, and accountability in national events & key personalities.",
           "difficulty": "easy",
           "chapter": "National Events & Key Personalities - Expansion Set",
           "keywords": [
@@ -5873,7 +5873,7 @@
             "Apply discretionary shortcuts to accelerate closure regardless of controls."
           ],
           "correct": 1,
-          "explanation": "This is correct because rely on credible official sources and confirm facts before conclusions.",
+          "explanation": "Rely on credible official sources and confirm facts before conclusions.",
           "difficulty": "medium",
           "topic": "National Events & Key Personalities",
           "keywords": [
@@ -5894,7 +5894,7 @@
             "Proceed without validating source records and decision criteria."
           ],
           "correct": 1,
-          "explanation": "This is correct because rely on credible official sources and confirm facts before conclusions.",
+          "explanation": "Rely on credible official sources and confirm facts before conclusions.",
           "difficulty": "medium",
           "topic": "National Events & Key Personalities",
           "keywords": [
@@ -5915,7 +5915,7 @@
             "Bypass review checkpoints where timelines are tight."
           ],
           "correct": 1,
-          "explanation": "This is correct because rely on credible official sources and confirm facts before conclusions.",
+          "explanation": "Rely on credible official sources and confirm facts before conclusions.",
           "difficulty": "hard",
           "topic": "National Events & Key Personalities",
           "keywords": [
@@ -5936,7 +5936,7 @@
             "Rely on verbal approval and close the file without documentary trail."
           ],
           "correct": 2,
-          "explanation": "This is correct because rely on credible official sources and confirm facts before conclusions.",
+          "explanation": "Rely on credible official sources and confirm facts before conclusions.",
           "difficulty": "easy",
           "topic": "National Events & Key Personalities",
           "keywords": [
@@ -6916,7 +6916,7 @@
                 "Prioritize convenience over policy and legal requirements."
               ],
               "correct": 0,
-              "explanation": "This is correct because apply approved general current affairs procedures and maintain complete records. It strengthens compliance, consistency, and accountability in general current affairs.",
+              "explanation": "Apply approved general current affairs procedures and maintain complete records. It strengthens compliance, consistency, and accountability in general current affairs.",
               "difficulty": "easy",
               "chapter": "General Current Affairs - Expansion Set",
               "keywords": [
@@ -6937,7 +6937,7 @@
                 "Close cases without validating facts or required records."
               ],
               "correct": 0,
-              "explanation": "This is correct because use lawful criteria and document each decision step transparently. It strengthens compliance, consistency, and accountability in general current affairs.",
+              "explanation": "Use lawful criteria and document each decision step transparently. It strengthens compliance, consistency, and accountability in general current affairs.",
               "difficulty": "medium",
               "chapter": "General Current Affairs - Expansion Set",
               "keywords": [
@@ -6958,7 +6958,7 @@
                 "Ignore feedback and continue non-compliant procedures."
               ],
               "correct": 0,
-              "explanation": "This is correct because identify control gaps early and escalate material exceptions promptly. It strengthens compliance, consistency, and accountability in general current affairs.",
+              "explanation": "Identify control gaps early and escalate material exceptions promptly. It strengthens compliance, consistency, and accountability in general current affairs.",
               "difficulty": "hard",
               "chapter": "General Current Affairs - Expansion Set",
               "keywords": [
@@ -6979,7 +6979,7 @@
                 "Rely on informal instructions without documentary evidence."
               ],
               "correct": 0,
-              "explanation": "This is correct because interpret current developments through verified public sources. It strengthens compliance, consistency, and accountability in general current affairs.",
+              "explanation": "Interpret current developments through verified public sources. It strengthens compliance, consistency, and accountability in general current affairs.",
               "difficulty": "medium",
               "chapter": "General Current Affairs - Expansion Set",
               "keywords": [
@@ -7000,7 +7000,7 @@
                 "Apply rules inconsistently based on personal preference."
               ],
               "correct": 0,
-              "explanation": "This is correct because track policy changes and implications for service delivery. It strengthens compliance, consistency, and accountability in general current affairs.",
+              "explanation": "Track policy changes and implications for service delivery. It strengthens compliance, consistency, and accountability in general current affairs.",
               "difficulty": "medium",
               "chapter": "General Current Affairs - Expansion Set",
               "keywords": [
@@ -7021,7 +7021,7 @@
                 "Delay decisions until issues escalate into avoidable crises."
               ],
               "correct": 0,
-              "explanation": "This is correct because relate international events to national administrative priorities. It strengthens compliance, consistency, and accountability in general current affairs.",
+              "explanation": "Relate international events to national administrative priorities. It strengthens compliance, consistency, and accountability in general current affairs.",
               "difficulty": "hard",
               "chapter": "General Current Affairs - Expansion Set",
               "keywords": [
@@ -7042,7 +7042,7 @@
                 "Bypass review and approval controls to save time."
               ],
               "correct": 0,
-              "explanation": "This is correct because differentiate verified updates from misinformation. It strengthens compliance, consistency, and accountability in general current affairs.",
+              "explanation": "Differentiate verified updates from misinformation. It strengthens compliance, consistency, and accountability in general current affairs.",
               "difficulty": "hard",
               "chapter": "General Current Affairs - Expansion Set",
               "keywords": [
@@ -7063,7 +7063,7 @@
                 "Treat exceptions as routine without documented justification."
               ],
               "correct": 0,
-              "explanation": "This is correct because connect current affairs to public-sector responsibilities. It strengthens compliance, consistency, and accountability in general current affairs.",
+              "explanation": "Connect current affairs to public-sector responsibilities. It strengthens compliance, consistency, and accountability in general current affairs.",
               "difficulty": "easy",
               "chapter": "General Current Affairs - Expansion Set",
               "keywords": [
@@ -7084,7 +7084,7 @@
                 "Prioritize convenience over policy and legal requirements."
               ],
               "correct": 0,
-              "explanation": "This is correct because follow documented procedure and keep complete records. It strengthens compliance, consistency, and accountability in general current affairs.",
+              "explanation": "Follow documented procedure and keep complete records. It strengthens compliance, consistency, and accountability in general current affairs.",
               "difficulty": "medium",
               "chapter": "General Current Affairs - Expansion Set",
               "keywords": [
@@ -7105,7 +7105,7 @@
                 "Close cases without validating facts or required records."
               ],
               "correct": 0,
-              "explanation": "This is correct because apply approved rules consistently and escalate exceptions. It strengthens compliance, consistency, and accountability in general current affairs.",
+              "explanation": "Apply approved rules consistently and escalate exceptions. It strengthens compliance, consistency, and accountability in general current affairs.",
               "difficulty": "medium",
               "chapter": "General Current Affairs - Expansion Set",
               "keywords": [
@@ -7126,7 +7126,7 @@
                 "Ignore feedback and continue non-compliant procedures."
               ],
               "correct": 0,
-              "explanation": "This is correct because provide traceable decisions and evidence-based justification. It strengthens compliance, consistency, and accountability in general current affairs.",
+              "explanation": "Provide traceable decisions and evidence-based justification. It strengthens compliance, consistency, and accountability in general current affairs.",
               "difficulty": "medium",
               "chapter": "General Current Affairs - Expansion Set",
               "keywords": [
@@ -7147,7 +7147,7 @@
                 "Rely on informal instructions without documentary evidence."
               ],
               "correct": 0,
-              "explanation": "This is correct because avoid conflicts of interest and disclose relevant constraints. It strengthens compliance, consistency, and accountability in general current affairs.",
+              "explanation": "Avoid conflicts of interest and disclose relevant constraints. It strengthens compliance, consistency, and accountability in general current affairs.",
               "difficulty": "hard",
               "chapter": "General Current Affairs - Expansion Set",
               "keywords": [
@@ -7168,7 +7168,7 @@
                 "Apply rules inconsistently based on personal preference."
               ],
               "correct": 0,
-              "explanation": "This is correct because identify risk early, apply controls, and document mitigation. It strengthens compliance, consistency, and accountability in general current affairs.",
+              "explanation": "Identify risk early, apply controls, and document mitigation. It strengthens compliance, consistency, and accountability in general current affairs.",
               "difficulty": "medium",
               "chapter": "General Current Affairs - Expansion Set",
               "keywords": [
@@ -7189,7 +7189,7 @@
                 "Delay decisions until issues escalate into avoidable crises."
               ],
               "correct": 0,
-              "explanation": "This is correct because use clear criteria and communicate decisions promptly. It strengthens compliance, consistency, and accountability in general current affairs.",
+              "explanation": "Use clear criteria and communicate decisions promptly. It strengthens compliance, consistency, and accountability in general current affairs.",
               "difficulty": "medium",
               "chapter": "General Current Affairs - Expansion Set",
               "keywords": [
@@ -7210,7 +7210,7 @@
                 "Bypass review and approval controls to save time."
               ],
               "correct": 0,
-              "explanation": "This is correct because follow approved workflows and verify outputs before closure. It strengthens compliance, consistency, and accountability in general current affairs.",
+              "explanation": "Follow approved workflows and verify outputs before closure. It strengthens compliance, consistency, and accountability in general current affairs.",
               "difficulty": "medium",
               "chapter": "General Current Affairs - Expansion Set",
               "keywords": [
@@ -7231,7 +7231,7 @@
                 "Treat exceptions as routine without documented justification."
               ],
               "correct": 0,
-              "explanation": "This is correct because balance legality, fairness, timeliness, and service quality. It strengthens compliance, consistency, and accountability in general current affairs.",
+              "explanation": "Balance legality, fairness, timeliness, and service quality. It strengthens compliance, consistency, and accountability in general current affairs.",
               "difficulty": "hard",
               "chapter": "General Current Affairs - Expansion Set",
               "keywords": [
@@ -7252,7 +7252,7 @@
                 "Prioritize convenience over policy and legal requirements."
               ],
               "correct": 0,
-              "explanation": "This is correct because maintain accurate files and update status at each control point. It strengthens compliance, consistency, and accountability in general current affairs.",
+              "explanation": "Maintain accurate files and update status at each control point. It strengthens compliance, consistency, and accountability in general current affairs.",
               "difficulty": "easy",
               "chapter": "General Current Affairs - Expansion Set",
               "keywords": [
@@ -7273,7 +7273,7 @@
                 "Close cases without validating facts or required records."
               ],
               "correct": 0,
-              "explanation": "This is correct because set measurable targets, monitor progress, and correct deviations. It strengthens compliance, consistency, and accountability in general current affairs.",
+              "explanation": "Set measurable targets, monitor progress, and correct deviations. It strengthens compliance, consistency, and accountability in general current affairs.",
               "difficulty": "medium",
               "chapter": "General Current Affairs - Expansion Set",
               "keywords": [
@@ -7294,7 +7294,7 @@
                 "Ignore feedback and continue non-compliant procedures."
               ],
               "correct": 0,
-              "explanation": "This is correct because apply approved general current affairs procedures and maintain complete records. It strengthens compliance, consistency, and accountability in general current affairs.",
+              "explanation": "Apply approved general current affairs procedures and maintain complete records. It strengthens compliance, consistency, and accountability in general current affairs.",
               "difficulty": "medium",
               "chapter": "General Current Affairs - Expansion Set",
               "keywords": [
@@ -7315,7 +7315,7 @@
                 "Rely on informal instructions without documentary evidence."
               ],
               "correct": 0,
-              "explanation": "This is correct because use lawful criteria and document each decision step transparently. It strengthens compliance, consistency, and accountability in general current affairs.",
+              "explanation": "Use lawful criteria and document each decision step transparently. It strengthens compliance, consistency, and accountability in general current affairs.",
               "difficulty": "medium",
               "chapter": "General Current Affairs - Expansion Set",
               "keywords": [
@@ -7336,7 +7336,7 @@
                 "Apply rules inconsistently based on personal preference."
               ],
               "correct": 0,
-              "explanation": "This is correct because identify control gaps early and escalate material exceptions promptly. It strengthens compliance, consistency, and accountability in general current affairs.",
+              "explanation": "Identify control gaps early and escalate material exceptions promptly. It strengthens compliance, consistency, and accountability in general current affairs.",
               "difficulty": "easy",
               "chapter": "General Current Affairs - Expansion Set",
               "keywords": [
@@ -7357,7 +7357,7 @@
                 "Delay decisions until issues escalate into avoidable crises."
               ],
               "correct": 0,
-              "explanation": "This is correct because interpret current developments through verified public sources. It strengthens compliance, consistency, and accountability in general current affairs.",
+              "explanation": "Interpret current developments through verified public sources. It strengthens compliance, consistency, and accountability in general current affairs.",
               "difficulty": "easy",
               "chapter": "General Current Affairs - Expansion Set",
               "keywords": [
@@ -7378,7 +7378,7 @@
                 "Bypass review and approval controls to save time."
               ],
               "correct": 0,
-              "explanation": "This is correct because track policy changes and implications for service delivery. It strengthens compliance, consistency, and accountability in general current affairs.",
+              "explanation": "Track policy changes and implications for service delivery. It strengthens compliance, consistency, and accountability in general current affairs.",
               "difficulty": "hard",
               "chapter": "General Current Affairs - Expansion Set",
               "keywords": [
@@ -7399,7 +7399,7 @@
                 "Treat exceptions as routine without documented justification."
               ],
               "correct": 0,
-              "explanation": "This is correct because relate international events to national administrative priorities. It strengthens compliance, consistency, and accountability in general current affairs.",
+              "explanation": "Relate international events to national administrative priorities. It strengthens compliance, consistency, and accountability in general current affairs.",
               "difficulty": "medium",
               "chapter": "General Current Affairs - Expansion Set",
               "keywords": [
@@ -7420,7 +7420,7 @@
                 "Prioritize convenience over policy and legal requirements."
               ],
               "correct": 0,
-              "explanation": "This is correct because differentiate verified updates from misinformation. It strengthens compliance, consistency, and accountability in general current affairs.",
+              "explanation": "Differentiate verified updates from misinformation. It strengthens compliance, consistency, and accountability in general current affairs.",
               "difficulty": "easy",
               "chapter": "General Current Affairs - Expansion Set",
               "keywords": [

@@ -1065,6 +1065,48 @@ select:focus-visible,
     background: color-mix(in srgb, var(--green-700) 8%, var(--card));
 }
 
+.explanation h4 {
+    margin: 0 0 8px;
+}
+
+.feedback-status {
+    margin: 0 0 8px;
+    padding: 8px 10px;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    background: color-mix(in srgb, var(--green-700) 6%, var(--card));
+    font-size: 0.92rem;
+    line-height: 1.45;
+}
+
+.feedback-status p {
+    margin: 0;
+}
+
+.feedback-status p + p {
+    margin-top: 4px;
+}
+
+.feedback-verdict {
+    letter-spacing: 0.01em;
+}
+
+.feedback-status-correct {
+    color: var(--ok);
+    border-color: color-mix(in srgb, var(--ok) 55%, var(--line));
+    background: color-mix(in srgb, var(--ok-bg) 72%, var(--card));
+}
+
+.feedback-status-incorrect {
+    color: var(--danger);
+    border-color: color-mix(in srgb, var(--danger) 55%, var(--line));
+    background: color-mix(in srgb, var(--danger-bg) 72%, var(--card));
+}
+
+.explanation-body p {
+    margin: 0;
+}
+
 .result-hero {
     background: linear-gradient(135deg, color-mix(in srgb, var(--green-700) 15%, var(--card)), var(--card));
 }

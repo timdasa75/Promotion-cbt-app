@@ -354,7 +354,7 @@
             "tracert."
           ],
           "correct": 2,
-          "explanation": "ipconfig shows current IP, subnet mask, and gateway configuration in Windows.",
+          "explanation": "Ipconfig shows current IP, subnet mask, and gateway configuration in Windows.",
           "difficulty": "easy",
           "chapter": "ICT Fundamentals",
           "keywords": [
@@ -2751,7 +2751,7 @@
             "Bypass review controls to save time."
           ],
           "correct": 1,
-          "explanation": "This is correct because apply security, access, and audit controls in digital operations.",
+          "explanation": "Apply security, access, and audit controls in digital operations.",
           "difficulty": "easy",
           "topic": "E-Governance & Digital Services",
           "keywords": [
@@ -4093,7 +4093,7 @@
             "Prioritize convenience over policy and legal requirements."
           ],
           "correct": 0,
-          "explanation": "This is correct because apply approved digital security & cybersecurity procedures and maintain complete records. It strengthens compliance, consistency, and accountability in digital security & cybersecurity.",
+          "explanation": "Apply approved digital security & cybersecurity procedures and maintain complete records. It strengthens compliance, consistency, and accountability in digital security & cybersecurity.",
           "difficulty": "medium",
           "chapter": "Digital Security & Cybersecurity - Expansion Set",
           "keywords": [
@@ -4114,7 +4114,7 @@
             "Delay documentation until after implementation."
           ],
           "correct": 0,
-          "explanation": "This is correct because apply security, access, and audit controls in digital operations.",
+          "explanation": "Apply security, access, and audit controls in digital operations.",
           "difficulty": "hard",
           "topic": "Digital Security & Cybersecurity",
           "keywords": [
@@ -5336,7 +5336,7 @@
             "Prioritize convenience over policy and legal requirements."
           ],
           "correct": 0,
-          "explanation": "This is correct because apply approved digital literacy & innovation procedures and maintain complete records. It strengthens compliance, consistency, and accountability in digital literacy & innovation.",
+          "explanation": "Apply approved digital literacy & innovation procedures and maintain complete records. It strengthens compliance, consistency, and accountability in digital literacy & innovation.",
           "difficulty": "hard",
           "chapter": "Digital Literacy & Innovation - Expansion Set",
           "keywords": [
@@ -5357,7 +5357,7 @@
             "Close cases without validating facts or required records."
           ],
           "correct": 0,
-          "explanation": "This is correct because use lawful criteria and document each decision step transparently. It strengthens compliance, consistency, and accountability in digital literacy & innovation.",
+          "explanation": "Use lawful criteria and document each decision step transparently. It strengthens compliance, consistency, and accountability in digital literacy & innovation.",
           "difficulty": "hard",
           "chapter": "Digital Literacy & Innovation - Expansion Set",
           "keywords": [
@@ -5378,7 +5378,7 @@
             "Ignore feedback and continue non-compliant procedures."
           ],
           "correct": 0,
-          "explanation": "This is correct because identify control gaps early and escalate material exceptions promptly. It strengthens compliance, consistency, and accountability in digital literacy & innovation.",
+          "explanation": "Identify control gaps early and escalate material exceptions promptly. It strengthens compliance, consistency, and accountability in digital literacy & innovation.",
           "difficulty": "easy",
           "chapter": "Digital Literacy & Innovation - Expansion Set",
           "keywords": [
@@ -5399,7 +5399,7 @@
             "Rely on informal instructions without documentary evidence."
           ],
           "correct": 0,
-          "explanation": "This is correct because apply least privilege, patching, and incident reporting controls. It strengthens compliance, consistency, and accountability in digital literacy & innovation.",
+          "explanation": "Apply least privilege, patching, and incident reporting controls. It strengthens compliance, consistency, and accountability in digital literacy & innovation.",
           "difficulty": "hard",
           "chapter": "Digital Literacy & Innovation - Expansion Set",
           "keywords": [
@@ -5420,7 +5420,7 @@
             "Apply rules inconsistently based on personal preference."
           ],
           "correct": 0,
-          "explanation": "This is correct because design services for usability, security, and accountability. It strengthens compliance, consistency, and accountability in digital literacy & innovation.",
+          "explanation": "Design services for usability, security, and accountability. It strengthens compliance, consistency, and accountability in digital literacy & innovation.",
           "difficulty": "medium",
           "chapter": "Digital Literacy & Innovation - Expansion Set",
           "keywords": [
@@ -5441,7 +5441,7 @@
             "Delay decisions until issues escalate into avoidable crises."
           ],
           "correct": 0,
-          "explanation": "This is correct because classify, protect, and retain records according to policy. It strengthens compliance, consistency, and accountability in digital literacy & innovation.",
+          "explanation": "Classify, protect, and retain records according to policy. It strengthens compliance, consistency, and accountability in digital literacy & innovation.",
           "difficulty": "easy",
           "chapter": "Digital Literacy & Innovation - Expansion Set",
           "keywords": [
@@ -5462,7 +5462,7 @@
             "Bypass review and approval controls to save time."
           ],
           "correct": 0,
-          "explanation": "This is correct because maintain backup, recovery, and resilience procedures. It strengthens compliance, consistency, and accountability in digital literacy & innovation.",
+          "explanation": "Maintain backup, recovery, and resilience procedures. It strengthens compliance, consistency, and accountability in digital literacy & innovation.",
           "difficulty": "medium",
           "chapter": "Digital Literacy & Innovation - Expansion Set",
           "keywords": [
@@ -5483,7 +5483,7 @@
             "Treat exceptions as routine without documented justification."
           ],
           "correct": 0,
-          "explanation": "This is correct because deploy solutions with training, controls, and user support. It strengthens compliance, consistency, and accountability in digital literacy & innovation.",
+          "explanation": "Deploy solutions with training, controls, and user support. It strengthens compliance, consistency, and accountability in digital literacy & innovation.",
           "difficulty": "easy",
           "chapter": "Digital Literacy & Innovation - Expansion Set",
           "keywords": [
@@ -5504,7 +5504,7 @@
             "Prioritize convenience over policy and legal requirements."
           ],
           "correct": 0,
-          "explanation": "This is correct because follow documented procedure and keep complete records. It strengthens compliance, consistency, and accountability in digital literacy & innovation.",
+          "explanation": "Follow documented procedure and keep complete records. It strengthens compliance, consistency, and accountability in digital literacy & innovation.",
           "difficulty": "medium",
           "chapter": "Digital Literacy & Innovation - Expansion Set",
           "keywords": [
