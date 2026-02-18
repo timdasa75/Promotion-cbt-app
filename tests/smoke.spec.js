@@ -62,7 +62,7 @@ test("review mode acts as pre-quiz study with answers and explanations visible",
   expect(firstDisabled).toBe(true);
 
   await expect(page.locator("#optionsContainer .option-btn.correct").first()).toBeVisible();
-  await expect(page.locator("#explanation")).toContainText("Explanation");
+  await expect(page.locator("#explanation")).toContainText("Rationale");
   await expect(page.locator("#reviewControls")).toHaveClass(/hidden/);
 });
 
