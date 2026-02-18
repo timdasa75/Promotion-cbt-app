@@ -844,6 +844,17 @@ select:focus-visible,
     margin: var(--space-2) 0;
 }
 
+.practice-pacing-notice {
+    margin: 0 0 var(--space-2);
+    padding: 8px 12px;
+    border-radius: 10px;
+    border: 1px solid color-mix(in srgb, var(--warning) 55%, var(--line));
+    background: color-mix(in srgb, var(--warning) 18%, var(--card));
+    color: var(--ink-800);
+    font-size: 0.92rem;
+    line-height: 1.35;
+}
+
 .progress-fill {
     height: 100%;
     width: 0;
@@ -1014,6 +1025,29 @@ select:focus-visible,
 .option-btn.user-incorrect {
     border-color: var(--danger);
     background: var(--danger-bg);
+}
+
+.option-feedback-label {
+    margin-left: auto;
+    align-self: flex-start;
+    font-size: 0.72rem;
+    font-weight: 700;
+    border-radius: 999px;
+    padding: 2px 8px;
+    border: 1px solid var(--line);
+    white-space: nowrap;
+}
+
+.option-feedback-label.correct {
+    color: var(--ok);
+    border-color: color-mix(in srgb, var(--ok) 55%, var(--line));
+    background: color-mix(in srgb, var(--ok-bg) 70%, var(--card));
+}
+
+.option-feedback-label.incorrect {
+    color: var(--danger);
+    border-color: color-mix(in srgb, var(--danger) 55%, var(--line));
+    background: color-mix(in srgb, var(--danger-bg) 70%, var(--card));
 }
 
 .quiz-actions {

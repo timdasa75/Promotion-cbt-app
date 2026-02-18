@@ -12,16 +12,16 @@
       "questions": [
         {
           "id": "competency_num_001",
-          "question": "If a civil servant earns ₦150,000 monthly and receives a 15% allowance, what is the total monthly income?",
+          "question": "If a civil servant earns ₦150,000 monthly and receives a 15% allowance, what is the total monthly income",
           "options": [
-            "₦172,500",
-            "₦165,000",
-            "₦157,500",
-            "₦180,000"
+            "₦172,500.",
+            "₦165,000.",
+            "₦157,500.",
+            "₦180,000."
           ],
           "correct": 0,
           "explanation": "15% of ₦150,000 = ₦22,500. Total = ₦150,000 + ₦22,500 = ₦172,500.",
-          "difficulty": "easy",
+          "difficulty": "hard",
           "topic": "Competency Framework",
           "keywords": [
             "allowance",
@@ -31,16 +31,16 @@
         },
         {
           "id": "competency_num_002",
-          "question": "A Ministry budgeted ₦2,000,000 for a project but spent ₦1,850,000. What is the percentage savings?",
+          "question": "A Ministry budgeted ₦2,000,000 for a project but spent ₦1,850,000. What is the percentage savings",
           "options": [
-            "5%",
-            "7.5%",
-            "10%",
-            "15%"
+            "5%.",
+            "7.5%.",
+            "10%.",
+            "15%."
           ],
           "correct": 1,
           "explanation": "Savings = ₦2,000,000 - ₦1,850,000 = ₦150,000. Savings% = (150,000 / 2,000,000) × 100 = 7.5%.",
-          "difficulty": "medium",
+          "difficulty": "easy",
           "topic": "Competency Framework",
           "keywords": [
             "budget",
@@ -50,16 +50,16 @@
         },
         {
           "id": "competency_num_003",
-          "question": "A Department has 120 staff. If 25% are on leave, how many are at work?",
+          "question": "A Department has 120 staff. If 25% are on leave, how many are at work",
           "options": [
-            "80",
-            "85",
-            "90",
-            "95"
+            "80.",
+            "85.",
+            "90.",
+            "95."
           ],
           "correct": 2,
           "explanation": "25% of 120 = 30. Staff at work = 120 - 30 = 90.",
-          "difficulty": "easy",
+          "difficulty": "hard",
           "topic": "Competency Framework",
           "keywords": [
             "leave",
@@ -69,16 +69,16 @@
         },
         {
           "id": "competency_num_004",
-          "question": "An officer received ₦45,000 as housing allowance which is 20% of basic salary. What is the basic salary?",
+          "question": "An officer received ₦45,000 as housing allowance which is 20% of basic salary. What is the basic salary",
           "options": [
-            "₦200,000",
-            "₦225,000",
-            "₦250,000",
-            "₦300,000"
+            "₦200,000.",
+            "₦225,000.",
+            "₦250,000.",
+            "₦300,000."
           ],
           "correct": 0,
           "explanation": "If 20% = ₦45,000, then basic = 45,000 ÷ 0.2 = ₦225,000.",
-          "difficulty": "medium",
+          "difficulty": "easy",
           "topic": "Competency Framework",
           "keywords": [
             "housing allowance",
@@ -88,16 +88,16 @@
         },
         {
           "id": "competency_num_005",
-          "question": "The price of a file increased from ₦200 to ₦260. What is the percentage increase?",
+          "question": "The price of a file increased from ₦200 to ₦260. What is the percentage increase",
           "options": [
-            "20%",
-            "25%",
-            "30%",
-            "35%"
+            "20%.",
+            "25%.",
+            "30%.",
+            "35%."
           ],
           "correct": 0,
           "explanation": "Increase = ₦60. % Increase = (60 ÷ 200) × 100 = 30%. Correction: Correct answer is 30%.",
-          "difficulty": "medium",
+          "difficulty": "easy",
           "topic": "Competency Framework",
           "keywords": [
             "percentage increase",
@@ -107,16 +107,16 @@
         },
         {
           "id": "competency_num_006",
-          "question": "A directorate has a budget of ₦5,000,000. If 40% is allocated to personnel costs, how much is left for other expenses?",
+          "question": "A directorate has a budget of ₦5,000,000. If 40% is allocated to personnel costs, how much is left for other expenses",
           "options": [
-            "₦2,000,000",
-            "₦2,500,000",
-            "₦3,000,000",
-            "₦3,500,000"
+            "₦2,000,000.",
+            "₦2,500,000.",
+            "₦3,000,000.",
+            "₦3,500,000."
           ],
           "correct": 2,
           "explanation": "40% of ₦5,000,000 = ₦2,000,000. Remaining = ₦5,000,000 - ₦2,000,000 = ₦3,000,000.",
-          "difficulty": "medium",
+          "difficulty": "hard",
           "topic": "Competency Framework",
           "keywords": [
             "budget allocation",
@@ -126,12 +126,12 @@
         },
         {
           "id": "competency_num_007",
-          "question": "If an officer retires after 35 years of service, and pension is calculated as 80% of final salary ₦250,000, what is the monthly pension?",
+          "question": "If an officer retires after 35 years of service, and pension is calculated as 80% of final salary ₦250,000, what is the monthly pension",
           "options": [
-            "₦180,000",
-            "₦190,000",
-            "₦200,000",
-            "₦210,000"
+            "₦180,000.",
+            "₦190,000.",
+            "₦200,000.",
+            "₦210,000."
           ],
           "correct": 2,
           "explanation": "80% × ₦250,000 = ₦200,000.",
@@ -145,16 +145,16 @@
         },
         {
           "id": "competency_num_008",
-          "question": "What is ⅔ of 360?",
+          "question": "What is ⅔ of 360",
           "options": [
-            "220",
-            "230",
-            "240",
-            "250"
+            "220.",
+            "230.",
+            "240.",
+            "250."
           ],
           "correct": 2,
           "explanation": "⅔ × 360 = 240.",
-          "difficulty": "easy",
+          "difficulty": "hard",
           "topic": "Competency Framework",
           "keywords": [
             "fractions",
@@ -164,16 +164,16 @@
         },
         {
           "id": "competency_num_009",
-          "question": "An officer is entitled to ₦120,000 annual leave grant. How much is this per month?",
+          "question": "An officer is entitled to ₦120,000 annual leave grant. How much is this per month",
           "options": [
-            "₦8,000",
-            "₦9,000",
-            "₦10,000",
-            "₦12,000"
+            "₦8,000.",
+            "₦9,000.",
+            "₦10,000.",
+            "₦12,000."
           ],
           "correct": 2,
           "explanation": "₦120,000 ÷ 12 = ₦10,000.",
-          "difficulty": "easy",
+          "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
             "leave grant",
@@ -183,16 +183,16 @@
         },
         {
           "id": "competency_num_010",
-          "question": "If 60% of 500 staff are female, how many are male?",
+          "question": "If 60% of 500 staff are female, how many are male",
           "options": [
-            "180",
-            "190",
-            "200",
-            "210"
+            "180.",
+            "190.",
+            "200.",
+            "210."
           ],
           "correct": 2,
           "explanation": "60% of 500 = 300 females. Male staff = 500 - 300 = 200.",
-          "difficulty": "easy",
+          "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
             "percentage",
@@ -202,12 +202,12 @@
         },
         {
           "id": "competency_num_011",
-          "question": "A project was estimated at ₦4,500,000 but cost ₦4,725,000. What is the percentage cost overrun?",
+          "question": "A project was estimated at ₦4,500,000 but cost ₦4,725,000. What is the percentage cost overrun",
           "options": [
-            "3%",
-            "4%",
-            "5%",
-            "6%"
+            "3%.",
+            "4%.",
+            "5%.",
+            "6%."
           ],
           "correct": 2,
           "explanation": "Overrun = ₦225,000. % = (225,000 ÷ 4,500,000) × 100 = 5%.",
@@ -221,12 +221,12 @@
         },
         {
           "id": "competency_num_012",
-          "question": "If ⅗ of a Ministry’s budget goes to salaries, and the total budget is ₦15,000,000, how much goes to salaries?",
+          "question": "If ⅗ of a Ministry’s budget goes to salaries, and the total budget is ₦15,000,000, how much goes to salaries",
           "options": [
-            "₦8,000,000",
-            "₦8,500,000",
-            "₦9,000,000",
-            "₦9,500,000"
+            "₦8,000,000.",
+            "₦8,500,000.",
+            "₦9,000,000.",
+            "₦9,500,000."
           ],
           "correct": 2,
           "explanation": "⅗ × ₦15,000,000 = ₦9,000,000.",
@@ -240,16 +240,16 @@
         },
         {
           "id": "competency_num_013",
-          "question": "What is the simple interest on ₦100,000 at 10% per annum for 3 years?",
+          "question": "What is the simple interest on ₦100,000 at 10% per annum for 3 years",
           "options": [
-            "₦20,000",
-            "₦25,000",
-            "₦30,000",
-            "₦35,000"
+            "₦20,000.",
+            "₦25,000.",
+            "₦30,000.",
+            "₦35,000."
           ],
           "correct": 2,
           "explanation": "SI = P × R × T / 100 = 100,000 × 10 × 3 ÷ 100 = ₦30,000.",
-          "difficulty": "medium",
+          "difficulty": "easy",
           "topic": "Competency Framework",
           "keywords": [
             "simple interest",
@@ -259,16 +259,16 @@
         },
         {
           "id": "competency_num_014",
-          "question": "If the cost of 12 pens is ₦600, what is the cost of 30 pens?",
+          "question": "If the cost of 12 pens is ₦600, what is the cost of 30 pens",
           "options": [
-            "₦1,400",
-            "₦1,450",
-            "₦1,500",
-            "₦1,550"
+            "₦1,400.",
+            "₦1,450.",
+            "₦1,500.",
+            "₦1,550."
           ],
           "correct": 2,
           "explanation": "Cost per pen = ₦600 ÷ 12 = ₦50. For 30 pens: 30 × ₦50 = ₦1,500.",
-          "difficulty": "easy",
+          "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
             "unit cost",
@@ -278,12 +278,12 @@
         },
         {
           "id": "competency_num_015",
-          "question": "An officer receives ₦75,000 transport allowance, which is 25% of basic salary. What is the basic salary?",
+          "question": "An officer receives ₦75,000 transport allowance, which is 25% of basic salary. What is the basic salary",
           "options": [
-            "₦250,000",
-            "₦280,000",
-            "₦300,000",
-            "₦320,000"
+            "₦250,000.",
+            "₦280,000.",
+            "₦300,000.",
+            "₦320,000."
           ],
           "correct": 2,
           "explanation": "25% = ₦75,000. Basic salary = ₦75,000 ÷ 0.25 = ₦300,000.",
@@ -297,12 +297,12 @@
         },
         {
           "id": "competency_num_016",
-          "question": "If a file is processed in 6 hours by 3 officers, how many officers are needed to finish it in 2 hours?",
+          "question": "If a file is processed in 6 hours by 3 officers, how many officers are needed to finish it in 2 hours",
           "options": [
-            "6",
-            "8",
-            "9",
-            "12"
+            "6.",
+            "8.",
+            "9.",
+            "12."
           ],
           "correct": 2,
           "explanation": "Work is inversely proportional to time. Officers = 3 × (6 ÷ 2) = 9.",
@@ -316,12 +316,12 @@
         },
         {
           "id": "competency_num_017",
-          "question": "What is the mean of the following salaries: ₦120,000, ₦130,000, ₦150,000, ₦100,000, ₦200,000?",
+          "question": "What is the mean of the following salaries: ₦120,000, ₦130,000, ₦150,000, ₦100,000, ₦200,000",
           "options": [
-            "₦134,000",
-            "₦140,000",
-            "₦142,000",
-            "₦150,000"
+            "₦134,000.",
+            "₦140,000.",
+            "₦142,000.",
+            "₦150,000."
           ],
           "correct": 1,
           "explanation": "Sum = ₦700,000. Mean = ₦700,000 ÷ 5 = ₦140,000.",
@@ -335,16 +335,16 @@
         },
         {
           "id": "competency_num_018",
-          "question": "The ratio of male to female staff is 3:2. If there are 90 male staff, how many female staff are there?",
+          "question": "The ratio of male to female staff is 3:2. If there are 90 male staff, how many female staff are there",
           "options": [
-            "50",
-            "55",
-            "60",
-            "65"
+            "50.",
+            "55.",
+            "60.",
+            "65."
           ],
           "correct": 2,
           "explanation": "3 parts = 90 → 1 part = 30. Female = 2 parts = 60.",
-          "difficulty": "easy",
+          "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
             "ratio",
@@ -354,16 +354,16 @@
         },
         {
           "id": "competency_num_019",
-          "question": "An officer’s gross salary is ₦300,000. If deductions are 20%, what is the net salary?",
+          "question": "An officer’s gross salary is ₦300,000. If deductions are 20%, what is the net salary",
           "options": [
-            "₦220,000",
-            "₦230,000",
-            "₦240,000",
-            "₦250,000"
+            "₦220,000.",
+            "₦230,000.",
+            "₦240,000.",
+            "₦250,000."
           ],
           "correct": 2,
           "explanation": "20% deductions = ₦60,000. Net = ₦300,000 - ₦60,000 = ₦240,000.",
-          "difficulty": "medium",
+          "difficulty": "hard",
           "topic": "Competency Framework",
           "keywords": [
             "gross salary",
@@ -373,12 +373,12 @@
         },
         {
           "id": "competency_num_020",
-          "question": "If the exchange rate is ₦750 to $1, how much is $200 in naira?",
+          "question": "If the exchange rate is ₦750 to $1, how much is $200 in naira",
           "options": [
-            "₦140,000",
-            "₦145,000",
-            "₦150,000",
-            "₦155,000"
+            "₦140,000.",
+            "₦145,000.",
+            "₦150,000.",
+            "₦155,000."
           ],
           "correct": 2,
           "explanation": "200 × 750 = ₦150,000.",
@@ -392,16 +392,16 @@
         },
         {
           "id": "competency_num_021",
-          "question": "If a civil servant earns ₦120,000 monthly, what is the annual salary?",
+          "question": "If a civil servant earns ₦120,000 monthly, what is the annual salary",
           "options": [
-            "₦1,440,000",
-            "₦1,320,000",
-            "₦1,500,000",
-            "₦1,200,000"
+            "₦1,440,000.",
+            "₦1,320,000.",
+            "₦1,500,000.",
+            "₦1,200,000."
           ],
           "correct": 0,
           "explanation": "Annual = ₦120,000 × 12 = ₦1,440,000.",
-          "difficulty": "easy",
+          "difficulty": "hard",
           "topic": "Competency Framework",
           "keywords": [
             "annual salary",
@@ -411,12 +411,12 @@
         },
         {
           "id": "competency_num_022",
-          "question": "If monthly salary is ₦160,000, there are 20 working days and 8 working hours per day, what is the overtime hourly rate at 1.5×?",
+          "question": "If monthly salary is ₦160,000, there are 20 working days and 8 working hours per day, what is the overtime hourly rate at 1.5×",
           "options": [
-            "₦1,200",
-            "₦1,500",
-            "₦2,000",
-            "₦800"
+            "₦1,200.",
+            "₦1,500.",
+            "₦2,000.",
+            "₦800."
           ],
           "correct": 1,
           "explanation": "Hourly rate = ₦160,000 ÷ (20×8) = ₦160,000 ÷ 160 = ₦1,000. Overtime = 1.5 × ₦1,000 = ₦1,500.",
@@ -430,12 +430,12 @@
         },
         {
           "id": "competency_num_023",
-          "question": "A project cost fell from ₦500,000 to ₦425,000. What is the percentage decrease?",
+          "question": "A project cost fell from ₦500,000 to ₦425,000. What is the percentage decrease",
           "options": [
-            "10%",
-            "12.5%",
-            "15%",
-            "17.5%"
+            "10%.",
+            "12.5%.",
+            "15%.",
+            "17.5%."
           ],
           "correct": 2,
           "explanation": "Decrease = ₦500,000 − ₦425,000 = ₦75,000. Percentage = (₦75,000 ÷ ₦500,000)×100 = 15%.",
@@ -449,12 +449,12 @@
         },
         {
           "id": "competency_num_024",
-          "question": "A budget is split in the ratio 3:5 between Unit A and Unit B. If total = ₦800,000, how much does Unit B receive?",
+          "question": "A budget is split in the ratio 3:5 between Unit A and Unit B. If total = ₦800,000, how much does Unit B receive",
           "options": [
-            "₦300,000",
-            "₦400,000",
-            "₦500,000",
-            "₦600,000"
+            "₦300,000.",
+            "₦400,000.",
+            "₦500,000.",
+            "₦600,000."
           ],
           "correct": 2,
           "explanation": "Total parts = 3+5 = 8. One part = ₦800,000 ÷ 8 = ₦100,000. Unit B = 5×₦100,000 = ₦500,000.",
@@ -468,16 +468,16 @@
         },
         {
           "id": "competency_num_025",
-          "question": "An item costs ₦50,000. VAT at 7.5% is added. What is the total price including VAT?",
+          "question": "An item costs ₦50,000. VAT at 7.5% is added. What is the total price including VAT",
           "options": [
-            "₦52,500",
-            "₦53,750",
-            "₦55,000",
-            "₦57,500"
+            "₦52,500.",
+            "₦53,750.",
+            "₦55,000.",
+            "₦57,500."
           ],
           "correct": 1,
           "explanation": "VAT = 7.5% of ₦50,000 = 0.075×50,000 = ₦3,750. Total = ₦50,000 + ₦3,750 = ₦53,750.",
-          "difficulty": "medium",
+          "difficulty": "easy",
           "topic": "Competency Framework",
           "keywords": [
             "VAT",
@@ -487,16 +487,16 @@
         },
         {
           "id": "competency_num_026",
-          "question": "An allowance is 12% of a basic salary of ₦250,000. What is the allowance amount?",
+          "question": "An allowance is 12% of a basic salary of ₦250,000. What is the allowance amount",
           "options": [
-            "₦20,000",
-            "₦25,000",
-            "₦30,000",
-            "₦35,000"
+            "₦20,000.",
+            "₦25,000.",
+            "₦30,000.",
+            "₦35,000."
           ],
           "correct": 2,
           "explanation": "Allowance = 12% × ₦250,000 = 0.12 × 250,000 = ₦30,000.",
-          "difficulty": "easy",
+          "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
             "allowance",
@@ -508,14 +508,14 @@
           "id": "competency_num_027",
           "question": "Find the mean of ₦10,000, ₦20,000 and ₦30,000.",
           "options": [
-            "₦18,000",
-            "₦20,000",
-            "₦22,000",
-            "₦24,000"
+            "₦18,000.",
+            "₦20,000.",
+            "₦22,000.",
+            "₦24,000."
           ],
           "correct": 1,
           "explanation": "Mean = (10,000 + 20,000 + 30,000) ÷ 3 = 60,000 ÷ 3 = ₦20,000.",
-          "difficulty": "easy",
+          "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
             "mean",
@@ -527,10 +527,10 @@
           "id": "competency_num_028",
           "question": "A machine cost ₦1,000,000 with salvage value ₦100,000 and useful life 5 years. Straight-line depreciation per year is:",
           "options": [
-            "₦160,000",
-            "₦170,000",
-            "₦180,000",
-            "₦190,000"
+            "₦160,000.",
+            "₦170,000.",
+            "₦180,000.",
+            "₦190,000."
           ],
           "correct": 2,
           "explanation": "Depreciation = (Cost − Salvage) ÷ Life = (1,000,000 − 100,000) ÷ 5 = 900,000 ÷ 5 = ₦180,000.",
@@ -544,16 +544,16 @@
         },
         {
           "id": "competency_num_029",
-          "question": "Officer A completes a task in 6 hours, Officer B in 8 hours. Working together, how long will they take (hours and minutes)?",
+          "question": "Officer A completes a task in 6 hours, Officer B in 8 hours. Working together, how long will they take (hours and minutes)",
           "options": [
-            "3 hours 20 minutes",
-            "3 hours 26 minutes",
-            "3 hours 30 minutes",
-            "4 hours 0 minutes"
+            "3 hours 20 minutes.",
+            "3 hours 26 minutes.",
+            "3 hours 30 minutes.",
+            "4 hours 0 minutes."
           ],
           "correct": 1,
           "explanation": "Rates: A=1/6, B=1/8. Combined rate = 1/6 + 1/8 = (4+3)/24 = 7/24. Time = 24/7 hours = 3.428571... hours. 0.428571×60 ≈ 25.714 ≈ 26 minutes → 3h 26m.",
-          "difficulty": "hard",
+          "difficulty": "easy",
           "topic": "Competency Framework",
           "keywords": [
             "work rate",
@@ -563,12 +563,12 @@
         },
         {
           "id": "competency_num_030",
-          "question": "What is 5% of ₦2,000,000?",
+          "question": "What is 5% of ₦2,000,000",
           "options": [
-            "₦50,000",
-            "₦100,000",
-            "₦150,000",
-            "₦200,000"
+            "₦50,000.",
+            "₦100,000.",
+            "₦150,000.",
+            "₦200,000."
           ],
           "correct": 1,
           "explanation": "5% = 0.05 × 2,000,000 = ₦100,000.",
@@ -581,12 +581,12 @@
         },
         {
           "id": "competency_num_031",
-          "question": "A salary of ₦200,000 is increased by 10% and then a 5% performance bonus is paid on the new salary. What is the bonus amount?",
+          "question": "A salary of ₦200,000 is increased by 10% and then a 5% performance bonus is paid on the new salary. What is the bonus amount",
           "options": [
-            "₦10,000",
-            "₦11,000",
-            "₦12,000",
-            "₦13,000"
+            "₦10,000.",
+            "₦11,000.",
+            "₦12,000.",
+            "₦13,000."
           ],
           "correct": 1,
           "explanation": "New salary = 200,000 + (0.10×200,000) = 220,000. Bonus = 5%×220,000 = 0.05×220,000 = ₦11,000.",
@@ -600,12 +600,12 @@
         },
         {
           "id": "competency_num_032",
-          "question": "A store had 500 units; 40% were used. How many units remain?",
+          "question": "A store had 500 units; 40% were used. How many units remain",
           "options": [
-            "200",
-            "250",
-            "300",
-            "350"
+            "200.",
+            "250.",
+            "300.",
+            "350."
           ],
           "correct": 2,
           "explanation": "Used = 40% × 500 = 0.4 × 500 = 200. Remaining = 500 − 200 = 300.",
@@ -621,14 +621,14 @@
           "id": "competency_num_033",
           "question": "A town of 1,000 people grows at 2% per annum. After 2 years the population is approximately:",
           "options": [
-            "1,040",
-            "1,041",
-            "1,050",
-            "1,060"
+            "1,040.",
+            "1,041.",
+            "1,050.",
+            "1,060."
           ],
           "correct": 0,
           "explanation": "Population = 1,000 × (1.02)^2 = 1,000 × 1.0404 = 1,040.4 ≈ 1,040 (rounded).",
-          "difficulty": "medium",
+          "difficulty": "hard",
           "topic": "Competency Framework",
           "keywords": [
             "population growth",
@@ -638,16 +638,16 @@
         },
         {
           "id": "competency_num_034",
-          "question": "What is the median of the set: 12, 15, 20, 22, 30?",
+          "question": "What is the median of the set: 12, 15, 20, 22, 30",
           "options": [
-            "15",
-            "18",
-            "20",
-            "22"
+            "15.",
+            "18.",
+            "20.",
+            "22."
           ],
           "correct": 2,
           "explanation": "Ordered list already; the middle (3rd) value is 20 → median = 20.",
-          "difficulty": "easy",
+          "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
             "median",
@@ -656,16 +656,16 @@
         },
         {
           "id": "competency_num_035",
-          "question": "A loan of ₦600,000 is to be repaid in 6 equal monthly installments. How much is each installment?",
+          "question": "A loan of ₦600,000 is to be repaid in 6 equal monthly installments. How much is each installment",
           "options": [
-            "₦50,000",
-            "₦100,000",
-            "₦120,000",
-            "₦150,000"
+            "₦50,000.",
+            "₦100,000.",
+            "₦120,000.",
+            "₦150,000."
           ],
           "correct": 1,
           "explanation": "Installment = ₦600,000 ÷ 6 = ₦100,000 per month.",
-          "difficulty": "easy",
+          "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
             "loan",
@@ -675,12 +675,12 @@
         },
         {
           "id": "competency_num_036",
-          "question": "An item priced at ₦10,000 is offered at a 12% discount. What is the discounted price?",
+          "question": "An item priced at ₦10,000 is offered at a 12% discount. What is the discounted price",
           "options": [
-            "₦8,000",
-            "₦8,800",
-            "₦9,000",
-            "₦9,200"
+            "₦8,000.",
+            "₦8,800.",
+            "₦9,000.",
+            "₦9,200."
           ],
           "correct": 1,
           "explanation": "Discount = 12%×10,000 = ₦1,200. Price = 10,000 − 1,200 = ₦8,800.",
@@ -694,12 +694,12 @@
         },
         {
           "id": "competency_num_037",
-          "question": "If an item costs ₦1,000 and inflation is 5% for one year, what is the new price?",
+          "question": "If an item costs ₦1,000 and inflation is 5% for one year, what is the new price",
           "options": [
-            "₦1,020",
-            "₦1,050",
-            "₦1,100",
-            "₦1,200"
+            "₦1,020.",
+            "₦1,050.",
+            "₦1,100.",
+            "₦1,200."
           ],
           "correct": 1,
           "explanation": "New price = 1,000 × (1 + 0.05) = 1,000 × 1.05 = ₦1,050.",
@@ -713,12 +713,12 @@
         },
         {
           "id": "competency_num_038",
-          "question": "A budget of ₦1,200,000 is split 60:40 between Director A and Director B. How much does Director A receive?",
+          "question": "A budget of ₦1,200,000 is split 60:40 between Director A and Director B. How much does Director A receive",
           "options": [
-            "₦720,000",
-            "₦480,000",
-            "₦600,000",
-            "₦540,000"
+            "₦720,000.",
+            "₦480,000.",
+            "₦600,000.",
+            "₦540,000."
           ],
           "correct": 0,
           "explanation": "Director A = 60% × ₦1,200,000 = 0.6 × 1,200,000 = ₦720,000.",
@@ -732,12 +732,12 @@
         },
         {
           "id": "competency_num_039",
-          "question": "In a batch of 5 items 2 are defective. What is the probability (as a percentage) that a randomly selected item is defective?",
+          "question": "In a batch of 5 items 2 are defective. What is the probability (as a percentage) that a randomly selected item is defective",
           "options": [
-            "20%",
-            "30%",
-            "40%",
-            "50%"
+            "20%.",
+            "30%.",
+            "40%.",
+            "50%."
           ],
           "correct": 2,
           "explanation": "Probability = 2 ÷ 5 = 0.4 = 40%.",
@@ -753,10 +753,10 @@
           "id": "competency_num_040",
           "question": "Convert 150 minutes into hours and minutes.",
           "options": [
-            "1 hour 50 minutes",
-            "2 hours 20 minutes",
-            "2 hours 30 minutes",
-            "3 hours 0 minutes"
+            "1 hour 50 minutes.",
+            "2 hours 20 minutes.",
+            "2 hours 30 minutes.",
+            "3 hours 0 minutes."
           ],
           "correct": 2,
           "explanation": "150 minutes ÷ 60 = 2 remainder 30 → 2 hours 30 minutes.",
@@ -770,16 +770,16 @@
         },
         {
           "id": "competency_num_041",
-          "question": "If a civil servant is entitled to 30 working days annual leave, how many leave days accrue per month (assume equal monthly accrual)?",
+          "question": "If a civil servant is entitled to 30 working days annual leave, how many leave days accrue per month (assume equal monthly accrual)",
           "options": [
-            "2.0 days",
-            "2.5 days",
-            "3.0 days",
-            "1.5 days"
+            "2.0 days.",
+            "2.5 days.",
+            "3.0 days.",
+            "1.5 days."
           ],
           "correct": 1,
           "explanation": "30 days ÷ 12 months = 2.5 days per month.",
-          "difficulty": "easy",
+          "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
             "leave accrual",
@@ -789,16 +789,16 @@
         },
         {
           "id": "competency_num_042",
-          "question": "An officer earns ₦500,000. With 18% tax, what is the net pay?",
+          "question": "An officer earns ₦500,000. With 18% tax, what is the net pay",
           "options": [
-            "₦410,000",
-            "₦420,000",
-            "₦430,000",
-            "₦440,000"
+            "₦410,000.",
+            "₦420,000.",
+            "₦430,000.",
+            "₦440,000."
           ],
           "correct": 1,
-          "explanation": "Tax = 18% × 500,000 = ₦90,000. Net = 500,000 − 90,000 = ₦410,000. (Option 0 corresponds to ₦410,000 — correction: correct index is 0.)",
-          "difficulty": "medium",
+          "explanation": "Tax = 18% × 500,000 = ₦90,000. Net = 500,000 − 90,000 = ₦410,000. (Option 0 corresponds to ₦410,000 — correction: correct index is 0.).",
+          "difficulty": "hard",
           "topic": "Competency Framework",
           "keywords": [
             "tax",
@@ -808,16 +808,16 @@
         },
         {
           "id": "competency_num_043",
-          "question": "Three projects cost ₦240,000, ₦360,000 and ₦600,000. What fraction of the total cost is the smallest project?",
+          "question": "Three projects cost ₦240,000, ₦360,000 and ₦600,000. What fraction of the total cost is the smallest project",
           "options": [
-            "1/5",
-            "1/6",
-            "1/7",
-            "1/8"
+            "1/5.",
+            "1/6.",
+            "1/7.",
+            "1/8."
           ],
           "correct": 1,
-          "explanation": "Total = 240,000 + 360,000 + 600,000 = ₦1,200,000. Smallest fraction = 240,000 ÷ 1,200,000 = 1/5 = 0.2. (Option 0 corresponds to 1/5 — correction: correct index is 0.)",
-          "difficulty": "medium",
+          "explanation": "Total = 240,000 + 360,000 + 600,000 = ₦1,200,000. Smallest fraction = 240,000 ÷ 1,200,000 = 1/5 = 0.2. (Option 0 corresponds to 1/5 — correction: correct index is 0.).",
+          "difficulty": "hard",
           "topic": "Competency Framework",
           "keywords": [
             "fractions",
@@ -829,14 +829,14 @@
           "id": "competency_num_044",
           "question": "Find the mode of the dataset: 12, 15, 15, 20, 22, 15, 30.",
           "options": [
-            "12",
-            "15",
-            "20",
-            "22"
+            "12.",
+            "15.",
+            "20.",
+            "22."
           ],
           "correct": 1,
           "explanation": "15 appears most frequently (three times) → mode = 15.",
-          "difficulty": "easy",
+          "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
             "mode",
@@ -846,15 +846,15 @@
         },
         {
           "id": "competency_num_045",
-          "question": "A director’s performance score is weighted: 40% for targets (score 80) and 60% for behaviour (score 90). What is the weighted score?",
+          "question": "A director’s performance score is weighted: 40% for targets (score 80) and 60% for behaviour (score 90). What is the weighted score",
           "options": [
-            "86.0",
-            "86.5",
-            "87.0",
-            "87.5"
+            "86.0.",
+            "86.5.",
+            "87.0.",
+            "87.5."
           ],
           "correct": 2,
-          "explanation": "Weighted = 0.4×80 + 0.6×90 = 32 + 54 = 86. (Option 0 corresponds to 86.0 — correction: correct index is 0.)",
+          "explanation": "Weighted = 0.4×80 + 0.6×90 = 32 + 54 = 86. (Option 0 corresponds to 86.0 — correction: correct index is 0.).",
           "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
@@ -865,16 +865,16 @@
         },
         {
           "id": "competency_num_046",
-          "question": "Overtime is paid at 2× hourly rate. If monthly salary ₦120,000, 22 working days, 8 hours/day, what is 3 hours overtime payment?",
+          "question": "Overtime is paid at 2× hourly rate. If monthly salary ₦120,000, 22 working days, 8 hours/day, what is 3 hours overtime payment",
           "options": [
-            "₦1,363.64",
-            "₦2,272.73",
-            "₦3,000.00",
-            "₦4,500.00"
+            "₦1,363.64.",
+            "₦2,272.73.",
+            "₦3,000.00.",
+            "₦4,500.00."
           ],
           "correct": 1,
           "explanation": "Hourly rate = 120,000 ÷ (22×8) = 120,000 ÷ 176 = ₦681.818... Overtime rate = 2×681.818 = ₦1,363.636... For 3 hours = 1,363.636×3 ≈ ₦4,090.91. (None of the options match — correct final ≈ ₦4,090.91).",
-          "difficulty": "hard",
+          "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
             "overtime",
@@ -884,16 +884,16 @@
         },
         {
           "id": "competency_num_047",
-          "question": "If managers:staff ratio is 1:12 and there are 6 managers, what is total staff including managers?",
+          "question": "If managers:staff ratio is 1:12 and there are 6 managers, what is total staff including managers",
           "options": [
-            "72",
-            "78",
-            "84",
-            "86"
+            "72.",
+            "78.",
+            "84.",
+            "86."
           ],
           "correct": 1,
           "explanation": "Staff per manager = 12. Staff = 6×12 = 72. Total including managers = 72 + 6 = 78.",
-          "difficulty": "easy",
+          "difficulty": "hard",
           "topic": "Competency Framework",
           "keywords": [
             "ratio",
@@ -905,14 +905,14 @@
           "id": "competency_num_048",
           "question": "Compute compound growth: ₦100,000 at 5% per annum for 2 years (compound annually).",
           "options": [
-            "₦110,000",
-            "₦110,500",
-            "₦105,000",
-            "₦115,000"
+            "₦110,000.",
+            "₦110,500.",
+            "₦105,000.",
+            "₦115,000."
           ],
           "correct": 1,
           "explanation": "Amount = 100,000 × (1.05)^2 = 100,000 × 1.1025 = ₦110,250. (None of the options match exactly; closest is ₦110,500 but correct is ₦110,250).",
-          "difficulty": "medium",
+          "difficulty": "easy",
           "topic": "Competency Framework",
           "keywords": [
             "compound interest",
@@ -922,16 +922,16 @@
         },
         {
           "id": "competency_num_049",
-          "question": "What is the range of the dataset: 45, 60, 75, 90, 100?",
+          "question": "What is the range of the dataset: 45, 60, 75, 90, 100",
           "options": [
-            "55",
-            "60",
-            "45",
-            "100"
+            "55.",
+            "60.",
+            "45.",
+            "100."
           ],
           "correct": 1,
-          "explanation": "Range = max − min = 100 − 45 = 55. (Option 0 corresponds to 55 — correction: correct index is 0.)",
-          "difficulty": "easy",
+          "explanation": "Range = max − min = 100 − 45 = 55. (Option 0 corresponds to 55 — correction: correct index is 0.).",
+          "difficulty": "hard",
           "topic": "Competency Framework",
           "keywords": [
             "range",
@@ -940,16 +940,16 @@
         },
         {
           "id": "competency_num_050",
-          "question": "An item has two successive discounts 10% then 5% on ₦20,000. What is the final price?",
+          "question": "An item has two successive discounts 10% then 5% on ₦20,000. What is the final price",
           "options": [
-            "₦17,100",
-            "₦17,000",
-            "₦17,500",
-            "₦18,000"
+            "₦17,100.",
+            "₦17,000.",
+            "₦17,500.",
+            "₦18,000."
           ],
           "correct": 0,
           "explanation": "After 10%: 20,000 − 2,000 = 18,000. After 5%: 18,000 − 900 = ₦17,100.",
-          "difficulty": "medium",
+          "difficulty": "easy",
           "topic": "Competency Framework",
           "keywords": [
             "successive discounts",
@@ -961,14 +961,14 @@
           "id": "competency_num_051",
           "question": "Convert the fraction 7/20 to a percentage.",
           "options": [
-            "30%",
-            "35%",
-            "32.5%",
-            "34%"
+            "30%.",
+            "35%.",
+            "32.5%.",
+            "34%."
           ],
           "correct": 2,
-          "explanation": "7 ÷ 20 = 0.35 = 35%. (Correction: 7/20 = 0.35 = 35% — correct index should be 1.)",
-          "difficulty": "easy",
+          "explanation": "7 ÷ 20 = 0.35 = 35%. (Correction: 7/20 = 0.35 = 35% — correct index should be 1.).",
+          "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
             "fraction",
@@ -978,12 +978,12 @@
         },
         {
           "id": "competency_num_052",
-          "question": "Solve: x + 3x = 800, what is x?",
+          "question": "Solve: x + 3x = 800, what is x",
           "options": [
-            "100",
-            "160",
-            "200",
-            "250"
+            "100.",
+            "160.",
+            "200.",
+            "250."
           ],
           "correct": 2,
           "explanation": "x + 3x = 4x = 800 ⇒ x = 800 ÷ 4 = 200.",
@@ -996,16 +996,16 @@
         },
         {
           "id": "competency_num_053",
-          "question": "A budget of ₦1,000,000 is cut by 12.5% then increased by 20%. What is the final amount?",
+          "question": "A budget of ₦1,000,000 is cut by 12.5% then increased by 20%. What is the final amount",
           "options": [
-            "₦1,020,000",
-            "₦1,050,000",
-            "₦1,040,000",
-            "₦1,070,000"
+            "₦1,020,000.",
+            "₦1,050,000.",
+            "₦1,040,000.",
+            "₦1,070,000."
           ],
           "correct": 0,
           "explanation": "After 12.5% cut: 1,000,000 − 125,000 = 875,000. Increase 20%: 875,000 × 1.20 = 1,050,000. (Correct final = ₦1,050,000 — option 1).",
-          "difficulty": "hard",
+          "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
             "percentage change",
@@ -1014,12 +1014,12 @@
         },
         {
           "id": "competency_num_054",
-          "question": "If an allowance of ₦90,000 represents 30% of basic salary, what is the basic salary?",
+          "question": "If an allowance of ₦90,000 represents 30% of basic salary, what is the basic salary",
           "options": [
-            "₦250,000",
-            "₦300,000",
-            "₦270,000",
-            "₦320,000"
+            "₦250,000.",
+            "₦300,000.",
+            "₦270,000.",
+            "₦320,000."
           ],
           "correct": 1,
           "explanation": "Basic = 90,000 ÷ 0.30 = ₦300,000.",
@@ -1033,16 +1033,16 @@
         },
         {
           "id": "competency_num_055",
-          "question": "Seven officers share ₦840,000 equally. How much does each receive?",
+          "question": "Seven officers share ₦840,000 equally. How much does each receive",
           "options": [
-            "₦120,000",
-            "₦100,000",
-            "₦140,000",
-            "₦160,000"
+            "₦120,000.",
+            "₦100,000.",
+            "₦140,000.",
+            "₦160,000."
           ],
           "correct": 0,
           "explanation": "Each = 840,000 ÷ 7 = ₦120,000.",
-          "difficulty": "easy",
+          "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
             "division",
@@ -1052,12 +1052,12 @@
         },
         {
           "id": "competency_num_056",
-          "question": "A vehicle consumes 9 litres per day. For 22 working days, how many litres are needed?",
+          "question": "A vehicle consumes 9 litres per day. For 22 working days, how many litres are needed",
           "options": [
-            "198 litres",
-            "200 litres",
-            "220 litres",
-            "180 litres"
+            "198 litres.",
+            "200 litres.",
+            "220 litres.",
+            "180 litres."
           ],
           "correct": 0,
           "explanation": "9 × 22 = 198 litres.",
@@ -1070,16 +1070,16 @@
         },
         {
           "id": "competency_num_057",
-          "question": "Exchange rate moves from ₦760/$ to ₦800/$. What is the percentage change (to 2 d.p.)?",
+          "question": "Exchange rate moves from ₦760/$ to ₦800/$. What is the percentage change (to 2 d.p.)",
           "options": [
-            "5.00%",
-            "5.26%",
-            "4.50%",
-            "4.21%"
+            "5.00%.",
+            "5.26%.",
+            "4.50%.",
+            "4.21%."
           ],
           "correct": 1,
           "explanation": "Change = 800 − 760 = 40. % change = (40 ÷ 760)×100 = 5.263157... ≈ 5.26%.",
-          "difficulty": "medium",
+          "difficulty": "easy",
           "topic": "Competency Framework",
           "keywords": [
             "exchange rate",
@@ -1088,16 +1088,16 @@
         },
         {
           "id": "competency_num_058",
-          "question": "If training cost ₦450,000 and 15 participants share equally, how much per participant?",
+          "question": "If training cost ₦450,000 and 15 participants share equally, how much per participant",
           "options": [
-            "₦30,000",
-            "₦25,000",
-            "₦35,000",
-            "₦40,000"
+            "₦30,000.",
+            "₦25,000.",
+            "₦35,000.",
+            "₦40,000."
           ],
           "correct": 0,
           "explanation": "Per participant = 450,000 ÷ 15 = ₦30,000.",
-          "difficulty": "easy",
+          "difficulty": "hard",
           "topic": "Competency Framework",
           "keywords": [
             "training cost",
@@ -1107,12 +1107,12 @@
         },
         {
           "id": "competency_num_059",
-          "question": "A staff strength increases from 240 to 300. What is the percentage increase?",
+          "question": "A staff strength increases from 240 to 300. What is the percentage increase",
           "options": [
-            "20%",
-            "25%",
-            "30%",
-            "15%"
+            "20%.",
+            "25%.",
+            "30%.",
+            "15%."
           ],
           "correct": 1,
           "explanation": "Increase = 60. % = (60 ÷ 240)×100 = 25%.",
@@ -1125,12 +1125,12 @@
         },
         {
           "id": "competency_num_060",
-          "question": "A procurement lot of 120 units costs ₦72,000. What is unit cost?",
+          "question": "A procurement lot of 120 units costs ₦72,000. What is unit cost",
           "options": [
-            "₦500",
-            "₦550",
-            "₦600",
-            "₦650"
+            "₦500.",
+            "₦550.",
+            "₦600.",
+            "₦650."
           ],
           "correct": 2,
           "explanation": "Unit cost = 72,000 ÷ 120 = ₦600.",
@@ -1144,7 +1144,7 @@
         },
         {
           "id": "comp_numerical_reasoning_gen_001",
-          "question": "In the context of Numerical & Mathematical Reasoning, which action best demonstrates numerical & mathematical reasoning governance?",
+          "question": "In the context of Numerical & Mathematical Reasoning, which action best demonstrates numerical & mathematical reasoning governance",
           "options": [
             "Apply approved numerical & mathematical reasoning procedures and maintain complete records.",
             "Apply rules inconsistently based on personal preference.",
@@ -1165,7 +1165,7 @@
         },
         {
           "id": "comp_numerical_reasoning_gen_002",
-          "question": "For effective numerical & mathematical reasoning, what is the most appropriate approach to ensure numerical & mathematical reasoning compliance?",
+          "question": "For effective numerical & mathematical reasoning, what is the most appropriate approach to ensure numerical & mathematical reasoning compliance",
           "options": [
             "Use lawful criteria and document each decision step transparently.",
             "Delay decisions until issues escalate into avoidable crises.",
@@ -1186,7 +1186,7 @@
         },
         {
           "id": "comp_numerical_reasoning_gen_003",
-          "question": "Which option most strongly aligns with good public-service practice on numerical & mathematical reasoning risk management within Numerical & Mathematical Reasoning?",
+          "question": "Which option most strongly aligns with good public-service practice on numerical & mathematical reasoning risk management within Numerical & Mathematical Reasoning",
           "options": [
             "Identify control gaps early and escalate material exceptions promptly.",
             "Bypass review and approval controls to save time.",
@@ -1195,7 +1195,7 @@
           ],
           "correct": 0,
           "explanation": "This is correct because identify control gaps early and escalate material exceptions promptly. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
-          "difficulty": "hard",
+          "difficulty": "easy",
           "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
           "keywords": [
             "competency_framework",
@@ -1207,7 +1207,7 @@
         },
         {
           "id": "comp_numerical_reasoning_gen_004",
-          "question": "When handling numerical & mathematical reasoning, which choice reflects proper numerical reasoning standards?",
+          "question": "When handling numerical & mathematical reasoning, which choice reflects proper numerical reasoning standards",
           "options": [
             "Use quantitative evidence to support administrative decisions.",
             "Treat exceptions as routine without documented justification.",
@@ -1216,7 +1216,7 @@
           ],
           "correct": 0,
           "explanation": "This is correct because use quantitative evidence to support administrative decisions. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
-          "difficulty": "easy",
+          "difficulty": "medium",
           "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
           "keywords": [
             "competency_framework",
@@ -1228,7 +1228,7 @@
         },
         {
           "id": "comp_numerical_reasoning_gen_005",
-          "question": "Which practice should a responsible officer prioritize to sustain verbal reasoning in Numerical & Mathematical Reasoning?",
+          "question": "Which practice should a responsible officer prioritize to sustain verbal reasoning in Numerical & Mathematical Reasoning",
           "options": [
             "Interpret official text accurately before action.",
             "Prioritize convenience over policy and legal requirements.",
@@ -1249,7 +1249,7 @@
         },
         {
           "id": "comp_numerical_reasoning_gen_006",
-          "question": "In the context of Numerical & Mathematical Reasoning, which action best demonstrates analytical judgement?",
+          "question": "In the context of Numerical & Mathematical Reasoning, which action best demonstrates analytical judgement",
           "options": [
             "Evaluate alternatives using logic and evidence.",
             "Close cases without validating facts or required records.",
@@ -1270,7 +1270,7 @@
         },
         {
           "id": "comp_numerical_reasoning_gen_007",
-          "question": "For effective numerical & mathematical reasoning, what is the most appropriate approach to ensure problem solving?",
+          "question": "For effective numerical & mathematical reasoning, what is the most appropriate approach to ensure problem solving",
           "options": [
             "Break complex issues into testable and actionable parts.",
             "Ignore feedback and continue non-compliant procedures.",
@@ -1279,7 +1279,7 @@
           ],
           "correct": 0,
           "explanation": "This is correct because break complex issues into testable and actionable parts. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
-          "difficulty": "easy",
+          "difficulty": "medium",
           "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
           "keywords": [
             "competency_framework",
@@ -1291,7 +1291,7 @@
         },
         {
           "id": "comp_numerical_reasoning_gen_008",
-          "question": "Which option most strongly aligns with good public-service practice on communication clarity within Numerical & Mathematical Reasoning?",
+          "question": "Which option most strongly aligns with good public-service practice on communication clarity within Numerical & Mathematical Reasoning",
           "options": [
             "Present conclusions clearly with defensible rationale.",
             "Rely on informal instructions without documentary evidence.",
@@ -1312,7 +1312,7 @@
         },
         {
           "id": "comp_numerical_reasoning_gen_009",
-          "question": "When handling numerical & mathematical reasoning, which choice reflects proper documented procedure standards?",
+          "question": "When handling numerical & mathematical reasoning, which choice reflects proper documented procedure standards",
           "options": [
             "Follow documented procedure and keep complete records.",
             "Apply rules inconsistently based on personal preference.",
@@ -1321,7 +1321,7 @@
           ],
           "correct": 0,
           "explanation": "This is correct because follow documented procedure and keep complete records. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
-          "difficulty": "hard",
+          "difficulty": "medium",
           "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
           "keywords": [
             "competency_framework",
@@ -1333,7 +1333,7 @@
         },
         {
           "id": "comp_numerical_reasoning_gen_010",
-          "question": "Which practice should a responsible officer prioritize to sustain compliance assurance in Numerical & Mathematical Reasoning?",
+          "question": "Which practice should a responsible officer prioritize to sustain compliance assurance in Numerical & Mathematical Reasoning",
           "options": [
             "Apply approved rules consistently and escalate exceptions.",
             "Delay decisions until issues escalate into avoidable crises.",
@@ -1354,7 +1354,7 @@
         },
         {
           "id": "comp_numerical_reasoning_gen_011",
-          "question": "In the context of Numerical & Mathematical Reasoning, which action best demonstrates public accountability?",
+          "question": "In the context of Numerical & Mathematical Reasoning, which action best demonstrates public accountability",
           "options": [
             "Provide traceable decisions and evidence-based justification.",
             "Bypass review and approval controls to save time.",
@@ -1363,7 +1363,7 @@
           ],
           "correct": 0,
           "explanation": "This is correct because provide traceable decisions and evidence-based justification. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
-          "difficulty": "medium",
+          "difficulty": "easy",
           "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
           "keywords": [
             "competency_framework",
@@ -1375,7 +1375,7 @@
         },
         {
           "id": "comp_numerical_reasoning_gen_012",
-          "question": "For effective numerical & mathematical reasoning, what is the most appropriate approach to ensure service integrity?",
+          "question": "For effective numerical & mathematical reasoning, what is the most appropriate approach to ensure service integrity",
           "options": [
             "Avoid conflicts of interest and disclose relevant constraints.",
             "Treat exceptions as routine without documented justification.",
@@ -1396,7 +1396,7 @@
         },
         {
           "id": "comp_numerical_reasoning_gen_013",
-          "question": "Which option most strongly aligns with good public-service practice on risk control within Numerical & Mathematical Reasoning?",
+          "question": "Which option most strongly aligns with good public-service practice on risk control within Numerical & Mathematical Reasoning",
           "options": [
             "Identify risk early, apply controls, and document mitigation.",
             "Prioritize convenience over policy and legal requirements.",
@@ -1405,7 +1405,7 @@
           ],
           "correct": 0,
           "explanation": "This is correct because identify risk early, apply controls, and document mitigation. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
-          "difficulty": "easy",
+          "difficulty": "medium",
           "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
           "keywords": [
             "competency_framework",
@@ -1417,7 +1417,7 @@
         },
         {
           "id": "comp_numerical_reasoning_gen_014",
-          "question": "When handling numerical & mathematical reasoning, which choice reflects proper decision transparency standards?",
+          "question": "When handling numerical & mathematical reasoning, which choice reflects proper decision transparency standards",
           "options": [
             "Use clear criteria and communicate decisions promptly.",
             "Close cases without validating facts or required records.",
@@ -1438,7 +1438,7 @@
         },
         {
           "id": "comp_numerical_reasoning_gen_015",
-          "question": "Which practice should a responsible officer prioritize to sustain operational discipline in Numerical & Mathematical Reasoning?",
+          "question": "Which practice should a responsible officer prioritize to sustain operational discipline in Numerical & Mathematical Reasoning",
           "options": [
             "Follow approved workflows and verify outputs before closure.",
             "Ignore feedback and continue non-compliant procedures.",
@@ -1447,7 +1447,7 @@
           ],
           "correct": 0,
           "explanation": "This is correct because follow approved workflows and verify outputs before closure. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
-          "difficulty": "hard",
+          "difficulty": "easy",
           "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
           "keywords": [
             "competency_framework",
@@ -1467,16 +1467,16 @@
       "questions": [
         {
           "id": "competency_verbal_001",
-          "question": "What are the three main categories of competencies in the Federal Civil Service?",
+          "question": "What are the three main categories of competencies in the Federal Civil Service",
           "options": [
-            "Technical, Managerial, Leadership",
-            "Core, Leadership, Functional",
-            "Basic, Advanced, Expert",
-            "Personal, Professional, Organizational"
+            "Technical, Managerial, Leadership.",
+            "Core, Leadership, Functional.",
+            "Basic, Advanced, Expert.",
+            "Personal, Professional, Organizational."
           ],
           "correct": 1,
           "explanation": "The competency framework includes Core, Leadership, and Functional competencies.",
-          "difficulty": "easy",
+          "difficulty": "hard",
           "topic": "Competency Framework",
           "keywords": [
             "competency framework",
@@ -1486,12 +1486,12 @@
         },
         {
           "id": "competency_verbal_002",
-          "question": "Choose the word that is most similar in meaning to 'prerogative':",
+          "question": "Choose the word that is most similar in meaning to 'prerogative",
           "options": [
-            "Privilege",
-            "Responsibility",
-            "Authority",
-            "Right"
+            "Privilege.",
+            "Responsibility.",
+            "Authority.",
+            "Right."
           ],
           "correct": 3,
           "explanation": "'Prerogative' refers to a special right or privilege exclusive to a person or group. The closest synonym here is 'Right'.",
@@ -1505,12 +1505,12 @@
         },
         {
           "id": "competency_verbal_003",
-          "question": "Which of the following is the opposite of 'transparent'?",
+          "question": "Which of the following is the opposite of 'transparent'",
           "options": [
-            "Clear",
-            "Obvious",
-            "Opaque",
-            "Visible"
+            "Clear.",
+            "Obvious.",
+            "Opaque.",
+            "Visible."
           ],
           "correct": 2,
           "explanation": "The opposite of transparent (clear, see-through) is opaque (not allowing light to pass through).",
@@ -1524,16 +1524,16 @@
         },
         {
           "id": "competency_verbal_004",
-          "question": "Which word correctly completes the sentence: 'The officer was praised for his ______ in handling the matter'?",
+          "question": "Which word correctly completes the sentence: 'The officer was praised for his ______ in handling the matter'",
           "options": [
-            "Negligence",
-            "Tact",
-            "Recklessness",
-            "Omission"
+            "Negligence.",
+            "Tact.",
+            "Recklessness.",
+            "Omission."
           ],
           "correct": 1,
           "explanation": "The correct word is 'tact' meaning diplomacy or sensitivity in dealing with issues.",
-          "difficulty": "medium",
+          "difficulty": "easy",
           "topic": "Competency Framework",
           "keywords": [
             "sentence completion",
@@ -1543,12 +1543,12 @@
         },
         {
           "id": "competency_verbal_005",
-          "question": "Select the pair with the same relationship: 'Doctor : Hospital' :: 'Teacher : ?'",
+          "question": "Select the pair with the same relationship: 'Doctor: Hospital':: 'Teacher: '",
           "options": [
-            "School",
-            "Library",
-            "Classroom",
-            "Laboratory"
+            "School.",
+            "Library.",
+            "Classroom.",
+            "Laboratory."
           ],
           "correct": 0,
           "explanation": "Just as a doctor works in a hospital, a teacher works in a school.",
@@ -1562,16 +1562,16 @@
         },
         {
           "id": "competency_verbal_006",
-          "question": "Which word is most opposite in meaning to 'benevolent'?",
+          "question": "Which word is most opposite in meaning to 'benevolent'",
           "options": [
-            "Kind",
-            "Malevolent",
-            "Generous",
-            "Charitable"
+            "Kind.",
+            "Malevolent.",
+            "Generous.",
+            "Charitable."
           ],
           "correct": 1,
           "explanation": "The opposite of 'benevolent' (kind, generous) is 'malevolent' (evil, harmful).",
-          "difficulty": "easy",
+          "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
             "antonyms",
@@ -1581,16 +1581,16 @@
         },
         {
           "id": "competency_verbal_007",
-          "question": "Identify the correctly spelt word:",
+          "question": "Identify the correctly spelt word",
           "options": [
-            "Acommodate",
-            "Accommodate",
-            "Acomodate",
-            "Accomodate"
+            "Acommodate.",
+            "Accommodate.",
+            "Acomodate.",
+            "Accomodate."
           ],
           "correct": 1,
           "explanation": "The correct spelling is 'Accommodate' with double 'c' and double 'm'.",
-          "difficulty": "easy",
+          "difficulty": "hard",
           "topic": "Competency Framework",
           "keywords": [
             "spelling",
@@ -1600,12 +1600,12 @@
         },
         {
           "id": "competency_verbal_008",
-          "question": "What is the plural of 'crisis'?",
+          "question": "What is the plural of 'crisis'",
           "options": [
-            "Crisises",
-            "Crises",
-            "Crisis",
-            "Crisen"
+            "Crisises.",
+            "Crises.",
+            "Crisis.",
+            "Crisen."
           ],
           "correct": 1,
           "explanation": "The plural of 'crisis' is 'crises'.",
@@ -1621,14 +1621,14 @@
           "id": "competency_verbal_009",
           "question": "Find the odd one out: Dog, Cat, Cow, Chair.",
           "options": [
-            "Dog",
-            "Cat",
-            "Cow",
-            "Chair"
+            "Dog.",
+            "Cat.",
+            "Cow.",
+            "Chair."
           ],
           "correct": 3,
           "explanation": "Dog, Cat, and Cow are animals, but Chair is an object.",
-          "difficulty": "easy",
+          "difficulty": "hard",
           "topic": "Competency Framework",
           "keywords": [
             "odd one out",
@@ -1638,12 +1638,12 @@
         },
         {
           "id": "competency_verbal_010",
-          "question": "Which word is most similar in meaning to 'expedite'?",
+          "question": "Which word is most similar in meaning to 'expedite'",
           "options": [
-            "Delay",
-            "Hasten",
-            "Cancel",
-            "Ignore"
+            "Delay.",
+            "Hasten.",
+            "Cancel.",
+            "Ignore."
           ],
           "correct": 1,
           "explanation": "'Expedite' means to hasten or speed up a process.",
@@ -1657,16 +1657,16 @@
         },
         {
           "id": "competency_verbal_011",
-          "question": "Choose the correct preposition: 'He insisted ___ his right to appeal.'",
+          "question": "Choose the correct preposition: 'He insisted ___ his right to appeal.",
           "options": [
-            "on",
-            "at",
-            "for",
-            "to"
+            "on.",
+            "at.",
+            "for.",
+            "to."
           ],
           "correct": 0,
           "explanation": "The correct phrase is 'insisted on'.",
-          "difficulty": "easy",
+          "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
             "preposition",
@@ -1676,16 +1676,16 @@
         },
         {
           "id": "competency_verbal_012",
-          "question": "Select the correctly punctuated sentence:",
+          "question": "Select the correctly punctuated sentence",
           "options": [
-            "The Permanent Secretary said 'I will attend the meeting.'",
-            "The Permanent Secretary said, 'I will attend the meeting.'",
-            "The Permanent Secretary said 'I will attend the meeting'.",
-            "The Permanent Secretary, said I will attend the meeting."
+            "The Permanent Secretary said 'I will attend tomorrow's meeting.'.",
+            "The Permanent Secretary said, 'I will attend the meeting.'.",
+            "The Permanent Secretary said, I will attend the meeting promptly.'.",
+            "The Permanent Secretary, said I will attend tomorrow's briefing."
           ],
           "correct": 1,
-          "explanation": "The correct punctuation is: The Permanent Secretary said, 'I will attend the meeting.'",
-          "difficulty": "medium",
+          "explanation": "The correct punctuation is: The Permanent Secretary said, 'I will attend the meeting.'.",
+          "difficulty": "easy",
           "topic": "Competency Framework",
           "keywords": [
             "punctuation",
@@ -1695,16 +1695,16 @@
         },
         {
           "id": "competency_verbal_013",
-          "question": "Which of the following is the antonym of 'diligent'?",
+          "question": "Which of the following is the antonym of 'diligent'",
           "options": [
-            "Hardworking",
-            "Careless",
-            "Industrious",
-            "Dedicated"
+            "Hardworking.",
+            "Careless.",
+            "Industrious.",
+            "Dedicated."
           ],
           "correct": 1,
           "explanation": "The antonym of 'diligent' is 'careless'.",
-          "difficulty": "easy",
+          "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
             "antonyms",
@@ -1714,16 +1714,16 @@
         },
         {
           "id": "competency_verbal_014",
-          "question": "Which word best completes the sentence: 'The committee reached a unanimous ______ on the issue.'",
+          "question": "Which word best completes the sentence: 'The committee reached a unanimous ______ on the issue.",
           "options": [
-            "Decision",
-            "Fight",
-            "Problem",
-            "Argument"
+            "Decision.",
+            "Fight.",
+            "Problem.",
+            "Argument."
           ],
           "correct": 0,
           "explanation": "The correct completion is 'decision'.",
-          "difficulty": "easy",
+          "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
             "sentence completion",
@@ -1733,16 +1733,16 @@
         },
         {
           "id": "competency_verbal_015",
-          "question": "Select the word that is opposite in meaning to 'scarce':",
+          "question": "Select the word that is opposite in meaning to 'scarce",
           "options": [
-            "Rare",
-            "Plentiful",
-            "Insufficient",
-            "Meagre"
+            "Rare.",
+            "Plentiful.",
+            "Insufficient.",
+            "Meagre."
           ],
           "correct": 1,
           "explanation": "The opposite of scarce is plentiful.",
-          "difficulty": "easy",
+          "difficulty": "hard",
           "topic": "Competency Framework",
           "keywords": [
             "scarce",
@@ -1754,14 +1754,14 @@
           "id": "competency_verbal_016",
           "question": "Find the odd one out: Pen, Pencil, Paper, Book.",
           "options": [
-            "Pen",
-            "Pencil",
-            "Paper",
-            "Book"
+            "Pen.",
+            "Pencil.",
+            "Paper.",
+            "Book."
           ],
           "correct": 2,
           "explanation": "Pen, Pencil, and Book are durable items, while Paper is consumable.",
-          "difficulty": "medium",
+          "difficulty": "hard",
           "topic": "Competency Framework",
           "keywords": [
             "odd one out",
@@ -1770,12 +1770,12 @@
         },
         {
           "id": "competency_verbal_017",
-          "question": "Choose the synonym for 'meticulous':",
+          "question": "Choose the synonym for 'meticulous",
           "options": [
-            "Careless",
-            "Thorough",
-            "Casual",
-            "Lazy"
+            "Careless.",
+            "Thorough.",
+            "Casual.",
+            "Lazy."
           ],
           "correct": 1,
           "explanation": "'Meticulous' means showing great attention to detail → synonym is 'Thorough'.",
@@ -1789,15 +1789,15 @@
         },
         {
           "id": "competency_verbal_018",
-          "question": "What is the correct indirect speech form of: He said, 'I am ready'?",
+          "question": "What is the correct indirect speech form of: He said, 'I am ready'",
           "options": [
-            "He said that he is ready",
-            "He said he was ready",
-            "He said he will be ready",
-            "He said he had been ready"
+            "He said that he is ready.",
+            "He said he was ready.",
+            "He said he will be ready.",
+            "He said he had been ready."
           ],
           "correct": 1,
-          "explanation": "In indirect speech, present tense changes to past: 'He said he was ready.'",
+          "explanation": "In indirect speech, present tense changes to past: 'He said he was ready.'.",
           "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
@@ -1807,12 +1807,12 @@
         },
         {
           "id": "competency_verbal_019",
-          "question": "Which pair is correctly matched as synonyms: 'Expand : ?'",
+          "question": "Which pair is correctly matched as synonyms: 'Expand: '",
           "options": [
-            "Reduce",
-            "Increase",
-            "Decline",
-            "Diminish"
+            "Reduce.",
+            "Increase.",
+            "Decline.",
+            "Diminish."
           ],
           "correct": 1,
           "explanation": "'Expand' means to increase.",
@@ -1826,16 +1826,16 @@
         },
         {
           "id": "competency_verbal_020",
-          "question": "Fill in the blank: 'She is very good ___ mathematics.'",
+          "question": "Fill in the blank: 'She is very good ___ mathematics.",
           "options": [
-            "at",
-            "in",
-            "on",
-            "with"
+            "at.",
+            "in.",
+            "on.",
+            "with."
           ],
           "correct": 0,
           "explanation": "The correct phrase is 'good at' something.",
-          "difficulty": "easy",
+          "difficulty": "hard",
           "topic": "Competency Framework",
           "keywords": [
             "grammar",
@@ -1845,16 +1845,16 @@
         },
         {
           "id": "competency_verbal_021",
-          "question": "Select the correctly spelt word:",
+          "question": "Select the correctly spelt word",
           "options": [
-            "Consciencious",
-            "Conscientious",
-            "Conscientous",
-            "Conscentious"
+            "Consciencious.",
+            "Conscientious.",
+            "Conscientous.",
+            "Conscentious."
           ],
           "correct": 1,
           "explanation": "The correct spelling is 'Conscientious'.",
-          "difficulty": "hard",
+          "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
             "spelling",
@@ -1864,16 +1864,16 @@
         },
         {
           "id": "competency_verbal_022",
-          "question": "Choose the word that is most opposite in meaning to 'expand':",
+          "question": "Choose the word that is most opposite in meaning to 'expand",
           "options": [
-            "Increase",
-            "Contract",
-            "Multiply",
-            "Enlarge"
+            "Increase.",
+            "Contract.",
+            "Multiply.",
+            "Enlarge."
           ],
           "correct": 1,
           "explanation": "The opposite of 'expand' is 'contract'.",
-          "difficulty": "easy",
+          "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
             "antonyms",
@@ -1883,12 +1883,12 @@
         },
         {
           "id": "competency_verbal_023",
-          "question": "What is the synonym of 'ambiguous'?",
+          "question": "What is the synonym of 'ambiguous'",
           "options": [
-            "Clear",
-            "Uncertain",
-            "Definite",
-            "Obvious"
+            "Clear.",
+            "Uncertain.",
+            "Definite.",
+            "Obvious."
           ],
           "correct": 1,
           "explanation": "'Ambiguous' means unclear or uncertain.",
@@ -1902,12 +1902,12 @@
         },
         {
           "id": "competency_verbal_024",
-          "question": "Which of the following completes the proverb: 'A stitch in time saves ____'?",
+          "question": "Which of the following completes the proverb: 'A stitch in time saves ____'",
           "options": [
-            "One",
-            "Nine",
-            "Ten",
-            "Twelve"
+            "One.",
+            "Nine.",
+            "Ten.",
+            "Twelve."
           ],
           "correct": 1,
           "explanation": "The correct proverb is 'A stitch in time saves nine'.",
@@ -1921,16 +1921,16 @@
         },
         {
           "id": "competency_verbal_025",
-          "question": "Which of these is the antonym of 'rigid'?",
+          "question": "Which of these is the antonym of 'rigid'",
           "options": [
-            "Flexible",
-            "Strict",
-            "Solid",
-            "Hard"
+            "Flexible.",
+            "Strict.",
+            "Solid.",
+            "Hard."
           ],
           "correct": 0,
           "explanation": "The opposite of 'rigid' (stiff, inflexible) is 'flexible'.",
-          "difficulty": "easy",
+          "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
             "antonyms",
@@ -1940,16 +1940,16 @@
         },
         {
           "id": "competency_verbal_026",
-          "question": "Which of these words is synonymous with 'impartial'?",
+          "question": "Which of these words is synonymous with 'impartial'",
           "options": [
-            "Biased",
-            "Neutral",
-            "Partial",
-            "Favourable"
+            "Biased.",
+            "Neutral.",
+            "Partial.",
+            "Favourable."
           ],
           "correct": 1,
           "explanation": "The synonym of 'impartial' is 'neutral' (fair and unbiased).",
-          "difficulty": "easy",
+          "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
             "synonyms",
@@ -1959,16 +1959,16 @@
         },
         {
           "id": "competency_verbal_027",
-          "question": "Which word best completes the sentence: 'The officer was known for his strict ______ to rules.'",
+          "question": "Which word best completes the sentence: 'The officer was known for his strict ______ to rules.",
           "options": [
-            "Negligence",
-            "Adherence",
-            "Ignorance",
-            "Resistance"
+            "Negligence.",
+            "Adherence.",
+            "Ignorance.",
+            "Resistance."
           ],
           "correct": 1,
           "explanation": "The correct word is 'adherence'.",
-          "difficulty": "medium",
+          "difficulty": "easy",
           "topic": "Competency Framework",
           "keywords": [
             "sentence completion",
@@ -1978,16 +1978,16 @@
         },
         {
           "id": "competency_verbal_028",
-          "question": "Select the odd one out: Apple, Mango, Banana, Chair.",
+          "question": "Select the odd one out: Apple, Mango, Banana, Chair",
           "options": [
-            "Apple",
-            "Mango",
-            "Banana",
-            "Chair"
+            "Apple.",
+            "Mango.",
+            "Banana.",
+            "Chair."
           ],
           "correct": 3,
           "explanation": "Apple, Mango, and Banana are fruits; Chair is not.",
-          "difficulty": "easy",
+          "difficulty": "hard",
           "topic": "Competency Framework",
           "keywords": [
             "odd one out",
@@ -1997,16 +1997,16 @@
         },
         {
           "id": "competency_verbal_029",
-          "question": "Which of the following is a synonym for 'obsolete'?",
+          "question": "Which of the following is a synonym for 'obsolete'",
           "options": [
-            "Modern",
-            "Outdated",
-            "Current",
-            "Latest"
+            "Modern.",
+            "Outdated.",
+            "Current.",
+            "Latest."
           ],
           "correct": 1,
           "explanation": "'Obsolete' means outdated or no longer in use.",
-          "difficulty": "medium",
+          "difficulty": "hard",
           "topic": "Competency Framework",
           "keywords": [
             "obsolete",
@@ -2016,16 +2016,16 @@
         },
         {
           "id": "competency_verbal_030",
-          "question": "Which word correctly completes the sentence: 'The manager gave a detailed ______ of the incident.'",
+          "question": "Which word correctly completes the sentence: 'The manager gave a detailed ______ of the incident.",
           "options": [
-            "Account",
-            "Discount",
-            "Encounter",
-            "Counter"
+            "Account.",
+            "Discount.",
+            "Encounter.",
+            "Counter."
           ],
           "correct": 0,
           "explanation": "The correct word is 'account'.",
-          "difficulty": "easy",
+          "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
             "sentence completion",
@@ -2037,10 +2037,10 @@
           "id": "competency_verbal_031",
           "question": "Find the word most opposite in meaning to 'optimistic':",
           "options": [
-            "Hopeful",
-            "Cheerful",
-            "Pessimistic",
-            "Positive"
+            "Hopeful.",
+            "Cheerful.",
+            "Pessimistic.",
+            "Positive."
           ],
           "correct": 2,
           "explanation": "The opposite of optimistic (hopeful) is pessimistic (expecting the worst).",
@@ -2054,16 +2054,16 @@
         },
         {
           "id": "competency_verbal_032",
-          "question": "What is the synonym of 'vivid'?",
+          "question": "What is the synonym of 'vivid'",
           "options": [
-            "Dull",
-            "Clear",
-            "Faint",
-            "Blurred"
+            "Dull.",
+            "Clear.",
+            "Faint.",
+            "Blurred."
           ],
           "correct": 1,
           "explanation": "'Vivid' means clear, bright, or detailed.",
-          "difficulty": "medium",
+          "difficulty": "easy",
           "topic": "Competency Framework",
           "keywords": [
             "vivid",
@@ -2073,16 +2073,16 @@
         },
         {
           "id": "competency_verbal_033",
-          "question": "Choose the correct indirect speech: She said, 'I will help you.'",
+          "question": "Choose the correct indirect speech: She said, 'I will help you.",
           "options": [
-            "She said that she will help me",
-            "She said that she would help me",
-            "She said she helps me",
-            "She said she helped me"
+            "She said that she will help me.",
+            "She said that she would help me.",
+            "She said she helps me.",
+            "She said she helped me."
           ],
           "correct": 1,
           "explanation": "In indirect speech, 'will' changes to 'would': She said that she would help me.",
-          "difficulty": "medium",
+          "difficulty": "easy",
           "topic": "Competency Framework",
           "keywords": [
             "indirect speech",
@@ -2091,12 +2091,12 @@
         },
         {
           "id": "competency_verbal_034",
-          "question": "Which of these is the antonym of 'generous'?",
+          "question": "Which of these is the antonym of 'generous'",
           "options": [
-            "Selfish",
-            "Kind",
-            "Helpful",
-            "Benevolent"
+            "Selfish.",
+            "Kind.",
+            "Helpful.",
+            "Benevolent."
           ],
           "correct": 0,
           "explanation": "The opposite of 'generous' is 'selfish'.",
@@ -2110,16 +2110,16 @@
         },
         {
           "id": "competency_verbal_035",
-          "question": "Which of the following words is closest in meaning to 'lucid'?",
+          "question": "Which of the following words is closest in meaning to 'lucid'",
           "options": [
-            "Confusing",
-            "Clear",
-            "Dark",
-            "Uncertain"
+            "Confusing.",
+            "Clear.",
+            "Dark.",
+            "Uncertain."
           ],
           "correct": 1,
           "explanation": "'Lucid' means clear or easy to understand.",
-          "difficulty": "medium",
+          "difficulty": "easy",
           "topic": "Competency Framework",
           "keywords": [
             "lucid",
@@ -2129,12 +2129,12 @@
         },
         {
           "id": "competency_verbal_036",
-          "question": "Choose the correct completion: 'The committee was divided ______ the proposal.'",
+          "question": "Choose the correct completion: 'The committee was divided ______ the proposal.",
           "options": [
-            "with",
-            "on",
-            "at",
-            "for"
+            "with.",
+            "on.",
+            "at.",
+            "for."
           ],
           "correct": 1,
           "explanation": "The correct phrase is 'divided on' an issue.",
@@ -2148,16 +2148,16 @@
         },
         {
           "id": "competency_verbal_037",
-          "question": "Which proverb is correctly completed: 'Too many cooks spoil the ____'?",
+          "question": "Which proverb is correctly completed: 'Too many cooks spoil the ____'",
           "options": [
-            "Broth",
-            "Soup",
-            "Meal",
-            "Stew"
+            "Broth.",
+            "Soup.",
+            "Meal.",
+            "Stew."
           ],
           "correct": 0,
-          "explanation": "The correct form is 'Too many cooks spoil the broth.'",
-          "difficulty": "easy",
+          "explanation": "The correct form is 'Too many cooks spoil the broth.'.",
+          "difficulty": "hard",
           "topic": "Competency Framework",
           "keywords": [
             "proverb",
@@ -2167,16 +2167,16 @@
         },
         {
           "id": "competency_verbal_038",
-          "question": "Which of the following is NOT a synonym for 'happy'?",
+          "question": "Which of the following is NOT a synonym for 'happy'",
           "options": [
-            "Joyful",
-            "Elated",
-            "Miserable",
-            "Cheerful"
+            "Joyful.",
+            "Elated.",
+            "Miserable.",
+            "Cheerful."
           ],
           "correct": 2,
           "explanation": "Miserable is the opposite of happy, not a synonym.",
-          "difficulty": "easy",
+          "difficulty": "hard",
           "topic": "Competency Framework",
           "keywords": [
             "happy",
@@ -2186,16 +2186,16 @@
         },
         {
           "id": "competency_verbal_039",
-          "question": "Choose the word that best completes: 'The new system will help to ______ efficiency.'",
+          "question": "Choose the word that best completes: 'The new system will help to ______ efficiency.",
           "options": [
-            "Reduce",
-            "Hinder",
-            "Improve",
-            "Limit"
+            "Reduce.",
+            "Hinder.",
+            "Improve.",
+            "Limit."
           ],
           "correct": 2,
           "explanation": "The correct word is 'improve efficiency'.",
-          "difficulty": "medium",
+          "difficulty": "hard",
           "topic": "Competency Framework",
           "keywords": [
             "sentence completion",
@@ -2205,16 +2205,16 @@
         },
         {
           "id": "competency_verbal_040",
-          "question": "Select the word closest in meaning to 'resilient':",
+          "question": "Select the word closest in meaning to 'resilient",
           "options": [
-            "Weak",
-            "Strong",
-            "Fragile",
-            "Delicate"
+            "Weak.",
+            "Strong.",
+            "Fragile.",
+            "Delicate."
           ],
           "correct": 1,
           "explanation": "'Resilient' means able to recover quickly; closest synonym is 'Strong'.",
-          "difficulty": "medium",
+          "difficulty": "easy",
           "topic": "Competency Framework",
           "keywords": [
             "resilient",
@@ -2224,16 +2224,16 @@
         },
         {
           "id": "competency_verbal_041",
-          "question": "Which of these words is the antonym of 'complex'?",
+          "question": "Which of these words is the antonym of 'complex'",
           "options": [
-            "Complicated",
-            "Simple",
-            "Intricate",
-            "Detailed"
+            "Complicated.",
+            "Simple.",
+            "Intricate.",
+            "Detailed."
           ],
           "correct": 1,
           "explanation": "The opposite of 'complex' is 'simple'.",
-          "difficulty": "easy",
+          "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
             "antonyms",
@@ -2243,12 +2243,12 @@
         },
         {
           "id": "competency_verbal_042",
-          "question": "Which of the following is a synonym for 'commence'?",
+          "question": "Which of the following is a synonym for 'commence'",
           "options": [
-            "Begin",
-            "Finish",
-            "End",
-            "Stop"
+            "Begin.",
+            "Finish.",
+            "End.",
+            "Stop."
           ],
           "correct": 0,
           "explanation": "'Commence' means to begin.",
@@ -2262,12 +2262,12 @@
         },
         {
           "id": "competency_verbal_043",
-          "question": "Choose the correctly spelt word:",
+          "question": "Choose the correctly spelt word",
           "options": [
-            "Definately",
-            "Definitely",
-            "Definitly",
-            "Defenetly"
+            "Definately.",
+            "Definitely.",
+            "Definitly.",
+            "Defenetly."
           ],
           "correct": 1,
           "explanation": "The correct spelling is 'Definitely'.",
@@ -2280,16 +2280,16 @@
         },
         {
           "id": "competency_verbal_044",
-          "question": "Which of these words is closest in meaning to 'benevolent'?",
+          "question": "Which of these words is closest in meaning to 'benevolent'",
           "options": [
-            "Cruel",
-            "Kind",
-            "Hostile",
-            "Selfish"
+            "Cruel.",
+            "Kind.",
+            "Hostile.",
+            "Selfish."
           ],
           "correct": 1,
           "explanation": "'Benevolent' means kind and charitable.",
-          "difficulty": "easy",
+          "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
             "synonyms",
@@ -2299,16 +2299,16 @@
         },
         {
           "id": "competency_verbal_045",
-          "question": "What is the antonym of 'artificial'?",
+          "question": "What is the antonym of 'artificial'",
           "options": [
-            "Natural",
-            "Fake",
-            "Unreal",
-            "Synthetic"
+            "Natural.",
+            "Fake.",
+            "Unreal.",
+            "Synthetic."
           ],
           "correct": 0,
           "explanation": "The opposite of 'artificial' is 'natural'.",
-          "difficulty": "easy",
+          "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
             "antonyms",
@@ -2318,12 +2318,12 @@
         },
         {
           "id": "competency_verbal_046",
-          "question": "Choose the word that best completes: 'The new rules will ______ corruption in the service.'",
+          "question": "Choose the word that best completes: 'The new rules will ______ corruption in the service.",
           "options": [
-            "Encourage",
-            "Promote",
-            "Curb",
-            "Permit"
+            "Encourage.",
+            "Promote.",
+            "Curb.",
+            "Permit."
           ],
           "correct": 2,
           "explanation": "The correct word is 'curb' (to control or limit).",
@@ -2339,14 +2339,14 @@
           "id": "competency_verbal_047",
           "question": "Find the odd one out: Book, Pen, Teacher, Pencil.",
           "options": [
-            "Book",
-            "Pen",
-            "Teacher",
-            "Pencil"
+            "Book.",
+            "Pen.",
+            "Teacher.",
+            "Pencil."
           ],
           "correct": 2,
           "explanation": "Book, Pen, and Pencil are objects; Teacher is a person.",
-          "difficulty": "easy",
+          "difficulty": "hard",
           "topic": "Competency Framework",
           "keywords": [
             "odd one out",
@@ -2356,16 +2356,16 @@
         },
         {
           "id": "competency_verbal_048",
-          "question": "Which of the following is closest in meaning to 'candid'?",
+          "question": "Which of the following is closest in meaning to 'candid'",
           "options": [
-            "Secretive",
-            "Honest",
-            "Deceptive",
-            "Reserved"
+            "Secretive.",
+            "Honest.",
+            "Deceptive.",
+            "Reserved."
           ],
           "correct": 1,
           "explanation": "'Candid' means open and honest.",
-          "difficulty": "medium",
+          "difficulty": "easy",
           "topic": "Competency Framework",
           "keywords": [
             "candid",
@@ -2375,16 +2375,16 @@
         },
         {
           "id": "competency_verbal_049",
-          "question": "Which of these is the antonym of 'expand'?",
+          "question": "Which of these is the antonym of 'expand'",
           "options": [
-            "Grow",
-            "Increase",
-            "Shrink",
-            "Enlarge"
+            "Grow.",
+            "Increase.",
+            "Shrink.",
+            "Enlarge."
           ],
           "correct": 2,
           "explanation": "The opposite of 'expand' is 'shrink'.",
-          "difficulty": "easy",
+          "difficulty": "hard",
           "topic": "Competency Framework",
           "keywords": [
             "antonyms",
@@ -2394,16 +2394,16 @@
         },
         {
           "id": "competency_verbal_050",
-          "question": "Which word correctly completes: 'The officer was praised for his ______ in handling the crisis.'",
+          "question": "Which word correctly completes: 'The officer was praised for his ______ in handling the crisis.",
           "options": [
-            "Tact",
-            "Negligence",
-            "Indifference",
-            "Carelessness"
+            "Tact.",
+            "Negligence.",
+            "Indifference.",
+            "Carelessness."
           ],
           "correct": 0,
           "explanation": "The correct word is 'tact', meaning diplomacy and sensitivity.",
-          "difficulty": "medium",
+          "difficulty": "easy",
           "topic": "Competency Framework",
           "keywords": [
             "sentence completion",
@@ -2413,16 +2413,16 @@
         },
         {
           "id": "competency_verbal_051",
-          "question": "Choose the synonym of 'brief':",
+          "question": "Choose the synonym of 'brief",
           "options": [
-            "Short",
-            "Long",
-            "Detailed",
-            "Endless"
+            "Short.",
+            "Long.",
+            "Detailed.",
+            "Endless."
           ],
           "correct": 0,
           "explanation": "'Brief' means short or concise.",
-          "difficulty": "easy",
+          "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
             "synonyms",
@@ -2432,15 +2432,15 @@
         },
         {
           "id": "competency_verbal_052",
-          "question": "Which proverb is correctly completed: 'The pen is mightier than the ____'?",
+          "question": "Which proverb is correctly completed: 'The pen is mightier than the ____'",
           "options": [
-            "Sword",
-            "Gun",
-            "Word",
-            "Weapon"
+            "Sword.",
+            "Gun.",
+            "Word.",
+            "Weapon."
           ],
           "correct": 0,
-          "explanation": "The correct proverb is 'The pen is mightier than the sword.'",
+          "explanation": "The correct proverb is 'The pen is mightier than the sword.'.",
           "difficulty": "easy",
           "topic": "Competency Framework",
           "keywords": [
@@ -2451,16 +2451,16 @@
         },
         {
           "id": "competency_verbal_053",
-          "question": "What is the antonym of 'prosperity'?",
+          "question": "What is the antonym of 'prosperity'",
           "options": [
-            "Wealth",
-            "Success",
-            "Poverty",
-            "Growth"
+            "Wealth.",
+            "Success.",
+            "Poverty.",
+            "Growth."
           ],
           "correct": 2,
           "explanation": "The opposite of prosperity (wealth and success) is poverty.",
-          "difficulty": "easy",
+          "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
             "antonyms",
@@ -2470,16 +2470,16 @@
         },
         {
           "id": "competency_verbal_054",
-          "question": "Which of these words is synonymous with 'fragile'?",
+          "question": "Which of these words is synonymous with 'fragile'",
           "options": [
-            "Strong",
-            "Delicate",
-            "Tough",
-            "Resilient"
+            "Strong.",
+            "Delicate.",
+            "Tough.",
+            "Resilient."
           ],
           "correct": 1,
           "explanation": "'Fragile' means delicate or easily broken.",
-          "difficulty": "easy",
+          "difficulty": "hard",
           "topic": "Competency Framework",
           "keywords": [
             "synonyms",
@@ -2489,16 +2489,16 @@
         },
         {
           "id": "competency_verbal_055",
-          "question": "Fill in the blank: 'She is interested ___ music.'",
+          "question": "Fill in the blank: 'She is interested ___ music.",
           "options": [
-            "in",
-            "on",
-            "at",
-            "for"
+            "in.",
+            "on.",
+            "at.",
+            "for."
           ],
           "correct": 0,
           "explanation": "The correct preposition is 'interested in'.",
-          "difficulty": "easy",
+          "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
             "grammar",
@@ -2508,12 +2508,12 @@
         },
         {
           "id": "competency_verbal_056",
-          "question": "Select the correct indirect speech: He said, 'I am going to Abuja tomorrow.'",
+          "question": "Select the correct indirect speech: He said, 'I am going to Abuja tomorrow.",
           "options": [
-            "He said he is going to Abuja tomorrow",
-            "He said he was going to Abuja the next day",
-            "He said he goes to Abuja tomorrow",
-            "He said he will go to Abuja the next day"
+            "He said he is going to Abuja tomorrow.",
+            "He said he was going to Abuja the next day.",
+            "He said he goes to Abuja tomorrow.",
+            "He said he will go to Abuja the next day."
           ],
           "correct": 1,
           "explanation": "In indirect speech, 'am going' becomes 'was going' and 'tomorrow' changes to 'the next day'.",
@@ -2526,16 +2526,16 @@
         },
         {
           "id": "competency_verbal_057",
-          "question": "What is the antonym of 'rapid'?",
+          "question": "What is the antonym of 'rapid'",
           "options": [
-            "Slow",
-            "Fast",
-            "Quick",
-            "Swift"
+            "Slow.",
+            "Fast.",
+            "Quick.",
+            "Swift."
           ],
           "correct": 0,
           "explanation": "The opposite of 'rapid' (fast) is 'slow'.",
-          "difficulty": "easy",
+          "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
             "antonyms",
@@ -2545,12 +2545,12 @@
         },
         {
           "id": "competency_verbal_058",
-          "question": "Which of these words is closest in meaning to 'precise'?",
+          "question": "Which of these words is closest in meaning to 'precise'",
           "options": [
-            "Exact",
-            "Vague",
-            "Loose",
-            "General"
+            "Exact.",
+            "Vague.",
+            "Loose.",
+            "General."
           ],
           "correct": 0,
           "explanation": "'Precise' means exact or accurate.",
@@ -2564,12 +2564,12 @@
         },
         {
           "id": "competency_verbal_059",
-          "question": "Which word best completes: 'The Head of Service issued a strong ______ on discipline.'",
+          "question": "Which word best completes: 'The Head of Service issued a strong ______ on discipline.",
           "options": [
-            "Command",
-            "Directive",
-            "Instruction",
-            "Appeal"
+            "Command.",
+            "Directive.",
+            "Instruction.",
+            "Appeal."
           ],
           "correct": 1,
           "explanation": "The correct word is 'directive'.",
@@ -2585,14 +2585,14 @@
           "id": "competency_verbal_060",
           "question": "Find the odd one out: Chair, Table, Bench, Bread.",
           "options": [
-            "Chair",
-            "Table",
-            "Bench",
-            "Bread"
+            "Chair.",
+            "Table.",
+            "Bench.",
+            "Bread."
           ],
           "correct": 3,
           "explanation": "Chair, Table, and Bench are furniture; Bread is food.",
-          "difficulty": "easy",
+          "difficulty": "hard",
           "topic": "Competency Framework",
           "keywords": [
             "odd one out",
@@ -2602,7 +2602,7 @@
         },
         {
           "id": "comp_verbal_reasoning_gen_001",
-          "question": "In the context of Verbal & Analytical Reasoning, which action best demonstrates verbal & analytical reasoning governance?",
+          "question": "In the context of Verbal & Analytical Reasoning, which action best demonstrates verbal & analytical reasoning governance",
           "options": [
             "Apply approved verbal & analytical reasoning procedures and maintain complete records.",
             "Apply rules inconsistently based on personal preference.",
@@ -2623,7 +2623,7 @@
         },
         {
           "id": "comp_verbal_reasoning_gen_002",
-          "question": "For effective verbal & analytical reasoning, what is the most appropriate approach to ensure verbal & analytical reasoning compliance?",
+          "question": "For effective verbal & analytical reasoning, what is the most appropriate approach to ensure verbal & analytical reasoning compliance",
           "options": [
             "Use lawful criteria and document each decision step transparently.",
             "Delay decisions until issues escalate into avoidable crises.",
@@ -2632,7 +2632,7 @@
           ],
           "correct": 0,
           "explanation": "This is correct because use lawful criteria and document each decision step transparently. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
-          "difficulty": "medium",
+          "difficulty": "easy",
           "chapter": "Verbal & Analytical Reasoning - Expansion Set",
           "keywords": [
             "competency_framework",
@@ -2644,7 +2644,7 @@
         },
         {
           "id": "comp_verbal_reasoning_gen_003",
-          "question": "Which option most strongly aligns with good public-service practice on verbal & analytical reasoning risk management within Verbal & Analytical Reasoning?",
+          "question": "Which option most strongly aligns with good public-service practice on verbal & analytical reasoning risk management within Verbal & Analytical Reasoning",
           "options": [
             "Identify control gaps early and escalate material exceptions promptly.",
             "Bypass review and approval controls to save time.",
@@ -2653,7 +2653,7 @@
           ],
           "correct": 0,
           "explanation": "This is correct because identify control gaps early and escalate material exceptions promptly. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
-          "difficulty": "hard",
+          "difficulty": "medium",
           "chapter": "Verbal & Analytical Reasoning - Expansion Set",
           "keywords": [
             "competency_framework",
@@ -2665,7 +2665,7 @@
         },
         {
           "id": "comp_verbal_reasoning_gen_004",
-          "question": "When handling verbal & analytical reasoning, which choice reflects proper numerical reasoning standards?",
+          "question": "When handling verbal & analytical reasoning, which choice reflects proper numerical reasoning standards",
           "options": [
             "Use quantitative evidence to support administrative decisions.",
             "Treat exceptions as routine without documented justification.",
@@ -2674,7 +2674,7 @@
           ],
           "correct": 0,
           "explanation": "This is correct because use quantitative evidence to support administrative decisions. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
-          "difficulty": "easy",
+          "difficulty": "medium",
           "chapter": "Verbal & Analytical Reasoning - Expansion Set",
           "keywords": [
             "competency_framework",
@@ -2686,7 +2686,7 @@
         },
         {
           "id": "comp_verbal_reasoning_gen_005",
-          "question": "Which practice should a responsible officer prioritize to sustain verbal reasoning in Verbal & Analytical Reasoning?",
+          "question": "Which practice should a responsible officer prioritize to sustain verbal reasoning in Verbal & Analytical Reasoning",
           "options": [
             "Interpret official text accurately before action.",
             "Prioritize convenience over policy and legal requirements.",
@@ -2695,7 +2695,7 @@
           ],
           "correct": 0,
           "explanation": "This is correct because interpret official text accurately before action. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
-          "difficulty": "medium",
+          "difficulty": "easy",
           "chapter": "Verbal & Analytical Reasoning - Expansion Set",
           "keywords": [
             "competency_framework",
@@ -2707,7 +2707,7 @@
         },
         {
           "id": "comp_verbal_reasoning_gen_006",
-          "question": "In the context of Verbal & Analytical Reasoning, which action best demonstrates analytical judgement?",
+          "question": "In the context of Verbal & Analytical Reasoning, which action best demonstrates analytical judgement",
           "options": [
             "Evaluate alternatives using logic and evidence.",
             "Close cases without validating facts or required records.",
@@ -2716,7 +2716,7 @@
           ],
           "correct": 0,
           "explanation": "This is correct because evaluate alternatives using logic and evidence. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
-          "difficulty": "hard",
+          "difficulty": "medium",
           "chapter": "Verbal & Analytical Reasoning - Expansion Set",
           "keywords": [
             "competency_framework",
@@ -2728,7 +2728,7 @@
         },
         {
           "id": "comp_verbal_reasoning_gen_007",
-          "question": "For effective verbal & analytical reasoning, what is the most appropriate approach to ensure problem solving?",
+          "question": "For effective verbal & analytical reasoning, what is the most appropriate approach to ensure problem solving",
           "options": [
             "Break complex issues into testable and actionable parts.",
             "Ignore feedback and continue non-compliant procedures.",
@@ -2737,7 +2737,7 @@
           ],
           "correct": 0,
           "explanation": "This is correct because break complex issues into testable and actionable parts. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
-          "difficulty": "easy",
+          "difficulty": "medium",
           "chapter": "Verbal & Analytical Reasoning - Expansion Set",
           "keywords": [
             "competency_framework",
@@ -2749,7 +2749,7 @@
         },
         {
           "id": "comp_verbal_reasoning_gen_008",
-          "question": "Which option most strongly aligns with good public-service practice on communication clarity within Verbal & Analytical Reasoning?",
+          "question": "Which option most strongly aligns with good public-service practice on communication clarity within Verbal & Analytical Reasoning",
           "options": [
             "Present conclusions clearly with defensible rationale.",
             "Rely on informal instructions without documentary evidence.",
@@ -2770,7 +2770,7 @@
         },
         {
           "id": "comp_verbal_reasoning_gen_009",
-          "question": "When handling verbal & analytical reasoning, which choice reflects proper documented procedure standards?",
+          "question": "When handling verbal & analytical reasoning, which choice reflects proper documented procedure standards",
           "options": [
             "Follow documented procedure and keep complete records.",
             "Apply rules inconsistently based on personal preference.",
@@ -2779,7 +2779,7 @@
           ],
           "correct": 0,
           "explanation": "This is correct because follow documented procedure and keep complete records. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
-          "difficulty": "hard",
+          "difficulty": "medium",
           "chapter": "Verbal & Analytical Reasoning - Expansion Set",
           "keywords": [
             "competency_framework",
@@ -2791,7 +2791,7 @@
         },
         {
           "id": "comp_verbal_reasoning_gen_010",
-          "question": "Which practice should a responsible officer prioritize to sustain compliance assurance in Verbal & Analytical Reasoning?",
+          "question": "Which practice should a responsible officer prioritize to sustain compliance assurance in Verbal & Analytical Reasoning",
           "options": [
             "Apply approved rules consistently and escalate exceptions.",
             "Delay decisions until issues escalate into avoidable crises.",
@@ -2800,7 +2800,7 @@
           ],
           "correct": 0,
           "explanation": "This is correct because apply approved rules consistently and escalate exceptions. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
-          "difficulty": "easy",
+          "difficulty": "medium",
           "chapter": "Verbal & Analytical Reasoning - Expansion Set",
           "keywords": [
             "competency_framework",
@@ -2812,7 +2812,7 @@
         },
         {
           "id": "comp_verbal_reasoning_gen_011",
-          "question": "In the context of Verbal & Analytical Reasoning, which action best demonstrates public accountability?",
+          "question": "In the context of Verbal & Analytical Reasoning, which action best demonstrates public accountability",
           "options": [
             "Provide traceable decisions and evidence-based justification.",
             "Bypass review and approval controls to save time.",
@@ -2833,7 +2833,7 @@
         },
         {
           "id": "comp_verbal_reasoning_gen_012",
-          "question": "For effective verbal & analytical reasoning, what is the most appropriate approach to ensure service integrity?",
+          "question": "For effective verbal & analytical reasoning, what is the most appropriate approach to ensure service integrity",
           "options": [
             "Avoid conflicts of interest and disclose relevant constraints.",
             "Treat exceptions as routine without documented justification.",
@@ -2842,7 +2842,7 @@
           ],
           "correct": 0,
           "explanation": "This is correct because avoid conflicts of interest and disclose relevant constraints. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
-          "difficulty": "hard",
+          "difficulty": "medium",
           "chapter": "Verbal & Analytical Reasoning - Expansion Set",
           "keywords": [
             "competency_framework",
@@ -2854,7 +2854,7 @@
         },
         {
           "id": "comp_verbal_reasoning_gen_013",
-          "question": "Which option most strongly aligns with good public-service practice on risk control within Verbal & Analytical Reasoning?",
+          "question": "Which option most strongly aligns with good public-service practice on risk control within Verbal & Analytical Reasoning",
           "options": [
             "Identify risk early, apply controls, and document mitigation.",
             "Prioritize convenience over policy and legal requirements.",
@@ -2875,7 +2875,7 @@
         },
         {
           "id": "comp_verbal_reasoning_gen_014",
-          "question": "When handling verbal & analytical reasoning, which choice reflects proper decision transparency standards?",
+          "question": "When handling verbal & analytical reasoning, which choice reflects proper decision transparency standards",
           "options": [
             "Use clear criteria and communicate decisions promptly.",
             "Close cases without validating facts or required records.",
@@ -2884,7 +2884,7 @@
           ],
           "correct": 0,
           "explanation": "This is correct because use clear criteria and communicate decisions promptly. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
-          "difficulty": "medium",
+          "difficulty": "easy",
           "chapter": "Verbal & Analytical Reasoning - Expansion Set",
           "keywords": [
             "competency_framework",
@@ -2896,7 +2896,7 @@
         },
         {
           "id": "comp_verbal_reasoning_gen_015",
-          "question": "Which practice should a responsible officer prioritize to sustain operational discipline in Verbal & Analytical Reasoning?",
+          "question": "Which practice should a responsible officer prioritize to sustain operational discipline in Verbal & Analytical Reasoning",
           "options": [
             "Follow approved workflows and verify outputs before closure.",
             "Ignore feedback and continue non-compliant procedures.",
@@ -2905,7 +2905,7 @@
           ],
           "correct": 0,
           "explanation": "This is correct because follow approved workflows and verify outputs before closure. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
-          "difficulty": "hard",
+          "difficulty": "medium",
           "chapter": "Verbal & Analytical Reasoning - Expansion Set",
           "keywords": [
             "competency_framework",
