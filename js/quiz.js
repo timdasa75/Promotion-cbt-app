@@ -17,49 +17,75 @@ import {
 function parseMarkdown(text) {
   if (!text || typeof text !== "string") return text || "";
 
-  let html = text;
+  // Escape HTML first so markdown formatting cannot inject markup.
+  let html = text
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
 
-  // Convert headers (### Header)
-  html = html.replace(/^### (.*$)/gim, "<h3>$1</h3>");
-  html = html.replace(/^## (.*$)/gim, "<h2>$1</h2>");
-  html = html.replace(/^# (.*$)/gim, "<h1>$1</h1>");
+  // Inline markdown.
+  html = html.replace(/`([^`]+)`/g, "<code>$1</code>");
+  html = html.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+  html = html.replace(/__([^_]+)__/g, "<strong>$1</strong>");
+  html = html.replace(/(^|[^\*])\*([^\*\n]+)\*(?!\*)/g, "$1<em>$2</em>");
+  html = html.replace(/(^|[^_])_([^_\n]+)_(?!_)/g, "$1<em>$2</em>");
 
-  // Convert **bold** and __bold__
-  html = html.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
-  html = html.replace(/__(.*?)__/g, "<strong>$1</strong>");
-
-  // Convert *italic* and _italic_
-  html = html.replace(/\*(.*?)\*/g, "<em>$1</em>");
-  html = html.replace(/_(.*?)_/g, "<em>$1</em>");
-
-  // Convert `code`
-  html = html.replace(/`(.*?)`/g, "<code>$1</code>");
-
-  // Convert line breaks (double space at end of line)
-  html = html.replace(/  \n/g, "<br>");
-
-  // Convert paragraphs (separate text blocks with double newline)
-  html = html.replace(/\n\n/g, "</p><p>");
-
-  // Replace any remaining newlines with line breaks
+  // New lines.
   html = html.replace(/\n/g, "<br>");
+  return `<p>${html}</p>`;
+}
 
-  // Wrap in paragraph tags if not already wrapped
-  if (
-    !html.startsWith("<p>") &&
-    !html.startsWith("<h") &&
-    !html.startsWith("<")
-  ) {
-    html = "<p>" + html + "</p>";
-  } else if (html.startsWith("<")) {
-    // If it starts with HTML tags, still wrap non-header content in paragraphs
-    html = "<p>" + html + "</p>";
-  }
+function normalizeExplanationText(text) {
+  if (!text || typeof text !== "string") return "No explanation available.";
 
-  // Clean up multiple paragraph tags that might have formed
-  html = html.replace(/<\/p><p><\/p><p>/g, "</p><p>");
+  let normalized = text.trim();
 
-  return html;
+  // Remove answer-judgment lead-ins so rationale stays neutral for all outcomes.
+  normalized = normalized.replace(
+    /^(this\s+is\s+correct\s+because|this\s+is\s+incorrect\s+because|correct\s+because|incorrect\s+because)\s*/i,
+    "",
+  );
+  normalized = normalized.replace(/^(correct|incorrect)\s*[:.-]\s*/i, "");
+  normalized = normalized.replace(/^(this\s+means|this\s+is\s+because)\s*/i, "");
+
+  // Clean accidental duplicate punctuation and spacing artifacts from generated content.
+  normalized = normalized.replace(/\s{2,}/g, " ");
+  normalized = normalized.replace(/,\s*\./g, ".");
+  normalized = normalized.replace(/\.\s*\./g, ".");
+
+  normalized = normalized.trim();
+  if (!normalized) return "No explanation available.";
+
+  // Ensure sentence starts cleanly.
+  normalized = normalized.charAt(0).toUpperCase() + normalized.slice(1);
+  return normalized;
+}
+
+function clearOptionFeedbackLabel(optionEl) {
+  if (!optionEl) return;
+  const existing = optionEl.querySelector(".option-feedback-label");
+  if (existing) existing.remove();
+}
+
+function applyOptionFeedbackLabel(optionEl) {
+  if (!optionEl) return;
+  clearOptionFeedbackLabel(optionEl);
+
+  const isIncorrect =
+    optionEl.classList.contains("incorrect") ||
+    optionEl.classList.contains("user-incorrect");
+  const isCorrect = optionEl.classList.contains("correct");
+  if (!isCorrect && !isIncorrect) return;
+
+  const badge = document.createElement("span");
+  badge.className = `option-feedback-label ${isIncorrect ? "incorrect" : "correct"}`;
+  badge.textContent = isIncorrect ? "Incorrect" : "Correct";
+  optionEl.appendChild(badge);
+}
+
+function refreshOptionFeedbackLabels() {
+  const options = document.querySelectorAll(".option-btn");
+  options.forEach((optionEl) => applyOptionFeedbackLabel(optionEl));
 }
 
 /**
@@ -220,10 +246,18 @@ function shuffleArray(array) {
 function startTimer() {
   updateTimerDisplay();
   quizState.timer = setInterval(() => {
+    if (currentMode === "practice") {
+      quizState.timeLeft++;
+      updateTimerDisplay();
+      return;
+    }
+
     quizState.timeLeft--;
     updateTimerDisplay();
 
     if (quizState.timeLeft <= 0) {
+      quizState.timeLeft = 0;
+      updateTimerDisplay();
       clearInterval(quizState.timer);
       // Auto-submit exam when time runs out
       if (currentMode === "exam") {
@@ -258,6 +292,39 @@ function showTimeWarning(message) {
   }
 }
 
+function formatDuration(totalSeconds) {
+  const safeSeconds = Math.max(0, totalSeconds || 0);
+  const minutes = Math.floor(safeSeconds / 60);
+  const seconds = safeSeconds % 60;
+  return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+}
+
+function updatePracticePacingNotice() {
+  const notice = document.getElementById("practicePacingNotice");
+  const timerContainer = document.getElementById("timerDisplay");
+  if (!notice || !timerContainer) return;
+
+  if (currentMode !== "practice") {
+    notice.classList.add("hidden");
+    notice.textContent = "";
+    timerContainer.classList.remove("warning", "critical", "urgent");
+    return;
+  }
+
+  const examEquivalentSeconds = (quizState.allQuestions?.length || 0) * 45;
+  if (!examEquivalentSeconds || quizState.timeLeft <= examEquivalentSeconds) {
+    notice.classList.add("hidden");
+    notice.textContent = "";
+    timerContainer.classList.remove("warning", "critical", "urgent");
+    return;
+  }
+
+  const overrun = quizState.timeLeft - examEquivalentSeconds;
+  notice.textContent = `You are ${formatDuration(overrun)} beyond exam pace. Keep going and speed up your decision time.`;
+  notice.classList.remove("hidden");
+  timerContainer.classList.add("warning");
+}
+
 /**
  * Update the timer display
  */
@@ -265,9 +332,12 @@ function updateTimerDisplay() {
   const timeLeftElement = document.getElementById("timeLeft");
   if (!timeLeftElement) return;
 
-  const minutes = Math.floor(quizState.timeLeft / 60);
-  const seconds = quizState.timeLeft % 60;
-  timeLeftElement.textContent = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+  timeLeftElement.textContent = formatDuration(quizState.timeLeft);
+
+  if (currentMode !== "exam") {
+    updatePracticePacingNotice();
+    return;
+  }
 
   // Check if we need to show time warnings or reset to normal state
   if (quizState.timeLeft <= 10 && quizState.timeLeft > 0) {
@@ -419,6 +489,7 @@ function showQuestion() {
   
         optionsContainer.appendChild(button);
       });
+    refreshOptionFeedbackLabels();
     // In practice mode, if feedback has already been shown for this question, display it and update navigation
     if (currentMode === "practice" && quizState.feedbackShown[quizState.currentQuestionIndex]) {
       setTimeout(() => {
@@ -501,6 +572,7 @@ function selectOption(selectedIndex) {
   options.forEach((option, index) => {
     // Don't disable options in practice mode to allow changing answers
     option.classList.remove("selected", "correct", "incorrect");
+    clearOptionFeedbackLabel(option);
 
     if (index === selectedIndex) {
       option.classList.add("selected");
@@ -706,6 +778,7 @@ function handleSubmit() {
   // Update UI to show correct/incorrect feedback
   options.forEach((option, index) => {
     option.classList.remove("selected", "correct", "incorrect");
+    clearOptionFeedbackLabel(option);
 
     if (index === selectedIndex) {
       option.classList.add("selected");
@@ -719,6 +792,7 @@ function handleSubmit() {
     if (index === question.correct) {
       option.classList.add("correct");
     }
+    applyOptionFeedbackLabel(option);
   });
 
   // Show explanation immediately
@@ -793,9 +867,38 @@ function showExplanation() {
   if (!explanationDiv) return;
 
   const question = quizState.allQuestions[quizState.currentQuestionIndex];
+  const selectedIndex = quizState.userAnswers[quizState.currentQuestionIndex];
+  const hasAnswered = selectedIndex !== undefined;
+  const isCorrect = hasAnswered && selectedIndex === question.correct;
+  const correctLetter = String.fromCharCode(65 + question.correct);
+  const selectedLetter = hasAnswered ? String.fromCharCode(65 + selectedIndex) : null;
+  const selectedText = hasAnswered ? question.options?.[selectedIndex] || "" : "";
+  const correctText = question.options?.[question.correct] || "";
+
+  let statusPanel = "";
+  if (currentMode === "practice" && hasAnswered) {
+    statusPanel = `
+      <section class="feedback-status ${isCorrect ? "feedback-status-correct" : "feedback-status-incorrect"}">
+        <p class="feedback-verdict"><strong>${isCorrect ? "Correct response" : "Incorrect response"}</strong></p>
+        <p><strong>Your answer:</strong> Option ${selectedLetter} ${selectedText ? `- ${selectedText}` : ""}</p>
+        ${isCorrect ? "" : `<p><strong>Expected answer:</strong> Option ${correctLetter} ${correctText ? `- ${correctText}` : ""}</p>`}
+      </section>
+    `;
+  } else if (currentMode === "review") {
+    statusPanel = `
+      <section class="feedback-status">
+        <p class="feedback-verdict"><strong>Reference answer</strong></p>
+        <p><strong>Correct answer:</strong> Option ${correctLetter} ${correctText ? `- ${correctText}` : ""}</p>
+      </section>
+    `;
+  }
+
   explanationDiv.innerHTML = `
-        <h4>Explanation:</h4>
-        <p>${parseMarkdown(question.explanation || "No explanation available.")}</p>
+        <h4>Rationale</h4>
+        ${statusPanel}
+        <div class="explanation-body">${parseMarkdown(
+          normalizeExplanationText(question.explanation),
+        )}</div>
     `;
 }
 
@@ -865,9 +968,9 @@ function showResults() {
   if (wrongCount) wrongCount.textContent = wrong;
   if (unansweredCount) unansweredCount.textContent = unanswered;
   if (timeSpent) {
-    // Calculate initial total time based on exam mode settings
-    const initialTotalTime = quizState.allQuestions.length * 45; // 45 seconds per question in exam mode
-    const timeElapsed = initialTotalTime - quizState.timeLeft;
+    const timeElapsed = currentMode === "exam"
+      ? quizState.allQuestions.length * 45 - quizState.timeLeft
+      : quizState.timeLeft;
     const minutes = Math.floor(timeElapsed / 60);
     const seconds = timeElapsed % 60;
     timeSpent.textContent = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
@@ -1317,6 +1420,8 @@ function initializeQuiz(options = {}) {
   }
 
   // Set up timer if in exam mode
+  const timerContainer = document.getElementById("timerDisplay");
+  const timerBadge = timerContainer ? timerContainer.querySelector(".timer-badge") : null;
   if (currentMode === "exam") {
     // Set 45 seconds per question for exam mode (total exam time)
     quizState.timeLeft = quizState.allQuestions.length * 45;
@@ -1324,21 +1429,44 @@ function initializeQuiz(options = {}) {
     startTimer();
 
     // Show and style exam mode specific UI
-    const timerContainer = document.getElementById("timerDisplay");
     if (timerContainer) {
       timerContainer.classList.remove("hidden");
       timerContainer.classList.add("modern-timer");
+      timerContainer.setAttribute("title", "Remaining time");
     }
+    if (timerBadge) {
+      timerBadge.textContent = "Timer";
+    }
+    updatePracticePacingNotice();
+  } else if (currentMode === "practice") {
+    quizState.timeLeft = 0;
+    clearInterval(quizState.timer);
+    startTimer();
+
+    if (timerContainer) {
+      timerContainer.classList.remove("hidden");
+      timerContainer.classList.add("modern-timer");
+      timerContainer.setAttribute("title", "Elapsed time");
+    }
+    if (timerBadge) {
+      timerBadge.textContent = "Elapsed";
+    }
+    updatePracticePacingNotice();
   } else {
+    clearInterval(quizState.timer);
     quizState.timeLeft = 0;
     updateTimerDisplay();
 
     // Hide timer for non-exam modes
-    const timerContainer = document.getElementById("timerDisplay");
     if (timerContainer) {
       timerContainer.classList.add("hidden");
       timerContainer.classList.remove("modern-timer");
+      timerContainer.setAttribute("title", "Remaining time");
     }
+    if (timerBadge) {
+      timerBadge.textContent = "Timer";
+    }
+    updatePracticePacingNotice();
   }
   // Remove loading indicator if present
   const quizContainer = document.getElementById("quizScreen");

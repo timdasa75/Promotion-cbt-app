@@ -352,7 +352,7 @@ export async function displayTopics(topics, onSelect) {
     } else if (typeof topicLimit === "number") {
       freePlanNotice.classList.remove("hidden");
       freePlanNotice.textContent =
-        `Free plan active: all topics visible, ${topicLimit} topic unlocked, ${entitlement.maxSubcategories} subtopics unlocked, ${entitlement.maxQuestionsPerSubcategory} questions per unlocked subtopic.`;
+        `Free plan: explore all topics preview, study ${topicLimit} unlocked topic with ${entitlement.maxSubcategories} subtopics and ${entitlement.maxQuestionsPerSubcategory} questions each. Upgrade to Premium for full question bank, unlimited topic access, and complete exam practice.`;
     } else {
       freePlanNotice.classList.add("hidden");
     }
