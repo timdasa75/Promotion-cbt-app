@@ -3,6 +3,7 @@
 import { showScreen, showError } from "./ui.js";
 import { extractQuestionsByCategory, fetchTopicDataFiles } from "./topicSources.js";
 import { debugLog } from "./logger.js";
+import { getTopics } from "./data.js";
 import {
   getCurrentEntitlement,
   getCurrentUser,
@@ -105,6 +106,122 @@ const quizState = {
 
 let reviewContext = "study"; // "study" (pre-quiz) or "session" (post-quiz)
 let lastCompletedSession = null;
+const MOCK_EXAM_TOPIC_ID = "mock_exam";
+const DEFAULT_MOCK_EXAM_BLUEPRINT = [
+  { topicId: "psr", count: 4 },
+  { topicId: "financial_regulations", count: 4 },
+  { topicId: "procurement_act", count: 4 },
+  { topicId: "constitutional_law", count: 4 },
+  { topicId: "civil_service_admin", count: 4 },
+  { topicId: "leadership_management", count: 4 },
+  { topicId: "ict_management", count: 4 },
+  { topicId: "policy_analysis", count: 4 },
+  { topicId: "general_current_affairs", count: 4 },
+  { topicId: "competency_framework", count: 4 },
+];
+
+function isMockExamTopic(topic) {
+  return topic?.id === MOCK_EXAM_TOPIC_ID || topic?.type === "mock_exam";
+}
+
+function getMockExamBlueprint(topic) {
+  if (Array.isArray(topic?.mockExamBlueprint) && topic.mockExamBlueprint.length) {
+    return topic.mockExamBlueprint
+      .map((entry) => ({
+        topicId: String(entry?.topicId || ""),
+        count: Number(entry?.count || 0),
+      }))
+      .filter((entry) => entry.topicId && entry.count > 0);
+  }
+  return DEFAULT_MOCK_EXAM_BLUEPRINT;
+}
+
+async function buildMockExamQuestions(topic) {
+  const baseTopics = getTopics().filter((entry) => entry?.id && entry.file);
+  const topicMap = new Map(baseTopics.map((entry) => [entry.id, entry]));
+  const blueprint = getMockExamBlueprint(topic);
+  const questions = [];
+
+  for (const item of blueprint) {
+    const sourceTopic = topicMap.get(item.topicId);
+    if (!sourceTopic) continue;
+
+    const topicDataFiles = await fetchTopicDataFiles(sourceTopic, { tolerateFailures: true });
+    const pool = [];
+    topicDataFiles.forEach((topicData) => {
+      pool.push(...extractQuestionsByCategory(topicData, "all", {}));
+    });
+
+    if (!pool.length) continue;
+
+    const picked = shuffleArray(pool)
+      .slice(0, Math.min(item.count, pool.length))
+      .map((question) => ({
+        ...question,
+        sourceTopicId: sourceTopic.id,
+        sourceTopicName: sourceTopic.name,
+      }));
+    questions.push(...picked);
+  }
+
+  return shuffleArray(questions);
+}
+
+function buildMockExamTopicBreakdown() {
+  const byTopic = new Map();
+
+  quizState.allQuestions.forEach((question, index) => {
+    const topicId = question?.sourceTopicId || "";
+    if (!topicId) return;
+    const topicName = question?.sourceTopicName || topicId;
+    if (!byTopic.has(topicId)) {
+      byTopic.set(topicId, {
+        topicId,
+        topicName,
+        total: 0,
+        answered: 0,
+        correct: 0,
+      });
+    }
+    const entry = byTopic.get(topicId);
+    entry.total += 1;
+
+    const answer = quizState.userAnswers[index];
+    if (answer !== undefined) {
+      entry.answered += 1;
+      if (answer === question.correct) {
+        entry.correct += 1;
+      }
+    }
+  });
+
+  return Array.from(byTopic.values())
+    .map((entry) => ({
+      ...entry,
+      accuracy: entry.answered
+        ? Math.round((entry.correct / entry.answered) * 100)
+        : 0,
+    }))
+    .sort((a, b) => b.accuracy - a.accuracy || b.correct - a.correct || a.topicName.localeCompare(b.topicName));
+}
+
+function getTrafficClassByPercentage(percentage) {
+  if (percentage >= 70) return "traffic-green";
+  if (percentage >= 50) return "traffic-amber";
+  return "traffic-red";
+}
+
+function getInverseTrafficClassByPercentage(percentage) {
+  if (percentage <= 20) return "traffic-green";
+  if (percentage <= 40) return "traffic-amber";
+  return "traffic-red";
+}
+
+function applyTrafficClass(element, className) {
+  if (!element) return;
+  element.classList.remove("traffic-green", "traffic-amber", "traffic-red");
+  if (className) element.classList.add(className);
+}
 
 /**
  * DOM Elements cache
@@ -976,7 +1093,15 @@ function showResults() {
     timeSpent.textContent = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
   }
   const scorePercentage = Math.round((quizState.score / quizState.allQuestions.length) * 100);
+  const accuracyRate = Math.round((correct / answered) * 100) || 0;
+  const unansweredRate = Math.round((unanswered / quizState.allQuestions.length) * 100) || 0;
+  const wrongRate = Math.round((wrong / quizState.allQuestions.length) * 100) || 0;
+  const overallTrafficClass = getTrafficClassByPercentage(scorePercentage);
+  const accuracyTrafficClass = getTrafficClassByPercentage(accuracyRate);
+  const unansweredTrafficClass = getInverseTrafficClassByPercentage(unansweredRate);
+  const wrongTrafficClass = getInverseTrafficClassByPercentage(wrongRate);
   finalScore.textContent = `${scorePercentage}%`;
+  applyTrafficClass(finalScore, overallTrafficClass);
 
   // Capture the just-completed quiz session for post-quiz review filters.
   lastCompletedSession = {
@@ -994,6 +1119,31 @@ function showResults() {
     totalQuestions: quizState.allQuestions.length,
   });
   const progressInsights = calculateProgressInsights(progressSummary, currentTopic?.id);
+  const mockTopicBreakdown = isMockExamTopic(currentTopic)
+    ? buildMockExamTopicBreakdown()
+    : [];
+  const mockBreakdownHtml = mockTopicBreakdown.length
+    ? `
+        <div class="section-head screen-header mock-breakdown-head">
+            <h2>Mock Exam Topic Breakdown</h2>
+            <p>Performance split across all sampled source topics.</p>
+        </div>
+        <div class="analytics-grid mock-breakdown-grid">
+            ${mockTopicBreakdown
+              .map(
+                (entry) => `
+                <div class="analytic-item mock-breakdown-item ${getTrafficClassByPercentage(entry.accuracy)}">
+                    <div class="analytic-value">${entry.accuracy}%</div>
+                    <div class="analytic-label">${entry.topicName}</div>
+                    <p class="mock-breakdown-meta">${entry.correct}/${entry.answered} correct (answered)</p>
+                    <p class="mock-breakdown-meta">Coverage: ${entry.answered}/${entry.total}</p>
+                </div>
+            `,
+              )
+              .join("")}
+        </div>
+      `
+    : "";
 
   // Enhanced performance analysis
   let performanceMessage = "";
@@ -1042,19 +1192,19 @@ function showResults() {
             <p>Track your strengths, weak points, and best next step.</p>
         </div>
         <div class="analytics-grid">
-            <div class="analytic-item">
+            <div class="analytic-item ${overallTrafficClass}">
                 <div class="analytic-value">${scorePercentage}%</div>
                 <div class="analytic-label">Overall Score</div>
             </div>
-            <div class="analytic-item">
+            <div class="analytic-item ${accuracyTrafficClass}">
                 <div class="analytic-value">${correct}/${quizState.allQuestions.length}</div>
                 <div class="analytic-label">Correct Answers</div>
             </div>
-            <div class="analytic-item">
-                <div class="analytic-value">${Math.round((correct / answered) * 100) || 0}%</div>
+            <div class="analytic-item ${accuracyTrafficClass}">
+                <div class="analytic-value">${accuracyRate}%</div>
                 <div class="analytic-label">Accuracy Rate</div>
             </div>
-            <div class="analytic-item">
+            <div class="analytic-item ${unansweredTrafficClass}">
                 <div class="analytic-value">${unanswered}</div>
                 <div class="analytic-label">Unanswered</div>
             </div>
@@ -1084,6 +1234,7 @@ function showResults() {
         <div class="recommendation ${scorePercentage >= 70 ? "success" : "improvement"}">
             <strong>Recommended Next Action:</strong> ${progressInsights.recommendedTopic ? `Prioritize ${progressInsights.recommendedTopic} next.` : (scorePercentage >= 70 ? "You are ready for a timed drill in your next session." : "Review mistakes first, then retake this topic in Practice mode.")}
         </div>
+        ${mockBreakdownHtml}
     `;
 
   // Insert analytics after stats if not already present
@@ -1092,6 +1243,17 @@ function showResults() {
     if (statsDiv) {
       statsDiv.parentNode.insertBefore(analyticsDiv, statsDiv.nextSibling);
     }
+  }
+
+  const resultHero = document.querySelector("#resultsScreen .result-hero");
+  applyTrafficClass(resultHero, overallTrafficClass);
+
+  const resultStatCards = Array.from(document.querySelectorAll("#resultsStats .stat-card"));
+  if (resultStatCards.length >= 4) {
+    applyTrafficClass(resultStatCards[0], accuracyTrafficClass);
+    applyTrafficClass(resultStatCards[1], wrongTrafficClass);
+    applyTrafficClass(resultStatCards[2], unansweredTrafficClass);
+    applyTrafficClass(resultStatCards[3], accuracyTrafficClass);
   }
 
   const reviewIncorrectResultsBtn = document.getElementById("reviewIncorrectResultsBtn");
@@ -1167,7 +1329,7 @@ export async function loadQuestions(questions = null) {
 
 
   try {
-    if (!currentTopic || !currentTopic.file) {
+    if (!currentTopic) {
       throw new Error("Invalid topic selected");
     }
 
@@ -1193,27 +1355,34 @@ export async function loadQuestions(questions = null) {
       loadingEl.textContent = "Loading questions...";
     }
 
-    const selectedCategory = currentTopic.selectedCategory || "all";
-    const entitlement = getCurrentEntitlement();
-    const extractionOptions = {
-      allowedCategoryIds:
-        Array.isArray(currentTopic.allowedCategoryIds) &&
-        currentTopic.allowedCategoryIds.length
-          ? currentTopic.allowedCategoryIds
-          : null,
-      maxQuestionsPerSubcategory:
-        typeof entitlement.maxQuestionsPerSubcategory === "number"
-          ? entitlement.maxQuestionsPerSubcategory
-          : null,
-    };
-    const topicDataFiles = await fetchTopicDataFiles(currentTopic, { tolerateFailures: true });
+    if (isMockExamTopic(currentTopic)) {
+      quizState.allQuestions = await buildMockExamQuestions(currentTopic);
+    } else {
+      if (!currentTopic.file) {
+        throw new Error("Invalid topic selected");
+      }
+      const selectedCategory = currentTopic.selectedCategory || "all";
+      const entitlement = getCurrentEntitlement();
+      const extractionOptions = {
+        allowedCategoryIds:
+          Array.isArray(currentTopic.allowedCategoryIds) &&
+          currentTopic.allowedCategoryIds.length
+            ? currentTopic.allowedCategoryIds
+            : null,
+        maxQuestionsPerSubcategory:
+          typeof entitlement.maxQuestionsPerSubcategory === "number"
+            ? entitlement.maxQuestionsPerSubcategory
+            : null,
+      };
+      const topicDataFiles = await fetchTopicDataFiles(currentTopic, { tolerateFailures: true });
 
-    quizState.allQuestions = [];
-    topicDataFiles.forEach((topicData) => {
-      quizState.allQuestions.push(
-        ...extractQuestionsByCategory(topicData, selectedCategory, extractionOptions),
-      );
-    });
+      quizState.allQuestions = [];
+      topicDataFiles.forEach((topicData) => {
+        quizState.allQuestions.push(
+          ...extractQuestionsByCategory(topicData, selectedCategory, extractionOptions),
+        );
+      });
+    }
 
     if (quizState.allQuestions.length === 0) {
       showError("No questions found for this topic/category.");
@@ -1222,8 +1391,12 @@ export async function loadQuestions(questions = null) {
     }
 
     quizState.allQuestions = shuffleArray(quizState.allQuestions);
-    if (quizState.allQuestions.length > 40) {
-      quizState.allQuestions = quizState.allQuestions.slice(0, 40);
+    const targetQuestionCap =
+      Number(currentTopic?.mockExamQuestionCount) > 0
+        ? Number(currentTopic.mockExamQuestionCount)
+        : 40;
+    if (quizState.allQuestions.length > targetQuestionCap) {
+      quizState.allQuestions = quizState.allQuestions.slice(0, targetQuestionCap);
     }
 
     initializeQuiz({ context: currentMode === "review" ? "study" : "session" });
@@ -1283,6 +1456,109 @@ function applyReviewFilter(filter) {
     }
 }
 
+function isTypingTarget(target) {
+  if (!target) return false;
+  const tag = String(target.tagName || "").toLowerCase();
+  return (
+    tag === "input" ||
+    tag === "textarea" ||
+    tag === "select" ||
+    Boolean(target.isContentEditable)
+  );
+}
+
+function isQuizScreenActive() {
+  const quizScreen = document.getElementById("quizScreen");
+  return Boolean(quizScreen && !quizScreen.classList.contains("hidden"));
+}
+
+function getCurrentOptionCount() {
+  const question = quizState.allQuestions[quizState.currentQuestionIndex];
+  return Array.isArray(question?.options) ? question.options.length : 0;
+}
+
+function handleLetterSelection(event) {
+  if (currentMode === "review") return false;
+  const key = String(event.key || "").toLowerCase();
+  const keyMap = { a: 0, b: 1, c: 2, d: 3, "1": 0, "2": 1, "3": 2, "4": 3 };
+  if (!(key in keyMap)) return false;
+
+  const index = keyMap[key];
+  if (index >= getCurrentOptionCount()) return false;
+  selectOption(index);
+  return true;
+}
+
+function moveSelectionByArrow(delta) {
+  if (currentMode === "review") return false;
+  const optionCount = getCurrentOptionCount();
+  if (!optionCount) return false;
+
+  const selected = quizState.userAnswers[quizState.currentQuestionIndex];
+  const base = typeof selected === "number" ? selected : delta > 0 ? -1 : 0;
+  const nextIndex = (base + delta + optionCount) % optionCount;
+  selectOption(nextIndex);
+  return true;
+}
+
+function triggerById(id) {
+  const button = document.getElementById(id);
+  if (!button || button.disabled || button.classList.contains("hidden")) return false;
+  button.click();
+  return true;
+}
+
+function handleQuizKeyboardShortcuts(event) {
+  if (!isQuizScreenActive()) return;
+  if (event.defaultPrevented) return;
+  if (event.metaKey || event.ctrlKey || event.altKey) return;
+  if (isTypingTarget(event.target)) return;
+
+  if (handleLetterSelection(event)) {
+    event.preventDefault();
+    return;
+  }
+
+  if (event.key === "ArrowUp") {
+    if (moveSelectionByArrow(-1)) event.preventDefault();
+    return;
+  }
+
+  if (event.key === "ArrowDown") {
+    if (moveSelectionByArrow(1)) event.preventDefault();
+    return;
+  }
+
+  if (event.key === "ArrowLeft") {
+    if (triggerById("prevBtn")) event.preventDefault();
+    return;
+  }
+
+  if (event.key === "ArrowRight") {
+    if (triggerById("nextBtn")) event.preventDefault();
+    return;
+  }
+
+  if (event.key === "Enter") {
+    if (currentMode === "practice") {
+      if (triggerById("submitBtn") || triggerById("nextBtn")) {
+        event.preventDefault();
+      }
+      return;
+    }
+    if (triggerById("nextBtn")) {
+      event.preventDefault();
+    }
+  }
+}
+
+let keyboardShortcutsBound = false;
+function bindKeyboardShortcuts() {
+  if (keyboardShortcutsBound) return;
+  keyboardShortcutsBound = true;
+  document.addEventListener("keydown", handleQuizKeyboardShortcuts);
+}
+
 function getFilteredQuestions() {
     switch (reviewFilter) {
         case "correct":
@@ -1300,6 +1576,7 @@ document.getElementById("reviewAllBtn").onclick = () => applyReviewFilter("all")
 document.getElementById("reviewCorrectBtn").onclick = () => applyReviewFilter("correct");
 document.getElementById("reviewIncorrectBtn").onclick = () => applyReviewFilter("incorrect");
 document.getElementById("reviewUnansweredBtn").onclick = () => applyReviewFilter("unanswered");
+bindKeyboardShortcuts();
 
 function showReviewControls() {
     const reviewControls = document.getElementById("reviewControls");

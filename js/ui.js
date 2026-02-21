@@ -305,9 +305,13 @@ export async function displayTopics(topics, onSelect) {
   const unlockedTopicIds = new Set(unlockedTopics.map((topic) => topic.id));
 
   topics.forEach((topic, index) => {
-    const isUnlocked = unlockedTopicIds.has(topic.id);
+    const isPremiumLocked = topic?.requiresPremium && entitlement.id !== "premium";
+    const isUnlocked = unlockedTopicIds.has(topic.id) && !isPremiumLocked;
     const topicCard = document.createElement("div");
     topicCard.className = "topic-card ripple scale-on-hover";
+    if (topic?.id === "mock_exam") {
+      topicCard.classList.add("mock-exam-card");
+    }
     if (!isUnlocked) {
       topicCard.classList.add("locked");
     }
@@ -320,11 +324,12 @@ export async function displayTopics(topics, onSelect) {
             <div class="topic-icon">${topic.icon || "&#128218;"}</div>
             <h3 class="topic-title">${name}</h3>
             <p class="topic-description">${topic.description || "No description available"}</p>
+            ${topic?.id === "mock_exam" ? '<span class="mock-exam-badge">Featured Mock Exam</span>' : ""}
             ${!isUnlocked ? '<span class="lock-badge">Locked on Free</span>' : ""}
         </div>
         <div class="card-footer">
             <div class="question-count">
-                <strong>${counts[topic.id] || 0}</strong> Questions
+                <strong>${counts[topic.id] || topic.mockExamQuestionCount || 0}</strong> Questions
             </div>
         </div>
     `;
@@ -373,6 +378,27 @@ export async function getTotalQuestionCount(topic) {
 // Select a topic and show category selection (then mode selection)
 export async function selectTopic(topic) {
   try {
+    if (topic?.skipCategorySelection) {
+      const quizTitle = document.getElementById("modeQuizTitle");
+      const quizDescription = document.getElementById("modeQuizDescription");
+      const selectedTopicName = document.getElementById("selectedTopicName");
+      const backToCategoryBtn = document.getElementById("backToCategoryBtn");
+
+      if (quizTitle) quizTitle.textContent = topic.name;
+      if (quizDescription) quizDescription.textContent = topic.description;
+      if (selectedTopicName) selectedTopicName.textContent = topic.name;
+      topic.selectedCategory = "all";
+      topic.allowedCategoryIds = null;
+
+      if (backToCategoryBtn) {
+        backToCategoryBtn.onclick = () => {
+          showScreen("topicSelectionScreen");
+        };
+      }
+      showScreen("modeSelectionScreen");
+      return;
+    }
+
     const sourceLoadResult = await fetchTopicDataFilesWithReport(topic, {
       tolerateFailures: true,
     });
@@ -449,9 +475,9 @@ export async function selectTopic(topic) {
     // Add event listener for back button in mode selection screen
     const backToCategoryBtn = document.getElementById("backToCategoryBtn");
     if (backToCategoryBtn) {
-      backToCategoryBtn.addEventListener("click", () => {
+      backToCategoryBtn.onclick = () => {
         showScreen("categorySelectionScreen");
-      });
+      };
     }
   } catch (error) {
     console.error("Error checking topic subcategories:", error);

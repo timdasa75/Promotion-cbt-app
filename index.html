@@ -36,7 +36,7 @@
         <div class="app-container">
             <header class="app-shell-header">
                 <div class="brand-block">
-                    <div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+                    <img class="brand-logo" src="assets/icons/promotion-cbt-logo.svg" alt="Promotion CBT logo" />
                     <div>
                         <p class="brand-eyebrow">Federal Civil Service Learning Suite</p>
                         <h1>Promotion CBT</h1>
@@ -45,6 +45,9 @@
                 <div class="header-actions">
                     <button id="authActionBtn" class="icon-button" aria-label="Account options" type="button">
                         <span id="authActionLabel">Login</span>
+                    </button>
+                    <button id="headerHelpBtn" class="icon-button" aria-label="Open Help and About" onclick="showScreen('helpScreen')" type="button">
+                        <span>Help</span>
                     </button>
                     <button id="themeToggle" class="icon-button" aria-label="Toggle light and dark theme" type="button">
                         <span class="theme-icon">Light</span>
@@ -99,9 +102,9 @@
                         </article>
                     </div>
                     <div class="card">
-                        <div class="toolbar-row">
-                            <label class="search-wrap" for="topicSearch"><input id="topicSearch" type="search" placeholder="Search topics, laws, competencies" /></label>
-                            <div class="chip-row" role="group" aria-label="Topic filters">
+                        <div class="toolbar-row topic-toolbar">
+                            <label class="search-wrap topic-search-wrap" for="topicSearch"><span class="search-glyph" aria-hidden="true">⌕</span><input id="topicSearch" type="search" placeholder="Search topics, laws, competencies" /></label>
+                            <div class="chip-row topic-filter-row" role="group" aria-label="Topic filters">
                                 <button class="chip active" id="filterAllBtn" type="button">All</button>
                                 <button class="chip" id="filterDocumentBtn" type="button">Document-based</button>
                                 <button class="chip" id="filterCompetencyBtn" type="button">Competency-based</button>
@@ -118,11 +121,62 @@
                         </div>
                     </div>
                     <div class="screen-nav-row">
+                        <button class="btn btn-ghost" onclick="showScreen('helpScreen')" type="button">Help and About</button>
                         <button class="btn btn-ghost" onclick="showScreen('analyticsScreen')" type="button">Analytics</button>
                         <button class="btn btn-ghost" onclick="showScreen('reviewMistakesScreen')" type="button">Review Mistakes</button>
                         <button class="btn btn-ghost" onclick="showScreen('profileScreen')" type="button">Profile and Settings</button>
                         <button class="btn btn-ghost hidden" id="openAdminBtn" type="button">Admin</button>
-                        <button class="btn btn-ghost" onclick="showScreen('statesScreen')" type="button">Empty/Error States</button>
+                        <button class="btn btn-ghost hidden" id="openStatesBtn" onclick="showScreen('statesScreen')" type="button">Empty/Error States</button>
+                    </div>
+                </section>
+
+                <section id="helpScreen" class="screen hidden">
+                    <div class="card">
+                        <div class="section-head screen-header">
+                            <h2>Help and About</h2>
+                            <p>Learn how to use Promotion CBT effectively.</p>
+                        </div>
+                        <div class="mistake-list">
+                            <article class="mistake-item">
+                                <h3>What is Promotion CBT?</h3>
+                                <p>A practice platform for Nigerian Federal Civil Service promotion preparation, with topic drills, exam simulation, and performance insights.</p>
+                            </article>
+                            <article class="mistake-item">
+                                <h3>Quick Start</h3>
+                                <p>1. Login or register.</p>
+                                <p>2. Select a topic or <strong>Directorate Mock Exam</strong> (Premium/Admin).</p>
+                                <p>3. Choose Practice, Exam, or Review mode.</p>
+                                <p>4. Complete your session and review results.</p>
+                            </article>
+                            <article class="mistake-item">
+                                <h3>Quiz Modes</h3>
+                                <p><strong>Practice:</strong> instant feedback and rationale.</p>
+                                <p><strong>Exam:</strong> timed attempt with end-of-session grading.</p>
+                                <p><strong>Review:</strong> study mode with correct answers visible.</p>
+                            </article>
+                            <article class="mistake-item">
+                                <h3>Keyboard Shortcuts</h3>
+                                <p><strong>A-D</strong> or <strong>1-4</strong>: pick options.</p>
+                                <p><strong>Arrow Up/Down</strong>: change selected option.</p>
+                                <p><strong>Arrow Left/Right</strong>: previous/next question.</p>
+                                <p><strong>Enter</strong>: submit/next based on mode.</p>
+                            </article>
+                            <article class="mistake-item">
+                                <h3>Plans and Access</h3>
+                                <p><strong>Free:</strong> limited content access.</p>
+                                <p><strong>Premium:</strong> full topic bank and mock exam access.</p>
+                                <p><strong>Admin:</strong> Premium access + admin panel tools.</p>
+                            </article>
+                            <article class="mistake-item">
+                                <h3>Troubleshooting</h3>
+                                <p>If content does not load, hard refresh with <strong>Ctrl+F5</strong>.</p>
+                                <p>If Cloud login fails, verify Supabase settings and auth mode label.</p>
+                                <p>If mock exam is missing, clear filters/search and confirm Premium/Admin plan.</p>
+                            </article>
+                        </div>
+                        <div class="button-row">
+                            <button class="btn btn-ghost" onclick="showScreen('topicSelectionScreen')" type="button">Back to Dashboard</button>
+                        </div>
                     </div>
                 </section>
 
@@ -330,8 +384,9 @@
                             <p>Exclusive directory view for administrator accounts.</p>
                         </div>
                         <p class="hero-meta" id="adminUserSource">Source: loading...</p>
+                        <p class="hero-meta" id="adminUserCount">Users: 0</p>
                         <p class="inline-warning hidden" id="adminUserDirectoryNotice"></p>
-                        <div class="toolbar-row">
+                        <div class="toolbar-row admin-user-toolbar">
                             <label class="search-wrap" for="adminUserSearch">
                                 <input id="adminUserSearch" type="search" placeholder="Search user email" />
                             </label>

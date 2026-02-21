@@ -112,3 +112,107 @@ test("dashboard stats hydrate from stored progress data", async ({ page }) => {
   await expect(page.locator("#averageScoreStat")).toHaveText("65%");
   await expect(page.locator("#continueTopicTitle")).not.toHaveText("");
 });
+
+test("premium user can start cross-topic mock exam without category step", async ({ page }) => {
+  await page.addInitScript(() => {
+    const user = {
+      id: "u_premium",
+      name: "Premium User",
+      email: "premium@example.com",
+      passwordHash: "seedhash",
+      plan: "premium",
+      createdAt: new Date().toISOString(),
+    };
+    window.localStorage.setItem("cbt_users_v1", JSON.stringify([user]));
+    window.localStorage.setItem(
+      "cbt_session_v1",
+      JSON.stringify({ userId: user.id, createdAt: new Date().toISOString() }),
+    );
+  });
+
+  await page.goto("/");
+  await page.click("#startLearningBtn");
+  await expect(page.locator("#topicSelectionScreen")).toBeVisible();
+
+  const mockCard = page.locator("#topicList .topic-card", {
+    has: page.locator("h3.topic-title", { hasText: "Directorate Mock Exam" }),
+  });
+  await expect(mockCard).toBeVisible();
+  await expect(mockCard).toContainText("Featured Mock Exam");
+  await mockCard.click();
+
+  await expect(page.locator("#modeSelectionScreen")).toBeVisible();
+  await expect(page.locator("#categorySelectionScreen")).toHaveClass(/hidden/);
+  await page.click("#examModeCard");
+  await expect(page.locator("#quizScreen")).toBeVisible();
+  await expect(page.locator("#quizTopicTitle")).toContainText("Directorate Mock Exam");
+});
+
+test("quiz supports keyboard option selection and navigation", async ({ page }) => {
+  await registerAndEnter(page, "keyboard@example.com");
+  await expect(page.locator("#topicList .topic-card:not(.hidden)").first()).toBeVisible();
+
+  await page.locator("#topicList .topic-card:not(.hidden)").first().click();
+  await expect(page.locator("#categorySelectionScreen")).toBeVisible();
+  await page.click("#selectAllCategoryBtn");
+  await expect(page.locator("#modeSelectionScreen")).toBeVisible();
+
+  await page.click("#examModeCard");
+  await expect(page.locator("#quizScreen")).toBeVisible();
+  await expect(page.locator("#currentQ")).toHaveText("1");
+
+  await page.keyboard.press("b");
+  await expect(page.locator("#optionsContainer .option-btn.selected").first()).toContainText("B");
+
+  await page.keyboard.press("ArrowDown");
+  await expect(page.locator("#optionsContainer .option-btn.selected").first()).toContainText("C");
+
+  await page.keyboard.press("Enter");
+  await expect(page.locator("#currentQ")).toHaveText("2");
+});
+
+test("results show source-topic breakdown for mock exam sessions", async ({ page }) => {
+  await page.goto("/");
+
+  await page.evaluate(async () => {
+    const quiz = await import("/js/quiz.js");
+    quiz.setCurrentTopic({
+      id: "mock_exam",
+      name: "Directorate Mock Exam",
+      type: "mock_exam",
+      mockExamQuestionCount: 2,
+    });
+    quiz.setCurrentMode("exam");
+    await quiz.loadQuestions([
+      {
+        id: "mock_q1",
+        question: "Question one",
+        options: ["A", "B", "C", "D"],
+        correct: 1,
+        explanation: "Because",
+        sourceTopicId: "psr",
+        sourceTopicName: "Public Service Rules (PSR 2021)",
+      },
+      {
+        id: "mock_q2",
+        question: "Question two",
+        options: ["A", "B", "C", "D"],
+        correct: 0,
+        explanation: "Because",
+        sourceTopicId: "financial_regulations",
+        sourceTopicName: "Financial Regulations (FR)",
+      },
+    ]);
+  });
+
+  await expect(page.locator("#quizScreen")).toBeVisible();
+  await page.locator("#optionsContainer .option-btn").nth(1).click();
+  await page.click("#nextBtn");
+  await page.locator("#optionsContainer .option-btn").nth(0).click();
+  await page.click("#nextBtn");
+
+  await expect(page.locator("#resultsScreen")).toBeVisible();
+  await expect(page.locator("#categoryBreakdown")).toContainText("Mock Exam Topic Breakdown");
+  await expect(page.locator("#categoryBreakdown")).toContainText("Public Service Rules (PSR 2021)");
+  await expect(page.locator("#categoryBreakdown")).toContainText("Financial Regulations (FR)");
+});

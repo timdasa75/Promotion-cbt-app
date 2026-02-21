@@ -3,7 +3,35 @@
 const USERS_STORAGE_KEY = "cbt_users_v1";
 const SESSION_STORAGE_KEY = "cbt_session_v1";
 const PLAN_OVERRIDES_STORAGE_KEY = "cbt_plan_overrides_v1";
+const PLAN_OVERRIDE_META_STORAGE_KEY = "cbt_plan_override_meta_v1";
 const DEFAULT_ADMIN_EMAILS = ["timdasa75@gmail.com"];
+const PLAN_SYNC_INTERVAL_MS = 30 * 1000;
+const CLOUD_PLAN_POLL_MS = 5 * 1000;
+const REALTIME_HEARTBEAT_MS = 25 * 1000;
+
+let cloudPlanSyncInFlight = false;
+let cloudPlanPollingHandle = null;
+let cloudPlanVisibilityBound = false;
+let realtimeSocket = null;
+let realtimeHeartbeatHandle = null;
+let realtimeReconnectHandle = null;
+let realtimeRefCounter = 1;
+let realtimeBoundUserKey = "";
+
+function emitPlanChange(previousPlan, nextPlan) {
+  if (!previousPlan || !nextPlan || previousPlan === nextPlan) return;
+  document.dispatchEvent(
+    new CustomEvent("authplanchange", {
+      detail: { previousPlan, nextPlan },
+    }),
+  );
+}
+
+function nextRealtimeRef() {
+  const ref = String(realtimeRefCounter);
+  realtimeRefCounter += 1;
+  return ref;
+}
 
 const FREE_PLAN = {
   id: "free",
@@ -59,6 +87,21 @@ function readPlanOverrides() {
 
 function writePlanOverrides(overrides) {
   localStorage.setItem(PLAN_OVERRIDES_STORAGE_KEY, JSON.stringify(overrides || {}));
+}
+
+function readPlanOverrideMeta() {
+  try {
+    const raw = localStorage.getItem(PLAN_OVERRIDE_META_STORAGE_KEY);
+    if (!raw) return {};
+    const parsed = JSON.parse(raw);
+    return parsed && typeof parsed === "object" ? parsed : {};
+  } catch (error) {
+    return {};
+  }
+}
+
+function writePlanOverrideMeta(meta) {
+  localStorage.setItem(PLAN_OVERRIDE_META_STORAGE_KEY, JSON.stringify(meta || {}));
 }
 
 function writeUsers(users) {
@@ -245,19 +288,35 @@ function writeCloudSessionFromPayload(payload) {
 }
 
 async function resolveCloudPlan(session) {
-  if (!session?.accessToken || !session?.user?.id) return session?.user?.plan || "free";
+  if (!session?.accessToken || !session?.user) return session?.user?.plan || "free";
   const defaultPlan = session.user.plan || "free";
 
   try {
-    const rows = await supabaseRestRequest(
-      `profiles?id=eq.${encodeURIComponent(session.user.id)}&select=plan&limit=1`,
-      {
-        method: "GET",
-        accessToken: session.accessToken,
-      },
-    );
-    if (Array.isArray(rows) && rows.length > 0 && rows[0]?.plan) {
-      return String(rows[0].plan).toLowerCase();
+    if (session.user.id) {
+      const rows = await supabaseRestRequest(
+        `profiles?id=eq.${encodeURIComponent(session.user.id)}&select=plan&limit=1`,
+        {
+          method: "GET",
+          accessToken: session.accessToken,
+        },
+      );
+      if (Array.isArray(rows) && rows.length > 0 && rows[0]?.plan) {
+        return String(rows[0].plan).toLowerCase();
+      }
+    }
+
+    // Fallback for deployments where profile rows are keyed by email.
+    if (session.user.email) {
+      const emailRows = await supabaseRestRequest(
+        `profiles?email=eq.${encodeURIComponent(normalizeEmail(session.user.email))}&select=plan&limit=1`,
+        {
+          method: "GET",
+          accessToken: session.accessToken,
+        },
+      );
+      if (Array.isArray(emailRows) && emailRows.length > 0 && emailRows[0]?.plan) {
+        return String(emailRows[0].plan).toLowerCase();
+      }
     }
   } catch (error) {
     // Optional table; ignore when unavailable.
@@ -270,16 +329,251 @@ async function syncCloudPlanInSession(session) {
   if (!session?.provider || session.provider !== "supabase" || !session.user) {
     return session;
   }
+  const previousPlan = session.user.plan || "free";
   const plan = await resolveCloudPlan(session);
+  const nowIso = new Date().toISOString();
   const updated = {
     ...session,
+    lastPlanSyncAt: nowIso,
     user: {
       ...session.user,
       plan,
     },
   };
   writeSession(updated);
+  emitPlanChange(previousPlan, plan);
   return updated;
+}
+
+async function syncCloudPlanNow() {
+  const session = readSession();
+  if (
+    !session ||
+    session.provider !== "supabase" ||
+    sessionIsExpired(session) ||
+    !session.accessToken ||
+    !session.user ||
+    cloudPlanSyncInFlight
+  ) {
+    return;
+  }
+
+  cloudPlanSyncInFlight = true;
+  try {
+    await syncCloudPlanInSession(session);
+  } catch (error) {
+    // Best-effort background sync; ignore transient errors.
+  } finally {
+    cloudPlanSyncInFlight = false;
+  }
+}
+
+export async function forceCloudPlanSync() {
+  const session = readSession();
+  if (
+    !session ||
+    session.provider !== "supabase" ||
+    sessionIsExpired(session) ||
+    !session.accessToken ||
+    !session.user
+  ) {
+    return { synced: false, warning: "Cloud session is unavailable." };
+  }
+
+  if (cloudPlanSyncInFlight) {
+    return { synced: false, warning: "Plan sync is already in progress." };
+  }
+
+  cloudPlanSyncInFlight = true;
+  try {
+    await syncCloudPlanInSession(session);
+    return { synced: true, warning: "" };
+  } catch (error) {
+    return {
+      synced: false,
+      warning: error?.message || "Unable to sync cloud plan right now.",
+    };
+  } finally {
+    cloudPlanSyncInFlight = false;
+  }
+}
+
+function closeRealtimeSocket() {
+  if (realtimeReconnectHandle) {
+    clearTimeout(realtimeReconnectHandle);
+    realtimeReconnectHandle = null;
+  }
+  if (realtimeHeartbeatHandle) {
+    clearInterval(realtimeHeartbeatHandle);
+    realtimeHeartbeatHandle = null;
+  }
+  if (realtimeSocket) {
+    try {
+      realtimeSocket.close();
+    } catch (error) {
+      // Ignore close errors.
+    }
+    realtimeSocket = null;
+  }
+  realtimeBoundUserKey = "";
+}
+
+function buildRealtimeWebSocketUrl() {
+  const { supabaseUrl, supabaseAnonKey } = getSupabaseConfig();
+  if (!supabaseUrl || !supabaseAnonKey) return "";
+  const wsBase = supabaseUrl.replace(/^http/i, "ws");
+  return `${wsBase}/realtime/v1/websocket?apikey=${encodeURIComponent(
+    supabaseAnonKey,
+  )}&vsn=1.0.0`;
+}
+
+function scheduleRealtimeReconnect() {
+  if (realtimeReconnectHandle) return;
+  realtimeReconnectHandle = setTimeout(() => {
+    realtimeReconnectHandle = null;
+    const session = readSession();
+    if (!session || session.provider !== "supabase" || !session.accessToken || sessionIsExpired(session)) {
+      return;
+    }
+    subscribeToCloudPlanRealtime(session);
+  }, 3000);
+}
+
+function subscribeToCloudPlanRealtime(session) {
+  if (!session?.accessToken || session.provider !== "supabase" || !session.user) {
+    closeRealtimeSocket();
+    return;
+  }
+
+  const userId = String(session.user.id || "");
+  const userEmail = normalizeEmail(session.user.email || "");
+  const userKey = `${userId}:${userEmail}`;
+
+  if (
+    realtimeSocket &&
+    realtimeSocket.readyState === WebSocket.OPEN &&
+    realtimeBoundUserKey === userKey
+  ) {
+    return;
+  }
+
+  closeRealtimeSocket();
+  const wsUrl = buildRealtimeWebSocketUrl();
+  if (!wsUrl) return;
+
+  const socket = new WebSocket(wsUrl);
+  realtimeSocket = socket;
+  realtimeBoundUserKey = userKey;
+
+  socket.addEventListener("open", () => {
+    if (!realtimeSocket || realtimeSocket !== socket) return;
+
+    const postgresChanges = [];
+    if (userId) {
+      postgresChanges.push({
+        event: "UPDATE",
+        schema: "public",
+        table: "profiles",
+        filter: `id=eq.${userId}`,
+      });
+    }
+    if (userEmail) {
+      postgresChanges.push({
+        event: "UPDATE",
+        schema: "public",
+        table: "profiles",
+        filter: `email=eq.${userEmail}`,
+      });
+    }
+    if (!postgresChanges.length) return;
+
+    socket.send(
+      JSON.stringify({
+        topic: "realtime:public:profiles",
+        event: "phx_join",
+        payload: {
+          config: {
+            broadcast: { ack: false, self: false },
+            presence: { key: "" },
+            postgres_changes: postgresChanges,
+            private: true,
+          },
+          access_token: session.accessToken,
+        },
+        ref: nextRealtimeRef(),
+      }),
+    );
+
+    realtimeHeartbeatHandle = setInterval(() => {
+      if (!realtimeSocket || realtimeSocket.readyState !== WebSocket.OPEN) return;
+      realtimeSocket.send(
+        JSON.stringify({
+          topic: "phoenix",
+          event: "heartbeat",
+          payload: {},
+          ref: nextRealtimeRef(),
+        }),
+      );
+    }, REALTIME_HEARTBEAT_MS);
+  });
+
+  socket.addEventListener("message", (event) => {
+    let parsed = null;
+    try {
+      parsed = JSON.parse(event.data);
+    } catch (error) {
+      return;
+    }
+    if (!parsed) return;
+
+    if (parsed.event === "postgres_changes") {
+      syncCloudPlanNow();
+      return;
+    }
+
+    if (parsed.event === "phx_reply" && parsed.payload?.status === "ok") {
+      syncCloudPlanNow();
+    }
+  });
+
+  socket.addEventListener("close", () => {
+    if (realtimeSocket === socket) {
+      if (realtimeHeartbeatHandle) {
+        clearInterval(realtimeHeartbeatHandle);
+        realtimeHeartbeatHandle = null;
+      }
+      realtimeSocket = null;
+      scheduleRealtimeReconnect();
+    }
+  });
+
+  socket.addEventListener("error", () => {
+    if (realtimeSocket === socket) {
+      scheduleRealtimeReconnect();
+    }
+  });
+}
+
+export function startCloudPlanAutoSync() {
+  if (!isCloudAuthEnabled() || cloudPlanPollingHandle) return;
+
+  cloudPlanPollingHandle = setInterval(() => {
+    syncCloudPlanNow();
+  }, CLOUD_PLAN_POLL_MS);
+
+  if (!cloudPlanVisibilityBound) {
+    cloudPlanVisibilityBound = true;
+    document.addEventListener("visibilitychange", () => {
+      if (!document.hidden) {
+        syncCloudPlanNow();
+      }
+    });
+  }
+
+  const session = readSession();
+  if (session?.provider === "supabase" && session.accessToken && !sessionIsExpired(session)) {
+    subscribeToCloudPlanRealtime(session);
+  }
 }
 
 async function ensureCloudProfileInSession(session) {
@@ -397,6 +691,7 @@ async function logoutCloud() {
       // Ignore remote logout errors and clear local session anyway.
     }
   }
+  closeRealtimeSocket();
   clearSession();
 }
 
@@ -515,16 +810,31 @@ export function getCurrentUser() {
   if (!session) return null;
 
   if (session.provider === "supabase") {
+    startCloudPlanAutoSync();
     if (sessionIsExpired(session)) {
+      closeRealtimeSocket();
       clearSession();
       return null;
+    }
+    if (session.accessToken && session.user) {
+      subscribeToCloudPlanRealtime(session);
     }
     if (!session.user && session.accessToken) {
       refreshCloudUserInSession(session).catch(() => {});
       return null;
     }
-    if (session.user && !session.user.plan && session.accessToken) {
-      syncCloudPlanInSession(session).catch(() => {});
+    if (session.user && session.accessToken && !cloudPlanSyncInFlight) {
+      const lastSyncMs = Date.parse(session.lastPlanSyncAt || "") || 0;
+      const syncIsStale = Date.now() - lastSyncMs > PLAN_SYNC_INTERVAL_MS;
+      const missingPlan = !session.user.plan;
+      if (missingPlan || syncIsStale) {
+        cloudPlanSyncInFlight = true;
+        syncCloudPlanInSession(session)
+          .catch(() => {})
+          .finally(() => {
+            cloudPlanSyncInFlight = false;
+          });
+      }
     }
     return applyPlanOverrideForEmail(session.user || null);
   }
@@ -572,6 +882,10 @@ export function getLocalPlanOverrides() {
   return readPlanOverrides();
 }
 
+export function getPlanOverrideSyncMeta() {
+  return readPlanOverrideMeta();
+}
+
 export function setLocalPlanOverride(email, plan) {
   const normalizedEmail = normalizeEmail(email);
   if (!normalizedEmail || !normalizedEmail.includes("@")) {
@@ -586,12 +900,101 @@ export function setLocalPlanOverride(email, plan) {
   writePlanOverrides(overrides);
 }
 
+export async function setPlanOverride(email, plan) {
+  const normalizedEmail = normalizeEmail(email);
+  const normalizedPlan = String(plan || "").toLowerCase();
+
+  setLocalPlanOverride(normalizedEmail, normalizedPlan);
+
+  // If cloud auth is unavailable, local override is the source of truth.
+  if (!isCloudAuthEnabled()) {
+    const result = { scope: "local", cloudUpdated: false, warning: "" };
+    const meta = readPlanOverrideMeta();
+    meta[normalizedEmail] = { ...result, updatedAt: new Date().toISOString() };
+    writePlanOverrideMeta(meta);
+    return result;
+  }
+
+  const session = readSession();
+  if (
+    !session?.accessToken ||
+    session?.provider !== "supabase" ||
+    !isCurrentUserAdmin()
+  ) {
+    const result = {
+      scope: "local",
+      cloudUpdated: false,
+      warning:
+        "Saved locally only. Cloud sync requires an authenticated admin cloud session.",
+    };
+    const meta = readPlanOverrideMeta();
+    meta[normalizedEmail] = { ...result, updatedAt: new Date().toISOString() };
+    writePlanOverrideMeta(meta);
+    return result;
+  }
+
+  try {
+    const rows = await supabaseRestRequest(
+      `profiles?email=eq.${encodeURIComponent(normalizedEmail)}&select=id,email,plan&limit=1`,
+      {
+        method: "GET",
+        accessToken: session.accessToken,
+      },
+    );
+
+    if (!Array.isArray(rows) || !rows.length || !rows[0]?.id) {
+      const result = {
+        scope: "local",
+        cloudUpdated: false,
+        warning:
+          "Saved locally. Cloud profile not found for this email yet; user must login once to create profile.",
+      };
+      const meta = readPlanOverrideMeta();
+      meta[normalizedEmail] = { ...result, updatedAt: new Date().toISOString() };
+      writePlanOverrideMeta(meta);
+      return result;
+    }
+
+    await supabaseRestRequest(`profiles?id=eq.${encodeURIComponent(rows[0].id)}`, {
+      method: "PATCH",
+      accessToken: session.accessToken,
+      body: {
+        plan: normalizedPlan,
+        last_seen_at: new Date().toISOString(),
+      },
+    });
+
+    const result = { scope: "cloud+local", cloudUpdated: true, warning: "" };
+    const meta = readPlanOverrideMeta();
+    meta[normalizedEmail] = { ...result, updatedAt: new Date().toISOString() };
+    writePlanOverrideMeta(meta);
+    return result;
+  } catch (error) {
+    const result = {
+      scope: "local",
+      cloudUpdated: false,
+      warning:
+        error?.message ||
+        "Saved locally, but cloud sync failed. Check profiles table policy/columns.",
+    };
+    const meta = readPlanOverrideMeta();
+    meta[normalizedEmail] = { ...result, updatedAt: new Date().toISOString() };
+    writePlanOverrideMeta(meta);
+    return result;
+  }
+}
+
 export function clearLocalPlanOverride(email) {
   const normalizedEmail = normalizeEmail(email);
   const overrides = readPlanOverrides();
   if (normalizedEmail in overrides) {
     delete overrides[normalizedEmail];
     writePlanOverrides(overrides);
+  }
+  const meta = readPlanOverrideMeta();
+  if (normalizedEmail in meta) {
+    delete meta[normalizedEmail];
+    writePlanOverrideMeta(meta);
   }
 }
 
