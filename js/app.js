@@ -12,19 +12,23 @@ import {
 import { debugLog } from "./logger.js";
 import {
   clearLocalPlanOverride,
+  forceCloudPlanSync,
   getAccessibleTopics,
+  getCurrentEntitlement,
   getAdminUserDirectory,
   getAuthSummaryLabel,
   getAuthProviderLabel,
   getCurrentUser,
   getLocalPlanOverrides,
+  getPlanOverrideSyncMeta,
   getProgressStorageKeyForCurrentUser,
   isCurrentUserAdmin,
   loginUser,
   logoutUser,
   requestPasswordReset,
   registerUser,
-  setLocalPlanOverride,
+  startCloudPlanAutoSync,
+  setPlanOverride,
 } from "./auth.js";
 
 let currentTopic = null;
@@ -34,12 +38,44 @@ let recommendedTopicId = null;
 let lastSessionTopicId = null;
 let adminDirectoryUsers = [];
 const UPGRADE_REQUESTS_STORAGE_KEY = "cbt_upgrade_requests_v1";
+const MOCK_EXAM_TOPIC_ID = "mock_exam";
+const MOCK_EXAM_TOPIC = {
+  id: MOCK_EXAM_TOPIC_ID,
+  name: "Directorate Mock Exam",
+  description:
+    "Cross-topic simulated promotion CBT built from all 10 core topics.",
+  icon: "🧪",
+  type: "mock_exam",
+  skipCategorySelection: true,
+  requiresPremium: true,
+  mockExamQuestionCount: 40,
+  mockExamBlueprint: [
+    { topicId: "psr", count: 4 },
+    { topicId: "financial_regulations", count: 4 },
+    { topicId: "procurement_act", count: 4 },
+    { topicId: "constitutional_law", count: 4 },
+    { topicId: "civil_service_admin", count: 4 },
+    { topicId: "leadership_management", count: 4 },
+    { topicId: "ict_management", count: 4 },
+    { topicId: "policy_analysis", count: 4 },
+    { topicId: "general_current_affairs", count: 4 },
+    { topicId: "competency_framework", count: 4 },
+  ],
+};
+
+function withSyntheticTopics(topicsData) {
+  const baseTopics = Array.isArray(topicsData) ? [...topicsData] : [];
+  if (baseTopics.some((topic) => topic?.id === MOCK_EXAM_TOPIC_ID)) {
+    return baseTopics;
+  }
+  return [...baseTopics, { ...MOCK_EXAM_TOPIC }];
+}
 
 async function init() {
   try {
     debugLog("Initializing app...");
     const topicsData = await loadData();
-    allTopics = Array.isArray(topicsData) ? topicsData : [];
+    allTopics = withSyntheticTopics(topicsData);
     cachedTopics = allTopics;
     debugLog("Loaded topics:", topicsData);
     if (!topicsData || topicsData.length === 0) {
@@ -395,6 +431,10 @@ function initializeDashboardActions() {
 }
 
 function isTopicUnlocked(topic) {
+  if (topic?.requiresPremium) {
+    const entitlement = getCurrentEntitlement();
+    return entitlement.id === "premium";
+  }
   const unlocked = getAccessibleTopics(allTopics);
   return unlocked.some((entry) => entry.id === topic?.id);
 }
@@ -495,6 +535,7 @@ function updateAuthUI() {
   const profileAvatar = document.getElementById("profileAvatar");
   const accountMenuAdminBtn = document.getElementById("accountMenuAdminBtn");
   const openAdminBtn = document.getElementById("openAdminBtn");
+  const openStatesBtn = document.getElementById("openStatesBtn");
   const isAdmin = isCurrentUserAdmin();
   if (authActionLabel) {
     authActionLabel.textContent = user ? getAuthSummaryLabel() : "Login";
@@ -528,6 +569,9 @@ function updateAuthUI() {
   if (openAdminBtn) {
     openAdminBtn.classList.toggle("hidden", !isAdmin);
   }
+  if (openStatesBtn) {
+    openStatesBtn.classList.toggle("hidden", !isAdmin);
+  }
 }
 
 function renderAdminOverrides() {
@@ -535,6 +579,7 @@ function renderAdminOverrides() {
   if (!container) return;
   container.innerHTML = "";
   const overrides = getLocalPlanOverrides();
+  const syncMeta = getPlanOverrideSyncMeta();
   const entries = Object.entries(overrides);
   if (!entries.length) {
     container.innerHTML = '<div class="admin-request-item"><p class="meta">No local overrides yet.</p></div>';
@@ -542,11 +587,16 @@ function renderAdminOverrides() {
   }
 
   entries.forEach(([email, plan]) => {
+    const status = syncMeta[email] || {};
+    const syncBadgeClass = status.cloudUpdated ? "approved" : "pending";
+    const syncLabel = status.cloudUpdated ? "Cloud+Local" : "Local only";
     const card = document.createElement("div");
     card.className = "admin-request-item";
     card.innerHTML = `
       <div><strong>${email}</strong></div>
       <div class="meta">Current override: <span class="admin-badge ${plan === "premium" ? "approved" : "pending"}">${plan}</span></div>
+      <div class="meta">Sync status: <span class="admin-badge ${syncBadgeClass}">${syncLabel}</span></div>
+      ${status.warning ? `<div class="meta">${status.warning}</div>` : ""}
       <div class="button-row">
         <button class="btn btn-ghost" data-clear-email="${email}" type="button">Clear Override</button>
       </div>
@@ -612,12 +662,15 @@ function renderAdminRequests() {
               : entry,
           );
           writeUpgradeRequests(next);
-          setLocalPlanOverride(request.email, "premium");
+          const overrideResult = await setPlanOverride(request.email, "premium");
           updateAuthUI();
           refreshDashboardInsights();
           await refreshAccessibleTopics();
           renderAdminRequests();
           renderAdminOverrides();
+          if (overrideResult.warning) {
+            showWarning(`Plan override saved. ${overrideResult.warning}`);
+          }
         });
       }
       if (rejectBtn) {
@@ -647,6 +700,7 @@ function renderAdminUserDirectory() {
   const searchInput = document.getElementById("adminUserSearch");
   const statusFilter = document.getElementById("adminStatusFilter");
   const sourceLabel = document.getElementById("adminUserSource");
+  const countLabel = document.getElementById("adminUserCount");
   if (!container) return;
 
   const query = String(searchInput?.value || "").trim().toLowerCase();
@@ -656,6 +710,9 @@ function renderAdminUserDirectory() {
     const statusMatch = status === "all" || entry.status === status;
     return emailMatch && statusMatch;
   });
+  if (countLabel) {
+    countLabel.textContent = `Users: ${filtered.length}/${adminDirectoryUsers.length}`;
+  }
 
   container.innerHTML = "";
   if (!filtered.length) {
@@ -711,6 +768,7 @@ async function refreshAdminUserDirectory() {
   if (!isCurrentUserAdmin()) return;
   const notice = document.getElementById("adminUserDirectoryNotice");
   const sourceLabel = document.getElementById("adminUserSource");
+  const countLabel = document.getElementById("adminUserCount");
   try {
     const result = await getAdminUserDirectory();
     adminDirectoryUsers = Array.isArray(result.users) ? result.users : [];
@@ -733,6 +791,9 @@ async function refreshAdminUserDirectory() {
     renderAdminUserDirectory();
     if (sourceLabel) {
       sourceLabel.textContent = "Source: unavailable";
+    }
+    if (countLabel) {
+      countLabel.textContent = "Users: 0/0";
     }
     if (notice) {
       notice.textContent = error.message || "Unable to load admin user directory.";
@@ -972,12 +1033,16 @@ function initializeAuthUI() {
       const email = document.getElementById("adminOverrideEmail")?.value || "";
       const plan = document.getElementById("adminOverridePlan")?.value || "free";
       try {
-        setLocalPlanOverride(email, plan);
+        const overrideResult = await setPlanOverride(email, plan);
         updateAuthUI();
         refreshDashboardInsights();
         await refreshAccessibleTopics();
         renderAdminOverrides();
-        showWarning("Plan override applied.");
+        showWarning(
+          overrideResult.cloudUpdated
+            ? "Plan override applied (cloud and local)."
+            : `Plan override applied (local). ${overrideResult.warning || ""}`.trim(),
+        );
       } catch (error) {
         showError(error.message || "Failed to apply override.");
       }
@@ -986,7 +1051,16 @@ function initializeAuthUI() {
 
   if (refreshAdminUsersBtn) {
     refreshAdminUsersBtn.addEventListener("click", async () => {
+      const syncResult = await forceCloudPlanSync();
+      if (!syncResult.synced && syncResult.warning) {
+        showWarning(`Cloud sync notice: ${syncResult.warning}`);
+      }
+      renderAdminRequests();
+      renderAdminOverrides();
       await refreshAdminUserDirectory();
+      updateAuthUI();
+      refreshDashboardInsights();
+      await refreshAccessibleTopics();
     });
   }
 
@@ -1020,6 +1094,7 @@ function initializeResultButtons() {
 window.startQuiz = startQuiz;
 
 document.addEventListener("DOMContentLoaded", function () {
+  startCloudPlanAutoSync();
   initializeDashboardActions();
   initializeAuthUI();
   updateAuthUI();
@@ -1035,6 +1110,15 @@ document.addEventListener("DOMContentLoaded", function () {
   document.addEventListener("screenchange", (event) => {
     if (event?.detail?.screenId === "topicSelectionScreen") {
       refreshDashboardInsights();
+    }
+  });
+
+  document.addEventListener("authplanchange", async () => {
+    updateAuthUI();
+    refreshDashboardInsights();
+    await refreshAccessibleTopics();
+    if (isCurrentUserAdmin()) {
+      renderAdminOverrides();
     }
   });
 
