@@ -3,7 +3,10 @@
 import { loadData } from "./data.js";
 import { displayTopics, selectTopic, showError, showScreen, showWarning } from "./ui.js";
 import {
+  clearPersistedQuizRuntime,
+  getPersistedQuizRuntime,
   loadQuestions,
+  restorePersistedQuizRuntime,
   setCurrentTopic,
   setCurrentMode,
   getCurrentMode,
@@ -38,6 +41,32 @@ let recommendedTopicId = null;
 let lastSessionTopicId = null;
 let adminDirectoryUsers = [];
 const UPGRADE_REQUESTS_STORAGE_KEY = "cbt_upgrade_requests_v1";
+const LOGIN_EMAIL_PREFILL_STORAGE_KEY = "cbt_login_prefill_email_v1";
+const SCREEN_STATE_STORAGE_KEY = "cbt_screen_state_v1";
+const ADMIN_DIRECTORY_SYNC_INTERVAL_MS = 15000;
+const ADMIN_DIRECTORY_SYNC_STORAGE_KEYS = new Set([
+  "cbt_session_v1",
+  "cbt_users_v1",
+  "cbt_plan_overrides_v1",
+  "cbt_plan_override_meta_v1",
+  "cbt_admin_directory_cache_v1",
+]);
+let adminDirectorySyncIntervalHandle = null;
+let adminDirectorySyncVisibilityBound = false;
+const RESTORABLE_SCREEN_IDS = new Set([
+  "splashScreen",
+  "topicSelectionScreen",
+  "categorySelectionScreen",
+  "modeSelectionScreen",
+  "quizScreen",
+  "resultsScreen",
+  "profileScreen",
+  "adminScreen",
+  "helpScreen",
+  "analyticsScreen",
+  "reviewMistakesScreen",
+  "statesScreen",
+]);
 const MOCK_EXAM_TOPIC_ID = "mock_exam";
 const MOCK_EXAM_TOPIC = {
   id: MOCK_EXAM_TOPIC_ID,
@@ -323,6 +352,156 @@ async function startRecommendation() {
   await handleTopicSelect(topic);
 }
 
+function readScreenState() {
+  try {
+    const raw = localStorage.getItem(SCREEN_STATE_STORAGE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    return parsed && typeof parsed === "object" ? parsed : null;
+  } catch (error) {
+    return null;
+  }
+}
+
+function writeScreenState(state) {
+  localStorage.setItem(SCREEN_STATE_STORAGE_KEY, JSON.stringify(state || {}));
+}
+
+function clearScreenState() {
+  localStorage.removeItem(SCREEN_STATE_STORAGE_KEY);
+}
+
+function persistScreenState(screenId) {
+  const user = getCurrentUser();
+  if (!user) return;
+
+  const normalizedScreenId = String(screenId || "").trim();
+  if (!normalizedScreenId || !RESTORABLE_SCREEN_IDS.has(normalizedScreenId)) {
+    return;
+  }
+
+  const mode = String(getCurrentMode() || "").trim();
+  writeScreenState({
+    userId: String(user.id || ""),
+    screenId: normalizedScreenId,
+    topicId: String(currentTopic?.id || ""),
+    selectedCategory: String(currentTopic?.selectedCategory || ""),
+    allowedCategoryIds: Array.isArray(currentTopic?.allowedCategoryIds)
+      ? currentTopic.allowedCategoryIds.filter(Boolean)
+      : null,
+    mode: mode || null,
+    savedAt: new Date().toISOString(),
+  });
+}
+
+async function restoreScreenState() {
+  const user = getCurrentUser();
+  if (!user) {
+    clearScreenState();
+    return false;
+  }
+
+  const saved = readScreenState();
+  if (!saved) return false;
+
+  if (saved.userId && String(saved.userId) !== String(user.id || "")) {
+    return false;
+  }
+
+  const savedScreenId = String(saved.screenId || "").trim();
+  if (!savedScreenId || !RESTORABLE_SCREEN_IDS.has(savedScreenId)) {
+    return false;
+  }
+
+  if ((savedScreenId === "adminScreen" || savedScreenId === "statesScreen") && !isCurrentUserAdmin()) {
+    return false;
+  }
+
+  if (savedScreenId === "quizScreen") {
+    const runtime = getPersistedQuizRuntime();
+    const runtimeTopicId = String(runtime?.topic?.id || "").trim();
+    const catalogTopic = runtimeTopicId
+      ? cachedTopics.find((entry) => entry.id === runtimeTopicId)
+      : null;
+
+    if (runtime && catalogTopic && isTopicUnlocked(catalogTopic)) {
+      const hydratedTopic = {
+        ...catalogTopic,
+        ...runtime.topic,
+        selectedCategory: String(runtime?.topic?.selectedCategory || "all"),
+        allowedCategoryIds: Array.isArray(runtime?.topic?.allowedCategoryIds)
+          ? runtime.topic.allowedCategoryIds.filter(Boolean)
+          : null,
+      };
+      const restored = restorePersistedQuizRuntime(runtime, hydratedTopic);
+      if (restored?.topic) {
+        currentTopic = restored.topic;
+        setCurrentTopic(restored.topic);
+        showWarning("Restored your in-progress quiz session.");
+        return true;
+      }
+    }
+
+    const topicId = String(saved.topicId || "").trim();
+    if (topicId) {
+      const topic = cachedTopics.find((entry) => entry.id === topicId);
+      if (topic && isTopicUnlocked(topic)) {
+        const hydratedTopic = {
+          ...topic,
+          selectedCategory: String(saved.selectedCategory || "all"),
+          allowedCategoryIds: Array.isArray(saved.allowedCategoryIds)
+            ? saved.allowedCategoryIds.filter(Boolean)
+            : null,
+        };
+        currentTopic = hydratedTopic;
+        setCurrentTopic(hydratedTopic);
+      }
+    }
+    await showScreen("modeSelectionScreen");
+    showWarning("Session was restored. Re-select a mode to continue.");
+    return true;
+  }
+
+  if (savedScreenId === "resultsScreen") {
+    await showScreen("modeSelectionScreen");
+    showWarning("Results cannot be restored after refresh. Re-select a mode to continue.");
+    return true;
+  }
+
+  if (savedScreenId === "modeSelectionScreen" || savedScreenId === "categorySelectionScreen") {
+    const topicId = String(saved.topicId || "").trim();
+    const topic = topicId ? cachedTopics.find((entry) => entry.id === topicId) : null;
+    if (topic && isTopicUnlocked(topic)) {
+      const hydratedTopic = {
+        ...topic,
+        selectedCategory: String(saved.selectedCategory || "all"),
+        allowedCategoryIds: Array.isArray(saved.allowedCategoryIds)
+          ? saved.allowedCategoryIds.filter(Boolean)
+          : null,
+      };
+      currentTopic = hydratedTopic;
+      setCurrentTopic(hydratedTopic);
+      await selectTopic(hydratedTopic);
+      if (savedScreenId === "modeSelectionScreen") {
+        await showScreen("modeSelectionScreen");
+      }
+      return true;
+    }
+
+    await showScreen("topicSelectionScreen");
+    return true;
+  }
+
+  if (savedScreenId === "adminScreen") {
+    renderAdminRequests();
+    renderAdminOverrides();
+    await refreshAdminUserDirectory();
+  }
+
+  await showScreen(savedScreenId);
+  return true;
+}
+
 function initializeDashboardActions() {
   const startLearningBtn = document.getElementById("startLearningBtn");
   const splashResumeBtn = document.getElementById("splashResumeBtn");
@@ -511,6 +690,18 @@ function openAuthModal(mode = "login") {
   const modal = document.getElementById("authModal");
   if (!modal) return;
   setActiveAuthTab(mode);
+  if (mode === "login") {
+    const loginEmailInput = document.getElementById("loginEmail");
+    const loginPasswordInput = document.getElementById("loginPassword");
+    const savedPrefill = String(localStorage.getItem(LOGIN_EMAIL_PREFILL_STORAGE_KEY) || "")
+      .trim()
+      .toLowerCase();
+    if (loginEmailInput && savedPrefill) {
+      loginEmailInput.value = savedPrefill;
+      if (loginPasswordInput) loginPasswordInput.value = "";
+      localStorage.removeItem(LOGIN_EMAIL_PREFILL_STORAGE_KEY);
+    }
+  }
   modal.classList.remove("hidden");
 }
 
@@ -802,6 +993,41 @@ async function refreshAdminUserDirectory() {
   }
 }
 
+function shouldAutoSyncAdminDirectory() {
+  if (!isCurrentUserAdmin() || document.hidden) return false;
+  const profileScreen = document.getElementById("profileScreen");
+  return Boolean(profileScreen && !profileScreen.classList.contains("hidden"));
+}
+
+function startAdminDirectoryAutoSync() {
+  if (adminDirectorySyncIntervalHandle) return;
+  adminDirectorySyncIntervalHandle = setInterval(() => {
+    if (!shouldAutoSyncAdminDirectory()) return;
+    refreshAdminUserDirectory();
+  }, ADMIN_DIRECTORY_SYNC_INTERVAL_MS);
+
+  if (adminDirectorySyncVisibilityBound) return;
+  adminDirectorySyncVisibilityBound = true;
+
+  document.addEventListener("visibilitychange", () => {
+    if (shouldAutoSyncAdminDirectory()) {
+      refreshAdminUserDirectory();
+    }
+  });
+
+  window.addEventListener("focus", () => {
+    if (shouldAutoSyncAdminDirectory()) {
+      refreshAdminUserDirectory();
+    }
+  });
+
+  window.addEventListener("storage", (event) => {
+    if (!isCurrentUserAdmin()) return;
+    if (!ADMIN_DIRECTORY_SYNC_STORAGE_KEYS.has(String(event?.key || ""))) return;
+    refreshAdminUserDirectory();
+  });
+}
+
 function closeAccountMenu() {
   const accountMenu = document.getElementById("accountMenu");
   if (accountMenu) accountMenu.classList.add("hidden");
@@ -815,6 +1041,8 @@ function toggleAccountMenu() {
 
 async function performLogout() {
   logoutUser();
+  clearScreenState();
+  clearPersistedQuizRuntime();
   closeAccountMenu();
   currentTopic = null;
   updateAuthUI();
@@ -938,11 +1166,25 @@ function initializeAuthUI() {
         return;
       }
       try {
-        await registerUser({ name, email, password });
+        const registration = await registerUser({ name, email, password });
         updateAuthUI();
         closeAccountMenu();
         refreshDashboardInsights();
         await refreshAccessibleTopics();
+
+        if (registration?.requiresEmailVerification) {
+          localStorage.setItem(
+            LOGIN_EMAIL_PREFILL_STORAGE_KEY,
+            String(email || "").trim().toLowerCase(),
+          );
+          closeAuthModal();
+          showWarning(
+            registration?.message ||
+              "Registration submitted. Check your email to confirm your account before login.",
+          );
+          return;
+        }
+
         setAuthMessage("Account created successfully.", "success");
         setTimeout(() => {
           closeAuthModal();
@@ -1093,25 +1335,29 @@ function initializeResultButtons() {
 
 window.startQuiz = startQuiz;
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
   startCloudPlanAutoSync();
+  startAdminDirectoryAutoSync();
   initializeDashboardActions();
   initializeAuthUI();
   updateAuthUI();
-  init();
+  await init();
   initializeResultButtons();
   refreshDashboardInsights();
+
+  document.addEventListener("screenchange", (event) => {
+    persistScreenState(event?.detail?.screenId);
+    if (event?.detail?.screenId === "topicSelectionScreen") {
+      refreshDashboardInsights();
+    }
+  });
+
+  await restoreScreenState();
   if (isCurrentUserAdmin()) {
     renderAdminRequests();
     renderAdminOverrides();
     refreshAdminUserDirectory();
   }
-
-  document.addEventListener("screenchange", (event) => {
-    if (event?.detail?.screenId === "topicSelectionScreen") {
-      refreshDashboardInsights();
-    }
-  });
 
   document.addEventListener("authplanchange", async () => {
     updateAuthUI();

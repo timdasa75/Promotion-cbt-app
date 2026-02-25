@@ -103,6 +103,8 @@ const quizState = {
   timer: null,
   timeLeft: 0,
 };
+const QUIZ_RUNTIME_STORAGE_KEY = "cbt_quiz_runtime_v1";
+const QUIZ_RUNTIME_MAX_AGE_MS = 24 * 60 * 60 * 1000;
 
 let reviewContext = "study"; // "study" (pre-quiz) or "session" (post-quiz)
 let lastCompletedSession = null;
@@ -119,6 +121,197 @@ const DEFAULT_MOCK_EXAM_BLUEPRINT = [
   { topicId: "general_current_affairs", count: 4 },
   { topicId: "competency_framework", count: 4 },
 ];
+
+function clampIndex(value, length) {
+  const max = Math.max(0, Number(length || 0) - 1);
+  const numeric = Number(value);
+  if (!Number.isFinite(numeric)) return 0;
+  return Math.min(max, Math.max(0, Math.floor(numeric)));
+}
+
+function normalizeRuntimeAnswers(values, total) {
+  const size = Number(total || 0);
+  const answers = Array.isArray(values) ? values.slice(0, size) : [];
+  const normalized = new Array(size).fill(undefined);
+  answers.forEach((value, index) => {
+    const numeric = Number(value);
+    if (Number.isInteger(numeric) && numeric >= 0) {
+      normalized[index] = numeric;
+    }
+  });
+  return normalized;
+}
+
+function normalizeRuntimeFeedback(values, total) {
+  const size = Number(total || 0);
+  const feedback = Array.isArray(values) ? values.slice(0, size) : [];
+  const normalized = new Array(size).fill(false);
+  feedback.forEach((value, index) => {
+    normalized[index] = Boolean(value);
+  });
+  return normalized;
+}
+
+function readQuizRuntimeStorageRaw() {
+  try {
+    const raw = window.localStorage.getItem(QUIZ_RUNTIME_STORAGE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    return parsed && typeof parsed === "object" ? parsed : null;
+  } catch (error) {
+    return null;
+  }
+}
+
+function buildRuntimeTopicPayload(topic) {
+  if (!topic || typeof topic !== "object") return null;
+  return {
+    id: String(topic.id || ""),
+    name: String(topic.name || ""),
+    description: String(topic.description || ""),
+    file: String(topic.file || ""),
+    type: String(topic.type || ""),
+    skipCategorySelection: Boolean(topic.skipCategorySelection),
+    requiresPremium: Boolean(topic.requiresPremium),
+    mockExamQuestionCount: Number(topic.mockExamQuestionCount || 0) || null,
+    selectedCategory: String(topic.selectedCategory || "all"),
+    allowedCategoryIds: Array.isArray(topic.allowedCategoryIds)
+      ? topic.allowedCategoryIds.filter(Boolean)
+      : null,
+    mockExamBlueprint: Array.isArray(topic.mockExamBlueprint)
+      ? topic.mockExamBlueprint
+          .map((entry) => ({
+            topicId: String(entry?.topicId || ""),
+            count: Number(entry?.count || 0),
+          }))
+          .filter((entry) => entry.topicId && entry.count > 0)
+      : null,
+  };
+}
+
+function getPersistedQuizRuntimeForCurrentUser() {
+  const saved = readQuizRuntimeStorageRaw();
+  if (!saved) return null;
+
+  const user = getCurrentUser();
+  const userId = String(user?.id || "");
+  if (!userId || String(saved?.userId || "") !== userId) {
+    return null;
+  }
+
+  const mode = String(saved?.mode || "");
+  if (mode !== "practice" && mode !== "exam") {
+    return null;
+  }
+
+  const savedAt = Date.parse(String(saved?.savedAt || ""));
+  if (!savedAt || Date.now() - savedAt > QUIZ_RUNTIME_MAX_AGE_MS) {
+    return null;
+  }
+
+  if (!Array.isArray(saved?.questions) || !saved.questions.length) {
+    return null;
+  }
+
+  if (!saved?.topic || typeof saved.topic !== "object" || !saved.topic.id) {
+    return null;
+  }
+
+  return saved;
+}
+
+function persistQuizRuntime() {
+  const user = getCurrentUser();
+  const userId = String(user?.id || "");
+
+  if (!userId || !currentTopic?.id) {
+    clearPersistedQuizRuntime();
+    return;
+  }
+
+  if (currentMode !== "practice" && currentMode !== "exam") {
+    clearPersistedQuizRuntime();
+    return;
+  }
+
+  const questions = Array.isArray(quizState.originalQuestions) && quizState.originalQuestions.length
+    ? quizState.originalQuestions
+    : quizState.allQuestions;
+  if (!Array.isArray(questions) || !questions.length) {
+    clearPersistedQuizRuntime();
+    return;
+  }
+
+  const totalQuestions = questions.length;
+  const payload = {
+    userId,
+    mode: currentMode,
+    topic: buildRuntimeTopicPayload(currentTopic),
+    questions,
+    currentQuestionIndex: clampIndex(quizState.currentQuestionIndex, totalQuestions),
+    userAnswers: normalizeRuntimeAnswers(quizState.userAnswers, totalQuestions),
+    feedbackShown: normalizeRuntimeFeedback(quizState.feedbackShown, totalQuestions),
+    timeLeft: Math.max(0, Number(quizState.timeLeft || 0)),
+    savedAt: new Date().toISOString(),
+  };
+
+  try {
+    window.localStorage.setItem(QUIZ_RUNTIME_STORAGE_KEY, JSON.stringify(payload));
+  } catch (error) {
+    // Ignore storage quota/persistence errors.
+  }
+}
+
+export function clearPersistedQuizRuntime() {
+  window.localStorage.removeItem(QUIZ_RUNTIME_STORAGE_KEY);
+}
+
+export function getPersistedQuizRuntime() {
+  return getPersistedQuizRuntimeForCurrentUser();
+}
+
+export function restorePersistedQuizRuntime(runtime, topicOverride = null) {
+  const source = runtime && typeof runtime === "object" ? runtime : getPersistedQuizRuntimeForCurrentUser();
+  if (!source) return null;
+
+  const mode = String(source.mode || "");
+  if (mode !== "practice" && mode !== "exam") return null;
+
+  const questions = Array.isArray(source.questions) ? source.questions : [];
+  if (!questions.length) return null;
+
+  const totalQuestions = questions.length;
+  const runtimeTopic =
+    topicOverride && typeof topicOverride === "object"
+      ? {
+          ...source.topic,
+          ...topicOverride,
+        }
+      : source.topic;
+  if (!runtimeTopic?.id) return null;
+
+  currentTopic = runtimeTopic;
+  setCurrentMode(mode);
+  quizState.allQuestions = [...questions];
+  quizState.originalQuestions = [...questions];
+
+  initializeQuiz({
+    preserveAnswers: true,
+    context: "session",
+    keepOriginalQuestions: true,
+    restoreState: {
+      currentQuestionIndex: clampIndex(source.currentQuestionIndex, totalQuestions),
+      userAnswers: normalizeRuntimeAnswers(source.userAnswers, totalQuestions),
+      feedbackShown: normalizeRuntimeFeedback(source.feedbackShown, totalQuestions),
+      timeLeft: Math.max(0, Number(source.timeLeft || 0)),
+    },
+  });
+
+  return {
+    topic: runtimeTopic,
+    mode,
+  };
+}
 
 function isMockExamTopic(topic) {
   return topic?.id === MOCK_EXAM_TOPIC_ID || topic?.type === "mock_exam";
@@ -673,6 +866,7 @@ function selectOption(selectedIndex) {
     if (explanationDiv) {
       explanationDiv.classList.remove("show");
     }
+    persistQuizRuntime();
     return;
   }
 
@@ -703,6 +897,7 @@ function selectOption(selectedIndex) {
   // Update progress bar to reflect answered question
   updateProgress();
   showQuestionMap();
+  persistQuizRuntime();
 }
 
 /**
@@ -872,6 +1067,7 @@ function nextQuestion() {
     showQuestion();
     // Update navigation after moving to next question
     updateNavigation();
+    persistQuizRuntime();
   } else {
     showResults();
   }
@@ -925,6 +1121,7 @@ function handleSubmit() {
 
   // Update navigation to show Next button
   updateNavigation();
+  persistQuizRuntime();
 }
 
 /**
@@ -952,6 +1149,7 @@ function previousQuestion() {
     showQuestion();
     // Update navigation after moving to previous question
     updateNavigation();
+    persistQuizRuntime();
   }
 }
 
@@ -1049,6 +1247,7 @@ function retakeFullQuiz() {
 // Show quiz results
 function showResults() {
   clearInterval(quizState.timer);
+  clearPersistedQuizRuntime();
   calculateExamScore(); // Ensure score is calculated before displaying results
   const finalScore = document.getElementById("finalScore");
   const performanceText = document.getElementById("performanceText");
@@ -1291,6 +1490,7 @@ export function setCurrentMode(mode) {
   currentMode = mode;
   if (mode === "review") {
     reviewContext = "study";
+    clearPersistedQuizRuntime();
   }
   
   // Update the quiz mode display in the header
@@ -1415,7 +1615,7 @@ function startPostQuizReview(filter = "all") {
     return;
   }
 
-  currentMode = "review";
+  setCurrentMode("review");
   reviewContext = "session";
   quizState.allQuestions = [...lastCompletedSession.questions];
   quizState.originalQuestions = [...lastCompletedSession.questions];
@@ -1559,6 +1759,22 @@ function bindKeyboardShortcuts() {
   document.addEventListener("keydown", handleQuizKeyboardShortcuts);
 }
 
+let quizPersistenceBound = false;
+function bindQuizPersistence() {
+  if (quizPersistenceBound) return;
+  quizPersistenceBound = true;
+
+  window.addEventListener("beforeunload", () => {
+    persistQuizRuntime();
+  });
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      persistQuizRuntime();
+    }
+  });
+}
+
 function getFilteredQuestions() {
     switch (reviewFilter) {
         case "correct":
@@ -1577,6 +1793,7 @@ document.getElementById("reviewCorrectBtn").onclick = () => applyReviewFilter("c
 document.getElementById("reviewIncorrectBtn").onclick = () => applyReviewFilter("incorrect");
 document.getElementById("reviewUnansweredBtn").onclick = () => applyReviewFilter("unanswered");
 bindKeyboardShortcuts();
+bindQuizPersistence();
 
 function showReviewControls() {
     const reviewControls = document.getElementById("reviewControls");
@@ -1662,19 +1879,29 @@ function initializeQuiz(options = {}) {
     preserveAnswers = false,
     context = "study",
     keepOriginalQuestions = false,
+    restoreState = null,
   } = options;
 
   reviewContext = context;
   if (!keepOriginalQuestions) {
     quizState.originalQuestions = [...quizState.allQuestions];
   }
-  quizState.currentQuestionIndex = 0;
   quizState.score = 0;
-  if (!preserveAnswers) {
-    quizState.userAnswers = [];
+  const totalQuestions = quizState.allQuestions.length;
+  if (restoreState && typeof restoreState === "object") {
+    quizState.currentQuestionIndex = clampIndex(restoreState.currentQuestionIndex, totalQuestions);
+    quizState.userAnswers = normalizeRuntimeAnswers(restoreState.userAnswers, totalQuestions);
+    quizState.feedbackShown = normalizeRuntimeFeedback(restoreState.feedbackShown, totalQuestions);
+  } else {
+    quizState.currentQuestionIndex = 0;
+    if (!preserveAnswers) {
+      quizState.userAnswers = [];
+    } else {
+      quizState.userAnswers = normalizeRuntimeAnswers(quizState.userAnswers, totalQuestions);
+    }
+    // Initialize feedbackShown array to track if feedback has been shown for each question
+    quizState.feedbackShown = new Array(totalQuestions).fill(false);
   }
-  // Initialize feedbackShown array to track if feedback has been shown for each question
-  quizState.feedbackShown = new Array(quizState.allQuestions.length).fill(false);
 
   // Show the quiz screen first, then set up timer
   showScreen("quizScreen");
@@ -1701,7 +1928,12 @@ function initializeQuiz(options = {}) {
   const timerBadge = timerContainer ? timerContainer.querySelector(".timer-badge") : null;
   if (currentMode === "exam") {
     // Set 45 seconds per question for exam mode (total exam time)
-    quizState.timeLeft = quizState.allQuestions.length * 45;
+    const maxExamTime = quizState.allQuestions.length * 45;
+    if (restoreState && Number.isFinite(Number(restoreState.timeLeft))) {
+      quizState.timeLeft = Math.max(0, Math.min(maxExamTime, Number(restoreState.timeLeft)));
+    } else {
+      quizState.timeLeft = maxExamTime;
+    }
     clearInterval(quizState.timer); // Clear any existing timer before starting a new one
     startTimer();
 
@@ -1716,7 +1948,11 @@ function initializeQuiz(options = {}) {
     }
     updatePracticePacingNotice();
   } else if (currentMode === "practice") {
-    quizState.timeLeft = 0;
+    if (restoreState && Number.isFinite(Number(restoreState.timeLeft))) {
+      quizState.timeLeft = Math.max(0, Number(restoreState.timeLeft));
+    } else {
+      quizState.timeLeft = 0;
+    }
     clearInterval(quizState.timer);
     startTimer();
 
@@ -1762,6 +1998,7 @@ function initializeQuiz(options = {}) {
 
   // Initialize progress bar
   updateProgress();
+  persistQuizRuntime();
 }
 
 

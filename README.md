@@ -10,7 +10,7 @@ Web-based CBT practice platform for Nigerian Federal Civil Service promotion pre
 - Dashboard insights (attempts, average score, streak, recommendations)
 - Post-quiz analytics with traffic-light performance styling
 - Keyboard shortcuts during quiz (A-D, arrows, Enter)
-- Local and Supabase cloud authentication
+- Local and Firebase cloud authentication
 - Admin panel (upgrade requests, overrides, user directory + user count)
 
 ## Quick Start (Local)
@@ -53,11 +53,11 @@ Detailed user walkthrough:
 
 - `Local` mode:
   - Single-device storage in browser localStorage.
-- `Cloud` mode (Supabase):
+- `Cloud` mode (Firebase):
   - Multi-device login and profile-backed plan state.
 
 Cloud setup guide:
-- `docs/supabase-auth-setup.md`
+- `docs/firebase-auth-setup.md`
 
 ## Plans and Access
 

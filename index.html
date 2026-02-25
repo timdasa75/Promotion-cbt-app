@@ -20,16 +20,18 @@
                 window.location.hostname === "localhost"
                     ? ""
                     : "/Promotion-cbt-app";
-            // Optional cloud auth config (Supabase).
+            // Optional cloud auth config (Firebase).
             // Leave empty to keep local-only auth.
             // Example:
             // window.PROMOTION_CBT_AUTH = {
-            //   supabaseUrl: "https://YOUR_PROJECT_ID.supabase.co",
-            //   supabaseAnonKey: "YOUR_SUPABASE_ANON_KEY",
+            //   firebaseApiKey: "YOUR_FIREBASE_API_KEY",
+            //   firebaseProjectId: "YOUR_FIREBASE_PROJECT_ID",
+            //   firebaseAuthDomain: "YOUR_FIREBASE_AUTH_DOMAIN",
             // };
             window.PROMOTION_CBT_AUTH = window.PROMOTION_CBT_AUTH || {
-                supabaseUrl: "https://ezaxdtbiwitcxrpbujro.supabase.co",
-                supabaseAnonKey: "sb_publishable_LUxDCM6xBzRkDZXYIUbBMA_hymVl9YY",
+                firebaseApiKey: "AIzaSyC_t3EEfarBi8sI_yUOH2q5rEgrTn3RNjo",
+                firebaseProjectId: "promotioncbt-app",
+                firebaseAuthDomain: "promotioncbt-app.firebaseapp.com",
             };
             window.PROMOTION_CBT_ADMIN_EMAILS = window.PROMOTION_CBT_ADMIN_EMAILS || ["timdasa75@gmail.com"];
         </script>
@@ -170,7 +172,7 @@
                             <article class="mistake-item">
                                 <h3>Troubleshooting</h3>
                                 <p>If content does not load, hard refresh with <strong>Ctrl+F5</strong>.</p>
-                                <p>If Cloud login fails, verify Supabase settings and auth mode label.</p>
+                                <p>If Cloud login fails, verify Firebase settings and auth mode label.</p>
                                 <p>If mock exam is missing, clear filters/search and confirm Premium/Admin plan.</p>
                             </article>
                         </div>
@@ -456,6 +458,5 @@
             </div>
         </div>
         <script type="module" src="js/app.js"></script>
-        <script type="module" src="js/init.js"></script>
     </body>
 </html>

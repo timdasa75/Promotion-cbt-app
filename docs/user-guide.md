@@ -141,14 +141,14 @@ User directory columns:
 - Account/session stored in browser localStorage
 - Best for single-device testing
 
-### Cloud Mode (Supabase)
+### Cloud Mode (Firebase)
 
 - Multi-device login
 - Shared account access across devices
-- Optional plan profile sync from Supabase
+- Optional plan profile sync from Firestore
 
 Setup reference:
-- `docs/supabase-auth-setup.md`
+- `docs/firebase-auth-setup.md`
 
 ## Troubleshooting
 
@@ -161,8 +161,8 @@ Setup reference:
 ### Cloud login issues
 
 1. Confirm auth mode in modal (`Cloud`)
-2. Verify Supabase URL and anon key in `index.html`
-3. Ensure Supabase Email provider is enabled
+2. Verify Firebase API key/project id/auth domain in `index.html`
+3. Ensure Firebase Email/Password provider is enabled
 
 ### Mock exam not visible
 

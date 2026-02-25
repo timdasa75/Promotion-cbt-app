@@ -82,15 +82,16 @@ Directory columns:
 
 ## Data Source Behavior
 
-## Cloud mode (Supabase configured)
+## Cloud mode (Firebase configured)
 
-Admin directory attempts to read from Supabase `profiles`.
+Admin directory attempts to read from Firestore `profiles`.
 
 Expected source label:
 - `Source: Cloud profiles`
 
 If cloud access/policy fails:
 - app falls back to local directory
+- if a previous cloud read succeeded, app shows cached cloud snapshot merged with local directory
 - shows warning notice
 
 ## Local mode
@@ -119,9 +120,9 @@ Expected source label:
 
 ## Cloud source unavailable
 
-- check Supabase URL and anon key config
-- confirm `profiles` table exists
-- confirm RLS policies allow expected reads for admin flow
+- check Firebase API key/project id config
+- confirm `profiles` collection exists
+- confirm Firestore rules allow expected reads for admin flow
 - use local fallback until cloud policy is corrected
 
 ## User count seems incorrect
@@ -138,7 +139,7 @@ Expected source label:
 
 ## Security Notes
 
-- never place Supabase `service_role` key in frontend code
+- never place privileged server-only Firebase credentials in frontend code
 - keep admin email list limited to trusted operators
 - review and prune overrides periodically
 
@@ -146,4 +147,4 @@ Expected source label:
 
 - `README.md`
 - `docs/user-guide.md`
-- `docs/supabase-auth-setup.md`
+- `docs/firebase-auth-setup.md`

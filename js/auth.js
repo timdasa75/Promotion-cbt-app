@@ -4,34 +4,15 @@ const USERS_STORAGE_KEY = "cbt_users_v1";
 const SESSION_STORAGE_KEY = "cbt_session_v1";
 const PLAN_OVERRIDES_STORAGE_KEY = "cbt_plan_overrides_v1";
 const PLAN_OVERRIDE_META_STORAGE_KEY = "cbt_plan_override_meta_v1";
+const ADMIN_DIRECTORY_CACHE_STORAGE_KEY = "cbt_admin_directory_cache_v1";
 const DEFAULT_ADMIN_EMAILS = ["timdasa75@gmail.com"];
 const PLAN_SYNC_INTERVAL_MS = 30 * 1000;
 const CLOUD_PLAN_POLL_MS = 5 * 1000;
-const REALTIME_HEARTBEAT_MS = 25 * 1000;
+const TOKEN_REFRESH_SKEW_MS = 30 * 1000;
 
 let cloudPlanSyncInFlight = false;
 let cloudPlanPollingHandle = null;
 let cloudPlanVisibilityBound = false;
-let realtimeSocket = null;
-let realtimeHeartbeatHandle = null;
-let realtimeReconnectHandle = null;
-let realtimeRefCounter = 1;
-let realtimeBoundUserKey = "";
-
-function emitPlanChange(previousPlan, nextPlan) {
-  if (!previousPlan || !nextPlan || previousPlan === nextPlan) return;
-  document.dispatchEvent(
-    new CustomEvent("authplanchange", {
-      detail: { previousPlan, nextPlan },
-    }),
-  );
-}
-
-function nextRealtimeRef() {
-  const ref = String(realtimeRefCounter);
-  realtimeRefCounter += 1;
-  return ref;
-}
 
 const FREE_PLAN = {
   id: "free",
@@ -47,20 +28,56 @@ const PREMIUM_PLAN = {
   maxQuestionsPerSubcategory: null,
 };
 
+function emitPlanChange(previousPlan, nextPlan) {
+  if (!previousPlan || !nextPlan || previousPlan === nextPlan) return;
+  document.dispatchEvent(
+    new CustomEvent("authplanchange", {
+      detail: { previousPlan, nextPlan },
+    }),
+  );
+}
+
 function normalizeEmail(email) {
   return String(email || "").trim().toLowerCase();
 }
 
-function getSupabaseConfig() {
+function normalizePlan(value) {
+  return String(value || "").toLowerCase() === "premium" ? "premium" : "free";
+}
+
+function normalizeRole(value) {
+  return String(value || "").toLowerCase() === "admin" ? "admin" : "user";
+}
+
+function normalizeStatus(value) {
+  return String(value || "").toLowerCase() === "suspended" ? "suspended" : "active";
+}
+
+function toIsoTimestamp(value, fallback = new Date().toISOString()) {
+  const raw = String(value || "").trim();
+  if (!raw) return fallback;
+  const parsed = new Date(raw);
+  if (Number.isNaN(parsed.getTime())) return fallback;
+  return parsed.toISOString();
+}
+
+function fromFirebaseMillisToIso(value, fallback = new Date().toISOString()) {
+  const numeric = Number(value);
+  if (!Number.isFinite(numeric) || numeric <= 0) return fallback;
+  return new Date(numeric).toISOString();
+}
+
+function getFirebaseConfig() {
   const cfg = window.PROMOTION_CBT_AUTH || {};
-  const supabaseUrl = String(cfg.supabaseUrl || "").trim().replace(/\/+$/, "");
-  const supabaseAnonKey = String(cfg.supabaseAnonKey || "").trim();
-  return { supabaseUrl, supabaseAnonKey };
+  const firebaseApiKey = String(cfg.firebaseApiKey || cfg.apiKey || "").trim();
+  const firebaseProjectId = String(cfg.firebaseProjectId || cfg.projectId || "").trim();
+  const firebaseAuthDomain = String(cfg.firebaseAuthDomain || cfg.authDomain || "").trim();
+  return { firebaseApiKey, firebaseProjectId, firebaseAuthDomain };
 }
 
 function isCloudAuthEnabled() {
-  const { supabaseUrl, supabaseAnonKey } = getSupabaseConfig();
-  return Boolean(supabaseUrl && supabaseAnonKey);
+  const { firebaseApiKey, firebaseProjectId } = getFirebaseConfig();
+  return Boolean(firebaseApiKey && firebaseProjectId);
 }
 
 function readUsers() {
@@ -72,6 +89,34 @@ function readUsers() {
   } catch (error) {
     return [];
   }
+}
+
+function writeUsers(users) {
+  localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify(users));
+}
+
+function readSession() {
+  try {
+    const raw = localStorage.getItem(SESSION_STORAGE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    return parsed || null;
+  } catch (error) {
+    return null;
+  }
+}
+
+function writeSession(session) {
+  localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(session));
+}
+
+function clearSession() {
+  localStorage.removeItem(SESSION_STORAGE_KEY);
+}
+
+function sessionIsExpired(session) {
+  if (!session?.expiresAt) return false;
+  return Date.now() >= Number(session.expiresAt);
 }
 
 function readPlanOverrides() {
@@ -104,33 +149,28 @@ function writePlanOverrideMeta(meta) {
   localStorage.setItem(PLAN_OVERRIDE_META_STORAGE_KEY, JSON.stringify(meta || {}));
 }
 
-function writeUsers(users) {
-  localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify(users));
-}
-
-function readSession() {
+function readAdminDirectoryCache() {
   try {
-    const raw = localStorage.getItem(SESSION_STORAGE_KEY);
-    if (!raw) return null;
+    const raw = localStorage.getItem(ADMIN_DIRECTORY_CACHE_STORAGE_KEY);
+    if (!raw) return { users: [], syncedAt: "" };
     const parsed = JSON.parse(raw);
-    if (!parsed) return null;
-    return parsed;
+    return {
+      users: Array.isArray(parsed?.users) ? parsed.users : [],
+      syncedAt: String(parsed?.syncedAt || ""),
+    };
   } catch (error) {
-    return null;
+    return { users: [], syncedAt: "" };
   }
 }
 
-function writeSession(session) {
-  localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(session));
-}
-
-function clearSession() {
-  localStorage.removeItem(SESSION_STORAGE_KEY);
-}
-
-function sessionIsExpired(session) {
-  if (!session?.expiresAt) return false;
-  return Date.now() >= Number(session.expiresAt);
+function writeAdminDirectoryCache(users, syncedAt = new Date().toISOString()) {
+  localStorage.setItem(
+    ADMIN_DIRECTORY_CACHE_STORAGE_KEY,
+    JSON.stringify({
+      users: Array.isArray(users) ? users : [],
+      syncedAt: String(syncedAt || ""),
+    }),
+  );
 }
 
 async function hashPassword(password) {
@@ -147,25 +187,41 @@ async function hashPassword(password) {
   return btoa(unescape(encodeURIComponent(value)));
 }
 
-async function supabaseRequest(path, { method = "GET", body = null, accessToken = "" } = {}) {
-  const { supabaseUrl, supabaseAnonKey } = getSupabaseConfig();
-  if (!supabaseUrl || !supabaseAnonKey) {
-    throw new Error("Supabase configuration is missing.");
-  }
-
-  const headers = {
-    apikey: supabaseAnonKey,
-    "Content-Type": "application/json",
+function mapFirebaseAuthError(message) {
+  const code = String(message || "").trim().toUpperCase();
+  const mapped = {
+    EMAIL_EXISTS: "An account with this email already exists.",
+    EMAIL_NOT_FOUND:
+      "No account exists for this email yet. Register first, or create the user in Firebase Authentication.",
+    INVALID_PASSWORD: "Invalid email or password.",
+    INVALID_LOGIN_CREDENTIALS: "Invalid email or password.",
+    TOO_MANY_ATTEMPTS_TRY_LATER: "Too many attempts. Please try again later.",
+    USER_DISABLED: "This account has been disabled.",
+    OPERATION_NOT_ALLOWED: "Email/password sign-in is not enabled for this Firebase project.",
+    INVALID_EMAIL: "Enter a valid email address.",
+    WEAK_PASSWORD: "Password must be at least 6 characters.",
+    INVALID_ID_TOKEN: "Session expired. Please login again.",
+    TOKEN_EXPIRED: "Session expired. Please login again.",
   };
-  if (accessToken) {
-    headers.Authorization = `Bearer ${accessToken}`;
+  return mapped[code] || message || "Authentication request failed.";
+}
+
+async function firebaseAuthRequest(endpoint, { method = "POST", body = null } = {}) {
+  const { firebaseApiKey } = getFirebaseConfig();
+  if (!firebaseApiKey) {
+    throw new Error("Firebase configuration is missing.");
   }
 
-  const response = await fetch(`${supabaseUrl}/auth/v1/${path}`, {
-    method,
-    headers,
-    body: body ? JSON.stringify(body) : undefined,
-  });
+  const response = await fetch(
+    `https://identitytoolkit.googleapis.com/v1/${endpoint}?key=${encodeURIComponent(firebaseApiKey)}`,
+    {
+      method,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: body ? JSON.stringify(body) : undefined,
+    },
+  );
 
   let payload = {};
   try {
@@ -176,31 +232,71 @@ async function supabaseRequest(path, { method = "GET", body = null, accessToken 
 
   if (!response.ok) {
     const message =
-      payload?.msg ||
+      payload?.error?.message ||
       payload?.error_description ||
       payload?.error ||
       "Authentication request failed.";
-    throw new Error(message);
+    throw new Error(mapFirebaseAuthError(message));
   }
 
   return payload;
 }
 
-async function supabaseRestRequest(path, { method = "GET", body = null, accessToken = "" } = {}) {
-  const { supabaseUrl, supabaseAnonKey } = getSupabaseConfig();
-  if (!supabaseUrl || !supabaseAnonKey) {
-    throw new Error("Supabase configuration is missing.");
+async function firebaseRefreshToken(refreshToken) {
+  const { firebaseApiKey } = getFirebaseConfig();
+  if (!firebaseApiKey) {
+    throw new Error("Firebase configuration is missing.");
   }
 
+  const response = await fetch(
+    `https://securetoken.googleapis.com/v1/token?key=${encodeURIComponent(firebaseApiKey)}`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: `grant_type=refresh_token&refresh_token=${encodeURIComponent(String(refreshToken || ""))}`,
+    },
+  );
+
+  let payload = {};
+  try {
+    payload = await response.json();
+  } catch (error) {
+    payload = {};
+  }
+
+  if (!response.ok) {
+    const message =
+      payload?.error?.message ||
+      payload?.error_description ||
+      payload?.error ||
+      "Token refresh failed.";
+    throw new Error(mapFirebaseAuthError(message));
+  }
+
+  return payload;
+}
+
+function getFirestoreBaseUrl() {
+  const { firebaseProjectId } = getFirebaseConfig();
+  if (!firebaseProjectId) {
+    throw new Error("Firebase configuration is missing.");
+  }
+  return `https://firestore.googleapis.com/v1/projects/${encodeURIComponent(
+    firebaseProjectId,
+  )}/databases/(default)`;
+}
+
+async function firestoreRequest(path, { method = "GET", body = null, idToken = "" } = {}) {
   const headers = {
-    apikey: supabaseAnonKey,
     "Content-Type": "application/json",
   };
-  if (accessToken) {
-    headers.Authorization = `Bearer ${accessToken}`;
+  if (idToken) {
+    headers.Authorization = `Bearer ${idToken}`;
   }
 
-  const response = await fetch(`${supabaseUrl}/rest/v1/${path}`, {
+  const response = await fetch(`${getFirestoreBaseUrl()}/${path}`, {
     method,
     headers,
     body: body ? JSON.stringify(body) : undefined,
@@ -215,27 +311,256 @@ async function supabaseRestRequest(path, { method = "GET", body = null, accessTo
 
   if (!response.ok) {
     const message =
-      payload?.message ||
+      payload?.error?.message ||
       payload?.error_description ||
       payload?.error ||
       "Data request failed.";
-    throw new Error(message);
+    const firestoreError = new Error(message);
+    firestoreError.httpStatus = response.status;
+    firestoreError.code = String(payload?.error?.status || "");
+    throw firestoreError;
   }
 
   return payload;
 }
 
-function sanitizeCloudUser(user) {
-  if (!user) return null;
-  const meta = user.user_metadata || {};
-  const appMeta = user.app_metadata || {};
-  const plan = meta.plan || appMeta.plan || "free";
+function buildCloudUserFromLookupUser(user, fallbackPlan = "free") {
+  const email = normalizeEmail(user?.email || "");
+  const name = String(user?.displayName || email || "User");
   return {
-    id: user.id,
-    name: meta.full_name || meta.name || user.email || "User",
-    email: normalizeEmail(user.email),
-    plan,
-    createdAt: user.created_at || new Date().toISOString(),
+    id: String(user?.localId || ""),
+    name,
+    email,
+    plan: normalizePlan(fallbackPlan),
+    createdAt: fromFirebaseMillisToIso(user?.createdAt),
+    emailVerified: Boolean(user?.emailVerified),
+  };
+}
+
+function buildCloudUserFromAuthPayload(payload) {
+  const email = normalizeEmail(payload?.email || "");
+  return {
+    id: String(payload?.localId || ""),
+    name: String(payload?.displayName || email || "User"),
+    email,
+    plan: "free",
+    createdAt: new Date().toISOString(),
+    emailVerified: false,
+  };
+}
+
+function writeCloudSessionFromAuthPayload(payload, userOverride = null) {
+  const accessToken = String(payload?.idToken || "");
+  const refreshToken = String(payload?.refreshToken || "");
+  const expiresIn = Number(payload?.expiresIn || 0);
+  const user = userOverride || buildCloudUserFromAuthPayload(payload);
+
+  if (!accessToken || !refreshToken || !user?.id) {
+    return null;
+  }
+
+  const sessionRecord = {
+    provider: "firebase",
+    accessToken,
+    refreshToken,
+    expiresAt: Date.now() + expiresIn * 1000,
+    user,
+    createdAt: new Date().toISOString(),
+  };
+  writeSession(sessionRecord);
+  return sessionRecord;
+}
+
+async function ensureCloudSessionActive(session = readSession(), { clearOnFailure = false } = {}) {
+  if (!session || session.provider !== "firebase") return session;
+
+  const expiresAt = Number(session.expiresAt || 0);
+  if (expiresAt && expiresAt - Date.now() > TOKEN_REFRESH_SKEW_MS) {
+    return session;
+  }
+
+  if (!session.refreshToken) {
+    if (clearOnFailure) clearSession();
+    return null;
+  }
+
+  try {
+    const payload = await firebaseRefreshToken(session.refreshToken);
+    const updated = {
+      ...session,
+      accessToken: String(payload.id_token || ""),
+      refreshToken: String(payload.refresh_token || session.refreshToken || ""),
+      expiresAt: Date.now() + Number(payload.expires_in || 0) * 1000,
+      user: {
+        ...(session.user || {}),
+        id: String(payload.user_id || session?.user?.id || ""),
+        email: normalizeEmail(payload.user_email || session?.user?.email || ""),
+      },
+    };
+    writeSession(updated);
+    return updated;
+  } catch (error) {
+    if (clearOnFailure) clearSession();
+    throw error;
+  }
+}
+
+async function lookupFirebaseUser(idToken) {
+  const payload = await firebaseAuthRequest("accounts:lookup", {
+    method: "POST",
+    body: { idToken },
+  });
+  if (!Array.isArray(payload?.users) || !payload.users.length) {
+    return null;
+  }
+  return payload.users[0];
+}
+
+function buildFirestoreProfileFields(profile) {
+  return {
+    email: { stringValue: normalizeEmail(profile?.email || "") },
+    name: { stringValue: String(profile?.name || profile?.email || "User") },
+    plan: { stringValue: normalizePlan(profile?.plan) },
+    role: { stringValue: normalizeRole(profile?.role) },
+    status: { stringValue: normalizeStatus(profile?.status) },
+    createdAt: { timestampValue: toIsoTimestamp(profile?.createdAt) },
+    lastSeenAt: { timestampValue: toIsoTimestamp(profile?.lastSeenAt) },
+  };
+}
+
+function parseFirestoreProfileDocument(document) {
+  const fields = document?.fields || {};
+  const pathParts = String(document?.name || "").split("/");
+  const id = decodeURIComponent(pathParts[pathParts.length - 1] || "");
+  return {
+    id,
+    email: normalizeEmail(fields?.email?.stringValue || ""),
+    name: String(fields?.name?.stringValue || ""),
+    plan: normalizePlan(fields?.plan?.stringValue || "free"),
+    role: normalizeRole(fields?.role?.stringValue || "user"),
+    status: normalizeStatus(fields?.status?.stringValue || "active"),
+    createdAt: String(fields?.createdAt?.timestampValue || ""),
+    lastSeenAt: String(fields?.lastSeenAt?.timestampValue || ""),
+  };
+}
+
+function buildUpdateMask(fieldPaths) {
+  const params = new URLSearchParams();
+  (Array.isArray(fieldPaths) ? fieldPaths : []).forEach((fieldPath) => {
+    params.append("updateMask.fieldPaths", String(fieldPath || ""));
+  });
+  return params.toString();
+}
+
+async function getCloudProfileById(idToken, id) {
+  if (!id) return null;
+  try {
+    const document = await firestoreRequest(`documents/profiles/${encodeURIComponent(id)}`, {
+      method: "GET",
+      idToken,
+    });
+    return parseFirestoreProfileDocument(document);
+  } catch (error) {
+    if (error?.httpStatus === 404 || String(error?.code || "") === "NOT_FOUND") {
+      return null;
+    }
+    throw error;
+  }
+}
+
+async function findCloudProfilesByEmail(idToken, email, limit = 1) {
+  const normalizedEmail = normalizeEmail(email);
+  if (!normalizedEmail) return [];
+
+  const response = await firestoreRequest("documents:runQuery", {
+    method: "POST",
+    idToken,
+    body: {
+      structuredQuery: {
+        from: [{ collectionId: "profiles" }],
+        where: {
+          fieldFilter: {
+            field: { fieldPath: "email" },
+            op: "EQUAL",
+            value: { stringValue: normalizedEmail },
+          },
+        },
+        limit: Number(limit) > 0 ? Number(limit) : 1,
+      },
+    },
+  });
+
+  return (Array.isArray(response) ? response : [])
+    .map((entry) => parseFirestoreProfileDocument(entry?.document))
+    .filter(Boolean);
+}
+
+async function listCloudProfiles(idToken) {
+  const rows = [];
+  let pageToken = "";
+  let loop = 0;
+
+  do {
+    const params = new URLSearchParams();
+    params.set("pageSize", "200");
+    if (pageToken) params.set("pageToken", pageToken);
+
+    const payload = await firestoreRequest(`documents/profiles?${params.toString()}`, {
+      method: "GET",
+      idToken,
+    });
+
+    const documents = Array.isArray(payload?.documents) ? payload.documents : [];
+    documents.forEach((document) => {
+      const parsed = parseFirestoreProfileDocument(document);
+      if (parsed) rows.push(parsed);
+    });
+
+    pageToken = String(payload?.nextPageToken || "");
+    loop += 1;
+  } while (pageToken && loop < 25);
+
+  return rows.sort((a, b) => {
+    const aTime = Date.parse(a.createdAt || "") || 0;
+    const bTime = Date.parse(b.createdAt || "") || 0;
+    return bTime - aTime;
+  });
+}
+
+async function upsertCloudProfile(idToken, profile) {
+  const profileId = String(profile?.id || "").trim();
+  if (!profileId) throw new Error("Profile id is required.");
+
+  const query = buildUpdateMask([
+    "email",
+    "name",
+    "plan",
+    "role",
+    "status",
+    "createdAt",
+    "lastSeenAt",
+  ]);
+
+  await firestoreRequest(`documents/profiles/${encodeURIComponent(profileId)}?${query}`, {
+    method: "PATCH",
+    idToken,
+    body: {
+      fields: buildFirestoreProfileFields(profile),
+    },
+  });
+}
+
+function normalizeDirectoryRow(row) {
+  const email = normalizeEmail(row?.email || "");
+  return {
+    id: String(row?.id || email || `user_${Math.random().toString(36).slice(2, 8)}`),
+    email: email || "unknown@email",
+    role: normalizeRole(row?.role),
+    status: normalizeStatus(row?.status),
+    plan: normalizePlan(row?.plan),
+    createdAt: String(row?.createdAt || row?.created_at || ""),
+    lastSeenAt: String(row?.lastSeenAt || row?.last_seen_at || ""),
+    source: "cloud",
   };
 }
 
@@ -247,96 +572,43 @@ function applyPlanOverrideForEmail(user) {
   return { ...user, plan: overridePlan };
 }
 
-function writeCloudSessionFromPayload(payload) {
-  // Supabase can return either:
-  // 1) { session: {...}, user: {...} } (e.g. signup)
-  // 2) { access_token, refresh_token, expires_in, user, ... } (password login)
-  const nestedSession = payload?.session || null;
-  const flatSession =
-    payload?.access_token
-      ? {
-          access_token: payload.access_token,
-          refresh_token: payload.refresh_token || "",
-          expires_in: payload.expires_in || 0,
-          expires_at: payload.expires_at || 0,
-          user: payload.user || null,
-        }
-      : null;
-
-  const session = nestedSession || flatSession;
-  const user = payload?.user || session?.user || null;
-  if (!session || !session.access_token || !user) {
-    return null;
-  }
-
-  const nowMs = Date.now();
-  const expiresAtMs =
-    typeof session.expires_at === "number" && session.expires_at > 0
-      ? session.expires_at * 1000
-      : nowMs + Number(session.expires_in || 0) * 1000;
-
-  const sessionRecord = {
-    provider: "supabase",
-    accessToken: session.access_token,
-    refreshToken: session.refresh_token || "",
-    expiresAt: expiresAtMs,
-    user: sanitizeCloudUser(user),
-    createdAt: new Date().toISOString(),
-  };
-  writeSession(sessionRecord);
-  return sessionRecord;
-}
-
 async function resolveCloudPlan(session) {
-  if (!session?.accessToken || !session?.user) return session?.user?.plan || "free";
-  const defaultPlan = session.user.plan || "free";
+  if (!session?.accessToken || !session?.user) {
+    return normalizePlan(session?.user?.plan || "free");
+  }
+  const defaultPlan = normalizePlan(session.user.plan || "free");
 
   try {
     if (session.user.id) {
-      const rows = await supabaseRestRequest(
-        `profiles?id=eq.${encodeURIComponent(session.user.id)}&select=plan&limit=1`,
-        {
-          method: "GET",
-          accessToken: session.accessToken,
-        },
-      );
-      if (Array.isArray(rows) && rows.length > 0 && rows[0]?.plan) {
-        return String(rows[0].plan).toLowerCase();
-      }
+      const byId = await getCloudProfileById(session.accessToken, session.user.id);
+      if (byId?.plan) return normalizePlan(byId.plan);
     }
-
-    // Fallback for deployments where profile rows are keyed by email.
     if (session.user.email) {
-      const emailRows = await supabaseRestRequest(
-        `profiles?email=eq.${encodeURIComponent(normalizeEmail(session.user.email))}&select=plan&limit=1`,
-        {
-          method: "GET",
-          accessToken: session.accessToken,
-        },
-      );
-      if (Array.isArray(emailRows) && emailRows.length > 0 && emailRows[0]?.plan) {
-        return String(emailRows[0].plan).toLowerCase();
-      }
+      const byEmail = await findCloudProfilesByEmail(session.accessToken, session.user.email, 1);
+      if (byEmail.length && byEmail[0]?.plan) return normalizePlan(byEmail[0].plan);
     }
   } catch (error) {
-    // Optional table; ignore when unavailable.
+    // Optional profile sync path; fallback to current plan.
   }
 
   return defaultPlan;
 }
 
 async function syncCloudPlanInSession(session) {
-  if (!session?.provider || session.provider !== "supabase" || !session.user) {
+  if (!session?.provider || session.provider !== "firebase" || !session.user) {
     return session;
   }
-  const previousPlan = session.user.plan || "free";
-  const plan = await resolveCloudPlan(session);
-  const nowIso = new Date().toISOString();
+
+  const freshSession = await ensureCloudSessionActive(session, { clearOnFailure: true });
+  if (!freshSession) return session;
+
+  const previousPlan = normalizePlan(freshSession.user.plan || "free");
+  const plan = await resolveCloudPlan(freshSession);
   const updated = {
-    ...session,
-    lastPlanSyncAt: nowIso,
+    ...freshSession,
+    lastPlanSyncAt: new Date().toISOString(),
     user: {
-      ...session.user,
+      ...freshSession.user,
       plan,
     },
   };
@@ -349,8 +621,7 @@ async function syncCloudPlanNow() {
   const session = readSession();
   if (
     !session ||
-    session.provider !== "supabase" ||
-    sessionIsExpired(session) ||
+    session.provider !== "firebase" ||
     !session.accessToken ||
     !session.user ||
     cloudPlanSyncInFlight
@@ -362,7 +633,7 @@ async function syncCloudPlanNow() {
   try {
     await syncCloudPlanInSession(session);
   } catch (error) {
-    // Best-effort background sync; ignore transient errors.
+    // Best effort background sync.
   } finally {
     cloudPlanSyncInFlight = false;
   }
@@ -372,8 +643,7 @@ export async function forceCloudPlanSync() {
   const session = readSession();
   if (
     !session ||
-    session.provider !== "supabase" ||
-    sessionIsExpired(session) ||
+    session.provider !== "firebase" ||
     !session.accessToken ||
     !session.user
   ) {
@@ -398,162 +668,6 @@ export async function forceCloudPlanSync() {
   }
 }
 
-function closeRealtimeSocket() {
-  if (realtimeReconnectHandle) {
-    clearTimeout(realtimeReconnectHandle);
-    realtimeReconnectHandle = null;
-  }
-  if (realtimeHeartbeatHandle) {
-    clearInterval(realtimeHeartbeatHandle);
-    realtimeHeartbeatHandle = null;
-  }
-  if (realtimeSocket) {
-    try {
-      realtimeSocket.close();
-    } catch (error) {
-      // Ignore close errors.
-    }
-    realtimeSocket = null;
-  }
-  realtimeBoundUserKey = "";
-}
-
-function buildRealtimeWebSocketUrl() {
-  const { supabaseUrl, supabaseAnonKey } = getSupabaseConfig();
-  if (!supabaseUrl || !supabaseAnonKey) return "";
-  const wsBase = supabaseUrl.replace(/^http/i, "ws");
-  return `${wsBase}/realtime/v1/websocket?apikey=${encodeURIComponent(
-    supabaseAnonKey,
-  )}&vsn=1.0.0`;
-}
-
-function scheduleRealtimeReconnect() {
-  if (realtimeReconnectHandle) return;
-  realtimeReconnectHandle = setTimeout(() => {
-    realtimeReconnectHandle = null;
-    const session = readSession();
-    if (!session || session.provider !== "supabase" || !session.accessToken || sessionIsExpired(session)) {
-      return;
-    }
-    subscribeToCloudPlanRealtime(session);
-  }, 3000);
-}
-
-function subscribeToCloudPlanRealtime(session) {
-  if (!session?.accessToken || session.provider !== "supabase" || !session.user) {
-    closeRealtimeSocket();
-    return;
-  }
-
-  const userId = String(session.user.id || "");
-  const userEmail = normalizeEmail(session.user.email || "");
-  const userKey = `${userId}:${userEmail}`;
-
-  if (
-    realtimeSocket &&
-    realtimeSocket.readyState === WebSocket.OPEN &&
-    realtimeBoundUserKey === userKey
-  ) {
-    return;
-  }
-
-  closeRealtimeSocket();
-  const wsUrl = buildRealtimeWebSocketUrl();
-  if (!wsUrl) return;
-
-  const socket = new WebSocket(wsUrl);
-  realtimeSocket = socket;
-  realtimeBoundUserKey = userKey;
-
-  socket.addEventListener("open", () => {
-    if (!realtimeSocket || realtimeSocket !== socket) return;
-
-    const postgresChanges = [];
-    if (userId) {
-      postgresChanges.push({
-        event: "UPDATE",
-        schema: "public",
-        table: "profiles",
-        filter: `id=eq.${userId}`,
-      });
-    }
-    if (userEmail) {
-      postgresChanges.push({
-        event: "UPDATE",
-        schema: "public",
-        table: "profiles",
-        filter: `email=eq.${userEmail}`,
-      });
-    }
-    if (!postgresChanges.length) return;
-
-    socket.send(
-      JSON.stringify({
-        topic: "realtime:public:profiles",
-        event: "phx_join",
-        payload: {
-          config: {
-            broadcast: { ack: false, self: false },
-            presence: { key: "" },
-            postgres_changes: postgresChanges,
-            private: true,
-          },
-          access_token: session.accessToken,
-        },
-        ref: nextRealtimeRef(),
-      }),
-    );
-
-    realtimeHeartbeatHandle = setInterval(() => {
-      if (!realtimeSocket || realtimeSocket.readyState !== WebSocket.OPEN) return;
-      realtimeSocket.send(
-        JSON.stringify({
-          topic: "phoenix",
-          event: "heartbeat",
-          payload: {},
-          ref: nextRealtimeRef(),
-        }),
-      );
-    }, REALTIME_HEARTBEAT_MS);
-  });
-
-  socket.addEventListener("message", (event) => {
-    let parsed = null;
-    try {
-      parsed = JSON.parse(event.data);
-    } catch (error) {
-      return;
-    }
-    if (!parsed) return;
-
-    if (parsed.event === "postgres_changes") {
-      syncCloudPlanNow();
-      return;
-    }
-
-    if (parsed.event === "phx_reply" && parsed.payload?.status === "ok") {
-      syncCloudPlanNow();
-    }
-  });
-
-  socket.addEventListener("close", () => {
-    if (realtimeSocket === socket) {
-      if (realtimeHeartbeatHandle) {
-        clearInterval(realtimeHeartbeatHandle);
-        realtimeHeartbeatHandle = null;
-      }
-      realtimeSocket = null;
-      scheduleRealtimeReconnect();
-    }
-  });
-
-  socket.addEventListener("error", () => {
-    if (realtimeSocket === socket) {
-      scheduleRealtimeReconnect();
-    }
-  });
-}
-
 export function startCloudPlanAutoSync() {
   if (!isCloudAuthEnabled() || cloudPlanPollingHandle) return;
 
@@ -569,54 +683,67 @@ export function startCloudPlanAutoSync() {
       }
     });
   }
+}
 
-  const session = readSession();
-  if (session?.provider === "supabase" && session.accessToken && !sessionIsExpired(session)) {
-    subscribeToCloudPlanRealtime(session);
-  }
+function buildProfilePayloadFromSession(session, existingProfile = null) {
+  const user = session?.user || {};
+  const email = normalizeEmail(user.email || existingProfile?.email || "");
+  const isAdmin = getConfiguredAdminEmails().includes(email);
+  return {
+    id: String(user.id || existingProfile?.id || ""),
+    email,
+    name: String(user.name || existingProfile?.name || email || "User"),
+    plan: normalizePlan(existingProfile?.plan || user.plan || "free"),
+    role: normalizeRole(existingProfile?.role || (isAdmin ? "admin" : "user")),
+    status: normalizeStatus(existingProfile?.status || "active"),
+    createdAt: toIsoTimestamp(existingProfile?.createdAt || user.createdAt || new Date().toISOString()),
+    lastSeenAt: new Date().toISOString(),
+  };
 }
 
 async function ensureCloudProfileInSession(session) {
-  if (!session?.provider || session.provider !== "supabase") return session;
+  if (!session?.provider || session.provider !== "firebase") return session;
   if (!session?.accessToken || !session?.user?.id || !session?.user?.email) {
     return session;
   }
 
-  const email = normalizeEmail(session.user.email);
-  const isAdmin = getConfiguredAdminEmails().includes(email);
-  const payload = {
-    id: session.user.id,
-    email,
-    plan: session.user.plan === "premium" ? "premium" : "free",
-    role: isAdmin ? "admin" : "user",
-    status: "active",
-    last_seen_at: new Date().toISOString(),
+  const existing = await getCloudProfileById(session.accessToken, session.user.id);
+  const payload = buildProfilePayloadFromSession(session, existing);
+  await upsertCloudProfile(session.accessToken, payload);
+
+  const updated = {
+    ...session,
+    user: {
+      ...session.user,
+      name: payload.name,
+      email: payload.email,
+      plan: payload.plan,
+      createdAt: payload.createdAt,
+    },
   };
-
-  try {
-    await supabaseRestRequest("profiles?on_conflict=id", {
-      method: "POST",
-      accessToken: session.accessToken,
-      body: [payload],
-    });
-  } catch (error) {
-    // If profiles table/policies are not configured yet, continue without blocking auth.
-  }
-
-  return session;
+  writeSession(updated);
+  return updated;
 }
 
 async function refreshCloudUserInSession(session) {
-  if (!session?.accessToken) return null;
-  const payload = await supabaseRequest("user", {
-    method: "GET",
-    accessToken: session.accessToken,
-  });
-  const user = sanitizeCloudUser(payload);
-  if (!user) return null;
-  const sessionWithUser = { ...session, user };
-  await ensureCloudProfileInSession(sessionWithUser);
-  const updated = await syncCloudPlanInSession(sessionWithUser);
+  const freshSession = await ensureCloudSessionActive(session, { clearOnFailure: true });
+  if (!freshSession?.accessToken) return null;
+
+  const lookupUser = await lookupFirebaseUser(freshSession.accessToken);
+  if (!lookupUser) return null;
+
+  const user = buildCloudUserFromLookupUser(lookupUser, freshSession?.user?.plan || "free");
+  const withUser = {
+    ...freshSession,
+    user: {
+      ...freshSession.user,
+      ...user,
+    },
+  };
+  writeSession(withUser);
+
+  const withProfile = await ensureCloudProfileInSession(withUser);
+  const updated = await syncCloudPlanInSession(withProfile);
   writeSession(updated);
   return updated;
 }
@@ -630,29 +757,66 @@ async function registerUserCloud({ name, email, password }) {
   if (!normalizedEmail || !normalizedEmail.includes("@")) {
     throw new Error("Valid email is required.");
   }
-  if (normalizedPassword.length < 8) {
-    throw new Error("Password must be at least 8 characters.");
+  if (normalizedPassword.length < 6) {
+    throw new Error("Password must be at least 6 characters.");
   }
 
-  const payload = await supabaseRequest("signup", {
+  let payload = await firebaseAuthRequest("accounts:signUp", {
     method: "POST",
     body: {
       email: normalizedEmail,
       password: normalizedPassword,
-      data: {
-        full_name: trimmedName,
-        plan: "free",
-      },
+      returnSecureToken: true,
     },
   });
 
-  const saved = writeCloudSessionFromPayload(payload);
-  if (!saved) {
-    throw new Error("Account created. Check your email to confirm before login.");
+  if (trimmedName && payload?.idToken) {
+    try {
+      const updatePayload = await firebaseAuthRequest("accounts:update", {
+        method: "POST",
+        body: {
+          idToken: payload.idToken,
+          displayName: trimmedName,
+          returnSecureToken: true,
+        },
+      });
+      payload = {
+        ...payload,
+        ...updatePayload,
+      };
+    } catch (error) {
+      // Non-blocking; continue registration.
+    }
   }
+
+  const saved = writeCloudSessionFromAuthPayload(payload, {
+    id: String(payload?.localId || ""),
+    name: String(payload?.displayName || trimmedName || normalizedEmail || "User"),
+    email: normalizeEmail(payload?.email || normalizedEmail),
+    plan: "free",
+    createdAt: new Date().toISOString(),
+    emailVerified: false,
+  });
+  if (!saved) {
+    throw new Error("Registration failed.");
+  }
+
   await ensureCloudProfileInSession(saved);
-  const synced = await syncCloudPlanInSession(saved);
-  return synced.user;
+
+  await firebaseAuthRequest("accounts:sendOobCode", {
+    method: "POST",
+    body: {
+      requestType: "VERIFY_EMAIL",
+      idToken: saved.accessToken,
+    },
+  });
+
+  clearSession();
+  return {
+    user: null,
+    requiresEmailVerification: true,
+    message: "Account created. Check your email to confirm before login.",
+  };
 }
 
 async function loginUserCloud({ email, password }) {
@@ -662,36 +826,46 @@ async function loginUserCloud({ email, password }) {
     throw new Error("Email and password are required.");
   }
 
-  const payload = await supabaseRequest("token?grant_type=password", {
+  const payload = await firebaseAuthRequest("accounts:signInWithPassword", {
     method: "POST",
     body: {
       email: normalizedEmail,
       password: normalizedPassword,
+      returnSecureToken: true,
     },
   });
 
-  const saved = writeCloudSessionFromPayload(payload);
+  const saved = writeCloudSessionFromAuthPayload(payload);
   if (!saved) {
     throw new Error("Login failed.");
   }
-  await ensureCloudProfileInSession(saved);
-  const synced = await syncCloudPlanInSession(saved);
+
+  const synced = await refreshCloudUserInSession(saved);
+  if (!synced?.user) {
+    clearSession();
+    throw new Error("Login failed.");
+  }
+
+  if (!synced.user.emailVerified) {
+    try {
+      await firebaseAuthRequest("accounts:sendOobCode", {
+        method: "POST",
+        body: {
+          requestType: "VERIFY_EMAIL",
+          idToken: synced.accessToken,
+        },
+      });
+    } catch (error) {
+      // Keep primary verification flow even if resend fails.
+    }
+    clearSession();
+    throw new Error("Please verify your email before login. Check your inbox.");
+  }
+
   return synced.user;
 }
 
-async function logoutCloud() {
-  const session = readSession();
-  if (session?.provider === "supabase" && session.accessToken) {
-    try {
-      await supabaseRequest("logout", {
-        method: "POST",
-        accessToken: session.accessToken,
-      });
-    } catch (error) {
-      // Ignore remote logout errors and clear local session anyway.
-    }
-  }
-  closeRealtimeSocket();
+function logoutCloud() {
   clearSession();
 }
 
@@ -726,7 +900,11 @@ async function registerUserLocal({ name, email, password }) {
   users.push(user);
   writeUsers(users);
   writeSession({ provider: "local", userId: user.id, createdAt: new Date().toISOString() });
-  return sanitizeUserLocal(user);
+  return {
+    user: sanitizeUserLocal(user),
+    requiresEmailVerification: false,
+    message: "",
+  };
 }
 
 async function loginUserLocal({ email, password }) {
@@ -779,7 +957,6 @@ export async function loginUser({ email, password }) {
 
 export function logoutUser() {
   if (isCloudAuthEnabled()) {
-    // Fire and forget to keep existing sync function signatures.
     logoutCloud();
     return;
   }
@@ -796,12 +973,17 @@ export async function requestPasswordReset(email, redirectTo = "") {
     throw new Error("Password reset is available only in Cloud auth mode.");
   }
 
-  await supabaseRequest("recover", {
+  const body = {
+    requestType: "PASSWORD_RESET",
+    email: normalizedEmail,
+  };
+  if (String(redirectTo || "").trim()) {
+    body.continueUrl = String(redirectTo).trim();
+  }
+
+  await firebaseAuthRequest("accounts:sendOobCode", {
     method: "POST",
-    body: {
-      email: normalizedEmail,
-      ...(redirectTo ? { redirect_to: redirectTo } : {}),
-    },
+    body,
   });
 }
 
@@ -809,20 +991,23 @@ export function getCurrentUser() {
   const session = readSession();
   if (!session) return null;
 
-  if (session.provider === "supabase") {
+  if (session.provider === "firebase") {
     startCloudPlanAutoSync();
+
     if (sessionIsExpired(session)) {
-      closeRealtimeSocket();
-      clearSession();
-      return null;
+      if (session.refreshToken) {
+        ensureCloudSessionActive(session, { clearOnFailure: true }).catch(() => {});
+      } else {
+        clearSession();
+        return null;
+      }
     }
-    if (session.accessToken && session.user) {
-      subscribeToCloudPlanRealtime(session);
-    }
+
     if (!session.user && session.accessToken) {
       refreshCloudUserInSession(session).catch(() => {});
       return null;
     }
+
     if (session.user && session.accessToken && !cloudPlanSyncInFlight) {
       const lastSyncMs = Date.parse(session.lastPlanSyncAt || "") || 0;
       const syncIsStale = Date.now() - lastSyncMs > PLAN_SYNC_INTERVAL_MS;
@@ -836,7 +1021,13 @@ export function getCurrentUser() {
           });
       }
     }
+
     return applyPlanOverrideForEmail(session.user || null);
+  }
+
+  if (session.provider !== "local") {
+    clearSession();
+    return null;
   }
 
   const users = readUsers();
@@ -891,22 +1082,17 @@ export function setLocalPlanOverride(email, plan) {
   if (!normalizedEmail || !normalizedEmail.includes("@")) {
     throw new Error("Valid email is required.");
   }
-  const normalizedPlan = String(plan || "").toLowerCase();
-  if (normalizedPlan !== "free" && normalizedPlan !== "premium") {
-    throw new Error("Plan must be free or premium.");
-  }
   const overrides = readPlanOverrides();
-  overrides[normalizedEmail] = normalizedPlan;
+  overrides[normalizedEmail] = normalizePlan(plan);
   writePlanOverrides(overrides);
 }
 
 export async function setPlanOverride(email, plan) {
   const normalizedEmail = normalizeEmail(email);
-  const normalizedPlan = String(plan || "").toLowerCase();
+  const normalizedPlan = normalizePlan(plan);
 
   setLocalPlanOverride(normalizedEmail, normalizedPlan);
 
-  // If cloud auth is unavailable, local override is the source of truth.
   if (!isCloudAuthEnabled()) {
     const result = { scope: "local", cloudUpdated: false, warning: "" };
     const meta = readPlanOverrideMeta();
@@ -916,16 +1102,11 @@ export async function setPlanOverride(email, plan) {
   }
 
   const session = readSession();
-  if (
-    !session?.accessToken ||
-    session?.provider !== "supabase" ||
-    !isCurrentUserAdmin()
-  ) {
+  if (!session?.accessToken || session?.provider !== "firebase" || !isCurrentUserAdmin()) {
     const result = {
       scope: "local",
       cloudUpdated: false,
-      warning:
-        "Saved locally only. Cloud sync requires an authenticated admin cloud session.",
+      warning: "Saved locally only. Cloud sync requires an authenticated admin cloud session.",
     };
     const meta = readPlanOverrideMeta();
     meta[normalizedEmail] = { ...result, updatedAt: new Date().toISOString() };
@@ -934,15 +1115,11 @@ export async function setPlanOverride(email, plan) {
   }
 
   try {
-    const rows = await supabaseRestRequest(
-      `profiles?email=eq.${encodeURIComponent(normalizedEmail)}&select=id,email,plan&limit=1`,
-      {
-        method: "GET",
-        accessToken: session.accessToken,
-      },
-    );
+    const freshSession = await ensureCloudSessionActive(session, { clearOnFailure: true });
+    if (!freshSession?.accessToken) throw new Error("Cloud session is unavailable.");
 
-    if (!Array.isArray(rows) || !rows.length || !rows[0]?.id) {
+    const rows = await findCloudProfilesByEmail(freshSession.accessToken, normalizedEmail, 1);
+    if (!rows.length || !rows[0]?.id) {
       const result = {
         scope: "local",
         cloudUpdated: false,
@@ -955,14 +1132,26 @@ export async function setPlanOverride(email, plan) {
       return result;
     }
 
-    await supabaseRestRequest(`profiles?id=eq.${encodeURIComponent(rows[0].id)}`, {
-      method: "PATCH",
-      accessToken: session.accessToken,
-      body: {
-        plan: normalizedPlan,
-        last_seen_at: new Date().toISOString(),
-      },
+    await upsertCloudProfile(freshSession.accessToken, {
+      ...rows[0],
+      plan: normalizedPlan,
+      lastSeenAt: new Date().toISOString(),
     });
+
+    const current = readSession();
+    if (current?.provider === "firebase" && normalizeEmail(current?.user?.email) === normalizedEmail) {
+      const previousPlan = normalizePlan(current?.user?.plan || "free");
+      const updatedSession = {
+        ...current,
+        user: {
+          ...current.user,
+          plan: normalizedPlan,
+        },
+        lastPlanSyncAt: new Date().toISOString(),
+      };
+      writeSession(updatedSession);
+      emitPlanChange(previousPlan, normalizedPlan);
+    }
 
     const result = { scope: "cloud+local", cloudUpdated: true, warning: "" };
     const meta = readPlanOverrideMeta();
@@ -973,9 +1162,7 @@ export async function setPlanOverride(email, plan) {
     const result = {
       scope: "local",
       cloudUpdated: false,
-      warning:
-        error?.message ||
-        "Saved locally, but cloud sync failed. Check profiles table policy/columns.",
+      warning: error?.message || "Saved locally, but cloud sync failed. Check Firestore rules/collection.",
     };
     const meta = readPlanOverrideMeta();
     meta[normalizedEmail] = { ...result, updatedAt: new Date().toISOString() };
@@ -1027,11 +1214,10 @@ function buildLocalUserDirectory() {
   users.forEach((user) => {
     const email = normalizeEmail(user.email);
     if (!email) return;
-    const overridePlan = overrides[email];
     map.set(email, {
       id: user.id || email,
       email,
-      plan: overridePlan || user.plan || "free",
+      plan: normalizePlan(overrides[email] || user.plan || "free"),
       status: "active",
       role: adminSet.has(email) ? "admin" : "user",
       createdAt: user.createdAt || "",
@@ -1044,7 +1230,7 @@ function buildLocalUserDirectory() {
     map.set(currentEmail, {
       id: current?.id || currentEmail,
       email: currentEmail,
-      plan: overrides[currentEmail] || currentPlan,
+      plan: normalizePlan(overrides[currentEmail] || currentPlan),
       status: "active",
       role: adminSet.has(currentEmail) ? "admin" : "user",
       createdAt: current?.createdAt || "",
@@ -1060,21 +1246,58 @@ function buildLocalUserDirectory() {
   });
 }
 
-function normalizeDirectoryRow(row) {
-  const email = normalizeEmail(row?.email || "");
-  const role = String(row?.role || "user").toLowerCase();
-  const status = String(row?.status || "active").toLowerCase();
-  const plan = String(row?.plan || "free").toLowerCase();
+function mergeDirectoryRows(primaryRows, secondaryRows) {
+  const overrides = readPlanOverrides();
+  const merged = new Map();
+
+  function addRow(row, defaultSource) {
+    const email = normalizeEmail(row?.email || "");
+    if (!email || merged.has(email)) return;
+    merged.set(email, {
+      id: row?.id || email,
+      email,
+      role: normalizeRole(row?.role),
+      status: normalizeStatus(row?.status),
+      plan: normalizePlan(overrides[email] || row?.plan),
+      createdAt: row?.createdAt || row?.created_at || "",
+      lastSeenAt: row?.lastSeenAt || row?.last_seen_at || "",
+      source: row?.source || defaultSource,
+    });
+  }
+
+  (Array.isArray(primaryRows) ? primaryRows : []).forEach((row) => addRow(row, "cloud"));
+  (Array.isArray(secondaryRows) ? secondaryRows : []).forEach((row) => addRow(row, "local"));
+
+  return Array.from(merged.values()).sort((a, b) => {
+    const aTime = Date.parse(a.createdAt || "") || 0;
+    const bTime = Date.parse(b.createdAt || "") || 0;
+    return bTime - aTime;
+  });
+}
+
+function buildFallbackUserDirectory() {
+  const cache = readAdminDirectoryCache();
+  const localRows = buildLocalUserDirectory();
+  const cachedRows = Array.isArray(cache.users) ? cache.users : [];
+  if (!cachedRows.length) {
+    return {
+      users: localRows,
+      hasCachedCloudSnapshot: false,
+      cachedSyncedAt: "",
+    };
+  }
   return {
-    id: row?.id || email || `user_${Math.random().toString(36).slice(2, 8)}`,
-    email: email || "unknown@email",
-    role: role === "admin" ? "admin" : "user",
-    status: status === "suspended" ? "suspended" : "active",
-    plan: plan === "premium" ? "premium" : "free",
-    createdAt: row?.created_at || row?.createdAt || "",
-    lastSeenAt: row?.last_seen_at || row?.lastSeenAt || "",
-    source: "cloud",
+    users: mergeDirectoryRows(cachedRows, localRows),
+    hasCachedCloudSnapshot: true,
+    cachedSyncedAt: cache.syncedAt,
   };
+}
+
+function formatCacheTimestamp(value) {
+  if (!value) return "an earlier sync";
+  const parsed = new Date(value);
+  if (Number.isNaN(parsed.getTime())) return "an earlier sync";
+  return parsed.toLocaleString();
 }
 
 export async function getAdminUserDirectory() {
@@ -1083,29 +1306,29 @@ export async function getAdminUserDirectory() {
   }
 
   const session = readSession();
-  if (isCloudAuthEnabled() && session?.provider === "supabase" && session.accessToken) {
+  if (isCloudAuthEnabled() && session?.provider === "firebase" && session.accessToken) {
     try {
-      const rows = await supabaseRestRequest(
-        "profiles?select=id,email,plan,role,status,created_at,last_seen_at&order=created_at.desc.nullslast",
-        {
-          method: "GET",
-          accessToken: session.accessToken,
-        },
-      );
-      if (!Array.isArray(rows)) {
-        throw new Error("Unexpected profiles response format.");
-      }
+      const freshSession = await ensureCloudSessionActive(session, { clearOnFailure: true });
+      if (!freshSession?.accessToken) throw new Error("Cloud session is unavailable.");
+
+      const rows = await listCloudProfiles(freshSession.accessToken);
+      const normalizedRows = rows.map(normalizeDirectoryRow);
+      writeAdminDirectoryCache(normalizedRows);
       return {
-        users: rows.map(normalizeDirectoryRow),
+        users: normalizedRows,
         source: "cloud",
         warning: "",
       };
     } catch (error) {
+      const fallback = buildFallbackUserDirectory();
       return {
-        users: buildLocalUserDirectory(),
+        users: fallback.users,
         source: "local",
-        warning:
-          "Cloud user directory unavailable. Configure profiles table with email/role/status columns and admin read policy.",
+        warning: fallback.hasCachedCloudSnapshot
+          ? `Cloud user directory unavailable. Showing cached cloud snapshot from ${formatCacheTimestamp(
+              fallback.cachedSyncedAt,
+            )} plus local data.`
+          : "Cloud user directory unavailable. Configure Firestore profiles collection and security rules.",
       };
     }
   }

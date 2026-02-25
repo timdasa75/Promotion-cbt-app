@@ -2,7 +2,11 @@ import { test, expect } from "@playwright/test";
 
 async function registerAndEnter(page, email = "testuser@example.com") {
   await page.addInitScript(() => {
-    window.PROMOTION_CBT_AUTH = { supabaseUrl: "", supabaseAnonKey: "" };
+    window.PROMOTION_CBT_AUTH = {
+      firebaseApiKey: "",
+      firebaseProjectId: "",
+      firebaseAuthDomain: "",
+    };
   });
   await page.goto("/");
   await page.click("#startLearningBtn");
@@ -79,7 +83,7 @@ test("dashboard stats hydrate from stored progress data", async ({ page }) => {
     window.localStorage.setItem("cbt_users_v1", JSON.stringify([user]));
     window.localStorage.setItem(
       "cbt_session_v1",
-      JSON.stringify({ userId: user.id, createdAt: new Date().toISOString() }),
+      JSON.stringify({ provider: "local", userId: user.id, createdAt: new Date().toISOString() }),
     );
 
     const seeded = {
@@ -126,7 +130,7 @@ test("premium user can start cross-topic mock exam without category step", async
     window.localStorage.setItem("cbt_users_v1", JSON.stringify([user]));
     window.localStorage.setItem(
       "cbt_session_v1",
-      JSON.stringify({ userId: user.id, createdAt: new Date().toISOString() }),
+      JSON.stringify({ provider: "local", userId: user.id, createdAt: new Date().toISOString() }),
     );
   });
 
@@ -169,6 +173,30 @@ test("quiz supports keyboard option selection and navigation", async ({ page }) 
 
   await page.keyboard.press("Enter");
   await expect(page.locator("#currentQ")).toHaveText("2");
+});
+
+test("in-progress quiz state restores after refresh", async ({ page }) => {
+  await registerAndEnter(page, "resume@example.com");
+  await expect(page.locator("#topicList .topic-card:not(.hidden)").first()).toBeVisible();
+
+  await page.locator("#topicList .topic-card:not(.hidden)").first().click();
+  await expect(page.locator("#categorySelectionScreen")).toBeVisible();
+  await page.click("#selectAllCategoryBtn");
+  await expect(page.locator("#modeSelectionScreen")).toBeVisible();
+
+  await page.click("#examModeCard");
+  await expect(page.locator("#quizScreen")).toBeVisible();
+  await expect(page.locator("#currentQ")).toHaveText("1");
+
+  await page.locator("#optionsContainer .option-btn").nth(2).click();
+  await page.click("#nextBtn");
+  await expect(page.locator("#currentQ")).toHaveText("2");
+  await page.locator("#optionsContainer .option-btn").nth(0).click();
+
+  await page.reload();
+  await expect(page.locator("#quizScreen")).toBeVisible();
+  await expect(page.locator("#currentQ")).toHaveText("2");
+  await expect(page.locator("#optionsContainer .option-btn.selected").first()).toContainText("A");
 });
 
 test("results show source-topic breakdown for mock exam sessions", async ({ page }) => {
