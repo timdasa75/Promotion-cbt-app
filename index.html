@@ -51,6 +51,7 @@
                     </div>
                 </div>
                 <div class="header-actions">
+                    <span id="authToolbarSummary" class="auth-toolbar-summary hidden" aria-live="polite"></span>
                     <button
                         id="authActionBtn"
                         class="icon-button icon-only"
@@ -61,7 +62,21 @@
                     >
                         <span id="authActionIcon" class="toolbar-icon" aria-hidden="true"></span>
                     </button>
-                    <span id="authToolbarSummary" class="auth-toolbar-summary hidden" aria-live="polite"></span>
+                    <button
+                        id="headerProfileBtn"
+                        class="icon-button icon-only"
+                        aria-label="Open profile settings"
+                        data-tooltip="Profile settings"
+                        title="Profile settings"
+                        type="button"
+                    >
+                        <span class="toolbar-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" focusable="false">
+                                <circle cx="12" cy="8" r="3.5"></circle>
+                                <path d="M5 20a7 7 0 0 1 14 0"></path>
+                            </svg>
+                        </span>
+                    </button>
                     <button
                         id="headerHelpBtn"
                         class="icon-button icon-only"

@@ -893,6 +893,7 @@ function updateAuthUI() {
   const authActionBtn = document.getElementById("authActionBtn");
   const authActionIcon = document.getElementById("authActionIcon");
   const authToolbarSummary = document.getElementById("authToolbarSummary");
+  const headerProfileBtn = document.getElementById("headerProfileBtn");
   const authModeHint = document.getElementById("authModeHint");
   const profileDisplayName = document.getElementById("profileDisplayName");
   const profileSubtitle = document.getElementById("profileSubtitle");
@@ -921,6 +922,12 @@ function updateAuthUI() {
       authToolbarSummary.classList.add("hidden");
       authToolbarSummary.removeAttribute("title");
     }
+  }
+  if (headerProfileBtn) {
+    const tooltip = user ? "Open profile settings" : "Login to access profile settings";
+    headerProfileBtn.setAttribute("aria-label", tooltip);
+    headerProfileBtn.setAttribute("title", tooltip);
+    headerProfileBtn.setAttribute("data-tooltip", tooltip);
   }
   if (authModeHint) {
     const cloudConfigMissing = isCloudAuthMisconfigured();
@@ -1340,6 +1347,7 @@ async function performLogout() {
 
 function initializeAuthUI() {
   const authActionBtn = document.getElementById("authActionBtn");
+  const headerProfileBtn = document.getElementById("headerProfileBtn");
   const authCloseBtn = document.getElementById("authCloseBtn");
   const authModal = document.getElementById("authModal");
   const loginTab = document.getElementById("authTabLogin");
@@ -1592,6 +1600,17 @@ function initializeAuthUI() {
         await refreshAdminUserDirectory();
         renderAdminRequests();
       }
+    });
+  }
+
+  if (headerProfileBtn) {
+    headerProfileBtn.addEventListener("click", () => {
+      closeAccountMenu();
+      if (!getCurrentUser()) {
+        openAuthModal("login");
+        return;
+      }
+      showScreen("profileScreen");
     });
   }
 
