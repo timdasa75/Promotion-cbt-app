@@ -9,6 +9,8 @@ const DEFAULT_ADMIN_EMAILS = ["timdasa75@gmail.com"];
 const PLAN_SYNC_INTERVAL_MS = 30 * 1000;
 const CLOUD_PLAN_POLL_MS = 5 * 1000;
 const TOKEN_REFRESH_SKEW_MS = 30 * 1000;
+const LOCAL_PASSWORD_ALGO_V2 = "pbkdf2_sha256";
+const LOCAL_PASSWORD_ITERATIONS = 120000;
 
 let cloudPlanSyncInFlight = false;
 let cloudPlanPollingHandle = null;
@@ -53,6 +55,14 @@ function normalizeStatus(value) {
   return String(value || "").toLowerCase() === "suspended" ? "suspended" : "active";
 }
 
+function normalizeUpgradeRequestStatus(value) {
+  const normalized = String(value || "").trim().toLowerCase();
+  if (normalized === "approved") return "approved";
+  if (normalized === "rejected") return "rejected";
+  if (normalized === "pending") return "pending";
+  return "none";
+}
+
 function toIsoTimestamp(value, fallback = new Date().toISOString()) {
   const raw = String(value || "").trim();
   if (!raw) return fallback;
@@ -95,9 +105,10 @@ function writeUsers(users) {
   localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify(users));
 }
 
-function readSession() {
+function readJsonStorage(storage, key) {
   try {
-    const raw = localStorage.getItem(SESSION_STORAGE_KEY);
+    if (!storage) return null;
+    const raw = storage.getItem(key);
     if (!raw) return null;
     const parsed = JSON.parse(raw);
     return parsed || null;
@@ -106,12 +117,54 @@ function readSession() {
   }
 }
 
+function readSession() {
+  const sessionScoped = readJsonStorage(window.sessionStorage, SESSION_STORAGE_KEY);
+  if (sessionScoped) return sessionScoped;
+
+  const legacyPersistent = readJsonStorage(window.localStorage, SESSION_STORAGE_KEY);
+  if (legacyPersistent) {
+    // Migrate legacy persistent session to session-scoped storage.
+    try {
+      window.sessionStorage.setItem(
+        SESSION_STORAGE_KEY,
+        JSON.stringify(legacyPersistent),
+      );
+      window.localStorage.removeItem(SESSION_STORAGE_KEY);
+    } catch (error) {
+      // Ignore storage migration issues.
+    }
+    return legacyPersistent;
+  }
+
+  return null;
+}
+
 function writeSession(session) {
-  localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(session));
+  const payload = JSON.stringify(session);
+  try {
+    window.sessionStorage.setItem(SESSION_STORAGE_KEY, payload);
+  } catch (error) {
+    window.localStorage.setItem(SESSION_STORAGE_KEY, payload);
+  }
+  // Ensure tokens are not kept in persistent storage after write.
+  try {
+    window.localStorage.removeItem(SESSION_STORAGE_KEY);
+  } catch (error) {
+    // Ignore cleanup failures.
+  }
 }
 
 function clearSession() {
-  localStorage.removeItem(SESSION_STORAGE_KEY);
+  try {
+    window.sessionStorage.removeItem(SESSION_STORAGE_KEY);
+  } catch (error) {
+    // Ignore cleanup failures.
+  }
+  try {
+    window.localStorage.removeItem(SESSION_STORAGE_KEY);
+  } catch (error) {
+    // Ignore cleanup failures.
+  }
 }
 
 function sessionIsExpired(session) {
@@ -185,6 +238,72 @@ async function hashPassword(password) {
   }
 
   return btoa(unescape(encodeURIComponent(value)));
+}
+
+function generatePasswordSalt() {
+  if (window.crypto?.getRandomValues) {
+    const bytes = new Uint8Array(16);
+    window.crypto.getRandomValues(bytes);
+    return Array.from(bytes, (value) => value.toString(16).padStart(2, "0")).join("");
+  }
+  return `${Date.now().toString(16)}${Math.random().toString(16).slice(2)}`;
+}
+
+async function derivePasswordHash(password, salt, iterations = LOCAL_PASSWORD_ITERATIONS) {
+  const normalizedPassword = String(password || "");
+  const normalizedSalt = String(salt || "");
+  if (!normalizedPassword || !normalizedSalt) return "";
+
+  if (window.crypto?.subtle) {
+    const material = await window.crypto.subtle.importKey(
+      "raw",
+      new TextEncoder().encode(normalizedPassword),
+      "PBKDF2",
+      false,
+      ["deriveBits"],
+    );
+    const bits = await window.crypto.subtle.deriveBits(
+      {
+        name: "PBKDF2",
+        hash: "SHA-256",
+        salt: new TextEncoder().encode(normalizedSalt),
+        iterations: Number(iterations) || LOCAL_PASSWORD_ITERATIONS,
+      },
+      material,
+      256,
+    );
+    const bytes = Array.from(new Uint8Array(bits));
+    return bytes.map((b) => b.toString(16).padStart(2, "0")).join("");
+  }
+
+  return hashPassword(`${normalizedSalt}:${normalizedPassword}`);
+}
+
+async function buildLocalPasswordRecord(password) {
+  const salt = generatePasswordSalt();
+  const hash = await derivePasswordHash(password, salt, LOCAL_PASSWORD_ITERATIONS);
+  return {
+    passwordHash: hash,
+    passwordSalt: salt,
+    passwordAlgo: LOCAL_PASSWORD_ALGO_V2,
+    passwordIterations: LOCAL_PASSWORD_ITERATIONS,
+  };
+}
+
+async function verifyLocalPassword(user, password) {
+  if (!user || !password) return false;
+
+  if (
+    String(user.passwordAlgo || "") === LOCAL_PASSWORD_ALGO_V2 &&
+    String(user.passwordSalt || "")
+  ) {
+    const iterations = Number(user.passwordIterations || LOCAL_PASSWORD_ITERATIONS);
+    const hash = await derivePasswordHash(password, user.passwordSalt, iterations);
+    return hash === String(user.passwordHash || "");
+  }
+
+  const legacyHash = await hashPassword(password);
+  return legacyHash === String(user.passwordHash || "");
 }
 
 function mapFirebaseAuthError(message) {
@@ -428,6 +547,30 @@ function buildFirestoreProfileFields(profile) {
   };
 }
 
+function buildFirestoreUpgradeRequestFields(request) {
+  const status = normalizeUpgradeRequestStatus(request?.status);
+  return {
+    requestId: { stringValue: String(request?.requestId || "").trim() },
+    userId: { stringValue: String(request?.userId || "").trim() },
+    email: { stringValue: normalizeEmail(request?.email || "") },
+    status: { stringValue: status === "none" ? "pending" : status },
+    paymentReference: { stringValue: String(request?.reference || "").trim() },
+    amountPaid: { stringValue: String(request?.amount || "").trim() },
+    note: { stringValue: String(request?.note || "").trim() },
+    submittedAt: { stringValue: toIsoTimestamp(request?.submittedAt) },
+    reviewedAt: { stringValue: String(request?.reviewedAt || "").trim() },
+    reviewedBy: { stringValue: normalizeEmail(request?.reviewedBy || "") },
+    reviewNote: { stringValue: String(request?.reviewNote || "").trim() },
+  };
+}
+
+function readFirestoreStringField(field) {
+  if (!field || typeof field !== "object") return "";
+  if (typeof field.stringValue === "string") return field.stringValue;
+  if (typeof field.timestampValue === "string") return field.timestampValue;
+  return "";
+}
+
 function parseFirestoreProfileDocument(document) {
   const fields = document?.fields || {};
   const pathParts = String(document?.name || "").split("/");
@@ -441,6 +584,17 @@ function parseFirestoreProfileDocument(document) {
     status: normalizeStatus(fields?.status?.stringValue || "active"),
     createdAt: String(fields?.createdAt?.timestampValue || ""),
     lastSeenAt: String(fields?.lastSeenAt?.timestampValue || ""),
+    upgradeRequestId: String(readFirestoreStringField(fields?.upgradeRequestId) || ""),
+    upgradeRequestStatus: normalizeUpgradeRequestStatus(
+      readFirestoreStringField(fields?.upgradeRequestStatus),
+    ),
+    upgradePaymentReference: String(readFirestoreStringField(fields?.upgradePaymentReference) || ""),
+    upgradeAmountPaid: String(readFirestoreStringField(fields?.upgradeAmountPaid) || ""),
+    upgradeRequestNote: String(readFirestoreStringField(fields?.upgradeRequestNote) || ""),
+    upgradeRequestedAt: String(readFirestoreStringField(fields?.upgradeRequestedAt) || ""),
+    upgradeReviewedAt: String(readFirestoreStringField(fields?.upgradeReviewedAt) || ""),
+    upgradeReviewedBy: normalizeEmail(readFirestoreStringField(fields?.upgradeReviewedBy) || ""),
+    upgradeRequestReviewNote: String(readFirestoreStringField(fields?.upgradeRequestReviewNote) || ""),
   };
 }
 
@@ -550,6 +704,57 @@ async function upsertCloudProfile(idToken, profile) {
   });
 }
 
+async function patchCloudProfileFields(idToken, profileId, fields) {
+  const normalizedProfileId = String(profileId || "").trim();
+  if (!normalizedProfileId) {
+    throw new Error("Profile id is required.");
+  }
+
+  const nextFields = fields && typeof fields === "object" ? fields : {};
+  const fieldPaths = Object.keys(nextFields).filter(Boolean);
+  if (!fieldPaths.length) {
+    return;
+  }
+
+  const query = buildUpdateMask(fieldPaths);
+  await firestoreRequest(`documents/profiles/${encodeURIComponent(normalizedProfileId)}?${query}`, {
+    method: "PATCH",
+    idToken,
+    body: {
+      fields: nextFields,
+    },
+  });
+}
+
+async function upsertCloudUpgradeRequestRecord(idToken, request) {
+  const requestId = String(request?.requestId || "").trim();
+  if (!requestId) {
+    throw new Error("Upgrade request id is required.");
+  }
+
+  const query = buildUpdateMask([
+    "requestId",
+    "userId",
+    "email",
+    "status",
+    "paymentReference",
+    "amountPaid",
+    "note",
+    "submittedAt",
+    "reviewedAt",
+    "reviewedBy",
+    "reviewNote",
+  ]);
+
+  await firestoreRequest(`documents/upgradeRequests/${encodeURIComponent(requestId)}?${query}`, {
+    method: "PATCH",
+    idToken,
+    body: {
+      fields: buildFirestoreUpgradeRequestFields(request),
+    },
+  });
+}
+
 function normalizeDirectoryRow(row) {
   const email = normalizeEmail(row?.email || "");
   return {
@@ -560,6 +765,15 @@ function normalizeDirectoryRow(row) {
     plan: normalizePlan(row?.plan),
     createdAt: String(row?.createdAt || row?.created_at || ""),
     lastSeenAt: String(row?.lastSeenAt || row?.last_seen_at || ""),
+    upgradeRequestId: String(row?.upgradeRequestId || ""),
+    upgradeRequestStatus: normalizeUpgradeRequestStatus(row?.upgradeRequestStatus),
+    upgradePaymentReference: String(row?.upgradePaymentReference || ""),
+    upgradeAmountPaid: String(row?.upgradeAmountPaid || ""),
+    upgradeRequestNote: String(row?.upgradeRequestNote || ""),
+    upgradeRequestedAt: String(row?.upgradeRequestedAt || ""),
+    upgradeReviewedAt: String(row?.upgradeReviewedAt || ""),
+    upgradeReviewedBy: normalizeEmail(row?.upgradeReviewedBy || ""),
+    upgradeRequestReviewNote: String(row?.upgradeRequestReviewNote || ""),
     source: "cloud",
   };
 }
@@ -888,11 +1102,12 @@ async function registerUserLocal({ name, email, password }) {
     throw new Error("An account with this email already exists.");
   }
 
+  const passwordRecord = await buildLocalPasswordRecord(normalizedPassword);
   const user = {
     id: `u_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
     name: trimmedName,
     email: normalizedEmail,
-    passwordHash: await hashPassword(normalizedPassword),
+    ...passwordRecord,
     plan: "free",
     createdAt: new Date().toISOString(),
   };
@@ -921,9 +1136,17 @@ async function loginUserLocal({ email, password }) {
     throw new Error("Invalid email or password.");
   }
 
-  const hash = await hashPassword(normalizedPassword);
-  if (hash !== user.passwordHash) {
+  const validPassword = await verifyLocalPassword(user, normalizedPassword);
+  if (!validPassword) {
     throw new Error("Invalid email or password.");
+  }
+
+  if (String(user.passwordAlgo || "") !== LOCAL_PASSWORD_ALGO_V2) {
+    const upgradedRecord = await buildLocalPasswordRecord(normalizedPassword);
+    const upgradedUsers = users.map((entry) =>
+      entry.id === user.id ? { ...entry, ...upgradedRecord } : entry,
+    );
+    writeUsers(upgradedUsers);
   }
 
   writeSession({ provider: "local", userId: user.id, createdAt: new Date().toISOString() });
@@ -985,6 +1208,224 @@ export async function requestPasswordReset(email, redirectTo = "") {
     method: "POST",
     body,
   });
+}
+
+function buildUpgradeRequestRecordFromProfile(profile) {
+  if (!profile || typeof profile !== "object") return null;
+  const status = normalizeUpgradeRequestStatus(profile?.upgradeRequestStatus);
+  const hasPayload =
+    status !== "none" ||
+    Boolean(profile?.upgradeRequestedAt) ||
+    Boolean(profile?.upgradePaymentReference) ||
+    Boolean(profile?.upgradeAmountPaid) ||
+    Boolean(profile?.upgradeRequestNote);
+  if (!hasPayload) return null;
+
+  return {
+    id: String(profile?.upgradeRequestId || ""),
+    email: normalizeEmail(profile?.email || ""),
+    status,
+    reference: String(profile?.upgradePaymentReference || ""),
+    amount: String(profile?.upgradeAmountPaid || ""),
+    note: String(profile?.upgradeRequestNote || ""),
+    submittedAt: String(profile?.upgradeRequestedAt || ""),
+    reviewedAt: String(profile?.upgradeReviewedAt || ""),
+    reviewedBy: normalizeEmail(profile?.upgradeReviewedBy || ""),
+    reviewNote: String(profile?.upgradeRequestReviewNote || ""),
+    source: "cloud-profile",
+  };
+}
+
+export async function submitUpgradeRequest({ reference = "", amount = "", note = "" } = {}) {
+  if (!isCloudAuthEnabled()) {
+    return {
+      cloudSaved: false,
+      warning: "Cloud auth is not enabled. Request is saved locally on this device only.",
+    };
+  }
+
+  const user = getCurrentUser();
+  if (!user?.email) {
+    throw new Error("Login is required before submitting upgrade evidence.");
+  }
+
+  const session = readSession();
+  if (!session?.accessToken || session?.provider !== "firebase") {
+    return {
+      cloudSaved: false,
+      warning: "Cloud session is unavailable. Request is saved locally on this device only.",
+    };
+  }
+
+  try {
+    const freshSession = await ensureCloudSessionActive(session, { clearOnFailure: true });
+    if (!freshSession?.accessToken) {
+      throw new Error("Cloud session is unavailable.");
+    }
+
+    const withProfile = await ensureCloudProfileInSession(freshSession);
+    const profileId = String(withProfile?.user?.id || freshSession?.user?.id || "").trim();
+    if (!profileId) {
+      throw new Error("Unable to resolve your cloud profile.");
+    }
+
+    const now = new Date().toISOString();
+    const requestId = `req_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`;
+    await patchCloudProfileFields(freshSession.accessToken, profileId, {
+      upgradeRequestId: { stringValue: requestId },
+      upgradeRequestStatus: { stringValue: "pending" },
+      upgradePaymentReference: { stringValue: String(reference || "").trim() },
+      upgradeAmountPaid: { stringValue: String(amount || "").trim() },
+      upgradeRequestNote: { stringValue: String(note || "").trim() },
+      upgradeRequestedAt: { stringValue: now },
+      upgradeReviewedAt: { stringValue: "" },
+      upgradeReviewedBy: { stringValue: "" },
+      upgradeRequestReviewNote: { stringValue: "" },
+    });
+
+    let archiveWarning = "";
+    try {
+      await upsertCloudUpgradeRequestRecord(freshSession.accessToken, {
+        requestId,
+        userId: profileId,
+        email: user.email,
+        status: "pending",
+        reference: String(reference || "").trim(),
+        amount: String(amount || "").trim(),
+        note: String(note || "").trim(),
+        submittedAt: now,
+        reviewedAt: "",
+        reviewedBy: "",
+        reviewNote: "",
+      });
+    } catch (archiveError) {
+      archiveWarning = `Payment archive sync failed: ${
+        archiveError?.message || "Unable to write upgradeRequests record."
+      }`;
+    }
+
+    return { cloudSaved: true, warning: archiveWarning };
+  } catch (error) {
+    return {
+      cloudSaved: false,
+      warning:
+        error?.message ||
+        "Cloud request sync failed. Request is saved locally on this device only.",
+    };
+  }
+}
+
+export async function setUpgradeRequestStatus(email, status, reviewNote = "") {
+  const normalizedEmail = normalizeEmail(email);
+  if (!normalizedEmail || !normalizedEmail.includes("@")) {
+    throw new Error("Valid email is required.");
+  }
+
+  const normalizedStatus = normalizeUpgradeRequestStatus(status);
+  if (!["pending", "approved", "rejected"].includes(normalizedStatus)) {
+    throw new Error("Invalid request status.");
+  }
+
+  if (!isCloudAuthEnabled()) {
+    return { cloudUpdated: false, warning: "Cloud auth is not enabled." };
+  }
+
+  const session = readSession();
+  if (!session?.accessToken || session?.provider !== "firebase" || !isCurrentUserAdmin()) {
+    return {
+      cloudUpdated: false,
+      warning: "Cloud update requires an authenticated admin cloud session.",
+    };
+  }
+
+  try {
+    const freshSession = await ensureCloudSessionActive(session, { clearOnFailure: true });
+    if (!freshSession?.accessToken) throw new Error("Cloud session is unavailable.");
+
+    const rows = await findCloudProfilesByEmail(freshSession.accessToken, normalizedEmail, 1);
+    if (!rows.length || !rows[0]?.id) {
+      throw new Error("Cloud profile not found for this email.");
+    }
+    const targetProfile = rows[0];
+    const requestId = String(targetProfile?.upgradeRequestId || "").trim();
+
+    const now = new Date().toISOString();
+    const fields = {
+      upgradeRequestStatus: { stringValue: normalizedStatus },
+      upgradeRequestReviewNote: { stringValue: String(reviewNote || "").trim() },
+    };
+    if (normalizedStatus === "pending") {
+      fields.upgradeReviewedAt = { stringValue: "" };
+      fields.upgradeReviewedBy = { stringValue: "" };
+    } else {
+      fields.upgradeReviewedAt = { stringValue: now };
+      fields.upgradeReviewedBy = {
+        stringValue: normalizeEmail(freshSession?.user?.email || ""),
+      };
+    }
+
+    await patchCloudProfileFields(freshSession.accessToken, targetProfile.id, fields);
+
+    let archiveWarning = "";
+    if (requestId) {
+      try {
+        await upsertCloudUpgradeRequestRecord(freshSession.accessToken, {
+          requestId,
+          userId: targetProfile.id,
+          email: normalizedEmail,
+          status: normalizedStatus,
+          reference: String(targetProfile?.upgradePaymentReference || "").trim(),
+          amount: String(targetProfile?.upgradeAmountPaid || "").trim(),
+          note: String(targetProfile?.upgradeRequestNote || "").trim(),
+          submittedAt: String(targetProfile?.upgradeRequestedAt || "").trim() || now,
+          reviewedAt: normalizedStatus === "pending" ? "" : now,
+          reviewedBy:
+            normalizedStatus === "pending"
+              ? ""
+              : normalizeEmail(freshSession?.user?.email || ""),
+          reviewNote: String(reviewNote || "").trim(),
+        });
+      } catch (archiveError) {
+        archiveWarning = `Payment archive sync failed: ${
+          archiveError?.message || "Unable to update upgradeRequests record."
+        }`;
+      }
+    } else {
+      archiveWarning = "Payment archive sync skipped: missing upgrade request id in profile.";
+    }
+
+    return { cloudUpdated: true, warning: archiveWarning };
+  } catch (error) {
+    return {
+      cloudUpdated: false,
+      warning: error?.message || "Unable to update cloud upgrade request status.",
+    };
+  }
+}
+
+export async function getCurrentUserUpgradeRequest() {
+  const user = getCurrentUser();
+  if (!user?.email) return null;
+
+  const session = readSession();
+  if (!session?.accessToken || session?.provider !== "firebase") {
+    return null;
+  }
+
+  try {
+    const freshSession = await ensureCloudSessionActive(session, { clearOnFailure: true });
+    if (!freshSession?.accessToken) return null;
+
+    let profile = await getCloudProfileById(freshSession.accessToken, freshSession?.user?.id || "");
+    if (!profile && user.email) {
+      const byEmail = await findCloudProfilesByEmail(freshSession.accessToken, user.email, 1);
+      profile = byEmail[0] || null;
+    }
+
+    return buildUpgradeRequestRecordFromProfile(profile);
+  } catch (error) {
+    return null;
+  }
 }
 
 export function getCurrentUser() {

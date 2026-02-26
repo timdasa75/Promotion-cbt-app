@@ -10,6 +10,15 @@ import {
   getProgressStorageKeyForCurrentUser,
 } from "./auth.js";
 
+function escapeHtml(value) {
+  return String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 /**
  * Markdown parser for basic formatting
  * @param {string} text - Text to convert to HTML
@@ -727,8 +736,17 @@ function showQuestion() {
   // Handle explanation visibility based on mode
   const explanationDiv = document.getElementById("explanation");
   if (explanationDiv) {
+    const feedbackVisible = Boolean(
+      quizState.feedbackShown[quizState.currentQuestionIndex],
+    );
     // Hide explanation container in exam mode
     if (currentMode === "exam") {
+      explanationDiv.classList.remove("show");
+      explanationDiv.style.display = "none";
+    } else if (currentMode === "practice" && !feedbackVisible) {
+      // Keep practice rationale hidden until user explicitly submits.
+      explanationDiv.innerHTML = "";
+      explanationDiv.classList.remove("show");
       explanationDiv.style.display = "none";
     } else {
       explanationDiv.style.display = "block";
@@ -783,9 +801,14 @@ function showQuestion() {
             button.classList.add("selected");
           }
   
-          // In practice and review modes, show correct/incorrect feedback
+          // In practice mode, show feedback only after submit.
+          // In review mode, always show answer state.
           // In exam mode, don't show feedback until exam is completed to maintain exam integrity
-          if (currentMode === "practice" || currentMode === "review") {
+          const feedbackVisible =
+            currentMode === "review" ||
+            (currentMode === "practice" &&
+              Boolean(quizState.feedbackShown[originalQuestionIndex]));
+          if (feedbackVisible) {
             if (index === question.correct) {
               button.classList.add("correct");
             } else if (
@@ -1189,21 +1212,23 @@ function showExplanation() {
   const selectedLetter = hasAnswered ? String.fromCharCode(65 + selectedIndex) : null;
   const selectedText = hasAnswered ? question.options?.[selectedIndex] || "" : "";
   const correctText = question.options?.[question.correct] || "";
+  const safeSelectedText = escapeHtml(selectedText);
+  const safeCorrectText = escapeHtml(correctText);
 
   let statusPanel = "";
   if (currentMode === "practice" && hasAnswered) {
     statusPanel = `
       <section class="feedback-status ${isCorrect ? "feedback-status-correct" : "feedback-status-incorrect"}">
         <p class="feedback-verdict"><strong>${isCorrect ? "Correct response" : "Incorrect response"}</strong></p>
-        <p><strong>Your answer:</strong> Option ${selectedLetter} ${selectedText ? `- ${selectedText}` : ""}</p>
-        ${isCorrect ? "" : `<p><strong>Expected answer:</strong> Option ${correctLetter} ${correctText ? `- ${correctText}` : ""}</p>`}
+        <p><strong>Your answer:</strong> Option ${selectedLetter} ${safeSelectedText ? `- ${safeSelectedText}` : ""}</p>
+        ${isCorrect ? "" : `<p><strong>Expected answer:</strong> Option ${correctLetter} ${safeCorrectText ? `- ${safeCorrectText}` : ""}</p>`}
       </section>
     `;
   } else if (currentMode === "review") {
     statusPanel = `
       <section class="feedback-status">
         <p class="feedback-verdict"><strong>Reference answer</strong></p>
-        <p><strong>Correct answer:</strong> Option ${correctLetter} ${correctText ? `- ${correctText}` : ""}</p>
+        <p><strong>Correct answer:</strong> Option ${correctLetter} ${safeCorrectText ? `- ${safeCorrectText}` : ""}</p>
       </section>
     `;
   }
@@ -1321,6 +1346,17 @@ function showResults() {
   const mockTopicBreakdown = isMockExamTopic(currentTopic)
     ? buildMockExamTopicBreakdown()
     : [];
+  const strongestTopicName = escapeHtml(
+    progressInsights.strongestTopic?.topicName || "Not enough data yet",
+  );
+  const weakestTopicName = escapeHtml(
+    progressInsights.weakestTopic?.topicName || "Not enough data yet",
+  );
+  const recommendedTopicText = progressInsights.recommendedTopic
+    ? `Prioritize ${escapeHtml(progressInsights.recommendedTopic)} next.`
+    : scorePercentage >= 70
+      ? "You are ready for a timed drill in your next session."
+      : "Review mistakes first, then retake this topic in Practice mode.";
   const mockBreakdownHtml = mockTopicBreakdown.length
     ? `
         <div class="section-head screen-header mock-breakdown-head">
@@ -1333,7 +1369,7 @@ function showResults() {
                 (entry) => `
                 <div class="analytic-item mock-breakdown-item ${getTrafficClassByPercentage(entry.accuracy)}">
                     <div class="analytic-value">${entry.accuracy}%</div>
-                    <div class="analytic-label">${entry.topicName}</div>
+                    <div class="analytic-label">${escapeHtml(entry.topicName)}</div>
                     <p class="mock-breakdown-meta">${entry.correct}/${entry.answered} correct (answered)</p>
                     <p class="mock-breakdown-meta">Coverage: ${entry.answered}/${entry.total}</p>
                 </div>
@@ -1411,12 +1447,12 @@ function showResults() {
         <div class="insight-grid">
             <article class="insight-card strongest">
                 <p class="eyebrow">Strongest Area</p>
-                <h3>${progressInsights.strongestTopic?.topicName || "Not enough data yet"}</h3>
+                <h3>${strongestTopicName}</h3>
                 <p>${progressInsights.strongestTopic ? `${progressInsights.strongestTopic.avgScore}% average` : "Complete more sessions to unlock this insight."}</p>
             </article>
             <article class="insight-card weakest">
                 <p class="eyebrow">Weakest Area</p>
-                <h3>${progressInsights.weakestTopic?.topicName || "Not enough data yet"}</h3>
+                <h3>${weakestTopicName}</h3>
                 <p>${progressInsights.weakestTopic ? `${progressInsights.weakestTopic.avgScore}% average` : "Complete more sessions to unlock this insight."}</p>
             </article>
             <article class="insight-card trend">
@@ -1431,7 +1467,7 @@ function showResults() {
             </article>
         </div>
         <div class="recommendation ${scorePercentage >= 70 ? "success" : "improvement"}">
-            <strong>Recommended Next Action:</strong> ${progressInsights.recommendedTopic ? `Prioritize ${progressInsights.recommendedTopic} next.` : (scorePercentage >= 70 ? "You are ready for a timed drill in your next session." : "Review mistakes first, then retake this topic in Practice mode.")}
+            <strong>Recommended Next Action:</strong> ${recommendedTopicText}
         </div>
         ${mockBreakdownHtml}
     `;

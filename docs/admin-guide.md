@@ -43,8 +43,10 @@ What you can do:
 - `Reject`: marks request rejected
 
 Notes:
-- requests are stored in local browser storage by default
-- approval applies an immediate local override
+- in Cloud mode, latest request state is synced on Firestore `profiles`
+- each submission is also archived in Firestore `upgradeRequests` for record retention
+- local browser storage is still used as a fallback when cloud sync is unavailable
+- approval applies an immediate local override (and cloud override when available)
 
 ## 2) Plan Override
 

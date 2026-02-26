@@ -59,6 +59,17 @@ Detailed user walkthrough:
 Cloud setup guide:
 - `docs/firebase-auth-setup.md`
 
+## Security Notes
+
+- Never commit live Firebase credentials to git history.
+- Inject `window.PROMOTION_CBT_AUTH` at runtime/deploy time, not in tracked source.
+- Use `config/runtime-auth.js` for local/deploy-managed values (this file is git-ignored).
+- Use `config/runtime-auth.example.js` as the template.
+- If GitHub reports `Possible valid secrets detected`, rotate the key immediately and close the alert only after rotation.
+- Restrict Firebase/Google API key usage by:
+  - allowed referrers (your production domain only)
+  - allowed APIs (Identity Toolkit + Secure Token + Firestore only, if used)
+
 ## Plans and Access
 
 - `Free`:
@@ -71,6 +82,7 @@ Cloud setup guide:
 ## Admin Features
 
 - Manual upgrade review queue
+- Firestore-backed upgrade request history (`upgradeRequests` audit trail)
 - Local plan overrides
 - User directory with:
   - email, role, plan, status, created/last-seen

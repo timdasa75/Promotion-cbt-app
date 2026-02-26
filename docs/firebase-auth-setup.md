@@ -18,6 +18,11 @@ This guide is tuned for the current Firebase console flow and Promotion CBT clou
    - `authDomain`
    - `projectId`
 
+Security:
+- Treat leaked API keys as compromised and rotate them.
+- Do not commit live keys into git-tracked files.
+- Restrict key usage in Google Cloud Console (HTTP referrers + API restrictions).
+
 ## 3. Enable Email/Password Auth
 
 1. Go to `Build -> Authentication -> Sign-in method`.
@@ -58,6 +63,31 @@ Recommended fields:
 - `status` (string: `active` or `suspended`)
 - `createdAt` (timestamp)
 - `lastSeenAt` (timestamp)
+- `upgradeRequestId` (string, latest request id)
+- `upgradeRequestStatus` (string: `none` or `pending` or `approved` or `rejected`)
+- `upgradePaymentReference` (string)
+- `upgradeAmountPaid` (string)
+- `upgradeRequestNote` (string)
+- `upgradeRequestedAt` (string ISO datetime)
+- `upgradeReviewedAt` (string ISO datetime)
+- `upgradeReviewedBy` (string, lowercase email)
+- `upgradeRequestReviewNote` (string)
+
+For full record retention, also use collection: `upgradeRequests`  
+Use document id: generated request id (for example `req_...`)
+
+Recommended `upgradeRequests` fields:
+- `requestId` (string)
+- `userId` (string, Firebase Auth uid)
+- `email` (string, lowercase)
+- `status` (string: `pending` or `approved` or `rejected`)
+- `paymentReference` (string)
+- `amountPaid` (string)
+- `note` (string)
+- `submittedAt` (string ISO datetime)
+- `reviewedAt` (string ISO datetime)
+- `reviewedBy` (string, lowercase email)
+- `reviewNote` (string)
 
 ## 7. Firestore Security Rules (Starter)
 
@@ -104,6 +134,21 @@ service cloud.firestore {
 
       allow delete: if isAdmin();
     }
+
+    match /upgradeRequests/{requestId} {
+      allow read: if isAdmin() || (isSignedIn() && resource.data.userId == request.auth.uid);
+
+      allow create: if isAdmin() || (
+        isSignedIn()
+        && request.resource.data.userId == request.auth.uid
+        && request.auth.token.email != null
+        && request.resource.data.email == request.auth.token.email
+        && request.resource.data.status == "pending"
+      );
+
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
   }
 }
 ```
@@ -132,10 +177,18 @@ window.PROMOTION_CBT_AUTH = {
 };
 ```
 
+Recommended for this repo:
+- Put live values in `config/runtime-auth.js` (git-ignored).
+- Start from `config/runtime-auth.example.js`.
+- Keep tracked files free of live keys.
+
 Admin note:
 - Admin access in this app is email-based (`window.PROMOTION_CBT_ADMIN_EMAILS` + Firestore `isAdmin()` rule list).
 - The admin email must exist in Firebase Authentication users; Firestore `profiles` document alone is not enough.
 - If you don't want to register via the app UI, create the admin user in `Authentication -> Users -> Add user`, then mark email as verified.
+
+Operational recommendation:
+- Keep real Firebase config in a deployment-managed script or environment injection step, not directly in repo source.
 
 ## 10. What To Send Back For Migration
 

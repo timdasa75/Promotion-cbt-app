@@ -196,6 +196,20 @@ h3,
     flex-shrink: 0;
 }
 
+.brand-logo-btn {
+    border: 0;
+    background: transparent;
+    padding: 0;
+    border-radius: 12px;
+    cursor: pointer;
+    line-height: 0;
+}
+
+.brand-logo-btn:focus-visible {
+    outline: none;
+    box-shadow: var(--focus);
+}
+
 .icon-button {
     border: 1px solid var(--line);
     background: var(--card);
@@ -1704,6 +1718,10 @@ select:focus-visible,
     .brand-logo {
         width: 40px;
         height: 40px;
+        border-radius: 10px;
+    }
+
+    .brand-logo-btn {
         border-radius: 10px;
     }
 

@@ -46,6 +46,20 @@ test("dashboard filters and action buttons are interactive", async ({ page }) =>
   await expect(page.locator("#categorySelectionScreen")).toBeVisible();
 });
 
+test("user profile shows payment confirmation status after submission", async ({ page }) => {
+  await registerAndEnter(page, "upgrade-status@example.com");
+  await page.click("#authActionBtn");
+  await page.click("#accountMenuProfileBtn");
+  await expect(page.locator("#profileScreen")).toBeVisible();
+
+  await page.fill("#upgradePaymentReference", "BANK-12345");
+  await page.fill("#upgradeAmountPaid", "5000");
+  await page.click("#submitUpgradeEvidenceBtn");
+
+  await expect(page.locator("#profileUpgradeStatus")).toContainText("Pending Admin Review");
+  await expect(page.locator("#profileUpgradeStatus")).toContainText("BANK-12345");
+});
+
 test("review mode acts as pre-quiz study with answers and explanations visible", async ({ page }) => {
   await registerAndEnter(page, "review@example.com");
   await expect(page.locator("#topicList .topic-card:not(.hidden)").first()).toBeVisible();
@@ -197,6 +211,32 @@ test("in-progress quiz state restores after refresh", async ({ page }) => {
   await expect(page.locator("#quizScreen")).toBeVisible();
   await expect(page.locator("#currentQ")).toHaveText("2");
   await expect(page.locator("#optionsContainer .option-btn.selected").first()).toContainText("A");
+});
+
+test("practice mode does not reveal feedback before submit after refresh restore", async ({ page }) => {
+  await registerAndEnter(page, "practice-restore@example.com");
+  await expect(page.locator("#topicList .topic-card:not(.hidden)").first()).toBeVisible();
+
+  await page.locator("#topicList .topic-card:not(.hidden)").first().click();
+  await expect(page.locator("#categorySelectionScreen")).toBeVisible();
+  await page.click("#selectAllCategoryBtn");
+  await expect(page.locator("#modeSelectionScreen")).toBeVisible();
+
+  await page.click("#practiceModeCard");
+  await expect(page.locator("#quizScreen")).toBeVisible();
+  await expect(page.locator("#currentQ")).toHaveText("1");
+
+  await page.locator("#optionsContainer .option-btn").nth(1).click();
+  await expect(page.locator("#submitBtn")).toBeVisible();
+
+  await page.reload();
+  await expect(page.locator("#quizScreen")).toBeVisible();
+  await expect(page.locator("#currentQ")).toHaveText("1");
+  await expect(page.locator("#optionsContainer .option-btn.selected").first()).toContainText("B");
+  await expect(page.locator("#optionsContainer .option-btn.correct")).toHaveCount(0);
+  await expect(page.locator("#optionsContainer .option-btn.incorrect")).toHaveCount(0);
+  await expect(page.locator("#optionsContainer .option-feedback-label")).toHaveCount(0);
+  await expect(page.locator("#submitBtn")).toBeVisible();
 });
 
 test("results show source-topic breakdown for mock exam sessions", async ({ page }) => {

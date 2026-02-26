@@ -22,6 +22,7 @@ import {
   getAuthSummaryLabel,
   getAuthProviderLabel,
   getCurrentUser,
+  getCurrentUserUpgradeRequest,
   getLocalPlanOverrides,
   getPlanOverrideSyncMeta,
   getProgressStorageKeyForCurrentUser,
@@ -30,7 +31,9 @@ import {
   logoutUser,
   requestPasswordReset,
   registerUser,
+  setUpgradeRequestStatus,
   startCloudPlanAutoSync,
+  submitUpgradeRequest,
   setPlanOverride,
 } from "./auth.js";
 
@@ -200,6 +203,60 @@ function readUpgradeRequests() {
 
 function writeUpgradeRequests(requests) {
   localStorage.setItem(UPGRADE_REQUESTS_STORAGE_KEY, JSON.stringify(requests || []));
+}
+
+function normalizeUpgradeRequestStatus(value) {
+  const normalized = String(value || "").trim().toLowerCase();
+  if (normalized === "approved") return "approved";
+  if (normalized === "rejected") return "rejected";
+  if (normalized === "pending") return "pending";
+  return "none";
+}
+
+function getLatestLocalUpgradeRequestForEmail(email) {
+  const normalizedEmail = String(email || "").trim().toLowerCase();
+  if (!normalizedEmail) return null;
+  const requests = readUpgradeRequests().filter(
+    (entry) => String(entry?.email || "").trim().toLowerCase() === normalizedEmail,
+  );
+  if (!requests.length) return null;
+
+  const latest = requests
+    .slice()
+    .sort((a, b) => {
+      const aTime = Date.parse(String(a?.createdAt || "")) || 0;
+      const bTime = Date.parse(String(b?.createdAt || "")) || 0;
+      return bTime - aTime;
+    })[0];
+
+  return {
+    id: String(latest?.id || ""),
+    email: normalizedEmail,
+    status: normalizeUpgradeRequestStatus(latest?.status),
+    reference: String(latest?.reference || ""),
+    amount: String(latest?.amount || ""),
+    note: String(latest?.note || ""),
+    submittedAt: String(latest?.createdAt || ""),
+    reviewedAt: String(latest?.reviewedAt || ""),
+    reviewedBy: "",
+    reviewNote: "",
+    source: "local",
+  };
+}
+
+function statusBadgeClass(status) {
+  if (status === "approved") return "approved";
+  if (status === "rejected") return "rejected";
+  return "pending";
+}
+
+function escapeHtml(value) {
+  return String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
 }
 
 function getTopicNameById(topicId) {
@@ -717,6 +774,60 @@ async function refreshAccessibleTopics() {
   await displayTopics(cachedTopics, handleTopicSelect);
 }
 
+async function refreshUserUpgradeStatus() {
+  const container = document.getElementById("profileUpgradeStatus");
+  if (!container) return;
+
+  const user = getCurrentUser();
+  if (!user?.email) {
+    container.classList.add("hidden");
+    container.innerHTML = "";
+    return;
+  }
+
+  let request = null;
+  try {
+    request = await getCurrentUserUpgradeRequest();
+  } catch (error) {
+    request = null;
+  }
+  if (!request) {
+    request = getLatestLocalUpgradeRequestForEmail(user.email);
+  }
+
+  if (!request) {
+    container.classList.remove("hidden");
+    container.innerHTML =
+      '<p class="meta">No payment confirmation has been submitted yet.</p>';
+    return;
+  }
+
+  const status = normalizeUpgradeRequestStatus(request.status);
+  const statusLabel =
+    status === "approved"
+      ? "Approved"
+      : status === "rejected"
+        ? "Rejected"
+        : "Pending Admin Review";
+  const reviewMeta = request.reviewedAt
+    ? `<p class="meta">Reviewed: ${escapeHtml(formatDateTime(request.reviewedAt))}</p>`
+    : "";
+
+  container.classList.remove("hidden");
+  container.innerHTML = `
+    <div class="button-row">
+      <strong>Payment Confirmation Status</strong>
+      <span class="admin-badge ${statusBadgeClass(status)}">${statusLabel}</span>
+    </div>
+    <p class="meta">Submitted: ${escapeHtml(formatDateTime(request.submittedAt))}</p>
+    <p class="meta">Reference: ${escapeHtml(request.reference || "-")}</p>
+    <p class="meta">Amount: ${escapeHtml(request.amount || "-")}</p>
+    ${request.note ? `<p class="meta">Note: ${escapeHtml(request.note)}</p>` : ""}
+    ${request.reviewNote ? `<p class="meta">Review note: ${escapeHtml(request.reviewNote)}</p>` : ""}
+    ${reviewMeta}
+  `;
+}
+
 function updateAuthUI() {
   const user = getCurrentUser();
   const authActionLabel = document.getElementById("authActionLabel");
@@ -763,6 +874,7 @@ function updateAuthUI() {
   if (openStatesBtn) {
     openStatesBtn.classList.toggle("hidden", !isAdmin);
   }
+  refreshUserUpgradeStatus().catch(() => {});
 }
 
 function renderAdminOverrides() {
@@ -781,15 +893,18 @@ function renderAdminOverrides() {
     const status = syncMeta[email] || {};
     const syncBadgeClass = status.cloudUpdated ? "approved" : "pending";
     const syncLabel = status.cloudUpdated ? "Cloud+Local" : "Local only";
+    const safeEmail = escapeHtml(email);
+    const safePlan = escapeHtml(plan);
+    const safeWarning = status.warning ? `<div class="meta">${escapeHtml(status.warning)}</div>` : "";
     const card = document.createElement("div");
     card.className = "admin-request-item";
     card.innerHTML = `
-      <div><strong>${email}</strong></div>
-      <div class="meta">Current override: <span class="admin-badge ${plan === "premium" ? "approved" : "pending"}">${plan}</span></div>
+      <div><strong>${safeEmail}</strong></div>
+      <div class="meta">Current override: <span class="admin-badge ${plan === "premium" ? "approved" : "pending"}">${safePlan}</span></div>
       <div class="meta">Sync status: <span class="admin-badge ${syncBadgeClass}">${syncLabel}</span></div>
-      ${status.warning ? `<div class="meta">${status.warning}</div>` : ""}
+      ${safeWarning}
       <div class="button-row">
-        <button class="btn btn-ghost" data-clear-email="${email}" type="button">Clear Override</button>
+        <button class="btn btn-ghost" data-clear-email="${safeEmail}" type="button">Clear Override</button>
       </div>
     `;
     const clearBtn = card.querySelector("[data-clear-email]");
@@ -809,74 +924,156 @@ function renderAdminOverrides() {
 function renderAdminRequests() {
   const container = document.getElementById("adminRequestList");
   if (!container) return;
-  const requests = readUpgradeRequests();
+  const cloudRequests = adminDirectoryUsers
+    .filter((entry) => {
+      const status = normalizeUpgradeRequestStatus(entry?.upgradeRequestStatus);
+      return (
+        status !== "none" ||
+        Boolean(entry?.upgradeRequestedAt) ||
+        Boolean(entry?.upgradePaymentReference) ||
+        Boolean(entry?.upgradeAmountPaid)
+      );
+    })
+    .map((entry) => ({
+      id: String(entry?.upgradeRequestId || `req_${String(entry?.email || "").toLowerCase()}`),
+      email: String(entry?.email || "").trim().toLowerCase(),
+      status: normalizeUpgradeRequestStatus(entry?.upgradeRequestStatus),
+      reference: String(entry?.upgradePaymentReference || ""),
+      amount: String(entry?.upgradeAmountPaid || ""),
+      note: String(entry?.upgradeRequestNote || ""),
+      reviewNote: String(entry?.upgradeRequestReviewNote || ""),
+      createdAt: String(entry?.upgradeRequestedAt || ""),
+      reviewedAt: String(entry?.upgradeReviewedAt || ""),
+      reviewedBy: String(entry?.upgradeReviewedBy || ""),
+      source: "cloud-profile",
+    }))
+    .sort((a, b) => {
+      const aTime = Date.parse(a.createdAt || "") || 0;
+      const bTime = Date.parse(b.createdAt || "") || 0;
+      return bTime - aTime;
+    });
+
+  const localRequests = readUpgradeRequests()
+    .slice()
+    .reverse()
+    .map((entry) => ({
+      id: String(entry?.id || ""),
+      email: String(entry?.email || "").trim().toLowerCase(),
+      status: normalizeUpgradeRequestStatus(entry?.status),
+      reference: String(entry?.reference || ""),
+      amount: String(entry?.amount || ""),
+      note: String(entry?.note || ""),
+      reviewNote: "",
+      createdAt: String(entry?.createdAt || ""),
+      reviewedAt: String(entry?.reviewedAt || ""),
+      reviewedBy: "",
+      source: "local",
+    }));
+
+  const requests = [];
+  const seenEmails = new Set();
+  cloudRequests.forEach((entry) => {
+    if (!entry.email) return;
+    seenEmails.add(entry.email);
+    requests.push(entry);
+  });
+  localRequests.forEach((entry) => {
+    if (!entry.email || seenEmails.has(entry.email)) return;
+    requests.push(entry);
+  });
+
   container.innerHTML = "";
   if (!requests.length) {
-    container.innerHTML = '<div class="admin-request-item"><p class="meta">No upgrade requests submitted yet.</p></div>';
+    container.innerHTML =
+      '<div class="admin-request-item"><p class="meta">No upgrade requests submitted yet.</p></div>';
     return;
   }
 
-  requests
-    .slice()
-    .reverse()
-    .forEach((request) => {
-      const card = document.createElement("div");
-      card.className = "admin-request-item";
-      const statusClass =
-        request.status === "approved"
-          ? "approved"
-          : request.status === "rejected"
-            ? "rejected"
-            : "pending";
-      card.innerHTML = `
+  requests.forEach((request) => {
+    const card = document.createElement("div");
+    card.className = "admin-request-item";
+    const statusClass = statusBadgeClass(request.status);
+    const safeRequestId = escapeHtml(request.id);
+    const safeEmail = escapeHtml(request.email);
+    const safeStatus = escapeHtml(request.status || "pending");
+    const safeSubmittedAt = escapeHtml(formatDateTime(request.createdAt));
+    const safeReference = escapeHtml(request.reference || "-");
+    const safeAmount = escapeHtml(request.amount || "-");
+    const safeNote = escapeHtml(request.note || "-");
+    const safeReviewNote = escapeHtml(request.reviewNote || "");
+    const safeReviewedAt = escapeHtml(formatDateTime(request.reviewedAt));
+    const safeSource = request.source === "cloud-profile" ? "Cloud Profile" : "Local device";
+    card.innerHTML = `
         <div class="button-row">
-          <strong>${request.email}</strong>
-          <span class="admin-badge ${statusClass}">${request.status || "pending"}</span>
+          <strong>${safeEmail}</strong>
+          <span class="admin-badge ${statusClass}">${safeStatus}</span>
         </div>
-        <div class="meta">Submitted: ${new Date(request.createdAt).toLocaleString()}</div>
-        <div class="meta">Ref: ${request.reference || "-"}</div>
-        <div class="meta">Amount: ${request.amount || "-"}</div>
-        <div class="meta">Note: ${request.note || "-"}</div>
+        <div class="meta">Submitted: ${safeSubmittedAt}</div>
+        <div class="meta">Ref: ${safeReference}</div>
+        <div class="meta">Amount: ${safeAmount}</div>
+        <div class="meta">Note: ${safeNote}</div>
+        ${safeReviewNote ? `<div class="meta">Review Note: ${safeReviewNote}</div>` : ""}
+        ${request.reviewedAt ? `<div class="meta">Reviewed: ${safeReviewedAt}</div>` : ""}
+        <div class="meta">Source: ${safeSource}</div>
         <div class="button-row">
-          <button class="btn btn-secondary" data-approve-id="${request.id}" type="button">Approve</button>
-          <button class="btn btn-ghost" data-reject-id="${request.id}" type="button">Reject</button>
+          <button class="btn btn-secondary" data-approve-id="${safeRequestId}" type="button">Approve</button>
+          <button class="btn btn-ghost" data-reject-id="${safeRequestId}" type="button">Reject</button>
         </div>
       `;
 
-      const approveBtn = card.querySelector("[data-approve-id]");
-      const rejectBtn = card.querySelector("[data-reject-id]");
-      if (approveBtn) {
-        approveBtn.addEventListener("click", async () => {
-          const next = readUpgradeRequests().map((entry) =>
-            entry.id === request.id
-              ? { ...entry, status: "approved", reviewedAt: new Date().toISOString() }
-              : entry,
-          );
-          writeUpgradeRequests(next);
-          const overrideResult = await setPlanOverride(request.email, "premium");
-          updateAuthUI();
-          refreshDashboardInsights();
-          await refreshAccessibleTopics();
-          renderAdminRequests();
-          renderAdminOverrides();
-          if (overrideResult.warning) {
-            showWarning(`Plan override saved. ${overrideResult.warning}`);
-          }
+    const approveBtn = card.querySelector("[data-approve-id]");
+    const rejectBtn = card.querySelector("[data-reject-id]");
+    if (approveBtn) {
+      approveBtn.addEventListener("click", async () => {
+        const now = new Date().toISOString();
+        const next = readUpgradeRequests().map((entry) => {
+          const sameId = String(entry?.id || "") === request.id;
+          const sameEmailPending =
+            String(entry?.email || "").trim().toLowerCase() === request.email &&
+            normalizeUpgradeRequestStatus(entry?.status) === "pending";
+          if (!sameId && !sameEmailPending) return entry;
+          return { ...entry, status: "approved", reviewedAt: now };
         });
-      }
-      if (rejectBtn) {
-        rejectBtn.addEventListener("click", () => {
-          const next = readUpgradeRequests().map((entry) =>
-            entry.id === request.id
-              ? { ...entry, status: "rejected", reviewedAt: new Date().toISOString() }
-              : entry,
-          );
-          writeUpgradeRequests(next);
-          renderAdminRequests();
+        writeUpgradeRequests(next);
+
+        const cloudStatusResult = await setUpgradeRequestStatus(request.email, "approved");
+        const overrideResult = await setPlanOverride(request.email, "premium");
+        updateAuthUI();
+        refreshDashboardInsights();
+        await refreshAccessibleTopics();
+        await refreshAdminUserDirectory();
+        renderAdminRequests();
+        renderAdminOverrides();
+        if (cloudStatusResult.warning) {
+          showWarning(`Status sync notice: ${cloudStatusResult.warning}`);
+        }
+        if (overrideResult.warning) {
+          showWarning(`Plan override saved. ${overrideResult.warning}`);
+        }
+      });
+    }
+    if (rejectBtn) {
+      rejectBtn.addEventListener("click", async () => {
+        const now = new Date().toISOString();
+        const next = readUpgradeRequests().map((entry) => {
+          const sameId = String(entry?.id || "") === request.id;
+          const sameEmailPending =
+            String(entry?.email || "").trim().toLowerCase() === request.email &&
+            normalizeUpgradeRequestStatus(entry?.status) === "pending";
+          if (!sameId && !sameEmailPending) return entry;
+          return { ...entry, status: "rejected", reviewedAt: now };
         });
-      }
-      container.appendChild(card);
-    });
+        writeUpgradeRequests(next);
+        const cloudStatusResult = await setUpgradeRequestStatus(request.email, "rejected");
+        await refreshAdminUserDirectory();
+        renderAdminRequests();
+        if (cloudStatusResult.warning) {
+          showWarning(`Status sync notice: ${cloudStatusResult.warning}`);
+        }
+      });
+    }
+    container.appendChild(card);
+  });
 }
 
 function formatDateTime(value) {
@@ -940,13 +1137,19 @@ function renderAdminUserDirectory() {
     const roleClass = entry.role === "admin" ? "approved" : "pending";
     const planClass = entry.plan === "premium" ? "approved" : "pending";
     const statusClass = entry.status === "suspended" ? "rejected" : "approved";
+    const safeEmail = escapeHtml(entry.email);
+    const safeRole = escapeHtml(entry.role);
+    const safePlan = escapeHtml(entry.plan);
+    const safeStatus = escapeHtml(entry.status);
+    const safeCreated = escapeHtml(formatDateTime(entry.createdAt));
+    const safeLastSeen = escapeHtml(formatDateTime(entry.lastSeenAt));
     row.innerHTML = `
-      <td class="email-cell">${entry.email}</td>
-      <td><span class="admin-badge ${roleClass}">${entry.role}</span></td>
-      <td><span class="admin-badge ${planClass}">${entry.plan}</span></td>
-      <td><span class="admin-badge ${statusClass}">${entry.status}</span></td>
-      <td>${formatDateTime(entry.createdAt)}</td>
-      <td>${formatDateTime(entry.lastSeenAt)}</td>
+      <td class="email-cell">${safeEmail}</td>
+      <td><span class="admin-badge ${roleClass}">${safeRole}</span></td>
+      <td><span class="admin-badge ${planClass}">${safePlan}</span></td>
+      <td><span class="admin-badge ${statusClass}">${safeStatus}</span></td>
+      <td>${safeCreated}</td>
+      <td>${safeLastSeen}</td>
     `;
     tbody.appendChild(row);
   });
@@ -964,6 +1167,7 @@ async function refreshAdminUserDirectory() {
     const result = await getAdminUserDirectory();
     adminDirectoryUsers = Array.isArray(result.users) ? result.users : [];
     renderAdminUserDirectory();
+    renderAdminRequests();
     if (sourceLabel) {
       sourceLabel.textContent =
         result.source === "cloud" ? "Source: Cloud profiles" : "Source: Local fallback";
@@ -980,6 +1184,7 @@ async function refreshAdminUserDirectory() {
   } catch (error) {
     adminDirectoryUsers = [];
     renderAdminUserDirectory();
+    renderAdminRequests();
     if (sourceLabel) {
       sourceLabel.textContent = "Source: unavailable";
     }
@@ -1236,7 +1441,7 @@ function initializeAuthUI() {
   }
 
   if (submitUpgradeEvidenceBtn) {
-    submitUpgradeEvidenceBtn.addEventListener("click", () => {
+    submitUpgradeEvidenceBtn.addEventListener("click", async () => {
       const user = getCurrentUser();
       if (!user?.email) {
         showWarning("Login is required before submitting upgrade evidence.");
@@ -1255,12 +1460,30 @@ function initializeAuthUI() {
         createdAt: new Date().toISOString(),
       });
       writeUpgradeRequests(next);
-      showWarning("Upgrade evidence submitted. Admin review is pending.");
+      const cloudResult = await submitUpgradeRequest({
+        reference: String(reference).trim(),
+        amount: String(amount).trim(),
+        note: "Submitted from profile screen",
+      });
+
+      if (cloudResult.cloudSaved) {
+        showWarning(
+          cloudResult.warning
+            ? `Upgrade evidence submitted and synced. Admin review is pending. ${cloudResult.warning}`.trim()
+            : "Upgrade evidence submitted and synced. Admin review is pending.",
+        );
+      } else {
+        showWarning(
+          `Upgrade evidence submitted. Admin review is pending. ${cloudResult.warning || ""}`.trim(),
+        );
+      }
       const refInput = document.getElementById("upgradePaymentReference");
       const amtInput = document.getElementById("upgradeAmountPaid");
       if (refInput) refInput.value = "";
       if (amtInput) amtInput.value = "";
+      refreshUserUpgradeStatus().catch(() => {});
       if (isCurrentUserAdmin()) {
+        await refreshAdminUserDirectory();
         renderAdminRequests();
       }
     });
@@ -1349,6 +1572,9 @@ document.addEventListener("DOMContentLoaded", async function () {
     persistScreenState(event?.detail?.screenId);
     if (event?.detail?.screenId === "topicSelectionScreen") {
       refreshDashboardInsights();
+    }
+    if (event?.detail?.screenId === "profileScreen") {
+      refreshUserUpgradeStatus().catch(() => {});
     }
   });
 

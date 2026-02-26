@@ -16,6 +16,15 @@ import { debugLog } from "./logger.js";
 // Track current screen
 let currentScreenId = "splashScreen";
 
+function escapeHtml(value) {
+  return String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 // Show a specific screen with animation
 export function showScreen(screenId) {
   window.scrollTo(0, 0);
@@ -187,11 +196,16 @@ export async function displayCategories(topic, onSelect) {
           const name = subcategory.name
             .replace(/^[A-Z]\.\s/, "")
             .replace(/ \(\d+ Questions\)/, "");
+          const safeIcon = escapeHtml(subcategory.icon || "📁");
+          const safeName = escapeHtml(name);
+          const safeDescription = escapeHtml(
+            subcategory.description || "No description available",
+          );
           categoryCard.innerHTML = `
               <div class="card-content">
-                  <div class="topic-icon">${subcategory.icon || "&#128193;"}</div>
-                  <h3 class="topic-title">${name}</h3>
-                  <p class="topic-description">${subcategory.description || "No description available"}</p>
+                  <div class="topic-icon">${safeIcon}</div>
+                  <h3 class="topic-title">${safeName}</h3>
+                  <p class="topic-description">${safeDescription}</p>
                   ${!isUnlocked ? '<span class="lock-badge">Locked on Free</span>' : ""}
               </div>
               <div class="card-footer">
@@ -319,11 +333,14 @@ export async function displayTopics(topics, onSelect) {
     const name = topic.name
       .replace(/^[A-Z]\.\s/, "")
       .replace(/ \(\d+ Questions\)/, "");
+    const safeIcon = escapeHtml(topic.icon || "📚");
+    const safeName = escapeHtml(name);
+    const safeDescription = escapeHtml(topic.description || "No description available");
     topicCard.innerHTML = `
         <div class="card-content">
-            <div class="topic-icon">${topic.icon || "&#128218;"}</div>
-            <h3 class="topic-title">${name}</h3>
-            <p class="topic-description">${topic.description || "No description available"}</p>
+            <div class="topic-icon">${safeIcon}</div>
+            <h3 class="topic-title">${safeName}</h3>
+            <p class="topic-description">${safeDescription}</p>
             ${topic?.id === "mock_exam" ? '<span class="mock-exam-badge">Featured Mock Exam</span>' : ""}
             ${!isUnlocked ? '<span class="lock-badge">Locked on Free</span>' : ""}
         </div>
