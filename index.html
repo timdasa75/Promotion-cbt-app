@@ -61,8 +61,22 @@
                     >
                         <span id="authActionIcon" class="toolbar-icon" aria-hidden="true"></span>
                     </button>
-                    <button id="headerHelpBtn" class="icon-button" aria-label="Open Help and About" onclick="showScreen('helpScreen')" type="button">
-                        <span>Help</span>
+                    <button
+                        id="headerHelpBtn"
+                        class="icon-button icon-only"
+                        aria-label="Open Help and About"
+                        data-tooltip="Help and About"
+                        title="Help and About"
+                        onclick="showScreen('helpScreen')"
+                        type="button"
+                    >
+                        <span class="toolbar-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" focusable="false">
+                                <circle cx="12" cy="12" r="9"></circle>
+                                <path d="M9.5 9a2.5 2.5 0 1 1 3.8 2.2c-1 .6-1.3 1-1.3 2"></path>
+                                <circle cx="12" cy="17" r="1"></circle>
+                            </svg>
+                        </span>
                     </button>
                     <button
                         id="themeToggle"
