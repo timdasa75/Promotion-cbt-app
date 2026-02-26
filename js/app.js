@@ -19,6 +19,7 @@ import {
   getAccessibleTopics,
   getCurrentEntitlement,
   getAdminUserDirectory,
+  getAuthSummaryLabel,
   getAuthProviderLabel,
   getCurrentUser,
   getCurrentUserUpgradeRequest,
@@ -891,6 +892,7 @@ function updateAuthUI() {
   const user = getCurrentUser();
   const authActionBtn = document.getElementById("authActionBtn");
   const authActionIcon = document.getElementById("authActionIcon");
+  const authToolbarSummary = document.getElementById("authToolbarSummary");
   const authModeHint = document.getElementById("authModeHint");
   const profileDisplayName = document.getElementById("profileDisplayName");
   const profileSubtitle = document.getElementById("profileSubtitle");
@@ -908,6 +910,17 @@ function updateAuthUI() {
     authActionBtn.setAttribute("aria-label", tooltip);
     authActionBtn.setAttribute("title", tooltip);
     authActionBtn.setAttribute("data-tooltip", tooltip);
+  }
+  if (authToolbarSummary) {
+    if (user) {
+      authToolbarSummary.textContent = getAuthSummaryLabel();
+      authToolbarSummary.classList.remove("hidden");
+      authToolbarSummary.setAttribute("title", getAuthSummaryLabel());
+    } else {
+      authToolbarSummary.textContent = "";
+      authToolbarSummary.classList.add("hidden");
+      authToolbarSummary.removeAttribute("title");
+    }
   }
   if (authModeHint) {
     const cloudConfigMissing = isCloudAuthMisconfigured();
