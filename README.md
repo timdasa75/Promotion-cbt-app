@@ -102,6 +102,22 @@ Cloud setup guide:
 
 - GitHub Pages-compatible static app
 - Base path handling is included for `/Promotion-cbt-app`
+- Deployment now uses GitHub Actions workflow: `.github/workflows/deploy-pages.yml`
+
+### GitHub Pages Secret Injection (Required)
+
+Set these repository secrets before deploying:
+- `FIREBASE_API_KEY`
+- `FIREBASE_PROJECT_ID`
+- `FIREBASE_AUTH_DOMAIN`
+
+Then in GitHub:
+1. `Settings -> Pages -> Build and deployment -> Source: GitHub Actions`
+2. Push to `main` (or run workflow manually).
+3. Verify deployed site shows `Auth mode: Cloud (multi-device)`.
+
+If secrets are missing, deployment fails and the app shows:
+- `Auth mode: Cloud required (runtime config missing)`
 
 ## License
 

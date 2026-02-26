@@ -27,6 +27,7 @@ import {
   getPlanOverrideSyncMeta,
   getProgressStorageKeyForCurrentUser,
   isCurrentUserAdmin,
+  isCloudAuthMisconfigured,
   loginUser,
   logoutUser,
   requestPasswordReset,
@@ -843,9 +844,11 @@ function updateAuthUI() {
     authActionLabel.textContent = user ? getAuthSummaryLabel() : "Login";
   }
   if (authModeHint) {
+    const cloudConfigMissing = isCloudAuthMisconfigured();
     const provider = getAuthProviderLabel();
-    authModeHint.textContent =
-      provider === "Cloud"
+    authModeHint.textContent = cloudConfigMissing
+      ? "Auth mode: Cloud required (runtime config missing)"
+      : provider === "Cloud"
         ? "Auth mode: Cloud (multi-device)"
         : "Auth mode: Local (single-device)";
   }
@@ -1342,6 +1345,12 @@ function initializeAuthUI() {
   if (loginForm) {
     loginForm.addEventListener("submit", async (event) => {
       event.preventDefault();
+      if (isCloudAuthMisconfigured()) {
+        setAuthMessage(
+          "Cloud auth config is missing on this deployment. Please contact support to fix runtime secrets.",
+        );
+        return;
+      }
       const email = document.getElementById("loginEmail")?.value || "";
       const password = document.getElementById("loginPassword")?.value || "";
       try {
@@ -1361,6 +1370,12 @@ function initializeAuthUI() {
   if (registerForm) {
     registerForm.addEventListener("submit", async (event) => {
       event.preventDefault();
+      if (isCloudAuthMisconfigured()) {
+        setAuthMessage(
+          "Cloud auth config is missing on this deployment. Registration is temporarily unavailable.",
+        );
+        return;
+      }
       const name = document.getElementById("registerName")?.value || "";
       const email = document.getElementById("registerEmail")?.value || "";
       const password = document.getElementById("registerPassword")?.value || "";
@@ -1403,6 +1418,12 @@ function initializeAuthUI() {
 
   if (forgotPasswordBtn) {
     forgotPasswordBtn.addEventListener("click", async () => {
+      if (isCloudAuthMisconfigured()) {
+        setAuthMessage(
+          "Cloud auth config is missing on this deployment. Password reset is temporarily unavailable.",
+        );
+        return;
+      }
       const email = document.getElementById("loginEmail")?.value || "";
       if (!email) {
         setAuthMessage("Enter your email first, then click Forgot password.");
@@ -1419,6 +1440,12 @@ function initializeAuthUI() {
 
   if (changePasswordBtn) {
     changePasswordBtn.addEventListener("click", async () => {
+      if (isCloudAuthMisconfigured()) {
+        showWarning(
+          "Cloud auth config is missing on this deployment. Password reset is temporarily unavailable.",
+        );
+        return;
+      }
       const user = getCurrentUser();
       const email = user?.email || "";
       if (!email) {

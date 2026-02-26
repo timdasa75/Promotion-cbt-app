@@ -181,6 +181,7 @@ Recommended for this repo:
 - Put live values in `config/runtime-auth.js` (git-ignored).
 - Start from `config/runtime-auth.example.js`.
 - Keep tracked files free of live keys.
+- For GitHub Pages, use repo secrets and deployment-time generation (see section 11).
 
 Admin note:
 - Admin access in this app is email-based (`window.PROMOTION_CBT_ADMIN_EMAILS` + Firestore `isAdmin()` rule list).
@@ -198,6 +199,24 @@ Share these values:
 - `firebaseAuthDomain`
 
 Then the app can run cloud auth directly on Firebase.
+
+## 11. GitHub Pages Secure Deployment (No Keys In Git)
+
+This repo includes workflow: `.github/workflows/deploy-pages.yml`
+
+1. In GitHub repo, open `Settings -> Secrets and variables -> Actions`.
+2. Add repository secrets:
+   - `FIREBASE_API_KEY`
+   - `FIREBASE_PROJECT_ID`
+   - `FIREBASE_AUTH_DOMAIN`
+3. Open `Settings -> Pages`.
+4. Under `Build and deployment`, set `Source` to `GitHub Actions`.
+5. Push to `main` (or run workflow manually).
+6. Confirm deployed app auth label reads `Auth mode: Cloud (multi-device)`.
+
+Safety behavior:
+- If any required secret is missing, deploy workflow fails fast.
+- On production host, app blocks auth and shows `Cloud required (runtime config missing)` instead of silently using local auth.
 
 ## References (Official Docs)
 

@@ -85,9 +85,25 @@ function getFirebaseConfig() {
   return { firebaseApiKey, firebaseProjectId, firebaseAuthDomain };
 }
 
+function isLocalDevelopmentHost() {
+  const host = String(window.location.hostname || "").trim().toLowerCase();
+  return host === "" || host === "localhost" || host === "127.0.0.1";
+}
+
 function isCloudAuthEnabled() {
   const { firebaseApiKey, firebaseProjectId } = getFirebaseConfig();
   return Boolean(firebaseApiKey && firebaseProjectId);
+}
+
+export function isCloudAuthRequired() {
+  if (typeof window.PROMOTION_CBT_REQUIRE_CLOUD_AUTH === "boolean") {
+    return window.PROMOTION_CBT_REQUIRE_CLOUD_AUTH;
+  }
+  return !isLocalDevelopmentHost();
+}
+
+export function isCloudAuthMisconfigured() {
+  return isCloudAuthRequired() && !isCloudAuthEnabled();
 }
 
 function readUsers() {
