@@ -51,14 +51,28 @@
                     </div>
                 </div>
                 <div class="header-actions">
-                    <button id="authActionBtn" class="icon-button" aria-label="Account options" type="button">
-                        <span id="authActionLabel">Login</span>
+                    <button
+                        id="authActionBtn"
+                        class="icon-button icon-only"
+                        aria-label="Login or register"
+                        data-tooltip="Login or register"
+                        title="Login or register"
+                        type="button"
+                    >
+                        <span id="authActionIcon" class="toolbar-icon" aria-hidden="true"></span>
                     </button>
                     <button id="headerHelpBtn" class="icon-button" aria-label="Open Help and About" onclick="showScreen('helpScreen')" type="button">
                         <span>Help</span>
                     </button>
-                    <button id="themeToggle" class="icon-button" aria-label="Toggle light and dark theme" type="button">
-                        <span class="theme-icon">Light</span>
+                    <button
+                        id="themeToggle"
+                        class="icon-button icon-only"
+                        aria-label="Toggle light and dark theme"
+                        data-tooltip="Toggle light/dark theme"
+                        title="Toggle light/dark theme"
+                        type="button"
+                    >
+                        <span id="themeToggleIcon" class="toolbar-icon" aria-hidden="true"></span>
                     </button>
                     <div class="account-menu hidden" id="accountMenu">
                         <button class="account-menu-item hidden" id="accountMenuAdminBtn" type="button">Admin Panel</button>

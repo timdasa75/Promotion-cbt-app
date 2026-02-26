@@ -19,7 +19,6 @@ import {
   getAccessibleTopics,
   getCurrentEntitlement,
   getAdminUserDirectory,
-  getAuthSummaryLabel,
   getAuthProviderLabel,
   getCurrentUser,
   getCurrentUserUpgradeRequest,
@@ -95,6 +94,65 @@ const MOCK_EXAM_TOPIC = {
     { topicId: "competency_framework", count: 4 },
   ],
 };
+
+function setToolbarIcon(target, svgMarkup) {
+  if (!target) return;
+  target.innerHTML = svgMarkup;
+}
+
+function getAuthToolbarIconMarkup(isSignedIn) {
+  if (isSignedIn) {
+    return `
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M10 6h-6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h6"></path>
+        <path d="M14 8l4 4-4 4"></path>
+        <path d="M18 12H8"></path>
+      </svg>
+    `;
+  }
+  return `
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M14 6h6a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-6"></path>
+      <path d="M10 8l-4 4 4 4"></path>
+      <path d="M6 12h10"></path>
+    </svg>
+  `;
+}
+
+function getThemeToolbarIconMarkup(isDarkMode) {
+  if (isDarkMode) {
+    return `
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <circle cx="12" cy="12" r="4"></circle>
+        <path d="M12 2v2"></path>
+        <path d="M12 20v2"></path>
+        <path d="M4.93 4.93l1.41 1.41"></path>
+        <path d="M17.66 17.66l1.41 1.41"></path>
+        <path d="M2 12h2"></path>
+        <path d="M20 12h2"></path>
+        <path d="M4.93 19.07l1.41-1.41"></path>
+        <path d="M17.66 6.34l1.41-1.41"></path>
+      </svg>
+    `;
+  }
+  return `
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"></path>
+    </svg>
+  `;
+}
+
+function syncThemeTogglePresentation() {
+  const themeToggle = document.getElementById("themeToggle");
+  const themeIcon = document.getElementById("themeToggleIcon");
+  if (!themeToggle || !themeIcon) return;
+  const isDarkMode = document.body.classList.contains("dark-mode");
+  setToolbarIcon(themeIcon, getThemeToolbarIconMarkup(isDarkMode));
+  const tooltip = isDarkMode ? "Switch to light mode" : "Switch to dark mode";
+  themeToggle.setAttribute("aria-label", tooltip);
+  themeToggle.setAttribute("title", tooltip);
+  themeToggle.setAttribute("data-tooltip", tooltip);
+}
 
 function withSyntheticTopics(topicsData) {
   const baseTopics = Array.isArray(topicsData) ? [...topicsData] : [];
@@ -831,7 +889,8 @@ async function refreshUserUpgradeStatus() {
 
 function updateAuthUI() {
   const user = getCurrentUser();
-  const authActionLabel = document.getElementById("authActionLabel");
+  const authActionBtn = document.getElementById("authActionBtn");
+  const authActionIcon = document.getElementById("authActionIcon");
   const authModeHint = document.getElementById("authModeHint");
   const profileDisplayName = document.getElementById("profileDisplayName");
   const profileSubtitle = document.getElementById("profileSubtitle");
@@ -840,8 +899,15 @@ function updateAuthUI() {
   const openAdminBtn = document.getElementById("openAdminBtn");
   const openStatesBtn = document.getElementById("openStatesBtn");
   const isAdmin = isCurrentUserAdmin();
-  if (authActionLabel) {
-    authActionLabel.textContent = user ? getAuthSummaryLabel() : "Login";
+  if (authActionBtn && authActionIcon) {
+    const isSignedIn = Boolean(user);
+    setToolbarIcon(authActionIcon, getAuthToolbarIconMarkup(isSignedIn));
+    const tooltip = isSignedIn
+      ? "Account options (profile/admin/logout)"
+      : "Login or register";
+    authActionBtn.setAttribute("aria-label", tooltip);
+    authActionBtn.setAttribute("title", tooltip);
+    authActionBtn.setAttribute("data-tooltip", tooltip);
   }
   if (authModeHint) {
     const cloudConfigMissing = isCloudAuthMisconfigured();
@@ -1622,7 +1688,6 @@ document.addEventListener("DOMContentLoaded", async function () {
   });
 
   const themeToggle = document.getElementById("themeToggle");
-  const themeIcon = document.querySelector(".theme-icon");
   const body = document.body;
 
   const savedTheme = localStorage.getItem("theme");
@@ -1630,23 +1695,21 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   if (savedTheme === "dark" || (!savedTheme && osDark)) {
     body.classList.add("dark-mode");
-    if (themeIcon) themeIcon.textContent = "Dark";
   } else {
     body.classList.remove("dark-mode");
-    if (themeIcon) themeIcon.textContent = "Light";
   }
+  syncThemeTogglePresentation();
 
   if (themeToggle) {
     themeToggle.addEventListener("click", () => {
       body.classList.toggle("dark-mode");
 
       if (body.classList.contains("dark-mode")) {
-        if (themeIcon) themeIcon.textContent = "Dark";
         localStorage.setItem("theme", "dark");
       } else {
-        if (themeIcon) themeIcon.textContent = "Light";
         localStorage.setItem("theme", "light");
       }
+      syncThemeTogglePresentation();
     });
   }
 });
