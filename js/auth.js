@@ -1796,3 +1796,48 @@ export async function getAdminUserDirectory() {
     warning: "",
   };
 }
+
+async function ensureAdminCloudSession() {
+  if (!isCurrentUserAdmin()) {
+    throw new Error("Admin access is required.");
+  }
+
+  const session = readSession();
+  if (!isCloudAuthEnabled() || session?.provider !== "firebase") {
+    throw new Error("Cloud session is unavailable.");
+  }
+
+  const freshSession = await ensureCloudSessionActive(session, { clearOnFailure: true });
+  if (!freshSession?.accessToken) {
+    throw new Error("Cloud session is unavailable.");
+  }
+
+  return freshSession;
+}
+
+export async function updateCloudUserStatusById(profileId, status) {
+  const normalizedProfileId = String(profileId || "").trim();
+  if (!normalizedProfileId) {
+    throw new Error("Profile id is required.");
+  }
+
+  const nextStatus = normalizeStatus(status);
+  const session = await ensureAdminCloudSession();
+  await patchCloudProfileFields(session.accessToken, normalizedProfileId, {
+    status: { stringValue: nextStatus },
+    lastSeenAt: { timestampValue: toIsoTimestamp(new Date().toISOString()) },
+  });
+}
+
+export async function deleteCloudUserById(profileId) {
+  const normalizedProfileId = String(profileId || "").trim();
+  if (!normalizedProfileId) {
+    throw new Error("Profile id is required.");
+  }
+
+  const session = await ensureAdminCloudSession();
+  await firestoreRequest(`documents/profiles/${encodeURIComponent(normalizedProfileId)}`, {
+    method: "DELETE",
+    idToken: session.accessToken,
+  });
+}

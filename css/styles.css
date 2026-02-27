@@ -118,7 +118,7 @@ h3,
     border-radius: var(--radius-lg);
     padding: var(--space-2);
     box-shadow: var(--shadow);
-    margin-bottom: var(--space-3);
+    margin-bottom: var(--space-2);
 }
 
 .header-actions {
@@ -288,7 +288,7 @@ h3,
 
 .screen {
     display: grid;
-    gap: var(--space-4);
+    gap: var(--space-3);
     animation: fade-up 0.26s ease;
 }
 
@@ -385,7 +385,7 @@ h3,
 .card-container,
 .mode-grid {
     display: grid;
-    gap: var(--space-3);
+    gap: var(--space-2);
 }
 
 .dashboard-grid {
@@ -394,6 +394,19 @@ h3,
 
 .dashboard-grid.two-col {
     grid-template-columns: 1fr;
+}
+
+.admin-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.hero-meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    align-items: center;
 }
 
 .card-container {
@@ -408,13 +421,13 @@ h3,
     background: var(--card);
     border: 1px solid var(--line);
     border-radius: var(--radius);
-    padding: var(--space-3);
+    padding: var(--space-2);
     box-shadow: var(--shadow);
     margin-bottom: 0;
 }
 
 .card > * + * {
-    margin-top: var(--space-2);
+    margin-top: var(--space-1);
 }
 
 .hero-panel {
@@ -571,7 +584,7 @@ h3,
 }
 
 .section-head {
-    margin-bottom: var(--space-2);
+    margin-bottom: var(--space-1);
 }
 
 .section-head .eyebrow {
@@ -639,6 +652,49 @@ h3,
     flex-wrap: wrap;
     gap: var(--space-2);
     align-items: center;
+}
+
+.admin-request-toolbar,
+.admin-user-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    align-items: center;
+}
+
+.admin-request-toolbar .search-wrap,
+.admin-user-toolbar .search-wrap {
+    flex: 1 1 260px;
+    width: auto;
+    min-width: 220px;
+}
+
+.admin-request-toolbar select,
+.admin-user-toolbar select {
+    flex: 0 0 170px;
+    min-width: 160px;
+}
+
+.admin-request-toolbar button,
+.admin-user-toolbar button {
+    flex: 0 0 auto;
+}
+
+.plan-override-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    align-items: flex-end;
+}
+
+.plan-override-row .auth-field {
+    flex: 1 1 240px;
+    min-width: 200px;
+}
+
+.plan-override-row button {
+    flex: 0 0 auto;
+    align-self: flex-end;
 }
 
 .button-row {
@@ -1641,6 +1697,17 @@ select:focus-visible,
     font-weight: 600;
     color: var(--ink-900);
     white-space: nowrap;
+}
+
+.admin-user-table .actions-col {
+    min-width: 140px;
+    display: flex;
+    gap: 6px;
+}
+
+.directory-action {
+    padding: 6px 10px;
+    font-size: 0.78rem;
 }
 
 .chart-placeholder {

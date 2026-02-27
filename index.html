@@ -63,6 +63,20 @@
                         <span id="authActionIcon" class="toolbar-icon" aria-hidden="true"></span>
                     </button>
                     <button
+                        id="headerAdminBtn"
+                        class="icon-button icon-only hidden"
+                        aria-label="Admin controls"
+                        data-tooltip="Admin panel"
+                        title="Admin panel"
+                        type="button"
+                    >
+                        <span class="toolbar-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" focusable="false">
+                                <path d="M4 11l2.5-5 3 6 4-4 4 6 2.5-5 1 10H3z"></path>
+                            </svg>
+                        </span>
+                    </button>
+                    <button
                         id="headerProfileBtn"
                         class="icon-button icon-only"
                         aria-label="Open profile settings"
@@ -405,10 +419,33 @@
                         </div>
                         <p class="inline-warning">This panel is for configured admin emails only.</p>
                     </div>
-                    <div class="dashboard-grid two-col">
-                        <article class="card">
-                            <h3>Manual Upgrade Requests</h3>
-                            <p class="eyebrow">Bank transfer evidence queue</p>
+                    <div class="admin-stack">
+                        <article class="card admin-section-card">
+                            <div class="section-head screen-header">
+                                <h3>Plan Override</h3>
+                                <p class="eyebrow">Apply immediate access updates</p>
+                            </div>
+                            <div class="plan-override-row">
+                                <label class="auth-field">
+                                    <span>User Email</span>
+                                    <input id="adminOverrideEmail" type="email" placeholder="user@email.com" />
+                                </label>
+                                <label class="auth-field">
+                                    <span>Plan</span>
+                                    <select id="adminOverridePlan">
+                                        <option value="free">Free</option>
+                                        <option value="premium">Premium</option>
+                                    </select>
+                                </label>
+                                <button class="btn btn-primary" id="applyPlanOverrideBtn" type="button">Apply Override</button>
+                            </div>
+                            <div id="adminOverrideList" class="mistake-list"></div>
+                        </article>
+                        <article class="card admin-section-card">
+                            <div class="section-head screen-header">
+                                <h3>Manual Upgrade Requests</h3>
+                                <p class="eyebrow">Bank transfer evidence queue</p>
+                            </div>
                             <p class="hero-meta" id="adminRequestCount">Requests: 0/0</p>
                             <div class="toolbar-row admin-request-toolbar">
                                 <label class="search-wrap" for="adminRequestSearch">
@@ -429,48 +466,33 @@
                             </div>
                             <div id="adminRequestList" class="mistake-list"></div>
                         </article>
-                        <article class="card">
-                            <h3>Plan Override</h3>
-                            <p class="eyebrow">Apply immediate access updates</p>
-                            <div class="auth-form">
-                                <label class="auth-field">
-                                    <span>User Email</span>
-                                    <input id="adminOverrideEmail" type="email" placeholder="user@email.com" />
-                                </label>
-                                <label class="auth-field">
-                                    <span>Plan</span>
-                                    <select id="adminOverridePlan">
-                                        <option value="free">Free</option>
-                                        <option value="premium">Premium</option>
-                                    </select>
-                                </label>
-                                <button class="btn btn-primary" id="applyPlanOverrideBtn" type="button">Apply Override</button>
+                        <article class="card admin-section-card">
+                            <div class="section-head screen-header">
+                                <h3>Users and Account Status</h3>
+                                <p>Exclusive directory view for administrator accounts.</p>
                             </div>
-                            <div id="adminOverrideList" class="mistake-list"></div>
+                            <div class="hero-meta-row">
+                                <p class="hero-meta" id="adminUserSource">Source: loading...</p>
+                                <p class="hero-meta" id="adminUserCount">Users: 0</p>
+                            </div>
+                            <p class="inline-warning hidden" id="adminUserDirectoryNotice"></p>
+                            <div class="toolbar-row admin-user-toolbar">
+                                <label class="search-wrap" for="adminUserSearch">
+                                    <input id="adminUserSearch" type="search" placeholder="Search user email" />
+                                </label>
+                                <select id="adminStatusFilter" aria-label="Filter user status">
+                                    <option value="all">All Statuses</option>
+                                    <option value="active">Active</option>
+                                    <option value="suspended">Suspended</option>
+                                </select>
+                                <button class="btn btn-secondary" id="refreshAdminUsersBtn" type="button">Refresh</button>
+                            </div>
+                            <div id="adminUserList" class="mistake-list"></div>
                         </article>
                     </div>
-                    <div class="card">
-                        <div class="section-head screen-header">
-                            <h3>Users and Account Status</h3>
-                            <p>Exclusive directory view for administrator accounts.</p>
-                        </div>
-                        <p class="hero-meta" id="adminUserSource">Source: loading...</p>
-                        <p class="hero-meta" id="adminUserCount">Users: 0</p>
-                        <p class="inline-warning hidden" id="adminUserDirectoryNotice"></p>
-                        <div class="toolbar-row admin-user-toolbar">
-                            <label class="search-wrap" for="adminUserSearch">
-                                <input id="adminUserSearch" type="search" placeholder="Search user email" />
-                            </label>
-                            <select id="adminStatusFilter" aria-label="Filter user status">
-                                <option value="all">All Statuses</option>
-                                <option value="active">Active</option>
-                                <option value="suspended">Suspended</option>
-                            </select>
-                            <button class="btn btn-secondary" id="refreshAdminUsersBtn" type="button">Refresh</button>
-                        </div>
-                        <div id="adminUserList" class="mistake-list"></div>
+                    <div class="button-row">
+                        <button class="btn btn-ghost" onclick="showScreen('topicSelectionScreen')" type="button">Back</button>
                     </div>
-                    <div class="button-row"><button class="btn btn-ghost" onclick="showScreen('topicSelectionScreen')" type="button">Back</button></div>
                 </section>
             </main>
 

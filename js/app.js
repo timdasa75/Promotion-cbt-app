@@ -36,6 +36,8 @@ import {
   startCloudPlanAutoSync,
   submitUpgradeRequest,
   setPlanOverride,
+  updateCloudUserStatusById,
+  deleteCloudUserById,
 } from "./auth.js";
 
 let currentTopic = null;
@@ -905,9 +907,7 @@ function updateAuthUI() {
   if (authActionBtn && authActionIcon) {
     const isSignedIn = Boolean(user);
     setToolbarIcon(authActionIcon, getAuthToolbarIconMarkup(isSignedIn));
-    const tooltip = isSignedIn
-      ? "Account options (profile/admin/logout)"
-      : "Login or register";
+    const tooltip = isSignedIn ? "Logout" : "Login";
     authActionBtn.setAttribute("aria-label", tooltip);
     authActionBtn.setAttribute("title", tooltip);
     authActionBtn.setAttribute("data-tooltip", tooltip);
@@ -928,6 +928,13 @@ function updateAuthUI() {
     headerProfileBtn.setAttribute("aria-label", tooltip);
     headerProfileBtn.setAttribute("title", tooltip);
     headerProfileBtn.setAttribute("data-tooltip", tooltip);
+  }
+  if (headerAdminBtn) {
+    const adminTooltip = isAdmin ? "Open admin panel" : "Admin access restricted";
+    headerAdminBtn.classList.toggle("hidden", !isAdmin);
+    headerAdminBtn.setAttribute("aria-label", adminTooltip);
+    headerAdminBtn.setAttribute("title", adminTooltip);
+    headerAdminBtn.setAttribute("data-tooltip", adminTooltip);
   }
   if (authModeHint) {
     const cloudConfigMissing = isCloudAuthMisconfigured();
@@ -1258,6 +1265,7 @@ function renderAdminUserDirectory() {
         <th>Status</th>
         <th>Created</th>
         <th>Last Seen</th>
+        <th class="actions-col">Actions</th>
       </tr>
     </thead>
     <tbody></tbody>
@@ -1275,6 +1283,9 @@ function renderAdminUserDirectory() {
     const safeStatus = escapeHtml(entry.status);
     const safeCreated = escapeHtml(formatDateTime(entry.createdAt));
     const safeLastSeen = escapeHtml(formatDateTime(entry.lastSeenAt));
+    const toggleLabel = entry.status === "suspended" ? "Reinstate" : "Suspend";
+    const nextStatus = entry.status === "suspended" ? "active" : "suspended";
+    const safeProfileId = escapeHtml(entry.id);
     row.innerHTML = `
       <td class="email-cell">${safeEmail}</td>
       <td><span class="admin-badge ${roleClass}">${safeRole}</span></td>
@@ -1282,12 +1293,44 @@ function renderAdminUserDirectory() {
       <td><span class="admin-badge ${statusClass}">${safeStatus}</span></td>
       <td>${safeCreated}</td>
       <td>${safeLastSeen}</td>
+      <td class="actions-col">
+        <button class="btn btn-secondary directory-action" data-action="toggle-status" data-profile-id="${safeProfileId}" data-next-status="${nextStatus}" type="button">
+          ${toggleLabel}
+        </button>
+        <button class="btn btn-destructive directory-action" data-action="delete-user" data-profile-id="${safeProfileId}" data-profile-email="${safeEmail}" type="button">
+          Delete
+        </button>
+      </td>
     `;
     tbody.appendChild(row);
   });
 
   tableWrap.appendChild(table);
   container.appendChild(tableWrap);
+
+  table.addEventListener("click", async (event) => {
+    const button = event.target.closest(".directory-action");
+    if (!button) return;
+    const action = button.dataset.action;
+    const profileId = button.dataset.profileId;
+    const profileEmail = button.dataset.profileEmail;
+    try {
+      if (action === "toggle-status") {
+        const nextStatus = button.dataset.nextStatus;
+        await updateCloudUserStatusById(profileId, nextStatus);
+      } else if (action === "delete-user") {
+        const confirmMessage = `Delete ${profileEmail || "this account"}? This cannot be undone.`;
+        if (!confirm(confirmMessage)) {
+          return;
+        }
+        await deleteCloudUserById(profileId);
+      }
+      await refreshAdminUserDirectory();
+      renderAdminUserDirectory();
+    } catch (error) {
+      showWarning(error?.message || "Unable to complete the requested action.");
+    }
+  });
 }
 
 async function refreshAdminUserDirectory() {
@@ -1376,6 +1419,18 @@ function toggleAccountMenu() {
   accountMenu.classList.toggle("hidden");
 }
 
+async function openAdminScreen() {
+  if (!isCurrentUserAdmin()) {
+    showWarning("Admin access is restricted.");
+    return;
+  }
+  closeAccountMenu();
+  renderAdminRequests();
+  renderAdminOverrides();
+  await refreshAdminUserDirectory();
+  showScreen("adminScreen");
+}
+
 async function performLogout() {
   logoutUser();
   clearScreenState();
@@ -1391,6 +1446,7 @@ async function performLogout() {
 function initializeAuthUI() {
   const authActionBtn = document.getElementById("authActionBtn");
   const headerProfileBtn = document.getElementById("headerProfileBtn");
+  const headerAdminBtn = document.getElementById("headerAdminBtn");
   const authCloseBtn = document.getElementById("authCloseBtn");
   const authModal = document.getElementById("authModal");
   const loginTab = document.getElementById("authTabLogin");
@@ -1417,10 +1473,10 @@ function initializeAuthUI() {
   if (authActionBtn) {
     authActionBtn.addEventListener("click", async () => {
       if (getCurrentUser()) {
-        toggleAccountMenu();
-      } else {
-        openAuthModal("login");
+        await performLogout();
+        return;
       }
+      openAuthModal("login");
     });
   }
 
@@ -1651,13 +1707,19 @@ function initializeAuthUI() {
   }
 
   if (headerProfileBtn) {
-    headerProfileBtn.addEventListener("click", () => {
+    headerProfileBtn.addEventListener("click", (event) => {
+      event.stopPropagation();
       closeAccountMenu();
       if (!getCurrentUser()) {
         openAuthModal("login");
         return;
       }
-      showScreen("profileScreen");
+      toggleAccountMenu();
+    });
+  }
+  if (headerAdminBtn) {
+    headerAdminBtn.addEventListener("click", async () => {
+      await openAdminScreen();
     });
   }
 

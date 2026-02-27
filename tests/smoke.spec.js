@@ -48,7 +48,7 @@ test("dashboard filters and action buttons are interactive", async ({ page }) =>
 
 test("user profile shows payment confirmation status after submission", async ({ page }) => {
   await registerAndEnter(page, "upgrade-status@example.com");
-  await page.click("#authActionBtn");
+  await page.click("#headerProfileBtn");
   await page.click("#accountMenuProfileBtn");
   await expect(page.locator("#profileScreen")).toBeVisible();
 
