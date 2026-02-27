@@ -409,6 +409,24 @@
                         <article class="card">
                             <h3>Manual Upgrade Requests</h3>
                             <p class="eyebrow">Bank transfer evidence queue</p>
+                            <p class="hero-meta" id="adminRequestCount">Requests: 0/0</p>
+                            <div class="toolbar-row admin-request-toolbar">
+                                <label class="search-wrap" for="adminRequestSearch">
+                                    <input id="adminRequestSearch" type="search" placeholder="Search email, ref, note" />
+                                </label>
+                                <select id="adminRequestStatusFilter" aria-label="Filter request status">
+                                    <option value="all">All Statuses</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="approved">Approved</option>
+                                    <option value="rejected">Rejected</option>
+                                </select>
+                                <select id="adminRequestSourceFilter" aria-label="Filter request source">
+                                    <option value="all">All Sources</option>
+                                    <option value="cloud-profile">Cloud Profile</option>
+                                    <option value="local">Local Device</option>
+                                </select>
+                                <button class="btn btn-secondary" id="refreshAdminRequestsBtn" type="button">Refresh</button>
+                            </div>
                             <div id="adminRequestList" class="mistake-list"></div>
                         </article>
                         <article class="card">

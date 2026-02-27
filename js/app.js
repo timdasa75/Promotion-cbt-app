@@ -1072,61 +1072,105 @@ function renderAdminRequests() {
   });
 
   container.innerHTML = "";
-  if (!requests.length) {
+  const searchInput = document.getElementById("adminRequestSearch");
+  const statusFilter = document.getElementById("adminRequestStatusFilter");
+  const sourceFilter = document.getElementById("adminRequestSourceFilter");
+  const countLabel = document.getElementById("adminRequestCount");
+  const query = String(searchInput?.value || "").trim().toLowerCase();
+  const statusValue = String(statusFilter?.value || "all").toLowerCase();
+  const sourceValue = String(sourceFilter?.value || "all").toLowerCase();
+
+  const filtered = requests.filter((request) => {
+    if (statusValue !== "all" && request.status !== statusValue) return false;
+    if (sourceValue !== "all" && request.source !== sourceValue) return false;
+    if (!query) return true;
+    return (
+      request.email.includes(query) ||
+      request.reference.toLowerCase().includes(query) ||
+      request.note.toLowerCase().includes(query)
+    );
+  });
+
+  if (countLabel) {
+    countLabel.textContent = `Requests: ${filtered.length}/${requests.length}`;
+  }
+
+  if (!filtered.length) {
     container.innerHTML =
       '<div class="admin-request-item"><p class="meta">No upgrade requests submitted yet.</p></div>';
     return;
   }
 
-  requests.forEach((request) => {
-    const card = document.createElement("div");
-    card.className = "admin-request-item";
+  const tableWrap = document.createElement("div");
+  tableWrap.className = "admin-request-table-wrap";
+  const table = document.createElement("table");
+  table.className = "admin-request-table";
+  table.innerHTML = `
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Status</th>
+        <th>Amount</th>
+        <th>Reference</th>
+        <th>Submitted</th>
+        <th>Reviewed</th>
+        <th>Source</th>
+        <th class="actions-col">Actions</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  `;
+  const tbody = table.querySelector("tbody");
+
+  filtered.forEach((request) => {
+    const row = document.createElement("tr");
     const statusClass = statusBadgeClass(request.status);
-    const safeRequestId = escapeHtml(request.id);
     const safeEmail = escapeHtml(request.email);
     const safeStatus = escapeHtml(request.status || "pending");
-    const safeSubmittedAt = escapeHtml(formatDateTime(request.createdAt));
-    const safeReference = escapeHtml(request.reference || "-");
     const safeAmount = escapeHtml(request.amount || "-");
-    const safeNote = escapeHtml(request.note || "-");
-    const safeReviewNote = escapeHtml(request.reviewNote || "");
+    const safeReference = escapeHtml(request.reference || "-");
+    const safeSubmittedAt = escapeHtml(formatDateTime(request.createdAt));
     const safeReviewedAt = escapeHtml(formatDateTime(request.reviewedAt));
     const safeSource = request.source === "cloud-profile" ? "Cloud Profile" : "Local device";
-    card.innerHTML = `
-        <div class="button-row">
-          <strong>${safeEmail}</strong>
-          <span class="admin-badge ${statusClass}">${safeStatus}</span>
-        </div>
-        <div class="meta">Submitted: ${safeSubmittedAt}</div>
-        <div class="meta">Ref: ${safeReference}</div>
-        <div class="meta">Amount: ${safeAmount}</div>
-        <div class="meta">Note: ${safeNote}</div>
-        ${safeReviewNote ? `<div class="meta">Review Note: ${safeReviewNote}</div>` : ""}
-        ${request.reviewedAt ? `<div class="meta">Reviewed: ${safeReviewedAt}</div>` : ""}
-        <div class="meta">Source: ${safeSource}</div>
-        <div class="button-row">
-          <button class="btn btn-secondary" data-approve-id="${safeRequestId}" type="button">Approve</button>
-          <button class="btn btn-ghost" data-reject-id="${safeRequestId}" type="button">Reject</button>
-        </div>
-      `;
+    row.innerHTML = `
+      <td class="email-cell">${safeEmail}</td>
+      <td><span class="admin-badge ${statusClass}">${safeStatus}</span></td>
+      <td>${safeAmount}</td>
+      <td>${safeReference}</td>
+      <td>${safeSubmittedAt}</td>
+      <td>${safeReviewedAt || "-"}</td>
+      <td>${safeSource}</td>
+      <td class="actions-col">
+        <button class="btn btn-secondary action-btn" data-approve-id="${escapeHtml(request.id)}" type="button">Approve</button>
+        <button class="btn btn-ghost action-btn" data-reject-id="${escapeHtml(request.id)}" type="button">Reject</button>
+      </td>
+    `;
+    tbody.appendChild(row);
+  });
 
-    const approveBtn = card.querySelector("[data-approve-id]");
-    const rejectBtn = card.querySelector("[data-reject-id]");
-    if (approveBtn) {
-      approveBtn.addEventListener("click", async () => {
+  container.appendChild(tableWrap);
+  tableWrap.appendChild(table);
+
+  tableWrap
+    .querySelectorAll(".action-btn")
+    .forEach((button) => button.addEventListener("click", async () => {
+      const approveId = button.getAttribute("data-approve-id");
+      const rejectId = button.getAttribute("data-reject-id");
+      if (approveId) {
+        const target = filtered.find((entry) => entry.id === approveId);
+        if (!target) return;
         const now = new Date().toISOString();
         const next = readUpgradeRequests().map((entry) => {
-          const sameId = String(entry?.id || "") === request.id;
+          const sameId = String(entry?.id || "") === target.id;
           const sameEmailPending =
-            String(entry?.email || "").trim().toLowerCase() === request.email &&
+            String(entry?.email || "").trim().toLowerCase() === target.email &&
             normalizeUpgradeRequestStatus(entry?.status) === "pending";
           if (!sameId && !sameEmailPending) return entry;
           return { ...entry, status: "approved", reviewedAt: now };
         });
         writeUpgradeRequests(next);
-
-        const cloudStatusResult = await setUpgradeRequestStatus(request.email, "approved");
-        const overrideResult = await setPlanOverride(request.email, "premium");
+        const cloudStatusResult = await setUpgradeRequestStatus(target.email, "approved");
+        const overrideResult = await setPlanOverride(target.email, "premium");
         updateAuthUI();
         refreshDashboardInsights();
         await refreshAccessibleTopics();
@@ -1139,30 +1183,29 @@ function renderAdminRequests() {
         if (overrideResult.warning) {
           showWarning(`Plan override saved. ${overrideResult.warning}`);
         }
-      });
-    }
-    if (rejectBtn) {
-      rejectBtn.addEventListener("click", async () => {
+        return;
+      }
+      if (rejectId) {
+        const target = filtered.find((entry) => entry.id === rejectId);
+        if (!target) return;
         const now = new Date().toISOString();
         const next = readUpgradeRequests().map((entry) => {
-          const sameId = String(entry?.id || "") === request.id;
+          const sameId = String(entry?.id || "") === target.id;
           const sameEmailPending =
-            String(entry?.email || "").trim().toLowerCase() === request.email &&
+            String(entry?.email || "").trim().toLowerCase() === target.email &&
             normalizeUpgradeRequestStatus(entry?.status) === "pending";
           if (!sameId && !sameEmailPending) return entry;
           return { ...entry, status: "rejected", reviewedAt: now };
         });
         writeUpgradeRequests(next);
-        const cloudStatusResult = await setUpgradeRequestStatus(request.email, "rejected");
+        const cloudStatusResult = await setUpgradeRequestStatus(target.email, "rejected");
         await refreshAdminUserDirectory();
         renderAdminRequests();
         if (cloudStatusResult.warning) {
           showWarning(`Status sync notice: ${cloudStatusResult.warning}`);
         }
-      });
-    }
-    container.appendChild(card);
-  });
+      }
+    }));
 }
 
 function formatDateTime(value) {
@@ -1366,6 +1409,10 @@ function initializeAuthUI() {
   const refreshAdminUsersBtn = document.getElementById("refreshAdminUsersBtn");
   const adminUserSearch = document.getElementById("adminUserSearch");
   const adminStatusFilter = document.getElementById("adminStatusFilter");
+  const adminRequestSearch = document.getElementById("adminRequestSearch");
+  const adminRequestStatusFilter = document.getElementById("adminRequestStatusFilter");
+  const adminRequestSourceFilter = document.getElementById("adminRequestSourceFilter");
+  const refreshAdminRequestsBtn = document.getElementById("refreshAdminRequestsBtn");
 
   if (authActionBtn) {
     authActionBtn.addEventListener("click", async () => {
@@ -1651,6 +1698,22 @@ function initializeAuthUI() {
       updateAuthUI();
       refreshDashboardInsights();
       await refreshAccessibleTopics();
+    });
+  }
+
+  if (adminRequestSearch) {
+    adminRequestSearch.addEventListener("input", () => renderAdminRequests());
+  }
+  if (adminRequestStatusFilter) {
+    adminRequestStatusFilter.addEventListener("change", () => renderAdminRequests());
+  }
+  if (adminRequestSourceFilter) {
+    adminRequestSourceFilter.addEventListener("change", () => renderAdminRequests());
+  }
+  if (refreshAdminRequestsBtn) {
+    refreshAdminRequestsBtn.addEventListener("click", async () => {
+      await refreshAdminUserDirectory();
+      renderAdminRequests();
     });
   }
 
