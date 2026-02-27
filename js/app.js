@@ -949,7 +949,13 @@ function updateAuthUI() {
     profileDisplayName.textContent = user?.name || "Guest User";
   }
   if (profileSubtitle) {
-    profileSubtitle.textContent = user?.email || "Login to manage your profile";
+    if (!user) {
+      profileSubtitle.textContent = "Login to manage your profile";
+    } else if (isCurrentUserAdmin()) {
+      profileSubtitle.textContent = "Admin access";
+    } else {
+      profileSubtitle.textContent = user.plan === "premium" ? "Premium access" : "Free access";
+    }
   }
   if (profileAvatar) {
     const seed = user?.name || user?.email || "GU";

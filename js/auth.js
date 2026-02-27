@@ -85,6 +85,38 @@ function getFirebaseConfig() {
   return { firebaseApiKey, firebaseProjectId, firebaseAuthDomain };
 }
 
+function getIdentityToolkitDeleteUrl() {
+  const { firebaseProjectId } = getFirebaseConfig();
+  if (!firebaseProjectId) {
+    throw new Error("Firebase project ID is missing.");
+  }
+  return `https://identitytoolkit.googleapis.com/v1/projects/${encodeURIComponent(firebaseProjectId)}/accounts:delete`;
+}
+
+async function deleteFirebaseAuthUserById(localId, accessToken) {
+  if (!localId) {
+    throw new Error("User identifier is required.");
+  }
+  if (!accessToken) {
+    throw new Error("Cloud session is unavailable.");
+  }
+
+  const url = getIdentityToolkitDeleteUrl();
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ localId }),
+  });
+  const payload = await response.json().catch(() => null);
+  if (!response.ok) {
+    const message = payload?.error?.message || "Firebase Authentication deletion failed.";
+    throw new Error(message);
+  }
+}
+
 function isLocalDevelopmentHost() {
   const host = String(window.location.hostname || "").trim().toLowerCase();
   return host === "" || host === "localhost" || host === "127.0.0.1";
@@ -1518,8 +1550,8 @@ export function getProgressStorageKeyForCurrentUser() {
 export function getAuthSummaryLabel() {
   const user = getCurrentUser();
   if (!user) return "Login";
-  if (isCurrentUserAdmin()) return `${user.name} (Admin)`;
-  return user.plan === "premium" ? `${user.name} (Premium)` : `${user.name} (Free)`;
+  if (isCurrentUserAdmin()) return "Administrator";
+  return user.plan === "premium" ? "Premium access" : "Free access";
 }
 
 export function getAuthProviderLabel() {
@@ -1840,4 +1872,12 @@ export async function deleteCloudUserById(profileId) {
     method: "DELETE",
     idToken: session.accessToken,
   });
+
+  try {
+    await deleteFirebaseAuthUserById(normalizedProfileId, session.accessToken);
+  } catch (error) {
+    throw new Error(
+      `Cloud profile removed but Firebase Authentication deletion failed: ${error.message || "unknown reason"}`,
+    );
+  }
 }
