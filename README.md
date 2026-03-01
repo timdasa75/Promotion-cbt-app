@@ -69,6 +69,8 @@ Cloud setup guide:
 - Restrict Firebase/Google API key usage by:
   - allowed referrers (your production domain only)
   - allowed APIs (Identity Toolkit + Secure Token + Firestore only, if used)
+- The runtime config now includes a safeguards script that warns in the console when placeholder strings remain present; ensure deployment injects unique values before going live.
+- A strict Content Security Policy meta tag now restricts scripts/connections to Firebase domains only. Keep the CSP in sync with any additional CDN domains you must allow.
 
 ## Plans and Access
 
@@ -115,6 +117,12 @@ Then in GitHub:
 1. `Settings -> Pages -> Build and deployment -> Source: GitHub Actions`
 2. Push to `main` (or run workflow manually).
 3. Verify deployed site shows `Auth mode: Cloud (multi-device)`.
+
+### Identity Toolkit admin operations (Recommendation)
+
+- Deleting Firestore profiles now calls the Identity Toolkit `accounts:delete` API. That requires the Firebase project to expose an OAuth token with `https://www.googleapis.com/auth/identitytoolkit`.
+- Provide the token via `config/runtime-auth.js` (or a workflow secret) by using a short-lived Google OAuth 2.0 token obtained from a service account with the `Cloud Identity` role. Store it outside the repo and rotate it regularly.
+ - Deployments that use GitHub Actions can mint the token during the workflow (using `gcloud auth print-access-token --scope=https://www.googleapis.com/auth/identitytoolkit`) and place it in `config/runtime-auth.js` before publishing.
 
 If secrets are missing, deployment fails and the app shows:
 - `Auth mode: Cloud required (runtime config missing)`

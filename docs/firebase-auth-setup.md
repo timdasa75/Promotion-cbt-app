@@ -191,6 +191,26 @@ Admin note:
 Operational recommendation:
 - Keep real Firebase config in a deployment-managed script or environment injection step, not directly in repo source.
 
+### Identity Toolkit admin operations
+
+- Deleting a Firestore `profiles` document requires the same session to delete the Firebase Auth account via the Identity Toolkit `accounts:delete` endpoint. That API must be called with an OAuth token scoped to `https://www.googleapis.com/auth/identitytoolkit`.
+- Mint a short-lived service account token during your GitHub Actions deployment (e.g., `gcloud auth print-access-token --scope=https://www.googleapis.com/auth/identitytoolkit`) and wire it into `config/runtime-auth.js` or an equivalent runtime-injected script.
+
+### Content Security Policy guidance
+
+- Keep the CSP meta tag aligned with the domains mentioned above; if you add any new CDN domains, update the policy accordingly. Example header (already present in `index.html`):
+  ```
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://www.gstatic.com https://www.googleapis.com https://identitytoolkit.googleapis.com; connect-src 'self' https://www.googleapis.com https://identitytoolkit.googleapis.com https://firestore.googleapis.com https://securetoken.googleapis.com; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; base-uri 'self'; frame-ancestors 'none'; form-action 'self';
+  ```
+
+### Deployment hardening checklist
+
+- Rotate Firebase API keys/project credentials before each production deploy and document the rotations.  
+- Restrict API key usage to the production domain and just the necessary APIs (Identity Toolkit, Secure Token, Firestore).  
+- Publish and emulate the security rules above so admin operations still succeed in CI.  
+- Confirm the placeholder detector (see `index.html`) logs a warning before a release if any `REPLACE`, `PROMOTION`, or `ADMIN` substrings remain.  
+- Validate the CSP meta tag any time you add external domains (fonts, analytics, etc.) and re-run the `npx csp-evaluator` if you extend the policy.
+
 ## 10. What To Send Back For Migration
 
 Share these values:

@@ -1376,6 +1376,7 @@ async function refreshAdminUserDirectory() {
       notice.textContent = error.message || "Unable to load admin user directory.";
       notice.classList.remove("hidden");
     }
+    console.error("Failed to refresh admin user directory:", error);
   }
 }
 

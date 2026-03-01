@@ -7,6 +7,10 @@
             name="description"
             content="Promotion CBT for Nigerian Federal Civil Service exam preparation"
         />
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'self'; script-src 'self' https://www.gstatic.com https://www.googleapis.com https://identitytoolkit.googleapis.com; connect-src 'self' https://www.googleapis.com https://identitytoolkit.googleapis.com https://firestore.googleapis.com https://securetoken.googleapis.com; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; base-uri 'self'; frame-ancestors 'none'; form-action 'self';"
+        />
         <title>Promotion CBT</title>
         <link rel="stylesheet" href="css/normalize.css" />
         <link rel="stylesheet" href="css/fonts.css" />
@@ -38,6 +42,23 @@
                       );
             window.PROMOTION_CBT_AUTH = window.PROMOTION_CBT_AUTH || {};
             window.PROMOTION_CBT_ADMIN_EMAILS = window.PROMOTION_CBT_ADMIN_EMAILS || ["timdasa75@gmail.com"];
+        </script>
+        <script>
+            (function () {
+                const cfg = window.PROMOTION_CBT_AUTH || {};
+                const fields = [cfg.firebaseApiKey, cfg.firebaseProjectId, cfg.firebaseAuthDomain];
+                const suspects = ["PROMOTION", "REPLACE", "ADMIN", "YOUR_FIREBASE"];
+                const hasPlaceholder = fields.some((value) => {
+                    if (!value) return false;
+                    return suspects.some((needle) => String(value).toUpperCase().includes(needle));
+                });
+                if (hasPlaceholder) {
+                    console.warn(
+                        "Promotion CBT: runtime Firebase config contains placeholder strings. " +
+                            "Inject live keys via config/runtime-auth.js or the deployment workflow.",
+                    );
+                }
+            })();
         </script>
         <div class="app-container">
             <header class="app-shell-header">
