@@ -38,6 +38,7 @@ import {
   loginUser,
   logoutUser,
   requestPasswordReset,
+  resendVerificationEmailForUser,
   registerUser,
   setUpgradeRequestStatus,
   startCloudPlanAutoSync,
@@ -1568,9 +1569,9 @@ function renderAdminUserDirectory() {
     const safeStatus = escapeHtml(entry.status);
     const safeCreated = escapeHtml(formatDateTime(entry.createdAt));
     const safeLastSeen = escapeHtml(formatDateTime(entry.lastSeenAt));
-    const toggleLabel = entry.status === "suspended" ? "Reinstate" : "Suspend";
-    const nextStatus = entry.status === "suspended" ? "active" : "suspended";
-    const deactivateDisabled = entry.status === "suspended" ? "disabled" : "";
+    const isSuspended = entry.status === "suspended";
+    const accountActionLabel = isSuspended ? "Reactivate" : "Deactivate";
+    const accountNextStatus = isSuspended ? "active" : "suspended";
     const safeProfileId = escapeHtml(entry.id);
     const verifiedLabel = entry.emailVerified ? "Yes" : "No";
     const verifiedClass = entry.emailVerified ? "approved" : "pending";
@@ -1583,12 +1584,28 @@ function renderAdminUserDirectory() {
       <td>${safeCreated}</td>
       <td>${safeLastSeen}</td>
       <td class="actions-col">
-        <button class="btn btn-secondary directory-action" data-action="toggle-status" data-profile-id="${safeProfileId}" data-next-status="${nextStatus}" type="button">
-          ${toggleLabel}
-        </button>
-        <button class="btn btn-destructive directory-action" data-action="deactivate-user" data-profile-id="${safeProfileId}" data-profile-email="${safeEmail}" type="button" ${deactivateDisabled}>
-          Deactivate
-        </button>
+        <details class="directory-action-menu">
+          <summary class="directory-action-menu-toggle" aria-label="User actions" title="User actions">
+            <span class="toolbar-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <circle cx="12" cy="5" r="1.8"></circle>
+                <circle cx="12" cy="12" r="1.8"></circle>
+                <circle cx="12" cy="19" r="1.8"></circle>
+              </svg>
+            </span>
+          </summary>
+          <div class="directory-action-menu-list" role="menu" aria-label="User actions menu">
+            <button class="directory-action directory-action-menu-item" data-action="send-reset" data-profile-email="${safeEmail}" type="button" role="menuitem">
+              Reset password
+            </button>
+            <button class="directory-action directory-action-menu-item" data-action="resend-verification" data-profile-email="${safeEmail}" data-email-verified="${entry.emailVerified ? "true" : "false"}" type="button" role="menuitem">
+              Resend verification
+            </button>
+            <button class="directory-action directory-action-menu-item danger" data-action="set-account-state" data-profile-id="${safeProfileId}" data-profile-email="${safeEmail}" data-next-status="${accountNextStatus}" type="button" role="menuitem">
+              ${accountActionLabel} account
+            </button>
+          </div>
+        </details>
       </td>
     `;
     tbody.appendChild(row);
@@ -1597,48 +1614,115 @@ function renderAdminUserDirectory() {
   tableWrap.appendChild(table);
   container.appendChild(tableWrap);
 
+  table.querySelectorAll(".directory-action-menu").forEach((menuEl) => {
+    menuEl.addEventListener("toggle", () => {
+      if (!menuEl.open) return;
+      table.querySelectorAll(".directory-action-menu[open]").forEach((other) => {
+        if (other !== menuEl) {
+          other.open = false;
+        }
+      });
+    });
+  });
+
   table.addEventListener("click", async (event) => {
     const button = event.target.closest(".directory-action");
     if (!button) return;
+    const menu = button.closest(".directory-action-menu");
+    if (menu) {
+      menu.open = false;
+    }
     const action = button.dataset.action;
+    if (!action) return;
     const profileId = button.dataset.profileId;
     const profileEmail = button.dataset.profileEmail;
+    const nextStatus = String(button.dataset.nextStatus || "").trim().toLowerCase();
+    const isEmailVerified = String(button.dataset.emailVerified || "").trim().toLowerCase() === "true";
     const targetLabel = profileEmail || profileId || "unknown-user";
-    const actionLabel = action === "deactivate-user"
+    const isDeactivateFlow = action === "set-account-state" && nextStatus === "suspended";
+    const isReactivateFlow = action === "set-account-state" && nextStatus === "active";
+    const actionLabel = isDeactivateFlow
       ? "Deactivate user account"
-      : "Update account status";
+      : isReactivateFlow
+        ? "Reactivate user account"
+        : action === "send-reset"
+          ? "Send password reset"
+          : action === "resend-verification"
+            ? "Resend verification email"
+        : "Update account status";
     let actionWarning = "";
-    if (action === "deactivate-user") {
-      const confirmMessage = `Deactivate ${targetLabel}? They will no longer be able to login.`;
+    if (action === "set-account-state") {
+      const confirmMessage = isDeactivateFlow
+        ? `Deactivate ${targetLabel}? They will no longer be able to login.`
+        : `Reactivate ${targetLabel}? They will be able to login again.`;
       if (!confirm(confirmMessage)) {
+        return;
+      }
+    }
+    if (action === "send-reset") {
+      if (!confirm(`Send password reset email to ${targetLabel}?`)) {
+        return;
+      }
+    }
+    if (action === "resend-verification") {
+      if (isEmailVerified) {
+        showWarning(`${targetLabel} is already verified.`);
+        return;
+      }
+      if (!confirm(`Resend verification email to ${targetLabel}?`)) {
         return;
       }
     }
     try {
       await runOperationWithFeedback(
         async () => {
-          if (action === "toggle-status") {
-            const nextStatus = button.dataset.nextStatus;
-            await updateCloudUserStatusById(profileId, nextStatus);
-          } else if (action === "deactivate-user") {
-            await updateCloudUserStatusById(profileId, "suspended");
-            actionWarning =
-              "Permanent Firebase Auth deletion is unavailable on Spark. Delete from Firebase Console when needed.";
+          if (action === "set-account-state") {
+            const resolvedStatus = nextStatus === "active" ? "active" : "suspended";
+            await updateCloudUserStatusById(profileId, resolvedStatus);
+            if (resolvedStatus === "suspended") {
+              actionWarning =
+                "Permanent Firebase Auth deletion is unavailable on Spark. Delete from Firebase Console when needed.";
+            }
+          } else if (action === "send-reset") {
+            await requestPasswordReset(profileEmail, window.location.href);
+          } else if (action === "resend-verification") {
+            const resendResult = await resendVerificationEmailForUser(
+              profileEmail,
+              window.location.href,
+            );
+            actionWarning = String(resendResult?.warning || "").trim();
           }
           await refreshAdminUserDirectory();
           renderAdminUserDirectory();
         },
         {
-          loadingMessage:
-            action === "deactivate-user"
-              ? "Deactivating user account..."
+          loadingMessage: isDeactivateFlow
+            ? "Deactivating user account..."
+            : isReactivateFlow
+              ? "Reactivating user account..."
+              : action === "send-reset"
+                ? "Sending password reset email..."
+                : action === "resend-verification"
+                  ? "Sending verification email..."
               : "Updating account status...",
-          successMessage:
-            action === "deactivate-user"
-              ? "User account deactivated."
+          successMessage: isDeactivateFlow
+            ? "User account deactivated."
+            : isReactivateFlow
+              ? "User account reactivated."
+              : action === "send-reset"
+                ? `Password reset email sent to ${targetLabel}.`
+                : action === "resend-verification"
+                  ? `Verification email resent to ${targetLabel}.`
               : "Account status updated.",
-          failurePrefix:
-            action === "deactivate-user" ? "User deactivation failed:" : "Status update failed:",
+          failurePrefix: isDeactivateFlow
+            ? "User deactivation failed:"
+            : isReactivateFlow
+              ? "User reactivation failed:"
+              : action === "send-reset"
+                ? "Password reset failed:"
+                : action === "resend-verification"
+                  ? "Resend verification failed:"
+              : "Status update failed:",
         },
       );
       logAdminOperation({
@@ -1646,9 +1730,15 @@ function renderAdminUserDirectory() {
         target: targetLabel,
         status: "success",
         message:
-          action === "deactivate-user"
+          isDeactivateFlow
             ? actionWarning || "Suspended in cloud profile."
-            : `Status updated to ${String(button.dataset.nextStatus || "").trim() || "target value"}.`,
+            : isReactivateFlow
+              ? "Restored to active status."
+              : action === "send-reset"
+                ? "Password reset email sent."
+                : action === "resend-verification"
+                  ? actionWarning || "Verification email resent."
+              : `Status updated to ${nextStatus || "target value"}.`,
       });
       renderAdminOperationHistory();
       if (actionWarning) {

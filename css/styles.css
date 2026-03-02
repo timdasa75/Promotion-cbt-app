@@ -1829,14 +1829,89 @@ select:focus-visible,
 }
 
 .admin-user-table .actions-col {
-    min-width: 140px;
+    min-width: 84px;
     display: flex;
+    justify-content: flex-end;
+    align-items: center;
     gap: 6px;
 }
 
 .directory-action {
     padding: 6px 10px;
     font-size: 0.78rem;
+}
+
+.directory-action-menu {
+    position: relative;
+    display: inline-block;
+}
+
+.directory-action-menu-toggle {
+    list-style: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    background: color-mix(in srgb, var(--surface) 85%, var(--card));
+    color: var(--ink-700);
+    cursor: pointer;
+    user-select: none;
+}
+
+.directory-action-menu-toggle::-webkit-details-marker {
+    display: none;
+}
+
+.directory-action-menu[open] .directory-action-menu-toggle {
+    border-color: color-mix(in srgb, var(--green-700) 55%, var(--line));
+    background: color-mix(in srgb, var(--green-700) 16%, var(--card));
+    color: var(--green-900);
+}
+
+.directory-action-menu-list {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 6px);
+    z-index: 12;
+    min-width: 198px;
+    display: grid;
+    gap: 2px;
+    padding: 6px;
+    border-radius: 12px;
+    border: 1px solid var(--line);
+    background: var(--card);
+    box-shadow: 0 14px 24px rgba(0, 0, 0, 0.18);
+}
+
+.directory-action-menu-item {
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--ink-900);
+    font-size: 0.84rem;
+    font-weight: 600;
+    text-align: left;
+    padding: 8px 10px;
+    cursor: pointer;
+}
+
+.directory-action-menu-item:hover,
+.directory-action-menu-item:focus-visible {
+    background: color-mix(in srgb, var(--green-700) 14%, var(--surface));
+    outline: none;
+}
+
+.directory-action-menu-item.danger {
+    color: var(--danger);
+}
+
+.directory-action-menu-item.danger:hover,
+.directory-action-menu-item.danger:focus-visible {
+    background: color-mix(in srgb, var(--danger-bg) 80%, var(--surface));
 }
 
 .chart-placeholder {

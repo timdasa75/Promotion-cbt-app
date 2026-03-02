@@ -103,6 +103,14 @@ function getIdentityToolkitDeleteUrl() {
   return `https://identitytoolkit.googleapis.com/v1/projects/${encodeURIComponent(firebaseProjectId)}/accounts:delete`;
 }
 
+function getIdentityToolkitProjectSendOobUrl() {
+  const { firebaseProjectId } = getFirebaseConfig();
+  if (!firebaseProjectId) {
+    throw new Error("Firebase project ID is missing.");
+  }
+  return `https://identitytoolkit.googleapis.com/v1/projects/${encodeURIComponent(firebaseProjectId)}/accounts:sendOobCode`;
+}
+
 async function deleteFirebaseAuthUserById(localId, accessToken) {
   if (!localId) {
     throw new Error("User identifier is required.");
@@ -125,6 +133,44 @@ async function deleteFirebaseAuthUserById(localId, accessToken) {
     const message = payload?.error?.message || "Firebase Authentication deletion failed.";
     throw new Error(message);
   }
+}
+
+async function sendProjectScopedOobCode({ requestType, email, accessToken, continueUrl = "" }) {
+  if (!requestType) {
+    throw new Error("Request type is required.");
+  }
+  if (!email) {
+    throw new Error("Email is required.");
+  }
+  if (!accessToken) {
+    throw new Error("Admin access token is missing.");
+  }
+
+  const body = {
+    requestType: String(requestType || "").trim(),
+    email: normalizeEmail(email),
+  };
+  const continueTarget = String(continueUrl || "").trim();
+  if (continueTarget) {
+    body.continueUrl = continueTarget;
+  }
+
+  const response = await fetch(getIdentityToolkitProjectSendOobUrl(), {
+    method: "POST",
+    credentials: "omit",
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+  });
+  const payload = await response.json().catch(() => null);
+  if (!response.ok) {
+    const message =
+      payload?.error?.message || payload?.error?.status || "Unable to send email action.";
+    throw new Error(message);
+  }
+  return payload;
 }
 
 function getAdminDeleteFunctionUrl() {
@@ -1321,6 +1367,63 @@ export async function requestPasswordReset(email, redirectTo = "") {
     method: "POST",
     body,
   });
+}
+
+export async function resendVerificationEmailForUser(email, redirectTo = "") {
+  const normalizedEmail = normalizeEmail(email);
+  if (!normalizedEmail || !normalizedEmail.includes("@")) {
+    throw new Error("Enter a valid email address.");
+  }
+  if (!isCloudAuthEnabled()) {
+    throw new Error("Email verification is available only in Cloud auth mode.");
+  }
+  if (!isCurrentUserAdmin()) {
+    throw new Error("Admin access is required.");
+  }
+
+  const session = readSession();
+  if (!session?.accessToken || session?.provider !== "firebase") {
+    throw new Error("Cloud session is unavailable.");
+  }
+
+  const freshSession = await ensureCloudSessionActive(session, { clearOnFailure: true });
+  if (!freshSession?.accessToken) {
+    throw new Error("Cloud session is unavailable.");
+  }
+
+  const continueTarget = String(redirectTo || "").trim();
+  const currentEmail = normalizeEmail(freshSession?.user?.email || "");
+  if (currentEmail && currentEmail === normalizedEmail) {
+    await firebaseAuthRequest("accounts:sendOobCode", {
+      method: "POST",
+      body: {
+        requestType: "VERIFY_EMAIL",
+        idToken: freshSession.accessToken,
+        ...(continueTarget ? { continueUrl: continueTarget } : {}),
+      },
+    });
+    return { delivered: true, warning: "" };
+  }
+
+  const { firebaseAdminAccessToken } = getFirebaseConfig();
+  if (!firebaseAdminAccessToken) {
+    throw new Error(
+      "Resend verification for other users requires PROMOTION_CBT_AUTH.firebaseAdminAccessToken. " +
+        "On Spark, ask the user to attempt login to trigger a new verification email.",
+    );
+  }
+
+  await sendProjectScopedOobCode({
+    requestType: "VERIFY_EMAIL",
+    email: normalizedEmail,
+    accessToken: firebaseAdminAccessToken,
+    continueUrl: continueTarget,
+  });
+
+  return {
+    delivered: true,
+    warning: "Verification email sent via admin-token fallback.",
+  };
 }
 
 function buildUpgradeRequestRecordFromProfile(profile) {
