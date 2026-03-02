@@ -193,8 +193,9 @@ Operational recommendation:
 
 ### Identity Toolkit admin operations
 
-- Deleting a Firestore `profiles` document requires the same session to delete the Firebase Auth account via the Identity Toolkit `accounts:delete` endpoint. That API must be called with an OAuth token scoped to `https://www.googleapis.com/auth/identitytoolkit`.
-- Mint a short-lived service account token during your GitHub Actions deployment (e.g., `gcloud auth print-access-token --scope=https://www.googleapis.com/auth/identitytoolkit`) and wire it into `config/runtime-auth.js` or an equivalent runtime-injected script.
+- Deploy the HTTPS function `adminDeleteUserById` (see `functions/index.js`) and call it from the admin panel. It validates the admin ID token, then deletes both Firebase Auth user and Firestore `profiles/{userId}` server-side.
+- Keep the `deleteAuthUserOnProfileDeletion` trigger deployed as a backup cascade.
+- Optional fallback: mint a short-lived OAuth token scoped to `https://www.googleapis.com/auth/identitytoolkit` during deployment (e.g., `gcloud auth print-access-token --scope=https://www.googleapis.com/auth/identitytoolkit`) and expose it as `firebaseAdminAccessToken` in runtime config.
 
 ### Content Security Policy guidance
 

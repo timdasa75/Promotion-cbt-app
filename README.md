@@ -120,9 +120,11 @@ Then in GitHub:
 
 ### Identity Toolkit admin operations (Recommendation)
 
-- Deleting Firestore profiles now calls the Identity Toolkit `accounts:delete` API. That requires the Firebase project to expose an OAuth token with `https://www.googleapis.com/auth/identitytoolkit`.
-- Provide the token via `config/runtime-auth.js` (or a workflow secret) by using a short-lived Google OAuth 2.0 token obtained from a service account with the `Cloud Identity` role. Store it outside the repo and rotate it regularly.
- - Deployments that use GitHub Actions can mint the token during the workflow (using `gcloud auth print-access-token --scope=https://www.googleapis.com/auth/identitytoolkit`) and place it in `config/runtime-auth.js` before publishing.
+- Deploy the Firebase HTTPS Cloud Function `adminDeleteUserById` from `functions/index.js`. Admin deletes call this server-side endpoint so Firebase Auth + Firestore profile deletion happen together with Admin SDK privileges.
+- Keep `deleteAuthUserOnProfileDeletion` deployed too; it remains a safety net that cascades profile deletions to Firebase Auth.
+- Optional fallback: provide `PROMOTION_CBT_AUTH.firebaseAdminAccessToken` in `config/runtime-auth.js` with a short-lived OAuth token scoped to `https://www.googleapis.com/auth/identitytoolkit`.
+- Deployments that use GitHub Actions can mint this fallback token during workflow runtime (`gcloud auth print-access-token --scope=https://www.googleapis.com/auth/identitytoolkit`) and inject it into generated runtime config.
+- Run `cd functions && npm install` and `firebase deploy --only functions` once, then trigger a new deploy whenever you release schema changes or add more functions.
 
 If secrets are missing, deployment fails and the app shows:
 - `Auth mode: Cloud required (runtime config missing)`

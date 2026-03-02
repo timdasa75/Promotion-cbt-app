@@ -1,7 +1,14 @@
 // app.js - Main application module
 
 import { loadData } from "./data.js";
-import { displayTopics, selectTopic, showError, showScreen, showWarning } from "./ui.js";
+import {
+  displayTopics,
+  selectTopic,
+  showError,
+  showScreen,
+  showSuccess,
+  showWarning,
+} from "./ui.js";
 import {
   clearPersistedQuizRuntime,
   getPersistedQuizRuntime,
@@ -37,7 +44,6 @@ import {
   submitUpgradeRequest,
   setPlanOverride,
   updateCloudUserStatusById,
-  deleteCloudUserById,
 } from "./auth.js";
 
 let currentTopic = null;
@@ -47,6 +53,8 @@ let recommendedTopicId = null;
 let lastSessionTopicId = null;
 let adminDirectoryUsers = [];
 const UPGRADE_REQUESTS_STORAGE_KEY = "cbt_upgrade_requests_v1";
+const ADMIN_OPERATION_HISTORY_STORAGE_KEY = "cbt_admin_operation_history_v1";
+const ADMIN_OPERATION_HISTORY_MAX = 120;
 const LOGIN_EMAIL_PREFILL_STORAGE_KEY = "cbt_login_prefill_email_v1";
 const SCREEN_STATE_STORAGE_KEY = "cbt_screen_state_v1";
 const ADMIN_DIRECTORY_SYNC_INTERVAL_MS = 15000;
@@ -101,6 +109,43 @@ const MOCK_EXAM_TOPIC = {
 function setToolbarIcon(target, svgMarkup) {
   if (!target) return;
   target.innerHTML = svgMarkup;
+}
+
+function showLoadingOverlay(show, message = "Loading Promotion CBT...") {
+  const overlay = document.getElementById("appLoadingOverlay");
+  const messageEl = document.getElementById("appLoadingMessage");
+  if (!overlay) return;
+  if (messageEl && show) {
+    messageEl.textContent = message;
+  }
+  overlay.classList.toggle("is-hidden", !show);
+}
+
+async function runOperationWithFeedback(
+  task,
+  {
+    loadingMessage = "Processing request...",
+    successMessage = "",
+    failurePrefix = "",
+  } = {},
+) {
+  showLoadingOverlay(true, loadingMessage);
+  try {
+    const result = await task();
+    const resolvedSuccess =
+      typeof successMessage === "function" ? successMessage(result) : successMessage;
+    if (resolvedSuccess) {
+      showSuccess(resolvedSuccess);
+    }
+    return result;
+  } catch (error) {
+    const errorText = String(error?.message || "Operation failed.");
+    const nextMessage = failurePrefix ? `${failurePrefix} ${errorText}` : errorText;
+    showError(nextMessage);
+    throw error;
+  } finally {
+    showLoadingOverlay(false);
+  }
 }
 
 function getAuthToolbarIconMarkup(isSignedIn) {
@@ -265,6 +310,97 @@ function readUpgradeRequests() {
 
 function writeUpgradeRequests(requests) {
   localStorage.setItem(UPGRADE_REQUESTS_STORAGE_KEY, JSON.stringify(requests || []));
+}
+
+function readAdminOperationHistory() {
+  try {
+    const raw = localStorage.getItem(ADMIN_OPERATION_HISTORY_STORAGE_KEY);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch (error) {
+    return [];
+  }
+}
+
+function writeAdminOperationHistory(history) {
+  const normalized = Array.isArray(history) ? history.slice(0, ADMIN_OPERATION_HISTORY_MAX) : [];
+  localStorage.setItem(ADMIN_OPERATION_HISTORY_STORAGE_KEY, JSON.stringify(normalized));
+}
+
+function logAdminOperation({ action = "", target = "", status = "success", message = "" } = {}) {
+  const user = getCurrentUser();
+  const nextEntry = {
+    id: `op_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
+    action: String(action || "").trim() || "operation",
+    target: String(target || "").trim() || "-",
+    status: String(status || "").trim().toLowerCase() === "failed" ? "failed" : "success",
+    message: String(message || "").trim(),
+    actor: String(user?.email || "").trim().toLowerCase() || "unknown-admin",
+    createdAt: new Date().toISOString(),
+  };
+  const history = readAdminOperationHistory();
+  history.unshift(nextEntry);
+  writeAdminOperationHistory(history);
+}
+
+function clearAdminOperationHistory() {
+  writeAdminOperationHistory([]);
+}
+
+function renderAdminOperationHistory() {
+  const container = document.getElementById("adminOperationHistoryList");
+  const countLabel = document.getElementById("adminOperationHistoryCount");
+  if (!container) return;
+
+  const history = readAdminOperationHistory();
+  if (countLabel) {
+    countLabel.textContent = `Entries: ${history.length}`;
+  }
+
+  if (!history.length) {
+    container.innerHTML =
+      '<div class="admin-request-item"><p class="meta">No admin operations logged yet.</p></div>';
+    return;
+  }
+
+  const tableWrap = document.createElement("div");
+  tableWrap.className = "admin-table-wrap";
+
+  const table = document.createElement("table");
+  table.className = "admin-user-table admin-history-table";
+  table.innerHTML = `
+    <thead>
+      <tr>
+        <th>Time</th>
+        <th>Action</th>
+        <th>Target</th>
+        <th>Status</th>
+        <th>Actor</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  `;
+
+  const tbody = table.querySelector("tbody");
+  history.forEach((entry) => {
+    const row = document.createElement("tr");
+    const statusClass = entry.status === "failed" ? "rejected" : "approved";
+    row.innerHTML = `
+      <td>${escapeHtml(formatDateTime(entry.createdAt))}</td>
+      <td>${escapeHtml(entry.action || "-")}</td>
+      <td class="email-cell">${escapeHtml(entry.target || "-")}</td>
+      <td><span class="admin-badge ${statusClass}">${escapeHtml(entry.status || "-")}</span></td>
+      <td class="email-cell">${escapeHtml(entry.actor || "-")}</td>
+      <td>${escapeHtml(entry.message || "-")}</td>
+    `;
+    tbody.appendChild(row);
+  });
+
+  tableWrap.appendChild(table);
+  container.innerHTML = "";
+  container.appendChild(tableWrap);
 }
 
 function normalizeUpgradeRequestStatus(value) {
@@ -716,16 +852,73 @@ function initializeDashboardActions() {
 
   if (openAdminBtn) {
     openAdminBtn.addEventListener("click", async () => {
-      if (!isCurrentUserAdmin()) {
-        showWarning("Admin access is restricted.");
-        return;
-      }
-      renderAdminRequests();
-      renderAdminOverrides();
-      await refreshAdminUserDirectory();
-      showScreen("adminScreen");
+      await openAdminScreen();
     });
   }
+}
+
+function initializeScreenLinkHandlers() {
+  const linkElements = document.querySelectorAll("[data-screen-target]");
+  linkElements.forEach((element) => {
+    const target = String(element.dataset.screenTarget || "").trim();
+    if (!target) return;
+    element.addEventListener("click", () => {
+      showScreen(target);
+    });
+  });
+}
+
+function getPasswordToggleIconMarkup(isVisible) {
+  if (isVisible) {
+    return `
+      <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+        <path d="M3 3l18 18"></path>
+        <path d="M10.6 10.6a2 2 0 0 0 2.8 2.8"></path>
+        <path d="M9.9 5.1A10.3 10.3 0 0 1 12 4.8c5.5 0 9.3 4.7 10.3 7.2-.5 1.2-1.7 2.9-3.5 4.3"></path>
+        <path d="M6.1 7.1A14.8 14.8 0 0 0 1.8 12c1 2.6 4.8 7.2 10.2 7.2 1 0 2-.2 2.9-.5"></path>
+      </svg>
+    `;
+  }
+  return `
+    <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+      <path d="M1.8 12c1-2.6 4.8-7.2 10.2-7.2s9.3 4.7 10.2 7.2c-1 2.6-4.8 7.2-10.2 7.2S2.8 14.6 1.8 12z"></path>
+      <circle cx="12" cy="12" r="3"></circle>
+    </svg>
+  `;
+}
+
+function initializePasswordToggles() {
+  const buttons = document.querySelectorAll(".password-toggle-btn");
+  buttons.forEach((button) => {
+    const targetId = String(button.dataset.target || "").trim();
+    if (!targetId) return;
+    const input = document.getElementById(targetId);
+    if (!input) return;
+    const iconContainer = button.querySelector(".password-toggle-icon");
+    if (iconContainer) {
+      iconContainer.innerHTML = getPasswordToggleIconMarkup(false);
+    }
+    button.setAttribute("aria-pressed", "false");
+    button.addEventListener("click", () => {
+      const showing = input.type === "text";
+      input.type = showing ? "password" : "text";
+      if (iconContainer) {
+        iconContainer.innerHTML = getPasswordToggleIconMarkup(!showing);
+      }
+      const nextLabel = showing ? "Show" : "Hide";
+      button.setAttribute("aria-pressed", String(!showing));
+      button.setAttribute("aria-label", `${nextLabel} password`);
+      button.setAttribute("title", `${nextLabel} password`);
+    });
+  });
+}
+
+function initializeThemeShortcut() {
+  const toggleLink = document.querySelector("[data-theme-action='toggle']");
+  if (!toggleLink) return;
+  toggleLink.addEventListener("click", () => {
+    document.getElementById("themeToggle")?.click();
+  });
 }
 
 function isTopicUnlocked(topic) {
@@ -748,7 +941,18 @@ async function handleTopicSelect(topic) {
   }
   currentTopic = topic;
   setCurrentTopic(topic);
-  await selectTopic(topic);
+  try {
+    await runOperationWithFeedback(
+      () => selectTopic(topic),
+      {
+        loadingMessage: "Loading topic content...",
+        successMessage: "",
+        failurePrefix: "Unable to load topic:",
+      },
+    );
+  } catch (error) {
+    return;
+  }
 
   const practiceModeCard = document.getElementById("practiceModeCard");
   const examModeCard = document.getElementById("examModeCard");
@@ -900,7 +1104,6 @@ function updateAuthUI() {
   const profileDisplayName = document.getElementById("profileDisplayName");
   const profileSubtitle = document.getElementById("profileSubtitle");
   const profileAvatar = document.getElementById("profileAvatar");
-  const accountMenuAdminBtn = document.getElementById("accountMenuAdminBtn");
   const openAdminBtn = document.getElementById("openAdminBtn");
   const openStatesBtn = document.getElementById("openStatesBtn");
   const isAdmin = isCurrentUserAdmin();
@@ -967,9 +1170,6 @@ function updateAuthUI() {
       .join("");
     profileAvatar.textContent = initials || "GU";
   }
-  if (accountMenuAdminBtn) {
-    accountMenuAdminBtn.classList.toggle("hidden", !isAdmin);
-  }
   if (openAdminBtn) {
     openAdminBtn.classList.toggle("hidden", !isAdmin);
   }
@@ -1012,11 +1212,37 @@ function renderAdminOverrides() {
     const clearBtn = card.querySelector("[data-clear-email]");
     if (clearBtn) {
       clearBtn.addEventListener("click", async () => {
-        clearLocalPlanOverride(email);
-        updateAuthUI();
-        refreshDashboardInsights();
-        await refreshAccessibleTopics();
-        renderAdminOverrides();
+        try {
+          await runOperationWithFeedback(
+            async () => {
+              clearLocalPlanOverride(email);
+              updateAuthUI();
+              refreshDashboardInsights();
+              await refreshAccessibleTopics();
+              renderAdminOverrides();
+            },
+            {
+              loadingMessage: "Clearing plan override...",
+              successMessage: `Override cleared for ${email}.`,
+              failurePrefix: "Unable to clear override:",
+            },
+          );
+          logAdminOperation({
+            action: "Clear plan override",
+            target: email,
+            status: "success",
+            message: "Local override removed.",
+          });
+        } catch (error) {
+          logAdminOperation({
+            action: "Clear plan override",
+            target: email,
+            status: "failed",
+            message: error?.message || "Unknown error.",
+          });
+        } finally {
+          renderAdminOperationHistory();
+        }
       });
     }
     container.appendChild(card);
@@ -1173,28 +1399,54 @@ function renderAdminRequests() {
         const target = filtered.find((entry) => entry.id === approveId);
         if (!target) return;
         const now = new Date().toISOString();
-        const next = readUpgradeRequests().map((entry) => {
-          const sameId = String(entry?.id || "") === target.id;
-          const sameEmailPending =
-            String(entry?.email || "").trim().toLowerCase() === target.email &&
-            normalizeUpgradeRequestStatus(entry?.status) === "pending";
-          if (!sameId && !sameEmailPending) return entry;
-          return { ...entry, status: "approved", reviewedAt: now };
-        });
-        writeUpgradeRequests(next);
-        const cloudStatusResult = await setUpgradeRequestStatus(target.email, "approved");
-        const overrideResult = await setPlanOverride(target.email, "premium");
-        updateAuthUI();
-        refreshDashboardInsights();
-        await refreshAccessibleTopics();
-        await refreshAdminUserDirectory();
-        renderAdminRequests();
-        renderAdminOverrides();
-        if (cloudStatusResult.warning) {
-          showWarning(`Status sync notice: ${cloudStatusResult.warning}`);
-        }
-        if (overrideResult.warning) {
-          showWarning(`Plan override saved. ${overrideResult.warning}`);
+        try {
+          await runOperationWithFeedback(
+            async () => {
+              const next = readUpgradeRequests().map((entry) => {
+                const sameId = String(entry?.id || "") === target.id;
+                const sameEmailPending =
+                  String(entry?.email || "").trim().toLowerCase() === target.email &&
+                  normalizeUpgradeRequestStatus(entry?.status) === "pending";
+                if (!sameId && !sameEmailPending) return entry;
+                return { ...entry, status: "approved", reviewedAt: now };
+              });
+              writeUpgradeRequests(next);
+              const cloudStatusResult = await setUpgradeRequestStatus(target.email, "approved");
+              const overrideResult = await setPlanOverride(target.email, "premium");
+              updateAuthUI();
+              refreshDashboardInsights();
+              await refreshAccessibleTopics();
+              await refreshAdminUserDirectory();
+              renderAdminRequests();
+              renderAdminOverrides();
+              renderAdminOperationHistory();
+              if (cloudStatusResult.warning) {
+                showWarning(`Status sync notice: ${cloudStatusResult.warning}`);
+              }
+              if (overrideResult.warning) {
+                showWarning(`Plan override saved. ${overrideResult.warning}`);
+              }
+              logAdminOperation({
+                action: "Approve upgrade request",
+                target: target.email,
+                status: "success",
+                message: "Marked as approved and applied premium override.",
+              });
+            },
+            {
+              loadingMessage: "Approving upgrade request...",
+              successMessage: `Upgrade request approved for ${target.email}.`,
+              failurePrefix: "Approve action failed:",
+            },
+          );
+        } catch (error) {
+          logAdminOperation({
+            action: "Approve upgrade request",
+            target: target.email,
+            status: "failed",
+            message: error?.message || "Unknown error.",
+          });
+          renderAdminOperationHistory();
         }
         return;
       }
@@ -1202,20 +1454,46 @@ function renderAdminRequests() {
         const target = filtered.find((entry) => entry.id === rejectId);
         if (!target) return;
         const now = new Date().toISOString();
-        const next = readUpgradeRequests().map((entry) => {
-          const sameId = String(entry?.id || "") === target.id;
-          const sameEmailPending =
-            String(entry?.email || "").trim().toLowerCase() === target.email &&
-            normalizeUpgradeRequestStatus(entry?.status) === "pending";
-          if (!sameId && !sameEmailPending) return entry;
-          return { ...entry, status: "rejected", reviewedAt: now };
-        });
-        writeUpgradeRequests(next);
-        const cloudStatusResult = await setUpgradeRequestStatus(target.email, "rejected");
-        await refreshAdminUserDirectory();
-        renderAdminRequests();
-        if (cloudStatusResult.warning) {
-          showWarning(`Status sync notice: ${cloudStatusResult.warning}`);
+        try {
+          await runOperationWithFeedback(
+            async () => {
+              const next = readUpgradeRequests().map((entry) => {
+                const sameId = String(entry?.id || "") === target.id;
+                const sameEmailPending =
+                  String(entry?.email || "").trim().toLowerCase() === target.email &&
+                  normalizeUpgradeRequestStatus(entry?.status) === "pending";
+                if (!sameId && !sameEmailPending) return entry;
+                return { ...entry, status: "rejected", reviewedAt: now };
+              });
+              writeUpgradeRequests(next);
+              const cloudStatusResult = await setUpgradeRequestStatus(target.email, "rejected");
+              await refreshAdminUserDirectory();
+              renderAdminRequests();
+              renderAdminOperationHistory();
+              if (cloudStatusResult.warning) {
+                showWarning(`Status sync notice: ${cloudStatusResult.warning}`);
+              }
+              logAdminOperation({
+                action: "Reject upgrade request",
+                target: target.email,
+                status: "success",
+                message: "Marked as rejected.",
+              });
+            },
+            {
+              loadingMessage: "Rejecting upgrade request...",
+              successMessage: `Upgrade request rejected for ${target.email}.`,
+              failurePrefix: "Reject action failed:",
+            },
+          );
+        } catch (error) {
+          logAdminOperation({
+            action: "Reject upgrade request",
+            target: target.email,
+            status: "failed",
+            message: error?.message || "Unknown error.",
+          });
+          renderAdminOperationHistory();
         }
       }
     }));
@@ -1269,6 +1547,7 @@ function renderAdminUserDirectory() {
         <th>Role</th>
         <th>Plan</th>
         <th>Status</th>
+        <th>Verified</th>
         <th>Created</th>
         <th>Last Seen</th>
         <th class="actions-col">Actions</th>
@@ -1291,20 +1570,24 @@ function renderAdminUserDirectory() {
     const safeLastSeen = escapeHtml(formatDateTime(entry.lastSeenAt));
     const toggleLabel = entry.status === "suspended" ? "Reinstate" : "Suspend";
     const nextStatus = entry.status === "suspended" ? "active" : "suspended";
+    const deactivateDisabled = entry.status === "suspended" ? "disabled" : "";
     const safeProfileId = escapeHtml(entry.id);
+    const verifiedLabel = entry.emailVerified ? "Yes" : "No";
+    const verifiedClass = entry.emailVerified ? "approved" : "pending";
     row.innerHTML = `
       <td class="email-cell">${safeEmail}</td>
       <td><span class="admin-badge ${roleClass}">${safeRole}</span></td>
       <td><span class="admin-badge ${planClass}">${safePlan}</span></td>
       <td><span class="admin-badge ${statusClass}">${safeStatus}</span></td>
+      <td><span class="admin-badge ${verifiedClass}">${verifiedLabel}</span></td>
       <td>${safeCreated}</td>
       <td>${safeLastSeen}</td>
       <td class="actions-col">
         <button class="btn btn-secondary directory-action" data-action="toggle-status" data-profile-id="${safeProfileId}" data-next-status="${nextStatus}" type="button">
           ${toggleLabel}
         </button>
-        <button class="btn btn-destructive directory-action" data-action="delete-user" data-profile-id="${safeProfileId}" data-profile-email="${safeEmail}" type="button">
-          Delete
+        <button class="btn btn-destructive directory-action" data-action="deactivate-user" data-profile-id="${safeProfileId}" data-profile-email="${safeEmail}" type="button" ${deactivateDisabled}>
+          Deactivate
         </button>
       </td>
     `;
@@ -1320,21 +1603,65 @@ function renderAdminUserDirectory() {
     const action = button.dataset.action;
     const profileId = button.dataset.profileId;
     const profileEmail = button.dataset.profileEmail;
-    try {
-      if (action === "toggle-status") {
-        const nextStatus = button.dataset.nextStatus;
-        await updateCloudUserStatusById(profileId, nextStatus);
-      } else if (action === "delete-user") {
-        const confirmMessage = `Delete ${profileEmail || "this account"}? This cannot be undone.`;
-        if (!confirm(confirmMessage)) {
-          return;
-        }
-        await deleteCloudUserById(profileId);
+    const targetLabel = profileEmail || profileId || "unknown-user";
+    const actionLabel = action === "deactivate-user"
+      ? "Deactivate user account"
+      : "Update account status";
+    let actionWarning = "";
+    if (action === "deactivate-user") {
+      const confirmMessage = `Deactivate ${targetLabel}? They will no longer be able to login.`;
+      if (!confirm(confirmMessage)) {
+        return;
       }
-      await refreshAdminUserDirectory();
-      renderAdminUserDirectory();
+    }
+    try {
+      await runOperationWithFeedback(
+        async () => {
+          if (action === "toggle-status") {
+            const nextStatus = button.dataset.nextStatus;
+            await updateCloudUserStatusById(profileId, nextStatus);
+          } else if (action === "deactivate-user") {
+            await updateCloudUserStatusById(profileId, "suspended");
+            actionWarning =
+              "Permanent Firebase Auth deletion is unavailable on Spark. Delete from Firebase Console when needed.";
+          }
+          await refreshAdminUserDirectory();
+          renderAdminUserDirectory();
+        },
+        {
+          loadingMessage:
+            action === "deactivate-user"
+              ? "Deactivating user account..."
+              : "Updating account status...",
+          successMessage:
+            action === "deactivate-user"
+              ? "User account deactivated."
+              : "Account status updated.",
+          failurePrefix:
+            action === "deactivate-user" ? "User deactivation failed:" : "Status update failed:",
+        },
+      );
+      logAdminOperation({
+        action: actionLabel,
+        target: targetLabel,
+        status: "success",
+        message:
+          action === "deactivate-user"
+            ? actionWarning || "Suspended in cloud profile."
+            : `Status updated to ${String(button.dataset.nextStatus || "").trim() || "target value"}.`,
+      });
+      renderAdminOperationHistory();
+      if (actionWarning) {
+        showWarning(actionWarning);
+      }
     } catch (error) {
-      showWarning(error?.message || "Unable to complete the requested action.");
+      logAdminOperation({
+        action: actionLabel,
+        target: targetLabel,
+        status: "failed",
+        message: error?.message || "Unknown error.",
+      });
+      renderAdminOperationHistory();
     }
   });
 }
@@ -1415,39 +1742,53 @@ function startAdminDirectoryAutoSync() {
   });
 }
 
-function closeAccountMenu() {
-  const accountMenu = document.getElementById("accountMenu");
-  if (accountMenu) accountMenu.classList.add("hidden");
-}
-
-function toggleAccountMenu() {
-  const accountMenu = document.getElementById("accountMenu");
-  if (!accountMenu) return;
-  accountMenu.classList.toggle("hidden");
-}
-
 async function openAdminScreen() {
   if (!isCurrentUserAdmin()) {
     showWarning("Admin access is restricted.");
     return;
   }
-  closeAccountMenu();
-  renderAdminRequests();
-  renderAdminOverrides();
-  await refreshAdminUserDirectory();
-  showScreen("adminScreen");
+  try {
+    await runOperationWithFeedback(
+      async () => {
+        renderAdminRequests();
+        renderAdminOverrides();
+        renderAdminOperationHistory();
+        await refreshAdminUserDirectory();
+        await showScreen("adminScreen");
+      },
+      {
+        loadingMessage: "Loading admin panel...",
+        successMessage: "",
+        failurePrefix: "Unable to open admin panel:",
+      },
+    );
+  } catch (error) {
+    // Error toast already displayed by runOperationWithFeedback.
+  }
 }
 
 async function performLogout() {
-  logoutUser();
-  clearScreenState();
-  clearPersistedQuizRuntime();
-  closeAccountMenu();
-  currentTopic = null;
-  updateAuthUI();
-  refreshDashboardInsights();
-  await refreshAccessibleTopics();
-  showScreen("splashScreen");
+  try {
+    await runOperationWithFeedback(
+      async () => {
+        logoutUser();
+        clearScreenState();
+        clearPersistedQuizRuntime();
+        currentTopic = null;
+        updateAuthUI();
+        refreshDashboardInsights();
+        await refreshAccessibleTopics();
+        await showScreen("splashScreen");
+      },
+      {
+        loadingMessage: "Signing out...",
+        successMessage: "Logged out successfully.",
+        failurePrefix: "Logout failed:",
+      },
+    );
+  } catch (error) {
+    // Error toast already displayed by runOperationWithFeedback.
+  }
 }
 
 function initializeAuthUI() {
@@ -1461,10 +1802,6 @@ function initializeAuthUI() {
   const loginForm = document.getElementById("loginForm");
   const registerForm = document.getElementById("registerForm");
   const forgotPasswordBtn = document.getElementById("forgotPasswordBtn");
-  const accountMenu = document.getElementById("accountMenu");
-  const accountMenuAdminBtn = document.getElementById("accountMenuAdminBtn");
-  const accountMenuProfileBtn = document.getElementById("accountMenuProfileBtn");
-  const accountMenuLogoutBtn = document.getElementById("accountMenuLogoutBtn");
   const changePasswordBtn = document.getElementById("changePasswordBtn");
   const profileLogoutBtn = document.getElementById("profileLogoutBtn");
   const submitUpgradeEvidenceBtn = document.getElementById("submitUpgradeEvidenceBtn");
@@ -1476,6 +1813,9 @@ function initializeAuthUI() {
   const adminRequestStatusFilter = document.getElementById("adminRequestStatusFilter");
   const adminRequestSourceFilter = document.getElementById("adminRequestSourceFilter");
   const refreshAdminRequestsBtn = document.getElementById("refreshAdminRequestsBtn");
+  const clearAdminOperationHistoryBtn = document.getElementById(
+    "clearAdminOperationHistoryBtn",
+  );
 
   if (authActionBtn) {
     authActionBtn.addEventListener("click", async () => {
@@ -1484,45 +1824,6 @@ function initializeAuthUI() {
         return;
       }
       openAuthModal("login");
-    });
-  }
-
-  if (accountMenu) {
-    document.addEventListener("click", (event) => {
-      if (
-        !accountMenu.classList.contains("hidden") &&
-        !accountMenu.contains(event.target) &&
-        !authActionBtn?.contains(event.target)
-      ) {
-        closeAccountMenu();
-      }
-    });
-  }
-
-  if (accountMenuProfileBtn) {
-    accountMenuProfileBtn.addEventListener("click", () => {
-      closeAccountMenu();
-      showScreen("profileScreen");
-    });
-  }
-
-  if (accountMenuAdminBtn) {
-    accountMenuAdminBtn.addEventListener("click", async () => {
-      closeAccountMenu();
-      if (!isCurrentUserAdmin()) {
-        showWarning("Admin access is restricted.");
-        return;
-      }
-      renderAdminRequests();
-      renderAdminOverrides();
-      await refreshAdminUserDirectory();
-      showScreen("adminScreen");
-    });
-  }
-
-  if (accountMenuLogoutBtn) {
-    accountMenuLogoutBtn.addEventListener("click", async () => {
-      await performLogout();
     });
   }
 
@@ -1551,13 +1852,21 @@ function initializeAuthUI() {
       const email = document.getElementById("loginEmail")?.value || "";
       const password = document.getElementById("loginPassword")?.value || "";
       try {
-        await loginUser({ email, password });
-        updateAuthUI();
-        closeAccountMenu();
-        refreshDashboardInsights();
-        await refreshAccessibleTopics();
-        closeAuthModal();
-        showScreen("topicSelectionScreen");
+        await runOperationWithFeedback(
+          async () => {
+            await loginUser({ email, password });
+            updateAuthUI();
+            refreshDashboardInsights();
+            await refreshAccessibleTopics();
+            closeAuthModal();
+            await showScreen("topicSelectionScreen");
+          },
+          {
+            loadingMessage: "Signing in...",
+            successMessage: "Login successful.",
+            failurePrefix: "Login failed:",
+          },
+        );
       } catch (error) {
         setAuthMessage(error.message || "Login failed.");
       }
@@ -1583,11 +1892,20 @@ function initializeAuthUI() {
         return;
       }
       try {
-        const registration = await registerUser({ name, email, password });
-        updateAuthUI();
-        closeAccountMenu();
-        refreshDashboardInsights();
-        await refreshAccessibleTopics();
+        const registration = await runOperationWithFeedback(
+          async () => {
+            const created = await registerUser({ name, email, password });
+            updateAuthUI();
+            refreshDashboardInsights();
+            await refreshAccessibleTopics();
+            return created;
+          },
+          {
+            loadingMessage: "Creating account...",
+            successMessage: "",
+            failurePrefix: "Registration failed:",
+          },
+        );
 
         if (registration?.requiresEmailVerification) {
           localStorage.setItem(
@@ -1595,14 +1913,15 @@ function initializeAuthUI() {
             String(email || "").trim().toLowerCase(),
           );
           closeAuthModal();
-          showWarning(
+          showSuccess(
             registration?.message ||
-              "Registration submitted. Check your email to confirm your account before login.",
+              "Account created. Check your email to verify before login.",
           );
           return;
         }
 
         setAuthMessage("Account created successfully.", "success");
+        showSuccess("Account created successfully.");
         setTimeout(() => {
           closeAuthModal();
           showScreen("topicSelectionScreen");
@@ -1627,7 +1946,14 @@ function initializeAuthUI() {
         return;
       }
       try {
-        await requestPasswordReset(email, window.location.href);
+        await runOperationWithFeedback(
+          () => requestPasswordReset(email, window.location.href),
+          {
+            loadingMessage: "Sending password reset link...",
+            successMessage: "Password reset link sent. Check your email inbox.",
+            failurePrefix: "Unable to send password reset link:",
+          },
+        );
         setAuthMessage("Password reset link sent. Check your email inbox.", "success");
       } catch (error) {
         setAuthMessage(error.message || "Unable to send password reset link.");
@@ -1650,10 +1976,16 @@ function initializeAuthUI() {
         return;
       }
       try {
-        await requestPasswordReset(email, window.location.href);
-        showWarning("Password reset link sent to your registered email.");
+        await runOperationWithFeedback(
+          () => requestPasswordReset(email, window.location.href),
+          {
+            loadingMessage: "Sending password reset link...",
+            successMessage: "Password reset link sent to your registered email.",
+            failurePrefix: "Unable to send password reset link:",
+          },
+        );
       } catch (error) {
-        showError(error.message || "Unable to send password reset link.");
+        // Error toast already displayed by runOperationWithFeedback.
       }
     });
   }
@@ -1673,55 +2005,66 @@ function initializeAuthUI() {
       }
       const reference = document.getElementById("upgradePaymentReference")?.value || "";
       const amount = document.getElementById("upgradeAmountPaid")?.value || "";
-      const next = readUpgradeRequests();
-      next.push({
-        id: `req_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`,
-        email: user.email,
-        reference: String(reference).trim(),
-        amount: String(amount).trim(),
-        note: "Submitted from profile screen",
-        status: "pending",
-        createdAt: new Date().toISOString(),
-      });
-      writeUpgradeRequests(next);
-      const cloudResult = await submitUpgradeRequest({
-        reference: String(reference).trim(),
-        amount: String(amount).trim(),
-        note: "Submitted from profile screen",
-      });
+      try {
+        const cloudResult = await runOperationWithFeedback(
+          async () => {
+            const next = readUpgradeRequests();
+            next.push({
+              id: `req_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`,
+              email: user.email,
+              reference: String(reference).trim(),
+              amount: String(amount).trim(),
+              note: "Submitted from profile screen",
+              status: "pending",
+              createdAt: new Date().toISOString(),
+            });
+            writeUpgradeRequests(next);
+            return submitUpgradeRequest({
+              reference: String(reference).trim(),
+              amount: String(amount).trim(),
+              note: "Submitted from profile screen",
+            });
+          },
+          {
+            loadingMessage: "Submitting payment evidence...",
+            successMessage: "",
+            failurePrefix: "Unable to submit payment evidence:",
+          },
+        );
 
-      if (cloudResult.cloudSaved) {
-        showWarning(
-          cloudResult.warning
-            ? `Upgrade evidence submitted and synced. Admin review is pending. ${cloudResult.warning}`.trim()
-            : "Upgrade evidence submitted and synced. Admin review is pending.",
-        );
-      } else {
-        showWarning(
-          `Upgrade evidence submitted. Admin review is pending. ${cloudResult.warning || ""}`.trim(),
-        );
-      }
-      const refInput = document.getElementById("upgradePaymentReference");
-      const amtInput = document.getElementById("upgradeAmountPaid");
-      if (refInput) refInput.value = "";
-      if (amtInput) amtInput.value = "";
-      refreshUserUpgradeStatus().catch(() => {});
-      if (isCurrentUserAdmin()) {
-        await refreshAdminUserDirectory();
-        renderAdminRequests();
+        if (cloudResult.cloudSaved) {
+          showSuccess(
+            cloudResult.warning
+              ? `Upgrade evidence submitted and synced. Admin review is pending. ${cloudResult.warning}`.trim()
+              : "Upgrade evidence submitted and synced. Admin review is pending.",
+          );
+        } else {
+          showWarning(
+            `Upgrade evidence submitted. Admin review is pending. ${cloudResult.warning || ""}`.trim(),
+          );
+        }
+        const refInput = document.getElementById("upgradePaymentReference");
+        const amtInput = document.getElementById("upgradeAmountPaid");
+        if (refInput) refInput.value = "";
+        if (amtInput) amtInput.value = "";
+        refreshUserUpgradeStatus().catch(() => {});
+        if (isCurrentUserAdmin()) {
+          await refreshAdminUserDirectory();
+          renderAdminRequests();
+        }
+      } catch (error) {
+        // Error toast already displayed by runOperationWithFeedback.
       }
     });
   }
 
   if (headerProfileBtn) {
-    headerProfileBtn.addEventListener("click", (event) => {
-      event.stopPropagation();
-      closeAccountMenu();
+    headerProfileBtn.addEventListener("click", () => {
       if (!getCurrentUser()) {
         openAuthModal("login");
         return;
       }
-      toggleAccountMenu();
+      showScreen("profileScreen");
     });
   }
   if (headerAdminBtn) {
@@ -1739,34 +2082,88 @@ function initializeAuthUI() {
       const email = document.getElementById("adminOverrideEmail")?.value || "";
       const plan = document.getElementById("adminOverridePlan")?.value || "free";
       try {
-        const overrideResult = await setPlanOverride(email, plan);
-        updateAuthUI();
-        refreshDashboardInsights();
-        await refreshAccessibleTopics();
-        renderAdminOverrides();
+        const overrideResult = await runOperationWithFeedback(
+          async () => {
+            const result = await setPlanOverride(email, plan);
+            updateAuthUI();
+            refreshDashboardInsights();
+            await refreshAccessibleTopics();
+            renderAdminOverrides();
+            return result;
+          },
+          {
+            loadingMessage: "Applying plan override...",
+            successMessage: "",
+            failurePrefix: "Failed to apply override:",
+          },
+        );
         showWarning(
           overrideResult.cloudUpdated
             ? "Plan override applied (cloud and local)."
             : `Plan override applied (local). ${overrideResult.warning || ""}`.trim(),
         );
+        logAdminOperation({
+          action: "Apply plan override",
+          target: String(email || "").trim().toLowerCase(),
+          status: "success",
+          message: overrideResult.cloudUpdated
+            ? `Updated ${plan} in cloud and local state.`
+            : `Updated ${plan} locally. ${overrideResult.warning || ""}`.trim(),
+        });
+        renderAdminOperationHistory();
       } catch (error) {
-        showError(error.message || "Failed to apply override.");
+        logAdminOperation({
+          action: "Apply plan override",
+          target: String(email || "").trim().toLowerCase(),
+          status: "failed",
+          message: error?.message || "Unknown error.",
+        });
+        renderAdminOperationHistory();
       }
     });
   }
 
   if (refreshAdminUsersBtn) {
     refreshAdminUsersBtn.addEventListener("click", async () => {
-      const syncResult = await forceCloudPlanSync();
-      if (!syncResult.synced && syncResult.warning) {
-        showWarning(`Cloud sync notice: ${syncResult.warning}`);
+      try {
+        const syncResult = await runOperationWithFeedback(
+          async () => {
+            const result = await forceCloudPlanSync();
+            renderAdminRequests();
+            renderAdminOverrides();
+            await refreshAdminUserDirectory();
+            updateAuthUI();
+            refreshDashboardInsights();
+            await refreshAccessibleTopics();
+            return result;
+          },
+          {
+            loadingMessage: "Refreshing admin directory...",
+            successMessage: "Admin directory refreshed.",
+            failurePrefix: "Refresh failed:",
+          },
+        );
+        if (!syncResult.synced && syncResult.warning) {
+          showWarning(`Cloud sync notice: ${syncResult.warning}`);
+        }
+        logAdminOperation({
+          action: "Refresh users and overrides",
+          target: "admin directory",
+          status: "success",
+          message: syncResult.synced
+            ? "Cloud sync succeeded."
+            : `Cloud sync partial: ${syncResult.warning || "fallback applied."}`,
+        });
+        renderAdminOperationHistory();
+      } catch (error) {
+        logAdminOperation({
+          action: "Refresh users and overrides",
+          target: "admin directory",
+          status: "failed",
+          message: error?.message || "Unknown error.",
+        });
+        renderAdminOperationHistory();
       }
-      renderAdminRequests();
-      renderAdminOverrides();
-      await refreshAdminUserDirectory();
-      updateAuthUI();
-      refreshDashboardInsights();
-      await refreshAccessibleTopics();
     });
   }
 
@@ -1781,8 +2178,61 @@ function initializeAuthUI() {
   }
   if (refreshAdminRequestsBtn) {
     refreshAdminRequestsBtn.addEventListener("click", async () => {
-      await refreshAdminUserDirectory();
-      renderAdminRequests();
+      try {
+        await runOperationWithFeedback(
+          async () => {
+            await refreshAdminUserDirectory();
+            renderAdminRequests();
+          },
+          {
+            loadingMessage: "Refreshing upgrade requests...",
+            successMessage: "Upgrade requests refreshed.",
+            failurePrefix: "Unable to refresh requests:",
+          },
+        );
+        logAdminOperation({
+          action: "Refresh upgrade requests",
+          target: "upgrade queue",
+          status: "success",
+          message: "Requests refreshed from current data source.",
+        });
+        renderAdminOperationHistory();
+      } catch (error) {
+        logAdminOperation({
+          action: "Refresh upgrade requests",
+          target: "upgrade queue",
+          status: "failed",
+          message: error?.message || "Unknown error.",
+        });
+        renderAdminOperationHistory();
+      }
+    });
+  }
+
+  if (clearAdminOperationHistoryBtn) {
+    clearAdminOperationHistoryBtn.addEventListener("click", async () => {
+      if (!isCurrentUserAdmin()) {
+        showWarning("Admin access is restricted.");
+        return;
+      }
+      if (!confirm("Clear all operation history entries on this device?")) {
+        return;
+      }
+      try {
+        await runOperationWithFeedback(
+          async () => {
+            clearAdminOperationHistory();
+            renderAdminOperationHistory();
+          },
+          {
+            loadingMessage: "Clearing operation history...",
+            successMessage: "Operation history cleared.",
+            failurePrefix: "Unable to clear operation history:",
+          },
+        );
+      } catch (error) {
+        // Error toast already displayed by runOperationWithFeedback.
+      }
     });
   }
 
@@ -1819,9 +2269,17 @@ document.addEventListener("DOMContentLoaded", async function () {
   startCloudPlanAutoSync();
   startAdminDirectoryAutoSync();
   initializeDashboardActions();
+  initializeScreenLinkHandlers();
+  initializePasswordToggles();
+  initializeThemeShortcut();
   initializeAuthUI();
   updateAuthUI();
-  await init();
+  showLoadingOverlay(true);
+  try {
+    await init();
+  } finally {
+    showLoadingOverlay(false);
+  }
   initializeResultButtons();
   refreshDashboardInsights();
 

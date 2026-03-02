@@ -82,7 +82,17 @@ function getFirebaseConfig() {
   const firebaseApiKey = String(cfg.firebaseApiKey || cfg.apiKey || "").trim();
   const firebaseProjectId = String(cfg.firebaseProjectId || cfg.projectId || "").trim();
   const firebaseAuthDomain = String(cfg.firebaseAuthDomain || cfg.authDomain || "").trim();
-  return { firebaseApiKey, firebaseProjectId, firebaseAuthDomain };
+  const firebaseAdminAccessToken = String(
+    cfg.firebaseAdminAccessToken || cfg.identityToolkitAccessToken || "",
+  ).trim();
+  const firebaseFunctionsRegion = String(cfg.firebaseFunctionsRegion || "us-central1").trim();
+  return {
+    firebaseApiKey,
+    firebaseProjectId,
+    firebaseAuthDomain,
+    firebaseAdminAccessToken,
+    firebaseFunctionsRegion,
+  };
 }
 
 function getIdentityToolkitDeleteUrl() {
@@ -115,6 +125,40 @@ async function deleteFirebaseAuthUserById(localId, accessToken) {
     const message = payload?.error?.message || "Firebase Authentication deletion failed.";
     throw new Error(message);
   }
+}
+
+function getAdminDeleteFunctionUrl() {
+  const { firebaseProjectId, firebaseFunctionsRegion } = getFirebaseConfig();
+  if (!firebaseProjectId) {
+    throw new Error("Firebase project ID is missing.");
+  }
+  return `https://${encodeURIComponent(firebaseFunctionsRegion)}-${encodeURIComponent(
+    firebaseProjectId,
+  )}.cloudfunctions.net/adminDeleteUserById`;
+}
+
+async function deleteUserViaCloudFunction(userId, accessToken) {
+  if (!userId) {
+    throw new Error("User identifier is required.");
+  }
+  if (!accessToken) {
+    throw new Error("Cloud session is unavailable.");
+  }
+
+  const response = await fetch(getAdminDeleteFunctionUrl(), {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ userId }),
+  });
+  const payload = await response.json().catch(() => ({}));
+  if (!response.ok || !payload?.ok) {
+    const message = payload?.error || payload?.message || "Cloud Function user deletion failed.";
+    throw new Error(message);
+  }
+  return payload;
 }
 
 function isLocalDevelopmentHost() {
@@ -512,7 +556,7 @@ function buildCloudUserFromAuthPayload(payload) {
     email,
     plan: "free",
     createdAt: new Date().toISOString(),
-    emailVerified: false,
+    emailVerified: Boolean(payload?.emailVerified),
   };
 }
 
@@ -592,6 +636,7 @@ function buildFirestoreProfileFields(profile) {
     status: { stringValue: normalizeStatus(profile?.status) },
     createdAt: { timestampValue: toIsoTimestamp(profile?.createdAt) },
     lastSeenAt: { timestampValue: toIsoTimestamp(profile?.lastSeenAt) },
+    emailVerified: { booleanValue: Boolean(profile?.emailVerified) },
   };
 }
 
@@ -632,6 +677,7 @@ function parseFirestoreProfileDocument(document) {
     status: normalizeStatus(fields?.status?.stringValue || "active"),
     createdAt: String(fields?.createdAt?.timestampValue || ""),
     lastSeenAt: String(fields?.lastSeenAt?.timestampValue || ""),
+    emailVerified: Boolean(fields?.emailVerified?.booleanValue),
     upgradeRequestId: String(readFirestoreStringField(fields?.upgradeRequestId) || ""),
     upgradeRequestStatus: normalizeUpgradeRequestStatus(
       readFirestoreStringField(fields?.upgradeRequestStatus),
@@ -813,6 +859,7 @@ function normalizeDirectoryRow(row) {
     plan: normalizePlan(row?.plan),
     createdAt: String(row?.createdAt || row?.created_at || ""),
     lastSeenAt: String(row?.lastSeenAt || row?.last_seen_at || ""),
+    emailVerified: Boolean(row?.emailVerified),
     upgradeRequestId: String(row?.upgradeRequestId || ""),
     upgradeRequestStatus: normalizeUpgradeRequestStatus(row?.upgradeRequestStatus),
     upgradePaymentReference: String(row?.upgradePaymentReference || ""),
@@ -950,6 +997,10 @@ export function startCloudPlanAutoSync() {
 function buildProfilePayloadFromSession(session, existingProfile = null) {
   const user = session?.user || {};
   const email = normalizeEmail(user.email || existingProfile?.email || "");
+  const isEmailVerified =
+    typeof user.emailVerified === "boolean"
+      ? user.emailVerified
+      : Boolean(existingProfile?.emailVerified);
   const isAdmin = getConfiguredAdminEmails().includes(email);
   return {
     id: String(user.id || existingProfile?.id || ""),
@@ -960,6 +1011,7 @@ function buildProfilePayloadFromSession(session, existingProfile = null) {
     status: normalizeStatus(existingProfile?.status || "active"),
     createdAt: toIsoTimestamp(existingProfile?.createdAt || user.createdAt || new Date().toISOString()),
     lastSeenAt: new Date().toISOString(),
+    emailVerified: isEmailVerified,
   };
 }
 
@@ -1122,6 +1174,19 @@ async function loginUserCloud({ email, password }) {
     }
     clearSession();
     throw new Error("Please verify your email before login. Check your inbox.");
+  }
+
+  try {
+    const profile = await getCloudProfileById(synced.accessToken, synced.user.id);
+    if (String(profile?.status || "").toLowerCase() === "suspended") {
+      clearSession();
+      throw new Error("Your account is suspended. Contact admin support.");
+    }
+  } catch (error) {
+    if (String(error?.message || "").includes("suspended")) {
+      throw error;
+    }
+    // Do not block login if profile read fails unexpectedly.
   }
 
   return synced.user;
@@ -1711,6 +1776,7 @@ function buildLocalUserDirectory() {
       role: adminSet.has(email) ? "admin" : "user",
       createdAt: user.createdAt || "",
       lastSeenAt: "",
+      emailVerified: Boolean(user.emailVerified),
       source: "local",
     });
   });
@@ -1724,6 +1790,7 @@ function buildLocalUserDirectory() {
       role: adminSet.has(currentEmail) ? "admin" : "user",
       createdAt: current?.createdAt || "",
       lastSeenAt: "",
+      emailVerified: Boolean(current?.emailVerified),
       source: "session",
     });
   }
@@ -1868,16 +1935,26 @@ export async function deleteCloudUserById(profileId) {
   }
 
   const session = await ensureAdminCloudSession();
-  await firestoreRequest(`documents/profiles/${encodeURIComponent(normalizedProfileId)}`, {
-    method: "DELETE",
-    idToken: session.accessToken,
-  });
-
   try {
-    await deleteFirebaseAuthUserById(normalizedProfileId, session.accessToken);
-  } catch (error) {
-    throw new Error(
-      `Cloud profile removed but Firebase Authentication deletion failed: ${error.message || "unknown reason"}`,
-    );
+    await deleteUserViaCloudFunction(normalizedProfileId, session.accessToken);
+    return { authDeleted: true, warning: "" };
+  } catch (cloudFunctionError) {
+    const { firebaseAdminAccessToken } = getFirebaseConfig();
+    if (!firebaseAdminAccessToken) {
+      throw new Error(
+        `Unable to delete this account from Firebase Authentication: ${cloudFunctionError.message || "Cloud Function unavailable"}. ` +
+          "Deploy functions/adminDeleteUserById or provide PROMOTION_CBT_AUTH.firebaseAdminAccessToken.",
+      );
+    }
+
+    await deleteFirebaseAuthUserById(normalizedProfileId, firebaseAdminAccessToken);
+    await firestoreRequest(`documents/profiles/${encodeURIComponent(normalizedProfileId)}`, {
+      method: "DELETE",
+      idToken: session.accessToken,
+    });
+    return {
+      authDeleted: true,
+      warning: "Deleted via runtime admin-token fallback.",
+    };
   }
 }

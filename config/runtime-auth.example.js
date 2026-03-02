@@ -5,4 +5,9 @@ window.PROMOTION_CBT_AUTH = {
   firebaseApiKey: "REPLACE_WITH_NEW_FIREBASE_API_KEY",
   firebaseProjectId: "promotioncbt-app",
   firebaseAuthDomain: "promotioncbt-app.firebaseapp.com",
+  firebaseFunctionsRegion: "us-central1",
+  // Optional fallback for admin delete operations.
+  // Use only short-lived OAuth tokens with identitytoolkit scope.
+  // Prefer deploying functions/adminDeleteUserById instead.
+  firebaseAdminAccessToken: "",
 };

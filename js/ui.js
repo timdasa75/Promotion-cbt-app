@@ -127,6 +127,23 @@ export function showWarning(message) {
   }, 6000);
 }
 
+export function showSuccess(message) {
+  const successDiv = document.createElement("div");
+  successDiv.className = "success-message";
+  successDiv.textContent = message;
+
+  const container = document.querySelector(".app-container");
+  if (container) {
+    container.insertBefore(successDiv, container.firstChild);
+  } else {
+    document.body.insertBefore(successDiv, document.body.firstChild);
+  }
+
+  setTimeout(() => {
+    successDiv.remove();
+  }, 5000);
+}
+
 // Display categories for a topic
 export async function displayCategories(topic, onSelect) {
   const categoryList = document.getElementById("categoryList");

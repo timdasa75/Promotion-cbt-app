@@ -9,7 +9,7 @@
         />
         <meta
             http-equiv="Content-Security-Policy"
-            content="default-src 'self'; script-src 'self' https://www.gstatic.com https://www.googleapis.com https://identitytoolkit.googleapis.com; connect-src 'self' https://www.googleapis.com https://identitytoolkit.googleapis.com https://firestore.googleapis.com https://securetoken.googleapis.com; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; base-uri 'self'; frame-ancestors 'none'; form-action 'self';"
+            content="default-src 'self'; script-src 'self' https://www.gstatic.com https://www.googleapis.com https://identitytoolkit.googleapis.com; connect-src 'self' https://www.googleapis.com https://identitytoolkit.googleapis.com https://firestore.googleapis.com https://securetoken.googleapis.com; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; base-uri 'self'; form-action 'self';"
         />
         <title>Promotion CBT</title>
         <link rel="stylesheet" href="css/normalize.css" />
@@ -19,51 +19,17 @@
     </head>
     <body>
         <script src="config/runtime-auth.js"></script>
-        <script>
-            window.BASE_URL =
-                window.location.hostname === "127.0.0.1" ||
-                window.location.hostname === "localhost"
-                    ? ""
-                    : "/Promotion-cbt-app";
-            // Optional cloud auth config (Firebase).
-            // Leave empty to keep local-only auth.
-            // Preferred setup:
-            // 1. Put live values in config/runtime-auth.js (ignored by git).
-            // 2. Keep tracked source free of live keys.
-            // Security note:
-            // Do not commit live API keys into this repository.
-            // Inject cloud config at deploy/runtime instead.
-            window.PROMOTION_CBT_REQUIRE_CLOUD_AUTH =
-                typeof window.PROMOTION_CBT_REQUIRE_CLOUD_AUTH === "boolean"
-                    ? window.PROMOTION_CBT_REQUIRE_CLOUD_AUTH
-                    : !(
-                          window.location.hostname === "127.0.0.1" ||
-                          window.location.hostname === "localhost"
-                      );
-            window.PROMOTION_CBT_AUTH = window.PROMOTION_CBT_AUTH || {};
-            window.PROMOTION_CBT_ADMIN_EMAILS = window.PROMOTION_CBT_ADMIN_EMAILS || ["timdasa75@gmail.com"];
-        </script>
-        <script>
-            (function () {
-                const cfg = window.PROMOTION_CBT_AUTH || {};
-                const fields = [cfg.firebaseApiKey, cfg.firebaseProjectId, cfg.firebaseAuthDomain];
-                const suspects = ["PROMOTION", "REPLACE", "ADMIN", "YOUR_FIREBASE"];
-                const hasPlaceholder = fields.some((value) => {
-                    if (!value) return false;
-                    return suspects.some((needle) => String(value).toUpperCase().includes(needle));
-                });
-                if (hasPlaceholder) {
-                    console.warn(
-                        "Promotion CBT: runtime Firebase config contains placeholder strings. " +
-                            "Inject live keys via config/runtime-auth.js or the deployment workflow.",
-                    );
-                }
-            })();
-        </script>
+        <script src="js/boot.js" defer></script>
+        <div class="app-loading-overlay" id="appLoadingOverlay">
+            <div class="spinner-ring">
+                <div></div><div></div><div></div><div></div>
+            </div>
+            <p id="appLoadingMessage">Loading Promotion CBT...</p>
+        </div>
         <div class="app-container">
             <header class="app-shell-header">
                 <div class="brand-block">
-                    <button class="brand-logo-btn" aria-label="Go to dashboard" onclick="showScreen('topicSelectionScreen')" type="button">
+                    <button class="brand-logo-btn" aria-label="Go to dashboard" data-screen-target="topicSelectionScreen" type="button">
                         <img class="brand-logo" src="assets/icons/promotion-cbt-logo.svg" alt="Promotion CBT logo" />
                     </button>
                     <div>
@@ -118,7 +84,7 @@
                         aria-label="Open Help and About"
                         data-tooltip="Help and About"
                         title="Help and About"
-                        onclick="showScreen('helpScreen')"
+                        data-screen-target="helpScreen"
                         type="button"
                     >
                         <span class="toolbar-icon" aria-hidden="true">
@@ -139,11 +105,6 @@
                     >
                         <span id="themeToggleIcon" class="toolbar-icon" aria-hidden="true"></span>
                     </button>
-                    <div class="account-menu hidden" id="accountMenu">
-                        <button class="account-menu-item hidden" id="accountMenuAdminBtn" type="button">Admin Panel</button>
-                        <button class="account-menu-item" id="accountMenuProfileBtn" type="button">Profile Settings</button>
-                        <button class="account-menu-item danger" id="accountMenuLogoutBtn" type="button">Logout</button>
-                    </div>
                 </div>
             </header>
             <main>
@@ -208,12 +169,12 @@
                         </div>
                     </div>
                     <div class="screen-nav-row">
-                        <button class="btn btn-ghost" onclick="showScreen('helpScreen')" type="button">Help and About</button>
-                        <button class="btn btn-ghost" onclick="showScreen('analyticsScreen')" type="button">Analytics</button>
-                        <button class="btn btn-ghost" onclick="showScreen('reviewMistakesScreen')" type="button">Review Mistakes</button>
-                        <button class="btn btn-ghost" onclick="showScreen('profileScreen')" type="button">Profile and Settings</button>
-                        <button class="btn btn-ghost hidden" id="openAdminBtn" type="button">Admin</button>
-                        <button class="btn btn-ghost hidden" id="openStatesBtn" onclick="showScreen('statesScreen')" type="button">Empty/Error States</button>
+                        <button class="btn btn-ghost" data-screen-target="reviewMistakesScreen" type="button">Review Mistakes</button>
+                        <button class="btn btn-ghost" data-screen-target="analyticsScreen" type="button">Analytics</button>
+                        <button class="btn btn-ghost" data-screen-target="profileScreen" type="button">Profile and Settings</button>
+                        <button class="btn btn-ghost hidden" id="openAdminBtn" type="button">Admin Panel (Only for Admin)</button>
+                        <button class="btn btn-ghost" data-screen-target="helpScreen" type="button">Help and About</button>
+                        <button class="btn btn-ghost hidden" id="openStatesBtn" data-screen-target="statesScreen" type="button">Empty/Error States</button>
                     </div>
                 </section>
 
@@ -262,7 +223,7 @@
                             </article>
                         </div>
                         <div class="button-row">
-                            <button class="btn btn-ghost" onclick="showScreen('topicSelectionScreen')" type="button">Back to Dashboard</button>
+                            <button class="btn btn-ghost" data-screen-target="topicSelectionScreen" type="button">Back to Dashboard</button>
                         </div>
                     </div>
                 </section>
@@ -297,7 +258,7 @@
                 <section id="quizScreen" class="screen hidden">
                     <div class="card quiz-shell">
                         <div class="quiz-topbar">
-                            <button class="btn btn-ghost" onclick="showScreen('modeSelectionScreen')" type="button">Back</button>
+                            <button class="btn btn-ghost" data-screen-target="modeSelectionScreen" type="button">Back</button>
                             <p id="quizTopicTitle">Topic: Loading...</p>
                             <div class="timer-wrap" id="timerDisplay" title="Remaining time"><span class="timer-badge">Timer</span><span id="timeLeft">00:00</span></div>
                             <p class="progress-label"><span id="currentQ">0</span>/<span id="totalQ">0</span> <span id="quizModeDisplay">Practice</span></p>
@@ -346,7 +307,7 @@
                         <button class="btn btn-primary" id="retakeQuizBtn" type="button">Retake</button>
                         <button class="btn btn-secondary" id="reviewAnswersBtn" type="button">Review Last Session</button>
                         <button class="btn btn-ghost hidden" id="reviewIncorrectResultsBtn" type="button">Review Incorrect</button>
-                        <button class="btn btn-ghost" onclick="showScreen('topicSelectionScreen')" type="button">Dashboard</button>
+                        <button class="btn btn-ghost" data-screen-target="topicSelectionScreen" type="button">Dashboard</button>
                     </div>
                 </section>
 
@@ -372,7 +333,7 @@
                                 <details><summary>View explanation</summary><p>FR process guidance requires early filing to avoid payment delays.</p></details>
                             </article>
                         </div>
-                        <div class="button-row"><button class="btn btn-ghost" onclick="showScreen('topicSelectionScreen')" type="button">Back</button></div>
+                        <div class="button-row"><button class="btn btn-ghost" data-screen-target="topicSelectionScreen" type="button">Back</button></div>
                     </div>
                 </section>
 
@@ -390,7 +351,7 @@
                         <h3>Run a 20-question Exam Mode drill on Financial Regulations.</h3>
                         <p>Your trend improves in Practice Mode but drops under time pressure.</p>
                     </div>
-                    <div class="button-row"><button class="btn btn-ghost" onclick="showScreen('topicSelectionScreen')" type="button">Back</button></div>
+                    <div class="button-row"><button class="btn btn-ghost" data-screen-target="topicSelectionScreen" type="button">Back</button></div>
                 </section>
 
                 <section id="profileScreen" class="screen hidden">
@@ -398,7 +359,7 @@
                         <article class="card">
                             <div class="profile-head"><div class="avatar" id="profileAvatar" aria-hidden="true">TU</div><div><h2 id="profileDisplayName">Tim User</h2><p id="profileSubtitle">Directorate Cadre Candidate</p></div></div>
                             <div class="button-row"><button class="btn btn-secondary" id="changePasswordBtn" type="button">Change Password</button><button class="btn btn-destructive" id="profileLogoutBtn" type="button">Logout</button></div>
-                            <div class="setting-row"><span>Theme</span><button class="btn btn-ghost" onclick="document.getElementById('themeToggle').click()" type="button">Toggle Light/Dark</button></div>
+                            <div class="setting-row"><span>Theme</span><button class="btn btn-ghost" data-theme-action="toggle" type="button">Toggle Light/Dark</button></div>
                             <div class="setting-row"><span>Daily Reminder</span><label class="switch"><input type="checkbox" checked /><span></span></label></div>
                             <div class="setting-row"><span>Exam Countdown Alerts</span><label class="switch"><input type="checkbox" checked /><span></span></label></div>
                         </article>
@@ -420,16 +381,16 @@
                             <div class="button-row stacked"><button class="btn btn-secondary" type="button">Export Progress</button><button class="btn btn-destructive" type="button">Reset All Progress</button></div>
                         </article>
                     </div>
-                    <div class="button-row"><button class="btn btn-ghost" onclick="showScreen('topicSelectionScreen')" type="button">Back</button></div>
+                    <div class="button-row"><button class="btn btn-ghost" data-screen-target="topicSelectionScreen" type="button">Back</button></div>
                 </section>
 
                 <section id="statesScreen" class="screen hidden">
                     <div class="dashboard-grid two-col">
-                        <article class="card state-card"><h2>No Data Yet</h2><p>Start your first quiz to see progress analytics.</p><button class="btn btn-primary" onclick="showScreen('topicSelectionScreen')" type="button">Start First Quiz</button></article>
+                        <article class="card state-card"><h2>No Data Yet</h2><p>Start your first quiz to see progress analytics.</p><button class="btn btn-primary" data-screen-target="topicSelectionScreen" type="button">Start First Quiz</button></article>
                         <article class="card state-card error"><h2>Network Error</h2><p>Unable to load content. Check your connection and retry.</p><button class="btn btn-secondary" type="button">Retry</button></article>
                     </div>
                     <div class="card warning-card"><h2>Partial Content Warning</h2><p class="inline-warning">Some data files are unavailable. Available categories will still load.</p></div>
-                    <div class="button-row"><button class="btn btn-ghost" onclick="showScreen('topicSelectionScreen')" type="button">Back</button></div>
+                    <div class="button-row"><button class="btn btn-ghost" data-screen-target="topicSelectionScreen" type="button">Back</button></div>
                 </section>
 
                 <section id="adminScreen" class="screen hidden">
@@ -492,6 +453,7 @@
                                 <h3>Users and Account Status</h3>
                                 <p>Exclusive directory view for administrator accounts.</p>
                             </div>
+                            <p class="hero-meta">On Spark plan, use <strong>Deactivate</strong>. Permanent Firebase Auth deletion requires Blaze or manual console cleanup.</p>
                             <div class="hero-meta-row">
                                 <p class="hero-meta" id="adminUserSource">Source: loading...</p>
                                 <p class="hero-meta" id="adminUserCount">Users: 0</p>
@@ -510,9 +472,20 @@
                             </div>
                             <div id="adminUserList" class="mistake-list"></div>
                         </article>
+                        <article class="card admin-section-card">
+                            <div class="section-head screen-header">
+                                <h3>Operations History</h3>
+                                <p>Recent admin actions and outcomes on this device.</p>
+                            </div>
+                            <div class="hero-meta-row admin-history-toolbar">
+                                <p class="hero-meta" id="adminOperationHistoryCount">Entries: 0</p>
+                                <button class="btn btn-ghost" id="clearAdminOperationHistoryBtn" type="button">Clear History</button>
+                            </div>
+                            <div id="adminOperationHistoryList" class="mistake-list"></div>
+                        </article>
                     </div>
                     <div class="button-row">
-                        <button class="btn btn-ghost" onclick="showScreen('topicSelectionScreen')" type="button">Back</button>
+                        <button class="btn btn-ghost" data-screen-target="topicSelectionScreen" type="button">Back</button>
                     </div>
                 </section>
             </main>
@@ -540,7 +513,12 @@
                     </label>
                     <label class="auth-field">
                         <span>Password</span>
-                        <input id="loginPassword" type="password" autocomplete="current-password" required />
+                        <div class="password-field">
+                            <input id="loginPassword" type="password" autocomplete="current-password" required />
+                            <button class="password-toggle-btn" type="button" data-target="loginPassword" aria-label="Show password" title="Show password">
+                                <span class="password-toggle-icon" aria-hidden="true"></span>
+                            </button>
+                        </div>
                     </label>
                     <button class="btn btn-ghost" id="forgotPasswordBtn" type="button">Forgot password?</button>
                     <button class="btn btn-primary" type="submit">Login</button>
@@ -557,11 +535,21 @@
                     </label>
                     <label class="auth-field">
                         <span>Password</span>
-                        <input id="registerPassword" type="password" minlength="8" autocomplete="new-password" required />
+                        <div class="password-field">
+                            <input id="registerPassword" type="password" minlength="8" autocomplete="new-password" required />
+                            <button class="password-toggle-btn" type="button" data-target="registerPassword" aria-label="Show password" title="Show password">
+                                <span class="password-toggle-icon" aria-hidden="true"></span>
+                            </button>
+                        </div>
                     </label>
                     <label class="auth-field">
                         <span>Confirm Password</span>
-                        <input id="registerConfirmPassword" type="password" minlength="8" autocomplete="new-password" required />
+                        <div class="password-field">
+                            <input id="registerConfirmPassword" type="password" minlength="8" autocomplete="new-password" required />
+                            <button class="password-toggle-btn" type="button" data-target="registerConfirmPassword" aria-label="Show password" title="Show password">
+                                <span class="password-toggle-icon" aria-hidden="true"></span>
+                            </button>
+                        </div>
                     </label>
                     <button class="btn btn-primary" type="submit">Create Account</button>
                 </form>
