@@ -283,3 +283,70 @@ test("results show source-topic breakdown for mock exam sessions", async ({ page
   await expect(page.locator("#categoryBreakdown")).toContainText("Public Service Rules (PSR 2021)");
   await expect(page.locator("#categoryBreakdown")).toContainText("Financial Regulations (FR)");
 });
+
+test("retry-missed queue is created from results and can start a focused retry session", async ({ page }) => {
+  await page.addInitScript(() => {
+    const user = {
+      id: "u_retry",
+      name: "Retry User",
+      email: "retry@example.com",
+      passwordHash: "seedhash",
+      plan: "premium",
+      createdAt: new Date().toISOString(),
+    };
+    window.localStorage.setItem("cbt_users_v1", JSON.stringify([user]));
+    window.localStorage.setItem(
+      "cbt_session_v1",
+      JSON.stringify({ provider: "local", userId: user.id, createdAt: new Date().toISOString() }),
+    );
+  });
+
+  await page.goto("/");
+  await page.click("#startLearningBtn");
+  await expect(page.locator("#topicSelectionScreen")).toBeVisible();
+
+  await page.evaluate(async () => {
+    const quiz = await import("/js/quiz.js");
+    quiz.setCurrentTopic({
+      id: "psr",
+      name: "Public Service Rules (PSR 2021)",
+      file: "data/psr_rules.json",
+    });
+    quiz.setCurrentMode("exam");
+    await quiz.loadQuestions([
+      {
+        id: "retry_q1",
+        question: "Retry queue test question 1",
+        options: ["A", "B", "C", "D"],
+        correct: 1,
+        explanation: "Because",
+      },
+      {
+        id: "retry_q2",
+        question: "Retry queue test question 2",
+        options: ["A", "B", "C", "D"],
+        correct: 0,
+        explanation: "Because",
+      },
+    ]);
+  });
+
+  await expect(page.locator("#quizScreen")).toBeVisible();
+  await page.locator("#optionsContainer .option-btn").nth(0).click(); // wrong for q1
+  await page.click("#nextBtn");
+  await page.locator("#optionsContainer .option-btn").nth(0).click(); // correct for q2
+  await page.click("#nextBtn");
+  await expect(page.locator("#resultsScreen")).toBeVisible();
+
+  await page.click("#resultsScreen button[data-screen-target='topicSelectionScreen']");
+  await expect(page.locator("#topicSelectionScreen")).toBeVisible();
+
+  const retryBtn = page.locator("#retryMissedBtn");
+  await expect(retryBtn).toBeEnabled();
+  await expect(retryBtn).toContainText("Retry Missed (1)");
+
+  await retryBtn.click();
+  await expect(page.locator("#quizScreen")).toBeVisible();
+  await expect(page.locator("#quizTopicTitle")).toContainText("Retry Missed Questions");
+  await expect(page.locator("#totalQ")).toHaveText("1");
+});

@@ -90,6 +90,54 @@ exports.adminDeleteUserById = functions.https.onRequest(async (req, res) => {
   }
 });
 
+exports.adminListUsers = functions.https.onRequest(async (req, res) => {
+  setCors(res);
+  if (req.method === "OPTIONS") {
+    res.status(204).send("");
+    return;
+  }
+  if (req.method !== "POST") {
+    res.status(405).json({ ok: false, error: "Method not allowed." });
+    return;
+  }
+
+  try {
+    await authenticateAdminRequest(req);
+    const users = [];
+    let pageToken;
+    let loop = 0;
+
+    do {
+      const result = await admin.auth().listUsers(1000, pageToken);
+      result.users.forEach((userRecord) => {
+        users.push({
+          id: String(userRecord.uid || ""),
+          email: String(userRecord.email || "").toLowerCase(),
+          name: String(userRecord.displayName || ""),
+          emailVerified: Boolean(userRecord.emailVerified),
+          disabled: Boolean(userRecord.disabled),
+          createdAt: String(userRecord.metadata?.creationTime || ""),
+          lastSignInAt: String(userRecord.metadata?.lastSignInTime || ""),
+        });
+      });
+      pageToken = result.pageToken;
+      loop += 1;
+    } while (pageToken && loop < 50);
+
+    res.status(200).json({
+      ok: true,
+      total: users.length,
+      users,
+    });
+  } catch (error) {
+    functions.logger.error("adminListUsers failed:", error);
+    res.status(403).json({
+      ok: false,
+      error: String(error?.message || "Unauthorized"),
+    });
+  }
+});
+
 /**
  * Removes the Firebase Authentication user whenever their Firestore profile is deleted.
  * This keeps Cloud Auth and the profiles collection in sync without exposing secrets in the client.
@@ -115,3 +163,29 @@ exports.deleteAuthUserOnProfileDeletion = functions.firestore
     }
     return null;
   });
+
+/**
+ * Removes the Firestore profile when the corresponding Firebase Auth user is deleted.
+ * This prevents stale/orphan profile records from accumulating over time.
+ */
+exports.deleteProfileOnAuthDeletion = functions.auth.user().onDelete(async (user) => {
+  const userId = String(user?.uid || "").trim();
+  if (!userId) {
+    functions.logger.warn("Auth delete trigger fired with no uid");
+    return null;
+  }
+  try {
+    const profileRef = admin.firestore().doc(`profiles/${userId}`);
+    const profileSnapshot = await profileRef.get();
+    if (!profileSnapshot.exists) {
+      functions.logger.info(`No profile to delete for auth user ${userId}.`);
+      return null;
+    }
+    await profileRef.delete();
+    functions.logger.info(`Deleted profile ${userId} after Firebase Auth user removal.`);
+  } catch (error) {
+    functions.logger.error(`Failed deleting profile ${userId} after auth deletion:`, error);
+    throw error;
+  }
+  return null;
+});

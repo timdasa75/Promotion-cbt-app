@@ -28,7 +28,11 @@
             "Emoluments",
             "Payment",
             "Rule 040101"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_bgt_002",
@@ -47,7 +51,11 @@
             "Appropriation Act",
             "CRF",
             "National Assembly"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_bgt_003",
@@ -66,7 +74,11 @@
             "Vote Book",
             "Daily",
             "Expenditure control"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_bgt_004",
@@ -85,7 +97,11 @@
             "Virement",
             "Fund transfer",
             "budget transfer"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_bgt_005",
@@ -103,7 +119,11 @@
           "keywords": [
             "Virement Warrant",
             "Authorization"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_bgt_006",
@@ -121,7 +141,11 @@
           "keywords": [
             "Excess Vote",
             "Unauthorized expenditure"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_bgt_007",
@@ -140,7 +164,11 @@
             "Unspent Balance",
             "CRF",
             "Returned to Treasury"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_bgt_008",
@@ -159,7 +187,11 @@
             "Warrant",
             "Funds release",
             "Treasury"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_bgt_009",
@@ -178,7 +210,11 @@
             "Unauthorized Expenditure",
             "Supplementary Budget",
             "Legislative action"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_bgt_010",
@@ -197,7 +233,11 @@
             "Vote Book balance",
             "Commitment",
             "Expenditure limits"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_bgt_011",
@@ -216,7 +256,11 @@
             "MTEF",
             "Three years",
             "Budget planning"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_bgt_012",
@@ -235,7 +279,11 @@
             "Promotion arrears",
             "effective date",
             "Rule 040104"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_bgt_013",
@@ -254,7 +302,11 @@
             "Emoluments",
             "Assumption of duty",
             "Rule 040102"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_bgt_015",
@@ -273,7 +325,11 @@
             "Capital Expenditure",
             "Fixed assets",
             "Budget Classification"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_bgt_016",
@@ -293,7 +349,11 @@
             "Vote Book",
             "Budget monitoring",
             "Vote Ledger"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_bgt_017",
@@ -312,7 +372,11 @@
             "Head of Accounts",
             "financial statements",
             "departments"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_bgt_018",
@@ -331,7 +395,11 @@
             "Payment Vouchers",
             "Head of Accounts",
             "Payment process"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_bgt_019",
@@ -350,7 +418,11 @@
             "Chief Accounting Officer",
             "Permanent Secretary",
             "Financial Regulations"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_bgt_020",
@@ -369,7 +441,11 @@
             "Budget",
             "revenue",
             "expenditure"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_bgt_021",
@@ -389,7 +465,11 @@
             "Interdiction",
             "Suspension",
             "Rule 040202"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_bgt_022",
@@ -408,7 +488,11 @@
             "Incremental date",
             "January 1",
             "Rule 040203"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_bgt_023",
@@ -427,7 +511,11 @@
             "Emoluments on Transfer",
             "Assumes duty",
             "Rule 040103"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_bgt_024",
@@ -446,7 +534,11 @@
             "Salary grade level",
             "Minimum point",
             "Rule 040104"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_bgt_025",
@@ -465,7 +557,11 @@
             "Budget Office",
             "federal budget",
             "Budget Officer"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_bgt_026",
@@ -484,7 +580,11 @@
             "Payment Voucher",
             "government expenditure",
             "finance"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_bgt_027",
@@ -503,7 +603,11 @@
             "Head of Department",
             "payment certification",
             "finance"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_bgt_028",
@@ -522,7 +626,11 @@
             "Budget deficit",
             "expenditure",
             "revenue"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_bgt_029",
@@ -540,7 +648,11 @@
           "keywords": [
             "Advance Ledger",
             "Outstanding advances"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_bgt_030",
@@ -559,7 +671,11 @@
             "IPPIS",
             "Personnel Emoluments",
             "Payroll"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_bgt_031",
@@ -578,7 +694,11 @@
             "Vote Book",
             "Obligation Control",
             "budgetary limits"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_bgt_032",
@@ -596,7 +716,11 @@
           "keywords": [
             "Self-Accounting MDA",
             "Financial returns"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_bgt_033",
@@ -615,7 +739,11 @@
             "Replacement Reserve Fund",
             "depreciation",
             "assets"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_bgt_034",
@@ -634,7 +762,11 @@
             "Deferred increment",
             "Six months",
             "Rule 040205"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_bgt_035",
@@ -654,7 +786,11 @@
             "Accountant General",
             "Auditor General",
             "OHCSF"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_bgt_036",
@@ -673,7 +809,11 @@
             "Salary withholding",
             "Unauthorized absence",
             "Rule 040206"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_bgt_037",
@@ -692,7 +832,11 @@
             "Capital expenditure",
             "infrastructure",
             "assets"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_bgt_038",
@@ -711,7 +855,11 @@
             "GIFMIS",
             "Integrated financial operations",
             "Budget execution"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_bgt_039",
@@ -730,7 +878,11 @@
             "Promotion",
             "overlapping salary",
             "Rule 040104"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_bgt_040",
@@ -749,7 +901,11 @@
             "Budget Officer",
             "budget performance",
             "reports"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_bgt_041",
@@ -768,7 +924,11 @@
             "Contingencies Fund",
             "emergency expenditure",
             "finance"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_bgt_042",
@@ -787,7 +947,11 @@
             "Consolidated Revenue Fund",
             "National Assembly",
             "Authorization"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_bgt_043",
@@ -806,7 +970,11 @@
             "Annual Financial Statement",
             "financial performance",
             "fiscal year"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_bgt_044",
@@ -825,7 +993,11 @@
             "Promotion arrears",
             "effective date",
             "1st January"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_bgt_045",
@@ -843,7 +1015,11 @@
           "keywords": [
             "Promotion arrears",
             "payment timeline"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_bgt_046",
@@ -862,7 +1038,11 @@
             "Appropriation",
             "legal limit",
             "expenditure"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_bgt_047",
@@ -881,7 +1061,11 @@
             "IPPIS",
             "accuracy",
             "certification"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_bgt_048",
@@ -900,7 +1084,11 @@
             "Special increment",
             "FCSC",
             "Rule 040207"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_bgt_049",
@@ -920,7 +1108,11 @@
             "absence",
             "ill-health",
             "Rule 140130"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_bgt_050",
@@ -939,7 +1131,11 @@
             "Resettlement Allowance",
             "2 percent",
             "Rule 140136"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_budgeting_gen_001",
@@ -960,7 +1156,11 @@
             "budgeting & financial planning governance",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_budgeting_gen_002",
@@ -981,7 +1181,11 @@
             "budgeting & financial planning compliance",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_budgeting_gen_003",
@@ -1002,7 +1206,11 @@
             "budgeting & financial planning risk management",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_budgeting_gen_004",
@@ -1023,7 +1231,11 @@
             "vote book control",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_budgeting_gen_005",
@@ -1044,7 +1256,11 @@
             "virement process",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_budgeting_gen_006",
@@ -1065,7 +1281,11 @@
             "expenditure discipline",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_budgeting_gen_007",
@@ -1086,7 +1306,11 @@
             "audit readiness",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_budgeting_gen_008",
@@ -1107,7 +1331,11 @@
             "cash management",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_budgeting_gen_009",
@@ -1128,7 +1356,11 @@
             "documented procedure",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_budgeting_gen_010",
@@ -1149,7 +1381,11 @@
             "compliance assurance",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_budgeting_gen_011",
@@ -1170,7 +1406,11 @@
             "public accountability",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_budgeting_gen_012",
@@ -1191,7 +1431,11 @@
             "service integrity",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_budgeting_gen_013",
@@ -1212,7 +1456,11 @@
             "risk control",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_budgeting_gen_014",
@@ -1233,7 +1481,11 @@
             "decision transparency",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_budgeting_gen_015",
@@ -1254,7 +1506,11 @@
             "operational discipline",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_budgeting_gen_016",
@@ -1275,7 +1531,11 @@
             "citizen-focused service",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_budgeting_gen_017",
@@ -1296,7 +1556,11 @@
             "record management",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_budgeting_gen_018",
@@ -1317,7 +1581,11 @@
             "performance standards",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_budgeting_gen_019",
@@ -1338,7 +1606,11 @@
             "budgeting & financial planning governance",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_budgeting_gen_020",
@@ -1359,7 +1631,11 @@
             "budgeting & financial planning compliance",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_budgeting_gen_021",
@@ -1380,7 +1656,11 @@
             "budgeting & financial planning risk management",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_budgeting_gen_022",
@@ -1401,7 +1681,11 @@
             "vote book control",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_budgeting_gen_023",
@@ -1422,7 +1706,11 @@
             "virement process",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_budgeting_gen_024",
@@ -1443,7 +1731,11 @@
             "expenditure discipline",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_budgeting_gen_025",
@@ -1464,7 +1756,11 @@
             "audit readiness",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_budgeting_gen_026",
@@ -1484,7 +1780,11 @@
             "fin_budgeting",
             "refill-75-post-canonical"
           ],
-          "source": "generated_draft_dedup_safe"
+          "source": "generated_draft_dedup_safe",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         }
       ]
     },
@@ -1510,7 +1810,11 @@
             "PPA 2007",
             "Legal framework",
             "Procurement"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2007,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_pro_002",
@@ -1529,7 +1833,11 @@
             "Transparency",
             "Value for money",
             "PPA objective"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2007,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_pro_003",
@@ -1548,7 +1856,11 @@
             "Open Competitive Bidding",
             "Preferred method",
             "Section 24"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_pro_004",
@@ -1567,7 +1879,11 @@
             "Procurement plan",
             "Annual budget",
             "Planning Committee"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_pro_005",
@@ -1586,7 +1902,11 @@
             "Record retention",
             "5 years",
             "Section 38"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_pro_006",
@@ -1605,7 +1925,11 @@
             "Tax Clearance Certificate",
             "Prequalification",
             "Section 16"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_pro_007",
@@ -1624,7 +1948,11 @@
             "Job Completion Certificate",
             "Payment process",
             "Confirmation"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_pro_008",
@@ -1643,7 +1971,11 @@
             "Responsive Bid",
             "Compliance",
             "Section 27"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_pro_009",
@@ -1662,7 +1994,11 @@
             "Bid Security",
             "Commitment",
             "Section 28"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_pro_010",
@@ -1681,7 +2017,11 @@
             "Due Process",
             "Legal procedures",
             "Transparency"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_pro_012",
@@ -1700,7 +2040,11 @@
             "PPC",
             "Accounting Officer",
             "Section 21"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_pro_013",
@@ -1719,7 +2063,11 @@
             "Procurement Officer",
             "Compliance",
             "Thresholds"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_pro_014",
@@ -1739,7 +2087,11 @@
             "Prohibited",
             "Thresholds",
             "Section 58(4)"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_pro_015",
@@ -1758,7 +2110,11 @@
             "Procurement fraud",
             "Dismissal",
             "Criminal charges"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_pro_016",
@@ -1777,7 +2133,11 @@
             "Emergency procurement",
             "Minister",
             "Approval"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_pro_017",
@@ -1796,7 +2156,11 @@
             "Bid Opening",
             "Public",
             "Section 27"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_pro_018",
@@ -1815,7 +2179,11 @@
             "ppa 2007",
             "section 3",
             "bpp"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2007,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_pro_020",
@@ -1834,7 +2202,11 @@
             "submission",
             "section 25",
             "bidding"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_pro_021",
@@ -1853,7 +2225,11 @@
             "pre-qualification",
             "section 22",
             "bidders"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_pro_022",
@@ -1872,7 +2248,11 @@
             "bid evaluation",
             "section 33",
             "criteria"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_pro_023",
@@ -1891,7 +2271,11 @@
             "lowest responsive bid",
             "section 33",
             "contract award"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_pro_024",
@@ -1910,7 +2294,11 @@
             "cancellation",
             "section 31",
             "procurement"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_pro_025",
@@ -1929,7 +2317,11 @@
             "advertisement",
             "section 23",
             "thresholds"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_pro_026",
@@ -1948,7 +2340,11 @@
             "contract awards",
             "section 32",
             "publication"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_pro_027",
@@ -1967,7 +2363,11 @@
             "e-procurement",
             "section 38",
             "transparency"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_pro_028",
@@ -1986,7 +2386,11 @@
             "conflict of interest",
             "section 57",
             "prohibition"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_pro_029",
@@ -2005,7 +2409,11 @@
             "fraud",
             "section 58",
             "penalties"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_pro_030",
@@ -2024,7 +2432,11 @@
             "procurement suspension",
             "section 53",
             "bpp"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_pro_031",
@@ -2043,7 +2455,11 @@
             "insolvency",
             "section 16",
             "eligibility"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_pro_032",
@@ -2062,7 +2478,11 @@
             "budget provision",
             "section 14",
             "appropriation"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_pro_033",
@@ -2081,7 +2501,11 @@
             "Pre-qualification",
             "capability",
             "eligibility"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_pro_035",
@@ -2100,7 +2524,11 @@
             "inspection",
             "section 5",
             "bpp"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_pro_036",
@@ -2119,7 +2547,11 @@
             "procurement audits",
             "section 6",
             "bpp"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_pro_037",
@@ -2138,7 +2570,11 @@
             "bidding documents",
             "section 25",
             "standard"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_pro_040",
@@ -2157,7 +2593,11 @@
             "blacklisting bidders",
             "section 57",
             "bpp"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_pro_041",
@@ -2176,7 +2616,11 @@
             "tax obligations",
             "pensions",
             "section 16"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_pro_042",
@@ -2195,7 +2639,11 @@
             "contract implementation",
             "section 35",
             "monitoring"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_pro_043",
@@ -2214,7 +2662,11 @@
             "Restricted Tendering",
             "section 40",
             "limited suppliers"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_pro_044",
@@ -2233,7 +2685,11 @@
             "Direct Procurement",
             "emergency",
             "section 42"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_pro_045",
@@ -2252,7 +2708,11 @@
             "appropriation",
             "section 14",
             "funds"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_pro_046",
@@ -2271,7 +2731,11 @@
             "negotiations",
             "section 36",
             "single-source"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_pro_047",
@@ -2290,7 +2754,11 @@
             "consultant services",
             "section 43",
             "procurement"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_pro_048",
@@ -2309,7 +2777,11 @@
             "procurement consultants",
             "section 45",
             "engagement"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_pro_049",
@@ -2328,7 +2800,11 @@
             "Emergency procurement",
             "Minister",
             "Approval"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_pro_050",
@@ -2347,7 +2823,11 @@
             "Blacklisting",
             "Section 57",
             "BPP"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_procurement_gen_002",
@@ -2368,7 +2848,11 @@
             "procurement under financial controls compliance",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_procurement_gen_003",
@@ -2389,7 +2873,11 @@
             "procurement under financial controls risk management",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_procurement_gen_004",
@@ -2410,7 +2898,11 @@
             "vote book control",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_procurement_gen_009",
@@ -2431,7 +2923,11 @@
             "virement process",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_procurement_gen_010",
@@ -2452,7 +2948,11 @@
             "expenditure discipline",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_procurement_gen_011",
@@ -2473,7 +2973,11 @@
             "audit readiness",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_procurement_gen_012",
@@ -2494,7 +2998,11 @@
             "cash management",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_procurement_gen_013",
@@ -2515,7 +3023,11 @@
             "documented procedure",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_procurement_gen_014",
@@ -2536,7 +3048,11 @@
             "compliance assurance",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_procurement_gen_015",
@@ -2557,7 +3073,11 @@
             "public accountability",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_procurement_gen_016",
@@ -2578,7 +3098,11 @@
             "service integrity",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_procurement_gen_017",
@@ -2599,7 +3123,11 @@
             "risk control",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_procurement_gen_018",
@@ -2620,7 +3148,11 @@
             "decision transparency",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_procurement_gen_019",
@@ -2641,7 +3173,11 @@
             "operational discipline",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_procurement_gen_020",
@@ -2662,7 +3198,11 @@
             "citizen-focused service",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_procurement_gen_021",
@@ -2683,7 +3223,11 @@
             "record management",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_procurement_gen_022",
@@ -2704,7 +3248,11 @@
             "performance standards",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_procurement_gen_024",
@@ -2725,7 +3273,11 @@
             "procurement under financial controls compliance",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_procurement_gen_025",
@@ -2746,7 +3298,11 @@
             "procurement under financial controls risk management",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_procurement_gen_026",
@@ -2767,7 +3323,11 @@
             "vote book control",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_procurement_gen_027",
@@ -2788,7 +3348,11 @@
             "virement process",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_procurement_gen_028",
@@ -2809,7 +3373,11 @@
             "expenditure discipline",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_procurement_gen_029",
@@ -2830,7 +3398,11 @@
             "audit readiness",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_procurement_gen_031",
@@ -2851,7 +3423,11 @@
             "procurement under financial controls compliance",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_procurement_gen_032",
@@ -2872,7 +3448,11 @@
             "procurement under financial controls risk management",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_procurement_gen_033",
@@ -2893,7 +3473,11 @@
             "vote book control",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_procurement_gen_034",
@@ -2914,7 +3498,11 @@
             "financial control discipline",
             "refill-75-dedup-safe"
           ],
-          "source": "generated_draft_dedup_safe"
+          "source": "generated_draft_dedup_safe",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_procurement_gen_035",
@@ -2935,7 +3523,11 @@
             "financial control discipline",
             "refill-75-dedup-safe"
           ],
-          "source": "generated_draft_dedup_safe"
+          "source": "generated_draft_dedup_safe",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_procurement_gen_036",
@@ -2956,7 +3548,11 @@
             "financial control discipline",
             "refill-75-dedup-safe"
           ],
-          "source": "generated_draft_dedup_safe"
+          "source": "generated_draft_dedup_safe",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_procurement_gen_037",
@@ -2977,7 +3573,11 @@
             "financial control discipline",
             "refill-75-dedup-safe"
           ],
-          "source": "generated_draft_dedup_safe"
+          "source": "generated_draft_dedup_safe",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         }
       ]
     },
@@ -3003,7 +3603,11 @@
             "Audit Trail",
             "Traceability",
             "Accountability"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_aud_002",
@@ -3022,7 +3626,11 @@
             "Pre-audit",
             "Legality check",
             "Financial commitment"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_aud_003",
@@ -3041,7 +3649,11 @@
             "Loss of funds",
             "Auditor-General",
             "Accountant-General"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_aud_004",
@@ -3060,7 +3672,11 @@
             "Financial misconduct",
             "Dismissal",
             "Surcharge"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_aud_005",
@@ -3079,7 +3695,11 @@
             "EFCC",
             "Financial crimes",
             "Money laundering"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_aud_006",
@@ -3098,7 +3718,11 @@
             "ICPC",
             "Institutional corruption",
             "Ethics"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_aud_007",
@@ -3117,7 +3741,11 @@
             "Dismissal for misconduct",
             "Internal investigation",
             "Board of Inquiry"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_aud_008",
@@ -3135,7 +3763,11 @@
           "keywords": [
             "Segregation of Duties",
             "Fraud control"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_aud_009",
@@ -3154,7 +3786,11 @@
             "Audit Trail",
             "Internal Audit",
             "Irregularities"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_aud_010",
@@ -3172,7 +3808,11 @@
           "keywords": [
             "Excess Vote",
             "Auditor-General's Report"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_aud_011",
@@ -3190,7 +3830,11 @@
           "keywords": [
             "Misappropriation",
             "Unauthorized spending"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_aud_012",
@@ -3209,7 +3853,11 @@
             "Deferred increment",
             "Permanent Secretary",
             "Rule 040208"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_aud_013",
@@ -3227,7 +3875,11 @@
           "keywords": [
             "Surcharge",
             "Recovery of loss"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_aud_014",
@@ -3246,7 +3898,11 @@
             "Special increment",
             "FCSC",
             "Rule 040207"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_aud_015",
@@ -3265,7 +3921,11 @@
             "Dismissal",
             "Serious misconduct",
             "Forfeiture"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_aud_016",
@@ -3284,7 +3944,11 @@
             "Head of Internal Audit",
             "Internal controls",
             "Advising"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_aud_017",
@@ -3303,7 +3967,11 @@
             "Audit Alarm",
             "Investigation",
             "Irregularity"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_aud_018",
@@ -3321,7 +3989,11 @@
           "keywords": [
             "Accruals",
             "Financial reporting"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_aud_019",
@@ -3339,7 +4011,11 @@
           "keywords": [
             "Post-Qualification",
             "bidder eligibility"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_aud_020",
@@ -3358,7 +4034,11 @@
             "Confirmation examination failure",
             "Resign or withdrawal",
             "Rule 030104"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_aud_021",
@@ -3376,7 +4056,11 @@
           "keywords": [
             "Code of Conduct Bureau",
             "Asset declarations"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_aud_022",
@@ -3395,7 +4079,11 @@
             "Audit Query",
             "Formal response",
             "Auditor"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_aud_023",
@@ -3414,7 +4102,11 @@
             "Audit Report",
             "Legislative oversight",
             "Past expenditure"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_aud_024",
@@ -3433,7 +4125,11 @@
             "Criminal charge",
             "Permanent Secretary",
             "Rule 100409"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_aud_025",
@@ -3452,7 +4148,11 @@
             "Disciplinary authority",
             "FCSC",
             "Rule 100102"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_aud_026",
@@ -3471,7 +4171,11 @@
             "Delegated powers",
             "discipline",
             "GL 13"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_aud_027",
@@ -3490,7 +4194,11 @@
             "Reinstatement",
             "full salary",
             "FCSC"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_aud_028",
@@ -3509,7 +4217,11 @@
             "Gross misconduct",
             "fraud",
             "falsification"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_aud_029",
@@ -3527,7 +4239,11 @@
           "keywords": [
             "Absenteeism",
             "gross misconduct"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_aud_030",
@@ -3546,7 +4262,11 @@
             "JSC",
             "discipline",
             "GL 06"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_aud_031",
@@ -3565,7 +4285,11 @@
             "Concealment of facts",
             "termination",
             "Rule 100431"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_aud_032",
@@ -3583,7 +4307,11 @@
           "keywords": [
             "General inefficiency",
             "performance appraisal"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_aud_033",
@@ -3602,7 +4330,11 @@
             "Inquiry",
             "documentary evidence",
             "Rule 100307(vii)"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_aud_034",
@@ -3621,7 +4353,11 @@
             "Dismissal",
             "forfeiture",
             "Pension Reform Act"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2014,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_aud_035",
@@ -3640,7 +4376,11 @@
             "Query",
             "Supervisor",
             "HOD"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_aud_036",
@@ -3659,7 +4399,11 @@
             "Procurement fraud",
             "Dismissal",
             "Criminal charges"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_aud_037",
@@ -3678,7 +4422,11 @@
             "Prohibited penalties",
             "Fines",
             "Disciplinary measures"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_aud_038",
@@ -3697,7 +4445,11 @@
             "Serious financial embarrassment",
             "Rule 100414",
             "indebtedness"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_aud_039",
@@ -3716,7 +4468,11 @@
             "General Inefficiency",
             "Usefulness and efficiency",
             "Warning"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_aud_040",
@@ -3735,7 +4491,11 @@
             "Deferred increment",
             "Six months",
             "Rule 040205"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_aud_041",
@@ -3754,7 +4514,11 @@
             "Permanent Secretary",
             "Dismissal",
             "Rule 100702"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_aud_042",
@@ -3773,7 +4537,11 @@
             "Acting duty",
             "casual leave",
             "Rule 020708(a)"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_aud_043",
@@ -3792,7 +4560,11 @@
             "Dismissal GL 06",
             "FCSC approval",
             "Rule 100103"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_aud_044",
@@ -3811,7 +4583,11 @@
             "Resignation",
             "leave forfeiture",
             "ex-gratia"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_aud_045",
@@ -3831,7 +4607,11 @@
             "Leave of Absence",
             "misconduct",
             "Rule 100429"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_aud_046",
@@ -3850,7 +4630,11 @@
             "Falsification of records",
             "Serious Misconduct",
             "Rule 100402"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_aud_047",
@@ -3869,7 +4653,11 @@
             "Inquiry board",
             "head of department",
             "impartiality"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_aud_048",
@@ -3888,7 +4676,11 @@
             "Suspension",
             "criminal conviction",
             "Rule 100412"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_aud_049",
@@ -3907,7 +4699,11 @@
             "Absence without leave",
             "Desertion",
             "Rule 100413"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_aud_050",
@@ -3926,7 +4722,11 @@
             "Loss of pay",
             "absence",
             "Rule 040206"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_audits_sanctions_gen_001",
@@ -3947,7 +4747,11 @@
             "audits, sanctions & compliance governance",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_audits_sanctions_gen_002",
@@ -3968,7 +4772,11 @@
             "audits, sanctions & compliance compliance",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_audits_sanctions_gen_003",
@@ -3989,7 +4797,11 @@
             "audits, sanctions & compliance risk management",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_audits_sanctions_gen_004",
@@ -4010,7 +4822,11 @@
             "vote book control",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_audits_sanctions_gen_005",
@@ -4031,7 +4847,11 @@
             "virement process",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_audits_sanctions_gen_006",
@@ -4052,7 +4872,11 @@
             "expenditure discipline",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_audits_sanctions_gen_007",
@@ -4073,7 +4897,11 @@
             "audit readiness",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_audits_sanctions_gen_008",
@@ -4094,7 +4922,11 @@
             "cash management",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_audits_sanctions_gen_009",
@@ -4115,7 +4947,11 @@
             "documented procedure",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_audits_sanctions_gen_010",
@@ -4136,7 +4972,11 @@
             "compliance assurance",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_audits_sanctions_gen_011",
@@ -4157,7 +4997,11 @@
             "public accountability",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_audits_sanctions_gen_012",
@@ -4178,7 +5022,11 @@
             "service integrity",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_audits_sanctions_gen_013",
@@ -4199,7 +5047,11 @@
             "risk control",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_audits_sanctions_gen_014",
@@ -4220,7 +5072,11 @@
             "decision transparency",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_audits_sanctions_gen_015",
@@ -4241,7 +5097,11 @@
             "operational discipline",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_audits_sanctions_gen_016",
@@ -4262,7 +5122,11 @@
             "citizen-focused service",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_audits_sanctions_gen_017",
@@ -4283,7 +5147,11 @@
             "record management",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_audits_sanctions_gen_018",
@@ -4304,7 +5172,11 @@
             "performance standards",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_audits_sanctions_gen_019",
@@ -4325,7 +5197,11 @@
             "audits, sanctions & compliance governance",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_audits_sanctions_gen_020",
@@ -4346,7 +5222,11 @@
             "audits, sanctions & compliance compliance",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_audits_sanctions_gen_021",
@@ -4367,7 +5247,11 @@
             "audits, sanctions & compliance risk management",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_audits_sanctions_gen_022",
@@ -4388,7 +5272,11 @@
             "vote book control",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_audits_sanctions_gen_023",
@@ -4409,7 +5297,11 @@
             "virement process",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_audits_sanctions_gen_024",
@@ -4430,7 +5322,11 @@
             "expenditure discipline",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_audits_sanctions_gen_025",
@@ -4451,7 +5347,11 @@
             "audit readiness",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         }
       ]
     },
@@ -4477,7 +5377,11 @@
             "chief accounting officer",
             "permanent secretary",
             "ministries"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_gen_002",
@@ -4496,7 +5400,11 @@
             "treasury circulars",
             "accountant general",
             "finance"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_gen_003",
@@ -4515,7 +5423,11 @@
             "vote controller",
             "vote book",
             "budget management"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_gen_004",
@@ -4534,7 +5446,11 @@
             "cash book",
             "financial management",
             "record keeping"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_gen_005",
@@ -4553,7 +5469,11 @@
             "dmo",
             "public debt",
             "financial management"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_gen_006",
@@ -4572,7 +5492,11 @@
             "tsa",
             "treasury single account",
             "financial reforms"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_gen_007",
@@ -4591,7 +5515,11 @@
             "fiscal responsibility act",
             "public finance",
             "laws"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_gen_008",
@@ -4610,7 +5538,11 @@
             "consolidated revenue fund",
             "national assembly",
             "public finance"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_gen_009",
@@ -4629,7 +5561,11 @@
             "payment voucher",
             "government expenditure",
             "finance"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_gen_011",
@@ -4648,7 +5584,11 @@
             "consolidated revenue fund",
             "government revenues",
             "finance"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_gen_012",
@@ -4667,7 +5607,11 @@
             "tsa",
             "treasury single account",
             "accountant general"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_gen_013",
@@ -4686,7 +5630,11 @@
             "auditor general",
             "1999 constitution",
             "finance"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 1999,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_gen_014",
@@ -4705,7 +5653,11 @@
             "treasury receipt",
             "government revenue",
             "finance"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_gen_015",
@@ -4724,7 +5676,11 @@
             "contingencies fund",
             "emergency expenditure",
             "finance"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_gen_016",
@@ -4743,7 +5699,11 @@
             "public expenditure",
             "government spending",
             "finance"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_gen_017",
@@ -4762,7 +5722,11 @@
             "Recurrent Expenditure",
             "Salaries",
             "Overhead Costs"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_gen_018",
@@ -4781,7 +5745,11 @@
             "contingency fund",
             "emergency expenditure",
             "finance"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_gen_019",
@@ -4800,7 +5768,11 @@
             "accountant general",
             "bank accounts",
             "finance"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_gen_020",
@@ -4819,7 +5791,11 @@
             "head of department",
             "payment certification",
             "finance"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_gen_021",
@@ -4838,7 +5814,11 @@
             "Accruals",
             "Financial reporting",
             "incurred"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_gen_022",
@@ -4857,7 +5837,11 @@
             "capital market",
             "sec",
             "finance regulation"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_gen_023",
@@ -4876,7 +5860,11 @@
             "igr",
             "internally generated revenue",
             "public finance"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_gen_024",
@@ -4895,7 +5883,11 @@
             "revenue collector",
             "receipts",
             "government revenue"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_gen_025",
@@ -4914,7 +5906,11 @@
             "federation account",
             "government revenues",
             "finance"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_gen_026",
@@ -4933,7 +5929,11 @@
             "development fund",
             "capital projects",
             "finance"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_gen_027",
@@ -4952,7 +5952,11 @@
             "debt service account",
             "debt repayment",
             "finance"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_gen_028",
@@ -4971,7 +5975,11 @@
             "debt management office",
             "dmo",
             "finance"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2003,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_gen_029",
@@ -4990,7 +5998,11 @@
             "treasury",
             "cash flow management",
             "finance"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_gen_030",
@@ -5009,7 +6021,11 @@
             "accountant general",
             "federal receipts",
             "payments"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_gen_031",
@@ -5028,7 +6044,11 @@
             "cbn",
             "banks",
             "regulation"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_gen_032",
@@ -5047,7 +6067,11 @@
             "federation account",
             "oil revenue",
             "finance"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_gen_033",
@@ -5066,7 +6090,11 @@
             "local government revenue",
             "federation account",
             "igr"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_gen_034",
@@ -5085,7 +6113,11 @@
             "fiscal responsibility act",
             "public finance",
             "transparency"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_gen_035",
@@ -5104,7 +6136,11 @@
             "treasury bills",
             "short-term funds",
             "finance"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_gen_036",
@@ -5123,7 +6159,11 @@
             "vote ledger",
             "vote controller",
             "budget management"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_gen_037",
@@ -5142,7 +6182,11 @@
             "bank reconciliation",
             "accounts officer",
             "finance"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_gen_038",
@@ -5161,7 +6205,11 @@
             "bank reconciliation",
             "cash book",
             "finance"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_gen_039",
@@ -5180,7 +6228,11 @@
             "general ledger",
             "accountant general",
             "financial records"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_gen_040",
@@ -5199,7 +6251,11 @@
             "vote controller",
             "funds certification",
             "expenditure"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_gen_041",
@@ -5218,7 +6274,11 @@
             "minister of finance",
             "chief financial adviser",
             "finance"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_gen_042",
@@ -5237,7 +6297,11 @@
             "Replacement Reserve Fund",
             "assets",
             "depreciation"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_gen_043",
@@ -5256,7 +6320,11 @@
             "public revenue",
             "government income",
             "finance"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_gen_044",
@@ -5275,7 +6343,11 @@
             "Capital Expenditure",
             "fixed assets",
             "infrastructure"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_gen_045",
@@ -5294,7 +6366,11 @@
             "GIFMIS",
             "Integrated financial operations",
             "Budget execution"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_gen_046",
@@ -5313,7 +6389,11 @@
             "IPPIS",
             "Personnel Emoluments",
             "Payroll"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_gen_047",
@@ -5332,7 +6412,11 @@
             "Budget Officer",
             "budget performance",
             "reports"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_gen_048",
@@ -5351,7 +6435,11 @@
             "Warrant",
             "Funds release",
             "Treasury"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_gen_049",
@@ -5370,7 +6458,11 @@
             "Store Officer",
             "stock balances",
             "stores"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_gen_050",
@@ -5390,7 +6482,11 @@
             "stock balances",
             "stores certification",
             "inventory control"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "clg_gc_068",
@@ -5408,7 +6504,11 @@
           "keywords": [
             "Virement",
             "Budget transfer"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "clg_gc_072",
@@ -5426,7 +6526,11 @@
           "keywords": [
             "GIFMIS",
             "Integrated financial operations"
-          ]
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_general_gen_001",
@@ -5447,7 +6551,11 @@
             "general financial management governance",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_general_gen_002",
@@ -5468,7 +6576,11 @@
             "general financial management compliance",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_general_gen_003",
@@ -5489,7 +6601,11 @@
             "general financial management risk management",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_general_gen_004",
@@ -5510,7 +6626,11 @@
             "vote book control",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_general_gen_005",
@@ -5531,7 +6651,11 @@
             "virement process",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_general_gen_006",
@@ -5552,7 +6676,11 @@
             "expenditure discipline",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_general_gen_007",
@@ -5573,7 +6701,11 @@
             "audit readiness",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_general_gen_008",
@@ -5594,7 +6726,11 @@
             "cash management",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_general_gen_009",
@@ -5615,7 +6751,11 @@
             "documented procedure",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_general_gen_010",
@@ -5636,7 +6776,11 @@
             "compliance assurance",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_general_gen_011",
@@ -5657,7 +6801,11 @@
             "public accountability",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_general_gen_012",
@@ -5678,7 +6826,11 @@
             "service integrity",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_general_gen_013",
@@ -5699,7 +6851,11 @@
             "risk control",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_general_gen_014",
@@ -5720,7 +6876,11 @@
             "decision transparency",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_general_gen_015",
@@ -5741,7 +6901,11 @@
             "operational discipline",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_general_gen_016",
@@ -5762,7 +6926,11 @@
             "citizen-focused service",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_general_gen_017",
@@ -5783,7 +6951,11 @@
             "record management",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_general_gen_018",
@@ -5804,7 +6976,11 @@
             "performance standards",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_general_gen_019",
@@ -5825,7 +7001,11 @@
             "general financial management governance",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_general_gen_020",
@@ -5846,7 +7026,11 @@
             "general financial management compliance",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_general_gen_021",
@@ -5867,7 +7051,11 @@
             "general financial management risk management",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_general_gen_022",
@@ -5888,7 +7076,11 @@
             "vote book control",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_general_gen_023",
@@ -5909,7 +7101,11 @@
             "virement process",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "fin_general_gen_024",
@@ -5929,7 +7125,11 @@
             "fin_general",
             "refill-75-post-canonical"
           ],
-          "source": "generated_draft_dedup_safe"
+          "source": "generated_draft_dedup_safe",
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-03"
         }
       ]
     }

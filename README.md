@@ -34,6 +34,10 @@ Web-based CBT practice platform for Nigerian Federal Civil Service promotion pre
 npm run test:smoke
 ```
 
+```bash
+npm run test:unit
+```
+
 ## Main User Flows
 
 1. Login or register.
@@ -96,6 +100,42 @@ Cloud setup guide:
 - Validation script:
   ```bash
   python scripts/validate_taxonomy.py
+  ```
+  Strict quality gate:
+  ```bash
+  python scripts/validate_taxonomy.py --strict-duplicates --strict-metadata
+  ```
+  Build SME metadata review queue:
+  ```bash
+  python scripts/build_metadata_review_queue.py
+  ```
+  Seed editable SME decisions from high-confidence queue:
+  ```bash
+  python scripts/seed_metadata_review_decisions.py
+  ```
+  Apply approved metadata decisions (dry-run):
+  ```bash
+  python scripts/apply_metadata_review_decisions.py --decisions-file docs/metadata_review_decisions.json
+  ```
+  Apply approved metadata decisions (write):
+  ```bash
+  python scripts/apply_metadata_review_decisions.py --decisions-file docs/metadata_review_decisions.json --apply
+  ```
+  Split decisions into topic packs and balanced reviewer bundles:
+  ```bash
+  python scripts/split_metadata_review_decisions.py --in-file docs/metadata_review_decisions.json --out-dir docs/metadata_review_batches --reviewers 4
+  ```
+  Optional: keep full topic blocks per reviewer:
+  ```bash
+  python scripts/split_metadata_review_decisions.py --in-file docs/metadata_review_decisions.json --out-dir docs/metadata_review_batches --reviewers 4 --keep-topic-blocks
+  ```
+  Merge reviewer packs and generate progress report:
+  ```bash
+  python scripts/merge_metadata_review_batches.py --batch-dir docs/metadata_review_batches/by_reviewer --out-file docs/metadata_review_decisions_merged.json --report-json docs/metadata_review_merge_report.json --report-md docs/metadata_review_merge_report.md
+  ```
+  Optional: overwrite master decisions file after conflict-free merge:
+  ```bash
+  python scripts/merge_metadata_review_batches.py --batch-dir docs/metadata_review_batches/by_reviewer --overwrite-master
   ```
 - Refactor roadmap:
   - `docs/refactor-implementation-plan.md`

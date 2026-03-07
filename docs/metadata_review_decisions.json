@@ -1,0 +1,1943 @@
+{
+  "metadata_version": 1,
+  "source_queue": "docs/metadata_review_queue_high_confidence.json",
+  "instructions": "Set status to approved for accepted decisions, rejected for declined decisions, or keep pending for unresolved entries.",
+  "decisions": [
+    {
+      "question_id": "fin_bgt_012",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_budgeting",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_bgt_013",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_budgeting",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_bgt_021",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_budgeting",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_bgt_022",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_budgeting",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_bgt_023",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_budgeting",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_bgt_024",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_budgeting",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_bgt_034",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_budgeting",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_bgt_035",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_budgeting",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_bgt_036",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_budgeting",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_bgt_039",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_budgeting",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_bgt_044",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_budgeting",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_bgt_045",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_budgeting",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_bgt_047",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_budgeting",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_bgt_048",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_budgeting",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_bgt_049",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_budgeting",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_bgt_050",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_budgeting",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_pro_001",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_procurement",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Procurement Act (2007)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_pro_002",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_procurement",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Procurement Act (2007)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_pro_003",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_procurement",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Procurement Act (2007)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_pro_010",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_procurement",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Procurement Act (2007)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_pro_013",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_procurement",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Procurement Act (2007)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_pro_014",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_procurement",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Procurement Act (2007)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_pro_018",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_procurement",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Procurement Act (2007)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_pro_027",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_procurement",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Procurement Act (2007)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_pro_030",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_procurement",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Procurement Act (2007)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_pro_033",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_procurement",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Procurement Act (2007)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_pro_035",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_procurement",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Procurement Act (2007)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_pro_036",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_procurement",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Procurement Act (2007)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_pro_037",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_procurement",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Procurement Act (2007)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_pro_040",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_procurement",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Procurement Act (2007)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_pro_042",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_procurement",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Procurement Act (2007)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_pro_048",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_procurement",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Procurement Act (2007)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_pro_050",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_procurement",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Procurement Act (2007)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_aud_012",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_audits_sanctions",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_aud_015",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_audits_sanctions",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_aud_020",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_audits_sanctions",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_aud_024",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_audits_sanctions",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_aud_025",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_audits_sanctions",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_aud_027",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_audits_sanctions",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_aud_028",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_audits_sanctions",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Federal Civil Service Handbook and Circulars"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_aud_031",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_audits_sanctions",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_aud_032",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_audits_sanctions",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_aud_033",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_audits_sanctions",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_aud_034",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_audits_sanctions",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_aud_035",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_audits_sanctions",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_aud_036",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_audits_sanctions",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Procurement Act (2007)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_aud_038",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_audits_sanctions",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_aud_039",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_audits_sanctions",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_aud_040",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_audits_sanctions",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_aud_041",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_audits_sanctions",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_aud_042",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_audits_sanctions",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_aud_044",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_audits_sanctions",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_aud_045",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_audits_sanctions",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_aud_047",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_audits_sanctions",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_aud_048",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_audits_sanctions",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_aud_049",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_audits_sanctions",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "fin_aud_050",
+      "topic_id": "financial_regulations",
+      "source_file": "data/financial_regulations.json",
+      "subcategory_id": "fin_audits_sanctions",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "ppa_objectives_048",
+      "topic_id": "procurement_act",
+      "source_file": "data/public_procurement.json",
+      "subcategory_id": "proc_objectives_institutions",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Financial Regulations (FR)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "ppa_ethic_017",
+      "topic_id": "procurement_act",
+      "source_file": "data/public_procurement.json",
+      "subcategory_id": "proc_transparency_ethics",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "ppa_ethic_020",
+      "topic_id": "procurement_act",
+      "source_file": "data/public_procurement.json",
+      "subcategory_id": "proc_transparency_ethics",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "ppa_ethic_028",
+      "topic_id": "procurement_act",
+      "source_file": "data/public_procurement.json",
+      "subcategory_id": "proc_transparency_ethics",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "ppa_ethic_032",
+      "topic_id": "procurement_act",
+      "source_file": "data/public_procurement.json",
+      "subcategory_id": "proc_transparency_ethics",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Financial Regulations (FR)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "ppa_ethic_036",
+      "topic_id": "procurement_act",
+      "source_file": "data/public_procurement.json",
+      "subcategory_id": "proc_transparency_ethics",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "ppa_ethic_037",
+      "topic_id": "procurement_act",
+      "source_file": "data/public_procurement.json",
+      "subcategory_id": "proc_transparency_ethics",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "ppa_ethic_041",
+      "topic_id": "procurement_act",
+      "source_file": "data/public_procurement.json",
+      "subcategory_id": "proc_transparency_ethics",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "ppa_ethic_043",
+      "topic_id": "procurement_act",
+      "source_file": "data/public_procurement.json",
+      "subcategory_id": "proc_transparency_ethics",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Financial Regulations (FR)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "ppa_elb_026",
+      "topic_id": "procurement_act",
+      "source_file": "data/public_procurement.json",
+      "subcategory_id": "proc_eligibility_consultants_budgeting",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Financial Regulations (FR)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "ppa_elb_027",
+      "topic_id": "procurement_act",
+      "source_file": "data/public_procurement.json",
+      "subcategory_id": "proc_eligibility_consultants_budgeting",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Financial Regulations (FR)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "ppa_elb_050",
+      "topic_id": "procurement_act",
+      "source_file": "data/public_procurement.json",
+      "subcategory_id": "proc_eligibility_consultants_budgeting",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Financial Regulations (FR)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "ppa_ims_024",
+      "topic_id": "procurement_act",
+      "source_file": "data/public_procurement.json",
+      "subcategory_id": "proc_implementation_sanctions",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "ppa_ims_027",
+      "topic_id": "procurement_act",
+      "source_file": "data/public_procurement.json",
+      "subcategory_id": "proc_implementation_sanctions",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "ppa_ims_038",
+      "topic_id": "procurement_act",
+      "source_file": "data/public_procurement.json",
+      "subcategory_id": "proc_implementation_sanctions",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Federal Civil Service Handbook and Circulars"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "ppa_ims_039",
+      "topic_id": "procurement_act",
+      "source_file": "data/public_procurement.json",
+      "subcategory_id": "proc_implementation_sanctions",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "ppa_ims_041",
+      "topic_id": "procurement_act",
+      "source_file": "data/public_procurement.json",
+      "subcategory_id": "proc_implementation_sanctions",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "ppa_ims_049",
+      "topic_id": "procurement_act",
+      "source_file": "data/public_procurement.json",
+      "subcategory_id": "proc_implementation_sanctions",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "clg_con_001",
+      "topic_id": "constitutional_law",
+      "source_file": "data/constitutional_foi.json",
+      "subcategory_id": "clg_constitutional_governance",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "clg_con_003",
+      "topic_id": "constitutional_law",
+      "source_file": "data/constitutional_foi.json",
+      "subcategory_id": "clg_constitutional_governance",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "clg_con_009",
+      "topic_id": "constitutional_law",
+      "source_file": "data/constitutional_foi.json",
+      "subcategory_id": "clg_constitutional_governance",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Federal Civil Service Handbook and Circulars"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "clg_con_015",
+      "topic_id": "constitutional_law",
+      "source_file": "data/constitutional_foi.json",
+      "subcategory_id": "clg_constitutional_governance",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "clg_lc_022",
+      "topic_id": "constitutional_law",
+      "source_file": "data/constitutional_foi.json",
+      "subcategory_id": "clg_legal_compliance",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Procurement Act (2007)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "clg_lc_024",
+      "topic_id": "constitutional_law",
+      "source_file": "data/constitutional_foi.json",
+      "subcategory_id": "clg_legal_compliance",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Procurement Act (2007)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "clg_lc_025",
+      "topic_id": "constitutional_law",
+      "source_file": "data/constitutional_foi.json",
+      "subcategory_id": "clg_legal_compliance",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "clg_lc_029",
+      "topic_id": "constitutional_law",
+      "source_file": "data/constitutional_foi.json",
+      "subcategory_id": "clg_legal_compliance",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Procurement Act (2007)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "clg_lc_030",
+      "topic_id": "constitutional_law",
+      "source_file": "data/constitutional_foi.json",
+      "subcategory_id": "clg_legal_compliance",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "clg_lc_036",
+      "topic_id": "constitutional_law",
+      "source_file": "data/constitutional_foi.json",
+      "subcategory_id": "clg_legal_compliance",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "clg_lc_037",
+      "topic_id": "constitutional_law",
+      "source_file": "data/constitutional_foi.json",
+      "subcategory_id": "clg_legal_compliance",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "clg_lc_049",
+      "topic_id": "constitutional_law",
+      "source_file": "data/constitutional_foi.json",
+      "subcategory_id": "clg_legal_compliance",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "clg_lc_050",
+      "topic_id": "constitutional_law",
+      "source_file": "data/constitutional_foi.json",
+      "subcategory_id": "clg_legal_compliance",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "clg_lc_055",
+      "topic_id": "constitutional_law",
+      "source_file": "data/constitutional_foi.json",
+      "subcategory_id": "clg_legal_compliance",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "clg_lc_056",
+      "topic_id": "constitutional_law",
+      "source_file": "data/constitutional_foi.json",
+      "subcategory_id": "clg_legal_compliance",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "clg_gc_063",
+      "topic_id": "constitutional_law",
+      "source_file": "data/constitutional_foi.json",
+      "subcategory_id": "clg_general_competency",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "clg_gc_064",
+      "topic_id": "constitutional_law",
+      "source_file": "data/constitutional_foi.json",
+      "subcategory_id": "clg_general_competency",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "clg_gc_065",
+      "topic_id": "constitutional_law",
+      "source_file": "data/constitutional_foi.json",
+      "subcategory_id": "clg_general_competency",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "clg_gc_066",
+      "topic_id": "constitutional_law",
+      "source_file": "data/constitutional_foi.json",
+      "subcategory_id": "clg_general_competency",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Federal Civil Service Handbook and Circulars"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "clg_gc_070",
+      "topic_id": "constitutional_law",
+      "source_file": "data/constitutional_foi.json",
+      "subcategory_id": "clg_general_competency",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Federal Civil Service Handbook and Circulars"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "clg_gc_071",
+      "topic_id": "constitutional_law",
+      "source_file": "data/constitutional_foi.json",
+      "subcategory_id": "clg_general_competency",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Federal Civil Service Handbook and Circulars"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "clg_gc_075",
+      "topic_id": "constitutional_law",
+      "source_file": "data/constitutional_foi.json",
+      "subcategory_id": "clg_general_competency",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "clg_gc_078",
+      "topic_id": "constitutional_law",
+      "source_file": "data/constitutional_foi.json",
+      "subcategory_id": "clg_general_competency",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "clg_gc_079",
+      "topic_id": "constitutional_law",
+      "source_file": "data/constitutional_foi.json",
+      "subcategory_id": "clg_general_competency",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "clg_gc_084",
+      "topic_id": "constitutional_law",
+      "source_file": "data/constitutional_foi.json",
+      "subcategory_id": "clg_general_competency",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "clg_gc_086",
+      "topic_id": "constitutional_law",
+      "source_file": "data/constitutional_foi.json",
+      "subcategory_id": "clg_general_competency",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Federal Civil Service Handbook and Circulars"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "clg_gc_087",
+      "topic_id": "constitutional_law",
+      "source_file": "data/constitutional_foi.json",
+      "subcategory_id": "clg_general_competency",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "clg_gc_090",
+      "topic_id": "constitutional_law",
+      "source_file": "data/constitutional_foi.json",
+      "subcategory_id": "clg_general_competency",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "clg_gc_098",
+      "topic_id": "constitutional_law",
+      "source_file": "data/constitutional_foi.json",
+      "subcategory_id": "clg_general_competency",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "FOI_AO_034",
+      "topic_id": "constitutional_law",
+      "source_file": "data/constitutional_foi.json",
+      "subcategory_id": "foi_access_obligations",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "National ICT and Digital Governance Framework"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "csh_duty_017",
+      "topic_id": "civil_service_admin",
+      "source_file": "data/civil_service_ethics.json",
+      "subcategory_id": "csh_duties_responsibilities",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Financial Regulations (FR)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "csh_pt_017",
+      "topic_id": "civil_service_admin",
+      "source_file": "data/civil_service_ethics.json",
+      "subcategory_id": "csh_performance_training",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "csh_pt_035",
+      "topic_id": "civil_service_admin",
+      "source_file": "data/civil_service_ethics.json",
+      "subcategory_id": "csh_performance_training",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "csh_ap_009",
+      "topic_id": "civil_service_admin",
+      "source_file": "data/civil_service_ethics.json",
+      "subcategory_id": "csh_administrative_procedures",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "csh_it_006",
+      "topic_id": "civil_service_admin",
+      "source_file": "data/civil_service_ethics.json",
+      "subcategory_id": "csh_innovation_technology",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "National ICT and Digital Governance Framework"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "csh_it_010",
+      "topic_id": "civil_service_admin",
+      "source_file": "data/civil_service_ethics.json",
+      "subcategory_id": "csh_innovation_technology",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "National ICT and Digital Governance Framework"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "csh_sdg_007",
+      "topic_id": "civil_service_admin",
+      "source_file": "data/civil_service_ethics.json",
+      "subcategory_id": "csh_service_delivery_grievance",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "csh_sdg_010",
+      "topic_id": "civil_service_admin",
+      "source_file": "data/civil_service_ethics.json",
+      "subcategory_id": "csh_service_delivery_grievance",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "csh_sdg_015",
+      "topic_id": "civil_service_admin",
+      "source_file": "data/civil_service_ethics.json",
+      "subcategory_id": "csh_service_delivery_grievance",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "csh_sdg_016",
+      "topic_id": "civil_service_admin",
+      "source_file": "data/civil_service_ethics.json",
+      "subcategory_id": "csh_service_delivery_grievance",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "csh_sdg_017",
+      "topic_id": "civil_service_admin",
+      "source_file": "data/civil_service_ethics.json",
+      "subcategory_id": "csh_service_delivery_grievance",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "csh_sdg_032",
+      "topic_id": "civil_service_admin",
+      "source_file": "data/civil_service_ethics.json",
+      "subcategory_id": "csh_service_delivery_grievance",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "csh_sdg_043",
+      "topic_id": "civil_service_admin",
+      "source_file": "data/civil_service_ethics.json",
+      "subcategory_id": "csh_service_delivery_grievance",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "ethics_036",
+      "topic_id": "civil_service_admin",
+      "source_file": "data/civil_service_ethics.json",
+      "subcategory_id": "eth_anti_corruption",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Procurement Act (2007)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "ethics_019",
+      "topic_id": "civil_service_admin",
+      "source_file": "data/civil_service_ethics.json",
+      "subcategory_id": "eth_misconduct",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "ethics_053",
+      "topic_id": "civil_service_admin",
+      "source_file": "data/civil_service_ethics.json",
+      "subcategory_id": "eth_misconduct",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "ethics_082",
+      "topic_id": "civil_service_admin",
+      "source_file": "data/civil_service_ethics.json",
+      "subcategory_id": "eth_general",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "leadership_lsm_013",
+      "topic_id": "leadership_management",
+      "source_file": "data/leadership_negotiation.json",
+      "subcategory_id": "lead_principles_styles",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Federal Civil Service Handbook and Circulars"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "leadership_lsm_024",
+      "topic_id": "leadership_management",
+      "source_file": "data/leadership_negotiation.json",
+      "subcategory_id": "lead_principles_styles",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Federal Civil Service Handbook and Circulars"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "leadership_lsm_033",
+      "topic_id": "leadership_management",
+      "source_file": "data/leadership_negotiation.json",
+      "subcategory_id": "lead_principles_styles",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Federal Civil Service Handbook and Circulars"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "leadership_lsm_036",
+      "topic_id": "leadership_management",
+      "source_file": "data/leadership_negotiation.json",
+      "subcategory_id": "lead_principles_styles",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Federal Civil Service Handbook and Circulars"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "leadership_lsm_041",
+      "topic_id": "leadership_management",
+      "source_file": "data/leadership_negotiation.json",
+      "subcategory_id": "lead_principles_styles",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "leadership_lsm_045",
+      "topic_id": "leadership_management",
+      "source_file": "data/leadership_negotiation.json",
+      "subcategory_id": "lead_principles_styles",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Federal Civil Service Handbook and Circulars"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "leadership_lsm_047",
+      "topic_id": "leadership_management",
+      "source_file": "data/leadership_negotiation.json",
+      "subcategory_id": "lead_principles_styles",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "leadership_smp_019",
+      "topic_id": "leadership_management",
+      "source_file": "data/leadership_negotiation.json",
+      "subcategory_id": "lead_strategic_management",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Federal Civil Service Handbook and Circulars"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "leadership_smp_023",
+      "topic_id": "leadership_management",
+      "source_file": "data/leadership_negotiation.json",
+      "subcategory_id": "lead_strategic_management",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Procurement Act (2007)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "leadership_smp_024",
+      "topic_id": "leadership_management",
+      "source_file": "data/leadership_negotiation.json",
+      "subcategory_id": "lead_strategic_management",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Financial Regulations (FR)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "leadership_smp_031",
+      "topic_id": "leadership_management",
+      "source_file": "data/leadership_negotiation.json",
+      "subcategory_id": "lead_strategic_management",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Financial Regulations (FR)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "leadership_smp_049",
+      "topic_id": "leadership_management",
+      "source_file": "data/leadership_negotiation.json",
+      "subcategory_id": "lead_strategic_management",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "leadership_mpf_012",
+      "topic_id": "leadership_management",
+      "source_file": "data/leadership_negotiation.json",
+      "subcategory_id": "lead_management_performance",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "leadership_mpf_013",
+      "topic_id": "leadership_management",
+      "source_file": "data/leadership_negotiation.json",
+      "subcategory_id": "lead_management_performance",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "leadership_mpf_015",
+      "topic_id": "leadership_management",
+      "source_file": "data/leadership_negotiation.json",
+      "subcategory_id": "lead_management_performance",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "leadership_mpf_016",
+      "topic_id": "leadership_management",
+      "source_file": "data/leadership_negotiation.json",
+      "subcategory_id": "lead_management_performance",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "leadership_mpf_017",
+      "topic_id": "leadership_management",
+      "source_file": "data/leadership_negotiation.json",
+      "subcategory_id": "lead_management_performance",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "leadership_mpf_018",
+      "topic_id": "leadership_management",
+      "source_file": "data/leadership_negotiation.json",
+      "subcategory_id": "lead_management_performance",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "leadership_mpf_020",
+      "topic_id": "leadership_management",
+      "source_file": "data/leadership_negotiation.json",
+      "subcategory_id": "lead_management_performance",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "leadership_mpf_023",
+      "topic_id": "leadership_management",
+      "source_file": "data/leadership_negotiation.json",
+      "subcategory_id": "lead_management_performance",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "leadership_mpf_025",
+      "topic_id": "leadership_management",
+      "source_file": "data/leadership_negotiation.json",
+      "subcategory_id": "lead_management_performance",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "leadership_mpf_027",
+      "topic_id": "leadership_management",
+      "source_file": "data/leadership_negotiation.json",
+      "subcategory_id": "lead_management_performance",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Financial Regulations (FR)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "leadership_mpf_028",
+      "topic_id": "leadership_management",
+      "source_file": "data/leadership_negotiation.json",
+      "subcategory_id": "lead_management_performance",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Federal Civil Service Handbook and Circulars"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "leadership_mpf_029",
+      "topic_id": "leadership_management",
+      "source_file": "data/leadership_negotiation.json",
+      "subcategory_id": "lead_management_performance",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "leadership_mpf_030",
+      "topic_id": "leadership_management",
+      "source_file": "data/leadership_negotiation.json",
+      "subcategory_id": "lead_management_performance",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "leadership_mpf_034",
+      "topic_id": "leadership_management",
+      "source_file": "data/leadership_negotiation.json",
+      "subcategory_id": "lead_management_performance",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "leadership_mpf_035",
+      "topic_id": "leadership_management",
+      "source_file": "data/leadership_negotiation.json",
+      "subcategory_id": "lead_management_performance",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "leadership_mpf_048",
+      "topic_id": "leadership_management",
+      "source_file": "data/leadership_negotiation.json",
+      "subcategory_id": "lead_management_performance",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "leadership_mpf_050",
+      "topic_id": "leadership_management",
+      "source_file": "data/leadership_negotiation.json",
+      "subcategory_id": "lead_management_performance",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Federal Civil Service Handbook and Circulars"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "ict_eg_073",
+      "topic_id": "ict_management",
+      "source_file": "data/ict_digital.json",
+      "subcategory_id": "ict_e_governance",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "ict_li_025",
+      "topic_id": "ict_management",
+      "source_file": "data/ict_digital.json",
+      "subcategory_id": "ict_literacy_innovation",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "ict_li_026",
+      "topic_id": "ict_management",
+      "source_file": "data/ict_digital.json",
+      "subcategory_id": "ict_literacy_innovation",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "ict_li_032",
+      "topic_id": "ict_management",
+      "source_file": "data/ict_digital.json",
+      "subcategory_id": "ict_literacy_innovation",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "ict_li_041",
+      "topic_id": "ict_management",
+      "source_file": "data/ict_digital.json",
+      "subcategory_id": "ict_literacy_innovation",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "ict_li_043",
+      "topic_id": "ict_management",
+      "source_file": "data/ict_digital.json",
+      "subcategory_id": "ict_literacy_innovation",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "ict_li_055",
+      "topic_id": "ict_management",
+      "source_file": "data/ict_digital.json",
+      "subcategory_id": "ict_literacy_innovation",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "ict_li_063",
+      "topic_id": "ict_management",
+      "source_file": "data/ict_digital.json",
+      "subcategory_id": "ict_literacy_innovation",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "ict_li_067",
+      "topic_id": "ict_management",
+      "source_file": "data/ict_digital.json",
+      "subcategory_id": "ict_literacy_innovation",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "ict_li_073",
+      "topic_id": "ict_management",
+      "source_file": "data/ict_digital.json",
+      "subcategory_id": "ict_literacy_innovation",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "ict_li_074",
+      "topic_id": "ict_management",
+      "source_file": "data/ict_digital.json",
+      "subcategory_id": "ict_literacy_innovation",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "ict_li_075",
+      "topic_id": "ict_management",
+      "source_file": "data/ict_digital.json",
+      "subcategory_id": "ict_literacy_innovation",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Procurement Act (2007)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "policy_constitution_029",
+      "topic_id": "policy_analysis",
+      "source_file": "data/policy_analysis.json",
+      "subcategory_id": "pol_formulation_cycle",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Procurement Act (2007)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "policy_constitution_043",
+      "topic_id": "policy_analysis",
+      "source_file": "data/policy_analysis.json",
+      "subcategory_id": "pol_formulation_cycle",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Financial Regulations (FR)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "policy_constitution_047",
+      "topic_id": "policy_analysis",
+      "source_file": "data/policy_analysis.json",
+      "subcategory_id": "pol_formulation_cycle",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Financial Regulations (FR)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "policy_constitution_053",
+      "topic_id": "policy_analysis",
+      "source_file": "data/policy_analysis.json",
+      "subcategory_id": "pol_formulation_cycle",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Procurement Act (2007)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "policy_constitution_056",
+      "topic_id": "policy_analysis",
+      "source_file": "data/policy_analysis.json",
+      "subcategory_id": "pol_formulation_cycle",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Financial Regulations (FR)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "policy_psr_021",
+      "topic_id": "policy_analysis",
+      "source_file": "data/policy_analysis.json",
+      "subcategory_id": "pol_implementation_evaluation",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "policy_psr_027",
+      "topic_id": "policy_analysis",
+      "source_file": "data/policy_analysis.json",
+      "subcategory_id": "pol_implementation_evaluation",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Procurement Act (2007)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "policy_psr_030",
+      "topic_id": "policy_analysis",
+      "source_file": "data/policy_analysis.json",
+      "subcategory_id": "pol_implementation_evaluation",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Financial Regulations (FR)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "NGPD_006",
+      "topic_id": "general_current_affairs",
+      "source_file": "data/general_current_affairs.json",
+      "subcategory_id": "ca_national_governance",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Federal Civil Service Handbook and Circulars"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "NGPD_039",
+      "topic_id": "general_current_affairs",
+      "source_file": "data/general_current_affairs.json",
+      "subcategory_id": "ca_national_governance",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Federal Civil Service Handbook and Circulars"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "IRA_114",
+      "topic_id": "general_current_affairs",
+      "source_file": "data/general_current_affairs.json",
+      "subcategory_id": "ca_international_affairs",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "National ICT and Digital Governance Framework"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "IRA_130",
+      "topic_id": "general_current_affairs",
+      "source_file": "data/general_current_affairs.json",
+      "subcategory_id": "ca_international_affairs",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    },
+    {
+      "question_id": "IRA_140",
+      "topic_id": "general_current_affairs",
+      "source_file": "data/general_current_affairs.json",
+      "subcategory_id": "ca_international_affairs",
+      "status": "pending",
+      "changes": {
+        "sourceDocument": "Public Service Rules (PSR 2021)"
+      },
+      "note": "SME review required"
+    }
+  ]
+}

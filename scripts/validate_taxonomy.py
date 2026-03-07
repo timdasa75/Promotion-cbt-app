@@ -7,6 +7,7 @@ from collections import Counter, defaultdict
 ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = ROOT / "data"
 TOPICS_FILE = DATA_DIR / "topics.json"
+REQUIRED_METADATA_FIELDS = ("difficulty", "sourceDocument", "sourceSection", "year", "lastReviewed")
 
 
 def load_json(path: Path):
@@ -29,9 +30,31 @@ def collect_subcategories(data):
     return []
 
 
+def iterate_subcategory_questions(subcategory):
+    questions = subcategory.get("questions")
+    if not isinstance(questions, list):
+        return []
+
+    sub_id = subcategory.get("id")
+    if (
+        questions
+        and isinstance(questions[0], dict)
+        and sub_id
+        and isinstance(questions[0].get(sub_id), list)
+    ):
+        return [q for q in questions[0][sub_id] if isinstance(q, dict)]
+
+    return [q for q in questions if isinstance(q, dict)]
+
+
 def main():
     parser = argparse.ArgumentParser(description="Validate 10-topic taxonomy integrity")
     parser.add_argument("--strict-duplicates", action="store_true", help="Fail when duplicate question IDs are found")
+    parser.add_argument(
+        "--strict-metadata",
+        action="store_true",
+        help="Fail when required question metadata fields are missing",
+    )
     args = parser.parse_args()
 
     topics_doc = load_json(TOPICS_FILE)
@@ -40,6 +63,7 @@ def main():
     errors = []
     warnings = []
     summary = []
+    metadata_missing = defaultdict(int)
 
     topic_ids = [t.get("id") for t in topics if isinstance(t, dict)]
     dup_topic_ids = [k for k, c in Counter(topic_ids).items() if c > 1 and k]
@@ -74,10 +98,18 @@ def main():
                 sid = sub.get("id")
                 if sid:
                     source_subcats[sid] = sub
-                for q in sub.get("questions", []) if isinstance(sub.get("questions"), list) else []:
+                questions = iterate_subcategory_questions(sub)
+                for q in questions:
                     if isinstance(q, dict) and q.get("id"):
                         qid_occurrences[q["id"]].append(f"{rel}:{sid}")
-                qcount += len(sub.get("questions", [])) if isinstance(sub.get("questions"), list) else 0
+                    for field in REQUIRED_METADATA_FIELDS:
+                        value = q.get(field)
+                        if value is None:
+                            metadata_missing[field] += 1
+                            continue
+                        if isinstance(value, str) and not value.strip():
+                            metadata_missing[field] += 1
+                qcount += len(questions)
 
         topic_subs = topic.get("subcategories", [])
         topic_sub_ids = [s.get("id") for s in topic_subs if isinstance(s, dict)]
@@ -99,6 +131,15 @@ def main():
     if duplicate_qids:
         msg = f"Found {len(duplicate_qids)} duplicate question IDs across source files"
         if args.strict_duplicates:
+            errors.append(msg)
+        else:
+            warnings.append(msg)
+
+    metadata_gaps = {field: count for field, count in metadata_missing.items() if count > 0}
+    if metadata_gaps:
+        gap_text = ", ".join([f"{field}={count}" for field, count in metadata_gaps.items()])
+        msg = f"Missing required question metadata: {gap_text}"
+        if args.strict_metadata:
             errors.append(msg)
         else:
             warnings.append(msg)

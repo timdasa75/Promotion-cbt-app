@@ -7,7 +7,7 @@ Deliver a faster, cleaner, and more maintainable CBT app aligned to the merged 1
 - [x] Consolidate to a single JSON file per topic (10 files total) and retire auxiliary files.
 - [x] Backfill missing subcategory IDs in key source files.
 - [x] Add taxonomy validator script: `scripts/validate_taxonomy.py`.
-- [ ] Add question metadata standard (`sourceDocument`, `sourceSection`, `year`, `lastReviewed`) into all question pools.
+- [x] Add question metadata standard (`sourceDocument`, `sourceSection`, `year`, `lastReviewed`) into all question pools.
 - [ ] Run duplicate-question-ID cleanup.
 
 ## Phase 2: Performance and Reliability
@@ -24,7 +24,7 @@ Deliver a faster, cleaner, and more maintainable CBT app aligned to the merged 1
 
 ## Phase 4: Assessment Features
 - [ ] Build curated mock exams mapped across all 10 topics.
-- [ ] Add retry-missed mode spanning sessions.
+- [x] Add retry-missed mode spanning sessions.
 - [ ] Add spaced-practice queue for weak questions.
 
 ## Delivery cadence

@@ -5,7 +5,16 @@ window.PROMOTION_CBT_AUTH = {
   firebaseApiKey: "REPLACE_WITH_NEW_FIREBASE_API_KEY",
   firebaseProjectId: "promotioncbt-app",
   firebaseAuthDomain: "promotioncbt-app.firebaseapp.com",
+  // Optional explicit quota project for admin token calls (defaults to firebaseProjectId).
+  firebaseQuotaProjectId: "promotioncbt-app",
   firebaseFunctionsRegion: "us-central1",
+  // Optional tuning for free-tier stability:
+  // Admin directory live sync interval (minimum 15000, maximum 600000).
+  adminDirectorySyncIntervalMs: 60000,
+  // Verification resend cooldown per email (minimum 60000, maximum 86400000).
+  verificationResendCooldownMs: 900000,
+  // Password reset cooldown per email (minimum 60000, maximum 86400000).
+  passwordResetCooldownMs: 600000,
   // Optional fallback for admin delete operations.
   // Use only short-lived OAuth tokens with identitytoolkit scope.
   // Prefer deploying functions/adminDeleteUserById instead.

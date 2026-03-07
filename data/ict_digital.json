@@ -27,7 +27,11 @@
             "ICT",
             "public administration",
             "definition"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_002",
@@ -46,7 +50,11 @@
             "CPU",
             "execution",
             "hardware"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_003",
@@ -65,7 +73,11 @@
             "RAM",
             "memory",
             "volatile"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_004",
@@ -84,7 +96,11 @@
             "OS",
             "hardware control",
             "software management"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_005",
@@ -102,7 +118,11 @@
           "keywords": [
             "Operating System",
             "Microsoft Word"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_006",
@@ -120,7 +140,11 @@
           "keywords": [
             "Scanner",
             "digital archiving"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_007",
@@ -139,7 +163,11 @@
             "VPN",
             "acronym",
             "network security"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_008",
@@ -157,7 +185,11 @@
           "keywords": [
             "IP Address",
             "network protocol"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_009",
@@ -176,7 +208,11 @@
             "Router",
             "networking",
             "data direction"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_010",
@@ -195,7 +231,11 @@
             "ping",
             "connectivity",
             "networking"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_011",
@@ -213,7 +253,11 @@
           "keywords": [
             "DNS",
             "IP address resolution"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_012",
@@ -231,7 +275,11 @@
           "keywords": [
             "Bit",
             "data unit"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_013",
@@ -250,7 +298,11 @@
             "LAN",
             "acronym",
             "networking"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_014",
@@ -268,7 +320,11 @@
           "keywords": [
             "web browser",
             "internet access"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_015",
@@ -286,7 +342,11 @@
           "keywords": [
             "SMTP",
             "email protocol"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_016",
@@ -305,7 +365,11 @@
             "Switch",
             "LAN",
             "networking"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_017",
@@ -323,7 +387,11 @@
           "keywords": [
             "ROM",
             "non-volatile memory"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_018",
@@ -342,7 +410,11 @@
             "Compiler",
             "machine code",
             "programming"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_019",
@@ -361,7 +433,11 @@
             "ipconfig",
             "IP configuration",
             "command"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_020",
@@ -380,7 +456,11 @@
             "HTML",
             "markup language",
             "acronym"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_021",
@@ -398,7 +478,11 @@
           "keywords": [
             "HTML",
             "web content"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_022",
@@ -417,7 +501,11 @@
             "Server",
             "networking",
             "definition"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_023",
@@ -436,7 +524,11 @@
             "Projector",
             "presentations",
             "ICT tool"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_024",
@@ -455,7 +547,11 @@
             "MAC",
             "acronym",
             "networking"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_025",
@@ -474,7 +570,11 @@
             "MAC Address",
             "hardware",
             "networking"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_026",
@@ -493,7 +593,11 @@
             "SSD",
             "storage",
             "speed"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_027",
@@ -511,7 +615,11 @@
           "keywords": [
             "Cache",
             "temporary storage"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_028",
@@ -530,7 +638,11 @@
             "SQL",
             "acronym",
             "database"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_029",
@@ -548,7 +660,11 @@
           "keywords": [
             "SQL",
             "database management"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_030",
@@ -566,7 +682,11 @@
           "keywords": [
             "Email",
             "official communication"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_031",
@@ -585,7 +705,11 @@
             "SMTP",
             "protocol",
             "email"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_032",
@@ -603,7 +727,11 @@
           "keywords": [
             "ROM",
             "acronym"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_033",
@@ -621,7 +749,11 @@
           "keywords": [
             "Fingerprint Scanner",
             "biometrics"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_034",
@@ -640,7 +772,11 @@
             "API",
             "acronym",
             "programming"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_035",
@@ -658,7 +794,11 @@
           "keywords": [
             "CSV",
             "data exchange"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_036",
@@ -677,7 +817,11 @@
             "Version control",
             "collaboration",
             "development"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_037",
@@ -695,7 +839,11 @@
           "keywords": [
             "HTTP",
             "protocol"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_038",
@@ -714,7 +862,11 @@
             "Database",
             "definition",
             "data management"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_039",
@@ -732,7 +884,11 @@
           "keywords": [
             "WAN",
             "acronym"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_040",
@@ -750,7 +906,11 @@
           "keywords": [
             "Monitor",
             "output device"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_041",
@@ -768,7 +928,11 @@
           "keywords": [
             "Microsoft Project",
             "project management"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_042",
@@ -786,7 +950,11 @@
           "keywords": [
             "URL",
             "web address"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_043",
@@ -804,7 +972,11 @@
           "keywords": [
             "tracert",
             "networking"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_044",
@@ -822,7 +994,11 @@
           "keywords": [
             "SDLC",
             "software development"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_045",
@@ -840,7 +1016,11 @@
           "keywords": [
             "HTTPS",
             "secure protocol"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_046",
@@ -858,7 +1038,11 @@
           "keywords": [
             "Cloud Computing",
             "remote storage"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_047",
@@ -876,7 +1060,11 @@
           "keywords": [
             "FTP",
             "file transfer"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_048",
@@ -894,7 +1082,11 @@
           "keywords": [
             "Bandwidth",
             "network capacity"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_049",
@@ -912,7 +1104,11 @@
           "keywords": [
             "Video conferencing",
             "real-time communication"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_050",
@@ -930,7 +1126,11 @@
           "keywords": [
             "DHCP",
             "IP allocation"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_051",
@@ -949,7 +1149,11 @@
             "Zoom",
             "webinars",
             "virtual meetings"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_052",
@@ -967,7 +1171,11 @@
           "keywords": [
             "RAM",
             "volatile memory"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_053",
@@ -985,7 +1193,11 @@
           "keywords": [
             "OS",
             "acronym"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_054",
@@ -1003,7 +1215,11 @@
           "keywords": [
             "Projector",
             "presentations"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_055",
@@ -1021,7 +1237,11 @@
           "keywords": [
             "PHP",
             "backend development"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_056",
@@ -1039,7 +1259,11 @@
           "keywords": [
             "SaaS",
             "Cloud Computing"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_057",
@@ -1057,7 +1281,11 @@
           "keywords": [
             "Byte",
             "bits"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_058",
@@ -1075,7 +1303,11 @@
           "keywords": [
             "SQL",
             "Database Administrator"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_059",
@@ -1094,7 +1326,11 @@
             "IDE",
             "acronym",
             "programming"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_060",
@@ -1112,7 +1348,11 @@
           "keywords": [
             "VPN",
             "network security"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_061",
@@ -1130,7 +1370,11 @@
           "keywords": [
             "Algorithm",
             "definition"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_062",
@@ -1148,7 +1392,11 @@
           "keywords": [
             "DHCP",
             "IP allocation"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_063",
@@ -1166,7 +1414,11 @@
           "keywords": [
             "Switch",
             "LAN"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_064",
@@ -1184,7 +1436,11 @@
           "keywords": [
             "Helpdesk",
             "User Support"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_065",
@@ -1202,7 +1458,11 @@
           "keywords": [
             "URL",
             "acronym"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_066",
@@ -1220,7 +1480,11 @@
           "keywords": [
             "Cache",
             "speed"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_067",
@@ -1239,7 +1503,11 @@
             "Primary Key",
             "database",
             "unique identifier"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_068",
@@ -1257,7 +1525,11 @@
           "keywords": [
             "SSL/TLS",
             "security protocol"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_069",
@@ -1275,7 +1547,11 @@
           "keywords": [
             "JavaScript",
             "front-end"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_070",
@@ -1293,7 +1569,11 @@
           "keywords": [
             "DBMS",
             "Database"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_071",
@@ -1311,7 +1591,11 @@
           "keywords": [
             "IP",
             "protocol"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_072",
@@ -1329,7 +1613,11 @@
           "keywords": [
             "Modem",
             "internet access"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_073",
@@ -1347,7 +1635,11 @@
           "keywords": [
             "VPN",
             "secure remote access"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_074",
@@ -1365,7 +1657,11 @@
           "keywords": [
             "Virtualization",
             "technology"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_f_075",
@@ -1383,7 +1679,11 @@
           "keywords": [
             "Python",
             "Data Analyst"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         }
       ]
     },
@@ -1409,7 +1709,11 @@
             "IPPIS",
             "payroll",
             "ghost workers"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_003",
@@ -1428,7 +1732,11 @@
             "GIFMIS",
             "financial management",
             "budget execution"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_004",
@@ -1447,7 +1755,11 @@
             "TSA",
             "revenue consolidation",
             "transparency"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_005",
@@ -1466,7 +1778,11 @@
             "HRMIS",
             "personnel management",
             "digital records"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_006",
@@ -1484,7 +1800,11 @@
           "keywords": [
             "Digitization of Records",
             "E-Registry"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_007",
@@ -1502,7 +1822,11 @@
           "keywords": [
             "NIN integration",
             "Data integrity"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_008",
@@ -1520,7 +1844,11 @@
           "keywords": [
             "Biometric Attendance",
             "Punctuality"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_009",
@@ -1538,7 +1866,11 @@
           "keywords": [
             "E-Governance",
             "service delivery"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_010",
@@ -1556,7 +1888,11 @@
           "keywords": [
             "NOCOPO",
             "e-procurement"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_011",
@@ -1574,7 +1910,11 @@
           "keywords": [
             "Geo-tagging",
             "Project Monitoring"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_012",
@@ -1593,7 +1933,11 @@
             "IPMIS",
             "pensions",
             "ghost pensioners"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_013",
@@ -1611,7 +1955,11 @@
           "keywords": [
             "Servicom Dashboards",
             "Citizen feedback"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_014",
@@ -1629,7 +1977,11 @@
           "keywords": [
             "E-Government Masterplan",
             "digitalization"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_015",
@@ -1648,7 +2000,11 @@
             "CBT",
             "Standardization",
             "Promotion Exams"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_016",
@@ -1666,7 +2022,11 @@
           "keywords": [
             "NIN",
             "identity management"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_017",
@@ -1685,7 +2045,11 @@
             "IPPIS",
             "MDA Head",
             "accuracy"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_018",
@@ -1703,7 +2067,11 @@
           "keywords": [
             "TSA",
             "GIFMIS"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_019",
@@ -1722,7 +2090,11 @@
             "E-Procurement",
             "transparency",
             "PPA Section 38"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_020",
@@ -1741,7 +2113,11 @@
             "NITDA",
             "acronym",
             "ICT policy"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_021",
@@ -1759,7 +2135,11 @@
           "keywords": [
             "NOCOPO",
             "e-Procurement"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_022",
@@ -1777,7 +2157,11 @@
           "keywords": [
             "E-Government Master Plan",
             "Smart Government"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_023",
@@ -1795,7 +2179,11 @@
           "keywords": [
             "NICIS II",
             "customs clearance"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_024",
@@ -1813,7 +2201,11 @@
           "keywords": [
             "IPPIS",
             "Personnel Emoluments"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_025",
@@ -1831,7 +2223,11 @@
           "keywords": [
             "Digitization of Registry",
             "ECM"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_026",
@@ -1849,7 +2245,11 @@
           "keywords": [
             "CBT",
             "recruitment exams"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_027",
@@ -1868,7 +2268,11 @@
             "OHCSF Agenda",
             "HRMIS",
             "ECM"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_028",
@@ -1886,7 +2290,11 @@
           "keywords": [
             "IPMIS",
             "pensions"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_029",
@@ -1905,7 +2313,11 @@
             "BVAS",
             "elections",
             "acronym"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_030",
@@ -1923,7 +2335,11 @@
           "keywords": [
             "BVAS",
             "INEC"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_031",
@@ -1941,7 +2357,11 @@
           "keywords": [
             "Remita",
             "digital payments"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_032",
@@ -1959,7 +2379,11 @@
           "keywords": [
             "E-Census",
             "population census"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_033",
@@ -1977,7 +2401,11 @@
           "keywords": [
             "Gov.ng",
             "digital services"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_034",
@@ -1995,7 +2423,11 @@
           "keywords": [
             "ERP",
             "Enterprise Resource Planning"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_035",
@@ -2013,7 +2445,11 @@
           "keywords": [
             "E-Health",
             "medical records"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_036",
@@ -2031,7 +2467,11 @@
           "keywords": [
             "NCC",
             "broadband"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_037",
@@ -2049,7 +2489,11 @@
           "keywords": [
             "BVN",
             "bank accounts"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_038",
@@ -2067,7 +2511,11 @@
           "keywords": [
             "Mobile Apps",
             "e-governance"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_039",
@@ -2085,7 +2533,11 @@
           "keywords": [
             "E-Court",
             "justice delivery"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_040",
@@ -2103,7 +2555,11 @@
           "keywords": [
             "GIFMIS",
             "OAGF"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_041",
@@ -2121,7 +2577,11 @@
           "keywords": [
             "IVED",
             "voter registration"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_042",
@@ -2139,7 +2599,11 @@
           "keywords": [
             "NOCOPO",
             "procurement transparency"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_043",
@@ -2157,7 +2621,11 @@
           "keywords": [
             "NITDA",
             "innovation"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_044",
@@ -2175,7 +2643,11 @@
           "keywords": [
             "Service Charter Automation",
             "service delivery"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_045",
@@ -2193,7 +2665,11 @@
           "keywords": [
             "CBT",
             "recruitment"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_046",
@@ -2211,7 +2687,11 @@
           "keywords": [
             "PEBEC",
             "ease of doing business"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_047",
@@ -2230,7 +2710,11 @@
             "OHCSF",
             "circulars",
             "digital reforms"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_048",
@@ -2248,7 +2732,11 @@
           "keywords": [
             "E-Land Registry",
             "land administration"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_049",
@@ -2267,7 +2755,11 @@
             "USPF",
             "inclusion",
             "rural access"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_050",
@@ -2285,7 +2777,11 @@
           "keywords": [
             "Data Centers",
             "centralization"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_051",
@@ -2303,7 +2799,11 @@
           "keywords": [
             "IPPIS",
             "Rule 040102"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_052",
@@ -2321,7 +2821,11 @@
           "keywords": [
             "Digital Signatures",
             "Authentication"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_053",
@@ -2339,7 +2843,11 @@
           "keywords": [
             "NCC",
             "telecoms"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_054",
@@ -2357,7 +2865,11 @@
           "keywords": [
             "E-Government Master Plan",
             "Digital services"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_055",
@@ -2375,7 +2887,11 @@
           "keywords": [
             "TSA",
             "GIFMIS"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_056",
@@ -2393,7 +2909,11 @@
           "keywords": [
             "E-procurement",
             "PPA Section 38"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_057",
@@ -2411,7 +2931,11 @@
           "keywords": [
             "Unified Personnel Database",
             "postings"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_058",
@@ -2429,7 +2953,11 @@
           "keywords": [
             "Training categories",
             "Rule 070105"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_059",
@@ -2447,7 +2975,11 @@
           "keywords": [
             "NIS Portal",
             "passport applications"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_060",
@@ -2465,7 +2997,11 @@
           "keywords": [
             "NITDA",
             "ICT policy"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_061",
@@ -2483,7 +3019,11 @@
           "keywords": [
             "Smart Government",
             "E-Government Master Plan"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_062",
@@ -2502,7 +3042,11 @@
             "IPPIS",
             "GIFMIS",
             "comparison"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_063",
@@ -2520,7 +3064,11 @@
           "keywords": [
             "Servicom Dashboards",
             "service quality"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_064",
@@ -2538,7 +3086,11 @@
           "keywords": [
             "NITDA",
             "standards"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_065",
@@ -2556,7 +3108,11 @@
           "keywords": [
             "E-Land Registry",
             "digitization"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_066",
@@ -2575,7 +3131,11 @@
             "Online Verification Portals",
             "pensioners",
             "vendors"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_067",
@@ -2593,7 +3153,11 @@
           "keywords": [
             "ICT Policy 2012",
             "development"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2012,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_068",
@@ -2611,7 +3175,11 @@
           "keywords": [
             "CBT",
             "standardization"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_069",
@@ -2629,7 +3197,11 @@
           "keywords": [
             "Document Scanning",
             "digital archives"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_070",
@@ -2647,7 +3219,11 @@
           "keywords": [
             "Cloud Migration",
             "hosting platforms"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_071",
@@ -2665,7 +3241,11 @@
           "keywords": [
             "NOCOPO",
             "e-Procurement"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_072",
@@ -2683,7 +3263,11 @@
           "keywords": [
             "Cashless Policy",
             "electronic transactions"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_073",
@@ -2702,7 +3286,11 @@
             "HRM",
             "Pension",
             "staff records"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_074",
@@ -2721,7 +3309,11 @@
             "E-M&E",
             "monitoring",
             "evaluation"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_eg_075",
@@ -2739,7 +3331,11 @@
           "keywords": [
             "Cloud Migration",
             "infrastructure"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_e_governance_gen_001",
@@ -2759,7 +3355,11 @@
             "ict_e_governance",
             "refill-75-post-canonical"
           ],
-          "source": "generated_draft_dedup_safe"
+          "source": "generated_draft_dedup_safe",
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         }
       ]
     },
@@ -2784,7 +3384,11 @@
           "keywords": [
             "cybersecurity",
             "data protection"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_002",
@@ -2802,7 +3406,11 @@
           "keywords": [
             "Firewall",
             "network security"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_003",
@@ -2820,7 +3428,11 @@
           "keywords": [
             "Phishing",
             "cybercrime"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_004",
@@ -2838,7 +3450,11 @@
           "keywords": [
             "Patching",
             "vulnerabilities"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_005",
@@ -2856,7 +3472,11 @@
           "keywords": [
             "Encryption",
             "data protection"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_006",
@@ -2874,7 +3494,11 @@
           "keywords": [
             "Password security",
             "strong password"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_007",
@@ -2892,7 +3516,11 @@
           "keywords": [
             "Malware",
             "malicious software"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_008",
@@ -2910,7 +3538,11 @@
           "keywords": [
             "Cybercrime Act 2015",
             "fraud"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2015,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_009",
@@ -2928,7 +3560,11 @@
           "keywords": [
             "Data backup",
             "system failure"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_010",
@@ -2946,7 +3582,11 @@
           "keywords": [
             "NDPR",
             "data protection"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_011",
@@ -2964,7 +3604,11 @@
           "keywords": [
             "Digital Signatures",
             "Authentication"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_012",
@@ -2982,7 +3626,11 @@
           "keywords": [
             "2FA",
             "Multi-Factor Authentication"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_013",
@@ -3000,7 +3648,11 @@
           "keywords": [
             "NDPR breach",
             "fines"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_014",
@@ -3018,7 +3670,11 @@
           "keywords": [
             "Access Control",
             "file protection"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_015",
@@ -3036,7 +3692,11 @@
           "keywords": [
             "NDPC",
             "data protection"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_016",
@@ -3054,7 +3714,11 @@
           "keywords": [
             "Data loss",
             "disaster recovery"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_017",
@@ -3072,7 +3736,11 @@
           "keywords": [
             "NDPC",
             "acronym"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_018",
@@ -3090,7 +3758,11 @@
           "keywords": [
             "Ransomware",
             "malware"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_019",
@@ -3108,7 +3780,11 @@
           "keywords": [
             "Insider Threat",
             "security risk"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_020",
@@ -3126,7 +3802,11 @@
           "keywords": [
             "Data Integrity Checks",
             "modification prevention"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_021",
@@ -3144,7 +3824,11 @@
           "keywords": [
             "Cyber hygiene",
             "Staff awareness"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_022",
@@ -3162,7 +3846,11 @@
           "keywords": [
             "Encryption",
             "data protection"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_023",
@@ -3180,7 +3868,11 @@
           "keywords": [
             "SSL/TLS",
             "HTTPS"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_024",
@@ -3198,7 +3890,11 @@
           "keywords": [
             "DoS",
             "Denial of Service"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_025",
@@ -3216,7 +3912,11 @@
           "keywords": [
             "Malware",
             "acronym"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_026",
@@ -3234,7 +3934,11 @@
           "keywords": [
             "User authentication",
             "security"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_027",
@@ -3252,7 +3956,11 @@
           "keywords": [
             "Cybercrime Act",
             "data retention"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2015,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_028",
@@ -3270,7 +3978,11 @@
           "keywords": [
             "Zero-day",
             "vulnerability"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_029",
@@ -3288,7 +4000,11 @@
           "keywords": [
             "PKI",
             "digital certificates"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_030",
@@ -3306,7 +4022,11 @@
           "keywords": [
             "Segregation of Duties",
             "fraud control"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_031",
@@ -3324,7 +4044,11 @@
           "keywords": [
             "Gross misconduct",
             "Misuse of resources"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_032",
@@ -3342,7 +4066,11 @@
           "keywords": [
             "Password risk",
             "unauthorized access"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_033",
@@ -3360,7 +4088,11 @@
           "keywords": [
             "MFA",
             "security"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_034",
@@ -3378,7 +4110,11 @@
           "keywords": [
             "Hacking",
             "cybersecurity"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_035",
@@ -3396,7 +4132,11 @@
           "keywords": [
             "Antivirus",
             "Malware"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_036",
@@ -3414,7 +4154,11 @@
           "keywords": [
             "NDPR",
             "acronym"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_037",
@@ -3432,7 +4176,11 @@
           "keywords": [
             "Access Control",
             "file protection"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_038",
@@ -3450,7 +4198,11 @@
           "keywords": [
             "Cybercrime Act",
             "data retention"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2015,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_039",
@@ -3468,7 +4220,11 @@
           "keywords": [
             "EFCC",
             "financial crimes"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_040",
@@ -3486,7 +4242,11 @@
           "keywords": [
             "Data backup",
             "redundancy"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_041",
@@ -3504,7 +4264,11 @@
           "keywords": [
             "Data Redundancy",
             "multiple locations"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_042",
@@ -3522,7 +4286,11 @@
           "keywords": [
             "Official Secrets Act",
             "Breach of Secrecy"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_043",
@@ -3540,7 +4308,11 @@
           "keywords": [
             "Post-audit",
             "Financial commitment"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_044",
@@ -3559,7 +4331,11 @@
             "Proxy Server",
             "filtering",
             "gateway"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_045",
@@ -3577,7 +4353,11 @@
           "keywords": [
             "Inquiry",
             "access to documents"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_046",
@@ -3595,7 +4375,11 @@
           "keywords": [
             "SFTP",
             "protocol"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_047",
@@ -3613,7 +4397,11 @@
           "keywords": [
             "conflict of interest",
             "PPA Section 57"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_048",
@@ -3631,7 +4419,11 @@
           "keywords": [
             "Hacking",
             "cybersecurity"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_049",
@@ -3649,7 +4441,11 @@
           "keywords": [
             "Access Control Lists",
             "security"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_051",
@@ -3667,7 +4463,11 @@
           "keywords": [
             "Financial embarrassment",
             "Rule 020206"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_052",
@@ -3685,7 +4485,11 @@
           "keywords": [
             "Minor misconduct",
             "lateness"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_053",
@@ -3703,7 +4507,11 @@
           "keywords": [
             "Data validation",
             "accuracy"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_054",
@@ -3721,7 +4529,11 @@
           "keywords": [
             "Procurement fraud",
             "penalties"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_055",
@@ -3739,7 +4551,11 @@
           "keywords": [
             "Cybercrime Act",
             "acronym"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2015,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_056",
@@ -3757,7 +4573,11 @@
           "keywords": [
             "Non-repudiation",
             "digital security"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_057",
@@ -3775,7 +4595,11 @@
           "keywords": [
             "Official Secrets Act",
             "secrecy"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_058",
@@ -3793,7 +4617,11 @@
           "keywords": [
             "Segregation of Duties",
             "fraud prevention"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_059",
@@ -3811,7 +4639,11 @@
           "keywords": [
             "Firewall",
             "security"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_060",
@@ -3829,7 +4661,11 @@
           "keywords": [
             "BVN",
             "banking"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_061",
@@ -3847,7 +4683,11 @@
           "keywords": [
             "Antivirus",
             "Malware detection"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_062",
@@ -3865,7 +4705,11 @@
           "keywords": [
             "NDPC",
             "acronym"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_063",
@@ -3883,7 +4727,11 @@
           "keywords": [
             "Confidentiality",
             "security principle"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_064",
@@ -3901,7 +4749,11 @@
           "keywords": [
             "Password protection",
             "security"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_065",
@@ -3919,7 +4771,11 @@
           "keywords": [
             "Accountability",
             "Chapter 4"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_066",
@@ -3937,7 +4793,11 @@
           "keywords": [
             "Gross misconduct",
             "falsification"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_067",
@@ -3955,7 +4815,11 @@
           "keywords": [
             "Audit Trail",
             "traceability"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_068",
@@ -3973,7 +4837,11 @@
           "keywords": [
             "Virtual meetings",
             "multi-tasking"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_069",
@@ -3991,7 +4859,11 @@
           "keywords": [
             "NITDA",
             "ICT policy"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_070",
@@ -4009,7 +4881,11 @@
           "keywords": [
             "Access Control",
             "file protection"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_071",
@@ -4027,7 +4903,11 @@
           "keywords": [
             "Firewall",
             "network security"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_072",
@@ -4045,7 +4925,11 @@
           "keywords": [
             "Dismissal",
             "Gross misconduct"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_073",
@@ -4063,7 +4947,11 @@
           "keywords": [
             "SSL/TLS",
             "security protocol"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_sec_075",
@@ -4081,7 +4969,11 @@
           "keywords": [
             "FEC approval",
             "digital systems"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_security_gen_001",
@@ -4102,7 +4994,11 @@
             "digital security & cybersecurity governance",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_security_gen_002",
@@ -4122,7 +5018,11 @@
             "ict_security",
             "refill-75-post-canonical"
           ],
-          "source": "generated_draft_dedup_safe"
+          "source": "generated_draft_dedup_safe",
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         }
       ]
     },
@@ -4147,7 +5047,11 @@
           "keywords": [
             "ICT benefits",
             "digital exclusion"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_002",
@@ -4165,7 +5069,11 @@
           "keywords": [
             "ICT",
             "transparency"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_003",
@@ -4183,7 +5091,11 @@
           "keywords": [
             "broadband penetration",
             "rural access"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_004",
@@ -4201,7 +5113,11 @@
           "keywords": [
             "information literacy",
             "evaluate information"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_005",
@@ -4220,7 +5136,11 @@
             "Chatbots",
             "AI",
             "service delivery"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_006",
@@ -4238,7 +5158,11 @@
           "keywords": [
             "Google Sheets",
             "real-time editing"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_007",
@@ -4256,7 +5180,11 @@
           "keywords": [
             "Cloud collaboration",
             "teamwork"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_008",
@@ -4274,7 +5202,11 @@
           "keywords": [
             "Big Data Analytics",
             "data analysis"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_009",
@@ -4292,7 +5224,11 @@
           "keywords": [
             "reliability",
             "government sources"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_010",
@@ -4311,7 +5247,11 @@
             "conciseness",
             "clarity",
             "communication"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_011",
@@ -4329,7 +5269,11 @@
           "keywords": [
             "Information Literacy",
             "skill"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_012",
@@ -4347,7 +5291,11 @@
           "keywords": [
             "Digital communication",
             "definition"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_013",
@@ -4365,7 +5313,11 @@
           "keywords": [
             "asynchronous communication",
             "Email"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_014",
@@ -4383,7 +5335,11 @@
           "keywords": [
             "Data Redundancy",
             "backup"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_015",
@@ -4401,7 +5357,11 @@
           "keywords": [
             "Version history",
             "collaboration"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_016",
@@ -4419,7 +5379,11 @@
           "keywords": [
             "netiquette",
             "online behavior"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_017",
@@ -4437,7 +5401,11 @@
           "keywords": [
             "BCC",
             "email privacy"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_018",
@@ -4455,7 +5423,11 @@
           "keywords": [
             "teamwork",
             "efficiency"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_019",
@@ -4473,7 +5445,11 @@
           "keywords": [
             "formal communication",
             "slang"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_020",
@@ -4492,7 +5468,11 @@
             "virtual meeting",
             "Zoom",
             "Teams"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_021",
@@ -4511,7 +5491,11 @@
             "GIS",
             "mapping",
             "resource planning"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_022",
@@ -4529,7 +5513,11 @@
           "keywords": [
             "digital problem solving",
             "technology"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_023",
@@ -4547,7 +5535,11 @@
           "keywords": [
             "Cloud Storage",
             "data"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_024",
@@ -4565,7 +5557,11 @@
           "keywords": [
             "ICT literacy",
             "challenges"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_025",
@@ -4583,7 +5579,11 @@
           "keywords": [
             "virtual meetings",
             "etiquette"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_026",
@@ -4601,7 +5601,11 @@
           "keywords": [
             "Virtual meetings",
             "24 hours"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_027",
@@ -4619,7 +5623,11 @@
           "keywords": [
             "E-M&E",
             "performance dashboards"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_028",
@@ -4638,7 +5646,11 @@
             "Trello",
             "Asana",
             "task management"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_029",
@@ -4656,7 +5668,11 @@
           "keywords": [
             "Innovation",
             "efficiency"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_030",
@@ -4674,7 +5690,11 @@
           "keywords": [
             "Digital Dependency",
             "innovation"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_031",
@@ -4692,7 +5712,11 @@
           "keywords": [
             "ECM",
             "acronym"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_032",
@@ -4710,7 +5734,11 @@
           "keywords": [
             "Virtual meetings",
             "Formal attire"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_033",
@@ -4728,7 +5756,11 @@
           "keywords": [
             "Google Docs",
             "real-time editing"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_035",
@@ -4746,7 +5778,11 @@
           "keywords": [
             "Synchronous communication",
             "real-time"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_036",
@@ -4765,7 +5801,11 @@
             "Slack",
             "Teams",
             "internal communication"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_037",
@@ -4783,7 +5823,11 @@
           "keywords": [
             "NITDA",
             "digital literacy"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_038",
@@ -4801,7 +5845,11 @@
           "keywords": [
             "Digital content",
             "definition"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_039",
@@ -4819,7 +5867,11 @@
           "keywords": [
             "shared calendars",
             "hybrid work"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_040",
@@ -4837,7 +5889,11 @@
           "keywords": [
             "Virtual meetings",
             "continuity"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_041",
@@ -4855,7 +5911,11 @@
           "keywords": [
             "Mandatory break",
             "Virtual meetings"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_042",
@@ -4873,7 +5933,11 @@
           "keywords": [
             "CC",
             "email"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_043",
@@ -4891,7 +5955,11 @@
           "keywords": [
             "Virtual meetings",
             "etiquette"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_044",
@@ -4909,7 +5977,11 @@
           "keywords": [
             "AI/ML",
             "Python"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_045",
@@ -4927,7 +5999,11 @@
           "keywords": [
             "E-Government Masterplan",
             "acronym"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_046",
@@ -4945,7 +6021,11 @@
           "keywords": [
             "Digital Content",
             "definition"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_047",
@@ -4963,7 +6043,11 @@
           "keywords": [
             "professional development",
             "adaptability"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_048",
@@ -4981,7 +6065,11 @@
           "keywords": [
             "NITDA",
             "ICT policy"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_051",
@@ -4999,7 +6087,11 @@
           "keywords": [
             "Mute technology",
             "Virtual meetings"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_052",
@@ -5017,7 +6109,11 @@
           "keywords": [
             "Python",
             "AI/ML"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_053",
@@ -5035,7 +6131,11 @@
           "keywords": [
             "Digital Literacy",
             "skills"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_054",
@@ -5053,7 +6153,11 @@
           "keywords": [
             "NITDA",
             "innovation"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_055",
@@ -5071,7 +6175,11 @@
           "keywords": [
             "Travelling on duty",
             "Medical Specialist"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_056",
@@ -5089,7 +6197,11 @@
           "keywords": [
             "Dashboard",
             "real-time data"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_058",
@@ -5107,7 +6219,11 @@
           "keywords": [
             "Grievance",
             "Chapter 7"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_060",
@@ -5125,7 +6241,11 @@
           "keywords": [
             "E-Land Registry",
             "land administration"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_061",
@@ -5143,7 +6263,11 @@
           "keywords": [
             "Version history",
             "track changes"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_063",
@@ -5161,7 +6285,11 @@
           "keywords": [
             "Medical Test",
             "transfer"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_064",
@@ -5179,7 +6307,11 @@
           "keywords": [
             "Data Redundancy",
             "backup"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_067",
@@ -5197,7 +6329,11 @@
           "keywords": [
             "In-service training",
             "MDA mandate"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_068",
@@ -5215,7 +6351,11 @@
           "keywords": [
             "e-Leave Portal",
             "HRMIS"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_069",
@@ -5233,7 +6373,11 @@
           "keywords": [
             "E-Government Master Plan",
             "cloud infrastructure"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_070",
@@ -5251,7 +6395,11 @@
           "keywords": [
             "best practice",
             "digital application"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_072",
@@ -5269,7 +6417,11 @@
           "keywords": [
             "Overseas employment",
             "Training allowance"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_073",
@@ -5288,7 +6440,11 @@
             "Training interruption",
             "pregnancy",
             "refund"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_074",
@@ -5306,7 +6462,11 @@
           "keywords": [
             "Staff Development",
             "Efficiency"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_li_075",
@@ -5324,7 +6484,11 @@
           "keywords": [
             "E-procurement",
             "PPA Section 38"
-          ]
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_literacy_innovation_gen_001",
@@ -5345,7 +6509,11 @@
             "digital literacy & innovation governance",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_literacy_innovation_gen_002",
@@ -5366,7 +6534,11 @@
             "digital literacy & innovation compliance",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_literacy_innovation_gen_003",
@@ -5387,7 +6559,11 @@
             "digital literacy & innovation risk management",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_literacy_innovation_gen_004",
@@ -5408,7 +6584,11 @@
             "cybersecurity hygiene",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_literacy_innovation_gen_005",
@@ -5429,7 +6609,11 @@
             "digital service design",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_literacy_innovation_gen_006",
@@ -5450,7 +6634,11 @@
             "data governance",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_literacy_innovation_gen_007",
@@ -5471,7 +6659,11 @@
             "business continuity",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_literacy_innovation_gen_008",
@@ -5492,7 +6684,11 @@
             "technology adoption",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         },
         {
           "id": "ict_literacy_innovation_gen_009",
@@ -5513,7 +6709,11 @@
             "documented procedure",
             "quality-expansion"
           ],
-          "source": "generated_draft"
+          "source": "generated_draft",
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-03"
         }
       ]
     }

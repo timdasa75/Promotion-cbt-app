@@ -12,7 +12,10 @@ import {
 import {
   clearPersistedQuizRuntime,
   getPersistedQuizRuntime,
+  getRetryMissedQueueCount,
+  getRetryMissedQuestions,
   loadQuestions,
+  RETRY_MISSED_TOPIC_ID,
   restorePersistedQuizRuntime,
   setCurrentTopic,
   setCurrentMode,
@@ -20,6 +23,7 @@ import {
   retakeFullQuiz,
 } from "./quiz.js";
 import { debugLog } from "./logger.js";
+import { calculateStreakDays, getWeakestTopicId } from "./metrics.js";
 import {
   clearLocalPlanOverride,
   forceCloudPlanSync,
@@ -58,7 +62,7 @@ const ADMIN_OPERATION_HISTORY_STORAGE_KEY = "cbt_admin_operation_history_v1";
 const ADMIN_OPERATION_HISTORY_MAX = 120;
 const LOGIN_EMAIL_PREFILL_STORAGE_KEY = "cbt_login_prefill_email_v1";
 const SCREEN_STATE_STORAGE_KEY = "cbt_screen_state_v1";
-const ADMIN_DIRECTORY_SYNC_INTERVAL_MS = 15000;
+const DEFAULT_ADMIN_DIRECTORY_SYNC_INTERVAL_MS = 60000;
 const ADMIN_DIRECTORY_SYNC_STORAGE_KEYS = new Set([
   "cbt_session_v1",
   "cbt_users_v1",
@@ -68,6 +72,7 @@ const ADMIN_DIRECTORY_SYNC_STORAGE_KEYS = new Set([
 ]);
 let adminDirectorySyncIntervalHandle = null;
 let adminDirectorySyncVisibilityBound = false;
+let adminDirectoryRefreshInFlight = null;
 const RESTORABLE_SCREEN_IDS = new Set([
   "splashScreen",
   "topicSelectionScreen",
@@ -83,6 +88,16 @@ const RESTORABLE_SCREEN_IDS = new Set([
   "statesScreen",
 ]);
 const MOCK_EXAM_TOPIC_ID = "mock_exam";
+const RETRY_MISSED_TOPIC = {
+  id: RETRY_MISSED_TOPIC_ID,
+  name: "Retry Missed Questions",
+  description: "Practice previously missed questions across your recent sessions.",
+  icon: "↺",
+  type: "retry_missed",
+  skipCategorySelection: true,
+  requiresPremium: false,
+  mockExamQuestionCount: 40,
+};
 const MOCK_EXAM_TOPIC = {
   id: MOCK_EXAM_TOPIC_ID,
   name: "Directorate Mock Exam",
@@ -106,6 +121,15 @@ const MOCK_EXAM_TOPIC = {
     { topicId: "competency_framework", count: 4 },
   ],
 };
+
+function getAdminDirectorySyncIntervalMs() {
+  const cfg = window.PROMOTION_CBT_AUTH || {};
+  const value = Number(cfg.adminDirectorySyncIntervalMs);
+  if (!Number.isFinite(value) || value < 15000) {
+    return DEFAULT_ADMIN_DIRECTORY_SYNC_INTERVAL_MS;
+  }
+  return Math.min(value, 10 * 60 * 1000);
+}
 
 function setToolbarIcon(target, svgMarkup) {
   if (!target) return;
@@ -463,51 +487,6 @@ function getTopicNameById(topicId) {
   return topic ? topic.name : "Unknown topic";
 }
 
-function calculateStreakDays(attempts) {
-  if (!attempts.length) return 0;
-  const uniqueDays = new Set(
-    attempts
-      .map((attempt) => (attempt.createdAt || "").slice(0, 10))
-      .filter(Boolean),
-  );
-
-  const now = new Date();
-  let streak = 0;
-  for (let i = 0; i < 365; i++) {
-    const day = new Date(now);
-    day.setDate(now.getDate() - i);
-    const dayKey = day.toISOString().slice(0, 10);
-    if (uniqueDays.has(dayKey)) {
-      streak += 1;
-    } else {
-      if (i === 0) continue;
-      break;
-    }
-  }
-  return streak;
-}
-
-function getWeakestTopicId(attempts) {
-  if (!attempts.length) return null;
-  const scoreByTopic = new Map();
-  attempts.forEach((attempt) => {
-    if (!attempt.topicId) return;
-    const existing = scoreByTopic.get(attempt.topicId) || [];
-    existing.push(Number(attempt.scorePercentage || 0));
-    scoreByTopic.set(attempt.topicId, existing);
-  });
-  if (!scoreByTopic.size) return null;
-
-  let weakest = null;
-  scoreByTopic.forEach((scores, topicId) => {
-    const avg = scores.reduce((sum, score) => sum + score, 0) / scores.length;
-    if (!weakest || avg < weakest.avg) {
-      weakest = { topicId, avg };
-    }
-  });
-  return weakest?.topicId || null;
-}
-
 function refreshDashboardInsights() {
   const currentUser = getCurrentUser();
   const summary = readProgressSummary();
@@ -578,6 +557,8 @@ function refreshDashboardInsights() {
     const canResume = Boolean(currentUser && latestAttempt?.topicId);
     splashResumeBtn.classList.toggle("hidden", !canResume);
   }
+
+  syncRetryMissedButtonState();
 }
 
 async function resumeLastSession() {
@@ -606,6 +587,42 @@ async function startRecommendation() {
   const topic = cachedTopics.find((t) => preferredIds.includes(t.id)) || cachedTopics[0];
 
   await handleTopicSelect(topic);
+}
+
+function syncRetryMissedButtonState() {
+  const retryMissedBtn = document.getElementById("retryMissedBtn");
+  if (!retryMissedBtn) return;
+  const queueCount = getRetryMissedQueueCount();
+  retryMissedBtn.textContent =
+    queueCount > 0 ? `Retry Missed (${queueCount})` : "Retry Missed";
+  retryMissedBtn.disabled = queueCount === 0;
+}
+
+async function startRetryMissedSession() {
+  if (!getCurrentUser()) {
+    openAuthModal("login");
+    return;
+  }
+
+  const retryQuestions = getRetryMissedQuestions(40);
+  if (!retryQuestions.length) {
+    showWarning("No missed-question queue yet. Complete a quiz to build your retry set.");
+    syncRetryMissedButtonState();
+    return;
+  }
+
+  currentTopic = { ...RETRY_MISSED_TOPIC };
+  setCurrentTopic(currentTopic);
+  setCurrentMode("practice");
+
+  await runOperationWithFeedback(
+    () => loadQuestions(retryQuestions),
+    {
+      loadingMessage: "Loading retry-missed queue...",
+      successMessage: "",
+      failurePrefix: "Unable to start retry-missed session:",
+    },
+  );
 }
 
 function readScreenState() {
@@ -769,6 +786,7 @@ function initializeDashboardActions() {
   const filterDocumentBtn = document.getElementById("filterDocumentBtn");
   const filterCompetencyBtn = document.getElementById("filterCompetencyBtn");
   const filterRecentBtn = document.getElementById("filterRecentBtn");
+  const retryMissedBtn = document.getElementById("retryMissedBtn");
   const openAdminBtn = document.getElementById("openAdminBtn");
 
   if (startLearningBtn) {
@@ -848,6 +866,12 @@ function initializeDashboardActions() {
   if (filterRecentBtn) {
     filterRecentBtn.addEventListener("click", () => {
       applyTopicFilter("recent");
+    });
+  }
+
+  if (retryMissedBtn) {
+    retryMissedBtn.addEventListener("click", () => {
+      startRetryMissedSession();
     });
   }
 
@@ -1507,6 +1531,16 @@ function formatDateTime(value) {
   return date.toLocaleString();
 }
 
+function getDirectoryVerificationPresentation(emailVerified) {
+  if (emailVerified === true) {
+    return { label: "Yes", badgeClass: "approved", dataValue: "true" };
+  }
+  if (emailVerified === false) {
+    return { label: "No", badgeClass: "rejected", dataValue: "false" };
+  }
+  return { label: "Unknown", badgeClass: "neutral", dataValue: "unknown" };
+}
+
 function renderAdminUserDirectory() {
   const container = document.getElementById("adminUserList");
   const searchInput = document.getElementById("adminUserSearch");
@@ -1573,14 +1607,13 @@ function renderAdminUserDirectory() {
     const accountActionLabel = isSuspended ? "Reactivate" : "Deactivate";
     const accountNextStatus = isSuspended ? "active" : "suspended";
     const safeProfileId = escapeHtml(entry.id);
-    const verifiedLabel = entry.emailVerified ? "Yes" : "No";
-    const verifiedClass = entry.emailVerified ? "approved" : "pending";
+    const verification = getDirectoryVerificationPresentation(entry.emailVerified);
     row.innerHTML = `
       <td class="email-cell">${safeEmail}</td>
       <td><span class="admin-badge ${roleClass}">${safeRole}</span></td>
       <td><span class="admin-badge ${planClass}">${safePlan}</span></td>
       <td><span class="admin-badge ${statusClass}">${safeStatus}</span></td>
-      <td><span class="admin-badge ${verifiedClass}">${verifiedLabel}</span></td>
+      <td><span class="admin-badge ${verification.badgeClass}">${verification.label}</span></td>
       <td>${safeCreated}</td>
       <td>${safeLastSeen}</td>
       <td class="actions-col">
@@ -1598,7 +1631,7 @@ function renderAdminUserDirectory() {
             <button class="directory-action directory-action-menu-item" data-action="send-reset" data-profile-email="${safeEmail}" type="button" role="menuitem">
               Reset password
             </button>
-            <button class="directory-action directory-action-menu-item" data-action="resend-verification" data-profile-email="${safeEmail}" data-email-verified="${entry.emailVerified ? "true" : "false"}" type="button" role="menuitem">
+            <button class="directory-action directory-action-menu-item" data-action="resend-verification" data-profile-email="${safeEmail}" data-email-verified="${verification.dataValue}" type="button" role="menuitem">
               Resend verification
             </button>
             <button class="directory-action directory-action-menu-item danger" data-action="set-account-state" data-profile-id="${safeProfileId}" data-profile-email="${safeEmail}" data-next-status="${accountNextStatus}" type="button" role="menuitem">
@@ -1637,7 +1670,8 @@ function renderAdminUserDirectory() {
     const profileId = button.dataset.profileId;
     const profileEmail = button.dataset.profileEmail;
     const nextStatus = String(button.dataset.nextStatus || "").trim().toLowerCase();
-    const isEmailVerified = String(button.dataset.emailVerified || "").trim().toLowerCase() === "true";
+    const emailVerificationState = String(button.dataset.emailVerified || "").trim().toLowerCase();
+    const isEmailVerified = emailVerificationState === "true";
     const targetLabel = profileEmail || profileId || "unknown-user";
     const isDeactivateFlow = action === "set-account-state" && nextStatus === "suspended";
     const isReactivateFlow = action === "set-account-state" && nextStatus === "active";
@@ -1757,6 +1791,10 @@ function renderAdminUserDirectory() {
 }
 
 async function refreshAdminUserDirectory() {
+  if (adminDirectoryRefreshInFlight) {
+    return adminDirectoryRefreshInFlight;
+  }
+  adminDirectoryRefreshInFlight = (async () => {
   if (!isCurrentUserAdmin()) return;
   const notice = document.getElementById("adminUserDirectoryNotice");
   const sourceLabel = document.getElementById("adminUserSource");
@@ -1768,7 +1806,11 @@ async function refreshAdminUserDirectory() {
     renderAdminRequests();
     if (sourceLabel) {
       sourceLabel.textContent =
-        result.source === "cloud" ? "Source: Cloud profiles" : "Source: Local fallback";
+        result.source === "cloud-auth"
+          ? "Source: Firebase Auth (live)"
+          : result.source === "cloud"
+            ? "Source: Cloud profiles"
+            : "Source: Local fallback";
     }
     if (notice) {
       if (result.warning) {
@@ -1795,6 +1837,12 @@ async function refreshAdminUserDirectory() {
     }
     console.error("Failed to refresh admin user directory:", error);
   }
+  })();
+  try {
+    await adminDirectoryRefreshInFlight;
+  } finally {
+    adminDirectoryRefreshInFlight = null;
+  }
 }
 
 function shouldAutoSyncAdminDirectory() {
@@ -1805,10 +1853,11 @@ function shouldAutoSyncAdminDirectory() {
 
 function startAdminDirectoryAutoSync() {
   if (adminDirectorySyncIntervalHandle) return;
+  const syncIntervalMs = getAdminDirectorySyncIntervalMs();
   adminDirectorySyncIntervalHandle = setInterval(() => {
     if (!shouldAutoSyncAdminDirectory()) return;
     refreshAdminUserDirectory();
-  }, ADMIN_DIRECTORY_SYNC_INTERVAL_MS);
+  }, syncIntervalMs);
 
   if (adminDirectorySyncVisibilityBound) return;
   adminDirectorySyncVisibilityBound = true;

@@ -25,6 +25,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate taxonomy integrity and metadata coverage
+        run: python3 scripts/validate_taxonomy.py --strict-duplicates --strict-metadata
+
+      - name: Run unit tests
+        run: npm run test:unit
+
       - name: Validate required Firebase secrets
         env:
           FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}

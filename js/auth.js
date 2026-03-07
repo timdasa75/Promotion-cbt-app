@@ -1,16 +1,24 @@
 // auth.js - auth/session + entitlement helpers
 
+import {
+  LOCAL_PASSWORD_ALGO_V2,
+  buildLocalPasswordRecord,
+  verifyLocalPasswordRecord,
+} from "./authPassword.js";
+
 const USERS_STORAGE_KEY = "cbt_users_v1";
 const SESSION_STORAGE_KEY = "cbt_session_v1";
 const PLAN_OVERRIDES_STORAGE_KEY = "cbt_plan_overrides_v1";
 const PLAN_OVERRIDE_META_STORAGE_KEY = "cbt_plan_override_meta_v1";
 const ADMIN_DIRECTORY_CACHE_STORAGE_KEY = "cbt_admin_directory_cache_v1";
+const VERIFICATION_RESEND_COOLDOWN_STORAGE_KEY = "cbt_verification_resend_cooldown_v1";
+const PASSWORD_RESET_COOLDOWN_STORAGE_KEY = "cbt_password_reset_cooldown_v1";
 const DEFAULT_ADMIN_EMAILS = ["timdasa75@gmail.com"];
 const PLAN_SYNC_INTERVAL_MS = 30 * 1000;
 const CLOUD_PLAN_POLL_MS = 5 * 1000;
 const TOKEN_REFRESH_SKEW_MS = 30 * 1000;
-const LOCAL_PASSWORD_ALGO_V2 = "pbkdf2_sha256";
-const LOCAL_PASSWORD_ITERATIONS = 120000;
+const DEFAULT_VERIFICATION_RESEND_COOLDOWN_MS = 15 * 60 * 1000;
+const DEFAULT_PASSWORD_RESET_COOLDOWN_MS = 10 * 60 * 1000;
 
 let cloudPlanSyncInFlight = false;
 let cloudPlanPollingHandle = null;
@@ -63,11 +71,27 @@ function normalizeUpgradeRequestStatus(value) {
   return "none";
 }
 
+function normalizeEmailVerificationState(value, fallback = null) {
+  if (typeof value === "boolean") return value;
+  const normalized = String(value || "").trim().toLowerCase();
+  if (normalized === "true") return true;
+  if (normalized === "false") return false;
+  return fallback;
+}
+
 function toIsoTimestamp(value, fallback = new Date().toISOString()) {
   const raw = String(value || "").trim();
   if (!raw) return fallback;
   const parsed = new Date(raw);
   if (Number.isNaN(parsed.getTime())) return fallback;
+  return parsed.toISOString();
+}
+
+function toOptionalIsoTimestamp(value) {
+  const raw = String(value || "").trim();
+  if (!raw) return "";
+  const parsed = new Date(raw);
+  if (Number.isNaN(parsed.getTime())) return "";
   return parsed.toISOString();
 }
 
@@ -86,13 +110,49 @@ function getFirebaseConfig() {
     cfg.firebaseAdminAccessToken || cfg.identityToolkitAccessToken || "",
   ).trim();
   const firebaseFunctionsRegion = String(cfg.firebaseFunctionsRegion || "us-central1").trim();
+  const firebaseQuotaProjectId = String(
+    cfg.firebaseQuotaProjectId || cfg.quotaProjectId || firebaseProjectId || "",
+  ).trim();
+  const verificationResendCooldownMs = Number(cfg.verificationResendCooldownMs);
+  const passwordResetCooldownMs = Number(cfg.passwordResetCooldownMs);
   return {
     firebaseApiKey,
     firebaseProjectId,
     firebaseAuthDomain,
     firebaseAdminAccessToken,
     firebaseFunctionsRegion,
+    firebaseQuotaProjectId,
+    verificationResendCooldownMs,
+    passwordResetCooldownMs,
   };
+}
+
+function buildIdentityToolkitAdminHeaders(accessToken) {
+  const { firebaseQuotaProjectId } = getFirebaseConfig();
+  const headers = {
+    Authorization: `Bearer ${accessToken}`,
+    "Content-Type": "application/json",
+  };
+  if (firebaseQuotaProjectId) {
+    headers["x-goog-user-project"] = firebaseQuotaProjectId;
+  }
+  return headers;
+}
+
+function resolveCooldownMs(configValue, fallbackMs) {
+  const value = Number(configValue);
+  if (!Number.isFinite(value) || value <= 0) return fallbackMs;
+  return Math.max(60 * 1000, Math.min(value, 24 * 60 * 60 * 1000));
+}
+
+function getVerificationResendCooldownMs() {
+  const { verificationResendCooldownMs } = getFirebaseConfig();
+  return resolveCooldownMs(verificationResendCooldownMs, DEFAULT_VERIFICATION_RESEND_COOLDOWN_MS);
+}
+
+function getPasswordResetCooldownMs() {
+  const { passwordResetCooldownMs } = getFirebaseConfig();
+  return resolveCooldownMs(passwordResetCooldownMs, DEFAULT_PASSWORD_RESET_COOLDOWN_MS);
 }
 
 function getIdentityToolkitDeleteUrl() {
@@ -111,6 +171,22 @@ function getIdentityToolkitProjectSendOobUrl() {
   return `https://identitytoolkit.googleapis.com/v1/projects/${encodeURIComponent(firebaseProjectId)}/accounts:sendOobCode`;
 }
 
+function getIdentityToolkitProjectLookupUrl() {
+  const { firebaseProjectId } = getFirebaseConfig();
+  if (!firebaseProjectId) {
+    throw new Error("Firebase project ID is missing.");
+  }
+  return `https://identitytoolkit.googleapis.com/v1/projects/${encodeURIComponent(firebaseProjectId)}/accounts:lookup`;
+}
+
+function getIdentityToolkitProjectBatchGetUrl() {
+  const { firebaseProjectId } = getFirebaseConfig();
+  if (!firebaseProjectId) {
+    throw new Error("Firebase project ID is missing.");
+  }
+  return `https://identitytoolkit.googleapis.com/v1/projects/${encodeURIComponent(firebaseProjectId)}/accounts:batchGet`;
+}
+
 async function deleteFirebaseAuthUserById(localId, accessToken) {
   if (!localId) {
     throw new Error("User identifier is required.");
@@ -122,10 +198,7 @@ async function deleteFirebaseAuthUserById(localId, accessToken) {
   const url = getIdentityToolkitDeleteUrl();
   const response = await fetch(url, {
     method: "POST",
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-      "Content-Type": "application/json",
-    },
+    headers: buildIdentityToolkitAdminHeaders(accessToken),
     body: JSON.stringify({ localId }),
   });
   const payload = await response.json().catch(() => null);
@@ -158,10 +231,7 @@ async function sendProjectScopedOobCode({ requestType, email, accessToken, conti
   const response = await fetch(getIdentityToolkitProjectSendOobUrl(), {
     method: "POST",
     credentials: "omit",
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-      "Content-Type": "application/json",
-    },
+    headers: buildIdentityToolkitAdminHeaders(accessToken),
     body: JSON.stringify(body),
   });
   const payload = await response.json().catch(() => null);
@@ -173,6 +243,102 @@ async function sendProjectScopedOobCode({ requestType, email, accessToken, conti
   return payload;
 }
 
+async function lookupProjectAccountsByEmails({ emails, accessToken }) {
+  const normalizedEmails = Array.from(
+    new Set(
+      (Array.isArray(emails) ? emails : [])
+        .map((entry) => normalizeEmail(entry))
+        .filter((entry) => entry && entry.includes("@")),
+    ),
+  );
+  if (!normalizedEmails.length) {
+    return new Map();
+  }
+  if (!accessToken) {
+    throw new Error("Admin access token is missing.");
+  }
+
+  const chunks = [];
+  const chunkSize = 100;
+  for (let index = 0; index < normalizedEmails.length; index += chunkSize) {
+    chunks.push(normalizedEmails.slice(index, index + chunkSize));
+  }
+
+  const verificationByEmail = new Map();
+
+  for (const batch of chunks) {
+    const response = await fetch(getIdentityToolkitProjectLookupUrl(), {
+      method: "POST",
+      credentials: "omit",
+      headers: buildIdentityToolkitAdminHeaders(accessToken),
+      body: JSON.stringify({ email: batch }),
+    });
+    const payload = await response.json().catch(() => null);
+    if (!response.ok) {
+      const message =
+        payload?.error?.message || payload?.error?.status || "Unable to lookup account status.";
+      throw new Error(message);
+    }
+    const users = Array.isArray(payload?.users) ? payload.users : [];
+    users.forEach((user) => {
+      const email = normalizeEmail(user?.email || "");
+      if (!email) return;
+      verificationByEmail.set(email, Boolean(user?.emailVerified));
+    });
+  }
+
+  return verificationByEmail;
+}
+
+async function listProjectAccountsByAccessToken(accessToken) {
+  if (!accessToken) {
+    throw new Error("Admin access token is missing.");
+  }
+
+  const rows = [];
+  let pageToken = "";
+  let loop = 0;
+
+  do {
+    const params = new URLSearchParams();
+    params.set("maxResults", "1000");
+    if (pageToken) {
+      params.set("nextPageToken", pageToken);
+    }
+
+    const response = await fetch(`${getIdentityToolkitProjectBatchGetUrl()}?${params.toString()}`, {
+      method: "GET",
+      credentials: "omit",
+      headers: buildIdentityToolkitAdminHeaders(accessToken),
+    });
+
+    const payload = await response.json().catch(() => null);
+    if (!response.ok) {
+      const message =
+        payload?.error?.message || payload?.error?.status || "Unable to list Firebase Auth users.";
+      throw new Error(message);
+    }
+
+    const users = Array.isArray(payload?.users) ? payload.users : [];
+    users.forEach((entry) => {
+      rows.push({
+        id: String(entry?.localId || ""),
+        email: normalizeEmail(entry?.email || ""),
+        name: String(entry?.displayName || ""),
+        emailVerified: normalizeEmailVerificationState(entry?.emailVerified, false),
+        disabled: Boolean(entry?.disabled),
+        createdAt: fromFirebaseMillisToIso(entry?.createdAt, ""),
+        lastSignInAt: fromFirebaseMillisToIso(entry?.lastLoginAt, ""),
+      });
+    });
+
+    pageToken = String(payload?.nextPageToken || "");
+    loop += 1;
+  } while (pageToken && loop < 50);
+
+  return rows;
+}
+
 function getAdminDeleteFunctionUrl() {
   const { firebaseProjectId, firebaseFunctionsRegion } = getFirebaseConfig();
   if (!firebaseProjectId) {
@@ -181,6 +347,16 @@ function getAdminDeleteFunctionUrl() {
   return `https://${encodeURIComponent(firebaseFunctionsRegion)}-${encodeURIComponent(
     firebaseProjectId,
   )}.cloudfunctions.net/adminDeleteUserById`;
+}
+
+function getAdminListUsersFunctionUrl() {
+  const { firebaseProjectId, firebaseFunctionsRegion } = getFirebaseConfig();
+  if (!firebaseProjectId) {
+    throw new Error("Firebase project ID is missing.");
+  }
+  return `https://${encodeURIComponent(firebaseFunctionsRegion)}-${encodeURIComponent(
+    firebaseProjectId,
+  )}.cloudfunctions.net/adminListUsers`;
 }
 
 async function deleteUserViaCloudFunction(userId, accessToken) {
@@ -205,6 +381,43 @@ async function deleteUserViaCloudFunction(userId, accessToken) {
     throw new Error(message);
   }
   return payload;
+}
+
+async function listUsersViaCloudFunction(accessToken) {
+  if (!accessToken) {
+    throw new Error("Cloud session is unavailable.");
+  }
+
+  const response = await fetch(getAdminListUsersFunctionUrl(), {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({}),
+  });
+
+  const payload = await response.json().catch(() => ({}));
+  if (!response.ok || !payload?.ok) {
+    const message = payload?.error || payload?.message || "Cloud Function user listing failed.";
+    throw new Error(message);
+  }
+
+  const users = Array.isArray(payload?.users) ? payload.users : [];
+  return users.map((entry) => ({
+    id: String(entry?.id || entry?.uid || entry?.localId || ""),
+    email: normalizeEmail(entry?.email || ""),
+    name: String(entry?.name || entry?.displayName || ""),
+    emailVerified: normalizeEmailVerificationState(entry?.emailVerified, false),
+    disabled: Boolean(entry?.disabled),
+    createdAt: toOptionalIsoTimestamp(entry?.createdAt),
+    lastSignInAt: toOptionalIsoTimestamp(entry?.lastSignInAt),
+  }));
+}
+
+async function listUsersViaAdminToken() {
+  const { firebaseAdminAccessToken } = getFirebaseConfig();
+  return listProjectAccountsByAccessToken(firebaseAdminAccessToken);
 }
 
 function isLocalDevelopmentHost() {
@@ -364,88 +577,105 @@ function writeAdminDirectoryCache(users, syncedAt = new Date().toISOString()) {
   );
 }
 
-async function hashPassword(password) {
-  const value = String(password || "");
-  if (!value) return "";
-
-  if (window.crypto?.subtle) {
-    const encoded = new TextEncoder().encode(value);
-    const digest = await window.crypto.subtle.digest("SHA-256", encoded);
-    const bytes = Array.from(new Uint8Array(digest));
-    return bytes.map((b) => b.toString(16).padStart(2, "0")).join("");
+function readVerificationResendCooldowns() {
+  try {
+    const raw = localStorage.getItem(VERIFICATION_RESEND_COOLDOWN_STORAGE_KEY);
+    if (!raw) return {};
+    const parsed = JSON.parse(raw);
+    return parsed && typeof parsed === "object" ? parsed : {};
+  } catch (error) {
+    return {};
   }
-
-  return btoa(unescape(encodeURIComponent(value)));
 }
 
-function generatePasswordSalt() {
-  if (window.crypto?.getRandomValues) {
-    const bytes = new Uint8Array(16);
-    window.crypto.getRandomValues(bytes);
-    return Array.from(bytes, (value) => value.toString(16).padStart(2, "0")).join("");
-  }
-  return `${Date.now().toString(16)}${Math.random().toString(16).slice(2)}`;
+function writeVerificationResendCooldowns(payload) {
+  localStorage.setItem(
+    VERIFICATION_RESEND_COOLDOWN_STORAGE_KEY,
+    JSON.stringify(payload && typeof payload === "object" ? payload : {}),
+  );
 }
 
-async function derivePasswordHash(password, salt, iterations = LOCAL_PASSWORD_ITERATIONS) {
-  const normalizedPassword = String(password || "");
-  const normalizedSalt = String(salt || "");
-  if (!normalizedPassword || !normalizedSalt) return "";
-
-  if (window.crypto?.subtle) {
-    const material = await window.crypto.subtle.importKey(
-      "raw",
-      new TextEncoder().encode(normalizedPassword),
-      "PBKDF2",
-      false,
-      ["deriveBits"],
-    );
-    const bits = await window.crypto.subtle.deriveBits(
-      {
-        name: "PBKDF2",
-        hash: "SHA-256",
-        salt: new TextEncoder().encode(normalizedSalt),
-        iterations: Number(iterations) || LOCAL_PASSWORD_ITERATIONS,
-      },
-      material,
-      256,
-    );
-    const bytes = Array.from(new Uint8Array(bits));
-    return bytes.map((b) => b.toString(16).padStart(2, "0")).join("");
-  }
-
-  return hashPassword(`${normalizedSalt}:${normalizedPassword}`);
+function getVerificationResendCooldownRemainingMs(email, now = Date.now()) {
+  const normalizedEmail = normalizeEmail(email);
+  if (!normalizedEmail) return 0;
+  const data = readVerificationResendCooldowns();
+  const sentAt = Number(data[normalizedEmail] || 0);
+  if (!Number.isFinite(sentAt) || sentAt <= 0) return 0;
+  const cooldownMs = getVerificationResendCooldownMs();
+  const elapsed = now - sentAt;
+  if (elapsed >= cooldownMs) return 0;
+  return cooldownMs - Math.max(0, elapsed);
 }
 
-async function buildLocalPasswordRecord(password) {
-  const salt = generatePasswordSalt();
-  const hash = await derivePasswordHash(password, salt, LOCAL_PASSWORD_ITERATIONS);
-  return {
-    passwordHash: hash,
-    passwordSalt: salt,
-    passwordAlgo: LOCAL_PASSWORD_ALGO_V2,
-    passwordIterations: LOCAL_PASSWORD_ITERATIONS,
-  };
+function markVerificationResend(email, at = Date.now()) {
+  const normalizedEmail = normalizeEmail(email);
+  if (!normalizedEmail) return;
+  const data = readVerificationResendCooldowns();
+  data[normalizedEmail] = Number(at) > 0 ? Number(at) : Date.now();
+  writeVerificationResendCooldowns(data);
+}
+
+function assertVerificationResendAllowed(email) {
+  const remainingMs = getVerificationResendCooldownRemainingMs(email);
+  if (remainingMs <= 0) return;
+  const remainingMinutes = Math.max(1, Math.ceil(remainingMs / 60000));
+  throw new Error(
+    `Verification email was sent recently. Try again in ${remainingMinutes} minute(s).`,
+  );
+}
+
+function readPasswordResetCooldowns() {
+  try {
+    const raw = localStorage.getItem(PASSWORD_RESET_COOLDOWN_STORAGE_KEY);
+    if (!raw) return {};
+    const parsed = JSON.parse(raw);
+    return parsed && typeof parsed === "object" ? parsed : {};
+  } catch (error) {
+    return {};
+  }
+}
+
+function writePasswordResetCooldowns(payload) {
+  localStorage.setItem(
+    PASSWORD_RESET_COOLDOWN_STORAGE_KEY,
+    JSON.stringify(payload && typeof payload === "object" ? payload : {}),
+  );
+}
+
+function getPasswordResetCooldownRemainingMs(email, now = Date.now()) {
+  const normalizedEmail = normalizeEmail(email);
+  if (!normalizedEmail) return 0;
+  const data = readPasswordResetCooldowns();
+  const sentAt = Number(data[normalizedEmail] || 0);
+  if (!Number.isFinite(sentAt) || sentAt <= 0) return 0;
+  const cooldownMs = getPasswordResetCooldownMs();
+  const elapsed = now - sentAt;
+  if (elapsed >= cooldownMs) return 0;
+  return cooldownMs - Math.max(0, elapsed);
+}
+
+function assertPasswordResetAllowed(email) {
+  const remainingMs = getPasswordResetCooldownRemainingMs(email);
+  if (remainingMs <= 0) return;
+  const remainingMinutes = Math.max(1, Math.ceil(remainingMs / 60000));
+  throw new Error(`Password reset was requested recently. Try again in ${remainingMinutes} minute(s).`);
+}
+
+function markPasswordResetRequest(email, at = Date.now()) {
+  const normalizedEmail = normalizeEmail(email);
+  if (!normalizedEmail) return;
+  const data = readPasswordResetCooldowns();
+  data[normalizedEmail] = Number(at) > 0 ? Number(at) : Date.now();
+  writePasswordResetCooldowns(data);
 }
 
 async function verifyLocalPassword(user, password) {
-  if (!user || !password) return false;
-
-  if (
-    String(user.passwordAlgo || "") === LOCAL_PASSWORD_ALGO_V2 &&
-    String(user.passwordSalt || "")
-  ) {
-    const iterations = Number(user.passwordIterations || LOCAL_PASSWORD_ITERATIONS);
-    const hash = await derivePasswordHash(password, user.passwordSalt, iterations);
-    return hash === String(user.passwordHash || "");
-  }
-
-  const legacyHash = await hashPassword(password);
-  return legacyHash === String(user.passwordHash || "");
+  return verifyLocalPasswordRecord(user, password);
 }
 
 function mapFirebaseAuthError(message) {
   const code = String(message || "").trim().toUpperCase();
+  const compactCode = code.split(/[\s:,(]/)[0];
   const mapped = {
     EMAIL_EXISTS: "An account with this email already exists.",
     EMAIL_NOT_FOUND:
@@ -459,8 +689,13 @@ function mapFirebaseAuthError(message) {
     WEAK_PASSWORD: "Password must be at least 6 characters.",
     INVALID_ID_TOKEN: "Session expired. Please login again.",
     TOKEN_EXPIRED: "Session expired. Please login again.",
+    QUOTA_EXCEEDED:
+      "Quota exceeded. Firebase Auth is rate-limiting this operation. Try again later or check Firebase Auth usage/quota.",
   };
-  return mapped[code] || message || "Authentication request failed.";
+  if (mapped[code]) return mapped[code];
+  if (mapped[compactCode]) return mapped[compactCode];
+  if (code.includes("QUOTA_EXCEEDED")) return mapped.QUOTA_EXCEEDED;
+  return message || "Authentication request failed.";
 }
 
 async function firebaseAuthRequest(endpoint, { method = "POST", body = null } = {}) {
@@ -714,6 +949,9 @@ function parseFirestoreProfileDocument(document) {
   const fields = document?.fields || {};
   const pathParts = String(document?.name || "").split("/");
   const id = decodeURIComponent(pathParts[pathParts.length - 1] || "");
+  const hasExplicitVerifiedField =
+    Object.prototype.hasOwnProperty.call(fields, "emailVerified") &&
+    Object.prototype.hasOwnProperty.call(fields?.emailVerified || {}, "booleanValue");
   return {
     id,
     email: normalizeEmail(fields?.email?.stringValue || ""),
@@ -723,7 +961,7 @@ function parseFirestoreProfileDocument(document) {
     status: normalizeStatus(fields?.status?.stringValue || "active"),
     createdAt: String(fields?.createdAt?.timestampValue || ""),
     lastSeenAt: String(fields?.lastSeenAt?.timestampValue || ""),
-    emailVerified: Boolean(fields?.emailVerified?.booleanValue),
+    emailVerified: hasExplicitVerifiedField ? Boolean(fields?.emailVerified?.booleanValue) : null,
     upgradeRequestId: String(readFirestoreStringField(fields?.upgradeRequestId) || ""),
     upgradeRequestStatus: normalizeUpgradeRequestStatus(
       readFirestoreStringField(fields?.upgradeRequestStatus),
@@ -833,6 +1071,7 @@ async function upsertCloudProfile(idToken, profile) {
     "status",
     "createdAt",
     "lastSeenAt",
+    "emailVerified",
   ]);
 
   await firestoreRequest(`documents/profiles/${encodeURIComponent(profileId)}?${query}`, {
@@ -905,7 +1144,7 @@ function normalizeDirectoryRow(row) {
     plan: normalizePlan(row?.plan),
     createdAt: String(row?.createdAt || row?.created_at || ""),
     lastSeenAt: String(row?.lastSeenAt || row?.last_seen_at || ""),
-    emailVerified: Boolean(row?.emailVerified),
+    emailVerified: normalizeEmailVerificationState(row?.emailVerified),
     upgradeRequestId: String(row?.upgradeRequestId || ""),
     upgradeRequestStatus: normalizeUpgradeRequestStatus(row?.upgradeRequestStatus),
     upgradePaymentReference: String(row?.upgradePaymentReference || ""),
@@ -1046,7 +1285,7 @@ function buildProfilePayloadFromSession(session, existingProfile = null) {
   const isEmailVerified =
     typeof user.emailVerified === "boolean"
       ? user.emailVerified
-      : Boolean(existingProfile?.emailVerified);
+      : normalizeEmailVerificationState(existingProfile?.emailVerified, false);
   const isAdmin = getConfiguredAdminEmails().includes(email);
   return {
     id: String(user.id || existingProfile?.id || ""),
@@ -1170,6 +1409,7 @@ async function registerUserCloud({ name, email, password }) {
       idToken: saved.accessToken,
     },
   });
+  markVerificationResend(normalizedEmail);
 
   clearSession();
   return {
@@ -1207,19 +1447,10 @@ async function loginUserCloud({ email, password }) {
   }
 
   if (!synced.user.emailVerified) {
-    try {
-      await firebaseAuthRequest("accounts:sendOobCode", {
-        method: "POST",
-        body: {
-          requestType: "VERIFY_EMAIL",
-          idToken: synced.accessToken,
-        },
-      });
-    } catch (error) {
-      // Keep primary verification flow even if resend fails.
-    }
     clearSession();
-    throw new Error("Please verify your email before login. Check your inbox.");
+    throw new Error(
+      "Please verify your email before login. Use 'Resend verification' only when needed.",
+    );
   }
 
   try {
@@ -1354,6 +1585,7 @@ export async function requestPasswordReset(email, redirectTo = "") {
   if (!isCloudAuthEnabled()) {
     throw new Error("Password reset is available only in Cloud auth mode.");
   }
+  assertPasswordResetAllowed(normalizedEmail);
 
   const body = {
     requestType: "PASSWORD_RESET",
@@ -1367,6 +1599,7 @@ export async function requestPasswordReset(email, redirectTo = "") {
     method: "POST",
     body,
   });
+  markPasswordResetRequest(normalizedEmail);
 }
 
 export async function resendVerificationEmailForUser(email, redirectTo = "") {
@@ -1393,6 +1626,7 @@ export async function resendVerificationEmailForUser(email, redirectTo = "") {
 
   const continueTarget = String(redirectTo || "").trim();
   const currentEmail = normalizeEmail(freshSession?.user?.email || "");
+  assertVerificationResendAllowed(normalizedEmail);
   if (currentEmail && currentEmail === normalizedEmail) {
     await firebaseAuthRequest("accounts:sendOobCode", {
       method: "POST",
@@ -1402,6 +1636,7 @@ export async function resendVerificationEmailForUser(email, redirectTo = "") {
         ...(continueTarget ? { continueUrl: continueTarget } : {}),
       },
     });
+    markVerificationResend(normalizedEmail);
     return { delivered: true, warning: "" };
   }
 
@@ -1419,6 +1654,7 @@ export async function resendVerificationEmailForUser(email, redirectTo = "") {
     accessToken: firebaseAdminAccessToken,
     continueUrl: continueTarget,
   });
+  markVerificationResend(normalizedEmail);
 
   return {
     delivered: true,
@@ -1879,7 +2115,7 @@ function buildLocalUserDirectory() {
       role: adminSet.has(email) ? "admin" : "user",
       createdAt: user.createdAt || "",
       lastSeenAt: "",
-      emailVerified: Boolean(user.emailVerified),
+      emailVerified: normalizeEmailVerificationState(user.emailVerified),
       source: "local",
     });
   });
@@ -1893,7 +2129,7 @@ function buildLocalUserDirectory() {
       role: adminSet.has(currentEmail) ? "admin" : "user",
       createdAt: current?.createdAt || "",
       lastSeenAt: "",
-      emailVerified: Boolean(current?.emailVerified),
+      emailVerified: normalizeEmailVerificationState(current?.emailVerified),
       source: "session",
     });
   }
@@ -1920,6 +2156,7 @@ function mergeDirectoryRows(primaryRows, secondaryRows) {
       plan: normalizePlan(overrides[email] || row?.plan),
       createdAt: row?.createdAt || row?.created_at || "",
       lastSeenAt: row?.lastSeenAt || row?.last_seen_at || "",
+      emailVerified: normalizeEmailVerificationState(row?.emailVerified),
       source: row?.source || defaultSource,
     });
   }
@@ -1952,6 +2189,123 @@ function buildFallbackUserDirectory() {
   };
 }
 
+async function enrichDirectoryVerificationStates(rows) {
+  const safeRows = Array.isArray(rows) ? rows : [];
+  const unresolvedEmails = Array.from(
+    new Set(
+      safeRows
+        .filter((row) => row?.emailVerified === null)
+        .map((row) => normalizeEmail(row?.email || ""))
+        .filter(Boolean),
+    ),
+  );
+
+  if (!unresolvedEmails.length) {
+    return { users: safeRows, warning: "" };
+  }
+
+  const { firebaseAdminAccessToken } = getFirebaseConfig();
+  if (!firebaseAdminAccessToken) {
+    return {
+      users: safeRows,
+      warning:
+        "Some email verification statuses are unknown. Configure PROMOTION_CBT_AUTH.firebaseAdminAccessToken to resolve from Firebase Auth.",
+    };
+  }
+
+  try {
+    const verificationByEmail = await lookupProjectAccountsByEmails({
+      emails: unresolvedEmails,
+      accessToken: firebaseAdminAccessToken,
+    });
+    const enrichedRows = safeRows.map((row) => {
+      if (row?.emailVerified !== null) return row;
+      const email = normalizeEmail(row?.email || "");
+      if (!email || !verificationByEmail.has(email)) return row;
+      return {
+        ...row,
+        emailVerified: verificationByEmail.get(email),
+      };
+    });
+
+    const stillUnknownCount = enrichedRows.filter((row) => row?.emailVerified === null).length;
+    return {
+      users: enrichedRows,
+      warning:
+        stillUnknownCount > 0
+          ? `${stillUnknownCount} account(s) still have unknown verification status (no matching Firebase Auth record).`
+          : "",
+    };
+  } catch (error) {
+    return {
+      users: safeRows,
+      warning: `Could not resolve email verification from Firebase Auth: ${error?.message || "lookup failed."}`,
+    };
+  }
+}
+
+function buildAuthBackedDirectoryRows(authUsers, profileRows) {
+  const safeAuthUsers = Array.isArray(authUsers) ? authUsers : [];
+  const safeProfiles = Array.isArray(profileRows) ? profileRows : [];
+  const overrides = readPlanOverrides();
+  const adminSet = new Set(getConfiguredAdminEmails());
+
+  const profileById = new Map();
+  const profileByEmail = new Map();
+  safeProfiles.forEach((profile) => {
+    const profileId = String(profile?.id || "").trim();
+    const profileEmail = normalizeEmail(profile?.email || "");
+    if (profileId && !profileById.has(profileId)) {
+      profileById.set(profileId, profile);
+    }
+    if (profileEmail && !profileByEmail.has(profileEmail)) {
+      profileByEmail.set(profileEmail, profile);
+    }
+  });
+
+  const rows = safeAuthUsers
+    .map((authUser) => {
+      const id = String(authUser?.id || "").trim();
+      const email = normalizeEmail(authUser?.email || "");
+      if (!id || !email) return null;
+
+      const profile = profileById.get(id) || profileByEmail.get(email) || null;
+      const role = normalizeRole(profile?.role || (adminSet.has(email) ? "admin" : "user"));
+      const status = normalizeStatus(profile?.status || (authUser?.disabled ? "suspended" : "active"));
+      const plan = normalizePlan(overrides[email] || profile?.plan || "free");
+
+      return {
+        id,
+        email,
+        role,
+        status,
+        plan,
+        createdAt: String(profile?.createdAt || authUser?.createdAt || ""),
+        lastSeenAt: String(profile?.lastSeenAt || authUser?.lastSignInAt || ""),
+        emailVerified: normalizeEmailVerificationState(authUser?.emailVerified, profile?.emailVerified),
+        upgradeRequestId: String(profile?.upgradeRequestId || ""),
+        upgradeRequestStatus: normalizeUpgradeRequestStatus(profile?.upgradeRequestStatus),
+        upgradePaymentReference: String(profile?.upgradePaymentReference || ""),
+        upgradeAmountPaid: String(profile?.upgradeAmountPaid || ""),
+        upgradeRequestNote: String(profile?.upgradeRequestNote || ""),
+        upgradeRequestedAt: String(profile?.upgradeRequestedAt || ""),
+        upgradeReviewedAt: String(profile?.upgradeReviewedAt || ""),
+        upgradeReviewedBy: normalizeEmail(profile?.upgradeReviewedBy || ""),
+        upgradeRequestReviewNote: String(profile?.upgradeRequestReviewNote || ""),
+        source: "cloud-auth",
+      };
+    })
+    .filter(Boolean);
+
+  rows.sort((a, b) => {
+    const aTime = Date.parse(a.createdAt || "") || 0;
+    const bTime = Date.parse(b.createdAt || "") || 0;
+    return bTime - aTime;
+  });
+
+  return rows;
+}
+
 function formatCacheTimestamp(value) {
   if (!value) return "an earlier sync";
   const parsed = new Date(value);
@@ -1970,13 +2324,99 @@ export async function getAdminUserDirectory() {
       const freshSession = await ensureCloudSessionActive(session, { clearOnFailure: true });
       if (!freshSession?.accessToken) throw new Error("Cloud session is unavailable.");
 
-      const rows = await listCloudProfiles(freshSession.accessToken);
-      const normalizedRows = rows.map(normalizeDirectoryRow);
-      writeAdminDirectoryCache(normalizedRows);
+      let normalizedRows = [];
+      const warnings = [];
+      try {
+        const rows = await listCloudProfiles(freshSession.accessToken);
+        normalizedRows = rows.map(normalizeDirectoryRow);
+      } catch (profileError) {
+        warnings.push(`Cloud profiles unavailable. ${profileError?.message || ""}`.trim());
+      }
+
+      let users = normalizedRows;
+      let source = normalizedRows.length ? "cloud" : "local";
+
+      try {
+        const authUsers = await listUsersViaCloudFunction(freshSession.accessToken);
+        if (authUsers.length) {
+          const authUserIds = new Set(authUsers.map((entry) => String(entry?.id || "").trim()).filter(Boolean));
+          const authEmails = new Set(
+            authUsers.map((entry) => normalizeEmail(entry?.email || "")).filter(Boolean),
+          );
+          const staleProfiles = normalizedRows.filter((profile) => {
+            const profileId = String(profile?.id || "").trim();
+            const profileEmail = normalizeEmail(profile?.email || "");
+            return !authUserIds.has(profileId) && !authEmails.has(profileEmail);
+          });
+
+          users = buildAuthBackedDirectoryRows(authUsers, normalizedRows);
+          source = "cloud-auth";
+          if (staleProfiles.length > 0) {
+            warnings.push(
+              `${staleProfiles.length} stale profile record(s) were excluded because they are not in Firebase Auth.`,
+            );
+          }
+        } else if (normalizedRows.length > 0) {
+          warnings.push("Firebase Auth list returned zero users. Showing profile-based fallback.");
+        } else {
+          throw new Error("Firebase Auth list returned zero users and no cloud profiles are available.");
+        }
+      } catch (error) {
+        warnings.push(`Cloud Function live list unavailable. ${error?.message || ""}`.trim());
+        try {
+          const authUsers = await listUsersViaAdminToken();
+          if (authUsers.length) {
+            const authUserIds = new Set(
+              authUsers.map((entry) => String(entry?.id || "").trim()).filter(Boolean),
+            );
+            const authEmails = new Set(
+              authUsers.map((entry) => normalizeEmail(entry?.email || "")).filter(Boolean),
+            );
+            const staleProfiles = normalizedRows.filter((profile) => {
+              const profileId = String(profile?.id || "").trim();
+              const profileEmail = normalizeEmail(profile?.email || "");
+              return !authUserIds.has(profileId) && !authEmails.has(profileEmail);
+            });
+
+            users = buildAuthBackedDirectoryRows(authUsers, normalizedRows);
+            source = "cloud-auth";
+            warnings.push("Using admin-token fallback for live Firebase Auth list.");
+            if (staleProfiles.length > 0) {
+              warnings.push(
+                `${staleProfiles.length} stale profile record(s) were excluded because they are not in Firebase Auth.`,
+              );
+            }
+          } else if (normalizedRows.length > 0) {
+            warnings.push("Admin-token live list returned zero users. Showing profile-based fallback.");
+            const enriched = await enrichDirectoryVerificationStates(normalizedRows);
+            users = enriched.users;
+            if (enriched.warning) {
+              warnings.push(enriched.warning);
+            }
+          } else {
+            throw new Error("Admin-token live list returned zero users and no cloud profiles are available.");
+          }
+        } catch (fallbackError) {
+          if (normalizedRows.length > 0) {
+            warnings.push(
+              `Admin-token live list unavailable. Showing profile-based data. ${fallbackError?.message || ""}`.trim(),
+            );
+            const enriched = await enrichDirectoryVerificationStates(normalizedRows);
+            users = enriched.users;
+            if (enriched.warning) {
+              warnings.push(enriched.warning);
+            }
+          } else {
+            throw fallbackError;
+          }
+        }
+      }
+
+      writeAdminDirectoryCache(users);
       return {
-        users: normalizedRows,
-        source: "cloud",
-        warning: "",
+        users,
+        source,
+        warning: warnings.join(" ").trim(),
       };
     } catch (error) {
       const fallback = buildFallbackUserDirectory();
@@ -1987,7 +2427,7 @@ export async function getAdminUserDirectory() {
           ? `Cloud user directory unavailable. Showing cached cloud snapshot from ${formatCacheTimestamp(
               fallback.cachedSyncedAt,
             )} plus local data.`
-          : "Cloud user directory unavailable. Configure Firestore profiles collection and security rules.",
+          : `Cloud user directory unavailable. ${error?.message || "Configure Firestore profiles collection and security rules."}`,
       };
     }
   }

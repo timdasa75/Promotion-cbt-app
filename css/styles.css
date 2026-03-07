@@ -1759,6 +1759,12 @@ select:focus-visible,
     background: var(--danger-bg);
 }
 
+.admin-badge.neutral {
+    color: var(--ink-700);
+    border-color: color-mix(in srgb, var(--ink-500) 45%, var(--line));
+    background: color-mix(in srgb, var(--card) 75%, var(--surface));
+}
+
 .admin-table-wrap {
     width: 100%;
     overflow-x: auto;

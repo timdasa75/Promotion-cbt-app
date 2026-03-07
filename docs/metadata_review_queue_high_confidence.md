@@ -1,0 +1,537 @@
+# Metadata Review Queue (High Confidence)
+
+Prioritized subset from `metadata_review_queue.json`.
+
+- Total high-confidence items: **176**
+
+## Items
+- `fin_bgt_012` [financial_regulations/fin_budgeting] doc=`Financial Regulations (FR)` year=`2009`
+  - The payment of promotion arrears to an officer shall be made within the year the promotion is effected, calculated from the:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `fin_bgt_013` [financial_regulations/fin_budgeting] doc=`Financial Regulations (FR)` year=`2009`
+  - An officer, upon first appointment, shall be eligible for emoluments as from the date of:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `fin_bgt_021` [financial_regulations/fin_budgeting] doc=`Financial Regulations (FR)` year=`2009`
+  - An Officer's increment is typically withheld or deferred on grounds of unsatisfactory performance, or when the officer is under:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `fin_bgt_022` [financial_regulations/fin_budgeting] doc=`Financial Regulations (FR)` year=`2009`
+  - What is the standard incremental date for an Officer appointed or promoted to a post in the Federal Public Service
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `fin_bgt_023` [financial_regulations/fin_budgeting] doc=`Financial Regulations (FR)` year=`2009`
+  - A staff on transfer shall be eligible for the emolument attached to his new office with effect from the date he:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `fin_bgt_024` [financial_regulations/fin_budgeting] doc=`Financial Regulations (FR)` year=`2009`
+  - If an Officer is promoted to a grade level that does NOT overlap his old grade level, he shall be placed at the:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `fin_bgt_034` [financial_regulations/fin_budgeting] doc=`Financial Regulations (FR)` year=`2009`
+  - If an officer's increment is deferred due to unsatisfactory performance, the deferment must be fixed for a minimum period of:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `fin_bgt_035` [financial_regulations/fin_budgeting] doc=`Financial Regulations (FR)` year=`2009`
+  - Decisions on deferment or withholding of increment and stoppage of salaries must be communicated to the officer concerned and simultaneously to:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `fin_bgt_036` [financial_regulations/fin_budgeting] doc=`Financial Regulations (FR)` year=`2009`
+  - If an officer's salary is withheld due to unauthorized absence from duty, the sanction is governed by:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `fin_bgt_039` [financial_regulations/fin_budgeting] doc=`Financial Regulations (FR)` year=`2009`
+  - If an officer is promoted across overlapping salary levels, the placement rule dictates the officer is placed at the:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `fin_bgt_044` [financial_regulations/fin_budgeting] doc=`Financial Regulations (FR)` year=`2009`
+  - If an officer is promoted and the new salary grade level does NOT overlap the old grade level, emolument payment commences at the minimum point of the new grade level, taking effect from:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `fin_bgt_045` [financial_regulations/fin_budgeting] doc=`Financial Regulations (FR)` year=`2009`
+  - Payment of promotion arrears to an officer shall be made within what timeframe of the promotion being effected
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `fin_bgt_047` [financial_regulations/fin_budgeting] doc=`Financial Regulations (FR)` year=`2009`
+  - The Head of the **MDA** or Permanent Secretary must ensure that all personnel data entered into **IPPIS** are accurate and:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `fin_bgt_048` [financial_regulations/fin_budgeting] doc=`Financial Regulations (FR)` year=`2009`
+  - The authority responsible for granting a special increment to mitigate the lasting negative effects of an increment that was previously withheld rests with the:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `fin_bgt_049` [financial_regulations/fin_budgeting] doc=`Financial Regulations (FR)` year=`2009`
+  - An officer duly authorized to act in a post is eligible for acting allowance EXCEPT for any days in excess of how many days of continuous absence from duty on account of ill-health
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `fin_bgt_050` [financial_regulations/fin_budgeting] doc=`Financial Regulations (FR)` year=`2009`
+  - Resettlement Allowance shall be paid at the rate of what percentage of an Officer’s annual total emolument
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `fin_pro_001` [financial_regulations/fin_procurement] doc=`Financial Regulations (FR)` year=`2007`
+  - The foundational legal framework governing the acquisition of goods, works, and services by all Federal **MDAs** is the:
+  - reason: `sourceDocument_conflict` | suggested=`Public Procurement Act (2007)` | Public Procurement Act (2007) via /\bprocurement act\b/
+- `fin_pro_002` [financial_regulations/fin_procurement] doc=`Financial Regulations (FR)` year=`2007`
+  - What is the main objective of the Public Procurement Act, 2007
+  - reason: `sourceDocument_conflict` | suggested=`Public Procurement Act (2007)` | Public Procurement Act (2007) via /\bprocurement act\b/
+- `fin_pro_003` [financial_regulations/fin_procurement] doc=`Financial Regulations (FR)` year=`2009`
+  - Which procurement method is mandated as the default procedure for public procurement under the **PPA**'
+  - reason: `sourceDocument_conflict` | suggested=`Public Procurement Act (2007)` | Public Procurement Act (2007) via /\bpublic procurement\b/
+- `fin_pro_010` [financial_regulations/fin_procurement] doc=`Financial Regulations (FR)` year=`2009`
+  - The principle of **Due Process** in public procurement primarily emphasizes:
+  - reason: `sourceDocument_conflict` | suggested=`Public Procurement Act (2007)` | Public Procurement Act (2007) via /\bpublic procurement\b/
+- `fin_pro_013` [financial_regulations/fin_procurement] doc=`Financial Regulations (FR)` year=`2009`
+  - Who is the officer responsible for ensuring compliance with procurement thresholds and the Public Procurement Act
+  - reason: `sourceDocument_conflict` | suggested=`Public Procurement Act (2007)` | Public Procurement Act (2007) via /\bprocurement act\b/
+- `fin_pro_014` [financial_regulations/fin_procurement] doc=`Financial Regulations (FR)` year=`2009`
+  - The Public Procurement Act prohibits the practice of illegally breaking down a contract into smaller units to circumvent approval limits. This practice is known as:
+  - reason: `sourceDocument_conflict` | suggested=`Public Procurement Act (2007)` | Public Procurement Act (2007) via /\bprocurement act\b/
+- `fin_pro_018` [financial_regulations/fin_procurement] doc=`Financial Regulations (FR)` year=`2007`
+  - The Bureau of Public Procurement (BPP) is established under which section of the **PPA** 2007
+  - reason: `sourceDocument_conflict` | suggested=`Public Procurement Act (2007)` | Public Procurement Act (2007) via /\bpublic procurement\b/
+- `fin_pro_027` [financial_regulations/fin_procurement] doc=`Financial Regulations (FR)` year=`2009`
+  - Which section promotes efficiency and transparency in procurement by providing for the use of e-procurement systems
+  - reason: `sourceDocument_conflict` | suggested=`Public Procurement Act (2007)` | Public Procurement Act (2007) via /\bpublic procurement\b/
+- `fin_pro_030` [financial_regulations/fin_procurement] doc=`Financial Regulations (FR)` year=`2009`
+  - The BPP is empowered to suspend procurement proceedings if irregularities are detected, as stipulated in:
+  - reason: `sourceDocument_conflict` | suggested=`Public Procurement Act (2007)` | Public Procurement Act (2007) via /\bbpp\b/
+- `fin_pro_033` [financial_regulations/fin_procurement] doc=`Financial Regulations (FR)` year=`2009`
+  - The primary objective of pre-qualification of bidders in the public procurement process is:
+  - reason: `sourceDocument_conflict` | suggested=`Public Procurement Act (2007)` | Public Procurement Act (2007) via /\bpublic procurement\b/
+- `fin_pro_035` [financial_regulations/fin_procurement] doc=`Financial Regulations (FR)` year=`2009`
+  - Which section empowers the BPP to inspect procurement documents and records of entities
+  - reason: `sourceDocument_conflict` | suggested=`Public Procurement Act (2007)` | Public Procurement Act (2007) via /\bbpp\b/
+- `fin_pro_036` [financial_regulations/fin_procurement] doc=`Financial Regulations (FR)` year=`2009`
+  - Procurement audits by the BPP are covered under which section of the **PPA**'
+  - reason: `sourceDocument_conflict` | suggested=`Public Procurement Act (2007)` | Public Procurement Act (2007) via /\bbpp\b/
+- `fin_pro_037` [financial_regulations/fin_procurement] doc=`Financial Regulations (FR)` year=`2009`
+  - Which section stipulates the mandatory contents of standard bidding documents
+  - reason: `sourceDocument_conflict` | suggested=`Public Procurement Act (2007)` | Public Procurement Act (2007) via /\bprocuring entit(y|ies)\b/
+- `fin_pro_040` [financial_regulations/fin_procurement] doc=`Financial Regulations (FR)` year=`2009`
+  - Which section empowers the BPP to blacklist or debar contractors found guilty of misconduct
+  - reason: `sourceDocument_conflict` | suggested=`Public Procurement Act (2007)` | Public Procurement Act (2007) via /\bbpp\b/
+- `fin_pro_042` [financial_regulations/fin_procurement] doc=`Financial Regulations (FR)` year=`2009`
+  - Which section provides guidelines for proper contract implementation and monitoring by procuring entities
+  - reason: `sourceDocument_conflict` | suggested=`Public Procurement Act (2007)` | Public Procurement Act (2007) via /\bprocuring entit(y|ies)\b/
+- `fin_pro_048` [financial_regulations/fin_procurement] doc=`Financial Regulations (FR)` year=`2009`
+  - Which section allows for the engagement of procurement consultants to assist procuring entities
+  - reason: `sourceDocument_conflict` | suggested=`Public Procurement Act (2007)` | Public Procurement Act (2007) via /\bprocuring entit(y|ies)\b/
+- `fin_pro_050` [financial_regulations/fin_procurement] doc=`Financial Regulations (FR)` year=`2009`
+  - Which section empowers the BPP to blacklist contractors for procurement misconduct
+  - reason: `sourceDocument_conflict` | suggested=`Public Procurement Act (2007)` | Public Procurement Act (2007) via /\bbpp\b/
+- `fin_aud_012` [financial_regulations/fin_audits_sanctions] doc=`Financial Regulations (FR)` year=`2009`
+  - The final authority to restore a deferred increment, which requires assessing service improvement and conduct, lies with the:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `fin_aud_015` [financial_regulations/fin_audits_sanctions] doc=`Financial Regulations (FR)` year=`2009`
+  - The ultimate disciplinary penalty for serious misconduct, such as fraud or corruption, resulting in the forfeiture of all claims to retirement benefits, is:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `fin_aud_020` [financial_regulations/fin_audits_sanctions] doc=`Financial Regulations (FR)` year=`2009`
+  - What is the penalty for an officer who fails the compulsory confirmation examination after three consecutive attempts
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `fin_aud_024` [financial_regulations/fin_audits_sanctions] doc=`Financial Regulations (FR)` year=`2009`
+  - To whom must an Officer promptly report a criminal charge or the outcome of such charge, under disciplinary action, whenever such event occurs
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `fin_aud_025` [financial_regulations/fin_audits_sanctions] doc=`Financial Regulations (FR)` year=`2009`
+  - The disciplinary authority responsible for exercising control over Officers in the Federal Civil Service (**GL 07** and above) is vested in the:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `fin_aud_027` [financial_regulations/fin_audits_sanctions] doc=`Financial Regulations (FR)` year=`2009`
+  - If the **FCSC** does not approve the Officer's dismissal or impose any penalty, the Officer shall be reinstated forthwith and be entitled to the full amount of salary denied him if he was interdicted or suspended, as sti
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `fin_aud_028` [financial_regulations/fin_audits_sanctions] doc=`Financial Regulations (FR)` year=`2009`
+  - Which of the following acts constitutes **Gross Misconduct** under the Civil Service Handbook
+  - reason: `sourceDocument_conflict` | suggested=`Federal Civil Service Handbook and Circulars` | Federal Civil Service Handbook and Circulars via /civil service handbook/
+- `fin_aud_031` [financial_regulations/fin_audits_sanctions] doc=`Financial Regulations (FR)` year=`2009`
+  - Concealment of facts or any false statement made in an application for Government employment shall be regarded as sufficient grounds for:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `fin_aud_032` [financial_regulations/fin_audits_sanctions] doc=`Financial Regulations (FR)` year=`2009`
+  - Which type of assessment report is often used as evidence of **General Inefficiency** (**Rule 100201**)
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `fin_aud_033` [financial_regulations/fin_audits_sanctions] doc=`Financial Regulations (FR)` year=`2009`
+  - Before documentary evidence can be used against an officer during an inquiry (**Rule 100307(vii**)), the officer must previously have been provided with a copy thereof or given:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `fin_aud_034` [financial_regulations/fin_audits_sanctions] doc=`Financial Regulations (FR)` year=`2014`
+  - The ultimate penalty for serious misconduct, resulting in the forfeiture of all claims to retirement benefits, leave, or transport grant, is subject to the provisions of the:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `fin_aud_035` [financial_regulations/fin_audits_sanctions] doc=`Financial Regulations (FR)` year=`2009`
+  - The disciplinary process starts with a formal query issued by which officer
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `fin_aud_036` [financial_regulations/fin_audits_sanctions] doc=`Financial Regulations (FR)` year=`2009`
+  - An officer involved in procurement fraud, such as collusion or over-invoicing, faces which penalty under the Public Procurement Act (**PPA**) framework (**Section 58**)
+  - reason: `sourceDocument_conflict` | suggested=`Public Procurement Act (2007)` | Public Procurement Act (2007) via /\bprocurement act\b/
+- `fin_aud_038` [financial_regulations/fin_audits_sanctions] doc=`Financial Regulations (FR)` year=`2009`
+  - The expression 'serious financial embarrassment' (**Rule 100414**) refers to an officer's state of indebtedness which has actually caused serious financial hardship to him and which may be prejudicial to:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `fin_aud_039` [financial_regulations/fin_audits_sanctions] doc=`Financial Regulations (FR)` year=`2009`
+  - If an officer is suspected of **General Inefficiency**, the superior officer must first administer instruction and warning, and give the officer adequate time to redeem his image, for the objective of improving the offic
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `fin_aud_040` [financial_regulations/fin_audits_sanctions] doc=`Financial Regulations (FR)` year=`2009`
+  - The minimum period for which an increment deferment must be fixed is:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `fin_aud_041` [financial_regulations/fin_audits_sanctions] doc=`Financial Regulations (FR)` year=`2009`
+  - Which of the following disciplinary measures can be taken against a Permanent Secretary found guilty of misconduct (**Rule 100702**)
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `fin_aud_042` [financial_regulations/fin_audits_sanctions] doc=`Financial Regulations (FR)` year=`2009`
+  - An officer, upon resumption from casual or special leave within the country, provided he spends such leave in Nigeria, is NOT required to have whom appointed to act in the duty post in question
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `fin_aud_044` [financial_regulations/fin_audits_sanctions] doc=`Financial Regulations (FR)` year=`2009`
+  - If an officer resigns from the Service, they will forfeit all claims to vacation leave, and any leave privileges granted will be:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `fin_aud_045` [financial_regulations/fin_audits_sanctions] doc=`Financial Regulations (FR)` year=`2009`
+  - Accepting paid employment during a period of Leave of Absence without the express approval of the **OHCSF** may lead to which disciplinary consequence
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `fin_aud_047` [financial_regulations/fin_audits_sanctions] doc=`Financial Regulations (FR)` year=`2009`
+  - In the case of an inquiry into serious misconduct, the head of the officer’s department shall generally **not** be a member of the inquiry board, in order to maintain:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `fin_aud_048` [financial_regulations/fin_audits_sanctions] doc=`Financial Regulations (FR)` year=`2009`
+  - An officer convicted of a criminal offence (other than a minor traffic or sanitary offence) shall be placed under suspension with effect from the date of conviction, pending determination of his case by the Commission, a
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `fin_aud_049` [financial_regulations/fin_audits_sanctions] doc=`Financial Regulations (FR)` year=`2009`
+  - An officer absent from duty without leave (**Rule 100413**) renders himself liable to be dismissed from the Service, and the onus rests entirely on him to show that circumstances do not justify the imposition of the full
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `fin_aud_050` [financial_regulations/fin_audits_sanctions] doc=`Financial Regulations (FR)` year=`2009`
+  - What is the penalty for unauthorized absence from duty
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `ppa_objectives_048` [procurement_act/proc_objectives_institutions] doc=`Public Procurement Act (2007)` year=`2007`
+  - For small value purchases below the competitive threshold, strict financial regulations typically mandate that the **MDA** must obtain a minimum of:
+  - reason: `sourceDocument_conflict` | suggested=`Financial Regulations (FR)` | Financial Regulations (FR) via /\bfinancial regulations?\b/
+- `ppa_ethic_017` [procurement_act/proc_transparency_ethics] doc=`Public Procurement Act (2007)` year=`2007`
+  - What is the consequence for an officer who fails the Confirmation Examination after three consecutive attempts
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `ppa_ethic_020` [procurement_act/proc_transparency_ethics] doc=`Public Procurement Act (2007)` year=`2007`
+  - An officer under **Interdiction** receives:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `ppa_ethic_028` [procurement_act/proc_transparency_ethics] doc=`Public Procurement Act (2007)` year=`2007`
+  - The **PPA** principle of **transparency** directly supports the constitutional right of citizens to access information, as formalized by the:
+  - reason: `sourceDocument_conflict` | suggested=`Constitution of the Federal Republic of Nigeria and FOI Act` | Constitution of the Federal Republic of Nigeria and FOI Act via /\bfoi\b/
+- `ppa_ethic_032` [procurement_act/proc_transparency_ethics] doc=`Public Procurement Act (2007)` year=`2007`
+  - The requirement that all funds must be checked in the Vote Book before commitment is made serves as an internal control against:
+  - reason: `sourceDocument_conflict` | suggested=`Financial Regulations (FR)` | Financial Regulations (FR) via /\bvote book\b/
+- `ppa_ethic_036` [procurement_act/proc_transparency_ethics] doc=`Public Procurement Act (2007)` year=`2007`
+  - The penalty of **Dismissal** for serious misconduct results in:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `ppa_ethic_037` [procurement_act/proc_transparency_ethics] doc=`Public Procurement Act (2007)` year=`2007`
+  - Which section requires the Accounting Officer to take into account the gravity of the shortcoming and the quality of the officer's previous service when deciding whether to withhold or defer an increment
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `ppa_ethic_041` [procurement_act/proc_transparency_ethics] doc=`Public Procurement Act (2007)` year=`2007`
+  - An officer on **Suspension** pending investigation into gross misconduct receives:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `ppa_ethic_043` [procurement_act/proc_transparency_ethics] doc=`Public Procurement Act (2007)` year=`2007`
+  - Who must certify that funds are available in the budget before any expenditure or commitment is legally incurred
+  - reason: `sourceDocument_conflict` | suggested=`Financial Regulations (FR)` | Financial Regulations (FR) via /\bvote book\b/
+- `ppa_elb_026` [procurement_act/proc_eligibility_consultants_budgeting] doc=`Public Procurement Act (2007)` year=`2007`
+  - The process by which funds are legally moved between budget subheads within the same expenditure head is known as:
+  - reason: `sourceDocument_conflict` | suggested=`Financial Regulations (FR)` | Financial Regulations (FR) via /\bvirement\b/
+- `ppa_elb_027` [procurement_act/proc_eligibility_consultants_budgeting] doc=`Public Procurement Act (2007)` year=`2007`
+  - Any request for Virement related to a procurement project must be formally authorized by which document
+  - reason: `sourceDocument_conflict` | suggested=`Financial Regulations (FR)` | Financial Regulations (FR) via /\bvirement\b/
+- `ppa_elb_050` [procurement_act/proc_eligibility_consultants_budgeting] doc=`Public Procurement Act (2007)` year=`2007`
+  - If an **MDA**'s Procurement Plan requires a major Virement (change of budget allocation) for a project, the **MDA** must seek approval from:
+  - reason: `sourceDocument_conflict` | suggested=`Financial Regulations (FR)` | Financial Regulations (FR) via /\bvirement\b/
+- `ppa_ims_024` [procurement_act/proc_implementation_sanctions] doc=`Public Procurement Act (2007)` year=`2007`
+  - The ultimate disciplinary penalty for Serious Misconduct that results in the loss of all claims to retirement benefits is:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `ppa_ims_027` [procurement_act/proc_implementation_sanctions] doc=`Public Procurement Act (2007)` year=`2007`
+  - An officer who is absent from duty without leave for 14 consecutive days may be deemed by the Service to have:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `ppa_ims_038` [procurement_act/proc_implementation_sanctions] doc=`Public Procurement Act (2007)` year=`2007`
+  - The **MDA**’s **Senior Staff Committee (SSC)** handles promotion and disciplinary cases for officers on which grade levels
+  - reason: `sourceDocument_conflict` | suggested=`Federal Civil Service Handbook and Circulars` | Federal Civil Service Handbook and Circulars via /senior staff committee/
+- `ppa_ims_039` [procurement_act/proc_implementation_sanctions] doc=`Public Procurement Act (2007)` year=`2007`
+  - An officer placed under **Suspension** pending investigation into Gross Misconduct receives:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `ppa_ims_041` [procurement_act/proc_implementation_sanctions] doc=`Public Procurement Act (2007)` year=`2007`
+  - For disciplinary action, a formal inquiry (Board of Inquiry) should typically consist of at least how many members to ensure fairness
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `ppa_ims_049` [procurement_act/proc_implementation_sanctions] doc=`Public Procurement Act (2007)` year=`2007`
+  - An officer engaging in outside paid employment must first obtain express written approval from which authority
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `clg_con_001` [constitutional_law/clg_constitutional_governance] doc=`Constitution of the Federal Republic of Nigeria and FOI Act` year=`1999`
+  - The power to dismiss and exercise disciplinary control over officers on **GL 07** and above in the Federal Civil Service is vested in:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `clg_con_003` [constitutional_law/clg_constitutional_governance] doc=`Constitution of the Federal Republic of Nigeria and FOI Act` year=`1999`
+  - Appointments into all grades in Parastatals must be based on merit, credibility, and equal opportunity with due regard to the:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `clg_con_009` [constitutional_law/clg_constitutional_governance] doc=`Constitution of the Federal Republic of Nigeria and FOI Act` year=`1999`
+  - The three core values emphasized for civil servants in the Civil Service Handbook are secrecy, efficiency, and:
+  - reason: `sourceDocument_conflict` | suggested=`Federal Civil Service Handbook and Circulars` | Federal Civil Service Handbook and Circulars via /civil service handbook/
+- `clg_con_015` [constitutional_law/clg_constitutional_governance] doc=`Constitution of the Federal Republic of Nigeria and FOI Act` year=`1999`
+  - Who must approve the re-engagement of retired officers into career posts, whose remuneration is based on negotiable terms
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `clg_lc_022` [constitutional_law/clg_legal_compliance] doc=`Constitution of the Federal Republic of Nigeria and FOI Act` year=`1999`
+  - **Section 58** of the Public Procurement Act (**PPA**) prescribes penalties for offenses such as bid rigging, collusion, and procurement fraud, including dismissal or:
+  - reason: `sourceDocument_conflict` | suggested=`Public Procurement Act (2007)` | Public Procurement Act (2007) via /\bprocurement act\b/
+- `clg_lc_024` [constitutional_law/clg_legal_compliance] doc=`Constitution of the Federal Republic of Nigeria and FOI Act` year=`1999`
+  - Which body is empowered to blacklist or debar contracting firms found guilty of corrupt practices or fraudulent misrepresentation during a bidding process
+  - reason: `sourceDocument_conflict` | suggested=`Public Procurement Act (2007)` | Public Procurement Act (2007) via /\bbpp\b/
+- `clg_lc_025` [constitutional_law/clg_legal_compliance] doc=`Constitution of the Federal Republic of Nigeria and FOI Act` year=`1999`
+  - In a disciplinary inquiry, documentary evidence cannot be used against the officer unless he is given open access thereto, ensuring the principle of:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `clg_lc_029` [constitutional_law/clg_legal_compliance] doc=`Constitution of the Federal Republic of Nigeria and FOI Act` year=`1999`
+  - The use of e-procurement systems (**PPA** **Section 38**) in public procurement is primarily aimed at enhancing:
+  - reason: `sourceDocument_conflict` | suggested=`Public Procurement Act (2007)` | Public Procurement Act (2007) via /\bpublic procurement\b/
+- `clg_lc_030` [constitutional_law/clg_legal_compliance] doc=`Constitution of the Federal Republic of Nigeria and FOI Act` year=`1999`
+  - An officer must promptly report a criminal charge or the outcome of such charge to whom, under pain of disciplinary action
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `clg_lc_036` [constitutional_law/clg_legal_compliance] doc=`Constitution of the Federal Republic of Nigeria and FOI Act` year=`1999`
+  - If, during the course of a disciplinary inquiry, further grounds for dismissal are disclosed, the **FCSC** shall furnish the Officer with:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `clg_lc_037` [constitutional_law/clg_legal_compliance] doc=`Constitution of the Federal Republic of Nigeria and FOI Act` year=`1999`
+  - The rule that the head of the officer’s department shall not be a member of the board of inquiry tasked with investigating the officer (**Rule 100307(v**)) safeguards:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `clg_lc_049` [constitutional_law/clg_legal_compliance] doc=`Constitution of the Federal Republic of Nigeria and FOI Act` year=`1999`
+  - If an officer is required to present himself for examination by a Medical Board and fails to comply with the instructions, they are liable to be treated as having been:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `clg_lc_050` [constitutional_law/clg_legal_compliance] doc=`Constitution of the Federal Republic of Nigeria and FOI Act` year=`1999`
+  - In a disciplinary investigation involving serious misconduct, the board of inquiry shall consist of not less than:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `clg_lc_055` [constitutional_law/clg_legal_compliance] doc=`Constitution of the Federal Republic of Nigeria and FOI Act` year=`1999`
+  - The maximum acting appointment period shall not exceed one year, but in exceptional circumstances may be extended for a further period of:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `clg_lc_056` [constitutional_law/clg_legal_compliance] doc=`Constitution of the Federal Republic of Nigeria and FOI Act` year=`1999`
+  - Which of the following is NOT required to be notified simultaneously of decisions regarding the deferment or withholding of increment (**Rule 040209**)
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `clg_gc_063` [constitutional_law/clg_general_competency] doc=`Constitution of the Federal Republic of Nigeria and FOI Act` year=`1999`
+  - The primary objective of Staff Development and training (**Rule 070101**) is to enhance the knowledge, skills, attitude, effectiveness, and:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `clg_gc_064` [constitutional_law/clg_general_competency] doc=`Constitution of the Federal Republic of Nigeria and FOI Act` year=`1999`
+  - What is the consequence for an officer who fails the compulsory confirmation examination after three consecutive attempts (**Rule 030104**)
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `clg_gc_065` [constitutional_law/clg_general_competency] doc=`Constitution of the Federal Republic of Nigeria and FOI Act` year=`1999`
+  - The compulsory retirement age for all civil servants in the Federal Public Service is:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `clg_gc_066` [constitutional_law/clg_general_competency] doc=`Constitution of the Federal Republic of Nigeria and FOI Act` year=`1999`
+  - The primary purpose of **record-keeping** in the Civil Service Handbook is emphasized to ensure:
+  - reason: `sourceDocument_conflict` | suggested=`Federal Civil Service Handbook and Circulars` | Federal Civil Service Handbook and Circulars via /civil service handbook/
+- `clg_gc_070` [constitutional_law/clg_general_competency] doc=`Constitution of the Federal Republic of Nigeria and FOI Act` year=`1999`
+  - The concept of **Meritocracy** in the Civil Service Handbook emphasizes that appointments and promotions must be based on:
+  - reason: `sourceDocument_conflict` | suggested=`Federal Civil Service Handbook and Circulars` | Federal Civil Service Handbook and Circulars via /civil service handbook/
+- `clg_gc_071` [constitutional_law/clg_general_competency] doc=`Constitution of the Federal Republic of Nigeria and FOI Act` year=`1999`
+  - What is the primary objective of discouraging **nepotism** in the Civil Service Handbook
+  - reason: `sourceDocument_conflict` | suggested=`Federal Civil Service Handbook and Circulars` | Federal Civil Service Handbook and Circulars via /civil service handbook/
+- `clg_gc_075` [constitutional_law/clg_general_competency] doc=`Constitution of the Federal Republic of Nigeria and FOI Act` year=`1999`
+  - An officer must discharge every duty assigned to him by Government and accept liability of being stationed wherever his presence is considered to be most useful, as per:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `clg_gc_078` [constitutional_law/clg_general_competency] doc=`Constitution of the Federal Republic of Nigeria and FOI Act` year=`1999`
+  - The period of service rendered during **study leave without pay** shall be regarded as:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `clg_gc_079` [constitutional_law/clg_general_competency] doc=`Constitution of the Federal Republic of Nigeria and FOI Act` year=`1999`
+  - The mandatory pre-retirement leave for officers who give notice of retirement is:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `clg_gc_084` [constitutional_law/clg_general_competency] doc=`Constitution of the Federal Republic of Nigeria and FOI Act` year=`1999`
+  - The statutory standard incremental date for an Officer appointed or promoted to a post in the Federal Public Service shall be:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `clg_gc_086` [constitutional_law/clg_general_competency] doc=`Constitution of the Federal Republic of Nigeria and FOI Act` year=`1999`
+  - The goal of promoting **respect for diversity** in the Civil Service Handbook is primarily aimed at achieving:
+  - reason: `sourceDocument_conflict` | suggested=`Federal Civil Service Handbook and Circulars` | Federal Civil Service Handbook and Circulars via /civil service handbook/
+- `clg_gc_087` [constitutional_law/clg_general_competency] doc=`Constitution of the Federal Republic of Nigeria and FOI Act` year=`1999`
+  - What is the key difference between **withholding** an increment and **deferring** an increment (**Rule 040204**)
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `clg_gc_090` [constitutional_law/clg_general_competency] doc=`Constitution of the Federal Republic of Nigeria and FOI Act` year=`1999`
+  - The maximum duration of **study leave with pay** that may be granted to an Officer is:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `clg_gc_098` [constitutional_law/clg_general_competency] doc=`Constitution of the Federal Republic of Nigeria and FOI Act` year=`1999`
+  - The mandatory requirement for promotion eligibility, in addition to merit and seniority, is that the officer must have undergone:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `FOI_AO_034` [constitutional_law/foi_access_obligations] doc=`Constitution of the Federal Republic of Nigeria and FOI Act` year=`1999`
+  - For efficiency, institutions are required to keep records in formats that make them easily accessible, as per **Section 6**(2). This is vital for promoting:
+  - reason: `sourceDocument_conflict` | suggested=`National ICT and Digital Governance Framework` | National ICT and Digital Governance Framework via /e-?governance/
+- `csh_duty_017` [civil_service_admin/csh_duties_responsibilities] doc=`Federal Civil Service Handbook and Circulars` year=`2017`
+  - The role of the Permanent Secretary includes ensuring adherence to financial regulations because they serve as the:
+  - reason: `sourceDocument_conflict` | suggested=`Financial Regulations (FR)` | Financial Regulations (FR) via /\bfinancial regulations?\b/
+- `csh_pt_017` [civil_service_admin/csh_performance_training] doc=`Federal Civil Service Handbook and Circulars` year=`2017`
+  - For a newly appointed officer, emoluments (salary) shall generally be paid from the date of:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `csh_pt_035` [civil_service_admin/csh_performance_training] doc=`Federal Civil Service Handbook and Circulars` year=`2017`
+  - **Rule 070102** states that training is designed to benefit the individual staff and the organization by positively impacting:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `csh_ap_009` [civil_service_admin/csh_administrative_procedures] doc=`Federal Civil Service Handbook and Circulars` year=`2017`
+  - The statutory minimum number of years an officer must spend in a post before being considered eligible for promotion is determined by:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `csh_it_006` [civil_service_admin/csh_innovation_technology] doc=`Federal Civil Service Handbook and Circulars` year=`2017`
+  - The **Treasury Single Account (**TSA**)** system supports e-Governance by ensuring:
+  - reason: `sourceDocument_conflict` | suggested=`National ICT and Digital Governance Framework` | National ICT and Digital Governance Framework via /e-?governance/
+- `csh_it_010` [civil_service_admin/csh_innovation_technology] doc=`Federal Civil Service Handbook and Circulars` year=`2017`
+  - The use of technology in the public service to deliver services and increase efficiency is collectively known as:
+  - reason: `sourceDocument_conflict` | suggested=`National ICT and Digital Governance Framework` | National ICT and Digital Governance Framework via /e-?governance/
+- `csh_sdg_007` [civil_service_admin/csh_service_delivery_grievance] doc=`Federal Civil Service Handbook and Circulars` year=`2017`
+  - The **Freedom of Information (**FOI**) Act** supports public service transparency by ensuring:
+  - reason: `sourceDocument_conflict` | suggested=`Constitution of the Federal Republic of Nigeria and FOI Act` | Constitution of the Federal Republic of Nigeria and FOI Act via /\bfoi\b/
+- `csh_sdg_010` [civil_service_admin/csh_service_delivery_grievance] doc=`Federal Civil Service Handbook and Circulars` year=`2017`
+  - An officer may seek redress for grievance regarding posting instructions (**Rule 020606**) if they believe the decision violates:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `csh_sdg_015` [civil_service_admin/csh_service_delivery_grievance] doc=`Federal Civil Service Handbook and Circulars` year=`2017`
+  - If an appeal against a disciplinary decision is pending in a Court of Law, the administrative appeal/petition will:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `csh_sdg_016` [civil_service_admin/csh_service_delivery_grievance] doc=`Federal Civil Service Handbook and Circulars` year=`2017`
+  - The final conclusion of an appeal/petition (**Rule 110210**) must state concisely:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `csh_sdg_017` [civil_service_admin/csh_service_delivery_grievance] doc=`Federal Civil Service Handbook and Circulars` year=`2017`
+  - What is the primary objective of the **FCSC** overseeing disciplinary procedures (**Rule 100305**)
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `csh_sdg_032` [civil_service_admin/csh_service_delivery_grievance] doc=`Federal Civil Service Handbook and Circulars` year=`2017`
+  - What is the consequence if an appeal/petition is illegible or meaningless (**Rule 110208(iii**))
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `csh_sdg_043` [civil_service_admin/csh_service_delivery_grievance] doc=`Federal Civil Service Handbook and Circulars` year=`2017`
+  - What is the primary objective of the **Sabbatical Appointment** (**Rule 020413**) for senior officers
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `ethics_036` [civil_service_admin/eth_anti_corruption] doc=`Federal Civil Service Handbook and Circulars` year=`2017`
+  - Which agency investigates and prosecutes corruption in public procurement
+  - reason: `sourceDocument_conflict` | suggested=`Public Procurement Act (2007)` | Public Procurement Act (2007) via /\bpublic procurement\b/
+- `ethics_019` [civil_service_admin/eth_misconduct] doc=`Federal Civil Service Handbook and Circulars` year=`2017`
+  - Which of these is considered misconduct under the Public Service Rules
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /public service rules/
+- `ethics_053` [civil_service_admin/eth_misconduct] doc=`Federal Civil Service Handbook and Circulars` year=`2017`
+  - Which civil service rule prohibits acceptance of double remuneration
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /public service rules/
+- `ethics_082` [civil_service_admin/eth_general] doc=`Federal Civil Service Handbook and Circulars` year=`2017`
+  - Which document sets out the duties, responsibilities and conduct of civil servants
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /public service rules/
+- `leadership_lsm_013` [leadership_management/lead_principles_styles] doc=`Leadership and Management Framework` year=`2020`
+  - According to the Civil Service Handbook (CSH), which three core values must civil servants uphold
+  - reason: `sourceDocument_conflict` | suggested=`Federal Civil Service Handbook and Circulars` | Federal Civil Service Handbook and Circulars via /civil service handbook/
+- `leadership_lsm_024` [leadership_management/lead_principles_styles] doc=`Leadership and Management Framework` year=`2020`
+  - In the Civil Service Handbook, **Nepotism** is explicitly discouraged because it violates the principle of:
+  - reason: `sourceDocument_conflict` | suggested=`Federal Civil Service Handbook and Circulars` | Federal Civil Service Handbook and Circulars via /civil service handbook/
+- `leadership_lsm_033` [leadership_management/lead_principles_styles] doc=`Leadership and Management Framework` year=`2020`
+  - In the context of the Civil Service Handbook, **Impartiality** in leadership means treating staff and citizens equally, regardless of:
+  - reason: `sourceDocument_conflict` | suggested=`Federal Civil Service Handbook and Circulars` | Federal Civil Service Handbook and Circulars via /civil service handbook/
+- `leadership_lsm_036` [leadership_management/lead_principles_styles] doc=`Leadership and Management Framework` year=`2020`
+  - The principle of **Delegation of Authority** in the Civil Service Handbook primarily enhances efficiency by:
+  - reason: `sourceDocument_conflict` | suggested=`Federal Civil Service Handbook and Circulars` | Federal Civil Service Handbook and Circulars via /civil service handbook/
+- `leadership_lsm_041` [leadership_management/lead_principles_styles] doc=`Leadership and Management Framework` year=`2020`
+  - When faced with **General Inefficiency** in a subordinate (**Rule 100201**), the leader's initial disciplinary step should be to
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `leadership_lsm_045` [leadership_management/lead_principles_styles] doc=`Leadership and Management Framework` year=`2020`
+  - A leader in the Directorate cadre must ensure the utilization of government funds and resources adheres strictly to accountability guidelines found in which Chapter of the Civil Service Handbook
+  - reason: `sourceDocument_conflict` | suggested=`Federal Civil Service Handbook and Circulars` | Federal Civil Service Handbook and Circulars via /civil service handbook/
+- `leadership_lsm_047` [leadership_management/lead_principles_styles] doc=`Leadership and Management Framework` year=`2020`
+  - The ethical requirement for public officers to maintain **Political Neutrality** means they must refrain from:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `leadership_smp_019` [leadership_management/lead_strategic_management] doc=`Leadership and Management Framework` year=`2020`
+  - Which strategic approach is emphasized in the Civil Service Handbook to ensure continuous service delivery, especially during staff transfers
+  - reason: `sourceDocument_conflict` | suggested=`Federal Civil Service Handbook and Circulars` | Federal Civil Service Handbook and Circulars via /civil service handbook/
+- `leadership_smp_023` [leadership_management/lead_strategic_management] doc=`Leadership and Management Framework` year=`2020`
+  - What is the strategic purpose of requiring a **Certificate of No Objection** from the BPP for high-value contracts
+  - reason: `sourceDocument_conflict` | suggested=`Public Procurement Act (2007)` | Public Procurement Act (2007) via /\bbpp\b/
+- `leadership_smp_024` [leadership_management/lead_strategic_management] doc=`Leadership and Management Framework` year=`2020`
+  - In strategy implementation, leaders must ensure that **Virement** (movement of funds between budget subheads) is formally backed by which legal document
+  - reason: `sourceDocument_conflict` | suggested=`Financial Regulations (FR)` | Financial Regulations (FR) via /\bfinancial regulations?\b/
+- `leadership_smp_031` [leadership_management/lead_strategic_management] doc=`Leadership and Management Framework` year=`2020`
+  - In aligning strategy with budgetary capacity, what must the Vote Controller check immediately before approving any financial commitment
+  - reason: `sourceDocument_conflict` | suggested=`Financial Regulations (FR)` | Financial Regulations (FR) via /\bvote book\b/
+- `leadership_smp_049` [leadership_management/lead_strategic_management] doc=`Leadership and Management Framework` year=`2020`
+  - The strategic objective of linking **Reward and Recognition** to measurable performance (**Rule 060103**) is to ensure:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `leadership_mpf_012` [leadership_management/lead_management_performance] doc=`Leadership and Management Framework` year=`2020`
+  - The **Performance Management Cycle** shall run from January to December of every year and shall commence immediately after the leadership of each **MDA** has finalized their:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `leadership_mpf_013` [leadership_management/lead_management_performance] doc=`Leadership and Management Framework` year=`2020`
+  - When an Officer is seconded to another **MDA**, who is responsible for furnishing the required **performance reports** on the Officer
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `leadership_mpf_015` [leadership_management/lead_management_performance] doc=`Leadership and Management Framework` year=`2020`
+  - Who must approve the ultimate release of any Officer on study leave, whether paid or unpaid, upon the recommendation of the Officer’s Permanent Secretary
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `leadership_mpf_016` [leadership_management/lead_management_performance] doc=`Leadership and Management Framework` year=`2020`
+  - Category A training is defined as long-term training leading to a post-graduate degree, which must be considered:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `leadership_mpf_017` [leadership_management/lead_management_performance] doc=`Leadership and Management Framework` year=`2020`
+  - Category B training is characterized as long-term post-graduate training that is beneficial to the Officer but:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `leadership_mpf_018` [leadership_management/lead_management_performance] doc=`Leadership and Management Framework` year=`2020`
+  - The minimum period of service required before an officer is eligible to sit for the compulsory confirmation examination (COMPRO) is:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `leadership_mpf_020` [leadership_management/lead_management_performance] doc=`Leadership and Management Framework` year=`2020`
+  - In the Reward and Recognition Scheme (R&RS), 'Reward' applies to officers who have served meritoriously for continuous periods of 15, 25, or:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `leadership_mpf_023` [leadership_management/lead_management_performance] doc=`Leadership and Management Framework` year=`2020`
+  - Which of the following documents is **NOT** allowed as a reference book for officers on **GL 07** and above during the compulsory confirmation examination
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `leadership_mpf_025` [leadership_management/lead_management_performance] doc=`Leadership and Management Framework` year=`2020`
+  - The process of Staff Development (**Rule 070101**) is defined as enhancing the knowledge, skills, and effectiveness of staff in order to meet their career goals and prepare them for:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `leadership_mpf_027` [leadership_management/lead_management_performance] doc=`Leadership and Management Framework` year=`2020`
+  - Who is primarily responsible for maintaining the departmental Vote Ledger (Vote Book) and monitoring budgetary allocations and commitments
+  - reason: `sourceDocument_conflict` | suggested=`Financial Regulations (FR)` | Financial Regulations (FR) via /\bvote book\b/
+- `leadership_mpf_028` [leadership_management/lead_management_performance] doc=`Leadership and Management Framework` year=`2020`
+  - What is the primary significance of performance appraisal, as emphasized in the Civil Service Handbook
+  - reason: `sourceDocument_conflict` | suggested=`Federal Civil Service Handbook and Circulars` | Federal Civil Service Handbook and Circulars via /civil service handbook/
+- `leadership_mpf_029` [leadership_management/lead_management_performance] doc=`Leadership and Management Framework` year=`2020`
+  - The maximum duration of study leave with pay that may be granted to a Confirmed Officer is:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `leadership_mpf_030` [leadership_management/lead_management_performance] doc=`Leadership and Management Framework` year=`2020`
+  - If an officer is in receipt of a personal allowance, such allowance will be treated as part of his substantive basic emolument for the purpose of calculating:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `leadership_mpf_034` [leadership_management/lead_management_performance] doc=`Leadership and Management Framework` year=`2020`
+  - Who must be simultaneously notified, along with the officer concerned, of decisions regarding the deferment or withholding of increment and stoppage of salaries
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `leadership_mpf_035` [leadership_management/lead_management_performance] doc=`Leadership and Management Framework` year=`2020`
+  - What is the consequence for an officer's unauthorized absence from duty (A.W.O.L.)
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `leadership_mpf_048` [leadership_management/lead_management_performance] doc=`Leadership and Management Framework` year=`2020`
+  - The mandatory retirement age in the Federal Civil Service is:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `leadership_mpf_050` [leadership_management/lead_management_performance] doc=`Leadership and Management Framework` year=`2020`
+  - The objective of the **Civil Service Handbook** in providing clear guidelines on administrative workflow and conduct is primarily to ensure:
+  - reason: `sourceDocument_conflict` | suggested=`Federal Civil Service Handbook and Circulars` | Federal Civil Service Handbook and Circulars via /civil service handbook/
+- `ict_eg_073` [ict_management/ict_e_governance] doc=`National ICT and Digital Governance Framework` year=`2019`
+  - Which officer manages staff records, including the completion and forwarding of relevant forms to the Pension Fund Administrator/National Pension Commission
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `ict_li_025` [ict_management/ict_literacy_innovation] doc=`National ICT and Digital Governance Framework` year=`2019`
+  - Which of the following is NOT a best practice in virtual meeting etiquette (**Rule 090204**)
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `ict_li_026` [ict_management/ict_literacy_innovation] doc=`National ICT and Digital Governance Framework` year=`2019`
+  - When preparing for a scheduled virtual meeting, how many hours before the meeting should materials be circulated to participants
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `ict_li_032` [ict_management/ict_literacy_innovation] doc=`National ICT and Digital Governance Framework` year=`2019`
+  - During a virtual meeting conducted from a non-work environment, participants must adhere to which specific appearance rule (**Rule 090205**)
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `ict_li_041` [ict_management/ict_literacy_innovation] doc=`National ICT and Digital Governance Framework` year=`2019`
+  - If a virtual meeting is expected to last beyond one hour, a mandatory break of what duration should be observed
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `ict_li_043` [ict_management/ict_literacy_innovation] doc=`National ICT and Digital Governance Framework` year=`2019`
+  - Which of the following is NOT a best practice in virtual meetings
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `ict_li_055` [ict_management/ict_literacy_innovation] doc=`National ICT and Digital Governance Framework` year=`2019`
+  - When may an Officer be treated for the purpose of free transport facilities as **travelling on duty** (but not travelling allowance)
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `ict_li_063` [ict_management/ict_literacy_innovation] doc=`National ICT and Digital Governance Framework` year=`2019`
+  - If an officer is required to present himself to an approved Healthcare Provider for a Special Medical Test (**Rule 130105**), the test determines if the officer is capable of performing the duties of his appointment or o
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `ict_li_067` [ict_management/ict_literacy_innovation] doc=`National ICT and Digital Governance Framework` year=`2019`
+  - Who must approve the implementation of staff training programs to ensure they align with the **MDA**’s strategic mandate
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `ict_li_073` [ict_management/ict_literacy_innovation] doc=`National ICT and Digital Governance Framework` year=`2019`
+  - If a female Officer's training course of not more than six months is interrupted due to pregnancy, she must enter into an agreement to:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `ict_li_074` [ict_management/ict_literacy_innovation] doc=`National ICT and Digital Governance Framework` year=`2019`
+  - The goal of **Staff Development and training** (**Rule 070101**) is to enhance the knowledge, skills, attitude, effectiveness, and:
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `ict_li_075` [ict_management/ict_literacy_innovation] doc=`National ICT and Digital Governance Framework` year=`2019`
+  - Which section of the **PPA** mandates the use of e-procurement systems to enhance efficiency and transparency in purchasing
+  - reason: `sourceDocument_conflict` | suggested=`Public Procurement Act (2007)` | Public Procurement Act (2007) via /\bpublic procurement\b/
+- `policy_constitution_029` [policy_analysis/pol_formulation_cycle] doc=`Public Policy and Governance Framework` year=`2020`
+  - Which organization regulates public procurement in Nigeria
+  - reason: `sourceDocument_conflict` | suggested=`Public Procurement Act (2007)` | Public Procurement Act (2007) via /\bprocurement act\b/
+- `policy_constitution_043` [policy_analysis/pol_formulation_cycle] doc=`Public Policy and Governance Framework` year=`2020`
+  - What does the term 'imprest' refer to
+  - reason: `sourceDocument_conflict` | suggested=`Financial Regulations (FR)` | Financial Regulations (FR) via /\bimprest\b/
+- `policy_constitution_047` [policy_analysis/pol_formulation_cycle] doc=`Public Policy and Governance Framework` year=`2020`
+  - Which of these is normally required when retiring an imprest
+  - reason: `sourceDocument_conflict` | suggested=`Financial Regulations (FR)` | Financial Regulations (FR) via /\bimprest\b/
+- `policy_constitution_053` [policy_analysis/pol_formulation_cycle] doc=`Public Policy and Governance Framework` year=`2020`
+  - Which federal agency publishes procurement guidelines and monitors compliance
+  - reason: `sourceDocument_conflict` | suggested=`Public Procurement Act (2007)` | Public Procurement Act (2007) via /\bprocurement act\b/
+- `policy_constitution_056` [policy_analysis/pol_formulation_cycle] doc=`Public Policy and Governance Framework` year=`2020`
+  - Which statement best defines 'virement' in public finance
+  - reason: `sourceDocument_conflict` | suggested=`Financial Regulations (FR)` | Financial Regulations (FR) via /\bvirement\b/
+- `policy_psr_021` [policy_analysis/pol_implementation_evaluation] doc=`Public Policy and Governance Framework` year=`2021`
+  - When did the Public Service Rules 2021 come into effect
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /public service rules/
+- `policy_psr_027` [policy_analysis/pol_implementation_evaluation] doc=`Public Policy and Governance Framework` year=`2020`
+  - Which federal agency publishes procurement guidelines and monitors compliance
+  - reason: `sourceDocument_conflict` | suggested=`Public Procurement Act (2007)` | Public Procurement Act (2007) via /\bprocurement act\b/
+- `policy_psr_030` [policy_analysis/pol_implementation_evaluation] doc=`Public Policy and Governance Framework` year=`2020`
+  - Which statement best defines 'virement' in public finance
+  - reason: `sourceDocument_conflict` | suggested=`Financial Regulations (FR)` | Financial Regulations (FR) via /\bvirement\b/
+- `NGPD_006` [general_current_affairs/ca_national_governance] doc=`Government Current Affairs Compendium` year=`2026`
+  - Which officer category is handled by the Junior Staff Committee (JSC) of each Ministry/Office regarding appointments
+  - reason: `sourceDocument_conflict` | suggested=`Federal Civil Service Handbook and Circulars` | Federal Civil Service Handbook and Circulars via /junior staff committee/
+- `NGPD_039` [general_current_affairs/ca_national_governance] doc=`Government Current Affairs Compendium` year=`2026`
+  - In Parastatals, which committee handles appointments and discipline of officers on **GL 06** and below
+  - reason: `sourceDocument_conflict` | suggested=`Federal Civil Service Handbook and Circulars` | Federal Civil Service Handbook and Circulars via /junior staff committee/
+- `IRA_114` [general_current_affairs/ca_international_affairs] doc=`Government Current Affairs Compendium` year=`2026`
+  - Which protocol is used for secure data transmission over the web
+  - reason: `sourceDocument_conflict` | suggested=`National ICT and Digital Governance Framework` | National ICT and Digital Governance Framework via /\bssl\b/
+- `IRA_130` [general_current_affairs/ca_international_affairs] doc=`Government Current Affairs Compendium` year=`2026`
+  - An officer who is injured in the course of his official duties and is permanently invalided will retire in accordance with which rule
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+- `IRA_140` [general_current_affairs/ca_international_affairs] doc=`Government Current Affairs Compendium` year=`2026`
+  - Who provides security guidelines for virtual meetings in line with **Rule 090104**'
+  - reason: `sourceDocument_conflict` | suggested=`Public Service Rules (PSR 2021)` | Public Service Rules (PSR 2021) via /rule\s+0?\d{4,}/
+
+Machine-readable: `D:/MyApps/promotion-cbt/Promotion-cbt-app/docs/metadata_review_queue_high_confidence.json`

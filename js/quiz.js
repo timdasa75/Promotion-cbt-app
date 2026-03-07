@@ -4,6 +4,7 @@ import { showScreen, showError } from "./ui.js";
 import { extractQuestionsByCategory, fetchTopicDataFiles } from "./topicSources.js";
 import { debugLog } from "./logger.js";
 import { getTopics } from "./data.js";
+import { calculateScoreFromAnswers } from "./metrics.js";
 import {
   getCurrentEntitlement,
   getCurrentUser,
@@ -114,6 +115,10 @@ const quizState = {
 };
 const QUIZ_RUNTIME_STORAGE_KEY = "cbt_quiz_runtime_v1";
 const QUIZ_RUNTIME_MAX_AGE_MS = 24 * 60 * 60 * 1000;
+const RETRY_MISSED_STORAGE_PREFIX = "cbt_retry_missed_v1_";
+const RETRY_MISSED_MAX_ITEMS = 300;
+const RETRY_MISSED_DEFAULT_SESSION_SIZE = 40;
+export const RETRY_MISSED_TOPIC_ID = "retry_missed";
 
 let reviewContext = "study"; // "study" (pre-quiz) or "session" (post-quiz)
 let lastCompletedSession = null;
@@ -447,6 +452,104 @@ function saveProgressSummary(summary) {
   } catch (error) {
     console.warn("Unable to persist progress summary", error);
   }
+}
+
+function getRetryMissedStorageKeyForCurrentUser() {
+  const user = getCurrentUser();
+  const userId = String(user?.id || "").trim();
+  return userId ? `${RETRY_MISSED_STORAGE_PREFIX}${userId}` : "";
+}
+
+function readRetryMissedQueue() {
+  const storageKey = getRetryMissedStorageKeyForCurrentUser();
+  if (!storageKey) return [];
+  try {
+    const raw = window.localStorage.getItem(storageKey);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch (error) {
+    return [];
+  }
+}
+
+function saveRetryMissedQueue(queue) {
+  const storageKey = getRetryMissedStorageKeyForCurrentUser();
+  if (!storageKey) return;
+  try {
+    window.localStorage.setItem(storageKey, JSON.stringify(queue));
+  } catch (error) {
+    console.warn("Unable to persist retry queue", error);
+  }
+}
+
+function normalizeQuestionFingerprint(question = {}) {
+  const byId = String(question?.id || "").trim();
+  if (byId) return `id:${byId}`;
+  const byText = String(question?.question || "")
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  return byText ? `text:${byText}` : "";
+}
+
+function toRetryQueueEntry(question) {
+  const fingerprint = normalizeQuestionFingerprint(question);
+  if (!fingerprint) return null;
+  return {
+    id: fingerprint,
+    updatedAt: new Date().toISOString(),
+    sourceTopicId: String(question?.sourceTopicId || currentTopic?.id || ""),
+    sourceTopicName: String(question?.sourceTopicName || currentTopic?.name || ""),
+    question: { ...question },
+  };
+}
+
+function syncRetryMissedQueueFromSession() {
+  const currentUser = getCurrentUser();
+  if (!currentUser) return;
+  if (!Array.isArray(quizState.allQuestions) || !quizState.allQuestions.length) return;
+
+  const queueMap = new Map(
+    readRetryMissedQueue()
+      .filter((entry) => entry && typeof entry === "object" && entry.id && entry.question)
+      .map((entry) => [String(entry.id), entry]),
+  );
+
+  quizState.allQuestions.forEach((question, index) => {
+    const entry = toRetryQueueEntry(question);
+    if (!entry) return;
+    const userAnswer = quizState.userAnswers[index];
+    const isMissed = userAnswer !== question?.correct;
+    if (isMissed) {
+      queueMap.set(entry.id, entry);
+      return;
+    }
+    queueMap.delete(entry.id);
+  });
+
+  const nextQueue = Array.from(queueMap.values())
+    .sort((a, b) => String(b.updatedAt || "").localeCompare(String(a.updatedAt || "")))
+    .slice(0, RETRY_MISSED_MAX_ITEMS);
+  saveRetryMissedQueue(nextQueue);
+}
+
+export function getRetryMissedQueueCount() {
+  return readRetryMissedQueue().length;
+}
+
+export function getRetryMissedQuestions(limit = RETRY_MISSED_DEFAULT_SESSION_SIZE) {
+  const max = Number(limit);
+  const normalizedLimit = Number.isFinite(max) && max > 0 ? Math.floor(max) : RETRY_MISSED_DEFAULT_SESSION_SIZE;
+  return readRetryMissedQueue()
+    .filter((entry) => entry?.question && typeof entry.question === "object")
+    .slice(0, normalizedLimit)
+    .map((entry) => ({
+      ...entry.question,
+      sourceTopicId: String(entry.sourceTopicId || entry.question?.sourceTopicId || ""),
+      sourceTopicName: String(entry.sourceTopicName || entry.question?.sourceTopicName || ""),
+    }));
 }
 
 function recordAttemptResult({ topicId, topicName, mode, scorePercentage, totalQuestions }) {
@@ -1180,15 +1283,8 @@ function previousQuestion() {
  * Calculate exam score when time runs out
  */
 function calculateExamScore() {
-  quizState.score = 0;
-  for (let i = 0; i < quizState.allQuestions.length; i++) {
-    if (
-      quizState.userAnswers[i] !== undefined &&
-      quizState.userAnswers[i] === quizState.allQuestions[i].correct
-    ) {
-      quizState.score++;
-    }
-  }
+  const scoreSnapshot = calculateScoreFromAnswers(quizState.allQuestions, quizState.userAnswers);
+  quizState.score = scoreSnapshot.correct;
   debugLog(
     "Exam auto-submitted. Final score:",
     quizState.score,
@@ -1300,10 +1396,11 @@ function showResults() {
     return;
   }
 
-  const answered = quizState.userAnswers.filter((answer) => answer !== undefined).length;
-  const correct = quizState.score;
-  const wrong = answered - correct;
-  const unanswered = quizState.allQuestions.length - answered;
+  const scoreSnapshot = calculateScoreFromAnswers(quizState.allQuestions, quizState.userAnswers);
+  const answered = scoreSnapshot.answered;
+  const correct = scoreSnapshot.correct;
+  const wrong = scoreSnapshot.wrong;
+  const unanswered = scoreSnapshot.unanswered;
 
   if (correctCount) correctCount.textContent = correct;
   if (wrongCount) wrongCount.textContent = wrong;
@@ -1316,10 +1413,10 @@ function showResults() {
     const seconds = timeElapsed % 60;
     timeSpent.textContent = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
   }
-  const scorePercentage = Math.round((quizState.score / quizState.allQuestions.length) * 100);
-  const accuracyRate = Math.round((correct / answered) * 100) || 0;
-  const unansweredRate = Math.round((unanswered / quizState.allQuestions.length) * 100) || 0;
-  const wrongRate = Math.round((wrong / quizState.allQuestions.length) * 100) || 0;
+  const scorePercentage = scoreSnapshot.scorePercentage;
+  const accuracyRate = scoreSnapshot.accuracyRate;
+  const unansweredRate = scoreSnapshot.unansweredRate;
+  const wrongRate = scoreSnapshot.wrongRate;
   const overallTrafficClass = getTrafficClassByPercentage(scorePercentage);
   const accuracyTrafficClass = getTrafficClassByPercentage(accuracyRate);
   const unansweredTrafficClass = getInverseTrafficClassByPercentage(unansweredRate);
@@ -1334,14 +1431,18 @@ function showResults() {
     topicId: currentTopic?.id || null,
     sourceMode: currentMode,
   };
+  syncRetryMissedQueueFromSession();
 
-  const progressSummary = recordAttemptResult({
-    topicId: currentTopic?.id,
-    topicName: currentTopic?.name,
-    mode: currentMode,
-    scorePercentage,
-    totalQuestions: quizState.allQuestions.length,
-  });
+  const progressSummary =
+    currentTopic?.id === RETRY_MISSED_TOPIC_ID
+      ? readProgressSummary()
+      : recordAttemptResult({
+          topicId: currentTopic?.id,
+          topicName: currentTopic?.name,
+          mode: currentMode,
+          scorePercentage,
+          totalQuestions: quizState.allQuestions.length,
+        });
   const progressInsights = calculateProgressInsights(progressSummary, currentTopic?.id);
   const mockTopicBreakdown = isMockExamTopic(currentTopic)
     ? buildMockExamTopicBreakdown()
