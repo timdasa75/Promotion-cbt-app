@@ -1545,16 +1545,23 @@ function renderAdminUserDirectory() {
   const container = document.getElementById("adminUserList");
   const searchInput = document.getElementById("adminUserSearch");
   const statusFilter = document.getElementById("adminStatusFilter");
+  const verificationFilter = document.getElementById("adminVerificationFilter");
   const sourceLabel = document.getElementById("adminUserSource");
   const countLabel = document.getElementById("adminUserCount");
   if (!container) return;
 
   const query = String(searchInput?.value || "").trim().toLowerCase();
   const status = String(statusFilter?.value || "all").toLowerCase();
+  const verification = String(verificationFilter?.value || "all").toLowerCase();
   const filtered = adminDirectoryUsers.filter((entry) => {
     const emailMatch = !query || String(entry.email || "").toLowerCase().includes(query);
     const statusMatch = status === "all" || entry.status === status;
-    return emailMatch && statusMatch;
+    const verificationMatch =
+      verification === "all" ||
+      (verification === "verified" && entry.emailVerified === true) ||
+      (verification === "unverified" && entry.emailVerified === false) ||
+      (verification === "unknown" && entry.emailVerified !== true && entry.emailVerified !== false);
+    return emailMatch && statusMatch && verificationMatch;
   });
   if (countLabel) {
     countLabel.textContent = `Users: ${filtered.length}/${adminDirectoryUsers.length}`;
@@ -1948,6 +1955,7 @@ function initializeAuthUI() {
   const refreshAdminUsersBtn = document.getElementById("refreshAdminUsersBtn");
   const adminUserSearch = document.getElementById("adminUserSearch");
   const adminStatusFilter = document.getElementById("adminStatusFilter");
+  const adminVerificationFilter = document.getElementById("adminVerificationFilter");
   const adminRequestSearch = document.getElementById("adminRequestSearch");
   const adminRequestStatusFilter = document.getElementById("adminRequestStatusFilter");
   const adminRequestSourceFilter = document.getElementById("adminRequestSourceFilter");
@@ -2383,6 +2391,12 @@ function initializeAuthUI() {
 
   if (adminStatusFilter) {
     adminStatusFilter.addEventListener("change", () => {
+      renderAdminUserDirectory();
+    });
+  }
+
+  if (adminVerificationFilter) {
+    adminVerificationFilter.addEventListener("change", () => {
       renderAdminUserDirectory();
     });
   }

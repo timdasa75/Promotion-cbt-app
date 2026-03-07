@@ -454,7 +454,6 @@
                                 <h3>Users and Account Status</h3>
                                 <p>Exclusive directory view for administrator accounts.</p>
                             </div>
-                            <p class="hero-meta">On Spark plan, use <strong>Deactivate</strong>. Permanent Firebase Auth deletion requires Blaze or manual console cleanup.</p>
                             <div class="hero-meta-row">
                                 <p class="hero-meta" id="adminUserSource">Source: loading...</p>
                                 <p class="hero-meta" id="adminUserCount">Users: 0</p>
@@ -465,9 +464,15 @@
                                     <input id="adminUserSearch" type="search" placeholder="Search user email" />
                                 </label>
                                 <select id="adminStatusFilter" aria-label="Filter user status">
-                                    <option value="all">All Statuses</option>
+                                    <option value="all">Status</option>
                                     <option value="active">Active</option>
                                     <option value="suspended">Suspended</option>
+                                </select>
+                                <select id="adminVerificationFilter" aria-label="Filter email verification status">
+                                    <option value="all">Email Verification</option>
+                                    <option value="verified">Verified</option>
+                                    <option value="unverified">Not Verified</option>
+                                    <option value="unknown">Unknown</option>
                                 </select>
                                 <button class="btn btn-secondary" id="refreshAdminUsersBtn" type="button">Refresh</button>
                             </div>

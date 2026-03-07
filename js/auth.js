@@ -2362,7 +2362,7 @@ export async function getAdminUserDirectory() {
           throw new Error("Firebase Auth list returned zero users and no cloud profiles are available.");
         }
       } catch (error) {
-        warnings.push(`Cloud Function live list unavailable. ${error?.message || ""}`.trim());
+        const cloudFunctionWarning = `Cloud Function live list unavailable. ${error?.message || ""}`.trim();
         try {
           const authUsers = await listUsersViaAdminToken();
           if (authUsers.length) {
@@ -2380,13 +2380,13 @@ export async function getAdminUserDirectory() {
 
             users = buildAuthBackedDirectoryRows(authUsers, normalizedRows);
             source = "cloud-auth";
-            warnings.push("Using admin-token fallback for live Firebase Auth list.");
             if (staleProfiles.length > 0) {
               warnings.push(
                 `${staleProfiles.length} stale profile record(s) were excluded because they are not in Firebase Auth.`,
               );
             }
           } else if (normalizedRows.length > 0) {
+            warnings.push(cloudFunctionWarning);
             warnings.push("Admin-token live list returned zero users. Showing profile-based fallback.");
             const enriched = await enrichDirectoryVerificationStates(normalizedRows);
             users = enriched.users;
@@ -2398,6 +2398,7 @@ export async function getAdminUserDirectory() {
           }
         } catch (fallbackError) {
           if (normalizedRows.length > 0) {
+            warnings.push(cloudFunctionWarning);
             warnings.push(
               `Admin-token live list unavailable. Showing profile-based data. ${fallbackError?.message || ""}`.trim(),
             );
