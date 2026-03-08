@@ -350,3 +350,87 @@ test("retry-missed queue is created from results and can start a focused retry s
   await expect(page.locator("#quizTopicTitle")).toContainText("Retry Missed Questions");
   await expect(page.locator("#totalQ")).toHaveText("1");
 });
+
+test("spaced-practice queue shows due count and starts a focused spaced session", async ({ page }) => {
+  await page.addInitScript(() => {
+    const user = {
+      id: "u_spaced",
+      name: "Spaced User",
+      email: "spaced@example.com",
+      passwordHash: "seedhash",
+      plan: "premium",
+      createdAt: new Date().toISOString(),
+    };
+    window.localStorage.setItem("cbt_users_v1", JSON.stringify([user]));
+    window.localStorage.setItem(
+      "cbt_session_v1",
+      JSON.stringify({ provider: "local", userId: user.id, createdAt: new Date().toISOString() }),
+    );
+  });
+
+  await page.goto("/");
+  await page.click("#startLearningBtn");
+  await expect(page.locator("#topicSelectionScreen")).toBeVisible();
+
+  await page.evaluate(async () => {
+    const { getTopics } = await import("/js/data.js");
+    const { fetchTopicDataFiles, extractQuestionsByCategory } = await import("/js/topicSources.js");
+
+    const topics = Array.isArray(getTopics()) ? getTopics() : [];
+    const sourceTopic = topics.find((topic) => String(topic?.id || "").trim() !== "mock_exam" && topic?.file);
+    if (!sourceTopic) throw new Error("Unable to seed spaced-practice queue: no source topic found.");
+
+    const topicDataFiles = await fetchTopicDataFiles(sourceTopic, { tolerateFailures: true });
+    let selectedQuestion = null;
+    for (const topicData of topicDataFiles) {
+      const questions = extractQuestionsByCategory(topicData, "all", {});
+      if (Array.isArray(questions) && questions.length) {
+        selectedQuestion = questions.find((question) => question && (question.id || question.question)) || null;
+      }
+      if (selectedQuestion) break;
+    }
+    if (!selectedQuestion) {
+      throw new Error("Unable to seed spaced-practice queue: no questions found.");
+    }
+
+    const byId = String(selectedQuestion?.id || "").trim();
+    const fingerprint = byId
+      ? `id:${byId}`
+      : `text:${String(selectedQuestion?.question || "")
+          .toLowerCase()
+          .replace(/[^a-z0-9\\s]/g, " ")
+          .replace(/\\s+/g, " ")
+          .trim()}`;
+    if (!fingerprint) throw new Error("Unable to seed spaced-practice queue: missing fingerprint.");
+
+    const queueEntry = {
+      id: `${sourceTopic.id}|${fingerprint}`,
+      sourceTopicId: String(sourceTopic.id || ""),
+      sourceTopicName: String(sourceTopic.name || ""),
+      questionId: byId,
+      fingerprint,
+      dueAt: new Date(Date.now() - 60 * 1000).toISOString(),
+      intervalDays: 1,
+      easeFactor: 2.5,
+      repetitions: 0,
+      reviewCount: 0,
+      lapses: 1,
+      lastResult: "incorrect",
+      lastReviewedAt: "",
+    };
+
+    window.localStorage.setItem("cbt_spaced_practice_v1_u_spaced", JSON.stringify([queueEntry]));
+  });
+
+  await page.reload();
+  await expect(page.locator("#topicSelectionScreen")).toBeVisible();
+
+  const spacedBtn = page.locator("#spacedPracticeBtn");
+  await expect(spacedBtn).toBeEnabled();
+  await expect(spacedBtn).toContainText("Spaced Practice (1)");
+
+  await spacedBtn.click();
+  await expect(page.locator("#quizScreen")).toBeVisible();
+  await expect(page.locator("#quizTopicTitle")).toContainText("Spaced Practice");
+  await expect(page.locator("#totalQ")).toHaveText("1");
+});
