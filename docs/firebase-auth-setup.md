@@ -89,6 +89,17 @@ Recommended `upgradeRequests` fields:
 - `reviewedBy` (string, lowercase email)
 - `reviewNote` (string)
 
+For multi-device progress sync, also use collection: `progress`
+Use document id: Firebase Auth `uid`
+
+Recommended `progress` fields:
+- `schemaVersion` (number, currently `1`)
+- `updatedAt` (timestamp)
+- `deviceId` (string)
+- `progressSummaryJson` (string JSON with `attempts` array)
+- `retryQueueJson` (string JSON array for retry-missed queue)
+- `spacedQueueJson` (string JSON array for spaced-practice scheduler)
+
 ## 7. Firestore Security Rules (Starter)
 
 Set rules in `Firestore Database -> Rules`:
@@ -149,6 +160,12 @@ service cloud.firestore {
       allow update: if isAdmin();
       allow delete: if isAdmin();
     }
+
+    match /progress/{userId} {
+      allow read: if isSignedIn() && (request.auth.uid == userId || isAdmin());
+      allow create, update: if isSignedIn() && request.auth.uid == userId;
+      allow delete: if isAdmin();
+    }
   }
 }
 ```
@@ -173,7 +190,9 @@ Use Firebase config keys in `window.PROMOTION_CBT_AUTH`:
 window.PROMOTION_CBT_AUTH = {
   firebaseApiKey: "YOUR_FIREBASE_API_KEY",
   firebaseProjectId: "YOUR_FIREBASE_PROJECT_ID",
-  firebaseAuthDomain: "YOUR_FIREBASE_AUTH_DOMAIN"
+  firebaseAuthDomain: "YOUR_FIREBASE_AUTH_DOMAIN",
+  enableCloudProgressSync: false,
+  adminApiBaseUrl: ""
 };
 ```
 
@@ -196,6 +215,7 @@ Operational recommendation:
 - Deploy the HTTPS function `adminDeleteUserById` (see `functions/index.js`) and call it from the admin panel. It validates the admin ID token, then deletes both Firebase Auth user and Firestore `profiles/{userId}` server-side.
 - Keep the `deleteAuthUserOnProfileDeletion` trigger deployed as a backup cascade.
 - Optional fallback: mint a short-lived OAuth token scoped to `https://www.googleapis.com/auth/identitytoolkit` during deployment (e.g., `gcloud auth print-access-token --scope=https://www.googleapis.com/auth/identitytoolkit`) and expose it as `firebaseAdminAccessToken` in runtime config.
+- Optional migration path: set `adminApiBaseUrl` to a Cloudflare Worker (or equivalent) that verifies admin ID tokens and performs privileged admin operations server-side.
 
 ### Content Security Policy guidance
 

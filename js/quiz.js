@@ -9,6 +9,9 @@ import {
   getCurrentEntitlement,
   getCurrentUser,
   getProgressStorageKeyForCurrentUser,
+  isCloudProgressSyncEnabled,
+  readCloudProgressSummary,
+  writeCloudProgressSummary,
 } from "./auth.js";
 
 function escapeHtml(value) {
@@ -116,9 +119,159 @@ const quizState = {
 const QUIZ_RUNTIME_STORAGE_KEY = "cbt_quiz_runtime_v1";
 const QUIZ_RUNTIME_MAX_AGE_MS = 24 * 60 * 60 * 1000;
 const RETRY_MISSED_STORAGE_PREFIX = "cbt_retry_missed_v1_";
+const SPACED_PRACTICE_STORAGE_PREFIX = "cbt_spaced_practice_v1_";
 const RETRY_MISSED_MAX_ITEMS = 300;
 const RETRY_MISSED_DEFAULT_SESSION_SIZE = 40;
+const SPACED_PRACTICE_MAX_ITEMS = 600;
+const SPACED_PRACTICE_DEFAULT_SESSION_SIZE = 40;
+const SPACED_PRACTICE_MIN_EASE = 1.3;
+const SPACED_PRACTICE_MAX_EASE = 3.2;
+const SPACED_PRACTICE_DEFAULT_EASE = 2.5;
+const SPACED_PRACTICE_MASTERY_REPETITIONS = 4;
+const SPACED_PRACTICE_MASTERY_INTERVAL_DAYS = 21;
+const MAX_PROGRESS_ATTEMPTS = 50;
+const PROGRESS_SYNC_DEVICE_ID_STORAGE_KEY = "cbt_progress_device_id_v1";
+const CLOUD_PROGRESS_SYNC_MIN_INTERVAL_MS = 8000;
+const CLOUD_PROGRESS_SYNC_EVENT = "cloudprogresssyncchange";
+
+let cloudProgressSyncInFlight = null;
+let lastCloudProgressSyncMs = 0;
+const cloudProgressSyncStatus = {
+  inFlight: false,
+  synced: false,
+  lastAttemptAt: "",
+  lastSuccessAt: "",
+  lastError: "",
+  lastReason: "",
+};
+
+function emitCloudProgressSyncStatus() {
+  if (typeof document === "undefined" || typeof CustomEvent !== "function") return;
+  document.dispatchEvent(
+    new CustomEvent(CLOUD_PROGRESS_SYNC_EVENT, {
+      detail: getCloudProgressSyncStatus(),
+    }),
+  );
+}
+
+function setCloudProgressSyncStatus(next = {}) {
+  Object.assign(cloudProgressSyncStatus, next);
+  emitCloudProgressSyncStatus();
+}
+
+export function getCloudProgressSyncStatus() {
+  return { ...cloudProgressSyncStatus };
+}
+
+function clampNumber(value, { min = Number.NEGATIVE_INFINITY, max = Number.POSITIVE_INFINITY, fallback = 0 } = {}) {
+  const numeric = Number(value);
+  if (!Number.isFinite(numeric)) return fallback;
+  return Math.min(max, Math.max(min, numeric));
+}
+
+function getProgressAttemptIdentity(attempt = {}) {
+  const byId = String(attempt?.attemptId || "").trim();
+  if (byId) return byId;
+  const topicId = String(attempt?.topicId || "").trim().toLowerCase();
+  const mode = String(attempt?.mode || "").trim().toLowerCase();
+  const createdAt = String(attempt?.createdAt || "").trim();
+  const score = String(Math.round(clampNumber(attempt?.scorePercentage, { min: 0, max: 100, fallback: 0 })));
+  const total = String(Math.floor(clampNumber(attempt?.totalQuestions, { min: 0, max: 1000, fallback: 0 })));
+  return `legacy:${topicId}|${mode}|${createdAt}|${score}|${total}`;
+}
+
+function normalizeProgressAttempt(attempt = {}) {
+  const topicId = String(attempt?.topicId || "").trim();
+  if (!topicId) return null;
+  const topicName = String(attempt?.topicName || topicId).trim();
+  const mode = String(attempt?.mode || "practice").trim().toLowerCase();
+  const createdAtRaw = String(attempt?.createdAt || "").trim();
+  const createdAt = Number.isNaN(Date.parse(createdAtRaw))
+    ? new Date().toISOString()
+    : new Date(createdAtRaw).toISOString();
+  const attemptId = getProgressAttemptIdentity({ ...attempt, topicId, mode, createdAt });
+  return {
+    attemptId,
+    topicId,
+    topicName,
+    mode,
+    scorePercentage: Math.round(
+      clampNumber(attempt?.scorePercentage, { min: 0, max: 100, fallback: 0 }),
+    ),
+    totalQuestions: Math.floor(
+      clampNumber(attempt?.totalQuestions, { min: 0, max: 1000, fallback: 0 }),
+    ),
+    createdAt,
+    deviceId: String(attempt?.deviceId || "").trim(),
+  };
+}
+
+function normalizeProgressSummary(summary) {
+  const attempts = Array.isArray(summary?.attempts) ? summary.attempts : [];
+  const byIdentity = new Map();
+  attempts.forEach((attempt) => {
+    const normalized = normalizeProgressAttempt(attempt);
+    if (!normalized) return;
+    const previous = byIdentity.get(normalized.attemptId);
+    if (!previous) {
+      byIdentity.set(normalized.attemptId, normalized);
+      return;
+    }
+    const previousMs = Date.parse(previous.createdAt || "") || 0;
+    const nextMs = Date.parse(normalized.createdAt || "") || 0;
+    if (nextMs >= previousMs) {
+      byIdentity.set(normalized.attemptId, normalized);
+    }
+  });
+
+  const normalizedAttempts = Array.from(byIdentity.values())
+    .sort((a, b) => {
+      const aMs = Date.parse(a.createdAt || "") || 0;
+      const bMs = Date.parse(b.createdAt || "") || 0;
+      if (aMs !== bMs) return aMs - bMs;
+      return String(a.attemptId || "").localeCompare(String(b.attemptId || ""));
+    })
+    .slice(-MAX_PROGRESS_ATTEMPTS);
+
+  return { attempts: normalizedAttempts };
+}
+
+function mergeProgressSummaries(localSummary, cloudSummary) {
+  const local = normalizeProgressSummary(localSummary);
+  const cloud = normalizeProgressSummary(cloudSummary);
+  return normalizeProgressSummary({
+    attempts: [...local.attempts, ...cloud.attempts],
+  });
+}
+
+function areProgressSummariesEqual(a, b) {
+  const left = normalizeProgressSummary(a);
+  const right = normalizeProgressSummary(b);
+  return JSON.stringify(left) === JSON.stringify(right);
+}
+
+function getProgressSyncDeviceId() {
+  try {
+    const existing = String(window.localStorage.getItem(PROGRESS_SYNC_DEVICE_ID_STORAGE_KEY) || "").trim();
+    if (existing) return existing;
+    const nextId = `dev-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
+    window.localStorage.setItem(PROGRESS_SYNC_DEVICE_ID_STORAGE_KEY, nextId);
+    return nextId;
+  } catch (error) {
+    return `dev-${Date.now().toString(36)}`;
+  }
+}
+
+function createProgressAttemptId(createdAtIso) {
+  const timestampMs = Date.parse(createdAtIso || "") || Date.now();
+  return `a-${timestampMs.toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
+}
+
+function isCloudProgressSyncReady() {
+  return Boolean(isCloudProgressSyncEnabled() && getCurrentUser()?.id);
+}
 export const RETRY_MISSED_TOPIC_ID = "retry_missed";
+export const SPACED_PRACTICE_TOPIC_ID = "spaced_practice";
 
 let reviewContext = "study"; // "study" (pre-quiz) or "session" (post-quiz)
 let lastCompletedSession = null;
@@ -440,15 +593,16 @@ function readProgressSummary() {
     if (!raw) return { attempts: [] };
     const parsed = JSON.parse(raw);
     if (!parsed || !Array.isArray(parsed.attempts)) return { attempts: [] };
-    return parsed;
+    return normalizeProgressSummary(parsed);
   } catch (error) {
     return { attempts: [] };
   }
 }
 
 function saveProgressSummary(summary) {
+  const normalized = normalizeProgressSummary(summary);
   try {
-    window.localStorage.setItem(getProgressStorageKeyForCurrentUser(), JSON.stringify(summary));
+    window.localStorage.setItem(getProgressStorageKeyForCurrentUser(), JSON.stringify(normalized));
   } catch (error) {
     console.warn("Unable to persist progress summary", error);
   }
@@ -460,6 +614,63 @@ function getRetryMissedStorageKeyForCurrentUser() {
   return userId ? `${RETRY_MISSED_STORAGE_PREFIX}${userId}` : "";
 }
 
+function normalizeRetryQueueEntry(entry = {}) {
+  if (!entry || typeof entry !== "object") return null;
+  const question = entry?.question;
+  if (!question || typeof question !== "object") return null;
+  const id = String(entry?.id || normalizeQuestionFingerprint(question) || "").trim();
+  if (!id) return null;
+
+  const updatedAtRaw = String(entry?.updatedAt || "").trim();
+  const updatedAt = Number.isNaN(Date.parse(updatedAtRaw))
+    ? new Date().toISOString()
+    : new Date(updatedAtRaw).toISOString();
+
+  return {
+    id,
+    updatedAt,
+    sourceTopicId: String(entry?.sourceTopicId || question?.sourceTopicId || "").trim(),
+    sourceTopicName: String(entry?.sourceTopicName || question?.sourceTopicName || "").trim(),
+    question: { ...question },
+  };
+}
+
+function normalizeRetryQueue(queue) {
+  const items = Array.isArray(queue) ? queue : [];
+  const byId = new Map();
+  items.forEach((entry) => {
+    const normalized = normalizeRetryQueueEntry(entry);
+    if (!normalized) return;
+    const previous = byId.get(normalized.id);
+    if (!previous) {
+      byId.set(normalized.id, normalized);
+      return;
+    }
+    const previousMs = Date.parse(previous.updatedAt || "") || 0;
+    const nextMs = Date.parse(normalized.updatedAt || "") || 0;
+    if (nextMs >= previousMs) {
+      byId.set(normalized.id, normalized);
+    }
+  });
+
+  return Array.from(byId.values())
+    .sort((a, b) => {
+      const aMs = Date.parse(a.updatedAt || "") || 0;
+      const bMs = Date.parse(b.updatedAt || "") || 0;
+      if (aMs !== bMs) return bMs - aMs;
+      return String(a.id || "").localeCompare(String(b.id || ""));
+    })
+    .slice(0, RETRY_MISSED_MAX_ITEMS);
+}
+
+function mergeRetryQueues(localQueue, cloudQueue) {
+  return normalizeRetryQueue([...(Array.isArray(localQueue) ? localQueue : []), ...(Array.isArray(cloudQueue) ? cloudQueue : [])]);
+}
+
+function areRetryQueuesEqual(a, b) {
+  return JSON.stringify(normalizeRetryQueue(a)) === JSON.stringify(normalizeRetryQueue(b));
+}
+
 function readRetryMissedQueue() {
   const storageKey = getRetryMissedStorageKeyForCurrentUser();
   if (!storageKey) return [];
@@ -467,7 +678,7 @@ function readRetryMissedQueue() {
     const raw = window.localStorage.getItem(storageKey);
     if (!raw) return [];
     const parsed = JSON.parse(raw);
-    return Array.isArray(parsed) ? parsed : [];
+    return normalizeRetryQueue(parsed);
   } catch (error) {
     return [];
   }
@@ -476,11 +687,261 @@ function readRetryMissedQueue() {
 function saveRetryMissedQueue(queue) {
   const storageKey = getRetryMissedStorageKeyForCurrentUser();
   if (!storageKey) return;
+  const normalized = normalizeRetryQueue(queue);
   try {
-    window.localStorage.setItem(storageKey, JSON.stringify(queue));
+    window.localStorage.setItem(storageKey, JSON.stringify(normalized));
   } catch (error) {
     console.warn("Unable to persist retry queue", error);
   }
+}
+
+function getSpacedPracticeStorageKeyForCurrentUser() {
+  const user = getCurrentUser();
+  const userId = String(user?.id || "").trim();
+  return userId ? `${SPACED_PRACTICE_STORAGE_PREFIX}${userId}` : "";
+}
+
+function normalizeSpacedPracticeEntry(entry = {}) {
+  if (!entry || typeof entry !== "object") return null;
+  const id = String(entry?.id || "").trim();
+  const sourceTopicId = String(entry?.sourceTopicId || "").trim();
+  const questionId = String(entry?.questionId || "").trim();
+  const fingerprint = String(entry?.fingerprint || "").trim();
+  if (!id || !sourceTopicId || (!questionId && !fingerprint)) return null;
+
+  const dueAtRaw = String(entry?.dueAt || "").trim();
+  const dueAt = Number.isNaN(Date.parse(dueAtRaw))
+    ? new Date().toISOString()
+    : new Date(dueAtRaw).toISOString();
+
+  const reviewedAtRaw = String(entry?.lastReviewedAt || "").trim();
+  const lastReviewedAt = Number.isNaN(Date.parse(reviewedAtRaw))
+    ? ""
+    : new Date(reviewedAtRaw).toISOString();
+
+  return {
+    id,
+    sourceTopicId,
+    sourceTopicName: String(entry?.sourceTopicName || "").trim(),
+    questionId,
+    fingerprint,
+    dueAt,
+    intervalDays: Math.max(1, Math.floor(clampNumber(entry?.intervalDays, { min: 1, max: 365, fallback: 1 }))),
+    easeFactor: clampNumber(entry?.easeFactor, {
+      min: SPACED_PRACTICE_MIN_EASE,
+      max: SPACED_PRACTICE_MAX_EASE,
+      fallback: SPACED_PRACTICE_DEFAULT_EASE,
+    }),
+    repetitions: Math.max(0, Math.floor(clampNumber(entry?.repetitions, { min: 0, max: 50, fallback: 0 }))),
+    reviewCount: Math.max(0, Math.floor(clampNumber(entry?.reviewCount, { min: 0, max: 5000, fallback: 0 }))),
+    lapses: Math.max(0, Math.floor(clampNumber(entry?.lapses, { min: 0, max: 5000, fallback: 0 }))),
+    lastResult: String(entry?.lastResult || "").trim().toLowerCase() === "correct" ? "correct" : "incorrect",
+    lastReviewedAt,
+  };
+}
+
+function normalizeSpacedPracticeQueue(queue) {
+  const items = Array.isArray(queue) ? queue : [];
+  const byId = new Map();
+  items.forEach((entry) => {
+    const normalized = normalizeSpacedPracticeEntry(entry);
+    if (!normalized) return;
+    const previous = byId.get(normalized.id);
+    if (!previous) {
+      byId.set(normalized.id, normalized);
+      return;
+    }
+    const previousMs = Date.parse(previous.lastReviewedAt || previous.dueAt || "") || 0;
+    const nextMs = Date.parse(normalized.lastReviewedAt || normalized.dueAt || "") || 0;
+    if (nextMs >= previousMs) {
+      byId.set(normalized.id, normalized);
+    }
+  });
+
+  return Array.from(byId.values())
+    .sort((a, b) => {
+      const aMs = Date.parse(a.dueAt || "") || 0;
+      const bMs = Date.parse(b.dueAt || "") || 0;
+      if (aMs !== bMs) return aMs - bMs;
+      return String(a.id || "").localeCompare(String(b.id || ""));
+    })
+    .slice(0, SPACED_PRACTICE_MAX_ITEMS);
+}
+
+function mergeSpacedPracticeQueues(localQueue, cloudQueue) {
+  return normalizeSpacedPracticeQueue([
+    ...(Array.isArray(localQueue) ? localQueue : []),
+    ...(Array.isArray(cloudQueue) ? cloudQueue : []),
+  ]);
+}
+
+function areSpacedPracticeQueuesEqual(a, b) {
+  return JSON.stringify(normalizeSpacedPracticeQueue(a)) === JSON.stringify(normalizeSpacedPracticeQueue(b));
+}
+
+function readSpacedPracticeQueue() {
+  const storageKey = getSpacedPracticeStorageKeyForCurrentUser();
+  if (!storageKey) return [];
+  try {
+    const raw = window.localStorage.getItem(storageKey);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    return normalizeSpacedPracticeQueue(parsed);
+  } catch (error) {
+    return [];
+  }
+}
+
+function saveSpacedPracticeQueue(queue) {
+  const storageKey = getSpacedPracticeStorageKeyForCurrentUser();
+  if (!storageKey) return;
+  const normalized = normalizeSpacedPracticeQueue(queue);
+  try {
+    window.localStorage.setItem(storageKey, JSON.stringify(normalized));
+  } catch (error) {
+    console.warn("Unable to persist spaced-practice queue", error);
+  }
+}
+export async function syncProgressFromCloudNow({ force = false } = {}) {
+  if (!isCloudProgressSyncReady()) {
+    setCloudProgressSyncStatus({
+      inFlight: false,
+      synced: false,
+      lastReason: "disabled-or-no-user",
+    });
+    return { synced: false, reason: "disabled-or-no-user" };
+  }
+
+  const now = Date.now();
+  if (!force && now - lastCloudProgressSyncMs < CLOUD_PROGRESS_SYNC_MIN_INTERVAL_MS) {
+    setCloudProgressSyncStatus({
+      inFlight: false,
+      lastReason: "throttled",
+    });
+    return { synced: false, reason: "throttled" };
+  }
+
+  if (cloudProgressSyncInFlight) {
+    return cloudProgressSyncInFlight;
+  }
+
+  setCloudProgressSyncStatus({
+    inFlight: true,
+    synced: false,
+    lastAttemptAt: new Date().toISOString(),
+    lastReason: "in-progress",
+  });
+
+  cloudProgressSyncInFlight = (async () => {
+    const localSummary = readProgressSummary();
+    const localRetryQueue = readRetryMissedQueue();
+    const localSpacedQueue = readSpacedPracticeQueue();
+
+    let cloudPayload;
+    try {
+      cloudPayload = await readCloudProgressSummary();
+    } catch (error) {
+      const warning = error?.message || "Unable to fetch cloud progress.";
+      setCloudProgressSyncStatus({
+        inFlight: false,
+        synced: false,
+        lastError: warning,
+        lastReason: "cloud-read-failed",
+      });
+      return {
+        synced: false,
+        reason: "cloud-read-failed",
+        warning,
+      };
+    }
+
+    const cloudSummary = normalizeProgressSummary(cloudPayload?.summary || { attempts: [] });
+    const mergedSummary = mergeProgressSummaries(localSummary, cloudSummary);
+    const cloudRetryQueue = normalizeRetryQueue(cloudPayload?.retryQueue || []);
+    const mergedRetryQueue = mergeRetryQueues(localRetryQueue, cloudRetryQueue);
+    const cloudSpacedQueue = normalizeSpacedPracticeQueue(cloudPayload?.spacedQueue || []);
+    const mergedSpacedQueue = mergeSpacedPracticeQueues(localSpacedQueue, cloudSpacedQueue);
+    const localChanged = !areProgressSummariesEqual(localSummary, mergedSummary);
+    const localRetryQueueChanged = !areRetryQueuesEqual(localRetryQueue, mergedRetryQueue);
+    const localSpacedQueueChanged = !areSpacedPracticeQueuesEqual(localSpacedQueue, mergedSpacedQueue);
+
+    if (localChanged) {
+      saveProgressSummary(mergedSummary);
+    }
+    if (localRetryQueueChanged) {
+      saveRetryMissedQueue(mergedRetryQueue);
+    }
+    if (localSpacedQueueChanged) {
+      saveSpacedPracticeQueue(mergedSpacedQueue);
+    }
+
+    const shouldPush =
+      !cloudPayload?.exists ||
+      !areProgressSummariesEqual(cloudSummary, mergedSummary) ||
+      !areRetryQueuesEqual(cloudRetryQueue, mergedRetryQueue) ||
+      !areSpacedPracticeQueuesEqual(cloudSpacedQueue, mergedSpacedQueue);
+    if (shouldPush) {
+      try {
+        await writeCloudProgressSummary(mergedSummary, {
+          deviceId: getProgressSyncDeviceId(),
+          retryQueue: mergedRetryQueue,
+          spacedQueue: mergedSpacedQueue,
+        });
+      } catch (error) {
+        const warning = error?.message || "Unable to save progress to cloud.";
+        setCloudProgressSyncStatus({
+          inFlight: false,
+          synced: false,
+          lastError: warning,
+          lastReason: "cloud-write-failed",
+        });
+        return {
+          synced: false,
+          reason: "cloud-write-failed",
+          warning,
+        };
+      }
+    }
+
+    lastCloudProgressSyncMs = Date.now();
+    setCloudProgressSyncStatus({
+      inFlight: false,
+      synced: true,
+      lastSuccessAt: new Date().toISOString(),
+      lastError: "",
+      lastReason: "success",
+    });
+    return {
+      synced: true,
+      pulled: Boolean(cloudPayload?.exists),
+      pushed: shouldPush,
+      attempts: mergedSummary.attempts.length,
+      retryQueueSize: mergedRetryQueue.length,
+      spacedQueueSize: mergedSpacedQueue.length,
+      spacedDueCount: mergedSpacedQueue.filter((entry) => (Date.parse(entry?.dueAt || "") || 0) <= Date.now()).length,
+    };
+  })();
+
+  try {
+    return await cloudProgressSyncInFlight;
+  } catch (error) {
+    setCloudProgressSyncStatus({
+      inFlight: false,
+      synced: false,
+      lastError: error?.message || "Unexpected sync failure.",
+      lastReason: "unexpected-error",
+    });
+    throw error;
+  } finally {
+    cloudProgressSyncInFlight = null;
+  }
+}
+
+function queueCloudProgressSync(reason = "") {
+  if (!isCloudProgressSyncReady()) return;
+  syncProgressFromCloudNow().catch((error) => {
+    console.warn(`Cloud progress sync failed (${reason || "background"}):`, error);
+  });
 }
 
 function normalizeQuestionFingerprint(question = {}) {
@@ -504,6 +965,277 @@ function toRetryQueueEntry(question) {
     sourceTopicName: String(question?.sourceTopicName || currentTopic?.name || ""),
     question: { ...question },
   };
+}
+
+function buildSpacedPracticeEntryId(question, sourceTopicId = "") {
+  const topicId = String(sourceTopicId || "").trim();
+  const fingerprint = normalizeQuestionFingerprint(question);
+  if (!topicId || !fingerprint) return "";
+  return `${topicId}|${fingerprint}`;
+}
+
+function createSpacedPracticeSeedEntry(question) {
+  const sourceTopicId = String(question?.sourceTopicId || currentTopic?.id || "").trim();
+  const sourceTopicName = String(question?.sourceTopicName || currentTopic?.name || "").trim();
+  const fingerprint = normalizeQuestionFingerprint(question);
+  const id = buildSpacedPracticeEntryId(question, sourceTopicId);
+  if (!id || !sourceTopicId || !fingerprint) return null;
+
+  return {
+    id,
+    sourceTopicId,
+    sourceTopicName,
+    questionId: String(question?.id || "").trim(),
+    fingerprint,
+  };
+}
+
+function scheduleSpacedPracticeEntry(previousEntry, isCorrect, seedEntry) {
+  const normalizedSeed = seedEntry && typeof seedEntry === "object" ? seedEntry : null;
+  if (!normalizedSeed?.id || !normalizedSeed?.sourceTopicId) return null;
+
+  const previous = normalizeSpacedPracticeEntry(previousEntry || {}) || {
+    id: normalizedSeed.id,
+    sourceTopicId: normalizedSeed.sourceTopicId,
+    sourceTopicName: normalizedSeed.sourceTopicName,
+    questionId: normalizedSeed.questionId,
+    fingerprint: normalizedSeed.fingerprint,
+    dueAt: new Date().toISOString(),
+    intervalDays: 1,
+    easeFactor: SPACED_PRACTICE_DEFAULT_EASE,
+    repetitions: 0,
+    reviewCount: 0,
+    lapses: 0,
+    lastResult: "incorrect",
+    lastReviewedAt: "",
+  };
+
+  let repetitions = Number(previous.repetitions || 0);
+  let intervalDays = Math.max(1, Number(previous.intervalDays || 1));
+  let easeFactor = clampNumber(previous.easeFactor, {
+    min: SPACED_PRACTICE_MIN_EASE,
+    max: SPACED_PRACTICE_MAX_EASE,
+    fallback: SPACED_PRACTICE_DEFAULT_EASE,
+  });
+  let lapses = Math.max(0, Number(previous.lapses || 0));
+
+  const quality = isCorrect ? 4 : 2;
+  easeFactor = clampNumber(
+    easeFactor + (0.1 - (5 - quality) * (0.08 + (5 - quality) * 0.02)),
+    { min: SPACED_PRACTICE_MIN_EASE, max: SPACED_PRACTICE_MAX_EASE, fallback: SPACED_PRACTICE_DEFAULT_EASE },
+  );
+
+  if (quality < 3) {
+    repetitions = 0;
+    intervalDays = 1;
+    lapses += 1;
+  } else {
+    if (repetitions <= 0) {
+      intervalDays = 1;
+    } else if (repetitions === 1) {
+      intervalDays = 3;
+    } else {
+      intervalDays = Math.max(1, Math.round(intervalDays * easeFactor));
+    }
+    repetitions += 1;
+  }
+
+  const reviewedAtIso = new Date().toISOString();
+  const dueAtIso = new Date(Date.now() + intervalDays * 24 * 60 * 60 * 1000).toISOString();
+
+  return normalizeSpacedPracticeEntry({
+    id: normalizedSeed.id,
+    sourceTopicId: normalizedSeed.sourceTopicId,
+    sourceTopicName: normalizedSeed.sourceTopicName,
+    questionId: normalizedSeed.questionId,
+    fingerprint: normalizedSeed.fingerprint,
+    dueAt: dueAtIso,
+    intervalDays,
+    easeFactor,
+    repetitions,
+    reviewCount: Math.max(0, Number(previous.reviewCount || 0)) + 1,
+    lapses,
+    lastResult: isCorrect ? "correct" : "incorrect",
+    lastReviewedAt: reviewedAtIso,
+  });
+}
+
+function syncSpacedPracticeQueueFromSession() {
+  const currentUser = getCurrentUser();
+  if (!currentUser) return;
+  if (!Array.isArray(quizState.allQuestions) || !quizState.allQuestions.length) return;
+
+  const queueMap = new Map(
+    readSpacedPracticeQueue()
+      .filter((entry) => entry && typeof entry === "object" && entry.id)
+      .map((entry) => [String(entry.id), entry]),
+  );
+
+  quizState.allQuestions.forEach((question, index) => {
+    const seed = createSpacedPracticeSeedEntry(question);
+    if (!seed) return;
+
+    const userAnswer = quizState.userAnswers[index];
+    const isCorrect = userAnswer === question?.correct;
+    const existing = queueMap.get(seed.id);
+
+    if (!existing && isCorrect) {
+      return;
+    }
+
+    const next = scheduleSpacedPracticeEntry(existing, isCorrect, seed);
+    if (!next) return;
+
+    if (
+      isCorrect &&
+      next.repetitions >= SPACED_PRACTICE_MASTERY_REPETITIONS &&
+      next.intervalDays >= SPACED_PRACTICE_MASTERY_INTERVAL_DAYS
+    ) {
+      queueMap.delete(seed.id);
+      return;
+    }
+
+    queueMap.set(seed.id, next);
+  });
+
+  const nextQueue = Array.from(queueMap.values())
+    .sort((a, b) => {
+      const aMs = Date.parse(a?.dueAt || "") || 0;
+      const bMs = Date.parse(b?.dueAt || "") || 0;
+      if (aMs !== bMs) return aMs - bMs;
+      return String(a?.id || "").localeCompare(String(b?.id || ""));
+    })
+    .slice(0, SPACED_PRACTICE_MAX_ITEMS);
+
+  saveSpacedPracticeQueue(nextQueue);
+  queueCloudProgressSync("spaced-queue-updated");
+}
+
+function getSpacedPracticeQueueSnapshot(nowMs = Date.now()) {
+  const queue = readSpacedPracticeQueue();
+  const due = queue.filter((entry) => (Date.parse(entry?.dueAt || "") || 0) <= nowMs);
+  const nextDueEntry = queue
+    .filter((entry) => (Date.parse(entry?.dueAt || "") || 0) > nowMs)
+    .sort((a, b) => (Date.parse(a?.dueAt || "") || 0) - (Date.parse(b?.dueAt || "") || 0))[0] || null;
+
+  return {
+    total: queue.length,
+    dueCount: due.length,
+    nextDueAt: String(nextDueEntry?.dueAt || ""),
+    dueEntries: due,
+  };
+}
+
+export function getSpacedPracticeDueCount() {
+  return getSpacedPracticeQueueSnapshot().dueCount;
+}
+
+export function getSpacedPracticeQueueStatus() {
+  const snapshot = getSpacedPracticeQueueSnapshot();
+  return {
+    total: snapshot.total,
+    dueCount: snapshot.dueCount,
+    nextDueAt: snapshot.nextDueAt,
+  };
+}
+
+async function resolveSpacedPracticeQuestions(entries, limit) {
+  const selectedEntries = Array.isArray(entries) ? entries : [];
+  if (!selectedEntries.length) return [];
+
+  const topicMap = new Map((Array.isArray(getTopics()) ? getTopics() : []).map((topic) => [String(topic?.id || ""), topic]));
+  const grouped = new Map();
+  selectedEntries.forEach((entry) => {
+    const topicId = String(entry?.sourceTopicId || "").trim();
+    if (!topicId) return;
+    if (!grouped.has(topicId)) grouped.set(topicId, []);
+    grouped.get(topicId).push(entry);
+  });
+
+  const resolvedByEntryId = new Map();
+
+  for (const [topicId, topicEntries] of grouped.entries()) {
+    if (resolvedByEntryId.size >= limit) break;
+    const topic = topicMap.get(topicId);
+    if (!topic?.file) continue;
+
+    let topicDataFiles = [];
+    try {
+      topicDataFiles = await fetchTopicDataFiles(topic, { tolerateFailures: true });
+    } catch (error) {
+      topicDataFiles = [];
+    }
+    if (!topicDataFiles.length) continue;
+
+    const questionById = new Map();
+    const questionByFingerprint = new Map();
+
+    topicDataFiles.forEach((topicData) => {
+      extractQuestionsByCategory(topicData, "all", {}).forEach((question) => {
+        const questionId = String(question?.id || "").trim();
+        if (questionId && !questionById.has(questionId)) {
+          questionById.set(questionId, question);
+        }
+        const fingerprint = normalizeQuestionFingerprint(question);
+        if (fingerprint && !questionByFingerprint.has(fingerprint)) {
+          questionByFingerprint.set(fingerprint, question);
+        }
+      });
+    });
+
+    topicEntries.forEach((entry) => {
+      if (resolvedByEntryId.size >= limit) return;
+      let question = null;
+      const questionId = String(entry?.questionId || "").trim();
+      if (questionId && questionById.has(questionId)) {
+        question = questionById.get(questionId);
+      }
+      if (!question) {
+        const fingerprint = String(entry?.fingerprint || "").trim();
+        if (fingerprint && questionByFingerprint.has(fingerprint)) {
+          question = questionByFingerprint.get(fingerprint);
+        }
+      }
+      if (!question) return;
+
+      resolvedByEntryId.set(entry.id, {
+        ...question,
+        sourceTopicId: String(entry.sourceTopicId || topic.id || ""),
+        sourceTopicName: String(entry.sourceTopicName || topic.name || ""),
+      });
+    });
+  }
+
+  const ordered = [];
+  for (const entry of selectedEntries) {
+    if (ordered.length >= limit) break;
+    const question = resolvedByEntryId.get(String(entry?.id || ""));
+    if (question) {
+      ordered.push(question);
+    }
+  }
+  return ordered;
+}
+
+export async function getSpacedPracticeQuestions(limit = SPACED_PRACTICE_DEFAULT_SESSION_SIZE) {
+  const max = Number(limit);
+  const normalizedLimit = Number.isFinite(max) && max > 0
+    ? Math.floor(max)
+    : SPACED_PRACTICE_DEFAULT_SESSION_SIZE;
+
+  const snapshot = getSpacedPracticeQueueSnapshot();
+  if (!snapshot.dueEntries.length) return [];
+
+  const candidateEntries = snapshot.dueEntries
+    .sort((a, b) => {
+      const aMs = Date.parse(a?.dueAt || "") || 0;
+      const bMs = Date.parse(b?.dueAt || "") || 0;
+      if (aMs !== bMs) return aMs - bMs;
+      return String(a?.id || "").localeCompare(String(b?.id || ""));
+    })
+    .slice(0, normalizedLimit * 3);
+
+  return resolveSpacedPracticeQuestions(candidateEntries, normalizedLimit);
 }
 
 function syncRetryMissedQueueFromSession() {
@@ -533,6 +1265,7 @@ function syncRetryMissedQueueFromSession() {
     .sort((a, b) => String(b.updatedAt || "").localeCompare(String(a.updatedAt || "")))
     .slice(0, RETRY_MISSED_MAX_ITEMS);
   saveRetryMissedQueue(nextQueue);
+  queueCloudProgressSync("retry-queue-updated");
 }
 
 export function getRetryMissedQueueCount() {
@@ -556,21 +1289,21 @@ function recordAttemptResult({ topicId, topicName, mode, scorePercentage, totalQ
   const user = getCurrentUser();
   if (!user) return { attempts: [] };
   const summary = readProgressSummary();
+  const createdAt = new Date().toISOString();
   summary.attempts.push({
+    attemptId: createProgressAttemptId(createdAt),
     topicId,
     topicName,
     mode,
     scorePercentage,
     totalQuestions,
-    createdAt: new Date().toISOString(),
+    createdAt,
+    deviceId: getProgressSyncDeviceId(),
   });
-
-  if (summary.attempts.length > 50) {
-    summary.attempts = summary.attempts.slice(summary.attempts.length - 50);
-  }
-
-  saveProgressSummary(summary);
-  return summary;
+  const normalized = normalizeProgressSummary(summary);
+  saveProgressSummary(normalized);
+  queueCloudProgressSync("attempt-recorded");
+  return normalized;
 }
 
 function calculateProgressInsights(summary, currentTopicId) {
@@ -1432,6 +2165,7 @@ function showResults() {
     sourceMode: currentMode,
   };
   syncRetryMissedQueueFromSession();
+  syncSpacedPracticeQueueFromSession();
 
   const progressSummary =
     currentTopic?.id === RETRY_MISSED_TOPIC_ID
@@ -2137,5 +2871,4 @@ function initializeQuiz(options = {}) {
   updateProgress();
   persistQuizRuntime();
 }
-
 

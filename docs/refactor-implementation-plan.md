@@ -25,7 +25,7 @@ Deliver a faster, cleaner, and more maintainable CBT app aligned to the merged 1
 ## Phase 4: Assessment Features
 - [ ] Build curated mock exams mapped across all 10 topics.
 - [x] Add retry-missed mode spanning sessions.
-- [ ] Add spaced-practice queue for weak questions.
+- [x] Add spaced-practice queue for weak questions.
 
 ## Delivery cadence
 - Weekly release cycle with:

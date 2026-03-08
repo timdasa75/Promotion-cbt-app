@@ -151,7 +151,7 @@
                     </div>
                     <div class="card">
                         <div class="toolbar-row topic-toolbar">
-                            <label class="search-wrap topic-search-wrap" for="topicSearch"><span class="search-glyph" aria-hidden="true">⌕</span><input id="topicSearch" type="search" placeholder="Search topics, laws, competencies" /></label>
+                            <label class="search-wrap topic-search-wrap" for="topicSearch"><span class="search-glyph" aria-hidden="true">âŒ•</span><input id="topicSearch" type="search" placeholder="Search topics, laws, competencies" /></label>
                             <div class="chip-row topic-filter-row" role="group" aria-label="Topic filters">
                                 <button class="chip active" id="filterAllBtn" type="button">All</button>
                                 <button class="chip" id="filterDocumentBtn" type="button">Document-based</button>
@@ -170,6 +170,7 @@
                     </div>
                     <div class="screen-nav-row">
                         <button class="btn btn-ghost" id="retryMissedBtn" type="button" disabled>Retry Missed</button>
+                        <button class="btn btn-ghost" id="spacedPracticeBtn" type="button" disabled>Spaced Practice</button>
                         <button class="btn btn-ghost" data-screen-target="reviewMistakesScreen" type="button">Review Mistakes</button>
                         <button class="btn btn-ghost" data-screen-target="analyticsScreen" type="button">Analytics</button>
                         <button class="btn btn-ghost" data-screen-target="profileScreen" type="button">Profile and Settings</button>
@@ -366,7 +367,11 @@
                         </article>
                         <article class="card">
                             <h2>Privacy and Data</h2>
-                            <p class="inline-warning">Progress data is stored locally in this browser.</p>
+                            <p class="inline-warning" id="profileDataStorageHint">Progress data is stored locally in this browser.</p>
+                            <p class="hero-meta" id="profileCloudSyncStatus">Cloud sync: Sign in to enable multi-device progress.</p>
+                            <div class="button-row">
+                                <button class="btn btn-secondary hidden" id="syncProgressNowBtn" type="button">Sync Now</button>
+                            </div>
                             <div class="auth-form">
                                 <label class="auth-field">
                                     <span>Payment Reference (Optional)</span>
@@ -501,7 +506,7 @@
 
         <div class="auth-modal hidden" id="authModal" role="dialog" aria-modal="true" aria-labelledby="authModalTitle">
             <div class="auth-modal-card">
-                <button class="auth-close" id="authCloseBtn" type="button" aria-label="Close authentication panel">×</button>
+                <button class="auth-close" id="authCloseBtn" type="button" aria-label="Close authentication panel">Ã—</button>
                 <div class="section-head screen-header">
                     <h2 id="authModalTitle">Access Promotion CBT</h2>
                     <p>Register or login with your email to continue.</p>

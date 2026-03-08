@@ -11,15 +11,20 @@ import {
 } from "./ui.js";
 import {
   clearPersistedQuizRuntime,
+  getCloudProgressSyncStatus,
   getPersistedQuizRuntime,
   getRetryMissedQueueCount,
   getRetryMissedQuestions,
+  getSpacedPracticeDueCount,
+  getSpacedPracticeQuestions,
   loadQuestions,
   RETRY_MISSED_TOPIC_ID,
+  SPACED_PRACTICE_TOPIC_ID,
   restorePersistedQuizRuntime,
   setCurrentTopic,
   setCurrentMode,
   getCurrentMode,
+  syncProgressFromCloudNow,
   retakeFullQuiz,
 } from "./quiz.js";
 import { debugLog } from "./logger.js";
@@ -39,6 +44,7 @@ import {
   getProgressStorageKeyForCurrentUser,
   isCurrentUserAdmin,
   isCloudAuthMisconfigured,
+  isCloudProgressSyncEnabled,
   loginUser,
   logoutUser,
   requestPasswordReset,
@@ -92,18 +98,29 @@ const RETRY_MISSED_TOPIC = {
   id: RETRY_MISSED_TOPIC_ID,
   name: "Retry Missed Questions",
   description: "Practice previously missed questions across your recent sessions.",
-  icon: "↺",
+  icon: "â†º",
   type: "retry_missed",
   skipCategorySelection: true,
   requiresPremium: false,
   mockExamQuestionCount: 40,
 };
+const SPACED_PRACTICE_TOPIC = {
+  id: SPACED_PRACTICE_TOPIC_ID,
+  name: "Spaced Practice",
+  description: "Review weak questions that are due for reinforcement.",
+  icon: "SP",
+  type: "spaced_practice",
+  skipCategorySelection: true,
+  requiresPremium: false,
+  mockExamQuestionCount: 40,
+};
+
 const MOCK_EXAM_TOPIC = {
   id: MOCK_EXAM_TOPIC_ID,
   name: "Directorate Mock Exam",
   description:
     "Cross-topic simulated promotion CBT built from all 10 core topics.",
-  icon: "🧪",
+  icon: "ðŸ§ª",
   type: "mock_exam",
   skipCategorySelection: true,
   requiresPremium: true,
@@ -559,6 +576,7 @@ function refreshDashboardInsights() {
   }
 
   syncRetryMissedButtonState();
+  syncSpacedPracticeButtonState();
 }
 
 async function resumeLastSession() {
@@ -598,6 +616,15 @@ function syncRetryMissedButtonState() {
   retryMissedBtn.disabled = queueCount === 0;
 }
 
+function syncSpacedPracticeButtonState() {
+  const spacedPracticeBtn = document.getElementById("spacedPracticeBtn");
+  if (!spacedPracticeBtn) return;
+  const dueCount = getSpacedPracticeDueCount();
+  spacedPracticeBtn.textContent =
+    dueCount > 0 ? `Spaced Practice (${dueCount})` : "Spaced Practice";
+  spacedPracticeBtn.disabled = dueCount === 0;
+}
+
 async function startRetryMissedSession() {
   if (!getCurrentUser()) {
     openAuthModal("login");
@@ -621,6 +648,33 @@ async function startRetryMissedSession() {
       loadingMessage: "Loading retry-missed queue...",
       successMessage: "",
       failurePrefix: "Unable to start retry-missed session:",
+    },
+  );
+}
+
+async function startSpacedPracticeSession() {
+  if (!getCurrentUser()) {
+    openAuthModal("login");
+    return;
+  }
+
+  const spacedQuestions = await getSpacedPracticeQuestions(40);
+  if (!spacedQuestions.length) {
+    showWarning("No due spaced-practice questions yet. Keep practicing and check back shortly.");
+    syncSpacedPracticeButtonState();
+    return;
+  }
+
+  currentTopic = { ...SPACED_PRACTICE_TOPIC };
+  setCurrentTopic(currentTopic);
+  setCurrentMode("practice");
+
+  await runOperationWithFeedback(
+    () => loadQuestions(spacedQuestions),
+    {
+      loadingMessage: "Loading spaced-practice queue...",
+      successMessage: "",
+      failurePrefix: "Unable to start spaced-practice session:",
     },
   );
 }
@@ -787,6 +841,7 @@ function initializeDashboardActions() {
   const filterCompetencyBtn = document.getElementById("filterCompetencyBtn");
   const filterRecentBtn = document.getElementById("filterRecentBtn");
   const retryMissedBtn = document.getElementById("retryMissedBtn");
+  const spacedPracticeBtn = document.getElementById("spacedPracticeBtn");
   const openAdminBtn = document.getElementById("openAdminBtn");
 
   if (startLearningBtn) {
@@ -872,6 +927,12 @@ function initializeDashboardActions() {
   if (retryMissedBtn) {
     retryMissedBtn.addEventListener("click", () => {
       startRetryMissedSession();
+    });
+  }
+
+  if (spacedPracticeBtn) {
+    spacedPracticeBtn.addEventListener("click", () => {
+      startSpacedPracticeSession();
     });
   }
 
@@ -1201,6 +1262,7 @@ function updateAuthUI() {
   if (openStatesBtn) {
     openStatesBtn.classList.toggle("hidden", !isAdmin);
   }
+  updateProfileDataSyncUI();
   refreshUserUpgradeStatus().catch(() => {});
 }
 
@@ -1529,6 +1591,82 @@ function formatDateTime(value) {
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return "-";
   return date.toLocaleString();
+}
+
+function formatRelativeTime(value) {
+  if (!value) return "";
+  const timestamp = Date.parse(String(value));
+  if (!timestamp) return "";
+  const diffMs = Date.now() - timestamp;
+  if (diffMs < 0) return "just now";
+  const diffSec = Math.floor(diffMs / 1000);
+  if (diffSec < 60) return "just now";
+  const diffMin = Math.floor(diffSec / 60);
+  if (diffMin < 60) return `${diffMin} minute${diffMin === 1 ? "" : "s"} ago`;
+  const diffHr = Math.floor(diffMin / 60);
+  if (diffHr < 24) return `${diffHr} hour${diffHr === 1 ? "" : "s"} ago`;
+  const diffDay = Math.floor(diffHr / 24);
+  return `${diffDay} day${diffDay === 1 ? "" : "s"} ago`;
+}
+
+function updateProfileDataSyncUI() {
+  const hintEl = document.getElementById("profileDataStorageHint");
+  const statusEl = document.getElementById("profileCloudSyncStatus");
+  const syncNowBtn = document.getElementById("syncProgressNowBtn");
+  const user = getCurrentUser();
+  const provider = getAuthProviderLabel();
+  const cloudSyncEnabled = isCloudProgressSyncEnabled();
+  const canCloudSync = Boolean(user && provider === "Cloud" && cloudSyncEnabled);
+
+  if (hintEl) {
+    hintEl.textContent = canCloudSync
+      ? "Progress is stored on this device and synced to your cloud profile."
+      : "Progress data is stored locally in this browser.";
+  }
+
+  if (syncNowBtn) {
+    syncNowBtn.classList.toggle("hidden", !canCloudSync);
+    syncNowBtn.disabled = !canCloudSync;
+  }
+
+  if (!statusEl) return;
+  statusEl.classList.remove("hidden");
+  statusEl.removeAttribute("title");
+
+  if (!user) {
+    statusEl.textContent = "Cloud sync: Sign in to enable multi-device progress.";
+    return;
+  }
+
+  if (provider !== "Cloud") {
+    statusEl.textContent = "Cloud sync: Unavailable in Local auth mode.";
+    return;
+  }
+
+  if (!cloudSyncEnabled) {
+    statusEl.textContent = "Cloud sync: Disabled by runtime config.";
+    return;
+  }
+
+  const status = getCloudProgressSyncStatus();
+  if (status.inFlight) {
+    statusEl.textContent = "Cloud sync: Syncing now...";
+    return;
+  }
+
+  if (status.lastReason && status.lastReason !== "success" && status.lastError) {
+    statusEl.textContent = "Cloud sync: Last attempt failed. Retry now.";
+    statusEl.setAttribute("title", status.lastError);
+    return;
+  }
+
+  if (status.lastSuccessAt) {
+    statusEl.textContent = `Cloud sync: Last synced ${formatRelativeTime(status.lastSuccessAt)}.`;
+    statusEl.setAttribute("title", formatDateTime(status.lastSuccessAt));
+    return;
+  }
+
+  statusEl.textContent = "Cloud sync: Ready.";
 }
 
 function getDirectoryVerificationPresentation(emailVerified) {
@@ -1950,6 +2088,7 @@ function initializeAuthUI() {
   const forgotPasswordBtn = document.getElementById("forgotPasswordBtn");
   const changePasswordBtn = document.getElementById("changePasswordBtn");
   const profileLogoutBtn = document.getElementById("profileLogoutBtn");
+  const syncProgressNowBtn = document.getElementById("syncProgressNowBtn");
   const submitUpgradeEvidenceBtn = document.getElementById("submitUpgradeEvidenceBtn");
   const applyPlanOverrideBtn = document.getElementById("applyPlanOverrideBtn");
   const refreshAdminUsersBtn = document.getElementById("refreshAdminUsersBtn");
@@ -2002,6 +2141,7 @@ function initializeAuthUI() {
         await runOperationWithFeedback(
           async () => {
             await loginUser({ email, password });
+            await syncProgressFromCloudNow({ force: true }).catch(() => ({}));
             updateAuthUI();
             refreshDashboardInsights();
             await refreshAccessibleTopics();
@@ -2042,6 +2182,7 @@ function initializeAuthUI() {
         const registration = await runOperationWithFeedback(
           async () => {
             const created = await registerUser({ name, email, password });
+            await syncProgressFromCloudNow({ force: true }).catch(() => ({}));
             updateAuthUI();
             refreshDashboardInsights();
             await refreshAccessibleTopics();
@@ -2140,6 +2281,37 @@ function initializeAuthUI() {
   if (profileLogoutBtn) {
     profileLogoutBtn.addEventListener("click", async () => {
       await performLogout();
+    });
+  }
+
+  if (syncProgressNowBtn) {
+    syncProgressNowBtn.addEventListener("click", async () => {
+      const user = getCurrentUser();
+      if (!user) {
+        showWarning("Login is required before syncing progress.");
+        return;
+      }
+      try {
+        const result = await runOperationWithFeedback(
+          async () => {
+            const synced = await syncProgressFromCloudNow({ force: true });
+            refreshDashboardInsights();
+            updateProfileDataSyncUI();
+            return synced;
+          },
+          {
+            loadingMessage: "Syncing progress...",
+            successMessage: (result) =>
+              result?.synced ? "Progress sync completed." : "No sync changes were required.",
+            failurePrefix: "Progress sync failed:",
+          },
+        );
+        if (!result?.synced && result?.warning) {
+          showWarning(result.warning);
+        }
+      } catch (error) {
+        // Error toast already displayed by runOperationWithFeedback.
+      }
     });
   }
 
@@ -2442,11 +2614,19 @@ document.addEventListener("DOMContentLoaded", async function () {
       refreshDashboardInsights();
     }
     if (event?.detail?.screenId === "profileScreen") {
+      updateProfileDataSyncUI();
       refreshUserUpgradeStatus().catch(() => {});
     }
   });
 
+  document.addEventListener("cloudprogresssyncchange", () => {
+    updateProfileDataSyncUI();
+  });
+
   await restoreScreenState();
+  await syncProgressFromCloudNow({ force: true }).catch(() => ({}));
+  updateProfileDataSyncUI();
+  refreshDashboardInsights();
   if (isCurrentUserAdmin()) {
     renderAdminRequests();
     renderAdminOverrides();

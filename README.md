@@ -11,6 +11,7 @@ Web-based CBT practice platform for Nigerian Federal Civil Service promotion pre
 - Post-quiz analytics with traffic-light performance styling
 - Keyboard shortcuts during quiz (A-D, arrows, Enter)
 - Local and Firebase cloud authentication
+- Profile sync status indicator with manual `Sync Now` action (when cloud progress sync is enabled)
 - Admin panel (upgrade requests, overrides, user directory + user count)
 
 ## Quick Start (Local)
@@ -157,6 +158,16 @@ Then in GitHub:
 1. `Settings -> Pages -> Build and deployment -> Source: GitHub Actions`
 2. Push to `main` (or run workflow manually).
 3. Verify deployed site shows `Auth mode: Cloud (multi-device)`.
+
+### Runtime Feature Flags (Rollout Controls)
+
+Optional runtime keys in `window.PROMOTION_CBT_AUTH`:
+- `enableCloudProgressSync`:
+  - `false` (default): keep progress local-only.
+  - `true`: allow cloud progress sync rollout (requires Firestore `progress/{uid}` rules).
+- `adminApiBaseUrl`:
+  - empty (default): use Firebase Cloud Functions endpoints.
+  - set URL: route admin list/delete requests to external admin bridge (for example Cloudflare Worker).
 
 ### Identity Toolkit admin operations (Recommendation)
 
