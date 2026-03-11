@@ -397,19 +397,22 @@ async function handleAdminSendVerificationEmail(request, env) {
   const payload = {
     requestType: "VERIFY_EMAIL",
     email,
+    returnOobLink: true,
   };
   const continueUrl = String(body?.continueUrl || "").trim();
   if (continueUrl) {
     payload.continueUrl = continueUrl;
   }
 
-  await identityAdminRequest(env, "accounts:sendOobCode", {
+  const response = await identityAdminRequest(env, "accounts:sendOobCode", {
     body: payload,
   });
 
+  const link = String(response?.oobLink || response?.link || response?.emailLink || "").trim();
   return {
     ok: true,
     delivered: true,
+    ...(link ? { link, warning: `Verification link generated. Send it to the user: ${link}` } : {}),
   };
 }
 
@@ -577,3 +580,4 @@ export default {
     }
   },
 };
+
