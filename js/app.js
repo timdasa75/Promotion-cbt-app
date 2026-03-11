@@ -440,18 +440,67 @@ async function renderAdminOperationHistory() {
 
   const tbody = table.querySelector("tbody");
   history.forEach((entry) => {
-    const row = document.createElement("tr");
-    const statusClass = entry.status === "failed" ? "rejected" : "approved";
-    row.innerHTML = `
+  const row = document.createElement("tr");
+  const statusClass = entry.status === "failed" ? "rejected" : "approved";
+  row.innerHTML = `
       <td>${escapeHtml(formatDateTime(entry.createdAt))}</td>
       <td>${escapeHtml(entry.action || "-")}</td>
       <td class="email-cell">${escapeHtml(entry.target || "-")}</td>
       <td><span class="admin-badge ${statusClass}">${escapeHtml(entry.status || "-")}</span></td>
       <td class="email-cell">${escapeHtml(entry.actor || "-")}</td>
-      <td>${escapeHtml(entry.message || "-")}</td>
+      <td class="admin-history-message"></td>
     `;
-    tbody.appendChild(row);
-  });
+
+  const messageCell = row.querySelector(".admin-history-message");
+  const messageText = String(entry.message || "-");
+  const linkMatch = messageText.match(/https?:\/\/[^\s]+/);
+  if (!linkMatch) {
+    messageCell.textContent = messageText;
+  } else {
+    const rawLink = linkMatch[0];
+    const linkUrl = rawLink.replace(/[),.]+$/, "");
+    const labelText = messageText
+      .replace(rawLink, "")
+      .replace(/Manual verification link:?\s*/i, "")
+      .trim();
+
+    const label = document.createElement("div");
+    label.textContent = labelText || "Manual verification link";
+    messageCell.appendChild(label);
+
+    const actions = document.createElement("div");
+    actions.className = "button-row";
+
+    const link = document.createElement("a");
+    link.href = linkUrl;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.className = "icon-button";
+    link.textContent = "Open link";
+
+    const copyButton = document.createElement("button");
+    copyButton.type = "button";
+    copyButton.className = "icon-button";
+    copyButton.textContent = "Copy link";
+    copyButton.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(linkUrl);
+        copyButton.textContent = "Copied";
+        setTimeout(() => {
+          copyButton.textContent = "Copy link";
+        }, 1500);
+      } catch (error) {
+        window.prompt("Copy verification link:", linkUrl);
+      }
+    });
+
+    actions.appendChild(link);
+    actions.appendChild(copyButton);
+    messageCell.appendChild(actions);
+  }
+
+  tbody.appendChild(row);
+});
 
   tableWrap.appendChild(table);
   container.innerHTML = "";
@@ -2684,4 +2733,5 @@ document.addEventListener("DOMContentLoaded", async function () {
     });
   }
 });
+
 
