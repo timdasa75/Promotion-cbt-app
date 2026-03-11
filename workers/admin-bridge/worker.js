@@ -534,8 +534,7 @@ async function handleAdminDeleteUserById(request, env) {
 function resolveRouteHandler(path) {
   if (path.endsWith("/adminListUsers")) return handleAdminListUsers;
   if (path.endsWith("/adminLookupUsers")) return handleAdminLookupUsers;
-  if (path.endsWith("/adminSendVerificationEmail")) return handleAdminSendVerificationEmail;
-  if (path.endsWith("/adminSetUserStatus")) return handleAdminSetUserStatus;
+  if (path.endsWith("/adminSendVerificationEmail")) return handleAdminSendVerificationEmail;\r\n  if (path.endsWith("/adminLogOperation")) return handleAdminLogOperation;\r\n  if (path.endsWith("/adminListOperations")) return handleAdminListOperations;\r\n  if (path.endsWith("/adminSetUserStatus")) return handleAdminSetUserStatus;
   if (path.endsWith("/adminDeleteUserById")) return handleAdminDeleteUserById;
   return null;
 }
@@ -580,4 +579,5 @@ export default {
     }
   },
 };
+
 

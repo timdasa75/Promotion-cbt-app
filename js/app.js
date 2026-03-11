@@ -35,6 +35,8 @@ import {
   getAccessibleTopics,
   getCurrentEntitlement,
   getAdminUserDirectory,
+  getAdminOperationHistory,
+  logAdminOperationToCloud,
   getAuthSummaryLabel,
   getAuthProviderLabel,
   getCurrentUser,
@@ -384,16 +386,27 @@ function logAdminOperation({ action = "", target = "", status = "success", messa
   const history = readAdminOperationHistory();
   history.unshift(nextEntry);
   writeAdminOperationHistory(history);
+  logAdminOperationToCloud(nextEntry).catch((error) => {
+    debugLog(`Admin operation log sync failed: ${error?.message || "request failed."}`);
+  });
 }
-
 function clearAdminOperationHistory() {
   writeAdminOperationHistory([]);
 }
 
-function renderAdminOperationHistory() {
+async function renderAdminOperationHistory() {
   const container = document.getElementById("adminOperationHistoryList");
   const countLabel = document.getElementById("adminOperationHistoryCount");
   if (!container) return;
+
+  try {
+    const cloudHistory = await getAdminOperationHistory(ADMIN_OPERATION_HISTORY_MAX);
+    if (Array.isArray(cloudHistory) && cloudHistory.length) {
+      writeAdminOperationHistory(cloudHistory);
+    }
+  } catch (error) {
+    debugLog(`Admin operation history sync failed: ${error?.message || "request failed."}`);
+  }
 
   const history = readAdminOperationHistory();
   if (countLabel) {
@@ -444,7 +457,6 @@ function renderAdminOperationHistory() {
   container.innerHTML = "";
   container.appendChild(tableWrap);
 }
-
 function normalizeUpgradeRequestStatus(value) {
   const normalized = String(value || "").trim().toLowerCase();
   if (normalized === "approved") return "approved";
@@ -2672,3 +2684,4 @@ document.addEventListener("DOMContentLoaded", async function () {
     });
   }
 });
+

@@ -500,6 +500,16 @@ async function sendVerificationViaAdminApi(email, continueUrl, accessToken) {
   });
 }
 
+async function listAdminOperationsViaAdminApi(limit, accessToken) {
+  const payload = await postAdminApiJson(buildAdminApiUrl("adminListOperations"), accessToken, {
+    limit,
+  });
+  return Array.isArray(payload?.operations) ? payload.operations : [];
+}
+
+async function logAdminOperationViaAdminApi(entry, accessToken) {
+  return postAdminApiJson(buildAdminApiUrl("adminLogOperation"), accessToken, entry || {});
+}
 
 function isLocalDevelopmentHost() {
   const host = String(window.location.hostname || "").trim().toLowerCase();
@@ -2841,6 +2851,16 @@ export async function getAdminUserDirectory() {
     warning: "",
   };
 }
+export async function getAdminOperationHistory(limit = 120) {
+  const session = await ensureAdminCloudSession();
+  return listAdminOperationsViaAdminApi(limit, session.accessToken);
+}
+
+export async function logAdminOperationToCloud(entry) {
+  const session = await ensureAdminCloudSession();
+  await logAdminOperationViaAdminApi(entry, session.accessToken);
+  return { ok: true };
+}
 async function ensureAdminCloudSession() {
   if (!isCurrentUserAdmin()) {
     throw new Error("Admin access is required.");
@@ -2890,3 +2910,4 @@ export async function deleteCloudUserById(profileId) {
     );
   }
 }
+
