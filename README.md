@@ -63,6 +63,7 @@ Detailed user walkthrough:
 
 Cloud setup guide:
 - `docs/firebase-auth-setup.md`
+- `workers/admin-bridge/README.md` (recommended free-tier admin bridge)
 
 ## Security Notes
 
@@ -153,6 +154,7 @@ Set these repository secrets before deploying:
 - `FIREBASE_API_KEY`
 - `FIREBASE_PROJECT_ID`
 - `FIREBASE_AUTH_DOMAIN`
+- `ADMIN_API_BASE_URL` (required for GitHub Pages without Blaze; set to your Cloudflare Worker URL)
 
 Then in GitHub:
 1. `Settings -> Pages -> Build and deployment -> Source: GitHub Actions`
@@ -166,16 +168,17 @@ Optional runtime keys in `window.PROMOTION_CBT_AUTH`:
   - `false` (default): keep progress local-only.
   - `true`: allow cloud progress sync rollout (requires Firestore `progress/{uid}` rules).
 - `adminApiBaseUrl`:
-  - empty (default): use Firebase Cloud Functions endpoints.
-  - set URL: route admin list/delete requests to external admin bridge (for example Cloudflare Worker).
+  - empty: use Firebase Cloud Functions endpoints.
+  - set URL (recommended): route admin list/lookup/status/delete/verification actions to Cloudflare Worker admin bridge.
 
 ### Identity Toolkit admin operations (Recommendation)
 
-- Deploy the Firebase HTTPS Cloud Function `adminDeleteUserById` from `functions/index.js`. Admin deletes call this server-side endpoint so Firebase Auth + Firestore profile deletion happen together with Admin SDK privileges.
+- Preferred (free-tier): deploy `workers/admin-bridge/worker.js` on Cloudflare Workers and set `adminApiBaseUrl`.
+- Keep Firebase function fallback available (`functions/index.js`) for `adminListUsers`, `adminLookupUsers`, `adminSetUserStatus`, `adminSendVerificationEmail`, `adminDeleteUserById`.
+- Set `ADMIN_EMAILS` for Functions (comma-separated admin emails); defaults to the built-in list if omitted.
+- Note: `adminSendVerificationEmail` returns a verification link; add an email provider if you want automatic delivery.
 - Keep `deleteAuthUserOnProfileDeletion` deployed too; it remains a safety net that cascades profile deletions to Firebase Auth.
-- Optional fallback: provide `PROMOTION_CBT_AUTH.firebaseAdminAccessToken` in `config/runtime-auth.js` with a short-lived OAuth token scoped to `https://www.googleapis.com/auth/identitytoolkit`.
-- Deployments that use GitHub Actions can mint this fallback token during workflow runtime (`gcloud auth print-access-token --scope=https://www.googleapis.com/auth/identitytoolkit`) and inject it into generated runtime config.
-- Run `cd functions && npm install` and `firebase deploy --only functions` once, then trigger a new deploy whenever you release schema changes or add more functions.
+- Run `cd functions && npm install` and `firebase deploy --only functions` only if you use the Firebase function fallback path.
 
 If secrets are missing, deployment fails and the app shows:
 - `Auth mode: Cloud required (runtime config missing)`
@@ -183,3 +186,14 @@ If secrets are missing, deployment fails and the app shows:
 ## License
 
 MIT (see `LICENSE` if present in your distribution).
+
+
+
+
+
+
+
+
+
+
+

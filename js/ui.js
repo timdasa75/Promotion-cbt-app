@@ -12,6 +12,11 @@ import {
   isAuthenticated,
 } from "./auth.js";
 import { debugLog } from "./logger.js";
+import {
+  NOTIFICATION_ERROR_MS,
+  NOTIFICATION_SUCCESS_MS,
+  NOTIFICATION_WARNING_MS,
+} from "./constants.js";
 
 // Track current screen
 let currentScreenId = "splashScreen";
@@ -88,60 +93,43 @@ export function showScreen(screenId) {
 }
 
 // Show error message
-export function showError(message) {
-  const errorDiv = document.createElement("div");
-  errorDiv.className = "error-message";
-  errorDiv.textContent = message;
+function showNotification(message, { type = "error", timeoutMs } = {}) {
+  const config = {
+    error: { className: "error-message", timeoutMs: NOTIFICATION_ERROR_MS },
+    warning: { className: "warning-message", timeoutMs: NOTIFICATION_WARNING_MS },
+    success: { className: "success-message", timeoutMs: NOTIFICATION_SUCCESS_MS },
+  };
+  const entry = config[type] || config.error;
 
-  // Use .app-container for error placement
+  const noticeDiv = document.createElement("div");
+  noticeDiv.className = entry.className;
+  noticeDiv.textContent = message;
+
+  // Use .app-container for notice placement
   const container = document.querySelector(".app-container");
   if (container) {
-    container.insertBefore(errorDiv, container.firstChild);
+    container.insertBefore(noticeDiv, container.firstChild);
   } else {
     // fallback: append to body
-    document.body.insertBefore(errorDiv, document.body.firstChild);
+    document.body.insertBefore(noticeDiv, document.body.firstChild);
   }
 
-  // Remove error after 5 seconds
+  const resolvedTimeoutMs = Number.isFinite(timeoutMs) ? timeoutMs : entry.timeoutMs;
   setTimeout(() => {
-    errorDiv.remove();
-  }, 5000);
+    noticeDiv.remove();
+  }, resolvedTimeoutMs);
 }
 
-
+export function showError(message) {
+  showNotification(message, { type: "error" });
+}
 
 export function showWarning(message) {
-  const warningDiv = document.createElement("div");
-  warningDiv.className = "warning-message";
-  warningDiv.textContent = message;
-
-  const container = document.querySelector(".app-container");
-  if (container) {
-    container.insertBefore(warningDiv, container.firstChild);
-  } else {
-    document.body.insertBefore(warningDiv, document.body.firstChild);
-  }
-
-  setTimeout(() => {
-    warningDiv.remove();
-  }, 6000);
+  showNotification(message, { type: "warning" });
 }
 
 export function showSuccess(message) {
-  const successDiv = document.createElement("div");
-  successDiv.className = "success-message";
-  successDiv.textContent = message;
-
-  const container = document.querySelector(".app-container");
-  if (container) {
-    container.insertBefore(successDiv, container.firstChild);
-  } else {
-    document.body.insertBefore(successDiv, document.body.firstChild);
-  }
-
-  setTimeout(() => {
-    successDiv.remove();
-  }, 5000);
+  showNotification(message, { type: "success" });
 }
 
 // Display categories for a topic
@@ -532,4 +520,5 @@ export async function selectTopic(topic) {
 
 // Make functions available globally for HTML onclick handlers
 window.showScreen = showScreen;
+
 

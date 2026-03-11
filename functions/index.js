@@ -189,3 +189,142 @@ exports.deleteProfileOnAuthDeletion = functions.auth.user().onDelete(async (user
   }
   return null;
 });
+
+exports.adminLookupUsers = functions.https.onRequest(async (req, res) => {
+  setCors(res);
+  if (req.method === "OPTIONS") {
+    res.status(204).send("");
+    return;
+  }
+  if (req.method !== "POST") {
+    res.status(405).json({ ok: false, error: "Method not allowed." });
+    return;
+  }
+
+  try {
+    await authenticateAdminRequest(req);
+    const rawEmails = Array.isArray(req.body?.emails) ? req.body.emails : [];
+    const normalizedEmails = Array.from(
+      new Set(
+        rawEmails
+          .map((entry) => String(entry || "").trim().toLowerCase())
+          .filter((entry) => entry && entry.includes("@")),
+      ),
+    );
+
+    if (!normalizedEmails.length) {
+      res.status(200).json({ ok: true, users: [] });
+      return;
+    }
+
+    const users = [];
+    for (let index = 0; index < normalizedEmails.length; index += 100) {
+      const batch = normalizedEmails.slice(index, index + 100);
+      const result = await admin.auth().getUsers(batch.map((email) => ({ email })));
+      result.users.forEach((userRecord) => {
+        const email = String(userRecord.email || "").toLowerCase();
+        if (!email) return;
+        users.push({
+          email,
+          emailVerified: Boolean(userRecord.emailVerified),
+        });
+      });
+    }
+
+    res.status(200).json({ ok: true, users });
+  } catch (error) {
+    functions.logger.error("adminLookupUsers failed:", error);
+    res.status(403).json({
+      ok: false,
+      error: String(error?.message || "Unauthorized"),
+    });
+  }
+});
+
+exports.adminSetUserStatus = functions.https.onRequest(async (req, res) => {
+  setCors(res);
+  if (req.method === "OPTIONS") {
+    res.status(204).send("");
+    return;
+  }
+  if (req.method !== "POST") {
+    res.status(405).json({ ok: false, error: "Method not allowed." });
+    return;
+  }
+
+  try {
+    await authenticateAdminRequest(req);
+    const userId = String(req.body?.userId || "").trim();
+    if (!userId) {
+      res.status(400).json({ ok: false, error: "userId is required." });
+      return;
+    }
+
+    const statusRaw = String(req.body?.status || "").trim().toLowerCase();
+    const nextStatus = statusRaw === "suspended" ? "suspended" : "active";
+    const disabled = nextStatus === "suspended";
+
+    await admin.auth().updateUser(userId, { disabled });
+    await admin
+      .firestore()
+      .doc(`profiles/${userId}`)
+      .set(
+        {
+          status: nextStatus,
+          lastSeenAt: admin.firestore.FieldValue.serverTimestamp(),
+        },
+        { merge: true },
+      );
+
+    res.status(200).json({
+      ok: true,
+      userId,
+      status: nextStatus,
+      authDisabledSynced: disabled,
+    });
+  } catch (error) {
+    functions.logger.error("adminSetUserStatus failed:", error);
+    res.status(403).json({
+      ok: false,
+      error: String(error?.message || "Unauthorized"),
+    });
+  }
+});
+
+exports.adminSendVerificationEmail = functions.https.onRequest(async (req, res) => {
+  setCors(res);
+  if (req.method === "OPTIONS") {
+    res.status(204).send("");
+    return;
+  }
+  if (req.method !== "POST") {
+    res.status(405).json({ ok: false, error: "Method not allowed." });
+    return;
+  }
+
+  try {
+    await authenticateAdminRequest(req);
+    const email = String(req.body?.email || "").trim().toLowerCase();
+    if (!email) {
+      res.status(400).json({ ok: false, error: "email is required." });
+      return;
+    }
+
+    const continueUrl = String(req.body?.continueUrl || "").trim();
+    const actionCodeSettings = continueUrl ? { url: continueUrl } : undefined;
+    const link = await admin.auth().generateEmailVerificationLink(email, actionCodeSettings);
+
+    res.status(200).json({
+      ok: true,
+      email,
+      link,
+      warning: `Verification link generated. Send it to the user: ${link}`,
+    });
+  } catch (error) {
+    functions.logger.error("adminSendVerificationEmail failed:", error);
+    res.status(403).json({
+      ok: false,
+      error: String(error?.message || "Unauthorized"),
+    });
+  }
+});

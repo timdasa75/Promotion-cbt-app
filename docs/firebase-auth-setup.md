@@ -212,10 +212,25 @@ Operational recommendation:
 
 ### Identity Toolkit admin operations
 
-- Deploy the HTTPS function `adminDeleteUserById` (see `functions/index.js`) and call it from the admin panel. It validates the admin ID token, then deletes both Firebase Auth user and Firestore `profiles/{userId}` server-side.
-- Keep the `deleteAuthUserOnProfileDeletion` trigger deployed as a backup cascade.
-- Optional fallback: mint a short-lived OAuth token scoped to `https://www.googleapis.com/auth/identitytoolkit` during deployment (e.g., `gcloud auth print-access-token --scope=https://www.googleapis.com/auth/identitytoolkit`) and expose it as `firebaseAdminAccessToken` in runtime config.
-- Optional migration path: set `adminApiBaseUrl` to a Cloudflare Worker (or equivalent) that verifies admin ID tokens and performs privileged admin operations server-side.
+Preferred free-tier path:
+- Deploy `workers/admin-bridge/worker.js` to Cloudflare Workers.
+- For GitHub Pages without Blaze, set `ADMIN_API_BASE_URL` to your worker URL (do not leave it blank).
+- Configure `adminApiBaseUrl` in runtime config to the worker base URL.
+- Required worker secrets: `FIREBASE_API_KEY`, `GCP_SERVICE_ACCOUNT_EMAIL`, `GCP_SERVICE_ACCOUNT_PRIVATE_KEY`.
+- Required worker var: `FIREBASE_PROJECT_ID`.
+- Optional worker vars: `ALLOWED_ORIGINS`, `ADMIN_EMAILS`, `FIREBASE_QUOTA_PROJECT_ID`, `SYNC_AUTH_DISABLED`.
+
+Worker endpoint contract used by this app:
+- `POST /adminListUsers`
+- `POST /adminLookupUsers`
+- `POST /adminSendVerificationEmail`
+- `POST /adminSetUserStatus`
+- `POST /adminDeleteUserById`
+
+Fallback path:
+- Deploy HTTPS functions from `functions/index.js` (`adminListUsers`, `adminLookupUsers`, `adminSetUserStatus`, `adminSendVerificationEmail`, `adminDeleteUserById`) and keep `deleteAuthUserOnProfileDeletion` trigger deployed.
+- Set `ADMIN_EMAILS` for Functions (comma-separated admin emails); defaults to the built-in list if omitted.
+- Note: `adminSendVerificationEmail` returns a verification link; add an email provider if you want automatic delivery.
 
 ### Content Security Policy guidance
 
@@ -267,3 +282,10 @@ Safety behavior:
 - Custom auth email domain: `https://firebase.google.com/docs/auth/email-custom-domain`
 - Firestore rules conditions: `https://firebase.google.com/docs/firestore/security/rules-conditions`
 - Security Rules + Auth claims: `https://firebase.google.com/docs/rules/rules-and-auth`
+
+
+
+
+
+
+

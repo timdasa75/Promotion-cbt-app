@@ -1,0 +1,21 @@
+name = "promotion-cbt-admin-bridge"
+main = "worker.js"
+compatibility_date = "2026-03-08"
+
+# Configure your own route/domain in Cloudflare dashboard.
+
+[vars]
+FIREBASE_PROJECT_ID = "promotioncbt-app"
+# Optional comma-separated browser origins allowed to call the worker.
+# ALLOWED_ORIGINS = "https://timdasa75.github.io"
+# Optional quota billing project for x-goog-user-project header (omit unless needed).
+# FIREBASE_QUOTA_PROJECT_ID = "promotioncbt-app"
+# Optional comma-separated admin emails. Defaults include timdasa75@gmail.com.
+# ADMIN_EMAILS = "timdasa75@gmail.com"
+# Optional: set to false to skip Firebase Auth disabled-flag sync and only patch profile status.
+# SYNC_AUTH_DISABLED = "true"
+
+# Secrets required (set via `wrangler secret put`):
+# - FIREBASE_API_KEY
+# - GCP_SERVICE_ACCOUNT_EMAIL
+# - GCP_SERVICE_ACCOUNT_PRIVATE_KEY

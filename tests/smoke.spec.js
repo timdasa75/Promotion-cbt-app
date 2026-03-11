@@ -434,3 +434,130 @@ test("spaced-practice queue shows due count and starts a focused spaced session"
   await expect(page.locator("#quizTopicTitle")).toContainText("Spaced Practice");
   await expect(page.locator("#totalQ")).toHaveText("1");
 });
+
+test("admin panel uses Worker admin bridge for live directory and account-state sync", async ({ page }) => {
+  let listCalls = 0;
+  let setStatusCalls = 0;
+  let lastSetStatusPayload = null;
+  const corsHeaders = {
+    "access-control-allow-origin": "*",
+    "access-control-allow-methods": "POST, OPTIONS",
+    "access-control-allow-headers": "authorization, content-type",
+  };
+
+  await page.route("**/mock-admin-api/adminListUsers*", async (route) => {
+    if (route.request().method() === "OPTIONS") {
+      await route.fulfill({
+        status: 204,
+        headers: corsHeaders,
+        body: "",
+      });
+      return;
+    }
+    listCalls += 1;
+    await route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      headers: corsHeaders,
+      body: JSON.stringify({
+        ok: true,
+        total: 1,
+        users: [
+          {
+            id: "u_target",
+            email: "learner@example.com",
+            name: "Learner",
+            emailVerified: false,
+            disabled: false,
+            createdAt: new Date().toISOString(),
+            lastSignInAt: "",
+          },
+        ],
+      }),
+    });
+  });
+
+  await page.route("**/mock-admin-api/adminSetUserStatus*", async (route) => {
+    if (route.request().method() === "OPTIONS") {
+      await route.fulfill({
+        status: 204,
+        headers: corsHeaders,
+        body: "",
+      });
+      return;
+    }
+    setStatusCalls += 1;
+    lastSetStatusPayload = route.request().postDataJSON();
+    await route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      headers: corsHeaders,
+      body: JSON.stringify({
+        ok: true,
+        userId: "u_target",
+        status: "suspended",
+        authDisabledSynced: true,
+        warning: "",
+      }),
+    });
+  });
+
+  await page.route("https://firestore.googleapis.com/**", async (route) => {
+    await route.fulfill({
+      status: 403,
+      contentType: "application/json",
+      body: JSON.stringify({ error: { message: "Mocked Firestore unavailable" } }),
+    });
+  });
+
+  await page.addInitScript(() => {
+    window.PROMOTION_CBT_AUTH = {
+      firebaseApiKey: "mock-api-key",
+      firebaseProjectId: "mock-project-id",
+      firebaseAuthDomain: "mock-project-id.firebaseapp.com",
+      adminApiBaseUrl: "/mock-admin-api",
+    };
+
+    const nowIso = new Date().toISOString();
+    window.sessionStorage.setItem(
+      "cbt_session_v1",
+      JSON.stringify({
+        provider: "firebase",
+        accessToken: "mock-id-token",
+        refreshToken: "mock-refresh-token",
+        expiresAt: Date.now() + 60 * 60 * 1000,
+        user: {
+          id: "u_admin",
+          name: "Admin User",
+          email: "timdasa75@gmail.com",
+          plan: "premium",
+          createdAt: nowIso,
+          emailVerified: true,
+        },
+        createdAt: nowIso,
+      }),
+    );
+  });
+
+  page.on("dialog", (dialog) => dialog.accept());
+
+  await page.goto("/");
+  await page.click("#startLearningBtn");
+  await expect(page.locator("#topicSelectionScreen")).toBeVisible();
+
+  const openAdminBtn = page.locator("#openAdminBtn");
+  await expect(openAdminBtn).toBeVisible();
+  await openAdminBtn.click();
+
+  await expect(page.locator("#adminScreen")).toBeVisible();
+  await expect(page.locator("#adminUserSource")).toContainText("Firebase Auth (live)");
+  await expect(page.locator("#adminUserCount")).toContainText("1/1");
+  await expect.poll(() => listCalls).toBeGreaterThan(0);
+
+  await page.locator(".directory-action-menu summary").first().click();
+  await page.locator("button[data-action='set-account-state']").first().click();
+
+  await expect.poll(() => setStatusCalls).toBe(1);
+  expect(lastSetStatusPayload?.userId).toBe("u_target");
+  expect(lastSetStatusPayload?.status).toBe("suspended");
+});

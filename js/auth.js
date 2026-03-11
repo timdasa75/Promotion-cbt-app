@@ -130,9 +130,6 @@ function getFirebaseConfig() {
   const firebaseApiKey = String(cfg.firebaseApiKey || cfg.apiKey || "").trim();
   const firebaseProjectId = String(cfg.firebaseProjectId || cfg.projectId || "").trim();
   const firebaseAuthDomain = String(cfg.firebaseAuthDomain || cfg.authDomain || "").trim();
-  const firebaseAdminAccessToken = String(
-    cfg.firebaseAdminAccessToken || cfg.identityToolkitAccessToken || "",
-  ).trim();
   const firebaseFunctionsRegion = String(cfg.firebaseFunctionsRegion || "us-central1").trim();
   const firebaseQuotaProjectId = String(
     cfg.firebaseQuotaProjectId || cfg.quotaProjectId || firebaseProjectId || "",
@@ -145,7 +142,6 @@ function getFirebaseConfig() {
     firebaseApiKey,
     firebaseProjectId,
     firebaseAuthDomain,
-    firebaseAdminAccessToken,
     firebaseFunctionsRegion,
     firebaseQuotaProjectId,
     enableCloudProgressSync,
@@ -387,6 +383,11 @@ function buildAdminApiUrl(path) {
   return `${getCloudFunctionsBaseUrl()}/${cleanPath}`;
 }
 
+function hasCustomAdminApiBaseUrl() {
+  const { adminApiBaseUrl } = getFirebaseConfig();
+  return Boolean(adminApiBaseUrl);
+}
+
 function getAdminDeleteFunctionUrl() {
   return buildAdminApiUrl("adminDeleteUserById");
 }
@@ -395,50 +396,50 @@ function getAdminListUsersFunctionUrl() {
   return buildAdminApiUrl("adminListUsers");
 }
 
+function getAdminLookupUsersFunctionUrl() {
+  return buildAdminApiUrl("adminLookupUsers");
+}
+
+function getAdminSetUserStatusFunctionUrl() {
+  return buildAdminApiUrl("adminSetUserStatus");
+}
+
+function getAdminSendVerificationFunctionUrl() {
+  return buildAdminApiUrl("adminSendVerificationEmail");
+}
+
+async function postAdminApiJson(url, accessToken, body = {}) {
+  if (!accessToken) {
+    throw new Error("Cloud session is unavailable.");
+  }
+
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body || {}),
+  });
+
+  const payload = await response.json().catch(() => ({}));
+  if (!response.ok || !payload?.ok) {
+    const message = payload?.error || payload?.message || "Admin API request failed.";
+    throw new Error(message);
+  }
+
+  return payload;
+}
+
 async function deleteUserViaCloudFunction(userId, accessToken) {
   if (!userId) {
     throw new Error("User identifier is required.");
   }
-  if (!accessToken) {
-    throw new Error("Cloud session is unavailable.");
-  }
-
-  const response = await fetch(getAdminDeleteFunctionUrl(), {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ userId }),
-  });
-  const payload = await response.json().catch(() => ({}));
-  if (!response.ok || !payload?.ok) {
-    const message = payload?.error || payload?.message || "Cloud Function user deletion failed.";
-    throw new Error(message);
-  }
-  return payload;
+  return postAdminApiJson(getAdminDeleteFunctionUrl(), accessToken, { userId });
 }
 
 async function listUsersViaCloudFunction(accessToken) {
-  if (!accessToken) {
-    throw new Error("Cloud session is unavailable.");
-  }
-
-  const response = await fetch(getAdminListUsersFunctionUrl(), {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({}),
-  });
-
-  const payload = await response.json().catch(() => ({}));
-  if (!response.ok || !payload?.ok) {
-    const message = payload?.error || payload?.message || "Cloud Function user listing failed.";
-    throw new Error(message);
-  }
-
+  const payload = await postAdminApiJson(getAdminListUsersFunctionUrl(), accessToken, {});
   const users = Array.isArray(payload?.users) ? payload.users : [];
   return users.map((entry) => ({
     id: String(entry?.id || entry?.uid || entry?.localId || ""),
@@ -451,10 +452,54 @@ async function listUsersViaCloudFunction(accessToken) {
   }));
 }
 
-async function listUsersViaAdminToken() {
-  const { firebaseAdminAccessToken } = getFirebaseConfig();
-  return listProjectAccountsByAccessToken(firebaseAdminAccessToken);
+async function lookupUsersViaAdminApi(emails, accessToken) {
+  const normalizedEmails = Array.from(
+    new Set(
+      (Array.isArray(emails) ? emails : [])
+        .map((entry) => normalizeEmail(entry))
+        .filter((entry) => entry && entry.includes("@")),
+    ),
+  );
+  if (!normalizedEmails.length) {
+    return new Map();
+  }
+
+  const payload = await postAdminApiJson(getAdminLookupUsersFunctionUrl(), accessToken, {
+    emails: normalizedEmails,
+  });
+  const users = Array.isArray(payload?.users) ? payload.users : [];
+  const verificationByEmail = new Map();
+  users.forEach((entry) => {
+    const email = normalizeEmail(entry?.email || "");
+    if (!email) return;
+    verificationByEmail.set(email, Boolean(entry?.emailVerified));
+  });
+  return verificationByEmail;
 }
+
+async function setUserStatusViaAdminApi(userId, status, accessToken) {
+  if (!userId) {
+    throw new Error("User identifier is required.");
+  }
+
+  const payload = await postAdminApiJson(getAdminSetUserStatusFunctionUrl(), accessToken, {
+    userId,
+    status: normalizeStatus(status),
+  });
+
+  return {
+    warning: String(payload?.warning || "").trim(),
+    authDisabledSynced: Boolean(payload?.authDisabledSynced),
+  };
+}
+
+async function sendVerificationViaAdminApi(email, continueUrl, accessToken) {
+  return postAdminApiJson(getAdminSendVerificationFunctionUrl(), accessToken, {
+    email: normalizeEmail(email),
+    continueUrl: String(continueUrl || "").trim(),
+  });
+}
+
 
 function isLocalDevelopmentHost() {
   const host = String(window.location.hostname || "").trim().toLowerCase();
@@ -1957,28 +2002,28 @@ export async function resendVerificationEmailForUser(email, redirectTo = "") {
     return { delivered: true, warning: "" };
   }
 
-  const { firebaseAdminAccessToken } = getFirebaseConfig();
-  if (!firebaseAdminAccessToken) {
+  try {
+    const bridgeResult = await sendVerificationViaAdminApi(
+      normalizedEmail,
+      continueTarget,
+      freshSession.accessToken,
+    );
+    markVerificationResend(normalizedEmail);
+    const warning = String(bridgeResult?.warning || "").trim();
+    const link = String(bridgeResult?.link || "").trim();
+    const combinedWarning = [warning, link ? `Manual verification link: ${link}` : ""]
+      .filter(Boolean)
+      .join(" ");
+    return {
+      delivered: true,
+      warning: combinedWarning,
+    };
+  } catch (bridgeError) {
     throw new Error(
-      "Resend verification for other users requires PROMOTION_CBT_AUTH.firebaseAdminAccessToken. " +
-        "On Spark, ask the user to attempt login to trigger a new verification email.",
+      `Resend verification via admin API failed: ${bridgeError?.message || "request failed."}`,
     );
   }
-
-  await sendProjectScopedOobCode({
-    requestType: "VERIFY_EMAIL",
-    email: normalizedEmail,
-    accessToken: firebaseAdminAccessToken,
-    continueUrl: continueTarget,
-  });
-  markVerificationResend(normalizedEmail);
-
-  return {
-    delivered: true,
-    warning: "Verification email sent via admin-token fallback.",
-  };
 }
-
 function buildUpgradeRequestRecordFromProfile(profile) {
   if (!profile || typeof profile !== "object") return null;
   const status = normalizeUpgradeRequestStatus(profile?.upgradeRequestStatus);
@@ -2579,7 +2624,7 @@ function buildFallbackUserDirectory() {
   };
 }
 
-async function enrichDirectoryVerificationStates(rows) {
+async function enrichDirectoryVerificationStates(rows, accessToken = "") {
   const safeRows = Array.isArray(rows) ? rows : [];
   const unresolvedEmails = Array.from(
     new Set(
@@ -2594,20 +2639,7 @@ async function enrichDirectoryVerificationStates(rows) {
     return { users: safeRows, warning: "" };
   }
 
-  const { firebaseAdminAccessToken } = getFirebaseConfig();
-  if (!firebaseAdminAccessToken) {
-    return {
-      users: safeRows,
-      warning:
-        "Some email verification statuses are unknown. Configure PROMOTION_CBT_AUTH.firebaseAdminAccessToken to resolve from Firebase Auth.",
-    };
-  }
-
-  try {
-    const verificationByEmail = await lookupProjectAccountsByEmails({
-      emails: unresolvedEmails,
-      accessToken: firebaseAdminAccessToken,
-    });
+  const applyVerificationMap = (verificationByEmail) => {
     const enrichedRows = safeRows.map((row) => {
       if (row?.emailVerified !== null) return row;
       const email = normalizeEmail(row?.email || "");
@@ -2617,7 +2649,6 @@ async function enrichDirectoryVerificationStates(rows) {
         emailVerified: verificationByEmail.get(email),
       };
     });
-
     const stillUnknownCount = enrichedRows.filter((row) => row?.emailVerified === null).length;
     return {
       users: enrichedRows,
@@ -2626,14 +2657,28 @@ async function enrichDirectoryVerificationStates(rows) {
           ? `${stillUnknownCount} account(s) still have unknown verification status (no matching Firebase Auth record).`
           : "",
     };
-  } catch (error) {
-    return {
-      users: safeRows,
-      warning: `Could not resolve email verification from Firebase Auth: ${error?.message || "lookup failed."}`,
-    };
-  }
-}
+  };
 
+  const warnings = [];
+  if (accessToken) {
+    try {
+      const verificationByEmail = await lookupUsersViaAdminApi(unresolvedEmails, accessToken);
+      return applyVerificationMap(verificationByEmail);
+    } catch (error) {
+      warnings.push(`Worker verification lookup unavailable: ${error?.message || "lookup failed."}`);
+    }
+  }
+
+  return {
+    users: safeRows,
+    warning: [
+      ...warnings,
+      "Some email verification statuses are unknown. Configure admin lookup functions to resolve from Firebase Auth.",
+    ]
+      .filter(Boolean)
+      .join(" "),
+  };
+}
 function buildAuthBackedDirectoryRows(authUsers, profileRows) {
   const safeAuthUsers = Array.isArray(authUsers) ? authUsers : [];
   const safeProfiles = Array.isArray(profileRows) ? profileRows : [];
@@ -2748,58 +2793,25 @@ export async function getAdminUserDirectory() {
           }
         } else if (normalizedRows.length > 0) {
           warnings.push("Firebase Auth list returned zero users. Showing profile-based fallback.");
+          const enriched = await enrichDirectoryVerificationStates(normalizedRows, freshSession.accessToken);
+          users = enriched.users;
+          if (enriched.warning) {
+            warnings.push(enriched.warning);
+          }
         } else {
           throw new Error("Firebase Auth list returned zero users and no cloud profiles are available.");
         }
       } catch (error) {
-        const cloudFunctionWarning = `Cloud Function live list unavailable. ${error?.message || ""}`.trim();
-        try {
-          const authUsers = await listUsersViaAdminToken();
-          if (authUsers.length) {
-            const authUserIds = new Set(
-              authUsers.map((entry) => String(entry?.id || "").trim()).filter(Boolean),
-            );
-            const authEmails = new Set(
-              authUsers.map((entry) => normalizeEmail(entry?.email || "")).filter(Boolean),
-            );
-            const staleProfiles = normalizedRows.filter((profile) => {
-              const profileId = String(profile?.id || "").trim();
-              const profileEmail = normalizeEmail(profile?.email || "");
-              return !authUserIds.has(profileId) && !authEmails.has(profileEmail);
-            });
-
-            users = buildAuthBackedDirectoryRows(authUsers, normalizedRows);
-            source = "cloud-auth";
-            if (staleProfiles.length > 0) {
-              warnings.push(
-                `${staleProfiles.length} stale profile record(s) were excluded because they are not in Firebase Auth.`,
-              );
-            }
-          } else if (normalizedRows.length > 0) {
-            warnings.push(cloudFunctionWarning);
-            warnings.push("Admin-token live list returned zero users. Showing profile-based fallback.");
-            const enriched = await enrichDirectoryVerificationStates(normalizedRows);
-            users = enriched.users;
-            if (enriched.warning) {
-              warnings.push(enriched.warning);
-            }
-          } else {
-            throw new Error("Admin-token live list returned zero users and no cloud profiles are available.");
+        const cloudFunctionWarning = `Admin API live list unavailable. ${error?.message || ""}`.trim();
+        if (normalizedRows.length > 0) {
+          warnings.push(cloudFunctionWarning);
+          const enriched = await enrichDirectoryVerificationStates(normalizedRows, freshSession.accessToken);
+          users = enriched.users;
+          if (enriched.warning) {
+            warnings.push(enriched.warning);
           }
-        } catch (fallbackError) {
-          if (normalizedRows.length > 0) {
-            warnings.push(cloudFunctionWarning);
-            warnings.push(
-              `Admin-token live list unavailable. Showing profile-based data. ${fallbackError?.message || ""}`.trim(),
-            );
-            const enriched = await enrichDirectoryVerificationStates(normalizedRows);
-            users = enriched.users;
-            if (enriched.warning) {
-              warnings.push(enriched.warning);
-            }
-          } else {
-            throw fallbackError;
-          }
+        } else {
+          throw error;
         }
       }
 
@@ -2829,7 +2841,6 @@ export async function getAdminUserDirectory() {
     warning: "",
   };
 }
-
 async function ensureAdminCloudSession() {
   if (!isCurrentUserAdmin()) {
     throw new Error("Admin access is required.");
@@ -2856,12 +2867,12 @@ export async function updateCloudUserStatusById(profileId, status) {
 
   const nextStatus = normalizeStatus(status);
   const session = await ensureAdminCloudSession();
-  await patchCloudProfileFields(session.accessToken, normalizedProfileId, {
-    status: { stringValue: nextStatus },
-    lastSeenAt: { timestampValue: toIsoTimestamp(new Date().toISOString()) },
-  });
+  const syncResult = await setUserStatusViaAdminApi(normalizedProfileId, nextStatus, session.accessToken);
+  const warning = String(syncResult?.warning || "").trim();
+  return {
+    warning,
+  };
 }
-
 export async function deleteCloudUserById(profileId) {
   const normalizedProfileId = String(profileId || "").trim();
   if (!normalizedProfileId) {
@@ -2873,22 +2884,9 @@ export async function deleteCloudUserById(profileId) {
     await deleteUserViaCloudFunction(normalizedProfileId, session.accessToken);
     return { authDeleted: true, warning: "" };
   } catch (cloudFunctionError) {
-    const { firebaseAdminAccessToken } = getFirebaseConfig();
-    if (!firebaseAdminAccessToken) {
-      throw new Error(
-        `Unable to delete this account from Firebase Authentication: ${cloudFunctionError.message || "Cloud Function unavailable"}. ` +
-          "Deploy functions/adminDeleteUserById or provide PROMOTION_CBT_AUTH.firebaseAdminAccessToken.",
-      );
-    }
-
-    await deleteFirebaseAuthUserById(normalizedProfileId, firebaseAdminAccessToken);
-    await firestoreRequest(`documents/profiles/${encodeURIComponent(normalizedProfileId)}`, {
-      method: "DELETE",
-      idToken: session.accessToken,
-    });
-    return {
-      authDeleted: true,
-      warning: "Deleted via runtime admin-token fallback.",
-    };
+    throw new Error(
+      `Unable to delete this account from Firebase Authentication: ${cloudFunctionError.message || "Cloud Function unavailable"}. ` +
+        "Deploy functions/adminDeleteUserById and confirm admin access is configured.",
+    );
   }
 }

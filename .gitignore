@@ -48,3 +48,7 @@ __pycache__/
 
 # Runtime auth config (contains live API key; keep local/deploy-managed only)
 config/runtime-auth.js
+
+# Wrangler artifacts
+.wrangler/
+

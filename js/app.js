@@ -1857,10 +1857,14 @@ function renderAdminUserDirectory() {
         async () => {
           if (action === "set-account-state") {
             const resolvedStatus = nextStatus === "active" ? "active" : "suspended";
-            await updateCloudUserStatusById(profileId, resolvedStatus);
+            const statusResult = await updateCloudUserStatusById(profileId, resolvedStatus);
+            const statusWarning = String(statusResult?.warning || "").trim();
             if (resolvedStatus === "suspended") {
               actionWarning =
                 "Permanent Firebase Auth deletion is unavailable on Spark. Delete from Firebase Console when needed.";
+            }
+            if (statusWarning) {
+              actionWarning = actionWarning ? `${actionWarning} ${statusWarning}` : statusWarning;
             }
           } else if (action === "send-reset") {
             await requestPasswordReset(profileEmail, window.location.href);

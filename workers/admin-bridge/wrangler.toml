@@ -1,0 +1,20 @@
+name = "promotion-cbt-admin-bridge"
+main = "worker.js"
+compatibility_date = "2026-03-08"
+workers_dev = true
+preview_urls = false
+
+# Configure your own route/domain in Cloudflare dashboard.
+
+[vars]
+FIREBASE_PROJECT_ID = "promotioncbt-app"
+ALLOWED_ORIGINS = "https://timdasa75.github.io,http://127.0.0.1:5500,http://localhost:5500"
+ADMIN_EMAILS = "timdasa75@gmail.com"
+SYNC_AUTH_DISABLED = "true"
+# Optional quota billing project for x-goog-user-project header (omit unless needed).
+# FIREBASE_QUOTA_PROJECT_ID = "promotioncbt-app"
+
+# Secrets required (set via `wrangler secret put`):
+# - FIREBASE_API_KEY
+# - GCP_SERVICE_ACCOUNT_EMAIL
+# - GCP_SERVICE_ACCOUNT_PRIVATE_KEY

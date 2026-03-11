@@ -45,9 +45,10 @@ jobs:
           FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
           FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
           FIREBASE_AUTH_DOMAIN: ${{ secrets.FIREBASE_AUTH_DOMAIN }}
+          ADMIN_API_BASE_URL: ${{ secrets.ADMIN_API_BASE_URL }}
         run: |
           missing=0
-          for key in FIREBASE_API_KEY FIREBASE_PROJECT_ID FIREBASE_AUTH_DOMAIN; do
+          for key in FIREBASE_API_KEY FIREBASE_PROJECT_ID FIREBASE_AUTH_DOMAIN ADMIN_API_BASE_URL; do
             if [ -z "${!key}" ]; then
               echo "::error::Missing required repository secret: ${key}"
               missing=1
@@ -62,6 +63,7 @@ jobs:
           FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
           FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
           FIREBASE_AUTH_DOMAIN: ${{ secrets.FIREBASE_AUTH_DOMAIN }}
+          ADMIN_API_BASE_URL: ${{ secrets.ADMIN_API_BASE_URL }}
         run: |
           cat > config/runtime-auth.js <<EOF
           // Generated during GitHub Pages deploy. Do not commit live values.
@@ -69,6 +71,7 @@ jobs:
             firebaseApiKey: "${FIREBASE_API_KEY}",
             firebaseProjectId: "${FIREBASE_PROJECT_ID}",
             firebaseAuthDomain: "${FIREBASE_AUTH_DOMAIN}",
+            adminApiBaseUrl: "${ADMIN_API_BASE_URL}",
           };
           EOF
 
@@ -83,3 +86,5 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+
