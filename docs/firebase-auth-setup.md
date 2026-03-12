@@ -191,7 +191,7 @@ window.PROMOTION_CBT_AUTH = {
   firebaseApiKey: "YOUR_FIREBASE_API_KEY",
   firebaseProjectId: "YOUR_FIREBASE_PROJECT_ID",
   firebaseAuthDomain: "YOUR_FIREBASE_AUTH_DOMAIN",
-  enableCloudProgressSync: false,
+  enableCloudProgressSync: true,
   adminApiBaseUrl: ""
 };
 ```
@@ -282,6 +282,7 @@ Safety behavior:
 - Custom auth email domain: `https://firebase.google.com/docs/auth/email-custom-domain`
 - Firestore rules conditions: `https://firebase.google.com/docs/firestore/security/rules-conditions`
 - Security Rules + Auth claims: `https://firebase.google.com/docs/rules/rules-and-auth`
+
 
 
 
