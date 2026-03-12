@@ -960,8 +960,8 @@
             "₦430,000.",
             "₦440,000."
           ],
-          "correct": 1,
-          "explanation": "Tax = 18% × 500,000 = ₦90,000. Net = 500,000 − 90,000 = ₦410,000. (Option 0 corresponds to ₦410,000 — correction: correct index is 0.).",
+          "correct": 0,
+          "explanation": "Tax = 18% x 500,000 = ₦90,000. Net = 500,000 - 90,000 = ₦410,000. Correct option: A (₦410,000).",
           "difficulty": "hard",
           "topic": "Competency Framework",
           "keywords": [
@@ -983,8 +983,8 @@
             "1/7.",
             "1/8."
           ],
-          "correct": 1,
-          "explanation": "Total = 240,000 + 360,000 + 600,000 = ₦1,200,000. Smallest fraction = 240,000 ÷ 1,200,000 = 1/5 = 0.2. (Option 0 corresponds to 1/5 — correction: correct index is 0.).",
+          "correct": 0,
+          "explanation": "Total = 240,000 + 360,000 + 600,000 = ₦1,200,000. Smallest fraction = 240,000 ÷ 1,200,000 = 1/5 = 0.2. Correct option: A (1/5.).",
           "difficulty": "hard",
           "topic": "Competency Framework",
           "keywords": [
@@ -1029,8 +1029,8 @@
             "87.0.",
             "87.5."
           ],
-          "correct": 2,
-          "explanation": "Weighted = 0.4×80 + 0.6×90 = 32 + 54 = 86. (Option 0 corresponds to 86.0 — correction: correct index is 0.).",
+          "correct": 0,
+          "explanation": "Weighted = 0.4×80 + 0.6×90 = 32 + 54 = 86. Correct option: A (86.0.).",
           "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
@@ -1094,12 +1094,12 @@
           "question": "Compute compound growth: ₦100,000 at 5% per annum for 2 years (compound annually).",
           "options": [
             "₦110,000.",
-            "₦110,500.",
+            "₦110,250.",
             "₦105,000.",
             "₦115,000."
           ],
           "correct": 1,
-          "explanation": "Amount = 100,000 × (1.05)^2 = 100,000 × 1.1025 = ₦110,250. (None of the options match exactly; closest is ₦110,500 but correct is ₦110,250).",
+          "explanation": "Amount = 100,000 x (1.05)^2 = 100,000 x 1.1025 = ₦110,250. Correct option: B (₦110,250).",
           "difficulty": "easy",
           "topic": "Competency Framework",
           "keywords": [
@@ -1121,8 +1121,8 @@
             "45.",
             "100."
           ],
-          "correct": 1,
-          "explanation": "Range = max − min = 100 − 45 = 55. (Option 0 corresponds to 55 — correction: correct index is 0.).",
+          "correct": 0,
+          "explanation": "Range = max − min = 100 − 45 = 55. Correct option: A (55.).",
           "difficulty": "hard",
           "topic": "Competency Framework",
           "keywords": [
@@ -1211,7 +1211,7 @@
             "₦1,040,000.",
             "₦1,070,000."
           ],
-          "correct": 0,
+          "correct": 1,
           "explanation": "After 12.5% cut: 1,000,000 − 125,000 = 875,000. Increase 20%: 875,000 × 1.20 = 1,050,000. (Correct final = ₦1,050,000 — option 1).",
           "difficulty": "medium",
           "topic": "Competency Framework",

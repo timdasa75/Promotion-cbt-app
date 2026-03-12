@@ -20005,7 +20005,7 @@
         "subcategory_id": "psr_medical",
         "question_id": "psr_med_044",
         "source_file": "data/psr_rules.json",
-        "question": "Who is responsible for maintaining officersâ€™ health and safety at work under PSR?"
+        "question": "Who is responsible for maintaining officers’ health and safety at work under PSR?"
       },
       "own_topic_score": 1,
       "own_subcategory_score": 0,
@@ -22565,7 +22565,7 @@
         "subcategory_id": "psr_retirement",
         "question_id": "psr_ret_038",
         "source_file": "data/psr_rules.json",
-        "question": "PSR 080138 ensures that pensionersâ€™ records must be updated:"
+        "question": "PSR 080138 ensures that pensioners’ records must be updated:"
       },
       "own_topic_score": 1,
       "own_subcategory_score": 0,
@@ -22965,7 +22965,7 @@
         "subcategory_id": "psr_interpretation",
         "question_id": "psr_interp_009",
         "source_file": "data/psr_rules.json",
-        "question": "PSR 180109 defines 'Commissionâ€™s power' to include:"
+        "question": "PSR 180109 defines 'Commission’s power' to include:"
       },
       "own_topic_score": 1,
       "own_subcategory_score": 0,

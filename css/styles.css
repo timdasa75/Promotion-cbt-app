@@ -1,4 +1,4 @@
-:root {
+﻿:root {
     --green-900: #0b6b3a;
     --green-700: #1fa463;
     --white: #ffffff;
@@ -77,7 +77,7 @@ body {
 }
 
 body {
-    font-family: "Atkinson Hyperlegible", "Inter", "Segoe UI", Arial, sans-serif;
+    font-family: "Atkinson Hyperlegible", "Inter", "Noto Sans", "Segoe UI", Arial, sans-serif;
     background:
         radial-gradient(circle at 10% -20%, rgba(31, 164, 99, 0.2), transparent 35%),
         radial-gradient(circle at 100% 0%, rgba(212, 175, 55, 0.1), transparent 25%),
@@ -92,7 +92,7 @@ h2,
 h3,
 .btn,
 .chip {
-    font-family: "Inter", "Atkinson Hyperlegible", "Segoe UI", Arial, sans-serif;
+    font-family: "Inter", "Atkinson Hyperlegible", "Noto Sans", "Segoe UI", Arial, sans-serif;
 }
 
 .hidden {
@@ -1289,6 +1289,7 @@ select:focus-visible,
     background: var(--card);
     font-size: 1.08rem;
     line-height: 1.65;
+    font-weight: 500;
 }
 
 .question-card .question-number-container {
@@ -1345,6 +1346,7 @@ select:focus-visible,
     margin-bottom: 0;
     min-height: 50px;
     text-align: left;
+    font-weight: 500;
 }
 
 .option-letter {
@@ -1355,6 +1357,7 @@ select:focus-visible,
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    font-weight: 600;
     flex-shrink: 0;
 }
 
@@ -1362,6 +1365,7 @@ select:focus-visible,
     flex: 1;
     align-self: flex-start;
     text-align: left;
+    font-weight: 500;
 }
 
 .option-text p {
@@ -2266,3 +2270,5 @@ select:focus-visible,
         flex-basis: 100%;
     }
 }
+
+
