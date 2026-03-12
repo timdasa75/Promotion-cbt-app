@@ -89,7 +89,7 @@ Recommended `upgradeRequests` fields:
 - `reviewedBy` (string, lowercase email)
 - `reviewNote` (string)
 
-For multi-device progress sync, also use collection: `progress`
+For multi-device progress sync, enable `enableCloudProgressSync` in runtime config and use collection: `progress`
 Use document id: Firebase Auth `uid`
 
 Recommended `progress` fields:
@@ -282,6 +282,7 @@ Safety behavior:
 - Custom auth email domain: `https://firebase.google.com/docs/auth/email-custom-domain`
 - Firestore rules conditions: `https://firebase.google.com/docs/firestore/security/rules-conditions`
 - Security Rules + Auth claims: `https://firebase.google.com/docs/rules/rules-and-auth`
+
 
 
 

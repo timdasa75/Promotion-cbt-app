@@ -9,7 +9,7 @@ window.PROMOTION_CBT_AUTH = {
   firebaseQuotaProjectId: "promotioncbt-app",
   firebaseFunctionsRegion: "us-central1",
   // Feature flag (phase rollout): when true, client can sync quiz progress to cloud.
-  enableCloudProgressSync: false,
+  enableCloudProgressSync: true,
   // Recommended: Cloudflare Worker admin bridge base URL.
   // Example: "https://promotion-cbt-admin.<your-subdomain>.workers.dev"
   // If omitted, app falls back to Firebase Cloud Functions URL.
@@ -22,6 +22,7 @@ window.PROMOTION_CBT_AUTH = {
   // Password reset cooldown per email (minimum 60000, maximum 86400000).
   passwordResetCooldownMs: 600000,
 };
+
 
 
 

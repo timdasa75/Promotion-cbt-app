@@ -165,8 +165,8 @@ Then in GitHub:
 
 Optional runtime keys in `window.PROMOTION_CBT_AUTH`:
 - `enableCloudProgressSync`:
-  - `false` (default): keep progress local-only.
-  - `true`: allow cloud progress sync rollout (requires Firestore `progress/{uid}` rules).
+  - `false`: keep progress local-only.
+  - `true`: allow cloud progress sync rollout (requires Firestore `progress/{uid}` rules). For GitHub Pages, this is now enabled by default.
 - `adminApiBaseUrl`:
   - empty: use Firebase Cloud Functions endpoints.
   - set URL (recommended): route admin list/lookup/status/delete/verification actions to Cloudflare Worker admin bridge.
@@ -186,6 +186,7 @@ If secrets are missing, deployment fails and the app shows:
 ## License
 
 MIT (see `LICENSE` if present in your distribution).
+
 
 
 
