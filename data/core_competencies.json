@@ -984,7 +984,7 @@
             "1/8."
           ],
           "correct": 0,
-          "explanation": "Total = 240,000 + 360,000 + 600,000 = ₦1,200,000. Smallest fraction = 240,000 ÷ 1,200,000 = 1/5 = 0.2. Correct option: A (1/5.).",
+          "explanation": "Correct option: A (1/5.).",
           "difficulty": "hard",
           "topic": "Competency Framework",
           "keywords": [
@@ -995,7 +995,7 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-13"
         },
         {
           "id": "competency_num_044",
@@ -1030,7 +1030,7 @@
             "87.5."
           ],
           "correct": 0,
-          "explanation": "Weighted = 0.4×80 + 0.6×90 = 32 + 54 = 86. Correct option: A (86.0.).",
+          "explanation": "Correct option: A (86.0.).",
           "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
@@ -1041,7 +1041,7 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-13"
         },
         {
           "id": "competency_num_046",
@@ -1756,6 +1756,606 @@
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
           "lastReviewed": "2026-03-03"
+        },
+        {
+          "id": "competency_num_061",
+          "question": "In the public service context, select the option that best answers: What percentage of the revenue allocation formula currently in operation goes to the Federal Government?",
+          "options": [
+            "26.72%",
+            "100.00%Q",
+            "52.68%",
+            "20.60%"
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (52.68%). The Revenue Allocation formula in operation among the three tiers of government is: Federal Government 52.68%",
+          "difficulty": "easy",
+          "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
+          "keywords": [
+            "context",
+            "select",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Numerical & Mathematical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "competency_num_062",
+          "question": "In official practice, which option correctly addresses: The Public Procurement Act 2007 applies to entities that derive at least what percentage of funds for any procurement from the Federation Share of Consolidated Revenue Fund?",
+          "options": [
+            "10%",
+            "35%",
+            "50% Q.",
+            "25%"
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (35%). The Act applies to entities that derive at least 35% of funds appropriated for any procurement from the Federation Share of Consolidated Revenue Fund.",
+          "difficulty": "easy",
+          "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
+          "keywords": [
+            "procurement",
+            "official",
+            "practice",
+            "option"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Numerical & Mathematical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "competency_num_063",
+          "question": "In official practice, which option best describes the workflow for an officer to access their National Housing Fund (NHF) contributions?",
+          "options": [
+            "The officer must exit the service and can access their contributions within one month of retirement. a",
+            "The officer must apply directly to the National Housing Fund.",
+            "The officer must wait for a circular from the Head of Civil Service of the Federation.",
+            "The officer must provide a stamped death certificate."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (The officer must exit the service and can access their contributions within one month of retirement. a). Rule 021004 states that officers who exit the Service \"must access their National Housing Funds (NHF) contributions within one month of retirement.\"",
+          "difficulty": "easy",
+          "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Numerical & Mathematical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "competency_num_064",
+          "question": "In official practice, which option correctly addresses: Which body is accountable for monitoring the accruals to and disbursement of revenue from the Federation Account?",
+          "options": [
+            "The Ministry of Finance",
+            "The Central Bank of Nigeria",
+            "The Revenue Mobilization Allocation and Fiscal Commission",
+            "The National Assembly □ 377"
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (The Revenue Mobilization Allocation and Fiscal Commission). The Revenue Mobilization Allocation and Fiscal Commission is one of the Federal Executive Bodies... Among other functions, the Commission has the power to: monitor the accruals to and disbursement of revenue from the Federation Account",
+          "difficulty": "medium",
+          "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "option",
+            "correctly"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Numerical & Mathematical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "competency_num_065",
+          "question": "which role projects estimates of oil and non-oil revenues in consultation with revenue generating agencies?",
+          "options": [
+            "The Central BankQ",
+            "The Minister of Finance 380",
+            "The President",
+            "The Budget Office of the Federation"
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (The Budget Office of the Federation). The Budget Office of the Federation, in consultation with the revenue generating agencies of the Federal Government, projects estimates of oil and non-oil revenues",
+          "difficulty": "hard",
+          "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
+          "keywords": [
+            "role",
+            "projects",
+            "estimates",
+            "revenues"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Numerical & Mathematical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "competency_num_066",
+          "question": "In official practice, choose the option that a role of the Permanent Secretary, in relation to other government bodies?",
+          "options": [
+            "A memorandum to the Executive Council of the Federation for funds may have to be cleared with the Ministry of Finance.",
+            "Approving all capital projects.",
+            "Hiring all new staff.",
+            "Directly controlling the National Planning Commission.a."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (A memorandum to the Executive Council of the Federation for funds may have to be cleared with the Ministry of Finance.). The Permanent Secretary in a Ministry may need to clear a memorandum for 406 funds with the Ministry of Finance before it is sent to the Executive Council of the Federation.",
+          "difficulty": "hard",
+          "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "choose",
+            "option"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Numerical & Mathematical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "competency_num_067",
+          "question": "In the public service context, responsibility for is the Chief Adviser to the Minister in a Ministry belongs to which role?",
+          "options": [
+            "The Director of Finance and Accounts.",
+            "The Head of the Civil Service of the Federation.a.",
+            "The Chief of Staff.",
+            "The Permanent Secretary."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (The Permanent Secretary.). The Minister's Chief Adviser is the Permanent Secretary.",
+          "difficulty": "hard",
+          "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
+          "keywords": [
+            "context",
+            "responsibility",
+            "chief",
+            "adviser"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Numerical & Mathematical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "competency_num_068",
+          "question": "In official practice, select the statement that correctly defines the role of the National Council on Establishments?",
+          "options": [
+            "To set the salary for all government workers.",
+            "To manage the budget of the Federal Government.",
+            "To hire and fire civil servants. □.",
+            "To facilitate inter-governmental consultations on establishment matters and to avoid unnecessary disparities in general conditions of service in all the Civil Services of the Federation."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (To facilitate inter-governmental consultations on establishment matters and to avoid unnecessary disparities in general conditions of service in all the Civil Services of the Federation.). The National Council on Establishments was established to facilitate inter-governmental consultations on establishment matters and to avoid unnecessary disparities in general conditions of service in all the Civil Services of the Federation.",
+          "difficulty": "medium",
+          "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "select",
+            "statement"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Numerical & Mathematical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "competency_num_069",
+          "question": "In official practice, which role is encouraged to study and imbibe these rules and their associated and complementary instructions, guidelines, and extant circulars?",
+          "options": [
+            "Only the Head of the Civil Service of the Federation",
+            "All Public Servants.",
+            "Only new entrants into the Service.",
+            "Only Chief Executive Officers (CEOs)."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (All Public Servants.). The Preamble states, \"Public Servants are, therefore, implored to study and imbibe these Rules and their associated and complementary Instructions, Guidelines, and extant Circulars...\"",
+          "difficulty": "easy",
+          "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "role",
+            "encouraged"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Numerical & Mathematical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "competency_num_070",
+          "question": "According to established rules, choose the best answer for: What does \"Permanent Secretary\" mean?",
+          "options": [
+            "The Chief Executive Officer of a Parastatal.",
+            "Officer in charge of day-to-day administration in the Ministry/Extra-Ministerial Offices.",
+            "The Head of the Civil Service of the Federation. Q",
+            "The Head of a Department."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Officer in charge of day-to-day administration in the Ministry/Extra-Ministerial Offices.). Rule 010106 defines \"Permanent Secretary\" as \"Officer in charge of day-to-day administration in the Ministry/Extra-Ministerial Offices.\"",
+          "difficulty": "easy",
+          "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Numerical & Mathematical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "competency_num_071",
+          "question": "Within government administration, which role are the members of the Junior Staff Committee (JSC) and Senior Staff Committee (SSC) in Parastatals? 20?",
+          "options": [
+            "The representative of the Department of Human Resource Management and an observer from the Office of the Head of the Civil Service of the Federation",
+            "The Head of the Civil Service of the Federation and the Permanent Secretary",
+            "The Board of Directors of the Parastatala",
+            "The Chief Executive Officer and the Financial Officer"
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (The representative of the Department of Human Resource Management and an observer from the Office of the Head of the Civil Service of the Federation). Rule 020305 states that the membership of the JSC and SSC in Parastatals includes a representative of the Department of Human Resource Management and an observer from the Office of the Head of the Civil Service of the Federation.",
+          "difficulty": "medium",
+          "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
+          "keywords": [
+            "staff",
+            "committee",
+            "within",
+            "role"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Numerical & Mathematical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "competency_num_072",
+          "question": "In official practice, which office is accountable for paying the salary of an officer on secondment?",
+          "options": [
+            "The parent MDA that released the officer.",
+            "Both MDAs share the cost. 3",
+            "The Office of the Head of Civil Service of the Federation.",
+            "The MDA where the officer is seconded to."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (The MDA where the officer is seconded to.). Rule 020504 states that the MDA with the higher salary must be accountable for the payment of the salary and non-salary allowances should be paid by the receiving MDA49.",
+          "difficulty": "medium",
+          "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "office",
+            "accountable"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Numerical & Mathematical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "competency_num_073",
+          "question": "which office is accountable for posting and redeploying all senior staff?",
+          "options": [
+            "The Ministry/Extra-Ministerial Department",
+            "The Federal Civil Service Commission",
+            "The Permanent Secretary/Head of Extra-Ministerial Office a",
+            "The Head of the Civil Service of the Federation"
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (The Permanent Secretary/Head of Extra-Ministerial Office a). The rules state that all senior staff can be posted and/or redeployed to new posts in accordance with the approved Employee Mobility Policy52.",
+          "difficulty": "hard",
+          "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
+          "keywords": [
+            "office",
+            "accountable",
+            "posting",
+            "redeploying"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Numerical & Mathematical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "competency_num_074",
+          "question": "In official practice, which option best describes the overall goal of the pension scheme outlined in Chapter 19?",
+          "options": [
+            "To reduce government expenditure.",
+            "To provide short-term loans to employees. □",
+            "To centralize all government funds.",
+            "To secure proper administration and accounting of pension contributions."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (To secure proper administration and accounting of pension contributions.). The chapter details the administration, responsibilities of various entities, and accounting procedures for the pension scheme, indicating its goal is proper management of contributions.",
+          "difficulty": "medium",
+          "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Numerical & Mathematical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "competency_num_075",
+          "question": "According to established rules, which option correctly addresses: According to Section 2 of the Finance (Control and Management) Act of 1958, what does \"Public Finance\" include?",
+          "options": [
+            "Only funds from international loans □",
+            "The Public Revenue of the Federation and any moneys held in an official capacity by a Public Service Officer or Government agent",
+            "Any moneys held by a private citizen",
+            "Only the Public Revenue of the Federation"
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (The Public Revenue of the Federation and any moneys held in an official capacity by a Public Service Officer or Government agent). Public Finance includes \"The Public Revenue of the Federation\" and \"Any monies held in his official capacity... by any Officer in the Public Service of the Federation or by any agent of the government\".",
+          "difficulty": "medium",
+          "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
+          "keywords": [
+            "according",
+            "finance",
+            "established",
+            "option"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Numerical & Mathematical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "competency_num_076",
+          "question": "According to established rules, choose the best answer for: Which of these is a source of revenue for the Consolidated Revenue Fund?",
+          "options": [
+            "Proceeds from domestic consumption of crude oil",
+            "External grants a",
+            "Share from the Federation Account",
+            "Proceeds of tax under disbursement-as-you-earn system from police personnel"
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Share from the Federation Account). Sources of revenue for the Consolidated Revenue Fund include \"Share from the Federation Account”.",
+          "difficulty": "easy",
+          "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
+          "keywords": [
+            "revenue",
+            "according",
+            "established",
+            "choose"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Numerical & Mathematical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "competency_num_077",
+          "question": "choose the best answer for: The Development Fund is primarily meant for what type of projects?",
+          "options": [
+            "Emergency response",
+            "Capital projects",
+            "Operational expenses3",
+            "Recurrent expenditures"
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Capital projects). This Fund is meant for capital projects. It is established by the 1999 Constitution.",
+          "difficulty": "medium",
+          "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
+          "keywords": [
+            "choose",
+            "best",
+            "answer",
+            "fund"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Numerical & Mathematical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "competency_num_078",
+          "question": "In official practice, choose the best answer for: What does the President's directives to the Minister of Finance and the Budget Office of the Federation aim to achieve through the budget?",
+          "options": [
+            "To reduce poverty, generate wealth and create jobs",
+            "To decrease social welfare programs",
+            "To increase government debt",
+            "To centralize all economic activities □"
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (To reduce poverty, generate wealth and create jobs). The plans indicate what the Government intends to do to reduce poverty, generate wealth and create jobs",
+          "difficulty": "easy",
+          "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
+          "keywords": [
+            "budget",
+            "official",
+            "practice",
+            "choose"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Numerical & Mathematical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "competency_num_079",
+          "question": "Within government administration, which role is the Accounting Officer for a Ministry?",
+          "options": [
+            "The Permanent Secretary",
+            "The Minister",
+            "The Director of Finance and Accounts",
+            "The Head of the Civil Service of the Federation □."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (The Permanent Secretary). The Permanent Secretary of a Ministry is designated as the Accounting Officer and is in charge for all expenditures and revenue.",
+          "difficulty": "medium",
+          "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
+          "keywords": [
+            "within",
+            "role",
+            "accounting",
+            "officer"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Numerical & Mathematical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "competency_num_080",
+          "question": "In the public service context, choose the best answer for: The 1999 Constitution defines the \"Civil Service of the Federation\" as service in a civil capacity as staff of which of the following?",
+          "options": [
+            "The Judiciary.",
+            "A Ministry or department of the Government of the Federation.",
+            "The National Assembly.",
+            "All government agencies and parastatals.Q."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (A Ministry or department of the Government of the Federation.). The 1999 Constitution defines the Civil Service of the Federation as service in a civil capacity as staff of the Office of the President, the Vice-President, a Ministry, or a department of the government.",
+          "difficulty": "easy",
+          "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
+          "keywords": [
+            "civil",
+            "context",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Numerical & Mathematical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "competency_num_081",
+          "question": "Within government administration, which option correctly addresses: The political head of a Ministry is the Minister, but who is the administrative head?",
+          "options": [
+            "The Director of Finance",
+            "The Head of the Civil Service of the Federation",
+            "The Permanent Secretary",
+            "The President a."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (The Permanent Secretary). The Minister is the political head of the Ministry, and the Permanent Secretary serves as the administrative head.",
+          "difficulty": "hard",
+          "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
+          "keywords": [
+            "head",
+            "within",
+            "option",
+            "correctly"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Numerical & Mathematical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "competency_num_082",
+          "question": "In the public service context, which office is the Accounting Officer of a Ministry?",
+          "options": [
+            "The Permanent Secretary",
+            "The Head of the Civil Service of the Federation □.",
+            "The Minister",
+            "The Director of Finance and Accounts"
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (The Permanent Secretary). The Permanent Secretary is the Ministry's Accounting Officer.",
+          "difficulty": "medium",
+          "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
+          "keywords": [
+            "context",
+            "office",
+            "accounting",
+            "officer"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Numerical & Mathematical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "competency_num_083",
+          "question": "which option best describes the chief role of the Auditor-General for the Federation?",
+          "options": [
+            "To control the release of funds to MDAs. □.",
+            "To manage all government bank accounts.",
+            "To check and report on government expenditures and public accounts.",
+            "To prepare the annual budget."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (To check and report on government expenditures and public accounts.). The Auditor-General is the Head of the Supreme Audit Institution of the country and is in charge for auditing and reporting on the public accounts of the Federation.",
+          "difficulty": "medium",
+          "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
+          "keywords": [
+            "option",
+            "best",
+            "describes",
+            "chief"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Numerical & Mathematical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "competency_num_084",
+          "question": "According to established rules, choose the best answer for: The handbook advises against using official working time for which of the following activities?",
+          "options": [
+            "Official meetings and briefings.",
+            "Personal errands and private business.",
+            "Staff training and development.",
+            "Inter-departmental collaborations. Q."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Personal errands and private business.). The Civil Servant is expected to give his best in the execution of his official duties, and should not use official working time for personal errands or private business",
+          "difficulty": "easy",
+          "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Numerical & Mathematical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "competency_num_085",
+          "question": "In official practice, choose the best answer for: A public officer must submit a declaration of assets and liabilities at what frequency?",
+          "options": [
+            "At the beginning and end of their term of office and at the end of every four years.",
+            "Only when they are promoted. □.",
+            "Annually.",
+            "Only at the beginning of their term."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (At the beginning and end of their term of office and at the end of every four years.). Every public officer must, within 3 months after the coming into force of this Code of Conduct or immediately after taking office and thereafter at the end of every four years and at the end of his term of office, submit a written declaration of all his properties, assets, and liabilities to the Code of Conduct Bureau.",
+          "difficulty": "medium",
+          "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Numerical & Mathematical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
         }
       ],
       "id": "comp_numerical_reasoning"
@@ -3514,6 +4114,606 @@
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
           "lastReviewed": "2026-03-03"
+        },
+        {
+          "id": "competency_verbal_061",
+          "question": "which option aligns with the meaning of the legal framework demand for processing short-term engagements?",
+          "options": [
+            "A circular from the Head of the Civil Service of the Federation",
+            "An official memo.",
+            "A simple letter of appointment.",
+            "The negotiation, drafting, and execution of contracts of engagement by the parties."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (The negotiation, drafting, and execution of contracts of engagement by the parties.). Rule 020421 states that due processes are followed in the \"negotiation, drafting, and execution of contracts of engagement by the parties on all the short-term appointments.\" Part 7: Transfers and Secondments",
+          "difficulty": "medium",
+          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
+          "keywords": [
+            "option",
+            "aligns",
+            "meaning",
+            "legal"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Verbal & Analytical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "competency_verbal_062",
+          "question": "In the public service context, select the option that best answers: Any directive to the Accounting Officer by a Political Head having financial implications must be:?",
+          "options": [
+            "In writing. 153",
+            "Given verbally.",
+            "Only for minor financial matters. Q",
+            "Approved by the National Assembly first."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (In writing. 153). Financial Regulation 117(i) states, \"Any directive to the Accounting Officer by a Political Head having financial implications on the ministry, agency or parastatal must be in writing.\"",
+          "difficulty": "hard",
+          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
+          "keywords": [
+            "context",
+            "select",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Verbal & Analytical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "competency_verbal_063",
+          "question": "According to established rules, select the option that best answers: What must a Revenue Collector do immediately upon receiving money?",
+          "options": [
+            "Keep the money in a safe until the end of the week □ 158",
+            "Enter the receipt in their cash book without delay",
+            "Issue a verbal receipt and collect a written one later",
+            "Hand it over to the Sub-Accounting Officer"
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Enter the receipt in their cash book without delay). Financial Regulation 209(i) necessitate every Revenue Collector to keep a cash book and enter all receipts without delay on the day of receipt.",
+          "difficulty": "easy",
+          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Verbal & Analytical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "competency_verbal_064",
+          "question": "According to established rules, which option aligns with the meaning of the demand procedure for a lodgement made by an officer who is neither a Revenue Collector nor a Sub-Accounting Officer?",
+          "options": [
+            "It must be accompanied by a hand-written note",
+            "It must be supported by a paying-in form (Treasury Form 15)",
+            "It must be entered in a private cash booka 161",
+            "A verbal report is sufficient"
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (It must be supported by a paying-in form (Treasury Form 15)). Financial Regulation 218 specifies that the lodgement will be supported by a paying-in form (Treasury Form 15).",
+          "difficulty": "medium",
+          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
+          "keywords": [
+            "officer",
+            "according",
+            "established",
+            "option"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Verbal & Analytical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "competency_verbal_065",
+          "question": "According to established rules, select the option that best answers: What must be kept in each strong-room or reserve cash safe for all cash, stamps, receipt/licence books, and other articles deposited?",
+          "options": [
+            "A daily log.",
+            "A memo. □.",
+            "A simple list.",
+            "Registers."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Registers.). Financial Regulation 1121 demand that \"Registers must be kept in each strong-room or reserve cash safe of all cash, stamps, receipt or licence books and other articles deposited.\"",
+          "difficulty": "easy",
+          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
+          "keywords": [
+            "cash",
+            "according",
+            "established",
+            "select"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Verbal & Analytical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "competency_verbal_066",
+          "question": "select the option that best answers: Question: What must be obtained when receipt and licence books are handed over from one officer to another?",
+          "options": [
+            "A new set of books. □.",
+            "A simple memo.",
+            "A verbal confirmation.",
+            "A handing-over certificate."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (A handing-over certificate.). Financial Regulation 1226 states, \"When receipt and licence books are handed over from one officer to another, a handing-over certificate must be obtained.\"",
+          "difficulty": "hard",
+          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
+          "keywords": [
+            "select",
+            "option",
+            "best",
+            "answers"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Verbal & Analytical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "competency_verbal_067",
+          "question": "which role is in charge for keeping the up-to-date personal log of every officer?",
+          "options": [
+            "The respective Ministry/Extra-Ministerial Office",
+            "The Office of the Head of the Civil Service of the Federation",
+            "The Accountant-General of the Federation □",
+            "The Federal Civil Service Commission"
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (The respective Ministry/Extra-Ministerial Office). Rule 020107 mandates that Permanent Secretaries/Heads of Extra-Ministerial Offices must keep an up-to-date log of every officer under their control.",
+          "difficulty": "easy",
+          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
+          "keywords": [
+            "role",
+            "charge",
+            "keeping",
+            "date"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Verbal & Analytical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "competency_verbal_068",
+          "question": "Within government administration, which option aligns with the meaning of the definition of \"volunteerism\" according to the rules?",
+          "options": [
+            "Offering services for a short-term contract. 24 Q",
+            "Offering one’s time or talent for charitable, educational, or other worthwhile activities, especially in one’s community, without remuneration",
+            "Offering services for payment.",
+            "Offering one's time or talent for a fee."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Offering one’s time or talent for charitable, educational, or other worthwhile activities, especially in one’s community, without remuneration). Rule 020416 defines volunteerism as a \"practice of offering one’s time or talent for charitable, educational, or other worthwhile activities, especially in one’s community.\"",
+          "difficulty": "medium",
+          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
+          "keywords": [
+            "within",
+            "option",
+            "aligns",
+            "meaning"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Verbal & Analytical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "competency_verbal_069",
+          "question": "Within government administration, which office is ultimately accountable for ensuring that the approved fees are paid to the deserving invigilators and examiners?",
+          "options": [
+            "The Accountant-General of the Federation",
+            "The Director of Human Resources Q",
+            "The Permanent Secretary of the MDA",
+            "The Head of the Civil Service of the Federation"
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (The Permanent Secretary of the MDA). The Permanent Secretary is accountable for the overall supervision of the examinations, including the disbursement of fees 59 Section B: COMPUTER-BASED TEST (CBT) PROMOTION EXAMINATION FOR OFFICERS IN GRADES 15 TO 17 IN THE FEDERAL CIVIL SERVICE OF THE FEDERATION ON PUBLIC SERVICE RULE (PSR). Instruction: This examination consists of 100 multiple-choice questions designed to assess your readiness for promotion to the next level in the Federal Civil Service. You have exactly one hour (60 minutes) to complete all questions; manage your time wisely to secure you attempt every question. Read each question carefully before selecting the best answer from the options. Part 1: Employment Consideration for Applicants Above 50 Years in the Public Service",
+          "difficulty": "easy",
+          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
+          "keywords": [
+            "within",
+            "office",
+            "ultimately",
+            "accountable"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Verbal & Analytical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "competency_verbal_070",
+          "question": "According to established rules, which option correctly addresses: If a disbursement is made on account for a contract, what is the money claimed limited to?",
+          "options": [
+            "The amount available in the vote",
+            "An arbitrary percentage of the contract.",
+            "The full contract sum.",
+            "The cost of the work certified to have been performed."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (The cost of the work certified to have been performed.). Financial Regulation 412 states: \"In the case o. payment on account, no money will be claimed other than the cost of the work certified to have been performed.\"",
+          "difficulty": "hard",
+          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "correctly"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Verbal & Analytical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "competency_verbal_071",
+          "question": "According to established rules, select the option that best answers: What must be done with the cancelled receipt or licence, including the original?",
+          "options": [
+            "It will be retained in the receipt or licence book.",
+            "It should be given to the payer. □.",
+            "It should be destroyed immediately.",
+            "It should be sent to the Accountant-General."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (It will be retained in the receipt or licence book.). Financial Regulation 1216 specifies that the \"cancelled receipts or licence, including the original, will be retained in the receipt or licence book.\"",
+          "difficulty": "medium",
+          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Verbal & Analytical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "competency_verbal_072",
+          "question": "In the public service context, which option best describes necessitate to support a withdrawal from a deposit?",
+          "options": [
+            "The original receipt issued when the money was placed on deposit",
+            "A handwritten note from the depositor",
+            "A verbal confirmation from the Accounting Officera",
+            "A photocopy of the original receipt"
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (The original receipt issued when the money was placed on deposit). Financial Regulation 1306 states that withdrawals from deposit must be supported by the original receipt issued when the money was placed on deposit.",
+          "difficulty": "medium",
+          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
+          "keywords": [
+            "context",
+            "option",
+            "best",
+            "describes"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Verbal & Analytical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "competency_verbal_073",
+          "question": "In the public service context, select the option that best answers: What type of report must the Board of Survey prepare and submit?",
+          "options": [
+            "An electronic report.",
+            "A one-page summary report",
+            "A report in triplicate, which must be signed by all members.",
+            "A verbal report to the Accounting Officer."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (A report in triplicate, which must be signed by all members.). Financial Regulation 1807 states that the Board of Survey must prepare a report in triplicate, signed by all members. 279",
+          "difficulty": "medium",
+          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
+          "keywords": [
+            "context",
+            "select",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Verbal & Analytical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "competency_verbal_074",
+          "question": "In the public service context, which option aligns with the meaning of the chief method of tracking the usage of government vehicles?",
+          "options": [
+            "Logbooks.",
+            "Monthly meetings",
+            "Informal notes.",
+            "Verbal reports from drivers."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Logbooks.). Financial Regulation 2005-2007 consistently emphasizes the use and maintenance of the logbook for tracking vehicle usage.",
+          "difficulty": "easy",
+          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
+          "keywords": [
+            "context",
+            "option",
+            "aligns",
+            "meaning"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Verbal & Analytical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "competency_verbal_075",
+          "question": "In official practice, which office is the Chief Adviser to the Minister and also the Ministry's Accounting Officer?",
+          "options": [
+            "The Chairman of the Extra-Ministerial Department",
+            "The Permanent Secretary",
+            "The Minister of State",
+            "The Head of the Civil Service of the Federationa 374"
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (The Permanent Secretary). His Chief Adviser is the Permanent Secretary who is also the Ministry's Accounting Officer.",
+          "difficulty": "medium",
+          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "office",
+            "chief"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Verbal & Analytical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "competency_verbal_076",
+          "question": "In the public service context, which option aligns with the meaning of the ultimate aim of the Due workflow policy's objective to guarantee the elimination of waste?",
+          "options": [
+            "To prolong the duration of projects",
+            "To secure value for money",
+            "To increase government bureaucracy □.",
+            "To increase government spending"
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (To secure value for money). The objective to eliminate waste is directly linked to the aim of achieving value for money.",
+          "difficulty": "easy",
+          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
+          "keywords": [
+            "context",
+            "option",
+            "aligns",
+            "meaning"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Verbal & Analytical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "competency_verbal_077",
+          "question": "Within government administration, select the option that best answers: In the context of a Public Accounts Committee hearing, what is the role of the Accountant-General of the Federation?",
+          "options": [
+            "To prepare the Auditor-General's report □.",
+            "To represent all MDAs and answer for them",
+            "To provide clarification on accounting procedures and financial regulations",
+            "To manage the committee's budget"
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (To provide clarification on accounting procedures and financial regulations). The Accountant-General of the Federation attends the committee's sittings and provides clarification on accounting procedures, treasury circulars, and financial regulations",
+          "difficulty": "easy",
+          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
+          "keywords": [
+            "within",
+            "select",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Verbal & Analytical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "competency_verbal_078",
+          "question": "at what point should File Notes be made frequently?",
+          "options": [
+            "Only for very important decisions.",
+            "When verbal discussions are held by telephone or otherwise.",
+            "Never, as they are not formal. □. 490",
+            "Only at the end of the day."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (When verbal discussions are held by telephone or otherwise.). They should, therefore, be made as frequently as possible when verbal discussions are held by telephone or otherwise.",
+          "difficulty": "easy",
+          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
+          "keywords": [
+            "point",
+            "should",
+            "file",
+            "notes"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Verbal & Analytical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "competency_verbal_079",
+          "question": "Within government administration, at what point should File Notes be made frequently?",
+          "options": [
+            "Only for very important decisions.",
+            "Only at the end of the day.",
+            "When verbal discussions are held by telephone or otherwise.",
+            "Never, as they are not formal.3. 498"
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (When verbal discussions are held by telephone or otherwise.). They should, therefore, be made as frequently as possible when verbal discussions are held by telephone or otherwise.",
+          "difficulty": "medium",
+          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
+          "keywords": [
+            "within",
+            "point",
+            "should",
+            "file"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Verbal & Analytical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "competency_verbal_080",
+          "question": "According to established rules, select the option that best answers: According to Financial Regulation 202, what must an officer receiving public money issue for every sum of money paid to the government?",
+          "options": [
+            "A verbal confirmation",
+            "An official receipt",
+            "A bank deposit slip Q",
+            "A signed declaration"
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (An official receipt). Financial Regulation 202 mandates that an official receipt must be issued by the officer receiving public money for every sum paid to the government.",
+          "difficulty": "hard",
+          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
+          "keywords": [
+            "according",
+            "money",
+            "established",
+            "select"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Verbal & Analytical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "competency_verbal_081",
+          "question": "In official practice, select the option that best answers: How is a cheque or bank draft returned to a sender, redirected, or remitted to another station recorded?",
+          "options": [
+            "An appropriate entry is made in the Paper Money Register.",
+            "By a verbal notification to the sender.",
+            "It is recorded in the General Ledger.",
+            "The cheque is simply returned without any log.a 163"
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (An appropriate entry is made in the Paper Money Register.). Financial Regulation 233(iii) specifies that an appropriate entry will be made in the Paper Money Register, giving a reference to the covering memorandum or remittance voucher.",
+          "difficulty": "medium",
+          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Verbal & Analytical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "competency_verbal_082",
+          "question": "which role can effect an alteration to the classification of a voucher?",
+          "options": [
+            "The officer controlling expenditure.",
+            "The Head of Finance and Accounts. □",
+            "Any checking officer.",
+            "Any Sub-Accounting Officer."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (The officer controlling expenditure.). Financial Regulation 421 states: \"An alteration to the classification of a voucher must only be effected by the officer controlling expenditure who will amend his Vote Book accordingly.\"",
+          "difficulty": "easy",
+          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
+          "keywords": [
+            "role",
+            "effect",
+            "alteration",
+            "classification"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Verbal & Analytical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "competency_verbal_083",
+          "question": "Within government administration, responsibility for is accountable for providing adequate accounting systems and controls in ministries and extra-ministerial offices belongs to which role?",
+          "options": [
+            "The Minister of Finance.",
+            "The Head of Finance and Accounts. □ 199",
+            "The Accounting Officer.",
+            "The Accountant-General of the Federation."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (The Accountant-General of the Federation.). Financial Regulation 106 states: \"The Accountant-General of the Federation is the Head of the Federal Government Accounting Services and the Treasury. He has the duty for providing adequate accounting systems and controls in the ministries, extra-ministerial offices and other arms of Government.\"",
+          "difficulty": "hard",
+          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
+          "keywords": [
+            "within",
+            "responsibility",
+            "accountable",
+            "providing"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Verbal & Analytical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "competency_verbal_084",
+          "question": "In official practice, which option aligns with the meaning of the procedure if an alteration to the amount of a voucher is necessary?",
+          "options": [
+            "A new voucher must be prepared.",
+            "The alteration can be made and stamped \"Corrected\".",
+            "The alteration can be initiated by the certifying officer.",
+            "The Head of Finance and Accounts can approve the alteration"
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (A new voucher must be prepared.). Financial Regulation 610 states: \"Alterations to the amount of a voucher whether in words or figure are not allowed. A new voucher must be prepared when necessary.\" 204",
+          "difficulty": "medium",
+          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "option",
+            "aligns"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Verbal & Analytical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "competency_verbal_085",
+          "question": "In the public service context, which option correctly addresses: What must be stamped on every cheque leaf?",
+          "options": [
+            "The amount in words.Q",
+            "The date of issue.",
+            "The correct account number.",
+            "The payee's name. 210"
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (The correct account number.). Financial Regulation 703(i) states: \"Every cheque leaf must be crossed and stamped with the correct account number.\"",
+          "difficulty": "medium",
+          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
+          "keywords": [
+            "context",
+            "option",
+            "correctly",
+            "addresses"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Verbal & Analytical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
         }
       ],
       "id": "comp_verbal_reasoning"

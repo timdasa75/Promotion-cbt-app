@@ -1785,6 +1785,606 @@
           "sourceSection": "Budgeting & Financial Planning",
           "year": 2009,
           "lastReviewed": "2026-03-03"
+        },
+        {
+          "id": "fin_bgt_051",
+          "question": "According to established rules, select the option that best answers: If a Capital Expenditure amount conveyed by a warrant has not been cash-backed from the Consolidated Revenue Fund Account to the Central Capital Account (CCA) by year-end, what happens?",
+          "options": [
+            "It necessitate re-appropriation by the National Assembly.a 179",
+            "It automatically lapses.",
+            "It is automatically carried forward.",
+            "It is transferred to the Contingencies Fund."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (It automatically lapses.). Financial Regulation 413(ii)(a) states: \"any amount conveyed by any of the warrants in chapter 3 which has not been cash-backed from the Consolidated Revenue Fund Account to the Central Capital Account (CCA) automatically lapses at the end of the Financial year.\"",
+          "difficulty": "easy",
+          "chapter": "Budgeting & Financial Planning - Expansion Set",
+          "keywords": [
+            "capital",
+            "account",
+            "according",
+            "established"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_bgt_052",
+          "question": "In the public service context, choose the best answer for: For capital expenditure, what happens to any amount conveyed by warrants that has not been cash-backed from the Consolidated Revenue Fund Account to the Central Capital Account (CCA) by year-end?",
+          "options": [
+            "It is transferred to the Development Fund.",
+            "It is carried forward to the next year.",
+            "It demand re-appropriation by the National Assembly. Q 188",
+            "It automatically lapses."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (It automatically lapses.). Financial Regulation 413(ii)(a) states: \"any amount conveyed by any of the warrants in chapter 3 which has not been cash-backed from the Consolidated Revenue Fund Account to the Central Capital Account (CCA) automatically lapses at the end of the Financial year.\"",
+          "difficulty": "medium",
+          "chapter": "Budgeting & Financial Planning - Expansion Set",
+          "keywords": [
+            "capital",
+            "account",
+            "context",
+            "choose"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_bgt_053",
+          "question": "According to established rules, which option best describes the main role of the Public Accounts Committees of the National Assembly?",
+          "options": [
+            "To manage and invest public funds",
+            "To approve all new government contracts a.",
+            "To scrutinize government expenditures based on the reports of the Auditor-General for the Federation",
+            "To prepare the annual budget for Ministries, Departments, and Agencies (MDAs)"
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (To scrutinize government expenditures based on the reports of the Auditor-General for the Federation). The Public Accounts Committees scrutinize the reports of the Auditor-General for the Federation on the accounts of MDAs and call the accounting officers to explain any discrepancies.",
+          "difficulty": "easy",
+          "chapter": "Budgeting & Financial Planning - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_bgt_054",
+          "question": "In the public service context, which time frame does the Development Fund General Warrant permit the Accountant-General to issue funds for capital projects? 176?",
+          "options": [
+            "Upon the Minister of Finance's discretion.",
+            "After the Capital Expenditure Estimates have received approval by resolution of the National Assembly.",
+            "Only for projects exceeding a certain threshold",
+            "At the beginning of the financial year."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (After the Capital Expenditure Estimates have received approval by resolution of the National Assembly.). Financial Regulation 320 states: \"Such authority will be conveyed after the Capital Expenditure Estimates have received approval by resolution of the National Assembly.\"",
+          "difficulty": "medium",
+          "chapter": "Budgeting & Financial Planning - Expansion Set",
+          "keywords": [
+            "context",
+            "time",
+            "frame",
+            "does"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_bgt_055",
+          "question": "which option aligns with the meaning of the chief aim of a Development Fund Virement Warrant?",
+          "options": [
+            "To empower expenditure from the Contingencies Fund",
+            "To fund new capital projects.",
+            "To transfer funds from the Consolidated Revenue Fund.",
+            "To permit the issue of additional funds for the completion of a capital project where earlier funds were insufficient."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (To permit the issue of additional funds for the completion of a capital project where earlier funds were insufficient.). Financial Regulation 324 states: \"The aim of a Development Fund Virement Warrant is to permit the issue of additional funds necessitate for the completion of a capital project, for which the funds earlier provided... was insufficient or inadequate...\"",
+          "difficulty": "hard",
+          "chapter": "Budgeting & Financial Planning - Expansion Set",
+          "keywords": [
+            "option",
+            "aligns",
+            "meaning",
+            "chief"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_bgt_056",
+          "question": "According to established rules, which role issues a Development Fund Virement Warrant?",
+          "options": [
+            "The Auditor-General.",
+            "The Accountant-General.",
+            "The President. □",
+            "The Minister of Finance after approval by the National Assembly."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (The Minister of Finance after approval by the National Assembly.). Financial Regulation 324 states: \"A Development Fund Virement Warrant must be issued by the Minister of Finance after approval by the National Assembly.\"",
+          "difficulty": "easy",
+          "chapter": "Budgeting & Financial Planning - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "role",
+            "issues"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_bgt_057",
+          "question": "According to established rules, select the option that best answers: The authority to incur expenditure from Public Funds other than the Consolidated Revenue Fund and Development Fund is what?",
+          "options": [
+            "A general directive from the President.",
+            "Approval from the National Assembly.",
+            "The appropriate warrant signed by the Minister of Finance, addressed to the Accountant-General.",
+            "A resolution from the Federal Executive Council"
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (The appropriate warrant signed by the Minister of Finance, addressed to the Accountant-General.). Financial Regulation 326 states: \"The authority to incur expenditure from any of the other Public Funds of the Government is the appropriate warrant signed by the Minister of Finance, addressed to the Accountant-General...\"",
+          "difficulty": "easy",
+          "chapter": "Budgeting & Financial Planning - Expansion Set",
+          "keywords": [
+            "fund",
+            "according",
+            "established",
+            "select"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_bgt_058",
+          "question": "Within government administration, choose the best answer for: In addition to auditing payment vouchers, what other type of vouchers does the Internal Auditor audit and certify?",
+          "options": [
+            "Only travel vouchers. Q",
+            "Only payroll vouchers.",
+            "Only capital expenditure vouchers.",
+            "All disbursement and revenue vouchers."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (All disbursement and revenue vouchers.). Financial Regulation 1703(d) states that the Internal Auditor's duties include auditing and certifying \"all disbursement and revenue vouchers.\" Part 2: Financial Regulation: Board of Survey: Cash and Stamps",
+          "difficulty": "easy",
+          "chapter": "Budgeting & Financial Planning - Expansion Set",
+          "keywords": [
+            "vouchers",
+            "within",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_bgt_059",
+          "question": "Within government administration, responsibility for is an \"Officer Controlling Expenditure\" belongs to which role?",
+          "options": [
+            "The Minister of Finance.",
+            "The officer to whom the control of a subhead or specified amount has been delegated by the appropriate Accounting Officer.",
+            "Any officer who signs disbursement vouchers. □",
+            "The Accountant-General of the Federation."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (The officer to whom the control of a subhead or specified amount has been delegated by the appropriate Accounting Officer.). Financial Regulation 121 defines an \"Officer Controlling Expenditure\" as \"the officer to whom the control of a sub-head, or specified amount of a sub-head, has been delegated by the appropriate Accounting Officer.\"",
+          "difficulty": "medium",
+          "chapter": "Budgeting & Financial Planning - Expansion Set",
+          "keywords": [
+            "within",
+            "responsibility",
+            "officer",
+            "controlling"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_bgt_060",
+          "question": "According to established rules, which role may exclude an item of expenditure from the Annual General Warrant if special control is desired?",
+          "options": [
+            "The National Assembly.Q",
+            "The Accountant-General.",
+            "The Minister of Finance.",
+            "The Auditor-General."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (The Minister of Finance.). Financial Regulation 304 states: \"The Minister of Finance may exclude from the Annual General Warrant any item of expenditure over which it is desired to exercise special control.\"",
+          "difficulty": "medium",
+          "chapter": "Budgeting & Financial Planning - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "role",
+            "exclude"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_bgt_061",
+          "question": "In official practice, responsibility for is an \"Officer Controlling Expenditure\"? 181 belongs to which role?",
+          "options": [
+            "The Minister of Finance.",
+            "Any officer who signs disbursement vouchers",
+            "The Accountant-General of the Federation.",
+            "The officer to whom the control of a sub-head or specified amount has been delegated by the appropriate Accounting Officer."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (The officer to whom the control of a sub-head or specified amount has been delegated by the appropriate Accounting Officer.). Financial Regulation 121 defines an \"Officer Controlling Expenditure\" as \"the officer to whom the control of a sub-head, or specified amount of a sub head, has been delegated by the appropriate Accounting Officer.\"",
+          "difficulty": "hard",
+          "chapter": "Budgeting & Financial Planning - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "responsibility",
+            "officer"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_bgt_062",
+          "question": "which option correctly addresses: Warrants issued by the Minister of Finance approve the Accountant-General of the Federation to disburse funds from which accounts?",
+          "options": [
+            "Only the Development Fund.",
+            "Consolidated Revenue Fund and Development Fund.",
+            "Only the Consolidated Revenue Fund.",
+            "Contingencies Fund only.s"
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Consolidated Revenue Fund and Development Fund.). Financial Regulation 103 mentions \"Warrants issued by the Minister from time to time authorizing the Accountant-General of the Federation to disburse funds from the Consolidated Revenue Fund and Development Fund.\"",
+          "difficulty": "easy",
+          "chapter": "Budgeting & Financial Planning - Expansion Set",
+          "keywords": [
+            "option",
+            "correctly",
+            "addresses",
+            "warrants"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_bgt_063",
+          "question": "which option best describes the authority for the Accountant-General to transfer sums appropriated from the Consolidated Revenue Fund to the Contingency Fund for replenishment?",
+          "options": [
+            "Provisional General Warrant.",
+            "Virement Warrant.",
+            "Supplementary General Warrant.",
+            "Development Fund General Warrant"
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Supplementary General Warrant.). Financial Regulation 308 states: \"A Supplementary General Warrant must be the authority for the Accountant-General to transfer any sum appropriated from the Consolidated Revenue Fund to the Contingency Fund by way of replenishment.\"",
+          "difficulty": "medium",
+          "chapter": "Budgeting & Financial Planning - Expansion Set",
+          "keywords": [
+            "fund",
+            "option",
+            "best",
+            "describes"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_bgt_064",
+          "question": "In the public service context, at what point is a Virement Warrant issued?",
+          "options": [
+            "At the beginning of each financial year. □",
+            "When funds are necessitate for a new project.",
+            "To empower expenditure from the Contingencies Fund.",
+            "When additional provision is necessitate under a sub-head and equivalent savings can be made under another sub-head of the same Head."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (When additional provision is necessitate under a sub-head and equivalent savings can be made under another sub-head of the same Head.). Financial Regulation 309 defines a Virement Warrant as being issued \"when... additional provision is demand under a particular sub-head (or a new sub-head is demand) while, at the same time, equivalent savings can be made under another sub- head of the same Head.\"",
+          "difficulty": "medium",
+          "chapter": "Budgeting & Financial Planning - Expansion Set",
+          "keywords": [
+            "context",
+            "point",
+            "virement",
+            "warrant"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_bgt_065",
+          "question": "In the public service context, which option correctly addresses: Virement from a Recurrent Expenditure Head of Account to a Capital Expenditure Head of Account is:?",
+          "options": [
+            "Allowed with Minister of Finance approval.",
+            "Not allowed.",
+            "Allowed only in the last quarter of the financial year",
+            "Allowed with National Assembly approval."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Not allowed.). Financial Regulation 316(iii) states: \"Virement from one Head of Account in the Recurrent Expenditure estimates to another Head of account in Capital Expenditure estimates must not be allowed and vice versa.\"",
+          "difficulty": "easy",
+          "chapter": "Budgeting & Financial Planning - Expansion Set",
+          "keywords": [
+            "expenditure",
+            "head",
+            "account",
+            "context"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_bgt_066",
+          "question": "which option best describes the objective of a Supplementary (Statutory) Expenditure Warrant?",
+          "options": [
+            "To permit additional expenditure for votes chargeable against the Consolidated Revenue Fund by virtue of the Constitution.",
+            "To provide funds for new capital projects.",
+            "To replenish the Contingencies Fund.",
+            "To facilitate virement between sub-heads"
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (To permit additional expenditure for votes chargeable against the Consolidated Revenue Fund by virtue of the Constitution.). Financial Regulation 312 states it is for \"additional expenditure over and above that included in the General Warrant or in a Supplementary General Warrant, in respect of votes which are chargeable against the Consolidated Revenue Fund by virtue of the Constitution...\" 174",
+          "difficulty": "hard",
+          "chapter": "Budgeting & Financial Planning - Expansion Set",
+          "keywords": [
+            "option",
+            "best",
+            "describes",
+            "objective"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_bgt_067",
+          "question": "In the public service context, choose the best answer for: From which fund is Capital Expenditure paid?",
+          "options": [
+            "Consolidated Revenue Fund.",
+            "Federation Account. □",
+            "Contingencies Fund.",
+            "Development Fund."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Development Fund.). Financial Regulation 318 states: \"Capital Expenditure is paid from the Development Fund...\"",
+          "difficulty": "medium",
+          "chapter": "Budgeting & Financial Planning - Expansion Set",
+          "keywords": [
+            "context",
+            "choose",
+            "best",
+            "answer"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_bgt_068",
+          "question": "According to established rules, responsibility for is personally in charge for obtaining acquittal for payments out of public funds until the relevant payment vouchers are obtained belongs to which role?",
+          "options": [
+            "The Sub-Accounting Officer.",
+            "The Auditor-General.",
+            "The Accounting Officer.",
+            "The Head of Accounts.Q."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (The Sub-Accounting Officer.). Financial Regulation 811(ii) states: \"It is the personal accountability of the Sub-Accounting Officer to obtain acquittal for the payments out of public funds and this accountability exists until he has obtained the relevant disbursement vouchers (See Regulation 621).\" 220",
+          "difficulty": "medium",
+          "chapter": "Budgeting & Financial Planning - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "responsibility",
+            "personally"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_bgt_069",
+          "question": "In the public service context, which option correctly addresses: To what classification code should both the Treasury Receipt Voucher and disbursement Voucher for pension deductions be classified?",
+          "options": [
+            "Capital expenditure code.",
+            "General administrative expenses",
+            "Cash transfer code 2000 series.",
+            "Revenue Head and Sub-Head."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Cash transfer code 2000 series.). Financial Regulation 1907 specifies that both the Treasury Receipt Voucher and payment Voucher should be classified to cash transfer code 2000 series.",
+          "difficulty": "easy",
+          "chapter": "Budgeting & Financial Planning - Expansion Set",
+          "keywords": [
+            "voucher",
+            "context",
+            "option",
+            "correctly"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_bgt_070",
+          "question": "which option best describes the term for a financial report that shows the income and expenditure of a government body for a specific period?",
+          "options": [
+            "Statement of Financial Performance.",
+            "Statement of Financial Position.",
+            "Appropriation Act. Q.",
+            "Consolidated Financial Statement. 413"
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Statement of Financial Performance.). The Statement of Financial Performance shows the income and expenditure for a particular period.",
+          "difficulty": "medium",
+          "chapter": "Budgeting & Financial Planning - Expansion Set",
+          "keywords": [
+            "option",
+            "best",
+            "describes",
+            "term"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_bgt_071",
+          "question": "choose the best answer for: According to Financial Regulation 103, no payments must be made except on the authority of a warrant duly issued and signed by whom?",
+          "options": [
+            "The President.",
+            "The Accountant-General.",
+            "The Minister of Finance.",
+            "The National Assembly"
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (The Minister of Finance.). Financial Regulation 103 explicitly states, \"no payments must be made except on the authority of a warrant duly issued and signed by the Minister.\"",
+          "difficulty": "medium",
+          "chapter": "Budgeting & Financial Planning - Expansion Set",
+          "keywords": [
+            "choose",
+            "best",
+            "answer",
+            "according"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_bgt_072",
+          "question": "In the public service context, which option best describes the main instruments used to limit and arrange the disbursement of Federal Government funds?",
+          "options": [
+            "Treasury Circulars and Accounting Manuals.",
+            "Annual Estimates and Appropriation Act.",
+            "Financial Regulations and Accounting Codes.",
+            "Ministerial Directives and Executive Orders"
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Annual Estimates and Appropriation Act.). Financial Regulation 301 states: \"The Annual Estimates and Appropriation Act are instruments used to limit and arrange the disbursement of the funds of the Federal Government.\"",
+          "difficulty": "medium",
+          "chapter": "Budgeting & Financial Planning - Expansion Set",
+          "keywords": [
+            "context",
+            "option",
+            "best",
+            "describes"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_bgt_073",
+          "question": "According to established rules, responsibility for is accountable for any expenditure incurred without proper authority, as stated in Financial Regulation 301 belongs to which role?",
+          "options": [
+            "The Accountant-General.",
+            "The National Assembly. Q",
+            "The officer controlling the vote.",
+            "The Minister of Finance."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (The officer controlling the vote.). Financial Regulation 301 clearly states that \"Any officer controls a vote, or part thereof, who incurs expenditure without such authority does so on his sole accountability and will consequently be held peculiarly in charge for his actions.\"",
+          "difficulty": "hard",
+          "chapter": "Budgeting & Financial Planning - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "responsibility",
+            "accountable"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_bgt_074",
+          "question": "In the public service context, at what point is a Provisional General Warrant issued?",
+          "options": [
+            "At the end of the financial year.",
+            "When the Appropriation Act has not come into operation at the commencement of the financial year.",
+            "To transfer funds between sub-heads",
+            "For additional, unforeseen expenditure."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (When the Appropriation Act has not come into operation at the commencement of the financial year.). Financial Regulation 303 states: \"A provisional General Warrant must be issued where the Appropriation Act has not come into operation at the commencement of the 'financial year.\"",
+          "difficulty": "hard",
+          "chapter": "Budgeting & Financial Planning - Expansion Set",
+          "keywords": [
+            "context",
+            "point",
+            "provisional",
+            "warrant"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_bgt_075",
+          "question": "In official practice, select the option that best answers: Can an unspent balance on a recurrent expenditure vote be revoted for the next financial year?",
+          "options": [
+            "Yes, if approved by the Minister of Finance.",
+            "Only for capital projects. □",
+            "Yes, if approved by the National Assembly.",
+            "No, it cannot be revoted."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (No, it cannot be revoted.). Financial Regulation 314 states: \"An unspent balance on a recurrent, expenditure vote cannot be revoted.\"",
+          "difficulty": "easy",
+          "chapter": "Budgeting & Financial Planning - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Budgeting & Financial Planning",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
         }
       ]
     },
@@ -3578,6 +4178,606 @@
           "sourceSection": "Procurement Under Financial Controls",
           "year": 2009,
           "lastReviewed": "2026-03-03"
+        },
+        {
+          "id": "fin_pro_051",
+          "question": "According to established rules, select the statement that correctly defines one of the key responsibilities of Accounting Officers under the Public Procurement Act?",
+          "options": [
+            "To conduct external audits. □",
+            "To personally execute all procurements.",
+            "To approve all payments without review.",
+            "To secure adequate appropriation is available for Procurements in their annual budget."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (To secure adequate appropriation is available for Procurements in their annual budget.). Financial Regulation 113(b) states: \"guarantee that adequate appropriation is available for Procurements in their annual budget.\"",
+          "difficulty": "hard",
+          "chapter": "Procurement Under Financial Controls - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "select",
+            "statement"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_pro_052",
+          "question": "In official practice, which option correctly addresses: The Due workflow policy is described as a novel anti-corruption mechanism of the Federal Government aimed at providing transparency and accountability in what specific areas?",
+          "options": [
+            "Judicial processes and legal frameworks a 385",
+            "Taxation and revenue generation",
+            "International relations and foreign policy",
+            "Public sector procurement, government budgetary, and financial operations"
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Public sector procurement, government budgetary, and financial operations). The Due procedure policy's aim is to provide transparency and accountability in procurement and in government budgetary and financial operations.",
+          "difficulty": "easy",
+          "chapter": "Procurement Under Financial Controls - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "option",
+            "correctly"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_pro_053",
+          "question": "In official practice, select the option that best answers: The concept of \"Due procedure\" applies to which of the following aspects of government business?",
+          "options": [
+            "Procurement and contract awards only",
+            "Financial operations only a.",
+            "Budgetary operations only",
+            "All aspects of Government business, including negotiation, recruitment, and promotion"
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (All aspects of Government business, including negotiation, recruitment, and promotion). A common error is associating \"due procedure\" only with procurement, but it applies to all other aspects of government business, such as negotiation, recruitment, and promotion.",
+          "difficulty": "medium",
+          "chapter": "Procurement Under Financial Controls - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_pro_054",
+          "question": "In the public service context, which role is accountable for causing surprise inspections to be carried out on the accounts of officers with financial responsibilities?",
+          "options": [
+            "Only the Auditor-General.",
+            "The Accountant-General.",
+            "Only Accounting Officers.",
+            "The Minister of Finance. □ 156"
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (The Accountant-General.). Financial Regulation 126 states, \"The Accountant-General must from time to time cause surprise inspections to be carried out on the accounts of any of the officers referred to in Regulation 123.\" Part 2: Financial Regulations: \"Revenue Collection and Accounting,\"",
+          "difficulty": "easy",
+          "chapter": "Procurement Under Financial Controls - Expansion Set",
+          "keywords": [
+            "context",
+            "role",
+            "accountable",
+            "causing"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_pro_055",
+          "question": "Within government administration, which role is accountable for the overall supervision of the disbursement of funds and the proper monitoring and accounting for revenue?",
+          "options": [
+            "The Accounting Officer",
+            "The Head of Finance and Accounts of a ministry",
+            "The Accountant-General 165 Q",
+            "The Minister of Finance"
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (The Head of Finance and Accounts of a ministry). Financial Regulation 114(b) states that one of the duties of the Head of Finance and Accounts is to guarantee \"adequate supervision of the disbursement of funds and proper monitoring and accounting for revenue.\"",
+          "difficulty": "medium",
+          "chapter": "Procurement Under Financial Controls - Expansion Set",
+          "keywords": [
+            "within",
+            "role",
+            "accountable",
+            "overall"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_pro_056",
+          "question": "which option best describes one of the main objectives of the Due workflow policy?",
+          "options": [
+            "To increase government spending on all projects",
+            "To promote extra-budgetary spending in Ministries, Departments, and Agencies (MDAs)",
+            "To centralize all procurement decisions at the federal level a.",
+            "To strictly enforce due workflow principles of transparency, competition, and efficiency"
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (To strictly enforce due workflow principles of transparency, competition, and efficiency). A main objective is to strictly enforce due procedure principles of transparency, competition, efficiency, and value for money in the procurement of public goods, works, and services.",
+          "difficulty": "medium",
+          "chapter": "Procurement Under Financial Controls - Expansion Set",
+          "keywords": [
+            "option",
+            "best",
+            "describes",
+            "main"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_pro_057",
+          "question": "responsibility for is accountable for approving and ensuring compliance with accounting codes, internal audit guides, and stock verification manuals belongs to which role?",
+          "options": [
+            "The Accountant-General.",
+            "The Minister of Finance.",
+            "Accounting Officers",
+            "The Auditor-General."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (The Accountant-General.). Financial Regulation 107(i) states the Accountant-General must \"approve and guarantee compliance with accounting codes, internal audit guides and stock verification manuals.\"",
+          "difficulty": "medium",
+          "chapter": "Procurement Under Financial Controls - Expansion Set",
+          "keywords": [
+            "responsibility",
+            "accountable",
+            "approving",
+            "ensuring"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_pro_058",
+          "question": "Within government administration, select the option that best answers: If an Accounting Officer fails to comply with the provisions of the Public Procurement Act, who must be held personally liable for any breach or contravention?",
+          "options": [
+            "The Minister of Finance.",
+            "Only the subordinates who caused the breach.",
+            "The Accounting Officer, whether or not caused by them in person or their subordinates.",
+            "The Bureau of Public Procurement"
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (The Accounting Officer, whether or not caused by them in person or their subordinates.). Financial Regulation 113(i) states the Accounting Officer \"must be personally liable for any breach or contravention thereof, whether or not such breach or contravention was caused by them in person, their subordinates, or any person to whom they may have delegated their responsibilities.\"",
+          "difficulty": "easy",
+          "chapter": "Procurement Under Financial Controls - Expansion Set",
+          "keywords": [
+            "within",
+            "select",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_pro_059",
+          "question": "Within government administration, which option best describes the principal role of the Financial Regulations issued by the Minister of Finance?",
+          "options": [
+            "To guide public officers on procurement only.",
+            "To dictate the national budget.",
+            "To set tax policies.Q",
+            "To guide public officers on the receipts and disbursements of Public Funds, and the management of public assets."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (To guide public officers on the receipts and disbursements of Public Funds, and the management of public assets.). Financial Regulation 501 states: \"Specifically, the Minister of Finance must from time to time direct the issuance of the Financial Regulations to guide all public officers on the receipts and disbursements of Public Funds, as well as the management of public assets.\"",
+          "difficulty": "medium",
+          "chapter": "Procurement Under Financial Controls - Expansion Set",
+          "keywords": [
+            "within",
+            "option",
+            "best",
+            "describes"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_pro_060",
+          "question": "In official practice, which option correctly addresses: To whom should the approved Accounting Code, Internal Audit Guide, and Treasury Circulars be circulated within a ministry or self-accounting unit?",
+          "options": [
+            "Only to the Accounting Officer.",
+            "To all officers within the ministry, extra-ministerial office and other arms of government for their guidance and compliance.",
+            "Only to the internal audit unit. □",
+            "Only to the Head of Finance and Accounts."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (To all officers within the ministry, extra-ministerial office and other arms of government for their guidance and compliance.). Financial Regulation 507 states: \"The approved Accounting Code and Internal Audit Guide of ministries/extra-ministerial offices and other arms of government or self accounting unit as well as Treasury circulars issued by the Accountant-General must be circulated to all officers within the ministry, extra-ministerial office and other arms of government for their guidance and compliance.\"",
+          "difficulty": "medium",
+          "chapter": "Procurement Under Financial Controls - Expansion Set",
+          "keywords": [
+            "accounting",
+            "official",
+            "practice",
+            "option"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_pro_061",
+          "question": "In official practice, select the option that best answers: What type of audit secure that laid down procedures are being observed in tendering, contracts, and store-keeping to prevent waste, pilferage, and extravagance?",
+          "options": [
+            "Value-for-Money (Performance) Audit. □",
+            "Appropriation Audit.",
+            "Financial Audit.",
+            "Financial Control Audit."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Financial Control Audit.). Financial Regulation 109(l)(c) states: \"Financial Control Audit-to guarantee that laid down procedures are being observed in tendering, contracts and store-keeping with a view to preventing waste, pilferage and Extravagance.\"",
+          "difficulty": "easy",
+          "chapter": "Procurement Under Financial Controls - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_pro_062",
+          "question": "In the public service context, choose the best answer for: What should be done with any balance of salary or other moneys due to an officer who has been dismissed for misappropriation of government funds?",
+          "options": [
+            "It must not be paid without the authority of the Accounting Officer.",
+            "It should be held indefinitely by the government.",
+            "It should be paid immediately to the officer's family.",
+            "It must be used to disbursement off their debts. ¡3"
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (It must not be paid without the authority of the Accounting Officer.). Financial Regulation 1511 states that any balance of salary or other money due to an officer who has been convicted or dismissed for misappropriation or theft must not be paid without the Accounting Officer's authority.",
+          "difficulty": "easy",
+          "chapter": "Procurement Under Financial Controls - Expansion Set",
+          "keywords": [
+            "context",
+            "choose",
+            "best",
+            "answer"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_pro_063",
+          "question": "In official practice, which option best describes one of the key responsibilities of the Accounting Officer in a self-accounting unit, as per Financial Regulation 1603(a)?",
+          "options": [
+            "To manage all personnel issues.",
+            "To approve all procurement contracts. □",
+            "To personally conduct all internal audits.",
+            "To secure strict observance of existing financial rules and regulations."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (To secure strict observance of existing financial rules and regulations.). Financial Regulation 1603(a) mandates that the Accounting Officer must secure strict observance of existing financial rules and regulations governing the receipt and disbursement of public funds.",
+          "difficulty": "easy",
+          "chapter": "Procurement Under Financial Controls - Expansion Set",
+          "keywords": [
+            "accounting",
+            "official",
+            "practice",
+            "option"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_pro_064",
+          "question": "which option best describes a core element of proper financial management in a self-accounting unit that the Accounting Officer must secure?",
+          "options": [
+            "Minimal log-keeping.",
+            "Maintaining secret accounts.",
+            "Avoiding external audits",
+            "Transparency and accountability in financial operations."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Transparency and accountability in financial operations.). The regulations emphasize strict observance of rules, proper accounting, and budget performance reporting, all pointing to transparency and accountability.",
+          "difficulty": "hard",
+          "chapter": "Procurement Under Financial Controls - Expansion Set",
+          "keywords": [
+            "accounting",
+            "option",
+            "best",
+            "describes"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_pro_065",
+          "question": "In official practice, which option correctly addresses: What document outlines the responsibilities of an Accounting Officer in a self-accounting unit?",
+          "options": [
+            "The Financial Regulations book, Chapter.",
+            "The annual budget document.",
+            "The HR policy manual. □",
+            "The organization's internal memo."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (The Financial Regulations book, Chapter.). Chapter 16 of the Financial Regulations book is dedicated to \"Self Accounting Status\" and outlines these responsibilities..",
+          "difficulty": "hard",
+          "chapter": "Procurement Under Financial Controls - Expansion Set",
+          "keywords": [
+            "accounting",
+            "official",
+            "practice",
+            "option"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_pro_066",
+          "question": "choose the best answer for: The Due procedure policy aims to prevent extra-budgetary spending in MDAs by ensuring what?",
+          "options": [
+            "All MDAs can spend as much as they want",
+            "Projects are funded even without a budget □.",
+            "Funds are sourced from international donors only",
+            "Only projects with due appropriation by the National Assembly are certified and funded"
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Only projects with due appropriation by the National Assembly are certified and funded). The policy aims to prevent extra-budgetary spending by ensuring that only 392 projects with due appropriation by the National Assembly are certified and funded for execution.",
+          "difficulty": "medium",
+          "chapter": "Procurement Under Financial Controls - Expansion Set",
+          "keywords": [
+            "choose",
+            "best",
+            "answer",
+            "procedure"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_pro_067",
+          "question": "responsibility for is the regulatory authority in charge for setting standards and developing the legal framework for public procurement in Nigeria belongs to which role?",
+          "options": [
+            "The Auditor-General for the Federationa",
+            "The Accountant-General of the Federation",
+            "The Head of the Civil Service of the Federation",
+            "The Bureau of Public Procurement"
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (The Bureau of Public Procurement). The Bureau of Public Procurement is one of the regulatory authorities in charge for monitoring and oversight, and for setting standards and developing the legal framework for public procurement.",
+          "difficulty": "medium",
+          "chapter": "Procurement Under Financial Controls - Expansion Set",
+          "keywords": [
+            "responsibility",
+            "regulatory",
+            "authority",
+            "charge"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_pro_068",
+          "question": "According to established rules, choose the option that an objective of the Due procedure policy related to project conceptualization?",
+          "options": [
+            "To secure that project conceptualization and packaging match the defined priorities and targets as contained in the annual financial appropriations",
+            "To secure projects are disconnected from the annual financial appropriations",
+            "To allow project conceptualization to be done by external consultants only Q 393",
+            "To guarantee projects are conceptualized on an ad-hoc basis"
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (To secure that project conceptualization and packaging match the defined priorities and targets as contained in the annual financial appropriations). A key objective is to secure that project conceptualization and packaging match the defined priorities and targets as contained in the annual financial appropriations.",
+          "difficulty": "hard",
+          "chapter": "Procurement Under Financial Controls - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "choose",
+            "option"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_pro_069",
+          "question": "In official practice, select the option that best answers: What does the term \"Accounting Officer\" mean?",
+          "options": [
+            "The Permanent Secretary of a ministry or head of an extra-ministerial office is in charge for human, material, and financial resources.",
+            "An officer who keeps a cash book.3",
+            "The Chief Executive Officer of a parastatal.",
+            "Any officer involved in financial transactions."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (The Permanent Secretary of a ministry or head of an extra-ministerial office is in charge for human, material, and financial resources.). Financial Regulation 111 (i) defines \"Accounting Officer\" as \"the Permanent Secretary of a ministry or the head of extra-ministerial office and other arms of government who is in full control of, and is accountable for, human, material, and financial resources.\" 151",
+          "difficulty": "easy",
+          "chapter": "Procurement Under Financial Controls - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_pro_070",
+          "question": "According to established rules, which option best describes one of the duties of the Head of Finance and Accounts of a ministry?",
+          "options": [
+            "To conduct external audits of the ministry.Q",
+            "To approve all government contracts. 152",
+            "To secure compliance with Financial Regulations and the Accounting Code by staff.",
+            "To directly disburse all public funds."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (To secure compliance with Financial Regulations and the Accounting Code by staff.). Financial Regulation 114(a) states the Head of Finance and Accounts is in charge for \"ensuring compliance with Financial Regulations and the Accounting Code by all staff under his control and supervision.\"",
+          "difficulty": "medium",
+          "chapter": "Procurement Under Financial Controls - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_pro_071",
+          "question": "Within government administration, select the statement that NOT included in the definition of a \"Sub-Accounting Officer\"?",
+          "options": [
+            "Pensions disbursement Officer",
+            "Sub Treasurer of the Federation.",
+            "Minister of a Ministry.",
+            "Federal payment Officer."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Minister of a Ministry.). Financial Regulation 115(ii) lists various officers included, but the \"Minister\" is the Political Head (FR 116), not a Sub-Accounting Officer.",
+          "difficulty": "easy",
+          "chapter": "Procurement Under Financial Controls - Expansion Set",
+          "keywords": [
+            "within",
+            "select",
+            "statement",
+            "included"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_pro_072",
+          "question": "According to established rules, choose the best answer for: What kind of checks should the Accountant-General or Accounting Officer use to supplement routine checks on Revenue Collectors' cash books?",
+          "options": [
+            "Telephone calls",
+            "Email reminders □",
+            "Written correspondence",
+            "Surprise inspections at the offices concerned"
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Surprise inspections at the offices concerned). Financial Regulation 211 states that the Accountant-General or Accounting Officer must supplement routine checks with surprise inspections at the offices.",
+          "difficulty": "hard",
+          "chapter": "Procurement Under Financial Controls - Expansion Set",
+          "keywords": [
+            "checks",
+            "according",
+            "established",
+            "choose"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_pro_073",
+          "question": "which option aligns with the meaning of necessitate for the abandonment of claims in the case of irrecoverable arrears of revenue?",
+          "options": [
+            "The authority of the Auditor-General. □",
+            "The approval of the Accounting Officer.",
+            "The approval of the Head of Finance and Accounts.",
+            "The authority of the Minister of Finance."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (The authority of the Minister of Finance.). Financial Regulation 231 (i) states that the authority of the Minister of Finance is necessitate for any abandonment of claims, except where other authority is established by law.",
+          "difficulty": "medium",
+          "chapter": "Procurement Under Financial Controls - Expansion Set",
+          "keywords": [
+            "option",
+            "aligns",
+            "meaning",
+            "necessitate"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_pro_074",
+          "question": "which option aligns with the meaning of the limit of authority conveyed by Recurrent Expenditure Warrants to officers controlling votes?",
+          "options": [
+            "Subject to the discretion of the Accounting Officer.",
+            "Limited to the amounts provided under each sub-head in the Approved Estimates and Supplementary Estimates.",
+            "Only for personal emoluments. □",
+            "Unlimited, as long as funds are available."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Limited to the amounts provided under each sub-head in the Approved Estimates and Supplementary Estimates.). Financial Regulation 313 states: \"The authority conveyed... is limited to the amounts provided under each sub-head in the Approved Estimates and Supplementary Estimates.\"",
+          "difficulty": "medium",
+          "chapter": "Procurement Under Financial Controls - Expansion Set",
+          "keywords": [
+            "option",
+            "aligns",
+            "meaning",
+            "limit"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_pro_075",
+          "question": "which role is primarily in charge for making disbursements of public funds?",
+          "options": [
+            "The Accountant-General and Accounting Officers.",
+            "The Minister of Finance. □",
+            "Only Accounting Officers.",
+            "Only the Accountant-General."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (The Accountant-General and Accounting Officers.). Financial Regulation 401 (i) states: \"All disbursements of public funds must be made by the Accountant General on the authority of the appropriate Warrant issued to him and also by Accounting Officers entrusted with the expenditure of public fund falling within the votes of charge of their ministries or extra ministerial offices and other arms, of government.\"",
+          "difficulty": "easy",
+          "chapter": "Procurement Under Financial Controls - Expansion Set",
+          "keywords": [
+            "role",
+            "primarily",
+            "charge",
+            "making"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Procurement Under Financial Controls",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
         }
       ]
     },
@@ -5352,6 +6552,606 @@
           "sourceSection": "Audits, Sanctions & Compliance",
           "year": 2009,
           "lastReviewed": "2026-03-03"
+        },
+        {
+          "id": "fin_aud_051",
+          "question": "In the public service context, choose the best answer for: To whom does the Internal Auditor submit periodic audit reports?",
+          "options": [
+            "The Accountant-General.",
+            "The Minister of Finance. Q",
+            "The Head of Department.",
+            "The Accounting Officer."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (The Accounting Officer.). Financial Regulation 1706 explicitly states that periodic audit reports are submitted to the Accounting Officer.",
+          "difficulty": "easy",
+          "chapter": "Audits, Sanctions & Compliance - Expansion Set",
+          "keywords": [
+            "context",
+            "choose",
+            "best",
+            "answer"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_aud_052",
+          "question": "Within government administration, responsibility for receives the three copies of the Board of Survey report belongs to which role?",
+          "options": [
+            "The Accounting Officer, the Accountant-General, and the Auditor-General.",
+            "The Auditor-General, the Head of Internal Audit, and the Head of Department",
+            "The Accounting Officer, the Head of Department, and the officer-in-charge.",
+            "The Accounting Officer, the Head of the Internal Audit Unit, and the Minister of Finance."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (The Accounting Officer, the Accountant-General, and the Auditor-General.). Financial Regulation 1807 directs that one copy of the report goes to the Accounting Officer, one to the Accountant-General, and one to the Auditor-General.",
+          "difficulty": "easy",
+          "chapter": "Audits, Sanctions & Compliance - Expansion Set",
+          "keywords": [
+            "within",
+            "responsibility",
+            "receives",
+            "three"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_aud_053",
+          "question": "choose the best answer for: What happens if an Internal Auditor discovers that an officer is negligently disregarding Financial Regulations?",
+          "options": [
+            "The Internal Auditor should ignore it if it is a small error.Q",
+            "The Internal Auditor should inform the officer's supervisor.",
+            "The Internal Auditor should communicate his discovery to the Accounting Officer in a \"management letter.\" 275",
+            "The Internal Auditor should write a note to the Auditor-General."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (The Internal Auditor should communicate his discovery to the Accounting Officer in a \"management letter.\" 275). Financial Regulation 1703(e) necessitate the Internal Auditor to communicate such discoveries to the Accounting Officer in a \"management letter.\"",
+          "difficulty": "hard",
+          "chapter": "Audits, Sanctions & Compliance - Expansion Set",
+          "keywords": [
+            "choose",
+            "best",
+            "answer",
+            "happens"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_aud_054",
+          "question": "Within government administration, which office is in charge for the proper custody of public funds, stamps, and other government documents in a Ministry, Department, or Agency (MDA)?",
+          "options": [
+            "The Head of Internal Audit.",
+            "The Director of Finance and Accounts.",
+            "The Accountant-General of the Federation.a.",
+            "The Permanent Secretary/Chief Executive Officer."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (The Director of Finance and Accounts.). The Director of Finance and Accounts is in charge for the proper custody of all public funds, stamps, and other government documents.",
+          "difficulty": "easy",
+          "chapter": "Audits, Sanctions & Compliance - Expansion Set",
+          "keywords": [
+            "within",
+            "office",
+            "charge",
+            "proper"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_aud_055",
+          "question": "According to established rules, select the option that best answers: What must Accounting Officers do upon the establishment of any new revenue collecting office?",
+          "options": [
+            "Notify the Minister of Finance",
+            "Notify the Central Bank of Nigeriaa",
+            "Notify the appropriate Sub Accounting Officer and the Auditor-General",
+            "Notify the Head of Internal Audit"
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Notify the appropriate Sub Accounting Officer and the Auditor-General). Financial Regulation 217 specifies that Accounting Officers will notify the appropriate Sub Accounting Officer and the Auditor-General of the establishment of any new revenue-collecting office.",
+          "difficulty": "medium",
+          "chapter": "Audits, Sanctions & Compliance - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_aud_056",
+          "question": "Within government administration, which option best describes the consequence if a loss of public fund is revealed following an investigation into a suspected irregularity?",
+          "options": [
+            "The officer will be given a warning.",
+            "The loss will be covered by the Contingencies Fund.",
+            "Action must be taken in accordance with Chapter 25 of these Regulations.",
+            "The matter will be referred to the National Assembly. 193 Q"
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Action must be taken in accordance with Chapter 25 of these Regulations.). Financial Regulation 409 states: \"Where a loss of 'public fund is revealed, action must be taken in accordance with Chapter 25 of these Regulations.\"",
+          "difficulty": "medium",
+          "chapter": "Audits, Sanctions & Compliance - Expansion Set",
+          "keywords": [
+            "within",
+            "option",
+            "best",
+            "describes"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_aud_057",
+          "question": "In the public service context, which option correctly addresses: What documents are federal ministries and other arms of government necessitate to use for their daily financial transactions?",
+          "options": [
+            "Specific departmental guidelines only. □",
+            "Internal audit reports only.",
+            "Only the Annual Estimates.",
+            "The Financial Regulations, Treasury Accounting Manual, and Treasury Circulars issued by the Office of the Accountant General."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (The Financial Regulations, Treasury Accounting Manual, and Treasury Circulars issued by the Office of the Accountant General.). Financial Regulation 503 states: \"For this objective, federal ministries/extra ministerial offices and other arms of government must use the Financial Regulations, Treasury Accounting Manual and Treasury Circulars issued by the Office of the Accountant General in accounting for their daily financial transactions.\"",
+          "difficulty": "easy",
+          "chapter": "Audits, Sanctions & Compliance - Expansion Set",
+          "keywords": [
+            "context",
+            "option",
+            "correctly",
+            "addresses"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_aud_058",
+          "question": "According to established rules, which option aligns with the meaning of the definition of an \"Accounting Officer\" in the context of these regulations? 200?",
+          "options": [
+            "The Permanent Secretary of a ministry or the head of an extra-ministerial office who is in full control of and accountable for human, material, and financial resources.",
+            "The officer in charge for internal audit.",
+            "The officer who signs disbursement vouchers",
+            "Any officer who handles public money."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (The Permanent Secretary of a ministry or the head of an extra-ministerial office who is in full control of and accountable for human, material, and financial resources.). Financial Regulation 111 (i) states: \"The Term 'Accounting Officer' means the Permanent Secretary of a ministry or the head of extra-ministerial office and other arms of government who is in full control of, and is in charge for human, material and financial resources which are critical inputs' in the management of an organization.\"",
+          "difficulty": "easy",
+          "chapter": "Audits, Sanctions & Compliance - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "aligns"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_aud_059",
+          "question": "According to established rules, which role is personally accountable for ensuring that the balance of cash with the cashier is locked in a strong-room or safe at the close of business daily?",
+          "options": [
+            "Sub-Accounting Officers.",
+            "The Head of Department.",
+            "The cashier only.",
+            "The Internal Auditor. □."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Sub-Accounting Officers.). Financial Regulation 1120 assigns this accountability to \"Sub-Accounting Officers.\"",
+          "difficulty": "easy",
+          "chapter": "Audits, Sanctions & Compliance - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "role",
+            "personally"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_aud_060",
+          "question": "According to established rules, which role is in charge for ensuring that all stores are physically secure?",
+          "options": [
+            "The Permanent Secretary or Head of Extra-Ministerial Office.",
+            "The Accountant-General.",
+            "The Internal Auditor.",
+            "The Storekeeper"
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (The Permanent Secretary or Head of Extra-Ministerial Office.). Financial Regulation 2128(b) places the duty for the physical security of all government stores on the Permanent Secretary or Head of Extra-Ministerial Office.",
+          "difficulty": "medium",
+          "chapter": "Audits, Sanctions & Compliance - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "role",
+            "charge"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_aud_061",
+          "question": "In official practice, which option best describes the aim of the audit query issued by the Auditor-General for the Federation?",
+          "options": [
+            "To approve new projects",
+            "To question a government policy",
+            "To highlight any financial anomalies, unauthorized expenditures, or lack of proper accounting",
+            "To recommend new appointments □."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (To highlight any financial anomalies, unauthorized expenditures, or lack of proper accounting). The Auditor-General's report is based on audit queries, which highlight financial 396 irregularities such as lack of proper accounting, unauthorized expenditures, and other financial anomalies.",
+          "difficulty": "easy",
+          "chapter": "Audits, Sanctions & Compliance - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_aud_062",
+          "question": "In official practice, select the statement that correctly defines the accountability of the Political Head regarding his ministry, agency, and/or parastatal?",
+          "options": [
+            "To personally approve all procurements.",
+            "To conduct internal audits. □",
+            "To manage its day-to-day financial transactions.",
+            "To supervise and control its activities."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (To supervise and control its activities.). Financial Regulation 118(i) states, \"It must be the duty of the Political Head to supervise and control the activities of his ministry, agency, and/or parastatal.\"",
+          "difficulty": "easy",
+          "chapter": "Audits, Sanctions & Compliance - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "select",
+            "statement"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_aud_063",
+          "question": "In the public service context, responsibility for is in charge for checking Revenue Collectors' cash books and cash balances at irregular intervals belongs to which role?",
+          "options": [
+            "The Head of Internal Audit",
+            "The Accountant-Generala",
+            "The Accounting Officer",
+            "The Head of Finance and Accounts"
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (The Accounting Officer). Financial Regulation 217 states that the Accounting Officer may consider it necessary for a revenue collecting office to have its cash books and cash balances checked at irregular intervals.",
+          "difficulty": "medium",
+          "chapter": "Audits, Sanctions & Compliance - Expansion Set",
+          "keywords": [
+            "cash",
+            "context",
+            "responsibility",
+            "charge"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_aud_064",
+          "question": "In official practice, which role is in charge for ensuring that provisions for Value Added Tax (VAT) and Withholding Tax (WHT) are made and remitted?",
+          "options": [
+            "The Minister of Finance",
+            "The Accounting Officers",
+            "The Accountant-General",
+            "The Head of Internal Audit □"
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (The Accounting Officers). Financial Regulation 234(i) makes it mandatory for Accounting Officers to guarantee full compliance with the dual roles of making provision for and remitting VAT and WHT",
+          "difficulty": "medium",
+          "chapter": "Audits, Sanctions & Compliance - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "role",
+            "charge"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_aud_065",
+          "question": "Within government administration, which office is in charge for verifying the Head and subhead inserted by the Revenue Collector on the paying-in form?",
+          "options": [
+            "The Accountant-General",
+            "The Head of Internal Audit 166 Q",
+            "The Accounting Officer",
+            "The receiving cashier"
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (The receiving cashier). Financial Regulation 209(i) states that the receiving cashier will, in each case, verify the Head and subhead.",
+          "difficulty": "medium",
+          "chapter": "Audits, Sanctions & Compliance - Expansion Set",
+          "keywords": [
+            "within",
+            "office",
+            "charge",
+            "verifying"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_aud_066",
+          "question": "Within government administration, select the statement that correctly defines the aim of the Revenue Collector's paying-in Form (Treasury Form 15)?",
+          "options": [
+            "To track the movements of the Revenue Collector.",
+            "To serve as an internal audit document.",
+            "To support the lodgement of moneys with a Sub-Accounting Officer.",
+            "To report a loss of funds. Q"
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (To support the lodgement of moneys with a Sub-Accounting Officer.). Financial Regulation 218 mentions that a lodgement with a Sub-Accounting Officer will be supported by a paying-in form (Treasury Form 15).",
+          "difficulty": "hard",
+          "chapter": "Audits, Sanctions & Compliance - Expansion Set",
+          "keywords": [
+            "form",
+            "within",
+            "select",
+            "statement"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_aud_067",
+          "question": "Within government administration, which option best describes the chief accountability of the Political Head of a Ministry regarding its activities?",
+          "options": [
+            "To supervise and control its activities.",
+            "To approve all contracts.",
+            "To conduct internal audits",
+            "To manage day-to-day financial transactions."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (To supervise and control its activities.). Financial Regulation 118(i) states: \"It must be the accountability of the Political Head to supervise and control the activities of his ministry, agency and/or parastatal.\"",
+          "difficulty": "hard",
+          "chapter": "Audits, Sanctions & Compliance - Expansion Set",
+          "keywords": [
+            "within",
+            "option",
+            "best",
+            "describes"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_aud_068",
+          "question": "According to established rules, select the statement that correctly defines one of the duties of the Accountant-General regarding accounting codes and manuals?",
+          "options": [
+            "To formulate them without external input.",
+            "To approve and guarantee compliance with accounting codes, internal audit guides and stock verification manuals.",
+            "To distribute them to the public. □",
+            "To only approve them."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (To approve and guarantee compliance with accounting codes, internal audit guides and stock verification manuals.). Financial Regulation 107(i) states: \"approve and secure compliance with accounting codes, internal audit guides and stock verification manuals of federal ministries, extra-ministerial offices and other arms of government.\"",
+          "difficulty": "medium",
+          "chapter": "Audits, Sanctions & Compliance - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "select",
+            "statement"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_aud_069",
+          "question": "choose the best answer for: If a key holder suspects interference with the keys or locks of a strong-room or safe, what must they do?",
+          "options": [
+            "Ignore it unless a loss occurs.",
+            "Remove the contents to another safe, report the circumstances, and request immediate steps to alter the locks and provide new keys.",
+            "Inform only their immediate supervisor.a.",
+            "Conduct their own investigation."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Remove the contents to another safe, report the circumstances, and request immediate steps to alter the locks and provide new keys.). Financial Regulation 1113 directs the key holder to \"remove the contents to another safe, report the circumstances as directed in Regulation 1111, and ask that immediate steps be taken to have the locks altered and new keys provided.\"",
+          "difficulty": "hard",
+          "chapter": "Audits, Sanctions & Compliance - Expansion Set",
+          "keywords": [
+            "choose",
+            "best",
+            "answer",
+            "holder"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_aud_070",
+          "question": "According to established rules, which option best describes a key duty of the Internal Auditor as per Financial Regulation 1703?",
+          "options": [
+            "To manage the department's budget",
+            "To approve all payments.",
+            "To audit and certify all disbursement vouchers.",
+            "To conduct an annual audit of the entire Ministry."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (To audit and certify all disbursement vouchers.). Financial Regulation 1703(d) lists one of the duties as auditing and certifying all payment vouchers.",
+          "difficulty": "hard",
+          "chapter": "Audits, Sanctions & Compliance - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_aud_071",
+          "question": "Within government administration, which option aligns with the meaning of the Internal Auditor's guide for auditing procedures known as, according to FR 1708?",
+          "options": [
+            "The Auditor-General's Manual.",
+            "A Financial Statement.",
+            "An Audit Guide.",
+            "The General Warrant. □"
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (An Audit Guide.). Financial Regulation 1708 states that the Head of Internal Audit Unit must prepare and issue an \"Audit Guide\" for the use of audit staff.",
+          "difficulty": "medium",
+          "chapter": "Audits, Sanctions & Compliance - Expansion Set",
+          "keywords": [
+            "within",
+            "option",
+            "aligns",
+            "meaning"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_aud_072",
+          "question": "In the public service context, select the option that best answers: What must an Internal Auditor do when he discovers an apparent abuse of Financial Regulations?",
+          "options": [
+            "Ignore it.",
+            "Call the attention of the appropriate officer in writing.",
+            "Take disciplinary action against the officer. □",
+            "Report it immediately to the Accountant-General."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Call the attention of the appropriate officer in writing.). Financial Regulation 1703(a) states the Internal Auditor must call the attention of the appropriate officer in writing where there is any apparent abuse of Financial Regulations.",
+          "difficulty": "medium",
+          "chapter": "Audits, Sanctions & Compliance - Expansion Set",
+          "keywords": [
+            "context",
+            "select",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_aud_073",
+          "question": "Within government administration, which option aligns with the meaning of necessitate for the issuance of audit stamps to Internal Audit staff?",
+          "options": [
+            "A form signed by the Accountant-General.",
+            "Verbal permission from the Head of Department.",
+            "A written request.",
+            "A requisition form (Treasury Form 65A) in triplicate. a"
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (A requisition form (Treasury Form 65A) in triplicate. a). Financial Regulation 1711 details the procedure for issuing audit stamps, requiring a requisition form (Treasury Form 65A) in triplicate.",
+          "difficulty": "easy",
+          "chapter": "Audits, Sanctions & Compliance - Expansion Set",
+          "keywords": [
+            "audit",
+            "within",
+            "option",
+            "aligns"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_aud_074",
+          "question": "Within government administration, select the statement that correctly defines the significance of the Subsidiary Account Pension Unit functioning independently?",
+          "options": [
+            "It secure specialization and clear accountability for pension-related financial procedures.",
+            "It prevents any external audits.",
+            "It simplifies the overall accounting procedure",
+            "It allows for less oversight."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (It secure specialization and clear accountability for pension-related financial procedures.). The independent functioning, as per FR 1905, suggests a focus on specialized and accountable management of pension funds.",
+          "difficulty": "medium",
+          "chapter": "Audits, Sanctions & Compliance - Expansion Set",
+          "keywords": [
+            "within",
+            "select",
+            "statement",
+            "correctly"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_aud_075",
+          "question": "which office is accountable for examining the logbook regularly and signing against the entries?",
+          "options": [
+            "The Transport Officer.",
+            "The Accounting Officer.",
+            "The driver's supervisor",
+            "The Permanent Secretary or Head of Extra-Ministerial Office."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (The Permanent Secretary or Head of Extra-Ministerial Office.). Financial Regulation 2007 states that the Permanent Secretary or Head of Extra-Ministerial Office must examine the logbook regularly and sign against the entries.",
+          "difficulty": "medium",
+          "chapter": "Audits, Sanctions & Compliance - Expansion Set",
+          "keywords": [
+            "office",
+            "accountable",
+            "examining",
+            "logbook"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "Audits, Sanctions & Compliance",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
         }
       ]
     },
@@ -5523,15 +7323,15 @@
         },
         {
           "id": "fin_gen_008",
-          "question": "Who authorizes payments from the Consolidated Revenue Fund (CRF)",
+          "question": "In the public service context, which office permit payments from the Consolidated Revenue Fund (CRF)?",
           "options": [
-            "The Minister of Finance.",
             "The National Assembly.",
+            "The Minister of Finance.",
             "The Accountant-General.",
             "The Auditor-General."
           ],
-          "correct": 1,
-          "explanation": "Payments from the Consolidated Revenue Fund must be authorized by the National Assembly Reference: General Financial Management – CRF Authority.",
+          "correct": 0,
+          "explanation": "Correct option: A (The National Assembly.). Payments from the Consolidated Revenue Fund must be empower by the National Assembly Reference: General Financial Management – CRF Authority.",
           "difficulty": "hard",
           "chapter": "General Financial Management – CRF Authority",
           "keywords": [
@@ -5542,7 +7342,7 @@
           "sourceDocument": "Financial Regulations (FR)",
           "sourceSection": "General Financial Management",
           "year": 2009,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-13"
         },
         {
           "id": "fin_gen_009",
@@ -6374,15 +8174,15 @@
         },
         {
           "id": "fin_gen_046",
-          "question": "The total amount of funds allocated for staff salaries (Personnel Emoluments) in the budget is controlled primarily by data sourced from which platform",
+          "question": "In official practice, choose the best answer for: The total amount of funds allocated for staff salaries (Personnel Emoluments) in the budget is controlled primarily by data sourced from which platform?",
           "options": [
-            "TSA.",
-            "GIFMIS.",
             "IPPIS.",
-            "BPP."
+            "TSA.",
+            "BPP.",
+            "GIFMIS."
           ],
-          "correct": 2,
-          "explanation": "The Integrated Personnel and Payroll Information System (IPPIS) holds the accurate data on staff nominal roll, grade levels, and steps, which determines personnel emoluments [34-36] Reference: General Financial Management – Personnel Cost Control.",
+          "correct": 0,
+          "explanation": "Correct option: A (IPPIS.). The Integrated Personnel and Payroll Information System (IPPIS) holds the accurate data on staff nominal roll, grade levels, and steps, which determines personnel emoluments [34-36] Reference: General Financial Management – Personnel Cost Control.",
           "difficulty": "medium",
           "chapter": "General Financial Management – Personnel Cost Control",
           "keywords": [
@@ -6393,7 +8193,7 @@
           "sourceDocument": "Financial Regulations (FR)",
           "sourceSection": "General Financial Management",
           "year": 2009,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-13"
         },
         {
           "id": "fin_gen_047",
@@ -7130,6 +8930,606 @@
           "sourceSection": "General Financial Management",
           "year": 2009,
           "lastReviewed": "2026-03-03"
+        },
+        {
+          "id": "fin_gen_051",
+          "question": "Within government administration, select the option that best answers: To whom should requests for Treasury Receipts Books be submitted?",
+          "options": [
+            "The Head of Department. □.",
+            "The Minister of Finance.",
+            "The Accountant-General.",
+            "The Auditor-General."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (The Accountant-General.). Financial Regulation 1205 states that requests for Treasury Receipts Books should be submitted to the Accountant-General.",
+          "difficulty": "medium",
+          "chapter": "General Financial Management - Expansion Set",
+          "keywords": [
+            "within",
+            "select",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_gen_052",
+          "question": "Within government administration, select the option that best answers: The Accountant-General is accountable for maintaining and operating the accounts of which major public funds?",
+          "options": [
+            "Private bank accounts of public officers.a 147",
+            "Only the Federation Account.",
+            "Consolidated Revenue Fund, Development Fund, and Contingencies Fund.",
+            "Only the Consolidated Revenue Fund."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Consolidated Revenue Fund, Development Fund, and Contingencies Fund.). Financial Regulation 107(e) states the Accountant-General maintains and operates accounts of the \"Consolidated Revenue Fund, Development Fund, Contingencies Fund and Other Public Funds.\"",
+          "difficulty": "easy",
+          "chapter": "General Financial Management - Expansion Set",
+          "keywords": [
+            "within",
+            "select",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_gen_053",
+          "question": "According to established rules, choose the best answer for: From which fund is Recurrent Expenditure primarily paid?",
+          "options": [
+            "Development Fund.",
+            "Consolidated Revenue Fund.",
+            "Federation Account",
+            "Contingencies Fund."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Consolidated Revenue Fund.). Financial Regulation 302(i) states: \"Recurrent expenditure is paid from the Consolidated Revenue Fund...\"",
+          "difficulty": "easy",
+          "chapter": "General Financial Management - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_gen_054",
+          "question": "select the option that best answers: Funds transferred from the Contingencies Fund by a Supplementary (Contingencies) Warrant are transferred to which fund?",
+          "options": [
+            "Development Fund.",
+            "Treasury Single Account. 172 Q",
+            "Federation Account.",
+            "Consolidated Revenue Fund."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Consolidated Revenue Fund.). Financial Regulation 306 states it empower the Accountant-General \"to transfer the necessary funds from the Contingencies Fund to the Consolidated Revenue Fund.\"",
+          "difficulty": "easy",
+          "chapter": "General Financial Management - Expansion Set",
+          "keywords": [
+            "transferred",
+            "contingencies",
+            "fund",
+            "select"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_gen_055",
+          "question": "In the public service context, which office is in charge for ensuring the full collection of all government revenues and for promptly bringing them to account?",
+          "options": [
+            "The Minister of Finance",
+            "The Accountant-General",
+            "The Auditor-General",
+            "The Accounting Officer Q"
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (The Accounting Officer Q). Financial Regulation 201 explicitly states that Accounting Officers are accountable for the full collection of all revenues due to the government and for their prompt lodgment and accounting.",
+          "difficulty": "easy",
+          "chapter": "General Financial Management - Expansion Set",
+          "keywords": [
+            "context",
+            "office",
+            "charge",
+            "ensuring"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_gen_056",
+          "question": "Within government administration, which option NOT a form of warrant by which the Minister of Finance conveys authority for recurrent expenditure?",
+          "options": [
+            "Virement Warrant.3 170",
+            "Development Fund (Special) Warrant.",
+            "Recurrent Expenditure General Warrant.",
+            "Provisional General Warrant."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Development Fund (Special) Warrant.). Financial Regulation 302(ii) lists the forms of warrants for recurrent expenditure. The Development Fund (Special) Warrant is for Capital Expenditure (FR 318).",
+          "difficulty": "hard",
+          "chapter": "General Financial Management - Expansion Set",
+          "keywords": [
+            "within",
+            "option",
+            "form",
+            "warrant"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_gen_057",
+          "question": "According to established rules, which office has the right of access to records of all bank accounts of all ministries, extra-ministerial offices, and other arms of government?",
+          "options": [
+            "The Accountant-General and the Auditor-General or their representatives.",
+            "Only the Accounting Officer.",
+            "The Minister of Finance.",
+            "The Head of Finance and Accounts. □"
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (The Accountant-General and the Auditor-General or their representatives.). Financial Regulation 709 states: \"The Accountant-General and the Auditor-General or their representatives must have the right of access to records of all bank accounts of all ministries, extra ministerial offices and other arms of government...\"",
+          "difficulty": "hard",
+          "chapter": "General Financial Management - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "office",
+            "right"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_gen_058",
+          "question": "In the public service context, which office issues officially approved forms bearing Treasury numbers for use in all federal ministries to secure uniformity?",
+          "options": [
+            "The Accountant-General.",
+            "The Minister of Finance.",
+            "The Head of Civil Service. □ 149",
+            "The Auditor-General."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (The Accountant-General.). Financial Regulation 107(n) states the Accountant-General must \"issue officially approved forms bearing Treasury numbers for use in all federal ministries... to guarantee uniformity.\"",
+          "difficulty": "medium",
+          "chapter": "General Financial Management - Expansion Set",
+          "keywords": [
+            "context",
+            "office",
+            "issues",
+            "officially"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_gen_059",
+          "question": "In the public service context, which role is accountable for issuing Treasury Circulars and Accounting Manuals to guide Accounting Officers and other employees?",
+          "options": [
+            "The Minister of Finance.",
+            "The Head of Finance and Accounts.3",
+            "The Accountant-General.",
+            "The Auditor-General."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (The Accountant-General.). Financial Regulation 502 states: \"Pursuant to FR 501, the Accountant-General must issue from time to time Treasury Circulars and Accounting Manual to guide Accounting Officers and other employees of each ministries/extra- ministerial offices and other arms of government 01) all matters relating to the provisions of the Financial Regulations.\"",
+          "difficulty": "hard",
+          "chapter": "General Financial Management - Expansion Set",
+          "keywords": [
+            "accounting",
+            "context",
+            "role",
+            "accountable"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_gen_060",
+          "question": "Within government administration, which role is in charge for supervising and controlling the computerization of the accounting system in federal ministries?",
+          "options": [
+            "The Accountant-General.",
+            "The Minister of Finance.",
+            "The Auditor-General.",
+            "The Head of Finance and Accounts. Q"
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (The Accountant-General.). Financial Regulation 107(1) states the Accountant-General must \"supervise and control the computerization of the accounting system.\"",
+          "difficulty": "easy",
+          "chapter": "General Financial Management - Expansion Set",
+          "keywords": [
+            "within",
+            "role",
+            "charge",
+            "supervising"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_gen_061",
+          "question": "In the public service context, select the option that best answers: What happens to an unspent balance on a recurrent expenditure vote at the end of the financial year?",
+          "options": [
+            "It is transferred to the Development Fund.",
+            "It is returned to the Federation Account",
+            "It is carried forward to the next year.",
+            "It lapses."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (It lapses.). Financial Regulation 314 states, \"An unspent balance on a recurrent, expenditure vote cannot be revoted.\" and FR 413(i) states \"The authority for recurrent expenditure... lapses at the end of the financial year...\"",
+          "difficulty": "easy",
+          "chapter": "General Financial Management - Expansion Set",
+          "keywords": [
+            "context",
+            "select",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_gen_062",
+          "question": "In official practice, which role has free access to books of accounts, files, safes, security documents, and other records relating to the accounts of all federal ministries?",
+          "options": [
+            "The Accountant-General and the Auditor-General or their representatives.",
+            "Only the Accounting Officer.",
+            "Only the Minister of Finance.",
+            "The Head of Finance and Accounts. Q"
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (The Accountant-General and the Auditor-General or their representatives.). Financial Regulation 110 states: \"By virtue of the responsibilities and functions of the Accountant General and the Auditor-General or their representatives must, at all reasonable times, have free access to books of accounts, files, safes, security documents and other records and information relating to the accounts, of all federal ministries/extra ministerial offices and other arms of government, or units.\"",
+          "difficulty": "medium",
+          "chapter": "General Financial Management - Expansion Set",
+          "keywords": [
+            "accounts",
+            "official",
+            "practice",
+            "role"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_gen_063",
+          "question": "In the public service context, select the option that best answers: If a payment voucher is reported lost, and it is established that no loss or fraud has occurred, to whom should the Accounting Officer submit a report on the circumstances of the loss?",
+          "options": [
+            "The Auditor-General.",
+            "The Accountant-General.",
+            "The Head of Civil Service. E3",
+            "The Minister of Finance."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (The Accountant-General.). Financial Regulation 630 states: \"Where the Accounting Officer is satisfied that no loss or fraud has taken place he will submit a report On the circumstances of the loss of the voucher to the Accountant -General...\" Financial Regulations: Bank Accounts and Cheques",
+          "difficulty": "medium",
+          "chapter": "General Financial Management - Expansion Set",
+          "keywords": [
+            "loss",
+            "context",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_gen_064",
+          "question": "According to established rules, select the statement that correctly defines necessitate for any bank account beyond the three specified types?",
+          "options": [
+            "Approval from the Minister of Finance.",
+            "Express approval of the Accountant-General.",
+            "Notification to the Auditor-General.",
+            "A resolution from the National Assembly.Q"
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Express approval of the Accountant-General.). Financial Regulation 701 (ii) states: \"No other bank account must be allowed without the express approval of the Accountant-General.\"",
+          "difficulty": "hard",
+          "chapter": "General Financial Management - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "select",
+            "statement"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_gen_065",
+          "question": "In the public service context, which office is permit to issue Imprests?",
+          "options": [
+            "The Accountant-General of the Federation and Accounting Officers of Self-Accounting ministries/extra-ministerialoffices.",
+            "The Head of Civil Service of the Federation.3.",
+            "The Auditor-General for the Federation.",
+            "Only the Minister of Finance."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (The Accountant-General of the Federation and Accounting Officers of Self-Accounting ministries/extra-ministerialoffices.). Financial Regulation 1002 states that \"Imprests are issued by the Accountant-General of the Federation and the Accounting Officers of Self Accounting ministries/extra-ministerial offices and other arms of government.\"",
+          "difficulty": "medium",
+          "chapter": "General Financial Management - Expansion Set",
+          "keywords": [
+            "context",
+            "office",
+            "permit",
+            "issue"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_gen_066",
+          "question": "Within government administration, select the option that best answers: To whom should applications for imprests be made? 227?",
+          "options": [
+            "The Auditor-General.",
+            "The Accountant-General or, in the case of a self-accounting agency, to the Accounting Officer.",
+            "The Head of Department",
+            "The Minister of Finance."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (The Accountant-General or, in the case of a self-accounting agency, to the Accounting Officer.). Financial Regulation 1005 directs that \"Applications for imprests should be made to the Accountant-General or in the case of a self-accounting agency, to the Accounting Officer...\"",
+          "difficulty": "medium",
+          "chapter": "General Financial Management - Expansion Set",
+          "keywords": [
+            "within",
+            "select",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_gen_067",
+          "question": "In official practice, responsibility for has the authority to inspect the accounts of cash advance Holders belongs to which role?",
+          "options": [
+            "Only the Accounting Officer.",
+            "The Head of Department only.",
+            "The Minister of Finance only.a.",
+            "The Accountant-General and the Auditor-General."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (The Accountant-General and the Auditor-General.). Financial Regulation 1013 states: \"The accounts of cash advance Holders are subject to inspection by the Accountant-General and the Auditor-General.\"",
+          "difficulty": "easy",
+          "chapter": "General Financial Management - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "responsibility",
+            "authority"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_gen_068",
+          "question": "In the public service context, choose the best answer for: How often must monthly returns of all receipt and licence books issued, used, and unused be rendered, and to whom?",
+          "options": [
+            "Bi-annually, to the Head of Department.Q.",
+            "Monthly, to the Accountant-General.",
+            "Annually, to the Minister of Finance.",
+            "Quarterly, to the Auditor-General."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Monthly, to the Accountant-General.). Financial Regulation 1221 mandates \"monthly returns of all receipt and licence books issued, used and unused... to the Accountant-General.\"",
+          "difficulty": "hard",
+          "chapter": "General Financial Management - Expansion Set",
+          "keywords": [
+            "context",
+            "choose",
+            "best",
+            "answer"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_gen_069",
+          "question": "which role approves the grant of self-accounting status to a Ministry, Extra-Ministerial Office, or other arms of government?",
+          "options": [
+            "The Accountant-General.",
+            "The Minister of Finance. □",
+            "The Head of Department.",
+            "The Auditor-General."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (The Accountant-General.). Financial Regulation 1602 states that the Accountant-General's approval is necessitate for self-accounting status",
+          "difficulty": "easy",
+          "chapter": "General Financial Management - Expansion Set",
+          "keywords": [
+            "role",
+            "approves",
+            "grant",
+            "self"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_gen_070",
+          "question": "In the public service context, which role has been assigned the accountability for all financial business of the government of the federation by the President?",
+          "options": [
+            "The Head of the Civil Service",
+            "The Auditor-General for the Federation.",
+            "The Accountant-General of the Federation.",
+            "The Minister of Finance. Q"
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (The Minister of Finance. Q). Financial Regulation 103 states, \"The President of the Federal Republic of Nigeria has assigned to the Minister of Finance the accountability for all financial business of the government of the federation.\" 145",
+          "difficulty": "medium",
+          "chapter": "General Financial Management - Expansion Set",
+          "keywords": [
+            "context",
+            "role",
+            "been",
+            "assigned"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_gen_071",
+          "question": "select the statement that correctly defines the scope of application for the financial regulations issued by the Minister of Finance?",
+          "options": [
+            "Only federal ministries.",
+            "Only extra-ministerial offices.",
+            "The Federal Public Service, including ministries, extra-ministerial offices, and other arms of government.",
+            "Only self-accounting units. □ 146"
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (The Federal Public Service, including ministries, extra-ministerial offices, and other arms of government.). Financial Regulation 105 states, \"The financial regulations so issued must generally apply to the Federal Public Service, which means 'ministries, extra-ministerial offices, and other arms of government.\"",
+          "difficulty": "medium",
+          "chapter": "General Financial Management - Expansion Set",
+          "keywords": [
+            "select",
+            "statement",
+            "correctly",
+            "defines"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_gen_072",
+          "question": "In the public service context, responsibility for is the Head of the Federal Government Accounting Services and the Treasury belongs to which role?",
+          "options": [
+            "The Accountant-General of the Federation.",
+            "The Auditor-General for the Federation.",
+            "The Head of Finance and Accounts of a ministry",
+            "The Minister of Finance."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (The Accountant-General of the Federation.). Financial Regulation 106 states, \"The Accountant-General of the Federation is the Head of the Federal Government Accounting Services and the Treasury.\"",
+          "difficulty": "medium",
+          "chapter": "General Financial Management - Expansion Set",
+          "keywords": [
+            "context",
+            "responsibility",
+            "head",
+            "accounting"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_gen_073",
+          "question": "Within government administration, which option correctly addresses: How does the Accountant-General provide financial guidelines to federal ministries and other arms of government?",
+          "options": [
+            "Through direct verbal instructions.",
+            "By auditing their accounts annually",
+            "By issuing treasury circulars.",
+            "By conducting training sessions only."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (By issuing treasury circulars.). Financial Regulation 107(k) states the Accountant-General must \"provide financial guidelines through the issuance of treasury circulars.\"",
+          "difficulty": "medium",
+          "chapter": "General Financial Management - Expansion Set",
+          "keywords": [
+            "within",
+            "option",
+            "correctly",
+            "addresses"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_gen_074",
+          "question": "Within government administration, choose the best answer for: Question: What is one of the Accountant-General's duties related to revenue?",
+          "options": [
+            "To approve all revenue expenditures. □",
+            "To set revenue targets for ministries.",
+            "To carry out revenue monitoring and accounting.",
+            "To collect all federal government revenue."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (To carry out revenue monitoring and accounting.). Financial Regulation 107(m) states the Accountant-General must \"carry out revenue monitoring and accounting.\"",
+          "difficulty": "medium",
+          "chapter": "General Financial Management - Expansion Set",
+          "keywords": [
+            "within",
+            "choose",
+            "best",
+            "answer"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "fin_gen_075",
+          "question": "In the public service context, which role is personally and peculiarly accountable for the due performance of the financial duties of their ministries and for any inaccuracies in accounts rendered under their authority?",
+          "options": [
+            "All officers.",
+            "Only the Head of Finance and Accounts. E3",
+            "Only the Auditor-General.",
+            "Only the Accountant-General."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (All officers.). Financial Regulation 124 states, \"All officers are personally and peculiarly in charge for the due performance of the financial duties of their ministries/extra-ministerial offices and other arms of government.\"",
+          "difficulty": "easy",
+          "chapter": "General Financial Management - Expansion Set",
+          "keywords": [
+            "their",
+            "context",
+            "role",
+            "personally"
+          ],
+          "sourceDocument": "Financial Regulations (FR)",
+          "sourceSection": "General Financial Management",
+          "year": 2009,
+          "lastReviewed": "2026-03-13"
         }
       ]
     }

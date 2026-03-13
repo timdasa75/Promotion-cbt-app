@@ -1684,6 +1684,606 @@
           "sourceSection": "ICT Fundamentals & Concepts",
           "year": 2019,
           "lastReviewed": "2026-03-03"
+        },
+        {
+          "id": "ict_f_076",
+          "question": "According to established rules, which option correctly addresses: The relationship between the Board of a Parastatal and the Chief Executive should be one of what?",
+          "options": [
+            "Mutual respect and collaboration.",
+            "A relationship where the Board dictates every action of the Chief Executive. □.",
+            "Subordination of the Board to the Chief Executive.",
+            "A relationship of equals."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Mutual respect and collaboration.). The relationship between the Board and the Chief Executive should be cordial, based on mutual respect and collaboration.",
+          "difficulty": "easy",
+          "chapter": "ICT Fundamentals",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "correctly"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_f_077",
+          "question": "According to established rules, at what point a voucher is submitted for disbursement at another station, how should it be sent after being checked and stamped?",
+          "options": [
+            "Hand-carried by the payee. □",
+            "Under the security schedule of Transfer of disbursement Vouchers through the Sub-Treasurer.",
+            "By regular mail.",
+            "By email."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Under the security schedule of Transfer of disbursement Vouchers through the Sub-Treasurer.). Financial Regulation 612 states: \"When a voucher is submitted to a Sub-Treasury or Cash Office for disbursement at another station, it will, after being checked and stamped in accordance with Regulation 609, be sent under security schedule of Transfer of disbursement Vouchers through the Sub- Treasurer (See TF 193).\"",
+          "difficulty": "easy",
+          "chapter": "ICT Fundamentals",
+          "keywords": [
+            "according",
+            "established",
+            "point",
+            "voucher"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_f_078",
+          "question": "According to established rules, which option aligns with the meaning of demand for the safe custody of all bonds, agreements, and other valuable documents?",
+          "options": [
+            "They can be stored off-site.",
+            "They must be kept in a strong-room or safe, with a register maintained.",
+            "They can be kept in a regular office drawer.",
+            "They only need to be scanned and stored digitally.3."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (They must be kept in a strong-room or safe, with a register maintained.). Financial Regulation 1123 mandates that \"All bonds, agreements and other valuable documents must be kept in a strong-room or safe, and a register must be maintained for all such documents deposited.\"",
+          "difficulty": "hard",
+          "chapter": "ICT Fundamentals",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "aligns"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_f_079",
+          "question": "In official practice, select the option that best answers: How should registered and unregistered mail containing public funds or security documents be delivered?",
+          "options": [
+            "By locked bag, with a register maintained.",
+            "By hand, without any special precautions.",
+            "By regular post.",
+            "By email.a."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (By locked bag, with a register maintained.). Financial Regulation 1128 states, \"Registered and unregistered mail containing public funds or security documents must be delivered by locked bag, and a register must be maintained for all such mail.\"",
+          "difficulty": "medium",
+          "chapter": "ICT Fundamentals",
+          "keywords": [
+            "official",
+            "practice",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_f_080",
+          "question": "In the public service context, select the statement that correctly defines strictly prohibited regarding audit stamps?",
+          "options": [
+            "Using them on vouchers.",
+            "Transferring them to another staff member.",
+            "Keeping them in a safe. a",
+            "Collecting them from the Head of the Internal Audit Unit."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Transferring them to another staff member.). Financial Regulation 1713 states that \"Audit stamps are not transferable\" and must not be used by anyone other than the officer to whom they were issued.",
+          "difficulty": "hard",
+          "chapter": "ICT Fundamentals",
+          "keywords": [
+            "context",
+            "select",
+            "statement",
+            "correctly"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_f_081",
+          "question": "According to established rules, which option best describes the role of the Civil Service in relation to good governance, as stated in Chapter 1?",
+          "options": [
+            "To hinder the implementation of government policies",
+            "To dictate government policies",
+            "To only monitor, not actively participate in governance a",
+            "To play a crucial role in ensuring Nigeria is administered consistent with good governance attributes"
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (To play a crucial role in ensuring Nigeria is administered consistent with good governance attributes). The civil service has a crucial role to play in ensuring that Nigeria is administered in a manner consistent with the aforementioned attributes and characteristics of good governance",
+          "difficulty": "easy",
+          "chapter": "ICT Fundamentals",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_f_082",
+          "question": "which option correctly addresses: The Bureau of Public Procurement is in charge for maintaining a national database of what?",
+          "options": [
+            "All government employees",
+            "International trade agreements □.",
+            "Standard workflow prices",
+            "All foreign contractors"
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Standard workflow prices). The Bureau's functions include monitoring the prices of tendered items and keeping a national database of standard workflow prices.",
+          "difficulty": "medium",
+          "chapter": "ICT Fundamentals",
+          "keywords": [
+            "option",
+            "correctly",
+            "addresses",
+            "bureau"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_f_083",
+          "question": "select the statement that correctly defines the main system of filing in Government offices?",
+          "options": [
+            "The Book File system.",
+            "The color-coded system. q.",
+            "The alphabetical system.",
+            "The digital system."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (The Book File system.). The main system of filing in Government offices is the Book File system.",
+          "difficulty": "medium",
+          "chapter": "ICT Fundamentals",
+          "keywords": [
+            "select",
+            "statement",
+            "correctly",
+            "defines"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_f_084",
+          "question": "In the public service context, select the option that best answers: In official practice, select the statement that correctly defines the main system of filing in Government offices?",
+          "options": [
+            "The digital system.",
+            "The color-coded system.a.",
+            "The Book File system.",
+            "The alphabetical system."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (The Book File system.). (The Book File system.). The main system of filing in Government offices is the Book File system.",
+          "difficulty": "easy",
+          "chapter": "ICT Fundamentals",
+          "keywords": [
+            "official",
+            "practice",
+            "select",
+            "statement"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_f_085",
+          "question": "Within government administration, select the option that best answers: According to established rules, at what point a voucher is submitted for disbursement at another station, how should it be sent after being checked and stamped?",
+          "options": [
+            "Hand-carried by the payee. □",
+            "By regular mail.",
+            "Under the security schedule of Transfer of disbursement Vouchers through the Sub-Treasurer.",
+            "By email."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Under the security schedule of Transfer of disbursement Vouchers through the Sub-Treasurer.). (Under the security schedule of Transfer of disbursement Vouchers through the Sub-Treasurer.). Financial Regulation 612 states: \"When a voucher is submitted to a Sub-Treasury or Cash Office for disbursement at another station, it will, after being checked and stamped in accordance with Regulation 609, be sent under security schedule of Transfer of disbursement Vouchers through the Sub- Treasurer (See TF 193).\"",
+          "difficulty": "easy",
+          "chapter": "ICT Fundamentals",
+          "keywords": [
+            "according",
+            "established",
+            "point",
+            "voucher"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_f_086",
+          "question": "In official practice, select the option that best answers: In the public service context, select the statement that correctly defines strictly prohibited regarding audit stamps?",
+          "options": [
+            "Collecting them from the Head of the Internal Audit Unit.",
+            "Keeping them in a safe. a",
+            "Transferring them to another staff member.",
+            "Using them on vouchers."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Transferring them to another staff member.). (Transferring them to another staff member.). Financial Regulation 1713 states that \"Audit stamps are not transferable\" and must not be used by anyone other than the officer to whom they were issued.",
+          "difficulty": "easy",
+          "chapter": "ICT Fundamentals",
+          "keywords": [
+            "context",
+            "select",
+            "statement",
+            "correctly"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_f_087",
+          "question": "In the public service context, which option correctly addresses: which option correctly addresses: The Bureau of Public Procurement is in charge for maintaining a national database of what?",
+          "options": [
+            "All government employees",
+            "Standard workflow prices",
+            "International trade agreements □.",
+            "All foreign contractors"
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Standard workflow prices). (Standard workflow prices). The Bureau's functions include monitoring the prices of tendered items and keeping a national database of standard workflow prices.",
+          "difficulty": "hard",
+          "chapter": "ICT Fundamentals",
+          "keywords": [
+            "option",
+            "correctly",
+            "addresses",
+            "bureau"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_f_088",
+          "question": "In official practice, select the option that best answers: According to established rules, which option correctly addresses: The relationship between the Board of a Parastatal and the Chief Executive should be one of what?",
+          "options": [
+            "A relationship of equals.",
+            "Subordination of the Board to the Chief Executive.",
+            "A relationship where the Board dictates every action of the Chief Executive. □.",
+            "Mutual respect and collaboration."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Mutual respect and collaboration.). (Mutual respect and collaboration.). The relationship between the Board and the Chief Executive should be cordial, based on mutual respect and collaboration.",
+          "difficulty": "medium",
+          "chapter": "ICT Fundamentals",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "correctly"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_f_089",
+          "question": "In the public service context, which option correctly addresses: The Public Service Rules apply to all officers in the Public Service except where they conflict with specific terms approved by the Federal Government and written into the contract of employment or letters of appointment. This indicates that:?",
+          "options": [
+            "The PSR is a suggestion, not a rule.",
+            "Specific contract terms can override the PSR.",
+            "Only the Head of the Civil Service can grant exceptions. Q",
+            "The PSR is always supreme."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Specific contract terms can override the PSR.). Rule 010101 states that the rules apply \"except where they conflict with specific terms approved by the Federal Government and written into the contract of employment or letters of appointment.\"",
+          "difficulty": "medium",
+          "chapter": "ICT Fundamentals",
+          "keywords": [
+            "context",
+            "option",
+            "correctly",
+            "addresses"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_f_090",
+          "question": "According to established rules, which role are the members of the Junior Staff Committee (JSC) and Senior Staff Committee (SSC) in Parastatals? 20?",
+          "options": [
+            "The representative of the Department of Human Resource Management and an observer from the Office of the Head of the Civil Service of the Federation",
+            "The Board of Directors of the Parastatala",
+            "The Head of the Civil Service of the Federation and the Permanent Secretary",
+            "The Chief Executive Officer and the Financial Officer"
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (The representative of the Department of Human Resource Management and an observer from the Office of the Head of the Civil Service of the Federation). Rule 020305 states that the membership of the JSC and SSC in Parastatals includes a representative of the Department of Human Resource Management and an observer from the Office of the Head of the Civil Service of the Federation.",
+          "difficulty": "hard",
+          "chapter": "ICT Fundamentals",
+          "keywords": [
+            "staff",
+            "committee",
+            "according",
+            "established"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_f_091",
+          "question": "In official practice, choose the best answer for: How are the official receipts from a Revenue Collector's cash book to be numbered?",
+          "options": [
+            "In any order that is convenient.",
+            "In a random order to prevent fraud.",
+            "By the date of issue. □ 168",
+            "In strict serial number order."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (In strict serial number order.). Financial Regulation 209(i) specifies that all receipts will be entered without delay in strict serial number order.",
+          "difficulty": "medium",
+          "chapter": "ICT Fundamentals",
+          "keywords": [
+            "official",
+            "practice",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_f_092",
+          "question": "In the public service context, choose the best answer for: How should expenditure be classified?",
+          "options": [
+            "By the date of disbursement.Q",
+            "According to the discretion of the Accounting Officer.",
+            "Strictly in accordance with the Estimates.",
+            "Based on the amount of the expenditure."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Strictly in accordance with the Estimates.). Financial Regulation 417 states: \"Expenditure must strictly be classified in accordance with the Estimates...\"",
+          "difficulty": "medium",
+          "chapter": "ICT Fundamentals",
+          "keywords": [
+            "context",
+            "choose",
+            "best",
+            "answer"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_f_093",
+          "question": "According to established rules, which option aligns with the meaning of strictly prohibited when preparing payment vouchers?",
+          "options": [
+            "Using typewriters. □",
+            "Using ball pens.",
+            "Writing in pencil.",
+            "Writing totals in figures."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Writing in pencil.). Financial Regulation 604(a) states: \"On no account must vouchers be written in pencil.\"",
+          "difficulty": "easy",
+          "chapter": "ICT Fundamentals",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "aligns"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_f_094",
+          "question": "In official practice, select the option that best answers: According to established rules, which option aligns with the meaning of demand for the safe custody of all bonds, agreements, and other valuable documents?",
+          "options": [
+            "They must be kept in a strong-room or safe, with a register maintained.",
+            "They can be stored off-site.",
+            "They only need to be scanned and stored digitally.3.",
+            "They can be kept in a regular office drawer."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (They must be kept in a strong-room or safe, with a register maintained.). (They must be kept in a strong-room or safe, with a register maintained.). Financial Regulation 1123 mandates that \"All bonds, agreements and other valuable documents must be kept in a strong-room or safe, and a register must be maintained for all such documents deposited.\"",
+          "difficulty": "easy",
+          "chapter": "ICT Fundamentals",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "aligns"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_f_095",
+          "question": "Within government administration, select the option that best answers: In official practice, select the option that best answers: How should registered and unregistered mail containing public funds or security documents be delivered?",
+          "options": [
+            "By locked bag, with a register maintained.",
+            "By hand, without any special precautions.",
+            "By regular post.",
+            "By email.a."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (By locked bag, with a register maintained.). (By locked bag, with a register maintained.). Financial Regulation 1128 states, \"Registered and unregistered mail containing public funds or security documents must be delivered by locked bag, and a register must be maintained for all such mail.\"",
+          "difficulty": "hard",
+          "chapter": "ICT Fundamentals",
+          "keywords": [
+            "official",
+            "practice",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_f_096",
+          "question": "Within government administration, select the statement that may NOT be placed on deposit, according to Financial Regulation 1302?",
+          "options": [
+            "A refundable payment for a service Q",
+            "Unclaimed salaries",
+            "A court-ordered payment",
+            "Security for a contract"
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Unclaimed salaries). Financial Regulation 1302 explicitly states that \"unclaimed salaries wages, unspent balances of allocation, sum due to Merchants or Contractors or any form of revenue must not be placed on deposit.\"",
+          "difficulty": "medium",
+          "chapter": "ICT Fundamentals",
+          "keywords": [
+            "within",
+            "select",
+            "statement",
+            "placed"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_f_097",
+          "question": "which option correctly addresses: According to the 1999 Constitution of the Federal Republic of Nigeria, what is the principal aim of Government?",
+          "options": [
+            "To provide security and welfare to the people.",
+            "To control international trade.",
+            "To maximize wealth for a few citizens.",
+            "To build luxurious infrastructure only"
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (To provide security and welfare to the people.). The 1999 Constitution provides that \"the security and welfare of the people must be the main aim of Government\".",
+          "difficulty": "easy",
+          "chapter": "ICT Fundamentals",
+          "keywords": [
+            "option",
+            "correctly",
+            "addresses",
+            "according"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_f_098",
+          "question": "Within government administration, choose the best answer for: According to established rules, which option best describes the role of the Civil Service in relation to good governance, as stated in Chapter 1?",
+          "options": [
+            "To dictate government policies",
+            "To hinder the implementation of government policies",
+            "To only monitor, not actively participate in governance a",
+            "To play a crucial role in ensuring Nigeria is administered consistent with good governance attributes"
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (To play a crucial role in ensuring Nigeria is administered consistent with good governance attributes). (To play a crucial role in ensuring Nigeria is administered consistent with good governance attributes). The civil service has a crucial role to play in ensuring that Nigeria is administered in a manner consistent with the aforementioned attributes and characteristics of good governance",
+          "difficulty": "medium",
+          "chapter": "ICT Fundamentals",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_f_099",
+          "question": "In official practice, select the option that best answers: The Public Procurement Act demand all public procurement to be conducted using what bidding method?",
+          "options": [
+            "Open competitive bidding",
+            "Selective bidding",
+            "Direct procurementa.",
+            "Restricted bidding"
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Open competitive bidding). All public procurement should be conducted by open competitive bidding. 389",
+          "difficulty": "easy",
+          "chapter": "ICT Fundamentals",
+          "keywords": [
+            "procurement",
+            "official",
+            "practice",
+            "select"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_f_100",
+          "question": "In official practice, select the option that best answers: Within government administration, select the statement that correctly defines a key role of the Civil Service in the context of good governance?",
+          "options": [
+            "To act as an opposition to the government.",
+            "To formulate all government policies. □.",
+            "To guarantee that Nigeria is administered in a manner consistent with the attributes of good governance.",
+            "To manage conflicts in society."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (To guarantee that Nigeria is administered in a manner consistent with the attributes of good governance.). (To guarantee that Nigeria is administered in a manner consistent with the attributes of good governance.). The Civil Service has a crucial role to play in ensuring that Nigeria is administered in a manner consistent with the aforementioned attributes and characteristics of good governance.",
+          "difficulty": "medium",
+          "chapter": "ICT Fundamentals",
+          "keywords": [
+            "within",
+            "select",
+            "statement",
+            "correctly"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "ICT Fundamentals & Concepts",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
         }
       ]
     },
@@ -3360,6 +3960,606 @@
           "sourceSection": "E-Governance & Digital Services",
           "year": 2019,
           "lastReviewed": "2026-03-03"
+        },
+        {
+          "id": "ict_eg_076",
+          "question": "In the public service context, select the option that best answers: What does the \"Transparency\" characteristic of good governance imply regarding information?",
+          "options": [
+            "Information is strictly controlled and limited.",
+            "Information is only shared with government officials.",
+            "Decisions are taken without explaining the reasons",
+            "Information is freely available and accessible to those who will be affected by decisions."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Information is freely available and accessible to those who will be affected by decisions.). Under Transparency, information is freely available and accessible to those who will be affected by such decisions and their enforcement.",
+          "difficulty": "medium",
+          "chapter": "E-Governance Systems",
+          "keywords": [
+            "context",
+            "select",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_eg_077",
+          "question": "According to established rules, select the option that best answers: Due procedure is aimed at ensuring fiscal transparency and strict compliance with procedures in which areas?",
+          "options": [
+            "Private sector investments",
+            "The operations of non-governmental organizations (NGOs)",
+            "Foreign direct investmentss.",
+            "Costing of projects and services"
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Costing of projects and services). The Due workflow is aimed at ensuring fiscal transparency and strict compliance 20 with procedures, effectiveness, and efficiency in the costing of projects and services.",
+          "difficulty": "hard",
+          "chapter": "E-Governance Systems",
+          "keywords": [
+            "according",
+            "established",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_eg_078",
+          "question": "Within government administration, the correct number for bank accounts is each establishment generally allowed to operate is which option?",
+          "options": [
+            "Four. □",
+            "One.",
+            "Two.",
+            "Three."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Three.). Financial Regulation 701 (ii) states: \"Each establishment must be allowed to operate only three (3) bank accounts as follows: (a) Salary Account; (b) Overhead Cost Account; and (c) Revenue Account.\"",
+          "difficulty": "medium",
+          "chapter": "E-Governance Systems",
+          "keywords": [
+            "within",
+            "correct",
+            "number",
+            "bank"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_eg_079",
+          "question": "Within government administration, choose the best answer for: According to the 1999 Constitution of the Federal Republic of Nigeria, what is the main objective of Government?",
+          "options": [
+            "To maximize wealth for a few citizens.",
+            "To provide security and welfare to the people.",
+            "To build luxurious infrastructure only",
+            "To control international trade."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (To provide security and welfare to the people.). The 1999 Constitution provides that \"the security and welfare of the people must be the principal objective of Government\".",
+          "difficulty": "easy",
+          "chapter": "E-Governance Systems",
+          "keywords": [
+            "within",
+            "choose",
+            "best",
+            "answer"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_eg_080",
+          "question": "According to established rules, choose the best answer for: What characteristic of good governance focuses on institutions and processes serving all stakeholders within a reasonable timeframe?",
+          "options": [
+            "Conflicts",
+            "Responsiveness",
+            "Security and Order",
+            "Welfare of Peoplea"
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Responsiveness). Responsiveness: institutions and processes try to serve all stakeholders within a reasonable timeframe",
+          "difficulty": "medium",
+          "chapter": "E-Governance Systems",
+          "keywords": [
+            "according",
+            "established",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_eg_081",
+          "question": "Within government administration, choose the option that was a prominent undesirable characteristic of the Nigerian Civil Service in the late 1980s?",
+          "options": [
+            "Incessant conflicts among cadres.",
+            "Decentralization.",
+            "High staff morale and productivity.",
+            "Strong emphasis on results. □."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Incessant conflicts among cadres.). In the late 1980s, the Civil Service had several undesirable characteristics, including over-centralization, incessant conflicts among cadres, and little emphasis on results.",
+          "difficulty": "medium",
+          "chapter": "E-Governance Systems",
+          "keywords": [
+            "within",
+            "choose",
+            "option",
+            "prominent"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_eg_082",
+          "question": "which option correctly addresses: Which characteristic of good governance demand that institutions and processes try to serve all stakeholders within a reasonable timeframe?",
+          "options": [
+            "Purposeful Leadership.a.",
+            "Consensus Orientation.",
+            "Security and Order.",
+            "Responsiveness."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Responsiveness.). Responsiveness means that institutions and processes try to serve all stakeholders within a reasonable timeframe. 411",
+          "difficulty": "medium",
+          "chapter": "E-Governance Systems",
+          "keywords": [
+            "option",
+            "correctly",
+            "addresses",
+            "characteristic"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_eg_083",
+          "question": "Within government administration, select the statement that correctly defines a key role of the Civil Service in the context of good governance?",
+          "options": [
+            "To formulate all government policies. □.",
+            "To act as an opposition to the government.",
+            "To guarantee that Nigeria is administered in a manner consistent with the attributes of good governance.",
+            "To manage conflicts in society."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (To guarantee that Nigeria is administered in a manner consistent with the attributes of good governance.). The Civil Service has a crucial role to play in ensuring that Nigeria is administered in a manner consistent with the aforementioned attributes and characteristics of good governance.",
+          "difficulty": "medium",
+          "chapter": "E-Governance Systems",
+          "keywords": [
+            "within",
+            "select",
+            "statement",
+            "correctly"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_eg_084",
+          "question": "In official practice, which option correctly addresses: How soon after receipt should cheques received be paid to the bank account?",
+          "options": [
+            "Within 3 business days.",
+            "Not later than the next business day. 214",
+            "Within 24 hours.",
+            "Within 7 business days.Q"
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Not later than the next business day. 214). Financial Regulation 720(i) states: \"Cheques received must be paid to the bank account not later than the next business day after receipt.\"",
+          "difficulty": "easy",
+          "chapter": "E-Governance Systems",
+          "keywords": [
+            "official",
+            "practice",
+            "option",
+            "correctly"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_eg_085",
+          "question": "In official practice, which option correctly addresses: According to established rules, choose the best answer for: What characteristic of good governance focuses on institutions and processes serving all stakeholders within a reasonable timeframe?",
+          "options": [
+            "Responsiveness",
+            "Security and Order",
+            "Welfare of Peoplea",
+            "Conflicts"
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Responsiveness). (Responsiveness). Responsiveness: institutions and processes try to serve all stakeholders within a reasonable timeframe",
+          "difficulty": "medium",
+          "chapter": "E-Governance Systems",
+          "keywords": [
+            "according",
+            "established",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_eg_086",
+          "question": "Within government administration, select the option that best answers: Within government administration, choose the option that was a prominent undesirable characteristic of the Nigerian Civil Service in the late 1980s?",
+          "options": [
+            "Strong emphasis on results. □.",
+            "Incessant conflicts among cadres.",
+            "High staff morale and productivity.",
+            "Decentralization."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Incessant conflicts among cadres.). (Incessant conflicts among cadres.). In the late 1980s, the Civil Service had several undesirable characteristics, including over-centralization, incessant conflicts among cadres, and little emphasis on results.",
+          "difficulty": "medium",
+          "chapter": "E-Governance Systems",
+          "keywords": [
+            "within",
+            "choose",
+            "option",
+            "prominent"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_eg_087",
+          "question": "In the public service context, select the option that best answers: which option correctly addresses: Which characteristic of good governance demand that institutions and processes try to serve all stakeholders within a reasonable timeframe?",
+          "options": [
+            "Consensus Orientation.",
+            "Purposeful Leadership.a.",
+            "Responsiveness.",
+            "Security and Order."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Responsiveness.). (Responsiveness.). Responsiveness means that institutions and processes try to serve all stakeholders within a reasonable timeframe. 411",
+          "difficulty": "hard",
+          "chapter": "E-Governance Systems",
+          "keywords": [
+            "option",
+            "correctly",
+            "addresses",
+            "characteristic"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_eg_088",
+          "question": "In official practice, which option correctly addresses: How should a Sub-Accounting Officer enter sums of money into the cash book?",
+          "options": [
+            "Annually, in alphabetical order.",
+            "Promptly, in strict serial number order. 216",
+            "Bi-weekly, as a summary.",
+            "Monthly, by type of transaction. Q."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Promptly, in strict serial number order. 216). Financial Regulation 802 states: \"A Sub-Accounting Officer must enter promptly into the cash book all sums of money received by him or paid by him as a public officer, supporting such entries by a receipt or payment voucher on the prescribed form. Receipt and payment vouchers must be numbered consecutively, from NO.1 each month in the order in which the amounts are received or paid, and will be entered into the cash book accordingly.\"",
+          "difficulty": "medium",
+          "chapter": "E-Governance Systems",
+          "keywords": [
+            "official",
+            "practice",
+            "option",
+            "correctly"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_eg_089",
+          "question": "select the option that best answers: The Principle of Equality of Treatment states that persons in a comparable situation vis-à-vis the administration must be treated:?",
+          "options": [
+            "Based on their social status. □.",
+            "According to their ethnic group.",
+            "Based on their political convictions.",
+            "Equally without any distinctions whatsoever."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Equally without any distinctions whatsoever.). The Principle of equality of treatment states that persons in a comparable situation vis-à-vis the administration must be treated equally without any distinctions whatsoever.",
+          "difficulty": "medium",
+          "chapter": "E-Governance Systems",
+          "keywords": [
+            "select",
+            "option",
+            "best",
+            "answers"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_eg_090",
+          "question": "According to established rules, which option best describes the lowest level of classification for an official document?",
+          "options": [
+            "TOP SECRET. □.",
+            "RESTRICTED.",
+            "CONFIDENTIAL.",
+            "SECRET."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (RESTRICTED.). The various classification ratings in descending order of security are TOP SECRET, SECRET, CONFIDENTIAL, and RESTRICTED.",
+          "difficulty": "hard",
+          "chapter": "E-Governance Systems",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_eg_091",
+          "question": "In official practice, which option aligns with the meaning of considered a cardinal importance for Schedule Officers, according to the handbook?",
+          "options": [
+            "Their familiarity with basic techniques for clear writing.",
+            "Their network of contacts. □.",
+            "Their knowledge of all government policies.",
+            "Their ability to speak multiple languages."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Their familiarity with basic techniques for clear writing.). Since much of the time of most officers is devoted to drafting and minuting, it is of cardinal importance that they should be familiar with the basic techniques for clear writing.",
+          "difficulty": "medium",
+          "chapter": "E-Governance Systems",
+          "keywords": [
+            "official",
+            "practice",
+            "option",
+            "aligns"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_eg_092",
+          "question": "According to established rules, select the option that best answers: What should Appendices or Schedules attached to a letter always be marked with?",
+          "options": [
+            "The file number only.Q.",
+            "The reference of the letter to which they were attached.",
+            "The date they were created. 488",
+            "The name of the sender."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (The reference of the letter to which they were attached.). When Appendices or Schedules, etc. are attached, they should always be marked with the reference of the letter to which they were attached so that if they become detached at any time they can readily be connected to the relevant letter.",
+          "difficulty": "medium",
+          "chapter": "E-Governance Systems",
+          "keywords": [
+            "according",
+            "established",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_eg_093",
+          "question": "According to established rules, select the option that best answers: If a letter has more than one enclosure, what should be indicated?",
+          "options": [
+            "The type of enclosures.",
+            "The number of pages.",
+            "The number of enclosures.",
+            "The weight of the enclosures.a."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (The number of enclosures.). If the letter has more than one enclosure, the number should be shown in brackets, e.g. Enc. (2). 24",
+          "difficulty": "easy",
+          "chapter": "E-Governance Systems",
+          "keywords": [
+            "according",
+            "established",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_eg_094",
+          "question": "In official practice, select the statement that correctly defines the main system of filing in Government offices?",
+          "options": [
+            "The color-coded system. q.",
+            "The digital system.",
+            "The alphabetical system.",
+            "The Book File system."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (The Book File system.). The main system of filing in Government offices is the Book File system.",
+          "difficulty": "medium",
+          "chapter": "E-Governance Systems",
+          "keywords": [
+            "official",
+            "practice",
+            "select",
+            "statement"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_eg_095",
+          "question": "According to established rules, which option aligns with the meaning of the main system of filing in Government offices?",
+          "options": [
+            "The Book File system.",
+            "The digital system.",
+            "The color-coded system.a.",
+            "The alphabetical system."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (The Book File system.). The main system of filing in Government offices is the Book File system.",
+          "difficulty": "easy",
+          "chapter": "E-Governance Systems",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "aligns"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_eg_096",
+          "question": "Which option reflects a notable weakness of the Nigerian Civil Service in the late 1980s?",
+          "options": [
+            "Strong emphasis on results.",
+            "Decentralization.",
+            "High staff morale and productivity.",
+            "Incessant conflicts among cadres."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Incessant conflicts among cadres.). The late-1980s Civil Service was criticized for over-centralization and conflicts among cadres, alongside weak results orientation.",
+          "difficulty": "medium",
+          "chapter": "E-Governance Systems",
+          "keywords": [
+            "within",
+            "option",
+            "select",
+            "best"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_eg_097",
+          "question": "In official practice, which option correctly addresses: The **E-Government Master Plan** emphasizes the strategic deployment of ICT for:?",
+          "options": [
+            "Within public service systems, centralizing political appointments in standard administrative workflow.",
+            "In practice, maintaining paper-based records within permit procedures.",
+            "Operationally, restricting citizen access to government under normal controls.",
+            "Digitizing public services, automation, and inter-agency data sharing."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Digitizing public services, automation, and inter-agency data sharing.).",
+          "difficulty": "easy",
+          "chapter": "E-Governance Systems",
+          "keywords": [
+            "official",
+            "practice",
+            "option",
+            "correctly"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_eg_098",
+          "question": "which option correctly addresses: Which platform enables digital management of staff records, leave, postings, and promotions?",
+          "options": [
+            "BPP.",
+            "TSA.",
+            "GIFMIS.",
+            "HRMIS."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (HRMIS.).",
+          "difficulty": "easy",
+          "chapter": "E-Governance Systems",
+          "keywords": [
+            "option",
+            "correctly",
+            "addresses",
+            "platform"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_eg_099",
+          "question": "According to established rules, choose the best answer for: Which ICT platform allows government services to be accessed via mobile devices?",
+          "options": [
+            "BVAS.",
+            "GIFMIS.",
+            "IPPIS.",
+            "Mobile Gov Apps."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Mobile Gov Apps.).",
+          "difficulty": "hard",
+          "chapter": "E-Governance Systems",
+          "keywords": [
+            "according",
+            "established",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_eg_100",
+          "question": "Within government administration, select the option that best answers: Which agency utilizes the BVAS system for voter accreditation?",
+          "options": [
+            "NITDA.",
+            "OHCSF.",
+            "CBN.",
+            "INEC."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (INEC.).",
+          "difficulty": "easy",
+          "chapter": "E-Governance Systems",
+          "keywords": [
+            "within",
+            "select",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "E-Governance & Digital Services",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
         }
       ]
     },
@@ -4844,28 +6044,6 @@
           "lastReviewed": "2026-03-03"
         },
         {
-          "id": "ict_sec_069",
-          "question": "What is the acronym for the agency that oversees ICT policy and development in Nigeria",
-          "options": [
-            "NITDA.",
-            "NCC.",
-            "EFCC.",
-            "CBN."
-          ],
-          "correct": 0,
-          "explanation": "NITDA promotes ICT policy and monitors its implementation.",
-          "difficulty": "easy",
-          "chapter": "ICT Institutions",
-          "keywords": [
-            "NITDA",
-            "ICT policy"
-          ],
-          "sourceDocument": "National ICT and Digital Governance Framework",
-          "sourceSection": "Digital Security & Cybersecurity",
-          "year": 2019,
-          "lastReviewed": "2026-03-03"
-        },
-        {
           "id": "ict_sec_070",
           "question": "Which ICT measure prevents unauthorized copying of sensitive files",
           "options": [
@@ -4925,28 +6103,6 @@
           "keywords": [
             "Dismissal",
             "Gross misconduct"
-          ],
-          "sourceDocument": "National ICT and Digital Governance Framework",
-          "sourceSection": "Digital Security & Cybersecurity",
-          "year": 2019,
-          "lastReviewed": "2026-03-03"
-        },
-        {
-          "id": "ict_sec_073",
-          "question": "What does SSL/TLS refer to",
-          "options": [
-            "Software Standard Link/Tool Link System.",
-            "Secure Sockets Layer/Transport Layer Security.",
-            "System Setup and Login/Technical Loss Standard.",
-            "Staff Service Layer/Technical Logistics Service."
-          ],
-          "correct": 1,
-          "explanation": "SSL/TLS protocols are used for securing data transmitted over the internet.",
-          "difficulty": "medium",
-          "chapter": "ICT Fundamentals",
-          "keywords": [
-            "SSL/TLS",
-            "security protocol"
           ],
           "sourceDocument": "National ICT and Digital Governance Framework",
           "sourceSection": "Digital Security & Cybersecurity",
@@ -5023,6 +6179,654 @@
           "sourceSection": "Digital Security & Cybersecurity",
           "year": 2019,
           "lastReviewed": "2026-03-03"
+        },
+        {
+          "id": "ict_sec_076",
+          "question": "responsibility for has free access to books of accounts, files, safes, security documents, and other records relating to government accounts belongs to which role?",
+          "options": [
+            "The Accountant-General and the Auditor-General or their representatives.",
+            "Only the Auditor-General.",
+            "Accounting Officers and Heads of Finance.3",
+            "Only the Accountant-General."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (The Accountant-General and the Auditor-General or their representatives.). Financial Regulation 110 states that \"the Accountant General and the Auditor-General or their representatives must, at all reasonable times, have free access to books of accounts, files, safes, security documents, and other records and information relating to the accounts.\"",
+          "difficulty": "medium",
+          "chapter": "ICT Security",
+          "keywords": [
+            "accounts",
+            "responsibility",
+            "free",
+            "access"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_sec_077",
+          "question": "In the public service context, which option correctly addresses: How are the official receipts from a Revenue Collector's cash book to be numbered?",
+          "options": [
+            "In any order that is convenient.",
+            "In strict serial number order.",
+            "By the date of issue. □ 168",
+            "In a random order to prevent fraud."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (In strict serial number order.). Financial Regulation 209(i) specifies that all receipts will be entered without delay in strict serial number order.",
+          "difficulty": "easy",
+          "chapter": "ICT Security",
+          "keywords": [
+            "context",
+            "option",
+            "correctly",
+            "addresses"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_sec_078",
+          "question": "In the public service context, which option correctly addresses: Where banking facilities are available, all payments to the public other than firms covered under FR 514 must be made by cheque crossed in what manner?",
+          "options": [
+            "\"payment to Bearer\".",
+            "\"For Deposit Only\".",
+            "\"Cashable at Any Bank\".3 207",
+            "\"Account Payee only\"."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (\"Account Payee only\".). Financial Regulation 621 states: \"Where banking facilities are available, all payments to the public other than firms covered under FR 514 must be made by cheque crossed \"Account Payee only\".\"",
+          "difficulty": "hard",
+          "chapter": "ICT Security",
+          "keywords": [
+            "context",
+            "option",
+            "correctly",
+            "addresses"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_sec_079",
+          "question": "Within government administration, select the option that best answers: For the custody of cash, stamps, or receipt and licence books beyond immediate requirements, what security measure is demand for strong-rooms or reserve cash safes?",
+          "options": [
+            "A single lock.",
+            "Not less than two locks, with keys held by different officers.",
+            "A simple padlock.",
+            "No locks are necessary if the room is secure. □."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Not less than two locks, with keys held by different officers.). Financial Regulation 1102 mandates that strong-rooms or reserve cash safes should be \"secured if possible by not less than two locks, the key to one being held by the cashier and the key to the other by a more senior official than the cashier.\"",
+          "difficulty": "medium",
+          "chapter": "ICT Security",
+          "keywords": [
+            "cash",
+            "within",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_sec_080",
+          "question": "In the public service context, which office is personally accountable for the safe custody of original keys of strong-rooms, safes, cash tanks, or cash boxes, and collectively accountable for their contents?",
+          "options": [
+            "Officers holding the keys.",
+            "The security guard.a.",
+            "Only the cashier.",
+            "The Accounting Officer only."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Officers holding the keys.). Financial Regulation 1110 states, \"Officers holding the keys of strong-rooms, safes, cash tanks or cash boxes are personally in charge for their safe custody and collectively in charge for the contents.\" 234",
+          "difficulty": "medium",
+          "chapter": "ICT Security",
+          "keywords": [
+            "accountable",
+            "cash",
+            "context",
+            "office"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_sec_081",
+          "question": "According to established rules, choose the best answer for: Question: Who must approve alterations to locks of safes and the provision of new keys, and under what conditions?",
+          "options": [
+            "The cashier, at their discretion.",
+            "The Head of Department, under normal conditions.",
+            "The Minister of Finance, without any specific conditions. 235 Q.",
+            "The Accounting Officer, under security conditions."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (The Accounting Officer, under security conditions.). Financial Regulation 1114 states, \"Alterations to locks of safes and the provision of new keys must be made by the Accounting Officer under security conditions.\"",
+          "difficulty": "hard",
+          "chapter": "ICT Security",
+          "keywords": [
+            "according",
+            "established",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_sec_082",
+          "question": "According to established rules, which office is permitted to open a strong-room or safe?",
+          "options": [
+            "Only the authorised key holders, who must remain present while it is open.",
+            "The Accounting Officer alone. 236",
+            "Any permit officer.",
+            "The security personnel.Q."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Only the authorised key holders, who must remain present while it is open.). Financial Regulation 1118 states, \"No strong-room or safe may be opened by a person other than the authorised key holders, who must remain present while the strong-room or safe is open.\"",
+          "difficulty": "medium",
+          "chapter": "ICT Security",
+          "keywords": [
+            "according",
+            "established",
+            "office",
+            "permitted"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_sec_083",
+          "question": "In official practice, select the statement that correctly defines the rule regarding the custody of main stocks of postage stamps?",
+          "options": [
+            "They can be distributed freely.",
+            "They can be kept anywhere.",
+            "They are not considered security items.a.",
+            "They must be kept in the strong-room or reserve cash safe, and a register maintained."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (They must be kept in the strong-room or reserve cash safe, and a register maintained.). Financial Regulation 1127 states, \"Main stocks of postage stamps must be kept in the strong-room or reserve cash safe, and a register must be maintained for all such stamps deposited.\"",
+          "difficulty": "medium",
+          "chapter": "ICT Security",
+          "keywords": [
+            "official",
+            "practice",
+            "select",
+            "statement"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_sec_084",
+          "question": "According to established rules, choose the best answer for: Question: What security measures are necessitate for receipt books at the close of business daily?",
+          "options": [
+            "They should be taken home by the officer.",
+            "They can be left with a colleague.3.",
+            "They can be left on the desk.",
+            "They must be locked in a safe or strong-room."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (They must be locked in a safe or strong-room.). Financial Regulation 1212(i) states that the receiving officer \"will be in charge for ensuring that the books are locked in a safe or strong-room at the close of business.\" 243",
+          "difficulty": "hard",
+          "chapter": "ICT Security",
+          "keywords": [
+            "according",
+            "established",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_sec_085",
+          "question": "which option may NOT be placed on deposit, according to Financial Regulation 1302?",
+          "options": [
+            "Unclaimed salaries",
+            "A refundable payment for a service Q",
+            "Security for a contract",
+            "A court-ordered payment"
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Unclaimed salaries). Financial Regulation 1302 explicitly states that \"unclaimed salaries wages, unspent balances of allocation, sum due to Merchants or Contractors or any form of revenue must not be placed on deposit.\"",
+          "difficulty": "easy",
+          "chapter": "ICT Security",
+          "keywords": [
+            "option",
+            "placed",
+            "deposit",
+            "according"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_sec_086",
+          "question": "According to established rules, responsibility for is in charge for ensuring that personal emolument document cards are kept under strict security arrangements in a manual accounting system belongs to which role?",
+          "options": [
+            "The Head, Finance and Accounts Department.",
+            "The individual officer. 261",
+            "The Internal Auditor.Q",
+            "The Accountant-General."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (The Head, Finance and Accounts Department.). Financial Regulation 1520 states that in a manual system, the Head, Finance and Accounts Department must secure that the personal emolument log cards are kept under strict security arrangements.",
+          "difficulty": "easy",
+          "chapter": "ICT Security",
+          "keywords": [
+            "according",
+            "established",
+            "responsibility",
+            "charge"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_sec_087",
+          "question": "In the public service context, select the statement that correctly defines the duty of the Board of Survey concerning the cash, stamps, and other security documents?",
+          "options": [
+            "To sell them at a public auction.",
+            "To confiscate them.",
+            "To destroy them if they are found to be old.a 278",
+            "To physically count and verify them against the relevant accounting records and registers."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (To physically count and verify them against the relevant accounting records and registers.). Financial Regulation 1803 outlines the duties of the Board, which include physically counting and verifying the items against the relevant accounting records.",
+          "difficulty": "easy",
+          "chapter": "ICT Security",
+          "keywords": [
+            "context",
+            "select",
+            "statement",
+            "correctly"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_sec_088",
+          "question": "which role must be present during the physical count and verification of cash, stamps, and other security documents by the Board of Survey?",
+          "options": [
+            "An external auditor.",
+            "The officer-in-charge of the items being surveyed.",
+            "The Accountant-General.",
+            "The Minister of Finance"
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (The officer-in-charge of the items being surveyed.). Financial Regulation 1803 necessitate that the officer-in-charge of the cash, stamps, or other security documents must be present throughout the physical count and verification.",
+          "difficulty": "easy",
+          "chapter": "ICT Security",
+          "keywords": [
+            "role",
+            "must",
+            "present",
+            "during"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_sec_089",
+          "question": "Within government administration, responsibility for is the Secretary to the Federal Executive Council belongs to which role?",
+          "options": [
+            "The National Security Adviser.",
+            "The Minister of Finance. □.",
+            "The Secretary to the Government of the Federation.",
+            "The Head of the Civil Service of the Federation."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (The Secretary to the Government of the Federation.). The Secretary to the Council is the Secretary to the Government of the 410 Federation.",
+          "difficulty": "hard",
+          "chapter": "ICT Security",
+          "keywords": [
+            "within",
+            "responsibility",
+            "secretary",
+            "executive"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_sec_090",
+          "question": "In the public service context, select the statement that correctly defines demand for an officer to handle \"TOP SECRET\" documents?",
+          "options": [
+            "They must be a senior officer.",
+            "They must be a new hire. a.",
+            "They must be a member of the armed forces.",
+            "They must have a special security clearance."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (They must have a special security clearance.). Only officers with the requisite security clearance, who have been instructed to handle Top Secret documents, may do so.",
+          "difficulty": "medium",
+          "chapter": "ICT Security",
+          "keywords": [
+            "context",
+            "select",
+            "statement",
+            "correctly"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_sec_091",
+          "question": "According to established rules, select the statement that correctly defines Nigeria's Foreign Policy primarily a reflection of?",
+          "options": [
+            "Her political, economic, social, and cultural circumstances.",
+            "The foreign policies of allied nations.",
+            "International economic trends.",
+            "Global security concerns"
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Her political, economic, social, and cultural circumstances.). Nigeria's Foreign Policy is a reflection of her political, economic, social, and cultural circumstances and, to some extent, the immediate and remote domestic circumstances in Nigeria.",
+          "difficulty": "medium",
+          "chapter": "ICT Security",
+          "keywords": [
+            "according",
+            "established",
+            "select",
+            "statement"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_sec_092",
+          "question": "According to established rules, choose the best answer for: which role must be present during the physical count and verification of cash, stamps, and other security documents by the Board of Survey?",
+          "options": [
+            "The Minister of Finance",
+            "An external auditor.",
+            "The officer-in-charge of the items being surveyed.",
+            "The Accountant-General."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (The officer-in-charge of the items being surveyed.). (The officer-in-charge of the items being surveyed.). Financial Regulation 1803 necessitate that the officer-in-charge of the cash, stamps, or other security documents must be present throughout the physical count and verification.",
+          "difficulty": "easy",
+          "chapter": "ICT Security",
+          "keywords": [
+            "role",
+            "must",
+            "present",
+            "during"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_sec_093",
+          "question": "According to established rules, which option correctly addresses: duty for has free access to books of accounts, files, safes, security documents, and other records relating to government accounts belongs to which role?",
+          "options": [
+            "Accounting Officers and Heads of Finance.3",
+            "Only the Accountant-General.",
+            "Only the Auditor-General.",
+            "The Accountant-General and the Auditor-General or their representatives."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (The Accountant-General and the Auditor-General or their representatives.). (The Accountant-General and the Auditor-General or their representatives.). Financial Regulation 110 states that \"the Accountant General and the Auditor-General or their representatives must, at all reasonable times, have free access to books of accounts, files, safes, security documents, and other records and information relating to the accounts.\"",
+          "difficulty": "medium",
+          "chapter": "ICT Security",
+          "keywords": [
+            "accounts",
+            "responsibility",
+            "free",
+            "access"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_sec_094",
+          "question": "According to established rules, which role has free access to books of accounts, files, safes, security documents, and other records relating to the accounts of all federal ministries?",
+          "options": [
+            "The Head of Finance and Accounts. Q",
+            "Only the Minister of Finance.",
+            "Only the Accounting Officer.",
+            "The Accountant-General and the Auditor-General or their representatives."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (The Accountant-General and the Auditor-General or their representatives.). Financial Regulation 110 states: \"By virtue of the responsibilities and functions of the Accountant General and the Auditor-General or their representatives must, at all reasonable times, have free access to books of accounts, files, safes, security documents and other records and information relating to the accounts, of all federal ministries/extra ministerial offices and other arms of government, or units.\"",
+          "difficulty": "easy",
+          "chapter": "ICT Security",
+          "keywords": [
+            "accounts",
+            "according",
+            "established",
+            "role"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_sec_095",
+          "question": "which option correctly addresses: According to established rules, which office is permitted to open a strong-room or safe?",
+          "options": [
+            "The Accounting Officer alone. 236",
+            "The security personnel.Q.",
+            "Only the authorised key holders, who must remain present while it is open.",
+            "Any permit officer."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Only the authorised key holders, who must remain present while it is open.). (Only the authorised key holders, who must remain present while it is open.). Financial Regulation 1118 states, \"No strong-room or safe may be opened by a person other than the authorised key holders, who must remain present while the strong-room or safe is open.\"",
+          "difficulty": "medium",
+          "chapter": "ICT Security",
+          "keywords": [
+            "according",
+            "established",
+            "office",
+            "permitted"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_sec_096",
+          "question": "Within government administration, which option correctly addresses: What action must be taken for all journeys outside office hours or during weekends and public holidays?",
+          "options": [
+            "They are permitted for personal use.",
+            "They must be reported to the police",
+            "They are strictly prohibited.",
+            "They demand the written permission of the Accounting Officer or his delegated representative."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (They demand the written permission of the Accounting Officer or his delegated representative.). Financial Regulation 2009 states that journeys outside office hours, weekends, and public holidays demand the written permission of the Accounting Officer or his delegated representative.",
+          "difficulty": "medium",
+          "chapter": "ICT Security",
+          "keywords": [
+            "within",
+            "option",
+            "correctly",
+            "addresses"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_sec_097",
+          "question": "In the public service context, which option correctly addresses: According to established rules, choose the best answer for: Question: Who must approve alterations to locks of safes and the provision of new keys, and under what conditions?",
+          "options": [
+            "The Head of Department, under normal conditions.",
+            "The cashier, at their discretion.",
+            "The Accounting Officer, under security conditions.",
+            "The Minister of Finance, without any specific conditions. 235 Q."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (The Accounting Officer, under security conditions.). (The Accounting Officer, under security conditions.). Financial Regulation 1114 states, \"Alterations to locks of safes and the provision of new keys must be made by the Accounting Officer under security conditions.\"",
+          "difficulty": "medium",
+          "chapter": "ICT Security",
+          "keywords": [
+            "according",
+            "established",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_sec_098",
+          "question": "In official practice, select the option that best answers: In official practice, select the statement that correctly defines the rule regarding the custody of main stocks of postage stamps?",
+          "options": [
+            "They must be kept in the strong-room or reserve cash safe, and a register maintained.",
+            "They are not considered security items.a.",
+            "They can be kept anywhere.",
+            "They can be distributed freely."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (They must be kept in the strong-room or reserve cash safe, and a register maintained.). (They must be kept in the strong-room or reserve cash safe, and a register maintained.). Financial Regulation 1127 states, \"Main stocks of postage stamps must be kept in the strong-room or reserve cash safe, and a register must be maintained for all such stamps deposited.\"",
+          "difficulty": "hard",
+          "chapter": "ICT Security",
+          "keywords": [
+            "official",
+            "practice",
+            "select",
+            "statement"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_sec_099",
+          "question": "In official practice, which option correctly addresses: Within government administration, select the option that best answers: For the custody of cash, stamps, or receipt and licence books beyond immediate requirements, what security measure is demand for strong-rooms or reserve cash safes?",
+          "options": [
+            "Not less than two locks, with keys held by different officers.",
+            "No locks are necessary if the room is secure. □.",
+            "A simple padlock.",
+            "A single lock."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Not less than two locks, with keys held by different officers.). (Not less than two locks, with keys held by different officers.). Financial Regulation 1102 mandates that strong-rooms or reserve cash safes should be \"secured if possible by not less than two locks, the key to one being held by the cashier and the key to the other by a more senior official than the cashier.\"",
+          "difficulty": "easy",
+          "chapter": "ICT Security",
+          "keywords": [
+            "cash",
+            "within",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_sec_100",
+          "question": "According to established rules, which option correctly addresses: In the public service context, which office is personally accountable for the safe custody of original keys of strong-rooms, safes, cash tanks, or cash boxes, and collectively accountable for their contents?",
+          "options": [
+            "The Accounting Officer only.",
+            "The security guard.a.",
+            "Only the cashier.",
+            "Officers holding the keys."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Officers holding the keys.). (Officers holding the keys.). Financial Regulation 1110 states, \"Officers holding the keys of strong-rooms, safes, cash tanks or cash boxes are personally in charge for their safe custody and collectively in charge for the contents.\" 234",
+          "difficulty": "medium",
+          "chapter": "ICT Security",
+          "keywords": [
+            "accountable",
+            "cash",
+            "context",
+            "office"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_sec_101",
+          "question": "Within government administration, which option correctly addresses: According to established rules, choose the best answer for: Question: What security measures are necessitate for receipt books at the close of business daily?",
+          "options": [
+            "They should be taken home by the officer.",
+            "They can be left with a colleague.3.",
+            "They can be left on the desk.",
+            "They must be locked in a safe or strong-room."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (They must be locked in a safe or strong-room.). (They must be locked in a safe or strong-room.). Financial Regulation 1212(i) states that the receiving officer \"will be in charge for ensuring that the books are locked in a safe or strong-room at the close of business.\" 243",
+          "difficulty": "hard",
+          "chapter": "ICT Security",
+          "keywords": [
+            "according",
+            "established",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_sec_102",
+          "question": "According to established rules, select the option that best answers: According to established rules, duty for is in charge for ensuring that personal emolument document cards are kept under strict security arrangements in a manual accounting system belongs to which role?",
+          "options": [
+            "The individual officer. 261",
+            "The Head, Finance and Accounts Department.",
+            "The Internal Auditor.Q",
+            "The Accountant-General."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (The Head, Finance and Accounts Department.). (The Head, Finance and Accounts Department.). Financial Regulation 1520 states that in a manual system, the Head, Finance and Accounts Department must secure that the personal emolument log cards are kept under strict security arrangements.",
+          "difficulty": "easy",
+          "chapter": "ICT Security",
+          "keywords": [
+            "according",
+            "established",
+            "responsibility",
+            "charge"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Security & Cybersecurity",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
         }
       ]
     },
@@ -6050,28 +7854,6 @@
           "lastReviewed": "2026-03-03"
         },
         {
-          "id": "ict_li_048",
-          "question": "What is the acronym for the agency that oversees ICT policy and development in Nigeria",
-          "options": [
-            "NCC.",
-            "NITDA.",
-            "EFCC.",
-            "CBN."
-          ],
-          "correct": 1,
-          "explanation": "NITDA promotes ICT policy and monitors its implementation.",
-          "difficulty": "medium",
-          "chapter": "ICT Institutions",
-          "keywords": [
-            "NITDA",
-            "ICT policy"
-          ],
-          "sourceDocument": "National ICT and Digital Governance Framework",
-          "sourceSection": "Digital Literacy & Innovation",
-          "year": 2019,
-          "lastReviewed": "2026-03-03"
-        },
-        {
           "id": "ict_li_051",
           "question": "To avoid noise interference during remote virtual meetings, the **PSR** recommends the use of which technology",
           "options": [
@@ -6714,6 +8496,630 @@
           "sourceSection": "Digital Literacy & Innovation",
           "year": 2019,
           "lastReviewed": "2026-03-03"
+        },
+        {
+          "id": "ict_li_076",
+          "question": "In official practice, select the statement that correctly defines the first thing a schedule officer should do when preparing to write a communication?",
+          "options": [
+            "Write the draft immediately.",
+            "Ask a junior officer to do it. Q.",
+            "Look up the facts, figures, and data.",
+            "Call a meeting."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Look up the facts, figures, and data.). The officer must be careful with the facts, figures, and data in his writing. This implies the need to verify them before drafting.",
+          "difficulty": "medium",
+          "chapter": "Digital Literacy & Innovation - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "select",
+            "statement"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_li_077",
+          "question": "In official practice, select the statement that correctly defines the rule about making deductions from revenue collections to adjust a previous over-credit?",
+          "options": [
+            "It is permitted with approval.",
+            "It is allowed for small amounts.",
+            "It is strictly prohibited.",
+            "It is encouraged for efficiency. □"
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (It is strictly prohibited.). Financial Regulation 223 explicitly states, \"No deductions must be made from any revenue collections or other receipts to adjust a previous over-credit\".",
+          "difficulty": "medium",
+          "chapter": "Digital Literacy & Innovation - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "select",
+            "statement"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_li_078",
+          "question": "In the public service context, select the statement that correctly defines the main objective of strict control over government vehicles?",
+          "options": [
+            "To prevent abuse, secure efficiency, and safeguard public resources.",
+            "To limit their use.",
+            "To make them available for private hire. □",
+            "To generate revenue."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (To prevent abuse, secure efficiency, and safeguard public resources.). The regulations consistently emphasize efficient and economical use, prevention of abuse, and proper accounting, all aimed at safeguarding public resources.",
+          "difficulty": "medium",
+          "chapter": "Digital Literacy & Innovation - Expansion Set",
+          "keywords": [
+            "context",
+            "select",
+            "statement",
+            "correctly"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_li_079",
+          "question": "In official practice, which option aligns with the meaning of the objective of the single internet portal to be established by the Bureau of Public Procurement?",
+          "options": [
+            "To facilitate international tenders exclusively3.",
+            "To serve as a chief and definitive source of all information on government procurement",
+            "To be a platform for public complaints only",
+            "To serve as a private communication channel for government officials"
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (To serve as a chief and definitive source of all information on government procurement). The Bureau is to establish a single internet portal that will serve as a principal and 388 definitive source of all information on government procurement.",
+          "difficulty": "easy",
+          "chapter": "Digital Literacy & Innovation - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "option",
+            "aligns"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_li_080",
+          "question": "which option aligns with the meaning of the general rule regarding the disbursement of public funds in a self-accounting unit?",
+          "options": [
+            "Disbursements only demand verbal approval.",
+            "Funds can be transferred to private accounts",
+            "Funds can be disbursed at the discretion of the Head of Department.",
+            "Disbursements must strictly follow existing financial rules and regulations."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Disbursements must strictly follow existing financial rules and regulations.). Financial Regulation 1603(a) states the need for strict observance of existing financial rules and regulations governing the disbursement of public funds.",
+          "difficulty": "easy",
+          "chapter": "Digital Literacy & Innovation - Expansion Set",
+          "keywords": [
+            "option",
+            "aligns",
+            "meaning",
+            "rule"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_li_081",
+          "question": "According to established rules, which option an HRM challenge that has been evident in the Civil Service over the years?",
+          "options": [
+            "Availability of reliable data on training needs.",
+            "Adequate linkages between training output and the duty post. □.",
+            "Over-utilization of human resources.",
+            "Uncoordinated and fragmented approaches to human resources development."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Uncoordinated and fragmented approaches to human resources development.). The challenges include under-utilization and non-utilization of human resources, uncoordinated and fragmented approaches to human resources development, and uncoordinated training programmes.",
+          "difficulty": "medium",
+          "chapter": "Digital Literacy & Innovation - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "challenge"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_li_082",
+          "question": "which option correctly addresses: What should officers do regarding Executive Council papers?",
+          "options": [
+            "Ignore them unless they are directly addressed.",
+            "Be very careful with the facts, figures, and data provided.",
+            "Treat them as unimportant.",
+            "Not be concerned with them at all. □."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Be very careful with the facts, figures, and data provided.). The officer must therefore be very careful with the facts, figures, and data provided in such papers because the political leadership would be using them to make policies.",
+          "difficulty": "medium",
+          "chapter": "Digital Literacy & Innovation - Expansion Set",
+          "keywords": [
+            "option",
+            "correctly",
+            "addresses",
+            "should"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_li_083",
+          "question": "In the public service context, choose the best answer for: What should an officer guarantee about papers presented to the Executive Council?",
+          "options": [
+            "That they are based on verified facts, figures, and data.",
+            "That they are as short as possible.",
+            "That they are as long as possible. □..",
+            "That they are based on personal opinion."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (That they are based on verified facts, figures, and data.). The officer must therefore be very careful with the facts, figures, and data provided in such papers.",
+          "difficulty": "hard",
+          "chapter": "Digital Literacy & Innovation - Expansion Set",
+          "keywords": [
+            "context",
+            "choose",
+            "best",
+            "answer"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_li_084",
+          "question": "Within government administration, select the option that best answers: In official practice, select the statement that correctly defines the first thing a schedule officer should do when preparing to write a communication?",
+          "options": [
+            "Look up the facts, figures, and data.",
+            "Write the draft immediately.",
+            "Call a meeting.",
+            "Ask a junior officer to do it. Q."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Look up the facts, figures, and data.). (Look up the facts, figures, and data.). The officer must be careful with the facts, figures, and data in his writing. This implies the need to verify them before drafting.",
+          "difficulty": "hard",
+          "chapter": "Digital Literacy & Innovation - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "select",
+            "statement"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_li_085",
+          "question": "In the public service context, select the option that best answers: In official practice, select the statement that correctly defines the rule about making deductions from revenue collections to adjust a previous over-credit?",
+          "options": [
+            "It is permitted with approval.",
+            "It is encouraged for efficiency. □",
+            "It is allowed for small amounts.",
+            "It is strictly prohibited."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (It is strictly prohibited.). (It is strictly prohibited.). Financial Regulation 223 explicitly states, \"No deductions must be made from any revenue collections or other receipts to adjust a previous over-credit\".",
+          "difficulty": "medium",
+          "chapter": "Digital Literacy & Innovation - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "select",
+            "statement"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_li_086",
+          "question": "In the public service context, which option correctly addresses: which option aligns with the meaning of the general rule regarding the disbursement of public funds in a self-accounting unit?",
+          "options": [
+            "Disbursements must strictly follow existing financial rules and regulations.",
+            "Funds can be disbursed at the discretion of the Head of Department.",
+            "Disbursements only demand verbal approval.",
+            "Funds can be transferred to private accounts"
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Disbursements must strictly follow existing financial rules and regulations.). (Disbursements must strictly follow existing financial rules and regulations.). Financial Regulation 1603(a) states the need for strict observance of existing financial rules and regulations governing the disbursement of public funds.",
+          "difficulty": "hard",
+          "chapter": "Digital Literacy & Innovation - Expansion Set",
+          "keywords": [
+            "option",
+            "aligns",
+            "meaning",
+            "rule"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_li_087",
+          "question": "In the public service context, select the option that best answers: In the public service context, select the statement that correctly defines the main objective of strict control over government vehicles?",
+          "options": [
+            "To limit their use.",
+            "To generate revenue.",
+            "To prevent abuse, secure efficiency, and safeguard public resources.",
+            "To make them available for private hire. □"
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (To prevent abuse, secure efficiency, and safeguard public resources.). (To prevent abuse, secure efficiency, and safeguard public resources.). The regulations consistently emphasize efficient and economical use, prevention of abuse, and proper accounting, all aimed at safeguarding public resources.",
+          "difficulty": "medium",
+          "chapter": "Digital Literacy & Innovation - Expansion Set",
+          "keywords": [
+            "context",
+            "select",
+            "statement",
+            "correctly"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_li_088",
+          "question": "In official practice, select the option that best answers: According to established rules, which option an HRM challenge that has been evident in the Civil Service over the years?",
+          "options": [
+            "Availability of reliable data on training needs.",
+            "Adequate linkages between training output and the duty post. □.",
+            "Over-utilization of human resources.",
+            "Uncoordinated and fragmented approaches to human resources development."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Uncoordinated and fragmented approaches to human resources development.). (Uncoordinated and fragmented approaches to human resources development.). The challenges include under-utilization and non-utilization of human resources, uncoordinated and fragmented approaches to human resources development, and uncoordinated training programmes.",
+          "difficulty": "easy",
+          "chapter": "Digital Literacy & Innovation - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "challenge"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_li_089",
+          "question": "According to established rules, which option correctly addresses: which option correctly addresses: What should officers do regarding Executive Council papers?",
+          "options": [
+            "Treat them as unimportant.",
+            "Not be concerned with them at all. □.",
+            "Be very careful with the facts, figures, and data provided.",
+            "Ignore them unless they are directly addressed."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Be very careful with the facts, figures, and data provided.). (Be very careful with the facts, figures, and data provided.). The officer must therefore be very careful with the facts, figures, and data provided in such papers because the political leadership would be using them to make policies.",
+          "difficulty": "hard",
+          "chapter": "Digital Literacy & Innovation - Expansion Set",
+          "keywords": [
+            "option",
+            "correctly",
+            "addresses",
+            "should"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_li_090",
+          "question": "In the public service context, which option correctly addresses: In the public service context, choose the best answer for: What should an officer guarantee about papers presented to the Executive Council?",
+          "options": [
+            "That they are based on verified facts, figures, and data.",
+            "That they are as short as possible.",
+            "That they are as long as possible. □..",
+            "That they are based on personal opinion."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (That they are based on verified facts, figures, and data.). (That they are based on verified facts, figures, and data.). The officer must therefore be very careful with the facts, figures, and data provided in such papers.",
+          "difficulty": "easy",
+          "chapter": "Digital Literacy & Innovation - Expansion Set",
+          "keywords": [
+            "context",
+            "choose",
+            "best",
+            "answer"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_li_091",
+          "question": "In official practice, select the option that best answers: To whom do the provisions of the Public Service Rules (PSR) apply?",
+          "options": [
+            "To all employees in the private sector",
+            "Only to officers on grade level 17 and above.",
+            "Strictly to all ministries, extra-ministerial offices, and agencies.",
+            "Only to the Office of the Head of the Civil Service of the Federation."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Strictly to all ministries, extra-ministerial offices, and agencies.). Rule 010101 states, \"The provisions of the Public Service Rules (PSR) must be strictly enforced by all Ministries, Extra-Ministerial Offices, and Agencies.\"",
+          "difficulty": "medium",
+          "chapter": "Digital Literacy & Innovation - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_li_092",
+          "question": "According to established rules, select the statement that correctly defines the rule regarding deductions from revenue collections to adjust a previous over-credit?",
+          "options": [
+            "It is allowed as long as the Head of Accounts is notified",
+            "It is allowed with the Accounting Officer's approval.",
+            "It is strictly forbidden.",
+            "It can be done if the amount is small."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (It is strictly forbidden.). Financial Regulation 223 states that no deductions must be made from any revenue collections to adjust a previous over-credit. The gross amount must always be accounted for in full.",
+          "difficulty": "hard",
+          "chapter": "Digital Literacy & Innovation - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "select",
+            "statement"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_li_093",
+          "question": "Within government administration, which option best describes one of the key responsibilities of the Accounting Officer in a self-accounting unit, as per Financial Regulation 1603(a)?",
+          "options": [
+            "To guarantee strict observance of existing financial rules and regulations.",
+            "To personally conduct all internal audits.",
+            "To approve all procurement contracts. □",
+            "To manage all personnel issues."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (To guarantee strict observance of existing financial rules and regulations.). Financial Regulation 1603(a) mandates that the Accounting Officer must secure strict observance of existing financial rules and regulations governing the receipt and disbursement of public funds.",
+          "difficulty": "medium",
+          "chapter": "Digital Literacy & Innovation - Expansion Set",
+          "keywords": [
+            "accounting",
+            "within",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_li_094",
+          "question": "According to established rules, which option correctly addresses: The relationship between a Ministry and its Parastatal should be based on which of the 398 following principles?",
+          "options": [
+            "A relationship where the Parastatal has total autonomy with no Ministry oversight.",
+            "A master-servant relationship where the Ministry dictates all activities.",
+            "A relationship of constant conflict and competition. □.",
+            "Mutual respect, understanding, and consultation."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Mutual respect, understanding, and consultation.). The relationship is expected to be based on mutual respect, understanding, and consultation, avoiding a master-servant dynamic.",
+          "difficulty": "easy",
+          "chapter": "Digital Literacy & Innovation - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "correctly"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_li_095",
+          "question": "In official practice, choose the best answer for: What happens if there is a conflict between the Chief Executive and the Board of a Parastatal?",
+          "options": [
+            "The Board should dissolve the management.",
+            "The supervising Minister should be involved to resolve the matter.",
+            "The conflict should be ignored. □.",
+            "The Chief Executive should immediately resign."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (The supervising Minister should be involved to resolve the matter.). Where there are conflicts, the supervising Minister should be brought in to mediate and resolve the matter amicably. 401",
+          "difficulty": "easy",
+          "chapter": "Digital Literacy & Innovation - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_li_096",
+          "question": "In the public service context, which option correctly addresses: How should a chairman conduct a meeting?",
+          "options": [
+            "By allowing the most talkative members to speak as much as they want. Q.",
+            "By allowing the most senior members to dominate the discussions.",
+            "In a fair, orderly and effective manner, using the adopted Agenda31.",
+            "In a dictatorial manner, enforcing his will on the members."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (In a fair, orderly and effective manner, using the adopted Agenda31.). A chairman should conduct the meeting in a fair, orderly and effective manner, using as much as possible the adopted Agenda.",
+          "difficulty": "medium",
+          "chapter": "Digital Literacy & Innovation - Expansion Set",
+          "keywords": [
+            "context",
+            "option",
+            "correctly",
+            "addresses"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_li_097",
+          "question": "According to established rules, which option correctly addresses: What should a good Brief aim to do?",
+          "options": [
+            "Be concise and constructive and recommend the solution to an outstanding problem.",
+            "Create more problems.",
+            "Be lengthy and vague.",
+            "Confuse the reader. Q."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Be concise and constructive and recommend the solution to an outstanding problem.). A good brief should be concise and constructive. It should try to recommend the solution to an outstanding problem.",
+          "difficulty": "medium",
+          "chapter": "Digital Literacy & Innovation - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "correctly"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_li_098",
+          "question": "According to established rules, which option correctly addresses: What should always be included with File Notes?",
+          "options": [
+            "A detailed analysis.",
+            "A list of all attendees.",
+            "The writer's initials and date.",
+            "A full signature. □."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (The writer's initials and date.). Such notes should always be initiated and dated.",
+          "difficulty": "easy",
+          "chapter": "Digital Literacy & Innovation - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "correctly"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_li_099",
+          "question": "According to established rules, which role should sign the original and copies of the Handing Over Notes?",
+          "options": [
+            "The Head of Department only.a.",
+            "Both the Officer Handing Over and the Officer Taking Over.",
+            "Only the Officer Taking Over.",
+            "Only the Officer Handing Over."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Both the Officer Handing Over and the Officer Taking Over.). The original and the two copies of the Notes should be signed by both the Officer Handing Over and the Officer Taking Over.",
+          "difficulty": "medium",
+          "chapter": "Digital Literacy & Innovation - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "role",
+            "should"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_li_100",
+          "question": "In the public service context, which option correctly addresses: What should a Clerk do with the top copy of their list from the duplicate note-book system at the end of each day?",
+          "options": [
+            "Give it to the officer in charge of the most appropriate Registry.",
+            "Send it to the Chairman. □.",
+            "Discard it.",
+            "Keep it for themselves."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Give it to the officer in charge of the most appropriate Registry.). On completion of each page and always at the end of each day, the Clerk must give the top copy of his list to the officer in charge of the most appropriate Registry, which records the movements on the Absent File Cards. Section F Forms of Official Communication in Government Business 493",
+          "difficulty": "medium",
+          "chapter": "Digital Literacy & Innovation - Expansion Set",
+          "keywords": [
+            "context",
+            "option",
+            "correctly",
+            "addresses"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ict_li_101",
+          "question": "which office should sign the original and copies of the Handing Over Notes?",
+          "options": [
+            "Both the Officer Handing Over and the Officer Taking Over.",
+            "Only the Officer Taking Over.",
+            "The Head of Department. □.",
+            "Only the Officer Handing Over."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Both the Officer Handing Over and the Officer Taking Over.). The original and the two copies of the Notes should be signed by both the Officer Handing Over and the Officer Taking Over.",
+          "difficulty": "easy",
+          "chapter": "Digital Literacy & Innovation - Expansion Set",
+          "keywords": [
+            "office",
+            "should",
+            "sign",
+            "original"
+          ],
+          "sourceDocument": "National ICT and Digital Governance Framework",
+          "sourceSection": "Digital Literacy & Innovation",
+          "year": 2019,
+          "lastReviewed": "2026-03-13"
         }
       ]
     }

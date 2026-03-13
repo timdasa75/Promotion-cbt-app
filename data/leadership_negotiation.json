@@ -1785,6 +1785,606 @@
           "sourceSection": "Leadership Principles & Styles",
           "year": 2020,
           "lastReviewed": "2026-03-03"
+        },
+        {
+          "id": "leadership_lsm_051",
+          "question": "In the public service context, select the option that best answers: The relationship between a Minister and a Parastatal is expected to be based on which of the following?",
+          "options": [
+            "A relationship of complete control by the Minister.",
+            "A relationship between a superior and a subordinate.Q.",
+            "A relationship between an adviser and a client. 402",
+            "A relationship of coordination and supervision."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (A relationship of coordination and supervision.). The relationship between a Minister and a Parastatal is one of coordination, supervision, and policy direction. Part 3: The Civil Service",
+          "difficulty": "easy",
+          "chapter": "Leadership Principles & Styles - Expansion Set",
+          "keywords": [
+            "context",
+            "select",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Leadership Principles & Styles",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_lsm_052",
+          "question": "select the option that best answers: According to the handbook, when the role of a meeting is complex, what should be done?",
+          "options": [
+            "The objective should be ignored to save time.",
+            "The chairman should ask each member individually what they think the objective is.a.",
+            "The chairman should make a unilateral decision.",
+            "The objective must be spelled out in formal Terms of Reference."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (The objective must be spelled out in formal Terms of Reference.). The objective of a forum may be so complex that it has to be spelled out in formal Terms of Reference.",
+          "difficulty": "hard",
+          "chapter": "Leadership Principles & Styles - Expansion Set",
+          "keywords": [
+            "select",
+            "option",
+            "best",
+            "answers"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Leadership Principles & Styles",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_lsm_053",
+          "question": "In official practice, which time frame writing a minute, what should an officer reference to support their position?",
+          "options": [
+            "Unofficial conversations.Q.",
+            "Previous government decisions and rules.",
+            "Personal experiences. 449",
+            "The opinions of colleagues."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Previous government decisions and rules.). When writing a minute, an officer should support their position by referring to previous government decisions, rules, or regulations on the matter.",
+          "difficulty": "medium",
+          "chapter": "Leadership Principles & Styles - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "time",
+            "frame"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Leadership Principles & Styles",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_lsm_054",
+          "question": "select the option that best answers: The handbook mentions that all files should be classified into what?",
+          "options": [
+            "Temporary and Permanent.",
+            "Urgent and Normal.a.",
+            "Secret and Open.",
+            "Subject and Personal."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Subject and Personal.). All files should be classified into subject files and personal files.",
+          "difficulty": "hard",
+          "chapter": "Leadership Principles & Styles - Expansion Set",
+          "keywords": [
+            "select",
+            "option",
+            "best",
+            "answers"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Leadership Principles & Styles",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_lsm_055",
+          "question": "Within government administration, select the option that best answers: The handbook advises against removing documents from a file. What is the exception to this rule?",
+          "options": [
+            "When it is done to correct a grave error and is approved by a senior officer.",
+            "When an officer is in a hurry.",
+            "When the document is no longer needed.",
+            "When the document is personal.a."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (When it is done to correct a grave error and is approved by a senior officer.). No document must be removed from a file unless it is to correct a grave error and is approved by the Head of the Department or the Accounting Officer.",
+          "difficulty": "easy",
+          "chapter": "Leadership Principles & Styles - Expansion Set",
+          "keywords": [
+            "within",
+            "select",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Leadership Principles & Styles",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_lsm_056",
+          "question": "According to established rules, which option correctly addresses: The handbook advises against removing documents from a file. What is the exception to this rule?",
+          "options": [
+            "When the document is no longer needed.",
+            "When it is done to correct a grave error and is approved by a senior officer.",
+            "When an officer is in a hurry.",
+            "When the document is personal.a."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (When it is done to correct a grave error and is approved by a senior officer.). No document must be removed from a file unless it is to correct a grave error and is approved by the Head of the Department or the Accounting Officer.",
+          "difficulty": "medium",
+          "chapter": "Leadership Principles & Styles - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "correctly"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Leadership Principles & Styles",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_lsm_057",
+          "question": "In the public service context, at what point writing a minute, what should an officer reference to support their position?",
+          "options": [
+            "Personal experiences.",
+            "Unofficial conversations. □..",
+            "Previous government decisions and rules.",
+            "The opinions of colleagues."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Previous government decisions and rules.). When writing a minute, an officer should support their position by referring to previous government decisions, rules, or regulations on the matter. Section E Part 1: Chairing and Servicing of Meetings and Forums 469",
+          "difficulty": "hard",
+          "chapter": "Leadership Principles & Styles - Expansion Set",
+          "keywords": [
+            "context",
+            "point",
+            "writing",
+            "minute"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Leadership Principles & Styles",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_lsm_058",
+          "question": "which option best describes the role of the secretary during the meeting?",
+          "options": [
+            "To take charge of all financial matters.3.",
+            "To provide all the answers.",
+            "To act as the official recorder of all discussions, decisions, and action points.",
+            "To lead the discussions."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (To act as the official recorder of all discussions, decisions, and action points.). The secretary is the official recorder of all discussions, decisions, and action points of the meeting.",
+          "difficulty": "medium",
+          "chapter": "Leadership Principles & Styles - Expansion Set",
+          "keywords": [
+            "option",
+            "best",
+            "describes",
+            "role"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Leadership Principles & Styles",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_lsm_059",
+          "question": "select the statement that correctly defines the role of a \"Minute\"?",
+          "options": [
+            "To write down meeting decisions.",
+            "To provide a written submission to present a view or position on an issue.",
+            "To serve as a personal reminder.",
+            "To summarize a meeting for the public.3."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (To provide a written submission to present a view or position on an issue.). Minute/Memo:- Written submission to present a view or position on an issue",
+          "difficulty": "easy",
+          "chapter": "Leadership Principles & Styles - Expansion Set",
+          "keywords": [
+            "select",
+            "statement",
+            "correctly",
+            "defines"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Leadership Principles & Styles",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_lsm_060",
+          "question": "Within government administration, which option aligns with the meaning of the role of including a \"B.U.\" in a file note? 504?",
+          "options": [
+            "To indicate the file is to be destroyed.",
+            "To indicate the matter can be followed up on a specified date.",
+            "To indicate the file is closed.3.",
+            "To indicate a final decision has been made."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (To indicate the matter can be followed up on a specified date.). A note is made on the last page of the main file describing the action which has been taken and ending with a B.U. so that the matter can be followed up on a specified date.",
+          "difficulty": "easy",
+          "chapter": "Leadership Principles & Styles - Expansion Set",
+          "keywords": [
+            "within",
+            "option",
+            "aligns",
+            "meaning"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Leadership Principles & Styles",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_lsm_061",
+          "question": "In official practice, choose the best answer for: The minutes must be written and circulated to all members as soon as possible after the meeting. What is the reason for this?",
+          "options": [
+            "To make the meeting look more important.3.",
+            "To guarantee that the decisions are fresh in the minds of the members.",
+            "To show that the secretary is a fast writer.",
+            "To prevent the members from forgetting what was discussed."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (To guarantee that the decisions are fresh in the minds of the members.). The minutes should be circulated as soon as possible after the meeting to guarantee that the decisions are fresh in the minds of the members.",
+          "difficulty": "easy",
+          "chapter": "Leadership Principles & Styles - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Leadership Principles & Styles",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_lsm_062",
+          "question": "which option best describes the objective of having a \"Matter Arising\" section in the minutes of a meeting?",
+          "options": [
+            "To discuss new business.",
+            "To review the decisions and actions taken from the previous meeting82.",
+            "To discuss personal issues.",
+            "To debate old decisions.3."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (To review the decisions and actions taken from the previous meeting82.). The \"Matters Arising\" section is used to review the decisions and actions taken from the previous meeting.",
+          "difficulty": "medium",
+          "chapter": "Leadership Principles & Styles - Expansion Set",
+          "keywords": [
+            "option",
+            "best",
+            "describes",
+            "objective"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Leadership Principles & Styles",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_lsm_063",
+          "question": "In the public service context, select the option that best answers: What should be done if one's handwriting is not easily readable for minutes or drafts covering more than half of an A4 page?",
+          "options": [
+            "They should be typewritten.",
+            "They should be discarded.",
+            "They should be sent back to the sender.a.",
+            "Write them by hand anyway."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (They should be typewritten.). Unless one’s hand writing is easily readable, all minutes or drafts covering more than half of an A4 page should be typewritten.",
+          "difficulty": "medium",
+          "chapter": "Leadership Principles & Styles - Expansion Set",
+          "keywords": [
+            "context",
+            "select",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Leadership Principles & Styles",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_lsm_064",
+          "question": "In the public service context, select the option that best answers: select the statement that correctly defines the role of a \"Minute\"?",
+          "options": [
+            "To provide a written submission to present a view or position on an issue.",
+            "To serve as a personal reminder.",
+            "To write down meeting decisions.",
+            "To summarize a meeting for the public.3."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (To provide a written submission to present a view or position on an issue.). (To provide a written submission to present a view or position on an issue.). Minute/Memo:- Written submission to present a view or position on an issue",
+          "difficulty": "medium",
+          "chapter": "Leadership Principles & Styles - Expansion Set",
+          "keywords": [
+            "select",
+            "statement",
+            "correctly",
+            "defines"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Leadership Principles & Styles",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_lsm_065",
+          "question": "In the public service context, which option correctly addresses: Within government administration, select the option that best answers: The handbook advises against removing documents from a file. What is the exception to this rule?",
+          "options": [
+            "When it is done to correct a grave error and is approved by a senior officer.",
+            "When the document is no longer needed.",
+            "When an officer is in a hurry.",
+            "When the document is personal.a."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (When it is done to correct a grave error and is approved by a senior officer.). (When it is done to correct a grave error and is approved by a senior officer.). No document must be removed from a file unless it is to correct a grave error and is approved by the Head of the Department or the Accounting Officer.",
+          "difficulty": "easy",
+          "chapter": "Leadership Principles & Styles - Expansion Set",
+          "keywords": [
+            "within",
+            "select",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Leadership Principles & Styles",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_lsm_066",
+          "question": "According to established rules, which option correctly addresses: According to established rules, which option correctly addresses: The handbook advises against removing documents from a file. What is the exception to this rule?",
+          "options": [
+            "When it is done to correct a grave error and is approved by a senior officer.",
+            "When the document is personal.a.",
+            "When the document is no longer needed.",
+            "When an officer is in a hurry."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (When it is done to correct a grave error and is approved by a senior officer.). (When it is done to correct a grave error and is approved by a senior officer.). No document must be removed from a file unless it is to correct a grave error and is approved by the Head of the Department or the Accounting Officer.",
+          "difficulty": "easy",
+          "chapter": "Leadership Principles & Styles - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "correctly"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Leadership Principles & Styles",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_lsm_067",
+          "question": "In the public service context, which option best describes the hours of work in Federal offices, as mentioned in the handbook?",
+          "options": [
+            "7:00 am to 3:00 pm.",
+            "9:00 am to 5:00 pm.",
+            "8:00 am to 4:00 pm..",
+            "10:00 am to 6:00 pm. 480 Q."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (8:00 am to 4:00 pm..). The hours of work in Federal offices are from 8:00 am to 4:00 pm on Monday to Friday.",
+          "difficulty": "easy",
+          "chapter": "Leadership Principles & Styles - Expansion Set",
+          "keywords": [
+            "context",
+            "option",
+            "best",
+            "describes"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Leadership Principles & Styles",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_lsm_068",
+          "question": "According to established rules, select the option that best answers: How might a draft be amended?",
+          "options": [
+            "By filling in gaps or incorporating additional facts by a senior officer.",
+            "Only by the original writer.",
+            "By completely rewriting it.",
+            "By discarding it and starting anew. □."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (By filling in gaps or incorporating additional facts by a senior officer.). A draft may be amended by filling in the gaps in the efforts of the officer or by the incorporation of additional facts by the senior officer. 485",
+          "difficulty": "medium",
+          "chapter": "Leadership Principles & Styles - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Leadership Principles & Styles",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_lsm_069",
+          "question": "Within government administration, choose the best answer for: What should typed drafts of minutes, briefs, and letters have?",
+          "options": [
+            "Headings which give an idea of the matter in the drafts.",
+            "Only the date.",
+            "Random numbers.",
+            "The name of the typist.a."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Headings which give an idea of the matter in the drafts.). Typed drafts of minutes, briefs, letters, etc. should have headings which give an idea of the matter in the drafts.",
+          "difficulty": "medium",
+          "chapter": "Leadership Principles & Styles - Expansion Set",
+          "keywords": [
+            "within",
+            "choose",
+            "best",
+            "answer"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Leadership Principles & Styles",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_lsm_070",
+          "question": "In official practice, which option correctly addresses: What follows the text of a minute, concluding it?",
+          "options": [
+            "The writer's signature or initials.",
+            "The Ministry's stamp. □.",
+            "The file number.",
+            "The date only."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (The writer's signature or initials.). The text of the minute follows. It is concluded by the signature or initials of the writer.",
+          "difficulty": "hard",
+          "chapter": "Leadership Principles & Styles - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "option",
+            "correctly"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Leadership Principles & Styles",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_lsm_071",
+          "question": "which option aligns with the meaning of one of the things a minute may be built up by stating briefly?",
+          "options": [
+            "The writer's personal opinions.",
+            "Irrelevant details. □ 487",
+            "The matter at issue.",
+            "Future plans."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (The matter at issue.). A minute may be built up as follows: (i) state briefly the matter at issue.",
+          "difficulty": "hard",
+          "chapter": "Leadership Principles & Styles - Expansion Set",
+          "keywords": [
+            "option",
+            "aligns",
+            "meaning",
+            "things"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Leadership Principles & Styles",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_lsm_072",
+          "question": "Within government administration, which option best describes \"File Notes\"?",
+          "options": [
+            "A simple form of making a quick written log of something that has happened.",
+            "Meeting minutes. □.",
+            "Formal reports.",
+            "Personal reminders."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (A simple form of making a quick written log of something that has happened.). File Notes are a simple form of making a quick written log of something that has happened.",
+          "difficulty": "medium",
+          "chapter": "Leadership Principles & Styles - Expansion Set",
+          "keywords": [
+            "within",
+            "option",
+            "best",
+            "describes"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Leadership Principles & Styles",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_lsm_073",
+          "question": "In the public service context, which option aligns with the meaning of the objective of the Duplicate Note-Book System for recording file transmissions?",
+          "options": [
+            "To write meeting minutes. □.",
+            "To create duplicate files.",
+            "To keep track of personal notes.",
+            "To document the file number, date, and destination whenever an officer sends out a file."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (To document the file number, date, and destination whenever an officer sends out a file.). Some officers still use the duplicate note-book system for recording transmission of files whereby whenever an officer sends out a file, his Clerk records its number, date and destination in a duplicate note-book.",
+          "difficulty": "medium",
+          "chapter": "Leadership Principles & Styles - Expansion Set",
+          "keywords": [
+            "context",
+            "option",
+            "aligns",
+            "meaning"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Leadership Principles & Styles",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_lsm_074",
+          "question": "In the public service context, select the statement that correctly defines \"File Notes\"?",
+          "options": [
+            "A simple form of making a quick written log of something that has happened.",
+            "Personal reminders.",
+            "Formal reports.",
+            "Meeting minutes. □."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (A simple form of making a quick written log of something that has happened.). File Notes are a simple form of making a quick written document of something that has happened.",
+          "difficulty": "easy",
+          "chapter": "Leadership Principles & Styles - Expansion Set",
+          "keywords": [
+            "context",
+            "select",
+            "statement",
+            "correctly"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Leadership Principles & Styles",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_lsm_075",
+          "question": "In the public service context, select the statement that correctly defines the role of the \"Duplicate Note-Book System\"?",
+          "options": [
+            "To write meeting minutes.a.",
+            "To create duplicate files.",
+            "To keep track of personal notes.",
+            "To document the file number, date, and destination whenever an officer sends out a file."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (To document the file number, date, and destination whenever an officer sends out a file.). Some officers still use the duplicate note-book system for recording transmission of files whereby whenever an officer sends out a file, his Clerk records its number, date and destination in a duplicate note-book.",
+          "difficulty": "hard",
+          "chapter": "Leadership Principles & Styles - Expansion Set",
+          "keywords": [
+            "context",
+            "select",
+            "statement",
+            "correctly"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Leadership Principles & Styles",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
         }
       ]
     },
@@ -3567,6 +4167,606 @@
           "sourceSection": "Strategic Management & Planning",
           "year": 2020,
           "lastReviewed": "2026-03-03"
+        },
+        {
+          "id": "leadership_smp_051",
+          "question": "Within government administration, choose the best answer for: How often should every organization submit a return of their bank accounts to the Accou nta nt-G e n e ra I?",
+          "options": [
+            "Annually.3",
+            "Monthly.",
+            "Half-yearly.",
+            "Quarterly."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Half-yearly.). Financial Regulation 701 (v) states: \"Every organisation must submit a return of their bank accounts half yearly to the Accountant-General...\"",
+          "difficulty": "hard",
+          "chapter": "Strategic Management & Planning - Expansion Set",
+          "keywords": [
+            "within",
+            "choose",
+            "best",
+            "answer"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Strategic Management & Planning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_smp_052",
+          "question": "In the public service context, select the statement that correctly defines a key aim of a \"handing-over note\"?",
+          "options": [
+            "To guarantee a smooth transition of responsibilities from one officer to another.",
+            "To document all the money spent by an officer. □.",
+            "To provide a list of all official meetings.",
+            "To detail the personal assets of the officer."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (To guarantee a smooth transition of responsibilities from one officer to another.). The handing-over note is a detailed document that guarantee a smooth transition of responsibilities from one officer to another.",
+          "difficulty": "easy",
+          "chapter": "Strategic Management & Planning - Expansion Set",
+          "keywords": [
+            "context",
+            "select",
+            "statement",
+            "correctly"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Strategic Management & Planning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_smp_053",
+          "question": "Within government administration, which option best describes the objective of a \"handing-over note\"?",
+          "options": [
+            "To provide a list of all official meetings.",
+            "To detail the projects, files, and responsibilities of a position for a successor.",
+            "To document all the money spent by an officer. □.",
+            "To document the personal assets of an officer."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (To detail the projects, files, and responsibilities of a position for a successor.). The handing-over note is a detailed document that summarizes all the projects, files, and responsibilities that an officer is handing over to their successor. 465",
+          "difficulty": "hard",
+          "chapter": "Strategic Management & Planning - Expansion Set",
+          "keywords": [
+            "within",
+            "option",
+            "best",
+            "describes"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Strategic Management & Planning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_smp_054",
+          "question": "which option aligns with the meaning of the aim of a \"handing-over note\"?",
+          "options": [
+            "To document all the money spent by an officer. □.",
+            "To document the personal assets of an officer.",
+            "To provide a list of all official meetings.",
+            "To detail the projects, files, and responsibilities of a position for a successor."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (To detail the projects, files, and responsibilities of a position for a successor.). A handing-over note is a detailed document that summarizes all the projects, files, and responsibilities that an officer is handing over to their successor.",
+          "difficulty": "medium",
+          "chapter": "Strategic Management & Planning - Expansion Set",
+          "keywords": [
+            "option",
+            "aligns",
+            "meaning",
+            "handing"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Strategic Management & Planning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_smp_055",
+          "question": "In the public service context, select the option that best answers: How should communication addressed to the Overseas Government never be made?",
+          "options": [
+            "Directly.",
+            "Through diplomatic channels. □.",
+            "Through the Ministry of Foreign Affairs.",
+            "Through email."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Directly.). Communication addressed to Overseas Government should never be made directly.",
+          "difficulty": "medium",
+          "chapter": "Strategic Management & Planning - Expansion Set",
+          "keywords": [
+            "context",
+            "select",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Strategic Management & Planning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_smp_056",
+          "question": "In official practice, select the option that best answers: What kind of style and choice of words should be used in government communication?",
+          "options": [
+            "Simple, smooth, and free-flowing.",
+            "Colloquial and informal. □.",
+            "Technical jargon only.",
+            "Complex and academic."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Simple, smooth, and free-flowing.). Your style and choice of words should be simple, smooth and free- flowing.",
+          "difficulty": "medium",
+          "chapter": "Strategic Management & Planning - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Strategic Management & Planning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_smp_057",
+          "question": "Within government administration, choose the best answer for: How should communication addressed to Overseas Government never be made?",
+          "options": [
+            "Through email.",
+            "Through diplomatic channels.a.",
+            "Through the Ministry of Foreign Affairs.",
+            "Directly."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Directly.). Communication addressed to Overseas Government should never be made directly.",
+          "difficulty": "medium",
+          "chapter": "Strategic Management & Planning - Expansion Set",
+          "keywords": [
+            "within",
+            "choose",
+            "best",
+            "answer"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Strategic Management & Planning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_smp_058",
+          "question": "In the public service context, which option correctly addresses: How should a schedule officer convey information to the Ministry of Foreign Affairs for overseas communication?",
+          "options": [
+            "By sending a blank document.a. 501",
+            "By phone call only.",
+            "By quoting verbatim specific extracts or conveying the gist of the information.",
+            "By sending a personal letter."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (By quoting verbatim specific extracts or conveying the gist of the information.). The Schedule Officer should write a letter conveying the gist of the information to be passed on or he may quote verbatim specific extracts from the letter.",
+          "difficulty": "easy",
+          "chapter": "Strategic Management & Planning - Expansion Set",
+          "keywords": [
+            "context",
+            "option",
+            "correctly",
+            "addresses"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Strategic Management & Planning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_smp_059",
+          "question": "Within government administration, choose the best answer for: How is a memo different from a letter?",
+          "options": [
+            "A memo is used for external communication, while a letter is for internal communication.",
+            "A memo is always shorter than a letter.a.",
+            "A memo is for internal communication, while a letter is for external communication.",
+            "A memo is always longer than a letter."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (A memo is for internal communication, while a letter is for external communication.). A memorandum is a type of correspondence used to communicate internally between officers within the same department or Ministry, while an official letter is used to communicate with other Ministries and the public.",
+          "difficulty": "medium",
+          "chapter": "Strategic Management & Planning - Expansion Set",
+          "keywords": [
+            "within",
+            "choose",
+            "best",
+            "answer"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Strategic Management & Planning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_smp_060",
+          "question": "According to established rules, which option aligns with the meaning of the final step in the communication procedure after a letter is drafted and approved?",
+          "options": [
+            "Having it signed and dispatched. 509",
+            "Rerouting it to all intermediate officers.3.",
+            "Filing it immediately.",
+            "Discarding the draft."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Having it signed and dispatched. 509). The final step is to have the approved document signed and dispatched to its intended recipient. Part 2: Notes on the Nigerian Foreign Service",
+          "difficulty": "hard",
+          "chapter": "Strategic Management & Planning - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "aligns"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Strategic Management & Planning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_smp_061",
+          "question": "In the public service context, select the statement that correctly defines the principal objective of maintaining a departmental dishonored cheques register?",
+          "options": [
+            "To guarantee clearances are pursued and recoveries affected.",
+            "To log all incoming and outgoing cheques.",
+            "To track bank charges.",
+            "To provide a summary of daily bank transactions a."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (To guarantee clearances are pursued and recoveries affected.). Financial Regulation 733(ii) states: \"The register must be checked monthly by the Head of accounts to guarantee that clearances are pursued and recoveries effected.\" Part 2: Financial Regulations: Cash Book and Monthly Accounts",
+          "difficulty": "easy",
+          "chapter": "Strategic Management & Planning - Expansion Set",
+          "keywords": [
+            "context",
+            "select",
+            "statement",
+            "correctly"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Strategic Management & Planning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_smp_062",
+          "question": "select the statement that correctly defines the minimum standard for recording vehicle usage in the logbook?",
+          "options": [
+            "Passenger names and destinations.Q",
+            "Fuel purchases only.",
+            "Departure/arrival times, mileage, and objective of journey.",
+            "Date and driver's name only. 292"
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Departure/arrival times, mileage, and objective of journey.). Financial Regulation 2005 details the requirement for recording \"full details of every journey performed including mileage, departure and arrival times and destination\" in the logbook.",
+          "difficulty": "easy",
+          "chapter": "Strategic Management & Planning - Expansion Set",
+          "keywords": [
+            "select",
+            "statement",
+            "correctly",
+            "defines"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Strategic Management & Planning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_smp_063",
+          "question": "In official practice, select the statement that correctly defines the objective of the \"golden handshake\" scheme for retiring public servants?",
+          "options": [
+            "To offer them a new job.",
+            "To prepare affected staff for new vocations after retirement.",
+            "To give them a loan.3.",
+            "To provide a severance package."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (To prepare affected staff for new vocations after retirement.). The \"golden handshake\" scheme provided orientation for individual development and empowerment to prepare affected staff for new vocations after retirement.",
+          "difficulty": "easy",
+          "chapter": "Strategic Management & Planning - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "select",
+            "statement"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Strategic Management & Planning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_smp_064",
+          "question": "In the public service context, which option best describes the role of an \"Absent File card\" or a \"card slip\"?",
+          "options": [
+            "To track the movement of a file.",
+            "To log official meetings.a.",
+            "To track staff attendance.",
+            "To document all payments."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (To track the movement of a file.). The correct use of Absent File cards and card slips is essential for tracking file movements, and ensuring that files are not misplaced.",
+          "difficulty": "easy",
+          "chapter": "Strategic Management & Planning - Expansion Set",
+          "keywords": [
+            "card",
+            "context",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Strategic Management & Planning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_smp_065",
+          "question": "In the public service context, which option best describes the objective of the \"File Title\"?",
+          "options": [
+            "To accurately reflect the subject matter contained in the file.",
+            "To make the file look nice.",
+            "To indicate who created the file.",
+            "To indicate the date the file was created. 451 Q."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (To accurately reflect the subject matter contained in the file.). Every file must have a title that accurately reflects the subject matter contained in the file.",
+          "difficulty": "easy",
+          "chapter": "Strategic Management & Planning - Expansion Set",
+          "keywords": [
+            "context",
+            "option",
+            "best",
+            "describes"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Strategic Management & Planning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_smp_066",
+          "question": "Within government administration, which option aligns with the meaning of the objective of a \"despatch book\"?",
+          "options": [
+            "To document all outgoing mail.",
+            "To log all official meetings.",
+            "To document all incoming mail.",
+            "To document all financial transactions. □."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (To document all outgoing mail.). A despatch book is used to document all outgoing mail from a department or Ministry.",
+          "difficulty": "medium",
+          "chapter": "Strategic Management & Planning - Expansion Set",
+          "keywords": [
+            "within",
+            "option",
+            "aligns",
+            "meaning"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Strategic Management & Planning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_smp_067",
+          "question": "Within government administration, select the statement that correctly defines the role of a \"receipt book\"?",
+          "options": [
+            "To document all incoming mail.",
+            "To acknowledge the receipt of all official mail. □.",
+            "To log all outgoing mail.",
+            "To document all official meetings."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (To acknowledge the receipt of all official mail. □.). A receipt book is used to acknowledge the receipt of all official mail.",
+          "difficulty": "medium",
+          "chapter": "Strategic Management & Planning - Expansion Set",
+          "keywords": [
+            "within",
+            "select",
+            "statement",
+            "correctly"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Strategic Management & Planning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_smp_068",
+          "question": "In the public service context, which option best describes the aim of a \"register of files\"?",
+          "options": [
+            "To log all official meetings.",
+            "To list all the files in a Ministry and their unique reference numbers.",
+            "To list all the staff in a Ministry.",
+            "To document all financial transactions.3. 460"
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (To list all the files in a Ministry and their unique reference numbers.). The register of files is a list of all the files in a Ministry, with their corresponding unique reference numbers.",
+          "difficulty": "medium",
+          "chapter": "Strategic Management & Planning - Expansion Set",
+          "keywords": [
+            "context",
+            "option",
+            "best",
+            "describes"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Strategic Management & Planning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_smp_069",
+          "question": "According to established rules, which option best describes the objective of a \"memorandum\"?",
+          "options": [
+            "To document a personal conversation.",
+            "To provide a confidential report. □.",
+            "To communicate with other Ministries and the public.",
+            "To communicate internally within the same department or Ministry."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (To communicate internally within the same department or Ministry.). A memorandum is a type of correspondence used to communicate internally between officers within the same department or Ministry.",
+          "difficulty": "hard",
+          "chapter": "Strategic Management & Planning - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Strategic Management & Planning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_smp_070",
+          "question": "According to established rules, select the statement that correctly defines the aim of an \"official letter\"?",
+          "options": [
+            "To communicate with other Ministries and the public.",
+            "To provide a confidential report. □.",
+            "To document a personal conversation.",
+            "To communicate internally."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (To communicate with other Ministries and the public.). An official letter is used to communicate with other Ministries, Parastatals, and the general public.",
+          "difficulty": "medium",
+          "chapter": "Strategic Management & Planning - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "select",
+            "statement"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Strategic Management & Planning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_smp_071",
+          "question": "In the public service context, which option aligns with the meaning of the aim of a \"file title\"?",
+          "options": [
+            "To accurately reflect the subject matter contained in the file.",
+            "To indicate the date the file was created. □. 464",
+            "To indicate who created the file.",
+            "To make the file look nice."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (To accurately reflect the subject matter contained in the file.). Every file must have a title that accurately reflects the subject matter contained in the file.",
+          "difficulty": "medium",
+          "chapter": "Strategic Management & Planning - Expansion Set",
+          "keywords": [
+            "context",
+            "option",
+            "aligns",
+            "meaning"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Strategic Management & Planning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_smp_072",
+          "question": "select the statement that correctly defines the role of an \"official letter\"?",
+          "options": [
+            "To communicate internally.",
+            "To document a personal conversation.",
+            "To provide a confidential report.a.",
+            "To communicate with other Ministries and the public."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (To communicate with other Ministries and the public.). An official letter is used to communicate with other Ministries, Parastatals, and the general public.",
+          "difficulty": "easy",
+          "chapter": "Strategic Management & Planning - Expansion Set",
+          "keywords": [
+            "select",
+            "statement",
+            "correctly",
+            "defines"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Strategic Management & Planning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_smp_073",
+          "question": "select the option that best answers: Why is it important for a chairman to prepare adequately for a meeting?",
+          "options": [
+            "To waste time before the meeting starts.",
+            "To show off his intelligence to the members.",
+            "To guarantee a smooth and effective control of the meeting and earn the respect of the members..",
+            "To give the Secretariat less work to do.3."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (To guarantee a smooth and effective control of the meeting and earn the respect of the members..). It is only by preparing adequately that the chairman can assure himself of an effective control of the meeting and earn the full respect of the members.",
+          "difficulty": "easy",
+          "chapter": "Strategic Management & Planning - Expansion Set",
+          "keywords": [
+            "select",
+            "option",
+            "best",
+            "answers"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Strategic Management & Planning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_smp_074",
+          "question": "Within government administration, select the statement that correctly defines the aim of a \"memorandum\"?",
+          "options": [
+            "To communicate with other Ministries and the public.",
+            "To provide a confidential report. Q.",
+            "To document a personal conversation.",
+            "To communicate internally within the same department or Ministry106."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (To communicate internally within the same department or Ministry106.). A memorandum is a type of correspondence used to communicate internally between officers within the same department or Ministry.",
+          "difficulty": "medium",
+          "chapter": "Strategic Management & Planning - Expansion Set",
+          "keywords": [
+            "within",
+            "select",
+            "statement",
+            "correctly"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Strategic Management & Planning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_smp_075",
+          "question": "In the public service context, which time frame is a draft considered good and approved?",
+          "options": [
+            "If it serves the prescribed objective.",
+            "If it uses complex vocabulary.",
+            "If it is lengthy.",
+            "If it is written quickly. □."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (If it serves the prescribed objective.). If the proposed reply or suggested circular serves the prescribed aim, it is considered good and approved.",
+          "difficulty": "hard",
+          "chapter": "Strategic Management & Planning - Expansion Set",
+          "keywords": [
+            "context",
+            "time",
+            "frame",
+            "draft"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Strategic Management & Planning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
         }
       ]
     },
@@ -5359,6 +6559,606 @@
           "sourceSection": "Management Functions & Performance",
           "year": 2020,
           "lastReviewed": "2026-03-03"
+        },
+        {
+          "id": "leadership_mpf_051",
+          "question": "According to established rules, select the statement that correctly defines the role of including a \"B.U.\" in a file note? 504?",
+          "options": [
+            "To indicate a final decision has been made.",
+            "To indicate the file is to be destroyed.",
+            "To indicate the file is closed.3.",
+            "To indicate the matter can be followed up on a specified date."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (To indicate the matter can be followed up on a specified date.). A note is made on the last page of the main file describing the action which has been taken and ending with a B.U. so that the matter can be followed up on a specified date.",
+          "difficulty": "easy",
+          "chapter": "Management Functions & Performance - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "select",
+            "statement"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Management Functions & Performance",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_mpf_052",
+          "question": "In official practice, choose the best answer for: Category B training is characterized as long-term post-graduate training that is beneficial to the Officer but:?",
+          "options": [
+            "Mandatorily funded by the MDA.",
+            "A prerequisite for a political appointment.",
+            "NOT so crucial to the attainment of the MDA’s mandate.",
+            "Compulsory for promotion to GL 17."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (NOT so crucial to the attainment of the MDA’s mandate.).",
+          "difficulty": "easy",
+          "chapter": "Management Functions & Performance - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Management Functions & Performance",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_mpf_053",
+          "question": "In the public service context, at what point handling management functions & performance, which choice reflects proper documented procedure standards?",
+          "options": [
+            "Bypass review and approval controls to save time.",
+            "Follow documented procedure and keep complete records.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Apply rules inconsistently based on personal preference."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Follow documented procedure and keep complete records.).",
+          "difficulty": "medium",
+          "chapter": "Management Functions & Performance - Expansion Set",
+          "keywords": [
+            "context",
+            "point",
+            "handling",
+            "functions"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Management Functions & Performance",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_mpf_054",
+          "question": "Within government administration, select the option that best answers: For effective management functions & performance, what is the most appropriate approach to guarantee change management?",
+          "options": [
+            "Ignore feedback and continue non-compliant procedures.",
+            "Sequence reforms with communication, training, and monitoring.",
+            "Bypass review and approval controls to save time.",
+            "Apply rules inconsistently based on personal preference."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Sequence reforms with communication, training, and monitoring.).",
+          "difficulty": "easy",
+          "chapter": "Management Functions & Performance - Expansion Set",
+          "keywords": [
+            "within",
+            "select",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Management Functions & Performance",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_mpf_055",
+          "question": "In official practice, select the option that best answers: A ministry unit is updating its workflow for management functions & performance. Which choice most effectively promotes team leadership' while preserving records for audit and oversight?",
+          "options": [
+            "Close cases without validating facts or demand records.",
+            "Rely on informal instructions without documentary evidence.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Clarify roles, remove blockers, and coach for improved outcomes."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Clarify roles, remove blockers, and coach for improved outcomes.).",
+          "difficulty": "hard",
+          "chapter": "Management Functions & Performance - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Management Functions & Performance",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_mpf_056",
+          "question": "According to established rules, which option correctly addresses: For effective management functions & performance, what is the most appropriate approach to secure strategic alignment?",
+          "options": [
+            "Link unit actions to ministry goals and measurable outcomes.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Rely on informal instructions without documentary evidence.",
+            "Close cases without validating facts or necessitate records."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Link unit actions to ministry goals and measurable outcomes.).",
+          "difficulty": "easy",
+          "chapter": "Management Functions & Performance - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "correctly"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Management Functions & Performance",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_mpf_057",
+          "question": "In official practice, which option correctly addresses: The **PSR** demand that performance reports must be jointly signed by the officer and his immediate supervisor to secure:?",
+          "options": [
+            "Accuracy and fairness.",
+            "FCSC approval.",
+            "Automatic increment.",
+            "Reduced staff transfers."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Accuracy and fairness.).",
+          "difficulty": "medium",
+          "chapter": "Management Functions & Performance - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "option",
+            "correctly"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Management Functions & Performance",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_mpf_058",
+          "question": "According to established rules, at what point handling management functions & performance, which choice reflects proper team leadership standards?",
+          "options": [
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Clarify roles, remove blockers, and coach for improved outcomes.",
+            "Treat exceptions as routine without documented justification.",
+            "Rely on informal instructions without documentary evidence."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Clarify roles, remove blockers, and coach for improved outcomes.).",
+          "difficulty": "easy",
+          "chapter": "Management Functions & Performance - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "point",
+            "handling"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Management Functions & Performance",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_mpf_059",
+          "question": "In the public service context, which option correctly addresses: The **Annual Performance Evaluation Report (APER)** has been officially replaced by which system, as dictated by **OHCSF** circulars?",
+          "options": [
+            "360-Degree Feedback.",
+            "KPI Scorecard.",
+            "Merit Award System.",
+            "Performance Management System (PMS)."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Performance Management System (PMS).).",
+          "difficulty": "hard",
+          "chapter": "Management Functions & Performance - Expansion Set",
+          "keywords": [
+            "context",
+            "option",
+            "correctly",
+            "addresses"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Management Functions & Performance",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_mpf_060",
+          "question": "In official practice, select the option that best answers: Which practice should a in charge officer prioritize to sustain stakeholder negotiation in Management Functions & Performance?",
+          "options": [
+            "Apply rules inconsistently based on personal preference.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Use principled negotiation and document agreed commitments."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Use principled negotiation and document agreed commitments.).",
+          "difficulty": "medium",
+          "chapter": "Management Functions & Performance - Expansion Set",
+          "keywords": [
+            "practice",
+            "official",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Management Functions & Performance",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_mpf_061",
+          "question": "Within government administration, which option correctly addresses: A key principle of the **Balanced Scorecard** approach is to link strategic objectives with what measurable organizational output?",
+          "options": [
+            "Government circulars.",
+            "Performance indicators (KPIs).",
+            "Employee grievances.",
+            "Budgetary allocations only."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Performance indicators (KPIs).).",
+          "difficulty": "easy",
+          "chapter": "Management Functions & Performance - Expansion Set",
+          "keywords": [
+            "within",
+            "option",
+            "correctly",
+            "addresses"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Management Functions & Performance",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_mpf_062",
+          "question": "According to established rules, which option correctly addresses: Which option most strongly aligns with good public-service practice on performance standards within Management Functions & Performance?",
+          "options": [
+            "Treat exceptions as routine without documented justification.",
+            "Close cases without validating facts or necessitate records.",
+            "Set measurable targets, monitor progress, and correct deviations.",
+            "Delay decisions until issues escalate into avoidable crises."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Set measurable targets, monitor progress, and correct deviations.).",
+          "difficulty": "medium",
+          "chapter": "Management Functions & Performance - Expansion Set",
+          "keywords": [
+            "option",
+            "according",
+            "established",
+            "correctly"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Management Functions & Performance",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_mpf_063",
+          "question": "select the option that best answers: The maximum duration of study leave with payment that may be granted to a Confirmed Officer is:?",
+          "options": [
+            "Three years.",
+            "Six months.",
+            "Two years.",
+            "Four years."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Two years.).",
+          "difficulty": "easy",
+          "chapter": "Management Functions & Performance - Expansion Set",
+          "keywords": [
+            "select",
+            "option",
+            "best",
+            "answers"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Management Functions & Performance",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_mpf_064",
+          "question": "In official practice, at what point handling management functions & performance, which choice reflects proper decision transparency standards?",
+          "options": [
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Close cases without validating facts or demand records.",
+            "Rely on informal instructions without documentary evidence.",
+            "Use clear criteria and communicate decisions promptly."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Use clear criteria and communicate decisions promptly.).",
+          "difficulty": "medium",
+          "chapter": "Management Functions & Performance - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "point",
+            "handling"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Management Functions & Performance",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_mpf_065",
+          "question": "In official practice, which option correctly addresses: If an officer is in receipt of a personal allowance, such allowance will be treated as part of his substantive basic emolument for the role of calculating:?",
+          "options": [
+            "Overtime payment.",
+            "Annual leave entitlement.",
+            "Promotion arrears.",
+            "Resettlement allowance (Rule 140134)."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Resettlement allowance (Rule 140134).).",
+          "difficulty": "hard",
+          "chapter": "Management Functions & Performance - Expansion Set",
+          "keywords": [
+            "allowance",
+            "official",
+            "practice",
+            "option"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Management Functions & Performance",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_mpf_066",
+          "question": "According to established rules, responsibility for must approve the ultimate release of any Officer on study leave, whether paid or unpaid, upon the recommendation of the Officer’s Permanent Secretary belongs to which role?",
+          "options": [
+            "The Federal Civil Service Commission.",
+            "The Minister of Education.",
+            "The Head of the Civil Service of the Federation.",
+            "The Accountant-General of the Federation."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (The Head of the Civil Service of the Federation.).",
+          "difficulty": "medium",
+          "chapter": "Management Functions & Performance - Expansion Set",
+          "keywords": [
+            "officer",
+            "according",
+            "established",
+            "responsibility"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Management Functions & Performance",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_mpf_067",
+          "question": "In the public service context, which option correctly addresses: According to the **PSR**, an Officer on an incremental grade level must normally be granted an increment unless he is under interdiction/suspension or:?",
+          "options": [
+            "Has applied for retirement.",
+            "Has a disciplinary action pending.",
+            "Has completed his annual leave.",
+            "Is on secondment."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Has a disciplinary action pending.).",
+          "difficulty": "medium",
+          "chapter": "Management Functions & Performance - Expansion Set",
+          "keywords": [
+            "context",
+            "option",
+            "correctly",
+            "addresses"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Management Functions & Performance",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_mpf_068",
+          "question": "In official practice, select the statement that correctly defines the chief significance of performance appraisal, as emphasized in the Civil Service Handbook?",
+          "options": [
+            "To reduce salaries.",
+            "To increase workload.",
+            "To punish staff only.",
+            "To evaluate, improve, and reward staff performance."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (To evaluate, improve, and reward staff performance.).",
+          "difficulty": "easy",
+          "chapter": "Management Functions & Performance - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "select",
+            "statement"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Management Functions & Performance",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_mpf_069",
+          "question": "Within government administration, select the option that best answers: A desk officer handling Management Functions & Performance receives a case that necessitate management functions & performance governance. What should be done first' while maintaining fairness and legal compliance?",
+          "options": [
+            "Prioritize convenience over policy and legal requirements.",
+            "Apply rules inconsistently based on personal preference.",
+            "Bypass review and approval controls to save time.",
+            "Apply approved management functions & performance procedures and keep complete records."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Apply approved management functions & performance procedures and keep complete records.).",
+          "difficulty": "easy",
+          "chapter": "Management Functions & Performance - Expansion Set",
+          "keywords": [
+            "functions",
+            "within",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Management Functions & Performance",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_mpf_070",
+          "question": "According to established rules, select the option that best answers: In management, **SMART goals** are defined as goals that are:?",
+          "options": [
+            "Simple, Manageable, Accountable, Realistic, Timely.",
+            "Specific, Measurable, Achievable, Relevant, Time-bound.",
+            "Special, Measurable, Attainable, Rapid, Targeted.",
+            "Strategic, Motivated, Accurate, accountable, Tangible."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Specific, Measurable, Achievable, Relevant, Time-bound.).",
+          "difficulty": "hard",
+          "chapter": "Management Functions & Performance - Expansion Set",
+          "keywords": [
+            "goals",
+            "according",
+            "established",
+            "select"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Management Functions & Performance",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_mpf_071",
+          "question": "Within government administration, choose the best answer for: Which option most strongly aligns with good public-service practice on risk control within Management Functions & Performance?",
+          "options": [
+            "Apply rules inconsistently based on personal preference.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Identify risk early, apply controls, and document mitigation."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Identify risk early, apply controls, and document mitigation.).",
+          "difficulty": "medium",
+          "chapter": "Management Functions & Performance - Expansion Set",
+          "keywords": [
+            "within",
+            "choose",
+            "best",
+            "answer"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Management Functions & Performance",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_mpf_072",
+          "question": "In the public service context, select the option that best answers: The concept of **Benchmarking** in management helps organizations move toward:?",
+          "options": [
+            "Increased secrecy.",
+            "Continuous Improvement.",
+            "Decreased transparency.",
+            "Stagnation."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Continuous Improvement.).",
+          "difficulty": "medium",
+          "chapter": "Management Functions & Performance - Expansion Set",
+          "keywords": [
+            "context",
+            "select",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Management Functions & Performance",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_mpf_073",
+          "question": "According to established rules, which option correctly addresses: Which option most strongly aligns with good public-service practice on stakeholder negotiation within Management Functions & Performance?",
+          "options": [
+            "Ignore feedback and continue non-compliant procedures.",
+            "Apply rules inconsistently based on personal preference.",
+            "Bypass review and approval controls to save time.",
+            "Use principled negotiation and document agreed commitments."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Use principled negotiation and document agreed commitments.).",
+          "difficulty": "hard",
+          "chapter": "Management Functions & Performance - Expansion Set",
+          "keywords": [
+            "option",
+            "according",
+            "established",
+            "correctly"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Management Functions & Performance",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_mpf_074",
+          "question": "which time frame handling management functions & performance, which choice reflects proper management functions & performance governance standards?",
+          "options": [
+            "Prioritize convenience over policy and legal requirements.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Bypass review and approval controls to save time.",
+            "Apply approved management functions & performance procedures and sustain complete records."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Apply approved management functions & performance procedures and sustain complete records.).",
+          "difficulty": "medium",
+          "chapter": "Management Functions & Performance - Expansion Set",
+          "keywords": [
+            "functions",
+            "time",
+            "frame",
+            "handling"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Management Functions & Performance",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "leadership_mpf_075",
+          "question": "Within government administration, which option correctly addresses: Under the Reward and Recognition Scheme (R&RS), awards should be based on:?",
+          "options": [
+            "The length of the officer’s resume.",
+            "The total number of staff recruited.",
+            "Measurable results and evaluated output.",
+            "The opinion of the Minister only."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Measurable results and evaluated output.).",
+          "difficulty": "medium",
+          "chapter": "Management Functions & Performance - Expansion Set",
+          "keywords": [
+            "within",
+            "option",
+            "correctly",
+            "addresses"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Management Functions & Performance",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
         }
       ]
     },
@@ -7208,6 +9008,606 @@
           "sourceSection": "Negotiation Principles & Outcomes",
           "year": 2020,
           "lastReviewed": "2026-03-03"
+        },
+        {
+          "id": "neg_principles_outcomes_gen_063",
+          "question": "According to established rules, which option aligns with the meaning of one of the key responsibilities of the chairman in closing a meeting?",
+          "options": [
+            "To dismiss the Secretariat.",
+            "To tell the members to go home.",
+            "To summarize the conclusions of the forum to the agreement of the other members40.",
+            "To take all the credit for the meeting's success.Q."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (To summarize the conclusions of the forum to the agreement of the other members40.). In bringing the meeting to a close, the chairman should summarise the conclusions of the forum to the agreement of the other members",
+          "difficulty": "easy",
+          "chapter": "Negotiation Principles & Outcomes - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "aligns"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Negotiation Principles & Outcomes",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_principles_outcomes_gen_064",
+          "question": "Within government administration, which option best describes the role of a chairman in summarising the conclusions of a meeting?",
+          "options": [
+            "To do it quickly without consultation.",
+            "To summarize the conclusions to the agreement of the other members135.",
+            "To only summarize the points he agrees with. a.",
+            "To write the summary himself and not show it to anyone."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (To summarize the conclusions to the agreement of the other members135.). The chairman should summarise the conclusions of the forum to the agreement of the other members and for the benefit of the Secretariat which should reflect these in the minutes.",
+          "difficulty": "medium",
+          "chapter": "Negotiation Principles & Outcomes - Expansion Set",
+          "keywords": [
+            "within",
+            "option",
+            "best",
+            "describes"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Negotiation Principles & Outcomes",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_principles_outcomes_gen_065",
+          "question": "which option correctly addresses: According to established rules, which option aligns with the meaning of one of the key responsibilities of the chairman in closing a meeting?",
+          "options": [
+            "To dismiss the Secretariat.",
+            "To take all the credit for the meeting's success.Q.",
+            "To tell the members to go home.",
+            "To summarize the conclusions of the forum to the agreement of the other members40."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (To summarize the conclusions of the forum to the agreement of the other members40.). (To summarize the conclusions of the forum to the agreement of the other members40.). In bringing the meeting to a close, the chairman should summarise the conclusions of the forum to the agreement of the other members",
+          "difficulty": "medium",
+          "chapter": "Negotiation Principles & Outcomes - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "aligns"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Negotiation Principles & Outcomes",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_principles_outcomes_gen_066",
+          "question": "Within government administration, choose the best answer for: Which practice should a in charge officer prioritize to sustain stakeholder negotiation in Negotiation Principles & Outcomes?",
+          "options": [
+            "Apply rules inconsistently based on personal preference.",
+            "Use principled negotiation and document agreed commitments.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Ignore feedback and continue non-compliant procedures."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Use principled negotiation and document agreed commitments.).",
+          "difficulty": "easy",
+          "chapter": "Negotiation Principles & Outcomes - Expansion Set",
+          "keywords": [
+            "negotiation",
+            "within",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Negotiation Principles & Outcomes",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_principles_outcomes_gen_067",
+          "question": "Within government administration, select the statement that correctly defines the key outcome sought from successful industrial negotiations?",
+          "options": [
+            "Increased strikes.",
+            "Loss of productivity.",
+            "Union disbandment.",
+            "Industrial harmony."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Industrial harmony.).",
+          "difficulty": "easy",
+          "chapter": "Negotiation Principles & Outcomes - Expansion Set",
+          "keywords": [
+            "within",
+            "select",
+            "statement",
+            "correctly"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Negotiation Principles & Outcomes",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_principles_outcomes_gen_068",
+          "question": "select the option that best answers: Effective labour relations contribute directly to which organizational outcome?",
+          "options": [
+            "Industrial unrest.",
+            "Enhanced productivity and morale.",
+            "Reduced employee commitment.",
+            "Increased absenteeism."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Enhanced productivity and morale.).",
+          "difficulty": "easy",
+          "chapter": "Negotiation Principles & Outcomes - Expansion Set",
+          "keywords": [
+            "select",
+            "option",
+            "best",
+            "answers"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Negotiation Principles & Outcomes",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_principles_outcomes_gen_069",
+          "question": "In official practice, select the statement that the strongest control action for team leadership in negotiation principles & outcomes' while maintaining fairness and legal compliance?",
+          "options": [
+            "Treat exceptions as routine without documented justification.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Clarify roles, remove blockers, and coach for improved outcomes.",
+            "Rely on informal instructions without documentary evidence."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Clarify roles, remove blockers, and coach for improved outcomes.).",
+          "difficulty": "medium",
+          "chapter": "Negotiation Principles & Outcomes - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "select",
+            "statement"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Negotiation Principles & Outcomes",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_principles_outcomes_gen_070",
+          "question": "which option correctly addresses: Which option most strongly aligns with good public-service practice on compliance assurance within Negotiation Principles & Outcomes?",
+          "options": [
+            "Close cases without validating facts or necessitate records.",
+            "Rely on informal instructions without documentary evidence.",
+            "Treat exceptions as routine without documented justification.",
+            "Apply approved rules consistently and escalate exceptions."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Apply approved rules consistently and escalate exceptions.).",
+          "difficulty": "medium",
+          "chapter": "Negotiation Principles & Outcomes - Expansion Set",
+          "keywords": [
+            "option",
+            "correctly",
+            "addresses",
+            "most"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Negotiation Principles & Outcomes",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_principles_outcomes_gen_071",
+          "question": "In the public service context, select the option that best answers: For effective negotiation principles & outcomes, what is the most appropriate approach to guarantee service integrity?",
+          "options": [
+            "Treat exceptions as routine without documented justification.",
+            "Rely on informal instructions without documentary evidence.",
+            "Avoid conflicts of interest and disclose relevant constraints.",
+            "Close cases without validating facts or demand records."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Avoid conflicts of interest and disclose relevant constraints.).",
+          "difficulty": "medium",
+          "chapter": "Negotiation Principles & Outcomes - Expansion Set",
+          "keywords": [
+            "context",
+            "select",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Negotiation Principles & Outcomes",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_principles_outcomes_gen_072",
+          "question": "According to established rules, select the option that best answers: Which option most strongly aligns with good public-service practice on negotiation principles & outcomes risk management within Negotiation Principles & Outcomes?",
+          "options": [
+            "Ignore feedback and continue non-compliant procedures.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Identify control gaps early and escalate material exceptions promptly.",
+            "Bypass review and approval controls to save time."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Identify control gaps early and escalate material exceptions promptly.).",
+          "difficulty": "medium",
+          "chapter": "Negotiation Principles & Outcomes - Expansion Set",
+          "keywords": [
+            "option",
+            "negotiation",
+            "outcomes",
+            "according"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Negotiation Principles & Outcomes",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_principles_outcomes_gen_073",
+          "question": "In official practice, which option correctly addresses: For effective negotiation principles & outcomes, what is the most appropriate approach to secure log management?",
+          "options": [
+            "Bypass review and approval controls to save time.",
+            "Prioritize convenience over policy and legal requirements.",
+            "keep accurate files and update status at each control point.",
+            "Apply rules inconsistently based on personal preference."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (keep accurate files and update status at each control point.).",
+          "difficulty": "easy",
+          "chapter": "Negotiation Principles & Outcomes - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "option",
+            "correctly"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Negotiation Principles & Outcomes",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_principles_outcomes_gen_074",
+          "question": "select the option that best answers: Which practice should a accountable officer prioritize to sustain compliance assurance in Negotiation Principles & Outcomes?",
+          "options": [
+            "Treat exceptions as routine without documented justification.",
+            "Apply approved rules consistently and escalate exceptions.",
+            "Close cases without validating facts or demand records.",
+            "Delay decisions until issues escalate into avoidable crises."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Apply approved rules consistently and escalate exceptions.).",
+          "difficulty": "medium",
+          "chapter": "Negotiation Principles & Outcomes - Expansion Set",
+          "keywords": [
+            "select",
+            "option",
+            "best",
+            "answers"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Negotiation Principles & Outcomes",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_principles_outcomes_gen_075",
+          "question": "According to established rules, select the option that best answers: A ministry unit is updating its workflow for negotiation principles & outcomes. Which choice most effectively promotes decision transparency' without bypassing established review procedures?",
+          "options": [
+            "Close cases without validating facts or demand records.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Rely on informal instructions without documentary evidence.",
+            "Use clear criteria and communicate decisions promptly."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Use clear criteria and communicate decisions promptly.).",
+          "difficulty": "medium",
+          "chapter": "Negotiation Principles & Outcomes - Expansion Set",
+          "keywords": [
+            "established",
+            "according",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Negotiation Principles & Outcomes",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_principles_outcomes_gen_076",
+          "question": "In official practice, select the option that best answers: A ministry unit is updating its workflow for negotiation principles & outcomes. Which choice most effectively promotes team leadership' while preserving records for audit and oversight?",
+          "options": [
+            "Rely on informal instructions without documentary evidence.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Clarify roles, remove blockers, and coach for improved outcomes.",
+            "Close cases without validating facts or demand records."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Clarify roles, remove blockers, and coach for improved outcomes.).",
+          "difficulty": "hard",
+          "chapter": "Negotiation Principles & Outcomes - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Negotiation Principles & Outcomes",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_principles_outcomes_gen_077",
+          "question": "which option correctly addresses: For effective negotiation principles & outcomes, what is the most appropriate approach to secure documented procedure?",
+          "options": [
+            "Follow documented procedure and keep complete records.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Bypass review and approval controls to save time."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Follow documented procedure and keep complete records.).",
+          "difficulty": "easy",
+          "chapter": "Negotiation Principles & Outcomes - Expansion Set",
+          "keywords": [
+            "option",
+            "correctly",
+            "addresses",
+            "effective"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Negotiation Principles & Outcomes",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_principles_outcomes_gen_078",
+          "question": "In the public service context, select the option that best answers: A supervisor is reviewing compliance gaps in Negotiation Principles & Outcomes. Which action most directly strengthens public accountability' without bypassing established review procedures?",
+          "options": [
+            "Provide traceable decisions and evidence-based justification.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Bypass review and approval controls to save time."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Provide traceable decisions and evidence-based justification.).",
+          "difficulty": "easy",
+          "chapter": "Negotiation Principles & Outcomes - Expansion Set",
+          "keywords": [
+            "context",
+            "select",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Negotiation Principles & Outcomes",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_principles_outcomes_gen_079",
+          "question": "Within government administration, at what point handling negotiation principles & outcomes, which choice reflects proper public accountability standards?",
+          "options": [
+            "Provide traceable decisions and evidence-based justification.",
+            "Apply rules inconsistently based on personal preference.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Prioritize convenience over policy and legal requirements."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Provide traceable decisions and evidence-based justification.).",
+          "difficulty": "easy",
+          "chapter": "Negotiation Principles & Outcomes - Expansion Set",
+          "keywords": [
+            "within",
+            "point",
+            "handling",
+            "negotiation"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Negotiation Principles & Outcomes",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_principles_outcomes_gen_080",
+          "question": "Within government administration, which time frame handling negotiation principles & outcomes, which choice reflects proper negotiation principles & outcomes governance standards?",
+          "options": [
+            "Apply approved negotiation principles & outcomes procedures and keep complete records.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Bypass review and approval controls to save time."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Apply approved negotiation principles & outcomes procedures and keep complete records.).",
+          "difficulty": "hard",
+          "chapter": "Negotiation Principles & Outcomes - Expansion Set",
+          "keywords": [
+            "negotiation",
+            "outcomes",
+            "within",
+            "time"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Negotiation Principles & Outcomes",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_principles_outcomes_gen_081",
+          "question": "According to established rules, choose the best answer for: For effective negotiation principles & outcomes, what is the most appropriate approach to guarantee decision transparency?",
+          "options": [
+            "Use clear criteria and communicate decisions promptly.",
+            "Rely on informal instructions without documentary evidence.",
+            "Treat exceptions as routine without documented justification.",
+            "Delay decisions until issues escalate into avoidable crises."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Use clear criteria and communicate decisions promptly.).",
+          "difficulty": "medium",
+          "chapter": "Negotiation Principles & Outcomes - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Negotiation Principles & Outcomes",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_principles_outcomes_gen_082",
+          "question": "In the public service context, select the option that best answers: A supervisor is reviewing compliance gaps in Negotiation Principles & Outcomes. Which action most directly strengthens negotiation principles & outcomes risk management' while preserving records for audit and oversight?",
+          "options": [
+            "Identify control gaps early and escalate material exceptions promptly.",
+            "Bypass review and approval controls to save time.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Ignore feedback and continue non-compliant procedures."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Identify control gaps early and escalate material exceptions promptly.).",
+          "difficulty": "medium",
+          "chapter": "Negotiation Principles & Outcomes - Expansion Set",
+          "keywords": [
+            "negotiation",
+            "outcomes",
+            "context",
+            "select"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Negotiation Principles & Outcomes",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_principles_outcomes_gen_083",
+          "question": "which time frame handling negotiation principles & outcomes, which choice reflects proper decision transparency standards?",
+          "options": [
+            "Use clear criteria and communicate decisions promptly.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Close cases without validating facts or necessitate records.",
+            "Rely on informal instructions without documentary evidence."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Use clear criteria and communicate decisions promptly.).",
+          "difficulty": "medium",
+          "chapter": "Negotiation Principles & Outcomes - Expansion Set",
+          "keywords": [
+            "time",
+            "frame",
+            "handling",
+            "negotiation"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Negotiation Principles & Outcomes",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_principles_outcomes_gen_084",
+          "question": "choose the best answer for: Which practice should a accountable officer prioritize to sustain log management in Negotiation Principles & Outcomes?",
+          "options": [
+            "Ignore feedback and continue non-compliant procedures.",
+            "Bypass review and approval controls to save time.",
+            "sustain accurate files and update status at each control point.",
+            "Prioritize convenience over policy and legal requirements."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (sustain accurate files and update status at each control point.).",
+          "difficulty": "hard",
+          "chapter": "Negotiation Principles & Outcomes - Expansion Set",
+          "keywords": [
+            "choose",
+            "best",
+            "answer",
+            "practice"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Negotiation Principles & Outcomes",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_principles_outcomes_gen_085",
+          "question": "In official practice, choose the best answer for: In a time-sensitive file under Negotiation Principles & Outcomes, which step best preserves stakeholder negotiation without breaching procedure' while preserving records for audit and oversight?",
+          "options": [
+            "Bypass review and approval controls to save time.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Apply rules inconsistently based on personal preference.",
+            "Use principled negotiation and document agreed commitments."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Use principled negotiation and document agreed commitments.).",
+          "difficulty": "medium",
+          "chapter": "Negotiation Principles & Outcomes - Expansion Set",
+          "keywords": [
+            "best",
+            "negotiation",
+            "official",
+            "practice"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Negotiation Principles & Outcomes",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_principles_outcomes_gen_086",
+          "question": "In the public service context, which option correctly addresses: A desk officer handling Negotiation Principles & Outcomes receives a case that demand documented procedure. What should be done first' within approved timelines and governance standards?",
+          "options": [
+            "Follow documented procedure and keep complete records.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Apply rules inconsistently based on personal preference.",
+            "Bypass review and approval controls to save time."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Follow documented procedure and keep complete records.).",
+          "difficulty": "hard",
+          "chapter": "Negotiation Principles & Outcomes - Expansion Set",
+          "keywords": [
+            "context",
+            "option",
+            "correctly",
+            "addresses"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Negotiation Principles & Outcomes",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_principles_outcomes_gen_087",
+          "question": "Within government administration, which option correctly addresses: For effective negotiation principles & outcomes, what is the most appropriate approach to guarantee change management?",
+          "options": [
+            "Sequence reforms with communication, training, and monitoring.",
+            "Bypass review and approval controls to save time.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Apply rules inconsistently based on personal preference."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Sequence reforms with communication, training, and monitoring.).",
+          "difficulty": "easy",
+          "chapter": "Negotiation Principles & Outcomes - Expansion Set",
+          "keywords": [
+            "within",
+            "option",
+            "correctly",
+            "addresses"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Negotiation Principles & Outcomes",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
         }
       ]
     },
@@ -9061,6 +11461,606 @@
           "sourceSection": "Negotiating Structures & Bodies",
           "year": 2020,
           "lastReviewed": "2026-03-03"
+        },
+        {
+          "id": "neg_structure_bodies_gen_064",
+          "question": "In official practice, choose the best answer for: What abbreviations should be included at the foot of the letter if there are enclosures?",
+          "options": [
+            "Ref. or Refs. □..",
+            "App. or Apps.",
+            "Enc. or Encs.",
+            "Att. or Atts."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Enc. or Encs.). A dash should be typed in the margin in line with references in the letter to any enclosures or, the abbreviations Enc. or Encs. should be included at the foot of the letter.",
+          "difficulty": "medium",
+          "chapter": "Negotiating Structures & Bodies - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Negotiating Structures & Bodies",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_structure_bodies_gen_065",
+          "question": "In the public service context, which option correctly addresses: In official practice, choose the best answer for: What abbreviations should be included at the foot of the letter if there are enclosures?",
+          "options": [
+            "Att. or Atts.",
+            "Enc. or Encs.",
+            "Ref. or Refs. □..",
+            "App. or Apps."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Enc. or Encs.). (Enc. or Encs.). A dash should be typed in the margin in line with references in the letter to any enclosures or, the abbreviations Enc. or Encs. should be included at the foot of the letter.",
+          "difficulty": "medium",
+          "chapter": "Negotiating Structures & Bodies - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Negotiating Structures & Bodies",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_structure_bodies_gen_066",
+          "question": "Within government administration, which option correctly addresses: A desk officer handling Negotiating Structures & Bodies receives a case that demand change management. What should be done first' without bypassing established review procedures?",
+          "options": [
+            "Sequence reforms with communication, training, and monitoring.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Bypass review and approval controls to save time.",
+            "Apply rules inconsistently based on personal preference."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Sequence reforms with communication, training, and monitoring.).",
+          "difficulty": "easy",
+          "chapter": "Negotiating Structures & Bodies - Expansion Set",
+          "keywords": [
+            "within",
+            "option",
+            "correctly",
+            "addresses"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Negotiating Structures & Bodies",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_structure_bodies_gen_067",
+          "question": "Within government administration, which option NOT a recognized level of negotiation in the NPSNC structure?",
+          "options": [
+            "Departmental Council.",
+            "Local Council.",
+            "Regional Council.",
+            "National Council."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Regional Council.).",
+          "difficulty": "hard",
+          "chapter": "Negotiating Structures & Bodies - Expansion Set",
+          "keywords": [
+            "within",
+            "option",
+            "recognized",
+            "level"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Negotiating Structures & Bodies",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_structure_bodies_gen_068",
+          "question": "According to established rules, select the option that best answers: Which option most strongly aligns with good public-service practice on risk control within Negotiating Structures & Bodies?",
+          "options": [
+            "Ignore feedback and continue non-compliant procedures.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Identify risk early, apply controls, and document mitigation.",
+            "Apply rules inconsistently based on personal preference."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Identify risk early, apply controls, and document mitigation.).",
+          "difficulty": "medium",
+          "chapter": "Negotiating Structures & Bodies - Expansion Set",
+          "keywords": [
+            "option",
+            "according",
+            "established",
+            "select"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Negotiating Structures & Bodies",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_structure_bodies_gen_069",
+          "question": "In the public service context, choose the best answer for: In the context of Negotiating Structures & Bodies, which action best demonstrates citizen-focused service?",
+          "options": [
+            "Rely on informal instructions without documentary evidence.",
+            "Balance legality, fairness, timeliness, and service quality.",
+            "Treat exceptions as routine without documented justification.",
+            "Delay decisions until issues escalate into avoidable crises."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Balance legality, fairness, timeliness, and service quality.).",
+          "difficulty": "hard",
+          "chapter": "Negotiating Structures & Bodies - Expansion Set",
+          "keywords": [
+            "context",
+            "best",
+            "choose",
+            "answer"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Negotiating Structures & Bodies",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_structure_bodies_gen_070",
+          "question": "According to established rules, at what point applying rules in negotiating structures & bodies, which option aligns best with negotiating structures & bodies compliance standards' while preserving records for audit and oversight?",
+          "options": [
+            "Rely on informal instructions without documentary evidence.",
+            "Use lawful criteria and document each decision step transparently.",
+            "Treat exceptions as routine without documented justification.",
+            "Close cases without validating facts or necessitate records."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Use lawful criteria and document each decision step transparently.).",
+          "difficulty": "easy",
+          "chapter": "Negotiating Structures & Bodies - Expansion Set",
+          "keywords": [
+            "negotiating",
+            "structures",
+            "bodies",
+            "according"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Negotiating Structures & Bodies",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_structure_bodies_gen_071",
+          "question": "Within government administration, choose the best answer for: For effective negotiating structures & bodies, what is the most appropriate approach to secure negotiating structures & bodies compliance?",
+          "options": [
+            "Treat exceptions as routine without documented justification.",
+            "Close cases without validating facts or demand records.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Use lawful criteria and document each decision step transparently."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Use lawful criteria and document each decision step transparently.).",
+          "difficulty": "medium",
+          "chapter": "Negotiating Structures & Bodies - Expansion Set",
+          "keywords": [
+            "negotiating",
+            "structures",
+            "bodies",
+            "within"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Negotiating Structures & Bodies",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_structure_bodies_gen_072",
+          "question": "choose the best answer for: In the context of Negotiating Structures & Bodies, which action best demonstrates negotiating structures & bodies governance?",
+          "options": [
+            "Apply rules inconsistently based on personal preference.",
+            "Bypass review and approval controls to save time.",
+            "Apply approved negotiating structures & bodies procedures and keep complete records.",
+            "Prioritize convenience over policy and legal requirements."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Apply approved negotiating structures & bodies procedures and keep complete records.).",
+          "difficulty": "medium",
+          "chapter": "Negotiating Structures & Bodies - Expansion Set",
+          "keywords": [
+            "best",
+            "negotiating",
+            "structures",
+            "bodies"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Negotiating Structures & Bodies",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_structure_bodies_gen_073",
+          "question": "In official practice, select the option that best answers: A supervisor is reviewing compliance gaps in Negotiating Structures & Bodies. Which action most directly strengthens negotiating structures & bodies risk management' while preserving records for audit and oversight?",
+          "options": [
+            "Bypass review and approval controls to save time.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Identify control gaps early and escalate material exceptions promptly.",
+            "Prioritize convenience over policy and legal requirements."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Identify control gaps early and escalate material exceptions promptly.).",
+          "difficulty": "medium",
+          "chapter": "Negotiating Structures & Bodies - Expansion Set",
+          "keywords": [
+            "negotiating",
+            "structures",
+            "bodies",
+            "official"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Negotiating Structures & Bodies",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_structure_bodies_gen_074",
+          "question": "Within government administration, select the option that best answers: In a time-sensitive file under Negotiating Structures & Bodies, which step best preserves operational discipline without breaching procedure' within approved timelines and governance standards?",
+          "options": [
+            "Bypass review and approval controls to save time.",
+            "Follow approved workflows and verify outputs before closure.",
+            "Apply rules inconsistently based on personal preference.",
+            "Ignore feedback and continue non-compliant procedures."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Follow approved workflows and verify outputs before closure.).",
+          "difficulty": "medium",
+          "chapter": "Negotiating Structures & Bodies - Expansion Set",
+          "keywords": [
+            "within",
+            "best",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Negotiating Structures & Bodies",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_structure_bodies_gen_075",
+          "question": "In official practice, which option correctly addresses: A ministry unit is updating its workflow for negotiating structures & bodies. Which choice most effectively promotes decision transparency' without bypassing established review procedures?",
+          "options": [
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Rely on informal instructions without documentary evidence.",
+            "Use clear criteria and communicate decisions promptly.",
+            "Close cases without validating facts or demand records."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Use clear criteria and communicate decisions promptly.).",
+          "difficulty": "easy",
+          "chapter": "Negotiating Structures & Bodies - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "option",
+            "correctly"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Negotiating Structures & Bodies",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_structure_bodies_gen_076",
+          "question": "According to established rules, which option correctly addresses: For effective negotiating structures & bodies, what is the most appropriate approach to guarantee change management?",
+          "options": [
+            "Sequence reforms with communication, training, and monitoring.",
+            "Bypass review and approval controls to save time.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Apply rules inconsistently based on personal preference."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Sequence reforms with communication, training, and monitoring.).",
+          "difficulty": "hard",
+          "chapter": "Negotiating Structures & Bodies - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "correctly"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Negotiating Structures & Bodies",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_structure_bodies_gen_077",
+          "question": "In official practice, choose the best answer for: Which option most strongly aligns with good public-service practice on operational discipline within Negotiating Structures & Bodies?",
+          "options": [
+            "Prioritize convenience over policy and legal requirements.",
+            "Bypass review and approval controls to save time.",
+            "Follow approved workflows and verify outputs before closure.",
+            "Apply rules inconsistently based on personal preference."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Follow approved workflows and verify outputs before closure.).",
+          "difficulty": "easy",
+          "chapter": "Negotiating Structures & Bodies - Expansion Set",
+          "keywords": [
+            "practice",
+            "official",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Negotiating Structures & Bodies",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_structure_bodies_gen_078",
+          "question": "In the public service context, select the option that best answers: For effective negotiating structures & bodies, what is the most appropriate approach to guarantee negotiating structures & bodies governance?",
+          "options": [
+            "Prioritize convenience over policy and legal requirements.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Apply approved negotiating structures & bodies procedures and keep complete records.",
+            "Apply rules inconsistently based on personal preference."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Apply approved negotiating structures & bodies procedures and keep complete records.).",
+          "difficulty": "medium",
+          "chapter": "Negotiating Structures & Bodies - Expansion Set",
+          "keywords": [
+            "negotiating",
+            "structures",
+            "bodies",
+            "context"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Negotiating Structures & Bodies",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_structure_bodies_gen_079",
+          "question": "choose the best answer for: Under the NPSNC structure, which council is accountable for representing the senior staff category (typically Grade Level 07 and above)?",
+          "options": [
+            "Council I.",
+            "Council II.",
+            "Council IV.",
+            "Council III."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Council I.).",
+          "difficulty": "easy",
+          "chapter": "Negotiating Structures & Bodies - Expansion Set",
+          "keywords": [
+            "choose",
+            "best",
+            "answer",
+            "under"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Negotiating Structures & Bodies",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_structure_bodies_gen_080",
+          "question": "According to established rules, at what point applying rules in negotiating structures & bodies, which option aligns best with strategic alignment standards' while maintaining fairness and legal compliance?",
+          "options": [
+            "Close cases without validating facts or necessitate records.",
+            "Treat exceptions as routine without documented justification.",
+            "Link unit actions to ministry goals and measurable outcomes.",
+            "Rely on informal instructions without documentary evidence."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Link unit actions to ministry goals and measurable outcomes.).",
+          "difficulty": "hard",
+          "chapter": "Negotiating Structures & Bodies - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "point",
+            "applying"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Negotiating Structures & Bodies",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_structure_bodies_gen_081",
+          "question": "choose the best answer for: During routine negotiating structures & bodies operations, which approach best secure performance standards' while maintaining fairness and legal compliance?",
+          "options": [
+            "Set measurable targets, monitor progress, and correct deviations.",
+            "Close cases without validating facts or necessitate records.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Treat exceptions as routine without documented justification."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Set measurable targets, monitor progress, and correct deviations.).",
+          "difficulty": "easy",
+          "chapter": "Negotiating Structures & Bodies - Expansion Set",
+          "keywords": [
+            "best",
+            "choose",
+            "answer",
+            "during"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Negotiating Structures & Bodies",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_structure_bodies_gen_082",
+          "question": "In official practice, choose the best answer for: Which practice should a accountable officer prioritize to sustain change management in Negotiating Structures & Bodies?",
+          "options": [
+            "Sequence reforms with communication, training, and monitoring.",
+            "Bypass review and approval controls to save time.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Apply rules inconsistently based on personal preference."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Sequence reforms with communication, training, and monitoring.).",
+          "difficulty": "easy",
+          "chapter": "Negotiating Structures & Bodies - Expansion Set",
+          "keywords": [
+            "practice",
+            "official",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Negotiating Structures & Bodies",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_structure_bodies_gen_083",
+          "question": "which option correctly addresses: Which official typically leads the Government Side delegation during National Council negotiations?",
+          "options": [
+            "Minister of Labour and Employment.",
+            "Minister of Finance.",
+            "Federal Civil Service Commission.",
+            "Head of the Civil Service of the Federation."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Head of the Civil Service of the Federation.).",
+          "difficulty": "hard",
+          "chapter": "Negotiating Structures & Bodies - Expansion Set",
+          "keywords": [
+            "option",
+            "correctly",
+            "addresses",
+            "official"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Negotiating Structures & Bodies",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_structure_bodies_gen_084",
+          "question": "According to established rules, which option correctly addresses: Which level of the NPSNC structure is tasked with ensuring that nationally agreed terms and conditions are implemented on the ground in individual Ministries?",
+          "options": [
+            "National Council.",
+            "Departmental Council.",
+            "Standing Committee.",
+            "State Council."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Departmental Council.).",
+          "difficulty": "medium",
+          "chapter": "Negotiating Structures & Bodies - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "correctly"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Negotiating Structures & Bodies",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_structure_bodies_gen_085",
+          "question": "In official practice, which option correctly addresses: Which practice should a accountable officer prioritize to sustain operational discipline in Negotiating Structures & Bodies?",
+          "options": [
+            "Follow approved workflows and verify outputs before closure.",
+            "Apply rules inconsistently based on personal preference.",
+            "Bypass review and approval controls to save time.",
+            "Ignore feedback and continue non-compliant procedures."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Follow approved workflows and verify outputs before closure.).",
+          "difficulty": "medium",
+          "chapter": "Negotiating Structures & Bodies - Expansion Set",
+          "keywords": [
+            "practice",
+            "official",
+            "option",
+            "correctly"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Negotiating Structures & Bodies",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_structure_bodies_gen_086",
+          "question": "which option correctly addresses: Which option most strongly aligns with good public-service practice on negotiating structures & bodies compliance within Negotiating Structures & Bodies?",
+          "options": [
+            "Close cases without validating facts or necessitate records.",
+            "Rely on informal instructions without documentary evidence.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Use lawful criteria and document each decision step transparently."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Use lawful criteria and document each decision step transparently.).",
+          "difficulty": "medium",
+          "chapter": "Negotiating Structures & Bodies - Expansion Set",
+          "keywords": [
+            "option",
+            "negotiating",
+            "structures",
+            "bodies"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Negotiating Structures & Bodies",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_structure_bodies_gen_087",
+          "question": "which option correctly addresses: To improve accountability in negotiating structures & bodies, which practice best supports negotiating structures & bodies risk management' while maintaining fairness and legal compliance?",
+          "options": [
+            "Identify control gaps early and escalate material exceptions promptly.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Apply rules inconsistently based on personal preference.",
+            "Ignore feedback and continue non-compliant procedures."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Identify control gaps early and escalate material exceptions promptly.).",
+          "difficulty": "medium",
+          "chapter": "Negotiating Structures & Bodies - Expansion Set",
+          "keywords": [
+            "negotiating",
+            "structures",
+            "bodies",
+            "option"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Negotiating Structures & Bodies",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_structure_bodies_gen_088",
+          "question": "In official practice, which time frame handling negotiating structures & bodies, which choice reflects proper team leadership standards?",
+          "options": [
+            "Rely on informal instructions without documentary evidence.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Treat exceptions as routine without documented justification.",
+            "Clarify roles, remove blockers, and coach for improved outcomes."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Clarify roles, remove blockers, and coach for improved outcomes.).",
+          "difficulty": "easy",
+          "chapter": "Negotiating Structures & Bodies - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "time",
+            "frame"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Negotiating Structures & Bodies",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
         }
       ]
     },
@@ -10908,6 +13908,606 @@
           "sourceSection": "Dispute Resolution & Labour Law",
           "year": 2020,
           "lastReviewed": "2026-03-03"
+        },
+        {
+          "id": "neg_dispute_law_gen_066",
+          "question": "select the option that best answers: Which practice should a in charge officer prioritize to sustain stakeholder negotiation in Dispute Resolution & Labour Law?",
+          "options": [
+            "Apply rules inconsistently based on personal preference.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Use principled negotiation and document agreed commitments."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Use principled negotiation and document agreed commitments.).",
+          "difficulty": "easy",
+          "chapter": "Dispute Resolution & Labour Law - Expansion Set",
+          "keywords": [
+            "select",
+            "option",
+            "best",
+            "answers"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Dispute Resolution & Labour Law",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_dispute_law_gen_067",
+          "question": "Within government administration, select the statement that correctly defines the principle that underpins fair labour practices, according to the ILO framework?",
+          "options": [
+            "Freedom of association.",
+            "Compulsory arbitration.",
+            "Political neutrality.",
+            "Union suppression."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Freedom of association.).",
+          "difficulty": "medium",
+          "chapter": "Dispute Resolution & Labour Law - Expansion Set",
+          "keywords": [
+            "within",
+            "select",
+            "statement",
+            "correctly"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Dispute Resolution & Labour Law",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_dispute_law_gen_068",
+          "question": "In the public service context, choose the best answer for: In the context of Dispute Resolution & Labour Law, which action best demonstrates team leadership?",
+          "options": [
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Clarify roles, remove blockers, and coach for improved outcomes.",
+            "Rely on informal instructions without documentary evidence.",
+            "Close cases without validating facts or demand records."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Clarify roles, remove blockers, and coach for improved outcomes.).",
+          "difficulty": "hard",
+          "chapter": "Dispute Resolution & Labour Law - Expansion Set",
+          "keywords": [
+            "context",
+            "best",
+            "choose",
+            "answer"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Dispute Resolution & Labour Law",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_dispute_law_gen_069",
+          "question": "Within government administration, which option correctly addresses: For effective dispute resolution & labour law, what is the most appropriate approach to secure service integrity?",
+          "options": [
+            "Rely on informal instructions without documentary evidence.",
+            "Avoid conflicts of interest and disclose relevant constraints.",
+            "Close cases without validating facts or demand records.",
+            "Treat exceptions as routine without documented justification."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Avoid conflicts of interest and disclose relevant constraints.).",
+          "difficulty": "medium",
+          "chapter": "Dispute Resolution & Labour Law - Expansion Set",
+          "keywords": [
+            "within",
+            "option",
+            "correctly",
+            "addresses"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Dispute Resolution & Labour Law",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_dispute_law_gen_070",
+          "question": "According to established rules, choose the best answer for: The Industrial Arbitration Panel (IAP) was established to perform what duty?",
+          "options": [
+            "Mediate trade disputes.",
+            "Supervise elections.",
+            "Register trade unions.",
+            "Adjudicate disputes referred by the Minister."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Adjudicate disputes referred by the Minister.).",
+          "difficulty": "hard",
+          "chapter": "Dispute Resolution & Labour Law - Expansion Set",
+          "keywords": [
+            "established",
+            "according",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Dispute Resolution & Labour Law",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_dispute_law_gen_071",
+          "question": "select the option that best answers: During routine dispute resolution & labour law operations, which approach most strongly supports accountable implementation' (Leadership accountability scenario 1)?",
+          "options": [
+            "Proceed without validating source records and decision criteria.",
+            "Set clear expectations, monitor outcomes, and correct deviations promptly.",
+            "Delay escalation until issues become material and difficult to reverse.",
+            "Treat exceptions as normal practice without written justification."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Set clear expectations, monitor outcomes, and correct deviations promptly.).",
+          "difficulty": "easy",
+          "chapter": "Dispute Resolution & Labour Law - Expansion Set",
+          "keywords": [
+            "select",
+            "option",
+            "best",
+            "answers"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Dispute Resolution & Labour Law",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_dispute_law_gen_072",
+          "question": "In official practice, choose the best answer for: Which legislation governs trade disputes and industrial relations in Nigeria?",
+          "options": [
+            "Public Service Rules 2021.",
+            "Industrial Arbitration Act 2010.",
+            "Labour Act 2000.",
+            "Trade Disputes Act Cap T8 LFN 2004."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Trade Disputes Act Cap T8 LFN 2004.).",
+          "difficulty": "medium",
+          "chapter": "Dispute Resolution & Labour Law - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Dispute Resolution & Labour Law",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_dispute_law_gen_073",
+          "question": "select the option that best answers: The procedure of intervention by a neutral third party who assists disputing parties in reaching a **voluntary** agreement is called:?",
+          "options": [
+            "Conciliation.",
+            "Mediation.",
+            "Arbitration.",
+            "Adjudication."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Mediation.).",
+          "difficulty": "hard",
+          "chapter": "Dispute Resolution & Labour Law - Expansion Set",
+          "keywords": [
+            "select",
+            "option",
+            "best",
+            "answers"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Dispute Resolution & Labour Law",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_dispute_law_gen_074",
+          "question": "which option correctly addresses: Which option most strongly aligns with good public-service practice on performance standards within Dispute Resolution & Labour Law?",
+          "options": [
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Close cases without validating facts or necessitate records.",
+            "Treat exceptions as routine without documented justification.",
+            "Set measurable targets, monitor progress, and correct deviations."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Set measurable targets, monitor progress, and correct deviations.).",
+          "difficulty": "medium",
+          "chapter": "Dispute Resolution & Labour Law - Expansion Set",
+          "keywords": [
+            "option",
+            "correctly",
+            "addresses",
+            "most"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Dispute Resolution & Labour Law",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_dispute_law_gen_075",
+          "question": "According to established rules, choose the best answer for: For effective dispute resolution & labour law, what is the most appropriate approach to guarantee document management?",
+          "options": [
+            "Prioritize convenience over policy and legal requirements.",
+            "Bypass review and approval controls to save time.",
+            "sustain accurate files and update status at each control point.",
+            "Apply rules inconsistently based on personal preference."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (sustain accurate files and update status at each control point.).",
+          "difficulty": "easy",
+          "chapter": "Dispute Resolution & Labour Law - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Dispute Resolution & Labour Law",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_dispute_law_gen_076",
+          "question": "at what point applying rules in dispute resolution & labour law, which option aligns best with strategic alignment standards' while maintaining fairness and legal compliance?",
+          "options": [
+            "Close cases without validating facts or necessitate records.",
+            "Rely on informal instructions without documentary evidence.",
+            "Treat exceptions as routine without documented justification.",
+            "Link unit actions to ministry goals and measurable outcomes."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Link unit actions to ministry goals and measurable outcomes.).",
+          "difficulty": "medium",
+          "chapter": "Dispute Resolution & Labour Law - Expansion Set",
+          "keywords": [
+            "point",
+            "applying",
+            "dispute",
+            "resolution"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Dispute Resolution & Labour Law",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_dispute_law_gen_077",
+          "question": "In official practice, select the option that best answers: During routine dispute resolution & labour law operations, which approach best secure compliance assurance' under standard approval and documentation controls?",
+          "options": [
+            "Close cases without validating facts or demand records.",
+            "Treat exceptions as routine without documented justification.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Apply approved rules consistently and escalate exceptions."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Apply approved rules consistently and escalate exceptions.).",
+          "difficulty": "medium",
+          "chapter": "Dispute Resolution & Labour Law - Expansion Set",
+          "keywords": [
+            "best",
+            "official",
+            "practice",
+            "select"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Dispute Resolution & Labour Law",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_dispute_law_gen_078",
+          "question": "According to established rules, choose the best answer for: The term **'check-off dues'** in union finance refers to:?",
+          "options": [
+            "Union dues automatically deducted from salaries by the employer.",
+            "Government subsidy for union activities.",
+            "Performance bonuses.",
+            "Negotiation expenses."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Union dues automatically deducted from salaries by the employer.).",
+          "difficulty": "easy",
+          "chapter": "Dispute Resolution & Labour Law - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Dispute Resolution & Labour Law",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_dispute_law_gen_079",
+          "question": "at what point handling dispute resolution & labour law, which choice reflects proper strategic alignment standards?",
+          "options": [
+            "Rely on informal instructions without documentary evidence.",
+            "Close cases without validating facts or demand records.",
+            "Treat exceptions as routine without documented justification.",
+            "Link unit actions to ministry goals and measurable outcomes."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Link unit actions to ministry goals and measurable outcomes.).",
+          "difficulty": "easy",
+          "chapter": "Dispute Resolution & Labour Law - Expansion Set",
+          "keywords": [
+            "point",
+            "handling",
+            "dispute",
+            "resolution"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Dispute Resolution & Labour Law",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_dispute_law_gen_080",
+          "question": "In the public service context, choose the best answer for: Which option most strongly aligns with good public-service practice on operational discipline within Dispute Resolution & Labour Law?",
+          "options": [
+            "Prioritize convenience over policy and legal requirements.",
+            "Bypass review and approval controls to save time.",
+            "Follow approved workflows and verify outputs before closure.",
+            "Apply rules inconsistently based on personal preference."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Follow approved workflows and verify outputs before closure.).",
+          "difficulty": "medium",
+          "chapter": "Dispute Resolution & Labour Law - Expansion Set",
+          "keywords": [
+            "context",
+            "choose",
+            "best",
+            "answer"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Dispute Resolution & Labour Law",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_dispute_law_gen_081",
+          "question": "In official practice, choose the best answer for: The workflow of resolving a labour dispute through an independent third party whose decision is legally **binding** is known as:?",
+          "options": [
+            "Mediation.",
+            "Conciliation.",
+            "Arbitration.",
+            "Negotiation."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Arbitration.).",
+          "difficulty": "easy",
+          "chapter": "Dispute Resolution & Labour Law - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Dispute Resolution & Labour Law",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_dispute_law_gen_082",
+          "question": "select the option that best answers: In a time-sensitive file under Dispute Resolution & Labour Law, which step best preserves change management without breaching workflow' while maintaining fairness and legal compliance?",
+          "options": [
+            "Apply rules inconsistently based on personal preference.",
+            "Bypass review and approval controls to save time.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Sequence reforms with communication, training, and monitoring."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Sequence reforms with communication, training, and monitoring.).",
+          "difficulty": "easy",
+          "chapter": "Dispute Resolution & Labour Law - Expansion Set",
+          "keywords": [
+            "best",
+            "select",
+            "option",
+            "answers"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Dispute Resolution & Labour Law",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_dispute_law_gen_083",
+          "question": "According to established rules, choose the best answer for: A unit handling dispute resolution & labour law receives a case with competing priorities. Which action best preserves compliance and service quality' (Leadership accountability scenario 1)?",
+          "options": [
+            "Set clear expectations, monitor outcomes, and correct deviations promptly.",
+            "Apply discretionary shortcuts to accelerate closure regardless of controls.",
+            "Bypass review checkpoints where timelines are tight.",
+            "Prioritize convenience over approved procedure requirements."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Set clear expectations, monitor outcomes, and correct deviations promptly.).",
+          "difficulty": "hard",
+          "chapter": "Dispute Resolution & Labour Law - Expansion Set",
+          "keywords": [
+            "best",
+            "according",
+            "established",
+            "choose"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Dispute Resolution & Labour Law",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_dispute_law_gen_084",
+          "question": "According to established rules, which option correctly addresses: Which option most strongly aligns with good public-service practice on dispute resolution & labour law risk management within Dispute Resolution & Labour Law?",
+          "options": [
+            "Identify control gaps early and escalate material exceptions promptly.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Bypass review and approval controls to save time."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Identify control gaps early and escalate material exceptions promptly.).",
+          "difficulty": "easy",
+          "chapter": "Dispute Resolution & Labour Law - Expansion Set",
+          "keywords": [
+            "option",
+            "dispute",
+            "resolution",
+            "labour"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Dispute Resolution & Labour Law",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_dispute_law_gen_085",
+          "question": "According to established rules, which option correctly addresses: Industrial action, such as a strike in the Nigerian Public Service, is generally only considered lawful when:?",
+          "options": [
+            "In practice, government changes leadership in approve workflow.",
+            "Within public service organizations, the union wants wage review under established standards.",
+            "All statutory dispute resolution channels have been exhausted.",
+            "Operationally, workers are dissatisfied under normal controls."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (All statutory dispute resolution channels have been exhausted.).",
+          "difficulty": "medium",
+          "chapter": "Dispute Resolution & Labour Law - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "correctly"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Dispute Resolution & Labour Law",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_dispute_law_gen_086",
+          "question": "In official practice, which option correctly addresses: In the context of Dispute Resolution & Labour Law, which action best demonstrates dispute resolution?",
+          "options": [
+            "Treat exceptions as routine without documented justification.",
+            "Close cases without validating facts or demand records.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Address disputes early using lawful and structured mechanisms."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Address disputes early using lawful and structured mechanisms.).",
+          "difficulty": "easy",
+          "chapter": "Dispute Resolution & Labour Law - Expansion Set",
+          "keywords": [
+            "dispute",
+            "resolution",
+            "official",
+            "practice"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Dispute Resolution & Labour Law",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_dispute_law_gen_087",
+          "question": "at what point handling dispute resolution & labour law, which choice reflects proper decision transparency standards?",
+          "options": [
+            "Use clear criteria and communicate decisions promptly.",
+            "Rely on informal instructions without documentary evidence.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Close cases without validating facts or necessitate records."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Use clear criteria and communicate decisions promptly.).",
+          "difficulty": "medium",
+          "chapter": "Dispute Resolution & Labour Law - Expansion Set",
+          "keywords": [
+            "point",
+            "handling",
+            "dispute",
+            "resolution"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Dispute Resolution & Labour Law",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_dispute_law_gen_088",
+          "question": "According to established rules, which option correctly addresses: Which practice should a accountable officer prioritize to sustain change management in Dispute Resolution & Labour Law?",
+          "options": [
+            "Sequence reforms with communication, training, and monitoring.",
+            "Apply rules inconsistently based on personal preference.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Bypass review and approval controls to save time."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Sequence reforms with communication, training, and monitoring.).",
+          "difficulty": "medium",
+          "chapter": "Dispute Resolution & Labour Law - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "correctly"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Dispute Resolution & Labour Law",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_dispute_law_gen_089",
+          "question": "Within government administration, select the option that best answers: A desk officer handling Dispute Resolution & Labour Law receives a case that demand documented procedure. What should be done first' within approved timelines and governance standards?",
+          "options": [
+            "Prioritize convenience over policy and legal requirements.",
+            "Follow documented procedure and keep complete records.",
+            "Bypass review and approval controls to save time.",
+            "Apply rules inconsistently based on personal preference."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Follow documented procedure and keep complete records.).",
+          "difficulty": "medium",
+          "chapter": "Dispute Resolution & Labour Law - Expansion Set",
+          "keywords": [
+            "within",
+            "select",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Dispute Resolution & Labour Law",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "neg_dispute_law_gen_090",
+          "question": "In official practice, choose the best answer for: To improve accountability in dispute resolution & labour law, which practice best supports stakeholder negotiation' in line with public-sector accountability expectations?",
+          "options": [
+            "Ignore feedback and continue non-compliant procedures.",
+            "Apply rules inconsistently based on personal preference.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Use principled negotiation and document agreed commitments."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Use principled negotiation and document agreed commitments.).",
+          "difficulty": "hard",
+          "chapter": "Dispute Resolution & Labour Law - Expansion Set",
+          "keywords": [
+            "practice",
+            "best",
+            "accountability",
+            "official"
+          ],
+          "sourceDocument": "Leadership and Management Framework",
+          "sourceSection": "Dispute Resolution & Labour Law",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
         }
       ]
     }

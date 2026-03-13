@@ -1766,6 +1766,606 @@
           "sourceSection": "Policy Formulation & Cycle",
           "year": 2020,
           "lastReviewed": "2026-03-03"
+        },
+        {
+          "id": "policy_constitution_065",
+          "question": "In official practice, select the option that best answers: The Chief Executive of a Parastatal is in charge for what aspect of the organization?",
+          "options": [
+            "Day-to-day management and administration.",
+            "Policy formulation and approval.",
+            "Appointment of all senior staff.",
+            "Approval of the Parastatal's budget. □. Day-to-day management and administration."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Day-to-day management and administration.). The Chief Executive is accountable for the day-to-day management and administration of the Parastatal.",
+          "difficulty": "easy",
+          "chapter": "Policy Formulation & Cycle - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Formulation & Cycle",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "policy_constitution_066",
+          "question": "In the public service context, select the option that best answers: The budget defence session is designed to do what?",
+          "options": [
+            "Approve new government appointments 394",
+            "Discuss foreign policy mattersQ.",
+            "Scrutinize and justify the budget proposals for the MDA",
+            "Review the performance of past contracts"
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Scrutinize and justify the budget proposals for the MDA). The budget defence session is a platform for the National Assembly to scrutinize and justify the MDA's budget proposals, highlighting the need for funds and showing how they will be spent.",
+          "difficulty": "medium",
+          "chapter": "Policy Formulation & Cycle - Expansion Set",
+          "keywords": [
+            "context",
+            "select",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Formulation & Cycle",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "policy_constitution_067",
+          "question": "which option best describes the role of a Civil Servant regarding Executive Council Papers?",
+          "options": [
+            "To discard them. Q.",
+            "To provide the political leadership with instruments to administer government at the highest level.",
+            "To keep them confidential from their superiors.",
+            "To make a policy pronouncement without approval."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (To provide the political leadership with instruments to administer government at the highest level.). A key aim of the Civil Service is to provide the political leadership with the instruments with which to administer Government at the highest level, i.e. the Executive Council of the Federation.",
+          "difficulty": "easy",
+          "chapter": "Policy Formulation & Cycle - Expansion Set",
+          "keywords": [
+            "option",
+            "best",
+            "describes",
+            "role"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Formulation & Cycle",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "policy_constitution_068",
+          "question": "According to established rules, which option aligns with the meaning of the principal role of a Parastatal?",
+          "options": [
+            "To act as a legislative body for the Ministry. □.",
+            "To manage all human resource issues for the Ministry.",
+            "To assist the Ministry in its policy formulation.",
+            "To implement specific policies and programmes of the government as assigned."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (To implement specific policies and programmes of the government as assigned.). Parastatals are autonomous organizations, which exist to implement specific policies and programmes assigned to them by the government.",
+          "difficulty": "medium",
+          "chapter": "Policy Formulation & Cycle - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "aligns"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Formulation & Cycle",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "policy_constitution_069",
+          "question": "Within government administration, select the option that best answers: The Permanent Secretary of a Ministry is directly in charge for all of the following EXCEPT:?",
+          "options": [
+            "Serving as the Administrative Head.",
+            "Preventing fraud and corruption.",
+            "Appearing before Public Accounts Committees.",
+            "Formulating government policy on behalf of the Minister.Q.."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Formulating government policy on behalf of the Minister.Q..). The Permanent Secretary is not in charge for formulating government policy. Instead, they are in charge for ensuring the implementation of decisions, maintaining discipline, preventing fraud, and serving as the administrative head, among other duties.",
+          "difficulty": "medium",
+          "chapter": "Policy Formulation & Cycle - Expansion Set",
+          "keywords": [
+            "within",
+            "select",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Formulation & Cycle",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "policy_constitution_070",
+          "question": "select the statement that correctly defines a key ingredient of good governance, as mentioned in the introduction to Chapter 13?",
+          "options": [
+            "Communication to the various stakeholders as the occasion demands.",
+            "Financial stability.",
+            "Political power.",
+            "A large bureaucracy. □."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Communication to the various stakeholders as the occasion demands.). A key ingredient of good governance is communication to the various stakeholders as the occasion demands.",
+          "difficulty": "medium",
+          "chapter": "Policy Formulation & Cycle - Expansion Set",
+          "keywords": [
+            "select",
+            "statement",
+            "correctly",
+            "defines"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Formulation & Cycle",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "policy_constitution_071",
+          "question": "Within government administration, select the statement that correctly defines considered a key ingredient of good governance, according to Chapter 13?",
+          "options": [
+            "Political power.",
+            "Financial stability.",
+            "A large bureaucracy.a.",
+            "Communication to the various stakeholders as the occasion demands."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Communication to the various stakeholders as the occasion demands.). A key ingredient of good governance is communication to the various stakeholders as the occasion demands.",
+          "difficulty": "easy",
+          "chapter": "Policy Formulation & Cycle - Expansion Set",
+          "keywords": [
+            "within",
+            "select",
+            "statement",
+            "correctly"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Formulation & Cycle",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "policy_constitution_072",
+          "question": "In official practice, choose the best answer for: What serves as a policy tool for attaining the immediate, medium and long-term development goals of the Government?",
+          "options": [
+            "The Constitution",
+            "The monetary policy □",
+            "The Budget",
+            "The annual report"
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (The Budget). As the preparation of the Federal Budget is done against the background of these development plans, the budget serves as a policy tool for attaining the immediate, medium and long-term development goals of Government",
+          "difficulty": "easy",
+          "chapter": "Policy Formulation & Cycle - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Formulation & Cycle",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "policy_constitution_073",
+          "question": "In official practice, which option aligns with the meaning of the role of certifying projects for public funding under the Due procedure policy?",
+          "options": [
+            "To certify only those projects and contracts that pass proper project implementation and execution scrutiny",
+            "To fast-track projects without proper scrutiny",
+            "To fund projects that have not been included in the budget",
+            "To give preferential treatment to certain contractors a."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (To certify only those projects and contracts that pass proper project implementation and execution scrutiny). The Due workflow policy aims to certify for public funding only those projects and contracts that pass proper project implementation and execution scrutiny. 390",
+          "difficulty": "medium",
+          "chapter": "Policy Formulation & Cycle - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "option",
+            "aligns"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Formulation & Cycle",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "policy_constitution_074",
+          "question": "choose the best answer for: Before presenting the budget to the National Assembly, an MDA must secure that the proposed budget is in conformity with what?",
+          "options": [
+            "The previous year's budget",
+            "The demands of international donors □.",
+            "The MDA's internal policies only",
+            "The Federal Government's overall budget framework and policy thrust"
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (The Federal Government's overall budget framework and policy thrust). The MDA's budget proposals must be in line with the Federal Government's budget framework and policy thrust for the year.",
+          "difficulty": "easy",
+          "chapter": "Policy Formulation & Cycle - Expansion Set",
+          "keywords": [
+            "budget",
+            "choose",
+            "best",
+            "answer"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Formulation & Cycle",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "policy_constitution_075",
+          "question": "According to established rules, responsibility for is in charge for providing policy direction and overall supervision to a Parastatal belongs to which role?",
+          "options": [
+            "The Permanent Secretary of the supervising Ministry. 399",
+            "The Chief Executive of the Parastatal.",
+            "The Chairman of the Board. Q.",
+            "The Minister of the supervising Ministry."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (The Minister of the supervising Ministry.). The Minister, as the political head of the Ministry, provides policy direction and overall supervision to the Parastatal.",
+          "difficulty": "easy",
+          "chapter": "Policy Formulation & Cycle - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "responsibility",
+            "charge"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Formulation & Cycle",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "policy_constitution_076",
+          "question": "In official practice, which option best describes the name of the registry where non-classified documents are kept?",
+          "options": [
+            "Central Registry. Q.",
+            "Open Registry.",
+            "Classified Registry. 431",
+            "Secret Registry."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Open Registry.). There are two types of Registry in the Civil Service: the Open Registry where non-classified documents and correspondences are kept and processed and the Secret/Confidential Registry where classified documents are handled.",
+          "difficulty": "hard",
+          "chapter": "Policy Formulation & Cycle - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Formulation & Cycle",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "policy_constitution_077",
+          "question": "In the public service context, select the statement that correctly defines the main danger of an organization's records not being kept properly?",
+          "options": [
+            "It could lead to policy reversals and conflicts.",
+            "It could lead to the loss of government revenue.",
+            "The public will lose trust in the government. Q.",
+            "Civil servants will not be paid on time."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (It could lead to policy reversals and conflicts.). If records are not kept properly, it could lead to policy reversals, conflicts within and between agencies, and chaos in the public sector. 448",
+          "difficulty": "hard",
+          "chapter": "Policy Formulation & Cycle - Expansion Set",
+          "keywords": [
+            "context",
+            "select",
+            "statement",
+            "correctly"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Formulation & Cycle",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "policy_constitution_078",
+          "question": "Within government administration, select the statement that correctly defines the main danger of an organization's records not being kept properly?",
+          "options": [
+            "Civil servants will not be paid on time.",
+            "It could lead to policy reversals and conflicts.",
+            "The public will lose trust in the government. □.",
+            "It could lead to the loss of government revenue."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (It could lead to policy reversals and conflicts.). If records are not kept properly, it could lead to policy reversals, conflicts within and between agencies, and chaos in the public sector.",
+          "difficulty": "medium",
+          "chapter": "Policy Formulation & Cycle - Expansion Set",
+          "keywords": [
+            "within",
+            "select",
+            "statement",
+            "correctly"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Formulation & Cycle",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "policy_constitution_079",
+          "question": "In official practice, which option aligns with the meaning of a crucial step a chairman should take to prepare for a meeting?",
+          "options": [
+            "Arrive late to assert his authority.",
+            "Avoid discussing the agenda with the Secretariat. □.",
+            "Read the files and other relevant documents to become fully conversant with the subject-matter.",
+            "Ignore all previous meeting minutes."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Read the files and other relevant documents to become fully conversant with the subject-matter.). The chairman should read the files as well as other relevant documents and materials so as to become fully conversant with the subject-matter",
+          "difficulty": "hard",
+          "chapter": "Policy Formulation & Cycle - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "option",
+            "aligns"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Formulation & Cycle",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "policy_constitution_080",
+          "question": "select the option that best answers: What should be attached to the notice and agenda?",
+          "options": [
+            "The private phone numbers of the members.a.",
+            "The financial statements of the Ministry.",
+            "The personal files of all members.",
+            "The minutes of the last meeting and any other relevant documents."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (The minutes of the last meeting and any other relevant documents.). The minutes of the last meeting and any other relevant documents should be attached to the notice and agenda.",
+          "difficulty": "easy",
+          "chapter": "Policy Formulation & Cycle - Expansion Set",
+          "keywords": [
+            "select",
+            "option",
+            "best",
+            "answers"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Formulation & Cycle",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "policy_constitution_081",
+          "question": "According to established rules, select the option that best answers: What should be attached to the notice and agenda?",
+          "options": [
+            "The personal files of all members.",
+            "The private phone numbers of the members. □.",
+            "The financial statements of the Ministry.",
+            "The minutes of the last meeting and any other relevant documents."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (The minutes of the last meeting and any other relevant documents.). The minutes of the last meeting and any other relevant documents should be attached to the notice and agenda.",
+          "difficulty": "medium",
+          "chapter": "Policy Formulation & Cycle - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Formulation & Cycle",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "policy_constitution_082",
+          "question": "select the statement that correctly defines the main danger of an organization's records not being kept properly?",
+          "options": [
+            "The public will lose trust in the government.a.",
+            "It could lead to policy reversals and conflicts.",
+            "Civil servants will not be paid on time.",
+            "It could lead to the loss of government revenue."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (It could lead to policy reversals and conflicts.). If records are not kept properly, it could lead to policy reversals, conflicts within and between agencies, and chaos in the public sector. This question is from a previous chapter but is included as it is a common question within the quiz context. Part 2: Basic Techniques of Clear Writing in Government Business",
+          "difficulty": "hard",
+          "chapter": "Policy Formulation & Cycle - Expansion Set",
+          "keywords": [
+            "select",
+            "statement",
+            "correctly",
+            "defines"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Formulation & Cycle",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "policy_constitution_083",
+          "question": "In the public service context, which option correctly addresses: What should always be included with File Notes?",
+          "options": [
+            "A full signature. □.",
+            "The writer's initials and date.",
+            "A list of all attendees.",
+            "A detailed analysis."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (The writer's initials and date.). Such notes should always be initiated and dated.",
+          "difficulty": "medium",
+          "chapter": "Policy Formulation & Cycle - Expansion Set",
+          "keywords": [
+            "context",
+            "option",
+            "correctly",
+            "addresses"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Formulation & Cycle",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "policy_constitution_084",
+          "question": "Within government administration, choose the best answer for: choose the best answer for: What should always be included with File Notes?",
+          "options": [
+            "The writer's initials and date.",
+            "A list of all attendees.",
+            "A full signature. □.",
+            "A detailed analysis."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (The writer's initials and date.). (The writer's initials and date.). Such notes should always be initiated and dated.",
+          "difficulty": "medium",
+          "chapter": "Policy Formulation & Cycle - Expansion Set",
+          "keywords": [
+            "choose",
+            "best",
+            "answer",
+            "should"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Formulation & Cycle",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "policy_constitution_085",
+          "question": "According to established rules, which time frame an officer receives a circular that does not demand action, what should they do?",
+          "options": [
+            "Reply to the circular. □.",
+            "Discard it.",
+            "Minute the file to others for information and disposal.",
+            "Keep it on their desk."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Minute the file to others for information and disposal.). If he does not demand actually to initiate any action he will either merely minute the file to others for information and disposal or he will file it.",
+          "difficulty": "easy",
+          "chapter": "Policy Formulation & Cycle - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "time",
+            "frame"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Formulation & Cycle",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "policy_constitution_086",
+          "question": "In official practice, which option aligns with the meaning of the Accountant-General's role concerning the accounting policy of the federal government?",
+          "options": [
+            "To audit the accounting policy.",
+            "To advise on the accounting policy.Q",
+            "To formulate the accounting policy.",
+            "To implement policies set by the Minister of Finance."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (To formulate the accounting policy.). Financial Regulation 107(o) states the Accountant-General must \"formulate the accounting policy of the federal government.\"",
+          "difficulty": "hard",
+          "chapter": "Policy Formulation & Cycle - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "option",
+            "aligns"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Formulation & Cycle",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "policy_constitution_087",
+          "question": "the required quantity is members are in the House of Representatives. which option is correct?",
+          "options": [
+            "109",
+            "36",
+            "774 382",
+            "360 Q"
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (360 Q). The House of Representatives consists of 360 members",
+          "difficulty": "medium",
+          "chapter": "Policy Formulation & Cycle - Expansion Set",
+          "keywords": [
+            "required",
+            "quantity",
+            "members",
+            "house"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Formulation & Cycle",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "policy_constitution_088",
+          "question": "In official practice, select the option that best answers: What must a project or contract adhere to under the Due workflow policy to be funded by the government?",
+          "options": [
+            "An internationally acceptable bidding system of openness, competition, cost accuracy, and proper procedure",
+            "An exclusive bidding system",
+            "A system that prioritizes speed over accuracya.",
+            "A bidding system based on personal relationships"
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (An internationally acceptable bidding system of openness, competition, cost accuracy, and proper procedure). Any project or contract to be funded by the government must adhere strictly to an 391 internationally acceptable bidding system of openness, competition, cost accuracy, and proper procedure.",
+          "difficulty": "medium",
+          "chapter": "Policy Formulation & Cycle - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Formulation & Cycle",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "policy_constitution_089",
+          "question": "which option aligns with the meaning of the implication of the Due procedure policy on projects funded by the government?",
+          "options": [
+            "They are awarded based on the discretion of a single individual.a.",
+            "They must follow laid-down rules and regulations.",
+            "They are not subject to any form of oversight.",
+            "They must prioritize speed over procedure."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (They must follow laid-down rules and regulations.). Due procedure secure that government business is carried out on the basis of relevant and prescribed laws, rules, regulations, and practices.",
+          "difficulty": "easy",
+          "chapter": "Policy Formulation & Cycle - Expansion Set",
+          "keywords": [
+            "option",
+            "aligns",
+            "meaning",
+            "implication"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Formulation & Cycle",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
         }
       ],
       "id": "pol_formulation_cycle"
@@ -3633,6 +4233,606 @@
           "sourceSection": "Policy Analysis Methods",
           "year": 2020,
           "lastReviewed": "2026-03-03"
+        },
+        {
+          "id": "pol_analysis_methods_gen_075",
+          "question": "Within government administration, choose the best answer for: A minute should contain a summary of the facts of the case, as well as what?",
+          "options": [
+            "The officer's recommendations and conclusions.",
+            "A list of all staff involved.",
+            "The officer's personal opinion.",
+            "A detailed financial analysis.a."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (The officer's recommendations and conclusions.). A minute should contain a summary of the facts of the case, the officer's recommendations, and his conclusions.",
+          "difficulty": "medium",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "within",
+            "choose",
+            "best",
+            "answer"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Analysis Methods",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "pol_analysis_methods_gen_076",
+          "question": "According to established rules, select the option that best answers: A minute should contain a summary of the facts of the case, as well as what?",
+          "options": [
+            "The officer's recommendations and conclusions.",
+            "The officer's personal opinion.",
+            "A detailed financial analysis. □.. 468",
+            "A list of all staff involved."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (The officer's recommendations and conclusions.). A minute should contain a summary of the facts of the case, the officer's recommendations, and his conclusions.",
+          "difficulty": "hard",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Analysis Methods",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "pol_analysis_methods_gen_077",
+          "question": "Within government administration, select the statement that correctly defines the principal role of a Parastatal?",
+          "options": [
+            "To manage all human resource issues for the Ministry.",
+            "To implement specific policies and programmes of the government as assigned.",
+            "To act as a legislative body for the Ministry. □.",
+            "To assist the Ministry in its policy formulation."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (To implement specific policies and programmes of the government as assigned.). Parastatals are autonomous organizations, which exist to implement specific policies and programmes assigned to them by the government.",
+          "difficulty": "medium",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "within",
+            "select",
+            "statement",
+            "correctly"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Analysis Methods",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "pol_analysis_methods_gen_078",
+          "question": "select the option that best answers: The Chief Executive of a Parastatal is accountable for what aspect of the organization?",
+          "options": [
+            "Approval of the Parastatal's budget. □. Day-to-day management and administration.",
+            "Day-to-day management and administration.",
+            "Appointment of all senior staff.",
+            "Policy formulation and approval."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Day-to-day management and administration.). The Chief Executive is in charge for the day-to-day management and administration of the Parastatal.",
+          "difficulty": "medium",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "select",
+            "option",
+            "best",
+            "answers"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Analysis Methods",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "pol_analysis_methods_gen_079",
+          "question": "In the public service context, choose the best answer for: According to the handbook, the Civil Service should discharge its catalytic role of facilitating what?",
+          "options": [
+            "Political campaigns.",
+            "The affairs of private citizens. a.",
+            "Successful conception, planning, execution and monitoring of the policies, projects and programmes of Government.",
+            "Private business ventures."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Successful conception, planning, execution and monitoring of the policies, projects and programmes of Government.). The Civil Service should discharge its catalytic role of facilitating successful conception, planning, execution and monitoring of the policies, projects and programmes of Government.",
+          "difficulty": "hard",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "context",
+            "choose",
+            "best",
+            "answer"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Analysis Methods",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "pol_analysis_methods_gen_080",
+          "question": "which option aligns with the meaning of considered a key ingredient of good governance, according to Chapter 13?",
+          "options": [
+            "Political power.",
+            "Financial stability.",
+            "Communication to the various stakeholders as the occasion demands.",
+            "A large bureaucracy.a."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Communication to the various stakeholders as the occasion demands.). A key ingredient of good governance is communication to the various stakeholders as the occasion demands.",
+          "difficulty": "medium",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "option",
+            "aligns",
+            "meaning",
+            "considered"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Analysis Methods",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "pol_analysis_methods_gen_081",
+          "question": "choose the best answer for: What should always be included with File Notes?",
+          "options": [
+            "The writer's initials and date.",
+            "A full signature. □.",
+            "A detailed analysis.",
+            "A list of all attendees."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (The writer's initials and date.). Such notes should always be initiated and dated.",
+          "difficulty": "medium",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "choose",
+            "best",
+            "answer",
+            "should"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Analysis Methods",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "pol_analysis_methods_gen_082",
+          "question": "which time frame decisions are made in policy analysis methods, which step most directly improves traceability and fairness' (Policy formulation rigour scenario 2)?",
+          "options": [
+            "Rely on verbal approval and close the file without documentary trail.",
+            "Define the problem, options, and measurable criteria before selecting a policy path.",
+            "Delay escalation until issues become material and difficult to reverse.",
+            "Proceed without validating source records and decision criteria."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Define the problem, options, and measurable criteria before selecting a policy path.).",
+          "difficulty": "hard",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "time",
+            "frame",
+            "decisions",
+            "made"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Analysis Methods",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "pol_analysis_methods_gen_083",
+          "question": "According to established rules, select the option that best answers: In the context of Policy Analysis Methods, which action best demonstrates policy analysis methods governance?",
+          "options": [
+            "Prioritize convenience over policy and legal requirements.",
+            "Bypass review and approval controls to save time.",
+            "Apply approved policy analysis methods procedures and keep complete records.",
+            "Apply rules inconsistently based on personal preference."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Apply approved policy analysis methods procedures and keep complete records.).",
+          "difficulty": "medium",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "best",
+            "analysis",
+            "methods",
+            "according"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Analysis Methods",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "pol_analysis_methods_gen_084",
+          "question": "According to established rules, which option correctly addresses: Which practice should a in charge officer prioritize to sustain evidence quality in Policy Analysis Methods?",
+          "options": [
+            "Apply rules inconsistently based on personal preference.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Bypass review and approval controls to save time.",
+            "Use credible data sources and validate assumptions."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Use credible data sources and validate assumptions.).",
+          "difficulty": "easy",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "correctly"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Analysis Methods",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "pol_analysis_methods_gen_085",
+          "question": "According to established rules, at what point decisions are made in policy analysis methods, which step most directly improves traceability and fairness' (Evidence integrity scenario 1)?",
+          "options": [
+            "Rely on verbal approval and close the file without documentary trail.",
+            "Treat exceptions as normal practice without written justification.",
+            "Delay escalation until issues become material and difficult to reverse.",
+            "Use validated data sources and document assumptions behind recommendations."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Use validated data sources and document assumptions behind recommendations.).",
+          "difficulty": "medium",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "point",
+            "decisions"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Analysis Methods",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "pol_analysis_methods_gen_086",
+          "question": "In the public service context, select the option that best answers: Which Nigerian state is nicknamed the 'Home of Heroes'?",
+          "options": [
+            "Anambra.",
+            "Imo.",
+            "Enugu.",
+            "Abia."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Abia.).",
+          "difficulty": "easy",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "context",
+            "select",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Analysis Methods",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "pol_analysis_methods_gen_087",
+          "question": "According to established rules, select the option that best answers: During routine policy analysis methods operations, which approach most strongly supports accountable implementation' (Policy formulation rigour scenario 1)?",
+          "options": [
+            "Define the problem, options, and measurable criteria before selecting a policy path.",
+            "Proceed without validating source records and decision criteria.",
+            "Delay escalation until issues become material and difficult to reverse.",
+            "Treat exceptions as normal practice without written justification."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Define the problem, options, and measurable criteria before selecting a policy path.).",
+          "difficulty": "hard",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Analysis Methods",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "pol_analysis_methods_gen_088",
+          "question": "In official practice, choose the best answer for: Which option most strongly aligns with good public-service practice on policy analysis methods risk management within Policy Analysis Methods?",
+          "options": [
+            "Prioritize convenience over policy and legal requirements.",
+            "Bypass review and approval controls to save time.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Identify control gaps early and escalate material exceptions promptly."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Identify control gaps early and escalate material exceptions promptly.).",
+          "difficulty": "hard",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "practice",
+            "analysis",
+            "methods",
+            "official"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Analysis Methods",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "pol_analysis_methods_gen_089",
+          "question": "According to established rules, which option correctly addresses: For effective policy analysis methods, what is the most appropriate approach to guarantee service integrity?",
+          "options": [
+            "Avoid conflicts of interest and disclose relevant constraints.",
+            "Treat exceptions as routine without documented justification.",
+            "Rely on informal instructions without documentary evidence.",
+            "Close cases without validating facts or necessitate records."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Avoid conflicts of interest and disclose relevant constraints.).",
+          "difficulty": "easy",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "correctly"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Analysis Methods",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "pol_analysis_methods_gen_090",
+          "question": "In the public service context, which time frame decisions are made in policy analysis methods, which step most directly improves traceability and fairness' (Implementation realism scenario 1)?",
+          "options": [
+            "Treat exceptions as normal practice without written justification.",
+            "Assign roles, timelines, resources, and monitoring checkpoints before rollout.",
+            "Proceed without validating source records and decision criteria.",
+            "Delay escalation until issues become material and difficult to reverse."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Assign roles, timelines, resources, and monitoring checkpoints before rollout.).",
+          "difficulty": "medium",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "context",
+            "time",
+            "frame",
+            "decisions"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Analysis Methods",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "pol_analysis_methods_gen_091",
+          "question": "choose the best answer for: A unit handling policy analysis methods receives a case with competing priorities. Which action best preserves compliance and service quality' (Implementation realism scenario 2)?",
+          "options": [
+            "Bypass review checkpoints where timelines are tight.",
+            "Prioritize convenience over approved procedure requirements.",
+            "Assign roles, timelines, resources, and monitoring checkpoints before rollout.",
+            "Apply discretionary shortcuts to accelerate closure regardless of controls."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Assign roles, timelines, resources, and monitoring checkpoints before rollout.).",
+          "difficulty": "medium",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "best",
+            "choose",
+            "answer",
+            "unit"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Analysis Methods",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "pol_analysis_methods_gen_092",
+          "question": "select the option that best answers: select the option that best answers: The Chief Executive of a Parastatal is accountable for what aspect of the organization?",
+          "options": [
+            "Appointment of all senior staff.",
+            "Day-to-day management and administration.",
+            "Policy formulation and approval.",
+            "Approval of the Parastatal's budget. □. Day-to-day management and administration."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Day-to-day management and administration.).",
+          "difficulty": "medium",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "select",
+            "option",
+            "best",
+            "answers"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Analysis Methods",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "pol_analysis_methods_gen_093",
+          "question": "According to established rules, select the option that best answers: A supervisor is reviewing gaps in policy analysis methods. Which option best strengthens control and consistency' (Implementation realism scenario 2)?",
+          "options": [
+            "Use inconsistent criteria across similar cases in the same period.",
+            "Bypass review checkpoints where timelines are tight.",
+            "Prioritize convenience over approved procedure requirements.",
+            "Assign roles, timelines, resources, and monitoring checkpoints before rollout."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Assign roles, timelines, resources, and monitoring checkpoints before rollout.).",
+          "difficulty": "easy",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "option",
+            "best",
+            "according",
+            "established"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Analysis Methods",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "pol_analysis_methods_gen_094",
+          "question": "choose the best answer for: For sustainable results in policy analysis methods, which practice should be prioritized first' (Evidence integrity scenario 1)?",
+          "options": [
+            "Apply discretionary shortcuts to accelerate closure regardless of controls.",
+            "Use validated data sources and document assumptions behind recommendations.",
+            "Prioritize convenience over approved procedure requirements.",
+            "Bypass review checkpoints where timelines are tight."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Use validated data sources and document assumptions behind recommendations.).",
+          "difficulty": "medium",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "choose",
+            "best",
+            "answer",
+            "sustainable"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Analysis Methods",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "pol_analysis_methods_gen_095",
+          "question": "In the public service context, select the option that best answers: During routine policy analysis methods operations, which approach most strongly supports accountable implementation' (Evidence integrity scenario 1)?",
+          "options": [
+            "Proceed without validating source records and decision criteria.",
+            "Rely on verbal approval and close the file without documentary trail.",
+            "Use validated data sources and document assumptions behind recommendations.",
+            "Delay escalation until issues become material and difficult to reverse."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Use validated data sources and document assumptions behind recommendations.).",
+          "difficulty": "easy",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "context",
+            "select",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Analysis Methods",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "pol_analysis_methods_gen_096",
+          "question": "Within government administration, choose the best answer for: In the public service context, choose the best answer for: According to the handbook, the Civil Service should discharge its catalytic role of facilitating what?",
+          "options": [
+            "Political campaigns.",
+            "The affairs of private citizens. a.",
+            "Successful conception, planning, execution and monitoring of the policies, projects and programmes of Government.",
+            "Private business ventures."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Successful conception, planning, execution and monitoring of the policies, projects and programmes of Government.).",
+          "difficulty": "easy",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "choose",
+            "best",
+            "answer",
+            "within"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Analysis Methods",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "pol_analysis_methods_gen_097",
+          "question": "In official practice, select the option that best answers: Which Nigerian state is nicknamed the 'Land of Hospitality'?",
+          "options": [
+            "Benue.",
+            "Kaduna.",
+            "Cross River.",
+            "Kogi."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Benue.).",
+          "difficulty": "easy",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Analysis Methods",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "pol_analysis_methods_gen_098",
+          "question": "choose the best answer for: Which practice should a in charge officer prioritize to sustain compliance assurance in Policy Analysis Methods?",
+          "options": [
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Close cases without validating facts or necessitate records.",
+            "Apply approved rules consistently and escalate exceptions.",
+            "Treat exceptions as routine without documented justification."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Apply approved rules consistently and escalate exceptions.).",
+          "difficulty": "hard",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "choose",
+            "best",
+            "answer",
+            "practice"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Analysis Methods",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "pol_analysis_methods_gen_099",
+          "question": "According to established rules, which time frame handling policy analysis methods, which choice reflects proper decision transparency standards?",
+          "options": [
+            "Close cases without validating facts or necessitate records.",
+            "Rely on informal instructions without documentary evidence.",
+            "Use clear criteria and communicate decisions promptly.",
+            "Delay decisions until issues escalate into avoidable crises."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Use clear criteria and communicate decisions promptly.).",
+          "difficulty": "easy",
+          "chapter": "Policy Analysis Methods - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "time",
+            "frame"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Analysis Methods",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
         }
       ],
       "id": "pol_analysis_methods"
@@ -4144,15 +5344,15 @@
         },
         {
           "id": "policy_psr_022",
-          "question": "Which body appoints Permanent Secretaries in the Federal Civil Service",
+          "question": "According to established rules, choose the best answer for: Which body appoints Permanent Secretaries in the Federal Civil Service?",
           "options": [
             "Federal Civil Service Commission.",
-            "The President.",
+            "National Assembly.",
             "National Judicial Council.",
-            "National Assembly."
+            "The President."
           ],
-          "correct": 1,
-          "explanation": "Permanent Secretaries are appointed by the President on the recommendation of the Head of Service/other appropriate authorities.",
+          "correct": 3,
+          "explanation": "Correct option: D (The President.). Permanent Secretaries are appointed by the President on the recommendation of the Head of Service/other appropriate authorities.",
           "difficulty": "easy",
           "topic": "Governance and Public Policy",
           "keywords": [
@@ -4163,19 +5363,19 @@
           "sourceDocument": "Public Policy and Governance Framework",
           "sourceSection": "Policy Implementation & Evaluation",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-13"
         },
         {
           "id": "policy_psr_023",
-          "question": "Which is the principal law establishing the Federal Civil Service Commission",
+          "question": "In the public service context, select the option that best answers: Which is the principal law establishing the Federal Civil Service Commission?",
           "options": [
             "1999 Constitution.",
             "Civil Service Act.",
-            "Public Service Rules.",
-            "Federal Civil Service Commission Act."
+            "Federal Civil Service Commission Act.",
+            "Public Service Rules."
           ],
           "correct": 0,
-          "explanation": "The provisions for institutions such as the Federal Civil Service Commission derive authority from the Constitution and enabling legislation; the Constitution provides the framework for federal institutions.",
+          "explanation": "Correct option: A (1999 Constitution.). The provisions for institutions such as the Federal Civil Service Commission derive authority from the Constitution and enabling legislation; the Constitution provides the framework for federal institutions.",
           "difficulty": "medium",
           "topic": "Governance and Public Policy",
           "keywords": [
@@ -4186,19 +5386,19 @@
           "sourceDocument": "Public Policy and Governance Framework",
           "sourceSection": "Policy Implementation & Evaluation",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-13"
         },
         {
           "id": "policy_psr_024",
-          "question": "Which of these is a primary function of the Office of the Head of Service",
+          "question": "In official practice, select the option that best answers: Which of these is a main role of the Office of the Head of Service?",
           "options": [
+            "Appoint state governors.",
             "Conduct criminal trials.",
             "Manage and coordinate the civil service.",
-            "Enact fiscal policy.",
-            "Appoint state governors."
+            "Enact fiscal policy."
           ],
-          "correct": 1,
-          "explanation": "The Office of the Head of Service coordinates civil service activities, human resource policies, postings and discipline.",
+          "correct": 2,
+          "explanation": "Correct option: C (Manage and coordinate the civil service.). The Office of the Head of Service coordinates civil service activities, human resource policies, postings and discipline.",
           "difficulty": "hard",
           "topic": "Governance and Public Policy",
           "keywords": [
@@ -4209,19 +5409,19 @@
           "sourceDocument": "Public Policy and Governance Framework",
           "sourceSection": "Policy Implementation & Evaluation",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-13"
         },
         {
           "id": "policy_psr_025",
-          "question": "Which of these is a valid method to index files for retrieval",
+          "question": "In official practice, select the option that best answers: Which of these is a valid method to index files for retrieval?",
           "options": [
-            "Chronological, Alphabetical, Numerical or Subject-based indexing.",
-            "Only using color tags.",
             "Only by staff name.",
-            "Only by department code."
+            "Only by department code.",
+            "Chronological, Alphabetical, Numerical or Subject-based indexing.",
+            "Only using color tags."
           ],
-          "correct": 0,
-          "explanation": "Files may be indexed chronologically, alphabetically, numerically or by subject for efficient retrieval.",
+          "correct": 2,
+          "explanation": "Correct option: C (Chronological, Alphabetical, Numerical or Subject-based indexing.). Files may be indexed chronologically, alphabetically, numerically or by subject for efficient retrieval.",
           "difficulty": "medium",
           "topic": "Governance and Public Policy",
           "keywords": [
@@ -4232,19 +5432,19 @@
           "sourceDocument": "Public Policy and Governance Framework",
           "sourceSection": "Policy Implementation & Evaluation",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-13"
         },
         {
           "id": "policy_psr_026",
-          "question": "Which of these best describes 'service book' in civil service records",
+          "question": "Within government administration, which option correctly addresses: Which of these best describes 'service book' in civil service records?",
           "options": [
-            "A list of available office services.",
-            "A record of an officer's employment history, promotions and postings.",
+            "A payroll summary.",
             "A procurement catalogue.",
-            "A payroll summary."
+            "A list of available office services.",
+            "A document of an officer's employment history, promotions and postings."
           ],
-          "correct": 1,
-          "explanation": "A service book documents an officer’s entire career record, including postings, promotions and training.",
+          "correct": 3,
+          "explanation": "Correct option: D (A document of an officer's employment history, promotions and postings.). A service book documents an officer’s entire career document, including postings, promotions and training.",
           "difficulty": "easy",
           "topic": "Governance and Public Policy",
           "keywords": [
@@ -4255,19 +5455,19 @@
           "sourceDocument": "Public Policy and Governance Framework",
           "sourceSection": "Policy Implementation & Evaluation",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-13"
         },
         {
           "id": "policy_psr_027",
-          "question": "Which federal agency publishes procurement guidelines and monitors compliance",
+          "question": "In official practice, choose the best answer for: Which federal agency publishes procurement guidelines and monitors compliance?",
           "options": [
-            "EFCC.",
             "Bureau of Public Procurement (BPP).",
+            "Federal Civil Service Commission.",
             "Central Bank.",
-            "Federal Civil Service Commission."
+            "EFCC."
           ],
-          "correct": 1,
-          "explanation": "The BPP issues procurement guidelines and monitors compliance with the Public Procurement Act.",
+          "correct": 0,
+          "explanation": "Correct option: A (Bureau of Public Procurement (BPP).). The BPP issues procurement guidelines and monitors compliance with the Public Procurement Act.",
           "difficulty": "easy",
           "topic": "Governance and Public Policy",
           "keywords": [
@@ -4278,19 +5478,19 @@
           "sourceDocument": "Public Policy and Governance Framework",
           "sourceSection": "Policy Implementation & Evaluation",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-13"
         },
         {
           "id": "policy_psr_028",
-          "question": "What does 'PS' commonly denote on internal memos in civil service",
+          "question": "Within government administration, which option correctly addresses: What does 'PS' commonly denote on internal memos in civil service?",
           "options": [
-            "Personal Secretary.",
             "Permanent Secretary.",
+            "Personal Secretary.",
             "Post Script.",
             "Public Service."
           ],
-          "correct": 1,
-          "explanation": "In civil service memos, 'P.S.' most often denotes 'Permanent Secretary'.",
+          "correct": 0,
+          "explanation": "Correct option: A (Permanent Secretary.). In civil service memos, 'P.S.' most often denotes 'Permanent Secretary'.",
           "difficulty": "medium",
           "topic": "Governance and Public Policy",
           "keywords": [
@@ -4301,19 +5501,19 @@
           "sourceDocument": "Public Policy and Governance Framework",
           "sourceSection": "Policy Implementation & Evaluation",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-13"
         },
         {
           "id": "policy_psr_029",
-          "question": "Which is the primary purpose of an office diary",
+          "question": "In official practice, select the option that best answers: Which is the main aim of an office diary?",
           "options": [
-            "File storage.",
-            "Schedule and record official appointments and engagements.",
+            "Procurement records.",
+            "Schedule and log official appointments and engagements.",
             "Payroll processing.",
-            "Procurement records."
+            "File storage."
           ],
           "correct": 1,
-          "explanation": "An office diary is used to schedule and record official appointments, meetings and activities.",
+          "explanation": "Correct option: B (Schedule and log official appointments and engagements.). An office diary is used to schedule and log official appointments, meetings and activities.",
           "difficulty": "hard",
           "topic": "Governance and Public Policy",
           "keywords": [
@@ -4324,19 +5524,19 @@
           "sourceDocument": "Public Policy and Governance Framework",
           "sourceSection": "Policy Implementation & Evaluation",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-13"
         },
         {
           "id": "policy_psr_030",
-          "question": "Which statement best defines 'virement' in public finance",
+          "question": "In the public service context, choose the best answer for: Which statement best defines 'virement' in public finance?",
           "options": [
-            "Operationally, an external loan under institutional controls.",
             "Transfer of funds from one budget head to another with approval.",
-            "In policy practice, an imprest process in approved implementation process.",
+            "Operationally, an external loan under institutional controls.",
+            "In policy practice, an cash advance workflow in approved implementation workflow.",
             "Within governance workflow, a procurement method under formal evaluation criteria."
           ],
-          "correct": 1,
-          "explanation": "Virement is the authorized transfer of funds within the approved budget from one head to another.",
+          "correct": 0,
+          "explanation": "Correct option: A (Transfer of funds from one budget head to another with approval.). Virement is the permit transfer of funds within the approved budget from one head to another.",
           "difficulty": "easy",
           "topic": "Governance and Public Policy",
           "keywords": [
@@ -4347,19 +5547,19 @@
           "sourceDocument": "Public Policy and Governance Framework",
           "sourceSection": "Policy Implementation & Evaluation",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-13"
         },
         {
           "id": "policy_psr_031",
-          "question": "Which course of action should a registry take when it receives classified material addressed to another ministry",
+          "question": "In the public service context, which option correctly addresses: Which course of action should a registry take when it receives classified material addressed to another ministry?",
           "options": [
-            "Open and read it.",
             "Forward immediately to the intended recipient without recording.",
-            "Record receipt and dispatch through secure channel to the intended ministry.",
-            "Publish its contents internally."
+            "Publish its contents internally.",
+            "Open and read it.",
+            "document receipt and dispatch through secure channel to the intended ministry."
           ],
-          "correct": 2,
-          "explanation": "Classified material must be recorded on receipt and securely forwarded by approved channels to the intended recipient, maintaining chain-of-custody.",
+          "correct": 3,
+          "explanation": "Correct option: D (document receipt and dispatch through secure channel to the intended ministry.). Classified material must be recorded on receipt and securely forwarded by approved channels to the intended recipient, maintaining chain-of-custody.",
           "difficulty": "easy",
           "topic": "Governance and Public Policy",
           "keywords": [
@@ -4370,19 +5570,19 @@
           "sourceDocument": "Public Policy and Governance Framework",
           "sourceSection": "Policy Implementation & Evaluation",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-13"
         },
         {
           "id": "policy_psr_032",
-          "question": "Which of these is part of a good filing practice",
+          "question": "Within government administration, which option correctly addresses: Which of these is part of a good filing practice?",
           "options": [
-            "Leaving files unlabelled.",
-            "Numbering files, keeping indexes and using subject codes.",
             "Storing everything on desk tops.",
-            "Mixing confidential with public files."
+            "Mixing confidential with public files.",
+            "Numbering files, keeping indexes and using subject codes.",
+            "Leaving files unlabelled."
           ],
-          "correct": 1,
-          "explanation": "Numbering, indexing and subject coding are core to good filing practice for retrievability and control.",
+          "correct": 2,
+          "explanation": "Correct option: C (Numbering files, keeping indexes and using subject codes.). Numbering, indexing and subject coding are core to good filing practice for retrievability and control.",
           "difficulty": "hard",
           "topic": "Governance and Public Policy",
           "keywords": [
@@ -4393,19 +5593,19 @@
           "sourceDocument": "Public Policy and Governance Framework",
           "sourceSection": "Policy Implementation & Evaluation",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-13"
         },
         {
           "id": "policy_psr_033",
-          "question": "Which statement about 'confidential files' is correct",
+          "question": "In the public service context, select the option that best answers: Which statement about 'confidential files' is correct?",
           "options": [
-            "They can be left on public notice boards.",
-            "They require restricted access and secure storage.",
             "They must be emailed to all staff.",
-            "They are the same as public circulars."
+            "They can be left on public notice boards.",
+            "They are the same as public circulars.",
+            "They necessitate restricted access and secure storage."
           ],
-          "correct": 1,
-          "explanation": "Confidential files contain sensitive material and must be stored securely with restricted access.",
+          "correct": 3,
+          "explanation": "Correct option: D (They necessitate restricted access and secure storage.). Confidential files contain sensitive material and must be stored securely with restricted access.",
           "difficulty": "medium",
           "topic": "Governance and Public Policy",
           "keywords": [
@@ -4416,19 +5616,19 @@
           "sourceDocument": "Public Policy and Governance Framework",
           "sourceSection": "Policy Implementation & Evaluation",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-13"
         },
         {
           "id": "policy_psr_034",
-          "question": "Which of these is NOT normally included in minutes of a meeting",
+          "question": "In official practice, choose the best answer for: Which of these is NOT normally included in minutes of a meeting?",
           "options": [
-            "Major decisions and assigned action points.",
-            "Names of attendees.",
+            "Date and time of meeting.",
             "Exact verbatim transcript of casual comments.",
-            "Date and time of meeting."
+            "Names of attendees.",
+            "Major decisions and assigned action points."
           ],
-          "correct": 2,
-          "explanation": "Minutes summarise decisions and action points; they are not necessarily verbatim transcripts of casual comments.",
+          "correct": 1,
+          "explanation": "Correct option: B (Exact verbatim transcript of casual comments.). Minutes summarise decisions and action points; they are not necessarily verbatim transcripts of casual comments.",
           "difficulty": "medium",
           "topic": "Governance and Public Policy",
           "keywords": [
@@ -4439,19 +5639,19 @@
           "sourceDocument": "Public Policy and Governance Framework",
           "sourceSection": "Policy Implementation & Evaluation",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-13"
         },
         {
           "id": "policy_psr_035",
-          "question": "Which term refers to the routine checking and verification of financial and administrative records within an organisation",
+          "question": "select the option that best answers: Which term refers to the routine checking and verification of financial and administrative records within an organisation?",
           "options": [
-            "Certification.",
-            "Internal audit.",
             "Procurement.",
+            "Internal audit.",
+            "Certification.",
             "Virement."
           ],
           "correct": 1,
-          "explanation": "Internal audit is the process of independently checking and verifying organisational records and controls.",
+          "explanation": "Correct option: B (Internal audit.). Internal audit is the workflow of independently checking and verifying organisational records and controls.",
           "difficulty": "easy",
           "topic": "Governance and Public Policy",
           "keywords": [
@@ -4462,19 +5662,19 @@
           "sourceDocument": "Public Policy and Governance Framework",
           "sourceSection": "Policy Implementation & Evaluation",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-13"
         },
         {
           "id": "policy_psr_036",
-          "question": "Which of these is a good practice when drafting official correspondence",
+          "question": "Within government administration, choose the best answer for: Which of these is a good practice when drafting official correspondence?",
           "options": [
-            "Operationally, use informal language and emojis under institutional controls.",
+            "In policy practice, avoid dates in approved implementation procedure.",
             "Be concise, use formal tone, include reference numbers and clear signature.",
-            "In policy practice, avoid dates in approved implementation process.",
+            "Operationally, use informal language and emojis under institutional controls.",
             "Within governance workflow, use personal opinions heavily under formal evaluation criteria."
           ],
           "correct": 1,
-          "explanation": "Official correspondence should be concise, formal, include references, dates and authorised signatures.",
+          "explanation": "Correct option: B (Be concise, use formal tone, include reference numbers and clear signature.). Official correspondence should be concise, formal, include references, dates and authorised signatures.",
           "difficulty": "medium",
           "topic": "Governance and Public Policy",
           "keywords": [
@@ -4485,19 +5685,19 @@
           "sourceDocument": "Public Policy and Governance Framework",
           "sourceSection": "Policy Implementation & Evaluation",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-13"
         },
         {
           "id": "policy_psr_037",
-          "question": "Which term best describes the act of returning unspent budget balance at year end to the Treasury",
+          "question": "choose the best answer for: Which term best describes the act of returning unspent budget balance at year end to the Treasury?",
           "options": [
+            "Within governance workflow, virement under formal evaluation criteria.",
             "Operationally, appropriation under institutional controls.",
-            "Remittance to Consolidated Revenue/ Treasury Single Account.",
-            "In policy practice, imprest in approved implementation process.",
-            "Within governance workflow, virement under formal evaluation criteria."
+            "Remittance to Consolidated Revenue/Treasury Single Account.",
+            "In policy practice, imprest in approved implementation procedure."
           ],
-          "correct": 1,
-          "explanation": "Unspent balances at year-end are remitted to the Consolidated Revenue Fund or Treasury Single Account as required by public finance rules.",
+          "correct": 2,
+          "explanation": "Correct option: C (Remittance to Consolidated Revenue/Treasury Single Account.). Unspent balances at year-end are remitted to the Consolidated Revenue Fund or Treasury Single Account as necessitate by public finance rules.",
           "difficulty": "medium",
           "topic": "Governance and Public Policy",
           "keywords": [
@@ -4508,19 +5708,19 @@
           "sourceDocument": "Public Policy and Governance Framework",
           "sourceSection": "Policy Implementation & Evaluation",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-13"
         },
         {
           "id": "policy_psr_038",
-          "question": "Which of these abbreviations commonly appears on file covers to indicate urgency",
+          "question": "In official practice, which option correctly addresses: Which of these abbreviations commonly appears on file covers to indicate urgency?",
           "options": [
-            "FYI.",
             "UFS.",
             "TBC.",
+            "FYI.",
             "N/A."
           ],
-          "correct": 1,
-          "explanation": "UFS ('Urgent For Signature' or 'Urgent For Service') is commonly used to denote urgency on files.",
+          "correct": 0,
+          "explanation": "Correct option: A (UFS.). UFS ('Urgent For Signature' or 'Urgent For Service') is commonly used to denote urgency on files.",
           "difficulty": "hard",
           "topic": "Governance and Public Policy",
           "keywords": [
@@ -4531,7 +5731,7 @@
           "sourceDocument": "Public Policy and Governance Framework",
           "sourceSection": "Policy Implementation & Evaluation",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-13"
         },
         {
           "id": "pol_implementation_evaluation_gen_001",
@@ -5457,6 +6657,606 @@
           "sourceSection": "Policy Implementation & Evaluation",
           "year": 2020,
           "lastReviewed": "2026-03-03"
+        },
+        {
+          "id": "policy_psr_039",
+          "question": "According to established rules, select the statement that correctly defines the objective of routing papers back through official channels after a decision has been reached by a higher authority?",
+          "options": [
+            "To allow all intermediate officers to be acquainted with the decisions reached.",
+            "To provide an opportunity for the decision to be reversed. □.",
+            "To delay the implementation of the decision.",
+            "To give junior officers more work to do."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (To allow all intermediate officers to be acquainted with the decisions reached.). Papers routed upwards through official channels are routed back in the same way, and all intermediate officers are, therefore, acquainted with decisions reached by the higher authority.",
+          "difficulty": "medium",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "select",
+            "statement"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Implementation & Evaluation",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "policy_psr_040",
+          "question": "In official practice, select the statement that correctly defines the objective of routing papers back through official channels after a decision has been reached by a higher authority?",
+          "options": [
+            "To allow all intermediate officers to be acquainted with the decisions reached.",
+            "To give junior officers more work to do.",
+            "To delay the implementation of the decision.",
+            "To provide an opportunity for the decision to be reversed. 478 Q."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (To allow all intermediate officers to be acquainted with the decisions reached.). Papers routed upwards through official channels are routed back in the same way, and all intermediate officers are, therefore, acquainted with decisions reached by the higher authority.",
+          "difficulty": "medium",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "select",
+            "statement"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Implementation & Evaluation",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "policy_psr_041",
+          "question": "According to established rules, which option correctly addresses: Can a police officer on probation be confirmed without passing the prescribed examination?",
+          "options": [
+            "Yes, if they have a recommendation from their superior officer.",
+            "Yes, if they are promoted to a higher rank. □",
+            "Yes, if they have an excellent service document.",
+            "No, it is a compulsory requirement for confirmation."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (No, it is a compulsory requirement for confirmation.). The title of the section and the rule itself refer to \"Confirmation/Promotion Examinations,\" making it a mandatory requirement for the relevant officers.",
+          "difficulty": "easy",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "correctly"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Implementation & Evaluation",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "policy_psr_042",
+          "question": "choose the best answer for: How often does the National Council on Establishments meet?",
+          "options": [
+            "Only when there is a major policy change.3.",
+            "Every quarter.",
+            "At least once a year.",
+            "As needed, when a new President takes office."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (At least once a year.). The National Council on Establishments meets at least once a year to deliberate on establishment matters.",
+          "difficulty": "easy",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "choose",
+            "best",
+            "answer",
+            "often"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Implementation & Evaluation",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "policy_psr_043",
+          "question": "Within government administration, choose the best answer for: What was one of the key recommendations of the Udoji Commission? 407?",
+          "options": [
+            "The reduction of staff salaries. □.",
+            "The creation of a separate grading system for each Ministry.",
+            "The introduction of the Open Reporting System for performance evaluation.",
+            "The separation of Administrative and Professional Officers."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (The introduction of the Open Reporting System for performance evaluation.). The Commission introduced the Open Reporting System for performance evaluation, the Unified Grading and Salary Structure, and the creation of the Unified Senior Management Group.",
+          "difficulty": "easy",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "within",
+            "choose",
+            "best",
+            "answer"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Implementation & Evaluation",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "policy_psr_044",
+          "question": "In official practice, which option best describes the aim of a \"file copy\" of a circular?",
+          "options": [
+            "To be placed in the file relevant to the subject matter.",
+            "To be sent to the public.",
+            "To be discarded after the circular is read.",
+            "To be kept by the officer personally. □."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (To be placed in the file relevant to the subject matter.). The file copy of each such circular should be placed in the file relevant to the subject matter 506",
+          "difficulty": "medium",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Implementation & Evaluation",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "policy_psr_045",
+          "question": "According to established rules, select the statement that correctly defines the rule regarding the monthly check of contents in strong-rooms or safes?",
+          "options": [
+            "It should be done monthly by the officer in charge of the keys, who must initial and date the register.",
+            "It Is optional.",
+            "It is only demand if a discrepancy is suspected.3.",
+            "It should be done annually. 237"
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (It should be done monthly by the officer in charge of the keys, who must initial and date the register.). Financial Regulation 1122 states, \"The contents of strong-rooms or safes must be checked monthly by the officer in charge of the keys, who will initial and date the register.\"",
+          "difficulty": "medium",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "select",
+            "statement"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Implementation & Evaluation",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "policy_psr_046",
+          "question": "In the public service context, which option best describes the role of the Administrative and Professional Officers?",
+          "options": [
+            "To advise on appropriate decisions and subsequently put them into effect.",
+            "To manage the finances of the Ministry.",
+            "To make policy decisions for the Minister.",
+            "To handle all legal matters of the Ministry.Q."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (To advise on appropriate decisions and subsequently put them into effect.). It is for this group to bring together the many and diverse views involved in matters requiring policy decisions, to advise on the appropriate decisions and subsequently to put them into effect.",
+          "difficulty": "medium",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "context",
+            "option",
+            "best",
+            "describes"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Implementation & Evaluation",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "policy_psr_047",
+          "question": "In official practice, select the statement that correctly defines the objective of performance indicators and criteria in the evaluation of services? 447?",
+          "options": [
+            "To make the evaluation more complex.",
+            "To allow for arbitrary decision-making.3.",
+            "To provide a basis for an objective and fair evaluation50.",
+            "To confuse the public."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (To provide a basis for an objective and fair evaluation50.). The evaluation of the effectiveness and productivity of services must be based on objectives and programmes of activities defined beforehand, accompanied by performance indicators and criteria.",
+          "difficulty": "medium",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "select",
+            "statement"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Implementation & Evaluation",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "policy_psr_048",
+          "question": "Within government administration, select the option that best answers: What should be done with all files in an office at the close of work each day?",
+          "options": [
+            "They should be locked up in a cabinet.",
+            "They should be left on the desk for the next day.",
+            "They should be taken home by the officer.",
+            "They should be given to a junior officer to keep.3."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (They should be locked up in a cabinet.). All files and documents must be locked up in a cabinet at the close of work each day.",
+          "difficulty": "hard",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "within",
+            "select",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Implementation & Evaluation",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "policy_psr_049",
+          "question": "According to established rules, which option correctly addresses: What should a secretary do after receiving a notice to serve a meeting?",
+          "options": [
+            "Start writing the minutes.a.",
+            "Contact the convening authority to understand the role of the meeting and get the Terms of Reference.",
+            "Do nothing until the chairman calls them.",
+            "Immediately prepare the agenda without any consultation."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Contact the convening authority to understand the role of the meeting and get the Terms of Reference.). The secretary should contact the convening authority to understand the aim of the meeting and get the Terms of Reference",
+          "difficulty": "easy",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "correctly"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Implementation & Evaluation",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "policy_psr_050",
+          "question": "In the public service context, choose the best answer for: What should a Schedule Officer have, regarding their writing?",
+          "options": [
+            "A complex style.",
+            "A poetic style. Q",
+            "A good style.",
+            "A very informal style."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (A good style.). A Schedule Officer should have a good style.",
+          "difficulty": "medium",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "context",
+            "choose",
+            "best",
+            "answer"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Implementation & Evaluation",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "policy_psr_051",
+          "question": "According to established rules, select the option that best answers: In the public service context, which option correctly addresses: What should a Clerk do with the top copy of their list from the duplicate note-book system at the end of each day?",
+          "options": [
+            "Send it to the Chairman. □.",
+            "Discard it.",
+            "Keep it for themselves.",
+            "Give it to the officer in charge of the most appropriate Registry."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Give it to the officer in charge of the most appropriate Registry.). (Give it to the officer in charge of the most appropriate Registry.). On completion of each page and always at the end of each day, the Clerk must give the top copy of his list to the officer in charge of the most appropriate Registry, which records the movements on the Absent File Cards. Section F Forms of Official Communication in Government Business 493",
+          "difficulty": "easy",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "context",
+            "option",
+            "correctly",
+            "addresses"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Implementation & Evaluation",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "policy_psr_052",
+          "question": "Within government administration, select the option that best answers: What should an officer do when leaving the office for an extended period?",
+          "options": [
+            "Make sure to prepare a comprehensive handing over note for their successor.",
+            "Do nothing, as a new officer will figure things out. □.",
+            "Discard all their files.",
+            "Take all their files with them."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Make sure to prepare a comprehensive handing over note for their successor.). It is essential that an officer who is about to proceed on leave, transfer, or retire should prepare a detailed and comprehensive handing over note for the guidance of his successor.",
+          "difficulty": "easy",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "within",
+            "select",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Implementation & Evaluation",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "policy_psr_053",
+          "question": "Within government administration, select the statement that correctly defines the aim of a \"Memorandum\" (Memo)?",
+          "options": [
+            "To provide a confidential report. □.",
+            "To document a personal conversation.",
+            "To communicate with other Ministries and the public.",
+            "To communicate internally within the same department or Ministry."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (To communicate internally within the same department or Ministry.). A memorandum is a type of correspondence used to communicate internally between officers within the same department or Ministry.",
+          "difficulty": "hard",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "within",
+            "select",
+            "statement",
+            "correctly"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Implementation & Evaluation",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "policy_psr_054",
+          "question": "which option correctly addresses: What should a Clerk do with the top copy of their list from the duplicate note-book system at the end of each day?",
+          "options": [
+            "Discard it.",
+            "Keep it for themselves.",
+            "Give it to the officer in charge of the most appropriate Registry.",
+            "Send it to the Chairman.a. 503"
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Give it to the officer in charge of the most appropriate Registry.). On completion of each page and always at the end of each day, the Clerk must give the top copy of his list to the officer in charge of the most appropriate Registry, which records the movements on the Absent File Cards.",
+          "difficulty": "medium",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "option",
+            "correctly",
+            "addresses",
+            "should"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Implementation & Evaluation",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "policy_psr_055",
+          "question": "Within government administration, select the option that best answers: What does \"spouse of an officer\" mean?",
+          "options": [
+            "A wife/husband married under the Marriage Act, customary law, or Islamic law.",
+            "Any family member.",
+            "A domestic partner. 14",
+            "A dependent child. Q"
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (A wife/husband married under the Marriage Act, customary law, or Islamic law.). Rule 010106 defines \"Spouse of an Officer\" as \"a wife/husband married under the Marriage Act, Customary Law, or Islamic Law.\"",
+          "difficulty": "hard",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "within",
+            "select",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Implementation & Evaluation",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "policy_psr_056",
+          "question": "According to established rules, select the statement that correctly defines the tenure policy for a director or its equivalent?",
+          "options": [
+            "They have an indefinite tenure. □",
+            "They must retire at 60 years.",
+            "They must retire after 35 years of service.",
+            "They must hold office for a term of eight years."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (They must hold office for a term of eight years.). Rule 020909 states that a director or its equivalent must hold office for \"a term of eight years and renewable for a further term of four years.\"",
+          "difficulty": "medium",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "select",
+            "statement"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Implementation & Evaluation",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "policy_psr_057",
+          "question": "In official practice, which option correctly addresses: Which form is used for the Certificate of Service for officers on GL. 06 and below?",
+          "options": [
+            "Form Gen. 57",
+            "Form Gen. 60 Q",
+            "Form Gen. 59",
+            "Form Gen. 58A"
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Form Gen. 58A). Rule 021104 specifies that for officers on GL. 06 and below, the form is \"Form Gen. 58A.\"",
+          "difficulty": "easy",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "option",
+            "correctly"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Implementation & Evaluation",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "policy_psr_058",
+          "question": "Within government administration, which time frame a payee is illiterate, whose mark must be witnessed by a literate official other than the paying officer?",
+          "options": [
+            "The literate official's mark.",
+            "The paying officer's mark.",
+            "No mark is necessitate. □",
+            "The illiterate payee's mark."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (The illiterate payee's mark.). Financial Regulation 614 states: \"Where a payee is an illiterate, his or her mark must be witnessed by a literate official other than the paying officer.\" 205",
+          "difficulty": "hard",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "within",
+            "time",
+            "frame",
+            "payee"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Implementation & Evaluation",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "policy_psr_059",
+          "question": "According to established rules, choose the best answer for: If a safe is contained within a strong-room, what is the rule regarding key-holding?",
+          "options": [
+            "The cashier must hold both keys.",
+            "One officer should not hold the keys of both strong-room and safe.",
+            "Keys can be left unattended. □.",
+            "One officer can hold all keys."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (One officer should not hold the keys of both strong-room and safe.). Financial Regulation 1108 stipulates, \"Where a safe is contained in a strong-room, one officer should not hold the keys of both strong-room and safe.\"",
+          "difficulty": "easy",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Implementation & Evaluation",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "policy_psr_060",
+          "question": "According to established rules, choose the best answer for: What information must be printed on all receipt and licence books?",
+          "options": [
+            "Only the title of the book.",
+            "The name of the issuing officer. □.",
+            "The title of the book, the serial number of each receipt/licence, and the number of the book.",
+            "The date of printing."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (The title of the book, the serial number of each receipt/licence, and the number of the book.). Financial Regulation 1203 demand that the title of the book, the serial number of each receipt/licence, and the number of the book must be printed on all receipt and licence books.",
+          "difficulty": "medium",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Implementation & Evaluation",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "policy_psr_061",
+          "question": "In the public service context, which option aligns with the meaning of the frequency for the Mechanical Engineer to verify and certify the fuel and lubricants consumption?",
+          "options": [
+            "Monthly.",
+            "Daily.",
+            "Weekly.",
+            "Annually. □"
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Monthly.). Financial Regulation 2008 demand the Mechanical Engineer to verify and certify fuel and lubricants consumption monthly.",
+          "difficulty": "easy",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "context",
+            "option",
+            "aligns",
+            "meaning"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Implementation & Evaluation",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "policy_psr_062",
+          "question": "In the public service context, which option correctly addresses: The \"golden handshake\" scheme was provided to prepare affected staff for what?",
+          "options": [
+            "A severance package.",
+            "New vocations after retirement.",
+            "A loan. □. 423",
+            "A new job in another ministry."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (New vocations after retirement.). The \"golden handshake\" scheme provided orientation for individual development and empowerment to prepare affected staff for new vocations after retirement.",
+          "difficulty": "hard",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "context",
+            "option",
+            "correctly",
+            "addresses"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Implementation & Evaluation",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "policy_psr_063",
+          "question": "In the public service context, at what point a driver detects a minor defect in a government vehicle, what should they do?",
+          "options": [
+            "Ignore it, as it is a minor defect. □.",
+            "Wait until it becomes a major problem.",
+            "Fix it themselves.",
+            "Report it immediately to the officer-in-charge of transport."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Report it immediately to the officer-in-charge of transport.). Drivers should report immediately to the officer-in-charge of transport whenever defects (even of a minor nature) are detected.",
+          "difficulty": "medium",
+          "chapter": "Policy Implementation & Evaluation - Expansion Set",
+          "keywords": [
+            "context",
+            "point",
+            "driver",
+            "detects"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Policy Implementation & Evaluation",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
         }
       ],
       "id": "pol_implementation_evaluation"
@@ -7340,6 +9140,606 @@
           "sourceSection": "Public Sector Planning",
           "year": 2020,
           "lastReviewed": "2026-03-03"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_076",
+          "question": "According to established rules, select the option that best answers: A ministry unit is updating its workflow for public sector planning. Which choice most effectively promotes decision transparency' without bypassing established review procedures?",
+          "options": [
+            "Use clear criteria and communicate decisions promptly.",
+            "Rely on informal instructions without documentary evidence.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Close cases without validating facts or demand records."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Use clear criteria and communicate decisions promptly.).",
+          "difficulty": "easy",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "established",
+            "according",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Public Sector Planning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_077",
+          "question": "In official practice, select the option that best answers: For effective public sector planning, what is the most appropriate approach to secure impact evaluation?",
+          "options": [
+            "Treat exceptions as routine without documented justification.",
+            "Measure outcomes against baseline and policy objectives.",
+            "Close cases without validating facts or necessitate records.",
+            "Delay decisions until issues escalate into avoidable crises."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Measure outcomes against baseline and policy objectives.).",
+          "difficulty": "medium",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Public Sector Planning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_078",
+          "question": "select the option that best answers: In a time-sensitive matter under public sector planning, which action best aligns with lawful administrative standards' (Policy formulation rigour scenario 1)?",
+          "options": [
+            "Define the problem, options, and measurable criteria before selecting a policy path.",
+            "Rely on verbal approval and close the file without documentary trail.",
+            "Proceed without validating source records and decision criteria.",
+            "Delay escalation until issues become material and difficult to reverse."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Define the problem, options, and measurable criteria before selecting a policy path.).",
+          "difficulty": "medium",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "best",
+            "select",
+            "option",
+            "answers"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Public Sector Planning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_079",
+          "question": "In the public service context, which option correctly addresses: A unit handling public sector planning receives a case with competing priorities. Which action best preserves compliance and service quality' (Policy formulation rigour scenario 1)?",
+          "options": [
+            "Define the problem, options, and measurable criteria before selecting a policy path.",
+            "Bypass review checkpoints where timelines are tight.",
+            "Apply discretionary shortcuts to accelerate closure regardless of controls.",
+            "Prioritize convenience over approved procedure requirements."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Define the problem, options, and measurable criteria before selecting a policy path.).",
+          "difficulty": "medium",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "context",
+            "option",
+            "correctly",
+            "addresses"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Public Sector Planning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_080",
+          "question": "According to established rules, which option correctly addresses: For effective public sector planning, what is the most appropriate approach to secure public sector planning compliance?",
+          "options": [
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Close cases without validating facts or necessitate records.",
+            "Use lawful criteria and document each decision step transparently.",
+            "Treat exceptions as routine without documented justification."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Use lawful criteria and document each decision step transparently.).",
+          "difficulty": "medium",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "sector",
+            "according",
+            "established",
+            "option"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Public Sector Planning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_081",
+          "question": "According to established rules, which option correctly addresses: Which option most strongly aligns with good public-service practice on public sector planning risk management within Public Sector Planning?",
+          "options": [
+            "Bypass review and approval controls to save time.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Identify control gaps early and escalate material exceptions promptly."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Identify control gaps early and escalate material exceptions promptly.).",
+          "difficulty": "hard",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "option",
+            "sector",
+            "according",
+            "established"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Public Sector Planning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_082",
+          "question": "Within government administration, select the option that best answers: Which option most strongly aligns with good public-service practice on compliance assurance within Public Sector Planning?",
+          "options": [
+            "Treat exceptions as routine without documented justification.",
+            "Rely on informal instructions without documentary evidence.",
+            "Close cases without validating facts or necessitate records.",
+            "Apply approved rules consistently and escalate exceptions."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Apply approved rules consistently and escalate exceptions.).",
+          "difficulty": "hard",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "within",
+            "option",
+            "select",
+            "best"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Public Sector Planning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_083",
+          "question": "In the public service context, choose the best answer for: In a time-sensitive file under Public Sector Planning, which step best preserves operational discipline without breaching procedure' within approved timelines and governance standards?",
+          "options": [
+            "Ignore feedback and continue non-compliant procedures.",
+            "Bypass review and approval controls to save time.",
+            "Follow approved workflows and verify outputs before closure.",
+            "Apply rules inconsistently based on personal preference."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Follow approved workflows and verify outputs before closure.).",
+          "difficulty": "easy",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "best",
+            "context",
+            "choose",
+            "answer"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Public Sector Planning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_084",
+          "question": "Within government administration, select the option that best answers: A desk officer handling Public Sector Planning receives a case that demand log management. What should be done first' while preserving records for audit and oversight?",
+          "options": [
+            "sustain accurate files and update status at each control point.",
+            "Apply rules inconsistently based on personal preference.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Bypass review and approval controls to save time."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (sustain accurate files and update status at each control point.).",
+          "difficulty": "hard",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "within",
+            "select",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Public Sector Planning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_085",
+          "question": "According to established rules, select the option that best answers: In the context of Public Sector Planning, which action best demonstrates public sector planning risk management?",
+          "options": [
+            "Prioritize convenience over policy and legal requirements.",
+            "Identify control gaps early and escalate material exceptions promptly.",
+            "Apply rules inconsistently based on personal preference.",
+            "Ignore feedback and continue non-compliant procedures."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Identify control gaps early and escalate material exceptions promptly.).",
+          "difficulty": "easy",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "best",
+            "sector",
+            "according",
+            "established"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Public Sector Planning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_086",
+          "question": "which option correctly addresses: Which practice should a in charge officer prioritize to sustain evidence quality in Public Sector Planning?",
+          "options": [
+            "Prioritize convenience over policy and legal requirements.",
+            "Use credible data sources and validate assumptions.",
+            "Bypass review and approval controls to save time.",
+            "Apply rules inconsistently based on personal preference."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Use credible data sources and validate assumptions.).",
+          "difficulty": "easy",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "option",
+            "correctly",
+            "addresses",
+            "practice"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Public Sector Planning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_087",
+          "question": "In the public service context, choose the best answer for: Which practice should a accountable officer prioritize to sustain public sector planning compliance in Public Sector Planning?",
+          "options": [
+            "Treat exceptions as routine without documented justification.",
+            "Close cases without validating facts or necessitate records.",
+            "Rely on informal instructions without documentary evidence.",
+            "Use lawful criteria and document each decision step transparently."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Use lawful criteria and document each decision step transparently.).",
+          "difficulty": "easy",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "sector",
+            "context",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Public Sector Planning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_088",
+          "question": "According to established rules, which option correctly addresses: A ministry unit is updating its workflow for public sector planning. Which choice most effectively promotes impact evaluation' while preserving records for audit and oversight?",
+          "options": [
+            "Rely on informal instructions without documentary evidence.",
+            "Measure outcomes against baseline and policy objectives.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Close cases without validating facts or demand records."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Measure outcomes against baseline and policy objectives.).",
+          "difficulty": "medium",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "correctly"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Public Sector Planning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_089",
+          "question": "Within government administration, at what point handling public sector planning, which choice reflects proper impact evaluation standards?",
+          "options": [
+            "Rely on informal instructions without documentary evidence.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Treat exceptions as routine without documented justification.",
+            "Measure outcomes against baseline and policy objectives."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Measure outcomes against baseline and policy objectives.).",
+          "difficulty": "medium",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "within",
+            "point",
+            "handling",
+            "sector"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Public Sector Planning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_090",
+          "question": "According to established rules, choose the best answer for: A ministry unit is updating its workflow for public sector planning. Which choice most effectively promotes policy formulation' in line with public-sector accountability expectations?",
+          "options": [
+            "Close cases without validating facts or demand records.",
+            "Define the problem, options, and decision criteria clearly.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Rely on informal instructions without documentary evidence."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Define the problem, options, and decision criteria clearly.).",
+          "difficulty": "medium",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "sector",
+            "according",
+            "established",
+            "choose"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Public Sector Planning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_091",
+          "question": "According to established rules, select the option that best answers: Which practice should a in charge officer prioritize to sustain service integrity in Public Sector Planning?",
+          "options": [
+            "Rely on informal instructions without documentary evidence.",
+            "Avoid conflicts of interest and disclose relevant constraints.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Close cases without validating facts or necessitate records."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Avoid conflicts of interest and disclose relevant constraints.).",
+          "difficulty": "medium",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Public Sector Planning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_092",
+          "question": "Within government administration, which time frame applying rules in public sector planning, which option aligns best with public sector planning compliance standards' while preserving records for audit and oversight?",
+          "options": [
+            "Close cases without validating facts or demand records.",
+            "Use lawful criteria and document each decision step transparently.",
+            "Treat exceptions as routine without documented justification.",
+            "Rely on informal instructions without documentary evidence."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Use lawful criteria and document each decision step transparently.).",
+          "difficulty": "medium",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "sector",
+            "within",
+            "time",
+            "frame"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Public Sector Planning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_093",
+          "question": "According to established rules, which option correctly addresses: Which option most strongly aligns with good public-service practice on performance standards within Public Sector Planning?",
+          "options": [
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Set measurable targets, monitor progress, and correct deviations.",
+            "Treat exceptions as routine without documented justification.",
+            "Close cases without validating facts or demand records."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Set measurable targets, monitor progress, and correct deviations.).",
+          "difficulty": "easy",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "option",
+            "according",
+            "established",
+            "correctly"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Public Sector Planning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_094",
+          "question": "choose the best answer for: For effective public sector planning, what is the most appropriate approach to guarantee evidence quality?",
+          "options": [
+            "Bypass review and approval controls to save time.",
+            "Use credible data sources and validate assumptions.",
+            "Apply rules inconsistently based on personal preference.",
+            "Ignore feedback and continue non-compliant procedures."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Use credible data sources and validate assumptions.).",
+          "difficulty": "medium",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "choose",
+            "best",
+            "answer",
+            "effective"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Public Sector Planning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_095",
+          "question": "select the option that best answers: In a time-sensitive file under Public Sector Planning, which step best preserves implementation planning without breaching procedure' while preserving records for audit and oversight?",
+          "options": [
+            "Bypass review and approval controls to save time.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Assign responsibilities, timelines, and performance metrics.",
+            "Apply rules inconsistently based on personal preference."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Assign responsibilities, timelines, and performance metrics.).",
+          "difficulty": "medium",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "best",
+            "select",
+            "option",
+            "answers"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Public Sector Planning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_096",
+          "question": "In the public service context, select the option that best answers: During routine public sector planning operations, which approach most strongly supports accountable implementation' (Policy formulation rigour scenario 1)?",
+          "options": [
+            "Delay escalation until issues become material and difficult to reverse.",
+            "Treat exceptions as normal practice without written justification.",
+            "Define the problem, options, and measurable criteria before selecting a policy path.",
+            "Proceed without validating source records and decision criteria."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Define the problem, options, and measurable criteria before selecting a policy path.).",
+          "difficulty": "easy",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "context",
+            "select",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Public Sector Planning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_097",
+          "question": "In the public service context, which time frame handling public sector planning, which choice reflects proper public-sector planning standards?",
+          "options": [
+            "Rely on informal instructions without documentary evidence.",
+            "Close cases without validating facts or demand records.",
+            "Treat exceptions as routine without documented justification.",
+            "Align plans with budget, legal mandate, and service priorities."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Align plans with budget, legal mandate, and service priorities.).",
+          "difficulty": "hard",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "sector",
+            "context",
+            "time",
+            "frame"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Public Sector Planning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_098",
+          "question": "Within government administration, choose the best answer for: During routine public sector planning operations, which approach best secure public sector planning compliance' in line with public-sector accountability expectations?",
+          "options": [
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Treat exceptions as routine without documented justification.",
+            "Use lawful criteria and document each decision step transparently.",
+            "Close cases without validating facts or demand records."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Use lawful criteria and document each decision step transparently.).",
+          "difficulty": "easy",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "sector",
+            "best",
+            "within",
+            "choose"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Public Sector Planning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_099",
+          "question": "Within government administration, choose the best answer for: A supervisor is reviewing compliance gaps in Public Sector Planning. Which action most directly strengthens public sector planning risk management' while preserving records for audit and oversight?",
+          "options": [
+            "Ignore feedback and continue non-compliant procedures.",
+            "Bypass review and approval controls to save time.",
+            "Identify control gaps early and escalate material exceptions promptly.",
+            "Prioritize convenience over policy and legal requirements."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Identify control gaps early and escalate material exceptions promptly.).",
+          "difficulty": "easy",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "sector",
+            "within",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Public Sector Planning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "pol_public_sector_planning_gen_100",
+          "question": "In the public service context, which option correctly addresses: Which option most strongly aligns with good public-service practice on public-sector planning within Public Sector Planning?",
+          "options": [
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Rely on informal instructions without documentary evidence.",
+            "Treat exceptions as routine without documented justification.",
+            "Align plans with budget, legal mandate, and service priorities."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Align plans with budget, legal mandate, and service priorities.).",
+          "difficulty": "hard",
+          "chapter": "Public Sector Planning - Expansion Set",
+          "keywords": [
+            "option",
+            "sector",
+            "context",
+            "correctly"
+          ],
+          "sourceDocument": "Public Policy and Governance Framework",
+          "sourceSection": "Public Sector Planning",
+          "year": 2020,
+          "lastReviewed": "2026-03-13"
         }
       ],
       "id": "pol_public_sector_planning"

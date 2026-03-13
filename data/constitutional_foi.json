@@ -1833,6 +1833,606 @@
           "sourceSection": "Constitutional Structure, Bodies & Principles",
           "year": 1999,
           "lastReviewed": "2026-03-03"
+        },
+        {
+          "id": "clg_constitutional_governance_gen_060",
+          "question": "In the public service context, which option best describes a key characteristic that distinguishes the Civil Service from elected officials like members of the National Assembly?",
+          "options": [
+            "Civil Servants are not paid salaries.",
+            "Civil Servants are limited to a short term of office.",
+            "The Civil Service enjoys continuity of existence.",
+            "The Civil Service has no pool of experience. a."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (The Civil Service enjoys continuity of existence.). The Civil Service is a body or organ which enjoys continuity of existence, unlike elected officials who have limited terms of office.",
+          "difficulty": "easy",
+          "chapter": "Constitutional Structure, Bodies & Principles - Expansion Set",
+          "keywords": [
+            "context",
+            "option",
+            "best",
+            "describes"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Constitutional Structure, Bodies & Principles",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_constitutional_governance_gen_061",
+          "question": "choose the option that NOT one of the fundamental and universal principles for the provision of public services listed in the chapter?",
+          "options": [
+            "Principle of nepotism.",
+            "Principle of continuity.",
+            "Principle of legality. Q.",
+            "Principle of equality of treatment."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Principle of nepotism.). The principles listed include equality of treatment, neutrality, legality, continuity, proximity and accessibility of services, participation, quality, evaluation, transparency, speed and responsiveness, accountability, motivation, and integrity. Nepotism is a prohibited act under the Principle of Integrity.",
+          "difficulty": "medium",
+          "chapter": "Constitutional Structure, Bodies & Principles - Expansion Set",
+          "keywords": [
+            "choose",
+            "option",
+            "fundamental",
+            "universal"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Constitutional Structure, Bodies & Principles",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_constitutional_governance_gen_062",
+          "question": "According to established rules, select the statement that correctly defines the aim of the principle of neutrality in the Civil Service?",
+          "options": [
+            "To allow civil servants to participate in partisan politics.",
+            "To guarantee that civil servants serve the government of the day without political bias.",
+            "To prevent civil servants from having any opinions.",
+            "To allow civil servants to publicly criticize government policies, a."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (To guarantee that civil servants serve the government of the day without political bias.). The principle of neutrality secure that civil servants do not take part in partisan politics, serving the government of the day without political bias.",
+          "difficulty": "medium",
+          "chapter": "Constitutional Structure, Bodies & Principles - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "select",
+            "statement"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Constitutional Structure, Bodies & Principles",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_constitutional_governance_gen_063",
+          "question": "According to established rules, select the option that best answers: The Udoji Public Service Review Commission in 1972 was primarily focused on what?",
+          "options": [
+            "Limiting the powers of the Civil Service.",
+            "Increasing efficiency and effectiveness in the Public Service.",
+            "Reducing the size of the Civil Service.",
+            "Introducing new political reforms.a."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Increasing efficiency and effectiveness in the Public Service.). The Udoji Commission focused primarily on the larger issue of increasing efficiency and effectiveness in the Public Service.",
+          "difficulty": "easy",
+          "chapter": "Constitutional Structure, Bodies & Principles - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Constitutional Structure, Bodies & Principles",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_constitutional_governance_gen_064",
+          "question": "Within government administration, select the option that best answers: The principle of neutrality in the Civil Service guarantee that civil servants do what?",
+          "options": [
+            "Take part in partisan politics.",
+            "Do not have any personal opinions.",
+            "Serve the government of the day without political bias.",
+            "Publicly criticize government policies.Q."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Serve the government of the day without political bias.). The principle of neutrality secure that civil servants do not take part in partisan politics, serving the government of the day without political bias.",
+          "difficulty": "medium",
+          "chapter": "Constitutional Structure, Bodies & Principles - Expansion Set",
+          "keywords": [
+            "civil",
+            "within",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Constitutional Structure, Bodies & Principles",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_constitutional_governance_gen_065",
+          "question": "Within government administration, select the option that best answers: According to the handbook, what does \"unprofessional\" behavior imply in a Civil Servant?",
+          "options": [
+            "Working hard and being diligent.",
+            "Treating members of the public with respect.",
+            "Attending all official meetings.a.",
+            "Exhibiting rudeness, discourtesy, insensitivity, and inefficiency."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Exhibiting rudeness, discourtesy, insensitivity, and inefficiency.). The handbook aims to improve the standards of performance of Civil Servants and remove the ugly image of unprofessionalism which manifests itself in rudeness, discourtesy, insensitivity, and inefficiency.",
+          "difficulty": "medium",
+          "chapter": "Constitutional Structure, Bodies & Principles - Expansion Set",
+          "keywords": [
+            "within",
+            "select",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Constitutional Structure, Bodies & Principles",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_constitutional_governance_gen_066",
+          "question": "According to established rules, choose the best answer for: The Principle of Neutrality means the public service as a whole remains neutral with respect to whom?",
+          "options": [
+            "The public.",
+            "Its employees.",
+            "The government of the day.",
+            "The opposition parties.a."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (The government of the day.). The public service as a whole remains neutral in respect to the government of the day, and this fundamental principle will be respected by all administrations.",
+          "difficulty": "easy",
+          "chapter": "Constitutional Structure, Bodies & Principles - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Constitutional Structure, Bodies & Principles",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_constitutional_governance_gen_067",
+          "question": "According to established rules, choose the best answer for: The Principle of Quality, Effectiveness, and Efficiency necessitate the public service to make optimal use of what?",
+          "options": [
+            "Political connections.",
+            "Obsolete technology.a.",
+            "The resources at its disposal.",
+            "Personal favors."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (The resources at its disposal.). The public service must guarantee that the highest quality and the most effective and efficient services are provided by making optimal use of the resources at its disposal.",
+          "difficulty": "medium",
+          "chapter": "Constitutional Structure, Bodies & Principles - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Constitutional Structure, Bodies & Principles",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_constitutional_governance_gen_068",
+          "question": "In the public service context, which option best describes the principal aim of records in the Civil Service?",
+          "options": [
+            "To generate a paper trail for all financial transactions.3.",
+            "To provide a basis for continuity and reference to the decisions of past governments.",
+            "To document the personal lives of civil servants.",
+            "To create a historical archive of government actions."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (To provide a basis for continuity and reference to the decisions of past governments.). Records are kept to provide continuity through reference to the decisions of past governments. The Civil Service's continued relevance is a duty of how well it manages these records.",
+          "difficulty": "hard",
+          "chapter": "Constitutional Structure, Bodies & Principles - Expansion Set",
+          "keywords": [
+            "context",
+            "option",
+            "best",
+            "describes"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Constitutional Structure, Bodies & Principles",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_constitutional_governance_gen_069",
+          "question": "According to established rules, select the statement that correctly defines the principal role of records in the Civil Service?",
+          "options": [
+            "To document the personal lives of civil servants.",
+            "To create a historical archive of government actions.",
+            "To generate a paper trail for all financial transactions. □. 467",
+            "To provide a basis for continuity and reference to the decisions of past governments."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (To provide a basis for continuity and reference to the decisions of past governments.). Records are kept to provide continuity through reference to the decisions of past governments. The Civil Service's continued relevance is a role of how well it manages these records.",
+          "difficulty": "hard",
+          "chapter": "Constitutional Structure, Bodies & Principles - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "select",
+            "statement"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Constitutional Structure, Bodies & Principles",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_constitutional_governance_gen_070",
+          "question": "According to established rules, choose the best answer for: All Civil Servants are necessitate to take what?",
+          "options": [
+            "A pledge of allegiance.",
+            "An Oath of Office.",
+            "An Oath of Secrecy118.",
+            "A vow of poverty. □."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (An Oath of Secrecy118.). All Civil Servants are demand to take an Oath of Secrecy.",
+          "difficulty": "medium",
+          "chapter": "Constitutional Structure, Bodies & Principles - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Constitutional Structure, Bodies & Principles",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_constitutional_governance_gen_071",
+          "question": "Within government administration, choose the best answer for: All Civil Servants are demand to take what?",
+          "options": [
+            "A vow of poverty. Q.",
+            "An Oath of Secrecy.",
+            "An Oath of Office.",
+            "A pledge of allegiance."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (An Oath of Secrecy.). All Civil Servants are demand to take an Oath of Secrecy.",
+          "difficulty": "medium",
+          "chapter": "Constitutional Structure, Bodies & Principles - Expansion Set",
+          "keywords": [
+            "within",
+            "choose",
+            "best",
+            "answer"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Constitutional Structure, Bodies & Principles",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_constitutional_governance_gen_072",
+          "question": "select the option that best answers: What type of safe is demand for the safe custody of the daily working balance of cash, stamps, and receipt/licence books during office hours?",
+          "options": [
+            "A safe that is built into the wall of the building or securely attached to its structure.",
+            "A fireproof cabinet. □.",
+            "A portable safe.",
+            "Any safe available."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (A safe that is built into the wall of the building or securely attached to its structure.). Financial Regulation 1103 specifies that such safes \"should be built in to the wall of the building or otherwise securely attached to the structure of the building.\" 232",
+          "difficulty": "medium",
+          "chapter": "Constitutional Structure, Bodies & Principles - Expansion Set",
+          "keywords": [
+            "safe",
+            "select",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Constitutional Structure, Bodies & Principles",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_constitutional_governance_gen_073",
+          "question": "Within government administration, responsibility for se reports must be obtained for all accidents involving government vehicles, as per FR 2014 belongs to which role?",
+          "options": [
+            "Eyewitness reports.",
+            "Legal counsel. 289",
+            "Insurance company reports.Q",
+            "Police reports."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Police reports.). Financial Regulation 2014 necessitate that police reports must be obtained for all accidents involving government vehicles.",
+          "difficulty": "medium",
+          "chapter": "Constitutional Structure, Bodies & Principles - Expansion Set",
+          "keywords": [
+            "within",
+            "responsibility",
+            "reports",
+            "must"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Constitutional Structure, Bodies & Principles",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_constitutional_governance_gen_074",
+          "question": "According to established rules, select the statement that correctly defines considered an act of disloyalty for a Civil Servant?",
+          "options": [
+            "Refusing to carry out an unlawful order.",
+            "Voting for an opposition party.a..",
+            "Giving constructive criticism to a superior in private.",
+            "Publicly criticizing the government."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Publicly criticizing the government.). Public criticism of government policies and acts is an act of disloyalty on the part of a Civil Servant.",
+          "difficulty": "medium",
+          "chapter": "Constitutional Structure, Bodies & Principles - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "select",
+            "statement"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Constitutional Structure, Bodies & Principles",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_constitutional_governance_gen_075",
+          "question": "According to established rules, which option aligns with the meaning of the objective of the Charter for the Public Service in Africa?",
+          "options": [
+            "To create a new political structure for African nations.",
+            "To standardize salaries for civil servants across Africa.",
+            "To promote a single currency for all African countries.3.",
+            "To streamline services provided to citizens and guarantee the efficient use of resources."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (To streamline services provided to citizens and guarantee the efficient use of resources.). The Charter expresses the will and commitment of African States to streamline 439 the services provided to citizens and the desire to secure the efficient use of the resources allocated for such services.",
+          "difficulty": "hard",
+          "chapter": "Constitutional Structure, Bodies & Principles - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "aligns"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Constitutional Structure, Bodies & Principles",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_constitutional_governance_gen_076",
+          "question": "Within government administration, which option aligns with the meaning of the official protocol for Ministerial Departments, Agencies, and other bodies embarking on foreign trips?",
+          "options": [
+            "They must inform the Head of the Civil Service. □.",
+            "They are not expected to embark on foreign trips without informing the Ministry of Foreign Affairs12.",
+            "They can go on trips independently as long as they are self-funded.",
+            "They must get permission from the Presidency."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (They are not expected to embark on foreign trips without informing the Ministry of Foreign Affairs12.). MDAs and other government bodies are not supposed to travel abroad without first informing the Ministry of Foreign Affairs. 97.: Is a Foreign Service Officer allowed to accept gifts or presentations for services rendered? A. Yes, if they are of a small value. B. Yes, as long as they declare them to the government. C. No, they are not allowed to accept gifts or presentations from anyone for services rendered or to be rendered13. D. Only from other diplomats as a sign of goodwill. □ Correct Answer: C. Explanation: Foreign Service Officers are forbidden from accepting any gifts or presentations, whether money or otherwise, for services they have rendered or will render.",
+          "difficulty": "hard",
+          "chapter": "Constitutional Structure, Bodies & Principles - Expansion Set",
+          "keywords": [
+            "within",
+            "option",
+            "aligns",
+            "meaning"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Constitutional Structure, Bodies & Principles",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_constitutional_governance_gen_077",
+          "question": "which option correctly addresses: According to established rules, select the statement that correctly defines the aim of the principle of neutrality in the Civil Service?",
+          "options": [
+            "To allow civil servants to publicly criticize government policies, a.",
+            "To allow civil servants to participate in partisan politics.",
+            "To prevent civil servants from having any opinions.",
+            "To guarantee that civil servants serve the government of the day without political bias."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (To guarantee that civil servants serve the government of the day without political bias.). (To guarantee that civil servants serve the government of the day without political bias.). The principle of neutrality secure that civil servants do not take part in partisan politics, serving the government of the day without political bias.",
+          "difficulty": "medium",
+          "chapter": "Constitutional Structure, Bodies & Principles - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "select",
+            "statement"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Constitutional Structure, Bodies & Principles",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_constitutional_governance_gen_078",
+          "question": "select the option that best answers: According to established rules, select the option that best answers: The Udoji Public Service Review Commission in 1972 was primarily focused on what?",
+          "options": [
+            "Increasing efficiency and effectiveness in the Public Service.",
+            "Limiting the powers of the Civil Service.",
+            "Reducing the size of the Civil Service.",
+            "Introducing new political reforms.a."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Increasing efficiency and effectiveness in the Public Service.). (Increasing efficiency and effectiveness in the Public Service.). The Udoji Commission focused primarily on the larger issue of increasing efficiency and effectiveness in the Public Service.",
+          "difficulty": "easy",
+          "chapter": "Constitutional Structure, Bodies & Principles - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Constitutional Structure, Bodies & Principles",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_constitutional_governance_gen_079",
+          "question": "In the public service context, choose the best answer for: Within government administration, select the option that best answers: The principle of neutrality in the Civil Service guarantee that civil servants do what?",
+          "options": [
+            "Serve the government of the day without political bias.",
+            "Publicly criticize government policies.Q.",
+            "Do not have any personal opinions.",
+            "Take part in partisan politics."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Serve the government of the day without political bias.). (Serve the government of the day without political bias.). The principle of neutrality secure that civil servants do not take part in partisan politics, serving the government of the day without political bias.",
+          "difficulty": "hard",
+          "chapter": "Constitutional Structure, Bodies & Principles - Expansion Set",
+          "keywords": [
+            "civil",
+            "within",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Constitutional Structure, Bodies & Principles",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_constitutional_governance_gen_080",
+          "question": "which option correctly addresses: In the public service context, which option best describes the principal aim of records in the Civil Service?",
+          "options": [
+            "To document the personal lives of civil servants.",
+            "To provide a basis for continuity and reference to the decisions of past governments.",
+            "To generate a paper trail for all financial transactions.3.",
+            "To create a historical archive of government actions."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (To provide a basis for continuity and reference to the decisions of past governments.). (To provide a basis for continuity and reference to the decisions of past governments.). Records are kept to provide continuity through reference to the decisions of past governments. The Civil Service's continued relevance is a duty of how well it manages these records.",
+          "difficulty": "easy",
+          "chapter": "Constitutional Structure, Bodies & Principles - Expansion Set",
+          "keywords": [
+            "context",
+            "option",
+            "best",
+            "describes"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Constitutional Structure, Bodies & Principles",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_constitutional_governance_gen_081",
+          "question": "According to established rules, select the option that best answers: According to established rules, select the statement that correctly defines the principal role of records in the Civil Service?",
+          "options": [
+            "To document the personal lives of civil servants.",
+            "To provide a basis for continuity and reference to the decisions of past governments.",
+            "To create a historical archive of government actions.",
+            "To generate a paper trail for all financial transactions. □. 467"
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (To provide a basis for continuity and reference to the decisions of past governments.). (To provide a basis for continuity and reference to the decisions of past governments.). Records are kept to provide continuity through reference to the decisions of past governments. The Civil Service's continued relevance is a role of how well it manages these records.",
+          "difficulty": "hard",
+          "chapter": "Constitutional Structure, Bodies & Principles - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "select",
+            "statement"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Constitutional Structure, Bodies & Principles",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_constitutional_governance_gen_082",
+          "question": "According to established rules, choose the best answer for: According to established rules, choose the best answer for: All Civil Servants are necessitate to take what?",
+          "options": [
+            "An Oath of Office.",
+            "A vow of poverty. □.",
+            "A pledge of allegiance.",
+            "An Oath of Secrecy118."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (An Oath of Secrecy118.). (An Oath of Secrecy118.). All Civil Servants are demand to take an Oath of Secrecy.",
+          "difficulty": "medium",
+          "chapter": "Constitutional Structure, Bodies & Principles - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Constitutional Structure, Bodies & Principles",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_constitutional_governance_gen_083",
+          "question": "According to established rules, which option correctly addresses: Within government administration, choose the best answer for: All Civil Servants are demand to take what?",
+          "options": [
+            "An Oath of Office.",
+            "A pledge of allegiance.",
+            "A vow of poverty. Q.",
+            "An Oath of Secrecy."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (An Oath of Secrecy.). (An Oath of Secrecy.). All Civil Servants are demand to take an Oath of Secrecy.",
+          "difficulty": "easy",
+          "chapter": "Constitutional Structure, Bodies & Principles - Expansion Set",
+          "keywords": [
+            "within",
+            "choose",
+            "best",
+            "answer"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Constitutional Structure, Bodies & Principles",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_constitutional_governance_gen_084",
+          "question": "select the option that best answers: select the option that best answers: What type of safe is demand for the safe custody of the daily working balance of cash, stamps, and receipt/licence books during office hours?",
+          "options": [
+            "A safe that is built into the wall of the building or securely attached to its structure.",
+            "A portable safe.",
+            "A fireproof cabinet. □.",
+            "Any safe available."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (A safe that is built into the wall of the building or securely attached to its structure.). (A safe that is built into the wall of the building or securely attached to its structure.). Financial Regulation 1103 specifies that such safes \"should be built in to the wall of the building or otherwise securely attached to the structure of the building.\" 232",
+          "difficulty": "medium",
+          "chapter": "Constitutional Structure, Bodies & Principles - Expansion Set",
+          "keywords": [
+            "safe",
+            "select",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Constitutional Structure, Bodies & Principles",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
         }
       ]
     },
@@ -3626,6 +4226,606 @@
           "sourceSection": "Legal Frameworks & Statutory Compliance",
           "year": 1999,
           "lastReviewed": "2026-03-03"
+        },
+        {
+          "id": "clg_legal_compliance_gen_057",
+          "question": "In the public service context, which option best describes the role of the cashier in the procedure of handling cheques and other negotiable instruments received by post?",
+          "options": [
+            "The cashier enters the details in the Paper Money Register after it is opened by the Head of Accounts.",
+            "The cashier maintains the Paper Money Register.",
+            "The cashier is not involved in this workflow",
+            "The cashier opens the mail."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (The cashier enters the details in the Paper Money Register after it is opened by the Head of Accounts.). Financial Regulation 233(ii) mentions the cashier making entries in the Paper Money Register, and Financial Regulation 233(iv) states that the Paper Money Register must not be maintained, or incoming mail opened, by the cashier.",
+          "difficulty": "easy",
+          "chapter": "Legal Frameworks & Statutory Compliance - Expansion Set",
+          "keywords": [
+            "context",
+            "option",
+            "best",
+            "describes"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Legal Frameworks & Statutory Compliance",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_legal_compliance_gen_058",
+          "question": "which option aligns with the meaning of the role of the Head of Accounts in the workflow of handling cheques and bank drafts received through the post?",
+          "options": [
+            "Cross-checking the particulars of the original receipts with the details in the Paper Money Register.",
+            "Issuing the official receipts.",
+            "Opening the mail and maintaining the Paper Money Register.",
+            "Depositing the funds in the bank. Q"
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Cross-checking the particulars of the original receipts with the details in the Paper Money Register.). Financial Regulation 233(ii) states that the Register must be returned to the Head of Accounts, who will cross-check the particulars of the original receipts or licenses with the details entered in the Paper Money Register.",
+          "difficulty": "easy",
+          "chapter": "Legal Frameworks & Statutory Compliance - Expansion Set",
+          "keywords": [
+            "option",
+            "aligns",
+            "meaning",
+            "role"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Legal Frameworks & Statutory Compliance",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_legal_compliance_gen_059",
+          "question": "Within government administration, choose the best answer for: The Civil Service is based on the principle of anonymity, which means what?",
+          "options": [
+            "Civil servants do not have to sign official documents. ¡3.",
+            "Civil servants do not have to identify themselves.",
+            "The Civil Servant is not held personally in charge for the Minister's decisions.",
+            "Ministers are not publicly named."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (The Civil Servant is not held personally in charge for the Minister's decisions.). The principle of anonymity of civil servants implies that the Permanent Secretary, in giving advice to the Minister, does not do so in his name but rather as an official. Once a Minister takes a decision, the civil servant is not held personally in charge for it.",
+          "difficulty": "medium",
+          "chapter": "Legal Frameworks & Statutory Compliance - Expansion Set",
+          "keywords": [
+            "within",
+            "choose",
+            "best",
+            "answer"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Legal Frameworks & Statutory Compliance",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_legal_compliance_gen_060",
+          "question": "In official practice, choose the best answer for: The Civil Service is based on the principle of anonymity, which means what?",
+          "options": [
+            "Civil servants do not have to identify themselves.",
+            "The Civil Servant is not held personally accountable for the Minister's decisions.",
+            "Civil servants do not have to sign official documents. □.",
+            "Ministers are not publicly named."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (The Civil Servant is not held personally accountable for the Minister's decisions.). The principle of anonymity of civil servants implies that the Permanent Secretary, in giving advice to the Minister, does not do so in his name but rather as an official. Once a Minister takes a decision, the civil servant is not held personally in charge for it.",
+          "difficulty": "hard",
+          "chapter": "Legal Frameworks & Statutory Compliance - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Legal Frameworks & Statutory Compliance",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_legal_compliance_gen_061",
+          "question": "which option correctly addresses: The Principle of Quality, Effectiveness, and Efficiency demand the public service to make optimal use of what?",
+          "options": [
+            "Personal favors.",
+            "The resources at its disposal.",
+            "Obsolete technology.a.",
+            "Political connections."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (The resources at its disposal.). The public service must secure that the highest quality and the most effective and efficient services are provided by making optimal use of the resources at its disposal.",
+          "difficulty": "medium",
+          "chapter": "Legal Frameworks & Statutory Compliance - Expansion Set",
+          "keywords": [
+            "option",
+            "correctly",
+            "addresses",
+            "principle"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Legal Frameworks & Statutory Compliance",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_legal_compliance_gen_062",
+          "question": "Within government administration, which option best describes the objective of the Oath of Secrecy that some Civil Servants are necessitate to swear?",
+          "options": [
+            "To hide personal assets from the public.",
+            "To prevent them from talking to the media.",
+            "To secure they are loyal to a political party.Q",
+            "To protect government secrets and classified information. 430"
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (To protect government secrets and classified information. 430). Officers who have access to classified information should, as soon as possible, swear to the Oath of Secrecy",
+          "difficulty": "easy",
+          "chapter": "Legal Frameworks & Statutory Compliance - Expansion Set",
+          "keywords": [
+            "within",
+            "option",
+            "best",
+            "describes"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Legal Frameworks & Statutory Compliance",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_legal_compliance_gen_063",
+          "question": "In official practice, which option aligns with the meaning of the aim of the \"Oath of Secrecy\"? 459?",
+          "options": [
+            "To secure they are loyal to a political party.3.",
+            "To protect government secrets and classified information.",
+            "To prevent civil servants from talking to the media.",
+            "To hide personal assets from the public."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (To protect government secrets and classified information.). Officers who have access to classified information should, as soon as possible, swear to the Oath of Secrecy.",
+          "difficulty": "medium",
+          "chapter": "Legal Frameworks & Statutory Compliance - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "option",
+            "aligns"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Legal Frameworks & Statutory Compliance",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_legal_compliance_gen_064",
+          "question": "which option aligns with the meaning of the chairman's role regarding the minutes of the meeting?",
+          "options": [
+            "He should direct the Secretariat as to the time for the production and circulation of the minutes46.",
+            "He should not be concerned with the minutes. □",
+            "He should tell the Secretariat to keep the minutes secret.",
+            "He should write them himself."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (He should direct the Secretariat as to the time for the production and circulation of the minutes46.). He should direct the Secretariat as to the time for the production and circulation of the minutes of the meeting.",
+          "difficulty": "easy",
+          "chapter": "Legal Frameworks & Statutory Compliance - Expansion Set",
+          "keywords": [
+            "option",
+            "aligns",
+            "meaning",
+            "chairman"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Legal Frameworks & Statutory Compliance",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_legal_compliance_gen_065",
+          "question": "In official practice, select the statement that correctly defines the role of a chairman in summarising the conclusions of a meeting?",
+          "options": [
+            "To do it quickly without consultation.",
+            "To only summarize the points he agrees with. a.",
+            "To summarize the conclusions to the agreement of the other members135.",
+            "To write the summary himself and not show it to anyone."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (To summarize the conclusions to the agreement of the other members135.). The chairman should summarise the conclusions of the forum to the agreement of the other members and for the benefit of the Secretariat which should reflect these in the minutes.",
+          "difficulty": "easy",
+          "chapter": "Legal Frameworks & Statutory Compliance - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "select",
+            "statement"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Legal Frameworks & Statutory Compliance",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_legal_compliance_gen_066",
+          "question": "select the statement that correctly defines the objective of the phrase \"For the attention of?",
+          "options": [
+            "To address the public.",
+            "To address a specific person within a department.",
+            "To address the Chairman. □..",
+            "To address a specific department."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (To address a specific person within a department.). The phrase \"For the attention of is used when a letter is addressed to a department or organization but is intended for a specific person within that organization.",
+          "difficulty": "medium",
+          "chapter": "Legal Frameworks & Statutory Compliance - Expansion Set",
+          "keywords": [
+            "select",
+            "statement",
+            "correctly",
+            "defines"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Legal Frameworks & Statutory Compliance",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_legal_compliance_gen_067",
+          "question": "According to established rules, select the option that best answers: Which option most strongly aligns with good public-service practice on legal compliance within Legal Frameworks & Statutory Compliance?",
+          "options": [
+            "Bypass review and approval controls to save time.",
+            "Apply rules inconsistently based on personal preference.",
+            "Check statutory authority before acting on sensitive matters.",
+            "Ignore feedback and continue non-compliant procedures."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Check statutory authority before acting on sensitive matters.).",
+          "difficulty": "easy",
+          "chapter": "Legal Frameworks & Statutory Compliance - Expansion Set",
+          "keywords": [
+            "option",
+            "legal",
+            "compliance",
+            "according"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Legal Frameworks & Statutory Compliance",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_legal_compliance_gen_068",
+          "question": "According to established rules, select the option that best answers: For effective legal frameworks & statutory compliance, what is the most appropriate approach to guarantee constitutional supremacy?",
+          "options": [
+            "secure administrative actions remain within constitutional limits.",
+            "Close cases without validating facts or demand records.",
+            "Rely on informal instructions without documentary evidence.",
+            "Delay decisions until issues escalate into avoidable crises."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (secure administrative actions remain within constitutional limits.).",
+          "difficulty": "medium",
+          "chapter": "Legal Frameworks & Statutory Compliance - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Legal Frameworks & Statutory Compliance",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_legal_compliance_gen_069",
+          "question": "Within government administration, select the option that best answers: If, during the course of a disciplinary inquiry, further grounds for dismissal are disclosed, the **FCSC** must furnish the Officer with:?",
+          "options": [
+            "A written statement of the new grounds, with due-procedure steps repeated as for the original grounds.",
+            "A transfer directive to another department pending final decision.",
+            "A recommendation for compulsory retirement pending pension approval.",
+            "A written termination letter effective immediately without hearing."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (A written statement of the new grounds, with due-procedure steps repeated as for the original grounds.).",
+          "difficulty": "medium",
+          "chapter": "Legal Frameworks & Statutory Compliance - Expansion Set",
+          "keywords": [
+            "within",
+            "select",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Legal Frameworks & Statutory Compliance",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_legal_compliance_gen_070",
+          "question": "In the public service context, at what point handling legal frameworks & statutory compliance, which choice reflects proper documented procedure standards?",
+          "options": [
+            "Apply rules inconsistently based on personal preference.",
+            "Follow documented procedure and keep complete records.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Bypass review and approval controls to save time."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Follow documented procedure and keep complete records.).",
+          "difficulty": "easy",
+          "chapter": "Legal Frameworks & Statutory Compliance - Expansion Set",
+          "keywords": [
+            "context",
+            "point",
+            "handling",
+            "legal"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Legal Frameworks & Statutory Compliance",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_legal_compliance_gen_071",
+          "question": "In official practice, which option correctly addresses: For effective legal frameworks & statutory compliance, what is the most appropriate approach to guarantee legal frameworks & statutory compliance compliance?",
+          "options": [
+            "Close cases without validating facts or necessitate records.",
+            "Use lawful criteria and document each decision step transparently.",
+            "Treat exceptions as routine without documented justification.",
+            "Delay decisions until issues escalate into avoidable crises."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Use lawful criteria and document each decision step transparently.).",
+          "difficulty": "easy",
+          "chapter": "Legal Frameworks & Statutory Compliance - Expansion Set",
+          "keywords": [
+            "compliance",
+            "legal",
+            "frameworks",
+            "statutory"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Legal Frameworks & Statutory Compliance",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_legal_compliance_gen_072",
+          "question": "Within government administration, choose the best answer for: In official practice, select the statement that correctly defines the role of a chairman in summarising the conclusions of a meeting?",
+          "options": [
+            "To summarize the conclusions to the agreement of the other members135.",
+            "To do it quickly without consultation.",
+            "To write the summary himself and not show it to anyone.",
+            "To only summarize the points he agrees with. a."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (To summarize the conclusions to the agreement of the other members135.).",
+          "difficulty": "hard",
+          "chapter": "Legal Frameworks & Statutory Compliance - Expansion Set",
+          "keywords": [
+            "within",
+            "choose",
+            "best",
+            "answer"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Legal Frameworks & Statutory Compliance",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_legal_compliance_gen_073",
+          "question": "Within government administration, choose the best answer for: The statutory default and preferred method for the procurement of goods, works, and services that promotes transparency and fair competition is:?",
+          "options": [
+            "Restricted Bidding.",
+            "Selective Tendering.",
+            "Open Competitive Bidding.",
+            "Sole Sourcing."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Open Competitive Bidding.).",
+          "difficulty": "medium",
+          "chapter": "Legal Frameworks & Statutory Compliance - Expansion Set",
+          "keywords": [
+            "within",
+            "choose",
+            "best",
+            "answer"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Legal Frameworks & Statutory Compliance",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_legal_compliance_gen_074",
+          "question": "In the public service context, which option correctly addresses: A supervisor is reviewing compliance gaps in Legal Frameworks & Statutory Compliance. Which action most directly strengthens legal frameworks & statutory compliance risk management' while preserving records for audit and oversight?",
+          "options": [
+            "Ignore feedback and continue non-compliant procedures.",
+            "Bypass review and approval controls to save time.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Identify control gaps early and escalate material exceptions promptly."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Identify control gaps early and escalate material exceptions promptly.).",
+          "difficulty": "hard",
+          "chapter": "Legal Frameworks & Statutory Compliance - Expansion Set",
+          "keywords": [
+            "compliance",
+            "legal",
+            "frameworks",
+            "statutory"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Legal Frameworks & Statutory Compliance",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_legal_compliance_gen_075",
+          "question": "In official practice, which option correctly addresses: A supervisor is reviewing compliance gaps in Legal Frameworks & Statutory Compliance. Which action most directly strengthens public accountability' without bypassing established review procedures?",
+          "options": [
+            "Prioritize convenience over policy and legal requirements.",
+            "Bypass review and approval controls to save time.",
+            "Provide traceable decisions and evidence-based justification.",
+            "Ignore feedback and continue non-compliant procedures."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Provide traceable decisions and evidence-based justification.).",
+          "difficulty": "medium",
+          "chapter": "Legal Frameworks & Statutory Compliance - Expansion Set",
+          "keywords": [
+            "compliance",
+            "official",
+            "practice",
+            "option"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Legal Frameworks & Statutory Compliance",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_legal_compliance_gen_076",
+          "question": "In the public service context, select the option that best answers: The maximum acting appointment period must not exceed one year, but in exceptional circumstances may be extended for a further period of:?",
+          "options": [
+            "Three months.",
+            "One year.",
+            "Two years.",
+            "Six months."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Six months.).",
+          "difficulty": "medium",
+          "chapter": "Legal Frameworks & Statutory Compliance - Expansion Set",
+          "keywords": [
+            "period",
+            "context",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Legal Frameworks & Statutory Compliance",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_legal_compliance_gen_077",
+          "question": "responsibility for must permit emergency procurements, subject to later audit and ratification, as necessitate under **PPA** **Section 42**' belongs to which role?",
+          "options": [
+            "The Permanent Secretary.",
+            "The Accountant-General.",
+            "The Minister.",
+            "The Head of Civil Service of the Federation."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (The Minister.).",
+          "difficulty": "easy",
+          "chapter": "Legal Frameworks & Statutory Compliance - Expansion Set",
+          "keywords": [
+            "responsibility",
+            "must",
+            "permit",
+            "emergency"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Legal Frameworks & Statutory Compliance",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_legal_compliance_gen_078",
+          "question": "select the option that best answers: The final check that confirms goods or services were delivered satisfactorily before any disbursement is processed is documented by the:?",
+          "options": [
+            "Virement Warrant.",
+            "Job Completion Certificate (JCC).",
+            "Stores Receipt Voucher (SRV).",
+            "Local Purchase Order (LPO)."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Job Completion Certificate (JCC).).",
+          "difficulty": "medium",
+          "chapter": "Legal Frameworks & Statutory Compliance - Expansion Set",
+          "keywords": [
+            "select",
+            "option",
+            "best",
+            "answers"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Legal Frameworks & Statutory Compliance",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_legal_compliance_gen_079",
+          "question": "In official practice, choose the best answer for: To improve accountability in legal frameworks & statutory compliance, which practice best supports risk control' under standard approval and documentation controls?",
+          "options": [
+            "Prioritize convenience over policy and legal requirements.",
+            "Identify risk early, apply controls, and document mitigation.",
+            "Apply rules inconsistently based on personal preference.",
+            "Ignore feedback and continue non-compliant procedures."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Identify risk early, apply controls, and document mitigation.).",
+          "difficulty": "hard",
+          "chapter": "Legal Frameworks & Statutory Compliance - Expansion Set",
+          "keywords": [
+            "practice",
+            "best",
+            "official",
+            "choose"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Legal Frameworks & Statutory Compliance",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_legal_compliance_gen_080",
+          "question": "Within government administration, choose the best answer for: The rule that the head of the officer’s department must not be a member of the board of inquiry tasked with investigating the officer (**Rule 100307(v**)) safeguards:?",
+          "options": [
+            "Fair hearing and judicial neutrality.",
+            "Anonymity.",
+            "Permanence of the service.",
+            "Segregation of duties."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Fair hearing and judicial neutrality.).",
+          "difficulty": "medium",
+          "chapter": "Legal Frameworks & Statutory Compliance - Expansion Set",
+          "keywords": [
+            "rule",
+            "officer",
+            "within",
+            "choose"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Legal Frameworks & Statutory Compliance",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_legal_compliance_gen_081",
+          "question": "choose the best answer for: To guarantee maximum transparency, the procedure of bid opening for public tenders must be conducted:?",
+          "options": [
+            "After the contract award is finalized.",
+            "Only by the Ministerial Tenders Board (MTB).",
+            "In secrecy to protect prices.",
+            "Publicly, with all bidders or their representatives invited."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Publicly, with all bidders or their representatives invited.).",
+          "difficulty": "hard",
+          "chapter": "Legal Frameworks & Statutory Compliance - Expansion Set",
+          "keywords": [
+            "choose",
+            "best",
+            "answer",
+            "guarantee"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Legal Frameworks & Statutory Compliance",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
         }
       ]
     },
@@ -5430,6 +6630,606 @@
           "sourceSection": "General Competency, Ethics & Reforms",
           "year": 1999,
           "lastReviewed": "2026-03-03"
+        },
+        {
+          "id": "clg_general_competency_gen_069",
+          "question": "In official practice, which option correctly addresses: A key part of the Principle of Motivation is that employees must be provided with what?",
+          "options": [
+            "An opportunity to make their own rules.",
+            "A pleasant and favorable working environment35.",
+            "More power than their superiors.",
+            "A chance to work from home exclusively.a."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (A pleasant and favorable working environment35.). The administration must secure that employees are provided with a pleasant and favorable working environment so that they can realize their full potential.",
+          "difficulty": "medium",
+          "chapter": "General Competency, Ethics & Reforms - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "option",
+            "correctly"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "General Competency, Ethics & Reforms",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_general_competency_gen_070",
+          "question": "In the public service context, select the option that best answers: What can result from indifference to or disguised encouragement of nepotism and favouritism?",
+          "options": [
+            "Economic stability.a.",
+            "Increased productivity.",
+            "Improved national unity.",
+            "Civil unrest."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Civil unrest.). Sometimes, civil unrest may arise from indifference to or disguised encouragement of nepotism, favouritism and their associated vices.",
+          "difficulty": "easy",
+          "chapter": "General Competency, Ethics & Reforms - Expansion Set",
+          "keywords": [
+            "context",
+            "select",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "General Competency, Ethics & Reforms",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_general_competency_gen_071",
+          "question": "In official practice, select the option that best answers: COMPRO I is for officers on what grade levels?",
+          "options": [
+            "GL 10 and above Q",
+            "GL 08 and below 48",
+            "GL08 and GL 09",
+            "GL 08 - GL 10"
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (GL08 and GL 09). The syllabus section of the document specifies that COMPRO I is for officers on grade levels 08 and 09, and COMPRO II is for officers on grade levels 10-14",
+          "difficulty": "hard",
+          "chapter": "General Competency, Ethics & Reforms - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "General Competency, Ethics & Reforms",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_general_competency_gen_072",
+          "question": "choose the best answer for: The payment of fees to invigilators and examiners is typically based on what?",
+          "options": [
+            "The grade level of the officers they are examining. □",
+            "A flat rate for all examinations.",
+            "The number of candidates they supervise or papers they mark.",
+            "The number of questions they set."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (The number of candidates they supervise or papers they mark.). While not explicitly detailed, examination fees are conventionally tied to the work performed, such as marking papers or invigilating candidates, which is a standard practice in similar contexts",
+          "difficulty": "medium",
+          "chapter": "General Competency, Ethics & Reforms - Expansion Set",
+          "keywords": [
+            "choose",
+            "best",
+            "answer",
+            "payment"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "General Competency, Ethics & Reforms",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_general_competency_gen_073",
+          "question": "According to established rules, select the option that best answers: For an officer posted outside their professional cadre, what is the mandatory period they should serve in such a post?",
+          "options": [
+            "Six years",
+            "Two years",
+            "Four years",
+            "Eight years Q"
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Four years). Rule 020602(i)(b) stipulates that posting of officers to posts outside their professional cadres is prohibited53. However, rule 020602 (i) (c) says that posting of pool officers in the service must be mandatory every four (4) years.",
+          "difficulty": "medium",
+          "chapter": "General Competency, Ethics & Reforms - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "General Competency, Ethics & Reforms",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_general_competency_gen_074",
+          "question": "In the public service context, which option correctly addresses: In the context of General Competency, Ethics & Reforms, which action best demonstrates general competency, ethics & reforms risk management?",
+          "options": [
+            "Apply rules inconsistently based on personal preference.",
+            "Identify control gaps early and escalate material exceptions promptly.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Ignore feedback and continue non-compliant procedures."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Identify control gaps early and escalate material exceptions promptly.).",
+          "difficulty": "easy",
+          "chapter": "General Competency, Ethics & Reforms - Expansion Set",
+          "keywords": [
+            "context",
+            "competency",
+            "reforms",
+            "option"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "General Competency, Ethics & Reforms",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_general_competency_gen_075",
+          "question": "In the public service context, which option correctly addresses: During routine general competency, ethics & reforms operations, which approach best secure general competency, ethics & reforms compliance' in line with public-sector accountability expectations?",
+          "options": [
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Close cases without validating facts or demand records.",
+            "Treat exceptions as routine without documented justification.",
+            "Use lawful criteria and document each decision step transparently."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Use lawful criteria and document each decision step transparently.).",
+          "difficulty": "hard",
+          "chapter": "General Competency, Ethics & Reforms - Expansion Set",
+          "keywords": [
+            "competency",
+            "reforms",
+            "context",
+            "option"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "General Competency, Ethics & Reforms",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_general_competency_gen_076",
+          "question": "In official practice, select the option that best answers: During routine general competency, ethics & reforms operations, which approach most strongly supports accountable implementation' (Legal defensibility scenario 1)?",
+          "options": [
+            "guarantee actions remain within statutory authority and constitutional safeguards.",
+            "Delay escalation until issues become material and difficult to reverse.",
+            "Proceed without validating source records and decision criteria.",
+            "Treat exceptions as normal practice without written justification."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (guarantee actions remain within statutory authority and constitutional safeguards.).",
+          "difficulty": "easy",
+          "chapter": "General Competency, Ethics & Reforms - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "General Competency, Ethics & Reforms",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_general_competency_gen_077",
+          "question": "According to established rules, select the option that best answers: Which option most strongly aligns with good public-service practice on risk control within General Competency, Ethics & Reforms?",
+          "options": [
+            "Identify risk early, apply controls, and document mitigation.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Apply rules inconsistently based on personal preference.",
+            "Ignore feedback and continue non-compliant procedures."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Identify risk early, apply controls, and document mitigation.).",
+          "difficulty": "medium",
+          "chapter": "General Competency, Ethics & Reforms - Expansion Set",
+          "keywords": [
+            "option",
+            "according",
+            "established",
+            "select"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "General Competency, Ethics & Reforms",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_general_competency_gen_078",
+          "question": "Within government administration, select the option that best answers: In a time-sensitive file under General Competency, Ethics & Reforms, which step best preserves rights balancing without breaching workflow' while maintaining fairness and legal compliance?",
+          "options": [
+            "Apply rules inconsistently based on personal preference.",
+            "Bypass review and approval controls to save time.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Apply exemptions narrowly and justify decisions with legal basis."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Apply exemptions narrowly and justify decisions with legal basis.).",
+          "difficulty": "hard",
+          "chapter": "General Competency, Ethics & Reforms - Expansion Set",
+          "keywords": [
+            "best",
+            "within",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "General Competency, Ethics & Reforms",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_general_competency_gen_079",
+          "question": "According to established rules, choose the best answer for: In the civil service, **Seniority** is primarily determined by:?",
+          "options": [
+            "The geopolitical zone of origin.",
+            "Grade level and date of promotion/appointment.",
+            "The age of the officer.",
+            "Academic qualifications."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Grade level and date of promotion/appointment.).",
+          "difficulty": "medium",
+          "chapter": "General Competency, Ethics & Reforms - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "General Competency, Ethics & Reforms",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_general_competency_gen_080",
+          "question": "Within government administration, select the option that best answers: For effective general competency, ethics & reforms, what is the most appropriate approach to secure document management?",
+          "options": [
+            "sustain accurate files and update status at each control point.",
+            "Apply rules inconsistently based on personal preference.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Bypass review and approval controls to save time."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (sustain accurate files and update status at each control point.).",
+          "difficulty": "medium",
+          "chapter": "General Competency, Ethics & Reforms - Expansion Set",
+          "keywords": [
+            "within",
+            "select",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "General Competency, Ethics & Reforms",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_general_competency_gen_081",
+          "question": "According to established rules, select the option that best answers: The principle of **Efficiency** in service delivery primarily aims to guarantee:?",
+          "options": [
+            "That operational records are restricted to confidential circulation.",
+            "That all administrative decisions remain politically neutral in content.",
+            "That senior officers receive priority treatment over service recipients.",
+            "That government services meet public needs effectively and deliver value for money."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (That government services meet public needs effectively and deliver value for money.).",
+          "difficulty": "easy",
+          "chapter": "General Competency, Ethics & Reforms - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "General Competency, Ethics & Reforms",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_general_competency_gen_082",
+          "question": "In the public service context, which option correctly addresses: Which practice should a accountable officer prioritize to sustain operational discipline in General Competency, Ethics & Reforms?",
+          "options": [
+            "Apply rules inconsistently based on personal preference.",
+            "Follow approved workflows and verify outputs before closure.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Bypass review and approval controls to save time."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Follow approved workflows and verify outputs before closure.).",
+          "difficulty": "medium",
+          "chapter": "General Competency, Ethics & Reforms - Expansion Set",
+          "keywords": [
+            "context",
+            "option",
+            "correctly",
+            "addresses"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "General Competency, Ethics & Reforms",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_general_competency_gen_083",
+          "question": "According to established rules, at what point applying rules in general competency, ethics & reforms, which option aligns best with service integrity standards' within approved timelines and governance standards?",
+          "options": [
+            "Rely on informal instructions without documentary evidence.",
+            "Close cases without validating facts or necessitate records.",
+            "Avoid conflicts of interest and disclose relevant constraints.",
+            "Treat exceptions as routine without documented justification."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Avoid conflicts of interest and disclose relevant constraints.).",
+          "difficulty": "easy",
+          "chapter": "General Competency, Ethics & Reforms - Expansion Set",
+          "keywords": [
+            "standards",
+            "according",
+            "established",
+            "point"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "General Competency, Ethics & Reforms",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_general_competency_gen_084",
+          "question": "In the public service context, which option correctly addresses: The system used to manage digital HR records, including staff leave, postings, and promotions, is known as:?",
+          "options": [
+            "HRMIS.",
+            "IPPIS.",
+            "TSA.",
+            "BPP."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (HRMIS.).",
+          "difficulty": "medium",
+          "chapter": "General Competency, Ethics & Reforms - Expansion Set",
+          "keywords": [
+            "context",
+            "option",
+            "correctly",
+            "addresses"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "General Competency, Ethics & Reforms",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_general_competency_gen_085",
+          "question": "Within government administration, which option correctly addresses: To improve accountability in general competency, ethics & reforms, which practice best supports risk control' under standard approval and documentation controls?",
+          "options": [
+            "Identify risk early, apply controls, and document mitigation.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Apply rules inconsistently based on personal preference."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Identify risk early, apply controls, and document mitigation.).",
+          "difficulty": "medium",
+          "chapter": "General Competency, Ethics & Reforms - Expansion Set",
+          "keywords": [
+            "within",
+            "option",
+            "correctly",
+            "addresses"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "General Competency, Ethics & Reforms",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_general_competency_gen_086",
+          "question": "select the option that best answers: The compulsory retirement age for all civil servants in the Federal Public Service is:?",
+          "options": [
+            "60 years of age regardless of pensionable service records.",
+            "55 years of age or 35 years of service, whichever comes first.",
+            "60 years or 35 years of pensionable service, whichever comes first.",
+            "65 years of age or 30 years of service, whichever comes first."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (60 years or 35 years of pensionable service, whichever comes first.).",
+          "difficulty": "easy",
+          "chapter": "General Competency, Ethics & Reforms - Expansion Set",
+          "keywords": [
+            "select",
+            "option",
+            "best",
+            "answers"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "General Competency, Ethics & Reforms",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_general_competency_gen_087",
+          "question": "choose the option that the strongest control action for citizen-focused service in general competency, ethics & reforms' under standard approval and documentation controls?",
+          "options": [
+            "Rely on informal instructions without documentary evidence.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Treat exceptions as routine without documented justification.",
+            "Balance legality, fairness, timeliness, and service quality."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Balance legality, fairness, timeliness, and service quality.).",
+          "difficulty": "medium",
+          "chapter": "General Competency, Ethics & Reforms - Expansion Set",
+          "keywords": [
+            "choose",
+            "option",
+            "strongest",
+            "control"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "General Competency, Ethics & Reforms",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_general_competency_gen_088",
+          "question": "In the public service context, which option correctly addresses: In official practice, which option correctly addresses: A key part of the Principle of Motivation is that employees must be provided with what?",
+          "options": [
+            "More power than their superiors.",
+            "An opportunity to make their own rules.",
+            "A pleasant and favorable working environment35.",
+            "A chance to work from home exclusively.a."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (A pleasant and favorable working environment35.).",
+          "difficulty": "easy",
+          "chapter": "General Competency, Ethics & Reforms - Expansion Set",
+          "keywords": [
+            "option",
+            "correctly",
+            "addresses",
+            "context"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "General Competency, Ethics & Reforms",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_general_competency_gen_089",
+          "question": "According to established rules, select the option that best answers: The mandatory pre-retirement leave for officers who give notice of retirement is:?",
+          "options": [
+            "One month.",
+            "Two months.",
+            "Three months.",
+            "Six months."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Three months.).",
+          "difficulty": "hard",
+          "chapter": "General Competency, Ethics & Reforms - Expansion Set",
+          "keywords": [
+            "retirement",
+            "according",
+            "established",
+            "select"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "General Competency, Ethics & Reforms",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_general_competency_gen_090",
+          "question": "According to established rules, choose the best answer for: For effective general competency, ethics & reforms, what is the most appropriate approach to guarantee rights balancing?",
+          "options": [
+            "Bypass review and approval controls to save time.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Apply exemptions narrowly and justify decisions with legal basis.",
+            "Apply rules inconsistently based on personal preference."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Apply exemptions narrowly and justify decisions with legal basis.).",
+          "difficulty": "easy",
+          "chapter": "General Competency, Ethics & Reforms - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "General Competency, Ethics & Reforms",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_general_competency_gen_091",
+          "question": "According to established rules, which option correctly addresses: During routine general competency, ethics & reforms, which practice best protects accountability and consistency' (constitutional law scenario 2)?",
+          "options": [
+            "Use inconsistent criteria across similar cases.",
+            "Treat exceptions as standard practice without justification.",
+            "Delay documentation until after implementation.",
+            "Apply legal authority checks and document basis for each decision."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Apply legal authority checks and document basis for each decision.).",
+          "difficulty": "medium",
+          "chapter": "General Competency, Ethics & Reforms - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "correctly"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "General Competency, Ethics & Reforms",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_general_competency_gen_092",
+          "question": "Within government administration, which option correctly addresses: For effective general competency, ethics & reforms, what is the most appropriate approach to secure constitutional supremacy?",
+          "options": [
+            "Rely on informal instructions without documentary evidence.",
+            "Close cases without validating facts or demand records.",
+            "guarantee administrative actions remain within constitutional limits.",
+            "Delay decisions until issues escalate into avoidable crises."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (guarantee administrative actions remain within constitutional limits.).",
+          "difficulty": "medium",
+          "chapter": "General Competency, Ethics & Reforms - Expansion Set",
+          "keywords": [
+            "within",
+            "option",
+            "correctly",
+            "addresses"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "General Competency, Ethics & Reforms",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "clg_general_competency_gen_093",
+          "question": "According to established rules, choose the option that the strongest control action for public law standards in general competency, ethics & reforms' in line with public-sector accountability expectations?",
+          "options": [
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Treat exceptions as routine without documented justification.",
+            "sustain fairness, reasonableness, and procedural propriety.",
+            "Rely on informal instructions without documentary evidence."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (sustain fairness, reasonableness, and procedural propriety.).",
+          "difficulty": "easy",
+          "chapter": "General Competency, Ethics & Reforms - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "choose",
+            "option"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "General Competency, Ethics & Reforms",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
         }
       ]
     },
@@ -7208,6 +9008,606 @@
           "sourceSection": "Access Rights & Obligations (FOI)",
           "year": 1999,
           "lastReviewed": "2026-03-03"
+        },
+        {
+          "id": "FOI_AO_051",
+          "question": "In the public service context, select the statement that correctly defines typically contained in a \"Personal File\"?",
+          "options": [
+            "Financial records of a Ministry.",
+            "The official history of a Ministry.a.",
+            "Correspondence and documents relating to a particular staff member.",
+            "Documents on a particular subject matter."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Correspondence and documents relating to a particular staff member.). Personal files are files that contain all correspondence and other documents relating to a particular staff member.",
+          "difficulty": "easy",
+          "chapter": "Access Rights & Obligations (FOI) - Expansion Set",
+          "keywords": [
+            "context",
+            "select",
+            "statement",
+            "correctly"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Access Rights & Obligations (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_AO_052",
+          "question": "Within government administration, which option aligns with the meaning of the role of keeping a \"Reference\" in the top right-hand corner of a letter?",
+          "options": [
+            "To uniquely identify the letter for log-keeping.",
+            "To show the personal details of the sender.",
+            "To show the date of the letter.",
+            "To show the recipient's address.Q."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (To uniquely identify the letter for log-keeping.). Every letter should bear a reference number, which serves as a unique identifier for document-keeping purposes.",
+          "difficulty": "medium",
+          "chapter": "Access Rights & Obligations (FOI) - Expansion Set",
+          "keywords": [
+            "within",
+            "option",
+            "aligns",
+            "meaning"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Access Rights & Obligations (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_AO_053",
+          "question": "In official practice, choose the best answer for: The payment of fees for invigilators and examiners is to be processed and paid:?",
+          "options": [
+            "Immediately after the examination.",
+            "Before the examination.",
+            "As soon as the claim is submitted and approved. 58 Q",
+            "After the examination results are released."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (As soon as the claim is submitted and approved. 58 Q). The general principle of financial management in the public service is that payments are made upon approval of a verified claim.",
+          "difficulty": "medium",
+          "chapter": "Access Rights & Obligations (FOI) - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Access Rights & Obligations (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_AO_054",
+          "question": "select the option that best answers: For receipts and licences with fixed fees, what additional information should be printed on them?",
+          "options": [
+            "The signature of the issuing officer. □.",
+            "The name of the payer.",
+            "The amount of the fixed fee.",
+            "The date of issue."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (The amount of the fixed fee.). Financial Regulation 1220 necessitate that \"the amount of the fixed fee should be printed on the receipt or licence.\"",
+          "difficulty": "easy",
+          "chapter": "Access Rights & Obligations (FOI) - Expansion Set",
+          "keywords": [
+            "select",
+            "option",
+            "best",
+            "answers"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Access Rights & Obligations (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_AO_055",
+          "question": "According to established rules, select the option that best answers: A key objective of HRM is to enhance the capabilities of employees and guarantee they possess the requisite level of competence, knowledge, skill, and attitude to do what?",
+          "options": [
+            "Increase productivity.",
+            "Reduce the size of the Civil Service.",
+            "Formulate government policies.",
+            "Increase their personal salaries.a."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Increase productivity.). It is necessary to enhance the capabilities of employees and guarantee that they possess the requisite level of competence, knowledge, skill, and attitude, which must be continually improved upon to increase productivity.",
+          "difficulty": "hard",
+          "chapter": "Access Rights & Obligations (FOI) - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Access Rights & Obligations (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_AO_056",
+          "question": "In the public service context, which option aligns with the meaning of the role of classifying documents in the Civil Service?",
+          "options": [
+            "To hide their contents from other Ministries. □.",
+            "To sensitize officers about the degree of care necessitate for each document.",
+            "To make them difficult to access.",
+            "To prevent new staff from seeing them."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (To sensitize officers about the degree of care necessitate for each document.). Classified documents are duly classified so as to sensitize officers about the degree of care demand for each.",
+          "difficulty": "hard",
+          "chapter": "Access Rights & Obligations (FOI) - Expansion Set",
+          "keywords": [
+            "context",
+            "option",
+            "aligns",
+            "meaning"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Access Rights & Obligations (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_AO_057",
+          "question": "which option best describes the role of classifying documents?",
+          "options": [
+            "To make them difficult to access.",
+            "To hide their contents from other Ministries.",
+            "To prevent the public from ever seeing them. □.",
+            "To sensitize officers about the degree of care necessitate for each document."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (To sensitize officers about the degree of care necessitate for each document.). Classified documents are duly classified so as to sensitize officers about the degree of care demand for each.",
+          "difficulty": "medium",
+          "chapter": "Access Rights & Obligations (FOI) - Expansion Set",
+          "keywords": [
+            "option",
+            "best",
+            "describes",
+            "role"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Access Rights & Obligations (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_AO_058",
+          "question": "select the statement that correctly defines the aim of classifying documents?",
+          "options": [
+            "To make them difficult to access.",
+            "To prevent the public from ever seeing them.a.",
+            "To sensitize officers about the degree of care necessitate for each document.",
+            "To hide their contents from other Ministries."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (To sensitize officers about the degree of care necessitate for each document.). Classified documents are duly classified so as to sensitize officers about the degree of care demand for each.",
+          "difficulty": "easy",
+          "chapter": "Access Rights & Obligations (FOI) - Expansion Set",
+          "keywords": [
+            "select",
+            "statement",
+            "correctly",
+            "defines"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Access Rights & Obligations (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_AO_059",
+          "question": "select the option that best answers: What serves little role if used in writing, according to the handbook?",
+          "options": [
+            "Words that are big but communicate little.",
+            "Simple words.",
+            "Clear and concise language.a.",
+            "Factual information."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Words that are big but communicate little.). It serves little objective if you use words that are big but communicate little.",
+          "difficulty": "easy",
+          "chapter": "Access Rights & Obligations (FOI) - Expansion Set",
+          "keywords": [
+            "select",
+            "option",
+            "best",
+            "answers"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Access Rights & Obligations (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_AO_060",
+          "question": "According to established rules, which option aligns with the meaning of typically contained in a \"Subject File\"?",
+          "options": [
+            "Correspondence and documents relating to a particular subject matter.",
+            "The personal assets of a public officer.a.",
+            "Documents relating to a staff member's personal life.",
+            "Financial records of the government."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Correspondence and documents relating to a particular subject matter.). A subject file is a collection of official correspondence and other documents on a particular subject matter.",
+          "difficulty": "medium",
+          "chapter": "Access Rights & Obligations (FOI) - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "aligns"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Access Rights & Obligations (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_AO_061",
+          "question": "Within government administration, select the option that best answers: In official practice, choose the best answer for: The disbursement of fees for invigilators and examiners is to be processed and paid:?",
+          "options": [
+            "Immediately after the examination.",
+            "As soon as the claim is submitted and approved. 58 Q",
+            "Before the examination.",
+            "After the examination results are released."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (As soon as the claim is submitted and approved. 58 Q). (As soon as the claim is submitted and approved. 58 Q). The general principle of financial management in the public service is that payments are made upon approval of a verified claim.",
+          "difficulty": "hard",
+          "chapter": "Access Rights & Obligations (FOI) - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Access Rights & Obligations (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_AO_062",
+          "question": "which option aligns with the meaning of the term for a specific, objectively assessable, non-personality based, academic or factual concept?",
+          "options": [
+            "A skill",
+            "A principle",
+            "A concept",
+            "A regulation Q"
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (A concept). This is a meta-question about the nature of the quiz material. A \"concept\" is the term for an educational topic, which is what is being quizzed on.",
+          "difficulty": "medium",
+          "chapter": "Access Rights & Obligations (FOI) - Expansion Set",
+          "keywords": [
+            "option",
+            "aligns",
+            "meaning",
+            "term"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Access Rights & Obligations (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_AO_063",
+          "question": "Within government administration, which option correctly addresses: According to established rules, select the option that best answers: A key objective of HRM is to enhance the capabilities of employees and guarantee they possess the requisite level of competence, knowledge, skill, and attitude to do what?",
+          "options": [
+            "Reduce the size of the Civil Service.",
+            "Formulate government policies.",
+            "Increase their personal salaries.a.",
+            "Increase productivity."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Increase productivity.). (Increase productivity.). It is necessary to enhance the capabilities of employees and guarantee that they possess the requisite level of competence, knowledge, skill, and attitude, which must be continually improved upon to increase productivity.",
+          "difficulty": "easy",
+          "chapter": "Access Rights & Obligations (FOI) - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Access Rights & Obligations (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_AO_064",
+          "question": "In the public service context, select the option that best answers: In the public service context, which option aligns with the meaning of the role of classifying documents in the Civil Service?",
+          "options": [
+            "To prevent new staff from seeing them.",
+            "To sensitize officers about the degree of care necessitate for each document.",
+            "To make them difficult to access.",
+            "To hide their contents from other Ministries. □."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (To sensitize officers about the degree of care necessitate for each document.). (To sensitize officers about the degree of care necessitate for each document.). Classified documents are duly classified so as to sensitize officers about the degree of care demand for each.",
+          "difficulty": "medium",
+          "chapter": "Access Rights & Obligations (FOI) - Expansion Set",
+          "keywords": [
+            "context",
+            "option",
+            "aligns",
+            "meaning"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Access Rights & Obligations (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_AO_065",
+          "question": "In official practice, which option correctly addresses: which option best describes the role of classifying documents?",
+          "options": [
+            "To prevent the public from ever seeing them. □.",
+            "To sensitize officers about the degree of care necessitate for each document.",
+            "To make them difficult to access.",
+            "To hide their contents from other Ministries."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (To sensitize officers about the degree of care necessitate for each document.). (To sensitize officers about the degree of care necessitate for each document.). Classified documents are duly classified so as to sensitize officers about the degree of care demand for each.",
+          "difficulty": "easy",
+          "chapter": "Access Rights & Obligations (FOI) - Expansion Set",
+          "keywords": [
+            "option",
+            "best",
+            "describes",
+            "role"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Access Rights & Obligations (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_AO_066",
+          "question": "According to established rules, choose the best answer for: select the statement that correctly defines the aim of classifying documents?",
+          "options": [
+            "To hide their contents from other Ministries.",
+            "To make them difficult to access.",
+            "To prevent the public from ever seeing them.a.",
+            "To sensitize officers about the degree of care necessitate for each document."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (To sensitize officers about the degree of care necessitate for each document.). (To sensitize officers about the degree of care necessitate for each document.). Classified documents are duly classified so as to sensitize officers about the degree of care demand for each.",
+          "difficulty": "medium",
+          "chapter": "Access Rights & Obligations (FOI) - Expansion Set",
+          "keywords": [
+            "select",
+            "statement",
+            "correctly",
+            "defines"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Access Rights & Obligations (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_AO_067",
+          "question": "Within government administration, select the statement that correctly defines the role of the chairman arriving promptly at the venue and starting the meeting on time?",
+          "options": [
+            "To finish the meeting as quickly as possible.",
+            "To rush the members into making decisions",
+            "To encourage members to take the forum and its objectives seriously28.",
+            "To show he is more important than the members."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (To encourage members to take the forum and its objectives seriously28.). The chairman should make it a point of duty to arrive promptly at the venue, with the full intention of starting the meeting on time, as this will encourage the members to take the forum and its objectives seriously.",
+          "difficulty": "hard",
+          "chapter": "Access Rights & Obligations (FOI) - Expansion Set",
+          "keywords": [
+            "within",
+            "select",
+            "statement",
+            "correctly"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Access Rights & Obligations (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_AO_068",
+          "question": "Within government administration, choose the best answer for: What should be attached to the notice and agenda?",
+          "options": [
+            "The personal files of all members.",
+            "The financial statements of the Ministry.",
+            "The minutes of the last meeting and any other relevant documents.",
+            "The private phone numbers of the members.a."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (The minutes of the last meeting and any other relevant documents.). The minutes of the last meeting and any other relevant documents should be attached to the notice and agenda.",
+          "difficulty": "medium",
+          "chapter": "Access Rights & Obligations (FOI) - Expansion Set",
+          "keywords": [
+            "within",
+            "choose",
+            "best",
+            "answer"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Access Rights & Obligations (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_AO_069",
+          "question": "According to established rules, which option correctly addresses: What should be attached to the notice and agenda?",
+          "options": [
+            "The minutes of the last meeting and any other relevant documents.",
+            "The financial statements of the Ministry.",
+            "The private phone numbers of the members. □.",
+            "The personal files of all members."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (The minutes of the last meeting and any other relevant documents.). The minutes of the last meeting and any other relevant documents should be attached to the notice and agenda.",
+          "difficulty": "easy",
+          "chapter": "Access Rights & Obligations (FOI) - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "correctly"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Access Rights & Obligations (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_AO_070",
+          "question": "In official practice, select the option that best answers: What does a \"Minute\" on a file often start with?",
+          "options": [
+            "A personal story.",
+            "A brief statement of the matter at issue.",
+            "The date. Q.",
+            "A conclusion."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (A brief statement of the matter at issue.). A minute may be built up as follows: (i) state briefly the matter at issue.",
+          "difficulty": "easy",
+          "chapter": "Access Rights & Obligations (FOI) - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Access Rights & Obligations (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_AO_071",
+          "question": "According to established rules, select the option that best answers: Which practice should a accountable officer prioritize to sustain rights balancing in Access Rights & Obligations (**FOI**)?",
+          "options": [
+            "Prioritize convenience over policy and legal requirements.",
+            "Bypass review and approval controls to save time.",
+            "Apply rules inconsistently based on personal preference.",
+            "Apply exemptions narrowly and justify decisions with legal basis."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Apply exemptions narrowly and justify decisions with legal basis.).",
+          "difficulty": "easy",
+          "chapter": "Access Rights & Obligations (FOI) - Expansion Set",
+          "keywords": [
+            "rights",
+            "according",
+            "established",
+            "select"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Access Rights & Obligations (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_AO_072",
+          "question": "In official practice, select the option that best answers: In the context of Access Rights & Obligations (**FOI**), which action best demonstrates foi obligations?",
+          "options": [
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Respond to information requests within legal timelines.",
+            "Close cases without validating facts or demand records.",
+            "Rely on informal instructions without documentary evidence."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Respond to information requests within legal timelines.).",
+          "difficulty": "hard",
+          "chapter": "Access Rights & Obligations (FOI) - Expansion Set",
+          "keywords": [
+            "best",
+            "obligations",
+            "official",
+            "practice"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Access Rights & Obligations (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_AO_073",
+          "question": "In official practice, select the option that best answers: which option best describes the role of classifying documents?",
+          "options": [
+            "To sensitize officers about the degree of care necessitate for each document.",
+            "To make them difficult to access.",
+            "To hide their contents from other Ministries.",
+            "To prevent the public from ever seeing them. □."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (To sensitize officers about the degree of care necessitate for each document.).",
+          "difficulty": "medium",
+          "chapter": "Access Rights & Obligations (FOI) - Expansion Set",
+          "keywords": [
+            "option",
+            "best",
+            "official",
+            "practice"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Access Rights & Obligations (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_AO_074",
+          "question": "In official practice, select the option that best answers: Within government administration, which option aligns with the meaning of the role of keeping a \"Reference\" in the top right-hand corner of a letter?",
+          "options": [
+            "To show the personal details of the sender.",
+            "To show the date of the letter.",
+            "To show the recipient's address.Q.",
+            "To uniquely identify the letter for log-keeping."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (To uniquely identify the letter for log-keeping.).",
+          "difficulty": "medium",
+          "chapter": "Access Rights & Obligations (FOI) - Expansion Set",
+          "keywords": [
+            "option",
+            "official",
+            "practice",
+            "select"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Access Rights & Obligations (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_AO_075",
+          "question": "According to established rules, select the option that best answers: Which section provides for public institutions to charge fees to cover the cost of duplication and transcription of records?",
+          "options": [
+            "Section 9(2).",
+            "Section 8(1).",
+            "Section 5(3).",
+            "Section 7(5)."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Section 8(1).).",
+          "difficulty": "easy",
+          "chapter": "Access Rights & Obligations (FOI) - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Access Rights & Obligations (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
         }
       ]
     },
@@ -8970,6 +11370,606 @@
           "sourceSection": "Exemptions & Public Interest (FOI)",
           "year": 1999,
           "lastReviewed": "2026-03-03"
+        },
+        {
+          "id": "FOI_EX_051",
+          "question": "choose the best answer for: What must the salary section be informed of in writing at the earliest possible time?",
+          "options": [
+            "The officer's choice of bank.",
+            "Any variation that may affect the salary of any officer.",
+            "The officer's travel plans. □",
+            "The officer's personal interests."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Any variation that may affect the salary of any officer.). Financial Regulation 1522(i) demand that the salary section must be informed in writing of any variation that may affect an officer's salary at the earliest possible time.",
+          "difficulty": "easy",
+          "chapter": "Exemptions & Public Interest (FOI) - Expansion Set",
+          "keywords": [
+            "choose",
+            "best",
+            "answer",
+            "must"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Exemptions & Public Interest (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_EX_052",
+          "question": "In official practice, which time frame cash has to be transported from one place to another (e.g., for salary payments), what must the accountable officer be provided with?",
+          "options": [
+            "A public transport ticket.",
+            "A receipt for the cash.a.",
+            "An approved cash tank or box, government vehicle, and police escort.",
+            "A personal briefcase."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (An approved cash tank or box, government vehicle, and police escort.). Financial Regulation 1104 states that the officer \"must be provided with an approved cash tank or box, government vehicle and police escort.\"",
+          "difficulty": "hard",
+          "chapter": "Exemptions & Public Interest (FOI) - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "time",
+            "frame"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Exemptions & Public Interest (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_EX_053",
+          "question": "choose the best answer for: What information must the Last payment Certificate and Personal Emolument log show?",
+          "options": [
+            "The officer's next of kin.",
+            "The officer's work history.",
+            "The officer's new salary. □",
+            "The last disbursement date, details of deductions, and the balance recoverable."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (The last disbursement date, details of deductions, and the balance recoverable.). According to Financial Regulation 1514(ii), the last disbursement certificate and personal emolument document must show the last disbursement date, full details of deductions, and the balance recoverable.",
+          "difficulty": "easy",
+          "chapter": "Exemptions & Public Interest (FOI) - Expansion Set",
+          "keywords": [
+            "choose",
+            "best",
+            "answer",
+            "information"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Exemptions & Public Interest (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_EX_054",
+          "question": "According to established rules, select the option that best answers: How should an officer justify their employment to the government?",
+          "options": [
+            "By being on time to work every day. □.",
+            "By getting paid a high salary.",
+            "By attending official meetings.",
+            "By giving efficient service in return fortheir earning."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (By giving efficient service in return fortheir earning.). Every Officer or employee should justify his employment by giving efficient service in return for his earnings.",
+          "difficulty": "medium",
+          "chapter": "Exemptions & Public Interest (FOI) - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Exemptions & Public Interest (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_EX_055",
+          "question": "In the public service context, select the option that best answers: According to the handbook, what is a key asset for a schedule officer?",
+          "options": [
+            "A high salary.",
+            "A large office.",
+            "A friendly boss. □.",
+            "Accurate information based on facts and figures."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Accurate information based on facts and figures.). An important asset to most scheduled officers is accurate information based on 433 facts and figures.",
+          "difficulty": "easy",
+          "chapter": "Exemptions & Public Interest (FOI) - Expansion Set",
+          "keywords": [
+            "context",
+            "select",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Exemptions & Public Interest (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_EX_056",
+          "question": "In the public service context, select the statement that correctly defines the objective of the \"File Index\"?",
+          "options": [
+            "To log all the meetings held in a Ministry.3.",
+            "To provide a list of all the files in a Ministry and their unique reference numbers.",
+            "To track the salary of each officer.",
+            "To list all the staff in a Ministry."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (To provide a list of all the files in a Ministry and their unique reference numbers.). The File Index is a list of all the files in a Ministry, with their corresponding unique reference numbers.",
+          "difficulty": "easy",
+          "chapter": "Exemptions & Public Interest (FOI) - Expansion Set",
+          "keywords": [
+            "context",
+            "select",
+            "statement",
+            "correctly"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Exemptions & Public Interest (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_EX_057",
+          "question": "Within government administration, select the option that best answers: According to the handbook, what is a key asset for a schedule officer?",
+          "options": [
+            "A friendly boss.a.",
+            "Accurate information based on facts and figures.",
+            "A large office.",
+            "A high salary."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Accurate information based on facts and figures.). An important asset to most scheduled officers is accurate information based on facts and figures.",
+          "difficulty": "hard",
+          "chapter": "Exemptions & Public Interest (FOI) - Expansion Set",
+          "keywords": [
+            "within",
+            "select",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Exemptions & Public Interest (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_EX_058",
+          "question": "According to established rules, choose the best answer for: What should a brief try to recommend?",
+          "options": [
+            "More research.",
+            "More meetings.a.",
+            "The problem itself.",
+            "The solution to an outstanding problem."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (The solution to an outstanding problem.). A good brief... should try to recommend the solution to an outstanding problem",
+          "difficulty": "medium",
+          "chapter": "Exemptions & Public Interest (FOI) - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Exemptions & Public Interest (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_EX_059",
+          "question": "Within government administration, select the option that best answers: Why is it important to include file references on the file copy of a letter?",
+          "options": [
+            "To avoid unnecessary research work later on.",
+            "To make the file longer.",
+            "To show that the letter is important.",
+            "To confuse other officers.a."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (To avoid unnecessary research work later on.). If this is done when the original letter is being written, unnecessary research work could be avoided later on.",
+          "difficulty": "easy",
+          "chapter": "Exemptions & Public Interest (FOI) - Expansion Set",
+          "keywords": [
+            "file",
+            "within",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Exemptions & Public Interest (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_EX_060",
+          "question": "Within government administration, select the statement that correctly defines the objective of the Absent File Cards?",
+          "options": [
+            "To document meeting minutes.",
+            "To track the location of files.",
+            "To list the names of all officers.",
+            "To document personal information.a."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (To track the location of files.). The Absent File Cards log the movements of files, which helps to track their location.",
+          "difficulty": "medium",
+          "chapter": "Exemptions & Public Interest (FOI) - Expansion Set",
+          "keywords": [
+            "within",
+            "select",
+            "statement",
+            "correctly"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Exemptions & Public Interest (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_EX_061",
+          "question": "According to established rules, select the option that best answers: What information must be printed on all receipt and licence books?",
+          "options": [
+            "The date of printing.",
+            "Only the title of the book.",
+            "The name of the issuing officer. □.",
+            "The title of the book, the serial number of each receipt/licence, and the number of the book."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (The title of the book, the serial number of each receipt/licence, and the number of the book.). Financial Regulation 1203 demand that the title of the book, the serial number of each receipt/licence, and the number of the book must be printed on all receipt and licence books.",
+          "difficulty": "easy",
+          "chapter": "Exemptions & Public Interest (FOI) - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Exemptions & Public Interest (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_EX_062",
+          "question": "In the public service context, at what point an officer receives a circular that does not demand action, what should they do?",
+          "options": [
+            "Discard it.",
+            "Keep it on their desk.",
+            "Minute the file to others for information and disposal.",
+            "Reply to the circular. □."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Minute the file to others for information and disposal.). If he does not necessitate actually to initiate any action he will either merely minute the file to others for information and disposal or he will file it.",
+          "difficulty": "hard",
+          "chapter": "Exemptions & Public Interest (FOI) - Expansion Set",
+          "keywords": [
+            "context",
+            "point",
+            "officer",
+            "receives"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Exemptions & Public Interest (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_EX_063",
+          "question": "choose the best answer for: What information should be included in the quarterly returns on government vehicles, in addition to mileage and fuel consumption?",
+          "options": [
+            "Driver's personal details.",
+            "Passenger names",
+            "Cost of repairs.",
+            "Vehicle color."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Cost of repairs.). Financial Regulation 2018 explicitly lists \"cost of repairs\" as part of the quarterly returns",
+          "difficulty": "medium",
+          "chapter": "Exemptions & Public Interest (FOI) - Expansion Set",
+          "keywords": [
+            "choose",
+            "best",
+            "answer",
+            "information"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Exemptions & Public Interest (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_EX_064",
+          "question": "According to established rules, select the option that best answers: What should a Civil Servant do with a file that has been on their desk for a long time without any action?",
+          "options": [
+            "Report it to their superior officer and return it to the registry.",
+            "Pass it to a colleague. □.",
+            "Throw it away.",
+            "Keep it in their desk."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Report it to their superior officer and return it to the registry.). Should a file be left on a desk for a long time without any action, it should be reported to the superior officer and returned to the registry.",
+          "difficulty": "easy",
+          "chapter": "Exemptions & Public Interest (FOI) - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Exemptions & Public Interest (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_EX_065",
+          "question": "Within government administration, select the option that best answers: How should a Civil Servant handle a file that has been on their desk for a long time without any action?",
+          "options": [
+            "Report it to their superior officer and return it to the registry.",
+            "Throw it away.",
+            "Keep it in their desk.",
+            "Pass it to a colleague.a."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Report it to their superior officer and return it to the registry.). Should a file be left on a desk for a long time without any action, it should be reported to the superior officer and returned to the registry.",
+          "difficulty": "hard",
+          "chapter": "Exemptions & Public Interest (FOI) - Expansion Set",
+          "keywords": [
+            "within",
+            "select",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Exemptions & Public Interest (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_EX_066",
+          "question": "According to established rules, which option aligns with the meaning of the role of the \"Action Points\" section in the minutes of a meeting?",
+          "options": [
+            "To list the people who are in charge for taking action, what the action is, and the timeframe for completion85.",
+            "To list the names of the people who spoke the most.",
+            "To list the names of the members who attended.",
+            "To list the topics that were not discussed. □."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (To list the people who are in charge for taking action, what the action is, and the timeframe for completion85.). The \"Action Points\" section lists the people who are accountable for taking action, what the action is, and the timeframe for completion.",
+          "difficulty": "easy",
+          "chapter": "Exemptions & Public Interest (FOI) - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "aligns"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Exemptions & Public Interest (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_EX_067",
+          "question": "According to established rules, which option aligns with the meaning of the objective of the \"Action Points\" section in the minutes of a meeting? 482?",
+          "options": [
+            "To list the names of the members who attended.",
+            "To list the people who are accountable for taking action, what the action is, and the timeframe for completion156.",
+            "To list the names of the people who spoke the most.",
+            "To list the topics that were not discussed. □."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (To list the people who are accountable for taking action, what the action is, and the timeframe for completion156.). The \"Action Points\" section lists the people who are accountable for taking action, what the action is, and the timeframe for completion.",
+          "difficulty": "easy",
+          "chapter": "Exemptions & Public Interest (FOI) - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "aligns"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Exemptions & Public Interest (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_EX_068",
+          "question": "According to established rules, which option correctly addresses: What should never be used for drafting, especially if it contains classified information?",
+          "options": [
+            "Recycled paper.",
+            "Discarded papers containing classified information.",
+            "Plain notebooks.Q.",
+            "Brand new paper."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Discarded papers containing classified information.). Discarded papers containing classified information should never be used for drafting.",
+          "difficulty": "medium",
+          "chapter": "Exemptions & Public Interest (FOI) - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "correctly"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Exemptions & Public Interest (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_EX_069",
+          "question": "According to established rules, choose the best answer for: What form must be used for an officer's staff log, and how many copies must be sent to the National log Centre?",
+          "options": [
+            "Gen 60, two copies",
+            "Gen 61, one copy 16 Q",
+            "Gen 60, one copy",
+            "Gen 61, two copies"
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Gen 60, one copy). According to Rule 020107(i), a Staff log Form (Gen 60) must be used, and one copy must be sent to the National log Centre.",
+          "difficulty": "hard",
+          "chapter": "Exemptions & Public Interest (FOI) - Expansion Set",
+          "keywords": [
+            "must",
+            "according",
+            "established",
+            "choose"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Exemptions & Public Interest (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_EX_070",
+          "question": "choose the best answer for: 163. How many papers must an officer on GL 09 pass to be confirmed?",
+          "options": [
+            "All 3 papers of COMPRO I",
+            "All 6 papers of COMPRO II",
+            "All 5 papers of COMPRO II □",
+            "All 5 papers of COMPRO I"
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (All 5 papers of COMPRO I). The syllabus in Rule 030202 lists 5 papers for COMPRO I, which officers on GL 08-09 must pass to be confirmed.",
+          "difficulty": "medium",
+          "chapter": "Exemptions & Public Interest (FOI) - Expansion Set",
+          "keywords": [
+            "choose",
+            "best",
+            "answer",
+            "many"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Exemptions & Public Interest (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_EX_071",
+          "question": "In the public service context, which option correctly addresses: What must be kept in each strong-room or reserve cash safe for all cash, stamps, receipt/licence books, and other articles deposited?",
+          "options": [
+            "A simple list.",
+            "Registers.",
+            "A memo. □.",
+            "A daily log."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Registers.). Financial Regulation 1121 demand that \"Registers must be kept in each strong-room or reserve cash safe of all cash, stamps, receipt or licence books and other articles deposited.\"",
+          "difficulty": "medium",
+          "chapter": "Exemptions & Public Interest (FOI) - Expansion Set",
+          "keywords": [
+            "cash",
+            "context",
+            "option",
+            "correctly"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Exemptions & Public Interest (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_EX_072",
+          "question": "Within government administration, which option correctly addresses: What must be sought and secured for cash in-transit?",
+          "options": [
+            "A personal bodyguard.",
+            "A strongbox.",
+            "Police escort.",
+            "A receipt from the bank"
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Police escort.). Financial Regulation 1527(i) states that the assistance of police escort must be sought and secured for cash in-transit",
+          "difficulty": "easy",
+          "chapter": "Exemptions & Public Interest (FOI) - Expansion Set",
+          "keywords": [
+            "within",
+            "option",
+            "correctly",
+            "addresses"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Exemptions & Public Interest (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_EX_073",
+          "question": "In the public service context, select the statement that correctly defines the minimum standard for recording vehicle usage in the logbook?",
+          "options": [
+            "Passenger names and destinations.Q",
+            "Date and driver's name only. 292",
+            "Departure/arrival times, mileage, and objective of journey.",
+            "Fuel purchases only."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Departure/arrival times, mileage, and objective of journey.). Financial Regulation 2005 details the requirement for recording \"full details of every journey performed including mileage, departure and arrival times and destination\" in the logbook.",
+          "difficulty": "medium",
+          "chapter": "Exemptions & Public Interest (FOI) - Expansion Set",
+          "keywords": [
+            "context",
+            "select",
+            "statement",
+            "correctly"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Exemptions & Public Interest (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_EX_074",
+          "question": "Within government administration, which option correctly addresses: What should a Civil Servant who has served in a particular Ministry for a very long time avoid doing?",
+          "options": [
+            "Assuming that their experience is the only thing that matters.",
+            "Sharing institutional knowledge. Q.",
+            "Offering useful suggestions for improvements.",
+            "Giving advice to the Minister."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Assuming that their experience is the only thing that matters.). Long-serving Officers in a particular Ministry should not become so set in their own ways as to assume that their experience is the only thing that matters.",
+          "difficulty": "medium",
+          "chapter": "Exemptions & Public Interest (FOI) - Expansion Set",
+          "keywords": [
+            "within",
+            "option",
+            "correctly",
+            "addresses"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Exemptions & Public Interest (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_EX_075",
+          "question": "According to established rules, choose the best answer for: The hours of work in Federal offices are from what time to what time?",
+          "options": [
+            "9:00 a.m. to 5:00 p.m.",
+            "10:00 a.m. to 6:00 p.m.3.",
+            "7:00 a.m. to 3:00 p.m.",
+            "8:00 a.m. to 4:00 p.m."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (8:00 a.m. to 4:00 p.m.). The hours of work in Federal offices are from 8.00 a.m. to 4.00 p.m. on Monday to Friday, except as may be officially varied",
+          "difficulty": "easy",
+          "chapter": "Exemptions & Public Interest (FOI) - Expansion Set",
+          "keywords": [
+            "time",
+            "according",
+            "established",
+            "choose"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Exemptions & Public Interest (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
         }
       ]
     },
@@ -10730,6 +13730,606 @@
           "sourceSection": "Offences, Penalties & Enforcement (FOI)",
           "year": 1999,
           "lastReviewed": "2026-03-03"
+        },
+        {
+          "id": "FOI_OP_051",
+          "question": "In official practice, select the statement that correctly defines demand for the destruction of condemned safes?",
+          "options": [
+            "Destruction in the presence of a Board of Survey, with a certificate issued.",
+            "Selling them as scrap metal.a.",
+            "Recycling.",
+            "Casual disposal."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Destruction in the presence of a Board of Survey, with a certificate issued.). Financial Regulation 1126 states, \"Condemned safes must be destroyed in the presence of a Board of Survey, and a certificate of destruction must be issued.\"",
+          "difficulty": "medium",
+          "chapter": "Offences, Penalties & Enforcement (FOI) - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "select",
+            "statement"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Offences, Penalties & Enforcement (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_OP_052",
+          "question": "According to established rules, which option best describes the procedure for the destruction of used receipt and licence books?",
+          "options": [
+            "They must be destroyed by burning in the presence of a Board of Survey, and a certificate of destruction issued.",
+            "They can be burned without supervision.",
+            "They can be shredded and recycled.",
+            "They can be buried. a."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (They must be destroyed by burning in the presence of a Board of Survey, and a certificate of destruction issued.). Financial Regulation 1227 and 1228 specify destruction by burning in the presence of a Board of Survey, with a certificate issued. 247 Section E Part 1: Financial Regulations: Deposits",
+          "difficulty": "easy",
+          "chapter": "Offences, Penalties & Enforcement (FOI) - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Offences, Penalties & Enforcement (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_OP_053",
+          "question": "Within government administration, choose the best answer for: An applicant for a public service position must possess a testimonial of good conduct from which of the following?",
+          "options": [
+            "The last school or college attended",
+            "Both A and B",
+            "A local government chairman Q",
+            "His/her last employer"
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Both A and B). Rule 020206(d) necessitate an applicant to \"possess a testimonial of good conduct from the last employer or, if not previously employed, from the last school or college attended.\" 18",
+          "difficulty": "easy",
+          "chapter": "Offences, Penalties & Enforcement (FOI) - Expansion Set",
+          "keywords": [
+            "within",
+            "choose",
+            "best",
+            "answer"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Offences, Penalties & Enforcement (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_OP_054",
+          "question": "which option correctly addresses: How is \"Clear writing\" defined in the context of the handbook?",
+          "options": [
+            "Writing that is difficult to understand. □.",
+            "Only legibility.",
+            "Only clarity of style.",
+            "Both legibility and clarity of style."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Both legibility and clarity of style.). \"Clear writing\" in this context means not only legibility but also clarity of style.",
+          "difficulty": "easy",
+          "chapter": "Offences, Penalties & Enforcement (FOI) - Expansion Set",
+          "keywords": [
+            "option",
+            "correctly",
+            "addresses",
+            "clear"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Offences, Penalties & Enforcement (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_OP_055",
+          "question": "Within government administration, select the statement that correctly defines \"Style\" defined as in the context of writing?",
+          "options": [
+            "The distinctive manner of writing. 484",
+            "The length of the writing.",
+            "The speed at which one writes.",
+            "The type of pen used for writing. Q.."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (The distinctive manner of writing. 484). Style may be defined as the distinctive manner of writing.",
+          "difficulty": "medium",
+          "chapter": "Offences, Penalties & Enforcement (FOI) - Expansion Set",
+          "keywords": [
+            "within",
+            "select",
+            "statement",
+            "correctly"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Offences, Penalties & Enforcement (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_OP_056",
+          "question": "Within government administration, select the option that best answers: In official practice, select the statement that correctly defines demand for the destruction of condemned safes?",
+          "options": [
+            "Selling them as scrap metal.a.",
+            "Recycling.",
+            "Destruction in the presence of a Board of Survey, with a certificate issued.",
+            "Casual disposal."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Destruction in the presence of a Board of Survey, with a certificate issued.). (Destruction in the presence of a Board of Survey, with a certificate issued.). Financial Regulation 1126 states, \"Condemned safes must be destroyed in the presence of a Board of Survey, and a certificate of destruction must be issued.\"",
+          "difficulty": "medium",
+          "chapter": "Offences, Penalties & Enforcement (FOI) - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "select",
+            "statement"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Offences, Penalties & Enforcement (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_OP_057",
+          "question": "at what point drafts are given to the Secretary for fairing, what should be clearly recorded at the top of page 1?",
+          "options": [
+            "The number of copies necessitate.",
+            "The file number. Q.",
+            "The secretary's name.",
+            "The date. 486"
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (The number of copies necessitate.). When drafts of any documents are given to the Secretary for fairing, the number of copies demand should always be clearly recorded at the top of page 1 of every draft.",
+          "difficulty": "easy",
+          "chapter": "Offences, Penalties & Enforcement (FOI) - Expansion Set",
+          "keywords": [
+            "point",
+            "drafts",
+            "given",
+            "secretary"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Offences, Penalties & Enforcement (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_OP_058",
+          "question": "choose the best answer for: Which section demand that exemptions must be interpreted narrowly in favour of disclosure?",
+          "options": [
+            "Section 11(1).",
+            "Section 32(1).",
+            "Section 27(1).",
+            "Section 28(1)."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Section 28(1).).",
+          "difficulty": "hard",
+          "chapter": "Offences, Penalties & Enforcement (FOI) - Expansion Set",
+          "keywords": [
+            "choose",
+            "best",
+            "answer",
+            "section"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Offences, Penalties & Enforcement (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_OP_059",
+          "question": "In the public service context, choose the best answer for: Willful concealment of public records is treated as an offense primarily because it:?",
+          "options": [
+            "Increases the cost of utilities.",
+            "Interferes with the smooth flow of official correspondence.",
+            "Violates the Annual Leave Roster.",
+            "Frustrates the public's right to information guaranteed by the Act."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Frustrates the public's right to information guaranteed by the Act.).",
+          "difficulty": "medium",
+          "chapter": "Offences, Penalties & Enforcement (FOI) - Expansion Set",
+          "keywords": [
+            "context",
+            "choose",
+            "best",
+            "answer"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Offences, Penalties & Enforcement (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_OP_060",
+          "question": "In official practice, responsibility for is in charge for oversight of **FOI** Act compliance among public institutions belongs to which role?",
+          "options": [
+            "Attorney-General of the Federation.",
+            "The Minister of Justice.",
+            "Bureau of Public Procurement (BPP).",
+            "Federal Civil Service Commission (FCSC)."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Attorney-General of the Federation.).",
+          "difficulty": "easy",
+          "chapter": "Offences, Penalties & Enforcement (FOI) - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "responsibility",
+            "charge"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Offences, Penalties & Enforcement (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_OP_061",
+          "question": "Within government administration, choose the best answer for: In the context of Offences, Penalties & Enforcement (**FOI**), which action best demonstrates public accountability?",
+          "options": [
+            "Ignore feedback and continue non-compliant procedures.",
+            "Bypass review and approval controls to save time.",
+            "Provide traceable decisions and evidence-based justification.",
+            "Prioritize convenience over policy and legal requirements."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Provide traceable decisions and evidence-based justification.).",
+          "difficulty": "easy",
+          "chapter": "Offences, Penalties & Enforcement (FOI) - Expansion Set",
+          "keywords": [
+            "best",
+            "within",
+            "choose",
+            "answer"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Offences, Penalties & Enforcement (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_OP_062",
+          "question": "Within government administration, at what point handling offences, penalties & enforcement (foi), which choice reflects proper decision transparency standards?",
+          "options": [
+            "Rely on informal instructions without documentary evidence.",
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Use clear criteria and communicate decisions promptly.",
+            "Close cases without validating facts or demand records."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Use clear criteria and communicate decisions promptly.).",
+          "difficulty": "easy",
+          "chapter": "Offences, Penalties & Enforcement (FOI) - Expansion Set",
+          "keywords": [
+            "within",
+            "point",
+            "handling",
+            "offences"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Offences, Penalties & Enforcement (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_OP_063",
+          "question": "In the public service context, which option correctly addresses: If an applicant is denied access, **Section 20** grants them the right to seek redress in a court of competent jurisdiction within how many days of the denial or deemed denial?",
+          "options": [
+            "14 days.",
+            "7 days.",
+            "30 days.",
+            "60 days."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (14 days.).",
+          "difficulty": "hard",
+          "chapter": "Offences, Penalties & Enforcement (FOI) - Expansion Set",
+          "keywords": [
+            "denial",
+            "context",
+            "option",
+            "correctly"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Offences, Penalties & Enforcement (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_OP_064",
+          "question": "which option correctly addresses: **Section 29** prohibits the destruction of records needed for pending **FOI** requests. This is intended to secure:?",
+          "options": [
+            "Automatic promotion for desk officers.",
+            "Centralization of all government funds.",
+            "The integrity and availability of evidence for disclosure.",
+            "Compliance with the Pension Reform Act."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (The integrity and availability of evidence for disclosure.).",
+          "difficulty": "easy",
+          "chapter": "Offences, Penalties & Enforcement (FOI) - Expansion Set",
+          "keywords": [
+            "option",
+            "correctly",
+            "addresses",
+            "section"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Offences, Penalties & Enforcement (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_OP_065",
+          "question": "Within government administration, choose the best answer for: **Section 29** applies to destruction of records needed for pending **FOI** requests, but does NOT apply to records destroyed as part of routine, lawful:?",
+          "options": [
+            "Falsification processes.",
+            "Political appointments.",
+            "Records management and retention policies.",
+            "Procurement actions."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Records management and retention policies.).",
+          "difficulty": "medium",
+          "chapter": "Offences, Penalties & Enforcement (FOI) - Expansion Set",
+          "keywords": [
+            "records",
+            "within",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Offences, Penalties & Enforcement (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_OP_066",
+          "question": "In official practice, select the option that best answers: Which option most strongly aligns with good public-service practice on legal compliance within Offences, Penalties & Enforcement (**FOI**)?",
+          "options": [
+            "Check statutory authority before acting on sensitive matters.",
+            "Apply rules inconsistently based on personal preference.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Bypass review and approval controls to save time."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Check statutory authority before acting on sensitive matters.).",
+          "difficulty": "easy",
+          "chapter": "Offences, Penalties & Enforcement (FOI) - Expansion Set",
+          "keywords": [
+            "practice",
+            "option",
+            "official",
+            "select"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Offences, Penalties & Enforcement (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_OP_067",
+          "question": "Within government administration, select the option that best answers: Within government administration, select the statement that correctly defines \"Style\" defined as in the context of writing?",
+          "options": [
+            "The distinctive manner of writing. 484",
+            "The speed at which one writes.",
+            "The length of the writing.",
+            "The type of pen used for writing. Q.."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (The distinctive manner of writing. 484).",
+          "difficulty": "easy",
+          "chapter": "Offences, Penalties & Enforcement (FOI) - Expansion Set",
+          "keywords": [
+            "within",
+            "select",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Offences, Penalties & Enforcement (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_OP_068",
+          "question": "According to established rules, which option correctly addresses: **Section 27**, protecting officers who disclose in good faith, incentivizes:?",
+          "options": [
+            "Political patronage.",
+            "Proactive compliance and information release.",
+            "Strict adherence to the Official Secrets Act only.",
+            "Willful destruction of records."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Proactive compliance and information release.).",
+          "difficulty": "medium",
+          "chapter": "Offences, Penalties & Enforcement (FOI) - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "correctly"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Offences, Penalties & Enforcement (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_OP_069",
+          "question": "In official practice, at what point handling offences, penalties & enforcement (foi), which choice reflects proper documented procedure standards?",
+          "options": [
+            "Apply rules inconsistently based on personal preference.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Follow documented procedure and keep complete records.",
+            "Bypass review and approval controls to save time."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Follow documented procedure and keep complete records.).",
+          "difficulty": "medium",
+          "chapter": "Offences, Penalties & Enforcement (FOI) - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "point",
+            "handling"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Offences, Penalties & Enforcement (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_OP_070",
+          "question": "which option correctly addresses: at what point drafts are given to the Secretary for fairing, what should be clearly recorded at the top of page 1?",
+          "options": [
+            "The secretary's name.",
+            "The date. 486",
+            "The number of copies necessitate.",
+            "The file number. Q."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (The number of copies necessitate.).",
+          "difficulty": "medium",
+          "chapter": "Offences, Penalties & Enforcement (FOI) - Expansion Set",
+          "keywords": [
+            "option",
+            "correctly",
+            "addresses",
+            "point"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Offences, Penalties & Enforcement (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_OP_071",
+          "question": "In the public service context, choose the best answer for: The failure to produce records in accessible, machine-readable formats (S. 6(2)) undermines:?",
+          "options": [
+            "The calculation of the Contingencies Fund.",
+            "The Attorney-General's authority.",
+            "The power of the FCSC.",
+            "The accessibility objective of the Act."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (The accessibility objective of the Act.).",
+          "difficulty": "medium",
+          "chapter": "Offences, Penalties & Enforcement (FOI) - Expansion Set",
+          "keywords": [
+            "context",
+            "choose",
+            "best",
+            "answer"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Offences, Penalties & Enforcement (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_OP_072",
+          "question": "According to established rules, choose the best answer for: The protection offered by **Section 27** does **not** apply if the officer's disclosure of information was done:?",
+          "options": [
+            "In bad faith or maliciously.",
+            "In a formal letter.",
+            "Based on the advice of legal counsel.",
+            "To comply with a court order."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (In bad faith or maliciously.).",
+          "difficulty": "medium",
+          "chapter": "Offences, Penalties & Enforcement (FOI) - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Offences, Penalties & Enforcement (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_OP_073",
+          "question": "In the public service context, choose the best answer for: In official practice, select the statement that correctly defines demand for the destruction of condemned safes?",
+          "options": [
+            "Recycling.",
+            "Casual disposal.",
+            "Destruction in the presence of a Board of Survey, with a certificate issued.",
+            "Selling them as scrap metal.a."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Destruction in the presence of a Board of Survey, with a certificate issued.).",
+          "difficulty": "medium",
+          "chapter": "Offences, Penalties & Enforcement (FOI) - Expansion Set",
+          "keywords": [
+            "context",
+            "choose",
+            "best",
+            "answer"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Offences, Penalties & Enforcement (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_OP_074",
+          "question": "Within government administration, which option correctly addresses: The Attorney-General is mandated to submit the annual **FOI** compliance report to which legislative body?",
+          "options": [
+            "The House of Representatives only.",
+            "The Senate only.",
+            "The Economic and Financial Crimes Commission (EFCC).",
+            "The National Assembly (both houses)."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (The National Assembly (both houses).).",
+          "difficulty": "hard",
+          "chapter": "Offences, Penalties & Enforcement (FOI) - Expansion Set",
+          "keywords": [
+            "within",
+            "option",
+            "correctly",
+            "addresses"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Offences, Penalties & Enforcement (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "FOI_OP_075",
+          "question": "According to established rules, which option correctly addresses: Which **FOI** provision emphasizes that exemptions must be narrowly construed?",
+          "options": [
+            "Section 32(1).",
+            "Section 27(1).",
+            "Section 1(2).",
+            "Section 28(1)."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Section 28(1).).",
+          "difficulty": "hard",
+          "chapter": "Offences, Penalties & Enforcement (FOI) - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "correctly"
+          ],
+          "sourceDocument": "Constitution of the Federal Republic of Nigeria and FOI Act",
+          "sourceSection": "Offences, Penalties & Enforcement (FOI)",
+          "year": 1999,
+          "lastReviewed": "2026-03-13"
         }
       ]
     }

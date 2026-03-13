@@ -1783,6 +1783,606 @@
           "sourceSection": "Objectives & Institutions",
           "year": 2007,
           "lastReviewed": "2026-03-03"
+        },
+        {
+          "id": "ppa_objectives_051",
+          "question": "Within government administration, which option explicitly mentioned as part of the Public Service, apart from the Civil Service?",
+          "options": [
+            "Armed Forces",
+            "Religious Institutions □",
+            "Private Companies",
+            "Non-Governmental Organizations"
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Armed Forces). Apart from the Civil Service, the Public Service also encompasses the Armed Forces, the Judiciary, the Legislature and the Police..",
+          "difficulty": "easy",
+          "chapter": "Objectives & Institutions - Expansion Set",
+          "keywords": [
+            "within",
+            "option",
+            "explicitly",
+            "mentioned"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Objectives & Institutions",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_objectives_052",
+          "question": "which option best describes considered a \"critical success factor\" for the government to achieve its objectives?",
+          "options": [
+            "A wealthy private sector.",
+            "A strong military.",
+            "A professional, competent, and result-oriented Civil Service.",
+            "A large population. □."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (A professional, competent, and result-oriented Civil Service.). A professional, competent, and result-oriented Civil Service is a critical success factor for the government to realize its objectives.",
+          "difficulty": "medium",
+          "chapter": "Objectives & Institutions - Expansion Set",
+          "keywords": [
+            "option",
+            "best",
+            "describes",
+            "considered"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Objectives & Institutions",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_objectives_053",
+          "question": "In the public service context, select the option that best answers: The topmost career Civil Servant in a Local Government is designated as what?",
+          "options": [
+            "Chairman.",
+            "Secretary.",
+            "Councilor.",
+            "Permanent Secretary. □."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Secretary.). The topmost career Civil Servant in a Local Government set-up is designated as Secretary.",
+          "difficulty": "medium",
+          "chapter": "Objectives & Institutions - Expansion Set",
+          "keywords": [
+            "context",
+            "select",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Objectives & Institutions",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_objectives_054",
+          "question": "According to established rules, choose the best answer for: A Civil Servant is advised to show loyalty to whom?",
+          "options": [
+            "The government of the day. □. 425",
+            "The Minister.",
+            "The Permanent Secretary.",
+            "The Head of the Civil Service."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (The government of the day. □. 425). The Civil Servant owes his loyalty to the government of the day.",
+          "difficulty": "hard",
+          "chapter": "Objectives & Institutions - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Objectives & Institutions",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_objectives_055",
+          "question": "According to established rules, select the statement that correctly defines the correct way to address a minute or a file submission through official channels?",
+          "options": [
+            "There is no specific format; any order is acceptable.a.",
+            "The most senior officer's title first, followed by other officers in descending order of status prefixed by the word \"through.\"",
+            "The most junior officer's title first, followed by other officers in descending order of status prefixed by the word \"through.\"",
+            "The Permanent Secretary's title first, then everyone else."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (The most senior officer's title first, followed by other officers in descending order of status prefixed by the word \"through.\"). The style of address in general use for the submission of minutes through official channels is by placing the most senior officer's title first followed by other officers in descending 437 order of status prefixed by the word \"through\".",
+          "difficulty": "hard",
+          "chapter": "Objectives & Institutions - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "select",
+            "statement"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Objectives & Institutions",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_objectives_056",
+          "question": "According to established rules, which option aligns with the meaning of the correct way to address a minute or a file submission through official channels?",
+          "options": [
+            "The most senior officer's title first, followed by other officers in descending order of status prefixed by the word \"through.\"",
+            "The most junior officer's title first, followed by other officers in descending order of status.",
+            "There is no specific format; any order is acceptable.a.",
+            "The Permanent Secretary's title first, then everyone else."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (The most senior officer's title first, followed by other officers in descending order of status prefixed by the word \"through.\"). The style of address in general use for the submission of minutes through official channels is by placing the most senior officer's title first followed by other officers in descending order of status prefixed by the word \"through\".",
+          "difficulty": "easy",
+          "chapter": "Objectives & Institutions - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "aligns"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Objectives & Institutions",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_objectives_057",
+          "question": "Within government administration, select the statement that correctly defines the objective of the chairman arriving promptly at the venue and starting the meeting on time?",
+          "options": [
+            "To show he is more important than the members.",
+            "To finish the meeting as quickly as possible.",
+            "To encourage members to take the forum and its objectives seriously28.",
+            "To rush the members into making decisions"
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (To encourage members to take the forum and its objectives seriously28.). The chairman should make it a point of duty to arrive promptly at the venue, with the full intention of starting the meeting on time, as this will encourage the members to take the forum and its objectives seriously.",
+          "difficulty": "hard",
+          "chapter": "Objectives & Institutions - Expansion Set",
+          "keywords": [
+            "within",
+            "select",
+            "statement",
+            "correctly"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Objectives & Institutions",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_objectives_058",
+          "question": "According to established rules, responsibility for is the \"Officer Taking Over\" in the context of a handing-over note belongs to which role?",
+          "options": [
+            "The officer who is leaving the post.",
+            "The Permanent Secretary.3. 507",
+            "The head of the department.",
+            "The officer who is taking up the post."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (The officer who is taking up the post.). The Officer Taking Over is the person who is assuming the responsibilities of a post from a departing officer.",
+          "difficulty": "medium",
+          "chapter": "Objectives & Institutions - Expansion Set",
+          "keywords": [
+            "over",
+            "according",
+            "established",
+            "responsibility"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Objectives & Institutions",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_objectives_059",
+          "question": "In official practice, which option aligns with the meaning of the minimum amount for a receipt given for payment for goods supplied or services rendered to be liable to ₦50.00 Stamp Duty?",
+          "options": [
+            "₦1,000.00.",
+            "₦5,000.00.3",
+            "₦500.00.",
+            "₦50.00."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (₦1,000.00.). Financial Regulation 620(a)(i) states: \"Receipts given for payment for goods supplied or services rendered. If the amount is ₦1,000 or over a ₦50.00 stamp is demand in respect of each signature acknowledging an amount.\"",
+          "difficulty": "easy",
+          "chapter": "Objectives & Institutions - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "option",
+            "aligns"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Objectives & Institutions",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_objectives_060",
+          "question": "which option correctly addresses: What action must be taken when an incorrect entry is made on a receipt or licence?",
+          "options": [
+            "The issuing officer should be surcharged. □. 244",
+            "The receipt or licence must be cancelled and a new one completed.",
+            "The incorrect entry should be crossed out and corrected.",
+            "The receipt or licence should be filed as is."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (The receipt or licence must be cancelled and a new one completed.). Financial Regulation 1216 states, \"Whenever an incorrect entry is made on a receipt or licence, the receipt or licence must be cancelled and a new one completed.\"",
+          "difficulty": "easy",
+          "chapter": "Objectives & Institutions - Expansion Set",
+          "keywords": [
+            "option",
+            "correctly",
+            "addresses",
+            "action"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Objectives & Institutions",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_objectives_061",
+          "question": "Within government administration, which option best describes a core principle in the discharge of the Civil Service's functions?",
+          "options": [
+            "Subjectivity",
+            "Secrecy □.",
+            "Political partisanship",
+            "Responsiveness"
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Responsiveness). The principles in the discharge of the Civil Service's functions include accountability, responsiveness, courtesy, objectivity, impartiality, and upholding the public trust at all levels.",
+          "difficulty": "easy",
+          "chapter": "Objectives & Institutions - Expansion Set",
+          "keywords": [
+            "within",
+            "option",
+            "best",
+            "describes"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Objectives & Institutions",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_objectives_062",
+          "question": "In official practice, select the option that best answers: A public officer who does an act prohibited by the Code through a nominee, trustee, or other agent is deemed to have done what?",
+          "options": [
+            "Nothing, as they did not do it personally.",
+            "To have committed a breach of this Code.",
+            "To have acted lawfully.",
+            "To have fulfilled their duty.a."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (To have committed a breach of this Code.). A public officer who does any act prohibited by this Code through a nominee, trustee, or other agent must be deemed ipso facto to have committed a breach of this Code",
+          "difficulty": "easy",
+          "chapter": "Objectives & Institutions - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Objectives & Institutions",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_objectives_063",
+          "question": "According to established rules, select the option that best answers: Within government administration, which option explicitly mentioned as part of the Public Service, apart from the Civil Service?",
+          "options": [
+            "Armed Forces",
+            "Non-Governmental Organizations",
+            "Private Companies",
+            "Religious Institutions □"
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Armed Forces). (Armed Forces). Apart from the Civil Service, the Public Service also encompasses the Armed Forces, the Judiciary, the Legislature and the Police..",
+          "difficulty": "hard",
+          "chapter": "Objectives & Institutions - Expansion Set",
+          "keywords": [
+            "within",
+            "option",
+            "explicitly",
+            "mentioned"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Objectives & Institutions",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_objectives_064",
+          "question": "According to established rules, which option best describes the minimum number of years of service necessitate for an officer to be eligible for the post of Permanent Secretary?",
+          "options": [
+            "17 years",
+            "20 years",
+            "15 years",
+            "The document does not explicitly state a number of years. a"
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (The document does not explicitly state a number of years. a). Rule 020811 outlines the eligibility criteria for Permanent Secretaries but does not specify a minimum number of years of service",
+          "difficulty": "medium",
+          "chapter": "Objectives & Institutions - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Objectives & Institutions",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_objectives_065",
+          "question": "In the public service context, choose the best answer for: which option best describes considered a \"critical success factor\" for the government to achieve its objectives?",
+          "options": [
+            "A wealthy private sector.",
+            "A professional, competent, and result-oriented Civil Service.",
+            "A strong military.",
+            "A large population. □."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (A professional, competent, and result-oriented Civil Service.). (A professional, competent, and result-oriented Civil Service.). A professional, competent, and result-oriented Civil Service is a critical success factor for the government to realize its objectives.",
+          "difficulty": "easy",
+          "chapter": "Objectives & Institutions - Expansion Set",
+          "keywords": [
+            "option",
+            "best",
+            "describes",
+            "considered"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Objectives & Institutions",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_objectives_066",
+          "question": "select the option that best answers: According to established rules, accountability for is the \"Officer Taking Over\" in the context of a handing-over note belongs to which role?",
+          "options": [
+            "The head of the department.",
+            "The officer who is taking up the post.",
+            "The officer who is leaving the post.",
+            "The Permanent Secretary.3. 507"
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (The officer who is taking up the post.). (The officer who is taking up the post.). The Officer Taking Over is the person who is assuming the responsibilities of a post from a departing officer.",
+          "difficulty": "medium",
+          "chapter": "Objectives & Institutions - Expansion Set",
+          "keywords": [
+            "over",
+            "according",
+            "established",
+            "responsibility"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Objectives & Institutions",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_objectives_067",
+          "question": "Within government administration, select the option that best answers: According to established rules, choose the best answer for: A Civil Servant is advised to show loyalty to whom?",
+          "options": [
+            "The Head of the Civil Service.",
+            "The Permanent Secretary.",
+            "The Minister.",
+            "The government of the day. □. 425"
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (The government of the day. □. 425). (The government of the day. □. 425). The Civil Servant owes his loyalty to the government of the day.",
+          "difficulty": "easy",
+          "chapter": "Objectives & Institutions - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Objectives & Institutions",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_objectives_068",
+          "question": "According to established rules, choose the best answer for: What should officers try to avoid, as mentioned in the \"Irrelevance\" section?",
+          "options": [
+            "Having a grasp of the subject at issue.",
+            "Being too factual.a.",
+            "Being too brief.",
+            "Drifting away from the question being considered."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Drifting away from the question being considered.). Try to have a grasp of the subject at issue, and do not drift away from the question being considered.",
+          "difficulty": "hard",
+          "chapter": "Objectives & Institutions - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Objectives & Institutions",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_objectives_069",
+          "question": "which option correctly addresses: If a payment to a firm is in doubt due to loss of relevant documents and an initial investigation reveals no prior payment, what must the payee issue to indemnify the federal government against double payment?",
+          "options": [
+            "A sworn affidavit.",
+            "A new invoice.",
+            "A certificate of indemnity.",
+            "A bank statement. □ 206"
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (A certificate of indemnity.). Financial Regulation 618 states: \"...the payee must be made to issue a certificate of indemnity to indemnify the federal government against double disbursement should an earlier disbursement be established at a later date.\"",
+          "difficulty": "easy",
+          "chapter": "Objectives & Institutions - Expansion Set",
+          "keywords": [
+            "payment",
+            "option",
+            "correctly",
+            "addresses"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Objectives & Institutions",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_objectives_070",
+          "question": "Within government administration, which option aligns with the meaning of the chief objective of maintaining a departmental dishonored cheques register?",
+          "options": [
+            "To guarantee clearances are pursued and recoveries affected.",
+            "To provide a summary of daily bank transactions a.",
+            "To track bank charges.",
+            "To log all incoming and outgoing cheques."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (To guarantee clearances are pursued and recoveries affected.). Financial Regulation 733(ii) states: \"The register must be checked monthly by the Head of accounts to guarantee that clearances are pursued and recoveries effected.\" Part 2: Financial Regulations: Cash Book and Monthly Accounts",
+          "difficulty": "easy",
+          "chapter": "Objectives & Institutions - Expansion Set",
+          "keywords": [
+            "within",
+            "option",
+            "aligns",
+            "meaning"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Objectives & Institutions",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_objectives_071",
+          "question": "According to established rules, choose the best answer for: which option correctly addresses: What action must be taken when an incorrect entry is made on a receipt or licence?",
+          "options": [
+            "The receipt or licence must be cancelled and a new one completed.",
+            "The receipt or licence should be filed as is.",
+            "The issuing officer should be surcharged. □. 244",
+            "The incorrect entry should be crossed out and corrected."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (The receipt or licence must be cancelled and a new one completed.). (The receipt or licence must be cancelled and a new one completed.). Financial Regulation 1216 states, \"Whenever an incorrect entry is made on a receipt or licence, the receipt or licence must be cancelled and a new one completed.\"",
+          "difficulty": "easy",
+          "chapter": "Objectives & Institutions - Expansion Set",
+          "keywords": [
+            "option",
+            "correctly",
+            "addresses",
+            "action"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Objectives & Institutions",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_objectives_072",
+          "question": "According to established rules, select the option that best answers: Below the Permanent Secretary, who heads the Departments and is directly accountable to the Permanent Secretary?",
+          "options": [
+            "Assistant Directors",
+            "Deputy Directors",
+            "Chiefsa. 405",
+            "Directors"
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Directors). Below the Permanent Secretary are the other cadres of Civil Servants. Directors head the Departments and are directly in charge to the Permanent Secretary.",
+          "difficulty": "medium",
+          "chapter": "Objectives & Institutions - Expansion Set",
+          "keywords": [
+            "permanent",
+            "secretary",
+            "according",
+            "established"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Objectives & Institutions",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_objectives_073",
+          "question": "According to established rules, choose the best answer for: What does the principle of \"diligence\" demand from a Civil Servant?",
+          "options": [
+            "To only work during official hours.",
+            "To be a hardworking and conscientious officer who gives his best to the job. 427",
+            "To be lazy and apathetic.",
+            "To delegate all tasks to subordinates.Q."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (To be a hardworking and conscientious officer who gives his best to the job. 427). Every Civil Servant is expected to be a hardworking and conscientious officer who gives his best to the job",
+          "difficulty": "medium",
+          "chapter": "Objectives & Institutions - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Objectives & Institutions",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_objectives_074",
+          "question": "In the public service context, select the statement that correctly defines a key aim of the \"Official Secret Act\"?",
+          "options": [
+            "To allow for the free flow of information to the public.a.",
+            "To protect civil servants from prosecution.",
+            "To prevent the leaking of government secrets.",
+            "To encourage civil servants to share all government information."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (To prevent the leaking of government secrets.). The Official Secret Act is to prevent the leaking of government secrets to unauthorized persons.",
+          "difficulty": "hard",
+          "chapter": "Objectives & Institutions - Expansion Set",
+          "keywords": [
+            "context",
+            "select",
+            "statement",
+            "correctly"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Objectives & Institutions",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_objectives_075",
+          "question": "which office is necessitate to swear to the Oath of Secrecy?",
+          "options": [
+            "All new hires. Q.",
+            "Only the Permanent Secretary.",
+            "All civil servants.",
+            "Those who have access to classified information."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Those who have access to classified information.). Officers who have access to classified information should, as soon as possible, swear to the Oath of Secrecy.",
+          "difficulty": "medium",
+          "chapter": "Objectives & Institutions - Expansion Set",
+          "keywords": [
+            "office",
+            "necessitate",
+            "swear",
+            "oath"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Objectives & Institutions",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
         }
       ]
     },
@@ -3563,6 +4163,606 @@
           "sourceSection": "Bidding, Evaluation & Award",
           "year": 2007,
           "lastReviewed": "2026-03-03"
+        },
+        {
+          "id": "ppa_bid_051",
+          "question": "In official practice, which option correctly addresses: One of the limitations of the 1988 Civil Service Reforms was what?",
+          "options": [
+            "Absence of human resistance to change.",
+            "Adequate funding.",
+            "Strong commitment from top government functionaries.",
+            "Inadequate knowledge about the provisions of the Reforms.Q."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Inadequate knowledge about the provisions of the Reforms.Q.). One of the limitations was inadequate knowledge about the provisions of the Reforms on the part of many Civil Servants and top Government functionaries.",
+          "difficulty": "easy",
+          "chapter": "Bidding, Evaluation & Award - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "option",
+            "correctly"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Bidding, Evaluation & Award",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_bid_052",
+          "question": "According to established rules, choose the best answer for: What was a key limitation of the 1988 Civil Service Reforms?",
+          "options": [
+            "There was an absence of strong commitment from top government functionaries due to a misconception that it would erode their powers.",
+            "The reforms were too simple to be implemented.",
+            "There was too much funding for the reforms. Q.",
+            "The reforms were too popular with the public."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (There was an absence of strong commitment from top government functionaries due to a misconception that it would erode their powers.). There was an absence of strong commitment on the part of top Government functionaries to the implementation of the Reforms partly as a result of misconception that full implementation would erode their powers.",
+          "difficulty": "easy",
+          "chapter": "Bidding, Evaluation & Award - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Bidding, Evaluation & Award",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_bid_053",
+          "question": "According to established rules, choose the best answer for: A public officer who does an act prohibited by the Code through a nominee, trustee, or other agent is deemed to have done what?",
+          "options": [
+            "To have committed a breach of this Code.",
+            "Nothing, as they did not do it personally.",
+            "To have fulfilled their duty.a.",
+            "To have acted lawfully."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (To have committed a breach of this Code.). A public officer who does any act prohibited by this Code through a nominee, trustee, or other agent must be deemed ipso facto to have committed a breach of this Code",
+          "difficulty": "easy",
+          "chapter": "Bidding, Evaluation & Award - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Bidding, Evaluation & Award",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_bid_054",
+          "question": "which time frame a payee is illiterate, whose mark must be witnessed by a literate official other than the paying officer?",
+          "options": [
+            "The paying officer's mark.",
+            "No mark is necessitate. □",
+            "The illiterate payee's mark.",
+            "The literate official's mark."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (The illiterate payee's mark.). Financial Regulation 614 states: \"Where a payee is an illiterate, his or her mark must be witnessed by a literate official other than the paying officer.\" 205",
+          "difficulty": "easy",
+          "chapter": "Bidding, Evaluation & Award - Expansion Set",
+          "keywords": [
+            "time",
+            "frame",
+            "payee",
+            "illiterate"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Bidding, Evaluation & Award",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_bid_055",
+          "question": "Within government administration, select the statement that correctly defines the rule regarding the monthly check of contents in strong-rooms or safes?",
+          "options": [
+            "It is only demand if a discrepancy is suspected.3.",
+            "It should be done annually. 237",
+            "It should be done monthly by the officer in charge of the keys, who must initial and date the register.",
+            "It Is optional."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (It should be done monthly by the officer in charge of the keys, who must initial and date the register.). Financial Regulation 1122 states, \"The contents of strong-rooms or safes must be checked monthly by the officer in charge of the keys, who will initial and date the register.\"",
+          "difficulty": "easy",
+          "chapter": "Bidding, Evaluation & Award - Expansion Set",
+          "keywords": [
+            "within",
+            "select",
+            "statement",
+            "correctly"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Bidding, Evaluation & Award",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_bid_056",
+          "question": "In official practice, which option aligns with the meaning of the minimum number of members on a Board of Survey, according to FR 1802?",
+          "options": [
+            "One.",
+            "Two.",
+            "Four. □",
+            "Three."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Three.). Financial Regulation 1802 states that the Board must consist of at least three members.",
+          "difficulty": "easy",
+          "chapter": "Bidding, Evaluation & Award - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "option",
+            "aligns"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Bidding, Evaluation & Award",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_bid_057",
+          "question": "In official practice, which option best describes the importance of having \"Absent File cards\" and \"card slips\"?",
+          "options": [
+            "To keep a document of all staff.",
+            "To log official payments. □.",
+            "To track staff attendance.",
+            "To track the movement of files."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (To track the movement of files.). The correct use of Absent File cards and card slips is essential for tracking file movements",
+          "difficulty": "medium",
+          "chapter": "Bidding, Evaluation & Award - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Bidding, Evaluation & Award",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_bid_058",
+          "question": "In the public service context, which option correctly addresses: According to the handbook, what is the proper action if papers or documents come to you by mistake from members of staff or the general public?",
+          "options": [
+            "Find out the correct destination and take necessary directive as to re-routing it from your superior officers.",
+            "Take them to the wrong office.Q.",
+            "Keep them for yourself. 435",
+            "Throw them away."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Find out the correct destination and take necessary directive as to re-routing it from your superior officers.). Should papers or documents come to you by mistake from members of staff or the general public, you should find out the correct destination and take necessary directive as to re-routing it from your superior officers.",
+          "difficulty": "medium",
+          "chapter": "Bidding, Evaluation & Award - Expansion Set",
+          "keywords": [
+            "context",
+            "option",
+            "correctly",
+            "addresses"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Bidding, Evaluation & Award",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_bid_059",
+          "question": "According to established rules, which option aligns with the meaning of the role of an \"Absent File card\" or a \"card slip\"?",
+          "options": [
+            "To track staff attendance.",
+            "To track the movement of a file.",
+            "To log official meetings.a.",
+            "To document all payments."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (To track the movement of a file.). The correct use of Absent File cards and card slips is essential for tracking file movements, and ensuring that files are not misplaced.",
+          "difficulty": "hard",
+          "chapter": "Bidding, Evaluation & Award - Expansion Set",
+          "keywords": [
+            "card",
+            "according",
+            "established",
+            "option"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Bidding, Evaluation & Award",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_bid_060",
+          "question": "In official practice, select the statement that correctly defines the term for a set of official correspondence and documents on a particular subject matter?",
+          "options": [
+            "A note.",
+            "A memorandum. □.",
+            "A file.",
+            "A folder."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (A file.). A file is a collection of official correspondence and other documents on a particular subject matter.",
+          "difficulty": "medium",
+          "chapter": "Bidding, Evaluation & Award - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "select",
+            "statement"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Bidding, Evaluation & Award",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_bid_061",
+          "question": "In official practice, select the statement that correctly defines typically contained in a \"Personal File\"?",
+          "options": [
+            "The official history of a Ministry.a.",
+            "Documents on a particular subject matter.",
+            "Correspondence and documents relating to a particular staff member.",
+            "Financial records of a Ministry."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Correspondence and documents relating to a particular staff member.). Personal files are files that contain all correspondence and other documents relating to a particular staff member.",
+          "difficulty": "medium",
+          "chapter": "Bidding, Evaluation & Award - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "select",
+            "statement"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Bidding, Evaluation & Award",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_bid_062",
+          "question": "In official practice, select the statement that correctly defines the role of having separate \"Minutes\" and \"Correspondence\" sides in a file?",
+          "options": [
+            "To guarantee a clear distinction between the official notes of officers and the documents received or sent out.",
+            "To make the file easier to read",
+            "To make the file thicker.",
+            "To hide the minutes from the public."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (To guarantee a clear distinction between the official notes of officers and the documents received or sent out.). The minutes are separated from the correspondence to make a clear distinction between the official notes of officers and the actual documents.",
+          "difficulty": "medium",
+          "chapter": "Bidding, Evaluation & Award - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "select",
+            "statement"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Bidding, Evaluation & Award",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_bid_063",
+          "question": "Within government administration, select the statement that correctly defines a key role of a \"handing-over note\"?",
+          "options": [
+            "To detail the personal assets of the officer.",
+            "To provide a list of all official meetings.",
+            "To guarantee a smooth transition of responsibilities from one officer to another.",
+            "To document all the money spent by an officer. □."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (To guarantee a smooth transition of responsibilities from one officer to another.). The handing-over note is a detailed document that guarantee a smooth transition of responsibilities from one officer to another.",
+          "difficulty": "hard",
+          "chapter": "Bidding, Evaluation & Award - Expansion Set",
+          "keywords": [
+            "within",
+            "select",
+            "statement",
+            "correctly"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Bidding, Evaluation & Award",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_bid_064",
+          "question": "According to established rules, select the statement that correctly defines the role of a \"despatch book\"?",
+          "options": [
+            "To document all official meetings.",
+            "To document all outgoing mail.",
+            "To log all financial transactions. □.",
+            "To log all incoming mail."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (To document all outgoing mail.). A despatch book is used to log all outgoing mail from a department or Ministry.",
+          "difficulty": "medium",
+          "chapter": "Bidding, Evaluation & Award - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "select",
+            "statement"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Bidding, Evaluation & Award",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_bid_065",
+          "question": "In official practice, which option aligns with the meaning of the objective of a \"receipt book\"?",
+          "options": [
+            "To acknowledge the receipt of all official mail. □.",
+            "To document all outgoing mail.",
+            "To document all official meetings.",
+            "To log all incoming mail."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (To acknowledge the receipt of all official mail. □.). A receipt book is used to acknowledge the receipt of all official mail.",
+          "difficulty": "medium",
+          "chapter": "Bidding, Evaluation & Award - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "option",
+            "aligns"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Bidding, Evaluation & Award",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_bid_066",
+          "question": "In the public service context, which option best describes the role of a \"register of minutes\"?",
+          "options": [
+            "To list all the minutes written in a Ministry.",
+            "To document all financial transactions. □.",
+            "To document all official meetings.",
+            "To list all the staff in a Ministry."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (To list all the minutes written in a Ministry.). The register of minutes is a list of all the minutes written in a Ministry.",
+          "difficulty": "hard",
+          "chapter": "Bidding, Evaluation & Award - Expansion Set",
+          "keywords": [
+            "context",
+            "option",
+            "best",
+            "describes"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Bidding, Evaluation & Award",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_bid_067",
+          "question": "select the statement that correctly defines the objective of a \"register of correspondences\"?",
+          "options": [
+            "To list all the staff in a Ministry.",
+            "To document all financial transactions. □.",
+            "To list all the correspondences received and sent out by a Ministry.",
+            "To document all official meetings."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (To list all the correspondences received and sent out by a Ministry.). The register of correspondences is a list of all the correspondences received and sent out by a Ministry.",
+          "difficulty": "easy",
+          "chapter": "Bidding, Evaluation & Award - Expansion Set",
+          "keywords": [
+            "select",
+            "statement",
+            "correctly",
+            "defines"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Bidding, Evaluation & Award",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_bid_068",
+          "question": "which option best describes the objective of a \"handing-over note\"?",
+          "options": [
+            "To detail the projects, files, and responsibilities of a position for a successor.",
+            "To provide a list of all official meetings.",
+            "To document all the money spent by an officer. □.",
+            "To document the personal assets of an officer."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (To detail the projects, files, and responsibilities of a position for a successor.). The handing-over note is a detailed document that summarizes all the projects, files, and responsibilities that an officer is handing over to their successor. 465",
+          "difficulty": "medium",
+          "chapter": "Bidding, Evaluation & Award - Expansion Set",
+          "keywords": [
+            "option",
+            "best",
+            "describes",
+            "objective"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Bidding, Evaluation & Award",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_bid_069",
+          "question": "In the public service context, which option best describes the role of the secretary during the meeting?",
+          "options": [
+            "To act as the official recorder of all discussions, decisions, and action points.",
+            "To lead the discussions.",
+            "To provide all the answers.",
+            "To take charge of all financial matters.3."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (To act as the official recorder of all discussions, decisions, and action points.). The secretary is the official recorder of all discussions, decisions, and action points of the meeting.",
+          "difficulty": "medium",
+          "chapter": "Bidding, Evaluation & Award - Expansion Set",
+          "keywords": [
+            "context",
+            "option",
+            "best",
+            "describes"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Bidding, Evaluation & Award",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_bid_070",
+          "question": "which option aligns with the meaning of the aim of \"Minutes\" of a meeting?",
+          "options": [
+            "To document the personal lives of the members.a.",
+            "To provide a brief summary of the chairman's opinions.",
+            "To provide a list of all members who attended.",
+            "To serve as the official document of the proceedings and decisions of a meeting."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (To serve as the official document of the proceedings and decisions of a meeting.). The Minutes are the official log of the proceedings and decisions of a meeting. 475",
+          "difficulty": "easy",
+          "chapter": "Bidding, Evaluation & Award - Expansion Set",
+          "keywords": [
+            "option",
+            "aligns",
+            "meaning",
+            "minutes"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Bidding, Evaluation & Award",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_bid_071",
+          "question": "Within government administration, select the statement that correctly defines the objective of a \"handing-over note\"?",
+          "options": [
+            "To detail the projects, files, and responsibilities of a position for a successor.",
+            "To document all the money spent by an officer. □.",
+            "To provide a list of all official meetings.",
+            "To log the personal assets of an officer."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (To detail the projects, files, and responsibilities of a position for a successor.). A handing-over note is a detailed document that summarizes all the projects, files, and responsibilities that an officer is handing over to their successor.",
+          "difficulty": "easy",
+          "chapter": "Bidding, Evaluation & Award - Expansion Set",
+          "keywords": [
+            "within",
+            "select",
+            "statement",
+            "correctly"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Bidding, Evaluation & Award",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_bid_072",
+          "question": "In official practice, choose the best answer for: The style of address for submitting minutes through official channels is to place the most senior officer's title first, followed by other officers in descending order of status prefixed by what word?",
+          "options": [
+            "\"Through\"109.",
+            "\"To\" □.",
+            "\"For the attention of",
+            "\"Copy to\""
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (\"Through\"109.). The style of address in general use for the submission of minutes through official channels is by placing the most senior officer's title first followed by other officers in descending order of status prefixed by the word \"through\".",
+          "difficulty": "medium",
+          "chapter": "Bidding, Evaluation & Award - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Bidding, Evaluation & Award",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_bid_073",
+          "question": "In official practice, select the option that best answers: The requirement for using **Standard Bidding Documents (SBDs)** (**Section 25**) aims to enhance which principles?",
+          "options": [
+            "Sole sourcing and expediency.",
+            "Complexity and expense.",
+            "Political alignment and seniority.",
+            "Standardization and equal treatment of bidders."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Standardization and equal treatment of bidders.).",
+          "difficulty": "easy",
+          "chapter": "Bidding, Evaluation & Award - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Bidding, Evaluation & Award",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_bid_074",
+          "question": "According to established rules, which option correctly addresses: If a bid security expires during the evaluation procedure, what is the demand administrative action?",
+          "options": [
+            "The MDA must request the bidder to extend the validity period.",
+            "The MDA must notify the FEC.",
+            "The bidder must be automatically disqualified.",
+            "The MDA must award the contract immediately."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (The MDA must request the bidder to extend the validity period.).",
+          "difficulty": "medium",
+          "chapter": "Bidding, Evaluation & Award - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "correctly"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Bidding, Evaluation & Award",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_bid_075",
+          "question": "which option correctly addresses: Which section demand procuring entities to use standard bidding documents containing clear specifications and criteria?",
+          "options": [
+            "Section 26.",
+            "Section 24.",
+            "Section 27.",
+            "Section 25."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Section 25.).",
+          "difficulty": "hard",
+          "chapter": "Bidding, Evaluation & Award - Expansion Set",
+          "keywords": [
+            "option",
+            "correctly",
+            "addresses",
+            "section"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Bidding, Evaluation & Award",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
         }
       ]
     },
@@ -5347,6 +6547,606 @@
           "sourceSection": "Transparency, Ethics & Accountability",
           "year": 2007,
           "lastReviewed": "2026-03-03"
+        },
+        {
+          "id": "ppa_ethic_050",
+          "question": "Within government administration, which option best describes the term for a specific, objectively assessable, non-personality based, academic or factual concept?",
+          "options": [
+            "A skill",
+            "A regulation Q",
+            "A principle",
+            "A concept"
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (A concept). This is a meta-question about the nature of the quiz material. A \"concept\" is the term for an educational topic, which is what is being quizzed on.",
+          "difficulty": "medium",
+          "chapter": "Transparency, Ethics & Accountability - Expansion Set",
+          "keywords": [
+            "within",
+            "option",
+            "best",
+            "describes"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Transparency, Ethics & Accountability",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_ethic_051",
+          "question": "In the public service context, which option best describes a key objective of the \"Official Secret Act\"?",
+          "options": [
+            "To protect civil servants from prosecution.",
+            "To prevent the leaking of government secrets.",
+            "To encourage civil servants to share all government information.",
+            "To allow for the free flow of information to the public.a."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (To prevent the leaking of government secrets.). The Official Secret Act is to prevent the leaking of government secrets to unauthorized persons.",
+          "difficulty": "medium",
+          "chapter": "Transparency, Ethics & Accountability - Expansion Set",
+          "keywords": [
+            "context",
+            "option",
+            "best",
+            "describes"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Transparency, Ethics & Accountability",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_ethic_052",
+          "question": "which option correctly addresses: Government communication is described as having its own what?",
+          "options": [
+            "Rules, regulations, and laws.",
+            "Staff, policies, and procedures.a.",
+            "Culture, methods, and practices.",
+            "Language, culture, and practices."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Culture, methods, and practices.). Government is a very large organization with its own culture, methods and practices.",
+          "difficulty": "medium",
+          "chapter": "Transparency, Ethics & Accountability - Expansion Set",
+          "keywords": [
+            "option",
+            "correctly",
+            "addresses",
+            "communication"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Transparency, Ethics & Accountability",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_ethic_053",
+          "question": "According to established rules, select the statement that correctly defines the objective of having separate \"Minutes\" and \"Correspondence\" sides in a file?",
+          "options": [
+            "To hide the minutes from the public.",
+            "To secure a clear distinction between the official notes of officers and the documents received or sent out.",
+            "To make the file easier to read",
+            "To make the file thicker."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (To secure a clear distinction between the official notes of officers and the documents received or sent out.). The minutes are separated from the correspondence to make a clear distinction between the official notes of officers and the actual documents.",
+          "difficulty": "easy",
+          "chapter": "Transparency, Ethics & Accountability - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "select",
+            "statement"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Transparency, Ethics & Accountability",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_ethic_054",
+          "question": "In the public service context, which option best describes the aim of an \"official gazette\"?",
+          "options": [
+            "To publish all official government notices and announcements.",
+            "To publish a list of all civil servants. Q.",
+            "To publish the minutes of official meetings. 456",
+            "To publish the personal assets of public officers."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (To publish all official government notices and announcements.). An official gazette is a publication of the government that contains all official notices and announcements.",
+          "difficulty": "hard",
+          "chapter": "Transparency, Ethics & Accountability - Expansion Set",
+          "keywords": [
+            "context",
+            "option",
+            "best",
+            "describes"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Transparency, Ethics & Accountability",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_ethic_055",
+          "question": "which option aligns with the meaning of the objective of a \"register of minutes\"?",
+          "options": [
+            "To list all the staff in a Ministry.",
+            "To log all official meetings.",
+            "To log all financial transactions. □.",
+            "To list all the minutes written in a Ministry."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (To list all the minutes written in a Ministry.). The register of minutes is a list of all the minutes written in a Ministry.",
+          "difficulty": "medium",
+          "chapter": "Transparency, Ethics & Accountability - Expansion Set",
+          "keywords": [
+            "option",
+            "aligns",
+            "meaning",
+            "objective"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Transparency, Ethics & Accountability",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_ethic_056",
+          "question": "In official practice, which option aligns with the meaning of the objective of an \"official gazette\"?",
+          "options": [
+            "To publish the personal assets of public officers.",
+            "To publish a list of all civil servants. □.",
+            "To publish all official government notices and announcements.",
+            "To publish the minutes of official meetings."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (To publish all official government notices and announcements.). An official gazette is a publication of the government that contains all official notices and announcements.",
+          "difficulty": "easy",
+          "chapter": "Transparency, Ethics & Accountability - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "option",
+            "aligns"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Transparency, Ethics & Accountability",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_ethic_057",
+          "question": "In the public service context, select the statement that correctly defines the most fundamental demand on an officer chairing a meeting?",
+          "options": [
+            "To take notes and prepare the minutes.a.",
+            "To be the most senior officer in the room.",
+            "To guarantee everyone is paid for their attendance.",
+            "To understand the objective of the gathering."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (To understand the objective of the gathering.). The most fundamental demand on the Chairman of a meeting is to understand the role of the gathering.",
+          "difficulty": "easy",
+          "chapter": "Transparency, Ethics & Accountability - Expansion Set",
+          "keywords": [
+            "context",
+            "select",
+            "statement",
+            "correctly"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Transparency, Ethics & Accountability",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_ethic_058",
+          "question": "In the public service context, which option best describes the chairman's role regarding the minutes of the meeting?",
+          "options": [
+            "He should tell the Secretariat to keep the minutes secret.",
+            "He should direct the Secretariat as to the time for the production and circulation of the minutes46.",
+            "He should not be concerned with the minutes. □",
+            "He should write them himself."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (He should direct the Secretariat as to the time for the production and circulation of the minutes46.). He should direct the Secretariat as to the time for the production and circulation of the minutes of the meeting.",
+          "difficulty": "hard",
+          "chapter": "Transparency, Ethics & Accountability - Expansion Set",
+          "keywords": [
+            "context",
+            "option",
+            "best",
+            "describes"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Transparency, Ethics & Accountability",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_ethic_059",
+          "question": "According to established rules, select the option that best answers: The servicing of a meeting incorporates all requisite activities from what point in time?",
+          "options": [
+            "From the moment the meeting is announced. 473",
+            "From the moment the chairman walks into the room.",
+            "From the time an officer is designated as the Secretary to the time the forum rises and essential follow-up actions are completed.",
+            "From the moment the minutes are circulated.Q"
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (From the time an officer is designated as the Secretary to the time the forum rises and essential follow-up actions are completed.). The servicing of a typical meeting will incorporate all requisite activities from the time an officer is designated as the Secretary to the time the forum rises and essential follow-up actions are completed.",
+          "difficulty": "medium",
+          "chapter": "Transparency, Ethics & Accountability - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Transparency, Ethics & Accountability",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_ethic_060",
+          "question": "select the statement that correctly defines the role of \"Minutes\" of a meeting?",
+          "options": [
+            "To serve as the official document of the proceedings and decisions of a meeting.",
+            "To provide a list of all members who attended.",
+            "To document the personal lives of the members.a.",
+            "To provide a brief summary of the chairman's opinions."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (To serve as the official document of the proceedings and decisions of a meeting.). The Minutes are the official log of the proceedings and decisions of a meeting. 475",
+          "difficulty": "easy",
+          "chapter": "Transparency, Ethics & Accountability - Expansion Set",
+          "keywords": [
+            "select",
+            "statement",
+            "correctly",
+            "defines"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Transparency, Ethics & Accountability",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_ethic_061",
+          "question": "In official practice, select the option that best answers: The minutes must be written and circulated to all members as soon as possible after the meeting. What is the reason for this?",
+          "options": [
+            "To secure that the decisions are fresh in the minds of the members.",
+            "To prevent the members from forgetting what was discussed.",
+            "To make the meeting look more important.3.",
+            "To show that the secretary is a fast writer."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (To secure that the decisions are fresh in the minds of the members.). The minutes should be circulated as soon as possible after the meeting to guarantee that the decisions are fresh in the minds of the members.",
+          "difficulty": "medium",
+          "chapter": "Transparency, Ethics & Accountability - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Transparency, Ethics & Accountability",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_ethic_062",
+          "question": "In the public service context, select the statement that correctly defines the role of having a \"Matter Arising\" section in the minutes of a meeting?",
+          "options": [
+            "To review the decisions and actions taken from the previous meeting82.",
+            "To debate old decisions.3.",
+            "To discuss new business.",
+            "To discuss personal issues."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (To review the decisions and actions taken from the previous meeting82.). The \"Matters Arising\" section is used to review the decisions and actions taken from the previous meeting.",
+          "difficulty": "medium",
+          "chapter": "Transparency, Ethics & Accountability - Expansion Set",
+          "keywords": [
+            "context",
+            "select",
+            "statement",
+            "correctly"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Transparency, Ethics & Accountability",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_ethic_063",
+          "question": "In official practice, select the statement that correctly defines the objective of the \"Action Points\" section in the minutes of a meeting?",
+          "options": [
+            "To list the topics that were not discussed. □.",
+            "To list the names of the people who spoke the most.",
+            "To list the people who are accountable for taking action, what the action is, and the timeframe for completion85.",
+            "To list the names of the members who attended."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (To list the people who are accountable for taking action, what the action is, and the timeframe for completion85.). The \"Action Points\" section lists the people who are in charge for taking action, what the action is, and the timeframe for completion.",
+          "difficulty": "easy",
+          "chapter": "Transparency, Ethics & Accountability - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "select",
+            "statement"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Transparency, Ethics & Accountability",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_ethic_064",
+          "question": "In official practice, select the option that best answers: The style of address for submitting minutes through official channels is to place the most senior officer's title first, followed by other officers in descending order of status prefixed by what word?",
+          "options": [
+            "\"To\" □.",
+            "\"Through\"109.",
+            "\"For the attention of",
+            "\"Copy to\""
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (\"Through\"109.). The style of address in general use for the submission of minutes through official channels is by placing the most senior officer's title first followed by other officers in descending order of status prefixed by the word \"through\".",
+          "difficulty": "hard",
+          "chapter": "Transparency, Ethics & Accountability - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Transparency, Ethics & Accountability",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_ethic_065",
+          "question": "Within government administration, which option best describes the most fundamental demand on an officer chairing a meeting?",
+          "options": [
+            "To guarantee everyone is paid for their attendance.",
+            "To be the most senior officer in the room.",
+            "To take notes and prepare the minutes. Q.",
+            "To understand the objective of the gathering."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (To understand the objective of the gathering.). The most fundamental demand on the Chairman of a meeting is to understand the aim of the gathering.",
+          "difficulty": "easy",
+          "chapter": "Transparency, Ethics & Accountability - Expansion Set",
+          "keywords": [
+            "within",
+            "option",
+            "best",
+            "describes"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Transparency, Ethics & Accountability",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_ethic_066",
+          "question": "which option best describes the aim of the \"Action Points\" section in the minutes of a meeting? 482?",
+          "options": [
+            "To list the people who are accountable for taking action, what the action is, and the timeframe for completion156.",
+            "To list the topics that were not discussed. □.",
+            "To list the names of the members who attended.",
+            "To list the names of the people who spoke the most."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (To list the people who are accountable for taking action, what the action is, and the timeframe for completion156.). The \"Action Points\" section lists the people who are accountable for taking action, what the action is, and the timeframe for completion.",
+          "difficulty": "medium",
+          "chapter": "Transparency, Ethics & Accountability - Expansion Set",
+          "keywords": [
+            "option",
+            "best",
+            "describes",
+            "action"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Transparency, Ethics & Accountability",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_ethic_067",
+          "question": "According to established rules, select the option that best answers: What should typed drafts of minutes, briefs, and letters have?",
+          "options": [
+            "Only the date.",
+            "Random numbers.",
+            "Headings which give an idea of the matter in the drafts.",
+            "The name of the typist.a."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Headings which give an idea of the matter in the drafts.). Typed drafts of minutes, briefs, letters, etc. should have headings which give an idea of the matter in the drafts.",
+          "difficulty": "medium",
+          "chapter": "Transparency, Ethics & Accountability - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Transparency, Ethics & Accountability",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_ethic_068",
+          "question": "In official practice, which time frame is it advisable to type short drafts or minutes if one's handwriting is not legible?",
+          "options": [
+            "Always.",
+            "Only for senior officers.a.",
+            "Unless you can write legibly.",
+            "Never."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Unless you can write legibly.). Unless you can write legibly, it is advisable to type short drafts or minutes.",
+          "difficulty": "hard",
+          "chapter": "Transparency, Ethics & Accountability - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "time",
+            "frame"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Transparency, Ethics & Accountability",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_ethic_069",
+          "question": "According to established rules, which option correctly addresses: What should be done if one's handwriting is not easily readable for minutes or drafts covering more than half of an A4 page?",
+          "options": [
+            "They should be typewritten.",
+            "Write them by hand anyway.",
+            "They should be sent back to the sender.a.",
+            "They should be discarded."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (They should be typewritten.). Unless one’s hand writing is easily readable, all minutes or drafts covering more than half of an A4 page should be typewritten.",
+          "difficulty": "easy",
+          "chapter": "Transparency, Ethics & Accountability - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "correctly"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Transparency, Ethics & Accountability",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_ethic_070",
+          "question": "Within government administration, select the statement that correctly defines \"File Notes\"?",
+          "options": [
+            "Formal reports.",
+            "A simple form of making a quick written log of something that has happened.",
+            "Personal reminders.",
+            "Meeting minutes. □."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (A simple form of making a quick written log of something that has happened.). File Notes are a simple form of making a quick written document of something that has happened.",
+          "difficulty": "medium",
+          "chapter": "Transparency, Ethics & Accountability - Expansion Set",
+          "keywords": [
+            "within",
+            "select",
+            "statement",
+            "correctly"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Transparency, Ethics & Accountability",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_ethic_071",
+          "question": "According to established rules, which option best describes the role of the Duplicate Note-Book System for recording file transmissions?",
+          "options": [
+            "To write meeting minutes. □.",
+            "To keep track of personal notes.",
+            "To log the file number, date, and destination whenever an officer sends out a file.",
+            "To create duplicate files."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (To log the file number, date, and destination whenever an officer sends out a file.). Some officers still use the duplicate note-book system for recording transmission of files whereby whenever an officer sends out a file, his Clerk records its number, date and destination in a duplicate note-book.",
+          "difficulty": "hard",
+          "chapter": "Transparency, Ethics & Accountability - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Transparency, Ethics & Accountability",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_ethic_072",
+          "question": "Within government administration, select the option that best answers: Within government administration, which option best describes \"File Notes\"?",
+          "options": [
+            "Meeting minutes. □.",
+            "Personal reminders.",
+            "A simple form of making a quick written document of something that has happened.",
+            "Formal reports."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (A simple form of making a quick written document of something that has happened.). (A simple form of making a quick written document of something that has happened.). File Notes are a simple form of making a quick written document of something that has happened.",
+          "difficulty": "easy",
+          "chapter": "Transparency, Ethics & Accountability - Expansion Set",
+          "keywords": [
+            "within",
+            "option",
+            "best",
+            "describes"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Transparency, Ethics & Accountability",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_ethic_073",
+          "question": "Within government administration, which option aligns with the meaning of the style of address for submitting minutes through official channels?",
+          "options": [
+            "By placing the most senior officer's title last.",
+            "By not using any titles. □.. 502",
+            "By placing the most junior officer's title first.",
+            "By placing the most senior officer's title first followed by others in descending order of status prefixed by \"through\"."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (By placing the most senior officer's title first followed by others in descending order of status prefixed by \"through\".). The style of address in general use for the submission of minutes through official channels is by placing the most senior officer’s title first followed by other officers in descending order of status prefixed by the word “through”.",
+          "difficulty": "medium",
+          "chapter": "Transparency, Ethics & Accountability - Expansion Set",
+          "keywords": [
+            "within",
+            "option",
+            "aligns",
+            "meaning"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Transparency, Ethics & Accountability",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_ethic_074",
+          "question": "In official practice, which option aligns with the meaning of the objective of the \"Duplicate Note-Book System\"?",
+          "options": [
+            "To log the file number, date, and destination whenever an officer sends out a file.",
+            "To write meeting minutes.a.",
+            "To create duplicate files.",
+            "To keep track of personal notes."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (To log the file number, date, and destination whenever an officer sends out a file.). Some officers still use the duplicate note-book system for recording transmission of files whereby whenever an officer sends out a file, his Clerk records its number, date and destination in a duplicate note-book.",
+          "difficulty": "easy",
+          "chapter": "Transparency, Ethics & Accountability - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "option",
+            "aligns"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Transparency, Ethics & Accountability",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
         }
       ]
     },
@@ -7128,6 +8928,606 @@
           "sourceSection": "Eligibility, Consultants & Budgeting",
           "year": 2007,
           "lastReviewed": "2026-03-03"
+        },
+        {
+          "id": "ppa_elb_051",
+          "question": "which option correctly addresses: In a Secret Registry, what is typically kept?",
+          "options": [
+            "Only public records. □.",
+            "Only highly classified subject files.",
+            "All files, regardless of classification.",
+            "Only personal files of staff."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Only highly classified subject files.). Where the registry is split into two, only highly classified subject files are kept in the Secret Registry whilst the Confidential Registry keeps the confidential personal files of the staff.",
+          "difficulty": "easy",
+          "chapter": "Eligibility, Consultants & Budgeting - Expansion Set",
+          "keywords": [
+            "option",
+            "correctly",
+            "addresses",
+            "secret"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Eligibility, Consultants & Budgeting",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_elb_052",
+          "question": "In official practice, which option best describes the objective of having a \"confidential\" classification for a document?",
+          "options": [
+            "To make it a permanent document.a. The \"confidential\" classification is used to protect information that could be harmful if disclosed.",
+            "To make it difficult to access.",
+            "To hide its contents from other Ministries.",
+            "To protect information that could be harmful if disclosed."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (To protect information that could be harmful if disclosed.).",
+          "difficulty": "medium",
+          "chapter": "Eligibility, Consultants & Budgeting - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Eligibility, Consultants & Budgeting",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_elb_053",
+          "question": "In the public service context, which option aligns with the meaning of the aim of having a \"confidential\" classification for a document?",
+          "options": [
+            "To protect information that could be harmful if disclosed.",
+            "To make it difficult to access.",
+            "To make it a permanent document. □. 479",
+            "To hide its contents from other Ministries."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (To protect information that could be harmful if disclosed.). Although not directly stated in the provided text for this chapter, this is a standard concept of document classification, and the document itself mentions the Oath of Secrecy and the \"unauthorized disclosure of any information acquired in the course of their duties\" as a serious offense, suggesting the need for confidentiality",
+          "difficulty": "hard",
+          "chapter": "Eligibility, Consultants & Budgeting - Expansion Set",
+          "keywords": [
+            "context",
+            "option",
+            "aligns",
+            "meaning"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Eligibility, Consultants & Budgeting",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_elb_054",
+          "question": "which option aligns with the meaning of the role of having a \"confidential\" classification for a document?",
+          "options": [
+            "To make it difficult to access.",
+            "To hide its contents from other Ministries.",
+            "To make it a permanent log. 500 Q.",
+            "To protect information that could be harmful if disclosed."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (To protect information that could be harmful if disclosed.). This is a standard concept of document classification. Although not explicitly stated in this chapter, the concepts of the Official Secret Act and the Oath of Secrecy imply the necessity of protecting confidential information.",
+          "difficulty": "easy",
+          "chapter": "Eligibility, Consultants & Budgeting - Expansion Set",
+          "keywords": [
+            "option",
+            "aligns",
+            "meaning",
+            "role"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Eligibility, Consultants & Budgeting",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_elb_055",
+          "question": "Within government administration, select the option that best answers: Which option most strongly aligns with good public-service practice on bid evaluation within Eligibility, Consultants & Budgeting?",
+          "options": [
+            "Apply rules inconsistently based on personal preference.",
+            "Apply published criteria consistently to all responsive bids.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Bypass review and approval controls to save time."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Apply published criteria consistently to all responsive bids.).",
+          "difficulty": "hard",
+          "chapter": "Eligibility, Consultants & Budgeting - Expansion Set",
+          "keywords": [
+            "within",
+            "option",
+            "select",
+            "best"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Eligibility, Consultants & Budgeting",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_elb_056",
+          "question": "select the option that best answers: The **MDA**’s Procurement Planning Committee (PPC) guarantee procurement items are correctly classified as Goods, Works, or Services, as demand by:?",
+          "options": [
+            "The PSR.",
+            "The FCSC.",
+            "The PPA.",
+            "The OHCSF."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (The PPA.).",
+          "difficulty": "easy",
+          "chapter": "Eligibility, Consultants & Budgeting - Expansion Set",
+          "keywords": [
+            "procurement",
+            "select",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Eligibility, Consultants & Budgeting",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_elb_057",
+          "question": "In the public service context, choose the option that documents is demand by the **PPA** to verify a bidder’s eligibility regarding their employment history and workforce integrity?",
+          "options": [
+            "Valid Pension Clearance Certificate (PenCom).",
+            "Drivers License.",
+            "Certificate of Incumbency.",
+            "Marriage Certificate."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Valid Pension Clearance Certificate (PenCom).).",
+          "difficulty": "medium",
+          "chapter": "Eligibility, Consultants & Budgeting - Expansion Set",
+          "keywords": [
+            "context",
+            "choose",
+            "option",
+            "documents"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Eligibility, Consultants & Budgeting",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_elb_058",
+          "question": "In official practice, choose the best answer for: For a simple or standard consultancy assignment where technical qualifications are similar, which selection method might be preferred to emphasize efficiency?",
+          "options": [
+            "Single Source Selection.",
+            "Quality-Based Selection (QBS).",
+            "QCBS.",
+            "Least Cost Selection (LCS)."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Least Cost Selection (LCS).).",
+          "difficulty": "easy",
+          "chapter": "Eligibility, Consultants & Budgeting - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Eligibility, Consultants & Budgeting",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_elb_059",
+          "question": "According to established rules, select the option that best answers: If a consulting firm fails to provide evidence of fulfilling its tax obligations (TCC), the firm must be:?",
+          "options": [
+            "Awarded the contract based on technical score.",
+            "Subject to negotiation.",
+            "Excluded from further evaluation.",
+            "Given preferential treatment."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Excluded from further evaluation.).",
+          "difficulty": "medium",
+          "chapter": "Eligibility, Consultants & Budgeting - Expansion Set",
+          "keywords": [
+            "firm",
+            "according",
+            "established",
+            "select"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Eligibility, Consultants & Budgeting",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_elb_060",
+          "question": "In official practice, select the option that best answers: What must the Accounting Officer secure regarding contractors who are debarred or blacklisted by the BPP?",
+          "options": [
+            "They are only excluded from works contracts.",
+            "They are automatically excluded from all tenders.",
+            "They are still eligible for small contracts.",
+            "They receive preferential treatment."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (They are automatically excluded from all tenders.).",
+          "difficulty": "hard",
+          "chapter": "Eligibility, Consultants & Budgeting - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Eligibility, Consultants & Budgeting",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_elb_061",
+          "question": "In official practice, choose the best answer for: In the context of Eligibility, Consultants & Budgeting, which action best demonstrates citizen-focused service?",
+          "options": [
+            "Balance legality, fairness, timeliness, and service quality.",
+            "Rely on informal instructions without documentary evidence.",
+            "Treat exceptions as routine without documented justification.",
+            "Delay decisions until issues escalate into avoidable crises."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Balance legality, fairness, timeliness, and service quality.).",
+          "difficulty": "medium",
+          "chapter": "Eligibility, Consultants & Budgeting - Expansion Set",
+          "keywords": [
+            "best",
+            "official",
+            "practice",
+            "choose"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Eligibility, Consultants & Budgeting",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_elb_062",
+          "question": "According to established rules, which option correctly addresses: If an **MDA**'s Procurement Plan demand a major Virement (change of budget allocation) for a project, the **MDA** must seek approval from:?",
+          "options": [
+            "The appropriate authority designated to approve that level of expenditure (e.g., NASS).",
+            "In procurement practice, the bidding consultant in approve evaluation workflow.",
+            "Within public procurement workflow, the foreign affairs minister under due workflow safeguards.",
+            "Operationally, the central bank of nigeria under established controls."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (The appropriate authority designated to approve that level of expenditure (e.g., NASS).).",
+          "difficulty": "medium",
+          "chapter": "Eligibility, Consultants & Budgeting - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "option",
+            "correctly"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Eligibility, Consultants & Budgeting",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_elb_063",
+          "question": "In the public service context, select the option that best answers: For effective eligibility, consultants & budgeting, what is the most appropriate approach to guarantee procurement ethics?",
+          "options": [
+            "Ignore feedback and continue non-compliant procedures.",
+            "Prevent collusion, favoritism, and conflict of interest.",
+            "Apply rules inconsistently based on personal preference.",
+            "Bypass review and approval controls to save time."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Prevent collusion, favoritism, and conflict of interest.).",
+          "difficulty": "easy",
+          "chapter": "Eligibility, Consultants & Budgeting - Expansion Set",
+          "keywords": [
+            "context",
+            "select",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Eligibility, Consultants & Budgeting",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_elb_064",
+          "question": "Within government administration, select the option that best answers: Before any financial commitment (like issuing an LPO) related to procurement is made, what document must be checked to confirm fund availability in the relevant subhead?",
+          "options": [
+            "The Vote Book (Expenditure Ledger).",
+            "The Final Audit Report.",
+            "The General Ledger.",
+            "The payment Slip Register."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (The Vote Book (Expenditure Ledger).).",
+          "difficulty": "easy",
+          "chapter": "Eligibility, Consultants & Budgeting - Expansion Set",
+          "keywords": [
+            "within",
+            "select",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Eligibility, Consultants & Budgeting",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_elb_065",
+          "question": "Within government administration, at what point handling eligibility, consultants & budgeting, which choice reflects proper open competition standards?",
+          "options": [
+            "Use competitive procurement methods except where lawful exceptions apply.",
+            "Close cases without validating facts or demand records.",
+            "Treat exceptions as routine without documented justification.",
+            "Rely on informal instructions without documentary evidence."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Use competitive procurement methods except where lawful exceptions apply.).",
+          "difficulty": "hard",
+          "chapter": "Eligibility, Consultants & Budgeting - Expansion Set",
+          "keywords": [
+            "within",
+            "point",
+            "handling",
+            "eligibility"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Eligibility, Consultants & Budgeting",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_elb_066",
+          "question": "select the statement that correctly defines the significance of the technical proposal submission for consulting services?",
+          "options": [
+            "It guarantees automatic contract award.",
+            "It is graded first to guarantee competence before financial proposals are opened.",
+            "It is used only for price comparison.",
+            "It is discarded if the price is too high."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (It is graded first to guarantee competence before financial proposals are opened.).",
+          "difficulty": "easy",
+          "chapter": "Eligibility, Consultants & Budgeting - Expansion Set",
+          "keywords": [
+            "select",
+            "statement",
+            "correctly",
+            "defines"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Eligibility, Consultants & Budgeting",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_elb_067",
+          "question": "In official practice, choose the best answer for: For effective eligibility, consultants & budgeting, what is the most appropriate approach to guarantee service integrity?",
+          "options": [
+            "Rely on informal instructions without documentary evidence.",
+            "Close cases without validating facts or necessitate records.",
+            "Avoid conflicts of interest and disclose relevant constraints.",
+            "Treat exceptions as routine without documented justification."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Avoid conflicts of interest and disclose relevant constraints.).",
+          "difficulty": "medium",
+          "chapter": "Eligibility, Consultants & Budgeting - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Eligibility, Consultants & Budgeting",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_elb_068",
+          "question": "In the public service context, which option correctly addresses: In the context of Eligibility, Consultants & Budgeting, which action best demonstrates contract governance?",
+          "options": [
+            "Delay decisions until issues escalate into avoidable crises.",
+            "Monitor delivery milestones and enforce contract obligations.",
+            "Rely on informal instructions without documentary evidence.",
+            "Close cases without validating facts or demand records."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Monitor delivery milestones and enforce contract obligations.).",
+          "difficulty": "easy",
+          "chapter": "Eligibility, Consultants & Budgeting - Expansion Set",
+          "keywords": [
+            "context",
+            "option",
+            "correctly",
+            "addresses"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Eligibility, Consultants & Budgeting",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_elb_069",
+          "question": "Within government administration, select the option that best answers: Which option most strongly aligns with good public-service practice on regulatory compliance within Eligibility, Consultants & Budgeting?",
+          "options": [
+            "Treat exceptions as routine without documented justification.",
+            "Rely on informal instructions without documentary evidence.",
+            "Obtain necessitate approvals before award and contract execution.",
+            "Delay decisions until issues escalate into avoidable crises."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Obtain necessitate approvals before award and contract execution.).",
+          "difficulty": "easy",
+          "chapter": "Eligibility, Consultants & Budgeting - Expansion Set",
+          "keywords": [
+            "within",
+            "option",
+            "select",
+            "best"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Eligibility, Consultants & Budgeting",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_elb_070",
+          "question": "Within government administration, which time frame procuring consulting services, the evaluation should place the highest weight on?",
+          "options": [
+            "The number of staff employed.",
+            "The lowest possible fee.",
+            "The firm’s political connections.",
+            "The technical quality, methodology, and key personnel."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (The technical quality, methodology, and key personnel.).",
+          "difficulty": "medium",
+          "chapter": "Eligibility, Consultants & Budgeting - Expansion Set",
+          "keywords": [
+            "within",
+            "time",
+            "frame",
+            "procuring"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Eligibility, Consultants & Budgeting",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_elb_071",
+          "question": "which option correctly addresses: In the context of Eligibility, Consultants & Budgeting, which action best demonstrates eligibility, consultants & budgeting risk management?",
+          "options": [
+            "Identify control gaps early and escalate material exceptions promptly.",
+            "Apply rules inconsistently based on personal preference.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Ignore feedback and continue non-compliant procedures."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Identify control gaps early and escalate material exceptions promptly.).",
+          "difficulty": "medium",
+          "chapter": "Eligibility, Consultants & Budgeting - Expansion Set",
+          "keywords": [
+            "eligibility",
+            "consultants",
+            "budgeting",
+            "option"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Eligibility, Consultants & Budgeting",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_elb_072",
+          "question": "Within government administration, select the option that best answers: In official practice, which option best describes the objective of having a \"confidential\" classification for a document?",
+          "options": [
+            "To make it a permanent document.a. The \"confidential\" classification is used to protect information that could be harmful if disclosed.",
+            "To make it difficult to access.",
+            "To protect information that could be harmful if disclosed.",
+            "To hide its contents from other Ministries."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (To protect information that could be harmful if disclosed.).",
+          "difficulty": "medium",
+          "chapter": "Eligibility, Consultants & Budgeting - Expansion Set",
+          "keywords": [
+            "option",
+            "best",
+            "within",
+            "select"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Eligibility, Consultants & Budgeting",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_elb_073",
+          "question": "In official practice, which option correctly addresses: The workflow of verifying a bidder's technical capacity *after* the bid opening but *before* contract award is referred to as:?",
+          "options": [
+            "Post-qualification audit.",
+            "Pre-qualification.",
+            "Technical assessment.",
+            "Financial scrutiny."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Post-qualification audit.).",
+          "difficulty": "medium",
+          "chapter": "Eligibility, Consultants & Budgeting - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "option",
+            "correctly"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Eligibility, Consultants & Budgeting",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_elb_074",
+          "question": "select the option that best answers: A mandatory eligibility requirement under **Section 16** is that contractors must not be in which financial condition?",
+          "options": [
+            "Being a limited liability company.",
+            "Having operated for less than one year.",
+            "In receivership, bankruptcy, or insolvency.",
+            "Holding a foreign bank account."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (In receivership, bankruptcy, or insolvency.).",
+          "difficulty": "medium",
+          "chapter": "Eligibility, Consultants & Budgeting - Expansion Set",
+          "keywords": [
+            "select",
+            "option",
+            "best",
+            "answers"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Eligibility, Consultants & Budgeting",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_elb_075",
+          "question": "In official practice, choose the best answer for: The use of the **Vote Book** (**FR** 601) in procurement budgeting primarily supports which internal control mechanism?",
+          "options": [
+            "External Auditing.",
+            "Separation of Duties.",
+            "Obligation Control.",
+            "Budget Virement."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Obligation Control.).",
+          "difficulty": "hard",
+          "chapter": "Eligibility, Consultants & Budgeting - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Eligibility, Consultants & Budgeting",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
         }
       ]
     },
@@ -8912,6 +11312,606 @@
           "sourceSection": "Implementation, Monitoring & Sanctions",
           "year": 2007,
           "lastReviewed": "2026-03-03"
+        },
+        {
+          "id": "ppa_ims_051",
+          "question": "In the public service context, which option best describes the objective of the \"Principle of Impartiality\" as it relates to members of the public? 426?",
+          "options": [
+            "To secure that everyone is treated equally and fairly, regardless of their background.",
+            "To prioritize government officials over ordinary citizens.",
+            "To allow civil servants to treat citizens differently based on their political views.",
+            "To allow civil servants to use their discretion to make exceptions. □."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (To secure that everyone is treated equally and fairly, regardless of their background.). The principle of impartiality secure that a Civil Servant treats everyone who comes to them in the course of their duty equally and fairly, irrespective of who they are.",
+          "difficulty": "easy",
+          "chapter": "Implementation, Monitoring & Sanctions - Expansion Set",
+          "keywords": [
+            "context",
+            "option",
+            "best",
+            "describes"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Implementation, Monitoring & Sanctions",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_ims_052",
+          "question": "In the public service context, which option aligns with the meaning of the limitation on the amount of funds brought forward by a Development Fund Supplementary Warrant?",
+          "options": [
+            "It must be less than 50% of the project cost",
+            "It is unlimited.",
+            "It must not exceed the estimated total cost of the project as shown in the Annual or Supplementary Estimates.",
+            "It can exceed the estimated total cost of the project."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (It must not exceed the estimated total cost of the project as shown in the Annual or Supplementary Estimates.). Financial Regulation 322(i) states: \"the amount of the provision brought forward, when added to the total expenditure authorised for the current year, must not exceed the estimated total cost of the project as shown in the Annual or Supplementary Estimates.\"",
+          "difficulty": "easy",
+          "chapter": "Implementation, Monitoring & Sanctions - Expansion Set",
+          "keywords": [
+            "context",
+            "option",
+            "aligns",
+            "meaning"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Implementation, Monitoring & Sanctions",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_ims_053",
+          "question": "In the public service context, select the option that best answers: Can idle funds in the accounts of missions abroad be invested in short-term deposits?",
+          "options": [
+            "Only if the amount is substantial. □",
+            "No, never.",
+            "Yes, but only with the prior approval of the Accountant-General.",
+            "Yes, at the discretion of the Head of Mission."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Yes, but only with the prior approval of the Accountant-General.). Financial Regulation 711(i) states: \"Idle funds in the accounts of missions abroad may be invested in short term deposits but with the prior approval of the Accountant- General.\" 212",
+          "difficulty": "medium",
+          "chapter": "Implementation, Monitoring & Sanctions - Expansion Set",
+          "keywords": [
+            "context",
+            "select",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Implementation, Monitoring & Sanctions",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_ims_054",
+          "question": "In the public service context, select the statement that correctly defines \"Style\" defined as in the context of writing?",
+          "options": [
+            "The length of the writing.",
+            "The type of pen used for writing. Q..",
+            "The distinctive manner of writing. 484",
+            "The speed at which one writes."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (The distinctive manner of writing. 484). Style may be defined as the distinctive manner of writing.",
+          "difficulty": "easy",
+          "chapter": "Implementation, Monitoring & Sanctions - Expansion Set",
+          "keywords": [
+            "context",
+            "select",
+            "statement",
+            "correctly"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Implementation, Monitoring & Sanctions",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_ims_055",
+          "question": "In the public service context, select the statement that correctly defines the objective of \"fairs\" in the context of government business?",
+          "options": [
+            "To file a document.",
+            "To send a document to another department. □.",
+            "To correct errors in a draft.",
+            "To provide a clean, final version of a document."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (To provide a clean, final version of a document.). Fairing refers to the procedure of creating a clean, final version of a document after a draft has been prepared and approved.",
+          "difficulty": "medium",
+          "chapter": "Implementation, Monitoring & Sanctions - Expansion Set",
+          "keywords": [
+            "context",
+            "select",
+            "statement",
+            "correctly"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Implementation, Monitoring & Sanctions",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_ims_056",
+          "question": "select the option that best answers: Which administrative body is accountable for managing the resolution of procurement complaints filed by aggrieved bidders?",
+          "options": [
+            "The National Assembly.",
+            "The BPP Audit Section.",
+            "The Procurement Complaint Review Committee.",
+            "The Federal High Court."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (The Procurement Complaint Review Committee.).",
+          "difficulty": "easy",
+          "chapter": "Implementation, Monitoring & Sanctions - Expansion Set",
+          "keywords": [
+            "select",
+            "option",
+            "best",
+            "answers"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Implementation, Monitoring & Sanctions",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_ims_057",
+          "question": "Within government administration, select the option that best answers: The final authority on matters of ethical conduct and compliance with the **PSR**, particularly concerning disciplinary appeals, rests with the:?",
+          "options": [
+            "The Code of Conduct Bureau.",
+            "The Civil Service Commission.",
+            "The Head of the Civil Service of the Federation.",
+            "The President."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (The Civil Service Commission.).",
+          "difficulty": "medium",
+          "chapter": "Implementation, Monitoring & Sanctions - Expansion Set",
+          "keywords": [
+            "within",
+            "select",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Implementation, Monitoring & Sanctions",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_ims_058",
+          "question": "According to established rules, select the option that best answers: The **PSR** necessitate that appeals against disciplinary decisions must be concluded within a maximum period of:?",
+          "options": [
+            "12 months.",
+            "6 months.",
+            "1 month.",
+            "3 months."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (6 months.).",
+          "difficulty": "medium",
+          "chapter": "Implementation, Monitoring & Sanctions - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "select",
+            "option"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Implementation, Monitoring & Sanctions",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_ims_059",
+          "question": "In official practice, at what point handling implementation, monitoring & sanctions, which choice reflects proper open competition standards?",
+          "options": [
+            "Close cases without validating facts or necessitate records.",
+            "Treat exceptions as routine without documented justification.",
+            "Rely on informal instructions without documentary evidence.",
+            "Use competitive procurement methods except where lawful exceptions apply."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Use competitive procurement methods except where lawful exceptions apply.).",
+          "difficulty": "hard",
+          "chapter": "Implementation, Monitoring & Sanctions - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "point",
+            "handling"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Implementation, Monitoring & Sanctions",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_ims_060",
+          "question": "In official practice, choose the best answer for: A supervisor is reviewing compliance gaps in Implementation, Monitoring & Sanctions. Which action most directly strengthens implementation, monitoring & sanctions risk management' while preserving records for audit and oversight?",
+          "options": [
+            "Bypass review and approval controls to save time.",
+            "Identify control gaps early and escalate material exceptions promptly.",
+            "Ignore feedback and continue non-compliant procedures.",
+            "Prioritize convenience over policy and legal requirements."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Identify control gaps early and escalate material exceptions promptly.).",
+          "difficulty": "easy",
+          "chapter": "Implementation, Monitoring & Sanctions - Expansion Set",
+          "keywords": [
+            "implementation",
+            "monitoring",
+            "sanctions",
+            "official"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Implementation, Monitoring & Sanctions",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_ims_061",
+          "question": "at what point an Internal Auditor raises an **Audit Alarm** due to a suspected irregularity in a financial transaction, the demand administrative action is?",
+          "options": [
+            "A detailed investigation into the irregularity.",
+            "Immediate payment of the expense.",
+            "Mandatory staff transfer.",
+            "A salary increase for the Internal Auditor."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (A detailed investigation into the irregularity.).",
+          "difficulty": "easy",
+          "chapter": "Implementation, Monitoring & Sanctions - Expansion Set",
+          "keywords": [
+            "point",
+            "internal",
+            "auditor",
+            "raises"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Implementation, Monitoring & Sanctions",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_ims_062",
+          "question": "In official practice, which option correctly addresses: The disbursement of a mobilization fee (advance payment) to a contractor necessitate them to first provide:?",
+          "options": [
+            "A Virement Warrant.",
+            "A Tax Clearance Certificate (TCC).",
+            "An Advance payment Guarantee (APG) or Performance Bond.",
+            "A letter from the Auditor-General."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (An Advance payment Guarantee (APG) or Performance Bond.).",
+          "difficulty": "medium",
+          "chapter": "Implementation, Monitoring & Sanctions - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "option",
+            "correctly"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Implementation, Monitoring & Sanctions",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_ims_063",
+          "question": "select the option that best answers: The mandatory sanction for a contractor found guilty of fraud, corruption, or collusion (**Section 58**) is:?",
+          "options": [
+            "Blacklisting (Exclusion from all future federal tenders).",
+            "Mandatory staff training.",
+            "A written apology.",
+            "Automatic reinstatement."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Blacklisting (Exclusion from all future federal tenders).).",
+          "difficulty": "medium",
+          "chapter": "Implementation, Monitoring & Sanctions - Expansion Set",
+          "keywords": [
+            "select",
+            "option",
+            "best",
+            "answers"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Implementation, Monitoring & Sanctions",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_ims_064",
+          "question": "In official practice, which option correctly addresses: For effective implementation, monitoring & sanctions, what is the most appropriate approach to guarantee document management?",
+          "options": [
+            "Bypass review and approval controls to save time.",
+            "Apply rules inconsistently based on personal preference.",
+            "keep accurate files and update status at each control point.",
+            "Prioritize convenience over policy and legal requirements."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (keep accurate files and update status at each control point.).",
+          "difficulty": "medium",
+          "chapter": "Implementation, Monitoring & Sanctions - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "option",
+            "correctly"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Implementation, Monitoring & Sanctions",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_ims_065",
+          "question": "According to established rules, choose the best answer for: Which official publication must be used to publish all contract awards above the demand threshold, supporting the principle of transparency?",
+          "options": [
+            "The BPP Procurement Journal.",
+            "The MDA's website only.",
+            "The Daily Times.",
+            "The National Salaries, Incomes and Wages Circulars."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (The BPP Procurement Journal.).",
+          "difficulty": "hard",
+          "chapter": "Implementation, Monitoring & Sanctions - Expansion Set",
+          "keywords": [
+            "according",
+            "established",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Implementation, Monitoring & Sanctions",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_ims_066",
+          "question": "In the public service context, select the option that best answers: **Section 57** strictly prohibits public officials involved in procurement from having any personal interest that might compromise their judgment. This is the rule against:?",
+          "options": [
+            "Contract Variation.",
+            "Domestic Preference.",
+            "Conflict of Interest.",
+            "Abnormally Low Bidding."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Conflict of Interest.).",
+          "difficulty": "medium",
+          "chapter": "Implementation, Monitoring & Sanctions - Expansion Set",
+          "keywords": [
+            "context",
+            "select",
+            "option",
+            "best"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Implementation, Monitoring & Sanctions",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_ims_067",
+          "question": "Within government administration, which option correctly addresses: Falsification of official records or documents by a civil servant constitutes which disciplinary category under the **PSR**'?",
+          "options": [
+            "Serious Misconduct.",
+            "Minor Misconduct.",
+            "Administrative Misunderstanding.",
+            "General Inefficiency."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Serious Misconduct.).",
+          "difficulty": "easy",
+          "chapter": "Implementation, Monitoring & Sanctions - Expansion Set",
+          "keywords": [
+            "within",
+            "option",
+            "correctly",
+            "addresses"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Implementation, Monitoring & Sanctions",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_ims_068",
+          "question": "Within government administration, choose the best answer for: An officer under **Interdiction** (temporary suspension pending investigation) receives which disbursement status, according to the **PSR**'?",
+          "options": [
+            "Half salary.",
+            "Full salary and all allowances.",
+            "Only basic salary.",
+            "No salary."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Half salary.).",
+          "difficulty": "medium",
+          "chapter": "Implementation, Monitoring & Sanctions - Expansion Set",
+          "keywords": [
+            "within",
+            "choose",
+            "best",
+            "answer"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Implementation, Monitoring & Sanctions",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_ims_069",
+          "question": "In official practice, select the option that best answers: In the public service context, which option aligns with the meaning of the limitation on the amount of funds brought forward by a Development Fund Supplementary Warrant?",
+          "options": [
+            "It can exceed the estimated total cost of the project.",
+            "It is unlimited.",
+            "It must be less than 50% of the project cost",
+            "It must not exceed the estimated total cost of the project as shown in the Annual or Supplementary Estimates."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (It must not exceed the estimated total cost of the project as shown in the Annual or Supplementary Estimates.).",
+          "difficulty": "easy",
+          "chapter": "Implementation, Monitoring & Sanctions - Expansion Set",
+          "keywords": [
+            "option",
+            "official",
+            "practice",
+            "select"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Implementation, Monitoring & Sanctions",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_ims_070",
+          "question": "Within government administration, choose the best answer for: An officer placed under **Suspension** pending investigation into Gross Misconduct receives:?",
+          "options": [
+            "No salary.",
+            "Full salary plus allowances.",
+            "Half salary.",
+            "Full salary."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (No salary.).",
+          "difficulty": "hard",
+          "chapter": "Implementation, Monitoring & Sanctions - Expansion Set",
+          "keywords": [
+            "within",
+            "choose",
+            "best",
+            "answer"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Implementation, Monitoring & Sanctions",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_ims_071",
+          "question": "In official practice, choose the best answer for: If a loss of government funds or property is discovered, which three offices (among others) must be notified promptly for proper investigation and accountability?",
+          "options": [
+            "Police, Auditor-General, and Accountant-General.",
+            "ICPC, EFCC, and CBN.",
+            "Permanent Secretary, Legal Department, and Budget Office.",
+            "Minister, OHCSF, and FCSC."
+          ],
+          "correct": 0,
+          "explanation": "Correct option: A (Police, Auditor-General, and Accountant-General.).",
+          "difficulty": "medium",
+          "chapter": "Implementation, Monitoring & Sanctions - Expansion Set",
+          "keywords": [
+            "official",
+            "practice",
+            "choose",
+            "best"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Implementation, Monitoring & Sanctions",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_ims_072",
+          "question": "Within government administration, which option correctly addresses: Which option most strongly aligns with good public-service practice on bid evaluation within Implementation, Monitoring & Sanctions?",
+          "options": [
+            "Ignore feedback and continue non-compliant procedures.",
+            "Apply rules inconsistently based on personal preference.",
+            "Bypass review and approval controls to save time.",
+            "Apply published criteria consistently to all responsive bids."
+          ],
+          "correct": 3,
+          "explanation": "Correct option: D (Apply published criteria consistently to all responsive bids.).",
+          "difficulty": "medium",
+          "chapter": "Implementation, Monitoring & Sanctions - Expansion Set",
+          "keywords": [
+            "within",
+            "option",
+            "correctly",
+            "addresses"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Implementation, Monitoring & Sanctions",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_ims_073",
+          "question": "select the option that best answers: The prohibition on **Contract Splitting** (**Section 58**(4)) is an accountability measure designed to prevent circumvention of:?",
+          "options": [
+            "The use of SBDs.",
+            "Ministerial and FEC approval thresholds.",
+            "Mobilization fee limits.",
+            "Domestic Preference rules."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Ministerial and FEC approval thresholds.).",
+          "difficulty": "hard",
+          "chapter": "Implementation, Monitoring & Sanctions - Expansion Set",
+          "keywords": [
+            "select",
+            "option",
+            "best",
+            "answers"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Implementation, Monitoring & Sanctions",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_ims_074",
+          "question": "According to established rules, which time frame handling implementation, monitoring & sanctions, which choice reflects proper implementation, monitoring & sanctions governance standards?",
+          "options": [
+            "Bypass review and approval controls to save time.",
+            "Apply approved implementation, monitoring & sanctions procedures and keep complete records.",
+            "Prioritize convenience over policy and legal requirements.",
+            "Ignore feedback and continue non-compliant procedures."
+          ],
+          "correct": 1,
+          "explanation": "Correct option: B (Apply approved implementation, monitoring & sanctions procedures and keep complete records.).",
+          "difficulty": "easy",
+          "chapter": "Implementation, Monitoring & Sanctions - Expansion Set",
+          "keywords": [
+            "implementation",
+            "monitoring",
+            "sanctions",
+            "according"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Implementation, Monitoring & Sanctions",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
+        },
+        {
+          "id": "ppa_ims_075",
+          "question": "choose the best answer for: The mechanism that documents the flow of financial transactions chronologically to guarantee integrity and traceability is known as the:?",
+          "options": [
+            "IPPIS Platform.",
+            "Appropriation Act.",
+            "Audit Trail.",
+            "Virement Warrant."
+          ],
+          "correct": 2,
+          "explanation": "Correct option: C (Audit Trail.).",
+          "difficulty": "easy",
+          "chapter": "Implementation, Monitoring & Sanctions - Expansion Set",
+          "keywords": [
+            "choose",
+            "best",
+            "answer",
+            "mechanism"
+          ],
+          "sourceDocument": "Public Procurement Act (2007)",
+          "sourceSection": "Implementation, Monitoring & Sanctions",
+          "year": 2007,
+          "lastReviewed": "2026-03-13"
         }
       ]
     }
