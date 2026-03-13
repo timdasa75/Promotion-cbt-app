@@ -69,6 +69,7 @@ const UPGRADE_REQUESTS_STORAGE_KEY = "cbt_upgrade_requests_v1";
 const ADMIN_OPERATION_HISTORY_STORAGE_KEY = "cbt_admin_operation_history_v1";
 const ADMIN_OPERATION_HISTORY_MAX = 120;
 const LOGIN_EMAIL_PREFILL_STORAGE_KEY = "cbt_login_prefill_email_v1";
+const FREE_TIER_NOTICE_STORAGE_PREFIX = "cbt_free_tier_notice_dismissed_v1";
 const SCREEN_STATE_STORAGE_KEY = "cbt_screen_state_v1";
 const DEFAULT_ADMIN_DIRECTORY_SYNC_INTERVAL_MS = 60000;
 const ADMIN_DIRECTORY_SYNC_STORAGE_KEYS = new Set([
@@ -1182,6 +1183,63 @@ function closeAuthModal() {
   setAuthMessage("");
 }
 
+function getFreeTierNoticeStorageKey(user) {
+  const identifier = user?.id || user?.email || "guest";
+  return `${FREE_TIER_NOTICE_STORAGE_PREFIX}_${identifier}`;
+}
+
+function setFreeTierNoticeContent(entitlement) {
+  const list = document.getElementById("freeTierLimitList");
+  if (!list) return;
+  const items = [];
+  if (entitlement?.maxTopics) {
+    items.push(
+      `Up to ${entitlement.maxTopics} topic${entitlement.maxTopics === 1 ? "" : "s"} at a time.`,
+    );
+  }
+  if (entitlement?.maxSubcategories) {
+    items.push(`Up to ${entitlement.maxSubcategories} subtopics per topic.`);
+  }
+  if (entitlement?.maxQuestionsPerSubcategory) {
+    items.push(`Up to ${entitlement.maxQuestionsPerSubcategory} questions per subtopic.`);
+  }
+  items.push("1 weekly free mock exam attempt (resets every 7 days).");
+  items.push("Upgrade to unlock full access and premium features.");
+  list.innerHTML = items.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
+}
+
+function openFreeTierNotice() {
+  const modal = document.getElementById("freeTierModal");
+  if (!modal) return;
+  const checkbox = document.getElementById("freeTierDontShowAgain");
+  if (checkbox) checkbox.checked = false;
+  modal.classList.remove("hidden");
+}
+
+function closeFreeTierNotice() {
+  const modal = document.getElementById("freeTierModal");
+  if (!modal) return;
+  const checkbox = document.getElementById("freeTierDontShowAgain");
+  if (checkbox?.checked) {
+    const user = getCurrentUser();
+    if (user) {
+      localStorage.setItem(getFreeTierNoticeStorageKey(user), "true");
+    }
+  }
+  modal.classList.add("hidden");
+}
+
+function showFreeTierNoticeIfNeeded() {
+  const user = getCurrentUser();
+  if (!user) return;
+  const entitlement = getCurrentEntitlement();
+  if (!entitlement || entitlement.id !== "free") return;
+  const key = getFreeTierNoticeStorageKey(user);
+  if (localStorage.getItem(key) === "true") return;
+  setFreeTierNoticeContent(entitlement);
+  openFreeTierNotice();
+}
+
 async function refreshAccessibleTopics() {
   cachedTopics = allTopics;
   await displayTopics(cachedTopics, handleTopicSelect);
@@ -2146,6 +2204,9 @@ function initializeAuthUI() {
   const headerAdminBtn = document.getElementById("headerAdminBtn");
   const authCloseBtn = document.getElementById("authCloseBtn");
   const authModal = document.getElementById("authModal");
+  const freeTierModal = document.getElementById("freeTierModal");
+  const freeTierCloseBtn = document.getElementById("freeTierCloseBtn");
+  const freeTierAcknowledgeBtn = document.getElementById("freeTierAcknowledgeBtn");
   const loginTab = document.getElementById("authTabLogin");
   const registerTab = document.getElementById("authTabRegister");
   const loginForm = document.getElementById("loginForm");
@@ -2188,6 +2249,20 @@ function initializeAuthUI() {
     });
   }
 
+  if (freeTierCloseBtn) {
+    freeTierCloseBtn.addEventListener("click", closeFreeTierNotice);
+  }
+
+  if (freeTierAcknowledgeBtn) {
+    freeTierAcknowledgeBtn.addEventListener("click", closeFreeTierNotice);
+  }
+
+  if (freeTierModal) {
+    freeTierModal.addEventListener("click", (event) => {
+      if (event.target === freeTierModal) closeFreeTierNotice();
+    });
+  }
+
   if (loginTab) loginTab.addEventListener("click", () => setActiveAuthTab("login"));
   if (registerTab) registerTab.addEventListener("click", () => setActiveAuthTab("register"));
 
@@ -2212,6 +2287,7 @@ function initializeAuthUI() {
             await refreshAccessibleTopics();
             closeAuthModal();
             await showScreen("topicSelectionScreen");
+            showFreeTierNoticeIfNeeded();
           },
           {
             loadingMessage: "Signing in...",
@@ -2278,6 +2354,7 @@ function initializeAuthUI() {
         setTimeout(() => {
           closeAuthModal();
           showScreen("topicSelectionScreen");
+          showFreeTierNoticeIfNeeded();
         }, 450);
       } catch (error) {
         setAuthMessage(error.message || "Registration failed.");
@@ -2733,5 +2810,13 @@ document.addEventListener("DOMContentLoaded", async function () {
     });
   }
 });
+
+
+
+
+
+
+
+
 
 

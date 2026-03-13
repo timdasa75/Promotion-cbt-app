@@ -32,9 +32,9 @@ let cloudPlanVisibilityBound = false;
 
 const FREE_PLAN = {
   id: "free",
-  maxTopics: 1,
-  maxSubcategories: 3,
-  maxQuestionsPerSubcategory: 10,
+  maxTopics: 3,
+  maxSubcategories: 5,
+  maxQuestionsPerSubcategory: 20,
 };
 
 const PREMIUM_PLAN = {
@@ -43,6 +43,90 @@ const PREMIUM_PLAN = {
   maxSubcategories: null,
   maxQuestionsPerSubcategory: null,
 };
+
+const FREE_MOCK_EXAM_INTERVAL_MS = 7 * 24 * 60 * 60 * 1000;
+const FREE_MOCK_EXAM_STORAGE_PREFIX = "cbt_free_mock_exam_v1_";
+
+function getFreeMockExamStorageKey(userId) {
+  return `${FREE_MOCK_EXAM_STORAGE_PREFIX}${userId || "guest"}`;
+}
+
+function readFreeMockExamUsage(userId) {
+  try {
+    const raw = window.localStorage.getItem(getFreeMockExamStorageKey(userId));
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    if (!parsed || typeof parsed !== "object") return null;
+    return {
+      lastUsedAt: String(parsed.lastUsedAt || "").trim(),
+    };
+  } catch (error) {
+    return null;
+  }
+}
+
+function writeFreeMockExamUsage(userId, lastUsedAt) {
+  try {
+    window.localStorage.setItem(
+      getFreeMockExamStorageKey(userId),
+      JSON.stringify({ lastUsedAt }),
+    );
+  } catch (error) {
+    // Ignore storage failures.
+  }
+}
+
+export function getFreeMockExamEligibility() {
+  const user = getCurrentUser();
+  if (!user) {
+    return { allowed: false, reason: "login-required", nextEligibleAt: "" };
+  }
+
+  const entitlement = getCurrentEntitlement();
+  if (entitlement.id === "premium") {
+    return { allowed: true, reason: "premium", nextEligibleAt: "" };
+  }
+
+  const usage = readFreeMockExamUsage(user.id);
+  const lastUsedAt = String(usage?.lastUsedAt || "").trim();
+  if (!lastUsedAt) {
+    return { allowed: true, reason: "first-use", nextEligibleAt: "" };
+  }
+
+  const lastMs = Date.parse(lastUsedAt);
+  if (!Number.isFinite(lastMs) || lastMs <= 0) {
+    return { allowed: true, reason: "invalid-date", nextEligibleAt: "" };
+  }
+  const nextMs = lastMs + FREE_MOCK_EXAM_INTERVAL_MS;
+  if (Date.now() >= nextMs) {
+    return {
+      allowed: true,
+      reason: "cooldown-elapsed",
+      nextEligibleAt: new Date(nextMs).toISOString(),
+      lastUsedAt,
+    };
+  }
+
+  return {
+    allowed: false,
+    reason: "cooldown",
+    nextEligibleAt: new Date(nextMs).toISOString(),
+    lastUsedAt,
+  };
+}
+
+export function recordFreeMockExamUsage() {
+  const user = getCurrentUser();
+  if (!user) return null;
+
+  const entitlement = getCurrentEntitlement();
+  if (entitlement.id === "premium") return null;
+
+  const nowIso = new Date().toISOString();
+  writeFreeMockExamUsage(user.id, nowIso);
+  return nowIso;
+}
+
 
 function emitPlanChange(previousPlan, nextPlan) {
   if (!previousPlan || !nextPlan || previousPlan === nextPlan) return;
@@ -2910,4 +2994,7 @@ export async function deleteCloudUserById(profileId) {
     );
   }
 }
+
+
+
 

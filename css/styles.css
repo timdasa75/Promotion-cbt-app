@@ -1,4 +1,4 @@
-﻿:root {
+:root {
     --green-900: #0b6b3a;
     --green-700: #1fa463;
     --white: #ffffff;
@@ -392,6 +392,28 @@ h3,
     cursor: pointer;
 }
 
+.notice-list {
+    margin: 0;
+    padding-left: 1.1rem;
+    display: grid;
+    gap: 6px;
+    color: var(--ink-700);
+    font-size: 0.92rem;
+}
+
+.checkbox-field {
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+    font-size: 0.9rem;
+    color: var(--ink-700);
+}
+
+.checkbox-field input {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--accent);
+}
 .auth-form {
     display: grid;
     gap: var(--space-2);
@@ -2270,5 +2292,6 @@ select:focus-visible,
         flex-basis: 100%;
     }
 }
+
 
 

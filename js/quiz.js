@@ -1,12 +1,14 @@
 // quiz.js - Module for quiz logic
 
-import { showScreen, showError } from "./ui.js";
+import { showScreen, showError, showWarning } from "./ui.js";
 import { extractQuestionsByCategory, fetchTopicDataFiles } from "./topicSources.js";
 import { debugLog } from "./logger.js";
 import { getTopics } from "./data.js";
 import { calculateScoreFromAnswers } from "./metrics.js";
 import {
   getCurrentEntitlement,
+  getFreeMockExamEligibility,
+  recordFreeMockExamUsage,
   getCurrentUser,
   getProgressStorageKeyForCurrentUser,
   isCloudProgressSyncEnabled,
@@ -2427,6 +2429,25 @@ export async function loadQuestions(questions = null) {
     }
 
     if (isMockExamTopic(currentTopic)) {
+      const entitlement = getCurrentEntitlement();
+      if (entitlement.id !== "premium") {
+        const mockStatus = getFreeMockExamEligibility();
+        if (!mockStatus.allowed) {
+          const nextDate = mockStatus.nextEligibleAt
+            ? new Date(mockStatus.nextEligibleAt).toLocaleDateString(undefined, {
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+              })
+            : "";
+          showWarning(
+            `Free mock exam is available weekly. Next free attempt ${nextDate ? `on ${nextDate}` : "soon"}. Upgrade for unlimited mock exams.`,
+          );
+          showScreen("topicSelectionScreen");
+          return;
+        }
+        recordFreeMockExamUsage();
+      }
       quizState.allQuestions = await buildMockExamQuestions(currentTopic);
     } else {
       if (!currentTopic.file) {
@@ -2871,4 +2892,6 @@ function initializeQuiz(options = {}) {
   updateProgress();
   persistQuizRuntime();
 }
+
+
 

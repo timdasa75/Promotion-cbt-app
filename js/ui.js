@@ -9,6 +9,7 @@ import {
 import {
   getAccessibleTopics,
   getCurrentEntitlement,
+  getFreeMockExamEligibility,
   isAuthenticated,
 } from "./auth.js";
 import { debugLog } from "./logger.js";
@@ -29,6 +30,18 @@ function escapeHtml(value) {
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#39;");
 }
+
+function formatShortDate(iso) {
+  if (!iso) return "";
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) return "";
+  return date.toLocaleDateString(undefined, {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+}
+
 
 // Show a specific screen with animation
 export function showScreen(screenId) {
@@ -322,9 +335,18 @@ export async function displayTopics(topics, onSelect) {
   const topicLimit = entitlement.maxTopics;
   const unlockedTopics = getAccessibleTopics(topics);
   const unlockedTopicIds = new Set(unlockedTopics.map((topic) => topic.id));
+  const freeMockExamStatus = getFreeMockExamEligibility();
 
   topics.forEach((topic, index) => {
-    const isPremiumLocked = topic?.requiresPremium && entitlement.id !== "premium";
+    const isMockExam = topic?.id === "mock_exam";
+    let isPremiumLocked = topic?.requiresPremium && entitlement.id !== "premium";
+    let mockExamStatus = null;
+    if (isMockExam && entitlement.id !== "premium") {
+      mockExamStatus = freeMockExamStatus;
+      if (mockExamStatus?.allowed) {
+        isPremiumLocked = false;
+      }
+    }
     const isUnlocked = unlockedTopicIds.has(topic.id) && !isPremiumLocked;
     const topicCard = document.createElement("div");
     topicCard.className = "topic-card ripple scale-on-hover";
@@ -341,13 +363,30 @@ export async function displayTopics(topics, onSelect) {
     const safeIcon = escapeHtml(topic.icon || "📚");
     const safeName = escapeHtml(name);
     const safeDescription = escapeHtml(topic.description || "No description available");
+    const mockExamBadge = isMockExam
+      ? '<span class="mock-exam-badge">Featured Mock Exam</span>'
+      : "";
+    const freeMockBadge =
+      isMockExam && entitlement.id !== "premium" && mockExamStatus?.allowed
+        ? '<span class="mock-exam-badge">Weekly Free Mock</span>'
+        : "";
+    let lockBadge = "";
+    if (!isUnlocked) {
+      if (isMockExam && entitlement.id !== "premium" && mockExamStatus && !mockExamStatus.allowed) {
+        const nextDate = formatShortDate(mockExamStatus.nextEligibleAt);
+        lockBadge = `<span class="lock-badge">Next free mock ${nextDate ? `on ${nextDate}` : ""}</span>`;
+      } else {
+        lockBadge = '<span class="lock-badge">Locked on Free</span>';
+      }
+    }
     topicCard.innerHTML = `
         <div class="card-content">
             <div class="topic-icon">${safeIcon}</div>
             <h3 class="topic-title">${safeName}</h3>
             <p class="topic-description">${safeDescription}</p>
-            ${topic?.id === "mock_exam" ? '<span class="mock-exam-badge">Featured Mock Exam</span>' : ""}
-            ${!isUnlocked ? '<span class="lock-badge">Locked on Free</span>' : ""}
+            ${mockExamBadge}
+            ${freeMockBadge}
+            ${lockBadge}
         </div>
         <div class="card-footer">
             <div class="question-count">
@@ -357,7 +396,14 @@ export async function displayTopics(topics, onSelect) {
     `;
     topicCard.addEventListener("click", () => {
       if (!isUnlocked) {
-        showWarning("This topic is locked on Free plan. Upgrade to access all topics.");
+        if (isMockExam && entitlement.id !== "premium" && mockExamStatus && !mockExamStatus.allowed) {
+          const nextDate = formatShortDate(mockExamStatus.nextEligibleAt);
+          showWarning(
+            `Free mock exam is available weekly. Next free attempt ${nextDate ? `on ${nextDate}` : "soon"}. Upgrade for unlimited mock exams.`,
+          );
+        } else {
+          showWarning("This topic is locked on Free plan. Upgrade to access all topics.");
+        }
         return;
       }
       document
@@ -379,7 +425,7 @@ export async function displayTopics(topics, onSelect) {
     } else if (typeof topicLimit === "number") {
       freePlanNotice.classList.remove("hidden");
       freePlanNotice.textContent =
-        `Free plan: explore all topics preview, study ${topicLimit} unlocked topic with ${entitlement.maxSubcategories} subtopics and ${entitlement.maxQuestionsPerSubcategory} questions each. Upgrade to Premium for full question bank, unlimited topic access, and complete exam practice.`;
+        `Free plan: explore all topics preview, study ${topicLimit} unlocked topic with ${entitlement.maxSubcategories} subtopics and ${entitlement.maxQuestionsPerSubcategory} questions each, plus 1 free mock exam weekly. Upgrade to Premium for full question bank, unlimited topic access, and complete exam practice.`;
     } else {
       freePlanNotice.classList.add("hidden");
     }
@@ -520,5 +566,9 @@ export async function selectTopic(topic) {
 
 // Make functions available globally for HTML onclick handlers
 window.showScreen = showScreen;
+
+
+
+
 
 
