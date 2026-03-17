@@ -2217,6 +2217,46 @@ select:focus-visible,
 }
 
 @media (max-width: 720px) {
+    .analytics-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-panel {
+        padding: 20px 16px;
+    }
+
+    #splashScreen .hero-panel {
+        padding: 22px 14px;
+    }
+
+    .quiz-topbar {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        justify-items: start;
+    }
+
+    .quiz-topbar .btn {
+        grid-column: 1 / 2;
+    }
+
+    #quizTopicTitle {
+        grid-column: 1 / -1;
+        text-align: center;
+        margin: 4px 0 0;
+        order: 0;
+    }
+
+    .timer-wrap {
+        justify-self: end;
+    }
+
+    .progress-label {
+        grid-column: 1 / -1;
+        text-align: center;
+        margin: 0;
+    }
+
     .screen-nav-row {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2266,6 +2306,11 @@ select:focus-visible,
 }
 
 @media (max-width: 560px) {
+    .admin-request-table {
+        min-width: 480px;
+        font-size: 0.8rem;
+    }
+
     .button-row {
         flex-direction: column;
         align-items: stretch;
