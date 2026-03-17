@@ -1,20 +1,20 @@
 {
-  "name": "promotion-cbt-functions",
-  "private": true,
-  "engines": {
-    "node": "18"
-  },
-  "scripts": {
-    "lint": "eslint .",
-    "deploy": "firebase deploy --only functions",
-    "emulate": "firebase emulators:start --only functions"
-  },
-  "dependencies": {
-    "firebase-admin": "^12.1.0",
-    "firebase-functions": "^4.3.0"
-  },
-  "devDependencies": {
-    "eslint": "^8.54.0",
-    "eslint-plugin-promise": "^6.1.1"
-  }
+    "name":  "promotion-cbt-functions",
+    "private":  true,
+    "engines":  {
+                    "node":  "18"
+                },
+    "scripts":  {
+                    "lint":  "eslint .",
+                    "deploy":  "firebase deploy --only functions",
+                    "emulate":  "firebase emulators:start --only functions"
+                },
+    "dependencies":  {
+                         "firebase-admin":  "^13.7.0",
+                         "firebase-functions":  "^7.2.0"
+                     },
+    "devDependencies":  {
+                            "eslint":  "^8.54.0",
+                            "eslint-plugin-promise":  "^6.1.1"
+                        }
 }
