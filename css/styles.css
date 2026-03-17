@@ -194,20 +194,22 @@ h3,
 }
 
 .auth-toolbar-summary {
-    max-width: 220px;
-    padding: 0 10px;
-    min-height: 34px;
+    max-width: 340px;
+    padding: 6px 12px;
+    min-height: 44px;
     display: inline-flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
     border: 1px solid var(--line);
-    border-radius: 999px;
+    border-radius: 14px;
     background: color-mix(in srgb, var(--green-700) 10%, var(--card));
     color: var(--ink-900);
     font-size: 0.82rem;
     font-weight: 700;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    line-height: 1.2;
+    white-space: pre-line;
+    word-break: break-word;
 }
 
 .account-menu {
@@ -1092,6 +1094,26 @@ select {
 .question-count {
     margin-top: 8px;
     color: var(--ink-500);
+}
+
+.card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-1);
+    margin-top: 8px;
+    flex-wrap: wrap;
+}
+
+.card-footer .question-count {
+    margin-top: 0;
+}
+
+.btn-compact {
+    min-height: 34px;
+    padding: 0 10px;
+    font-size: 0.78rem;
+    border-radius: 10px;
 }
 
 .btn {
@@ -2194,9 +2216,24 @@ select:focus-visible,
         padding: 0;
     }
 
-    .auth-toolbar-summary {
-        display: none;
-    }
+.auth-toolbar-summary {
+    max-width: 340px;
+    padding: 6px 12px;
+    min-height: 44px;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: color-mix(in srgb, var(--green-700) 10%, var(--card));
+    color: var(--ink-900);
+    font-size: 0.82rem;
+    font-weight: 700;
+    line-height: 1.2;
+    white-space: pre-line;
+    word-break: break-word;
+}
 
     .card {
         padding: 14px;
@@ -2293,5 +2330,100 @@ select:focus-visible,
     }
 }
 
+
+
+
+
+.admin-user-cards {
+    display: grid;
+    gap: var(--space-2);
+}
+
+.admin-user-card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--card);
+    padding: var(--space-2);
+}
+
+.admin-user-card[open] {
+    box-shadow: var(--shadow);
+    border-color: color-mix(in srgb, var(--green-700) 55%, var(--line));
+}
+
+.admin-user-summary {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--space-2);
+    align-items: start;
+    cursor: pointer;
+}
+
+.admin-user-summary::-webkit-details-marker {
+    display: none;
+}
+
+.admin-user-summary-head {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+}
+
+.admin-user-email {
+    font-weight: 700;
+    color: var(--ink-900);
+    margin-bottom: 0;
+    flex: 1 1 260px;
+    min-width: 220px;
+    word-break: break-word;
+}
+
+.admin-user-badges {
+    margin-left: auto;
+    justify-content: flex-end;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.admin-user-summary-side {
+    color: var(--ink-500);
+    font-size: 0.82rem;
+    white-space: nowrap;
+}
+
+.admin-user-details {
+    margin-top: var(--space-2);
+    padding-top: var(--space-2);
+    border-top: 1px solid var(--line);
+    display: grid;
+    gap: var(--space-2);
+}
+
+.admin-user-detail-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: var(--space-2);
+}
+
+.admin-user-detail-grid .meta {
+    display: block;
+    font-size: 0.78rem;
+    color: var(--ink-500);
+}
+
+.admin-user-upgrade {
+    padding: var(--space-2);
+    border-radius: var(--radius-sm);
+    background: color-mix(in srgb, var(--surface) 80%, var(--card));
+    border: 1px dashed var(--line);
+}
+
+.admin-user-actions {
+    display: flex;
+    justify-content: flex-end;
+}
 
 

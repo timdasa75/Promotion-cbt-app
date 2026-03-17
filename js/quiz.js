@@ -303,6 +303,9 @@ function normalizeRuntimeAnswers(values, total) {
   const answers = Array.isArray(values) ? values.slice(0, size) : [];
   const normalized = new Array(size).fill(undefined);
   answers.forEach((value, index) => {
+    if (value === null || value === undefined || value === "") {
+      return;
+    }
     const numeric = Number(value);
     if (Number.isInteger(numeric) && numeric >= 0) {
       normalized[index] = numeric;
@@ -2892,6 +2895,9 @@ function initializeQuiz(options = {}) {
   updateProgress();
   persistQuizRuntime();
 }
+
+
+
 
 
 

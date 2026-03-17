@@ -65,9 +65,11 @@ let allTopics = [];
 let recommendedTopicId = null;
 let lastSessionTopicId = null;
 let adminDirectoryUsers = [];
+let pendingMockExamStartMode = null;
 const UPGRADE_REQUESTS_STORAGE_KEY = "cbt_upgrade_requests_v1";
 const ADMIN_OPERATION_HISTORY_STORAGE_KEY = "cbt_admin_operation_history_v1";
 const ADMIN_OPERATION_HISTORY_MAX = 120;
+const EXPIRY_WARNING_DAYS = 7;
 const LOGIN_EMAIL_PREFILL_STORAGE_KEY = "cbt_login_prefill_email_v1";
 const FREE_TIER_NOTICE_STORAGE_PREFIX = "cbt_free_tier_notice_dismissed_v1";
 const SCREEN_STATE_STORAGE_KEY = "cbt_screen_state_v1";
@@ -101,7 +103,7 @@ const RETRY_MISSED_TOPIC = {
   id: RETRY_MISSED_TOPIC_ID,
   name: "Retry Missed Questions",
   description: "Practice previously missed questions across your recent sessions.",
-  icon: "â†º",
+  icon: "RM",
   type: "retry_missed",
   skipCategorySelection: true,
   requiresPremium: false,
@@ -123,7 +125,7 @@ const MOCK_EXAM_TOPIC = {
   name: "Directorate Mock Exam",
   description:
     "Cross-topic simulated promotion CBT built from all 10 core topics.",
-  icon: "ðŸ§ª",
+  icon: "ME",
   type: "mock_exam",
   skipCategorySelection: true,
   requiresPremium: true,
@@ -399,7 +401,6 @@ async function renderAdminOperationHistory() {
   const container = document.getElementById("adminOperationHistoryList");
   const countLabel = document.getElementById("adminOperationHistoryCount");
   if (!container) return;
-
   try {
     const cloudHistory = await getAdminOperationHistory(ADMIN_OPERATION_HISTORY_MAX);
     if (Array.isArray(cloudHistory) && cloudHistory.length) {
@@ -484,7 +485,7 @@ async function renderAdminOperationHistory() {
     copyButton.className = "icon-button";
     copyButton.textContent = "Copy link";
     copyButton.addEventListener("click", async () => {
-      try {
+  try {
         await navigator.clipboard.writeText(linkUrl);
         copyButton.textContent = "Copied";
         setTimeout(() => {
@@ -1070,6 +1071,12 @@ function initializeThemeShortcut() {
 }
 
 function isTopicUnlocked(topic) {
+  if (topic?.id === MOCK_EXAM_TOPIC_ID) {
+    const entitlement = getCurrentEntitlement();
+    if (entitlement.id === "premium") return true;
+    const status = getFreeMockExamEligibility();
+    return Boolean(status?.allowed);
+  }
   if (topic?.requiresPremium) {
     const entitlement = getCurrentEntitlement();
     return entitlement.id === "premium";
@@ -1078,7 +1085,7 @@ function isTopicUnlocked(topic) {
   return unlocked.some((entry) => entry.id === topic?.id);
 }
 
-async function handleTopicSelect(topic) {
+async function handleTopicSelect(topic, options = {}) {
   if (!getCurrentUser()) {
     openAuthModal("login");
     return;
@@ -1089,16 +1096,29 @@ async function handleTopicSelect(topic) {
   }
   currentTopic = topic;
   setCurrentTopic(topic);
-  try {
-    await runOperationWithFeedback(
-      () => selectTopic(topic),
-      {
-        loadingMessage: "Loading topic content...",
-        successMessage: "",
-        failurePrefix: "Unable to load topic:",
-      },
-    );
-  } catch (error) {
+  const shouldSkipSelect =
+    Boolean(options?.autoStartMode) && topic?.id === MOCK_EXAM_TOPIC_ID;
+  if (!shouldSkipSelect) {
+    try {
+      await runOperationWithFeedback(
+        () => selectTopic(topic),
+        {
+          loadingMessage: "Loading topic content...",
+          successMessage: "",
+          failurePrefix: "Unable to load topic:",
+        },
+      );
+    } catch (error) {
+      return;
+    }
+  }
+
+  if (options?.autoStartMode) {
+    if (topic?.id === MOCK_EXAM_TOPIC_ID && options?.showMockExamWelcome) {
+      openMockExamWelcome(options.autoStartMode);
+      return;
+    }
+    startQuiz(options.autoStartMode);
     return;
   }
 
@@ -1183,6 +1203,26 @@ function closeAuthModal() {
   setAuthMessage("");
 }
 
+function openMockExamWelcome(mode = "exam") {
+  const modal = document.getElementById("mockExamWelcomeModal");
+  if (!modal) return;
+  pendingMockExamStartMode = mode;
+  modal.classList.remove("hidden");
+}
+
+function closeMockExamWelcome({ start = false } = {}) {
+  const modal = document.getElementById("mockExamWelcomeModal");
+  if (!modal) return;
+  modal.classList.add("hidden");
+  if (start && pendingMockExamStartMode) {
+    const mode = pendingMockExamStartMode;
+    pendingMockExamStartMode = null;
+    startQuiz(mode);
+    return;
+  }
+  pendingMockExamStartMode = null;
+}
+
 function getFreeTierNoticeStorageKey(user) {
   const identifier = user?.id || user?.email || "guest";
   return `${FREE_TIER_NOTICE_STORAGE_PREFIX}_${identifier}`;
@@ -1203,7 +1243,7 @@ function setFreeTierNoticeContent(entitlement) {
   if (entitlement?.maxQuestionsPerSubcategory) {
     items.push(`Up to ${entitlement.maxQuestionsPerSubcategory} questions per subtopic.`);
   }
-  items.push("1 weekly free mock exam attempt (resets every 7 days).");
+  items.push("1 weekly free mock exam attempt (resets every 7 days from your registration time).");
   items.push("Upgrade to unlock full access and premium features.");
   list.innerHTML = items.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
 }
@@ -1362,7 +1402,7 @@ function updateAuthUI() {
     } else if (isCurrentUserAdmin()) {
       profileSubtitle.textContent = "Admin access";
     } else {
-      profileSubtitle.textContent = user.plan === "premium" ? "Premium access" : "Free access";
+      profileSubtitle.textContent = getProfileSubscriptionLabel(user);
     }
   }
   if (profileAvatar) {
@@ -1392,6 +1432,10 @@ function renderAdminOverrides() {
   const overrides = getLocalPlanOverrides();
   const syncMeta = getPlanOverrideSyncMeta();
   const entries = Object.entries(overrides);
+  const countLabel = document.getElementById("adminOverrideCount");
+  if (countLabel) {
+    countLabel.textContent = `Overrides: ${entries.length}`;
+  }
   if (!entries.length) {
     container.innerHTML = '<div class="admin-request-item"><p class="meta">No local overrides yet.</p></div>';
     return;
@@ -1418,7 +1462,7 @@ function renderAdminOverrides() {
     const clearBtn = card.querySelector("[data-clear-email]");
     if (clearBtn) {
       clearBtn.addEventListener("click", async () => {
-        try {
+  try {
           await runOperationWithFeedback(
             async () => {
               clearLocalPlanOverride(email);
@@ -1474,6 +1518,7 @@ function renderAdminRequests() {
       status: normalizeUpgradeRequestStatus(entry?.upgradeRequestStatus),
       reference: String(entry?.upgradePaymentReference || ""),
       amount: String(entry?.upgradeAmountPaid || ""),
+      billingCycle: String(entry?.upgradeBillingCycle || ""),
       note: String(entry?.upgradeRequestNote || ""),
       reviewNote: String(entry?.upgradeRequestReviewNote || ""),
       createdAt: String(entry?.upgradeRequestedAt || ""),
@@ -1496,6 +1541,7 @@ function renderAdminRequests() {
       status: normalizeUpgradeRequestStatus(entry?.status),
       reference: String(entry?.reference || ""),
       amount: String(entry?.amount || ""),
+      billingCycle: String(entry?.billingCycle || ""),
       note: String(entry?.note || ""),
       reviewNote: "",
       createdAt: String(entry?.createdAt || ""),
@@ -1556,6 +1602,7 @@ function renderAdminRequests() {
         <th>Email</th>
         <th>Status</th>
         <th>Amount</th>
+        <th>Billing</th>
         <th>Reference</th>
         <th>Submitted</th>
         <th>Reviewed</th>
@@ -1573,20 +1620,23 @@ function renderAdminRequests() {
     const safeEmail = escapeHtml(request.email);
     const safeStatus = escapeHtml(request.status || "pending");
     const safeAmount = escapeHtml(request.amount || "-");
+    const safeBillingCycle = escapeHtml(formatBillingCycleLabel(request.billingCycle) || "-");
     const safeReference = escapeHtml(request.reference || "-");
     const safeSubmittedAt = escapeHtml(formatDateTime(request.createdAt));
     const safeReviewedAt = escapeHtml(formatDateTime(request.reviewedAt));
     const safeSource = request.source === "cloud-profile" ? "Cloud Profile" : "Local device";
+    const isApproved = request.status === "approved";
     row.innerHTML = `
       <td class="email-cell">${safeEmail}</td>
-      <td><span class="admin-badge ${statusClass}">${safeStatus}</span></td>
+      <td><span class="admin-badge ${statusClass}">Status: ${safeStatus}</span></td>
       <td>${safeAmount}</td>
+      <td>${safeBillingCycle}</td>
       <td>${safeReference}</td>
       <td>${safeSubmittedAt}</td>
       <td>${safeReviewedAt || "-"}</td>
       <td>${safeSource}</td>
       <td class="actions-col">
-        <button class="btn btn-secondary action-btn" data-approve-id="${escapeHtml(request.id)}" type="button">Approve</button>
+        <button class="btn btn-secondary action-btn" data-approve-id="${escapeHtml(request.id)}" type="button" ${isApproved ? 'disabled aria-disabled="true"' : ""}>Approve</button>
         <button class="btn btn-ghost action-btn" data-reject-id="${escapeHtml(request.id)}" type="button">Reject</button>
       </td>
     `;
@@ -1605,7 +1655,7 @@ function renderAdminRequests() {
         const target = filtered.find((entry) => entry.id === approveId);
         if (!target) return;
         const now = new Date().toISOString();
-        try {
+  try {
           await runOperationWithFeedback(
             async () => {
               const next = readUpgradeRequests().map((entry) => {
@@ -1617,7 +1667,12 @@ function renderAdminRequests() {
                 return { ...entry, status: "approved", reviewedAt: now };
               });
               writeUpgradeRequests(next);
-              const cloudStatusResult = await setUpgradeRequestStatus(target.email, "approved");
+              const cloudStatusResult = await setUpgradeRequestStatus(
+                target.email,
+                "approved",
+                "",
+                target.billingCycle,
+              );
               const overrideResult = await setPlanOverride(target.email, "premium");
               updateAuthUI();
               refreshDashboardInsights();
@@ -1660,7 +1715,7 @@ function renderAdminRequests() {
         const target = filtered.find((entry) => entry.id === rejectId);
         if (!target) return;
         const now = new Date().toISOString();
-        try {
+  try {
           await runOperationWithFeedback(
             async () => {
               const next = readUpgradeRequests().map((entry) => {
@@ -1798,6 +1853,72 @@ function getDirectoryVerificationPresentation(emailVerified) {
   return { label: "Unknown", badgeClass: "neutral", dataValue: "unknown" };
 }
 
+function formatBillingCycleLabel(value) {
+  const raw = String(value || "").trim();
+  if (!raw) return "";
+  const lower = raw.toLowerCase();
+  if (lower.includes("month")) return "Monthly";
+  if (lower.includes("bi") || lower.includes("semi") || lower.includes("half")) return "Bi-Annual";
+  if (lower.includes("year") || lower.includes("ann")) return "Annual";
+  return raw.replace(/(^\w|\s\w)/g, (m) => m.toUpperCase());
+}
+
+function getDirectoryBillingCyclePresentation(entry) {
+  const plan = String(entry?.plan || "").toLowerCase();
+  if (plan !== "premium") {
+    return { label: "Free", badgeClass: "neutral" };
+  }
+  const label = formatBillingCycleLabel(entry?.billingCycle || entry?.subscriptionType || entry?.planInterval);
+  if (!label) {
+    return { label: "Unknown", badgeClass: "neutral" };
+  }
+  return { label, badgeClass: "approved" };
+}
+
+function getDirectoryExpiryPresentation(entry) {
+  const plan = String(entry?.plan || "").toLowerCase();
+  const rawExpiry = String(entry?.planExpiresAt || "").trim();
+  if (plan !== "premium") {
+    return { label: "Free", badgeClass: "neutral", dateLabel: "" };
+  }
+  if (!rawExpiry) {
+    return { label: "No expiry", badgeClass: "neutral", dateLabel: "" };
+  }
+  const expiryDate = new Date(rawExpiry);
+  if (Number.isNaN(expiryDate.getTime())) {
+    return { label: "Unknown", badgeClass: "neutral", dateLabel: "" };
+  }
+  const diffMs = expiryDate.getTime() - Date.now();
+  const dateLabel = formatDateTime(rawExpiry);
+  if (diffMs < 0) {
+    return { label: "Expired", badgeClass: "rejected", dateLabel };
+  }
+  const warnMs = EXPIRY_WARNING_DAYS * 24 * 60 * 60 * 1000;
+  if (diffMs <= warnMs) {
+    return { label: "Expiring", badgeClass: "pending", dateLabel };
+  }
+  return { label: "Active", badgeClass: "approved", dateLabel };
+}
+
+function getProfileSubscriptionLabel(user) {
+  if (!user) return "";
+  if (user.plan !== "premium") return "Free access";
+  const cycleLabel = formatBillingCycleLabel(user?.billingCycle || user?.subscriptionType || user?.planInterval);
+  const cycleSuffix = cycleLabel ? ` (${cycleLabel})` : "";
+  const rawExpiry = String(user?.planExpiresAt || user?.subscriptionExpiresAt || user?.planExpiryAt || user?.expiresAt || "").trim();
+  if (!rawExpiry) return `Premium access${cycleSuffix}`;
+  const expiryDate = new Date(rawExpiry);
+  if (Number.isNaN(expiryDate.getTime())) {
+    return `Premium access${cycleSuffix} (expiry unknown)`;
+  }
+  const dateLabel = formatDateTime(rawExpiry);
+  if (expiryDate.getTime() < Date.now()) {
+    return `Premium access${cycleSuffix} (expired ${dateLabel})`;
+  }
+  return `Premium access${cycleSuffix} (expires ${dateLabel})`;
+}
+
+
 function renderAdminUserDirectory() {
   const container = document.getElementById("adminUserList");
   const searchInput = document.getElementById("adminUserSearch");
@@ -1834,87 +1955,139 @@ function renderAdminUserDirectory() {
     return;
   }
 
-  const tableWrap = document.createElement("div");
-  tableWrap.className = "admin-table-wrap";
+  const list = document.createElement("div");
+  list.className = "admin-user-cards";
 
-  const table = document.createElement("table");
-  table.className = "admin-user-table";
-  table.innerHTML = `
-    <thead>
-      <tr>
-        <th>Email</th>
-        <th>Role</th>
-        <th>Plan</th>
-        <th>Status</th>
-        <th>Verified</th>
-        <th>Created</th>
-        <th>Last Seen</th>
-        <th class="actions-col">Actions</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  `;
-
-  const tbody = table.querySelector("tbody");
   filtered.forEach((entry) => {
-    const row = document.createElement("tr");
+    const row = document.createElement("details");
+    row.className = "admin-user-card";
     const roleClass = entry.role === "admin" ? "approved" : "pending";
     const planClass = entry.plan === "premium" ? "approved" : "pending";
     const statusClass = entry.status === "suspended" ? "rejected" : "approved";
+    const verification = getDirectoryVerificationPresentation(entry.emailVerified);
+    const expiry = getDirectoryExpiryPresentation(entry);
+    const billingCycle = getDirectoryBillingCyclePresentation(entry);
+
     const safeEmail = escapeHtml(entry.email);
     const safeRole = escapeHtml(entry.role);
     const safePlan = escapeHtml(entry.plan);
     const safeStatus = escapeHtml(entry.status);
+    const safeSource = escapeHtml(entry.source || "-");
     const safeCreated = escapeHtml(formatDateTime(entry.createdAt));
     const safeLastSeen = escapeHtml(formatDateTime(entry.lastSeenAt));
+    const safeExpiryDate = escapeHtml(expiry.dateLabel);
+    const expiryLabel = entry.plan === "premium" ? expiry.label : "N/A";
+    const safeExpiryLabel = escapeHtml(expiryLabel);
+    const safeBilling = escapeHtml(billingCycle.label);
+    const safeVerification = escapeHtml(verification.label);
+    const isPremiumPlan = entry.plan === "premium";
+    const billingBadge = isPremiumPlan
+      ? `<span class="admin-badge ${billingCycle.badgeClass}">Billing: ${safeBilling}</span>`
+      : "";
+    const expiryBadge = isPremiumPlan
+      ? `<span class="admin-badge ${expiry.badgeClass}">Expiry: ${safeExpiryLabel}</span>`
+      : "";
+    const billingDetail = isPremiumPlan
+      ? `<div><span class="meta">Billing</span><strong>${safeBilling}</strong></div>`
+      : "";
+    const expiryDetail = isPremiumPlan
+      ? `<div><span class="meta">Expiry</span><strong>${safeExpiryLabel}</strong></div>`
+      : "";
+
     const isSuspended = entry.status === "suspended";
     const accountActionLabel = isSuspended ? "Reactivate" : "Deactivate";
     const accountNextStatus = isSuspended ? "active" : "suspended";
     const safeProfileId = escapeHtml(entry.id);
-    const verification = getDirectoryVerificationPresentation(entry.emailVerified);
+
+    const upgradeStatus = normalizeUpgradeRequestStatus(entry?.upgradeRequestStatus);
+    const hasUpgrade =
+      upgradeStatus !== "none" ||
+      Boolean(entry?.upgradeRequestedAt) ||
+      Boolean(entry?.upgradePaymentReference) ||
+      Boolean(entry?.upgradeAmountPaid);
+    const safeUpgradeStatus = escapeHtml(upgradeStatus === "none" ? "-" : upgradeStatus);
+    const safeUpgradeRequestedAt = escapeHtml(formatDateTime(entry?.upgradeRequestedAt || ""));
+    const safeUpgradeAmount = escapeHtml(entry?.upgradeAmountPaid || "-");
+    const safeUpgradeReference = escapeHtml(entry?.upgradePaymentReference || "-");
+
     row.innerHTML = `
-      <td class="email-cell">${safeEmail}</td>
-      <td><span class="admin-badge ${roleClass}">${safeRole}</span></td>
-      <td><span class="admin-badge ${planClass}">${safePlan}</span></td>
-      <td><span class="admin-badge ${statusClass}">${safeStatus}</span></td>
-      <td><span class="admin-badge ${verification.badgeClass}">${verification.label}</span></td>
-      <td>${safeCreated}</td>
-      <td>${safeLastSeen}</td>
-      <td class="actions-col">
-        <details class="directory-action-menu">
-          <summary class="directory-action-menu-toggle" aria-label="User actions" title="User actions">
-            <span class="toolbar-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" focusable="false">
-                <circle cx="12" cy="5" r="1.8"></circle>
-                <circle cx="12" cy="12" r="1.8"></circle>
-                <circle cx="12" cy="19" r="1.8"></circle>
-              </svg>
-            </span>
-          </summary>
-          <div class="directory-action-menu-list" role="menu" aria-label="User actions menu">
-            <button class="directory-action directory-action-menu-item" data-action="send-reset" data-profile-email="${safeEmail}" type="button" role="menuitem">
-              Reset password
-            </button>
-            <button class="directory-action directory-action-menu-item" data-action="resend-verification" data-profile-email="${safeEmail}" data-email-verified="${verification.dataValue}" type="button" role="menuitem">
-              Resend verification
-            </button>
-            <button class="directory-action directory-action-menu-item danger" data-action="set-account-state" data-profile-id="${safeProfileId}" data-profile-email="${safeEmail}" data-next-status="${accountNextStatus}" type="button" role="menuitem">
-              ${accountActionLabel} account
-            </button>
+      <summary class="admin-user-summary">
+        <div class="admin-user-summary-main">
+          <div class="admin-user-summary-head">
+            <div class="admin-user-email">${safeEmail}</div>
+            <div class="admin-user-badges">
+              <span class="admin-badge ${planClass}">Plan: ${safePlan}</span>
+              ${billingBadge}
+              ${expiryBadge}
+              <span class="admin-badge ${statusClass}">Status: ${safeStatus}</span>
+              <span class="admin-badge ${verification.badgeClass}">Verified: ${safeVerification}</span>
+            </div>
           </div>
-        </details>
-      </td>
+          ${expiry.dateLabel ? `<div class="meta">Expiry: ${safeExpiryDate}</div>` : ""}
+        </div>
+        <div class="admin-user-summary-side">
+          <span class="meta">View details</span>
+        </div>
+      </summary>
+      <div class="admin-user-details">
+        <div class="admin-user-detail-grid">
+          <div><span class="meta">Role</span><strong>${safeRole}</strong></div>
+          <div><span class="meta">Plan</span><strong>${safePlan}</strong></div>
+          ${billingDetail}
+          ${expiryDetail}
+          <div><span class="meta">Status</span><strong>${safeStatus}</strong></div>
+          <div><span class="meta">Verified</span><strong>${safeVerification}</strong></div>
+          <div><span class="meta">Created</span><strong>${safeCreated}</strong></div>
+          <div><span class="meta">Last Seen</span><strong>${safeLastSeen}</strong></div>
+          <div><span class="meta">Source</span><strong>${safeSource}</strong></div>
+        </div>
+        ${hasUpgrade ? `
+        <div class="admin-user-upgrade">
+          <div class="meta">Upgrade Request</div>
+          <div class="admin-user-detail-grid">
+            <div><span class="meta">Status</span><strong>${safeUpgradeStatus}</strong></div>
+            <div><span class="meta">Requested</span><strong>${safeUpgradeRequestedAt}</strong></div>
+            <div><span class="meta">Amount</span><strong>${safeUpgradeAmount}</strong></div>
+            <div><span class="meta">Reference</span><strong>${safeUpgradeReference}</strong></div>
+          </div>
+        </div>
+        ` : ""}
+        <div class="admin-user-actions">
+          <details class="directory-action-menu">
+            <summary class="directory-action-menu-toggle" aria-label="User actions" title="User actions">
+              <span class="toolbar-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false">
+                  <circle cx="12" cy="5" r="1.8"></circle>
+                  <circle cx="12" cy="12" r="1.8"></circle>
+                  <circle cx="12" cy="19" r="1.8"></circle>
+                </svg>
+              </span>
+            </summary>
+            <div class="directory-action-menu-list" role="menu" aria-label="User actions menu">
+              <button class="directory-action directory-action-menu-item" data-action="send-reset" data-profile-email="${safeEmail}" type="button" role="menuitem">
+                Reset password
+              </button>
+              <button class="directory-action directory-action-menu-item" data-action="resend-verification" data-profile-email="${safeEmail}" data-email-verified="${verification.dataValue}" type="button" role="menuitem">
+                Resend verification
+              </button>
+              <button class="directory-action directory-action-menu-item danger" data-action="set-account-state" data-profile-id="${safeProfileId}" data-profile-email="${safeEmail}" data-next-status="${accountNextStatus}" type="button" role="menuitem">
+                ${accountActionLabel} account
+              </button>
+            </div>
+          </details>
+        </div>
+      </div>
     `;
-    tbody.appendChild(row);
+
+    list.appendChild(row);
   });
 
-  tableWrap.appendChild(table);
-  container.appendChild(tableWrap);
+  container.appendChild(list);
 
-  table.querySelectorAll(".directory-action-menu").forEach((menuEl) => {
+  list.querySelectorAll(".directory-action-menu").forEach((menuEl) => {
     menuEl.addEventListener("toggle", () => {
       if (!menuEl.open) return;
-      table.querySelectorAll(".directory-action-menu[open]").forEach((other) => {
+      list.querySelectorAll(".directory-action-menu[open]").forEach((other) => {
         if (other !== menuEl) {
           other.open = false;
         }
@@ -1922,7 +2095,7 @@ function renderAdminUserDirectory() {
     });
   });
 
-  table.addEventListener("click", async (event) => {
+  list.addEventListener("click", async (event) => {
     const button = event.target.closest(".directory-action");
     if (!button) return;
     const menu = button.closest(".directory-action-menu");
@@ -1952,100 +2125,45 @@ function renderAdminUserDirectory() {
     if (action === "set-account-state") {
       const confirmMessage = isDeactivateFlow
         ? `Deactivate ${targetLabel}? They will no longer be able to login.`
-        : `Reactivate ${targetLabel}? They will be able to login again.`;
-      if (!confirm(confirmMessage)) {
-        return;
-      }
+        : `Reactivate ${targetLabel}? They will regain access.`;
+      const confirmed = confirm(confirmMessage);
+      if (!confirmed) return;
     }
-    if (action === "send-reset") {
-      if (!confirm(`Send password reset email to ${targetLabel}?`)) {
-        return;
-      }
+    if (action === "resend-verification" && isEmailVerified) {
+      showWarning(`${targetLabel} is already verified.`);
+      return;
     }
-    if (action === "resend-verification") {
-      if (isEmailVerified) {
-        showWarning(`${targetLabel} is already verified.`);
-        return;
-      }
-      if (!confirm(`Resend verification email to ${targetLabel}?`)) {
-        return;
-      }
-    }
-    try {
+  try {
       await runOperationWithFeedback(
         async () => {
-          if (action === "set-account-state") {
-            const resolvedStatus = nextStatus === "active" ? "active" : "suspended";
-            const statusResult = await updateCloudUserStatusById(profileId, resolvedStatus);
-            const statusWarning = String(statusResult?.warning || "").trim();
-            if (resolvedStatus === "suspended") {
-              actionWarning =
-                "Permanent Firebase Auth deletion is unavailable on Spark. Delete from Firebase Console when needed.";
-            }
-            if (statusWarning) {
-              actionWarning = actionWarning ? `${actionWarning} ${statusWarning}` : statusWarning;
-            }
-          } else if (action === "send-reset") {
+          if (action === "send-reset") {
             await requestPasswordReset(profileEmail, window.location.href);
-          } else if (action === "resend-verification") {
-            const resendResult = await resendVerificationEmailForUser(
-              profileEmail,
-              window.location.href,
-            );
-            actionWarning = String(resendResult?.warning || "").trim();
+            actionWarning = "Password reset sent.";
+            return;
           }
-          await refreshAdminUserDirectory();
-          renderAdminUserDirectory();
+          if (action === "resend-verification") {
+            await resendVerificationEmailForUser(profileEmail);
+            actionWarning = "Verification email sent.";
+            return;
+          }
+          if (action === "set-account-state") {
+            await updateCloudUserStatusById(profileId, nextStatus);
+            actionWarning = "Account status updated.";
+            return;
+          }
         },
         {
-          loadingMessage: isDeactivateFlow
-            ? "Deactivating user account..."
-            : isReactivateFlow
-              ? "Reactivating user account..."
-              : action === "send-reset"
-                ? "Sending password reset email..."
-                : action === "resend-verification"
-                  ? "Sending verification email..."
-              : "Updating account status...",
-          successMessage: isDeactivateFlow
-            ? "User account deactivated."
-            : isReactivateFlow
-              ? "User account reactivated."
-              : action === "send-reset"
-                ? `Password reset email sent to ${targetLabel}.`
-                : action === "resend-verification"
-                  ? `Verification email resent to ${targetLabel}.`
-              : "Account status updated.",
-          failurePrefix: isDeactivateFlow
-            ? "User deactivation failed:"
-            : isReactivateFlow
-              ? "User reactivation failed:"
-              : action === "send-reset"
-                ? "Password reset failed:"
-                : action === "resend-verification"
-                  ? "Resend verification failed:"
-              : "Status update failed:",
+          loadingMessage: `${actionLabel}...`,
+          successMessage: actionWarning || "Action completed.",
+          failurePrefix: "Action failed:",
         },
       );
       logAdminOperation({
         action: actionLabel,
         target: targetLabel,
         status: "success",
-        message:
-          isDeactivateFlow
-            ? actionWarning || "Suspended in cloud profile."
-            : isReactivateFlow
-              ? "Restored to active status."
-              : action === "send-reset"
-                ? "Password reset email sent."
-                : action === "resend-verification"
-                  ? actionWarning || "Verification email resent."
-              : `Status updated to ${nextStatus || "target value"}.`,
+        message: actionWarning || "Action completed successfully.",
       });
-      renderAdminOperationHistory();
-      if (actionWarning) {
-        showWarning(actionWarning);
-      }
     } catch (error) {
       logAdminOperation({
         action: actionLabel,
@@ -2053,7 +2171,9 @@ function renderAdminUserDirectory() {
         status: "failed",
         message: error?.message || "Unknown error.",
       });
+    } finally {
       renderAdminOperationHistory();
+      await refreshAdminUserDirectory();
     }
   });
 }
@@ -2207,6 +2327,10 @@ function initializeAuthUI() {
   const freeTierModal = document.getElementById("freeTierModal");
   const freeTierCloseBtn = document.getElementById("freeTierCloseBtn");
   const freeTierAcknowledgeBtn = document.getElementById("freeTierAcknowledgeBtn");
+  const mockExamWelcomeModal = document.getElementById("mockExamWelcomeModal");
+  const mockExamWelcomeCloseBtn = document.getElementById("mockExamWelcomeCloseBtn");
+  const mockExamWelcomeCancelBtn = document.getElementById("mockExamWelcomeCancelBtn");
+  const mockExamWelcomeStartBtn = document.getElementById("mockExamWelcomeStartBtn");
   const loginTab = document.getElementById("authTabLogin");
   const registerTab = document.getElementById("authTabRegister");
   const loginForm = document.getElementById("loginForm");
@@ -2263,6 +2387,24 @@ function initializeAuthUI() {
     });
   }
 
+  if (mockExamWelcomeCloseBtn) {
+    mockExamWelcomeCloseBtn.addEventListener("click", () => closeMockExamWelcome());
+  }
+
+  if (mockExamWelcomeCancelBtn) {
+    mockExamWelcomeCancelBtn.addEventListener("click", () => closeMockExamWelcome());
+  }
+
+  if (mockExamWelcomeStartBtn) {
+    mockExamWelcomeStartBtn.addEventListener("click", () => closeMockExamWelcome({ start: true }));
+  }
+
+  if (mockExamWelcomeModal) {
+    mockExamWelcomeModal.addEventListener("click", (event) => {
+      if (event.target === mockExamWelcomeModal) closeMockExamWelcome();
+    });
+  }
+
   if (loginTab) loginTab.addEventListener("click", () => setActiveAuthTab("login"));
   if (registerTab) registerTab.addEventListener("click", () => setActiveAuthTab("register"));
 
@@ -2277,7 +2419,7 @@ function initializeAuthUI() {
       }
       const email = document.getElementById("loginEmail")?.value || "";
       const password = document.getElementById("loginPassword")?.value || "";
-      try {
+  try {
         await runOperationWithFeedback(
           async () => {
             await loginUser({ email, password });
@@ -2319,7 +2461,7 @@ function initializeAuthUI() {
         setAuthMessage("Passwords do not match.");
         return;
       }
-      try {
+  try {
         const registration = await runOperationWithFeedback(
           async () => {
             const created = await registerUser({ name, email, password });
@@ -2375,7 +2517,7 @@ function initializeAuthUI() {
         setAuthMessage("Enter your email first, then click Forgot password.");
         return;
       }
-      try {
+  try {
         await runOperationWithFeedback(
           () => requestPasswordReset(email, window.location.href),
           {
@@ -2405,7 +2547,7 @@ function initializeAuthUI() {
         showWarning("Login is required to change password.");
         return;
       }
-      try {
+  try {
         await runOperationWithFeedback(
           () => requestPasswordReset(email, window.location.href),
           {
@@ -2433,7 +2575,7 @@ function initializeAuthUI() {
         showWarning("Login is required before syncing progress.");
         return;
       }
-      try {
+  try {
         const result = await runOperationWithFeedback(
           async () => {
             const synced = await syncProgressFromCloudNow({ force: true });
@@ -2466,7 +2608,12 @@ function initializeAuthUI() {
       }
       const reference = document.getElementById("upgradePaymentReference")?.value || "";
       const amount = document.getElementById("upgradeAmountPaid")?.value || "";
-      try {
+      const billingCycle = document.getElementById("upgradeBillingCycle")?.value || "";
+      if (!billingCycle) {
+        showWarning("Select the billing cycle for your payment (monthly, bi-annual, annual).");
+        return;
+      }
+  try {
         const cloudResult = await runOperationWithFeedback(
           async () => {
             const next = readUpgradeRequests();
@@ -2475,6 +2622,7 @@ function initializeAuthUI() {
               email: user.email,
               reference: String(reference).trim(),
               amount: String(amount).trim(),
+              billingCycle: String(billingCycle).trim(),
               note: "Submitted from profile screen",
               status: "pending",
               createdAt: new Date().toISOString(),
@@ -2483,6 +2631,7 @@ function initializeAuthUI() {
             return submitUpgradeRequest({
               reference: String(reference).trim(),
               amount: String(amount).trim(),
+              billingCycle: String(billingCycle).trim(),
               note: "Submitted from profile screen",
             });
           },
@@ -2506,8 +2655,10 @@ function initializeAuthUI() {
         }
         const refInput = document.getElementById("upgradePaymentReference");
         const amtInput = document.getElementById("upgradeAmountPaid");
+        const cycleInput = document.getElementById("upgradeBillingCycle");
         if (refInput) refInput.value = "";
         if (amtInput) amtInput.value = "";
+        if (cycleInput) cycleInput.value = "";
         refreshUserUpgradeStatus().catch(() => {});
         if (isCurrentUserAdmin()) {
           await refreshAdminUserDirectory();
@@ -2542,7 +2693,7 @@ function initializeAuthUI() {
       }
       const email = document.getElementById("adminOverrideEmail")?.value || "";
       const plan = document.getElementById("adminOverridePlan")?.value || "free";
-      try {
+  try {
         const overrideResult = await runOperationWithFeedback(
           async () => {
             const result = await setPlanOverride(email, plan);
@@ -2586,7 +2737,7 @@ function initializeAuthUI() {
 
   if (refreshAdminUsersBtn) {
     refreshAdminUsersBtn.addEventListener("click", async () => {
-      try {
+  try {
         const syncResult = await runOperationWithFeedback(
           async () => {
             const result = await forceCloudPlanSync();
@@ -2639,7 +2790,7 @@ function initializeAuthUI() {
   }
   if (refreshAdminRequestsBtn) {
     refreshAdminRequestsBtn.addEventListener("click", async () => {
-      try {
+  try {
         await runOperationWithFeedback(
           async () => {
             await refreshAdminUserDirectory();
@@ -2679,7 +2830,7 @@ function initializeAuthUI() {
       if (!confirm("Clear all operation history entries on this device?")) {
         return;
       }
-      try {
+  try {
         await runOperationWithFeedback(
           async () => {
             clearAdminOperationHistory();
@@ -2810,6 +2961,45 @@ document.addEventListener("DOMContentLoaded", async function () {
     });
   }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

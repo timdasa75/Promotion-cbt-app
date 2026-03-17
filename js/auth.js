@@ -97,20 +97,37 @@ export function getFreeMockExamEligibility() {
   if (!Number.isFinite(lastMs) || lastMs <= 0) {
     return { allowed: true, reason: "invalid-date", nextEligibleAt: "" };
   }
-  const nextMs = lastMs + FREE_MOCK_EXAM_INTERVAL_MS;
-  if (Date.now() >= nextMs) {
+
+  const nowMs = Date.now();
+  let anchorMs = Date.parse(String(user?.createdAt || "").trim());
+  if (!Number.isFinite(anchorMs) || anchorMs <= 0) {
+    anchorMs = lastMs;
+  }
+  if (!Number.isFinite(anchorMs) || anchorMs <= 0) {
+    anchorMs = nowMs;
+  }
+  if (anchorMs > nowMs) {
+    anchorMs = nowMs;
+  }
+
+  const elapsed = Math.max(0, nowMs - anchorMs);
+  const periodIndex = Math.floor(elapsed / FREE_MOCK_EXAM_INTERVAL_MS);
+  const currentPeriodStart = anchorMs + periodIndex * FREE_MOCK_EXAM_INTERVAL_MS;
+  const nextPeriodStart = currentPeriodStart + FREE_MOCK_EXAM_INTERVAL_MS;
+
+  if (lastMs >= currentPeriodStart) {
     return {
-      allowed: true,
-      reason: "cooldown-elapsed",
-      nextEligibleAt: new Date(nextMs).toISOString(),
+      allowed: false,
+      reason: "weekly-limit",
+      nextEligibleAt: new Date(nextPeriodStart).toISOString(),
       lastUsedAt,
     };
   }
 
   return {
-    allowed: false,
-    reason: "cooldown",
-    nextEligibleAt: new Date(nextMs).toISOString(),
+    allowed: true,
+    reason: "new-week",
+    nextEligibleAt: "",
     lastUsedAt,
   };
 }
@@ -998,7 +1015,7 @@ async function firestoreRequest(path, { method = "GET", body = null, idToken = "
 
 function buildCloudUserFromLookupUser(user, fallbackPlan = "free") {
   const email = normalizeEmail(user?.email || "");
-  const name = String(user?.displayName || email || "User");
+  const name = String(user?.name || user?.displayName || "").trim();
   return {
     id: String(user?.localId || ""),
     name,
@@ -1110,6 +1127,7 @@ function buildFirestoreUpgradeRequestFields(request) {
     status: { stringValue: status === "none" ? "pending" : status },
     paymentReference: { stringValue: String(request?.reference || "").trim() },
     amountPaid: { stringValue: String(request?.amount || "").trim() },
+    billingCycle: { stringValue: String(request?.billingCycle || "").trim() },
     note: { stringValue: String(request?.note || "").trim() },
     submittedAt: { stringValue: toIsoTimestamp(request?.submittedAt) },
     reviewedAt: { stringValue: String(request?.reviewedAt || "").trim() },
@@ -1137,10 +1155,12 @@ function parseFirestoreProfileDocument(document) {
     email: normalizeEmail(fields?.email?.stringValue || ""),
     name: String(fields?.name?.stringValue || ""),
     plan: normalizePlan(fields?.plan?.stringValue || "free"),
+    billingCycle: String(readFirestoreStringField(fields?.billingCycle) || readFirestoreStringField(fields?.subscriptionType) || readFirestoreStringField(fields?.planInterval) || ""),
     role: normalizeRole(fields?.role?.stringValue || "user"),
     status: normalizeStatus(fields?.status?.stringValue || "active"),
     createdAt: String(fields?.createdAt?.timestampValue || ""),
     lastSeenAt: String(fields?.lastSeenAt?.timestampValue || ""),
+    planExpiresAt: String(readFirestoreStringField(fields?.planExpiresAt) || readFirestoreStringField(fields?.subscriptionExpiresAt) || readFirestoreStringField(fields?.planExpiryAt) || ""),
     emailVerified: hasExplicitVerifiedField ? Boolean(fields?.emailVerified?.booleanValue) : null,
     upgradeRequestId: String(readFirestoreStringField(fields?.upgradeRequestId) || ""),
     upgradeRequestStatus: normalizeUpgradeRequestStatus(
@@ -1148,6 +1168,7 @@ function parseFirestoreProfileDocument(document) {
     ),
     upgradePaymentReference: String(readFirestoreStringField(fields?.upgradePaymentReference) || ""),
     upgradeAmountPaid: String(readFirestoreStringField(fields?.upgradeAmountPaid) || ""),
+    upgradeBillingCycle: String(readFirestoreStringField(fields?.upgradeBillingCycle) || ""),
     upgradeRequestNote: String(readFirestoreStringField(fields?.upgradeRequestNote) || ""),
     upgradeRequestedAt: String(readFirestoreStringField(fields?.upgradeRequestedAt) || ""),
     upgradeReviewedAt: String(readFirestoreStringField(fields?.upgradeReviewedAt) || ""),
@@ -1574,6 +1595,7 @@ async function upsertCloudUpgradeRequestRecord(idToken, request) {
     "status",
     "paymentReference",
     "amountPaid",
+    "billingCycle",
     "note",
     "submittedAt",
     "reviewedAt",
@@ -1598,8 +1620,10 @@ function normalizeDirectoryRow(row) {
     role: normalizeRole(row?.role),
     status: normalizeStatus(row?.status),
     plan: normalizePlan(row?.plan),
+    billingCycle: String(row?.billingCycle || row?.subscriptionType || row?.planInterval || ""),
     createdAt: String(row?.createdAt || row?.created_at || ""),
     lastSeenAt: String(row?.lastSeenAt || row?.last_seen_at || ""),
+    planExpiresAt: String(row?.planExpiresAt || row?.subscriptionExpiresAt || row?.planExpiryAt || row?.expiresAt || row?.expirationDate || ""),
     emailVerified: normalizeEmailVerificationState(row?.emailVerified),
     upgradeRequestId: String(row?.upgradeRequestId || ""),
     upgradeRequestStatus: normalizeUpgradeRequestStatus(row?.upgradeRequestStatus),
@@ -2006,6 +2030,7 @@ function sanitizeUserLocal(user) {
     name: user.name,
     email: user.email,
     plan: user.plan || "free",
+    billingCycle: String(user?.billingCycle || user?.subscriptionType || user?.planInterval || ""),
     createdAt: user.createdAt,
   };
 }
@@ -2069,7 +2094,6 @@ export async function resendVerificationEmailForUser(email, redirectTo = "") {
   if (!isCurrentUserAdmin()) {
     throw new Error("Admin access is required.");
   }
-
   const session = readSession();
   if (!session?.accessToken || session?.provider !== "firebase") {
     throw new Error("Cloud session is unavailable.");
@@ -2135,6 +2159,7 @@ function buildUpgradeRequestRecordFromProfile(profile) {
     status,
     reference: String(profile?.upgradePaymentReference || ""),
     amount: String(profile?.upgradeAmountPaid || ""),
+    billingCycle: String(profile?.upgradeBillingCycle || ""),
     note: String(profile?.upgradeRequestNote || ""),
     submittedAt: String(profile?.upgradeRequestedAt || ""),
     reviewedAt: String(profile?.upgradeReviewedAt || ""),
@@ -2144,7 +2169,7 @@ function buildUpgradeRequestRecordFromProfile(profile) {
   };
 }
 
-export async function submitUpgradeRequest({ reference = "", amount = "", note = "" } = {}) {
+export async function submitUpgradeRequest({ reference = "", amount = "", note = "", billingCycle = "" } = {}) {
   if (!isCloudAuthEnabled()) {
     return {
       cloudSaved: false,
@@ -2156,7 +2181,10 @@ export async function submitUpgradeRequest({ reference = "", amount = "", note =
   if (!user?.email) {
     throw new Error("Login is required before submitting upgrade evidence.");
   }
-
+  const normalizedCycle = String(billingCycle || "").trim();
+  if (!normalizedCycle) {
+    throw new Error("Billing cycle is required for upgrade submissions.");
+  }
   const session = readSession();
   if (!session?.accessToken || session?.provider !== "firebase") {
     return {
@@ -2184,6 +2212,7 @@ export async function submitUpgradeRequest({ reference = "", amount = "", note =
       upgradeRequestStatus: { stringValue: "pending" },
       upgradePaymentReference: { stringValue: String(reference || "").trim() },
       upgradeAmountPaid: { stringValue: String(amount || "").trim() },
+      upgradeBillingCycle: { stringValue: normalizedCycle },
       upgradeRequestNote: { stringValue: String(note || "").trim() },
       upgradeRequestedAt: { stringValue: now },
       upgradeReviewedAt: { stringValue: "" },
@@ -2200,6 +2229,7 @@ export async function submitUpgradeRequest({ reference = "", amount = "", note =
         status: "pending",
         reference: String(reference || "").trim(),
         amount: String(amount || "").trim(),
+        billingCycle: normalizedCycle,
         note: String(note || "").trim(),
         submittedAt: now,
         reviewedAt: "",
@@ -2223,21 +2253,24 @@ export async function submitUpgradeRequest({ reference = "", amount = "", note =
   }
 }
 
-export async function setUpgradeRequestStatus(email, status, reviewNote = "") {
+export async function setUpgradeRequestStatus(email, status, reviewNote = "", billingCycle = "") {
   const normalizedEmail = normalizeEmail(email);
   if (!normalizedEmail || !normalizedEmail.includes("@")) {
     throw new Error("Valid email is required.");
   }
 
   const normalizedStatus = normalizeUpgradeRequestStatus(status);
+  const normalizedCycle = String(billingCycle || "").trim();
   if (!["pending", "approved", "rejected"].includes(normalizedStatus)) {
     throw new Error("Invalid request status.");
   }
 
   if (!isCloudAuthEnabled()) {
+    if (normalizedStatus === "approved" && normalizedCycle) {
+      setLocalBillingCycle(normalizedEmail, normalizedCycle);
+    }
     return { cloudUpdated: false, warning: "Cloud auth is not enabled." };
   }
-
   const session = readSession();
   if (!session?.accessToken || session?.provider !== "firebase" || !isCurrentUserAdmin()) {
     return {
@@ -2256,6 +2289,8 @@ export async function setUpgradeRequestStatus(email, status, reviewNote = "") {
     }
     const targetProfile = rows[0];
     const requestId = String(targetProfile?.upgradeRequestId || "").trim();
+    const cycleFromProfile = String(targetProfile?.upgradeBillingCycle || "").trim();
+    const effectiveCycle = normalizedCycle || cycleFromProfile;
 
     const now = new Date().toISOString();
     const fields = {
@@ -2272,7 +2307,16 @@ export async function setUpgradeRequestStatus(email, status, reviewNote = "") {
       };
     }
 
+    if (normalizedStatus === "approved" && effectiveCycle) {
+      fields.billingCycle = { stringValue: effectiveCycle };
+      fields.upgradeBillingCycle = { stringValue: effectiveCycle };
+    }
+
     await patchCloudProfileFields(freshSession.accessToken, targetProfile.id, fields);
+
+    if (normalizedStatus === "approved" && effectiveCycle) {
+      setLocalBillingCycle(normalizedEmail, effectiveCycle);
+    }
 
     let archiveWarning = "";
     if (requestId) {
@@ -2284,6 +2328,7 @@ export async function setUpgradeRequestStatus(email, status, reviewNote = "") {
           status: normalizedStatus,
           reference: String(targetProfile?.upgradePaymentReference || "").trim(),
           amount: String(targetProfile?.upgradeAmountPaid || "").trim(),
+          billingCycle: effectiveCycle,
           note: String(targetProfile?.upgradeRequestNote || "").trim(),
           submittedAt: String(targetProfile?.upgradeRequestedAt || "").trim() || now,
           reviewedAt: normalizedStatus === "pending" ? "" : now,
@@ -2314,7 +2359,6 @@ export async function setUpgradeRequestStatus(email, status, reviewNote = "") {
 export async function getCurrentUserUpgradeRequest() {
   const user = getCurrentUser();
   if (!user?.email) return null;
-
   const session = readSession();
   if (!session?.accessToken || session?.provider !== "firebase") {
     return null;
@@ -2483,8 +2527,20 @@ export async function writeCloudProgressSummary(summary, { deviceId = "", retryQ
 export function getAuthSummaryLabel() {
   const user = getCurrentUser();
   if (!user) return "Login";
-  if (isCurrentUserAdmin()) return "Administrator";
-  return user.plan === "premium" ? "Premium access" : "Free access";
+  const name = String(user?.name || user?.displayName || "").trim();
+  const email = String(user?.email || "").trim();
+  const planLabel = isCurrentUserAdmin()
+    ? "Admin"
+    : user.plan === "premium"
+      ? "Premium"
+      : "Free";
+  if (name && email) return `${name}
+${email} (${planLabel})`;
+  if (name) return `${name}
+(${planLabel})`;
+  if (email) return `${email}
+(${planLabel})`;
+  return planLabel;
 }
 
 export function getAuthProviderLabel() {
@@ -2509,6 +2565,25 @@ export function setLocalPlanOverride(email, plan) {
   writePlanOverrides(overrides);
 }
 
+export function setLocalBillingCycle(email, billingCycle) {
+  const normalizedEmail = normalizeEmail(email);
+  const normalizedCycle = String(billingCycle || "").trim();
+  if (!normalizedEmail || !normalizedCycle) {
+    return false;
+  }
+  const users = readUsers();
+  let updated = false;
+  const next = users.map((entry) => {
+    if (normalizeEmail(entry.email) !== normalizedEmail) return entry;
+    updated = true;
+    return { ...entry, billingCycle: normalizedCycle };
+  });
+  if (updated) {
+    writeUsers(next);
+  }
+  return updated;
+}
+
 export async function setPlanOverride(email, plan) {
   const normalizedEmail = normalizeEmail(email);
   const normalizedPlan = normalizePlan(plan);
@@ -2522,7 +2597,6 @@ export async function setPlanOverride(email, plan) {
     writePlanOverrideMeta(meta);
     return result;
   }
-
   const session = readSession();
   if (!session?.accessToken || session?.provider !== "firebase" || !isCurrentUserAdmin()) {
     const result = {
@@ -2640,10 +2714,12 @@ function buildLocalUserDirectory() {
       id: user.id || email,
       email,
       plan: normalizePlan(overrides[email] || user.plan || "free"),
+      billingCycle: String(user?.billingCycle || user?.subscriptionType || user?.planInterval || ""),
       status: "active",
       role: adminSet.has(email) ? "admin" : "user",
       createdAt: user.createdAt || "",
       lastSeenAt: "",
+      planExpiresAt: String(user?.planExpiresAt || user?.subscriptionExpiresAt || user?.planExpiryAt || user?.expiresAt || user?.expirationDate || ""),
       emailVerified: normalizeEmailVerificationState(user.emailVerified),
       source: "local",
     });
@@ -2654,10 +2730,12 @@ function buildLocalUserDirectory() {
       id: current?.id || currentEmail,
       email: currentEmail,
       plan: normalizePlan(overrides[currentEmail] || currentPlan),
+      billingCycle: String(current?.billingCycle || current?.subscriptionType || current?.planInterval || ""),
       status: "active",
       role: adminSet.has(currentEmail) ? "admin" : "user",
       createdAt: current?.createdAt || "",
       lastSeenAt: "",
+      planExpiresAt: String(current?.planExpiresAt || current?.subscriptionExpiresAt || current?.planExpiryAt || current?.expiresAt || current?.expirationDate || ""),
       emailVerified: normalizeEmailVerificationState(current?.emailVerified),
       source: "session",
     });
@@ -2685,6 +2763,7 @@ function mergeDirectoryRows(primaryRows, secondaryRows) {
       plan: normalizePlan(overrides[email] || row?.plan),
       createdAt: row?.createdAt || row?.created_at || "",
       lastSeenAt: row?.lastSeenAt || row?.last_seen_at || "",
+      planExpiresAt: row?.planExpiresAt || row?.subscriptionExpiresAt || row?.planExpiryAt || row?.expiresAt || row?.expirationDate || "",
       emailVerified: normalizeEmailVerificationState(row?.emailVerified),
       source: row?.source || defaultSource,
     });
@@ -2809,8 +2888,10 @@ function buildAuthBackedDirectoryRows(authUsers, profileRows) {
         role,
         status,
         plan,
+        billingCycle: String(profile?.billingCycle || profile?.subscriptionType || profile?.planInterval || ""),
         createdAt: String(profile?.createdAt || authUser?.createdAt || ""),
         lastSeenAt: String(profile?.lastSeenAt || authUser?.lastSignInAt || ""),
+        planExpiresAt: String(profile?.planExpiresAt || profile?.subscriptionExpiresAt || profile?.planExpiryAt || ""),
         emailVerified: normalizeEmailVerificationState(authUser?.emailVerified, profile?.emailVerified),
         upgradeRequestId: String(profile?.upgradeRequestId || ""),
         upgradeRequestStatus: normalizeUpgradeRequestStatus(profile?.upgradeRequestStatus),
@@ -2846,7 +2927,6 @@ export async function getAdminUserDirectory() {
   if (!isCurrentUserAdmin()) {
     throw new Error("Admin access is required.");
   }
-
   const session = readSession();
   if (isCloudAuthEnabled() && session?.provider === "firebase" && session.accessToken) {
     try {
@@ -2949,7 +3029,6 @@ async function ensureAdminCloudSession() {
   if (!isCurrentUserAdmin()) {
     throw new Error("Admin access is required.");
   }
-
   const session = readSession();
   if (!isCloudAuthEnabled() || session?.provider !== "firebase") {
     throw new Error("Cloud session is unavailable.");
@@ -2994,6 +3073,26 @@ export async function deleteCloudUserById(profileId) {
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
