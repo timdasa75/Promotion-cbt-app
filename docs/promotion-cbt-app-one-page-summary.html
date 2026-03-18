@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Promotion CBT App - One-Page Summary</title>
+<style>
+  @page { size: Letter; margin: 0.35in; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: #1b1f23;
+    font-size: 10.1pt;
+    line-height: 1.24;
+  }
+  .page {
+    width: 100%;
+    min-height: 10.1in;
+    max-height: 10.1in;
+    overflow: hidden;
+  }
+  h1 {
+    font-size: 16pt;
+    margin: 0 0 8px 0;
+    letter-spacing: 0.2px;
+  }
+  .subhead {
+    font-size: 9pt;
+    color: #4a5563;
+    margin-bottom: 8px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .section {
+    border: 1px solid #d8dee8;
+    border-radius: 8px;
+    padding: 8px 10px;
+    background: #ffffff;
+  }
+  .section h2 {
+    margin: 0 0 5px 0;
+    font-size: 10.5pt;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    color: #1c3d5a;
+  }
+  .section p {
+    margin: 0;
+  }
+  ul {
+    margin: 4px 0 0 15px;
+    padding: 0;
+  }
+  li { margin: 0 0 3px 0; }
+  .full { grid-column: 1 / -1; }
+  .note {
+    margin-top: 6px;
+    font-size: 8.8pt;
+    color: #5c6673;
+  }
+  .not-found {
+    font-weight: 600;
+    color: #7b1f2f;
+  }
+  .flow {
+    margin-top: 4px;
+    padding: 6px;
+    border-radius: 6px;
+    background: #f6f8fb;
+    font-size: 9pt;
+  }
+</style>
+</head>
+<body>
+  <div class="page">
+    <h1>Promotion CBT App - One-Page Summary</h1>
+    <div class="subhead">Repo-based summary generated from README, index.html, js modules, data/topics.json, and functions/index.js.</div>
+
+    <div class="grid">
+      <section class="section">
+        <h2>What It Is</h2>
+        <p>Promotion CBT is a browser-based practice platform for Nigerian Federal Civil Service promotion preparation (directorate track). It combines topic drills, timed exam simulation, and post-quiz performance feedback in a static web app with optional Firebase-backed cloud auth.</p>
+      </section>
+
+      <section class="section">
+        <h2>Who It's For</h2>
+        <p>Primary persona: Federal Civil Service officers preparing for directorate-level promotion CBT who need structured, repeatable study across policy, regulation, leadership, ICT, and reasoning topics.</p>
+      </section>
+
+      <section class="section full">
+        <h2>What It Does</h2>
+        <ul>
+          <li>Loads a 10-topic question bank from <code>data/topics.json</code> and topic JSON files.</li>
+          <li>Supports Practice, Exam, and Review modes, with per-mode behavior and feedback.</li>
+          <li>Runs a 40-question cross-topic Directorate Mock Exam (premium-gated).</li>
+          <li>Captures retry queues for missed questions and allows focused re-attempts.</li>
+          <li>Tracks attempts, streak, weakest-topic recommendation, and results analytics.</li>
+          <li>Provides keyboard quiz controls (A-D/1-4, arrows, Enter) for faster navigation.</li>
+          <li>Includes admin tooling for plan overrides, upgrade request review, and user directory/status operations.</li>
+        </ul>
+      </section>
+
+      <section class="section full">
+        <h2>How It Works (Architecture)</h2>
+        <ul>
+          <li><strong>UI shell:</strong> <code>index.html</code> + CSS + ES modules; <code>js/boot.js</code> sets base path and runtime auth requirements.</li>
+          <li><strong>App orchestration:</strong> <code>js/app.js</code> initializes data, manages screens, binds auth/admin/dashboard actions.</li>
+          <li><strong>Data pipeline:</strong> <code>js/data.js</code> loads topics; <code>js/topicSources.js</code> fetches topic files and normalizes subcategory/question shapes.</li>
+          <li><strong>Quiz engine:</strong> <code>js/quiz.js</code> builds sessions, timers, scoring, review filters, mock exam composition, and persistence.</li>
+          <li><strong>Auth/entitlements:</strong> <code>js/auth.js</code> handles local users/session storage plus Firebase REST + Firestore profile sync when configured.</li>
+          <li><strong>Admin backend:</strong> <code>functions/index.js</code> exposes HTTPS admin list/delete endpoints and auth-profile delete sync triggers.</li>
+        </ul>
+        <div class="flow"><strong>Data flow:</strong> Browser load -> boot/runtime config -> topics fetch -> login (local/cloud) -> topic/category selection -> question extraction -> quiz scoring/persistence -> dashboard + optional cloud/admin sync.</div>
+      </section>
+
+      <section class="section full">
+        <h2>How To Run (Minimal)</h2>
+        <ol style="margin:4px 0 0 16px; padding:0;">
+          <li>Install dependencies: <code>npm install</code></li>
+          <li>Serve as static site: <code>python -m http.server 4173</code></li>
+          <li>Open: <code>http://127.0.0.1:4173/</code></li>
+          <li>Optional for cloud auth: configure <code>config/runtime-auth.js</code> using <code>config/runtime-auth.example.js</code>.</li>
+        </ol>
+        <div class="note"><span class="not-found">Not found in repo:</span> a dedicated <code>npm start</code>/<code>npm run dev</code> script for local serving.</div>
+      </section>
+    </div>
+  </div>
+</body>
+</html>

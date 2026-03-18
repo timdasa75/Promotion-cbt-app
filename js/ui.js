@@ -13,14 +13,11 @@ import {
   isAuthenticated,
 } from "./auth.js";
 import { debugLog } from "./logger.js";
-import {
-  NOTIFICATION_ERROR_MS,
-  NOTIFICATION_SUCCESS_MS,
-  NOTIFICATION_WARNING_MS,
-} from "./constants.js";
+import { showError, showSuccess, showWarning } from "./ui/notifications.js";
+import { showScreen } from "./ui/screen.js";
 
-// Track current screen
-let currentScreenId = "splashScreen";
+export { showScreen, showError, showSuccess, showWarning };
+
 
 function escapeHtml(value) {
   return String(value || "")
@@ -42,108 +39,6 @@ function formatShortDate(iso) {
   });
 }
 
-
-// Show a specific screen with animation
-export function showScreen(screenId) {
-  window.scrollTo(0, 0);
-  debugLog(`Switching to screen: ${screenId}`);
-  return new Promise((resolve, reject) => {
-    // Validate input
-    if (!screenId) {
-      reject(new Error("Screen ID is required"));
-      return;
-    }
-
-    // Get screens
-    const currentScreen = document.getElementById(currentScreenId);
-    const targetScreen = document.getElementById(screenId);
-    if (!targetScreen) {
-      console.error(`Screen with id "${screenId}" not found`);
-      reject(new Error(`Screen with id "${screenId}" not found`));
-      return;
-    }
-
-    // Prevent showing the same screen
-    if (currentScreenId === screenId) {
-      debugLog(`Already on screen: ${screenId}`);
-      resolve();
-      return;
-    }
-
-    // Remove active class and add hidden class to all screens
-    document.querySelectorAll(".screen").forEach((screen) => {
-      screen.classList.remove("active");
-      screen.classList.add("hidden");
-    });
-
-    // Show new screen immediately to start transition
-    targetScreen.classList.remove("hidden");
-    debugLog(`Made ${screenId} visible`);
-
-    // Trigger animation frame for smooth transition
-    requestAnimationFrame(() => {
-      // Add active class after a brief delay to ensure transition triggers
-      setTimeout(() => {
-        targetScreen.classList.add("active");
-        debugLog(`Activated ${screenId}`);
-
-        // Update current screen tracking
-        currentScreenId = screenId;
-        document.dispatchEvent(
-          new CustomEvent("screenchange", { detail: { screenId } }),
-        );
-
-        // Show/hide quiz header
-        const quizHeader = document.getElementById("quizHeader");
-        if (quizHeader) {
-          quizHeader.classList.toggle("hidden", screenId !== "quizScreen");
-        }
-
-        resolve();
-      });
-    }, 300); // Match this with your CSS transition duration
-  });
-}
-
-// Show error message
-function showNotification(message, { type = "error", timeoutMs } = {}) {
-  const config = {
-    error: { className: "error-message", timeoutMs: NOTIFICATION_ERROR_MS },
-    warning: { className: "warning-message", timeoutMs: NOTIFICATION_WARNING_MS },
-    success: { className: "success-message", timeoutMs: NOTIFICATION_SUCCESS_MS },
-  };
-  const entry = config[type] || config.error;
-
-  const noticeDiv = document.createElement("div");
-  noticeDiv.className = entry.className;
-  noticeDiv.textContent = message;
-
-  // Use .app-container for notice placement
-  const container = document.querySelector(".app-container");
-  if (container) {
-    container.insertBefore(noticeDiv, container.firstChild);
-  } else {
-    // fallback: append to body
-    document.body.insertBefore(noticeDiv, document.body.firstChild);
-  }
-
-  const resolvedTimeoutMs = Number.isFinite(timeoutMs) ? timeoutMs : entry.timeoutMs;
-  setTimeout(() => {
-    noticeDiv.remove();
-  }, resolvedTimeoutMs);
-}
-
-export function showError(message) {
-  showNotification(message, { type: "error" });
-}
-
-export function showWarning(message) {
-  showNotification(message, { type: "warning" });
-}
-
-export function showSuccess(message) {
-  showNotification(message, { type: "success" });
-}
 
 // Display categories for a topic
 export async function displayCategories(topic, onSelect) {
@@ -604,7 +499,10 @@ export async function selectTopic(topic) {
 }
 
 // Make functions available globally for HTML onclick handlers
-window.showScreen = showScreen;
+
+
+
+
 
 
 

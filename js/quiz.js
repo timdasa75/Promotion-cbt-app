@@ -5,6 +5,12 @@ import { extractQuestionsByCategory, fetchTopicDataFiles } from "./topicSources.
 import { debugLog } from "./logger.js";
 import { getTopics } from "./data.js";
 import { calculateScoreFromAnswers } from "./metrics.js";
+import { escapeHtml, parseMarkdown, normalizeExplanationText } from "./quiz/formatting.js";
+import {
+  EXAM_CRITICAL_THRESHOLD_SEC,
+  EXAM_WARNING_MESSAGES,
+  EXAM_WARNING_RESET_THRESHOLD_SEC,
+} from "./constants.js";
 import {
   getCurrentEntitlement,
   getFreeMockExamEligibility,
@@ -16,66 +22,6 @@ import {
   writeCloudProgressSummary,
 } from "./auth.js";
 
-function escapeHtml(value) {
-  return String(value || "")
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
-}
-
-/**
- * Markdown parser for basic formatting
- * @param {string} text - Text to convert to HTML
- * @returns {string} HTML formatted text
- */
-function parseMarkdown(text) {
-  if (!text || typeof text !== "string") return text || "";
-
-  // Escape HTML first so markdown formatting cannot inject markup.
-  let html = text
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;");
-
-  // Inline markdown.
-  html = html.replace(/`([^`]+)`/g, "<code>$1</code>");
-  html = html.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
-  html = html.replace(/__([^_]+)__/g, "<strong>$1</strong>");
-  html = html.replace(/(^|[^\*])\*([^\*\n]+)\*(?!\*)/g, "$1<em>$2</em>");
-  html = html.replace(/(^|[^_])_([^_\n]+)_(?!_)/g, "$1<em>$2</em>");
-
-  // New lines.
-  html = html.replace(/\n/g, "<br>");
-  return `<p>${html}</p>`;
-}
-
-function normalizeExplanationText(text) {
-  if (!text || typeof text !== "string") return "No explanation available.";
-
-  let normalized = text.trim();
-
-  // Remove answer-judgment lead-ins so rationale stays neutral for all outcomes.
-  normalized = normalized.replace(
-    /^(this\s+is\s+correct\s+because|this\s+is\s+incorrect\s+because|correct\s+because|incorrect\s+because)\s*/i,
-    "",
-  );
-  normalized = normalized.replace(/^(correct|incorrect)\s*[:.-]\s*/i, "");
-  normalized = normalized.replace(/^(this\s+means|this\s+is\s+because)\s*/i, "");
-
-  // Clean accidental duplicate punctuation and spacing artifacts from generated content.
-  normalized = normalized.replace(/\s{2,}/g, " ");
-  normalized = normalized.replace(/,\s*\./g, ".");
-  normalized = normalized.replace(/\.\s*\./g, ".");
-
-  normalized = normalized.trim();
-  if (!normalized) return "No explanation available.";
-
-  // Ensure sentence starts cleanly.
-  normalized = normalized.charAt(0).toUpperCase() + normalized.slice(1);
-  return normalized;
-}
 
 function clearOptionFeedbackLabel(optionEl) {
   if (!optionEl) return;
@@ -1492,7 +1438,8 @@ function updateTimerDisplay() {
   const timeLeftElement = document.getElementById("timeLeft");
   if (!timeLeftElement) return;
 
-  timeLeftElement.textContent = formatDuration(quizState.timeLeft);
+  const timeLeft = quizState.timeLeft;
+  timeLeftElement.textContent = formatDuration(timeLeft);
 
   if (currentMode !== "exam") {
     updatePracticePacingNotice();
@@ -1500,22 +1447,12 @@ function updateTimerDisplay() {
   }
 
   // Check if we need to show time warnings or reset to normal state
-  if (quizState.timeLeft <= 10 && quizState.timeLeft > 0) {
+  if (timeLeft <= EXAM_CRITICAL_THRESHOLD_SEC && timeLeft > 0) {
     // Last 10 seconds
-    showTimeWarning(`${quizState.timeLeft} seconds remaining!`);
-  } else if (quizState.timeLeft === 30) {
-    // 30 seconds
-    showTimeWarning("30 seconds remaining!");
-  } else if (quizState.timeLeft === 60) {
-    // 1 minute
-    showTimeWarning("1 minute remaining!");
-  } else if (quizState.timeLeft === 180) {
-    // 3 minutes
-    showTimeWarning("3 minutes remaining!");
-  } else if (quizState.timeLeft === 300) {
-    // 5 minutes
-    showTimeWarning("5 minutes remaining!");
-  } else if (quizState.timeLeft > 120) {
+    showTimeWarning(`${timeLeft} seconds remaining!`);
+  } else if (EXAM_WARNING_MESSAGES[timeLeft]) {
+    showTimeWarning(EXAM_WARNING_MESSAGES[timeLeft]);
+  } else if (timeLeft > EXAM_WARNING_RESET_THRESHOLD_SEC) {
     // If we have more than 2 minutes left, ensure normal state
     const timerContainer = document.getElementById("timerDisplay");
     if (timerContainer) {
@@ -2085,9 +2022,6 @@ export {
   retakeFullQuiz,
 };
 // Also attach to window for compatibility
-window.nextQuestion = nextQuestion;
-window.previousQuestion = previousQuestion;
-window.submitAnswer = submitAnswer;
 
 function reviewIncorrectAnswers() {
   applyReviewFilter("incorrect");
@@ -2895,6 +2829,16 @@ function initializeQuiz(options = {}) {
   updateProgress();
   persistQuizRuntime();
 }
+
+
+
+
+
+
+
+
+
+
 
 
 

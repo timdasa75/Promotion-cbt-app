@@ -20,14 +20,28 @@ Web-based CBT practice platform for Nigerian Federal Civil Service promotion pre
    ```bash
    npm install
    ```
-2. Start a static server:
+2. Copy the runtime auth template:
    ```bash
-   python -m http.server 4173
+   cp config/runtime-auth.example.js config/runtime-auth.js
    ```
-3. Open:
+3. Start the Vite dev server:
+   ```bash
+   npm run dev
+   ```
+4. Open:
    ```text
-   http://127.0.0.1:4173/
+   http://127.0.0.1:5173/
    ```
+
+## Build & Preview
+
+```bash
+npm run build
+```
+
+```bash
+npm run preview
+```
 
 ## Run Tests
 

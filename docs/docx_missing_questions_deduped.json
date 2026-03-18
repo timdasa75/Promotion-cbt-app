@@ -1,0 +1,727 @@
+{
+  "missing": [
+    {
+      "question": "The provisions of the Public Service Rules (PSR) shall be enforced by:"
+    },
+    {
+      "question": "The Public Service Rules apply to:"
+    },
+    {
+      "question": "Which of the following offices is NOT explicitly mentioned in the rules?"
+    },
+    {
+      "question": "To what extent do these rules apply to the offices mentioned in 010102?"
+    },
+    {
+      "question": "What is the duty of every officer regarding the Public Service Rules?"
+    },
+    {
+      "question": "Where are the special meanings of words and terms used in particular chapters or sections found?"
+    },
+    {
+      "question": "What does \"Accredited Representative of the Federal Republic of Nigeria\" mean?"
+    },
+    {
+      "question": "What does \"Civil Service of the Federation\" mean?"
+    },
+    {
+      "question": "\"Classified Correspondence\" is correspondence that has been graded:"
+    },
+    {
+      "question": "What does \"Cut-off Mark\" mean?"
+    },
+    {
+      "question": "What is an \"Established Post\"?"
+    },
+    {
+      "question": "Who is an \"Expatriate Officer\"?"
+    },
+    {
+      "question": "What does \"Gazette\" mean?"
+    },
+    {
+      "question": "What does \"Interdiction\" mean?"
+    },
+    {
+      "question": "Who is a \"Junior Officer\"?"
+    },
+    {
+      "question": "What are \"Junior Posts\"?"
+    },
+    {
+      "question": "What does \"Monthly-Rated\" mean?"
+    },
+    {
+      "question": "What is \"Nigerian Home Place\"?"
+    },
+    {
+      "question": "Who is a \"Nigerian Officer\"?"
+    },
+    {
+      "question": "What does \"Officer\" mean when used without qualification?"
+    },
+    {
+      "question": "What does \"Pass Mark\" mean?"
+    },
+    {
+      "question": "Who is a \"Permanent Secretary\"?"
+    },
+    {
+      "question": "What does \"Public Service of the Federation\" mean?"
+    },
+    {
+      "question": "What do \"Public Service Rules\" consist of?"
+    },
+    {
+      "question": "What is a \"Scheme of Service\"?"
+    },
+    {
+      "question": "What are \"Senior Posts\"?"
+    },
+    {
+      "question": "Who is a \"Spouse of an Officer\"?"
+    },
+    {
+      "question": "What does \"Staff\" mean?"
+    },
+    {
+      "question": "What does \"Suspension\" mean?"
+    },
+    {
+      "question": "Who is a \"Trainee\"?"
+    },
+    {
+      "question": "How can the Federal Government amend the provisions of the Public Service Rules?"
+    },
+    {
+      "question": "How are the terms 'Officer' and 'Staff' referred to in the Public Service Rules to be applied in terms of gender?"
+    },
+    {
+      "question": "What should a copy of the Public Service Rules form part of?"
+    },
+    {
+      "question": "Appointments to offices in the Federal Civil Service are made on the authority of:"
+    },
+    {
+      "question": "How are appointments made?"
+    },
+    {
+      "question": "Who is authorized to appoint eligible candidates to posts in respect of which the powers of appointment have been delegated to them?"
+    },
+    {
+      "question": "The Federal Civil Service Commission shall make appointments to posts graded:"
+    },
+    {
+      "question": "How shall appointments by the FCSC be made?"
+    },
+    {
+      "question": "Where shall advertisement for vacancies be placed?"
+    },
+    {
+      "question": "What is the deadline for submission of applications from interested candidates?"
+    },
+    {
+      "question": "Who shall select from the pool of successful candidates at the Civil Service Examination?"
+    },
+    {
+      "question": "Who handles the selection process in each Ministry?"
+    },
+    {
+      "question": "How often is the competitive Public/Civil Service Entry Examination held for posts graded GL. 07-10?"
+    },
+    {
+      "question": "Who conducts the Public/Civil Service Entry Examination?"
+    },
+    {
+      "question": "What is the qualification requirement for the Public/Civil Service Entry Examination?"
+    },
+    {
+      "question": "Who makes the final recommendation for appointments?"
+    },
+    {
+      "question": "Who appoints Junior Staff on GL. 06 and below?"
+    },
+    {
+      "question": "How are appointments in Federal Offices located in the States/Zones made?"
+    },
+    {
+      "question": "Who works out the actual establishment for each State Office?"
+    },
+    {
+      "question": "Who conducts the interview to appoint the Officers (Junior Staff)?"
+    },
+    {
+      "question": "Who approves the appointment of Junior Staff?"
+    },
+    {
+      "question": "When is the incremental date of an Officer appointed or promoted to a post?"
+    },
+    {
+      "question": "What is the condition for an Officer to enjoy the increment?"
+    },
+    {
+      "question": "How is seniority in any Department determined?"
+    },
+    {
+      "question": "Is the employment of unpaid Staff allowed?"
+    },
+    {
+      "question": "Who is responsible for keeping an up-to-date record of every Officer under their control?"
+    },
+    {
+      "question": "Which form shall be used for staff records?"
+    },
+    {
+      "question": "Where must a copy of the Staff Record Form (Gen 60) be sent?"
+    },
+    {
+      "question": "Within what time frame should the Staff Record Form (Gen 60) be sent?"
+    },
+    {
+      "question": "How should Form Gen 60 be completed?"
+    },
+    {
+      "question": "Can the date of birth recorded on appointment be changed?"
+    },
+    {
+      "question": "What is the contravention of Rule 020107 regarding the date of birth regarded as?"
+    },
+    {
+      "question": "What does \"Recruitment\" mean?"
+    },
+    {
+      "question": "Which of the following is a category of appointment to the Federal Public Service?"
+    },
+    {
+      "question": "Appointments made by the FCSC to NYSC Presidential Merit Award winners are:"
+    },
+    {
+      "question": "What percentage of recruitments shall be for persons with disability?"
+    },
+    {
+      "question": "Where posts prove difficult to fill from within the Service, they shall normally be:"
+    },
+    {
+      "question": "What type of appointment may be given to a candidate who requires additional experience?"
+    },
+    {
+      "question": "What is the normal service period for a trainee or pupil?"
+    },
+    {
+      "question": "Under what condition may the trainee period be reduced?"
+    },
+    {
+      "question": "What happens after the completion of the \"trainee period\"?"
+    },
+    {
+      "question": "How is a confirmed Officer treated when advanced to a training grade?"
+    },
+    {
+      "question": "What is the normal maximum period of secondment for training?"
+    },
+    {
+      "question": "All first appointments to pensionable posts other than trainee posts will be:"
+    },
+    {
+      "question": "Is an Officer confirmed in a lower post regarded as on probation in a higher post to which he is converted?"
+    },
+    {
+      "question": "What is the minimum age for appointment into the Federal Public Service?"
+    },
+    {
+      "question": "What is the maximum age for appointment into the Federal Public Service?"
+    },
+    {
+      "question": "What is one of the qualifications every applicant must possess?"
+    },
+    {
+      "question": "Who must certify an applicant as medically fit?"
+    },
+    {
+      "question": "What kind of testimonial is required from applicants?"
+    },
+    {
+      "question": "Where are the requisite qualifications for appointment provided?"
+    },
+    {
+      "question": "What is required for an Officer to be appointed?"
+    },
+    {
+      "question": "In which case is prior specific approval required for an appointment?"
+    },
+    {
+      "question": "If previously dismissed, what is required for a new appointment?"
+    },
+    {
+      "question": "What must every applicant for government employment state?"
+    },
+    {
+      "question": "What must an applicant state about previous employment?"
+    },
+    {
+      "question": "What must an applicant disclose if they have left any employment?"
+    },
+    {
+      "question": "What must an applicant state if they are still in any employment?"
+    },
+    {
+      "question": "What must an applicant declare regarding financial status?"
+    },
+    {
+      "question": "Which form is to be completed by applicants for senior posts?"
+    },
+    {
+      "question": "Who processes FC.2 forms and publishes shortlists?"
+    },
+    {
+      "question": "Which form shall accompany Gen. 69C?"
+    },
+    {
+      "question": "When shall an Officer enter Personal Particulars on Gen. 60?"
+    },
+    {
+      "question": "What is the duty of every Permanent Secretary regarding the Oath of Secrecy?"
+    },
+    {
+      "question": "Does the Oath of Secrecy prejudice the Freedom of Information Act?"
+    },
+    {
+      "question": "Can a public Officer be a member of a secret society?"
+    },
+    {
+      "question": "What should an Officer who is a member of a secret society before appointment do?"
+    },
+    {
+      "question": "What is the contravention of Rule 020211 (Secret Societies) regarded as?"
+    },
+    {
+      "question": "What disciplinary action may be taken for contravening Rule 020211?"
+    },
+    {
+      "question": "How long are officers on probation required to serve?"
+    },
+    {
+      "question": "Under what condition may probation be reduced?"
+    },
+    {
+      "question": "What is the maximum probationary period allowed without extension?"
+    },
+    {
+      "question": "What may result from an extension of probation?"
+    },
+    {
+      "question": "What is an Officer required to do during probation?"
+    },
+    {
+      "question": "For senior posts, what do prescribed examinations include?"
+    },
+    {
+      "question": "For clerical grade Officers, what is the prescribed examination?"
+    },
+    {
+      "question": "What happens if a clerical Officer fails the exam during probation?"
+    },
+    {
+      "question": "What happens if a clerical Officer fails the exam at the end of an extended probation?"
+    },
+    {
+      "question": "For professional cadres, what is the condition for confirmation?"
+    },
+    {
+      "question": "Who is responsible for ensuring conditions for confirmation are met?"
+    },
+    {
+      "question": "When is an Officer eligible for confirmation?"
+    },
+    {
+      "question": "Who conveys the confirmation to the Officer?"
+    },
+    {
+      "question": "What happens if service during probation is unsatisfactory?"
+    },
+    {
+      "question": "Who can approve termination of an Officer on probation?"
+    },
+    {
+      "question": "What is the general principle governing advancement and promotion?"
+    },
+    {
+      "question": "What must an Officer possess to be eligible for promotion?"
+    },
+    {
+      "question": "What is the minimum period spent on a grade to be considered for promotion (General Rule)?"
+    },
+    {
+      "question": "What is the exception to the minimum period requirement?"
+    },
+    {
+      "question": "What is the primary method of promotion?"
+    },
+    {
+      "question": "Who conducts promotion examinations for GL. 07 and above?"
+    },
+    {
+      "question": "Who is responsible for issuing the result of the promotion examination?"
+    },
+    {
+      "question": "When does a promotion take effect?"
+    },
+    {
+      "question": "Can an Officer refuse a promotion?"
+    },
+    {
+      "question": "What happens if an Officer refuses a promotion?"
+    },
+    {
+      "question": "What is \"acting appointment\"?"
+    },
+    {
+      "question": "Under what circumstances can an Officer act in a higher post?"
+    },
+    {
+      "question": "Maximum period an Officer can act in a higher post without special approval?"
+    },
+    {
+      "question": "What happens if acting appointment exceeds six months without approval?"
+    },
+    {
+      "question": "What does \"transfer\" mean?"
+    },
+    {
+      "question": "Can an Officer be transferred without consent?"
+    },
+    {
+      "question": "Who approves the transfer of an Officer?"
+    },
+    {
+      "question": "What happens to seniority upon transfer?"
+    },
+    {
+      "question": "What are \"inter-cadre transfers\"?"
+    },
+    {
+      "question": "Who approves inter-cadre transfers?"
+    },
+    {
+      "question": "What is \"secondment\"?"
+    },
+    {
+      "question": "What is the maximum period of secondment without review?"
+    },
+    {
+      "question": "What happens at the end of secondment?"
+    },
+    {
+      "question": "What is \"posting\"?"
+    },
+    {
+      "question": "A public officer is expected to demonstrate what towards the public service?"
+    },
+    {
+      "question": "Public officers must not put themselves in a position where their personal interest conflicts with their:"
+    },
+    {
+      "question": "What is the primary purpose of the Code of Conduct for Public Officers?"
+    },
+    {
+      "question": "A public officer who receives a gift in the course of official duties must:"
+    },
+    {
+      "question": "Which of the following is a core value expected of a public officer?"
+    },
+    {
+      "question": "Public officers are forbidden from engaging in any private business, trade, or profession EXCEPT:"
+    },
+    {
+      "question": "What is the consequence for a public officer who fails to declare assets as required?"
+    },
+    {
+      "question": "The principle of 'public trust' in public service implies that public officers should:"
+    },
+    {
+      "question": "Which body ensures that public officers adhere to the provisions of the Code of Conduct?"
+    },
+    {
+      "question": "What is the maximum number of times a public officer can apply for an extension to declare assets?"
+    },
+    {
+      "question": "The concept of 'due diligence' in public service refers to:"
+    },
+    {
+      "question": "Public officers should avoid situations that could give rise to:"
+    },
+    {
+      "question": "Which constitutional document outlines the fundamental objectives of state policy, including ethical conduct?"
+    },
+    {
+      "question": "The principle of 'accountability' means public officers are answerable to:"
+    },
+    {
+      "question": "What is the ethical implication of using government property for personal use?"
+    },
+    {
+      "question": "Public officers are expected to show 'impartiality', meaning they should:"
+    },
+    {
+      "question": "Which section of the Code of Conduct addresses the issue of receiving benefits?"
+    },
+    {
+      "question": "The concept of 'transparency' in public service requires public officers to:"
+    },
+    {
+      "question": "What is the role of the CCT regarding public officers who breach the Code?"
+    },
+    {
+      "question": "Public officers are prohibited from operating foreign bank accounts to prevent:"
+    },
+    {
+      "question": "The 'Oath of Allegiance' signifies commitment to:"
+    },
+    {
+      "question": "The Code of Conduct aims to prevent officers from enriching themselves at the expense of:"
+    },
+    {
+      "question": "What is the ethical obligation regarding confidential information?"
+    },
+    {
+      "question": "The Code of Conduct is primarily designed to promote:"
+    },
+    {
+      "question": "Which institution provides guidelines and training on ethical conduct?"
+    },
+    {
+      "question": "The principle of 'objectivity' means decisions should be based on:"
+    },
+    {
+      "question": "What is the ethical responsibility regarding public funds?"
+    },
+    {
+      "question": "The 'whistleblowing' policy encourages officers to report:"
+    },
+    {
+      "question": "The principle of 'public interest' implies that public officers should:"
+    },
+    {
+      "question": "What is the ethical implication of using government property for personal use?"
+    },
+    {
+      "question": "Public officers are expected to show 'impartiality', meaning:"
+    },
+    {
+      "question": "Transparency in public service requires officers to:"
+    },
+    {
+      "question": "What is the role of the CCT regarding breaches?"
+    },
+    {
+      "question": "In cases involving fraud or dishonesty, which agency must be notified?"
+    },
+    {
+      "question": "What is the main objective of the Code of Conduct under the PSR?"
+    },
+    {
+      "question": "Which ethical principle requires avoiding using government property for private gain?"
+    },
+    {
+      "question": "Which behaviour violates integrity in public service?"
+    },
+    {
+      "question": "Transparency in Appendix I means:"
+    },
+    {
+      "question": "The ethical value of accountability implies that officers:"
+    },
+    {
+      "question": "The term Audit Trail refers to documentation of financial transactions to ensure:"
+    },
+    {
+      "question": "Primary agency for financial crimes like fraud and money laundering?"
+    },
+    {
+      "question": "Which body monitors compliance and institutional corruption in public finance?"
+    },
+    {
+      "question": "Ultimate penalty for serious misconduct resulting in forfeiture of benefits?"
+    },
+    {
+      "question": "Agency responsible for receiving and verifying public officers’ asset declarations?"
+    },
+    {
+      "question": "Chief Accounting Officer personally responsible for funds within an MDA?"
+    },
+    {
+      "question": "Documentation of financial and procurement transactions ensuring integrity and traceability?"
+    },
+    {
+      "question": "Consequence for a bidder attempting to influence the evaluation committee?"
+    },
+    {
+      "question": "Required step if a bidder's offer is non-responsive?"
+    },
+    {
+      "question": "Why is the Permanent Secretary ultimately responsible for procurement compliance?"
+    },
+    {
+      "question": "System ensuring integrity and traceability throughout the procurement cycle?"
+    },
+    {
+      "question": "Body monitoring anti-corruption and institutional ethical standards (excluding financial crimes)?"
+    },
+    {
+      "question": "PSR Chapter providing foundation for integrity and accountability?"
+    },
+    {
+      "question": "Mandatory frequency for asset declaration?"
+    },
+    {
+      "question": "Agency enforcing asset declaration rules?"
+    },
+    {
+      "question": "Loss of funds must be communicated to which three offices?"
+    },
+    {
+      "question": "Agency investigating financial crimes and money laundering?"
+    },
+    {
+      "question": "Prohibition on using official info for personal gain is in which instrument?"
+    },
+    {
+      "question": "Maximum penalty for breach of the Code of Conduct?"
+    },
+    {
+      "question": "Loss of funds prompt notification offices?"
+    },
+    {
+      "question": "Corruption, fraud, and criminal convictions are categorized as:"
+    },
+    {
+      "question": "Mechanism documenting financial transactions chronologically?"
+    },
+    {
+      "question": "Audit Trail ensures:"
+    },
+    {
+      "question": "Purpose of Servicom Dashboards?"
+    },
+    {
+      "question": "Agency for digital fraud in the public sector?"
+    },
+    {
+      "question": "Why is record-keeping emphasized in CSH?"
+    },
+    {
+      "question": "Vital leadership principle for maintaining ethical standards?"
+    },
+    {
+      "question": "Integrity and Accountability are essential for which cadre?"
+    },
+    {
+      "question": "Concept requiring regular disclosure of assets and liabilities?"
+    },
+    {
+      "question": "A Directorate leader ensures fund utilization follows which Chapter of CSH?"
+    },
+    {
+      "question": "Audit Trail refers to sequential documentation to ensure:"
+    },
+    {
+      "question": "Primary objective of NSPSR?"
+    },
+    {
+      "question": "NSPSR aims to build a public service that is:"
+    },
+    {
+      "question": "Role of M&E in implementing national strategies?"
+    },
+    {
+      "question": "Ethical consideration in negotiation?"
+    },
+    {
+      "question": "Core principle of public service ethics?"
+    },
+    {
+      "question": "What is a 'dispatch book' in registry practice?"
+    },
+    {
+      "question": "What is 'program budgeting'?"
+    },
+    {
+      "question": "Key element of 'accountability' in planning?"
+    },
+    {
+      "question": "What is 'results-based planning'?"
+    },
+    {
+      "question": "Constitutional body collecting and verifying asset declarations?"
+    },
+    {
+      "question": "Primary objective of Freedom of Information Act?"
+    },
+    {
+      "question": "FOI Act enhances governance by promoting transparency and:"
+    },
+    {
+      "question": "Public Complaints Commission enhances:"
+    },
+    {
+      "question": "How can an Officer leave the Public Service?"
+    },
+    {
+      "question": "What is \"resignation\"?"
+    },
+    {
+      "question": "How should an Officer tender resignation?"
+    },
+    {
+      "question": "When is resignation effective?"
+    },
+    {
+      "question": "Can the Government refuse a resignation?"
+    },
+    {
+      "question": "What is \"retirement\"?"
+    },
+    {
+      "question": "Current mandatory retirement age in Federal Public Service?"
+    },
+    {
+      "question": "Current mandatory length of service for retirement?"
+    },
+    {
+      "question": "What is \"termination of appointment\"?"
+    },
+    {
+      "question": "Under what circumstances can appointment be terminated?"
+    },
+    {
+      "question": "What is \"dismissal\"?"
+    },
+    {
+      "question": "Who has the power to dismiss an Officer?"
+    },
+    {
+      "question": "Salary during interdiction?"
+    },
+    {
+      "question": "Condition for interdiction?"
+    },
+    {
+      "question": "Salary during suspension?"
+    },
+    {
+      "question": "Condition for suspension?"
+    },
+    {
+      "question": "Death while in service?"
+    },
+    {
+      "question": "Action upon death of an Officer?"
+    },
+    {
+      "question": "Documents to forward to OHCSF for deceased Officer?"
+    },
+    {
+      "question": "Purpose of forwarding death-in-service documents?"
+    }
+  ]
+}

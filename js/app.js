@@ -29,11 +29,14 @@ import {
 } from "./quiz.js";
 import { debugLog } from "./logger.js";
 import { calculateStreakDays, getWeakestTopicId } from "./metrics.js";
+import { initializeThemeShortcut, initializeThemeToggle } from "./app/theme.js";
+import { setToolbarIcon } from "./app/toolbar.js";
 import {
   clearLocalPlanOverride,
   forceCloudPlanSync,
   getAccessibleTopics,
   getCurrentEntitlement,
+  getFreeMockExamEligibility,
   getAdminUserDirectory,
   getAdminOperationHistory,
   logAdminOperationToCloud,
@@ -153,10 +156,6 @@ function getAdminDirectorySyncIntervalMs() {
   return Math.min(value, 10 * 60 * 1000);
 }
 
-function setToolbarIcon(target, svgMarkup) {
-  if (!target) return;
-  target.innerHTML = svgMarkup;
-}
 
 function showLoadingOverlay(show, message = "Loading Promotion CBT...") {
   const overlay = document.getElementById("appLoadingOverlay");
@@ -214,40 +213,7 @@ function getAuthToolbarIconMarkup(isSignedIn) {
   `;
 }
 
-function getThemeToolbarIconMarkup(isDarkMode) {
-  if (isDarkMode) {
-    return `
-      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-        <circle cx="12" cy="12" r="4"></circle>
-        <path d="M12 2v2"></path>
-        <path d="M12 20v2"></path>
-        <path d="M4.93 4.93l1.41 1.41"></path>
-        <path d="M17.66 17.66l1.41 1.41"></path>
-        <path d="M2 12h2"></path>
-        <path d="M20 12h2"></path>
-        <path d="M4.93 19.07l1.41-1.41"></path>
-        <path d="M17.66 6.34l1.41-1.41"></path>
-      </svg>
-    `;
-  }
-  return `
-    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-      <path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"></path>
-    </svg>
-  `;
-}
 
-function syncThemeTogglePresentation() {
-  const themeToggle = document.getElementById("themeToggle");
-  const themeIcon = document.getElementById("themeToggleIcon");
-  if (!themeToggle || !themeIcon) return;
-  const isDarkMode = document.body.classList.contains("dark-mode");
-  setToolbarIcon(themeIcon, getThemeToolbarIconMarkup(isDarkMode));
-  const tooltip = isDarkMode ? "Switch to light mode" : "Switch to dark mode";
-  themeToggle.setAttribute("aria-label", tooltip);
-  themeToggle.setAttribute("title", tooltip);
-  themeToggle.setAttribute("data-tooltip", tooltip);
-}
 
 function withSyntheticTopics(topicsData) {
   const baseTopics = Array.isArray(topicsData) ? [...topicsData] : [];
@@ -1062,13 +1028,6 @@ function initializePasswordToggles() {
   });
 }
 
-function initializeThemeShortcut() {
-  const toggleLink = document.querySelector("[data-theme-action='toggle']");
-  if (!toggleLink) return;
-  toggleLink.addEventListener("click", () => {
-    document.getElementById("themeToggle")?.click();
-  });
-}
 
 function isTopicUnlocked(topic) {
   if (topic?.id === MOCK_EXAM_TOPIC_ID) {
@@ -1207,7 +1166,47 @@ function openMockExamWelcome(mode = "exam") {
   const modal = document.getElementById("mockExamWelcomeModal");
   if (!modal) return;
   pendingMockExamStartMode = mode;
+  setMockExamWelcomeContent();
   modal.classList.remove("hidden");
+}
+
+function setMockExamWelcomeContent() {
+  const list = document.getElementById("mockExamWelcomeList");
+  const subtitle = document.getElementById("mockExamWelcomeSubtitle");
+  const startBtn = document.getElementById("mockExamWelcomeStartBtn");
+  if (!list) return;
+
+  const entitlement = getCurrentEntitlement();
+  const isAdmin = isCurrentUserAdmin();
+  const isPremium = entitlement?.id === "premium";
+  const freeStatus = isPremium || isAdmin ? null : getFreeMockExamEligibility();
+  const items = [];
+  let subtitleText = "You are about to start a mock exam.";
+
+  if (isAdmin) {
+    subtitleText = "Admin access: unlimited mock exams.";
+    items.push("Unlimited mock exam attempts for administrators.");
+  } else if (isPremium) {
+    subtitleText = "Premium access: unlimited mock exams.";
+    items.push("Unlimited mock exam attempts included with Premium.");
+  } else if (freeStatus?.allowed) {
+    subtitleText = "Free access: your weekly mock exam is available.";
+    items.push("One free mock exam attempt per 7-day window from your registration time.");
+  } else {
+    subtitleText = "Free access: mock exam on cooldown.";
+    items.push("Weekly free mock exam already used.");
+    const nextLabel = formatDateTime(freeStatus?.nextEligibleAt);
+    if (nextLabel && nextLabel !== "-") {
+      items.push(`Next free mock exam starts ${nextLabel}.`);
+    }
+  }
+
+  items.push("Exam mode only with the timer running.");
+  items.push("Results and review appear at the end.");
+  list.innerHTML = items.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
+
+  if (subtitle) subtitle.textContent = subtitleText;
+  if (startBtn) startBtn.disabled = !isAdmin && !isPremium && !freeStatus?.allowed;
 }
 
 function closeMockExamWelcome({ start = false } = {}) {
@@ -1215,6 +1214,19 @@ function closeMockExamWelcome({ start = false } = {}) {
   if (!modal) return;
   modal.classList.add("hidden");
   if (start && pendingMockExamStartMode) {
+    const entitlement = getCurrentEntitlement();
+    const isAdmin = isCurrentUserAdmin();
+    const isPremium = entitlement?.id === "premium";
+    const freeStatus = isPremium || isAdmin ? null : getFreeMockExamEligibility();
+    if (!isAdmin && !isPremium && freeStatus && !freeStatus.allowed) {
+      const nextLabel = formatDateTime(freeStatus.nextEligibleAt);
+      const nextMessage = nextLabel && nextLabel !== "-"
+        ? `starts ${nextLabel}`
+        : "available soon";
+      showWarning(`Free mock exam already used. Next free attempt ${nextMessage}.`);
+      pendingMockExamStartMode = null;
+      return;
+    }
     const mode = pendingMockExamStartMode;
     pendingMockExamStartMode = null;
     startQuiz(mode);
@@ -2881,7 +2893,6 @@ function initializeResultButtons() {
   }
 }
 
-window.startQuiz = startQuiz;
 
 document.addEventListener("DOMContentLoaded", async function () {
   startCloudPlanAutoSync();
@@ -2935,32 +2946,13 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
   });
 
-  const themeToggle = document.getElementById("themeToggle");
-  const body = document.body;
-
-  const savedTheme = localStorage.getItem("theme");
-  const osDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-  if (savedTheme === "dark" || (!savedTheme && osDark)) {
-    body.classList.add("dark-mode");
-  } else {
-    body.classList.remove("dark-mode");
-  }
-  syncThemeTogglePresentation();
-
-  if (themeToggle) {
-    themeToggle.addEventListener("click", () => {
-      body.classList.toggle("dark-mode");
-
-      if (body.classList.contains("dark-mode")) {
-        localStorage.setItem("theme", "dark");
-      } else {
-        localStorage.setItem("theme", "light");
-      }
-      syncThemeTogglePresentation();
-    });
-  }
+  initializeThemeToggle();
 });
+
+
+
+
+
 
 
 

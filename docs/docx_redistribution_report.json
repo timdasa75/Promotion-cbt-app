@@ -1,0 +1,2365 @@
+{
+  "moved": 241,
+  "by_target": {
+    "psr_allowances": 4,
+    "psr_appointments": 34,
+    "psr_discipline": 15,
+    "psr_ethics": 15,
+    "psr_general_admin": 6,
+    "psr_interpretation": 155,
+    "psr_retirement": 9,
+    "psr_training": 3
+  },
+  "unmatched_defaulted": [
+    "psr_docx_001",
+    "psr_docx_003",
+    "psr_docx_006",
+    "psr_docx_024",
+    "psr_docx_031",
+    "psr_docx_032",
+    "psr_docx_033",
+    "psr_docx_034",
+    "psr_docx_035",
+    "psr_docx_037",
+    "psr_docx_038",
+    "psr_docx_039",
+    "psr_docx_041",
+    "psr_docx_042",
+    "psr_docx_043",
+    "psr_docx_044",
+    "psr_docx_046",
+    "psr_docx_047",
+    "psr_docx_048",
+    "psr_docx_049",
+    "psr_docx_050",
+    "psr_docx_052",
+    "psr_docx_055",
+    "psr_docx_060",
+    "psr_docx_065",
+    "psr_docx_066",
+    "psr_docx_067",
+    "psr_docx_070",
+    "psr_docx_079",
+    "psr_docx_085",
+    "psr_docx_086",
+    "psr_docx_087",
+    "psr_docx_088",
+    "psr_docx_089",
+    "psr_docx_090",
+    "psr_docx_091",
+    "psr_docx_092",
+    "psr_docx_093",
+    "psr_docx_096",
+    "psr_docx_126",
+    "psr_docx_127",
+    "psr_docx_130",
+    "psr_docx_133",
+    "psr_docx_134",
+    "psr_docx_140",
+    "psr_docx_143",
+    "psr_docx_144",
+    "psr_docx_146",
+    "psr_docx_149",
+    "psr_docx_150",
+    "psr_docx_152",
+    "psr_docx_156",
+    "psr_docx_158",
+    "psr_docx_164",
+    "psr_docx_167",
+    "psr_docx_170",
+    "psr_docx_172",
+    "psr_docx_174",
+    "psr_docx_175",
+    "psr_docx_176",
+    "psr_docx_177",
+    "psr_docx_178",
+    "psr_docx_179",
+    "psr_docx_180",
+    "psr_docx_182",
+    "psr_docx_183",
+    "psr_docx_184",
+    "psr_docx_185",
+    "psr_docx_186",
+    "psr_docx_187",
+    "psr_docx_188",
+    "psr_docx_189",
+    "psr_docx_190",
+    "psr_docx_191",
+    "psr_docx_193",
+    "psr_docx_194",
+    "psr_docx_197",
+    "psr_docx_199",
+    "psr_docx_200",
+    "psr_docx_201",
+    "psr_docx_202",
+    "psr_docx_204",
+    "psr_docx_205",
+    "psr_docx_207",
+    "psr_docx_208",
+    "psr_docx_209",
+    "psr_docx_210",
+    "psr_docx_211",
+    "psr_docx_212",
+    "psr_docx_219",
+    "psr_docx_220",
+    "psr_docx_221",
+    "psr_docx_233"
+  ],
+  "items": [
+    {
+      "id": "psr_docx_001",
+      "question": "The provisions of the Public Service Rules (PSR) shall be enforced by:",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_002",
+      "question": "The Public Service Rules apply to:",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bapply to\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_003",
+      "question": "Which of the following offices is NOT explicitly mentioned in the rules?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_004",
+      "question": "To what extent do these rules apply to the offices mentioned in 010102?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 3,
+      "hits": [
+        "\\bapply to\\b",
+        "\\bthese rules\\b",
+        "\\b0101\\d{0,2}\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_005",
+      "question": "What is the duty of every officer regarding the Public Service Rules?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwhat is\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_006",
+      "question": "Where are the special meanings of words and terms used in particular chapters or sections found?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_007",
+      "question": "What does \"Accredited Representative of the Federal Republic of Nigeria\" mean?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwhat does\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_008",
+      "question": "What does \"Civil Service of the Federation\" mean?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwhat does\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_009",
+      "question": "\"Classified Correspondence\" is correspondence that has been graded:",
+      "target": "psr_general_admin",
+      "targetName": "General Administration & Office Procedures",
+      "score": 2,
+      "hits": [
+        "\\bcorrespondence\\b",
+        "\\bclassified\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_010",
+      "question": "What does \"Cut-off Mark\" mean?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwhat does\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_011",
+      "question": "What is an \"Established Post\"?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwhat is\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_012",
+      "question": "Who is an \"Expatriate Officer\"?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwho is\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_013",
+      "question": "What does \"Gazette\" mean?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwhat does\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_014",
+      "question": "What does \"Interdiction\" mean?",
+      "target": "psr_discipline",
+      "targetName": "Discipline & Misconduct",
+      "score": 3,
+      "hits": [
+        "\\binterdiction\\b",
+        "\\bdismissal\\b",
+        "\\bdisciplinary\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_015",
+      "question": "Who is a \"Junior Officer\"?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwho is\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_016",
+      "question": "What are \"Junior Posts\"?",
+      "target": "psr_allowances",
+      "targetName": "Allowances, Pay & Benefits",
+      "score": 1,
+      "hits": [
+        "\\bemoluments?\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_017",
+      "question": "What does \"Monthly-Rated\" mean?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwhat does\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_018",
+      "question": "What is \"Nigerian Home Place\"?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwhat is\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_019",
+      "question": "Who is a \"Nigerian Officer\"?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwho is\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_020",
+      "question": "What does \"Officer\" mean when used without qualification?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwhat does\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_021",
+      "question": "What does \"Pass Mark\" mean?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwhat does\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_022",
+      "question": "Who is a \"Permanent Secretary\"?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwho is\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_023",
+      "question": "What does \"Public Service of the Federation\" mean?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwhat does\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_024",
+      "question": "What do \"Public Service Rules\" consist of?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_025",
+      "question": "What is a \"Scheme of Service\"?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwhat is\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_026",
+      "question": "What are \"Senior Posts\"?",
+      "target": "psr_allowances",
+      "targetName": "Allowances, Pay & Benefits",
+      "score": 1,
+      "hits": [
+        "\\bemoluments?\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_027",
+      "question": "Who is a \"Spouse of an Officer\"?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwho is\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_028",
+      "question": "What does \"Staff\" mean?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwhat does\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_029",
+      "question": "What does \"Suspension\" mean?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwhat does\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_030",
+      "question": "Who is a \"Trainee\"?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwho is\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_031",
+      "question": "How can the Federal Government amend the provisions of the Public Service Rules?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_032",
+      "question": "How are the terms 'Officer' and 'Staff' referred to in the Public Service Rules to be applied in terms of gender?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_033",
+      "question": "What should a copy of the Public Service Rules form part of?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_034",
+      "question": "Appointments to offices in the Federal Civil Service are made on the authority of:",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_035",
+      "question": "How are appointments made?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_036",
+      "question": "Who is authorized to appoint eligible candidates to posts in respect of which the powers of appointment have been delegated to them?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwho is\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_037",
+      "question": "The Federal Civil Service Commission shall make appointments to posts graded:",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_038",
+      "question": "How shall appointments by the FCSC be made?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_039",
+      "question": "Where shall advertisement for vacancies be placed?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_040",
+      "question": "What is the deadline for submission of applications from interested candidates?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwhat is\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_041",
+      "question": "Who shall select from the pool of successful candidates at the Civil Service Examination?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_042",
+      "question": "Who handles the selection process in each Ministry?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_043",
+      "question": "How often is the competitive Public/Civil Service Entry Examination held for posts graded GL. 07-10?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_044",
+      "question": "Who conducts the Public/Civil Service Entry Examination?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_045",
+      "question": "What is the qualification requirement for the Public/Civil Service Entry Examination?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwhat is\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_046",
+      "question": "Who makes the final recommendation for appointments?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_047",
+      "question": "Who appoints Junior Staff on GL. 06 and below?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_048",
+      "question": "How are appointments in Federal Offices located in the States/Zones made?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_049",
+      "question": "Who works out the actual establishment for each State Office?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_050",
+      "question": "Who conducts the interview to appoint the Officers (Junior Staff)?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_051",
+      "question": "Who approves the appointment of Junior Staff?",
+      "target": "psr_appointments",
+      "targetName": "Appointments, Promotions & Transfers",
+      "score": 1,
+      "hits": [
+        "\\bappointment\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_052",
+      "question": "When is the incremental date of an Officer appointed or promoted to a post?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_053",
+      "question": "What is the condition for an Officer to enjoy the increment?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwhat is\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_054",
+      "question": "How is seniority in any Department determined?",
+      "target": "psr_training",
+      "targetName": "Training, Performance & Career Development",
+      "score": 1,
+      "hits": [
+        "\\bcareer\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_055",
+      "question": "Is the employment of unpaid Staff allowed?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_056",
+      "question": "Who is responsible for keeping an up-to-date record of every Officer under their control?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwho is\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_057",
+      "question": "Which form shall be used for staff records?",
+      "target": "psr_general_admin",
+      "targetName": "General Administration & Office Procedures",
+      "score": 1,
+      "hits": [
+        "\\brecords?\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_058",
+      "question": "Where must a copy of the Staff Record Form (Gen 60) be sent?",
+      "target": "psr_general_admin",
+      "targetName": "General Administration & Office Procedures",
+      "score": 1,
+      "hits": [
+        "\\brecords?\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_059",
+      "question": "Within what time frame should the Staff Record Form (Gen 60) be sent?",
+      "target": "psr_general_admin",
+      "targetName": "General Administration & Office Procedures",
+      "score": 1,
+      "hits": [
+        "\\brecords?\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_060",
+      "question": "How should Form Gen 60 be completed?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_061",
+      "question": "Can the date of birth recorded on appointment be changed?",
+      "target": "psr_appointments",
+      "targetName": "Appointments, Promotions & Transfers",
+      "score": 1,
+      "hits": [
+        "\\bappointment\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_062",
+      "question": "What is the contravention of Rule 020107 regarding the date of birth regarded as?",
+      "target": "psr_discipline",
+      "targetName": "Discipline & Misconduct",
+      "score": 2,
+      "hits": [
+        "\\bmisconduct\\b",
+        "\\bserious misconduct\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_063",
+      "question": "What does \"Recruitment\" mean?",
+      "target": "psr_appointments",
+      "targetName": "Appointments, Promotions & Transfers",
+      "score": 2,
+      "hits": [
+        "\\bappointment\\b",
+        "\\brecruitment\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_064",
+      "question": "Which of the following is a category of appointment to the Federal Public Service?",
+      "target": "psr_appointments",
+      "targetName": "Appointments, Promotions & Transfers",
+      "score": 1,
+      "hits": [
+        "\\bappointment\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_065",
+      "question": "Appointments made by the FCSC to NYSC Presidential Merit Award winners are:",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_066",
+      "question": "What percentage of recruitments shall be for persons with disability?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_067",
+      "question": "Where posts prove difficult to fill from within the Service, they shall normally be:",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_068",
+      "question": "What type of appointment may be given to a candidate who requires additional experience?",
+      "target": "psr_appointments",
+      "targetName": "Appointments, Promotions & Transfers",
+      "score": 1,
+      "hits": [
+        "\\bappointment\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_069",
+      "question": "What is the normal service period for a trainee or pupil?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwhat is\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_070",
+      "question": "Under what condition may the trainee period be reduced?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_071",
+      "question": "What happens after the completion of the \"trainee period\"?",
+      "target": "psr_appointments",
+      "targetName": "Appointments, Promotions & Transfers",
+      "score": 1,
+      "hits": [
+        "\\bprobation\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_072",
+      "question": "How is a confirmed Officer treated when advanced to a training grade?",
+      "target": "psr_training",
+      "targetName": "Training, Performance & Career Development",
+      "score": 1,
+      "hits": [
+        "\\btraining\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_073",
+      "question": "What is the normal maximum period of secondment for training?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwhat is\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_074",
+      "question": "All first appointments to pensionable posts other than trainee posts will be:",
+      "target": "psr_appointments",
+      "targetName": "Appointments, Promotions & Transfers",
+      "score": 1,
+      "hits": [
+        "\\bprobation\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_075",
+      "question": "Is an Officer confirmed in a lower post regarded as on probation in a higher post to which he is converted?",
+      "target": "psr_appointments",
+      "targetName": "Appointments, Promotions & Transfers",
+      "score": 1,
+      "hits": [
+        "\\bprobation\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_076",
+      "question": "What is the minimum age for appointment into the Federal Public Service?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwhat is\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_077",
+      "question": "What is the maximum age for appointment into the Federal Public Service?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwhat is\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_078",
+      "question": "What is one of the qualifications every applicant must possess?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwhat is\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_079",
+      "question": "Who must certify an applicant as medically fit?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_080",
+      "question": "What kind of testimonial is required from applicants?",
+      "target": "psr_ethics",
+      "targetName": "Conduct & Ethics",
+      "score": 1,
+      "hits": [
+        "\\bconduct\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_081",
+      "question": "Where are the requisite qualifications for appointment provided?",
+      "target": "psr_appointments",
+      "targetName": "Appointments, Promotions & Transfers",
+      "score": 1,
+      "hits": [
+        "\\bappointment\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_082",
+      "question": "What is required for an Officer to be appointed?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwhat is\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_083",
+      "question": "In which case is prior specific approval required for an appointment?",
+      "target": "psr_appointments",
+      "targetName": "Appointments, Promotions & Transfers",
+      "score": 1,
+      "hits": [
+        "\\bappointment\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_084",
+      "question": "If previously dismissed, what is required for a new appointment?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwhat is\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_085",
+      "question": "What must every applicant for government employment state?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_086",
+      "question": "What must an applicant state about previous employment?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_087",
+      "question": "What must an applicant disclose if they have left any employment?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_088",
+      "question": "What must an applicant state if they are still in any employment?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_089",
+      "question": "What must an applicant declare regarding financial status?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_090",
+      "question": "Which form is to be completed by applicants for senior posts?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_091",
+      "question": "Who processes FC.2 forms and publishes shortlists?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_092",
+      "question": "Which form shall accompany Gen. 69C?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_093",
+      "question": "When shall an Officer enter Personal Particulars on Gen. 60?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_094",
+      "question": "What is the duty of every Permanent Secretary regarding the Oath of Secrecy?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwhat is\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_095",
+      "question": "Does the Oath of Secrecy prejudice the Freedom of Information Act?",
+      "target": "psr_ethics",
+      "targetName": "Conduct & Ethics",
+      "score": 1,
+      "hits": [
+        "\\boath\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_096",
+      "question": "Can a public Officer be a member of a secret society?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_097",
+      "question": "What should an Officer who is a member of a secret society before appointment do?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwho is\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_098",
+      "question": "What is the contravention of Rule 020211 (Secret Societies) regarded as?",
+      "target": "psr_discipline",
+      "targetName": "Discipline & Misconduct",
+      "score": 2,
+      "hits": [
+        "\\bmisconduct\\b",
+        "\\bserious misconduct\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_099",
+      "question": "What disciplinary action may be taken for contravening Rule 020211?",
+      "target": "psr_discipline",
+      "targetName": "Discipline & Misconduct",
+      "score": 2,
+      "hits": [
+        "\\bdismissal\\b",
+        "\\bdisciplinary\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_100",
+      "question": "How long are officers on probation required to serve?",
+      "target": "psr_appointments",
+      "targetName": "Appointments, Promotions & Transfers",
+      "score": 1,
+      "hits": [
+        "\\bprobation\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_101",
+      "question": "Under what condition may probation be reduced?",
+      "target": "psr_appointments",
+      "targetName": "Appointments, Promotions & Transfers",
+      "score": 1,
+      "hits": [
+        "\\bprobation\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_102",
+      "question": "What is the maximum probationary period allowed without extension?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwhat is\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_103",
+      "question": "What may result from an extension of probation?",
+      "target": "psr_appointments",
+      "targetName": "Appointments, Promotions & Transfers",
+      "score": 1,
+      "hits": [
+        "\\bprobation\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_104",
+      "question": "What is an Officer required to do during probation?",
+      "target": "psr_appointments",
+      "targetName": "Appointments, Promotions & Transfers",
+      "score": 2,
+      "hits": [
+        "\\bappointment\\b",
+        "\\bprobation\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_105",
+      "question": "For senior posts, what do prescribed examinations include?",
+      "target": "psr_appointments",
+      "targetName": "Appointments, Promotions & Transfers",
+      "score": 1,
+      "hits": [
+        "\\bappointment\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_106",
+      "question": "For clerical grade Officers, what is the prescribed examination?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwhat is\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_107",
+      "question": "What happens if a clerical Officer fails the exam during probation?",
+      "target": "psr_appointments",
+      "targetName": "Appointments, Promotions & Transfers",
+      "score": 1,
+      "hits": [
+        "\\bprobation\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_108",
+      "question": "What happens if a clerical Officer fails the exam at the end of an extended probation?",
+      "target": "psr_appointments",
+      "targetName": "Appointments, Promotions & Transfers",
+      "score": 2,
+      "hits": [
+        "\\bappointment\\b",
+        "\\bprobation\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_109",
+      "question": "For professional cadres, what is the condition for confirmation?",
+      "target": "psr_appointments",
+      "targetName": "Appointments, Promotions & Transfers",
+      "score": 2,
+      "hits": [
+        "\\bconfirmation\\b",
+        "\\bprobation\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_110",
+      "question": "Who is responsible for ensuring conditions for confirmation are met?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwho is\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_111",
+      "question": "When is an Officer eligible for confirmation?",
+      "target": "psr_appointments",
+      "targetName": "Appointments, Promotions & Transfers",
+      "score": 2,
+      "hits": [
+        "\\bconfirmation\\b",
+        "\\bprobation\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_112",
+      "question": "Who conveys the confirmation to the Officer?",
+      "target": "psr_appointments",
+      "targetName": "Appointments, Promotions & Transfers",
+      "score": 1,
+      "hits": [
+        "\\bconfirmation\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_113",
+      "question": "What happens if service during probation is unsatisfactory?",
+      "target": "psr_appointments",
+      "targetName": "Appointments, Promotions & Transfers",
+      "score": 2,
+      "hits": [
+        "\\bappointment\\b",
+        "\\bprobation\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_114",
+      "question": "Who can approve termination of an Officer on probation?",
+      "target": "psr_appointments",
+      "targetName": "Appointments, Promotions & Transfers",
+      "score": 1,
+      "hits": [
+        "\\bprobation\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_115",
+      "question": "What is the general principle governing advancement and promotion?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwhat is\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_116",
+      "question": "What must an Officer possess to be eligible for promotion?",
+      "target": "psr_appointments",
+      "targetName": "Appointments, Promotions & Transfers",
+      "score": 1,
+      "hits": [
+        "\\bpromotion\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_117",
+      "question": "What is the minimum period spent on a grade to be considered for promotion (General Rule)?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwhat is\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_118",
+      "question": "What is the exception to the minimum period requirement?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwhat is\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_119",
+      "question": "What is the primary method of promotion?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwhat is\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_120",
+      "question": "Who conducts promotion examinations for GL. 07 and above?",
+      "target": "psr_appointments",
+      "targetName": "Appointments, Promotions & Transfers",
+      "score": 1,
+      "hits": [
+        "\\bpromotion\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_121",
+      "question": "Who is responsible for issuing the result of the promotion examination?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwho is\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_122",
+      "question": "When does a promotion take effect?",
+      "target": "psr_appointments",
+      "targetName": "Appointments, Promotions & Transfers",
+      "score": 1,
+      "hits": [
+        "\\bpromotion\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_123",
+      "question": "Can an Officer refuse a promotion?",
+      "target": "psr_appointments",
+      "targetName": "Appointments, Promotions & Transfers",
+      "score": 1,
+      "hits": [
+        "\\bpromotion\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_124",
+      "question": "What happens if an Officer refuses a promotion?",
+      "target": "psr_appointments",
+      "targetName": "Appointments, Promotions & Transfers",
+      "score": 1,
+      "hits": [
+        "\\bpromotion\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_125",
+      "question": "What is \"acting appointment\"?",
+      "target": "psr_appointments",
+      "targetName": "Appointments, Promotions & Transfers",
+      "score": 2,
+      "hits": [
+        "\\bappointment\\b",
+        "\\bacting\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_126",
+      "question": "Under what circumstances can an Officer act in a higher post?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_127",
+      "question": "Maximum period an Officer can act in a higher post without special approval?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_128",
+      "question": "What happens if acting appointment exceeds six months without approval?",
+      "target": "psr_appointments",
+      "targetName": "Appointments, Promotions & Transfers",
+      "score": 2,
+      "hits": [
+        "\\bappointment\\b",
+        "\\bacting\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_129",
+      "question": "What does \"transfer\" mean?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwhat does\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_130",
+      "question": "Can an Officer be transferred without consent?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_131",
+      "question": "Who approves the transfer of an Officer?",
+      "target": "psr_appointments",
+      "targetName": "Appointments, Promotions & Transfers",
+      "score": 1,
+      "hits": [
+        "\\btransfer\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_132",
+      "question": "What happens to seniority upon transfer?",
+      "target": "psr_appointments",
+      "targetName": "Appointments, Promotions & Transfers",
+      "score": 1,
+      "hits": [
+        "\\btransfer\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_133",
+      "question": "What are \"inter-cadre transfers\"?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_134",
+      "question": "Who approves inter-cadre transfers?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_135",
+      "question": "What is \"secondment\"?",
+      "target": "psr_appointments",
+      "targetName": "Appointments, Promotions & Transfers",
+      "score": 2,
+      "hits": [
+        "\\btransfer\\b",
+        "\\bsecondment\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_136",
+      "question": "What is the maximum period of secondment without review?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwhat is\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_137",
+      "question": "What happens at the end of secondment?",
+      "target": "psr_appointments",
+      "targetName": "Appointments, Promotions & Transfers",
+      "score": 1,
+      "hits": [
+        "\\bsecondment\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_138",
+      "question": "What is \"posting\"?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwhat is\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_139",
+      "question": "A public officer is expected to demonstrate what towards the public service?",
+      "target": "psr_ethics",
+      "targetName": "Conduct & Ethics",
+      "score": 1,
+      "hits": [
+        "\\bloyalty\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_140",
+      "question": "Public officers must not put themselves in a position where their personal interest conflicts with their:",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_141",
+      "question": "What is the primary purpose of the Code of Conduct for Public Officers?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwhat is\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_142",
+      "question": "A public officer who receives a gift in the course of official duties must:",
+      "target": "psr_ethics",
+      "targetName": "Conduct & Ethics",
+      "score": 1,
+      "hits": [
+        "\\bgift\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_143",
+      "question": "Which of the following is a core value expected of a public officer?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_144",
+      "question": "Public officers are forbidden from engaging in any private business, trade, or profession EXCEPT:",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_145",
+      "question": "What is the consequence for a public officer who fails to declare assets as required?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwhat is\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_146",
+      "question": "The principle of 'public trust' in public service implies that public officers should:",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_147",
+      "question": "Which body ensures that public officers adhere to the provisions of the Code of Conduct?",
+      "target": "psr_ethics",
+      "targetName": "Conduct & Ethics",
+      "score": 1,
+      "hits": [
+        "\\bconduct\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_148",
+      "question": "What is the maximum number of times a public officer can apply for an extension to declare assets?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwhat is\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_149",
+      "question": "The concept of 'due diligence' in public service refers to:",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_150",
+      "question": "Public officers should avoid situations that could give rise to:",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_151",
+      "question": "Which constitutional document outlines the fundamental objectives of state policy, including ethical conduct?",
+      "target": "psr_ethics",
+      "targetName": "Conduct & Ethics",
+      "score": 1,
+      "hits": [
+        "\\bconduct\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_152",
+      "question": "The principle of 'accountability' means public officers are answerable to:",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_153",
+      "question": "What is the ethical implication of using government property for personal use?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwhat is\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_154",
+      "question": "Public officers are expected to show 'impartiality', meaning they should:",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bmeaning\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_155",
+      "question": "Which section of the Code of Conduct addresses the issue of receiving benefits?",
+      "target": "psr_allowances",
+      "targetName": "Allowances, Pay & Benefits",
+      "score": 1,
+      "hits": [
+        "\\bbenefits?\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_156",
+      "question": "The concept of 'transparency' in public service requires public officers to:",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_157",
+      "question": "What is the role of the CCT regarding public officers who breach the Code?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwhat is\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_158",
+      "question": "Public officers are prohibited from operating foreign bank accounts to prevent:",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_159",
+      "question": "The 'Oath of Allegiance' signifies commitment to:",
+      "target": "psr_ethics",
+      "targetName": "Conduct & Ethics",
+      "score": 1,
+      "hits": [
+        "\\boath\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_160",
+      "question": "The Code of Conduct aims to prevent officers from enriching themselves at the expense of:",
+      "target": "psr_ethics",
+      "targetName": "Conduct & Ethics",
+      "score": 1,
+      "hits": [
+        "\\bconduct\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_161",
+      "question": "What is the ethical obligation regarding confidential information?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwhat is\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_162",
+      "question": "The Code of Conduct is primarily designed to promote:",
+      "target": "psr_ethics",
+      "targetName": "Conduct & Ethics",
+      "score": 1,
+      "hits": [
+        "\\bconduct\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_163",
+      "question": "Which institution provides guidelines and training on ethical conduct?",
+      "target": "psr_ethics",
+      "targetName": "Conduct & Ethics",
+      "score": 1,
+      "hits": [
+        "\\bconduct\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_164",
+      "question": "The principle of 'objectivity' means decisions should be based on:",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_165",
+      "question": "What is the ethical responsibility regarding public funds?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwhat is\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_166",
+      "question": "The 'whistleblowing' policy encourages officers to report:",
+      "target": "psr_discipline",
+      "targetName": "Discipline & Misconduct",
+      "score": 1,
+      "hits": [
+        "\\bmisconduct\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_167",
+      "question": "The principle of 'public interest' implies that public officers should:",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_168",
+      "question": "What is the ethical implication of using government property for personal use?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwhat is\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_169",
+      "question": "Public officers are expected to show 'impartiality', meaning:",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bmeaning\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_170",
+      "question": "Transparency in public service requires officers to:",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_171",
+      "question": "What is the role of the CCT regarding breaches?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwhat is\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_172",
+      "question": "In cases involving fraud or dishonesty, which agency must be notified?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_173",
+      "question": "What is the main objective of the Code of Conduct under the PSR?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwhat is\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_174",
+      "question": "Which ethical principle requires avoiding using government property for private gain?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_175",
+      "question": "Which behaviour violates integrity in public service?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_176",
+      "question": "Transparency in Appendix I means:",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_177",
+      "question": "The ethical value of accountability implies that officers:",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_178",
+      "question": "The term Audit Trail refers to documentation of financial transactions to ensure:",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_179",
+      "question": "Primary agency for financial crimes like fraud and money laundering?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_180",
+      "question": "Which body monitors compliance and institutional corruption in public finance?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_181",
+      "question": "Ultimate penalty for serious misconduct resulting in forfeiture of benefits?",
+      "target": "psr_discipline",
+      "targetName": "Discipline & Misconduct",
+      "score": 3,
+      "hits": [
+        "\\bmisconduct\\b",
+        "\\bdismissal\\b",
+        "\\bserious misconduct\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_182",
+      "question": "Agency responsible for receiving and verifying public officers’ asset declarations?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_183",
+      "question": "Chief Accounting Officer personally responsible for funds within an MDA?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_184",
+      "question": "Documentation of financial and procurement transactions ensuring integrity and traceability?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_185",
+      "question": "Consequence for a bidder attempting to influence the evaluation committee?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_186",
+      "question": "Required step if a bidder's offer is non-responsive?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_187",
+      "question": "Why is the Permanent Secretary ultimately responsible for procurement compliance?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_188",
+      "question": "System ensuring integrity and traceability throughout the procurement cycle?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_189",
+      "question": "Body monitoring anti-corruption and institutional ethical standards (excluding financial crimes)?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_190",
+      "question": "PSR Chapter providing foundation for integrity and accountability?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_191",
+      "question": "Mandatory frequency for asset declaration?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_192",
+      "question": "Agency enforcing asset declaration rules?",
+      "target": "psr_ethics",
+      "targetName": "Conduct & Ethics",
+      "score": 1,
+      "hits": [
+        "\\bconduct\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_193",
+      "question": "Loss of funds must be communicated to which three offices?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_194",
+      "question": "Agency investigating financial crimes and money laundering?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_195",
+      "question": "Prohibition on using official info for personal gain is in which instrument?",
+      "target": "psr_ethics",
+      "targetName": "Conduct & Ethics",
+      "score": 1,
+      "hits": [
+        "\\bconduct\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_196",
+      "question": "Maximum penalty for breach of the Code of Conduct?",
+      "target": "psr_discipline",
+      "targetName": "Discipline & Misconduct",
+      "score": 1,
+      "hits": [
+        "\\bdismissal\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_197",
+      "question": "Loss of funds prompt notification offices?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_198",
+      "question": "Corruption, fraud, and criminal convictions are categorized as:",
+      "target": "psr_discipline",
+      "targetName": "Discipline & Misconduct",
+      "score": 2,
+      "hits": [
+        "\\bmisconduct\\b",
+        "\\bserious misconduct\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_199",
+      "question": "Mechanism documenting financial transactions chronologically?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_200",
+      "question": "Audit Trail ensures:",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_201",
+      "question": "Purpose of Servicom Dashboards?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_202",
+      "question": "Agency for digital fraud in the public sector?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_203",
+      "question": "Why is record-keeping emphasized in CSH?",
+      "target": "psr_general_admin",
+      "targetName": "General Administration & Office Procedures",
+      "score": 1,
+      "hits": [
+        "\\brecords?\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_204",
+      "question": "Vital leadership principle for maintaining ethical standards?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_205",
+      "question": "Integrity and Accountability are essential for which cadre?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_206",
+      "question": "Concept requiring regular disclosure of assets and liabilities?",
+      "target": "psr_ethics",
+      "targetName": "Conduct & Ethics",
+      "score": 1,
+      "hits": [
+        "\\bconduct\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_207",
+      "question": "A Directorate leader ensures fund utilization follows which Chapter of CSH?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_208",
+      "question": "Audit Trail refers to sequential documentation to ensure:",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_209",
+      "question": "Primary objective of NSPSR?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_210",
+      "question": "NSPSR aims to build a public service that is:",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_211",
+      "question": "Role of M&E in implementing national strategies?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_212",
+      "question": "Ethical consideration in negotiation?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_213",
+      "question": "Core principle of public service ethics?",
+      "target": "psr_ethics",
+      "targetName": "Conduct & Ethics",
+      "score": 1,
+      "hits": [
+        "\\bethics?\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_214",
+      "question": "What is a 'dispatch book' in registry practice?",
+      "target": "psr_general_admin",
+      "targetName": "General Administration & Office Procedures",
+      "score": 2,
+      "hits": [
+        "\\bregistry\\b",
+        "\\bcorrespondence\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_215",
+      "question": "What is 'program budgeting'?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwhat is\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_216",
+      "question": "Key element of 'accountability' in planning?",
+      "target": "psr_training",
+      "targetName": "Training, Performance & Career Development",
+      "score": 1,
+      "hits": [
+        "\\bperformance\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_217",
+      "question": "What is 'results-based planning'?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwhat is\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_218",
+      "question": "Constitutional body collecting and verifying asset declarations?",
+      "target": "psr_ethics",
+      "targetName": "Conduct & Ethics",
+      "score": 1,
+      "hits": [
+        "\\bconduct\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_219",
+      "question": "Primary objective of Freedom of Information Act?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_220",
+      "question": "FOI Act enhances governance by promoting transparency and:",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_221",
+      "question": "Public Complaints Commission enhances:",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_222",
+      "question": "How can an Officer leave the Public Service?",
+      "target": "psr_retirement",
+      "targetName": "Separation, Retirement & Pensions",
+      "score": 3,
+      "hits": [
+        "\\bretirement\\b",
+        "\\bresignation\\b",
+        "\\bdeath\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_223",
+      "question": "What is \"resignation\"?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 1,
+      "hits": [
+        "\\bwhat is\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_224",
+      "question": "How should an Officer tender resignation?",
+      "target": "psr_retirement",
+      "targetName": "Separation, Retirement & Pensions",
+      "score": 1,
+      "hits": [
+        "\\bresignation\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_225",
+      "question": "When is resignation effective?",
+      "target": "psr_retirement",
+      "targetName": "Separation, Retirement & Pensions",
+      "score": 1,
+      "hits": [
+        "\\bresignation\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_226",
+      "question": "Can the Government refuse a resignation?",
+      "target": "psr_discipline",
+      "targetName": "Discipline & Misconduct",
+      "score": 1,
+      "hits": [
+        "\\bdisciplinary\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_227",
+      "question": "What is \"retirement\"?",
+      "target": "psr_retirement",
+      "targetName": "Separation, Retirement & Pensions",
+      "score": 2,
+      "hits": [
+        "\\bretirement\\b",
+        "\\bwithdrawal\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_228",
+      "question": "Current mandatory retirement age in Federal Public Service?",
+      "target": "psr_retirement",
+      "targetName": "Separation, Retirement & Pensions",
+      "score": 1,
+      "hits": [
+        "\\bretirement\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_229",
+      "question": "Current mandatory length of service for retirement?",
+      "target": "psr_retirement",
+      "targetName": "Separation, Retirement & Pensions",
+      "score": 1,
+      "hits": [
+        "\\bretirement\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_230",
+      "question": "What is \"termination of appointment\"?",
+      "target": "psr_discipline",
+      "targetName": "Discipline & Misconduct",
+      "score": 2,
+      "hits": [
+        "\\bdismissal\\b",
+        "\\btermination\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_231",
+      "question": "Under what circumstances can appointment be terminated?",
+      "target": "psr_appointments",
+      "targetName": "Appointments, Promotions & Transfers",
+      "score": 1,
+      "hits": [
+        "\\bappointment\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_232",
+      "question": "What is \"dismissal\"?",
+      "target": "psr_discipline",
+      "targetName": "Discipline & Misconduct",
+      "score": 5,
+      "hits": [
+        "\\bmisconduct\\b",
+        "\\bdismissal\\b",
+        "\\btermination\\b",
+        "\\bdisciplinary\\b",
+        "\\bserious misconduct\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_233",
+      "question": "Who has the power to dismiss an Officer?",
+      "target": "psr_interpretation",
+      "targetName": "Interpretation & Commencement",
+      "score": 0,
+      "hits": []
+    },
+    {
+      "id": "psr_docx_234",
+      "question": "Salary during interdiction?",
+      "target": "psr_discipline",
+      "targetName": "Discipline & Misconduct",
+      "score": 1,
+      "hits": [
+        "\\binterdiction\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_235",
+      "question": "Condition for interdiction?",
+      "target": "psr_discipline",
+      "targetName": "Discipline & Misconduct",
+      "score": 3,
+      "hits": [
+        "\\binterdiction\\b",
+        "\\bdismissal\\b",
+        "\\bdisciplinary\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_236",
+      "question": "Salary during suspension?",
+      "target": "psr_discipline",
+      "targetName": "Discipline & Misconduct",
+      "score": 1,
+      "hits": [
+        "\\bsuspension\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_237",
+      "question": "Condition for suspension?",
+      "target": "psr_discipline",
+      "targetName": "Discipline & Misconduct",
+      "score": 1,
+      "hits": [
+        "\\bsuspension\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_238",
+      "question": "Death while in service?",
+      "target": "psr_retirement",
+      "targetName": "Separation, Retirement & Pensions",
+      "score": 1,
+      "hits": [
+        "\\bdeath\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_239",
+      "question": "Action upon death of an Officer?",
+      "target": "psr_retirement",
+      "targetName": "Separation, Retirement & Pensions",
+      "score": 1,
+      "hits": [
+        "\\bdeath\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_240",
+      "question": "Documents to forward to OHCSF for deceased Officer?",
+      "target": "psr_retirement",
+      "targetName": "Separation, Retirement & Pensions",
+      "score": 1,
+      "hits": [
+        "\\bdeath\\b"
+      ]
+    },
+    {
+      "id": "psr_docx_241",
+      "question": "Purpose of forwarding death-in-service documents?",
+      "target": "psr_allowances",
+      "targetName": "Allowances, Pay & Benefits",
+      "score": 1,
+      "hits": [
+        "\\bbenefits?\\b"
+      ]
+    }
+  ]
+}
