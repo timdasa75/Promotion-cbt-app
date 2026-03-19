@@ -9,8 +9,12 @@ async function registerAndEnter(page, email = "testuser@example.com") {
     };
   });
   await page.goto("/");
-  await page.click("#startLearningBtn");
-  await expect(page.locator("#authModal")).toBeVisible();
+  await expect(page.locator("#appLoadingOverlay")).toHaveClass(/is-hidden/);
+  const authModal = page.locator("#authModal");
+  if (!(await authModal.isVisible())) {
+    await page.click("#startLearningBtn");
+  }
+  await expect(authModal).toBeVisible();
   await page.click("#authTabRegister");
   await page.fill("#registerName", "Test User");
   await page.fill("#registerEmail", email);
