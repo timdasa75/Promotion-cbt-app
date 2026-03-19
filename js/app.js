@@ -1162,6 +1162,13 @@ function closeAuthModal() {
   setAuthMessage("");
 }
 
+function ensureAuthPromptOnStartup() {
+  const modal = document.getElementById("authModal");
+  if (!modal || !modal.classList.contains("hidden")) return;
+  if (getCurrentUser()) return;
+  openAuthModal("login");
+}
+
 function openMockExamWelcome(mode = "exam") {
   const modal = document.getElementById("mockExamWelcomeModal");
   if (!modal) return;
@@ -2936,6 +2943,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     renderAdminOverrides();
     refreshAdminUserDirectory();
   }
+  ensureAuthPromptOnStartup();
 
   document.addEventListener("authplanchange", async () => {
     updateAuthUI();
