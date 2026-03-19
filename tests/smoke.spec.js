@@ -22,6 +22,11 @@ async function registerAndEnter(page, email = "testuser@example.com") {
   await page.fill("#registerConfirmPassword", "password123");
   await page.click("#registerForm button[type='submit']");
   await expect(page.locator("#topicSelectionScreen")).toBeVisible();
+  const freeTierModal = page.locator("#freeTierModal");
+  if (await freeTierModal.isVisible()) {
+    await page.click("#freeTierAcknowledgeBtn");
+    await expect(freeTierModal).toBeHidden();
+  }
 }
 
 test("dashboard filters and action buttons are interactive", async ({ page }) => {
@@ -35,7 +40,12 @@ test("dashboard filters and action buttons are interactive", async ({ page }) =>
   expect(totalCards).toBeGreaterThan(1);
   const unlockedCards = page.locator("#topicList .topic-card:not(.hidden):not(.locked)");
   const lockedCards = page.locator("#topicList .topic-card.locked:not(.hidden)");
-  await expect(unlockedCards).toHaveCount(1);
+  await expect(unlockedCards).toHaveCount(4);
+  await expect(
+    page.locator("#topicList .topic-card:not(.hidden):not(.locked)", {
+      has: page.locator("h3.topic-title", { hasText: "Directorate Mock Exam" }),
+    }),
+  ).toHaveCount(1);
   expect(await lockedCards.count()).toBeGreaterThan(0);
 
   await page.click("#filterRecentBtn");
@@ -57,6 +67,7 @@ test("user profile shows payment confirmation status after submission", async ({
 
   await page.fill("#upgradePaymentReference", "BANK-12345");
   await page.fill("#upgradeAmountPaid", "5000");
+  await page.selectOption("#upgradeBillingCycle", "monthly");
   await page.click("#submitUpgradeEvidenceBtn");
 
   await expect(page.locator("#profileUpgradeStatus")).toContainText("Pending Admin Review");
@@ -162,9 +173,8 @@ test("premium user can start cross-topic mock exam without category step", async
   await expect(mockCard).toContainText("Featured Mock Exam");
   await mockCard.click();
 
-  await expect(page.locator("#modeSelectionScreen")).toBeVisible();
-  await expect(page.locator("#categorySelectionScreen")).toHaveClass(/hidden/);
-  await page.click("#examModeCard");
+  await expect(page.locator("#mockExamWelcomeModal")).toBeVisible();
+  await page.click("#mockExamWelcomeStartBtn");
   await expect(page.locator("#quizScreen")).toBeVisible();
   await expect(page.locator("#quizTopicTitle")).toContainText("Directorate Mock Exam");
 });
@@ -243,7 +253,23 @@ test("practice mode does not reveal feedback before submit after refresh restore
 });
 
 test("results show source-topic breakdown for mock exam sessions", async ({ page }) => {
+  await page.addInitScript(() => {
+    const user = {
+      id: "u_mock_results",
+      name: "Mock Results User",
+      email: "mock-results@example.com",
+      passwordHash: "seedhash",
+      plan: "premium",
+      createdAt: new Date().toISOString(),
+    };
+    window.localStorage.setItem("cbt_users_v1", JSON.stringify([user]));
+    window.localStorage.setItem(
+      "cbt_session_v1",
+      JSON.stringify({ provider: "local", userId: user.id, createdAt: new Date().toISOString() }),
+    );
+  });
   await page.goto("/");
+  await expect(page.locator("#appLoadingOverlay")).toHaveClass(/is-hidden/);
 
   await page.evaluate(async () => {
     const quiz = await import("/js/quiz.js");
@@ -481,6 +507,23 @@ test("admin panel uses Worker admin bridge for live directory and account-state 
     });
   });
 
+  await page.route("**/mock-admin-api/adminListOperations*", async (route) => {
+    if (route.request().method() === "OPTIONS") {
+      await route.fulfill({
+        status: 204,
+        headers: corsHeaders,
+        body: "",
+      });
+      return;
+    }
+    await route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      headers: corsHeaders,
+      body: JSON.stringify({ ok: true, entries: [] }),
+    });
+  });
+
   await page.route("**/mock-admin-api/adminSetUserStatus*", async (route) => {
     if (route.request().method() === "OPTIONS") {
       await route.fulfill({
@@ -558,7 +601,10 @@ test("admin panel uses Worker admin bridge for live directory and account-state 
   await expect(page.locator("#adminUserCount")).toContainText("1/1");
   await expect.poll(() => listCalls).toBeGreaterThan(0);
 
-  await page.locator(".directory-action-menu summary").first().click();
+  await expect(page.locator("#adminUserList .admin-user-summary").first()).toBeVisible();
+  await page.locator("#adminUserList .admin-user-summary").first().click();
+  await expect(page.locator("#adminUserList .directory-action-menu summary").first()).toBeVisible();
+  await page.locator("#adminUserList .directory-action-menu summary").first().click();
   await page.locator("button[data-action='set-account-state']").first().click();
 
   await expect.poll(() => setStatusCalls).toBe(1);
