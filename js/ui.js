@@ -3,9 +3,13 @@
 import {
   countQuestionsFromTopicData,
   collectSubcategories,
+  extractQuestionsByCategory,
   fetchTopicDataFilesWithReport,
   getQuestionsFromSubcategory,
 } from "./topicSources.js";
+import { getExamTemplateById, getVisibleExamTemplates } from "./data.js";
+import { DEFAULT_MOCK_EXAM_TEMPLATE_ID } from "./mockExamTemplates.js";
+import { normalizeStudyFilters, summarizeStudyFilterOptions } from "./studyFilters.js";
 import {
   getAccessibleTopics,
   getCurrentEntitlement,
@@ -19,6 +23,37 @@ import { showScreen } from "./ui/screen.js";
 export { showScreen, showError, showSuccess, showWarning };
 
 
+function clearStudyFiltersForTopic(topic) {
+  if (!topic || typeof topic !== "object") return;
+  topic.availableStudyFilters = null;
+  topic.studyFilters = normalizeStudyFilters(topic?.studyFilters);
+}
+
+function attachStudyFiltersToTopic(topic, topicDataFiles = []) {
+  if (!topic || typeof topic !== "object") return;
+
+  const extractionOptions = {
+    allowedCategoryIds:
+      Array.isArray(topic.allowedCategoryIds) && topic.allowedCategoryIds.length
+        ? topic.allowedCategoryIds
+        : null,
+    maxQuestionsPerSubcategory: null,
+  };
+  const selectedCategory = String(topic.selectedCategory || "all");
+  const questions = [];
+
+  topicDataFiles.forEach((topicData) => {
+    questions.push(...extractQuestionsByCategory(topicData, selectedCategory, extractionOptions));
+  });
+
+  const availableStudyFilters = summarizeStudyFilterOptions(questions, {
+    currentFilters: topic.studyFilters,
+    defaultQuestionCount: 40,
+  });
+
+  topic.availableStudyFilters = availableStudyFilters;
+  topic.studyFilters = availableStudyFilters.defaults;
+}
 function escapeHtml(value) {
   return String(value || "")
     .replace(/&/g, "&amp;")
@@ -39,7 +74,68 @@ function formatShortDate(iso) {
   });
 }
 
+function getMockExamTemplatesForFeature() {
+  const templates = getVisibleExamTemplates();
+  if (templates.length) {
+    return templates;
+  }
 
+  const fallback = getExamTemplateById(DEFAULT_MOCK_EXAM_TEMPLATE_ID);
+  if (fallback) {
+    return [fallback];
+  }
+
+  return [
+    {
+      id: DEFAULT_MOCK_EXAM_TEMPLATE_ID,
+      name: "General Mock",
+      glBand: "general",
+      totalQuestions: 40,
+    },
+  ];
+}
+
+function getMockShortcutLabel(template) {
+  const name = String(template?.name || "").trim();
+  if (!name) return "General";
+  return name.replace(/\s+Mock$/i, "");
+}
+function notifySessionSetupReady(topic) {
+  document.dispatchEvent(
+    new CustomEvent("sessionsetupchange", {
+      detail: { topic },
+    }),
+  );
+}
+function getSessionSetupCopy(topic) {
+  const topicName = String(topic?.name || "this topic").trim() || "this topic";
+  const isMockExam = topic?.id === "mock_exam" || topic?.type === "mock_exam";
+
+  if (isMockExam) {
+    return {
+      title: "Directorate Mock Setup",
+      description: "Choose the profile for this timed mock.",
+      selectedName: topicName,
+    };
+  }
+
+  return {
+    title: "Session Setup",
+    description: "Choose how you want to study " + topicName + ".",
+    selectedName: topicName,
+  };
+}
+
+export function applySessionSetupCopy(topic) {
+  const quizTitle = document.getElementById("modeQuizTitle");
+  const quizDescription = document.getElementById("modeQuizDescription");
+  const selectedTopicName = document.getElementById("selectedTopicName");
+  const copy = getSessionSetupCopy(topic);
+
+  if (quizTitle) quizTitle.textContent = copy.title;
+  if (quizDescription) quizDescription.textContent = copy.description;
+  if (selectedTopicName) selectedTopicName.textContent = copy.selectedName;
+}
 // Display categories for a topic
 export async function displayCategories(topic, onSelect) {
   const categoryList = document.getElementById("categoryList");
@@ -158,11 +254,14 @@ export async function displayCategories(topic, onSelect) {
         0,
       );
       allCategoryCard.innerHTML = `
-                <div class="topic-icon">&#128218;</div>
-                <h3 class="topic-title">All Categories</h3>
-                <p class="topic-description">Practice with questions from all categories</p>
-                <div class="topic-count"><strong>${totalQuestionsInTopic}</strong> total questions in this topic</div>
-
+                <div class="card-content">
+                    <div class="topic-icon">&#128218;</div>
+                    <h3 class="topic-title">All Categories</h3>
+                    <p class="topic-description">Practice with questions from all categories</p>
+                </div>
+                <div class="card-footer">
+                    <div class="topic-count"><strong>${totalQuestionsInTopic}</strong> total questions in this topic</div>
+                </div>
             `;
       allCategoryCard.addEventListener("click", () => {
         document
@@ -202,16 +301,26 @@ export async function displayCategories(topic, onSelect) {
 export async function displayTopics(topics, onSelect) {
   debugLog("Displaying topics:", topics);
   const topicList = document.getElementById("topicList");
+  const mockExamFeature = document.getElementById("mockExamFeature");
+  const mockExamFeatureCard = document.getElementById("mockExamFeatureCard");
   if (!topicList) {
     console.error("Topic list container not found");
     return;
   }
   topicList.innerHTML = '<div class="loading">Loading topics...</div>';
+  if (mockExamFeature) {
+    mockExamFeature.innerHTML = '<div class="loading">Loading mock exam...</div>';
+  }
   await new Promise((resolve) => setTimeout(resolve, 500));
   topicList.innerHTML = "";
+  if (mockExamFeature) {
+    mockExamFeature.innerHTML = "";
+  }
+  if (mockExamFeatureCard) {
+    mockExamFeatureCard.classList.add("hidden");
+  }
   if (!topics || topics.length === 0) {
-    topicList.innerHTML =
-      '<div class="error-message">No topics available</div>';
+    topicList.innerHTML = '<div class="error-message">No topics available</div>';
     return;
   }
 
@@ -231,8 +340,11 @@ export async function displayTopics(topics, onSelect) {
   const unlockedTopics = getAccessibleTopics(topics);
   const unlockedTopicIds = new Set(unlockedTopics.map((topic) => topic.id));
   const freeMockExamStatus = getFreeMockExamEligibility();
+  const mockTopic = topics.find((topic) => topic?.id === "mock_exam") || null;
+  const studyTopics = topics.filter((topic) => topic?.id !== "mock_exam");
+  const mockTemplates = getMockExamTemplatesForFeature();
 
-  topics.forEach((topic, index) => {
+  function getTopicAccessState(topic) {
     const isMockExam = topic?.id === "mock_exam";
     let isPremiumLocked = topic?.requiresPremium && entitlement.id !== "premium";
     let mockExamStatus = null;
@@ -248,67 +360,20 @@ export async function displayTopics(topics, onSelect) {
     if (mockExamEligible) {
       isUnlocked = true;
     }
-    const topicCard = document.createElement("div");
-    topicCard.className = "topic-card ripple scale-on-hover";
-    if (topic?.id === "mock_exam") {
-      topicCard.classList.add("mock-exam-card");
-    }
-    if (!isUnlocked) {
-      topicCard.classList.add("locked");
-    }
-    topicCard.style.setProperty("--animation-order", index);
-    const name = topic.name
-      .replace(/^[A-Z]\.\s/, "")
-      .replace(/ \(\d+ Questions\)/, "");
-    const safeIcon = escapeHtml(topic.icon || "\uD83D\uDCD8");
-    const safeName = escapeHtml(name);
-    const safeDescription = escapeHtml(topic.description || "No description available");
-    const mockExamBadge = isMockExam
-      ? '<span class="mock-exam-badge">Featured Mock Exam</span>'
-      : "";
-    const freeMockBadge =
-      isMockExam && entitlement.id !== "premium" && mockExamStatus?.allowed
-        ? '<span class="mock-exam-badge">Weekly Free Mock</span>'
-        : "";
-    let lockBadge = "";
-    if (!isUnlocked) {
-      if (isMockExam && entitlement.id !== "premium" && mockExamStatus && !mockExamStatus.allowed) {
-        const nextDate = formatShortDate(mockExamStatus.nextEligibleAt);
-        lockBadge = `<span class="lock-badge">Next free mock ${nextDate ? `on ${nextDate}` : ""}</span>`;
-      } else {
-        lockBadge = '<span class="lock-badge">Locked on Free</span>';
-      }
-    }
-    let mockExamCta = "";
-    if (isMockExam) {
-      const isWeeklyFree = entitlement.id !== "premium";
-      const isEligible = Boolean(mockExamStatus?.allowed);
-      const label = isWeeklyFree
-        ? isEligible
-          ? "Start Weekly Mock"
-          : "Weekly Mock Used"
-        : "Start Mock Exam";
-      const disabled = isWeeklyFree && !isEligible ? "disabled" : "";
-      mockExamCta = `<button class="btn btn-secondary btn-compact mock-exam-cta" type="button" ${disabled}>${label}</button>`;
-    }
+    return { isMockExam, mockExamStatus, isUnlocked };
+  }
 
-    topicCard.innerHTML = `
-        <div class="card-content">
-            <div class="topic-icon">${safeIcon}</div>
-            <h3 class="topic-title">${safeName}</h3>
-            <p class="topic-description">${safeDescription}</p>
-            ${mockExamBadge}
-            ${freeMockBadge}
-            ${lockBadge}
-        </div>
-        <div class="card-footer">
-            <div class="question-count">
-                <strong>${counts[topic.id] || topic.mockExamQuestionCount || 0}</strong> Questions
-            </div>
-            ${mockExamCta}
-        </div>
-    `;
-    const handleTopicActivation = (autoStartMode = null, showMockExamWelcome = false) => {
+  function clearSelectionState() {
+    document
+      .querySelectorAll(".topic-card, .mock-feature-panel")
+      .forEach((card) => card.classList.remove("active"));
+  }
+
+  function attachTopicActivation(target, topic, accessState) {
+    const { isMockExam, mockExamStatus, isUnlocked } = accessState;
+    const defaultMockTemplateId = String(mockTemplates[0]?.id || DEFAULT_MOCK_EXAM_TEMPLATE_ID);
+
+    const handleTopicActivation = (selectionOptions = undefined) => {
       if (!isUnlocked) {
         if (isMockExam && entitlement.id !== "premium" && mockExamStatus && !mockExamStatus.allowed) {
           const nextDate = formatShortDate(mockExamStatus.nextEligibleAt);
@@ -320,32 +385,121 @@ export async function displayTopics(topics, onSelect) {
         }
         return;
       }
-      document
-        .querySelectorAll(".topic-card")
-        .forEach((card) => card.classList.remove("active"));
-      topicCard.classList.add("active");
+      clearSelectionState();
+      target.classList.add("active");
       if (onSelect) {
-        const options = autoStartMode
-          ? { autoStartMode, showMockExamWelcome }
-          : undefined;
-        onSelect(topic, options);
+        onSelect(topic, selectionOptions);
       }
     };
 
-    topicCard.addEventListener("click", () => {
-        if (isMockExam) {
-          handleTopicActivation("exam", true);
-          return;
-        }
-        handleTopicActivation();
-      });
-    const mockExamBtn = topicCard.querySelector(".mock-exam-cta");
+    target.addEventListener("click", () => {
+      if (isMockExam) {
+        handleTopicActivation({ selectedTemplateId: defaultMockTemplateId });
+        return;
+      }
+      handleTopicActivation();
+    });
+
+    const mockExamBtn = target.querySelector(".mock-exam-cta");
     if (mockExamBtn) {
       mockExamBtn.addEventListener("click", (event) => {
         event.stopPropagation();
-        handleTopicActivation("exam", true);
+        handleTopicActivation({ selectedTemplateId: defaultMockTemplateId });
       });
     }
+
+    target.querySelectorAll(".mock-template-shortcut").forEach((button) => {
+      button.addEventListener("click", (event) => {
+        event.stopPropagation();
+        const templateId = String(button.dataset.templateId || defaultMockTemplateId);
+        handleTopicActivation({ selectedTemplateId: templateId });
+      });
+    });
+  }
+
+  if (mockTopic && mockExamFeature && mockExamFeatureCard) {
+    const accessState = getTopicAccessState(mockTopic);
+    const { mockExamStatus, isUnlocked } = accessState;
+    const safeName = escapeHtml(mockTopic.name || "Directorate Mock Exam");
+    const safeDescription = escapeHtml(
+      mockTopic.description || "Cross-topic timed simulation with General, GL 14-15, GL 15-16, and GL 16-17 profiles.",
+    );
+    const freeMockBadge =
+      entitlement.id !== "premium" && mockExamStatus?.allowed
+        ? '<span class="mock-exam-badge">Weekly Free Mock</span>'
+        : "";
+    let lockBadge = "";
+    if (!isUnlocked) {
+      if (entitlement.id !== "premium" && mockExamStatus && !mockExamStatus.allowed) {
+        const nextDate = formatShortDate(mockExamStatus.nextEligibleAt);
+        lockBadge = `<span class="lock-badge">Next free mock ${nextDate ? `on ${nextDate}` : ""}</span>`;
+      } else {
+        lockBadge = '<span class="lock-badge">Locked on Free</span>';
+      }
+    }
+    const ctaLabel = entitlement.id !== "premium"
+      ? (mockExamStatus?.allowed ? "Open Weekly Mock Setup" : "Weekly Mock Used")
+      : "Open Mock Setup";
+    const disabledAttr = entitlement.id !== "premium" && !mockExamStatus?.allowed ? "disabled" : "";
+    mockExamFeature.innerHTML = `
+      <article class="mock-feature-panel ripple scale-on-hover${isUnlocked ? "" : " locked"}" tabindex="0">
+        <div class="mock-feature-content">
+          <p class="eyebrow">Directorate Mock Exam</p>
+          <div class="mock-feature-head">
+            <div>
+              <h3 class="topic-title">${safeName}</h3>
+              <p class="topic-description">${safeDescription}</p>
+            </div>
+          </div>
+        </div>
+        <div class="mock-feature-footer">
+          <div class="mock-feature-meta">
+            <span class="mock-exam-badge">40 Questions | 45 Minutes</span>
+            ${freeMockBadge}
+            ${lockBadge}
+          </div>
+          <button class="btn btn-primary mock-exam-cta" type="button" ${disabledAttr}>${ctaLabel}</button>
+        </div>
+      </article>
+    `;
+    mockExamFeatureCard.classList.remove("hidden");
+    const featurePanel = mockExamFeature.querySelector(".mock-feature-panel");
+    if (featurePanel) {
+      attachTopicActivation(featurePanel, mockTopic, accessState);
+    }
+  }
+
+  studyTopics.forEach((topic, index) => {
+    const { isUnlocked } = getTopicAccessState(topic);
+    const topicCard = document.createElement("div");
+    topicCard.className = "topic-card ripple scale-on-hover";
+    if (!isUnlocked) {
+      topicCard.classList.add("locked");
+    }
+    topicCard.style.setProperty("--animation-order", index);
+    const name = topic.name
+      .replace(/^[A-Z]\.\s/, "")
+      .replace(/ \(\d+ Questions\)/, "");
+    const safeIcon = escapeHtml(topic.icon || "\uD83D\uDCD8");
+    const safeName = escapeHtml(name);
+    const safeDescription = escapeHtml(topic.description || "No description available");
+    const lockBadge = !isUnlocked ? '<span class="lock-badge">Locked on Free</span>' : "";
+
+    topicCard.innerHTML = `
+        <div class="card-content">
+            <div class="topic-icon">${safeIcon}</div>
+            <h3 class="topic-title">${safeName}</h3>
+            <p class="topic-description">${safeDescription}</p>
+            ${lockBadge}
+        </div>
+        <div class="card-footer">
+            <div class="question-count">
+                <strong>${counts[topic.id] || topic.mockExamQuestionCount || 0}</strong> Questions
+            </div>
+        </div>
+    `;
+
+    attachTopicActivation(topicCard, topic, getTopicAccessState(topic));
     topicList.appendChild(topicCard);
     debugLog("Added topic card:", topic.name);
   });
@@ -365,7 +519,6 @@ export async function displayTopics(topics, onSelect) {
     }
   }
 }
-
 // Get total question count for a topic
 export async function getTotalQuestionCount(topic) {
   try {
@@ -381,16 +534,12 @@ export async function getTotalQuestionCount(topic) {
 export async function selectTopic(topic) {
   try {
     if (topic?.skipCategorySelection) {
-      const quizTitle = document.getElementById("modeQuizTitle");
-      const quizDescription = document.getElementById("modeQuizDescription");
-      const selectedTopicName = document.getElementById("selectedTopicName");
       const backToCategoryBtn = document.getElementById("backToCategoryBtn");
 
-      if (quizTitle) quizTitle.textContent = topic.name;
-      if (quizDescription) quizDescription.textContent = topic.description;
-      if (selectedTopicName) selectedTopicName.textContent = topic.name;
+      applySessionSetupCopy(topic);
       topic.selectedCategory = "all";
       topic.allowedCategoryIds = null;
+      clearStudyFiltersForTopic(topic);
 
       if (backToCategoryBtn) {
         backToCategoryBtn.onclick = () => {
@@ -398,6 +547,7 @@ export async function selectTopic(topic) {
         };
       }
       showScreen("modeSelectionScreen");
+      notifySessionSetupReady(topic);
       return;
     }
 
@@ -428,9 +578,16 @@ export async function selectTopic(topic) {
       }
     }
 
-    // Check if the topic has subcategories
-    if (hasSubcategories) {
-      // Topic has subcategories, show category selection screen
+    const hasSavedSelection =
+      (Array.isArray(topic.allowedCategoryIds) && topic.allowedCategoryIds.length > 0) ||
+      String(topic.selectedCategory || "all") !== "all";
+
+    if (hasSubcategories && hasSavedSelection) {
+      attachStudyFiltersToTopic(topic, topicDataFiles);
+      applySessionSetupCopy(topic);
+      showScreen("modeSelectionScreen");
+      notifySessionSetupReady(topic);
+    } else if (hasSubcategories) {
       const categoryQuizTitle = document.getElementById("categoryQuizTitle");
       const categoryQuizDescription = document.getElementById(
         "categoryQuizDescription",
@@ -445,9 +602,7 @@ export async function selectTopic(topic) {
       if (selectedTopicForCategory)
         selectedTopicForCategory.textContent = topic.name;
 
-      // Load and display categories for the selected topic
       await displayCategories(topic, (selectedCategory, visibleSubcategories = []) => {
-        // Store the selected category in the topic object
         topic.selectedCategory = selectedCategory.id || "all";
         if (Array.isArray(visibleSubcategories) && visibleSubcategories.length) {
           topic.allowedCategoryIds = visibleSubcategories
@@ -456,25 +611,20 @@ export async function selectTopic(topic) {
         } else {
           topic.allowedCategoryIds = null;
         }
+        attachStudyFiltersToTopic(topic, topicDataFiles);
+        applySessionSetupCopy(topic);
         showScreen("modeSelectionScreen");
+        notifySessionSetupReady(topic);
       });
     } else {
-      // No subcategories, proceed directly to mode selection
-      const quizTitle = document.getElementById("modeQuizTitle");
-      const quizDescription = document.getElementById("modeQuizDescription");
-      const selectedTopicName = document.getElementById("selectedTopicName");
-
-      if (quizTitle) quizTitle.textContent = topic.name;
-      if (quizDescription) quizDescription.textContent = topic.description;
-      if (selectedTopicName) selectedTopicName.textContent = topic.name;
-
-      // Set selected category to 'all' since there are no specific categories
+      applySessionSetupCopy(topic);
       topic.selectedCategory = "all";
       topic.allowedCategoryIds = null;
+      attachStudyFiltersToTopic(topic, topicDataFiles);
       showScreen("modeSelectionScreen");
+      notifySessionSetupReady(topic);
     }
 
-    // Add event listener for back button in mode selection screen
     const backToCategoryBtn = document.getElementById("backToCategoryBtn");
     if (backToCategoryBtn) {
       backToCategoryBtn.onclick = () => {
@@ -483,22 +633,37 @@ export async function selectTopic(topic) {
     }
   } catch (error) {
     console.error("Error checking topic subcategories:", error);
-    // If there's an error, proceed to mode selection anyway
-    const quizTitle = document.getElementById("modeQuizTitle");
-    const quizDescription = document.getElementById("modeQuizDescription");
-    const selectedTopicName = document.getElementById("selectedTopicName");
-
-    if (quizTitle) quizTitle.textContent = topic.name;
-    if (quizDescription) quizDescription.textContent = topic.description;
-    if (selectedTopicName) selectedTopicName.textContent = topic.name;
-
+    applySessionSetupCopy(topic);
     topic.selectedCategory = "all";
     topic.allowedCategoryIds = null;
+    clearStudyFiltersForTopic(topic);
     showScreen("modeSelectionScreen");
+    notifySessionSetupReady(topic);
   }
 }
 
 // Make functions available globally for HTML onclick handlers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

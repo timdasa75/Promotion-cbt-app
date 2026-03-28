@@ -3,9 +3,33 @@
 import { showScreen, showError, showWarning } from "./ui.js";
 import { extractQuestionsByCategory, fetchTopicDataFiles } from "./topicSources.js";
 import { debugLog } from "./logger.js";
-import { getTopics } from "./data.js";
-import { calculateScoreFromAnswers } from "./metrics.js";
+import { getTopics, getExamTemplateById, getGLBandWeights } from "./data.js";
+import { isFeatureEnabled } from "./features.js";
+import {
+  applyStudyFilters,
+  formatQuestionFocusLabel,
+  formatSessionDurationLabel,
+  formatTargetGlBandLabel,
+  getTimedTopicTestDurationSeconds,
+  normalizeStudyFilters,
+  summarizeStudyFilterOptions,
+} from "./studyFilters.js";
+import {
+  DEFAULT_MOCK_EXAM_TEMPLATE_ID,
+  buildMockExamBlueprint,
+  getDefaultMockExamBlueprint,
+} from "./mockExamTemplates.js";
+import {
+  buildDifficultyBreakdown,
+  buildSubcategoryBreakdown,
+  calculateScoreFromAnswers,
+} from "./metrics.js";
 import { escapeHtml, parseMarkdown, normalizeExplanationText } from "./quiz/formatting.js";
+import {
+  buildQuestionSelectionProfile,
+  normalizeGLBandKey,
+  prioritizeQuestionPool,
+} from "./questionPriority.js";
 import {
   EXAM_CRITICAL_THRESHOLD_SEC,
   EXAM_WARNING_MESSAGES,
@@ -128,6 +152,87 @@ function getProgressAttemptIdentity(attempt = {}) {
   return `legacy:${topicId}|${mode}|${createdAt}|${score}|${total}`;
 }
 
+function normalizeProgressCount(value, { fallback = 0, max = 1000 } = {}) {
+  return Math.floor(clampNumber(value, { min: 0, max, fallback }));
+}
+
+function normalizeStructuredBreakdown(items, { idKey, nameKey = "", sortComparator = null } = {}) {
+  const entries = Array.isArray(items) ? items : [];
+  const normalized = entries
+    .map((entry) => {
+      if (!entry || typeof entry !== "object") return null;
+      const id = String(entry?.[idKey] || "").trim();
+      if (!id) return null;
+
+      const total = normalizeProgressCount(entry?.total, { fallback: 0, max: 1000 });
+      const answered = normalizeProgressCount(entry?.answered, { fallback: 0, max: total });
+      const correct = normalizeProgressCount(entry?.correct, { fallback: 0, max: answered });
+      const wrong = normalizeProgressCount(entry?.wrong, {
+        fallback: Math.max(0, answered - correct),
+        max: answered,
+      });
+      const unanswered = normalizeProgressCount(entry?.unanswered, {
+        fallback: Math.max(0, total - answered),
+        max: total,
+      });
+      const accuracy = answered > 0 ? Math.round((correct / answered) * 100) : 0;
+      const next = {
+        [idKey]: id,
+        total,
+        answered,
+        correct,
+        wrong,
+        unanswered,
+        accuracy,
+      };
+      if (nameKey) {
+        next[nameKey] = String(entry?.[nameKey] || id).trim();
+      }
+      return next;
+    })
+    .filter(Boolean);
+
+  if (typeof sortComparator === "function") {
+    normalized.sort(sortComparator);
+  }
+
+  return normalized;
+}
+
+function normalizeSubcategoryBreakdownEntries(items) {
+  return normalizeStructuredBreakdown(items, {
+    idKey: "subcategoryId",
+    nameKey: "subcategoryName",
+    sortComparator: (left, right) =>
+      left.accuracy - right.accuracy ||
+      right.total - left.total ||
+      left.subcategoryName.localeCompare(right.subcategoryName),
+  });
+}
+
+function normalizeDifficultyBreakdownEntries(items) {
+  const rank = { easy: 0, medium: 1, hard: 2 };
+  return normalizeStructuredBreakdown(items, {
+    idKey: "difficulty",
+    sortComparator: (left, right) => {
+      const rankDelta = (rank[left.difficulty] ?? 99) - (rank[right.difficulty] ?? 99);
+      if (rankDelta !== 0) return rankDelta;
+      return left.difficulty.localeCompare(right.difficulty);
+    },
+  });
+}
+
+function normalizeSourceTopicBreakdownEntries(items) {
+  return normalizeStructuredBreakdown(items, {
+    idKey: "topicId",
+    nameKey: "topicName",
+    sortComparator: (left, right) =>
+      right.accuracy - left.accuracy ||
+      right.correct - left.correct ||
+      left.topicName.localeCompare(right.topicName),
+  });
+}
+
 function normalizeProgressAttempt(attempt = {}) {
   const topicId = String(attempt?.topicId || "").trim();
   if (!topicId) return null;
@@ -151,6 +256,18 @@ function normalizeProgressAttempt(attempt = {}) {
     ),
     createdAt,
     deviceId: String(attempt?.deviceId || "").trim(),
+    templateId: String(attempt?.templateId || "").trim(),
+    templateName: String(attempt?.templateName || "").trim(),
+    glBand: String(attempt?.glBand || "").trim(),
+    timeTakenSec: Number.isFinite(Number(attempt?.timeTakenSec))
+      ? normalizeProgressCount(attempt?.timeTakenSec, { fallback: 0, max: 86400 })
+      : null,
+    correctCount: normalizeProgressCount(attempt?.correctCount, { fallback: 0, max: 1000 }),
+    wrongCount: normalizeProgressCount(attempt?.wrongCount, { fallback: 0, max: 1000 }),
+    unansweredCount: normalizeProgressCount(attempt?.unansweredCount, { fallback: 0, max: 1000 }),
+    subcategoryBreakdown: normalizeSubcategoryBreakdownEntries(attempt?.subcategoryBreakdown),
+    difficultyBreakdown: normalizeDifficultyBreakdownEntries(attempt?.difficultyBreakdown),
+    sourceTopicBreakdown: normalizeSourceTopicBreakdownEntries(attempt?.sourceTopicBreakdown),
   };
 }
 
@@ -224,18 +341,6 @@ export const SPACED_PRACTICE_TOPIC_ID = "spaced_practice";
 let reviewContext = "study"; // "study" (pre-quiz) or "session" (post-quiz)
 let lastCompletedSession = null;
 const MOCK_EXAM_TOPIC_ID = "mock_exam";
-const DEFAULT_MOCK_EXAM_BLUEPRINT = [
-  { topicId: "psr", count: 4 },
-  { topicId: "financial_regulations", count: 4 },
-  { topicId: "procurement_act", count: 4 },
-  { topicId: "constitutional_law", count: 4 },
-  { topicId: "civil_service_admin", count: 4 },
-  { topicId: "leadership_management", count: 4 },
-  { topicId: "ict_management", count: 4 },
-  { topicId: "policy_analysis", count: 4 },
-  { topicId: "general_current_affairs", count: 4 },
-  { topicId: "competency_framework", count: 4 },
-];
 
 function clampIndex(value, length) {
   const max = Math.max(0, Number(length || 0) - 1);
@@ -296,6 +401,11 @@ function buildRuntimeTopicPayload(topic) {
     allowedCategoryIds: Array.isArray(topic.allowedCategoryIds)
       ? topic.allowedCategoryIds.filter(Boolean)
       : null,
+    studyFilters: topic?.studyFilters || null,
+    selectedTemplateId: String(topic?.selectedTemplateId || ""),
+    selectedTemplateName: String(topic?.selectedTemplateName || ""),
+    glBand: String(topic?.glBand || ""),
+    examTimeLimitMin: Number(topic?.examTimeLimitMin || 0) || null,
     mockExamBlueprint: Array.isArray(topic.mockExamBlueprint)
       ? topic.mockExamBlueprint
           .map((entry) => ({
@@ -435,49 +545,229 @@ function isMockExamTopic(topic) {
   return topic?.id === MOCK_EXAM_TOPIC_ID || topic?.type === "mock_exam";
 }
 
-function getMockExamBlueprint(topic) {
-  if (Array.isArray(topic?.mockExamBlueprint) && topic.mockExamBlueprint.length) {
-    return topic.mockExamBlueprint
-      .map((entry) => ({
-        topicId: String(entry?.topicId || ""),
-        count: Number(entry?.count || 0),
-      }))
-      .filter((entry) => entry.topicId && entry.count > 0);
+function getDisplayTopicName(topic) {
+  if (!topic || typeof topic !== "object") return "";
+  const baseName = String(topic?.name || "").trim();
+  const selectedTemplateName = String(
+    topic?.selectedTemplateName || getMockExamTemplate(topic)?.name || "",
+  ).trim();
+  if (isMockExamTopic(topic) && selectedTemplateName) {
+    return baseName + " - " + selectedTemplateName;
   }
-  return DEFAULT_MOCK_EXAM_BLUEPRINT;
+  return baseName;
 }
 
+function getMockExamTemplate(topic) {
+  if (!isMockExamTopic(topic)) {
+    return null;
+  }
+  if (!isFeatureEnabled("enableTemplateLoading") || !isFeatureEnabled("enableTemplateDrivenMocks")) {
+    return null;
+  }
+
+  const selectedTemplateId = String(
+    topic?.selectedTemplateId || DEFAULT_MOCK_EXAM_TEMPLATE_ID,
+  ).trim();
+  return (
+    getExamTemplateById(selectedTemplateId) ||
+    getExamTemplateById(DEFAULT_MOCK_EXAM_TEMPLATE_ID) ||
+    null
+  );
+}
+
+function getMockExamBlueprint(topic) {
+  const fallbackBlueprint =
+    Array.isArray(topic?.mockExamBlueprint) && topic.mockExamBlueprint.length
+      ? topic.mockExamBlueprint
+      : getDefaultMockExamBlueprint();
+
+  const template = getMockExamTemplate(topic);
+  if (template) {
+    const blueprint = buildMockExamBlueprint({
+      template,
+      glBandWeights: getGLBandWeights(),
+      fallbackBlueprint,
+    });
+    if (blueprint.length) {
+      return blueprint;
+    }
+  }
+
+  return Array.isArray(fallbackBlueprint) ? fallbackBlueprint : getDefaultMockExamBlueprint();
+}
+
+function getMockExamQuestionTarget(topic, blueprint = null) {
+  const template = getMockExamTemplate(topic);
+  const configuredTarget = Number(
+    template?.totalQuestions || topic?.mockExamQuestionCount || 0,
+  );
+  if (Number.isFinite(configuredTarget) && configuredTarget > 0) {
+    return Math.floor(configuredTarget);
+  }
+
+  const resolvedBlueprint = Array.isArray(blueprint) ? blueprint : getMockExamBlueprint(topic);
+  const blueprintTotal = resolvedBlueprint.reduce(
+    (sum, entry) => sum + Math.max(0, Number(entry?.count || 0)),
+    0,
+  );
+  return blueprintTotal > 0 ? blueprintTotal : 40;
+}
+
+function getConfiguredExamTimeLimitSeconds(topic, questionCount = 0) {
+  const template = getMockExamTemplate(topic);
+  const configuredMinutes = Number(topic?.examTimeLimitMin || template?.timeLimitMin || 0);
+  if (Number.isFinite(configuredMinutes) && configuredMinutes > 0) {
+    return Math.floor(configuredMinutes * 60);
+  }
+
+  const safeQuestionCount = Math.max(0, Number(questionCount || 0));
+  return getTimedTopicTestDurationSeconds(safeQuestionCount);
+}
+
+function getQuestionSelectionKey(question, sourceTopicId = "") {
+  const questionId = String(question?.id || "").trim();
+  if (questionId) return sourceTopicId + ":" + questionId;
+
+  const prompt = String(question?.question || "").trim();
+  if (prompt) return sourceTopicId + ":" + prompt;
+
+  return "";
+}
+
+async function buildTopicQuestionPool(sourceTopic) {
+  const topicDataFiles = await fetchTopicDataFiles(sourceTopic, { tolerateFailures: true });
+  const pool = [];
+  topicDataFiles.forEach((topicData) => {
+    pool.push(...extractQuestionsByCategory(topicData, "all", {}));
+  });
+
+  return pool.map((question) => ({
+    ...question,
+    sourceTopicId: sourceTopic.id,
+    sourceTopicName: sourceTopic.name,
+  }));
+}
+
+function updateQuizSessionEstimate() {
+  const estimateElement = document.getElementById("quizSessionEstimate");
+  if (!estimateElement) return;
+
+  if (currentMode !== "exam") {
+    estimateElement.textContent = "";
+    estimateElement.classList.add("hidden");
+    return;
+  }
+
+  const allowedSeconds = getConfiguredExamTimeLimitSeconds(currentTopic, quizState.allQuestions.length);
+  if (!allowedSeconds) {
+    estimateElement.textContent = "";
+    estimateElement.classList.add("hidden");
+    return;
+  }
+
+  estimateElement.textContent = ` | Allowed: ${formatSessionDurationLabel(allowedSeconds)}`;
+  estimateElement.classList.remove("hidden");
+}
+
+function buildQuestionSelectionProfileForSession({
+  summary = readProgressSummary(),
+  topic = currentTopic,
+  mode = currentMode || "practice",
+  currentTopicId = topic?.id || "",
+  glBand = getActiveSessionGlBand(topic),
+} = {}) {
+  const normalizedStudyFilters = normalizeStudyFilters(topic?.studyFilters);
+  return buildQuestionSelectionProfile(summary, {
+    currentTopicId,
+    glBand,
+    mode,
+    focusPreference: normalizedStudyFilters.questionFocus,
+  });
+}
 async function buildMockExamQuestions(topic) {
   const baseTopics = getTopics().filter((entry) => entry?.id && entry.file);
   const topicMap = new Map(baseTopics.map((entry) => [entry.id, entry]));
   const blueprint = getMockExamBlueprint(topic);
-  const questions = [];
+  const targetQuestionCount = getMockExamQuestionTarget(topic, blueprint);
+  const template = getMockExamTemplate(topic);
+  const activeGLBand = String(template?.glBand || topic?.glBand || "");
+  const shouldShuffleQuestions = template?.shuffleQuestions !== false;
+  const selectedQuestions = [];
+  const selectedKeys = new Set();
+  const loadedPools = new Map();
+  const progressSummary = readProgressSummary();
+  const selectionProfileCache = new Map();
+
+  async function getPoolForTopic(sourceTopic) {
+    if (!sourceTopic?.id) return [];
+    if (loadedPools.has(sourceTopic.id)) {
+      return loadedPools.get(sourceTopic.id);
+    }
+    const pool = await buildTopicQuestionPool(sourceTopic);
+    loadedPools.set(sourceTopic.id, pool);
+    return pool;
+  }
+
+  function getSelectionProfile(sourceTopicId = "") {
+    const cacheKey = String(sourceTopicId || "__all__");
+    if (selectionProfileCache.has(cacheKey)) {
+      return selectionProfileCache.get(cacheKey);
+    }
+
+    const profile = buildQuestionSelectionProfileForSession({
+      summary: progressSummary,
+      topic,
+      mode: "exam",
+      currentTopicId: sourceTopicId,
+      glBand: activeGLBand,
+    });
+    selectionProfileCache.set(cacheKey, profile);
+    return profile;
+  }
+
+  function appendUniqueQuestions(pool, count, sourceTopicId = "") {
+    const picked = prioritizeQuestionPool(pool, getSelectionProfile(sourceTopicId))
+      .filter((question) => {
+        const key = getQuestionSelectionKey(question, question?.sourceTopicId || "");
+        return key && !selectedKeys.has(key);
+      })
+      .slice(0, Math.max(0, count));
+
+    picked.forEach((question) => {
+      const key = getQuestionSelectionKey(question, question?.sourceTopicId || "");
+      if (key) selectedKeys.add(key);
+    });
+    selectedQuestions.push(...picked);
+  }
 
   for (const item of blueprint) {
     const sourceTopic = topicMap.get(item.topicId);
     if (!sourceTopic) continue;
-
-    const topicDataFiles = await fetchTopicDataFiles(sourceTopic, { tolerateFailures: true });
-    const pool = [];
-    topicDataFiles.forEach((topicData) => {
-      pool.push(...extractQuestionsByCategory(topicData, "all", {}));
-    });
-
+    const pool = await getPoolForTopic(sourceTopic);
     if (!pool.length) continue;
-
-    const picked = shuffleArray(pool)
-      .slice(0, Math.min(item.count, pool.length))
-      .map((question) => ({
-        ...question,
-        sourceTopicId: sourceTopic.id,
-        sourceTopicName: sourceTopic.name,
-      }));
-    questions.push(...picked);
+    appendUniqueQuestions(pool, Math.min(item.count, pool.length), sourceTopic.id);
+    if (selectedQuestions.length >= targetQuestionCount) break;
   }
 
-  return shuffleArray(questions);
-}
+  if (selectedQuestions.length < targetQuestionCount) {
+    const blueprintTopicIds = new Set(blueprint.map((entry) => entry.topicId));
+    const fallbackTopics = [
+      ...blueprint
+        .map((entry) => topicMap.get(entry.topicId))
+        .filter(Boolean),
+      ...baseTopics.filter((entry) => !blueprintTopicIds.has(entry.id)),
+    ];
+    const fallbackPool = [];
+    for (const sourceTopic of fallbackTopics) {
+      const pool = await getPoolForTopic(sourceTopic);
+      fallbackPool.push(...pool);
+    }
+    appendUniqueQuestions(fallbackPool, targetQuestionCount - selectedQuestions.length, "");
+  }
 
+  const finalizedQuestions = selectedQuestions.slice(0, targetQuestionCount);
+  return shouldShuffleQuestions ? shuffleArray(finalizedQuestions) : finalizedQuestions;
+}
 function buildMockExamTopicBreakdown() {
   const byTopic = new Map();
 
@@ -509,6 +799,8 @@ function buildMockExamTopicBreakdown() {
   return Array.from(byTopic.values())
     .map((entry) => ({
       ...entry,
+      wrong: Math.max(0, entry.answered - entry.correct),
+      unanswered: Math.max(0, entry.total - entry.answered),
       accuracy: entry.answered
         ? Math.round((entry.correct / entry.answered) * 100)
         : 0,
@@ -516,6 +808,373 @@ function buildMockExamTopicBreakdown() {
     .sort((a, b) => b.accuracy - a.accuracy || b.correct - a.correct || a.topicName.localeCompare(b.topicName));
 }
 
+function formatGlBandLabel(glBand) {
+  const value = String(glBand || "").trim();
+  if (!value) return "";
+  if (value.toLowerCase() === "general") return "General";
+  return value.replace("_", "-").replace("GL", "GL ");
+}
+
+function formatDifficultyLabel(difficulty) {
+  const value = String(difficulty || "").trim().toLowerCase();
+  if (!value) return "";
+  return value.charAt(0).toUpperCase() + value.slice(1);
+}
+
+function getTopicSessionGlBand(topic) {
+  const normalizedStudyFilters = normalizeStudyFilters(topic?.studyFilters);
+  const emphasis = normalizeGLBandKey(normalizedStudyFilters.targetGlBand);
+  return emphasis && emphasis !== "general" ? emphasis : "";
+}
+
+function getActiveSessionGlBand(topic) {
+  return String(
+    topic?.glBand || getMockExamTemplate(topic)?.glBand || getTopicSessionGlBand(topic) || "",
+  ).trim();
+}
+
+function getQuestionPreferredGlBand(question) {
+  const bandPriority = {
+    gl_14_15: 1,
+    gl_15_16: 2,
+    gl_16_17: 3,
+  };
+  const questionBands = Array.isArray(question?.glBands)
+    ? question.glBands
+        .map((entry) => normalizeGLBandKey(entry))
+        .filter((entry) => entry && entry !== "general")
+        .sort(
+          (left, right) =>
+            (bandPriority[right] || 0) - (bandPriority[left] || 0) || left.localeCompare(right),
+        )
+    : [];
+  return questionBands[0] || "";
+}
+
+function averageAttemptScores(attempts = []) {
+  const scoredAttempts = Array.isArray(attempts)
+    ? attempts
+        .map((attempt) => Number(attempt?.scorePercentage))
+        .filter((score) => Number.isFinite(score))
+    : [];
+  if (!scoredAttempts.length) return null;
+  return Math.round(
+    scoredAttempts.reduce((sum, score) => sum + score, 0) / scoredAttempts.length,
+  );
+}
+
+function buildRecentAttemptSignal(attempts = []) {
+  const scoredAttempts = Array.isArray(attempts)
+    ? attempts.filter((attempt) => Number.isFinite(Number(attempt?.scorePercentage)))
+    : [];
+  if (scoredAttempts.length < 2) return null;
+
+  const latestWindowSize = Math.min(3, Math.max(1, Math.floor(scoredAttempts.length / 2)));
+  const latestWindow = scoredAttempts.slice(-latestWindowSize);
+  const previousWindow = scoredAttempts.slice(
+    Math.max(0, scoredAttempts.length - latestWindowSize * 2),
+    Math.max(0, scoredAttempts.length - latestWindowSize),
+  );
+  const baselineWindow = previousWindow.length
+    ? previousWindow
+    : scoredAttempts.slice(0, Math.max(1, scoredAttempts.length - latestWindow.length));
+  if (!baselineWindow.length) return null;
+
+  const latestAverage = averageAttemptScores(latestWindow);
+  const previousAverage = averageAttemptScores(baselineWindow);
+  if (latestAverage === null || previousAverage === null) return null;
+
+  const delta = latestAverage - previousAverage;
+  let direction = "steady";
+  if (delta >= 6) direction = "improving";
+  if (delta <= -6) direction = "slipping";
+
+  return {
+    direction,
+    delta,
+    latestAverage,
+    previousAverage,
+    latestCount: latestWindow.length,
+    previousCount: baselineWindow.length,
+  };
+}
+
+function getSessionTimingSignal({ mode = currentMode, timeElapsed = 0, configuredExamSeconds = 0, unansweredCount = 0 } = {}) {
+  if (mode !== "exam" || configuredExamSeconds <= 0) return null;
+
+  const safeConfiguredSeconds = Math.max(0, Number(configuredExamSeconds || 0));
+  const elapsedSeconds = Math.max(0, Math.min(safeConfiguredSeconds, Number(timeElapsed || 0)));
+  const remainingSeconds = Math.max(0, safeConfiguredSeconds - elapsedSeconds);
+  const safeUnansweredCount = Math.max(0, Number(unansweredCount || 0));
+  const usedRatio = safeConfiguredSeconds > 0 ? elapsedSeconds / safeConfiguredSeconds : 0;
+  let severity = "steady";
+  if (safeUnansweredCount > 0 || usedRatio >= 0.95) {
+    severity = "high";
+  } else if (usedRatio <= 0.6) {
+    severity = "comfortable";
+  }
+
+  return {
+    severity,
+    elapsedSeconds,
+    remainingSeconds,
+    usedRatio,
+    unansweredCount: safeUnansweredCount,
+  };
+}
+
+function buildResultsRecommendationConfidence({
+  weakestSessionSubcategory = null,
+  topicAttemptCount = 0,
+  unansweredCount = 0,
+  incorrectCount = 0,
+  recentScoreSignal = null,
+  timingSignal = null,
+} = {}) {
+  const repeatedSessions = Number(weakestSessionSubcategory?.sessions || 0);
+  const issueCount = Math.max(0, Number(incorrectCount || 0)) + Math.max(0, Number(unansweredCount || 0));
+  const repeatedWeakEvidence = repeatedSessions >= 2 ? 1 : 0;
+  const topicHistoryEvidence = Number(topicAttemptCount || 0) >= 2 ? 1 : 0;
+  const issueEvidence = issueCount >= 4 ? 1 : 0;
+  const trendEvidence = recentScoreSignal?.direction && recentScoreSignal.direction !== "steady" ? 1 : 0;
+  const timingEvidence = timingSignal?.severity && timingSignal.severity !== "steady" ? 1 : 0;
+  const alignedSignalCount =
+    repeatedWeakEvidence +
+    topicHistoryEvidence +
+    issueEvidence +
+    trendEvidence +
+    timingEvidence;
+  const hasStrongHistory = repeatedSessions >= 3 || Number(topicAttemptCount || 0) >= 4;
+
+  if (hasStrongHistory && alignedSignalCount >= 2) {
+    return {
+      label: "Repeated Pattern",
+      tone: "high",
+      description: "This weak spot is repeating across sessions and the surrounding signals keep pointing in the same direction. It has moved beyond a developing signal because the same weakness keeps resurfacing.",
+    };
+  }
+
+  if (alignedSignalCount >= 2) {
+    return {
+      label: "Building Pattern",
+      tone: "medium",
+      description: "More than one signal is lining up, so this is moving beyond a one-off result, but it is still developing.",
+    };
+  }
+
+  return {
+    label: "Early Pattern",
+    tone: "low",
+    description: "This is based on a lighter sample, so treat it as a direction check in the next session.",
+  };
+
+}
+function buildResultsRecommendationSignals({ recentScoreSignal = null, timingSignal = null } = {}) {
+  const chips = [];
+  const noteParts = [];
+
+  if (recentScoreSignal?.direction === "slipping") {
+    chips.push("Trend: Slipping");
+    noteParts.push(
+      `Recent scored sessions are down ${Math.abs(Math.round(recentScoreSignal.delta))} point(s), so keep the next pass corrective.`,
+    );
+  } else if (recentScoreSignal?.direction === "improving") {
+    chips.push("Trend: Improving");
+    noteParts.push(
+      `Recent scored sessions are up ${Math.round(recentScoreSignal.delta)} point(s), so the added challenge is deliberate.`,
+    );
+  }
+
+  if (timingSignal?.severity === "high") {
+    chips.push("Pace: Under Pressure");
+    noteParts.push(
+      timingSignal.unansweredCount > 0
+        ? `Time pressure left ${timingSignal.unansweredCount} question(s) unanswered in this session.`
+        : "This session used nearly the full allowed time.",
+    );
+  } else if (timingSignal?.severity === "comfortable") {
+    chips.push("Pace: Comfortable");
+    noteParts.push(`You still had ${formatSessionDurationLabel(timingSignal.remainingSeconds)} remaining.`);
+  }
+
+  return {
+    chips,
+    note: noteParts.join(" "),
+  };
+}
+
+function buildRecommendedSessionSetup({
+  topic = currentTopic,
+  mode = currentMode,
+  scorePercentage = 0,
+  incorrectCount = 0,
+  unansweredCount = 0,
+  timeElapsed = 0,
+  configuredExamSeconds = 0,
+  difficultyBreakdown = [],
+  recentScoreSignal = null,
+  recommendationConfidence = null,
+  timingSignal = null,
+} = {}) {
+  if (
+    !topic?.id ||
+    isMockExamTopic(topic) ||
+    topic?.id === RETRY_MISSED_TOPIC_ID ||
+    topic?.id === SPACED_PRACTICE_TOPIC_ID
+  ) {
+    return null;
+  }
+  if (mode === "review") return null;
+
+  const totalQuestions = quizState.allQuestions.length;
+  const currentFilters = normalizeStudyFilters(topic?.studyFilters, {
+    totalQuestions,
+  });
+  const nextFilters = { ...currentFilters };
+  const recommendationParts = [];
+  let changed = false;
+
+  const availableQuestionCounts = [10, 20, 40, 60, 80]
+    .filter((value) => value < totalQuestions)
+    .concat(totalQuestions)
+    .filter((value, index, items) => Number.isInteger(value) && value > 0 && items.indexOf(value) === index)
+    .sort((left, right) => left - right);
+  const currentQuestionCount = nextFilters.questionCount === "all"
+    ? totalQuestions
+    : Number(nextFilters.questionCount) || totalQuestions;
+  const chooseQuestionCountAtMost = (limit) => {
+    const safeLimit = Math.max(10, Math.min(totalQuestions, Number(limit) || totalQuestions));
+    const candidates = availableQuestionCounts.filter((value) => value <= safeLimit);
+    return candidates[candidates.length - 1] || availableQuestionCounts[0] || safeLimit;
+  };
+  const chooseQuestionCountAtLeast = (minimum) => {
+    const safeMinimum = Math.max(10, Math.min(totalQuestions, Number(minimum) || totalQuestions));
+    return availableQuestionCounts.find((value) => value >= safeMinimum) || availableQuestionCounts[availableQuestionCounts.length - 1] || safeMinimum;
+  };
+  const lowerDifficulty = (value) => {
+    if (value === "hard") return "medium";
+    if (value === "medium") return "easy";
+    return value;
+  };
+
+  if (
+    (incorrectCount > 0 || unansweredCount > 0 || scorePercentage < 70) &&
+    nextFilters.questionFocus !== "weak_areas"
+  ) {
+    nextFilters.questionFocus = "weak_areas";
+    recommendationParts.push(`Switch to ${formatQuestionFocusLabel(nextFilters.questionFocus)}.`);
+    changed = true;
+  }
+
+  const glBandCounts = new Map();
+  quizState.allQuestions.forEach((question, index) => {
+    const userAnswer = quizState.userAnswers[index];
+    const isIncorrect = userAnswer !== undefined && userAnswer !== question?.correct;
+    const isUnanswered = userAnswer === undefined;
+    if (!isIncorrect && !isUnanswered) return;
+
+    const preferredBand = getQuestionPreferredGlBand(question);
+    if (!preferredBand) return;
+    glBandCounts.set(preferredBand, (glBandCounts.get(preferredBand) || 0) + 1);
+  });
+
+  const recommendedGlBand =
+    Array.from(glBandCounts.entries()).sort(
+      (left, right) => right[1] - left[1] || left[0].localeCompare(right[0]),
+    )[0]?.[0] || "";
+  const currentGlBand = normalizeGLBandKey(nextFilters.targetGlBand);
+  if (recommendedGlBand && recommendedGlBand !== currentGlBand) {
+    nextFilters.targetGlBand = recommendedGlBand;
+    recommendationParts.push(
+      `Lean the session toward ${formatTargetGlBandLabel(recommendedGlBand)} questions.`,
+    );
+    changed = true;
+  }
+
+  const isTimedSession = mode === "exam" && configuredExamSeconds > 0;
+  const resolvedTimingSignal = timingSignal || getSessionTimingSignal({
+    mode,
+    timeElapsed,
+    configuredExamSeconds,
+    unansweredCount,
+  });
+  const remainingRatio = isTimedSession && resolvedTimingSignal
+    ? Math.max(0, resolvedTimingSignal.remainingSeconds) / configuredExamSeconds
+    : 0;
+  const pressureRatio = isTimedSession && resolvedTimingSignal
+    ? Math.min(1, resolvedTimingSignal.elapsedSeconds / configuredExamSeconds)
+    : 0;
+  const hardestDifficulty = Array.isArray(difficultyBreakdown)
+    ? difficultyBreakdown.find((entry) => entry?.difficulty === "hard")
+    : null;
+  const hardAccuracy = hardestDifficulty?.answered ? hardestDifficulty.accuracy : null;
+
+  if (isTimedSession && (unansweredCount > 0 || pressureRatio >= 0.95 || scorePercentage < 55)) {
+    const reducedQuestionCount = chooseQuestionCountAtMost(currentQuestionCount <= 20 ? currentQuestionCount : 20);
+    if (reducedQuestionCount < currentQuestionCount) {
+      nextFilters.questionCount = reducedQuestionCount;
+      recommendationParts.push(`Trim the next timed run to ${reducedQuestionCount} questions to steady your pace.`);
+      changed = true;
+    }
+  } else if (isTimedSession && scorePercentage >= 80 && remainingRatio >= 0.2) {
+    const expandedQuestionCount = chooseQuestionCountAtLeast(Math.max(currentQuestionCount, 40));
+    if (expandedQuestionCount > currentQuestionCount) {
+      nextFilters.questionCount = expandedQuestionCount;
+      recommendationParts.push(`Stretch the next timed run to ${expandedQuestionCount} questions while your pace is strong.`);
+      changed = true;
+    }
+  }
+
+  if ((scorePercentage < 60 || (hardAccuracy !== null && hardAccuracy < 50)) && nextFilters.difficulty !== "easy") {
+    const suggestedDifficulty = lowerDifficulty(nextFilters.difficulty === "all" ? "hard" : nextFilters.difficulty);
+    if (suggestedDifficulty && suggestedDifficulty !== nextFilters.difficulty) {
+      nextFilters.difficulty = suggestedDifficulty;
+      recommendationParts.push(`Lower the difficulty focus to ${suggestedDifficulty} for the next pass.`);
+      changed = true;
+    }
+  } else if (scorePercentage >= 85 && remainingRatio >= 0.2 && nextFilters.difficulty !== "hard") {
+    nextFilters.difficulty = "hard";
+    recommendationParts.push("Push the next pass toward hard questions while your accuracy is stable.");
+    changed = true;
+  }
+
+  if (!changed) return null;
+
+  const signalSummary = buildResultsRecommendationSignals({
+    recentScoreSignal,
+    timingSignal: resolvedTimingSignal,
+  });
+  if (signalSummary.note) {
+    recommendationParts.push(signalSummary.note);
+  }
+
+  const summaryChips = [];
+  if (String(nextFilters.questionCount) !== String(currentFilters.questionCount)) {
+    summaryChips.push(`${nextFilters.questionCount} Questions`);
+  }
+  if (nextFilters.difficulty !== currentFilters.difficulty && nextFilters.difficulty !== "all") {
+    summaryChips.push(nextFilters.difficulty.charAt(0).toUpperCase() + nextFilters.difficulty.slice(1));
+  }
+  if (nextFilters.questionFocus !== currentFilters.questionFocus) {
+    summaryChips.push(formatQuestionFocusLabel(nextFilters.questionFocus));
+  }
+  if (nextFilters.targetGlBand !== currentFilters.targetGlBand && nextFilters.targetGlBand !== "general") {
+    summaryChips.push(formatTargetGlBandLabel(nextFilters.targetGlBand));
+  }
+
+  return {
+    title: "Tune the Next Session",
+    body: recommendationParts.join(" "),
+    buttonLabel: "Use Suggested Setup",
+    action: "setup_tune",
+    nextFilters,
+    summaryChips,
+    signalChips: signalSummary.chips,
+    confidenceLabel: recommendationConfidence?.label || "",
+    confidenceTone: recommendationConfidence?.tone || "medium",
+    confidenceDescription: recommendationConfidence?.description || "",
+  };
+}
 function getTrafficClassByPercentage(percentage) {
   if (percentage >= 70) return "traffic-green";
   if (percentage >= 50) return "traffic-amber";
@@ -576,12 +1235,21 @@ function normalizeRetryQueueEntry(entry = {}) {
   const updatedAt = Number.isNaN(Date.parse(updatedAtRaw))
     ? new Date().toISOString()
     : new Date(updatedAtRaw).toISOString();
+  const parsedAnswerIndex = Number(entry?.lastUserAnswerIndex);
+  const lastUserAnswerIndex = Number.isInteger(parsedAnswerIndex) && parsedAnswerIndex >= 0
+    ? parsedAnswerIndex
+    : null;
+  const lastOutcome = String(entry?.lastOutcome || "").trim().toLowerCase() === "unanswered"
+    ? "unanswered"
+    : "incorrect";
 
   return {
     id,
     updatedAt,
     sourceTopicId: String(entry?.sourceTopicId || question?.sourceTopicId || "").trim(),
     sourceTopicName: String(entry?.sourceTopicName || question?.sourceTopicName || "").trim(),
+    lastUserAnswerIndex,
+    lastOutcome,
     question: { ...question },
   };
 }
@@ -754,6 +1422,7 @@ function saveSpacedPracticeQueue(queue) {
   }
 }
 export async function syncProgressFromCloudNow({ force = false } = {}) {
+
   if (!isCloudProgressSyncReady()) {
     setCloudProgressSyncStatus({
       inFlight: false,
@@ -894,7 +1563,6 @@ function queueCloudProgressSync(reason = "") {
     console.warn(`Cloud progress sync failed (${reason || "background"}):`, error);
   });
 }
-
 function normalizeQuestionFingerprint(question = {}) {
   const byId = String(question?.id || "").trim();
   if (byId) return `id:${byId}`;
@@ -906,14 +1574,20 @@ function normalizeQuestionFingerprint(question = {}) {
   return byText ? `text:${byText}` : "";
 }
 
-function toRetryQueueEntry(question) {
+function toRetryQueueEntry(question, userAnswer = undefined) {
   const fingerprint = normalizeQuestionFingerprint(question);
   if (!fingerprint) return null;
+  const parsedAnswerIndex = Number(userAnswer);
+  const lastUserAnswerIndex = Number.isInteger(parsedAnswerIndex) && parsedAnswerIndex >= 0
+    ? parsedAnswerIndex
+    : null;
   return {
     id: fingerprint,
     updatedAt: new Date().toISOString(),
     sourceTopicId: String(question?.sourceTopicId || currentTopic?.id || ""),
     sourceTopicName: String(question?.sourceTopicName || currentTopic?.name || ""),
+    lastUserAnswerIndex,
+    lastOutcome: lastUserAnswerIndex === null ? "unanswered" : "incorrect",
     question: { ...question },
   };
 }
@@ -1201,9 +1875,9 @@ function syncRetryMissedQueueFromSession() {
   );
 
   quizState.allQuestions.forEach((question, index) => {
-    const entry = toRetryQueueEntry(question);
-    if (!entry) return;
     const userAnswer = quizState.userAnswers[index];
+    const entry = toRetryQueueEntry(question, userAnswer);
+    if (!entry) return;
     const isMissed = userAnswer !== question?.correct;
     if (isMissed) {
       queueMap.set(entry.id, entry);
@@ -1236,12 +1910,58 @@ export function getRetryMissedQuestions(limit = RETRY_MISSED_DEFAULT_SESSION_SIZ
     }));
 }
 
-function recordAttemptResult({ topicId, topicName, mode, scorePercentage, totalQuestions }) {
+export function getRetryMissedQueueSnapshot(limit = RETRY_MISSED_MAX_ITEMS) {
+  const max = Number(limit);
+  const normalizedLimit = Number.isFinite(max) && max > 0 ? Math.floor(max) : RETRY_MISSED_MAX_ITEMS;
+  return readRetryMissedQueue()
+    .slice(0, normalizedLimit)
+    .map((entry) => ({
+      id: String(entry?.id || "").trim(),
+      updatedAt: String(entry?.updatedAt || "").trim(),
+      sourceTopicId: String(entry?.sourceTopicId || entry?.question?.sourceTopicId || "").trim(),
+      sourceTopicName: String(entry?.sourceTopicName || entry?.question?.sourceTopicName || "").trim(),
+      lastUserAnswerIndex: Number.isInteger(entry?.lastUserAnswerIndex) ? entry.lastUserAnswerIndex : null,
+      lastOutcome: String(entry?.lastOutcome || "incorrect").trim().toLowerCase() === "unanswered"
+        ? "unanswered"
+        : "incorrect",
+      question: entry?.question && typeof entry.question === "object" ? { ...entry.question } : null,
+    }))
+    .filter((entry) => entry.id && entry.question);
+}
+
+export function dismissRetryMissedQuestion(entryId) {
+  const normalizedId = String(entryId || "").trim();
+  if (!normalizedId) return false;
+  const currentQueue = readRetryMissedQueue();
+  const nextQueue = currentQueue.filter((entry) => String(entry?.id || "").trim() !== normalizedId);
+  if (nextQueue.length === currentQueue.length) return false;
+  saveRetryMissedQueue(nextQueue);
+  queueCloudProgressSync("retry-queue-dismissed");
+  return true;
+}
+
+function recordAttemptResult({
+  topicId,
+  topicName,
+  mode,
+  scorePercentage,
+  totalQuestions,
+  templateId = "",
+  templateName = "",
+  glBand = "",
+  timeTakenSec = null,
+  correctCount = 0,
+  wrongCount = 0,
+  unansweredCount = 0,
+  subcategoryBreakdown = [],
+  difficultyBreakdown = [],
+  sourceTopicBreakdown = [],
+}) {
   const user = getCurrentUser();
-  if (!user) return { attempts: [] };
+  if (!user) return { summary: { attempts: [] }, attempt: null };
   const summary = readProgressSummary();
   const createdAt = new Date().toISOString();
-  summary.attempts.push({
+  const attempt = {
     attemptId: createProgressAttemptId(createdAt),
     topicId,
     topicName,
@@ -1250,11 +1970,25 @@ function recordAttemptResult({ topicId, topicName, mode, scorePercentage, totalQ
     totalQuestions,
     createdAt,
     deviceId: getProgressSyncDeviceId(),
-  });
+    templateId,
+    templateName,
+    glBand,
+    timeTakenSec,
+    correctCount,
+    wrongCount,
+    unansweredCount,
+    subcategoryBreakdown,
+    difficultyBreakdown,
+    sourceTopicBreakdown,
+  };
+  summary.attempts.push(attempt);
   const normalized = normalizeProgressSummary(summary);
   saveProgressSummary(normalized);
   queueCloudProgressSync("attempt-recorded");
-  return normalized;
+  return {
+    summary: normalized,
+    attempt: normalized.attempts.find((entry) => entry.attemptId === attempt.attemptId) || null,
+  };
 }
 
 function calculateProgressInsights(summary, currentTopicId) {
@@ -1417,7 +2151,7 @@ function updatePracticePacingNotice() {
     return;
   }
 
-  const examEquivalentSeconds = (quizState.allQuestions?.length || 0) * 45;
+  const examEquivalentSeconds = getConfiguredExamTimeLimitSeconds(currentTopic, quizState.allQuestions?.length || 0);
   if (!examEquivalentSeconds || quizState.timeLeft <= examEquivalentSeconds) {
     notice.classList.add("hidden");
     notice.textContent = "";
@@ -1708,7 +2442,17 @@ function updateNavigation() {
   const submitButton = domElements.submitButton;
   const nextButton = domElements.nextButton;
   const prevButton = domElements.prevButton;
+  const endExamButton = document.getElementById("endExamBtn");
   if (!submitButton || !nextButton || !prevButton) return;
+
+  if (endExamButton) {
+    const canEndExam = currentMode === "exam";
+    endExamButton.classList.toggle("hidden", !canEndExam);
+    endExamButton.disabled = !canEndExam;
+    endExamButton.onclick = () => {
+      if (!endExamButton.disabled) confirmEndExam();
+    };
+  }
 
   // Previous button
   prevButton.disabled = quizState.currentQuestionIndex === 0;
@@ -1813,7 +2557,7 @@ function updateNavigation() {
   };
 
   // Keyboard support: Enter/Space on focused buttons
-  [prevButton, submitButton, nextButton].forEach((btn) => {
+  [prevButton, submitButton, nextButton, endExamButton].filter(Boolean).forEach((btn) => {
     btn.addEventListener("keydown", (e) => {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
@@ -1968,6 +2712,38 @@ function calculateExamScore() {
   );
 }
 
+function getAnsweredQuestionCount() {
+  return quizState.userAnswers.reduce(
+    (count, answer) => count + (answer !== undefined ? 1 : 0),
+    0,
+  );
+}
+
+function confirmEndExam() {
+  if (currentMode !== "exam") return;
+
+  const totalQuestions = quizState.allQuestions.length;
+  const answeredCount = getAnsweredQuestionCount();
+  const unansweredCount = Math.max(0, totalQuestions - answeredCount);
+  const warningMessage = [
+    "End this exam now?",
+    "",
+    "This will submit your current answers immediately and move straight to Results.",
+    `Answered: ${answeredCount}/${totalQuestions}`,
+    `Unanswered: ${unansweredCount}`,
+    `Time remaining: ${formatDuration(quizState.timeLeft)}`,
+    "",
+    "Only use this if you are sure you want to finish early.",
+  ].join("\n");
+
+  if (!window.confirm(warningMessage)) {
+    return;
+  }
+
+  debugLog("Exam ended early by user");
+  showResults();
+}
+
 /**
  * Show explanation for the current question
  */
@@ -2051,6 +2827,11 @@ function showResults() {
   const wrongCount = document.getElementById("wrongCount");
   const unansweredCount = document.getElementById("unansweredCount");
   const timeSpent = document.getElementById("timeSpent");
+  const allowedTime = document.getElementById("allowedTime");
+  const allowedTimeBlock = document.getElementById("allowedTimeBlock");
+  const timingSummaryCard = document.getElementById("timingSummaryCard");
+  const timingVerdict = document.getElementById("timingVerdict");
+  const scorePacingVerdict = document.getElementById("scorePacingVerdict");
 
   quizState.incorrectAnswers = [];
   for (let i = 0; i < quizState.allQuestions.length; i++) {
@@ -2077,13 +2858,38 @@ function showResults() {
   if (correctCount) correctCount.textContent = correct;
   if (wrongCount) wrongCount.textContent = wrong;
   if (unansweredCount) unansweredCount.textContent = unanswered;
+  const configuredExamSeconds = getConfiguredExamTimeLimitSeconds(
+    currentTopic,
+    quizState.allQuestions.length,
+  );
+  const timeElapsed = currentMode === "exam"
+    ? Math.max(0, configuredExamSeconds - quizState.timeLeft)
+    : Math.max(0, quizState.timeLeft);
+  const minutes = Math.floor(timeElapsed / 60);
+  const seconds = timeElapsed % 60;
+  const timeSpentLabel = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
   if (timeSpent) {
-    const timeElapsed = currentMode === "exam"
-      ? quizState.allQuestions.length * 45 - quizState.timeLeft
-      : quizState.timeLeft;
-    const minutes = Math.floor(timeElapsed / 60);
-    const seconds = timeElapsed % 60;
-    timeSpent.textContent = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+    timeSpent.textContent = timeSpentLabel;
+  }
+  const allowedTimeLabel = formatDuration(configuredExamSeconds);
+  if (allowedTime) {
+    allowedTime.textContent = allowedTimeLabel;
+  }
+  if (allowedTimeBlock) {
+    allowedTimeBlock.classList.toggle("hidden", currentMode !== "exam");
+  }
+  if (timingSummaryCard) {
+    timingSummaryCard.classList.toggle("dual-timing", currentMode === "exam");
+  }
+  const remainingTime = Math.max(0, configuredExamSeconds - timeElapsed);
+  if (timingVerdict) {
+    if (currentMode === "exam") {
+      timingVerdict.textContent = remainingTime > 0
+        ? `Finished with ${formatDuration(remainingTime)} remaining.`
+        : "Used the full allowed time.";
+    } else {
+      timingVerdict.textContent = "Untimed session. Work at your own pace.";
+    }
   }
   const scorePercentage = scoreSnapshot.scorePercentage;
   const accuracyRate = scoreSnapshot.accuracyRate;
@@ -2106,31 +2912,226 @@ function showResults() {
   syncRetryMissedQueueFromSession();
   syncSpacedPracticeQueueFromSession();
 
-  const progressSummary =
-    currentTopic?.id === RETRY_MISSED_TOPIC_ID
-      ? readProgressSummary()
-      : recordAttemptResult({
-          topicId: currentTopic?.id,
-          topicName: currentTopic?.name,
-          mode: currentMode,
-          scorePercentage,
-          totalQuestions: quizState.allQuestions.length,
-        });
-  const progressInsights = calculateProgressInsights(progressSummary, currentTopic?.id);
   const mockTopicBreakdown = isMockExamTopic(currentTopic)
     ? buildMockExamTopicBreakdown()
     : [];
+  const subcategoryBreakdown = buildSubcategoryBreakdown(quizState.allQuestions, quizState.userAnswers);
+  const difficultyBreakdown = buildDifficultyBreakdown(quizState.allQuestions, quizState.userAnswers);
+  const resolvedTemplate = getMockExamTemplate(currentTopic);
+  const templateId = String(currentTopic?.selectedTemplateId || resolvedTemplate?.id || "").trim();
+  const templateName = String(currentTopic?.selectedTemplateName || resolvedTemplate?.name || "").trim();
+  const glBand = String(getActiveSessionGlBand(currentTopic)).trim();
+  const recordedProgress =
+    currentTopic?.id === RETRY_MISSED_TOPIC_ID
+      ? { summary: readProgressSummary(), attempt: null }
+      : recordAttemptResult({
+          topicId: currentTopic?.id,
+          topicName: getDisplayTopicName(currentTopic),
+          mode: currentMode,
+          scorePercentage,
+          totalQuestions: quizState.allQuestions.length,
+          templateId,
+          templateName,
+          glBand,
+          timeTakenSec: timeElapsed,
+          correctCount: correct,
+          wrongCount: wrong,
+          unansweredCount: unanswered,
+          subcategoryBreakdown,
+          difficultyBreakdown,
+          sourceTopicBreakdown: mockTopicBreakdown,
+        });
+  const progressSummary = recordedProgress.summary;
+  const progressInsights = calculateProgressInsights(progressSummary, currentTopic?.id);
   const strongestTopicName = escapeHtml(
     progressInsights.strongestTopic?.topicName || "Not enough data yet",
   );
   const weakestTopicName = escapeHtml(
     progressInsights.weakestTopic?.topicName || "Not enough data yet",
   );
-  const recommendedTopicText = progressInsights.recommendedTopic
-    ? `Prioritize ${escapeHtml(progressInsights.recommendedTopic)} next.`
-    : scorePercentage >= 70
-      ? "You are ready for a timed drill in your next session."
-      : "Review mistakes first, then retake this topic in Practice mode.";
+  const weakestSessionSubcategory =
+    subcategoryBreakdown.find((entry) => entry.answered > 0) ||
+    subcategoryBreakdown[0] ||
+    null;
+  const weakestSessionSubcategoryName = escapeHtml(
+    weakestSessionSubcategory?.subcategoryName || "No subcategory data yet",
+  );
+  const weakestSessionSubcategoryMeta = weakestSessionSubcategory
+    ? `${weakestSessionSubcategory.accuracy}% accuracy ? ${weakestSessionSubcategory.correct}/${weakestSessionSubcategory.answered} correct (answered)${
+        weakestSessionSubcategory.unanswered > 0
+          ? ` ? ${weakestSessionSubcategory.unanswered} unanswered`
+          : ""
+      }`
+    : "This session did not include enough subcategory detail yet.";
+  const retryQueueCount = getRetryMissedQueueCount();
+  const currentTopicAttemptCount = (progressSummary?.attempts || []).filter(
+    (attempt) => String(attempt?.topicId || "").trim() === String(currentTopic?.id || "").trim(),
+  ).length;
+  const recentScoreSignal = buildRecentAttemptSignal(progressSummary?.attempts || []);
+  const latestTimingSignal = getSessionTimingSignal({
+    mode: currentMode,
+    timeElapsed,
+    configuredExamSeconds,
+    unansweredCount: unanswered,
+  });
+  const recommendationConfidence = buildResultsRecommendationConfidence({
+    weakestSessionSubcategory,
+    topicAttemptCount: currentTopicAttemptCount,
+    unansweredCount: unanswered,
+    incorrectCount: quizState.incorrectAnswers.length,
+    recentScoreSignal,
+    timingSignal: latestTimingSignal,
+  });
+  const fallbackSignalSummary = buildResultsRecommendationSignals({
+    recentScoreSignal,
+    timingSignal: latestTimingSignal,
+  });
+  const canLaunchRetryQueue =
+    currentTopic?.id !== RETRY_MISSED_TOPIC_ID &&
+    quizState.incorrectAnswers.length > 0 &&
+    retryQueueCount > 0;
+  const retryPath = canLaunchRetryQueue
+    ? {
+        title: `Retry Missed Questions (${retryQueueCount})`,
+        body: weakestSessionSubcategory?.subcategoryName
+          ? `Start Retry Missed to revisit ${weakestSessionSubcategory.subcategoryName} and the other questions you missed in this session.`
+          : "Start Retry Missed to revisit the questions you missed in this session.",
+        buttonLabel: `Retry Missed (${Math.min(retryQueueCount, RETRY_MISSED_DEFAULT_SESSION_SIZE)})`,
+        action: "retry_queue",
+      }
+    : quizState.incorrectAnswers.length > 0
+      ? {
+          title: "Review Missed Questions",
+          body: "Review the missed questions now while the explanations are still fresh.",
+          buttonLabel: "Review Missed Questions",
+          action: "review_incorrect",
+        }
+      : scorePercentage >= 70
+        ? {
+            title: "Move into a Timed Drill",
+            body: "You finished strongly. Retake this session or move into a fresh timed drill next.",
+            buttonLabel: "Retake Session",
+            action: "retake",
+          }
+        : {
+            title: "Slow Down with Practice",
+            body: "Retake this session in Practice to slow down and learn from the explanations.",
+            buttonLabel: "Retake Session",
+            action: "retake",
+          };
+  const sessionSetupRecommendation = buildRecommendedSessionSetup({
+    topic: currentTopic,
+    mode: currentMode,
+    scorePercentage,
+    incorrectCount: quizState.incorrectAnswers.length,
+    unansweredCount: unanswered,
+    timeElapsed,
+    configuredExamSeconds,
+    difficultyBreakdown,
+    recentScoreSignal,
+    recommendationConfidence,
+    timingSignal: latestTimingSignal,
+  });
+  const followUpAction = {
+    ...(sessionSetupRecommendation || retryPath),
+    confidenceLabel: sessionSetupRecommendation?.confidenceLabel || recommendationConfidence.label,
+    confidenceTone: sessionSetupRecommendation?.confidenceTone || recommendationConfidence.tone,
+    confidenceDescription:
+      sessionSetupRecommendation?.confidenceDescription || recommendationConfidence.description,
+    signalChips: Array.isArray(sessionSetupRecommendation?.signalChips)
+      ? sessionSetupRecommendation.signalChips
+      : fallbackSignalSummary.chips,
+    body: sessionSetupRecommendation
+      ? sessionSetupRecommendation.body
+      : [retryPath.body, fallbackSignalSummary.note].filter(Boolean).join(" "),
+  };
+  const recommendedTopicText = weakestSessionSubcategory && quizState.incorrectAnswers.length > 0
+    ? `Reinforce ${escapeHtml(weakestSessionSubcategory.subcategoryName)} next. ${escapeHtml(followUpAction.body)}`
+    : progressInsights.recommendedTopic
+      ? `Prioritize ${escapeHtml(progressInsights.recommendedTopic)} next.`
+      : scorePercentage >= 70
+        ? "You are ready for a timed drill in your next session."
+        : "Review missed questions first, then retake this topic in Practice.";
+  const normalizedStudyFilters = normalizeStudyFilters(currentTopic?.studyFilters, {
+    totalQuestions: quizState.allQuestions.length,
+  });
+  const sessionProfileCards = [
+    {
+      value: currentMode === "exam" ? "Timed Topic Test" : currentMode === "review" ? "Study Review" : "Practice",
+      label: "Behavior",
+      trafficClass: currentMode === "exam" ? accuracyTrafficClass : overallTrafficClass,
+    },
+    {
+      value: timeSpentLabel,
+      label: "Time Used",
+      trafficClass: accuracyTrafficClass,
+    },
+  ];
+  if (templateName) {
+    sessionProfileCards.push({
+      value: templateName,
+      label: "Template",
+      trafficClass: overallTrafficClass,
+    });
+  }
+  sessionProfileCards.push({
+    value: formatQuestionFocusLabel(normalizedStudyFilters.questionFocus),
+    label: "Session Focus",
+    trafficClass: currentMode === "exam" ? accuracyTrafficClass : overallTrafficClass,
+  });
+  const glBandLabel = formatGlBandLabel(glBand);
+  if (glBandLabel) {
+    sessionProfileCards.push({
+      value: glBandLabel,
+      label: isMockExamTopic(currentTopic) ? "GL Band" : "Directorate Emphasis",
+      trafficClass: overallTrafficClass,
+    });
+  }
+  const subcategoryBreakdownHtml = subcategoryBreakdown.length
+    ? `
+        <div class="section-head screen-header mock-breakdown-head">
+            <h2>Current Session by Subcategory</h2>
+            <p>Accuracy across the categories touched in this session.</p>
+        </div>
+        <div class="analytics-grid mock-breakdown-grid">
+            ${subcategoryBreakdown
+              .slice(0, 4)
+              .map(
+                (entry) => `
+                <div class="analytic-item mock-breakdown-item ${getTrafficClassByPercentage(entry.accuracy)}">
+                    <div class="analytic-value">${entry.accuracy}%</div>
+                    <div class="analytic-label">${escapeHtml(entry.subcategoryName)}</div>
+                    <p class="mock-breakdown-meta">${entry.correct}/${entry.answered} correct (answered)</p>
+                    <p class="mock-breakdown-meta">Coverage: ${entry.answered}/${entry.total}</p>
+                </div>
+            `,
+              )
+              .join("")}
+        </div>
+      `
+    : "";
+  const difficultyBreakdownHtml = difficultyBreakdown.length
+    ? `
+        <div class="section-head screen-header mock-breakdown-head">
+            <h2>Current Session by Difficulty</h2>
+            <p>Use this to see whether speed or accuracy dropped as questions became harder.</p>
+        </div>
+        <div class="analytics-grid mock-breakdown-grid">
+            ${difficultyBreakdown
+              .map(
+                (entry) => `
+                <div class="analytic-item mock-breakdown-item ${getTrafficClassByPercentage(entry.accuracy)}">
+                    <div class="analytic-value">${entry.accuracy}%</div>
+                    <div class="analytic-label">${escapeHtml(formatDifficultyLabel(entry.difficulty))}</div>
+                    <p class="mock-breakdown-meta">${entry.correct}/${entry.answered} correct (answered)</p>
+                    <p class="mock-breakdown-meta">Coverage: ${entry.answered}/${entry.total}</p>
+                </div>
+            `,
+              )
+              .join("")}
+        </div>
+      `
+    : "";
   const mockBreakdownHtml = mockTopicBreakdown.length
     ? `
         <div class="section-head screen-header mock-breakdown-head">
@@ -2190,6 +3191,66 @@ function showResults() {
   performanceText.textContent = performanceMessage;
   performanceText.className = `performance ${performanceClass}`;
 
+  if (scorePacingVerdict) {
+    let pacingMessage = "Steady untimed run. Build consistency before adding more speed.";
+    if (currentMode === "exam") {
+      const remainingRatio = configuredExamSeconds > 0 ? remainingTime / configuredExamSeconds : 0;
+      if (scorePercentage >= 80 && remainingRatio >= 0.2) {
+        pacingMessage = "Strong finish with time to spare. You can push into tougher timed drills next.";
+      } else if (scorePercentage >= 70 && remainingRatio <= 0.1) {
+        pacingMessage = "Solid result under time pressure. Keep that pace, but stay sharp on weak areas.";
+      } else if (scorePercentage >= 70) {
+        pacingMessage = "Solid timed result with a stable pace. Keep building consistency.";
+      } else if (remainingRatio >= 0.2) {
+        pacingMessage = "You had time left. Slow down a little next time and trade speed for accuracy.";
+      } else {
+        pacingMessage = "Accuracy slipped under time pressure. Try Practice or a shorter timed drill before the next full run.";
+      }
+    } else if (scorePercentage >= 70) {
+      pacingMessage = "Steady untimed run. You are in a good place to add speed in the next session.";
+    }
+    scorePacingVerdict.textContent = pacingMessage;
+  }
+
+  const followUpConfidenceToneClass =
+    followUpAction.confidenceTone === "high"
+      ? "high"
+      : followUpAction.confidenceTone === "low"
+        ? "low"
+        : "medium";
+  const followUpSummaryChipsHtml = Array.isArray(followUpAction.summaryChips) && followUpAction.summaryChips.length
+    ? `
+        <div class="chip-row setup-suggestion-chips" id="resultsFollowUpSummaryChips">
+            ${followUpAction.summaryChips
+              .map((entry) => `<span class="chip">${escapeHtml(String(entry))}</span>`)
+              .join("")}
+        </div>
+      `
+    : `<div class="chip-row setup-suggestion-chips hidden" id="resultsFollowUpSummaryChips"></div>`;
+  const followUpSignalChipsHtml = Array.isArray(followUpAction.signalChips) && followUpAction.signalChips.length
+    ? `
+        <div class="chip-row recommendation-signal-chips" id="resultsFollowUpSignalChips">
+            ${followUpAction.signalChips
+              .map((entry) => `<span class="chip">${escapeHtml(String(entry))}</span>`)
+              .join("")}
+        </div>
+      `
+    : `<div class="chip-row recommendation-signal-chips hidden" id="resultsFollowUpSignalChips"></div>`;
+  const followUpConfidenceHtml = followUpAction.confidenceLabel
+    ? `
+        <p class="recommendation-confidence ${followUpConfidenceToneClass}" id="resultsFollowUpConfidence">
+            <strong>Confidence:</strong> ${escapeHtml(followUpAction.confidenceLabel)}
+            ${followUpAction.confidenceDescription ? `- ${escapeHtml(followUpAction.confidenceDescription)}` : ""}
+        </p>
+      `
+    : `<p class="recommendation-confidence hidden" id="resultsFollowUpConfidence"></p>`;
+  const followUpClearActionHtml = followUpAction.action === "setup_tune"
+    ? `
+        <div class="setup-suggestion-actions results-followup-actions">
+            <button class="btn btn-ghost btn-sm" id="clearResultsSetupSuggestionBtn" type="button">Clear Setup Hint</button>
+        </div>
+      `
+    : "";
   // Add detailed analytics
   const analyticsDiv =
     document.getElementById("categoryBreakdown") ||
@@ -2198,7 +3259,7 @@ function showResults() {
     analyticsDiv.innerHTML = `
         <div class="section-head screen-header">
             <h2>Performance Insights</h2>
-            <p>Track your strengths, weak points, and best next step.</p>
+            <p>Track your strengths, weak points, and the clearest next move.</p>
         </div>
         <div class="analytics-grid">
             <div class="analytic-item ${overallTrafficClass}">
@@ -2219,6 +3280,20 @@ function showResults() {
             </div>
         </div>
         <div class="insight-grid">
+            <article class="insight-card action primary">
+                <p class="eyebrow">Best Next Step</p>
+                <h3 id="resultsFollowUpTitle">${escapeHtml(followUpAction.title)}</h3>
+                <p id="resultsFollowUpBody">${escapeHtml(followUpAction.body)}</p>
+                ${followUpSummaryChipsHtml}
+                ${followUpSignalChipsHtml}
+                ${followUpConfidenceHtml}
+                ${followUpClearActionHtml}
+            </article>
+            <article class="insight-card weakest">
+                <p class="eyebrow">Weakest Session Subcategory</p>
+                <h3>${weakestSessionSubcategoryName}</h3>
+                <p>${escapeHtml(weakestSessionSubcategoryMeta)}</p>
+            </article>
             <article class="insight-card strongest">
                 <p class="eyebrow">Strongest Area</p>
                 <h3>${strongestTopicName}</h3>
@@ -2241,8 +3316,26 @@ function showResults() {
             </article>
         </div>
         <div class="recommendation ${scorePercentage >= 70 ? "success" : "improvement"}">
-            <strong>Recommended Next Action:</strong> ${recommendedTopicText}
+            <strong>Best Next Step:</strong> ${recommendedTopicText}
         </div>
+        <div class="section-head screen-header mock-breakdown-head">
+            <h2>Session Profile</h2>
+            <p>The current result is now stored with richer analytics for later review.</p>
+        </div>
+        <div class="analytics-grid mock-breakdown-grid">
+            ${sessionProfileCards
+              .map(
+                (entry) => `
+                <div class="analytic-item mock-breakdown-item ${entry.trafficClass}">
+                    <div class="analytic-value">${escapeHtml(entry.value)}</div>
+                    <div class="analytic-label">${escapeHtml(entry.label)}</div>
+                </div>
+            `,
+              )
+              .join("")}
+        </div>
+        ${subcategoryBreakdownHtml}
+        ${difficultyBreakdownHtml}
         ${mockBreakdownHtml}
     `;
 
@@ -2263,6 +3356,114 @@ function showResults() {
     applyTrafficClass(resultStatCards[1], wrongTrafficClass);
     applyTrafficClass(resultStatCards[2], unansweredTrafficClass);
     applyTrafficClass(resultStatCards[3], accuracyTrafficClass);
+  }
+
+  let resultsSetupSuggestionDismissed = false;
+  const resultsFollowUpSummaryChips = document.getElementById("resultsFollowUpSummaryChips");
+  const resultsFollowUpSignalChips = document.getElementById("resultsFollowUpSignalChips");
+  const resultsFollowUpConfidence = document.getElementById("resultsFollowUpConfidence");
+  const clearResultsSetupSuggestionBtn = document.getElementById("clearResultsSetupSuggestionBtn");
+  const renderResultsFollowUpSuggestionState = () => {
+    const shouldShowSetupHint = followUpAction.action === "setup_tune" && !resultsSetupSuggestionDismissed;
+    if (resultsFollowUpSummaryChips) {
+      resultsFollowUpSummaryChips.classList.toggle(
+        "hidden",
+        !shouldShowSetupHint || !Array.isArray(followUpAction.summaryChips) || followUpAction.summaryChips.length === 0,
+      );
+    }
+    if (resultsFollowUpSignalChips) {
+      resultsFollowUpSignalChips.classList.toggle(
+        "hidden",
+        !shouldShowSetupHint || !Array.isArray(followUpAction.signalChips) || followUpAction.signalChips.length === 0,
+      );
+    }
+    if (resultsFollowUpConfidence) {
+      resultsFollowUpConfidence.classList.toggle("hidden", !shouldShowSetupHint || !followUpAction.confidenceLabel);
+    }
+    if (clearResultsSetupSuggestionBtn) {
+      clearResultsSetupSuggestionBtn.classList.toggle("hidden", !shouldShowSetupHint);
+    }
+    const retryPathResultsBtn = document.getElementById("retryPathResultsBtn");
+    if (retryPathResultsBtn && followUpAction.action === "setup_tune") {
+      retryPathResultsBtn.textContent = shouldShowSetupHint ? followUpAction.buttonLabel : "Open Session Setup";
+    }
+  };
+  renderResultsFollowUpSuggestionState();
+  if (clearResultsSetupSuggestionBtn) {
+    clearResultsSetupSuggestionBtn.onclick = () => {
+      resultsSetupSuggestionDismissed = true;
+      renderResultsFollowUpSuggestionState();
+    };
+  }
+
+  const dashboardRetryMissedBtn = document.getElementById("retryMissedBtn");
+  if (dashboardRetryMissedBtn) {
+    dashboardRetryMissedBtn.textContent = retryQueueCount > 0 ? `Retry Missed (${retryQueueCount})` : "Retry Missed";
+    dashboardRetryMissedBtn.disabled = retryQueueCount === 0;
+  }
+
+  const retryPathResultsBtn = document.getElementById("retryPathResultsBtn");
+  if (retryPathResultsBtn) {
+    retryPathResultsBtn.classList.remove("hidden");
+    retryPathResultsBtn.textContent = followUpAction.buttonLabel;
+    retryPathResultsBtn.onclick = () => {
+      if (followUpAction.action === "setup_tune") {
+        const baseStudyFilters = normalizeStudyFilters(currentTopic?.studyFilters, {
+          totalQuestions: quizState.allQuestions.length,
+        });
+        const shouldCarrySetupSuggestion = !resultsSetupSuggestionDismissed;
+        const mergedStudyFilters = shouldCarrySetupSuggestion
+          ? {
+              ...baseStudyFilters,
+              ...followUpAction.nextFilters,
+            }
+          : baseStudyFilters;
+        const nextTopic = {
+          ...currentTopic,
+          studyFilters: mergedStudyFilters,
+          sessionSetupSuggestion: shouldCarrySetupSuggestion
+            ? {
+                title: followUpAction.title,
+                message: followUpAction.body,
+                chips: Array.isArray(followUpAction.summaryChips) ? followUpAction.summaryChips : [],
+                signalChips: Array.isArray(followUpAction.signalChips) ? followUpAction.signalChips : [],
+                confidenceLabel: String(followUpAction.confidenceLabel || "").trim(),
+                confidenceTone: String(followUpAction.confidenceTone || "medium").trim().toLowerCase(),
+                confidenceDescription: String(followUpAction.confidenceDescription || "").trim(),
+              }
+            : null,
+          availableStudyFilters:
+            currentTopic?.availableStudyFilters ||
+            summarizeStudyFilterOptions(quizState.originalQuestions, {
+              currentFilters: mergedStudyFilters,
+              defaultQuestionCount: mergedStudyFilters.questionCount,
+            }),
+        };
+        setCurrentTopic(nextTopic);
+        showScreen("modeSelectionScreen");
+        if (typeof document !== "undefined" && typeof CustomEvent === "function") {
+          document.dispatchEvent(
+            new CustomEvent("sessionsetupchange", {
+              detail: { topic: nextTopic },
+            }),
+          );
+        }
+        return;
+      }
+      if (followUpAction.action === "retry_queue") {
+        if (dashboardRetryMissedBtn && !dashboardRetryMissedBtn.disabled) {
+          dashboardRetryMissedBtn.click();
+          return;
+        }
+        startPostQuizReview("incorrect");
+        return;
+      }
+      if (followUpAction.action === "review_incorrect") {
+        startPostQuizReview("incorrect");
+        return;
+      }
+      retakeFullQuiz();
+    };
   }
 
   const reviewIncorrectResultsBtn = document.getElementById("reviewIncorrectResultsBtn");
@@ -2312,10 +3513,10 @@ export function setCurrentMode(mode) {
         modeText = "Practice";
         break;
       case "exam":
-        modeText = "Exam";
+        modeText = "Timed Topic Test";
         break;
       case "review":
-        modeText = "Review";
+        modeText = "Study Review";
         break;
       default:
         modeText = mode.charAt(0).toUpperCase() + mode.slice(1);
@@ -2331,8 +3532,17 @@ export function getCurrentMode() {
 // Load questions for the selected topic
 export async function loadQuestions(questions = null) {
   if (questions) {
-    quizState.allQuestions = questions;
-    quizState.originalQuestions = questions;
+    const prioritizedQuestions = currentMode === "review"
+      ? [...questions]
+      : prioritizeQuestionPool(
+          questions,
+          buildQuestionSelectionProfileForSession({
+            topic: currentTopic,
+            mode: currentMode || "practice",
+          }),
+        );
+    quizState.allQuestions = prioritizedQuestions;
+    quizState.originalQuestions = prioritizedQuestions;
     initializeQuiz({ context: currentMode === "review" ? "study" : "session" });
     return;
   }
@@ -2412,21 +3622,57 @@ export async function loadQuestions(questions = null) {
         );
       });
     }
+    const normalizedStudyFilters = normalizeStudyFilters(currentTopic?.studyFilters, {
+      totalQuestions: quizState.allQuestions.length,
+      defaultQuestionCount: 40,
+    });
+
+    if (
+      isFeatureEnabled("enableStudyFilters") &&
+      !isMockExamTopic(currentTopic) &&
+      currentTopic?.id !== RETRY_MISSED_TOPIC_ID &&
+      currentTopic?.id !== SPACED_PRACTICE_TOPIC_ID
+    ) {
+      quizState.allQuestions = applyStudyFilters(quizState.allQuestions, {
+        ...normalizedStudyFilters,
+        questionCount: "all",
+      });
+    }
 
     if (quizState.allQuestions.length === 0) {
-      showError("No questions found for this topic/category.");
-      showScreen("topicSelectionScreen");
+      showError("No questions match the current study filters. Adjust the setup filters and try again.");
+      showScreen("modeSelectionScreen");
       return;
     }
 
-    quizState.allQuestions = shuffleArray(quizState.allQuestions);
-    const targetQuestionCap =
+    quizState.allQuestions = prioritizeQuestionPool(
+      quizState.allQuestions,
+      buildQuestionSelectionProfileForSession({
+        topic: currentTopic,
+        mode: currentMode || "practice",
+      }),
+    );
+
+    let targetQuestionCap =
       Number(currentTopic?.mockExamQuestionCount) > 0
         ? Number(currentTopic.mockExamQuestionCount)
         : 40;
-    if (quizState.allQuestions.length > targetQuestionCap) {
+
+    if (
+      isFeatureEnabled("enableStudyFilters") &&
+      !isMockExamTopic(currentTopic) &&
+      currentTopic?.id !== RETRY_MISSED_TOPIC_ID &&
+      currentTopic?.id !== SPACED_PRACTICE_TOPIC_ID
+    ) {
+      targetQuestionCap = normalizedStudyFilters.questionCount === "all"
+        ? null
+        : Number(normalizedStudyFilters.questionCount || 40);
+    }
+
+    if (Number.isFinite(targetQuestionCap) && targetQuestionCap > 0 && quizState.allQuestions.length > targetQuestionCap) {
       quizState.allQuestions = quizState.allQuestions.slice(0, targetQuestionCap);
     }
+
 
     initializeQuiz({ context: currentMode === "review" ? "study" : "session" });
   } catch (error) {
@@ -2756,8 +4002,7 @@ function initializeQuiz(options = {}) {
   const timerContainer = document.getElementById("timerDisplay");
   const timerBadge = timerContainer ? timerContainer.querySelector(".timer-badge") : null;
   if (currentMode === "exam") {
-    // Set 45 seconds per question for exam mode (total exam time)
-    const maxExamTime = quizState.allQuestions.length * 45;
+    const maxExamTime = getConfiguredExamTimeLimitSeconds(currentTopic, quizState.allQuestions.length);
     if (restoreState && Number.isFinite(Number(restoreState.timeLeft))) {
       quizState.timeLeft = Math.max(0, Math.min(maxExamTime, Number(restoreState.timeLeft)));
     } else {
@@ -2820,8 +4065,9 @@ function initializeQuiz(options = {}) {
   // Update topic title
   const topicTitleElement = document.getElementById("quizTopicTitle");
   if (topicTitleElement && currentTopic) {
-    topicTitleElement.textContent = `Topic: ${currentTopic.name}`;
+    topicTitleElement.textContent = "Topic: " + getDisplayTopicName(currentTopic);
   }
+  updateQuizSessionEstimate();
 
   showQuestion();
 
@@ -2829,6 +4075,35 @@ function initializeQuiz(options = {}) {
   updateProgress();
   persistQuizRuntime();
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

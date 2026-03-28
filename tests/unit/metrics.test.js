@@ -2,6 +2,8 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import {
+  buildDifficultyBreakdown,
+  buildSubcategoryBreakdown,
   calculateScoreFromAnswers,
   calculateStreakDays,
   getWeakestTopicId,
@@ -59,4 +61,75 @@ test("getWeakestTopicId picks topic with lowest average score", () => {
   ];
 
   assert.equal(getWeakestTopicId(attempts), "ict_management");
+});
+
+test("buildSubcategoryBreakdown groups current-session results by runtime subcategory", () => {
+  const questions = [
+    { id: "q1", correct: 0, sourceSubcategoryId: "psr_appointments", sourceSubcategoryName: "Appointments" },
+    { id: "q2", correct: 1, sourceSubcategoryId: "psr_appointments", sourceSubcategoryName: "Appointments" },
+    { id: "q3", correct: 2, sourceSubcategoryId: "psr_leave", sourceSubcategoryName: "Leave" },
+  ];
+  const answers = [0, 0, undefined];
+
+  assert.deepEqual(buildSubcategoryBreakdown(questions, answers), [
+    {
+      subcategoryId: "psr_leave",
+      subcategoryName: "Leave",
+      total: 1,
+      answered: 0,
+      correct: 0,
+      wrong: 0,
+      unanswered: 1,
+      accuracy: 0,
+    },
+    {
+      subcategoryId: "psr_appointments",
+      subcategoryName: "Appointments",
+      total: 2,
+      answered: 2,
+      correct: 1,
+      wrong: 1,
+      unanswered: 0,
+      accuracy: 50,
+    },
+  ]);
+});
+
+test("buildDifficultyBreakdown groups answers by difficulty in stable order", () => {
+  const questions = [
+    { id: "q1", correct: 0, difficulty: "medium" },
+    { id: "q2", correct: 1, difficulty: "easy" },
+    { id: "q3", correct: 2, difficulty: "hard" },
+  ];
+  const answers = [0, 2, 2];
+
+  assert.deepEqual(buildDifficultyBreakdown(questions, answers), [
+    {
+      difficulty: "easy",
+      total: 1,
+      answered: 1,
+      correct: 0,
+      wrong: 1,
+      unanswered: 0,
+      accuracy: 0,
+    },
+    {
+      difficulty: "medium",
+      total: 1,
+      answered: 1,
+      correct: 1,
+      wrong: 0,
+      unanswered: 0,
+      accuracy: 100,
+    },
+    {
+      difficulty: "hard",
+      total: 1,
+      answered: 1,
+      correct: 1,
+      wrong: 0,
+      unanswered: 0,
+      accuracy: 100,
+    },
+  ]);
 });

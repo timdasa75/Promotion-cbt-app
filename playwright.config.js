@@ -7,15 +7,15 @@ export default defineConfig({
     timeout: 10_000,
   },
   use: {
-    baseURL: "http://127.0.0.1:4173",
+    baseURL: "http://127.0.0.1:5500",
     headless: true,
     launchOptions: {
       executablePath: "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
     },
   },
   webServer: {
-    command: "python -m http.server 4173",
-    port: 4173,
+    command: "python -m http.server 5500",
+    port: 5500,
     reuseExistingServer: true,
     timeout: 60_000,
   },

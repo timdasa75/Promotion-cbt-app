@@ -31,7 +31,26 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "allowance",
+            "percentage",
+            "salary",
+            "public_sector_finance"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_002",
@@ -54,7 +73,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "budget",
+            "savings",
+            "percentage",
+            "public_sector_finance",
+            "public_service_context"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_003",
@@ -77,7 +116,26 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "leave",
+            "percentage",
+            "staff_strength",
+            "public_service_context"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_004",
@@ -100,7 +158,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "housing_allowance",
+            "basic_salary",
+            "percentage",
+            "public_sector_finance",
+            "public_service_context"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_005",
@@ -123,7 +201,24 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "percentage_increase",
+            "procurement",
+            "calculation"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_006",
@@ -146,7 +241,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "budget_allocation",
+            "personnel_costs",
+            "finance",
+            "public_sector_finance",
+            "public_service_context"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_007",
@@ -169,7 +284,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "pension",
+            "retirement",
+            "salary_calculation",
+            "public_sector_finance",
+            "public_service_context"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_008",
@@ -192,7 +327,25 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "fractions",
+            "calculation",
+            "basic_maths"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_009",
@@ -215,7 +368,25 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "leave_grant",
+            "annual",
+            "monthly",
+            "public_service_context"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_010",
@@ -238,7 +409,25 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "percentage",
+            "staff",
+            "gender_ratio",
+            "public_service_context"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_011",
@@ -261,7 +450,26 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "cost_overrun",
+            "project",
+            "percentage",
+            "public_sector_finance"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_012",
@@ -284,7 +492,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "budget",
+            "salaries",
+            "fraction",
+            "public_sector_finance",
+            "public_service_context"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_013",
@@ -307,7 +535,24 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "simple_interest",
+            "finance",
+            "calculation"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_014",
@@ -330,7 +575,26 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "unit_cost",
+            "multiplication",
+            "procurement",
+            "public_sector_finance"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_015",
@@ -353,7 +617,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "transport_allowance",
+            "basic_salary",
+            "percentage",
+            "public_sector_finance",
+            "public_service_context"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_016",
@@ -376,7 +660,26 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "work_time",
+            "officers",
+            "calculation",
+            "public_service_context"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_017",
@@ -399,7 +702,24 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "mean",
+            "average",
+            "salary"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_018",
@@ -422,7 +742,25 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "ratio",
+            "male_female",
+            "staff",
+            "public_service_context"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_019",
@@ -445,7 +783,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "gross_salary",
+            "deductions",
+            "net_salary",
+            "public_sector_finance",
+            "public_service_context"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_020",
@@ -468,7 +826,24 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "exchange_rate",
+            "currency_conversion",
+            "finance"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_021",
@@ -491,7 +866,26 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "annual_salary",
+            "monthly",
+            "multiply",
+            "public_sector_finance"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_022",
@@ -514,7 +908,26 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "overtime",
+            "hourly_rate",
+            "calculation",
+            "public_sector_finance"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_023",
@@ -537,7 +950,26 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "percentage_decrease",
+            "budget",
+            "calculation",
+            "public_sector_finance"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_024",
@@ -560,7 +992,26 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "ratio",
+            "budget_split",
+            "calculation",
+            "public_sector_finance"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_025",
@@ -583,7 +1034,26 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "vat",
+            "percentage",
+            "total_price",
+            "public_sector_finance"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_026",
@@ -606,7 +1076,26 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "allowance",
+            "percentage",
+            "salary",
+            "public_sector_finance"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_027",
@@ -629,7 +1118,24 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "mean",
+            "average",
+            "calculation"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_028",
@@ -652,7 +1158,26 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "depreciation",
+            "straight_line",
+            "assets",
+            "public_sector_finance"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_029",
@@ -675,7 +1200,25 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "work_rate",
+            "combined_work",
+            "time",
+            "public_service_context"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_030",
@@ -697,7 +1240,23 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "percentage",
+            "calculation"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_031",
@@ -720,7 +1279,26 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "salary_increase",
+            "bonus",
+            "percentage",
+            "public_sector_finance"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_032",
@@ -743,7 +1321,24 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "stock",
+            "percentage_used",
+            "inventory"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_033",
@@ -766,7 +1361,25 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "population_growth",
+            "compound_interest",
+            "percentage"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_034",
@@ -788,7 +1401,23 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "median",
+            "statistics"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_035",
@@ -811,7 +1440,24 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "loan",
+            "installments",
+            "division"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_036",
@@ -834,7 +1480,24 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "discount",
+            "price",
+            "percentage"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_037",
@@ -857,7 +1520,26 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "inflation",
+            "price_change",
+            "percentage",
+            "public_sector_finance"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_038",
@@ -880,7 +1562,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "budget_split",
+            "percentage",
+            "allocation",
+            "public_sector_finance",
+            "public_service_context"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_039",
@@ -903,7 +1605,24 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "probability",
+            "defective",
+            "percentage"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_040",
@@ -926,7 +1645,24 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "time_conversion",
+            "minutes",
+            "hours"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_041",
@@ -949,7 +1685,24 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "leave_accrual",
+            "annual_leave",
+            "monthly"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_042",
@@ -972,7 +1725,26 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "tax",
+            "net_pay",
+            "percentage",
+            "public_service_context"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_043",
@@ -995,7 +1767,26 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "fractions",
+            "project_cost",
+            "ratio",
+            "public_sector_finance"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_044",
@@ -1018,7 +1809,24 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "mode",
+            "statistics",
+            "data"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_045",
@@ -1041,7 +1849,25 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "weighted_average",
+            "performance",
+            "calculation",
+            "public_service_context"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_046",
@@ -1064,7 +1890,26 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "overtime",
+            "hourly_rate",
+            "calculation",
+            "public_sector_finance"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_047",
@@ -1087,7 +1932,26 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "ratio",
+            "staffing",
+            "calculation",
+            "public_service_context"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_048",
@@ -1110,7 +1974,24 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "compound_interest",
+            "growth",
+            "calculation"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_049",
@@ -1132,7 +2013,24 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "range",
+            "statistics"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_050",
@@ -1155,7 +2053,24 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "successive_discounts",
+            "price",
+            "calculation"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_051",
@@ -1178,7 +2093,24 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "fraction",
+            "percentage",
+            "conversion"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_052",
@@ -1200,7 +2132,23 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "algebra",
+            "linear_equation"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_053",
@@ -1222,7 +2170,25 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "percentage_change",
+            "budget",
+            "public_sector_finance"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_054",
@@ -1245,7 +2211,26 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "allowance",
+            "basic_salary",
+            "percentage",
+            "public_sector_finance"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_055",
@@ -1268,7 +2253,25 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "division",
+            "sharing",
+            "finance",
+            "public_service_context"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_056",
@@ -1290,7 +2293,23 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "consumption",
+            "multiplication"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_057",
@@ -1312,7 +2331,23 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "exchange_rate",
+            "percentage_change"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_058",
@@ -1335,7 +2370,26 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "training_cost",
+            "per_capita",
+            "division",
+            "public_sector_finance"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_059",
@@ -1357,7 +2411,24 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "percentage_increase",
+            "staff_strength",
+            "public_service_context"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "competency_num_060",
@@ -1380,7 +2451,26 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "unit_cost",
+            "procurement",
+            "division",
+            "public_sector_finance"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning"
         },
         {
           "id": "comp_numerical_reasoning_gen_001",
@@ -1405,7 +2495,26 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "competency_framework",
+            "comp_numerical_reasoning",
+            "numerical_mathematical_reasoning_governance",
+            "quality_expansion"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "comp_numerical_reasoning_gen_002",
@@ -1430,7 +2539,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "competency_framework",
+            "comp_numerical_reasoning",
+            "numerical_mathematical_reasoning_compliance",
+            "quality_expansion",
+            "judgement"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "comp_numerical_reasoning_gen_003",
@@ -1455,7 +2584,26 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "competency_framework",
+            "comp_numerical_reasoning",
+            "numerical_mathematical_reasoning_risk_management",
+            "quality_expansion"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "comp_numerical_reasoning_gen_004",
@@ -1480,7 +2628,25 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "competency_framework",
+            "comp_numerical_reasoning",
+            "quality_expansion"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "comp_numerical_reasoning_gen_005",
@@ -1505,7 +2671,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "competency_framework",
+            "comp_numerical_reasoning",
+            "verbal_reasoning",
+            "quality_expansion",
+            "public_service_context"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "comp_numerical_reasoning_gen_006",
@@ -1530,7 +2716,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "competency_framework",
+            "comp_numerical_reasoning",
+            "analytical_judgement",
+            "quality_expansion"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "comp_numerical_reasoning_gen_007",
@@ -1555,7 +2761,28 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "competency_framework",
+            "comp_numerical_reasoning",
+            "problem_solving",
+            "quality_expansion",
+            "analytical_thinking",
+            "judgement"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "comp_numerical_reasoning_gen_008",
@@ -1580,7 +2807,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "competency_framework",
+            "comp_numerical_reasoning",
+            "communication_clarity",
+            "quality_expansion",
+            "official_communication"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "comp_numerical_reasoning_gen_009",
@@ -1605,7 +2852,26 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "competency_framework",
+            "comp_numerical_reasoning",
+            "documented_procedure",
+            "quality_expansion"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "comp_numerical_reasoning_gen_010",
@@ -1630,7 +2896,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "competency_framework",
+            "comp_numerical_reasoning",
+            "compliance_assurance",
+            "quality_expansion",
+            "public_service_context"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "comp_numerical_reasoning_gen_011",
@@ -1655,7 +2941,26 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "competency_framework",
+            "comp_numerical_reasoning",
+            "public_accountability",
+            "quality_expansion"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "comp_numerical_reasoning_gen_012",
@@ -1680,7 +2985,28 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "competency_framework",
+            "comp_numerical_reasoning",
+            "service_integrity",
+            "quality_expansion",
+            "judgement"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "comp_numerical_reasoning_gen_013",
@@ -1705,7 +3031,26 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "competency_framework",
+            "comp_numerical_reasoning",
+            "risk_control",
+            "quality_expansion"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "comp_numerical_reasoning_gen_014",
@@ -1730,7 +3075,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "competency_framework",
+            "comp_numerical_reasoning",
+            "decision_transparency",
+            "quality_expansion",
+            "judgement"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "comp_numerical_reasoning_gen_015",
@@ -1755,7 +3120,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "competency_framework",
+            "comp_numerical_reasoning",
+            "operational_discipline",
+            "quality_expansion",
+            "public_service_context"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "competency_num_061",
@@ -1779,7 +3164,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "context",
+            "select",
+            "option",
+            "best",
+            "public_sector_finance"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "competency_num_062",
@@ -1803,7 +3208,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "procurement",
+            "official",
+            "practice",
+            "option"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "competency_num_063",
@@ -1827,7 +3252,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "official",
+            "practice",
+            "option",
+            "best",
+            "public_service_context"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "competency_num_064",
@@ -1851,7 +3296,26 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "official",
+            "practice",
+            "option",
+            "correctly"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "competency_num_065",
@@ -1875,7 +3339,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "role",
+            "projects",
+            "estimates",
+            "revenues"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "competency_num_066",
@@ -1899,7 +3383,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "official",
+            "practice",
+            "choose",
+            "option"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "competency_num_067",
@@ -1923,7 +3427,28 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "context",
+            "responsibility",
+            "chief",
+            "adviser",
+            "public_service_context"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "competency_num_068",
@@ -1947,7 +3472,26 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "official",
+            "practice",
+            "select",
+            "statement"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "competency_num_069",
@@ -1971,7 +3515,26 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "official",
+            "practice",
+            "role",
+            "encouraged"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "competency_num_070",
@@ -1995,7 +3558,26 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "according",
+            "established",
+            "choose",
+            "best"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "competency_num_071",
@@ -2019,7 +3601,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "staff",
+            "committee",
+            "within",
+            "role",
+            "public_service_context"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "competency_num_072",
@@ -2043,7 +3645,29 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "official",
+            "practice",
+            "office",
+            "accountable",
+            "public_sector_finance",
+            "public_service_context"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "competency_num_073",
@@ -2067,7 +3691,28 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "office",
+            "accountable",
+            "posting",
+            "redeploying",
+            "public_service_context"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "competency_num_074",
@@ -2091,7 +3736,28 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "official",
+            "practice",
+            "option",
+            "best",
+            "public_sector_finance"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "competency_num_075",
@@ -2115,7 +3781,26 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "according",
+            "finance",
+            "established",
+            "option"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "competency_num_076",
@@ -2139,7 +3824,26 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "revenue",
+            "according",
+            "established",
+            "choose"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "competency_num_077",
@@ -2163,7 +3867,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "choose",
+            "best",
+            "answer",
+            "fund"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "competency_num_078",
@@ -2187,7 +3911,28 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "budget",
+            "official",
+            "practice",
+            "choose",
+            "public_sector_finance"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "competency_num_079",
@@ -2211,7 +3956,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "within",
+            "role",
+            "accounting",
+            "officer",
+            "public_service_context"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "competency_num_080",
@@ -2235,7 +4000,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "civil",
+            "context",
+            "choose",
+            "best",
+            "public_service_context"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "competency_num_081",
@@ -2259,7 +4044,28 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "head",
+            "within",
+            "option",
+            "correctly",
+            "public_service_context"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "competency_num_082",
@@ -2283,7 +4089,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "context",
+            "office",
+            "accounting",
+            "officer",
+            "public_service_context"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "competency_num_083",
@@ -2307,7 +4133,26 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "option",
+            "best",
+            "describes",
+            "chief"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "competency_num_084",
@@ -2331,7 +4176,26 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "according",
+            "established",
+            "choose",
+            "best"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "competency_num_085",
@@ -2355,7 +4219,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "numerical_reasoning",
+            "quantitative_judgement",
+            "official",
+            "practice",
+            "choose",
+            "best",
+            "public_service_context"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_numerical_reasoning",
+          "sourceSubcategoryName": "Numerical & Mathematical Reasoning",
+          "topic": "Competency Framework"
         }
       ],
       "id": "comp_numerical_reasoning"
@@ -2386,7 +4270,24 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "competency_framework",
+            "core_competencies",
+            "leadership_competencies"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_002",
@@ -2409,7 +4310,24 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "synonyms",
+            "prerogative"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_003",
@@ -2432,7 +4350,25 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "antonyms",
+            "transparent",
+            "opposite"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_004",
@@ -2455,7 +4391,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "sentence_completion",
+            "tact",
+            "language",
+            "official_communication",
+            "public_service_context"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_005",
@@ -2478,7 +4434,25 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "analogy",
+            "doctor",
+            "teacher"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_006",
@@ -2501,7 +4475,25 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "antonyms",
+            "benevolent",
+            "malevolent"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_007",
@@ -2524,7 +4516,24 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "spelling",
+            "accommodate",
+            "english"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_008",
@@ -2547,7 +4556,25 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "plural",
+            "crisis",
+            "english"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_009",
@@ -2570,7 +4597,24 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "odd_one_out",
+            "animals",
+            "object"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_010",
@@ -2593,7 +4637,25 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "expedite",
+            "synonyms",
+            "hasten"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_011",
@@ -2616,7 +4678,25 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "preposition",
+            "insist",
+            "grammar"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_012",
@@ -2639,7 +4719,26 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "punctuation",
+            "grammar",
+            "sentence",
+            "official_communication"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_013",
@@ -2662,7 +4761,25 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "antonyms",
+            "diligent",
+            "careless"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_014",
@@ -2685,7 +4802,26 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "sentence_completion",
+            "decision",
+            "committee",
+            "official_communication"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_015",
@@ -2708,7 +4844,24 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "scarce",
+            "antonyms",
+            "plentiful"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_016",
@@ -2730,7 +4883,23 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "odd_one_out",
+            "stationery"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_017",
@@ -2753,7 +4922,25 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "synonyms",
+            "meticulous",
+            "thorough"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_018",
@@ -2775,7 +4962,24 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "indirect_speech",
+            "grammar"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_019",
@@ -2798,7 +5002,25 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "expand",
+            "synonym",
+            "increase"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_020",
@@ -2821,7 +5043,24 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "grammar",
+            "preposition",
+            "fill_in_the_blank"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_021",
@@ -2844,7 +5083,25 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "spelling",
+            "conscientious",
+            "english"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_022",
@@ -2867,7 +5124,25 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "antonyms",
+            "expand",
+            "contract"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_023",
@@ -2890,7 +5165,25 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "ambiguous",
+            "synonyms",
+            "uncertain"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_024",
@@ -2913,7 +5206,25 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "proverb",
+            "stitch_in_time",
+            "completion"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_025",
@@ -2936,7 +5247,25 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "antonyms",
+            "rigid",
+            "flexible"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_026",
@@ -2959,7 +5288,25 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "synonyms",
+            "impartial",
+            "neutral"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_027",
@@ -2982,7 +5329,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "sentence_completion",
+            "adherence",
+            "rules",
+            "official_communication",
+            "public_service_context"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_028",
@@ -3005,7 +5372,24 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "odd_one_out",
+            "fruits",
+            "object"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_029",
@@ -3028,7 +5412,24 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "obsolete",
+            "synonyms",
+            "outdated"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_030",
@@ -3051,7 +5452,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "sentence_completion",
+            "account",
+            "incident",
+            "official_communication",
+            "public_service_context"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_031",
@@ -3074,7 +5495,25 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "antonyms",
+            "optimistic",
+            "pessimistic"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_032",
@@ -3097,7 +5536,25 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "vivid",
+            "synonyms",
+            "clear"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_033",
@@ -3119,7 +5576,24 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "indirect_speech",
+            "grammar"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_034",
@@ -3142,7 +5616,25 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "antonyms",
+            "generous",
+            "selfish"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_035",
@@ -3165,7 +5657,25 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "lucid",
+            "synonyms",
+            "clear"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_036",
@@ -3188,7 +5698,25 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "prepositions",
+            "divided_on",
+            "grammar"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_037",
@@ -3211,7 +5739,24 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "proverb",
+            "cooks",
+            "broth"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_038",
@@ -3234,7 +5779,24 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "happy",
+            "synonyms",
+            "antonym"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_039",
@@ -3257,7 +5819,24 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "sentence_completion",
+            "efficiency",
+            "improve"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_040",
@@ -3280,7 +5859,25 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "resilient",
+            "synonym",
+            "strong"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_041",
@@ -3303,7 +5900,25 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "antonyms",
+            "complex",
+            "simple"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_042",
@@ -3326,7 +5941,25 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "synonyms",
+            "commence",
+            "begin"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_043",
@@ -3348,7 +5981,24 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "spelling",
+            "definitely"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_044",
@@ -3371,7 +6021,25 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "synonyms",
+            "benevolent",
+            "kind"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_045",
@@ -3394,7 +6062,25 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "antonyms",
+            "artificial",
+            "natural"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_046",
@@ -3417,7 +6103,25 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "sentence_completion",
+            "corruption",
+            "curb"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_047",
@@ -3440,7 +6144,24 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "odd_one_out",
+            "book",
+            "teacher"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_048",
@@ -3463,7 +6184,25 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "candid",
+            "synonyms",
+            "honest"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_049",
@@ -3486,7 +6225,24 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "antonyms",
+            "expand",
+            "shrink"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_050",
@@ -3509,7 +6265,26 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "sentence_completion",
+            "tact",
+            "crisis",
+            "public_service_context"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_051",
@@ -3532,7 +6307,25 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "synonyms",
+            "brief",
+            "short"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_052",
@@ -3555,7 +6348,25 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "proverb",
+            "pen",
+            "sword"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_053",
@@ -3578,7 +6389,25 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "antonyms",
+            "prosperity",
+            "poverty"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_054",
@@ -3601,7 +6430,24 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "synonyms",
+            "fragile",
+            "delicate"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_055",
@@ -3624,7 +6470,25 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "grammar",
+            "preposition",
+            "interested_in"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_056",
@@ -3646,7 +6510,24 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "indirect_speech",
+            "grammar"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_057",
@@ -3669,7 +6550,25 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "antonyms",
+            "rapid",
+            "slow"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_058",
@@ -3692,7 +6591,25 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "synonyms",
+            "precise",
+            "exact"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_059",
@@ -3715,7 +6632,25 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "sentence_completion",
+            "directive",
+            "discipline"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "competency_verbal_060",
@@ -3738,7 +6673,24 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "odd_one_out",
+            "furniture",
+            "bread"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning"
         },
         {
           "id": "comp_verbal_reasoning_gen_001",
@@ -3763,7 +6715,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "competency_framework",
+            "comp_verbal_reasoning",
+            "verbal_analytical_reasoning_governance",
+            "quality_expansion"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "comp_verbal_reasoning_gen_002",
@@ -3788,7 +6760,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "scenario",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "competency_framework",
+            "comp_verbal_reasoning",
+            "verbal_analytical_reasoning_compliance",
+            "quality_expansion",
+            "judgement"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "comp_verbal_reasoning_gen_003",
@@ -3813,7 +6805,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "competency_framework",
+            "comp_verbal_reasoning",
+            "verbal_analytical_reasoning_risk_management",
+            "quality_expansion"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "comp_verbal_reasoning_gen_004",
@@ -3838,7 +6850,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "competency_framework",
+            "comp_verbal_reasoning",
+            "numerical_reasoning",
+            "quality_expansion"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "comp_verbal_reasoning_gen_005",
@@ -3863,7 +6895,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "competency_framework",
+            "comp_verbal_reasoning",
+            "quality_expansion",
+            "public_service_context"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "comp_verbal_reasoning_gen_006",
@@ -3888,7 +6940,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "competency_framework",
+            "comp_verbal_reasoning",
+            "analytical_judgement",
+            "quality_expansion"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "comp_verbal_reasoning_gen_007",
@@ -3913,7 +6985,28 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "scenario",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "competency_framework",
+            "comp_verbal_reasoning",
+            "problem_solving",
+            "quality_expansion",
+            "analytical_thinking",
+            "judgement"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "comp_verbal_reasoning_gen_008",
@@ -3938,7 +7031,28 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "competency_framework",
+            "comp_verbal_reasoning",
+            "communication_clarity",
+            "quality_expansion",
+            "official_communication"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "comp_verbal_reasoning_gen_009",
@@ -3963,7 +7077,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "competency_framework",
+            "comp_verbal_reasoning",
+            "documented_procedure",
+            "quality_expansion"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "comp_verbal_reasoning_gen_010",
@@ -3988,7 +7122,28 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "competency_framework",
+            "comp_verbal_reasoning",
+            "compliance_assurance",
+            "quality_expansion",
+            "public_service_context"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "comp_verbal_reasoning_gen_011",
@@ -4013,7 +7168,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "competency_framework",
+            "comp_verbal_reasoning",
+            "public_accountability",
+            "quality_expansion"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "comp_verbal_reasoning_gen_012",
@@ -4038,7 +7213,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "scenario",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "competency_framework",
+            "comp_verbal_reasoning",
+            "service_integrity",
+            "quality_expansion",
+            "judgement"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "comp_verbal_reasoning_gen_013",
@@ -4063,7 +7258,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "competency_framework",
+            "comp_verbal_reasoning",
+            "risk_control",
+            "quality_expansion"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "comp_verbal_reasoning_gen_014",
@@ -4088,7 +7303,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "competency_framework",
+            "comp_verbal_reasoning",
+            "decision_transparency",
+            "quality_expansion",
+            "judgement"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "comp_verbal_reasoning_gen_015",
@@ -4113,7 +7348,28 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-03"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "competency_framework",
+            "comp_verbal_reasoning",
+            "operational_discipline",
+            "quality_expansion",
+            "public_service_context"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "competency_verbal_061",
@@ -4137,7 +7393,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "option",
+            "aligns",
+            "meaning",
+            "legal"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "competency_verbal_062",
@@ -4161,7 +7437,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "context",
+            "select",
+            "option",
+            "best",
+            "public_service_context"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "competency_verbal_063",
@@ -4185,7 +7481,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "according",
+            "established",
+            "select",
+            "option"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "competency_verbal_064",
@@ -4209,7 +7525,28 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "officer",
+            "according",
+            "established",
+            "option",
+            "public_service_context"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "competency_verbal_065",
@@ -4233,7 +7570,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "cash",
+            "according",
+            "established",
+            "select"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "competency_verbal_066",
@@ -4257,7 +7614,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "select",
+            "option",
+            "best",
+            "answers",
+            "public_service_context"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "competency_verbal_067",
@@ -4281,7 +7658,28 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "role",
+            "charge",
+            "keeping",
+            "date",
+            "public_service_context"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "competency_verbal_068",
@@ -4305,7 +7703,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "within",
+            "option",
+            "aligns",
+            "meaning"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "competency_verbal_069",
@@ -4329,7 +7747,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "within",
+            "office",
+            "ultimately",
+            "accountable"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "competency_verbal_070",
@@ -4353,7 +7791,26 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "according",
+            "established",
+            "option",
+            "correctly"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "competency_verbal_071",
@@ -4377,7 +7834,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "according",
+            "established",
+            "select",
+            "option"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "competency_verbal_072",
@@ -4401,7 +7878,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "context",
+            "option",
+            "best",
+            "describes"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "competency_verbal_073",
@@ -4425,7 +7922,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "context",
+            "select",
+            "option",
+            "best",
+            "official_communication"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "competency_verbal_074",
@@ -4449,7 +7966,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "context",
+            "option",
+            "aligns",
+            "meaning"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "competency_verbal_075",
@@ -4473,7 +8010,28 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "official",
+            "practice",
+            "office",
+            "chief",
+            "public_service_context"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "competency_verbal_076",
@@ -4497,7 +8055,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "context",
+            "option",
+            "aligns",
+            "meaning"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "competency_verbal_077",
@@ -4521,7 +8099,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "within",
+            "select",
+            "option",
+            "best"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "competency_verbal_078",
@@ -4545,7 +8143,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "point",
+            "should",
+            "file",
+            "notes"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "competency_verbal_079",
@@ -4569,7 +8187,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "within",
+            "point",
+            "should",
+            "file"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "competency_verbal_080",
@@ -4593,7 +8231,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "according",
+            "money",
+            "established",
+            "select",
+            "public_service_context"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "competency_verbal_081",
@@ -4617,7 +8275,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "official",
+            "practice",
+            "select",
+            "option"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "competency_verbal_082",
@@ -4641,7 +8319,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "role",
+            "effect",
+            "alteration",
+            "classification"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "competency_verbal_083",
@@ -4665,7 +8363,26 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "within",
+            "responsibility",
+            "accountable",
+            "providing"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "competency_verbal_084",
@@ -4689,7 +8406,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "official",
+            "practice",
+            "option",
+            "aligns"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
+          "topic": "Competency Framework"
         },
         {
           "id": "competency_verbal_085",
@@ -4713,7 +8450,27 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-13"
+          "lastReviewed": "2026-03-23",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "context",
+            "option",
+            "correctly",
+            "addresses"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
+          "topic": "Competency Framework"
         }
       ],
       "id": "comp_verbal_reasoning"

@@ -1,0 +1,64 @@
+{
+  "templates": [
+    {
+      "id": "general",
+      "name": "General Mock",
+      "description": "Balanced directorate mock across all 10 core topics.",
+      "glBand": "general",
+      "totalQuestions": 40,
+      "timeLimitMin": 45,
+      "shuffleQuestions": true,
+      "shuffleOptions": true,
+      "selectionMode": "sections",
+      "visible": true,
+      "sections": [
+        { "topicId": "psr", "count": 4 },
+        { "topicId": "financial_regulations", "count": 4 },
+        { "topicId": "procurement_act", "count": 4 },
+        { "topicId": "constitutional_law", "count": 4 },
+        { "topicId": "civil_service_admin", "count": 4 },
+        { "topicId": "leadership_management", "count": 4 },
+        { "topicId": "ict_management", "count": 4 },
+        { "topicId": "policy_analysis", "count": 4 },
+        { "topicId": "general_current_affairs", "count": 4 },
+        { "topicId": "competency_framework", "count": 4 }
+      ]
+    },
+    {
+      "id": "gl_14_15",
+      "name": "GL 14-15 Mock",
+      "description": "Entry-directorate weighting with stronger PSR and civil service administration coverage.",
+      "glBand": "GL14_15",
+      "totalQuestions": 40,
+      "timeLimitMin": 45,
+      "shuffleQuestions": true,
+      "shuffleOptions": true,
+      "selectionMode": "gl_band_weighted",
+      "visible": true
+    },
+    {
+      "id": "gl_15_16",
+      "name": "GL 15-16 Mock",
+      "description": "Mid-directorate weighting with stronger controls, procurement, policy, and reform coverage.",
+      "glBand": "GL15_16",
+      "totalQuestions": 40,
+      "timeLimitMin": 45,
+      "shuffleQuestions": true,
+      "shuffleOptions": true,
+      "selectionMode": "gl_band_weighted",
+      "visible": true
+    },
+    {
+      "id": "gl_16_17",
+      "name": "GL 16-17 Mock",
+      "description": "Top-directorate weighting with stronger leadership, strategy, policy, and oversight coverage.",
+      "glBand": "GL16_17",
+      "totalQuestions": 40,
+      "timeLimitMin": 45,
+      "shuffleQuestions": true,
+      "shuffleOptions": true,
+      "selectionMode": "gl_band_weighted",
+      "visible": true
+    }
+  ]
+}
