@@ -809,10 +809,7 @@ function buildMockExamTopicBreakdown() {
 }
 
 function formatGlBandLabel(glBand) {
-  const value = String(glBand || "").trim();
-  if (!value) return "";
-  if (value.toLowerCase() === "general") return "General";
-  return value.replace("_", "-").replace("GL", "GL ");
+  return formatTargetGlBandLabel(glBand);
 }
 
 function formatDifficultyLabel(difficulty) {
@@ -2974,11 +2971,12 @@ function showResults() {
     configuredExamSeconds,
     unansweredCount: unanswered,
   });
+  const filteredIncorrectCount = quizState.incorrectAnswers.length - unanswered;
   const recommendationConfidence = buildResultsRecommendationConfidence({
     weakestSessionSubcategory,
     topicAttemptCount: currentTopicAttemptCount,
     unansweredCount: unanswered,
-    incorrectCount: quizState.incorrectAnswers.length,
+    incorrectCount: filteredIncorrectCount,
     recentScoreSignal,
     timingSignal: latestTimingSignal,
   });
@@ -3023,7 +3021,7 @@ function showResults() {
     topic: currentTopic,
     mode: currentMode,
     scorePercentage,
-    incorrectCount: quizState.incorrectAnswers.length,
+    incorrectCount: filteredIncorrectCount,
     unansweredCount: unanswered,
     timeElapsed,
     configuredExamSeconds,
@@ -3645,13 +3643,18 @@ export async function loadQuestions(questions = null) {
       return;
     }
 
-    quizState.allQuestions = prioritizeQuestionPool(
-      quizState.allQuestions,
-      buildQuestionSelectionProfileForSession({
-        topic: currentTopic,
-        mode: currentMode || "practice",
-      }),
-    );
+    const template = getMockExamTemplate(currentTopic);
+    const isFinalizedMockExam = isMockExamTopic(currentTopic) && template?.shuffleQuestions !== false;
+
+    if (!isFinalizedMockExam) {
+      quizState.allQuestions = prioritizeQuestionPool(
+        quizState.allQuestions,
+        buildQuestionSelectionProfileForSession({
+          topic: currentTopic,
+          mode: currentMode || "practice",
+        }),
+      );
+    }
 
     let targetQuestionCap =
       Number(currentTopic?.mockExamQuestionCount) > 0
@@ -4075,7 +4078,6 @@ function initializeQuiz(options = {}) {
   updateProgress();
   persistQuizRuntime();
 }
-
 
 
 

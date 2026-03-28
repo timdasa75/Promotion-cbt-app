@@ -37,7 +37,10 @@ function attachStudyFiltersToTopic(topic, topicDataFiles = []) {
       Array.isArray(topic.allowedCategoryIds) && topic.allowedCategoryIds.length
         ? topic.allowedCategoryIds
         : null,
-    maxQuestionsPerSubcategory: null,
+    maxQuestionsPerSubcategory:
+      typeof topic.entitlement?.maxQuestionsPerSubcategory === "number"
+        ? topic.entitlement.maxQuestionsPerSubcategory
+        : null,
   };
   const selectedCategory = String(topic.selectedCategory || "all");
   const questions = [];
@@ -133,8 +136,20 @@ export function applySessionSetupCopy(topic) {
   const copy = getSessionSetupCopy(topic);
 
   if (quizTitle) quizTitle.textContent = copy.title;
-  if (quizDescription) quizDescription.textContent = copy.description;
   if (selectedTopicName) selectedTopicName.textContent = copy.selectedName;
+  if (quizDescription && selectedTopicName) {
+    const textBefore = quizDescription.firstChild;
+    const textAfter = selectedTopicName.nextSibling;
+    if (textBefore && textBefore.nodeType === Node.TEXT_NODE) {
+      textBefore.textContent = copy.description.substring(0, copy.description.indexOf(copy.selectedName));
+    }
+    if (textAfter && textAfter.nodeType === Node.TEXT_NODE) {
+      const indexAfterName = copy.description.indexOf(copy.selectedName) + copy.selectedName.length;
+      textAfter.textContent = copy.description.substring(indexAfterName);
+    }
+  } else if (quizDescription) {
+    quizDescription.textContent = copy.description;
+  }
 }
 // Display categories for a topic
 export async function displayCategories(topic, onSelect) {
@@ -643,7 +658,6 @@ export async function selectTopic(topic) {
 }
 
 // Make functions available globally for HTML onclick handlers
-
 
 
 

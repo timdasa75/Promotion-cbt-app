@@ -617,10 +617,7 @@ function formatModeLabel(mode) {
 }
 
 function formatGlBandLabel(glBand) {
-  const value = String(glBand || "").trim();
-  if (!value) return "";
-  if (value.toLowerCase() === "general") return "General";
-  return value.replace(/_/g, "-").toUpperCase().replace("GL-", "GL ");
+  return formatTargetGlBandLabel(glBand);
 }
 
 function formatDifficultyLabel(difficulty) {
@@ -5087,7 +5084,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   initializeThemeToggle();
 });
-
 
 
 
