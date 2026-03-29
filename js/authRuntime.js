@@ -7,6 +7,10 @@ import {
 const DEFAULT_VERIFICATION_RESEND_COOLDOWN_MS = 15 * 60 * 1000;
 const DEFAULT_PASSWORD_RESET_COOLDOWN_MS = 10 * 60 * 1000;
 
+/**
+ * Read auth-related runtime settings from the browser and normalize legacy keys into one stable config object.
+ * This keeps the rest of the auth layer focused on behavior instead of repetitive window/config parsing.
+ */
 export function getFirebaseConfig() {
   const cfg = (typeof window !== "undefined" && window.PROMOTION_CBT_AUTH) || {};
   const firebaseApiKey = String(cfg.firebaseApiKey || cfg.apiKey || "").trim();
@@ -87,6 +91,10 @@ export function isCloudAuthMisconfigured() {
   return isCloudAuthRequired() && !isCloudAuthEnabled();
 }
 
+/**
+ * Decide whether device-local demo auth should be available.
+ * The order matters: explicit window overrides win, then config flags, then the development fallback when cloud auth is unavailable.
+ */
 export function isLocalDemoAuthEnabled() {
   if (typeof window !== "undefined" && typeof window.PROMOTION_CBT_ALLOW_LOCAL_AUTH === "boolean") {
     return window.PROMOTION_CBT_ALLOW_LOCAL_AUTH;
@@ -99,3 +107,4 @@ export function isLocalDemoAuthEnabled() {
 
   return !isCloudAuthEnabled() && !isCloudAuthRequired();
 }
+

@@ -1,3 +1,7 @@
+/**
+ * Build the mock-exam setup controller used by the session-setup screen.
+ * It owns the small amount of orchestration needed to keep the selected template, topic metadata, and mock-specific UI in sync.
+ */
 export function createMockSetupController({
   defaultTemplateId,
   mockExamTopicId,
@@ -189,4 +193,5 @@ export function createMockSetupController({
     configureSessionSetup,
   };
 }
+
 
