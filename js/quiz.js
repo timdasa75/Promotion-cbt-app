@@ -141,6 +141,12 @@ function clampNumber(value, { min = Number.NEGATIVE_INFINITY, max = Number.POSIT
   return Math.min(max, Math.max(min, numeric));
 }
 
+/**
+ * Compute a stable identity string for a progress attempt.
+ *
+ * @param {Object} attempt - Progress attempt object. Fields used: `attemptId`, `topicId`, `mode`, `createdAt`, `scorePercentage`, `totalQuestions`.
+ * @returns {string} A stable identifier for the attempt. If `attempt.attemptId` is present and non-empty, it is returned; otherwise a legacy key is returned in the form `legacy:topicId|mode|createdAt|score|total` where `score` is rounded and `total` is floored.
+ */
 function getProgressAttemptIdentity(attempt = {}) {
   const byId = String(attempt?.attemptId || "").trim();
   if (byId) return byId;
@@ -152,10 +158,26 @@ function getProgressAttemptIdentity(attempt = {}) {
   return `legacy:${topicId}|${mode}|${createdAt}|${score}|${total}`;
 }
 
+/**
+ * Normalize a numeric count into an integer between 0 and a configurable maximum.
+ * @param {*} value - The input to normalize; may be any type (will be coerced to number).
+ * @param {Object} [options] - Optional behavior overrides.
+ * @param {number} [options.fallback=0] - Numeric value to use when `value` cannot be converted to a valid number.
+ * @param {number} [options.max=1000] - Upper bound for the resulting count (minimum is 0).
+ * @returns {number} An integer >= 0 and <= `max`; if `value` is invalid, returns `fallback` clamped into that range.
+ */
 function normalizeProgressCount(value, { fallback = 0, max = 1000 } = {}) {
   return Math.floor(clampNumber(value, { min: 0, max, fallback }));
 }
 
+/**
+ * Normalize an array of breakdown entries into objects with standardized count fields and a computed accuracy percentage.
+ * @param {Array|any} items - Input entries; non-object values or entries missing the specified `idKey` are ignored.
+ * @param {Object} [options] - Normalization options.
+ * @param {string} options.idKey - Property name to use as the entry identifier.
+ * @param {string} [options.nameKey=""] - If provided, the corresponding property is copied into each normalized entry (falls back to the id when absent).
+ * @param {Function|null} [options.sortComparator=null] - Optional comparator to sort the resulting array.
+ * @return {Array} Array of normalized entries; each entry contains the `idKey`, `total`, `answered`, `correct`, `wrong`, `unanswered`, and `accuracy` (0–100).
 function normalizeStructuredBreakdown(items, { idKey, nameKey = "", sortComparator = null } = {}) {
   const entries = Array.isArray(items) ? items : [];
   const normalized = entries
@@ -199,6 +221,16 @@ function normalizeStructuredBreakdown(items, { idKey, nameKey = "", sortComparat
   return normalized;
 }
 
+/**
+ * Normalize an array of subcategory breakdown entries into a consistent structure and sort order.
+ *
+ * Produces normalized entries with canonical fields (including `total`, `answered`, `correct`, `wrong`, `unanswered`, and `accuracy`)
+ * and ensures each entry contains `subcategoryId` and `subcategoryName`. The returned array is sorted by accuracy (ascending),
+ * then by total (descending), and finally by `subcategoryName` (locale order).
+ *
+ * @param {Array<object>} items - Array of subcategory breakdown objects to normalize.
+ * @returns {Array<object>} The normalized and sorted subcategory breakdown entries.
+ */
 function normalizeSubcategoryBreakdownEntries(items) {
   return normalizeStructuredBreakdown(items, {
     idKey: "subcategoryId",
@@ -210,6 +242,11 @@ function normalizeSubcategoryBreakdownEntries(items) {
   });
 }
 
+/**
+ * Normalize an array of difficulty-tagged breakdown entries into a standardized breakdown object.
+ * @param {Array<Object>} items - Array of entries containing a `difficulty` identifier and numeric counts (e.g., total/answered/correct).
+ * @returns {Object} A normalized breakdown object with aggregated counters and an `entries` array sorted by difficulty in the order: `easy`, `medium`, `hard`.
+ */
 function normalizeDifficultyBreakdownEntries(items) {
   const rank = { easy: 0, medium: 1, hard: 2 };
   return normalizeStructuredBreakdown(items, {
@@ -222,6 +259,11 @@ function normalizeDifficultyBreakdownEntries(items) {
   });
 }
 
+/**
+ * Normalize an array of source-topic breakdown entries and return them sorted for display.
+ * @param {Array<Object>} items - Raw breakdown entries that include `topicId` and `topicName` and optional count fields.
+ * @returns {Array<Object>} An array of normalized breakdown entries (with totals, counts, and `accuracy`) sorted by accuracy desc, then correct desc, then topic name asc.
+ */
 function normalizeSourceTopicBreakdownEntries(items) {
   return normalizeStructuredBreakdown(items, {
     idKey: "topicId",
@@ -233,6 +275,11 @@ function normalizeSourceTopicBreakdownEntries(items) {
   });
 }
 
+/**
+ * Normalize and validate a progress attempt object into the canonical stored shape.
+ * @param {Object} [attempt={}] - Raw attempt data (may contain topicId, topicName, mode, createdAt, scorePercentage, counts, breakdown arrays, template/gl metadata, deviceId, and timeTakenSec).
+ * @returns {Object|null} Normalized attempt object with these fields: `attemptId`, `topicId`, `topicName`, `mode`, `scorePercentage` (0–100, rounded), `totalQuestions` (integer), `createdAt` (ISO string), `deviceId`, `templateId`, `templateName`, `glBand`, `timeTakenSec` (seconds or `null`), `correctCount`, `wrongCount`, `unansweredCount`, `subcategoryBreakdown`, `difficultyBreakdown`, and `sourceTopicBreakdown`; returns `null` when `topicId` is missing or invalid.
+ */
 function normalizeProgressAttempt(attempt = {}) {
   const topicId = String(attempt?.topicId || "").trim();
   if (!topicId) return null;
@@ -342,6 +389,12 @@ let reviewContext = "study"; // "study" (pre-quiz) or "session" (post-quiz)
 let lastCompletedSession = null;
 const MOCK_EXAM_TOPIC_ID = "mock_exam";
 
+/**
+ * Clamp a numeric index to the valid integer range for a collection of the given length.
+ *
+ * @param {*} value - Value to coerce to an integer index (will be floored). Non-finite values result in `0`.
+ * @param {number} length - Collection length used to compute the upper bound; treated as `0` when falsy or non-positive.
+ * @returns {number} An integer between `0` and `length - 1` inclusive.
 function clampIndex(value, length) {
   const max = Math.max(0, Number(length || 0) - 1);
   const numeric = Number(value);
@@ -386,6 +439,17 @@ function readQuizRuntimeStorageRaw() {
   }
 }
 
+/**
+ * Create a sanitized payload of topic fields for runtime persistence.
+ * @param {object} topic - Topic object (may be partial); if falsy or not an object the function returns `null`.
+ * @returns {object|null} `null` if `topic` is falsy or not an object, otherwise an object containing normalized fields:
+ * - `id`, `name`, `description`, `file`, `type`, `selectedCategory`, `selectedTemplateId`, `selectedTemplateName`, `glBand` (strings)
+ * - `skipCategorySelection`, `requiresPremium` (booleans)
+ * - `mockExamQuestionCount`, `examTimeLimitMin` (numbers or `null`)
+ * - `allowedCategoryIds` (array of truthy ids or `null`)
+ * - `studyFilters` (passed through or `null`)
+ * - `mockExamBlueprint` (array of `{ topicId, count }` entries or `null`)
+ */
 function buildRuntimeTopicPayload(topic) {
   if (!topic || typeof topic !== "object") return null;
   return {
@@ -541,10 +605,21 @@ export function restorePersistedQuizRuntime(runtime, topicOverride = null) {
   };
 }
 
+/**
+ * Detects whether a topic represents a mock exam.
+ * @param {Object|null|undefined} topic - Topic object to inspect; may be falsy.
+ * @returns {boolean} `true` if the topic's `id` equals `MOCK_EXAM_TOPIC_ID` or its `type` is `"mock_exam"`, `false` otherwise.
+ */
 function isMockExamTopic(topic) {
   return topic?.id === MOCK_EXAM_TOPIC_ID || topic?.type === "mock_exam";
 }
 
+/**
+ * Build the display name for a topic, appending the selected mock-exam template name when applicable.
+ *
+ * @param {object} topic - Topic object; may include `name` and `selectedTemplateName`. Can be falsy.
+ * @returns {string} The topic's base name (trimmed), or an empty string for invalid input; for mock-exam topics with a selected template, returns `"baseName - templateName"`.
+ */
 function getDisplayTopicName(topic) {
   if (!topic || typeof topic !== "object") return "";
   const baseName = String(topic?.name || "").trim();
@@ -557,6 +632,11 @@ function getDisplayTopicName(topic) {
   return baseName;
 }
 
+/**
+ * Resolve the exam template to use for a mock exam topic, honoring feature flags and a topic-selected template.
+ * @param {Object|null|undefined} topic - Topic object that may include `selectedTemplateId`; may be falsy.
+ * @returns {Object|null} The chosen exam template object, or `null` if the topic is not a mock exam, template loading is disabled, or no template is found.
+ */
 function getMockExamTemplate(topic) {
   if (!isMockExamTopic(topic)) {
     return null;
@@ -575,6 +655,11 @@ function getMockExamTemplate(topic) {
   );
 }
 
+/**
+ * Determine the mock exam blueprint for a topic, using a template-driven blueprint when available and falling back to the topic's configured blueprint or the default.
+ * @param {Object} topic - Topic configuration object; may include `mockExamBlueprint` and template selection metadata used to build a blueprint.
+ * @returns {Array} An array of blueprint entries describing how many questions to draw from each blueprint segment (falls back to the topic's configured blueprint or the default blueprint when no template-derived blueprint is produced).
+ */
 function getMockExamBlueprint(topic) {
   const fallbackBlueprint =
     Array.isArray(topic?.mockExamBlueprint) && topic.mockExamBlueprint.length
@@ -596,6 +681,12 @@ function getMockExamBlueprint(topic) {
   return Array.isArray(fallbackBlueprint) ? fallbackBlueprint : getDefaultMockExamBlueprint();
 }
 
+/**
+ * Determine the target number of questions for a mock exam based on template, topic, or blueprint.
+ * @param {Object} topic - Topic object which may include mock exam configuration and template selection.
+ * @param {Array<Object>|null} [blueprint=null] - Optional blueprint array of {count} entries to sum when no configured target exists.
+ * @returns {number} The target question count: the configured positive count (floored) from the template or topic if present; otherwise the sum of blueprint entry counts if greater than zero; otherwise 40.
+ */
 function getMockExamQuestionTarget(topic, blueprint = null) {
   const template = getMockExamTemplate(topic);
   const configuredTarget = Number(
@@ -613,6 +704,12 @@ function getMockExamQuestionTarget(topic, blueprint = null) {
   return blueprintTotal > 0 ? blueprintTotal : 40;
 }
 
+/**
+ * Resolve the configured exam time limit in seconds for a topic.
+ * @param {Object} topic - Topic object which may contain an `examTimeLimitMin` property or mock-exam template info.
+ * @param {number} [questionCount=0] - Number of questions used to compute a fallback duration when no explicit time limit is configured.
+ * @returns {number} The time limit in seconds: uses the topic or template configured minutes when present and greater than zero, otherwise returns a duration computed from `questionCount`.
+ */
 function getConfiguredExamTimeLimitSeconds(topic, questionCount = 0) {
   const template = getMockExamTemplate(topic);
   const configuredMinutes = Number(topic?.examTimeLimitMin || template?.timeLimitMin || 0);
@@ -624,6 +721,12 @@ function getConfiguredExamTimeLimitSeconds(topic, questionCount = 0) {
   return getTimedTopicTestDurationSeconds(safeQuestionCount);
 }
 
+/**
+ * Produce a stable selection key that identifies a question within a topic.
+ * @param {Object} question - Question object; preferred identifier is `question.id`, fallback is `question.question` (prompt text).
+ * @param {string} [sourceTopicId=""] - Optional topic identifier prefixed to the key.
+ * @returns {string} A key in the form `sourceTopicId:identifier` where `identifier` is the trimmed `id` or prompt text, or an empty string if neither is available.
+ */
 function getQuestionSelectionKey(question, sourceTopicId = "") {
   const questionId = String(question?.id || "").trim();
   if (questionId) return sourceTopicId + ":" + questionId;
@@ -634,6 +737,11 @@ function getQuestionSelectionKey(question, sourceTopicId = "") {
   return "";
 }
 
+/**
+ * Build a flat pool of all questions for a given topic and tag each question with the topic's id and name.
+ * @param {Object} sourceTopic - Topic descriptor used to locate and label questions. Must include `id` and `name`.
+ * @returns {Array<Object>} An array of question objects, each augmented with `sourceTopicId` and `sourceTopicName`.
+ */
 async function buildTopicQuestionPool(sourceTopic) {
   const topicDataFiles = await fetchTopicDataFiles(sourceTopic, { tolerateFailures: true });
   const pool = [];
@@ -648,6 +756,13 @@ async function buildTopicQuestionPool(sourceTopic) {
   }));
 }
 
+/**
+ * Show or hide the "#quizSessionEstimate" UI element to reflect the configured allowed exam time.
+ *
+ * If the current mode is "exam" and a configured time limit exists for the current topic and question count,
+ * the element's text is set to " | Allowed: <formatted duration>" and it is made visible. If the element is
+ * missing, the mode is not "exam", or no configured time limit is available, the element is cleared and hidden.
+ */
 function updateQuizSessionEstimate() {
   const estimateElement = document.getElementById("quizSessionEstimate");
   if (!estimateElement) return;
@@ -669,6 +784,16 @@ function updateQuizSessionEstimate() {
   estimateElement.classList.remove("hidden");
 }
 
+/**
+ * Build a question-selection profile used to prioritize and weight questions for a quiz session.
+ *
+ * @param {Object} [options] - Optional parameters to influence profile construction.
+ * @param {Object} [options.summary] - Progress summary to derive historical selection signals; defaults to local progress summary.
+ * @param {Object} [options.topic] - Current topic object used for study-filter and GL-band resolution; defaults to the active topic.
+ * @param {string} [options.mode] - Session mode, e.g., `"practice"`, `"exam"`, or `"review"`; defaults to the current mode.
+ * @param {string} [options.currentTopicId] - Explicit topic id to treat as the session's primary topic; defaults to `topic?.id` or empty string.
+ * @param {string|number} [options.glBand] - Target GL band for the session as resolved from the topic or session settings.
+ * @returns {Object} A question selection profile describing priorities, focus, and GL-band weighting used when selecting and ordering questions for the session.
 function buildQuestionSelectionProfileForSession({
   summary = readProgressSummary(),
   topic = currentTopic,
@@ -684,6 +809,14 @@ function buildQuestionSelectionProfileForSession({
     focusPreference: normalizedStudyFilters.questionFocus,
   });
 }
+/**
+ * Builds a prioritized question set for a mock exam topic based on the topic's blueprint and template.
+ *
+ * Selects unique questions from per-topic pools using a progress-aware selection profile, fills any shortfall
+ * from fallback topics, and optionally shuffles the final set according to the template. Selection respects
+ * template/blueprint target sizing and avoids duplicate questions across source topics.
+ *
+ * @returns {Array<Object>} The finalized list of question objects for the mock exam, truncated to the configured target count. The array may be shuffled when the mock exam template requests it.
 async function buildMockExamQuestions(topic) {
   const baseTopics = getTopics().filter((entry) => entry?.id && entry.file);
   const topicMap = new Map(baseTopics.map((entry) => [entry.id, entry]));
@@ -768,6 +901,22 @@ async function buildMockExamQuestions(topic) {
   const finalizedQuestions = selectedQuestions.slice(0, targetQuestionCount);
   return shouldShuffleQuestions ? shuffleArray(finalizedQuestions) : finalizedQuestions;
 }
+/**
+ * Build a per-source-topic performance breakdown for the current quiz questions.
+ *
+ * Each entry aggregates counts and accuracy for questions grouped by their
+ * originating topic (sourceTopicId / sourceTopicName) present in quizState.allQuestions.
+ *
+ * @returns {Array<Object>} Array of breakdown entries sorted by descending accuracy, then correct count, then topic name. Each entry contains:
+ * - topicId: source topic identifier (string)
+ * - topicName: display name for the source topic (string)
+ * - total: total questions from that topic (number)
+ * - answered: number of questions answered by the user (number)
+ * - correct: number of correctly answered questions (number)
+ * - wrong: number of answered but incorrect questions (number)
+ * - unanswered: number of questions not answered (number)
+ * - accuracy: percent correct among answered questions rounded to nearest integer (0–100)
+ */
 function buildMockExamTopicBreakdown() {
   const byTopic = new Map();
 
@@ -808,28 +957,53 @@ function buildMockExamTopicBreakdown() {
     .sort((a, b) => b.accuracy - a.accuracy || b.correct - a.correct || a.topicName.localeCompare(b.topicName));
 }
 
+/**
+ * Produce a human-readable label for a given GL (grade-level) band.
+ * @param {number|string} glBand - Grade-level band identifier (numeric or string).
+ * @returns {string} The display label corresponding to the provided GL band.
+ */
 function formatGlBandLabel(glBand) {
   return formatTargetGlBandLabel(glBand);
 }
 
+/**
+ * Produce a normalized difficulty label with an initial capital letter.
+ * @param {string|null|undefined} difficulty - Difficulty value; may be a string or falsy.
+ * @returns {string} The difficulty with the first character capitalized (e.g., "Easy", "Medium"), or an empty string when `difficulty` is missing or blank.
+ */
 function formatDifficultyLabel(difficulty) {
   const value = String(difficulty || "").trim().toLowerCase();
   if (!value) return "";
   return value.charAt(0).toUpperCase() + value.slice(1);
 }
 
+/**
+ * Determine the session's target GL band for a topic based on its study filters.
+ * @param {Object} topic - Topic object that may contain studyFilters.
+ * @returns {string} The GL band key to emphasize (e.g., `"moderate"`, `"high"`); returns an empty string when no specific emphasis or when the band is `"general"`.
+ */
 function getTopicSessionGlBand(topic) {
   const normalizedStudyFilters = normalizeStudyFilters(topic?.studyFilters);
   const emphasis = normalizeGLBandKey(normalizedStudyFilters.targetGlBand);
   return emphasis && emphasis !== "general" ? emphasis : "";
 }
 
+/**
+ * Determine the effective GL band for the active session based on the provided topic and its configured templates or session defaults.
+ * @param {Object|null|undefined} topic - Topic object (may be null/undefined) that can contain session or template GL band settings.
+ * @returns {string} The GL band identifier to use for the session, or an empty string if none is available.
+ */
 function getActiveSessionGlBand(topic) {
   return String(
     topic?.glBand || getMockExamTemplate(topic)?.glBand || getTopicSessionGlBand(topic) || "",
   ).trim();
 }
 
+/**
+ * Selects the preferred grade-level band key for a question from its `glBands` entries.
+ * @param {Object} question - Question object that may include a `glBands` array of band keys.
+ * @returns {string} The highest-priority GL band key (`"gl_14_15"`, `"gl_15_16"`, `"gl_16_17"`, etc.), or an empty string when none is available.
+ */
 function getQuestionPreferredGlBand(question) {
   const bandPriority = {
     gl_14_15: 1,
@@ -848,6 +1022,11 @@ function getQuestionPreferredGlBand(question) {
   return questionBands[0] || "";
 }
 
+/**
+ * Compute the rounded average score percentage from an array of attempt records.
+ * @param {Array} [attempts=[]] - Array of attempt-like objects; each entry may have a numeric `scorePercentage` property. Non-finite or missing values are ignored.
+ * @returns {number|null} The average of valid `scorePercentage` values rounded to the nearest integer, or `null` if no valid scores are present.
+ */
 function averageAttemptScores(attempts = []) {
   const scoredAttempts = Array.isArray(attempts)
     ? attempts
@@ -860,6 +1039,19 @@ function averageAttemptScores(attempts = []) {
   );
 }
 
+/**
+ * Assess recent score trend from a sequence of attempts and classify its direction.
+ *
+ * @param {Array<Object>} attempts - Sequence of progress attempts; each attempt should include a numeric `scorePercentage`.
+ * @returns {{direction: "improving"|"slipping"|"steady", delta: number, latestAverage: number, previousAverage: number, latestCount: number, previousCount: number}|null}
+ *   An object describing the recent trend when at least two scored attempts exist, or `null` if a trend cannot be determined.
+ *   - direction: `"improving"` if recent average is >= 6 points higher than the prior average, `"slipping"` if <= -6, otherwise `"steady"`.
+ *   - delta: difference between the recent average and the prior average (recent - prior).
+ *   - latestAverage: average scorePercentage of the most recent window.
+ *   - previousAverage: average scorePercentage of the baseline/prior window.
+ *   - latestCount: number of attempts included in the recent window.
+ *   - previousCount: number of attempts included in the baseline/prior window.
+ */
 function buildRecentAttemptSignal(attempts = []) {
   const scoredAttempts = Array.isArray(attempts)
     ? attempts.filter((attempt) => Number.isFinite(Number(attempt?.scorePercentage)))
@@ -896,6 +1088,21 @@ function buildRecentAttemptSignal(attempts = []) {
   };
 }
 
+/**
+ * Produce a timing signal describing pace and urgency for an exam session.
+ *
+ * @param {Object} [opts] - Options object.
+ * @param {"practice"|"exam"|"review"} [opts.mode=currentMode] - Current quiz mode; only `"exam"` yields a signal.
+ * @param {number} [opts.timeElapsed=0] - Seconds elapsed in the session.
+ * @param {number} [opts.configuredExamSeconds=0] - Total configured exam duration in seconds.
+ * @param {number} [opts.unansweredCount=0] - Number of unanswered questions remaining.
+ * @returns {null|Object} An object with timing metrics when in exam mode with a positive configured duration, otherwise `null`. When present, the object contains:
+ *   - `severity` — one of `"comfortable"`, `"steady"`, or `"high"` indicating urgency.
+ *   - `elapsedSeconds` — clamped seconds elapsed (>=0 and <= configuredExamSeconds).
+ *   - `remainingSeconds` — seconds remaining (>=0).
+ *   - `usedRatio` — fraction of allowed time used (0..1).
+ *   - `unansweredCount` — normalized unanswered question count (>=0).
+ */
 function getSessionTimingSignal({ mode = currentMode, timeElapsed = 0, configuredExamSeconds = 0, unansweredCount = 0 } = {}) {
   if (mode !== "exam" || configuredExamSeconds <= 0) return null;
 
@@ -920,6 +1127,18 @@ function getSessionTimingSignal({ mode = currentMode, timeElapsed = 0, configure
   };
 }
 
+/**
+ * Assess how confident the recommendation is that an observed weakness reflects a real pattern rather than noise.
+ *
+ * @param {Object} [opts] - Input signals and counts used to evaluate confidence.
+ * @param {?Object} [opts.weakestSessionSubcategory=null] - The weakest subcategory from recent sessions; may include a `sessions` count.
+ * @param {number} [opts.topicAttemptCount=0] - Number of past attempts on the topic.
+ * @param {number} [opts.unansweredCount=0] - Count of unanswered questions in the current session.
+ * @param {number} [opts.incorrectCount=0] - Count of incorrect questions in the current session.
+ * @param {?Object} [opts.recentScoreSignal=null] - Recent trend signal; expected to include a `direction` like `"improving"|"slipping"|"steady"`.
+ * @param {?Object} [opts.timingSignal=null] - Timing/pace signal; expected to include a `severity` like `"comfortable"|"steady"|"high"`.
+ * @returns {{label:string, tone:('low'|'medium'|'high'), description:string}} An object describing confidence: a short `label`, a `tone` indicating severity, and a human-readable `description`.
+ */
 function buildResultsRecommendationConfidence({
   weakestSessionSubcategory = null,
   topicAttemptCount = 0,
@@ -966,6 +1185,14 @@ function buildResultsRecommendationConfidence({
   };
 
 }
+/**
+ * Build UI chips and a concise human-readable note summarizing recent-score and timing signals for results recommendations.
+ *
+ * @param {Object} [options] - Options bag.
+ * @param {{direction:("improving"|"slipping"|"steady")?, delta?:number}?} [options.recentScoreSignal] - Recent-score trend signal; when present, `direction` indicates trend and `delta` is the score change in percentage points.
+ * @param {{severity:("high"|"steady"|"comfortable")?, remainingSeconds?:number, unansweredCount?:number}?} [options.timingSignal] - Timing signal for the session; `severity` classifies pace, `remainingSeconds` is seconds left, and `unansweredCount` is how many questions were left unanswered when time ran low.
+ * @returns {{chips:string[], note:string}} An object containing `chips` — an array of short label strings suitable for chip UI — and `note` — a composed single-line explanatory string.
+ */
 function buildResultsRecommendationSignals({ recentScoreSignal = null, timingSignal = null } = {}) {
   const chips = [];
   const noteParts = [];
@@ -1000,6 +1227,36 @@ function buildResultsRecommendationSignals({ recentScoreSignal = null, timingSig
   };
 }
 
+/**
+ * Generate a recommended session setup tuned from the completed session, topic configuration, and recent signals.
+ *
+ * Accepts the current topic, mode, scoring/timing metrics, and optional analytics signals and returns a suggested
+ * study/exam filter object, a human-readable rationale, and UI chips when a meaningful change is recommended.
+ *
+ * @param {Object} [opts] - Options for recommendation generation.
+ * @param {Object} [opts.topic=currentTopic] - Topic metadata used to derive study filters and eligibility.
+ * @param {string} [opts.mode=currentMode] - Current quiz mode (e.g., "practice", "exam", "review").
+ * @param {number} [opts.scorePercentage=0] - Session score as a percentage (0–100).
+ * @param {number} [opts.incorrectCount=0] - Number of questions answered incorrectly in the session.
+ * @param {number} [opts.unansweredCount=0] - Number of unanswered questions in the session.
+ * @param {number} [opts.timeElapsed=0] - Seconds elapsed in the session.
+ * @param {number} [opts.configuredExamSeconds=0] - Configured exam duration in seconds for timed sessions.
+ * @param {Array<Object>} [opts.difficultyBreakdown=[]] - Per-difficulty statistics (objects with `difficulty`, `answered`, `accuracy`).
+ * @param {Object|null} [opts.recentScoreSignal=null] - Optional recent-score trend signal produced elsewhere.
+ * @param {Object|null} [opts.recommendationConfidence=null] - Optional confidence object ({label,tone,description}) to include in the result.
+ * @param {Object|null} [opts.timingSignal=null] - Optional timing signal (from getSessionTimingSignal) to influence timed recommendations.
+ *
+ * @returns {Object|null} An object describing the suggested setup when changes are recommended, or `null` when the topic/mode is ineligible or no meaningful adjustments are suggested.
+ * The returned object contains:
+ * - `title`: short title for the suggestion UI,
+ * - `body`: human-readable rationale combining recommendation parts,
+ * - `buttonLabel`: label for the apply action,
+ * - `action`: action identifier (`"setup_tune"`),
+ * - `nextFilters`: the suggested study/exam filters to apply,
+ * - `summaryChips`: short summary strings for UI chips (question count, difficulty, focus, GL band),
+ * - `signalChips`: additional signal chips produced by buildResultsRecommendationSignals,
+ * - `confidenceLabel`, `confidenceTone`, `confidenceDescription`: optional confidence metadata (may be empty).
+ */
 function buildRecommendedSessionSetup({
   topic = currentTopic,
   mode = currentMode,
@@ -1172,6 +1429,11 @@ function buildRecommendedSessionSetup({
     confidenceDescription: recommendationConfidence?.description || "",
   };
 }
+/**
+ * Map a numeric score percentage to a UI traffic-class string used for styling.
+ * @param {number} percentage - Score percentage (typically 0–100).
+ * @returns {("traffic-green"|"traffic-amber"|"traffic-red")} `traffic-green` if percentage is greater than or equal to 70, `traffic-amber` if percentage is greater than or equal to 50, `traffic-red` otherwise.
+ */
 function getTrafficClassByPercentage(percentage) {
   if (percentage >= 70) return "traffic-green";
   if (percentage >= 50) return "traffic-amber";
@@ -1221,6 +1483,19 @@ function getRetryMissedStorageKeyForCurrentUser() {
   return userId ? `${RETRY_MISSED_STORAGE_PREFIX}${userId}` : "";
 }
 
+/**
+ * Normalize a retry-missed queue entry into the canonical queue entry shape.
+ * @param {Object} [entry={}] - Partial queue entry; must include a `question` object or have a fingerprintable identity.
+ * @returns {Object|null} The normalized entry with properties:
+ *  - `id` (string),
+ *  - `updatedAt` (ISO 8601 string),
+ *  - `sourceTopicId` (string),
+ *  - `sourceTopicName` (string),
+ *  - `lastUserAnswerIndex` (number|null),
+ *  - `lastOutcome` (`"incorrect"` | `"unanswered"`),
+ *  - `question` (shallow-copied object);
+ *  Returns `null` when `entry` or its `question` is invalid or a stable `id` cannot be derived.
+ */
 function normalizeRetryQueueEntry(entry = {}) {
   if (!entry || typeof entry !== "object") return null;
   const question = entry?.question;
@@ -1408,6 +1683,13 @@ function readSpacedPracticeQueue() {
   }
 }
 
+/**
+ * Persist a spaced-practice queue for the current user to localStorage.
+ *
+ * Normalizes the provided queue, writes it under the per-user storage key, and no-ops when a storage key cannot be determined or persistence fails.
+ *
+ * @param {Array<Object>} queue - The spaced-practice queue entries to persist.
+ */
 function saveSpacedPracticeQueue(queue) {
   const storageKey = getSpacedPracticeStorageKeyForCurrentUser();
   if (!storageKey) return;
@@ -1418,6 +1700,22 @@ function saveSpacedPracticeQueue(queue) {
     console.warn("Unable to persist spaced-practice queue", error);
   }
 }
+/**
+ * Synchronizes local progress summary, retry-missed queue, and spaced-practice queue with the cloud.
+ * @param {{force?: boolean}} [options] - Sync options.
+ * @param {boolean} [options.force=false] - When `true`, bypasses the minimum interval throttle and forces a sync attempt.
+ * @returns {{synced: boolean, reason?: string, warning?: string, pulled?: boolean, pushed?: boolean, attempts?: number, retryQueueSize?: number, spacedQueueSize?: number, spacedDueCount?: number}} 
+ * An object describing the sync outcome:
+ * - `synced`: `true` if the final state is successfully synchronized, `false` otherwise.
+ * - `reason`: a short machine-friendly reason for non-sync or early exit (e.g. `"throttled"`, `"disabled-or-no-user"`, `"cloud-read-failed"`, `"cloud-write-failed"`).
+ * - `warning`: human-readable error message when a cloud read/write fails.
+ * - `pulled`: `true` if cloud data existed and was pulled; `false` if no cloud payload was present.
+ * - `pushed`: `true` if merged local data was written to the cloud.
+ * - `attempts`: total number of attempts in the merged progress summary.
+ * - `retryQueueSize`: number of entries in the merged retry-missed queue.
+ * - `spacedQueueSize`: number of entries in the merged spaced-practice queue.
+ * - `spacedDueCount`: number of spaced-practice entries that are due as of the current time.
+ */
 export async function syncProgressFromCloudNow({ force = false } = {}) {
 
   if (!isCloudProgressSyncReady()) {
@@ -1554,12 +1852,21 @@ export async function syncProgressFromCloudNow({ force = false } = {}) {
   }
 }
 
+/**
+ * Request a cloud progress synchronization when cloud sync is ready.
+ * @param {string} [reason] - Optional short reason used in logging to identify why the sync was queued (defaults to an empty string).
+ */
 function queueCloudProgressSync(reason = "") {
   if (!isCloudProgressSyncReady()) return;
   syncProgressFromCloudNow().catch((error) => {
     console.warn(`Cloud progress sync failed (${reason || "background"}):`, error);
   });
 }
+/**
+ * Create a stable fingerprint for a question using its id or normalized text.
+ * @param {Object} [question={}] - Question object; may contain `id` or `question` text.
+ * @returns {string} `id:<id>` when `question.id` is present, `text:<normalized>` when `question.question` is present (lowercased, non-alphanumerics collapsed), or an empty string when neither is available.
+ */
 function normalizeQuestionFingerprint(question = {}) {
   const byId = String(question?.id || "").trim();
   if (byId) return `id:${byId}`;
@@ -1571,6 +1878,15 @@ function normalizeQuestionFingerprint(question = {}) {
   return byText ? `text:${byText}` : "";
 }
 
+/**
+ * Create a retry-queue entry representing a question the user missed or left unanswered.
+ *
+ * The entry includes a stable `id` fingerprint, timestamps, source topic metadata, the user's last selected option index (or `null`), a `lastOutcome` of `"unanswered"` or `"incorrect"`, and a copy of the question object.
+ *
+ * @param {object} question - The question object to convert into a queue entry; must be fingerprintable.
+ * @param {number|string|undefined} [userAnswer] - The user's last answer index; non-negative integers are recorded, other values are treated as unanswered.
+ * @returns {object|null} The normalized retry-queue entry, or `null` if a stable fingerprint could not be derived from the question.
+ */
 function toRetryQueueEntry(question, userAnswer = undefined) {
   const fingerprint = normalizeQuestionFingerprint(question);
   if (!fingerprint) return null;
@@ -1860,6 +2176,14 @@ export async function getSpacedPracticeQuestions(limit = SPACED_PRACTICE_DEFAULT
   return resolveSpacedPracticeQuestions(candidateEntries, normalizedLimit);
 }
 
+/**
+ * Synchronizes the user's retry-missed queue with answers from the current quiz session.
+ *
+ * Reads the persisted retry queue, inserts entries for questions answered incorrectly or unanswered,
+ * removes entries for questions answered correctly, skips questions that cannot be converted into
+ * queue entries, and persists the resulting queue (trimmed to RETRY_MISSED_MAX_ITEMS). After saving,
+ * schedules a cloud progress sync. No-op when there is no logged-in user or no session questions.
+ */
 function syncRetryMissedQueueFromSession() {
   const currentUser = getCurrentUser();
   if (!currentUser) return;
@@ -1894,6 +2218,11 @@ export function getRetryMissedQueueCount() {
   return readRetryMissedQueue().length;
 }
 
+/**
+ * Retrieve resolved question objects from the retry-missed queue up to a specified maximum.
+ * @param {number} limit - Maximum number of questions to return; defaults to RETRY_MISSED_DEFAULT_SESSION_SIZE.
+ * @returns {Array<Object>} Array of resolved question objects. Each object is the original question plus `sourceTopicId` and `sourceTopicName` properties (both strings).
+ */
 export function getRetryMissedQuestions(limit = RETRY_MISSED_DEFAULT_SESSION_SIZE) {
   const max = Number(limit);
   const normalizedLimit = Number.isFinite(max) && max > 0 ? Math.floor(max) : RETRY_MISSED_DEFAULT_SESSION_SIZE;
@@ -1907,6 +2236,21 @@ export function getRetryMissedQuestions(limit = RETRY_MISSED_DEFAULT_SESSION_SIZ
     }));
 }
 
+/**
+ * Produce a normalized snapshot of the retry-missed queue limited to a number of entries.
+ *
+ * Returns an array of sanitized queue entries in descending recency order; each entry contains stable identifiers, source topic metadata, the last user answer index or `null`, a normalized `lastOutcome` of either `"unanswered"` or `"incorrect"`, and a shallow-cloned `question` object.
+ *
+ * @param {number} [limit=RETRY_MISSED_MAX_ITEMS] - Maximum number of entries to include; values <= 0 or non-finite default to RETRY_MISSED_MAX_ITEMS.
+ * @returns {Array<Object>} Array of snapshot entries where each object has the shape:
+ *   - {string} id - Non-empty entry id.
+ *   - {string} updatedAt - Timestamp string from the entry.
+ *   - {string} sourceTopicId - Source topic id (falls back to question.sourceTopicId).
+ *   - {string} sourceTopicName - Source topic name (falls back to question.sourceTopicName).
+ *   - {number|null} lastUserAnswerIndex - Last recorded user answer index, or `null` if not an integer.
+ *   - {string} lastOutcome - Either `"unanswered"` or `"incorrect"`.
+ *   - {Object|null} question - A shallow copy of the original question object, or `null` if absent.
+ */
 export function getRetryMissedQueueSnapshot(limit = RETRY_MISSED_MAX_ITEMS) {
   const max = Number(limit);
   const normalizedLimit = Number.isFinite(max) && max > 0 ? Math.floor(max) : RETRY_MISSED_MAX_ITEMS;
@@ -1926,6 +2270,14 @@ export function getRetryMissedQueueSnapshot(limit = RETRY_MISSED_MAX_ITEMS) {
     .filter((entry) => entry.id && entry.question);
 }
 
+/**
+ * Remove a retry-missed queue entry by its id.
+ *
+ * If an entry with the given id exists, it is removed from the persisted retry-missed queue and a cloud sync is queued.
+ *
+ * @param {string|number} entryId - The id of the retry queue entry to dismiss; falsy or empty values are treated as invalid.
+ * @returns {boolean} `true` if an entry was removed and the queue was saved, `false` if the id was invalid or no matching entry was found.
+ */
 export function dismissRetryMissedQuestion(entryId) {
   const normalizedId = String(entryId || "").trim();
   if (!normalizedId) return false;
@@ -1937,6 +2289,29 @@ export function dismissRetryMissedQuestion(entryId) {
   return true;
 }
 
+/**
+ * Record a completed quiz attempt into local progress and schedule a cloud sync.
+ *
+ * If no current user is available, no attempt is recorded and an empty summary plus `null` attempt are returned.
+ *
+ * @param {Object} params - Attempt metadata.
+ * @param {string} params.topicId - Topic identifier for the attempt.
+ * @param {string} params.topicName - Human-readable topic name.
+ * @param {"practice"|"exam"|"review"} params.mode - Session mode used for the attempt.
+ * @param {number} params.scorePercentage - Score expressed as a percentage (0–100).
+ * @param {number} params.totalQuestions - Total number of questions in the session.
+ * @param {string} [params.templateId] - Optional exam/mock template identifier.
+ * @param {string} [params.templateName] - Optional exam/mock template display name.
+ * @param {string} [params.glBand] - Optional grade-level band or performance bucket.
+ * @param {number|null} [params.timeTakenSec] - Optional time spent on the session in seconds.
+ * @param {number} [params.correctCount] - Count of correct answers.
+ * @param {number} [params.wrongCount] - Count of incorrect answers.
+ * @param {number} [params.unansweredCount] - Count of unanswered questions.
+ * @param {Array<Object>} [params.subcategoryBreakdown] - Optional normalized subcategory breakdown entries.
+ * @param {Array<Object>} [params.difficultyBreakdown] - Optional normalized difficulty breakdown entries.
+ * @param {Array<Object>} [params.sourceTopicBreakdown] - Optional normalized source-topic breakdown entries.
+ * @returns {{summary: Object, attempt: Object|null}} An object with `summary` set to the updated, normalized progress summary and `attempt` set to the recorded attempt entry (or `null` if none was recorded).
+ */
 function recordAttemptResult({
   topicId,
   topicName,
@@ -1988,6 +2363,18 @@ function recordAttemptResult({
   };
 }
 
+/**
+ * Produce compact progress insights from a normalized progress summary.
+ *
+ * @param {Object} summary - Progress summary containing past attempts; expected to have an `attempts` array where each attempt may include `topicId`, `topicName`, and `scorePercentage`.
+ * @param {string|null} currentTopicId - ID of the topic currently being viewed or null if none; used to avoid recommending the same topic.
+ * @returns {Object} An insights object with these properties:
+ *   - attemptsCount: total number of attempts in the summary.
+ *   - avgRecentScore: average score (rounded) across the last up to 5 attempts, or `null` if there are no recent attempts.
+ *   - strongestTopic: `{ topicId, topicName, avgScore }` for the topic with the highest average score, or `null` if none.
+ *   - weakestTopic: `{ topicId, topicName, avgScore }` for the topic with the lowest average score, or `null` if none.
+ *   - recommendedTopic: the `topicName` of the weakest topic when it differs from `currentTopicId`, or `null` otherwise.
+ */
 function calculateProgressInsights(summary, currentTopicId) {
   const attempts = summary?.attempts || [];
   const recent = attempts.slice(-5);
@@ -2136,6 +2523,14 @@ function formatDuration(totalSeconds) {
   return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
 }
 
+/**
+ * Show or hide the practice pacing notice when elapsed practice time exceeds the exam-equivalent duration.
+ *
+ * When in practice mode and the session's elapsed time is greater than the configured exam time for the current
+ * topic and question count, displays a notice with the overrun duration and marks the timer with a warning class.
+ * Otherwise hides the notice, clears its text, and removes warning/critical/urgent classes from the timer display.
+ * The function no-ops if the expected DOM elements (#practicePacingNotice or #timerDisplay) are not present.
+ */
 function updatePracticePacingNotice() {
   const notice = document.getElementById("practicePacingNotice");
   const timerContainer = document.getElementById("timerDisplay");
@@ -2433,7 +2828,11 @@ function selectOption(selectedIndex) {
 }
 
 /**
- * Update navigation buttons based on current state and mode
+ * Update the quiz navigation controls to reflect the current mode, question index, and answer state.
+ *
+ * Sets visibility and enabled/disabled states for Previous, Next, Submit, and End Exam controls;
+ * updates button labels for the last question; and attaches appropriate click and keyboard handlers
+ * so navigation behaves correctly in "practice", "exam", and "review" modes.
  */
 function updateNavigation() {
   const submitButton = domElements.submitButton;
@@ -2696,7 +3095,9 @@ function previousQuestion() {
 }
 
 /**
- * Calculate exam score when time runs out
+ * Compute and store the final score for the current exam session when time expires.
+ *
+ * Updates `quizState.score` based on `quizState.allQuestions` and `quizState.userAnswers`.
  */
 function calculateExamScore() {
   const scoreSnapshot = calculateScoreFromAnswers(quizState.allQuestions, quizState.userAnswers);
@@ -2709,6 +3110,10 @@ function calculateExamScore() {
   );
 }
 
+/**
+ * Count how many questions have a recorded answer.
+ * @returns {number} The number of entries in `quizState.userAnswers` that are not `undefined`.
+ */
 function getAnsweredQuestionCount() {
   return quizState.userAnswers.reduce(
     (count, answer) => count + (answer !== undefined ? 1 : 0),
@@ -2716,6 +3121,13 @@ function getAnsweredQuestionCount() {
   );
 }
 
+/**
+ * Prompt the user to confirm ending the current timed exam early.
+ *
+ * Shows a confirmation dialog that lists answered/unanswered counts and the remaining time.
+ * If the user confirms, submits the current answers and transitions to the results screen.
+ * No-op when the current mode is not an exam.
+ */
 function confirmEndExam() {
   if (currentMode !== "exam") return;
 
@@ -2810,7 +3222,14 @@ function retakeFullQuiz() {
   return false;
 }
 
-// Show quiz results
+/**
+ * Finalize the current quiz session, compute and persist results, and render the results screen.
+ *
+ * Stops any running timer, clears persisted runtime state, computes scoring and timing metrics,
+ * records the attempt (when applicable), updates retry/spaced-practice queues, and builds analytics,
+ * recommendations, and UI elements summarizing performance. Binds follow-up actions (retake, retry,
+ * session setup) and navigates to the appropriate results or mode-selection screen.
+ */
 function showResults() {
   clearInterval(quizState.timer);
   clearPersistedQuizRuntime();
@@ -3494,6 +3913,13 @@ export function setCurrentTopic(topic) {
   currentTopic = topic;
 }
 
+/**
+ * Set the quiz's current mode, update related state, and refresh the UI header.
+ *
+ * Updates the internal current mode and, when switching to "review", sets the review context to "study" and clears any persisted quiz runtime. Also updates the page header element with id "quizModeDisplay" to a human-readable label for the selected mode.
+ *
+ * @param {"practice"|"exam"|"review"|string} mode - The mode to set; common values are "practice", "exam", and "review".
+ */
 export function setCurrentMode(mode) {
   debugLog("setCurrentMode called with:", mode);
   currentMode = mode;
@@ -3527,7 +3953,17 @@ export function getCurrentMode() {
   return currentMode;
 }
 
-// Load questions for the selected topic
+/**
+ * Load and prepare the question set for the current topic, then initialize the quiz UI.
+ *
+ * When `questions` is provided, those questions are used (and prioritized when not in review mode).
+ * Otherwise the function loads questions for the selected topic (including mock-exam entitlement checks),
+ * applies study filters and prioritization, truncates to the configured question count, and initializes
+ * the quiz state and UI. This function updates `quizState` and may navigate to other screens or display
+ * warnings/errors if loading or entitlement checks fail.
+ *
+ * @param {Array|null} questions - Optional explicit question array to use instead of loading from topic files.
+ */
 export async function loadQuestions(questions = null) {
   if (questions) {
     const prioritizedQuestions = currentMode === "review"
@@ -3951,7 +4387,17 @@ function showQuestionMap() {
     }
 }
 
-// Initialize the quiz
+/**
+ * Prepare and display the quiz screen and initialize quiz runtime state, UI, and timers according to the provided options and current mode.
+ *
+ * Initializes question/index/answer state (restoring from saved state when provided), sets up review controls and question map, configures and starts the appropriate timer for exam or practice modes, updates topic UI and progress, and persists runtime state.
+ *
+ * @param {Object} [options] - Initialization options.
+ * @param {boolean} [options.preserveAnswers=false] - When true, preserve existing `quizState.userAnswers`; when false, reset answers for the current question set.
+ * @param {("study"|"session")} [options.context="study"] - Review context used to determine review UI behavior.
+ * @param {boolean} [options.keepOriginalQuestions=false] - When true, do not overwrite `quizState.originalQuestions` with the current `allQuestions` snapshot.
+ * @param {Object|null} [options.restoreState=null] - Optional runtime snapshot to restore. Expected shape: { currentQuestionIndex?: number, userAnswers?: Array, feedbackShown?: Array, timeLeft?: number }.
+ */
 function initializeQuiz(options = {}) {
   const {
     preserveAnswers = false,

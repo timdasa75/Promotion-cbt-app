@@ -23,12 +23,29 @@ import { showScreen } from "./ui/screen.js";
 export { showScreen, showError, showSuccess, showWarning };
 
 
+/**
+ * Reset a topic's computed study filter options and normalize its stored study filters.
+ *
+ * Sets the topic's `availableStudyFilters` to `null` and replaces `topic.studyFilters`
+ * with a normalized value derived from its current `studyFilters`.
+ *
+ * @param {Object} topic - Topic object to update; no action is taken if falsy or not an object.
+ */
 function clearStudyFiltersForTopic(topic) {
   if (!topic || typeof topic !== "object") return;
   topic.availableStudyFilters = null;
   topic.studyFilters = normalizeStudyFilters(topic?.studyFilters);
 }
 
+/**
+ * Compute and attach available study filter options and the topic's default study filters
+ * based on the topic's selected category and the provided topic data files.
+ *
+ * @param {Object} topic - Topic object to modify. On success this function sets:
+ *   - `topic.availableStudyFilters` to the computed filter options object.
+ *   - `topic.studyFilters` to the chosen default filters from those options.
+ * @param {Array<Object>} [topicDataFiles=[]] - Array of topic data payloads used to extract questions for computing filters.
+ */
 function attachStudyFiltersToTopic(topic, topicDataFiles = []) {
   if (!topic || typeof topic !== "object") return;
 
@@ -57,6 +74,11 @@ function attachStudyFiltersToTopic(topic, topicDataFiles = []) {
   topic.availableStudyFilters = availableStudyFilters;
   topic.studyFilters = availableStudyFilters.defaults;
 }
+/**
+ * Escape characters in a value for safe insertion into HTML.
+ * @param {*} value - The value to escape; converted to a string before escaping.
+ * @returns {string} The input as a string with `&`, `<`, `>`, `"` and `'` replaced by their HTML entities.
+ */
 function escapeHtml(value) {
   return String(value || "")
     .replace(/&/g, "&amp;")
@@ -66,6 +88,11 @@ function escapeHtml(value) {
     .replace(/'/g, "&#39;");
 }
 
+/**
+ * Format an ISO date string or Date value into a short, localized date string.
+ * @param {string|Date} iso - The ISO date string or Date object to format.
+ * @returns {string} `""` if `iso` is falsy or not a valid date, otherwise a localized date string with numeric year, short month, and day (e.g., "Mar 1, 2026").
+ */
 function formatShortDate(iso) {
   if (!iso) return "";
   const date = new Date(iso);
@@ -77,6 +104,11 @@ function formatShortDate(iso) {
   });
 }
 
+/**
+ * Selects exam templates to use for the mock-exam feature.
+ *
+ * @returns {Array<Object>} An array of exam template objects: the visible templates if any; otherwise a single-element array containing the template with `DEFAULT_MOCK_EXAM_TEMPLATE_ID` if found; otherwise a hardcoded fallback template object.
+ */
 function getMockExamTemplatesForFeature() {
   const templates = getVisibleExamTemplates();
   if (templates.length) {
@@ -98,11 +130,20 @@ function getMockExamTemplatesForFeature() {
   ];
 }
 
+/**
+ * Produce a concise label for a mock exam template by trimming the template name and removing a trailing "Mock".
+ * @param {Object} template - The exam template object; its `name` property is used to derive the label.
+ * @returns {string} The resulting label (returns `General` when the template name is empty).
+ */
 function getMockShortcutLabel(template) {
   const name = String(template?.name || "").trim();
   if (!name) return "General";
   return name.replace(/\s+Mock$/i, "");
 }
+/**
+ * Notify listeners that session setup for a topic is ready.
+ * @param {Object} topic - The topic object associated with the ready session; delivered to listeners as `event.detail.topic`.
+ */
 function notifySessionSetupReady(topic) {
   document.dispatchEvent(
     new CustomEvent("sessionsetupchange", {
@@ -110,6 +151,14 @@ function notifySessionSetupReady(topic) {
     }),
   );
 }
+/**
+ * Produce title, description, and selectedName strings for the session-setup UI based on the provided topic.
+ * @param {Object} topic - Topic object; may represent a mock exam when `topic.id === "mock_exam"` or `topic.type === "mock_exam"`. `topic.name` is used for the displayed selectedName.
+ * @returns {{title: string, description: string, selectedName: string}} An object containing:
+ *  - `title`: the header text for the session setup screen,
+ *  - `description`: the explanatory text shown under the title,
+ *  - `selectedName`: the display name for the selected topic (falls back to "this topic" when not provided).
+ */
 function getSessionSetupCopy(topic) {
   const topicName = String(topic?.name || "this topic").trim() || "this topic";
   const isMockExam = topic?.id === "mock_exam" || topic?.type === "mock_exam";
@@ -129,6 +178,15 @@ function getSessionSetupCopy(topic) {
   };
 }
 
+/**
+ * Update session-setup UI text (title, description, and selected topic name) based on the given topic.
+ *
+ * Sets the textContent of DOM elements with IDs "modeQuizTitle", "modeQuizDescription", and "selectedTopicName".
+ * When both description and selected name nodes exist, this function preserves surrounding text nodes and inserts
+ * the topic name into the middle of the description rather than replacing the entire node.
+ *
+ * @param {Object} topic - Topic object used to derive the session setup copy (title, description, selectedName).
+ */
 export function applySessionSetupCopy(topic) {
   const quizTitle = document.getElementById("modeQuizTitle");
   const quizDescription = document.getElementById("modeQuizDescription");
@@ -151,7 +209,16 @@ export function applySessionSetupCopy(topic) {
     quizDescription.textContent = copy.description;
   }
 }
-// Display categories for a topic
+/**
+ * Render the category selection UI for a given topic and wire up selection/navigation handlers.
+ *
+ * Renders available subcategories (and an "All Categories" option), applies entitlement-based locking,
+ * displays load/availability warnings when topic data sources fail, and invokes the provided callback
+ * when the user selects a category.
+ *
+ * @param {Object} topic - Topic descriptor used to load category data (e.g., contains topic id and metadata).
+ * @param {(selectedCategory: Object, unlockedSubcategories: Object[]) => void} [onSelect] - Callback invoked when a category is chosen. Receives the selected category object (or {id:"all",name:...}) and the array of currently unlocked subcategory objects.
+ */
 export async function displayCategories(topic, onSelect) {
   const categoryList = document.getElementById("categoryList");
   let unlockedSubcategories = [];
@@ -312,7 +379,16 @@ export async function displayCategories(topic, onSelect) {
   showScreen("categorySelectionScreen");
 }
 
-// Display available topics
+/**
+ * Render the list of available topics and the optional mock-exam feature in the UI and wire up selection interactions.
+ *
+ * Populates the DOM (#topicList and optional mock-exam feature elements) with topic cards, displays question counts,
+ * shows lock/eligibility badges based on current entitlement and mock-exam status, and attaches click handlers that
+ * enforce access rules and invoke the provided selection callback when a topic (or mock template) is activated.
+ *
+ * @param {Array<Object>} topics - Array of topic objects to display. Each topic may include fields such as `id`, `name`, `description`, `icon`, `requiresPremium`, and `mockExamQuestionCount`.
+ * @param {(topic: Object, selectionOptions?: {selectedTemplateId?: string}) => void} [onSelect] - Optional callback invoked when a topic is selected; receives the selected topic and an optional `selectionOptions` object (for mock exams `selectionOptions.selectedTemplateId` may be provided).
+ */
 export async function displayTopics(topics, onSelect) {
   debugLog("Displaying topics:", topics);
   const topicList = document.getElementById("topicList");
@@ -359,6 +435,11 @@ export async function displayTopics(topics, onSelect) {
   const studyTopics = topics.filter((topic) => topic?.id !== "mock_exam");
   const mockTemplates = getMockExamTemplatesForFeature();
 
+  /**
+   * Determine a topic's access state for the UI.
+   * @param {Object} topic - Topic object (expected to include `id` and optional `requiresPremium`).
+   * @returns {{ isMockExam: boolean, mockExamStatus: (Object|null), isUnlocked: boolean }} An object describing whether the topic is a mock exam, the mock-exam availability status (or `null`), and whether the topic is currently unlocked for selection.
+   */
   function getTopicAccessState(topic) {
     const isMockExam = topic?.id === "mock_exam";
     let isPremiumLocked = topic?.requiresPremium && entitlement.id !== "premium";
@@ -378,12 +459,30 @@ export async function displayTopics(topics, onSelect) {
     return { isMockExam, mockExamStatus, isUnlocked };
   }
 
+  /**
+   * Clear the active selection state from topic and mock-feature UI elements.
+   *
+   * Removes the `active` CSS class from all elements matching `.topic-card` and
+   * `.mock-feature-panel`.
+   */
   function clearSelectionState() {
     document
       .querySelectorAll(".topic-card, .mock-feature-panel")
       .forEach((card) => card.classList.remove("active"));
   }
 
+  /**
+   * Attach click handlers to a topic card element to handle activation, mock-template selection, and access enforcement.
+   *
+   * Handles three activation paths: standard topic activation, mock-exam activation (passes a `selectedTemplateId`), and inner mock-template shortcuts; stops event propagation for inner buttons. If the topic is locked, shows a user-facing warning describing the lock or next free mock availability. When activation succeeds, marks the target element active and invokes the surrounding scope's `onSelect(topic, selectionOptions)` if present.
+   *
+   * @param {Element} target - The DOM element representing the topic card or mock feature panel.
+   * @param {Object} topic - Topic metadata object (used as the selection payload).
+   * @param {Object} accessState - Access information for the topic.
+   * @param {boolean} accessState.isMockExam - Whether this topic represents a mock exam.
+   * @param {Object|undefined} accessState.mockExamStatus - Mock exam availability details (may include `allowed` and `nextEligibleAt`).
+   * @param {boolean} accessState.isUnlocked - Whether the current user can access this topic.
+   */
   function attachTopicActivation(target, topic, accessState) {
     const { isMockExam, mockExamStatus, isUnlocked } = accessState;
     const defaultMockTemplateId = String(mockTemplates[0]?.id || DEFAULT_MOCK_EXAM_TEMPLATE_ID);
@@ -534,7 +633,11 @@ export async function displayTopics(topics, onSelect) {
     }
   }
 }
-// Get total question count for a topic
+/**
+ * Fetches the total number of questions for a topic.
+ * @param {Object} topic - Topic descriptor used to determine which questions to count.
+ * @returns {number} The total question count for the topic; returns `0` if the count cannot be determined. 
+ */
 export async function getTotalQuestionCount(topic) {
   try {
     const dataModule = await import("./data.js");
@@ -545,7 +648,19 @@ export async function getTotalQuestionCount(topic) {
   }
 }
 
-// Select a topic and show category selection (then mode selection)
+/**
+ * Prepare a study session for the given topic and navigate to category or mode selection as appropriate.
+ *
+ * Loads topic data sources to detect subcategories, applies or clears study filters, updates topic selection fields
+ * (mutating `topic.selectedCategory`, `topic.allowedCategoryIds`, `topic.studyFilters`, and `topic.availableStudyFilters`),
+ * sets the back-button handlers, shows the appropriate UI screen, and dispatches a session-setup readiness event.
+ *
+ * If `topic.skipCategorySelection` is true, category selection is skipped and filters are cleared. If loading topic
+ * data fails or an unexpected error occurs, the function applies safe defaults (all categories, cleared filters) and
+ * proceeds to the mode selection screen.
+ *
+ * @param {Object} topic - Topic configuration object to select and modify.
+ */
 export async function selectTopic(topic) {
   try {
     if (topic?.skipCategorySelection) {

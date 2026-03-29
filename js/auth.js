@@ -404,6 +404,12 @@ function assertPasswordResetAllowed(email) {
   throw new Error(`Password reset was requested recently. Try again in ${remainingMinutes} minute(s).`);
 }
 
+/**
+ * Record a password-reset cooldown timestamp for the normalized email in persistent storage.
+ *
+ * @param {string} email - Email address to normalize and associate the cooldown with; no action is taken if the email cannot be normalized.
+ * @param {number} [at=Date.now()] - Epoch time in milliseconds to store as the cooldown timestamp; if not a positive number, the current time is used.
+ */
 function markPasswordResetRequest(email, at = Date.now()) {
   const normalizedEmail = normalizeEmail(email);
   if (!normalizedEmail) return;
@@ -413,6 +419,11 @@ function markPasswordResetRequest(email, at = Date.now()) {
 }
 
 
+/**
+ * Synchronizes the user's entitlement plan from the cloud into the provided session.
+ * @param {Object} session - The current session object (expected to include `provider` and `user`).
+ * @returns {Object} The session object updated with `user.plan` set to the resolved cloud plan and `lastPlanSyncAt` set to an ISO timestamp, or the original session if synchronization was not performed.
+ */
 async function syncCloudPlanInSession(session) {
   if (!session?.provider || session.provider !== "firebase" || !session.user) {
     return session;
@@ -530,10 +541,22 @@ async function loginUserCloud(input) {
   });
 }
 
+/**
+ * Terminate the current cloud-authenticated session and clear cloud-related session state.
+ *
+ * @returns {any} An object describing the outcome of the cloud logout operation (success status and optional metadata).
+ */
 function logoutCloud() {
   return logoutCloudService();
 }
 
+/**
+ * Ensure local demo authentication is enabled for the requested action.
+ * @param {string} [actionLabel="Authentication"] - Short label used in the thrown error message when local demo access is disabled.
+ * @throws {Error} When local demo auth is disabled. Message will be:
+ *  - "Cloud authentication is required on this deployment." if cloud auth is mandatory, or
+ *  - "<actionLabel> is unavailable because local demo access is disabled." otherwise.
+ */
 function assertLocalDemoAuthEnabled(actionLabel = "Authentication") {
   if (isLocalDemoAuthEnabled()) return;
   if (isCloudAuthRequired()) {
@@ -542,6 +565,12 @@ function assertLocalDemoAuthEnabled(actionLabel = "Authentication") {
   throw new Error(`${actionLabel} is unavailable because local demo access is disabled.`);
 }
 
+/**
+ * Derives a human-friendly display name from an email address.
+ *
+ * @param {string} email - Email address; only the local part (before `@`) is used to derive the name.
+ * @returns {string} The display name composed of up to two capitalized words from the local part, or `"Demo User"` when a name cannot be derived.
+ */
 function deriveDemoDisplayName(email) {
   const localPart = String(email || "")
     .split("@")[0]
@@ -557,6 +586,15 @@ function deriveDemoDisplayName(email) {
     .join(" ");
 }
 
+/**
+ * Builds a local demo session user object.
+ * @param {Object} [options] - Options to construct the demo user.
+ * @param {string} [options.name] - Display name; trimmed and used as-is, or derived from the email if empty.
+ * @param {string} [options.email] - Email to normalize and attach to the user; used when deriving the id and fallback display name.
+ * @param {string} [options.createdAt] - ISO timestamp for the user's creation; defaults to the current time.
+ * @param {string} [options.plan] - Plan identifier; normalized and defaults to `"free"`.
+ * @param {string} [options.billingCycle] - Billing cycle string (optional).
+ * @returns {Object} The constructed user object with `id`, `name`, `email`, `plan`, `billingCycle`, and `createdAt`.
 function buildLocalDemoSessionUser({
   name,
   email,
@@ -575,6 +613,18 @@ function buildLocalDemoSessionUser({
   };
 }
 
+/**
+ * Register a local demo user and persist a local session on the device.
+ *
+ * @param {Object} params - Registration parameters.
+ * @param {string} params.name - Display name to store for the demo user.
+ * @param {string} params.email - Email address for the demo user; will be normalized.
+ * @param {string} params.password - Password string (must be at least 8 characters); passwords are not persisted.
+ * @returns {Object} An object containing the sanitized `user`, `requiresEmailVerification: false`, and a `message` describing local demo behavior.
+ * @throws {Error} If the name is empty.
+ * @throws {Error} If the email is missing or not a valid email address.
+ * @throws {Error} If the password is shorter than 8 characters.
+ */
 async function registerUserLocal({ name, email, password }) {
   assertLocalDemoAuthEnabled("Registration");
 
@@ -605,6 +655,14 @@ async function registerUserLocal({ name, email, password }) {
   };
 }
 
+/**
+ * Start or resume a local demo session for the given credentials and return the sanitized user and a demo message.
+ * @param {{email: string, password: string}} credentials - User credentials for demo login.
+ * @param {string} credentials.email - Email address to use for the local demo session.
+ * @param {string} credentials.password - Password placeholder (not stored or verified for demo sessions).
+ * @throws {Error} If email or password are missing.
+ * @returns {{user: object, authMessage: string}} An object containing the sanitized session `user` and an `authMessage` indicating demo access.
+ */
 async function loginUserLocal({ email, password }) {
   assertLocalDemoAuthEnabled("Login");
 
@@ -637,6 +695,11 @@ async function loginUserLocal({ email, password }) {
   };
 }
 
+/**
+ * Produce a reduced, normalized local-user object suitable for public/session use.
+ * @param {Object|null|undefined} user - The source user object; may be null/undefined.
+ * @returns {Object|null} A sanitized user object containing `id`, `name`, `email`, `plan`, `billingCycle`, and `createdAt`, or `null` if `user` is falsy. The `plan` defaults to `"free"` when missing; `billingCycle` is derived from `billingCycle`, `subscriptionType`, or `planInterval` (coerced to a string, empty string if none).
+ */
 function sanitizeUserLocal(user) {
   if (!user) return null;
   return {
@@ -671,6 +734,15 @@ function applyPlanOverrideForEmail(user) {
   };
 }
 
+/**
+ * Register a new user using cloud authentication when available; otherwise perform local demo registration.
+ *
+ * @param {Object} params - Registration input.
+ * @param {string} params.name - Display name for the new user.
+ * @param {string} params.email - Email address for the new user.
+ * @param {string} params.password - Password provided for registration (not stored for local demo mode).
+ * @returns {Object} An object describing the registration result, typically including `user` (sanitized user info), `requiresEmailVerification` (boolean), and an `authMessage` or `message` string when applicable.
+ */
 export async function registerUser({ name, email, password }) {
   if (isCloudAuthEnabled()) {
     return registerUserCloud({ name, email, password });
@@ -679,6 +751,13 @@ export async function registerUser({ name, email, password }) {
   return registerUserLocal({ name, email, password });
 }
 
+/**
+ * Authenticate a user using the cloud flow when cloud auth is enabled, otherwise use the local demo flow.
+ *
+ * @param {Object} params - Function parameters.
+ * @param {string} params.email - The user's email address.
+ * @param {string} params.password - The user's password (used by cloud authentication; local demo flow does not verify stored passwords).
+ * @returns {Object} An authentication result object containing at least `user` (sanitized user object or `null`) and optionally `authMessage`, `requiresEmailVerification`, or other flow-specific fields.
 export async function loginUser({ email, password }) {
   if (isCloudAuthEnabled()) {
     return loginUserCloud({ email, password });
@@ -819,6 +898,12 @@ export async function getCurrentUserUpgradeRequest() {
   );
 }
 
+/**
+ * Retrieve the currently authenticated user from the persisted session, resolving both cloud and local demo session states.
+ *
+ * May start background cloud session refreshes or plan synchronizations and may clear the persisted session if it is invalid or expired.
+ * @returns {import('./types').User|null} The sanitized current user with any local plan override applied, or `null` when no valid session or user is available.
+ */
 export function getCurrentUser() {
   const session = readSession();
   if (!session) return null;
@@ -877,6 +962,10 @@ export function getCurrentUser() {
   return null;
 }
 
+/**
+ * Determine whether there is a currently authenticated user session.
+ * @returns {boolean} `true` if a current authenticated user exists, `false` otherwise.
+ */
 export function isAuthenticated() {
   return Boolean(getCurrentUser());
 }
@@ -908,6 +997,11 @@ export async function writeCloudProgressSummary(summary, options = {}) {
   return writeCloudProgressSummaryCloud(summary, options);
 }
 
+/**
+ * Build a concise UI label summarizing the current authenticated user and plan.
+ *
+ * @returns {string} `"Login"` when no user is authenticated; otherwise a one- or two-line string containing the user's name and/or email with the plan label (`"Admin"`, `"Premium"`, or `"Free"`) shown on the second line or in parentheses.
+ */
 export function getAuthSummaryLabel() {
   const user = getCurrentUser();
   if (!user) return "Login";
@@ -927,12 +1021,20 @@ ${email} (${planLabel})`;
   return planLabel;
 }
 
+/**
+ * Selects the label describing the active authentication provider for UI display.
+ * @returns {string} "Cloud" when cloud auth is enabled, "Demo" when local demo auth is enabled, "Unavailable" otherwise.
+ */
 export function getAuthProviderLabel() {
   if (isCloudAuthEnabled()) return "Cloud";
   if (isLocalDemoAuthEnabled()) return "Demo";
   return "Unavailable";
 }
 
+/**
+ * Read the locally stored plan overrides.
+ * @return {Object<string,string>} A mapping of normalized email -> plan (e.g., "free" or "premium"); returns an empty object if no overrides exist.
+ */
 export function getLocalPlanOverrides() {
   return readPlanOverrides();
 }
@@ -951,6 +1053,17 @@ export function setLocalPlanOverride(email, plan) {
   writePlanOverrides(overrides);
 }
 
+/**
+ * Update the billing cycle for the active local-demo session user when the email matches.
+ *
+ * Attempts to set the provided billing cycle on the currently persisted local session's user only if:
+ * - the email normalizes to a valid value and matches the active session user, and
+ * - the billingCycle is a non-empty string, and
+ * - the active session exists and is a local session with a user.
+ * @param {string} email - The user's email used to locate the active local session (will be normalized).
+ * @param {string} billingCycle - The billing cycle identifier to set (non-empty string, trimmed).
+ * @returns {boolean} `true` if the session was found and updated, `false` otherwise.
+ */
 export function setLocalBillingCycle(email, billingCycle) {
   const normalizedEmail = normalizeEmail(email);
   const normalizedCycle = String(billingCycle || "").trim();
@@ -978,6 +1091,16 @@ export function setLocalBillingCycle(email, billingCycle) {
   return true;
 }
 
+/**
+ * Apply a plan override for a given user email, persist it locally and attempt to synchronize it to the cloud when possible.
+ *
+ * @param {string} email - Email address of the user to override; will be normalized before use.
+ * @param {string} plan - Desired plan identifier (e.g., "free" or "premium"); will be normalized before use.
+ * @returns {Promise<{scope: string, cloudUpdated: boolean, warning: string}>} An object describing where the override was saved:
+ *   - `scope`: `"local"` when only saved locally, `"cloud+local"` when also synced to the cloud.
+ *   - `cloudUpdated`: `true` if the cloud profile was successfully updated, `false` otherwise.
+ *   - `warning`: Human-readable message when the override was not fully synchronized; empty string on success.
+ */
 export async function setPlanOverride(email, plan) {
   const normalizedEmail = normalizeEmail(email);
   const normalizedPlan = normalizePlan(plan);

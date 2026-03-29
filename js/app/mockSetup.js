@@ -1,3 +1,14 @@
+/**
+ * Create a controller that manages mock-exam setup UI and merges selected mock templates into topic state.
+ *
+ * @param {Object} deps - Dependency injections and configuration.
+ * @param {string|number} deps.defaultTemplateId - Fallback template id used when a template id is missing.
+ * @param {string|number} deps.mockExamTopicId - The topic id that identifies the mock-exam topic.
+ * @returns {{buildTopicWithSelectedMockTemplate: function(Object, Object): Object, configureSessionSetup: function(Object): void}}
+ *   An object with:
+ *   - `buildTopicWithSelectedMockTemplate(topic, template)` — Merge the selected template into a topic and return the resulting topic object (returns the original `topic` unchanged when `topic` or `template` is falsy).
+ *   - `configureSessionSetup(topic)` — Update session setup UI and state for the provided `topic`; when the topic matches `mockExamTopicId` it renders the mock template selection panel, otherwise it restores the default session UI.
+ */
 export function createMockSetupController({
   defaultTemplateId,
   mockExamTopicId,

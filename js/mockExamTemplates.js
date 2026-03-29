@@ -19,6 +19,10 @@ export const SUPPORTED_GL_BANDS = Object.freeze([
   "GL16_17",
 ]);
 
+/**
+ * Produce a sanitized blueprint: an array of topic/count entries suitable for use as a mock-exam blueprint.
+ * @param {Array} blueprint - Input array whose entries may contain `topicId` and `count`; any non-array input is treated as empty.
+ * @returns {Array<{topicId: string, count: number}>} Array of entries where `topicId` is a trimmed non-empty string and `count` is an integer greater than 0.
 export function sanitizeBlueprint(blueprint) {
   if (!Array.isArray(blueprint)) return [];
   return blueprint
@@ -29,10 +33,20 @@ export function sanitizeBlueprint(blueprint) {
     .filter((entry) => entry.topicId && entry.count > 0);
 }
 
+/**
+ * Retrieve the sanitized default mock exam blueprint.
+ *
+ * @returns {Array<{topicId: string, count: number}>} An array of blueprint entries for the default template; each entry has a trimmed, non-empty `topicId` and a positive integer `count`.
+ */
 export function getDefaultMockExamBlueprint() {
   return sanitizeBlueprint(DEFAULT_MOCK_EXAM_BLUEPRINT);
 }
 
+/**
+ * Convert a mapping of topic weights into a sanitized array of weight entries.
+ * @param {Object<string, *>} topicWeights - Object whose keys are topic IDs and values are raw weights; falsy input is treated as empty.
+ * @returns {Array<{topicId: string, weight: number, index: number}>} An array of entries where `topicId` is trimmed, `weight` is a finite number greater than 0, and `index` is the original enumeration order.
+ */
 function sanitizeWeightEntries(topicWeights = {}) {
   return Object.entries(topicWeights || {})
     .map(([topicId, rawWeight], index) => ({
@@ -43,6 +57,11 @@ function sanitizeWeightEntries(topicWeights = {}) {
     .filter((entry) => entry.topicId && Number.isFinite(entry.weight) && entry.weight > 0);
 }
 
+/**
+ * Convert a map of topic weights into an array of normalized relative weights.
+ * @param {Object<string, number>} topicWeights - Object whose keys are topic IDs and values are numeric weights.
+ * @returns {Array<{topicId: string, weight: number, rawWeight: number, index: number}>} Array of entries where `weight` is the normalized fraction of the total, `rawWeight` is the original numeric weight, and `index` is the original entry order; returns an empty array if no valid entries or total weight is zero or negative.
+ */
 export function normalizeRelativeTopicWeights(topicWeights = {}) {
   const entries = sanitizeWeightEntries(topicWeights);
   const totalWeight = entries.reduce((sum, entry) => sum + entry.weight, 0);
@@ -56,6 +75,17 @@ export function normalizeRelativeTopicWeights(topicWeights = {}) {
   }));
 }
 
+/**
+ * Allocate a total number of questions across topics according to their relative weights.
+ *
+ * Converts the provided relative weights into integer question counts that sum to the requested total by
+ * assigning each topic the floor of its proportional quota and then distributing any remaining slots to topics
+ * with the largest fractional remainders (ties broken by larger weight then original index). Topics with
+ * non-positive or invalid weights are ignored.
+ *
+ * @param {Object} topicWeights - An object mapping topicId (string) to a numeric weight.
+ * @param {number} [totalQuestions=40] - The total number of questions to allocate; non-integer values are floored and negative values are treated as 0.
+ * @returns {Array<{topicId: string, count: number}>} An array of topic allocations with positive `count` values, ordered by each topic's original index.
 export function allocateQuestionsByRelativeWeights(topicWeights = {}, totalQuestions = 40) {
   const normalizedEntries = normalizeRelativeTopicWeights(topicWeights);
   const total = Math.max(0, Math.floor(Number(totalQuestions || 0)));
@@ -100,6 +130,24 @@ export function allocateQuestionsByRelativeWeights(topicWeights = {}, totalQuest
     .map(({ topicId, count }) => ({ topicId, count }));
 }
 
+/**
+ * Build a mock exam blueprint from a template, GL-band weight definitions, or a fallback.
+ *
+ * The function returns the first available blueprint in this priority:
+ * 1. `template.sections` (sanitized) if present and non-empty.
+ * 2. An allocation derived from `glBand` + `glBandWeights` using `template.totalQuestions`.
+ * 3. The sanitized `fallbackBlueprint`.
+ *
+ * @param {Object} [options] - Options bag.
+ * @param {Object|null} [options.template=null] - Template object that may contain:
+ *   `sections` (array of { topicId, count }), `glBand` (string), and `totalQuestions` (number).
+ * @param {Object} [options.glBandWeights={}] - Mapping of GL band identifiers to weight definitions
+ *   (expected shape: { [glBand]: { topicWeights: { [topicId]: number } } }).
+ * @param {Array|Object|null} [options.fallbackBlueprint=null] - Fallback blueprint to sanitize and use
+ *   if no template sections or weight-based allocation produce a blueprint.
+ * @returns {Array<{topicId: string, count: number}>} An array of sanitized blueprint entries with
+ *   `topicId` and positive integer `count`. Empty array if no valid source produced entries.
+ */
 export function buildMockExamBlueprint({ template = null, glBandWeights = {}, fallbackBlueprint = null } = {}) {
   const templateSections = sanitizeBlueprint(template?.sections);
   if (templateSections.length) {

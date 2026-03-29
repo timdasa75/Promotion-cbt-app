@@ -7,6 +7,25 @@ import {
 const DEFAULT_VERIFICATION_RESEND_COOLDOWN_MS = 15 * 60 * 1000;
 const DEFAULT_PASSWORD_RESET_COOLDOWN_MS = 10 * 60 * 1000;
 
+/**
+ * Read runtime auth configuration and return a normalized Firebase-related settings object.
+ *
+ * Resolves values from window.PROMOTION_CBT_AUTH when available (falling back to sensible defaults),
+ * normalizes string fields (trimmed), coerces numeric cooldowns, applies default regions/IDs, and
+ * resolves boolean runtime flags via resolveRuntimeBoolean.
+ *
+ * @returns {{firebaseApiKey: string, firebaseProjectId: string, firebaseAuthDomain: string, firebaseFunctionsRegion: string, firebaseQuotaProjectId: string, enableCloudProgressSync: boolean, enableLocalDemoAuth: boolean, adminApiBaseUrl: string|null, verificationResendCooldownMs: number, passwordResetCooldownMs: number}} An object containing resolved Firebase configuration:
+ * - `firebaseApiKey`: API key for Firebase.
+ * - `firebaseProjectId`: Firebase project ID.
+ * - `firebaseAuthDomain`: Firebase auth domain.
+ * - `firebaseFunctionsRegion`: Cloud Functions region (default "us-central1").
+ * - `firebaseQuotaProjectId`: Quota project ID used for billing, falling back to `firebaseProjectId` when unset.
+ * - `enableCloudProgressSync`: whether cloud progress sync is enabled.
+ * - `enableLocalDemoAuth`: whether local demo auth is enabled (resolved from runtime config).
+ * - `adminApiBaseUrl`: normalized admin API base URL or `null` when not provided.
+ * - `verificationResendCooldownMs`: numeric cooldown for verification resends (may be NaN if unset).
+ * - `passwordResetCooldownMs`: numeric cooldown for password reset requests (may be NaN if unset).
+ */
 export function getFirebaseConfig() {
   const cfg = (typeof window !== "undefined" && window.PROMOTION_CBT_AUTH) || {};
   const firebaseApiKey = String(cfg.firebaseApiKey || cfg.apiKey || "").trim();
@@ -83,10 +102,22 @@ export function isCloudAuthRequired() {
   return !isLocalDevelopmentHost();
 }
 
+/**
+ * Determine whether cloud authentication is required but not configured.
+ * @returns {boolean} `true` if cloud authentication is required and not enabled, `false` otherwise.
+ */
 export function isCloudAuthMisconfigured() {
   return isCloudAuthRequired() && !isCloudAuthEnabled();
 }
 
+/**
+ * Determine whether local demo authentication is enabled.
+ *
+ * Priority: if `window.PROMOTION_CBT_ALLOW_LOCAL_AUTH` is present and a boolean, that value is used.
+ * Otherwise `enableLocalDemoAuth` from runtime config enables it when truthy; if neither is set,
+ * local demo auth is enabled only when cloud auth is not enabled and cloud auth is not required.
+ * @returns {boolean} `true` if local demo authentication is allowed, `false` otherwise.
+ */
 export function isLocalDemoAuthEnabled() {
   if (typeof window !== "undefined" && typeof window.PROMOTION_CBT_ALLOW_LOCAL_AUTH === "boolean") {
     return window.PROMOTION_CBT_ALLOW_LOCAL_AUTH;

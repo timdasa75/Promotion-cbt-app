@@ -1,4 +1,8 @@
-// questionPriority.js - pure helpers for metadata-aware question ordering
+/**
+ * Produce a shuffled copy of the provided array using a Fisher–Yates shuffle.
+ * @param {Array} array - The array to shuffle; non-array inputs are treated as an empty array.
+ * @returns {Array} A new array containing the elements of `array` in randomized order.
+ */
 
 function shuffleArray(array) {
   const items = Array.isArray(array) ? [...array] : [];
@@ -9,11 +13,21 @@ function shuffleArray(array) {
   return items;
 }
 
+/**
+ * Normalize a focus preference to either "weak_areas" or "balanced".
+ * @param {*} value - Preference value; compared case-insensitively after trimming.
+ * @returns {'weak_areas'|'balanced'} `'weak_areas'` if `value` equals `"weak_areas"` (case-insensitive, trimmed), `'balanced'` otherwise.
+ */
 function normalizeFocusPreference(value) {
   const normalized = String(value || "").trim().toLowerCase();
   return normalized === "weak_areas" ? "weak_areas" : "balanced";
 }
 
+/**
+ * Produces a set of normalized tag strings from an input list.
+ * @param {Array<any>} tags - Array of tag values; non-array inputs are treated as empty.
+ * @returns {Set<string>} A Set of lowercase, trimmed, non-empty tag strings.
+ */
 function normalizeTags(tags) {
   return new Set(
     (Array.isArray(tags) ? tags : [])
@@ -22,6 +36,12 @@ function normalizeTags(tags) {
   );
 }
 
+/**
+ * Count how many expected tag values exist in a normalized set of tags.
+ * @param {Set<string>} normalizedTags - A set of tag strings that are already lowercased and trimmed.
+ * @param {Array<string>} expectedTags - An array of tag values; each entry will be coerced to string, trimmed, and lowercased before checking.
+ * @returns {number} The number of entries from `expectedTags` found in `normalizedTags`.
+ */
 function countMatchingTags(normalizedTags, expectedTags) {
   if (!(normalizedTags instanceof Set) || !normalizedTags.size) return 0;
   return (Array.isArray(expectedTags) ? expectedTags : []).reduce(
@@ -30,6 +50,11 @@ function countMatchingTags(normalizedTags, expectedTags) {
   );
 }
 
+/**
+ * Normalizes question text for comparison and matching.
+ * @param {*} value - Input text or value to normalize; falsy values become an empty string.
+ * @returns {string} The text coerced to a string, trimmed, lowercased, with consecutive whitespace collapsed to single spaces.
+ */
 function normalizeQuestionText(value) {
   return String(value || "")
     .trim()
@@ -37,6 +62,11 @@ function normalizeQuestionText(value) {
     .replace(/\s+/g, " ");
 }
 
+/**
+ * Canonicalizes a GL band identifier into a normalized key.
+ * @param {*} value - The input value to normalize; falsy values yield an empty string.
+ * @returns {string} A normalized GL band key (for example, "gl_16_17" or "general"), or an empty string if the input is empty or cannot be normalized.
+ */
 export function normalizeGLBandKey(value) {
   const raw = String(value || "")
     .trim()
@@ -51,6 +81,12 @@ export function normalizeGLBandKey(value) {
   return raw;
 }
 
+/**
+ * Determine whether a question belongs to the given GL band.
+ * @param {Object} question - Question object that may include a `glBands` array of band identifiers.
+ * @param {string} glBand - Target GL band identifier to check (will be normalized).
+ * @returns {boolean} `true` if the question's normalized GL bands include the normalized target band, `false` otherwise.
+ */
 export function questionMatchesGLBand(question, glBand) {
   const targetBand = normalizeGLBandKey(glBand);
   if (!targetBand || targetBand === "general") return false;
@@ -60,6 +96,13 @@ export function questionMatchesGLBand(question, glBand) {
   return questionBands.includes(targetBand);
 }
 
+/**
+ * Aggregate breakdown entries by a specified id field, summing counts and deriving wrong and accuracy.
+ *
+ * @param {Array<Object>} items - Array of breakdown entries; each entry may contain the id field, and numeric `total`, `answered`, and `correct` properties.
+ * @param {string} idKey - The property name to use as the grouping id for each entry (coerced to trimmed string); entries with empty id are skipped.
+ * @returns {Array<Object>} An array of aggregated entries with keys: `id` (string), `total` (number), `answered` (number), `correct` (number), `wrong` (number, = max(0, answered - correct)), and `accuracy` (integer percentage, = round((correct / answered) * 100) or 0 when answered is 0).
+ */
 function aggregateBreakdownEntries(items = [], idKey) {
   const grouped = new Map();
   const entries = Array.isArray(items) ? items : [];
@@ -94,6 +137,18 @@ function aggregateBreakdownEntries(items = [], idKey) {
   }));
 }
 
+/**
+ * Selects the identifiers that represent the weakest performance areas from a list of breakdown entries.
+ *
+ * Filters out entries with total below `minTotal`, sorts remaining entries by ascending accuracy, then by descending total, then by id, and returns up to `maxItems` ids. If any entries have accuracy below `threshold`, only those below-threshold entries are considered for the top selection; otherwise the full sorted list is used.
+ *
+ * @param {Array<Object>} entries - Array of breakdown entries each expected to contain at least an `id` and numeric `total`; entries may also include `accuracy`, `answered`, and `correct`.
+ * @param {Object} [options] - Selection options.
+ * @param {number} [options.maxItems=5] - Maximum number of ids to return.
+ * @param {number} [options.minTotal=1] - Minimum `total` required for an entry to be considered.
+ * @param {number} [options.threshold=75] - Accuracy threshold used to prefer below-threshold entries.
+ * @returns {Array<string|number>} An array of selected entry ids (up to `maxItems`) representing the weakest areas.
+ */
 function rankWeakAreas(entries = [], { maxItems = 5, minTotal = 1, threshold = 75 } = {}) {
   const ranked = (Array.isArray(entries) ? entries : [])
     .filter((entry) => Number(entry?.total || 0) >= minTotal)
@@ -108,6 +163,16 @@ function rankWeakAreas(entries = [], { maxItems = 5, minTotal = 1, threshold = 7
   return source.slice(0, maxItems).map((entry) => entry.id);
 }
 
+/**
+ * Selects the most recent attempts relevant to an optional topic and returns the last N of them.
+ *
+ * Filters summary.attempts by currentTopicId (matching attempt.topicId or any entry.topicId in attempt.sourceTopicBreakdown). If the filtered list has fewer than 3 items, the full attempts list is used instead. The returned array contains up to `recentAttemptLimit` of the most recent attempts (default 12), where `recentAttemptLimit` is coerced to a minimum of 1.
+ * 
+ * @param {Object} summary - Object that may contain an `attempts` array.
+ * @param {string} [currentTopicId] - Optional topic id to scope attempts; trimmed and compared as a string.
+ * @param {number} [recentAttemptLimit=12] - Maximum number of recent attempts to return; coerced to an integer >= 1.
+ * @returns {Array<Object>} An array of attempt objects (most recent last) limited to the specified count.
+ */
 function getRelevantAttempts(summary, currentTopicId, recentAttemptLimit) {
   const attempts = Array.isArray(summary?.attempts) ? summary.attempts : [];
   const topicId = String(currentTopicId || "").trim();
@@ -127,6 +192,17 @@ function getRelevantAttempts(summary, currentTopicId, recentAttemptLimit) {
   return selected.slice(-limit);
 }
 
+/**
+ * Compute a numeric preference score for a difficulty label within a GL band.
+ *
+ * @param {string} difficulty - Difficulty label (e.g., "easy", "medium", "hard"); input is trimmed and lowercased.
+ * @param {string} glBand - GL band identifier (e.g., "gl_16_17"); value is normalized before lookup.
+ * @returns {number} Preference score according to the band-specific mapping:
+ * - gl_16_17: `hard` → 28, `medium` → 14, others → 0
+ * - gl_15_16: `medium` → 24, `hard` → 16, others → 4
+ * - gl_14_15: `easy` → 22, `medium` → 12, others → 0
+ * - any other or empty difficulty → 0
+ */
 function getDifficultyPreferenceScore(difficulty, glBand) {
   const band = normalizeGLBandKey(glBand);
   const level = String(difficulty || "").trim().toLowerCase();
@@ -153,6 +229,11 @@ function getDifficultyPreferenceScore(difficulty, glBand) {
   return 0;
 }
 
+/**
+ * Assigns a small preference score when question tags contain band-specific important tags.
+ * @param {Array|string|Set} tags - Question tags; accepts an array, Set, or other iterable of tag strings. Non-array inputs are coerced and empty/invalid inputs yield no score.
+ * @param {string} glBand - GL band identifier (will be normalized); if empty or "general" no band-specific score is applied.
+ * @returns {number} 18 if any strategic tag is present for `gl_16_17`, 14 if any managerial tag is present for `gl_15_16`, 12 if any foundational tag is present for `gl_14_15`, `0` otherwise. */
 function getTagPreferenceScore(tags, glBand) {
   const normalizedTags = normalizeTags(tags);
   if (!normalizedTags.size) return 0;
@@ -206,6 +287,12 @@ function getTagPreferenceScore(tags, glBand) {
   return 0;
 }
 
+/**
+ * Compute a band-specific preference score based on the question's source subcategory.
+ * @param {Object} question - Question object; the function reads `question.sourceSubcategoryId`.
+ * @param {string} glBand - GL band identifier (will be normalized). Supported bands with scores in the map include `gl_15_16` and `gl_16_17`.
+ * @returns {number} The mapped preference score for the normalized band and subcategory, or `0` if the band or subcategory is not recognized.
+ */
 function getSubcategoryPreferenceScore(question, glBand) {
   const band = normalizeGLBandKey(glBand);
   const subcategoryId = String(question?.sourceSubcategoryId || "").trim();
@@ -262,6 +349,18 @@ function getSubcategoryPreferenceScore(question, glBand) {
   return scoreMap[band]?.[subcategoryId] || 0;
 }
 
+/**
+ * Assigns a GL-band-specific preference score based on the question type label.
+ *
+ * Maps common type labels to numeric preference weights for supported bands:
+ * - gl_16_17: `"scenario"` → 18, `"judgement"` → 12
+ * - gl_15_16: `"scenario"` → 14, `"judgement"` → 10
+ * All other bands or missing/empty inputs yield 0.
+ *
+ * @param {string} questionType - Question type label to evaluate (e.g., "scenario", "judgement").
+ * @param {string} glBand - GL band identifier (will be normalized before matching).
+ * @returns {number} The preference score for the given type and band, or `0` if no applicable match.
+ */
 function getQuestionTypePreferenceScore(questionType, glBand) {
   const band = normalizeGLBandKey(glBand);
   const type = String(questionType || "").trim().toLowerCase();
@@ -282,6 +381,17 @@ function getQuestionTypePreferenceScore(questionType, glBand) {
   return 0;
 }
 
+/**
+ * Computes a scenario/case relevance score for a question using tags, question text, and question type.
+ *
+ * Examines normalized tags, common scenario/case text patterns, and the question type to produce a numeric signal
+ * that boosts questions resembling scenario/case items for supported GL bands; returns 0 for an empty or unsupported
+ * band (including `"general"` and `"gl_14_15"`).
+ *
+ * @param {Object} question - The question object (may contain `tags`, `question`, `prompt`, and `questionType`).
+ * @param {string} glBand - The requested GL band identifier (will be normalized).
+ * @returns {number} The accumulated scenario/case signal score (0 when no signal applies). 
+ */
 function getScenarioSignalScore(question, glBand) {
   const band = normalizeGLBandKey(glBand);
   if (!band || band === "general" || band === "gl_14_15") return 0;
@@ -359,6 +469,25 @@ function getScenarioSignalScore(question, glBand) {
   return score;
 }
 
+/**
+ * Build a selection profile describing the learner context and recent weak areas used to score questions.
+ *
+ * @param {Object} summary - Attempts summary object containing recent attempts and breakdowns.
+ * @param {Object} [options] - Profile construction options.
+ * @param {string} [options.currentTopicId=""] - Topic id to scope recent attempts; trimmed to a string.
+ * @param {string} [options.glBand=""] - Desired GL band identifier; normalized via normalizeGLBandKey.
+ * @param {string} [options.mode="practice"] - Mode string; trimmed and lowercased.
+ * @param {number} [options.recentAttemptLimit=12] - Maximum number of recent attempts to consider (coerced to at least 1).
+ * @param {string} [options.focusPreference="balanced"] - Focus preference normalized to `"weak_areas"` or `"balanced"`.
+ * @returns {Object} An object containing:
+ *  - currentTopicId: trimmed topic id string,
+ *  - glBand: normalized GL band key,
+ *  - mode: normalized mode string,
+ *  - focusPreference: normalized focus preference,
+ *  - weakSubcategoryIds: Set of weak subcategory ids,
+ *  - weakDifficultyIds: Set of weak difficulty ids,
+ *  - weakTopicIds: Set of weak topic ids.
+ */
 export function buildQuestionSelectionProfile(
   summary,
   {
@@ -406,6 +535,23 @@ export function buildQuestionSelectionProfile(
   };
 }
 
+/**
+ * Compute a numeric relevance score for a question using a selection profile.
+ *
+ * The score combines GL-band compatibility, weak-area membership (subcategory, topic, difficulty),
+ * and several preference signals (difficulty, tags, subcategory mapping, question type, scenario signals).
+ * A higher score indicates greater priority for selection.
+ *
+ * @param {Object} question - The question record to score. Expected readable properties include:
+ *   `glBands`, `sourceSubcategoryId`, `sourceTopicId`, `difficulty`, `tags`, and `questionType`.
+ * @param {Object} [profile={}] - Selection profile and preference signals.
+ *   @param {string} [profile.glBand] - Requested GL band (will be normalized).
+ *   @param {string} [profile.focusPreference] - Focus mode; `"weak_areas"` increases weak-area boosts.
+ *   @param {Set<string>} [profile.weakSubcategoryIds] - Weak subcategory ids.
+ *   @param {Set<string>} [profile.weakTopicIds] - Weak topic ids.
+ *   @param {Set<string>} [profile.weakDifficultyIds] - Weak difficulty ids (lowercased).
+ *   @param {string} [profile.mode] - Selection mode, e.g., `"practice"`.
+ * @returns {number} The computed relevance score; larger values indicate higher priority.
 export function scoreQuestionForSelection(question, profile = {}) {
   if (!question || typeof question !== "object") return 0;
 
@@ -449,6 +595,17 @@ export function scoreQuestionForSelection(question, profile = {}) {
   return score;
 }
 
+/**
+ * Order a pool of questions for selection using profile signals and stable tie-breaking.
+ *
+ * @param {Array} pool - Array of question objects to prioritize.
+ * @param {Object} [profile] - Selection profile that may contain scoring signals.
+ * @param {string} [profile.glBand] - Normalized GL band hint used to prefer matching questions.
+ * @param {Set<string>} [profile.weakSubcategoryIds] - IDs of weak subcategories to boost.
+ * @param {Set<string>} [profile.weakDifficultyIds] - Difficulty labels to boost.
+ * @param {Set<string>} [profile.weakTopicIds] - IDs of weak topics to boost.
+ * @returns {Array} An array of the input questions reordered so higher-relevance questions appear earlier; if no scoring signals are present, returns a randomly shuffled copy of the input.
+ */
 export function prioritizeQuestionPool(pool, profile = {}) {
   const shuffled = shuffleArray(Array.isArray(pool) ? pool : []);
   if (!shuffled.length) return [];

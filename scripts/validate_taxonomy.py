@@ -17,11 +17,35 @@ ALLOWED_QUESTION_TYPES = {"single_best_answer", "multiple_choice", "scenario", "
 
 
 def load_json(path: Path):
+    """
+    Load and parse a JSON document from the given file path.
+    
+    Parameters:
+        path (Path): Filesystem path to the JSON file to read.
+    
+    Returns:
+        The parsed JSON content (typically a dict or list) from the file.
+    """
     with path.open(encoding="utf-8") as handle:
         return json.load(handle)
 
 
 def collect_subcategories(data):
+    """
+    Extract subcategory objects from a JSON-decoded structure.
+    
+    Accepts either a dict or a list and returns a flat list of subcategory dicts. Supported input shapes:
+    - dict with a "subcategories" key containing a list of dicts → returns those dicts
+    - dict with a "domains" key containing a list of dicts each with a "topics" list → returns all dict items from each domain's "topics"
+    - list of dicts → returns the dict items from the list
+    For any other shape or missing expected keys, returns an empty list.
+    
+    Parameters:
+        data (dict | list): Parsed JSON value representing topics/domains/subcategories.
+    
+    Returns:
+        list[dict]: A list of subcategory dictionaries extracted from the input.
+    """
     if isinstance(data, dict):
         if isinstance(data.get("subcategories"), list):
             return [item for item in data["subcategories"] if isinstance(item, dict)]
@@ -37,6 +61,15 @@ def collect_subcategories(data):
 
 
 def iterate_subcategory_questions(subcategory):
+    """
+    Extracts the question objects from a subcategory JSON object, handling the two expected shapes used in the dataset.
+    
+    Parameters:
+        subcategory (dict): Subcategory dictionary that may contain a "questions" list and an "id" key.
+    
+    Returns:
+        list[dict]: A list of question dictionaries found in the subcategory, or an empty list if no valid questions are present.
+    """
     questions = subcategory.get("questions")
     if not isinstance(questions, list):
         return []
@@ -54,14 +87,47 @@ def iterate_subcategory_questions(subcategory):
 
 
 def add_error(errors, message):
+    """
+    Append an error message to the provided error collection.
+    
+    Parameters:
+        errors (list): Mutable list used to collect error message strings.
+        message (str): Error message to append.
+    """
     errors.append(message)
 
 
 def add_warning(warnings, message):
+    """
+    Record a non-fatal validation message.
+    
+    Parameters:
+        warnings (list): List that will receive the warning message.
+        message (str): Warning text to append.
+    """
     warnings.append(message)
 
 
 def validate_question_metadata(question, location, errors):
+    """
+    Validate optional metadata fields on a question and record any violations into the provided errors list.
+    
+    Checks (only when each field is present):
+    - difficulty: must match one of the allowed difficulty values (case-insensitive).
+    - sourceDocument, sourceSection: must be non-empty strings.
+    - year: must parse to an integer between 1900 and 2100 inclusive.
+    - lastReviewed: must be an ISO-format date parseable by datetime.date.fromisoformat.
+    - marks: must parse to a number greater than 0.
+    - questionType: must match one of the allowed question types (case-insensitive).
+    - reviewStatus: must match one of the allowed review statuses (case-insensitive).
+    - tags: must be a list of non-empty strings.
+    - glBands: must be a non-empty list whose entries are among SUPPORTED_GL_BANDS.
+    
+    Parameters:
+        question (dict): The question object to validate.
+        location (str): Context string used when reporting error messages (e.g., "file:subcat").
+        errors (list): Mutable list to which validation error messages will be appended.
+    """
     difficulty = question.get("difficulty")
     if difficulty is not None and str(difficulty).strip().lower() not in ALLOWED_DIFFICULTIES:
         add_error(errors, f"{location} has invalid difficulty '{difficulty}'")
@@ -124,6 +190,19 @@ def validate_question_metadata(question, location, errors):
 
 
 def validate_templates(templates_doc, topic_ids, errors):
+    """
+    Validate the structure and internal consistency of an exam_templates.json document.
+    
+    Performs high-level validation of the top-level `templates` array and per-template checks: required `id` and `name`, supported `glBand`, numeric positive `totalQuestions` and `timeLimitMin`, optional `sections` shape and per-section `topicId` membership in `topic_ids` and positive integer `count`. Validation failures are recorded by appending human-readable messages to `errors`.
+    
+    Parameters:
+        templates_doc (dict | any): Parsed JSON document for exam templates; expected to contain a top-level `"templates"` array when valid.
+        topic_ids (Iterable[str]): Collection of known topic IDs used to validate section `topicId` references.
+        errors (list): Mutable list used to collect validation error messages.
+    
+    Returns:
+        list: The original `templates` list from `templates_doc` (possibly containing entries with validation errors). Returns an empty list if the `templates` array is missing or not a non-empty list.
+    """
     templates = templates_doc.get("templates", []) if isinstance(templates_doc, dict) else []
     if not isinstance(templates, list) or not templates:
         add_error(errors, "exam_templates.json must contain a non-empty templates array")
@@ -192,6 +271,23 @@ def validate_templates(templates_doc, topic_ids, errors):
 
 
 def validate_gl_band_weights(weights_doc, topic_ids, errors):
+    """
+    Validate the structure and per-topic numeric weights of a parsed gl_band_weights document.
+    
+    Parameters:
+        weights_doc (dict|any): Parsed JSON document for GL band weights; expected to contain a top-level "bands" mapping.
+        topic_ids (Iterable[str]): Collection of known topic IDs that weights may reference.
+        errors (list): Mutable list to which human-readable validation error messages will be appended.
+    
+    Behavior:
+        - Appends error messages to `errors` for any validation failures, including:
+          missing or empty "bands"; unsupported GL band ids (excluding "general"); non-object band payloads;
+          missing or empty `topicWeights`; references to unknown topic ids; and non-numeric or non-positive weights.
+        - Continues validating other bands and topics after encountering errors (does not raise).
+    
+    Returns:
+        dict: The `bands` mapping extracted from `weights_doc` when present and non-empty; otherwise an empty dict.
+    """
     bands = weights_doc.get("bands", {}) if isinstance(weights_doc, dict) else {}
     if not isinstance(bands, dict) or not bands:
         add_error(errors, "gl_band_weights.json must contain a non-empty bands object")
@@ -220,6 +316,18 @@ def validate_gl_band_weights(weights_doc, topic_ids, errors):
 
 
 def main():
+    """
+    Validate the taxonomy JSON files, print a per-topic summary, and report accumulated warnings and errors.
+    
+    This command-line entry point loads topics, exam templates, and GL band weights from the configured data files, performs structural and content validation across topic files and questions (including optional strict checks controlled by command-line flags), collects warnings and errors, and prints a summary of topics processed and any issues found. If any errors are present at the end of validation, the function terminates the process.
+    
+    Command-line flags:
+      --strict-duplicates    Treat duplicate question IDs across source files as an error.
+      --strict-metadata      Treat missing required question metadata fields as an error.
+    
+    Raises:
+      SystemExit: If validation produced any errors, exits with status code 1.
+    """
     parser = argparse.ArgumentParser(description="Validate 10-topic taxonomy integrity")
     parser.add_argument("--strict-duplicates", action="store_true", help="Fail when duplicate question IDs are found")
     parser.add_argument(
