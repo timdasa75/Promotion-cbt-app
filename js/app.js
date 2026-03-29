@@ -111,6 +111,8 @@ const ADMIN_DIRECTORY_SYNC_STORAGE_KEYS = new Set([
 let adminDirectorySyncIntervalHandle = null;
 let adminDirectorySyncVisibilityBound = false;
 let adminDirectoryRefreshInFlight = null;
+let volatileUpgradeRequests = [];
+let volatileAdminOperationHistory = [];
 const RESTORABLE_SCREEN_IDS = new Set([
   "splashScreen",
   "topicSelectionScreen",
@@ -358,35 +360,146 @@ function readProgressSummary() {
   }
 }
 
+function normalizeUpgradeRequestRecord(entry) {
+  const email = String(entry?.email || "").trim().toLowerCase();
+  const createdAt = String(entry?.createdAt || entry?.submittedAt || "").trim();
+  const submittedAt = String(entry?.submittedAt || entry?.createdAt || "").trim();
+  const explicitId = String(entry?.id || "").trim();
+  return {
+    id: explicitId || ((email || "request") + "::" + (submittedAt || createdAt || "unknown")),
+    email,
+    status: normalizeUpgradeRequestStatus(entry?.status),
+    reference: String(entry?.reference || "").trim(),
+    amount: String(entry?.amount || "").trim(),
+    billingCycle: String(entry?.billingCycle || "").trim(),
+    note: String(entry?.note || "").trim(),
+    reviewNote: String(entry?.reviewNote || "").trim(),
+    createdAt,
+    submittedAt,
+    reviewedAt: String(entry?.reviewedAt || "").trim(),
+    reviewedBy: String(entry?.reviewedBy || "").trim(),
+    source: String(entry?.source || "local").trim() || "local",
+  };
+}
+
+function toStoredUpgradeRequestRecord(entry) {
+  const normalized = normalizeUpgradeRequestRecord(entry);
+  return {
+    id: normalized.id,
+    email: normalized.email,
+    status: normalized.status,
+    createdAt: normalized.createdAt,
+    submittedAt: normalized.submittedAt,
+    reviewedAt: normalized.reviewedAt,
+    reviewedBy: normalized.reviewedBy,
+    source: normalized.source,
+  };
+}
+
+function mergeUpgradeRequestRecords(...groups) {
+  const records = new Map();
+  groups.forEach((group) => {
+    (Array.isArray(group) ? group : []).forEach((entry) => {
+      const normalized = normalizeUpgradeRequestRecord(entry);
+      if (!normalized.id) return;
+      const previous = records.get(normalized.id) || {};
+      records.set(normalized.id, { ...previous, ...normalized });
+    });
+  });
+  return Array.from(records.values()).sort((a, b) => {
+    const aTime = Date.parse(String(a?.submittedAt || a?.createdAt || "")) || 0;
+    const bTime = Date.parse(String(b?.submittedAt || b?.createdAt || "")) || 0;
+    return bTime - aTime;
+  });
+}
+
+function normalizeAdminOperationRecord(entry) {
+  const explicitId = String(entry?.id || "").trim();
+  const createdAt = String(entry?.createdAt || "").trim();
+  return {
+    id: explicitId || ((String(entry?.action || "operation").trim().toLowerCase()) + "::" + (createdAt || "unknown")),
+    action: String(entry?.action || "").trim() || "operation",
+    target: String(entry?.target || "").trim() || "-",
+    status: String(entry?.status || "").trim().toLowerCase() || "success",
+    message: String(entry?.message || "").trim(),
+    actor: String(entry?.actor || "").trim() || "unknown-admin",
+    createdAt,
+  };
+}
+
+function toStoredAdminOperationRecord(entry) {
+  const normalized = normalizeAdminOperationRecord(entry);
+  return {
+    id: normalized.id,
+    action: normalized.action,
+    status: normalized.status,
+    createdAt: normalized.createdAt,
+  };
+}
+
+function mergeAdminOperationRecords(...groups) {
+  const records = new Map();
+  groups.forEach((group) => {
+    (Array.isArray(group) ? group : []).forEach((entry) => {
+      const normalized = normalizeAdminOperationRecord(entry);
+      if (!normalized.id) return;
+      const previous = records.get(normalized.id) || {};
+      records.set(normalized.id, { ...previous, ...normalized });
+    });
+  });
+  return Array.from(records.values())
+    .sort((a, b) => {
+      const aTime = Date.parse(String(a?.createdAt || "")) || 0;
+      const bTime = Date.parse(String(b?.createdAt || "")) || 0;
+      return bTime - aTime;
+    })
+    .slice(0, ADMIN_OPERATION_HISTORY_MAX);
+}
+
 function readUpgradeRequests() {
   try {
     const raw = localStorage.getItem(UPGRADE_REQUESTS_STORAGE_KEY);
-    if (!raw) return [];
+    if (!raw) return mergeUpgradeRequestRecords(volatileUpgradeRequests);
     const parsed = JSON.parse(raw);
-    return Array.isArray(parsed) ? parsed : [];
+    const persisted = Array.isArray(parsed) ? parsed.map((entry) => toStoredUpgradeRequestRecord(entry)) : [];
+    const merged = mergeUpgradeRequestRecords(persisted, volatileUpgradeRequests);
+    const serialized = JSON.stringify(persisted);
+    if (raw !== serialized) {
+      localStorage.setItem(UPGRADE_REQUESTS_STORAGE_KEY, serialized);
+    }
+    return merged;
   } catch (error) {
-    return [];
+    return mergeUpgradeRequestRecords(volatileUpgradeRequests);
   }
 }
 
 function writeUpgradeRequests(requests) {
-  localStorage.setItem(UPGRADE_REQUESTS_STORAGE_KEY, JSON.stringify(requests || []));
+  volatileUpgradeRequests = mergeUpgradeRequestRecords(requests);
+  const persisted = volatileUpgradeRequests.map((entry) => toStoredUpgradeRequestRecord(entry));
+  localStorage.setItem(UPGRADE_REQUESTS_STORAGE_KEY, JSON.stringify(persisted));
 }
 
 function readAdminOperationHistory() {
   try {
     const raw = localStorage.getItem(ADMIN_OPERATION_HISTORY_STORAGE_KEY);
-    if (!raw) return [];
+    if (!raw) return mergeAdminOperationRecords(volatileAdminOperationHistory);
     const parsed = JSON.parse(raw);
-    return Array.isArray(parsed) ? parsed : [];
+    const persisted = Array.isArray(parsed) ? parsed.map((entry) => toStoredAdminOperationRecord(entry)) : [];
+    const merged = mergeAdminOperationRecords(persisted, volatileAdminOperationHistory);
+    const serialized = JSON.stringify(persisted);
+    if (raw !== serialized) {
+      localStorage.setItem(ADMIN_OPERATION_HISTORY_STORAGE_KEY, serialized);
+    }
+    return merged;
   } catch (error) {
-    return [];
+    return mergeAdminOperationRecords(volatileAdminOperationHistory);
   }
 }
 
 function writeAdminOperationHistory(history) {
-  const normalized = Array.isArray(history) ? history.slice(0, ADMIN_OPERATION_HISTORY_MAX) : [];
-  localStorage.setItem(ADMIN_OPERATION_HISTORY_STORAGE_KEY, JSON.stringify(normalized));
+  volatileAdminOperationHistory = mergeAdminOperationRecords(history);
+  const persisted = volatileAdminOperationHistory.map((entry) => toStoredAdminOperationRecord(entry));
+  localStorage.setItem(ADMIN_OPERATION_HISTORY_STORAGE_KEY, JSON.stringify(persisted));
 }
 
 function logAdminOperation({ action = "", target = "", status = "success", message = "" } = {}) {
@@ -421,69 +534,69 @@ async function renderAdminOperationHistory() {
       writeAdminOperationHistory(cloudHistory);
     }
   } catch (error) {
-    debugLog(`Admin operation history sync failed: ${error?.message || "request failed."}`);
+    debugLog("Admin operation history sync failed: " + (error?.message || "request failed."));
   }
 
   const history = readAdminOperationHistory();
   if (countLabel) {
-    countLabel.textContent = `Entries: ${history.length}`;
+    countLabel.textContent = "Entries: " + history.length;
   }
 
+  clearElementContent(container);
+
   if (!history.length) {
-    container.innerHTML =
-      '<div class="admin-request-item"><p class="meta">No admin operations logged yet.</p></div>';
+    const emptyCard = document.createElement("div");
+    emptyCard.className = "admin-request-item";
+    appendMetaLine(emptyCard, "No admin operations logged yet.");
+    container.appendChild(emptyCard);
     return;
   }
 
-  container.innerHTML = "";
   const list = document.createElement("div");
   list.className = "mistake-list admin-history-list";
 
   history.forEach((entry) => {
-    const card = document.createElement("article");
     const normalizedStatus = String(entry?.status || "").trim().toLowerCase();
-    const statusClass = normalizedStatus === "failed" || normalizedStatus === "rejected"
-      ? "rejected"
-      : normalizedStatus === "pending"
-        ? "pending"
-        : normalizedStatus
-          ? "approved"
-          : "neutral";
+    const statusClass = normalizedStatus === "failed" || normalizedStatus === "rejected" ? "rejected" : normalizedStatus === "pending" ? "pending" : normalizedStatus ? "approved" : "neutral";
     const whenLabel = formatRelativeTime(entry?.createdAt) || formatDateTime(entry?.createdAt);
+    const card = document.createElement("article");
     card.className = "admin-request-item admin-history-entry";
-    card.innerHTML = `
-      <div class="admin-history-entry-head">
-        <div class="admin-history-entry-title-wrap">
-          <h4 class="admin-history-entry-title">${escapeHtml(entry?.action || "Admin action")}</h4>
-          <p class="meta">${escapeHtml(whenLabel || "-")}</p>
-        </div>
-        <span class="admin-badge ${statusClass}">${escapeHtml(entry?.status || "-")}</span>
-      </div>
-      <div class="admin-history-meta-grid">
-        <div class="admin-history-meta-item">
-          <span class="eyebrow">Time</span>
-          <strong>${escapeHtml(formatDateTime(entry?.createdAt))}</strong>
-        </div>
-        <div class="admin-history-meta-item">
-          <span class="eyebrow">Target</span>
-          <strong>${escapeHtml(entry?.target || "-")}</strong>
-        </div>
-        <div class="admin-history-meta-item">
-          <span class="eyebrow">Actor</span>
-          <strong>${escapeHtml(entry?.actor || "-")}</strong>
-        </div>
-        <div class="admin-history-meta-item">
-          <span class="eyebrow">Outcome</span>
-          <strong>${escapeHtml(entry?.status || "-")}</strong>
-        </div>
-        <div class="admin-history-meta-item admin-history-meta-item-wide">
-          <span class="eyebrow">Details</span>
-          <div class="admin-history-message"></div>
-        </div>
-      </div>
-    `;
-
-    const messageCell = card.querySelector(".admin-history-message");
+    const head = document.createElement("div");
+    head.className = "admin-history-entry-head";
+    const titleWrap = document.createElement("div");
+    titleWrap.className = "admin-history-entry-title-wrap";
+    const title = document.createElement("h4");
+    title.className = "admin-history-entry-title";
+    title.textContent = String(entry?.action || "Admin action");
+    titleWrap.appendChild(title);
+    appendMetaLine(titleWrap, whenLabel || "-");
+    const badge = document.createElement("span");
+    badge.className = "admin-badge " + statusClass;
+    badge.textContent = String(entry?.status || "-");
+    head.appendChild(titleWrap);
+    head.appendChild(badge);
+    card.appendChild(head);
+    const metaGrid = document.createElement("div");
+    metaGrid.className = "admin-history-meta-grid";
+    [["Time", formatDateTime(entry?.createdAt)], ["Target", entry?.target || "-"], ["Actor", entry?.actor || "-"], ["Outcome", entry?.status || "-"]].forEach(([label, value]) => {
+      const item = document.createElement("div");
+      item.className = "admin-history-meta-item";
+      const eyebrow = document.createElement("span");
+      eyebrow.className = "eyebrow";
+      eyebrow.textContent = label;
+      const strong = document.createElement("strong");
+      strong.textContent = String(value || "-");
+      item.appendChild(eyebrow);
+      item.appendChild(strong);
+      metaGrid.appendChild(item);
+    });
+    const messageItem = document.createElement("div");
+    messageItem.className = "admin-history-meta-item admin-history-meta-item-wide";
+    const messageLabel = document.createElement("span");
+    messageLabel.className = "eyebrow";
+    messageLabel.textContent = "Details";
+    const messageCell = document.createElement("div");
+    messageCell.className = "admin-history-message";
     const messageText = String(entry?.message || "-");
     const linkMatch = messageText.match(/https?:\/\/[^\s]+/);
     if (!linkMatch) {
@@ -491,25 +604,18 @@ async function renderAdminOperationHistory() {
     } else {
       const rawLink = linkMatch[0];
       const linkUrl = rawLink.replace(/[),.]+$/, "");
-      const labelText = messageText
-        .replace(rawLink, "")
-        .replace(/Manual verification link:?\s*/i, "")
-        .trim();
-
+      const labelText = messageText.replace(rawLink, "").replace(/Manual verification link:?\s*/i, "").trim();
       const label = document.createElement("p");
       label.textContent = labelText || "Manual verification link";
       messageCell.appendChild(label);
-
       const actions = document.createElement("div");
       actions.className = "button-row compact-actions admin-history-message-actions";
-
       const link = document.createElement("a");
       link.href = linkUrl;
       link.target = "_blank";
       link.rel = "noopener noreferrer";
       link.className = "btn btn-ghost";
       link.textContent = "Open link";
-
       const copyButton = document.createElement("button");
       copyButton.type = "button";
       copyButton.className = "btn btn-secondary";
@@ -518,24 +624,25 @@ async function renderAdminOperationHistory() {
         try {
           await navigator.clipboard.writeText(linkUrl);
           copyButton.textContent = "Copied";
-          setTimeout(() => {
-            copyButton.textContent = "Copy link";
-          }, 1500);
+          setTimeout(() => { copyButton.textContent = "Copy link"; }, 1500);
         } catch (error) {
           window.prompt("Copy verification link:", linkUrl);
         }
       });
-
       actions.appendChild(link);
       actions.appendChild(copyButton);
       messageCell.appendChild(actions);
     }
-
+    messageItem.appendChild(messageLabel);
+    messageItem.appendChild(messageCell);
+    metaGrid.appendChild(messageItem);
+    card.appendChild(metaGrid);
     list.appendChild(card);
   });
 
   container.appendChild(list);
-}function normalizeUpgradeRequestStatus(value) {
+}
+function normalizeUpgradeRequestStatus(value) {
   const normalized = String(value || "").trim().toLowerCase();
   if (normalized === "approved") return "approved";
   if (normalized === "rejected") return "rejected";
@@ -587,6 +694,54 @@ function escapeHtml(value) {
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#39;");
+}
+
+function clearElementContent(element) {
+  if (element) {
+    element.replaceChildren();
+  }
+}
+
+function appendMetaLine(container, text) {
+  if (!container) return null;
+  const paragraph = document.createElement("p");
+  paragraph.className = "meta";
+  paragraph.textContent = String(text || "");
+  container.appendChild(paragraph);
+  return paragraph;
+}
+
+function renderChipList(container, entries, { hiddenWhenEmpty = true, chipClass = "chip" } = {}) {
+  if (!container) return;
+  const normalizedEntries = (Array.isArray(entries) ? entries : [])
+    .map((entry) => String(entry || "").trim())
+    .filter(Boolean);
+  if (hiddenWhenEmpty) {
+    container.classList.toggle("hidden", normalizedEntries.length === 0);
+  }
+  clearElementContent(container);
+  normalizedEntries.forEach((entry) => {
+    const chip = document.createElement("span");
+    chip.className = chipClass;
+    chip.textContent = entry;
+    container.appendChild(chip);
+  });
+}
+
+function renderConfidenceText(container, label, description = "") {
+  if (!container) return;
+  const normalizedLabel = String(label || "").trim();
+  const normalizedDescription = String(description || "").trim();
+  container.classList.toggle("hidden", !normalizedLabel);
+  clearElementContent(container);
+  if (!normalizedLabel) return;
+  const strong = document.createElement("strong");
+  strong.textContent = "Confidence:";
+  container.appendChild(strong);
+  container.appendChild(document.createTextNode(" " + normalizedLabel));
+  if (normalizedDescription) {
+    container.appendChild(document.createTextNode(". " + normalizedDescription));
+  }
 }
 
 function getTopicNameById(topicId) {
@@ -651,14 +806,24 @@ function fillSelectOptions(
 ) {
   if (!selectEl) return;
   const normalizedOptions = Array.isArray(options) ? options : [];
-  const optionMarkup = normalizedOptions
-    .map((option) => `<option value="${escapeHtml(option.value)}">${escapeHtml(option.label)}</option>`)
-    .join("");
-  selectEl.innerHTML = includeAllOption
-    ? `<option value="all">${escapeHtml(includeAllLabel)}</option>${optionMarkup}`
-    : optionMarkup;
-  if (normalizedOptions.some((option) => option.value === selectedValue)) {
-    selectEl.value = selectedValue;
+  clearElementContent(selectEl);
+
+  if (includeAllOption) {
+    const option = document.createElement("option");
+    option.value = "all";
+    option.textContent = includeAllLabel;
+    selectEl.appendChild(option);
+  }
+
+  normalizedOptions.forEach((entry) => {
+    const option = document.createElement("option");
+    option.value = String(entry?.value ?? "");
+    option.textContent = String(entry?.label ?? "");
+    selectEl.appendChild(option);
+  });
+
+  if (normalizedOptions.some((option) => String(option?.value) === String(selectedValue))) {
+    selectEl.value = String(selectedValue);
     return;
   }
   if (includeAllOption) {
@@ -673,11 +838,20 @@ function fillQuestionCountOptions(selectEl, availableStudyFilters, selectedValue
     ? availableStudyFilters.questionCountOptions
     : [];
   const totalQuestions = Number(availableStudyFilters?.totalQuestions || 0);
-  const optionMarkup = options
-    .map((value) => `<option value="${value}">${value} questions</option>`)
-    .join("");
-  const allLabel = totalQuestions > 0 ? `All available (${totalQuestions})` : "All available";
-  selectEl.innerHTML = `${optionMarkup}<option value="all">${escapeHtml(allLabel)}</option>`;
+  clearElementContent(selectEl);
+
+  options.forEach((value) => {
+    const option = document.createElement("option");
+    option.value = String(value);
+    option.textContent = value + " questions";
+    selectEl.appendChild(option);
+  });
+
+  const allOption = document.createElement("option");
+  allOption.value = "all";
+  allOption.textContent = totalQuestions > 0 ? "All available (" + totalQuestions + ")" : "All available";
+  selectEl.appendChild(allOption);
+
   const normalizedSelected = selectedValue === "all" ? "all" : String(Number(selectedValue || 0) || "all");
   selectEl.value = Array.from(selectEl.options).some((option) => option.value === normalizedSelected)
     ? normalizedSelected
@@ -852,28 +1026,21 @@ function configureStudyFilterPanel(topic) {
   if (setupSuggestion) {
     setupSuggestionTitle.textContent = String(setupSuggestion.title || "Suggested Setup");
     setupSuggestionMessage.textContent = String(setupSuggestion.message || "These changes came from your latest results.");
-    setupSuggestionChips.innerHTML = suggestionChips
-      .map((entry) => `<span class="chip">${escapeHtml(String(entry))}</span>`)
-      .join("");
+    renderChipList(setupSuggestionChips, suggestionChips);
+    renderChipList(setupSuggestionSignalChips, suggestionSignalChips);
     setupSuggestionSignalChips.classList.toggle("hidden", suggestionSignalChips.length === 0);
-    setupSuggestionSignalChips.innerHTML = suggestionSignalChips
-      .map((entry) => `<span class="chip">${escapeHtml(String(entry))}</span>`)
-      .join("");
-    setupSuggestionConfidence.classList.toggle("hidden", !suggestionConfidenceLabel);
     setupSuggestionConfidence.classList.remove("high", "medium", "low");
     setupSuggestionConfidence.classList.add(["high", "medium", "low"].includes(suggestionConfidenceTone) ? suggestionConfidenceTone : "medium");
-    setupSuggestionConfidence.innerHTML = suggestionConfidenceLabel
-      ? `<strong>Confidence:</strong> ${escapeHtml(suggestionConfidenceLabel)}${suggestionConfidenceDescription ? `. ${escapeHtml(suggestionConfidenceDescription)}` : ""}`
-      : "";
+    renderConfidenceText(setupSuggestionConfidence, suggestionConfidenceLabel, suggestionConfidenceDescription);
   } else {
     setupSuggestionTitle.textContent = "Suggested Setup";
     setupSuggestionMessage.textContent = "These changes came from your latest results.";
-    setupSuggestionChips.innerHTML = "";
+    renderChipList(setupSuggestionChips, [], { hiddenWhenEmpty: false });
     setupSuggestionSignalChips.classList.add("hidden");
-    setupSuggestionSignalChips.innerHTML = "";
+    renderChipList(setupSuggestionSignalChips, [], { hiddenWhenEmpty: false });
     setupSuggestionConfidence.classList.add("hidden");
     setupSuggestionConfidence.classList.remove("high", "medium", "low");
-    setupSuggestionConfidence.innerHTML = "";
+    renderConfidenceText(setupSuggestionConfidence, "");
   }
 
   const emphasisParts = [];
@@ -2058,9 +2225,7 @@ function renderReviewMistakesScreen() {
           ].filter(Boolean)
         : ["Queue ready after your next scored session"];
     summaryChips.classList.toggle("hidden", chips.length === 0);
-    summaryChips.innerHTML = chips
-      .map((entry) => `<span class="chip">${escapeHtml(String(entry))}</span>`)
-      .join("");
+    renderChipList(summaryChips, chips);
   }
 
   if (!user) {
@@ -2193,10 +2358,7 @@ function renderAnalyticsScreen(insights) {
     overviewNarrative.textContent = weakestTopicLead + readiness.body;
   }
   if (overviewSignals) {
-    overviewSignals.classList.toggle("hidden", signalChips.length === 0);
-    overviewSignals.innerHTML = signalChips
-      .map((entry) => `<span class="chip">${escapeHtml(String(entry))}</span>`)
-      .join("");
+    renderChipList(overviewSignals, signalChips);
   }
   if (overviewLatest) {
     const latestWhen = formatRelativeTime(insights.latestAttempt?.createdAt) || formatDateTime(insights.latestAttempt?.createdAt);
@@ -2281,21 +2443,15 @@ function renderAnalyticsScreen(insights) {
     recommendationMeta.textContent = insights.recommendation.meta;
   }
   if (recommendationSignals) {
-    recommendationSignals.classList.toggle("hidden", signalChips.length === 0);
-    recommendationSignals.innerHTML = signalChips
-      .map((entry) => `<span class="chip">${escapeHtml(String(entry))}</span>`)
-      .join("");
+    renderChipList(recommendationSignals, signalChips);
   }
   if (recommendationConfidence) {
     const confidenceLabel = String(insights.recommendation?.confidenceLabel || "").trim();
     const confidenceDescription = String(insights.recommendation?.confidenceDescription || "").trim();
     const confidenceTone = String(insights.recommendation?.confidenceTone || "medium").trim().toLowerCase();
-    recommendationConfidence.classList.toggle("hidden", !confidenceLabel);
     recommendationConfidence.classList.remove("high", "medium", "low");
     recommendationConfidence.classList.add(["high", "medium", "low"].includes(confidenceTone) ? confidenceTone : "medium");
-    recommendationConfidence.innerHTML = confidenceLabel
-      ? `<strong>Confidence:</strong> ${escapeHtml(confidenceLabel)}${confidenceDescription ? `. ${escapeHtml(confidenceDescription)}` : ""}`
-      : "";
+    renderConfidenceText(recommendationConfidence, confidenceLabel, confidenceDescription);
   }
 }
 function refreshDashboardInsights() {
@@ -2357,10 +2513,7 @@ function refreshDashboardInsights() {
       continueTopicMeta.textContent = `${contextPrefix}${modeLabel} | ${scoreLabel} | ${relativeTime}`;
       if (continueSessionChips) {
         const chips = [modeLabel, scoreLabel, relativeTime].filter((entry) => String(entry || "").trim());
-        continueSessionChips.classList.toggle("hidden", chips.length === 0);
-        continueSessionChips.innerHTML = chips
-          .map((entry) => `<span class="chip">${escapeHtml(String(entry))}</span>`)
-          .join("");
+        renderChipList(continueSessionChips, chips);
       }
       if (continueSessionNote) {
         continueSessionNote.classList.remove("hidden");
@@ -2371,7 +2524,7 @@ function refreshDashboardInsights() {
       continueTopicMeta.textContent = "Start a topic to track session continuity.";
       if (continueSessionChips) {
         continueSessionChips.classList.add("hidden");
-        continueSessionChips.innerHTML = "";
+        renderChipList(continueSessionChips, [], { hiddenWhenEmpty: false });
       }
       if (continueSessionNote) {
         continueSessionNote.classList.add("hidden");
@@ -2396,10 +2549,7 @@ function refreshDashboardInsights() {
     const chips = showTunedRecommendation && Array.isArray(dashboardSetupSuggestion?.chips)
       ? dashboardSetupSuggestion.chips.filter((entry) => String(entry || "").trim())
       : [];
-    recommendedTopicChips.classList.toggle("hidden", chips.length === 0);
-    recommendedTopicChips.innerHTML = chips
-      .map((entry) => `<span class="chip">${escapeHtml(String(entry))}</span>`)
-      .join("");
+    renderChipList(recommendedTopicChips, chips);
   }
   if (recommendedTopicSetupMeta) {
     const message = showTunedRecommendation ? String(dashboardSetupSuggestion?.message || "").trim() : "";
@@ -2410,21 +2560,15 @@ function refreshDashboardInsights() {
     const signalChips = showTunedRecommendation && Array.isArray(dashboardSetupSuggestion?.signalChips)
       ? dashboardSetupSuggestion.signalChips.filter((entry) => String(entry || "").trim())
       : [];
-    recommendedTopicSignalChips.classList.toggle("hidden", signalChips.length === 0);
-    recommendedTopicSignalChips.innerHTML = signalChips
-      .map((entry) => `<span class="chip">${escapeHtml(String(entry))}</span>`)
-      .join("");
+    renderChipList(recommendedTopicSignalChips, signalChips);
   }
   if (recommendedTopicConfidence) {
     const confidenceLabel = showTunedRecommendation ? String(dashboardSetupSuggestion?.confidenceLabel || "").trim() : "";
     const confidenceDescription = showTunedRecommendation ? String(dashboardSetupSuggestion?.confidenceDescription || "").trim() : "";
     const confidenceTone = String(dashboardSetupSuggestion?.confidenceTone || "medium").trim().toLowerCase();
-    recommendedTopicConfidence.classList.toggle("hidden", !confidenceLabel);
     recommendedTopicConfidence.classList.remove("high", "medium", "low");
     recommendedTopicConfidence.classList.add(["high", "medium", "low"].includes(confidenceTone) ? confidenceTone : "medium");
-    recommendedTopicConfidence.innerHTML = confidenceLabel
-      ? `<strong>Confidence:</strong> ${escapeHtml(confidenceLabel)}${confidenceDescription ? `. ${escapeHtml(confidenceDescription)}` : ""}`
-      : "";
+    renderConfidenceText(recommendedTopicConfidence, confidenceLabel, confidenceDescription);
   }
   if (clearRecommendedSetupBtn) {
     clearRecommendedSetupBtn.classList.toggle("hidden", !showTunedRecommendation);
@@ -3278,7 +3422,7 @@ async function refreshUserUpgradeStatus() {
   const user = getCurrentUser();
   if (!user?.email) {
     container.classList.add("hidden");
-    container.innerHTML = "";
+    clearElementContent(container);
     return;
   }
 
@@ -3292,37 +3436,32 @@ async function refreshUserUpgradeStatus() {
     request = getLatestLocalUpgradeRequestForEmail(user.email);
   }
 
+  container.classList.remove("hidden");
+  clearElementContent(container);
+
   if (!request) {
-    container.classList.remove("hidden");
-    container.innerHTML =
-      '<p class="meta">No payment confirmation has been submitted yet.</p>';
+    appendMetaLine(container, "No payment confirmation has been submitted yet.");
     return;
   }
 
   const status = normalizeUpgradeRequestStatus(request.status);
-  const statusLabel =
-    status === "approved"
-      ? "Approved"
-      : status === "rejected"
-        ? "Rejected"
-        : "Pending Admin Review";
-  const reviewMeta = request.reviewedAt
-    ? `<p class="meta">Reviewed: ${escapeHtml(formatDateTime(request.reviewedAt))}</p>`
-    : "";
-
-  container.classList.remove("hidden");
-  container.innerHTML = `
-    <div class="button-row">
-      <strong>Payment Confirmation Status</strong>
-      <span class="admin-badge ${statusBadgeClass(status)}">${statusLabel}</span>
-    </div>
-    <p class="meta">Submitted: ${escapeHtml(formatDateTime(request.submittedAt))}</p>
-    <p class="meta">Reference: ${escapeHtml(request.reference || "-")}</p>
-    <p class="meta">Amount: ${escapeHtml(request.amount || "-")}</p>
-    ${request.note ? `<p class="meta">Note: ${escapeHtml(request.note)}</p>` : ""}
-    ${request.reviewNote ? `<p class="meta">Review note: ${escapeHtml(request.reviewNote)}</p>` : ""}
-    ${reviewMeta}
-  `;
+  const statusLabel = status === "approved" ? "Approved" : status === "rejected" ? "Rejected" : "Pending Admin Review";
+  const headerRow = document.createElement("div");
+  headerRow.className = "button-row";
+  const title = document.createElement("strong");
+  title.textContent = "Payment Confirmation Status";
+  const badge = document.createElement("span");
+  badge.className = "admin-badge " + statusBadgeClass(status);
+  badge.textContent = statusLabel;
+  headerRow.appendChild(title);
+  headerRow.appendChild(badge);
+  container.appendChild(headerRow);
+  appendMetaLine(container, "Submitted: " + formatDateTime(request.submittedAt || request.createdAt));
+  appendMetaLine(container, "Reference: " + (request.reference || "-"));
+  appendMetaLine(container, "Amount: " + (request.amount || "-"));
+  if (request.note) appendMetaLine(container, "Note: " + request.note);
+  if (request.reviewNote) appendMetaLine(container, "Review note: " + request.reviewNote);
+  if (request.reviewedAt) appendMetaLine(container, "Reviewed: " + formatDateTime(request.reviewedAt));
 }
 
 function getHeaderPlanLabel(user) {
@@ -3382,20 +3521,26 @@ function getHeaderSyncSummary(user) {
   };
 }
 
-function getHeaderSummaryMarkup(user) {
+function renderHeaderSummary(container, user) {
+  if (!container) return "";
+  clearElementContent(container);
   const displayName = String(user?.name || user?.email || "Signed in").trim();
   const syncSummary = getHeaderSyncSummary(user);
   const provider = getAuthProviderLabel();
-  return {
-    markup:
-      `<span class="summary-user-line">${escapeHtml(displayName)}</span>` +
-      `<span class="summary-pill-row">` +
-      `<span class="summary-pill summary-pill-plan">${escapeHtml(getHeaderPlanLabel(user))}</span>` +
-      `<span class="summary-pill">${escapeHtml(provider)}</span>` +
-      `<span class="summary-pill summary-pill-${syncSummary.tone}">${escapeHtml(syncSummary.label)}</span>` +
-      `</span>`,
-    title: `${getAuthSummaryLabel()}. ${syncSummary.title}`,
-  };
+  const userLine = document.createElement("span");
+  userLine.className = "summary-user-line";
+  userLine.textContent = displayName;
+  const pillRow = document.createElement("span");
+  pillRow.className = "summary-pill-row";
+  [{ text: getHeaderPlanLabel(user), className: "summary-pill summary-pill-plan" }, { text: provider, className: "summary-pill" }, { text: syncSummary.label, className: "summary-pill summary-pill-" + syncSummary.tone }].forEach((entry) => {
+    const pill = document.createElement("span");
+    pill.className = entry.className;
+    pill.textContent = entry.text;
+    pillRow.appendChild(pill);
+  });
+  container.appendChild(userLine);
+  container.appendChild(pillRow);
+  return getAuthSummaryLabel() + ". " + syncSummary.title;
 }
 
 function updateAuthUI() {
@@ -3425,11 +3570,10 @@ function updateAuthUI() {
   }
   if (authToolbarSummary) {
     if (user) {
-      const headerSummary = getHeaderSummaryMarkup(user);
-      authToolbarSummary.innerHTML = headerSummary.markup;
+      const headerSummaryTitle = renderHeaderSummary(authToolbarSummary, user);
       authToolbarSummary.classList.remove("hidden");
-      authToolbarSummary.setAttribute("title", headerSummary.title);
-      authToolbarSummary.setAttribute("aria-label", headerSummary.title);
+      authToolbarSummary.setAttribute("title", headerSummaryTitle);
+      authToolbarSummary.setAttribute("aria-label", headerSummaryTitle);
     } else {
       authToolbarSummary.textContent = "";
       authToolbarSummary.classList.add("hidden");
@@ -5115,6 +5259,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   initializeThemeToggle();
 });
+
 
 
 
