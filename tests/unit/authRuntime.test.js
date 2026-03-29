@@ -10,6 +10,7 @@ import {
   isCloudAuthMisconfigured,
   isCloudAuthRequired,
   isCloudProgressSyncEnabled,
+  isLocalDemoAuthEnabled,
   isLocalDevelopmentHost,
 } from "../../js/authRuntime.js";
 
@@ -38,6 +39,7 @@ test("auth runtime helpers normalize config and auth flags", () => {
       firebaseFunctionsRegion: "europe-west1",
       firebaseQuotaProjectId: "quota-1",
       enableCloudProgressSync: true,
+      enableLocalDemoAuth: false,
       adminApiBaseUrl: "https://admin.example.com",
       verificationResendCooldownMs: 500,
       passwordResetCooldownMs: 3600001,
@@ -52,6 +54,7 @@ test("auth runtime helpers normalize config and auth flags", () => {
     assert.equal(isLocalDevelopmentHost(), false);
     assert.equal(isCloudAuthEnabled(), true);
     assert.equal(isCloudProgressSyncEnabled(), true);
+    assert.equal(isLocalDemoAuthEnabled(), false);
     assert.equal(isCloudAuthRequired(), true);
     assert.equal(isCloudAuthMisconfigured(), false);
   } finally {
@@ -70,8 +73,26 @@ test("auth runtime helpers honor local override and misconfiguration", () => {
   try {
     assert.equal(isLocalDevelopmentHost(), true);
     assert.equal(isCloudAuthEnabled(), false);
+    assert.equal(isLocalDemoAuthEnabled(), false);
     assert.equal(isCloudAuthRequired(), true);
     assert.equal(isCloudAuthMisconfigured(), true);
+  } finally {
+    global.window = originalWindow;
+  }
+});
+
+
+test("auth runtime helpers allow local demo mode on local hosts without cloud auth", () => {
+  const originalWindow = global.window;
+  global.window = {
+    location: { hostname: "localhost" },
+    PROMOTION_CBT_AUTH: {},
+  };
+
+  try {
+    assert.equal(isCloudAuthEnabled(), false);
+    assert.equal(isCloudAuthRequired(), false);
+    assert.equal(isLocalDemoAuthEnabled(), true);
   } finally {
     global.window = originalWindow;
   }

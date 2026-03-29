@@ -3406,6 +3406,9 @@ function updateAuthUI() {
   const headerAdminBtn = document.getElementById("headerAdminBtn");
   const headerProfileBtn = document.getElementById("headerProfileBtn");
   const authModeHint = document.getElementById("authModeHint");
+  const authModalIntro = document.getElementById("authModalIntro");
+  const forgotPasswordBtn = document.getElementById("forgotPasswordBtn");
+  const changePasswordBtn = document.getElementById("changePasswordBtn");
   const profileDisplayName = document.getElementById("profileDisplayName");
   const profileSubtitle = document.getElementById("profileSubtitle");
   const profileAvatar = document.getElementById("profileAvatar");
@@ -3447,14 +3450,40 @@ function updateAuthUI() {
     headerAdminBtn.setAttribute("title", adminTooltip);
     headerAdminBtn.setAttribute("data-tooltip", adminTooltip);
   }
-  if (authModeHint) {
+  {
     const cloudConfigMissing = isCloudAuthMisconfigured();
     const provider = getAuthProviderLabel();
-    authModeHint.textContent = cloudConfigMissing
-      ? "Auth mode: Cloud required (runtime config missing)"
-      : provider === "Cloud"
-        ? "Auth mode: Cloud (multi-device)"
-        : "Auth mode: Local (single-device)";
+    const isCloudProvider = provider === "Cloud";
+
+    if (authModeHint) {
+      authModeHint.textContent = cloudConfigMissing
+        ? "Auth mode: Cloud required (runtime config missing)"
+        : provider === "Cloud"
+          ? "Auth mode: Cloud (multi-device)"
+          : provider === "Demo"
+            ? "Auth mode: Demo (single-device, no password storage)"
+            : "Auth mode: Cloud required";
+    }
+
+    if (authModalIntro) {
+      authModalIntro.textContent = cloudConfigMissing
+        ? "Cloud authentication is required on this deployment."
+        : provider === "Cloud"
+          ? "Register or login with your email to continue."
+          : provider === "Demo"
+            ? "Local demo access is available on this device only. Passwords are not stored."
+            : "Cloud authentication is required on this deployment.";
+    }
+
+    if (forgotPasswordBtn) {
+      forgotPasswordBtn.classList.toggle("hidden", !isCloudProvider);
+      forgotPasswordBtn.disabled = !isCloudProvider;
+    }
+
+    if (changePasswordBtn) {
+      changePasswordBtn.classList.toggle("hidden", !isCloudProvider);
+      changePasswordBtn.disabled = !isCloudProvider;
+    }
   }
   if (profileDisplayName) {
     profileDisplayName.textContent = user?.name || "Guest User";
@@ -4538,7 +4567,7 @@ function initializeAuthUI() {
   try {
         await runOperationWithFeedback(
           async () => {
-            await loginUser({ email, password });
+            const loginResult = await loginUser({ email, password });
             await syncProgressFromCloudNow({ force: true }).catch(() => ({}));
             updateAuthUI();
             refreshDashboardInsights();
@@ -4546,10 +4575,11 @@ function initializeAuthUI() {
             closeAuthModal();
             await showScreen("topicSelectionScreen");
             showFreeTierNoticeIfNeeded();
+            return loginResult;
           },
           {
             loadingMessage: "Signing in...",
-            successMessage: "Login successful.",
+            successMessage: (result) => result?.authMessage || "Login successful.",
             failurePrefix: "Login failed:",
           },
         );
@@ -4607,8 +4637,9 @@ function initializeAuthUI() {
           return;
         }
 
-        setAuthMessage("Account created successfully.", "success");
-        showSuccess("Account created successfully.");
+        const successCopy = registration?.message || "Account created successfully.";
+        setAuthMessage(successCopy, "success");
+        showSuccess(successCopy);
         setTimeout(() => {
           closeAuthModal();
           showScreen("topicSelectionScreen");
