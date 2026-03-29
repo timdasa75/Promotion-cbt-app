@@ -1,6 +1,178 @@
+import { isFeatureEnabled } from "./features.js";
+
 // topicSources.js - shared utilities for topic data sources
 
 const jsonCache = new Map();
+const PERSISTENT_CACHE_PREFIX = "promotion-cbt:json-cache:v1:";
+const PERSISTENT_CACHE_INDEX_KEY = `${PERSISTENT_CACHE_PREFIX}index`;
+const PERSISTENT_CACHE_TTL_MS = 6 * 60 * 60 * 1000;
+const PERSISTENT_CACHE_MAX_TOTAL_BYTES = 3_500_000;
+const PERSISTENT_CACHE_MAX_ENTRY_BYTES = 1_500_000;
+
+function getPersistentCacheStorage() {
+  if (typeof window === "undefined") return null;
+  if (!isFeatureEnabled("enablePersistentJsonCache")) return null;
+
+  try {
+    return window.localStorage || null;
+  } catch (_error) {
+    return null;
+  }
+}
+
+function getPersistentCacheKey(filePath) {
+  return `${PERSISTENT_CACHE_PREFIX}${filePath}`;
+}
+
+function estimateSerializedSize(text) {
+  return String(text || "").length * 2;
+}
+
+function readPersistentCacheIndex(storage) {
+  if (!storage) return {};
+
+  try {
+    const raw = storage.getItem(PERSISTENT_CACHE_INDEX_KEY);
+    if (!raw) return {};
+    const parsed = JSON.parse(raw);
+    return parsed && typeof parsed === "object" ? parsed : {};
+  } catch (_error) {
+    return {};
+  }
+}
+
+function writePersistentCacheIndex(storage, index) {
+  if (!storage) return;
+
+  try {
+    storage.setItem(PERSISTENT_CACHE_INDEX_KEY, JSON.stringify(index || {}));
+  } catch (_error) {
+    // Ignore index write failures so cache lookup never blocks the quiz flow.
+  }
+}
+
+function removePersistentCacheEntry(storage, index, cacheKey) {
+  if (!storage || !cacheKey) return;
+  try {
+    storage.removeItem(cacheKey);
+  } catch (_error) {
+    // Ignore removal failures.
+  }
+  if (index && typeof index === "object") {
+    delete index[cacheKey];
+  }
+}
+
+function prunePersistentCacheEntries(storage, index, incomingSize = 0, excludeKey = "") {
+  if (!storage || !index || typeof index !== "object") return index || {};
+
+  const normalizedIndex = { ...index };
+  const entries = Object.entries(normalizedIndex)
+    .filter(([cacheKey]) => cacheKey !== excludeKey)
+    .filter(([cacheKey]) => {
+      const hasBackingValue = storage.getItem(cacheKey) !== null;
+      if (!hasBackingValue) {
+        delete normalizedIndex[cacheKey];
+      }
+      return hasBackingValue;
+    })
+    .sort((left, right) => (left[1]?.cachedAt || 0) - (right[1]?.cachedAt || 0));
+
+  let currentBytes = entries.reduce((sum, [, entry]) => sum + Math.max(0, Number(entry?.size || 0)), 0);
+  const allowedBytes = Math.max(0, PERSISTENT_CACHE_MAX_TOTAL_BYTES - Math.max(0, Number(incomingSize || 0)));
+
+  for (const [cacheKey, entry] of entries) {
+    if (currentBytes <= allowedBytes) break;
+    currentBytes -= Math.max(0, Number(entry?.size || 0));
+    removePersistentCacheEntry(storage, normalizedIndex, cacheKey);
+  }
+
+  return normalizedIndex;
+}
+
+function persistJsonText(filePath, text) {
+  const storage = getPersistentCacheStorage();
+  if (!storage) return;
+
+  const trimmedText = String(text || "");
+  if (!trimmedText || trimmedText.trim().startsWith("<")) return;
+
+  const cacheKey = getPersistentCacheKey(filePath);
+  const cachedAt = Date.now();
+  const payload = JSON.stringify({ cachedAt, text: trimmedText });
+  const entrySize = estimateSerializedSize(payload);
+  if (entrySize > PERSISTENT_CACHE_MAX_ENTRY_BYTES) return;
+
+  let index = readPersistentCacheIndex(storage);
+  removePersistentCacheEntry(storage, index, cacheKey);
+  index = prunePersistentCacheEntries(storage, index, entrySize, cacheKey);
+
+  const writeEntry = () => {
+    storage.setItem(cacheKey, payload);
+    index[cacheKey] = {
+      filePath,
+      size: entrySize,
+      cachedAt,
+    };
+    writePersistentCacheIndex(storage, index);
+  };
+
+  try {
+    writeEntry();
+  } catch (_error) {
+    index = prunePersistentCacheEntries(storage, index, entrySize, cacheKey);
+    try {
+      writeEntry();
+    } catch (_retryError) {
+      removePersistentCacheEntry(storage, index, cacheKey);
+      writePersistentCacheIndex(storage, index);
+    }
+  }
+}
+
+function readPersistentJsonText(filePath) {
+  const storage = getPersistentCacheStorage();
+  if (!storage) return null;
+
+  const cacheKey = getPersistentCacheKey(filePath);
+  try {
+    const raw = storage.getItem(cacheKey);
+    if (!raw) return null;
+
+    const parsed = JSON.parse(raw);
+    const text = String(parsed?.text || "");
+    const cachedAt = Math.max(0, Number(parsed?.cachedAt || 0));
+    if (!text || !cachedAt) {
+      const index = readPersistentCacheIndex(storage);
+      removePersistentCacheEntry(storage, index, cacheKey);
+      writePersistentCacheIndex(storage, index);
+      return null;
+    }
+
+    return {
+      text,
+      cachedAt,
+      isFresh: Date.now() - cachedAt <= PERSISTENT_CACHE_TTL_MS,
+    };
+  } catch (_error) {
+    const index = readPersistentCacheIndex(storage);
+    removePersistentCacheEntry(storage, index, cacheKey);
+    writePersistentCacheIndex(storage, index);
+    return null;
+  }
+}
+
+function parseJsonText(text, file) {
+  const normalizedText = String(text || "");
+  if (normalizedText.trim().startsWith("<")) {
+    throw new Error(`Server returned HTML instead of JSON for ${file}`);
+  }
+  return JSON.parse(normalizedText);
+}
+
+export function __resetTopicSourceCachesForTests() {
+  jsonCache.clear();
+}
 
 export function getBaseUrl() {
   const pathParts = window.location.pathname.split('/');
@@ -22,19 +194,33 @@ export async function fetchJsonFile(file) {
     return jsonCache.get(filePath);
   }
 
-  const response = await fetch(filePath);
-  if (!response.ok) {
-    throw new Error(`Failed to fetch ${file}: ${response.status}`);
+  const cachedEntry = readPersistentJsonText(filePath);
+  if (cachedEntry?.isFresh) {
+    const cachedData = parseJsonText(cachedEntry.text, file);
+    jsonCache.set(filePath, cachedData);
+    return cachedData;
   }
 
-  const text = await response.text();
-  if (text.trim().startsWith('<')) {
-    throw new Error(`Server returned HTML instead of JSON for ${file}`);
-  }
+  try {
+    const response = await fetch(filePath);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch ${file}: ${response.status}`);
+    }
 
-  const data = JSON.parse(text);
-  jsonCache.set(filePath, data);
-  return data;
+    const text = await response.text();
+    const data = parseJsonText(text, file);
+    jsonCache.set(filePath, data);
+    persistJsonText(filePath, text);
+    return data;
+  } catch (error) {
+    if (cachedEntry?.text) {
+      console.warn(`Using cached JSON fallback for ${filePath}`, error);
+      const cachedData = parseJsonText(cachedEntry.text, file);
+      jsonCache.set(filePath, cachedData);
+      return cachedData;
+    }
+    throw error;
+  }
 }
 
 export async function fetchTopicDataFilesWithReport(topic, options = {}) {
@@ -129,6 +315,21 @@ export function getQuestionsFromSubcategory(subcategory) {
   return subcategory.questions;
 }
 
+function decorateQuestionsForSubcategory(questions, subcategory) {
+  const items = Array.isArray(questions) ? questions : [];
+  const subcategoryId = String(subcategory?.id || "").trim();
+  const subcategoryName = String(subcategory?.name || subcategoryId || "").trim();
+
+  return items.map((question) => {
+    if (!question || typeof question !== "object") return question;
+    return {
+      ...question,
+      sourceSubcategoryId: String(question?.sourceSubcategoryId || subcategoryId || "").trim(),
+      sourceSubcategoryName: String(question?.sourceSubcategoryName || subcategoryName || subcategoryId || "").trim(),
+    };
+  });
+}
+
 export function extractQuestionsByCategory(data, selectedCategory = "all", options = {}) {
   const { allowedCategoryIds = null, maxQuestionsPerSubcategory = null } = options;
   const subcategories = collectSubcategories(data);
@@ -142,9 +343,10 @@ export function extractQuestionsByCategory(data, selectedCategory = "all", optio
       const questions = getQuestionsFromSubcategory(subcategory);
       if (!questions.length) return [];
       if (allowedSet && !allowedSet.has(subcategory.id)) return [];
-      return typeof maxQuestionsPerSubcategory === "number"
+      const limited = typeof maxQuestionsPerSubcategory === "number"
         ? questions.slice(0, maxQuestionsPerSubcategory)
         : questions;
+      return decorateQuestionsForSubcategory(limited, subcategory);
     });
   }
 
@@ -152,7 +354,8 @@ export function extractQuestionsByCategory(data, selectedCategory = "all", optio
   const questions = getQuestionsFromSubcategory(selected);
   if (!questions.length) return [];
   if (allowedSet && !allowedSet.has(selected.id)) return [];
-  return typeof maxQuestionsPerSubcategory === "number"
+  const limited = typeof maxQuestionsPerSubcategory === "number"
     ? questions.slice(0, maxQuestionsPerSubcategory)
     : questions;
+  return decorateQuestionsForSubcategory(limited, selected);
 }

@@ -8,6 +8,59 @@ function toIsoDay(value) {
   return parsed.toISOString().slice(0, 10);
 }
 
+function buildBreakdownByBucket(allQuestions = [], userAnswers = [], resolveBucket, sortComparator) {
+  const questions = Array.isArray(allQuestions) ? allQuestions : [];
+  const answers = Array.isArray(userAnswers) ? userAnswers : [];
+  const grouped = new Map();
+
+  questions.forEach((question, index) => {
+    const bucket = typeof resolveBucket === "function" ? resolveBucket(question, index) : null;
+    const id = String(bucket?.id || "").trim();
+    if (!id) return;
+
+    const label = String(bucket?.label || id).trim();
+    if (!grouped.has(id)) {
+      grouped.set(id, {
+        id,
+        label,
+        total: 0,
+        answered: 0,
+        correct: 0,
+      });
+    }
+
+    const entry = grouped.get(id);
+    entry.total += 1;
+    const answer = answers[index];
+    if (answer === undefined || answer === null) {
+      return;
+    }
+
+    entry.answered += 1;
+    if (answer === question?.correct) {
+      entry.correct += 1;
+    }
+  });
+
+  const breakdown = Array.from(grouped.values()).map((entry) => {
+    const wrong = Math.max(0, entry.answered - entry.correct);
+    const unanswered = Math.max(0, entry.total - entry.answered);
+    const accuracy = entry.answered > 0 ? Math.round((entry.correct / entry.answered) * 100) : 0;
+    return {
+      ...entry,
+      wrong,
+      unanswered,
+      accuracy,
+    };
+  });
+
+  if (typeof sortComparator === "function") {
+    breakdown.sort(sortComparator);
+  }
+
+  return breakdown;
+}
+
 export function calculateStreakDays(attempts = [], now = new Date()) {
   if (!Array.isArray(attempts) || attempts.length === 0) return 0;
 
@@ -89,4 +142,57 @@ export function calculateScoreFromAnswers(allQuestions = [], userAnswers = []) {
     wrongRate,
     unansweredRate,
   };
+}
+
+export function buildSubcategoryBreakdown(allQuestions = [], userAnswers = []) {
+  return buildBreakdownByBucket(
+    allQuestions,
+    userAnswers,
+    (question) => ({
+      id: question?.sourceSubcategoryId,
+      label: question?.sourceSubcategoryName || question?.sourceSubcategoryId,
+    }),
+    (left, right) =>
+      left.accuracy - right.accuracy ||
+      right.total - left.total ||
+      left.label.localeCompare(right.label),
+  ).map((entry) => ({
+    subcategoryId: entry.id,
+    subcategoryName: entry.label,
+    total: entry.total,
+    answered: entry.answered,
+    correct: entry.correct,
+    wrong: entry.wrong,
+    unanswered: entry.unanswered,
+    accuracy: entry.accuracy,
+  }));
+}
+
+export function buildDifficultyBreakdown(allQuestions = [], userAnswers = []) {
+  const rank = { easy: 0, medium: 1, hard: 2 };
+  return buildBreakdownByBucket(
+    allQuestions,
+    userAnswers,
+    (question) => {
+      const difficulty = String(question?.difficulty || "").trim().toLowerCase();
+      if (!difficulty) return null;
+      return {
+        id: difficulty,
+        label: difficulty,
+      };
+    },
+    (left, right) => {
+      const rankDelta = (rank[left.id] ?? 99) - (rank[right.id] ?? 99);
+      if (rankDelta !== 0) return rankDelta;
+      return left.label.localeCompare(right.label);
+    },
+  ).map((entry) => ({
+    difficulty: entry.id,
+    total: entry.total,
+    answered: entry.answered,
+    correct: entry.correct,
+    wrong: entry.wrong,
+    unanswered: entry.unanswered,
+    accuracy: entry.accuracy,
+  }));
 }

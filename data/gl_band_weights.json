@@ -1,0 +1,46 @@
+{
+  "bands": {
+    "GL14_15": {
+      "topicWeights": {
+        "psr": 0.38,
+        "civil_service_admin": 0.18,
+        "financial_regulations": 0.11,
+        "procurement_act": 0.07,
+        "constitutional_law": 0.09,
+        "leadership_management": 0.06,
+        "ict_management": 0.04,
+        "policy_analysis": 0.04,
+        "general_current_affairs": 0.06,
+        "competency_framework": 0.05
+      }
+    },
+    "GL15_16": {
+      "topicWeights": {
+        "psr": 0.28,
+        "financial_regulations": 0.16,
+        "procurement_act": 0.11,
+        "constitutional_law": 0.11,
+        "civil_service_admin": 0.11,
+        "leadership_management": 0.09,
+        "ict_management": 0.06,
+        "policy_analysis": 0.06,
+        "general_current_affairs": 0.06,
+        "competency_framework": 0.04
+      }
+    },
+    "GL16_17": {
+      "topicWeights": {
+        "leadership_management": 0.22,
+        "policy_analysis": 0.16,
+        "psr": 0.16,
+        "financial_regulations": 0.11,
+        "procurement_act": 0.09,
+        "civil_service_admin": 0.11,
+        "constitutional_law": 0.08,
+        "general_current_affairs": 0.08,
+        "ict_management": 0.04,
+        "competency_framework": 0.04
+      }
+    }
+  }
+}

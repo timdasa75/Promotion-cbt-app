@@ -17,6 +17,10 @@ export function getFirebaseConfig() {
     cfg.firebaseQuotaProjectId || cfg.quotaProjectId || firebaseProjectId || "",
   ).trim();
   const enableCloudProgressSync = resolveRuntimeBoolean(cfg.enableCloudProgressSync, false);
+  const enableLocalDemoAuth = resolveRuntimeBoolean(
+    cfg.enableLocalDemoAuth ?? cfg.enableLocalAuth,
+    false,
+  );
   const adminApiBaseUrl = normalizeBaseUrl(cfg.adminApiBaseUrl);
   const verificationResendCooldownMs = Number(cfg.verificationResendCooldownMs);
   const passwordResetCooldownMs = Number(cfg.passwordResetCooldownMs);
@@ -28,6 +32,7 @@ export function getFirebaseConfig() {
     firebaseFunctionsRegion,
     firebaseQuotaProjectId,
     enableCloudProgressSync,
+    enableLocalDemoAuth,
     adminApiBaseUrl,
     verificationResendCooldownMs,
     passwordResetCooldownMs,
@@ -80,4 +85,17 @@ export function isCloudAuthRequired() {
 
 export function isCloudAuthMisconfigured() {
   return isCloudAuthRequired() && !isCloudAuthEnabled();
+}
+
+export function isLocalDemoAuthEnabled() {
+  if (typeof window !== "undefined" && typeof window.PROMOTION_CBT_ALLOW_LOCAL_AUTH === "boolean") {
+    return window.PROMOTION_CBT_ALLOW_LOCAL_AUTH;
+  }
+
+  const { enableLocalDemoAuth } = getFirebaseConfig();
+  if (enableLocalDemoAuth) {
+    return true;
+  }
+
+  return !isCloudAuthEnabled() && !isCloudAuthRequired();
 }

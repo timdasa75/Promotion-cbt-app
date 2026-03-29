@@ -1,10 +1,5 @@
 // auth.js - auth/session + entitlement helpers
 
-import {
-  LOCAL_PASSWORD_ALGO_V2,
-  buildLocalPasswordRecord,
-  verifyLocalPasswordRecord,
-} from "./authPassword.js";
 import { mapFirebaseAuthError } from "./authErrors.js";
 import {
   fromFirebaseMillisToIso,
@@ -16,7 +11,7 @@ import {
   toIsoTimestamp,
   toOptionalIsoTimestamp,
 } from "./authNormalization.js";
-import { clearSession, readJsonStorage, readPlanOverrideMeta, readPlanOverrides, readSession, readUsers, writeAdminDirectoryCache, writePlanOverrideMeta, writePlanOverrides, writeSession, writeUsers } from "./authStorage.js";
+import { clearSession, readJsonStorage, readPlanOverrideMeta, readPlanOverrides, readSession, readUsers, writeAdminDirectoryCache, writePlanOverrideMeta, writePlanOverrides, writeSession } from "./authStorage.js";
 import { readPasswordResetCooldowns, readVerificationResendCooldowns, writePasswordResetCooldowns, writeVerificationResendCooldowns } from "./authCooldownStorage.js";
 import { firebaseAuthRequest } from "./authFirebaseTransport.js";
 import { resolveCloudPlan } from "./authCloudProfile.js";
@@ -28,7 +23,7 @@ import { enrichDirectoryVerificationStates, ensureAdminCloudSession as ensureAdm
 import { deleteCloudUserById as deleteCloudUserByIdService, getAdminOperationHistory as getAdminOperationHistoryService, getAdminUserDirectory as getAdminUserDirectoryService, logAdminOperationToCloud as logAdminOperationToCloudService, updateCloudUserStatusById as updateCloudUserStatusByIdService } from "./authAdminService.js";
 import { buildUpgradeRequestRecordFromProfile as buildUpgradeRequestRecordFromProfileService, ensureCloudProfileInSession as ensureCloudProfileInSessionService, getCurrentUserUpgradeRequest as getCurrentUserUpgradeRequestService, setUpgradeRequestStatus as setUpgradeRequestStatusService, submitUpgradeRequest as submitUpgradeRequestService } from "./authUpgradeService.js";
 import { loginUserCloud as loginUserCloudService, logoutCloud as logoutCloudService, refreshCloudUserInSession as refreshCloudUserInSessionService, registerUserCloud as registerUserCloudService } from "./authCloudLifecycle.js";
-import { buildIdentityToolkitAdminHeaders, getFirebaseConfig, getPasswordResetCooldownMs, getVerificationResendCooldownMs, isCloudAuthEnabled, isCloudAuthMisconfigured, isCloudAuthRequired, isCloudProgressSyncEnabled } from "./authRuntime.js";
+import { buildIdentityToolkitAdminHeaders, getFirebaseConfig, getPasswordResetCooldownMs, getVerificationResendCooldownMs, isCloudAuthEnabled, isCloudAuthMisconfigured, isCloudAuthRequired, isCloudProgressSyncEnabled, isLocalDemoAuthEnabled } from "./authRuntime.js";
 
 const DEFAULT_ADMIN_EMAILS = ["timdasa75@gmail.com"];
 const PLAN_SYNC_INTERVAL_MS = 30 * 1000;
@@ -417,9 +412,6 @@ function markPasswordResetRequest(email, at = Date.now()) {
   writePasswordResetCooldowns(data);
 }
 
-async function verifyLocalPassword(user, password) {
-  return verifyLocalPasswordRecord(user, password);
-}
 
 async function syncCloudPlanInSession(session) {
   if (!session?.provider || session.provider !== "firebase" || !session.user) {
@@ -542,7 +534,50 @@ function logoutCloud() {
   return logoutCloudService();
 }
 
+function assertLocalDemoAuthEnabled(actionLabel = "Authentication") {
+  if (isLocalDemoAuthEnabled()) return;
+  if (isCloudAuthRequired()) {
+    throw new Error("Cloud authentication is required on this deployment.");
+  }
+  throw new Error(`${actionLabel} is unavailable because local demo access is disabled.`);
+}
+
+function deriveDemoDisplayName(email) {
+  const localPart = String(email || "")
+    .split("@")[0]
+    .replace(/[._-]+/g, " ")
+    .trim();
+  const words = localPart
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2);
+  if (!words.length) return "Demo User";
+  return words
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}
+
+function buildLocalDemoSessionUser({
+  name,
+  email,
+  createdAt = new Date().toISOString(),
+  plan = "free",
+  billingCycle = "",
+} = {}) {
+  const normalizedEmail = normalizeEmail(email);
+  return {
+    id: `local_demo_${normalizedEmail || Date.now()}`,
+    name: String(name || "").trim() || deriveDemoDisplayName(normalizedEmail),
+    email: normalizedEmail,
+    plan: normalizePlan(plan || "free"),
+    billingCycle: String(billingCycle || "").trim(),
+    createdAt,
+  };
+}
+
 async function registerUserLocal({ name, email, password }) {
+  assertLocalDemoAuthEnabled("Registration");
+
   const trimmedName = String(name || "").trim();
   const normalizedEmail = normalizeEmail(email);
   const normalizedPassword = String(password || "");
@@ -555,33 +590,24 @@ async function registerUserLocal({ name, email, password }) {
     throw new Error("Password must be at least 8 characters.");
   }
 
-  const users = readUsers();
-  const exists = users.some((u) => normalizeEmail(u.email) === normalizedEmail);
-  if (exists) {
-    throw new Error("An account with this email already exists.");
-  }
-
-  const passwordRecord = await buildLocalPasswordRecord(normalizedPassword);
-  const user = {
-    id: `u_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
+  const createdAt = new Date().toISOString();
+  const user = buildLocalDemoSessionUser({
     name: trimmedName,
     email: normalizedEmail,
-    ...passwordRecord,
-    plan: "free",
-    createdAt: new Date().toISOString(),
-  };
+    createdAt,
+  });
 
-  users.push(user);
-  writeUsers(users);
-  writeSession({ provider: "local", userId: user.id, createdAt: new Date().toISOString() });
+  writeSession({ provider: "local", user, createdAt });
   return {
     user: sanitizeUserLocal(user),
     requiresEmailVerification: false,
-    message: "",
+    message: "Demo access started on this device only. Passwords are not stored.",
   };
 }
 
 async function loginUserLocal({ email, password }) {
+  assertLocalDemoAuthEnabled("Login");
+
   const normalizedEmail = normalizeEmail(email);
   const normalizedPassword = String(password || "");
 
@@ -589,27 +615,26 @@ async function loginUserLocal({ email, password }) {
     throw new Error("Email and password are required.");
   }
 
-  const users = readUsers();
-  const user = users.find((u) => normalizeEmail(u.email) === normalizedEmail);
-  if (!user) {
-    throw new Error("Invalid email or password.");
-  }
+  const currentSession = readSession();
+  const currentSessionUser =
+    currentSession?.provider === "local" ? sanitizeUserLocal(currentSession?.user || null) : null;
+  const createdAt = currentSessionUser?.createdAt || new Date().toISOString();
+  const user =
+    currentSessionUser && normalizeEmail(currentSessionUser.email) === normalizedEmail
+      ? {
+          ...currentSessionUser,
+          createdAt,
+        }
+      : buildLocalDemoSessionUser({
+          email: normalizedEmail,
+          createdAt,
+        });
 
-  const validPassword = await verifyLocalPassword(user, normalizedPassword);
-  if (!validPassword) {
-    throw new Error("Invalid email or password.");
-  }
-
-  if (String(user.passwordAlgo || "") !== LOCAL_PASSWORD_ALGO_V2) {
-    const upgradedRecord = await buildLocalPasswordRecord(normalizedPassword);
-    const upgradedUsers = users.map((entry) =>
-      entry.id === user.id ? { ...entry, ...upgradedRecord } : entry,
-    );
-    writeUsers(upgradedUsers);
-  }
-
-  writeSession({ provider: "local", userId: user.id, createdAt: new Date().toISOString() });
-  return sanitizeUserLocal(user);
+  writeSession({ provider: "local", user, createdAt: new Date().toISOString() });
+  return {
+    user: sanitizeUserLocal(user),
+    authMessage: "Demo access started on this device only.",
+  };
 }
 
 function sanitizeUserLocal(user) {
@@ -619,7 +644,6 @@ function sanitizeUserLocal(user) {
     name: user.name,
     email: user.email,
     plan: user.plan || "free",
-    billingCycle: String(user?.billingCycle || user?.subscriptionType || user?.planInterval || ""),
     createdAt: user.createdAt,
   };
 }
@@ -650,6 +674,7 @@ export async function registerUser({ name, email, password }) {
   if (isCloudAuthEnabled()) {
     return registerUserCloud({ name, email, password });
   }
+  assertLocalDemoAuthEnabled("Registration");
   return registerUserLocal({ name, email, password });
 }
 
@@ -657,6 +682,7 @@ export async function loginUser({ email, password }) {
   if (isCloudAuthEnabled()) {
     return loginUserCloud({ email, password });
   }
+  assertLocalDemoAuthEnabled("Login");
   return loginUserLocal({ email, password });
 }
 
@@ -835,9 +861,19 @@ export function getCurrentUser() {
     return null;
   }
 
+  const sessionUser = sanitizeUserLocal(session.user || null);
+  if (sessionUser?.email) {
+    return applyPlanOverrideForEmail(sessionUser);
+  }
+
   const users = readUsers();
-  const user = users.find((u) => u.id === session.userId);
-  return applyPlanOverrideForEmail(sanitizeUserLocal(user));
+  const legacyUser = users.find((u) => u.id === session.userId);
+  if (legacyUser) {
+    return applyPlanOverrideForEmail(sanitizeUserLocal(legacyUser));
+  }
+
+  clearSession();
+  return null;
 }
 
 export function isAuthenticated() {
@@ -891,7 +927,9 @@ ${email} (${planLabel})`;
 }
 
 export function getAuthProviderLabel() {
-  return isCloudAuthEnabled() ? "Cloud" : "Local";
+  if (isCloudAuthEnabled()) return "Cloud";
+  if (isLocalDemoAuthEnabled()) return "Demo";
+  return "Unavailable";
 }
 
 export function getLocalPlanOverrides() {
@@ -918,17 +956,25 @@ export function setLocalBillingCycle(email, billingCycle) {
   if (!normalizedEmail || !normalizedCycle) {
     return false;
   }
-  const users = readUsers();
-  let updated = false;
-  const next = users.map((entry) => {
-    if (normalizeEmail(entry.email) !== normalizedEmail) return entry;
-    updated = true;
-    return { ...entry, billingCycle: normalizedCycle };
-  });
-  if (updated) {
-    writeUsers(next);
+
+  const session = readSession();
+  if (session?.provider !== "local" || !session?.user) {
+    return false;
   }
-  return updated;
+
+  const sessionUser = sanitizeUserLocal(session.user);
+  if (!sessionUser || normalizeEmail(sessionUser.email) !== normalizedEmail) {
+    return false;
+  }
+
+  writeSession({
+    ...session,
+    user: {
+      ...session.user,
+      billingCycle: normalizedCycle,
+    },
+  });
+  return true;
 }
 
 export async function setPlanOverride(email, plan) {
@@ -1077,41 +1123,4 @@ export async function updateCloudUserStatusById(profileId, status) {
 export async function deleteCloudUserById(profileId) {
   return deleteCloudUserByIdService(profileId, ensureAdminCloudSession);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
