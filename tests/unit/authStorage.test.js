@@ -48,15 +48,109 @@ test("readJsonStorage returns parsed objects and null for invalid data", () => {
 
 test("session helpers prefer session storage and migrate legacy data", () => {
   const sessionStorage = createStorage();
-  const localStorage = createStorage({ "cbt_session_v1": "{\"user\":\"legacy\"}" });
+  const localStorage = createStorage({
+    cbt_session_v1: JSON.stringify({
+      provider: "local",
+      createdAt: "2026-03-18T09:00:00Z",
+      user: {
+        id: "u1",
+        email: "legacy@example.com",
+        plan: "free",
+        createdAt: "2026-03-18T09:00:00Z",
+        passwordHash: "hash",
+        passwordSalt: "salt",
+        passwordIterations: 1000,
+        passwordAlgo: "pbkdf2",
+      },
+    }),
+  });
   setupGlobals(sessionStorage, localStorage);
 
-  assert.deepEqual(readSession(), { user: "legacy" });
-  assert.deepEqual(sessionStorage.snapshot()["cbt_session_v1"], '{"user":"legacy"}');
+  assert.deepEqual(readSession(), {
+    provider: "local",
+    accessToken: "",
+    refreshToken: "",
+    expiresAt: 0,
+    createdAt: "2026-03-18T09:00:00Z",
+    lastPlanSyncAt: "",
+    user: {
+      id: "u1",
+      name: "",
+      email: "legacy@example.com",
+      plan: "free",
+      billingCycle: "",
+      subscriptionType: "",
+      planInterval: "",
+      createdAt: "2026-03-18T09:00:00Z",
+      lastSeenAt: "",
+      planExpiresAt: "",
+      emailVerified: "",
+      role: "",
+      status: "",
+    },
+  });
+  assert.deepEqual(JSON.parse(sessionStorage.snapshot()["cbt_session_v1"]), {
+    provider: "local",
+    accessToken: "",
+    refreshToken: "",
+    expiresAt: 0,
+    createdAt: "2026-03-18T09:00:00Z",
+    lastPlanSyncAt: "",
+    user: {
+      id: "u1",
+      name: "",
+      email: "legacy@example.com",
+      plan: "free",
+      billingCycle: "",
+      subscriptionType: "",
+      planInterval: "",
+      createdAt: "2026-03-18T09:00:00Z",
+      lastSeenAt: "",
+      planExpiresAt: "",
+      emailVerified: "",
+      role: "",
+      status: "",
+    },
+  });
   assert.equal(localStorage.snapshot()["cbt_session_v1"], undefined);
 
-  writeSession({ user: "current" });
-  assert.deepEqual(readSession(), { user: "current" });
+  writeSession({
+    provider: "local",
+    createdAt: "2026-03-18T10:00:00Z",
+    user: {
+      id: "u2",
+      email: "current@example.com",
+      plan: "premium",
+      billingCycle: "monthly",
+      passwordHash: "hash-2",
+      passwordSalt: "salt-2",
+      passwordIterations: 2000,
+      passwordAlgo: "pbkdf2",
+    },
+  });
+  assert.deepEqual(readSession(), {
+    provider: "local",
+    accessToken: "",
+    refreshToken: "",
+    expiresAt: 0,
+    createdAt: "2026-03-18T10:00:00Z",
+    lastPlanSyncAt: "",
+    user: {
+      id: "u2",
+      name: "",
+      email: "current@example.com",
+      plan: "premium",
+      billingCycle: "monthly",
+      subscriptionType: "",
+      planInterval: "",
+      createdAt: "",
+      lastSeenAt: "",
+      planExpiresAt: "",
+      emailVerified: "",
+      role: "",
+      status: "",
+    },
+  });
   assert.equal(localStorage.snapshot()["cbt_session_v1"], undefined);
 
   clearSession();
@@ -68,8 +162,34 @@ test("profile storage helpers round-trip clean values", () => {
   const localStorage = createStorage();
   setupGlobals(sessionStorage, localStorage);
 
-  writeUsers([{ email: "user@example.com" }]);
-  assert.deepEqual(readUsers(), [{ email: "user@example.com" }]);
+  writeUsers([
+    {
+      email: "user@example.com",
+      plan: "free",
+      billingCycle: "monthly",
+      passwordHash: "hash",
+      passwordSalt: "salt",
+      passwordIterations: 1000,
+      passwordAlgo: "pbkdf2",
+    },
+  ]);
+  assert.deepEqual(readUsers(), [
+    {
+      id: "",
+      name: "",
+      email: "user@example.com",
+      plan: "free",
+      billingCycle: "monthly",
+      subscriptionType: "",
+      planInterval: "",
+      createdAt: "",
+      lastSeenAt: "",
+      planExpiresAt: "",
+      emailVerified: "",
+      role: "",
+      status: "",
+    },
+  ]);
 
   writePlanOverrides({ "user@example.com": "premium" });
   assert.deepEqual(readPlanOverrides(), { "user@example.com": "premium" });
