@@ -14,6 +14,10 @@ let topics = [];
 let examTemplates = [];
 let glBandWeights = {};
 
+/**
+ * Load optional JSON configuration without failing the whole data bootstrap.
+ * We use this for feature-gated assets like mock templates and GL weights so the app can still start when they are missing.
+ */
 async function loadOptionalJson(file, fallbackValue) {
   try {
     return await fetchJsonFile(file);
@@ -23,6 +27,10 @@ async function loadOptionalJson(file, fallbackValue) {
   }
 }
 
+/**
+ * Bootstrap the app's topic catalogue plus any enabled exam-template and GL-band metadata.
+ * This is the main data entry point used during startup, so it validates the loaded shapes before updating module state.
+ */
 export async function loadData() {
   try {
     debugLog("Loading topics...");
@@ -85,6 +93,10 @@ export function getGLBandWeights() {
   return glBandWeights;
 }
 
+/**
+ * Compute total question counts for each topic by loading every backing JSON file for that topic.
+ * Failed topic loads are isolated so one bad topic does not block the rest of the dashboard counts.
+ */
 export async function getTopicQuestionCounts(topics) {
   const counts = {};
   debugLog("Getting question counts for topics:", topics);
@@ -147,3 +159,4 @@ export async function getQuestionCountForSpecificSubcategory(topic, subcategory)
     return 0;
   }
 }
+

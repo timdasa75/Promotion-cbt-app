@@ -46,6 +46,10 @@ function getDefaultQuestionCount(totalQuestions, fallbackValue = DEFAULT_QUESTIO
   return Math.min(fallback, total);
 }
 
+/**
+ * Resolve the effective question count for a study session after applying defaults, caps, and the special 'all' sentinel.
+ * This lets setup screens accept loose input while quiz generation always receives a concrete safe count.
+ */
 export function resolveStudyQuestionCount(filters = {}, options = {}) {
   const totalQuestions = toPositiveInteger(options?.totalQuestions);
   const defaultQuestionCount = getDefaultQuestionCount(
@@ -89,6 +93,10 @@ export function formatSessionDurationLabel(totalSeconds = 0) {
   return parts.join(" ");
 }
 
+/**
+ * Normalize raw study-filter input into the canonical filter shape used across setup, persistence, and question selection.
+ * Centralizing this prevents the app from drifting into slightly different filter semantics in different screens.
+ */
 export function normalizeStudyFilters(filters = {}, options = {}) {
   const totalQuestions = toPositiveInteger(options?.totalQuestions);
   const defaultQuestionCount = getDefaultQuestionCount(
@@ -121,6 +129,10 @@ export function normalizeStudyFilters(filters = {}, options = {}) {
   };
 }
 
+/**
+ * Inspect a question pool and derive the filter options that should be shown to the user for that specific session.
+ * The result includes both the available choices and the normalized defaults that fit the current pool.
+ */
 export function summarizeStudyFilterOptions(questions = [], options = {}) {
   const items = Array.isArray(questions) ? questions : [];
   const totalQuestions = items.length;
@@ -181,6 +193,9 @@ export function summarizeStudyFilterOptions(questions = [], options = {}) {
   };
 }
 
+/**
+ * Apply the normalized study filters to a question list in the same order the setup UI promises them: difficulty, source document, then question-count truncation.
+ */
 export function applyStudyFilters(questions = [], filters = {}) {
   const items = Array.isArray(questions) ? [...questions] : [];
   const normalized = normalizeStudyFilters(filters, { totalQuestions: items.length });
@@ -233,3 +248,4 @@ export function formatTargetGlBandLabel(value) {
   if (normalized === "general") return "General";
   return normalized.replace(/^gl_/, "GL ").replace("_", "-");
 }
+
