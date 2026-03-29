@@ -16,12 +16,8 @@ function sanitizeStoredUser(user) {
     name: String(source.name || "").trim(),
     email: String(source.email || "").trim(),
     plan: String(source.plan || "free").trim() || "free",
-    billingCycle: String(source.billingCycle || source.subscriptionType || source.planInterval || "").trim(),
-    subscriptionType: String(source.subscriptionType || "").trim(),
-    planInterval: String(source.planInterval || "").trim(),
     createdAt: String(source.createdAt || "").trim(),
     lastSeenAt: String(source.lastSeenAt || "").trim(),
-    planExpiresAt: String(source.planExpiresAt || source.subscriptionExpiresAt || source.planExpiryAt || source.expiresAt || "").trim(),
     emailVerified:
       typeof source.emailVerified === "boolean"
         ? source.emailVerified

@@ -56,6 +56,7 @@ test("session helpers prefer session storage and migrate legacy data", () => {
         id: "u1",
         email: "legacy@example.com",
         plan: "free",
+        billingCycle: "monthly",
         createdAt: "2026-03-18T09:00:00Z",
         passwordHash: "hash",
         passwordSalt: "salt",
@@ -66,7 +67,7 @@ test("session helpers prefer session storage and migrate legacy data", () => {
   });
   setupGlobals(sessionStorage, localStorage);
 
-  assert.deepEqual(readSession(), {
+  const expectedSession = {
     provider: "local",
     accessToken: "",
     refreshToken: "",
@@ -78,41 +79,19 @@ test("session helpers prefer session storage and migrate legacy data", () => {
       name: "",
       email: "legacy@example.com",
       plan: "free",
-      billingCycle: "",
-      subscriptionType: "",
-      planInterval: "",
       createdAt: "2026-03-18T09:00:00Z",
       lastSeenAt: "",
-      planExpiresAt: "",
       emailVerified: "",
       role: "",
       status: "",
     },
-  });
-  assert.deepEqual(JSON.parse(sessionStorage.snapshot()["cbt_session_v1"]), {
-    provider: "local",
-    accessToken: "",
-    refreshToken: "",
-    expiresAt: 0,
-    createdAt: "2026-03-18T09:00:00Z",
-    lastPlanSyncAt: "",
-    user: {
-      id: "u1",
-      name: "",
-      email: "legacy@example.com",
-      plan: "free",
-      billingCycle: "",
-      subscriptionType: "",
-      planInterval: "",
-      createdAt: "2026-03-18T09:00:00Z",
-      lastSeenAt: "",
-      planExpiresAt: "",
-      emailVerified: "",
-      role: "",
-      status: "",
-    },
-  });
+  };
+
+  assert.deepEqual(readSession(), expectedSession);
+  assert.deepEqual(JSON.parse(sessionStorage.snapshot()["cbt_session_v1"]), expectedSession);
   assert.equal(localStorage.snapshot()["cbt_session_v1"], undefined);
+  assert.equal(sessionStorage.snapshot()["cbt_session_v1"].includes("billingCycle"), false);
+  assert.equal(sessionStorage.snapshot()["cbt_session_v1"].includes("passwordHash"), false);
 
   writeSession({
     provider: "local",
@@ -122,12 +101,14 @@ test("session helpers prefer session storage and migrate legacy data", () => {
       email: "current@example.com",
       plan: "premium",
       billingCycle: "monthly",
+      planInterval: "monthly",
       passwordHash: "hash-2",
       passwordSalt: "salt-2",
       passwordIterations: 2000,
       passwordAlgo: "pbkdf2",
     },
   });
+
   assert.deepEqual(readSession(), {
     provider: "local",
     accessToken: "",
@@ -140,17 +121,15 @@ test("session helpers prefer session storage and migrate legacy data", () => {
       name: "",
       email: "current@example.com",
       plan: "premium",
-      billingCycle: "monthly",
-      subscriptionType: "",
-      planInterval: "",
       createdAt: "",
       lastSeenAt: "",
-      planExpiresAt: "",
       emailVerified: "",
       role: "",
       status: "",
     },
   });
+  assert.equal(sessionStorage.snapshot()["cbt_session_v1"].includes("billingCycle"), false);
+  assert.equal(sessionStorage.snapshot()["cbt_session_v1"].includes("passwordHash"), false);
   assert.equal(localStorage.snapshot()["cbt_session_v1"], undefined);
 
   clearSession();
@@ -167,29 +146,31 @@ test("profile storage helpers round-trip clean values", () => {
       email: "user@example.com",
       plan: "free",
       billingCycle: "monthly",
+      subscriptionType: "monthly",
+      planInterval: "monthly",
+      planExpiresAt: "2026-12-01T00:00:00Z",
       passwordHash: "hash",
       passwordSalt: "salt",
       passwordIterations: 1000,
       passwordAlgo: "pbkdf2",
     },
   ]);
+
   assert.deepEqual(readUsers(), [
     {
       id: "",
       name: "",
       email: "user@example.com",
       plan: "free",
-      billingCycle: "monthly",
-      subscriptionType: "",
-      planInterval: "",
       createdAt: "",
       lastSeenAt: "",
-      planExpiresAt: "",
       emailVerified: "",
       role: "",
       status: "",
     },
   ]);
+  assert.equal(localStorage.snapshot()["cbt_users_v1"].includes("billingCycle"), false);
+  assert.equal(localStorage.snapshot()["cbt_users_v1"].includes("passwordHash"), false);
 
   writePlanOverrides({ "user@example.com": "premium" });
   assert.deepEqual(readPlanOverrides(), { "user@example.com": "premium" });

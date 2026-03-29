@@ -644,7 +644,6 @@ function sanitizeUserLocal(user) {
     name: user.name,
     email: user.email,
     plan: user.plan || "free",
-    billingCycle: String(user?.billingCycle || user?.subscriptionType || user?.planInterval || ""),
     createdAt: user.createdAt,
   };
 }
@@ -1124,41 +1123,4 @@ export async function updateCloudUserStatusById(profileId, status) {
 export async function deleteCloudUserById(profileId) {
   return deleteCloudUserByIdService(profileId, ensureAdminCloudSession);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
