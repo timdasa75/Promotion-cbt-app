@@ -22,6 +22,28 @@ export function normalizeUpgradeRequestStatus(value) {
   return "none";
 }
 
+export function normalizeFeedbackCategory(value) {
+  const normalized = String(value || "").trim().toLowerCase();
+  if (normalized === "bug") return "bug";
+  if (normalized === "suggestion") return "suggestion";
+  if (normalized === "question_issue") return "question_issue";
+  return "other";
+}
+
+export function normalizeFeedbackStatus(value) {
+  const normalized = String(value || "").trim().toLowerCase();
+  if (normalized === "in_review") return "in_review";
+  if (normalized === "resolved") return "resolved";
+  if (normalized === "dismissed") return "dismissed";
+  return "new";
+}
+
+export function normalizeFeedbackSource(value) {
+  const normalized = String(value || "").trim().toLowerCase();
+  if (normalized === "quiz") return "quiz";
+  if (normalized === "results") return "results";
+  return "help";
+}
 export function normalizeEmailVerificationState(value, fallback = null) {
   if (typeof value === "boolean") return value;
   const normalized = String(value || "").trim().toLowerCase();
@@ -75,3 +97,4 @@ export function resolveCooldownMs(configValue, fallbackMs) {
   if (!Number.isFinite(value) || value <= 0) return fallbackMs;
   return Math.max(60 * 1000, Math.min(value, 24 * 60 * 60 * 1000));
 }
+

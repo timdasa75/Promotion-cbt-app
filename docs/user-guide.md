@@ -2,7 +2,7 @@
 
 ## Overview
 
-Promotion CBT is a browser-based exam preparation app for directorate-level civil service promotion exams. It supports guided topic study, timed sessions, mock exams, and performance tracking.
+Promotion CBT is a browser-based exam preparation app for directorate-level civil service promotion exams. It supports guided topic study, timed sessions, mock exams, performance tracking, and in-app feedback capture.
 
 ## Feature Summary
 
@@ -13,7 +13,8 @@ Promotion CBT is a browser-based exam preparation app for directorate-level civi
 - Progress tracking and recommendation cards
 - Result analytics with traffic-light performance cues
 - Keyboard-driven quiz navigation
-- Admin operations for user management and plan controls
+- In-app feedback from Help, Quiz, and Results screens
+- Admin operations for user management, plan controls, and feedback triage
 
 ## Getting Started
 
@@ -101,6 +102,31 @@ For mock sessions, results include:
 - Coverage per source topic
 - Traffic-light grading per topic card
 
+## Feedback
+
+### Where to send feedback
+
+- `Help and About` -> `Send Feedback` for general product comments
+- Quiz screen -> `Report This Question` for question, answer, or explanation issues
+- Results screen -> `Share Session Feedback` for session-level comments
+
+### What gets captured
+
+Depending on where you submit from, the app can attach:
+
+- topic name
+- question id
+- quiz/session id
+- mode (`Practice`, `Exam`, `Review`)
+
+### Access requirement
+
+Feedback submission is available only for signed-in Cloud accounts.
+
+If you are using local/demo mode:
+- Help screen will show a note that feedback needs Cloud sign-in
+- Quiz and Results feedback buttons stay hidden
+
 ## Account and Plan Behavior
 
 ### Free Plan
@@ -124,6 +150,7 @@ Admin panel supports:
 - Plan overrides by email
 - User directory with filters and search
 - User count display (`Users: filtered/total`)
+- Feedback inbox with search, filters, and triage statuses
 
 User directory columns:
 
@@ -134,18 +161,27 @@ User directory columns:
 - Created
 - Last Seen
 
+Feedback triage statuses:
+
+- `New`: not reviewed yet
+- `In Review`: admin is investigating
+- `Resolved`: action taken or issue closed
+- `Dismissed`: no action required
+
 ## Authentication Modes
 
 ### Local Mode
 
 - Account/session stored in browser localStorage
 - Best for single-device testing
+- Feedback submission is not available
 
 ### Cloud Mode (Firebase)
 
 - Multi-device login
 - Shared account access across devices
 - Optional plan profile sync from Firestore
+- Feedback submission and admin feedback inbox enabled
 
 Setup reference:
 - `docs/firebase-auth-setup.md`
@@ -169,3 +205,9 @@ Setup reference:
 1. Confirm Premium/Admin account
 2. Clear search and use `All` filter
 3. Hard refresh to clear cached assets
+
+### Feedback button not available
+
+1. Confirm you are signed in with a Cloud account
+2. If using local/demo mode, switch to Cloud auth
+3. On Help screen, read the feedback note for the current access reason

@@ -1,13 +1,16 @@
 import { firestoreRequest } from "./authFirebaseTransport.js";
 import {
+  buildFirestoreFeedbackFields,
   buildFirestoreProfileFields,
   buildFirestoreUpgradeRequestFields,
   buildUpdateMask,
+  parseFirestoreFeedbackDocument,
   parseFirestoreProfileDocument,
 } from "./authFirestoreModels.js";
 import { normalizeEmail } from "./authNormalization.js";
 
 const CLOUD_PROGRESS_COLLECTION = "progress";
+const FEEDBACK_COLLECTION = "feedbackSubmissions";
 
 export async function getCloudProgressDocument(idToken, userId, requester = firestoreRequest) {
   if (!idToken || !userId) return null;
@@ -99,6 +102,80 @@ export async function listCloudProfiles(idToken, requester = firestoreRequest) {
   });
 }
 
+export async function listCloudFeedbackSubmissions(idToken, limit = 200, requester = firestoreRequest) {
+  const safeLimit = Math.max(1, Math.min(500, Number(limit) || 200));
+  const response = await requester("documents:runQuery", {
+    method: "POST",
+    idToken,
+    body: {
+      structuredQuery: {
+        from: [{ collectionId: FEEDBACK_COLLECTION }],
+        orderBy: [{ field: { fieldPath: "createdAt" }, direction: "DESCENDING" }],
+        limit: safeLimit,
+      },
+    },
+  });
+
+  return (Array.isArray(response) ? response : [])
+    .map((entry) => parseFirestoreFeedbackDocument(entry?.document))
+    .filter(Boolean);
+}
+
+export async function upsertCloudFeedbackSubmission(idToken, feedback, requester = firestoreRequest) {
+  const feedbackId = String(feedback?.feedbackId || feedback?.id || "").trim();
+  if (!feedbackId) {
+    throw new Error("Feedback id is required.");
+  }
+
+  const query = buildUpdateMask([
+    "feedbackId",
+    "userId",
+    "email",
+    "category",
+    "status",
+    "sourceScreen",
+    "message",
+    "createdAt",
+    "updatedAt",
+    "reviewedAt",
+    "reviewedBy",
+    "topicId",
+    "topicName",
+    "questionId",
+    "quizAttemptId",
+    "sessionMode",
+  ]);
+
+  await requester(`documents/${FEEDBACK_COLLECTION}/${encodeURIComponent(feedbackId)}?${query}`, {
+    method: "PATCH",
+    idToken,
+    body: {
+      fields: buildFirestoreFeedbackFields(feedback),
+    },
+  });
+}
+
+export async function patchCloudFeedbackSubmissionFields(idToken, feedbackId, fields, requester = firestoreRequest) {
+  const normalizedFeedbackId = String(feedbackId || "").trim();
+  if (!normalizedFeedbackId) {
+    throw new Error("Feedback id is required.");
+  }
+
+  const nextFields = fields && typeof fields === "object" ? fields : {};
+  const fieldPaths = Object.keys(nextFields).filter(Boolean);
+  if (!fieldPaths.length) {
+    return;
+  }
+
+  const query = buildUpdateMask(fieldPaths);
+  await requester(`documents/${FEEDBACK_COLLECTION}/${encodeURIComponent(normalizedFeedbackId)}?${query}`, {
+    method: "PATCH",
+    idToken,
+    body: {
+      fields: nextFields,
+    },
+  });
+}
 export async function upsertCloudProfile(idToken, profile, requester = firestoreRequest) {
   const profileId = String(profile?.id || "").trim();
   if (!profileId) throw new Error("Profile id is required.");
@@ -174,3 +251,5 @@ export async function upsertCloudUpgradeRequestRecord(idToken, request, requeste
     },
   });
 }
+
+

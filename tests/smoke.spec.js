@@ -1689,3 +1689,21 @@ test("admin panel uses Worker admin bridge for live directory and account-state 
 
 
 
+
+test("local mode shows cloud-sign-in guidance for feedback and hides quiz feedback action", async ({ page }) => {
+  await registerAndEnter(page, "feedback-local@example.com");
+  await page.click("#headerHelpBtn");
+  await expect(page.locator("#helpScreen")).toBeVisible();
+  await expect(page.locator("#openHelpFeedbackBtn")).toBeDisabled();
+  await expect(page.locator("#helpFeedbackNote")).toContainText("Cloud");
+
+  await page.getByRole("button", { name: "Return to Dashboard" }).first().click();
+  await expect(page.locator("#topicSelectionScreen")).toBeVisible();
+  await page.locator("#topicList .topic-card:not(.hidden):not(.locked)").first().click();
+  await expect(page.locator("#categorySelectionScreen")).toBeVisible();
+  await page.click("#selectAllCategoryBtn");
+  await expect(page.locator("#modeSelectionScreen")).toBeVisible();
+  await page.click("#practiceModeCard");
+  await expect(page.locator("#quizScreen")).toBeVisible();
+  await expect(page.locator("#openQuizFeedbackBtn")).toBeHidden();
+});

@@ -8,6 +8,7 @@ This guide covers how administrators operate Promotion CBT safely and effectivel
 - review upgrade requests
 - apply plan overrides
 - inspect user directory and counts
+- triage user feedback
 - troubleshoot common admin issues
 
 ## Admin Access
@@ -82,19 +83,53 @@ Directory columns:
 - Created
 - Last Seen
 
+## 4) Feedback Inbox
+
+Purpose:
+- review product feedback and question reports submitted by cloud-signed-in users
+
+Includes:
+- feedback count label (`Feedback: filtered/total`)
+- search by email, message, topic, question id, or session id
+- filters for `Status`, `Category`, and `Source`
+- refresh button
+- full feedback cards with message and captured context
+
+Feedback fields you will see:
+- user email
+- category badge
+- status badge
+- source (`Help`, `Quiz`, `Results`)
+- created time and review time
+- message body
+- optional context such as topic, question id, session id, and mode
+
+Feedback statuses:
+- `New`: waiting for first review
+- `In Review`: actively being checked
+- `Resolved`: issue handled or accepted
+- `Dismissed`: closed without further action
+
+Admin actions:
+- `Mark In Review`
+- `Resolve`
+- `Dismiss`
+
+Every feedback status change is also written into the admin operation history.
+
 ## Data Source Behavior
 
 ## Cloud mode (Firebase configured)
 
-Admin directory attempts to read from Firestore `profiles`.
+Admin directory and feedback inbox read from Firestore.
 
-Expected source label:
-- `Source: Cloud profiles`
+Expected source behavior:
+- users: `Source: Cloud profiles`
+- feedback: live `feedbackSubmissions` collection query
 
-If cloud access/policy fails:
-- app falls back to local directory
-- if a previous cloud read succeeded, app shows cached cloud snapshot merged with local directory
-- shows warning notice
+If cloud access or rules fail:
+- user directory falls back to local data or cached cloud snapshot when available
+- feedback inbox shows an error notice until Firestore access is restored
 
 ## Local mode
 
@@ -103,14 +138,16 @@ Directory reads browser-local user/session data.
 Expected source label:
 - `Source: Local fallback`
 
+Feedback inbox is not available in local mode because feedback submission is cloud-only.
+
 ## Recommended Operational Workflow
 
 1. Open `Admin Panel`.
 2. Review pending upgrade requests first.
-3. Approve/reject based on evidence.
-4. Confirm user appears with intended plan in directory.
-5. Use search/filter to verify account state.
-6. Refresh directory before closing admin session.
+3. Review new feedback items and move active ones to `In Review`.
+4. Resolve or dismiss feedback after checking the reported issue.
+5. Confirm the user directory still reflects the intended plan and status.
+6. Refresh before closing the admin session.
 
 ## Troubleshooting
 
@@ -123,15 +160,22 @@ Expected source label:
 ## Cloud source unavailable
 
 - check Firebase API key/project id config
-- confirm `profiles` collection exists
+- confirm `profiles`, `upgradeRequests`, and `feedbackSubmissions` collections exist
 - confirm Firestore rules allow expected reads for admin flow
-- use local fallback until cloud policy is corrected
+- use local fallback for user directory until cloud policy is corrected
 
 ## User count seems incorrect
 
 - counts are shown as `filtered/total`
 - clear search text and set status to `All` for full total
 - click `Refresh` to pull latest directory data
+
+## Feedback inbox looks empty
+
+- confirm users are signed in with Cloud accounts before sending feedback
+- clear feedback filters and search text
+- click `Refresh` to query Firestore again
+- confirm Firestore rules permit admin reads on `feedbackSubmissions`
 
 ## Plan change not reflected
 
@@ -144,6 +188,7 @@ Expected source label:
 - never place privileged server-only Firebase credentials in frontend code
 - keep admin email list limited to trusted operators
 - review and prune overrides periodically
+- review dismissed/resolved feedback periodically so the inbox stays actionable
 
 ## Related Docs
 

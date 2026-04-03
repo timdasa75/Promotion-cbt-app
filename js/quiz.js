@@ -340,6 +340,7 @@ export const SPACED_PRACTICE_TOPIC_ID = "spaced_practice";
 
 let reviewContext = "study"; // "study" (pre-quiz) or "session" (post-quiz)
 let lastCompletedSession = null;
+let latestResultsFeedbackContext = null;
 const MOCK_EXAM_TOPIC_ID = "mock_exam";
 
 function clampIndex(value, length) {
@@ -555,6 +556,38 @@ function getDisplayTopicName(topic) {
     return baseName + " - " + selectedTemplateName;
   }
   return baseName;
+}
+
+function getFeedbackTopicContext(question = null) {
+  const sourceTopicId = String(question?.sourceTopicId || "").trim();
+  const sourceTopicName = String(question?.sourceTopicName || "").trim();
+  return {
+    topicId: sourceTopicId || String(currentTopic?.id || "").trim(),
+    topicName: sourceTopicName || getDisplayTopicName(currentTopic),
+  };
+}
+
+export function getCurrentQuestionFeedbackContext() {
+  const question = Array.isArray(quizState.allQuestions)
+    ? quizState.allQuestions[quizState.currentQuestionIndex]
+    : null;
+  if (!question) return null;
+
+  const topicContext = getFeedbackTopicContext(question);
+  return {
+    sourceScreen: "quiz",
+    defaultCategory: "question_issue",
+    topicId: topicContext.topicId,
+    topicName: topicContext.topicName,
+    questionId: String(question?.id || "").trim(),
+    quizAttemptId: "",
+    sessionMode: String(currentMode || "").trim().toLowerCase(),
+    questionPreview: String(question?.question || "").trim(),
+  };
+}
+
+export function getLatestResultsFeedbackContext() {
+  return latestResultsFeedbackContext ? { ...latestResultsFeedbackContext } : null;
 }
 
 function getMockExamTemplate(topic) {
@@ -2938,6 +2971,17 @@ function showResults() {
           difficultyBreakdown,
           sourceTopicBreakdown: mockTopicBreakdown,
         });
+  const feedbackTopicContext = getFeedbackTopicContext();
+  latestResultsFeedbackContext = {
+    sourceScreen: "results",
+    defaultCategory: "",
+    topicId: feedbackTopicContext.topicId,
+    topicName: feedbackTopicContext.topicName,
+    questionId: "",
+    quizAttemptId: String(recordedProgress?.attempt?.attemptId || "").trim(),
+    sessionMode: String(currentMode || "").trim().toLowerCase(),
+    scoreSummary: `${scorePercentage}% score - ${correct}/${quizState.allQuestions.length} correct - ${timeSpentLabel}`,
+  };
   const progressSummary = recordedProgress.summary;
   const progressInsights = calculateProgressInsights(progressSummary, currentTopic?.id);
   const strongestTopicName = escapeHtml(
@@ -3961,6 +4005,7 @@ function initializeQuiz(options = {}) {
   } = options;
 
   reviewContext = context;
+  latestResultsFeedbackContext = null;
   if (!keepOriginalQuestions) {
     quizState.originalQuestions = [...quizState.allQuestions];
   }
