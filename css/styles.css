@@ -789,6 +789,13 @@ h3,
     width: fit-content;
 }
 
+.stat-card .stat-card-note {
+    grid-column: 1 / -1;
+    font-size: 0.78rem;
+    line-height: 1.45;
+    color: var(--ink-600);
+}
+
 .badge-streak {
     display: inline-block;
     margin-top: 8px;
@@ -4083,6 +4090,14 @@ select:focus-visible,
 #topicSelectionScreen .stat-card h3 {
     font-size: clamp(1.7rem, 2.8vw, 2.1rem);
     line-height: 1;
+}
+
+#topicSelectionScreen .stat-card .stat-card-note {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--ink-700);
 }
 
 #topicSelectionScreen .stat-card .badge-streak {

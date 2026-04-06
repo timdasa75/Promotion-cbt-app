@@ -2476,6 +2476,7 @@ function refreshDashboardInsights() {
   const totalAttemptsStat = document.getElementById("totalAttemptsStat");
   const averageScoreStat = document.getElementById("averageScoreStat");
   const streakStat = document.getElementById("streakStat");
+  const streakPurposeText = document.getElementById("streakPurposeText");
   const streakStatusBadge = document.getElementById("streakStatusBadge");
   const continueTopicTitle = document.getElementById("continueTopicTitle");
   const continueTopicMeta = document.getElementById("continueTopicMeta");
@@ -2498,13 +2499,16 @@ function refreshDashboardInsights() {
   if (streakStat) {
     streakStat.textContent = `${insights.streakDays} day${insights.streakDays === 1 ? "" : "s"}`;
   }
+  if (streakPurposeText) {
+    streakPurposeText.textContent = "Consecutive days with at least one completed session.";
+  }
   if (streakStatusBadge) {
     streakStatusBadge.textContent =
       insights.streakDays >= 5
-        ? "On Track"
+        ? "Strong study rhythm"
         : insights.streakDays > 0
-          ? "Building momentum"
-          : "Start today";
+          ? "Study today to keep it going"
+          : "Take one quiz today to begin";
   }
 
   if (continueTopicTitle && continueTopicMeta) {
