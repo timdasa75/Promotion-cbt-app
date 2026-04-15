@@ -22,6 +22,7 @@ import { sendVerificationViaAdminApi } from "./authAdminApi.js";
 import { enrichDirectoryVerificationStates, ensureAdminCloudSession as ensureAdminCloudSessionHelper, getConfiguredAdminEmails as getConfiguredAdminEmailsHelper, isCurrentUserAdmin as isCurrentUserAdminHelper } from "./authAdminDirectory.js";
 import { deleteCloudUserById as deleteCloudUserByIdService, getAdminOperationHistory as getAdminOperationHistoryService, getAdminUserDirectory as getAdminUserDirectoryService, logAdminOperationToCloud as logAdminOperationToCloudService, updateCloudUserStatusById as updateCloudUserStatusByIdService } from "./authAdminService.js";
 import { buildUpgradeRequestRecordFromProfile as buildUpgradeRequestRecordFromProfileService, ensureCloudProfileInSession as ensureCloudProfileInSessionService, getCurrentUserUpgradeRequest as getCurrentUserUpgradeRequestService, setUpgradeRequestStatus as setUpgradeRequestStatusService, submitUpgradeRequest as submitUpgradeRequestService } from "./authUpgradeService.js";
+import { FEEDBACK_MESSAGE_MAX_LENGTH, getAdminFeedbackSubmissions as getAdminFeedbackSubmissionsService, getFeedbackAccessState as getFeedbackAccessStateService, submitFeedbackSubmission as submitFeedbackSubmissionService, updateFeedbackSubmissionStatus as updateFeedbackSubmissionStatusService } from "./authFeedbackService.js";
 import { loginUserCloud as loginUserCloudService, logoutCloud as logoutCloudService, refreshCloudUserInSession as refreshCloudUserInSessionService, registerUserCloud as registerUserCloudService } from "./authCloudLifecycle.js";
 import { buildIdentityToolkitAdminHeaders, getFirebaseConfig, getPasswordResetCooldownMs, getVerificationResendCooldownMs, isCloudAuthEnabled, isCloudAuthMisconfigured, isCloudAuthRequired, isCloudProgressSyncEnabled, isLocalDemoAuthEnabled } from "./authRuntime.js";
 
@@ -818,6 +819,55 @@ export async function getCurrentUserUpgradeRequest() {
   );
 }
 
+export { FEEDBACK_MESSAGE_MAX_LENGTH };
+
+export function getFeedbackAccessState() {
+  return getFeedbackAccessStateService({
+    currentUser: getCurrentUser(),
+    session: readSession(),
+    cloudAuthEnabled: isCloudAuthEnabled(),
+  });
+}
+
+export async function submitFeedbackSubmission(input = {}) {
+  return submitFeedbackSubmissionService(
+    input,
+    {
+      cloudAuthEnabled: isCloudAuthEnabled(),
+      currentUser: getCurrentUser(),
+      session: readSession(),
+      refreshSession: ensureCloudSessionActive,
+    },
+  );
+}
+
+export async function getAdminFeedbackSubmissions(limit = 200) {
+  return getAdminFeedbackSubmissionsService(
+    {
+      cloudAuthEnabled: isCloudAuthEnabled(),
+      currentUserIsAdmin: isCurrentUserAdmin(),
+      session: readSession(),
+      refreshSession: () => ensureAdminCloudSession(),
+    },
+    {
+      limit,
+    },
+  );
+}
+
+export async function updateFeedbackSubmissionStatus(feedbackId, status) {
+  return updateFeedbackSubmissionStatusService(
+    feedbackId,
+    status,
+    {
+      cloudAuthEnabled: isCloudAuthEnabled(),
+      currentUserIsAdmin: isCurrentUserAdmin(),
+      session: readSession(),
+      refreshSession: () => ensureAdminCloudSession(),
+    },
+  );
+}
+
 export function getCurrentUser() {
   const session = readSession();
   if (!session) return null;
@@ -1123,4 +1173,7 @@ export async function updateCloudUserStatusById(profileId, status) {
 export async function deleteCloudUserById(profileId) {
   return deleteCloudUserByIdService(profileId, ensureAdminCloudSession);
 }
+
+
+
 

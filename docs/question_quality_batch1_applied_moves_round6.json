@@ -1,0 +1,24 @@
+{
+  "applied": [
+    {
+      "old_id": "PSIR_073",
+      "new_id": "csh_ap_127",
+      "source_topic": "general_current_affairs",
+      "source_subcategory": "ca_public_service_reforms",
+      "target_topic": "civil_service_admin",
+      "target_subcategory": "csh_administrative_procedures",
+      "target_file": "data/civil_service_ethics.json",
+      "question": "What action is required before any officer can withdraw their public record, such as personal files"
+    },
+    {
+      "old_id": "policy_psr_031",
+      "new_id": "csh_ap_128",
+      "source_topic": "policy_analysis",
+      "source_subcategory": "pol_implementation_evaluation",
+      "target_topic": "civil_service_admin",
+      "target_subcategory": "csh_administrative_procedures",
+      "target_file": "data/civil_service_ethics.json",
+      "question": "In the public service context, which option correctly addresses: Which course of action should a registry take when it receives classified material addressed to another ministry?"
+    }
+  ]
+}

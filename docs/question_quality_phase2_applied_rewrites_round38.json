@@ -1,0 +1,77 @@
+{
+  "round": 38,
+  "applied": [
+    {
+      "question_id": "csh_principle_052",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_principles_ethics",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "which option best describes prohibited under the Principle of Integrity?",
+      "new_question": "Which of the following is prohibited under the Principle of Integrity?"
+    },
+    {
+      "question_id": "csh_pt_003",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_performance_training",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "Which **PSR** rule defines the standard incremental date for an officer appointed or promoted to a post in the Federal Public Service",
+      "new_question": "Which PSR rule defines the standard incremental date for an officer appointed or promoted in the Federal Public Service?"
+    },
+    {
+      "question_id": "csh_pt_005",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_performance_training",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "Which category of training (**PSR** 070105) is defined as a long-term, fully sponsored postgraduate study deemed **crucial** and beneficial to the officer and the **MDA** mandate",
+      "new_question": "Under PSR 070105, which category of training is a long-term, fully sponsored postgraduate study considered crucial to the officer and the MDA's mandate?"
+    },
+    {
+      "question_id": "csh_pt_062",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_performance_training",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "According to established rules, which option aligns with the meaning of the consequence for a public officer found to be a member of a secret society?",
+      "new_question": "What is the consequence for a public officer found to be a member of a secret society?"
+    },
+    {
+      "question_id": "csh_pt_064",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_performance_training",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "Within government administration, select the statement that correctly defines the consequence if an officer negligently disregards the provisions of Regulation 719 when accepting a cheque that is subsequently dishonored?",
+      "new_question": "If an officer negligently disregards Regulation 719 when accepting a cheque that is later dishonoured, what is the consequence?"
+    },
+    {
+      "question_id": "eth_code_conduct_gen_065",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "eth_code_conduct",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "According to established rules, select the statement that correctly defines prohibited under the Principle of Integrity?",
+      "new_question": "Which of the following is prohibited under the Principle of Integrity?"
+    },
+    {
+      "question_id": "eth_code_conduct_gen_068",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "eth_code_conduct",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "In official practice, which option aligns with the meaning of the main accountability of the Political Head of a Ministry regarding its activities?",
+      "new_question": "What is the main accountability of the Political Head of a Ministry regarding its activities?"
+    },
+    {
+      "question_id": "ethics_088",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "eth_values_integrity",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "In official practice, which option aligns with the meaning of the quota reserved for recruitment of persons with disabilities?",
+      "new_question": "What percentage of recruitment is reserved for persons with disabilities under the rule cited in this item?"
+    },
+    {
+      "question_id": "ethics_094",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "eth_values_integrity",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "In official practice, which option aligns with the meaning of the duty of Sub-Accounting Officers regarding receipt and licence books?",
+      "new_question": "What is the duty of Sub-Accounting Officers regarding receipt and licence books?"
+    }
+  ]
+}

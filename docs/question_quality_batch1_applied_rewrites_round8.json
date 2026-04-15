@@ -1,0 +1,116 @@
+{
+  "applied": [
+    {
+      "question_id": "csh_principle_067",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_principles_ethics",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "select the statement that correctly defines the accountability of the administration regarding participation, consultation, and mediation?",
+      "new_question": "What is the accountability of the administration regarding participation, consultation, and mediation?"
+    },
+    {
+      "question_id": "csh_duty_055",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_duties_responsibilities",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "In the public service context, choose the best answer for: The Administrative and Professional Officers' duties are derived from what?",
+      "new_question": "From what are the duties of Administrative and Professional Officers derived?"
+    },
+    {
+      "question_id": "csh_duty_056",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_duties_responsibilities",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "According to established rules, select the option that best answers: How should the deadlines for service delivery be determined?",
+      "new_question": "How should deadlines for service delivery be set?"
+    },
+    {
+      "question_id": "csh_duty_069",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_duties_responsibilities",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "choose the best answer for: The Manpower Development Office (MDO) has the duty for coordinating what?",
+      "new_question": "What does the Manpower Development Office (MDO) coordinate on a service-wide basis?"
+    },
+    {
+      "question_id": "csh_disc_068",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_discipline_conduct",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "Within government administration, choose the best answer for: How should a Civil Servant handle a file that has been on their desk for a long time without any action?",
+      "new_question": "What should a Civil Servant do if a file has remained on their desk for a long time without action?"
+    },
+    {
+      "question_id": "csh_ap_072",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_administrative_procedures",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "choose the best answer for: Which characteristic of good governance means that decisions are taken and enforced in a manner that follows rules and regulations, and information is freely available?",
+      "new_question": "Which characteristic of good governance means that decisions are taken and enforced according to rules and regulations, while information is openly available?"
+    },
+    {
+      "question_id": "csh_sdg_063",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_service_delivery_grievance",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "which option correctly addresses: In official practice, choose the best answer for: If the chairman has follow-up actions to take before a meeting, what must he do?",
+      "new_question": "If a chairman has follow-up actions to complete before a meeting, what should be done?"
+    },
+    {
+      "question_id": "ethics_105",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "eth_values_integrity",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "Within government administration, which option correctly addresses: According to established rules, select the option that best answers: The Manpower Development Office (MDO) has the accountability for coordinating what?",
+      "new_question": "What does the Manpower Development Office (MDO) coordinate in the Civil Service?"
+    },
+    {
+      "question_id": "eth_general_gen_088",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "eth_general",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "According to established rules, select the option that best answers: The handbook mentions that all files should be classified into what?",
+      "new_question": "Into which two classes should official files generally be grouped?"
+    },
+    {
+      "question_id": "eth_general_gen_094",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "eth_general",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "In official practice, which option correctly addresses: A good minute should be what?",
+      "new_question": "What should characterize a good minute of a meeting?"
+    },
+    {
+      "question_id": "clg_constitutional_governance_gen_078",
+      "source_topic": "constitutional_law",
+      "source_subcategory": "clg_constitutional_governance",
+      "source_file": "data/constitutional_foi.json",
+      "old_question": "select the option that best answers: According to established rules, select the option that best answers: The Udoji Public Service Review Commission in 1972 was primarily focused on what?",
+      "new_question": "What was the primary focus of the Udoji Public Service Review Commission of 1972?"
+    },
+    {
+      "question_id": "clg_general_competency_gen_069",
+      "source_topic": "constitutional_law",
+      "source_subcategory": "clg_general_competency",
+      "source_file": "data/constitutional_foi.json",
+      "old_question": "In official practice, which option correctly addresses: A key part of the Principle of Motivation is that employees must be provided with what?",
+      "new_question": "What must employees be provided with under the principle of motivation?"
+    },
+    {
+      "question_id": "FOI_AO_051",
+      "source_topic": "constitutional_law",
+      "source_subcategory": "foi_access_obligations",
+      "source_file": "data/constitutional_foi.json",
+      "old_question": "In the public service context, select the statement that correctly defines typically contained in a \"Personal File\"?",
+      "new_question": "What is typically contained in a personal file?"
+    },
+    {
+      "question_id": "FOI_AO_055",
+      "source_topic": "constitutional_law",
+      "source_subcategory": "foi_access_obligations",
+      "source_file": "data/constitutional_foi.json",
+      "old_question": "According to established rules, select the option that best answers: A key objective of HRM is to enhance the capabilities of employees and guarantee they possess the requisite level of competence, knowledge, skill, and attitude to do what?",
+      "new_question": "What is a key objective of human resource management in the public service?"
+    }
+  ]
+}

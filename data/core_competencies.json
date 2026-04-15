@@ -105,7 +105,7 @@
             "95."
           ],
           "correct": 2,
-          "explanation": "25% of 120 = 30. Staff at work = 120 - 30 = 90.",
+          "explanation": "25% of 120 is 30, so 120 minus 30 leaves 90 staff at work.",
           "difficulty": "hard",
           "topic": "Competency Framework",
           "keywords": [
@@ -273,7 +273,7 @@
             "₦210,000."
           ],
           "correct": 2,
-          "explanation": "80% × ₦250,000 = ₦200,000.",
+          "explanation": "80% of ₦250,000 is ₦200,000, so that is the monthly pension shown by the correct option.",
           "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
@@ -316,7 +316,7 @@
             "250."
           ],
           "correct": 2,
-          "explanation": "⅔ × 360 = 240.",
+          "explanation": "Two-thirds of 360 is 240, so the correct answer is the option with that value.",
           "difficulty": "hard",
           "topic": "Competency Framework",
           "keywords": [
@@ -357,7 +357,7 @@
             "₦12,000."
           ],
           "correct": 2,
-          "explanation": "₦120,000 ÷ 12 = ₦10,000.",
+          "explanation": "₦120,000 spread across 12 months gives ₦10,000 per month.",
           "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
@@ -481,7 +481,7 @@
             "₦9,500,000."
           ],
           "correct": 2,
-          "explanation": "⅗ × ₦15,000,000 = ₦9,000,000.",
+          "explanation": "Three-fifths of ₦15,000,000 is ₦9,000,000, so that is the amount that goes to salaries.",
           "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
@@ -815,7 +815,7 @@
             "₦155,000."
           ],
           "correct": 2,
-          "explanation": "200 × 750 = ₦150,000.",
+          "explanation": "Multiply 200 by 750 to get 150,000, so $200 at ₦750 to $1 is ₦150,000.",
           "difficulty": "easy",
           "topic": "Competency Framework",
           "keywords": [
@@ -855,7 +855,7 @@
             "₦1,200,000."
           ],
           "correct": 0,
-          "explanation": "Annual = ₦120,000 × 12 = ₦1,440,000.",
+          "explanation": "A monthly salary of ₦120,000 becomes ₦1,440,000 in a full year.",
           "difficulty": "hard",
           "topic": "Competency Framework",
           "keywords": [
@@ -1230,7 +1230,7 @@
             "₦200,000."
           ],
           "correct": 1,
-          "explanation": "5% = 0.05 × 2,000,000 = ₦100,000.",
+          "explanation": "Five percent means 5 per 100, so 5% of ₦2,000,000 is ₦100,000.",
           "difficulty": "easy",
           "topic": "Competency Framework",
           "keywords": [
@@ -1429,7 +1429,7 @@
             "₦150,000."
           ],
           "correct": 1,
-          "explanation": "Installment = ₦600,000 ÷ 6 = ₦100,000 per month.",
+          "explanation": "₦600,000 divided into 6 equal installments gives ₦100,000 per installment.",
           "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
@@ -1594,7 +1594,7 @@
             "50%."
           ],
           "correct": 2,
-          "explanation": "Probability = 2 ÷ 5 = 0.4 = 40%.",
+          "explanation": "2 out of 5 items are defective, so the probability is 2/5, which is 40%.",
           "difficulty": "easy",
           "topic": "Competency Framework",
           "keywords": [
@@ -1756,7 +1756,7 @@
             "1/8."
           ],
           "correct": 0,
-          "explanation": "Correct option: A (1/5.).",
+          "explanation": "The total cost is ₦1,200,000 and the smallest project is ₦240,000, which is one-fifth of the total.",
           "difficulty": "hard",
           "topic": "Competency Framework",
           "keywords": [
@@ -1798,7 +1798,7 @@
             "22."
           ],
           "correct": 1,
-          "explanation": "15 appears most frequently (three times) → mode = 15.",
+          "explanation": "The mode is the value that appears most often, and 15 occurs more than any other number in the list.",
           "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
@@ -1838,7 +1838,7 @@
             "87.5."
           ],
           "correct": 0,
-          "explanation": "Correct option: A (86.0.).",
+          "explanation": "Forty percent of 80 is 32 and sixty percent of 90 is 54, so the weighted score is 86.",
           "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
@@ -2122,7 +2122,7 @@
             "250."
           ],
           "correct": 2,
-          "explanation": "X + 3x = 4x = 800 ⇒ x = 800 ÷ 4 = 200.",
+          "explanation": "x + 3x = 800 means 4x = 800, so x = 200.",
           "difficulty": "easy",
           "topic": "Competency Framework",
           "keywords": [
@@ -2200,7 +2200,7 @@
             "₦320,000."
           ],
           "correct": 1,
-          "explanation": "Basic = 90,000 ÷ 0.30 = ₦300,000.",
+          "explanation": "If ₦90,000 is 30% of the basic salary, then the full salary is ₦300,000.",
           "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
@@ -2242,7 +2242,7 @@
             "₦160,000."
           ],
           "correct": 0,
-          "explanation": "Each = 840,000 ÷ 7 = ₦120,000.",
+          "explanation": "₦840,000 shared equally by 7 officers gives ₦120,000 each.",
           "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
@@ -2283,7 +2283,7 @@
             "180 litres."
           ],
           "correct": 0,
-          "explanation": "9 × 22 = 198 litres.",
+          "explanation": "9 litres per day for 22 working days gives 198 litres in total.",
           "difficulty": "easy",
           "topic": "Competency Framework",
           "keywords": [
@@ -2359,7 +2359,7 @@
             "₦40,000."
           ],
           "correct": 0,
-          "explanation": "Per participant = 450,000 ÷ 15 = ₦30,000.",
+          "explanation": "₦450,000 divided by 15 participants gives ₦30,000 per participant.",
           "difficulty": "hard",
           "topic": "Competency Framework",
           "keywords": [
@@ -2401,7 +2401,7 @@
             "15%."
           ],
           "correct": 1,
-          "explanation": "Increase = 60. % = (60 ÷ 240)×100 = 25%.",
+          "explanation": "The increase is 60 over a base of 240, so the percentage increase is 25%.",
           "difficulty": "easy",
           "topic": "Competency Framework",
           "keywords": [
@@ -2440,7 +2440,7 @@
             "₦650."
           ],
           "correct": 2,
-          "explanation": "Unit cost = 72,000 ÷ 120 = ₦600.",
+          "explanation": "₦72,000 divided by 120 units gives a unit cost of ₦600.",
           "difficulty": "easy",
           "topic": "Competency Framework",
           "keywords": [
@@ -2474,15 +2474,15 @@
         },
         {
           "id": "comp_numerical_reasoning_gen_001",
-          "question": "In the context of Numerical & Mathematical Reasoning, which action best demonstrates numerical & mathematical reasoning governance",
+          "question": "Which option best demonstrates good governance in numerical and mathematical reasoning tasks?",
           "options": [
-            "Apply approved numerical & mathematical reasoning procedures and maintain complete records.",
-            "Apply rules inconsistently based on personal preference.",
-            "Bypass review and approval controls to save time.",
-            "Prioritize convenience over policy and legal requirements."
+            "Approved numerical procedures and complete records.",
+            "Rule inconsistency.",
+            "Review-control bypass.",
+            "Convenience bias."
           ],
           "correct": 0,
-          "explanation": "Apply approved numerical & mathematical reasoning procedures and maintain complete records. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
+          "explanation": "Approved numerical procedures and complete records strengthen compliance, consistency, and accountability in numerical and mathematical reasoning.",
           "difficulty": "easy",
           "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
           "keywords": [
@@ -2563,15 +2563,15 @@
         },
         {
           "id": "comp_numerical_reasoning_gen_003",
-          "question": "Which option most strongly aligns with good public-service practice on numerical & mathematical reasoning risk management within Numerical & Mathematical Reasoning",
+          "question": "Which choice best reflects sound risk management in numerical and mathematical reasoning work?",
           "options": [
-            "Identify control gaps early and escalate material exceptions promptly.",
-            "Bypass review and approval controls to save time.",
-            "Prioritize convenience over policy and legal requirements.",
-            "Ignore feedback and continue non-compliant procedures."
+            "Early risk identification and prompt escalation.",
+            "Review-control bypass.",
+            "Convenience bias.",
+            "Ongoing non-compliance."
           ],
           "correct": 0,
-          "explanation": "Identify control gaps early and escalate material exceptions promptly. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
+          "explanation": "Early identification of control gaps and prompt escalation of material exceptions is the safest way to manage risk.",
           "difficulty": "easy",
           "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
           "keywords": [
@@ -2740,15 +2740,15 @@
         },
         {
           "id": "comp_numerical_reasoning_gen_007",
-          "question": "For effective numerical & mathematical reasoning, what is the most appropriate approach to ensure problem solving",
+          "question": "What is the best problem-solving approach in numerical and mathematical reasoning?",
           "options": [
-            "Break complex issues into testable and actionable parts.",
-            "Ignore feedback and continue non-compliant procedures.",
-            "Apply rules inconsistently based on personal preference.",
-            "Bypass review and approval controls to save time."
+            "Structured decomposition of complex issues.",
+            "Feedback avoidance.",
+            "Rule inconsistency.",
+            "Review-control bypass."
           ],
           "correct": 0,
-          "explanation": "Break complex issues into testable and actionable parts. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
+          "explanation": "Breaking complex issues into testable, actionable parts makes the reasoning easier to check and resolve.",
           "difficulty": "medium",
           "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
           "keywords": [
@@ -2831,15 +2831,15 @@
         },
         {
           "id": "comp_numerical_reasoning_gen_009",
-          "question": "When handling numerical & mathematical reasoning, which choice reflects proper documented procedure standards",
+          "question": "Which option best reflects proper documented procedure standards in numerical and mathematical reasoning work?",
           "options": [
-            "Follow documented procedure and keep complete records.",
-            "Apply rules inconsistently based on personal preference.",
-            "Bypass review and approval controls to save time.",
-            "Prioritize convenience over policy and legal requirements."
+            "Documented procedure and complete records.",
+            "Rule inconsistency.",
+            "Review-control bypass.",
+            "Convenience bias."
           ],
           "correct": 0,
-          "explanation": "Follow documented procedure and keep complete records. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
+          "explanation": "Following documented procedure and keeping complete records makes the work traceable and reliable.",
           "difficulty": "medium",
           "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
           "keywords": [
@@ -2920,15 +2920,15 @@
         },
         {
           "id": "comp_numerical_reasoning_gen_011",
-          "question": "In the context of Numerical & Mathematical Reasoning, which action best demonstrates public accountability",
+          "question": "Which option best demonstrates public accountability in numerical and mathematical reasoning work?",
           "options": [
-            "Provide traceable decisions and evidence-based justification.",
-            "Bypass review and approval controls to save time.",
-            "Prioritize convenience over policy and legal requirements.",
-            "Ignore feedback and continue non-compliant procedures."
+            "Traceable, evidence-based decisions.",
+            "Review-control bypass.",
+            "Convenience bias.",
+            "Feedback avoidance."
           ],
           "correct": 0,
-          "explanation": "Provide traceable decisions and evidence-based justification. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
+          "explanation": "Providing traceable decisions with evidence-based justification allows the work to be reviewed and defended.",
           "difficulty": "easy",
           "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
           "keywords": [
@@ -3010,15 +3010,15 @@
         },
         {
           "id": "comp_numerical_reasoning_gen_013",
-          "question": "Which option most strongly aligns with good public-service practice on risk control within Numerical & Mathematical Reasoning",
+          "question": "Which option best supports risk control in numerical and mathematical reasoning work?",
           "options": [
-            "Identify risk early, apply controls, and document mitigation.",
-            "Prioritize convenience over policy and legal requirements.",
-            "Ignore feedback and continue non-compliant procedures.",
-            "Apply rules inconsistently based on personal preference."
+            "Early risk identification and documented mitigation.",
+            "Convenience bias.",
+            "Feedback avoidance.",
+            "Rule inconsistency."
           ],
           "correct": 0,
-          "explanation": "Identify risk early, apply controls, and document mitigation. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
+          "explanation": "Identifying risk early, applying controls, and documenting mitigation reduces exposure and keeps the process controlled.",
           "difficulty": "medium",
           "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
           "keywords": [
@@ -3099,15 +3099,15 @@
         },
         {
           "id": "comp_numerical_reasoning_gen_015",
-          "question": "Which practice should a responsible officer prioritize to sustain operational discipline in Numerical & Mathematical Reasoning",
+          "question": "Which practice best supports operational discipline in numerical and mathematical reasoning work?",
           "options": [
-            "Follow approved workflows and verify outputs before closure.",
-            "Ignore feedback and continue non-compliant procedures.",
-            "Apply rules inconsistently based on personal preference.",
-            "Bypass review and approval controls to save time."
+            "Approved workflows and output verification.",
+            "Feedback avoidance.",
+            "Rule inconsistency.",
+            "Review-control bypass."
           ],
           "correct": 0,
-          "explanation": "Follow approved workflows and verify outputs before closure. It strengthens compliance, consistency, and accountability in numerical & mathematical reasoning.",
+          "explanation": "Following approved workflows and verifying outputs before closure keeps the work disciplined and accurate.",
           "difficulty": "easy",
           "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
           "keywords": [
@@ -3143,72 +3143,27 @@
           "topic": "Competency Framework"
         },
         {
-          "id": "competency_num_061",
-          "question": "In the public service context, select the option that best answers: What percentage of the revenue allocation formula currently in operation goes to the Federal Government?",
-          "options": [
-            "26.72%",
-            "100.00%Q",
-            "52.68%",
-            "20.60%"
-          ],
-          "correct": 2,
-          "explanation": "Correct option: C (52.68%). The Revenue Allocation formula in operation among the three tiers of government is: Federal Government 52.68%",
-          "difficulty": "easy",
-          "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
-          "keywords": [
-            "context",
-            "select",
-            "option",
-            "best"
-          ],
-          "sourceDocument": "Directorate Competency Framework",
-          "sourceSection": "Numerical & Mathematical Reasoning",
-          "year": 2020,
-          "lastReviewed": "2026-03-23",
-          "glBands": [
-            "GL14_15",
-            "GL15_16"
-          ],
-          "marks": 1,
-          "questionType": "single_best_answer",
-          "reviewStatus": "approved",
-          "tags": [
-            "numerical_reasoning",
-            "quantitative_judgement",
-            "context",
-            "select",
-            "option",
-            "best",
-            "public_sector_finance"
-          ],
-          "sourceTopicId": "competency_framework",
-          "sourceSubcategoryId": "comp_numerical_reasoning",
-          "sourceSubcategoryName": "Numerical & Mathematical Reasoning",
-          "topic": "Competency Framework"
-        },
-        {
           "id": "competency_num_062",
-          "question": "In official practice, which option correctly addresses: The Public Procurement Act 2007 applies to entities that derive at least what percentage of funds for any procurement from the Federation Share of Consolidated Revenue Fund?",
+          "question": "Under the Public Procurement Act 2007, at what funding threshold does the Act apply to an entity that receives money for procurement from the Federation Share of the Consolidated Revenue Fund?",
           "options": [
-            "10%",
-            "35%",
-            "50% Q.",
-            "25%"
+            "35%.",
+            "25%.",
+            "50%.",
+            "10%."
           ],
-          "correct": 1,
-          "explanation": "Correct option: B (35%). The Act applies to entities that derive at least 35% of funds appropriated for any procurement from the Federation Share of Consolidated Revenue Fund.",
+          "correct": 0,
+          "explanation": "The Act applies to entities that derive at least 35% of funds appropriated for any procurement from the Federation Share of the Consolidated Revenue Fund.",
           "difficulty": "easy",
           "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
           "keywords": [
             "procurement",
-            "official",
-            "practice",
-            "option"
+            "federation revenue",
+            "threshold"
           ],
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-23",
+          "lastReviewed": "2026-04-15",
           "glBands": [
             "GL14_15",
             "GL15_16",
@@ -3221,9 +3176,8 @@
             "numerical_reasoning",
             "quantitative_judgement",
             "procurement",
-            "official",
-            "practice",
-            "option"
+            "public_finance",
+            "threshold"
           ],
           "sourceTopicId": "competency_framework",
           "sourceSubcategoryId": "comp_numerical_reasoning",
@@ -3232,27 +3186,26 @@
         },
         {
           "id": "competency_num_063",
-          "question": "In official practice, which option best describes the workflow for an officer to access their National Housing Fund (NHF) contributions?",
+          "question": "What happens to an officer's National Housing Fund contributions when the officer exits the service?",
           "options": [
-            "The officer must exit the service and can access their contributions within one month of retirement. a",
+            "The officer can access the contributions within one month of retirement.",
             "The officer must apply directly to the National Housing Fund.",
-            "The officer must wait for a circular from the Head of Civil Service of the Federation.",
-            "The officer must provide a stamped death certificate."
+            "The officer must wait for a circular from the Head of Service.",
+            "The officer must provide a death certificate."
           ],
           "correct": 0,
-          "explanation": "Correct option: A (The officer must exit the service and can access their contributions within one month of retirement. a). Rule 021004 states that officers who exit the Service \"must access their National Housing Funds (NHF) contributions within one month of retirement.\"",
+          "explanation": "Rule 021004 states that officers who exit the Service must access their National Housing Fund contributions within one month of retirement.",
           "difficulty": "easy",
           "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
           "keywords": [
-            "official",
-            "practice",
-            "option",
-            "best"
+            "nhf",
+            "retirement",
+            "public service"
           ],
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-23",
+          "lastReviewed": "2026-04-15",
           "glBands": [
             "GL14_15",
             "GL15_16"
@@ -3263,10 +3216,8 @@
           "tags": [
             "numerical_reasoning",
             "quantitative_judgement",
-            "official",
-            "practice",
-            "option",
-            "best",
+            "national_housing_fund",
+            "retirement",
             "public_service_context"
           ],
           "sourceTopicId": "competency_framework",
@@ -3276,27 +3227,25 @@
         },
         {
           "id": "competency_num_064",
-          "question": "In official practice, which option correctly addresses: Which body is accountable for monitoring the accruals to and disbursement of revenue from the Federation Account?",
+          "question": "Which body monitors the accruals to and disbursement of revenue from the Federation Account?",
           "options": [
-            "The Ministry of Finance",
-            "The Central Bank of Nigeria",
-            "The Revenue Mobilization Allocation and Fiscal Commission",
-            "The National Assembly □ 377"
+            "The Ministry of Finance.",
+            "The Central Bank of Nigeria.",
+            "The Revenue Mobilization Allocation and Fiscal Commission.",
+            "The National Assembly."
           ],
           "correct": 2,
-          "explanation": "Correct option: C (The Revenue Mobilization Allocation and Fiscal Commission). The Revenue Mobilization Allocation and Fiscal Commission is one of the Federal Executive Bodies... Among other functions, the Commission has the power to: monitor the accruals to and disbursement of revenue from the Federation Account",
+          "explanation": "The Revenue Mobilization Allocation and Fiscal Commission monitors the accruals to and disbursement of revenue from the Federation Account.",
           "difficulty": "medium",
           "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
           "keywords": [
-            "official",
-            "practice",
-            "option",
-            "correctly"
+            "federation account",
+            "revenue monitoring"
           ],
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-23",
+          "lastReviewed": "2026-04-15",
           "glBands": [
             "GL14_15",
             "GL15_16"
@@ -3307,10 +3256,9 @@
           "tags": [
             "numerical_reasoning",
             "quantitative_judgement",
-            "official",
-            "practice",
-            "option",
-            "correctly"
+            "federation_account",
+            "revenue_monitoring",
+            "public_finance"
           ],
           "sourceTopicId": "competency_framework",
           "sourceSubcategoryId": "comp_numerical_reasoning",
@@ -3327,7 +3275,7 @@
             "The Budget Office of the Federation"
           ],
           "correct": 3,
-          "explanation": "Correct option: D (The Budget Office of the Federation). The Budget Office of the Federation, in consultation with the revenue generating agencies of the Federal Government, projects estimates of oil and non-oil revenues",
+          "explanation": "The Budget Office of the Federation prepares revenue estimates in consultation with revenue-generating agencies.",
           "difficulty": "hard",
           "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
           "keywords": [
@@ -3363,27 +3311,27 @@
         },
         {
           "id": "competency_num_066",
-          "question": "In official practice, choose the option that a role of the Permanent Secretary, in relation to other government bodies?",
+          "question": "What role may the Permanent Secretary perform in relation to other government bodies?",
           "options": [
-            "A memorandum to the Executive Council of the Federation for funds may have to be cleared with the Ministry of Finance.",
-            "Approving all capital projects.",
-            "Hiring all new staff.",
-            "Directly controlling the National Planning Commission.a."
+            "Clear a memorandum for funds with the Ministry of Finance before it goes to the Executive Council of the Federation.",
+            "Approve all capital projects personally.",
+            "Hire all new staff directly.",
+            "Control the National Planning Commission directly."
           ],
           "correct": 0,
-          "explanation": "Correct option: A (A memorandum to the Executive Council of the Federation for funds may have to be cleared with the Ministry of Finance.). The Permanent Secretary in a Ministry may need to clear a memorandum for 406 funds with the Ministry of Finance before it is sent to the Executive Council of the Federation.",
+          "explanation": "A Permanent Secretary may need to clear a memorandum involving funds with the Ministry of Finance before it is submitted to the Executive Council of the Federation.",
           "difficulty": "hard",
           "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
           "keywords": [
-            "official",
-            "practice",
-            "choose",
-            "option"
+            "permanent_secretary",
+            "ministry_of_finance",
+            "memorandum",
+            "executive_council"
           ],
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-23",
+          "lastReviewed": "2026-04-03",
           "glBands": [
             "GL14_15",
             "GL15_16",
@@ -3393,12 +3341,10 @@
           "questionType": "single_best_answer",
           "reviewStatus": "approved",
           "tags": [
-            "numerical_reasoning",
-            "quantitative_judgement",
-            "official",
-            "practice",
-            "choose",
-            "option"
+            "competency_framework",
+            "comp_numerical_reasoning",
+            "permanent_secretary",
+            "government_process"
           ],
           "sourceTopicId": "competency_framework",
           "sourceSubcategoryId": "comp_numerical_reasoning",
@@ -3407,27 +3353,27 @@
         },
         {
           "id": "competency_num_067",
-          "question": "In the public service context, responsibility for is the Chief Adviser to the Minister in a Ministry belongs to which role?",
+          "question": "Who is the chief adviser to the Minister in a Ministry?",
           "options": [
             "The Director of Finance and Accounts.",
-            "The Head of the Civil Service of the Federation.a.",
+            "The Head of the Civil Service of the Federation.",
             "The Chief of Staff.",
             "The Permanent Secretary."
           ],
           "correct": 3,
-          "explanation": "Correct option: D (The Permanent Secretary.). The Minister's Chief Adviser is the Permanent Secretary.",
+          "explanation": "Within a ministry, the Permanent Secretary serves as the chief adviser to the Minister on administrative and policy implementation matters.",
           "difficulty": "hard",
           "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
           "keywords": [
-            "context",
-            "responsibility",
-            "chief",
-            "adviser"
+            "chief_adviser",
+            "minister",
+            "permanent_secretary",
+            "ministry"
           ],
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-23",
+          "lastReviewed": "2026-04-03",
           "glBands": [
             "GL14_15",
             "GL15_16",
@@ -3437,13 +3383,10 @@
           "questionType": "single_best_answer",
           "reviewStatus": "approved",
           "tags": [
-            "numerical_reasoning",
-            "quantitative_judgement",
-            "context",
-            "responsibility",
-            "chief",
-            "adviser",
-            "public_service_context"
+            "competency_framework",
+            "comp_numerical_reasoning",
+            "permanent_secretary",
+            "ministerial_administration"
           ],
           "sourceTopicId": "competency_framework",
           "sourceSubcategoryId": "comp_numerical_reasoning",
@@ -3452,27 +3395,25 @@
         },
         {
           "id": "competency_num_068",
-          "question": "In official practice, select the statement that correctly defines the role of the National Council on Establishments?",
+          "question": "What is the role of the National Council on Establishments?",
           "options": [
             "To set the salary for all government workers.",
             "To manage the budget of the Federal Government.",
-            "To hire and fire civil servants. □.",
-            "To facilitate inter-governmental consultations on establishment matters and to avoid unnecessary disparities in general conditions of service in all the Civil Services of the Federation."
+            "To hire and fire civil servants.",
+            "To facilitate inter-governmental consultations on establishment matters and avoid unnecessary disparities in conditions of service."
           ],
           "correct": 3,
-          "explanation": "Correct option: D (To facilitate inter-governmental consultations on establishment matters and to avoid unnecessary disparities in general conditions of service in all the Civil Services of the Federation.). The National Council on Establishments was established to facilitate inter-governmental consultations on establishment matters and to avoid unnecessary disparities in general conditions of service in all the Civil Services of the Federation.",
+          "explanation": "The National Council on Establishments facilitates inter-governmental consultations on establishment matters and helps avoid unnecessary disparities in the general conditions of service in the Civil Service.",
           "difficulty": "medium",
           "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
           "keywords": [
-            "official",
-            "practice",
-            "select",
-            "statement"
+            "establishment",
+            "conditions of service"
           ],
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-23",
+          "lastReviewed": "2026-04-15",
           "glBands": [
             "GL14_15",
             "GL15_16"
@@ -3483,10 +3424,9 @@
           "tags": [
             "numerical_reasoning",
             "quantitative_judgement",
-            "official",
-            "practice",
-            "select",
-            "statement"
+            "establishment",
+            "conditions_of_service",
+            "civil_service"
           ],
           "sourceTopicId": "competency_framework",
           "sourceSubcategoryId": "comp_numerical_reasoning",
@@ -3495,27 +3435,26 @@
         },
         {
           "id": "competency_num_069",
-          "question": "In official practice, which role is encouraged to study and imbibe these rules and their associated and complementary instructions, guidelines, and extant circulars?",
+          "question": "Who are public servants expected to study and imbibe the rules, instructions, guidelines, and extant circulars?",
           "options": [
-            "Only the Head of the Civil Service of the Federation",
+            "Only the Head of the Civil Service of the Federation.",
             "All Public Servants.",
             "Only new entrants into the Service.",
-            "Only Chief Executive Officers (CEOs)."
+            "Only Chief Executive Officers."
           ],
           "correct": 1,
-          "explanation": "Correct option: B (All Public Servants.). The Preamble states, \"Public Servants are, therefore, implored to study and imbibe these Rules and their associated and complementary Instructions, Guidelines, and extant Circulars...\"",
+          "explanation": "The preamble states that public servants are expected to study and imbibe the rules together with their associated and complementary instructions, guidelines, and extant circulars.",
           "difficulty": "easy",
           "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
           "keywords": [
-            "official",
-            "practice",
-            "role",
-            "encouraged"
+            "public servants",
+            "rules",
+            "circulars"
           ],
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-23",
+          "lastReviewed": "2026-04-15",
           "glBands": [
             "GL14_15",
             "GL15_16"
@@ -3526,10 +3465,9 @@
           "tags": [
             "numerical_reasoning",
             "quantitative_judgement",
-            "official",
-            "practice",
-            "role",
-            "encouraged"
+            "public_servants",
+            "rules",
+            "civil_service"
           ],
           "sourceTopicId": "competency_framework",
           "sourceSubcategoryId": "comp_numerical_reasoning",
@@ -3538,27 +3476,25 @@
         },
         {
           "id": "competency_num_070",
-          "question": "According to established rules, choose the best answer for: What does \"Permanent Secretary\" mean?",
+          "question": "What does the term ?Permanent Secretary? mean?",
           "options": [
             "The Chief Executive Officer of a Parastatal.",
-            "Officer in charge of day-to-day administration in the Ministry/Extra-Ministerial Offices.",
-            "The Head of the Civil Service of the Federation. Q",
+            "The officer in charge of the day-to-day administration in a ministry or extra-ministerial office.",
+            "The Head of the Civil Service of the Federation.",
             "The Head of a Department."
           ],
           "correct": 1,
-          "explanation": "Correct option: B (Officer in charge of day-to-day administration in the Ministry/Extra-Ministerial Offices.). Rule 010106 defines \"Permanent Secretary\" as \"Officer in charge of day-to-day administration in the Ministry/Extra-Ministerial Offices.\"",
+          "explanation": "Rule 010106 defines Permanent Secretary as the officer in charge of the day-to-day administration in a ministry or extra-ministerial office.",
           "difficulty": "easy",
           "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
           "keywords": [
-            "according",
-            "established",
-            "choose",
-            "best"
+            "permanent secretary",
+            "administration"
           ],
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-23",
+          "lastReviewed": "2026-04-15",
           "glBands": [
             "GL14_15",
             "GL15_16"
@@ -3569,10 +3505,9 @@
           "tags": [
             "numerical_reasoning",
             "quantitative_judgement",
-            "according",
-            "established",
-            "choose",
-            "best"
+            "permanent_secretary",
+            "administration",
+            "public_service_context"
           ],
           "sourceTopicId": "competency_framework",
           "sourceSubcategoryId": "comp_numerical_reasoning",
@@ -3581,27 +3516,26 @@
         },
         {
           "id": "competency_num_071",
-          "question": "Within government administration, which role are the members of the Junior Staff Committee (JSC) and Senior Staff Committee (SSC) in Parastatals? 20?",
+          "question": "Who forms part of the membership of the Junior Staff Committee and Senior Staff Committee in parastatals?",
           "options": [
-            "The representative of the Department of Human Resource Management and an observer from the Office of the Head of the Civil Service of the Federation",
-            "The Head of the Civil Service of the Federation and the Permanent Secretary",
-            "The Board of Directors of the Parastatala",
-            "The Chief Executive Officer and the Financial Officer"
+            "A representative of the Department of Human Resource Management and an observer from the Office of the Head of the Civil Service of the Federation.",
+            "The Head of the Civil Service of the Federation and the Permanent Secretary.",
+            "The Board of Directors of the parastatal.",
+            "The Chief Executive Officer and the Financial Officer."
           ],
           "correct": 0,
-          "explanation": "Correct option: A (The representative of the Department of Human Resource Management and an observer from the Office of the Head of the Civil Service of the Federation). Rule 020305 states that the membership of the JSC and SSC in Parastatals includes a representative of the Department of Human Resource Management and an observer from the Office of the Head of the Civil Service of the Federation.",
+          "explanation": "Rule 020305 states that the membership of the JSC and SSC in parastatals includes a representative of the Department of Human Resource Management and an observer from the Office of the Head of the Civil Service of the Federation.",
           "difficulty": "medium",
           "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
           "keywords": [
-            "staff",
-            "committee",
-            "within",
-            "role"
+            "jsc",
+            "ssc",
+            "parastatal"
           ],
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-23",
+          "lastReviewed": "2026-04-15",
           "glBands": [
             "GL14_15",
             "GL15_16"
@@ -3612,10 +3546,8 @@
           "tags": [
             "numerical_reasoning",
             "quantitative_judgement",
-            "staff",
-            "committee",
-            "within",
-            "role",
+            "staff_committee",
+            "parastatal",
             "public_service_context"
           ],
           "sourceTopicId": "competency_framework",
@@ -3625,27 +3557,26 @@
         },
         {
           "id": "competency_num_072",
-          "question": "In official practice, which office is accountable for paying the salary of an officer on secondment?",
+          "question": "Which office is responsible for paying the salary of an officer on secondment?",
           "options": [
-            "The parent MDA that released the officer.",
-            "Both MDAs share the cost. 3",
-            "The Office of the Head of Civil Service of the Federation.",
-            "The MDA where the officer is seconded to."
+            "The receiving MDA.",
+            "Shared MDA responsibility.",
+            "The Head of Service responsibility.",
+            "The parent MDA responsibility."
           ],
-          "correct": 3,
-          "explanation": "Correct option: D (The MDA where the officer is seconded to.). Rule 020504 states that the MDA with the higher salary must be accountable for the payment of the salary and non-salary allowances should be paid by the receiving MDA49.",
+          "correct": 0,
+          "explanation": "The MDA to which the officer is seconded is responsible for paying the salary, while the parent MDA retains higher-level oversight.",
           "difficulty": "medium",
           "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
           "keywords": [
-            "official",
-            "practice",
-            "office",
-            "accountable"
+            "secondment",
+            "salary",
+            "mda"
           ],
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-23",
+          "lastReviewed": "2026-04-15",
           "glBands": [
             "GL14_15",
             "GL15_16",
@@ -3657,11 +3588,8 @@
           "tags": [
             "numerical_reasoning",
             "quantitative_judgement",
-            "official",
-            "practice",
-            "office",
-            "accountable",
-            "public_sector_finance",
+            "secondment",
+            "salary",
             "public_service_context"
           ],
           "sourceTopicId": "competency_framework",
@@ -3716,27 +3644,25 @@
         },
         {
           "id": "competency_num_074",
-          "question": "In official practice, which option best describes the overall goal of the pension scheme outlined in Chapter 19?",
+          "question": "What is the overall goal of the pension scheme outlined in Chapter 19?",
           "options": [
             "To reduce government expenditure.",
-            "To provide short-term loans to employees. □",
+            "To provide short-term loans to employees.",
             "To centralize all government funds.",
             "To secure proper administration and accounting of pension contributions."
           ],
           "correct": 3,
-          "explanation": "Correct option: D (To secure proper administration and accounting of pension contributions.). The chapter details the administration, responsibilities of various entities, and accounting procedures for the pension scheme, indicating its goal is proper management of contributions.",
+          "explanation": "Chapter 19 focuses on the administration of the pension scheme and the responsibilities of the relevant entities, showing that its goal is proper management of pension contributions.",
           "difficulty": "medium",
           "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
           "keywords": [
-            "official",
-            "practice",
-            "option",
-            "best"
+            "pension scheme",
+            "administration"
           ],
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-23",
+          "lastReviewed": "2026-04-15",
           "glBands": [
             "GL14_15",
             "GL15_16",
@@ -3748,11 +3674,9 @@
           "tags": [
             "numerical_reasoning",
             "quantitative_judgement",
-            "official",
-            "practice",
-            "option",
-            "best",
-            "public_sector_finance"
+            "pension_scheme",
+            "public_sector_finance",
+            "administration"
           ],
           "sourceTopicId": "competency_framework",
           "sourceSubcategoryId": "comp_numerical_reasoning",
@@ -3761,27 +3685,25 @@
         },
         {
           "id": "competency_num_075",
-          "question": "According to established rules, which option correctly addresses: According to Section 2 of the Finance (Control and Management) Act of 1958, what does \"Public Finance\" include?",
+          "question": "According to Section 2 of the Finance (Control and Management) Act 1958, what does ?Public Finance? include?",
           "options": [
-            "Only funds from international loans □",
-            "The Public Revenue of the Federation and any moneys held in an official capacity by a Public Service Officer or Government agent",
-            "Any moneys held by a private citizen",
-            "Only the Public Revenue of the Federation"
+            "Only funds from international loans.",
+            "The Public Revenue of the Federation and any moneys held in an official capacity by a public service officer or government agent.",
+            "Any moneys held by a private citizen.",
+            "Only the Public Revenue of the Federation."
           ],
           "correct": 1,
-          "explanation": "Correct option: B (The Public Revenue of the Federation and any moneys held in an official capacity by a Public Service Officer or Government agent). Public Finance includes \"The Public Revenue of the Federation\" and \"Any monies held in his official capacity... by any Officer in the Public Service of the Federation or by any agent of the government\".",
+          "explanation": "Public Finance includes the Public Revenue of the Federation and any money held in an official capacity by a public service officer or government agent.",
           "difficulty": "medium",
           "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
           "keywords": [
-            "according",
-            "finance",
-            "established",
-            "option"
+            "public finance",
+            "finance act"
           ],
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-23",
+          "lastReviewed": "2026-04-15",
           "glBands": [
             "GL14_15",
             "GL15_16"
@@ -3792,10 +3714,9 @@
           "tags": [
             "numerical_reasoning",
             "quantitative_judgement",
-            "according",
+            "public_finance",
             "finance",
-            "established",
-            "option"
+            "public_sector_finance"
           ],
           "sourceTopicId": "competency_framework",
           "sourceSubcategoryId": "comp_numerical_reasoning",
@@ -3804,27 +3725,25 @@
         },
         {
           "id": "competency_num_076",
-          "question": "According to established rules, choose the best answer for: Which of these is a source of revenue for the Consolidated Revenue Fund?",
+          "question": "Which of these is a source of revenue for the Consolidated Revenue Fund?",
           "options": [
-            "Proceeds from domestic consumption of crude oil",
-            "External grants a",
-            "Share from the Federation Account",
-            "Proceeds of tax under disbursement-as-you-earn system from police personnel"
+            "Proceeds from domestic consumption of crude oil.",
+            "External grants.",
+            "Share from the Federation Account.",
+            "Proceeds of tax under the pay-as-you-earn system from police personnel."
           ],
           "correct": 2,
-          "explanation": "Correct option: C (Share from the Federation Account). Sources of revenue for the Consolidated Revenue Fund include \"Share from the Federation Account”.",
+          "explanation": "Sources of revenue for the Consolidated Revenue Fund include the share from the Federation Account.",
           "difficulty": "easy",
           "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
           "keywords": [
-            "revenue",
-            "according",
-            "established",
-            "choose"
+            "consolidated revenue fund",
+            "revenue source"
           ],
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-23",
+          "lastReviewed": "2026-04-15",
           "glBands": [
             "GL14_15",
             "GL15_16"
@@ -3836,9 +3755,8 @@
             "numerical_reasoning",
             "quantitative_judgement",
             "revenue",
-            "according",
-            "established",
-            "choose"
+            "consolidated_revenue_fund",
+            "public_finance"
           ],
           "sourceTopicId": "competency_framework",
           "sourceSubcategoryId": "comp_numerical_reasoning",
@@ -3890,61 +3808,16 @@
           "topic": "Competency Framework"
         },
         {
-          "id": "competency_num_078",
-          "question": "In official practice, choose the best answer for: What does the President's directives to the Minister of Finance and the Budget Office of the Federation aim to achieve through the budget?",
-          "options": [
-            "To reduce poverty, generate wealth and create jobs",
-            "To decrease social welfare programs",
-            "To increase government debt",
-            "To centralize all economic activities □"
-          ],
-          "correct": 0,
-          "explanation": "Correct option: A (To reduce poverty, generate wealth and create jobs). The plans indicate what the Government intends to do to reduce poverty, generate wealth and create jobs",
-          "difficulty": "easy",
-          "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
-          "keywords": [
-            "budget",
-            "official",
-            "practice",
-            "choose"
-          ],
-          "sourceDocument": "Directorate Competency Framework",
-          "sourceSection": "Numerical & Mathematical Reasoning",
-          "year": 2020,
-          "lastReviewed": "2026-03-23",
-          "glBands": [
-            "GL14_15",
-            "GL15_16",
-            "GL16_17"
-          ],
-          "marks": 1,
-          "questionType": "single_best_answer",
-          "reviewStatus": "approved",
-          "tags": [
-            "numerical_reasoning",
-            "quantitative_judgement",
-            "budget",
-            "official",
-            "practice",
-            "choose",
-            "public_sector_finance"
-          ],
-          "sourceTopicId": "competency_framework",
-          "sourceSubcategoryId": "comp_numerical_reasoning",
-          "sourceSubcategoryName": "Numerical & Mathematical Reasoning",
-          "topic": "Competency Framework"
-        },
-        {
           "id": "competency_num_079",
-          "question": "Within government administration, which role is the Accounting Officer for a Ministry?",
+          "question": "Which role is the Accounting Officer for a Ministry?",
           "options": [
             "The Permanent Secretary",
             "The Minister",
             "The Director of Finance and Accounts",
-            "The Head of the Civil Service of the Federation □."
+            "The Head of the Civil Service of the Federation."
           ],
           "correct": 0,
-          "explanation": "Correct option: A (The Permanent Secretary). The Permanent Secretary of a Ministry is designated as the Accounting Officer and is in charge for all expenditures and revenue.",
+          "explanation": "The Permanent Secretary is the Ministry's Accounting Officer and is responsible for the ministry's finances and records.",
           "difficulty": "medium",
           "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
           "keywords": [
@@ -3980,27 +3853,27 @@
         },
         {
           "id": "competency_num_080",
-          "question": "In the public service context, choose the best answer for: The 1999 Constitution defines the \"Civil Service of the Federation\" as service in a civil capacity as staff of which of the following?",
+          "question": "How does the 1999 Constitution define the Civil Service of the Federation?",
           "options": [
-            "The Judiciary.",
-            "A Ministry or department of the Government of the Federation.",
-            "The National Assembly.",
-            "All government agencies and parastatals.Q."
+            "As service in the Judiciary.",
+            "As service in a civil capacity as staff of the Office of the President, Vice-President, a Ministry, or a department of the Government of the Federation.",
+            "As service in the National Assembly.",
+            "As service in all government agencies and parastatals without distinction."
           ],
           "correct": 1,
-          "explanation": "Correct option: B (A Ministry or department of the Government of the Federation.). The 1999 Constitution defines the Civil Service of the Federation as service in a civil capacity as staff of the Office of the President, the Vice-President, a Ministry, or a department of the government.",
+          "explanation": "The 1999 Constitution defines the Civil Service of the Federation as service in a civil capacity in the Office of the President, the Vice-President, a Ministry, or a department of the Government of the Federation.",
           "difficulty": "easy",
           "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
           "keywords": [
-            "civil",
-            "context",
-            "choose",
-            "best"
+            "1999_constitution",
+            "civil_service_of_the_federation",
+            "civil_capacity",
+            "federal_government"
           ],
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-23",
+          "lastReviewed": "2026-04-03",
           "glBands": [
             "GL14_15",
             "GL15_16"
@@ -4009,58 +3882,10 @@
           "questionType": "single_best_answer",
           "reviewStatus": "approved",
           "tags": [
-            "numerical_reasoning",
-            "quantitative_judgement",
-            "civil",
-            "context",
-            "choose",
-            "best",
-            "public_service_context"
-          ],
-          "sourceTopicId": "competency_framework",
-          "sourceSubcategoryId": "comp_numerical_reasoning",
-          "sourceSubcategoryName": "Numerical & Mathematical Reasoning",
-          "topic": "Competency Framework"
-        },
-        {
-          "id": "competency_num_081",
-          "question": "Within government administration, which option correctly addresses: The political head of a Ministry is the Minister, but who is the administrative head?",
-          "options": [
-            "The Director of Finance",
-            "The Head of the Civil Service of the Federation",
-            "The Permanent Secretary",
-            "The President a."
-          ],
-          "correct": 2,
-          "explanation": "Correct option: C (The Permanent Secretary). The Minister is the political head of the Ministry, and the Permanent Secretary serves as the administrative head.",
-          "difficulty": "hard",
-          "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
-          "keywords": [
-            "head",
-            "within",
-            "option",
-            "correctly"
-          ],
-          "sourceDocument": "Directorate Competency Framework",
-          "sourceSection": "Numerical & Mathematical Reasoning",
-          "year": 2020,
-          "lastReviewed": "2026-03-23",
-          "glBands": [
-            "GL14_15",
-            "GL15_16",
-            "GL16_17"
-          ],
-          "marks": 1,
-          "questionType": "single_best_answer",
-          "reviewStatus": "approved",
-          "tags": [
-            "numerical_reasoning",
-            "quantitative_judgement",
-            "head",
-            "within",
-            "option",
-            "correctly",
-            "public_service_context"
+            "competency_framework",
+            "comp_numerical_reasoning",
+            "1999_constitution",
+            "civil_service_definition"
           ],
           "sourceTopicId": "competency_framework",
           "sourceSubcategoryId": "comp_numerical_reasoning",
@@ -4069,15 +3894,15 @@
         },
         {
           "id": "competency_num_082",
-          "question": "In the public service context, which office is the Accounting Officer of a Ministry?",
+          "question": "Which office is the Accounting Officer of a Ministry?",
           "options": [
             "The Permanent Secretary",
-            "The Head of the Civil Service of the Federation □.",
+            "The Head of the Civil Service of the Federation",
             "The Minister",
-            "The Director of Finance and Accounts"
+            "The Director of Finance and Accounts."
           ],
           "correct": 0,
-          "explanation": "Correct option: A (The Permanent Secretary). The Permanent Secretary is the Ministry's Accounting Officer.",
+          "explanation": "The Permanent Secretary is the Accounting Officer of a Ministry because that office is responsible for the ministry's funds and administration.",
           "difficulty": "medium",
           "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
           "keywords": [
@@ -4113,27 +3938,25 @@
         },
         {
           "id": "competency_num_083",
-          "question": "which option best describes the chief role of the Auditor-General for the Federation?",
+          "question": "What is the chief role of the Auditor-General for the Federation?",
           "options": [
-            "To control the release of funds to MDAs. □.",
+            "To control the release of funds to MDAs.",
             "To manage all government bank accounts.",
-            "To check and report on government expenditures and public accounts.",
+            "To check and report on government expenditure and public accounts.",
             "To prepare the annual budget."
           ],
           "correct": 2,
-          "explanation": "Correct option: C (To check and report on government expenditures and public accounts.). The Auditor-General is the Head of the Supreme Audit Institution of the country and is in charge for auditing and reporting on the public accounts of the Federation.",
+          "explanation": "The Auditor-General audits public expenditure and reports on public accounts, so that is the chief role of the office.",
           "difficulty": "medium",
           "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
           "keywords": [
-            "option",
-            "best",
-            "describes",
-            "chief"
+            "auditor-general",
+            "public accounts"
           ],
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-23",
+          "lastReviewed": "2026-04-15",
           "glBands": [
             "GL14_15",
             "GL15_16"
@@ -4144,10 +3967,9 @@
           "tags": [
             "numerical_reasoning",
             "quantitative_judgement",
-            "option",
-            "best",
-            "describes",
-            "chief"
+            "auditor_general",
+            "public_accounts",
+            "audit"
           ],
           "sourceTopicId": "competency_framework",
           "sourceSubcategoryId": "comp_numerical_reasoning",
@@ -4156,27 +3978,25 @@
         },
         {
           "id": "competency_num_084",
-          "question": "According to established rules, choose the best answer for: The handbook advises against using official working time for which of the following activities?",
+          "question": "Which activity should not be done during official working time?",
           "options": [
             "Official meetings and briefings.",
             "Personal errands and private business.",
             "Staff training and development.",
-            "Inter-departmental collaborations. Q."
+            "Inter-departmental collaborations."
           ],
           "correct": 1,
-          "explanation": "Correct option: B (Personal errands and private business.). The Civil Servant is expected to give his best in the execution of his official duties, and should not use official working time for personal errands or private business",
+          "explanation": "Civil servants are expected to give their best to official duties and should not use official working time for personal errands or private business.",
           "difficulty": "easy",
           "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
           "keywords": [
-            "according",
-            "established",
-            "choose",
-            "best"
+            "official time",
+            "private business"
           ],
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-23",
+          "lastReviewed": "2026-04-15",
           "glBands": [
             "GL14_15",
             "GL15_16"
@@ -4187,10 +4007,9 @@
           "tags": [
             "numerical_reasoning",
             "quantitative_judgement",
-            "according",
-            "established",
-            "choose",
-            "best"
+            "official_working_time",
+            "private_business",
+            "public_service_ethics"
           ],
           "sourceTopicId": "competency_framework",
           "sourceSubcategoryId": "comp_numerical_reasoning",
@@ -4199,27 +4018,25 @@
         },
         {
           "id": "competency_num_085",
-          "question": "In official practice, choose the best answer for: A public officer must submit a declaration of assets and liabilities at what frequency?",
+          "question": "When must a public officer submit a declaration of assets and liabilities?",
           "options": [
-            "At the beginning and end of their term of office and at the end of every four years.",
-            "Only when they are promoted. □.",
-            "Annually.",
-            "Only at the beginning of their term."
+            "At the beginning, every four years, and at the end of tenure.",
+            "Promotion only.",
+            "Annual declaration only.",
+            "At the beginning only."
           ],
           "correct": 0,
-          "explanation": "Correct option: A (At the beginning and end of their term of office and at the end of every four years.). Every public officer must, within 3 months after the coming into force of this Code of Conduct or immediately after taking office and thereafter at the end of every four years and at the end of his term of office, submit a written declaration of all his properties, assets, and liabilities to the Code of Conduct Bureau.",
+          "explanation": "A public officer must submit a declaration at the beginning of service, every four years, and at the end of the term of office.",
           "difficulty": "medium",
           "chapter": "Numerical & Mathematical Reasoning - Expansion Set",
           "keywords": [
-            "official",
-            "practice",
-            "choose",
-            "best"
+            "assets declaration",
+            "liabilities declaration"
           ],
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Numerical & Mathematical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-23",
+          "lastReviewed": "2026-04-15",
           "glBands": [
             "GL14_15",
             "GL15_16"
@@ -4230,11 +4047,9 @@
           "tags": [
             "numerical_reasoning",
             "quantitative_judgement",
-            "official",
-            "practice",
-            "choose",
-            "best",
-            "public_service_context"
+            "asset_declaration",
+            "public_service_ethics",
+            "compliance"
           ],
           "sourceTopicId": "competency_framework",
           "sourceSubcategoryId": "comp_numerical_reasoning",
@@ -4259,7 +4074,7 @@
             "Personal, Professional, Organizational."
           ],
           "correct": 1,
-          "explanation": "The competency framework includes Core, Leadership, and Functional competencies.",
+          "explanation": "The Federal Civil Service competency framework groups competencies into Core, Leadership, and Functional categories.",
           "difficulty": "hard",
           "topic": "Competency Framework",
           "keywords": [
@@ -4380,7 +4195,7 @@
             "Omission."
           ],
           "correct": 1,
-          "explanation": "The correct word is 'tact' meaning diplomacy or sensitivity in dealing with issues.",
+          "explanation": "Tact means diplomacy or sensitivity, so it fits praise for handling a matter well.",
           "difficulty": "easy",
           "topic": "Competency Framework",
           "keywords": [
@@ -4423,7 +4238,7 @@
             "Laboratory."
           ],
           "correct": 0,
-          "explanation": "Just as a doctor works in a hospital, a teacher works in a school.",
+          "explanation": "The analogy is profession to workplace: a doctor works in a hospital, and a teacher works in a school.",
           "difficulty": "easy",
           "topic": "Competency Framework",
           "keywords": [
@@ -4464,7 +4279,7 @@
             "Charitable."
           ],
           "correct": 1,
-          "explanation": "The opposite of 'benevolent' (kind, generous) is 'malevolent' (evil, harmful).",
+          "explanation": "Ambiguous means unclear or open to more than one meaning, so uncertain is the closest match.",
           "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
@@ -4497,7 +4312,7 @@
         },
         {
           "id": "competency_verbal_007",
-          "question": "Identify the correctly spelt word",
+          "question": "Identify the correctly spelt word.",
           "options": [
             "Acommodate.",
             "Accommodate.",
@@ -4505,7 +4320,7 @@
             "Accomodate."
           ],
           "correct": 1,
-          "explanation": "The correct spelling is 'Accommodate' with double 'c' and double 'm'.",
+          "explanation": "Accommodate is the accepted spelling, so the other spellings are incorrect variants of the same word.",
           "difficulty": "hard",
           "topic": "Competency Framework",
           "keywords": [
@@ -4516,7 +4331,7 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-23",
+          "lastReviewed": "2026-04-09",
           "glBands": [
             "GL15_16",
             "GL16_17"
@@ -4545,7 +4360,7 @@
             "Crisen."
           ],
           "correct": 1,
-          "explanation": "The plural of 'crisis' is 'crises'.",
+          "explanation": "Crisis becomes crises in the plural because words ending in -is often change to -es.",
           "difficulty": "easy",
           "topic": "Competency Framework",
           "keywords": [
@@ -4586,7 +4401,7 @@
             "Chair."
           ],
           "correct": 3,
-          "explanation": "Dog, Cat, and Cow are animals, but Chair is an object.",
+          "explanation": "Chair is the odd one out because it is furniture, while dog, cat, and cow are animals.",
           "difficulty": "hard",
           "topic": "Competency Framework",
           "keywords": [
@@ -4626,7 +4441,7 @@
             "Ignore."
           ],
           "correct": 1,
-          "explanation": "'Expedite' means to hasten or speed up a process.",
+          "explanation": "Expedite means to speed up or hasten, so the correct answer is the word with that meaning.",
           "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
@@ -4659,7 +4474,7 @@
         },
         {
           "id": "competency_verbal_011",
-          "question": "Choose the correct preposition: 'He insisted ___ his right to appeal.",
+          "question": "Choose the correct preposition: 'He insisted ___ his right to appeal.'",
           "options": [
             "on.",
             "at.",
@@ -4667,7 +4482,7 @@
             "to."
           ],
           "correct": 0,
-          "explanation": "The correct phrase is 'insisted on'.",
+          "explanation": "Insist on is the fixed verb-preposition combination used in standard English, so on is the correct choice.",
           "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
@@ -4678,7 +4493,7 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-23",
+          "lastReviewed": "2026-04-09",
           "glBands": [
             "GL14_15",
             "GL15_16",
@@ -4750,7 +4565,7 @@
             "Dedicated."
           ],
           "correct": 1,
-          "explanation": "The antonym of 'diligent' is 'careless'.",
+          "explanation": "Careless is the opposite of diligent because diligent means careful, hard-working, and attentive.",
           "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
@@ -4791,7 +4606,7 @@
             "Argument."
           ],
           "correct": 0,
-          "explanation": "The correct completion is 'decision'.",
+          "explanation": "Unanimous means fully agreed by everyone, so it is the option that shows complete agreement.",
           "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
@@ -4833,7 +4648,7 @@
             "Meagre."
           ],
           "correct": 1,
-          "explanation": "The opposite of scarce is plentiful.",
+          "explanation": "Scarce means in short supply, so the opposite is the word that means plentiful.",
           "difficulty": "hard",
           "topic": "Competency Framework",
           "keywords": [
@@ -4873,7 +4688,7 @@
             "Book."
           ],
           "correct": 2,
-          "explanation": "Pen, Pencil, and Book are durable items, while Paper is consumable.",
+          "explanation": "Book is the odd one out because it is reading material, while the others are writing-related items.",
           "difficulty": "hard",
           "topic": "Competency Framework",
           "keywords": [
@@ -4911,7 +4726,7 @@
             "Lazy."
           ],
           "correct": 1,
-          "explanation": "'Meticulous' means showing great attention to detail → synonym is 'Thorough'.",
+          "explanation": "Meticulous means very careful and precise, so the closest word is the one with that meaning.",
           "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
@@ -4944,15 +4759,15 @@
         },
         {
           "id": "competency_verbal_018",
-          "question": "What is the correct indirect speech form of: He said, 'I am ready'",
+          "question": "Which indirect-speech change is correct for \"I am ready\"?",
           "options": [
-            "He said that he is ready.",
-            "He said he was ready.",
-            "He said he will be ready.",
-            "He said he had been ready."
+            "Past-tense backshift.",
+            "Present-tense retention.",
+            "Future-intent reporting.",
+            "Past-perfect backshift."
           ],
-          "correct": 1,
-          "explanation": "In indirect speech, present tense changes to past: 'He said he was ready.'.",
+          "correct": 0,
+          "explanation": "In indirect speech, the present tense \"am\" backshifts to \"was\" after the reporting verb in the past tense.",
           "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
@@ -4962,7 +4777,7 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-23",
+          "lastReviewed": "2026-04-09",
           "glBands": [
             "GL14_15",
             "GL15_16",
@@ -4991,7 +4806,7 @@
             "Diminish."
           ],
           "correct": 1,
-          "explanation": "'Expand' means to increase.",
+          "explanation": "Expand means increase or enlarge, so increase is the synonym that matches the question.",
           "difficulty": "easy",
           "topic": "Competency Framework",
           "keywords": [
@@ -5024,7 +4839,7 @@
         },
         {
           "id": "competency_verbal_020",
-          "question": "Fill in the blank: 'She is very good ___ mathematics.",
+          "question": "Fill in the blank: 'She is very good ___ mathematics.'",
           "options": [
             "at.",
             "in.",
@@ -5032,7 +4847,7 @@
             "with."
           ],
           "correct": 0,
-          "explanation": "The correct phrase is 'good at' something.",
+          "explanation": "Good at is the standard collocation, so mathematics correctly follows the preposition at in this sentence.",
           "difficulty": "hard",
           "topic": "Competency Framework",
           "keywords": [
@@ -5043,7 +4858,7 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-23",
+          "lastReviewed": "2026-04-09",
           "glBands": [
             "GL15_16",
             "GL16_17"
@@ -5072,7 +4887,7 @@
             "Conscentious."
           ],
           "correct": 1,
-          "explanation": "The correct spelling is 'Conscientious'.",
+          "explanation": "Conscientious is the correctly spelt form; the other options miss or rearrange letters.",
           "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
@@ -5113,7 +4928,7 @@
             "Enlarge."
           ],
           "correct": 1,
-          "explanation": "The opposite of 'expand' is 'contract'.",
+          "explanation": "Expand means grow or increase, so the opposite is the word that means contract or shrink.",
           "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
@@ -5154,7 +4969,7 @@
             "Obvious."
           ],
           "correct": 1,
-          "explanation": "'Ambiguous' means unclear or uncertain.",
+          "explanation": "Ambiguous means unclear or uncertain, so the closest synonym is the option with that meaning.",
           "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
@@ -5195,7 +5010,7 @@
             "Twelve."
           ],
           "correct": 1,
-          "explanation": "The correct proverb is 'A stitch in time saves nine'.",
+          "explanation": "A stitch in time saves nine is the established proverb, so nine completes it correctly.",
           "difficulty": "easy",
           "topic": "Competency Framework",
           "keywords": [
@@ -5236,7 +5051,7 @@
             "Hard."
           ],
           "correct": 0,
-          "explanation": "The opposite of 'rigid' (stiff, inflexible) is 'flexible'.",
+          "explanation": "Rigid means stiff or inflexible, so the antonym is the word that means flexible.",
           "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
@@ -5277,7 +5092,7 @@
             "Favourable."
           ],
           "correct": 1,
-          "explanation": "The synonym of 'impartial' is 'neutral' (fair and unbiased).",
+          "explanation": "Neutral is the closest synonym because impartial means unbiased or not taking sides.",
           "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
@@ -5318,7 +5133,7 @@
             "Resistance."
           ],
           "correct": 1,
-          "explanation": "The correct word is 'adherence'.",
+          "explanation": "The fixed phrase is strict adherence to rules, so adherence is the correct completion.",
           "difficulty": "easy",
           "topic": "Competency Framework",
           "keywords": [
@@ -5361,7 +5176,7 @@
             "Chair."
           ],
           "correct": 3,
-          "explanation": "Apple, Mango, and Banana are fruits; Chair is not.",
+          "explanation": "Chair is the odd one out because apple, mango, and banana are fruits, while chair is a piece of furniture.",
           "difficulty": "hard",
           "topic": "Competency Framework",
           "keywords": [
@@ -5372,7 +5187,7 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-23",
+          "lastReviewed": "2026-04-09",
           "glBands": [
             "GL15_16",
             "GL16_17"
@@ -5401,7 +5216,7 @@
             "Latest."
           ],
           "correct": 1,
-          "explanation": "'Obsolete' means outdated or no longer in use.",
+          "explanation": "Outdated is the closest synonym because obsolete means no longer in use.",
           "difficulty": "hard",
           "topic": "Competency Framework",
           "keywords": [
@@ -5433,7 +5248,7 @@
         },
         {
           "id": "competency_verbal_030",
-          "question": "Which word correctly completes the sentence: 'The manager gave a detailed ______ of the incident.",
+          "question": "Which word correctly completes the sentence: 'The manager gave a detailed ______ of the incident.'",
           "options": [
             "Account.",
             "Discount.",
@@ -5441,7 +5256,7 @@
             "Counter."
           ],
           "correct": 0,
-          "explanation": "The correct word is 'account'.",
+          "explanation": "Account fits because it means a report or description of an incident, which matches the sentence meaning.",
           "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
@@ -5452,7 +5267,7 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-23",
+          "lastReviewed": "2026-04-09",
           "glBands": [
             "GL14_15",
             "GL15_16",
@@ -5476,7 +5291,7 @@
         },
         {
           "id": "competency_verbal_031",
-          "question": "Find the word most opposite in meaning to 'optimistic':",
+          "question": "Find the word most opposite in meaning to 'optimistic'.",
           "options": [
             "Hopeful.",
             "Cheerful.",
@@ -5484,7 +5299,7 @@
             "Positive."
           ],
           "correct": 2,
-          "explanation": "The opposite of optimistic (hopeful) is pessimistic (expecting the worst).",
+          "explanation": "Pessimistic is the antonym of optimistic because it means expecting the worst rather than expecting a good result.",
           "difficulty": "easy",
           "topic": "Competency Framework",
           "keywords": [
@@ -5495,7 +5310,7 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-23",
+          "lastReviewed": "2026-04-09",
           "glBands": [
             "GL14_15",
             "GL15_16",
@@ -5525,7 +5340,7 @@
             "Blurred."
           ],
           "correct": 1,
-          "explanation": "'Vivid' means clear, bright, or detailed.",
+          "explanation": "Vivid means bright, clear, or striking, so the closest synonym is the word with that meaning.",
           "difficulty": "easy",
           "topic": "Competency Framework",
           "keywords": [
@@ -5605,7 +5420,7 @@
             "Benevolent."
           ],
           "correct": 0,
-          "explanation": "The opposite of 'generous' is 'selfish'.",
+          "explanation": "Generous means kind and giving, so the antonym is the word that means selfish or mean.",
           "difficulty": "easy",
           "topic": "Competency Framework",
           "keywords": [
@@ -5646,7 +5461,7 @@
             "Uncertain."
           ],
           "correct": 1,
-          "explanation": "'Lucid' means clear or easy to understand.",
+          "explanation": "Lucid means clear and easy to understand, so the closest synonym is the word with that meaning.",
           "difficulty": "easy",
           "topic": "Competency Framework",
           "keywords": [
@@ -5687,7 +5502,7 @@
             "for."
           ],
           "correct": 1,
-          "explanation": "The correct phrase is 'divided on' an issue.",
+          "explanation": "Divided on is the standard collocation used when people disagree about a proposal.",
           "difficulty": "easy",
           "topic": "Competency Framework",
           "keywords": [
@@ -5728,7 +5543,7 @@
             "Stew."
           ],
           "correct": 0,
-          "explanation": "The correct form is 'Too many cooks spoil the broth.'.",
+          "explanation": "Too many cooks spoil the broth is the established proverb, so broth completes it correctly.",
           "difficulty": "hard",
           "topic": "Competency Framework",
           "keywords": [
@@ -5768,7 +5583,7 @@
             "Cheerful."
           ],
           "correct": 2,
-          "explanation": "Miserable is the opposite of happy, not a synonym.",
+          "explanation": "Miserable is not a synonym of happy; it is its opposite, which makes it the correct choice here.",
           "difficulty": "hard",
           "topic": "Competency Framework",
           "keywords": [
@@ -5808,7 +5623,7 @@
             "Limit."
           ],
           "correct": 2,
-          "explanation": "The correct word is 'improve efficiency'.",
+          "explanation": "Improve efficiency is the intended meaning, so improve is the word that best completes the sentence.",
           "difficulty": "hard",
           "topic": "Competency Framework",
           "keywords": [
@@ -5848,7 +5663,7 @@
             "Delicate."
           ],
           "correct": 1,
-          "explanation": "'Resilient' means able to recover quickly; closest synonym is 'Strong'.",
+          "explanation": "Resilient means strong and able to recover quickly, so the closest synonym is the word with that meaning.",
           "difficulty": "easy",
           "topic": "Competency Framework",
           "keywords": [
@@ -5881,7 +5696,7 @@
         },
         {
           "id": "competency_verbal_041",
-          "question": "Which of these words is the antonym of 'complex'",
+          "question": "Which of these words is the antonym of 'complex'?",
           "options": [
             "Complicated.",
             "Simple.",
@@ -5889,7 +5704,7 @@
             "Detailed."
           ],
           "correct": 1,
-          "explanation": "The opposite of 'complex' is 'simple'.",
+          "explanation": "Simple is the opposite of complex because it means not complicated, so it gives the best antonym here.",
           "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
@@ -5900,7 +5715,7 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-23",
+          "lastReviewed": "2026-04-09",
           "glBands": [
             "GL14_15",
             "GL15_16",
@@ -5922,7 +5737,7 @@
         },
         {
           "id": "competency_verbal_042",
-          "question": "Which of the following is a synonym for 'commence'",
+          "question": "Which of the following is a synonym for 'commence'?",
           "options": [
             "Begin.",
             "Finish.",
@@ -5930,7 +5745,7 @@
             "Stop."
           ],
           "correct": 0,
-          "explanation": "'Commence' means to begin.",
+          "explanation": "Begin is the direct synonym of commence, so it best matches the meaning of the original word.",
           "difficulty": "easy",
           "topic": "Competency Framework",
           "keywords": [
@@ -5941,7 +5756,7 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-23",
+          "lastReviewed": "2026-04-09",
           "glBands": [
             "GL14_15",
             "GL15_16",
@@ -5963,7 +5778,7 @@
         },
         {
           "id": "competency_verbal_043",
-          "question": "Choose the correctly spelt word",
+          "question": "Choose the correctly spelt word.",
           "options": [
             "Definately.",
             "Definitely.",
@@ -5971,7 +5786,7 @@
             "Defenetly."
           ],
           "correct": 1,
-          "explanation": "The correct spelling is 'Definitely'.",
+          "explanation": "Definitely is the only correct spelling; the other forms are common misspellings that omit or rearrange letters.",
           "difficulty": "easy",
           "topic": "Competency Framework",
           "keywords": [
@@ -5981,7 +5796,7 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-23",
+          "lastReviewed": "2026-04-09",
           "glBands": [
             "GL14_15",
             "GL15_16",
@@ -6010,7 +5825,7 @@
             "Selfish."
           ],
           "correct": 1,
-          "explanation": "'Benevolent' means kind and charitable.",
+          "explanation": "Benevolent means kind or well-meaning, so the closest synonym is the word with that meaning.",
           "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
@@ -6051,7 +5866,7 @@
             "Synthetic."
           ],
           "correct": 0,
-          "explanation": "The opposite of 'artificial' is 'natural'.",
+          "explanation": "Artificial means not natural, so the antonym is the word that means natural.",
           "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
@@ -6092,7 +5907,7 @@
             "Permit."
           ],
           "correct": 2,
-          "explanation": "The correct word is 'curb' (to control or limit).",
+          "explanation": "Curb means reduce or restrain, so it fits the sentence about limiting corruption.",
           "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
@@ -6133,7 +5948,7 @@
             "Pencil."
           ],
           "correct": 2,
-          "explanation": "Book, Pen, and Pencil are objects; Teacher is a person.",
+          "explanation": "Teacher is the odd one out because the other items are stationery or writing tools.",
           "difficulty": "hard",
           "topic": "Competency Framework",
           "keywords": [
@@ -6173,7 +5988,7 @@
             "Reserved."
           ],
           "correct": 1,
-          "explanation": "'Candid' means open and honest.",
+          "explanation": "Candid means honest and open, so the closest synonym is the word with that meaning.",
           "difficulty": "easy",
           "topic": "Competency Framework",
           "keywords": [
@@ -6214,7 +6029,7 @@
             "Enlarge."
           ],
           "correct": 2,
-          "explanation": "The opposite of 'expand' is 'shrink'.",
+          "explanation": "Expand means grow larger, so the antonym is the word that means shrink.",
           "difficulty": "hard",
           "topic": "Competency Framework",
           "keywords": [
@@ -6254,7 +6069,7 @@
             "Carelessness."
           ],
           "correct": 0,
-          "explanation": "The correct word is 'tact', meaning diplomacy and sensitivity.",
+          "explanation": "Tact means diplomacy and sensitivity, so it fits praise for handling a crisis well.",
           "difficulty": "easy",
           "topic": "Competency Framework",
           "keywords": [
@@ -6288,7 +6103,7 @@
         },
         {
           "id": "competency_verbal_051",
-          "question": "Choose the synonym of 'brief",
+          "question": "Choose the synonym of 'brief'.",
           "options": [
             "Short.",
             "Long.",
@@ -6296,7 +6111,7 @@
             "Endless."
           ],
           "correct": 0,
-          "explanation": "'Brief' means short or concise.",
+          "explanation": "Short is the synonym of brief because both words mean lasting a little time or using few words.",
           "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
@@ -6307,7 +6122,7 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-23",
+          "lastReviewed": "2026-04-09",
           "glBands": [
             "GL14_15",
             "GL15_16",
@@ -6337,7 +6152,7 @@
             "Weapon."
           ],
           "correct": 0,
-          "explanation": "The correct proverb is 'The pen is mightier than the sword.'.",
+          "explanation": "The pen is mightier than the sword is the established proverb, so sword completes it correctly.",
           "difficulty": "easy",
           "topic": "Competency Framework",
           "keywords": [
@@ -6378,7 +6193,7 @@
             "Growth."
           ],
           "correct": 2,
-          "explanation": "The opposite of prosperity (wealth and success) is poverty.",
+          "explanation": "Prosperity means success or wealth, so the antonym is the word that means poverty.",
           "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
@@ -6419,7 +6234,7 @@
             "Resilient."
           ],
           "correct": 1,
-          "explanation": "'Fragile' means delicate or easily broken.",
+          "explanation": "Fragile means delicate or easily broken, so the synonym is the word with that meaning.",
           "difficulty": "hard",
           "topic": "Competency Framework",
           "keywords": [
@@ -6451,7 +6266,7 @@
         },
         {
           "id": "competency_verbal_055",
-          "question": "Fill in the blank: 'She is interested ___ music.",
+          "question": "Fill in the blank: \"She is interested ___ music.\"",
           "options": [
             "in.",
             "on.",
@@ -6459,7 +6274,7 @@
             "for."
           ],
           "correct": 0,
-          "explanation": "The correct preposition is 'interested in'.",
+          "explanation": "The adjective \"interested\" is conventionally followed by the preposition \"in,\" so the correct expression is \"interested in music\" rather than \"on,\" \"at,\" or \"for.\"",
           "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
@@ -6470,7 +6285,7 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-23",
+          "lastReviewed": "2026-04-09",
           "glBands": [
             "GL14_15",
             "GL15_16",
@@ -6492,15 +6307,15 @@
         },
         {
           "id": "competency_verbal_056",
-          "question": "Select the correct indirect speech: He said, 'I am going to Abuja tomorrow.",
+          "question": "Which indirect-speech change is correct for \"I am going to Abuja tomorrow\"?",
           "options": [
-            "He said he is going to Abuja tomorrow.",
-            "He said he was going to Abuja the next day.",
-            "He said he goes to Abuja tomorrow.",
-            "He said he will go to Abuja the next day."
+            "Past-tense backshift with time shift.",
+            "Present-tense retention.",
+            "Future-conditional form.",
+            "Past-perfect reporting."
           ],
-          "correct": 1,
-          "explanation": "In indirect speech, 'am going' becomes 'was going' and 'tomorrow' changes to 'the next day'.",
+          "correct": 0,
+          "explanation": "In indirect speech, \"am going\" backshifts to \"was going\" and \"tomorrow\" becomes \"the next day\".",
           "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
@@ -6510,7 +6325,7 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-23",
+          "lastReviewed": "2026-04-09",
           "glBands": [
             "GL14_15",
             "GL15_16",
@@ -6531,7 +6346,7 @@
         },
         {
           "id": "competency_verbal_057",
-          "question": "What is the antonym of 'rapid'",
+          "question": "What is the antonym of 'rapid'?",
           "options": [
             "Slow.",
             "Fast.",
@@ -6539,7 +6354,7 @@
             "Swift."
           ],
           "correct": 0,
-          "explanation": "The opposite of 'rapid' (fast) is 'slow'.",
+          "explanation": "Slow is the opposite of rapid because rapid means fast, so slow gives the best antonym.",
           "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
@@ -6550,7 +6365,7 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-23",
+          "lastReviewed": "2026-04-09",
           "glBands": [
             "GL14_15",
             "GL15_16",
@@ -6580,7 +6395,7 @@
             "General."
           ],
           "correct": 0,
-          "explanation": "'Precise' means exact or accurate.",
+          "explanation": "Precise means exact and accurate, so the closest synonym is the word with that meaning.",
           "difficulty": "easy",
           "topic": "Competency Framework",
           "keywords": [
@@ -6613,7 +6428,7 @@
         },
         {
           "id": "competency_verbal_059",
-          "question": "Which word best completes: 'The Head of Service issued a strong ______ on discipline.",
+          "question": "Which word best completes: 'The Head of Service issued a strong ______ on discipline.'",
           "options": [
             "Command.",
             "Directive.",
@@ -6621,7 +6436,7 @@
             "Appeal."
           ],
           "correct": 1,
-          "explanation": "The correct word is 'directive'.",
+          "explanation": "Directive fits because it is a formal instruction, which matches a strong official order on discipline.",
           "difficulty": "medium",
           "topic": "Competency Framework",
           "keywords": [
@@ -6632,7 +6447,7 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-23",
+          "lastReviewed": "2026-04-09",
           "glBands": [
             "GL14_15",
             "GL15_16",
@@ -6662,7 +6477,7 @@
             "Bread."
           ],
           "correct": 3,
-          "explanation": "Chair, Table, and Bench are furniture; Bread is food.",
+          "explanation": "Bread is the odd one out because the other items are furniture, while bread is food.",
           "difficulty": "hard",
           "topic": "Competency Framework",
           "keywords": [
@@ -6694,15 +6509,15 @@
         },
         {
           "id": "comp_verbal_reasoning_gen_001",
-          "question": "In the context of Verbal & Analytical Reasoning, which action best demonstrates verbal & analytical reasoning governance",
+          "question": "Which option best demonstrates good governance in verbal and analytical reasoning tasks?",
           "options": [
-            "Apply approved verbal & analytical reasoning procedures and maintain complete records.",
-            "Apply rules inconsistently based on personal preference.",
-            "Bypass review and approval controls to save time.",
-            "Prioritize convenience over policy and legal requirements."
+            "Approved procedures and complete records.",
+            "Rule inconsistency.",
+            "Review-control bypass.",
+            "Convenience bias."
           ],
           "correct": 0,
-          "explanation": "Apply approved verbal & analytical reasoning procedures and maintain complete records. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
+          "explanation": "Approved procedures and complete records support consistency, compliance, and accountability in reasoning tasks.",
           "difficulty": "easy",
           "chapter": "Verbal & Analytical Reasoning - Expansion Set",
           "keywords": [
@@ -6715,7 +6530,7 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-23",
+          "lastReviewed": "2026-04-09",
           "glBands": [
             "GL14_15",
             "GL15_16",
@@ -6784,15 +6599,15 @@
         },
         {
           "id": "comp_verbal_reasoning_gen_003",
-          "question": "Which option most strongly aligns with good public-service practice on verbal & analytical reasoning risk management within Verbal & Analytical Reasoning",
+          "question": "Which choice best reflects sound risk management in verbal and analytical reasoning work?",
           "options": [
-            "Identify control gaps early and escalate material exceptions promptly.",
-            "Bypass review and approval controls to save time.",
-            "Prioritize convenience over policy and legal requirements.",
-            "Ignore feedback and continue non-compliant procedures."
+            "Early risk identification and documented mitigation.",
+            "Review-control bypass.",
+            "Convenience bias.",
+            "Ongoing non-compliance."
           ],
           "correct": 0,
-          "explanation": "Identify control gaps early and escalate material exceptions promptly. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
+          "explanation": "Early risk identification and documented mitigation is the safest way to manage risk.",
           "difficulty": "medium",
           "chapter": "Verbal & Analytical Reasoning - Expansion Set",
           "keywords": [
@@ -6805,7 +6620,7 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-23",
+          "lastReviewed": "2026-04-09",
           "glBands": [
             "GL14_15",
             "GL15_16",
@@ -6964,15 +6779,15 @@
         },
         {
           "id": "comp_verbal_reasoning_gen_007",
-          "question": "For effective verbal & analytical reasoning, what is the most appropriate approach to ensure problem solving",
+          "question": "What is the best problem-solving approach in verbal and analytical reasoning?",
           "options": [
-            "Break complex issues into testable and actionable parts.",
-            "Ignore feedback and continue non-compliant procedures.",
-            "Apply rules inconsistently based on personal preference.",
-            "Bypass review and approval controls to save time."
+            "Structured decomposition of complex issues.",
+            "Feedback avoidance.",
+            "Rule inconsistency.",
+            "Review-control bypass."
           ],
           "correct": 0,
-          "explanation": "Break complex issues into testable and actionable parts. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
+          "explanation": "Breaking complex issues into testable, actionable parts makes the reasoning easier to check and resolve.",
           "difficulty": "medium",
           "chapter": "Verbal & Analytical Reasoning - Expansion Set",
           "keywords": [
@@ -6985,7 +6800,7 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-23",
+          "lastReviewed": "2026-04-09",
           "glBands": [
             "GL15_16",
             "GL16_17"
@@ -7056,15 +6871,15 @@
         },
         {
           "id": "comp_verbal_reasoning_gen_009",
-          "question": "When handling verbal & analytical reasoning, which choice reflects proper documented procedure standards",
+          "question": "Which option best reflects proper documented procedure standards in verbal and analytical reasoning work?",
           "options": [
-            "Follow documented procedure and keep complete records.",
-            "Apply rules inconsistently based on personal preference.",
-            "Bypass review and approval controls to save time.",
-            "Prioritize convenience over policy and legal requirements."
+            "Documented procedure and complete records.",
+            "Rule inconsistency.",
+            "Review-control bypass.",
+            "Convenience bias."
           ],
           "correct": 0,
-          "explanation": "Follow documented procedure and keep complete records. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
+          "explanation": "Following documented procedure and keeping complete records makes the work traceable and reliable.",
           "difficulty": "medium",
           "chapter": "Verbal & Analytical Reasoning - Expansion Set",
           "keywords": [
@@ -7077,7 +6892,7 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-23",
+          "lastReviewed": "2026-04-09",
           "glBands": [
             "GL14_15",
             "GL15_16",
@@ -7147,15 +6962,15 @@
         },
         {
           "id": "comp_verbal_reasoning_gen_011",
-          "question": "In the context of Verbal & Analytical Reasoning, which action best demonstrates public accountability",
+          "question": "Which option best demonstrates public accountability in verbal and analytical reasoning work?",
           "options": [
-            "Provide traceable decisions and evidence-based justification.",
-            "Bypass review and approval controls to save time.",
-            "Prioritize convenience over policy and legal requirements.",
-            "Ignore feedback and continue non-compliant procedures."
+            "Traceable, evidence-based decisions.",
+            "Review-control bypass.",
+            "Convenience bias.",
+            "Feedback avoidance."
           ],
           "correct": 0,
-          "explanation": "Provide traceable decisions and evidence-based justification. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
+          "explanation": "Providing traceable decisions with evidence-based justification allows the work to be reviewed and defended.",
           "difficulty": "medium",
           "chapter": "Verbal & Analytical Reasoning - Expansion Set",
           "keywords": [
@@ -7168,7 +6983,7 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-23",
+          "lastReviewed": "2026-04-09",
           "glBands": [
             "GL14_15",
             "GL15_16",
@@ -7237,15 +7052,15 @@
         },
         {
           "id": "comp_verbal_reasoning_gen_013",
-          "question": "Which option most strongly aligns with good public-service practice on risk control within Verbal & Analytical Reasoning",
+          "question": "Which option best supports risk control in verbal and analytical reasoning work?",
           "options": [
-            "Identify risk early, apply controls, and document mitigation.",
-            "Prioritize convenience over policy and legal requirements.",
-            "Ignore feedback and continue non-compliant procedures.",
-            "Apply rules inconsistently based on personal preference."
+            "Early risk identification and documented mitigation.",
+            "Convenience bias.",
+            "Feedback avoidance.",
+            "Rule inconsistency."
           ],
           "correct": 0,
-          "explanation": "Identify risk early, apply controls, and document mitigation. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
+          "explanation": "Identifying risk early, applying controls, and documenting mitigation reduces exposure and keeps the process controlled.",
           "difficulty": "easy",
           "chapter": "Verbal & Analytical Reasoning - Expansion Set",
           "keywords": [
@@ -7258,7 +7073,7 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-23",
+          "lastReviewed": "2026-04-09",
           "glBands": [
             "GL14_15",
             "GL15_16",
@@ -7327,15 +7142,15 @@
         },
         {
           "id": "comp_verbal_reasoning_gen_015",
-          "question": "Which practice should a responsible officer prioritize to sustain operational discipline in Verbal & Analytical Reasoning",
+          "question": "Which practice best supports operational discipline in verbal and analytical reasoning work?",
           "options": [
-            "Follow approved workflows and verify outputs before closure.",
-            "Ignore feedback and continue non-compliant procedures.",
-            "Apply rules inconsistently based on personal preference.",
-            "Bypass review and approval controls to save time."
+            "Approved workflows and output verification.",
+            "Feedback avoidance.",
+            "Rule inconsistency.",
+            "Review-control bypass."
           ],
           "correct": 0,
-          "explanation": "Follow approved workflows and verify outputs before closure. It strengthens compliance, consistency, and accountability in verbal & analytical reasoning.",
+          "explanation": "Following approved workflows and verifying outputs before closure keeps the work disciplined and accurate.",
           "difficulty": "medium",
           "chapter": "Verbal & Analytical Reasoning - Expansion Set",
           "keywords": [
@@ -7348,7 +7163,7 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-23",
+          "lastReviewed": "2026-04-09",
           "glBands": [
             "GL14_15",
             "GL15_16",
@@ -7416,72 +7231,26 @@
           "topic": "Competency Framework"
         },
         {
-          "id": "competency_verbal_062",
-          "question": "In the public service context, select the option that best answers: Any directive to the Accounting Officer by a Political Head having financial implications must be:?",
+          "id": "competency_verbal_063",
+          "question": "What must a Revenue Collector do immediately after receiving money?",
           "options": [
-            "In writing. 153",
-            "Given verbally.",
-            "Only for minor financial matters. Q",
-            "Approved by the National Assembly first."
+            "Enter the receipt in the cash book without delay.",
+            "Keep the money in a safe until the end of the week.",
+            "Issue a verbal receipt and collect a written one later.",
+            "Hand it over to the Sub-Accounting Officer."
           ],
           "correct": 0,
-          "explanation": "Correct option: A (In writing. 153). Financial Regulation 117(i) states, \"Any directive to the Accounting Officer by a Political Head having financial implications on the ministry, agency or parastatal must be in writing.\"",
-          "difficulty": "hard",
-          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
-          "keywords": [
-            "context",
-            "select",
-            "option",
-            "best"
-          ],
-          "sourceDocument": "Directorate Competency Framework",
-          "sourceSection": "Verbal & Analytical Reasoning",
-          "year": 2020,
-          "lastReviewed": "2026-03-23",
-          "glBands": [
-            "GL15_16",
-            "GL16_17"
-          ],
-          "marks": 1,
-          "questionType": "single_best_answer",
-          "reviewStatus": "approved",
-          "tags": [
-            "verbal_reasoning",
-            "analytical_reasoning",
-            "context",
-            "select",
-            "option",
-            "best",
-            "public_service_context"
-          ],
-          "sourceTopicId": "competency_framework",
-          "sourceSubcategoryId": "comp_verbal_reasoning",
-          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
-          "topic": "Competency Framework"
-        },
-        {
-          "id": "competency_verbal_063",
-          "question": "According to established rules, select the option that best answers: What must a Revenue Collector do immediately upon receiving money?",
-          "options": [
-            "Keep the money in a safe until the end of the week □ 158",
-            "Enter the receipt in their cash book without delay",
-            "Issue a verbal receipt and collect a written one later",
-            "Hand it over to the Sub-Accounting Officer"
-          ],
-          "correct": 1,
-          "explanation": "Correct option: B (Enter the receipt in their cash book without delay). Financial Regulation 209(i) necessitate every Revenue Collector to keep a cash book and enter all receipts without delay on the day of receipt.",
+          "explanation": "Financial Regulation 209(i) requires every Revenue Collector to keep a cash book and enter all receipts without delay on the day of receipt.",
           "difficulty": "easy",
           "chapter": "Verbal & Analytical Reasoning - Expansion Set",
           "keywords": [
-            "according",
-            "established",
-            "select",
-            "option"
+            "revenue collector",
+            "cash book"
           ],
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-23",
+          "lastReviewed": "2026-04-15",
           "glBands": [
             "GL14_15",
             "GL15_16",
@@ -7493,55 +7262,9 @@
           "tags": [
             "verbal_reasoning",
             "analytical_reasoning",
-            "according",
-            "established",
-            "select",
-            "option"
-          ],
-          "sourceTopicId": "competency_framework",
-          "sourceSubcategoryId": "comp_verbal_reasoning",
-          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
-          "topic": "Competency Framework"
-        },
-        {
-          "id": "competency_verbal_064",
-          "question": "According to established rules, which option aligns with the meaning of the demand procedure for a lodgement made by an officer who is neither a Revenue Collector nor a Sub-Accounting Officer?",
-          "options": [
-            "It must be accompanied by a hand-written note",
-            "It must be supported by a paying-in form (Treasury Form 15)",
-            "It must be entered in a private cash booka 161",
-            "A verbal report is sufficient"
-          ],
-          "correct": 1,
-          "explanation": "Correct option: B (It must be supported by a paying-in form (Treasury Form 15)). Financial Regulation 218 specifies that the lodgement will be supported by a paying-in form (Treasury Form 15).",
-          "difficulty": "medium",
-          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
-          "keywords": [
-            "officer",
-            "according",
-            "established",
-            "option"
-          ],
-          "sourceDocument": "Directorate Competency Framework",
-          "sourceSection": "Verbal & Analytical Reasoning",
-          "year": 2020,
-          "lastReviewed": "2026-03-23",
-          "glBands": [
-            "GL14_15",
-            "GL15_16",
-            "GL16_17"
-          ],
-          "marks": 1,
-          "questionType": "single_best_answer",
-          "reviewStatus": "approved",
-          "tags": [
-            "verbal_reasoning",
-            "analytical_reasoning",
-            "officer",
-            "according",
-            "established",
-            "option",
-            "public_service_context"
+            "revenue_collection",
+            "cash_book",
+            "financial_regulation"
           ],
           "sourceTopicId": "competency_framework",
           "sourceSubcategoryId": "comp_verbal_reasoning",
@@ -7550,27 +7273,25 @@
         },
         {
           "id": "competency_verbal_065",
-          "question": "According to established rules, select the option that best answers: What must be kept in each strong-room or reserve cash safe for all cash, stamps, receipt/licence books, and other articles deposited?",
+          "question": "What must be kept in each strong-room or reserve cash safe for deposited cash, stamps, receipt/licence books, and other articles?",
           "options": [
             "A daily log.",
-            "A memo. □.",
+            "A memo.",
             "A simple list.",
             "Registers."
           ],
           "correct": 3,
-          "explanation": "Correct option: D (Registers.). Financial Regulation 1121 demand that \"Registers must be kept in each strong-room or reserve cash safe of all cash, stamps, receipt or licence books and other articles deposited.\"",
+          "explanation": "Financial Regulation 1121 requires registers to be kept in each strong-room or reserve cash safe for all cash, stamps, receipt or licence books, and other deposited articles.",
           "difficulty": "easy",
           "chapter": "Verbal & Analytical Reasoning - Expansion Set",
           "keywords": [
-            "cash",
-            "according",
-            "established",
-            "select"
+            "strong room",
+            "registers"
           ],
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-23",
+          "lastReviewed": "2026-04-15",
           "glBands": [
             "GL14_15",
             "GL15_16",
@@ -7582,10 +7303,9 @@
           "tags": [
             "verbal_reasoning",
             "analytical_reasoning",
-            "cash",
-            "according",
-            "established",
-            "select"
+            "strong_room",
+            "registers",
+            "financial_regulation"
           ],
           "sourceTopicId": "competency_framework",
           "sourceSubcategoryId": "comp_verbal_reasoning",
@@ -7594,27 +7314,26 @@
         },
         {
           "id": "competency_verbal_066",
-          "question": "select the option that best answers: Question: What must be obtained when receipt and licence books are handed over from one officer to another?",
+          "question": "What must be obtained when receipt and licence books are handed over from one officer to another?",
           "options": [
-            "A new set of books. □.",
+            "A new set of books.",
             "A simple memo.",
             "A verbal confirmation.",
             "A handing-over certificate."
           ],
           "correct": 3,
-          "explanation": "Correct option: D (A handing-over certificate.). Financial Regulation 1226 states, \"When receipt and licence books are handed over from one officer to another, a handing-over certificate must be obtained.\"",
+          "explanation": "Financial Regulation 1226 states that when receipt and licence books are handed over from one officer to another, a handing-over certificate must be obtained.",
           "difficulty": "hard",
           "chapter": "Verbal & Analytical Reasoning - Expansion Set",
           "keywords": [
-            "select",
-            "option",
-            "best",
-            "answers"
+            "receipt books",
+            "licence books",
+            "handover"
           ],
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-23",
+          "lastReviewed": "2026-04-15",
           "glBands": [
             "GL15_16",
             "GL16_17"
@@ -7625,11 +7344,9 @@
           "tags": [
             "verbal_reasoning",
             "analytical_reasoning",
-            "select",
-            "option",
-            "best",
-            "answers",
-            "public_service_context"
+            "handover",
+            "receipt_books",
+            "financial_regulation"
           ],
           "sourceTopicId": "competency_framework",
           "sourceSubcategoryId": "comp_verbal_reasoning",
@@ -7683,27 +7400,25 @@
         },
         {
           "id": "competency_verbal_068",
-          "question": "Within government administration, which option aligns with the meaning of the definition of \"volunteerism\" according to the rules?",
+          "question": "Which option best defines volunteerism under the rules?",
           "options": [
-            "Offering services for a short-term contract. 24 Q",
-            "Offering one’s time or talent for charitable, educational, or other worthwhile activities, especially in one’s community, without remuneration",
+            "Offering services for a short-term contract.",
+            "Offering one?s time or talent for charitable, educational, or other worthwhile activities, especially in one?s community, without remuneration.",
             "Offering services for payment.",
             "Offering one's time or talent for a fee."
           ],
           "correct": 1,
-          "explanation": "Correct option: B (Offering one’s time or talent for charitable, educational, or other worthwhile activities, especially in one’s community, without remuneration). Rule 020416 defines volunteerism as a \"practice of offering one’s time or talent for charitable, educational, or other worthwhile activities, especially in one’s community.\"",
+          "explanation": "Rule 020416 defines volunteerism as offering one?s time or talent for charitable, educational, or other worthwhile activities, especially in one?s community, without remuneration.",
           "difficulty": "medium",
           "chapter": "Verbal & Analytical Reasoning - Expansion Set",
           "keywords": [
-            "within",
-            "option",
-            "aligns",
-            "meaning"
+            "volunteerism",
+            "community service"
           ],
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-23",
+          "lastReviewed": "2026-04-15",
           "glBands": [
             "GL14_15",
             "GL15_16",
@@ -7715,317 +7430,8 @@
           "tags": [
             "verbal_reasoning",
             "analytical_reasoning",
-            "within",
-            "option",
-            "aligns",
-            "meaning"
-          ],
-          "sourceTopicId": "competency_framework",
-          "sourceSubcategoryId": "comp_verbal_reasoning",
-          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
-          "topic": "Competency Framework"
-        },
-        {
-          "id": "competency_verbal_069",
-          "question": "Within government administration, which office is ultimately accountable for ensuring that the approved fees are paid to the deserving invigilators and examiners?",
-          "options": [
-            "The Accountant-General of the Federation",
-            "The Director of Human Resources Q",
-            "The Permanent Secretary of the MDA",
-            "The Head of the Civil Service of the Federation"
-          ],
-          "correct": 2,
-          "explanation": "Correct option: C (The Permanent Secretary of the MDA). The Permanent Secretary is accountable for the overall supervision of the examinations, including the disbursement of fees 59 Section B: COMPUTER-BASED TEST (CBT) PROMOTION EXAMINATION FOR OFFICERS IN GRADES 15 TO 17 IN THE FEDERAL CIVIL SERVICE OF THE FEDERATION ON PUBLIC SERVICE RULE (PSR). Instruction: This examination consists of 100 multiple-choice questions designed to assess your readiness for promotion to the next level in the Federal Civil Service. You have exactly one hour (60 minutes) to complete all questions; manage your time wisely to secure you attempt every question. Read each question carefully before selecting the best answer from the options. Part 1: Employment Consideration for Applicants Above 50 Years in the Public Service",
-          "difficulty": "easy",
-          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
-          "keywords": [
-            "within",
-            "office",
-            "ultimately",
-            "accountable"
-          ],
-          "sourceDocument": "Directorate Competency Framework",
-          "sourceSection": "Verbal & Analytical Reasoning",
-          "year": 2020,
-          "lastReviewed": "2026-03-23",
-          "glBands": [
-            "GL14_15",
-            "GL15_16",
-            "GL16_17"
-          ],
-          "marks": 1,
-          "questionType": "single_best_answer",
-          "reviewStatus": "approved",
-          "tags": [
-            "verbal_reasoning",
-            "analytical_reasoning",
-            "within",
-            "office",
-            "ultimately",
-            "accountable"
-          ],
-          "sourceTopicId": "competency_framework",
-          "sourceSubcategoryId": "comp_verbal_reasoning",
-          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
-          "topic": "Competency Framework"
-        },
-        {
-          "id": "competency_verbal_070",
-          "question": "According to established rules, which option correctly addresses: If a disbursement is made on account for a contract, what is the money claimed limited to?",
-          "options": [
-            "The amount available in the vote",
-            "An arbitrary percentage of the contract.",
-            "The full contract sum.",
-            "The cost of the work certified to have been performed."
-          ],
-          "correct": 3,
-          "explanation": "Correct option: D (The cost of the work certified to have been performed.). Financial Regulation 412 states: \"In the case o. payment on account, no money will be claimed other than the cost of the work certified to have been performed.\"",
-          "difficulty": "hard",
-          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
-          "keywords": [
-            "according",
-            "established",
-            "option",
-            "correctly"
-          ],
-          "sourceDocument": "Directorate Competency Framework",
-          "sourceSection": "Verbal & Analytical Reasoning",
-          "year": 2020,
-          "lastReviewed": "2026-03-23",
-          "glBands": [
-            "GL15_16",
-            "GL16_17"
-          ],
-          "marks": 1,
-          "questionType": "single_best_answer",
-          "reviewStatus": "approved",
-          "tags": [
-            "verbal_reasoning",
-            "analytical_reasoning",
-            "according",
-            "established",
-            "option",
-            "correctly"
-          ],
-          "sourceTopicId": "competency_framework",
-          "sourceSubcategoryId": "comp_verbal_reasoning",
-          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
-          "topic": "Competency Framework"
-        },
-        {
-          "id": "competency_verbal_071",
-          "question": "According to established rules, select the option that best answers: What must be done with the cancelled receipt or licence, including the original?",
-          "options": [
-            "It will be retained in the receipt or licence book.",
-            "It should be given to the payer. □.",
-            "It should be destroyed immediately.",
-            "It should be sent to the Accountant-General."
-          ],
-          "correct": 0,
-          "explanation": "Correct option: A (It will be retained in the receipt or licence book.). Financial Regulation 1216 specifies that the \"cancelled receipts or licence, including the original, will be retained in the receipt or licence book.\"",
-          "difficulty": "medium",
-          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
-          "keywords": [
-            "according",
-            "established",
-            "select",
-            "option"
-          ],
-          "sourceDocument": "Directorate Competency Framework",
-          "sourceSection": "Verbal & Analytical Reasoning",
-          "year": 2020,
-          "lastReviewed": "2026-03-23",
-          "glBands": [
-            "GL14_15",
-            "GL15_16",
-            "GL16_17"
-          ],
-          "marks": 1,
-          "questionType": "single_best_answer",
-          "reviewStatus": "approved",
-          "tags": [
-            "verbal_reasoning",
-            "analytical_reasoning",
-            "according",
-            "established",
-            "select",
-            "option"
-          ],
-          "sourceTopicId": "competency_framework",
-          "sourceSubcategoryId": "comp_verbal_reasoning",
-          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
-          "topic": "Competency Framework"
-        },
-        {
-          "id": "competency_verbal_072",
-          "question": "In the public service context, which option best describes necessitate to support a withdrawal from a deposit?",
-          "options": [
-            "The original receipt issued when the money was placed on deposit",
-            "A handwritten note from the depositor",
-            "A verbal confirmation from the Accounting Officera",
-            "A photocopy of the original receipt"
-          ],
-          "correct": 0,
-          "explanation": "Correct option: A (The original receipt issued when the money was placed on deposit). Financial Regulation 1306 states that withdrawals from deposit must be supported by the original receipt issued when the money was placed on deposit.",
-          "difficulty": "medium",
-          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
-          "keywords": [
-            "context",
-            "option",
-            "best",
-            "describes"
-          ],
-          "sourceDocument": "Directorate Competency Framework",
-          "sourceSection": "Verbal & Analytical Reasoning",
-          "year": 2020,
-          "lastReviewed": "2026-03-23",
-          "glBands": [
-            "GL14_15",
-            "GL15_16",
-            "GL16_17"
-          ],
-          "marks": 1,
-          "questionType": "single_best_answer",
-          "reviewStatus": "approved",
-          "tags": [
-            "verbal_reasoning",
-            "analytical_reasoning",
-            "context",
-            "option",
-            "best",
-            "describes"
-          ],
-          "sourceTopicId": "competency_framework",
-          "sourceSubcategoryId": "comp_verbal_reasoning",
-          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
-          "topic": "Competency Framework"
-        },
-        {
-          "id": "competency_verbal_073",
-          "question": "In the public service context, select the option that best answers: What type of report must the Board of Survey prepare and submit?",
-          "options": [
-            "An electronic report.",
-            "A one-page summary report",
-            "A report in triplicate, which must be signed by all members.",
-            "A verbal report to the Accounting Officer."
-          ],
-          "correct": 2,
-          "explanation": "Correct option: C (A report in triplicate, which must be signed by all members.). Financial Regulation 1807 states that the Board of Survey must prepare a report in triplicate, signed by all members. 279",
-          "difficulty": "medium",
-          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
-          "keywords": [
-            "context",
-            "select",
-            "option",
-            "best"
-          ],
-          "sourceDocument": "Directorate Competency Framework",
-          "sourceSection": "Verbal & Analytical Reasoning",
-          "year": 2020,
-          "lastReviewed": "2026-03-23",
-          "glBands": [
-            "GL15_16",
-            "GL16_17"
-          ],
-          "marks": 1,
-          "questionType": "single_best_answer",
-          "reviewStatus": "approved",
-          "tags": [
-            "verbal_reasoning",
-            "analytical_reasoning",
-            "context",
-            "select",
-            "option",
-            "best",
-            "official_communication"
-          ],
-          "sourceTopicId": "competency_framework",
-          "sourceSubcategoryId": "comp_verbal_reasoning",
-          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
-          "topic": "Competency Framework"
-        },
-        {
-          "id": "competency_verbal_074",
-          "question": "In the public service context, which option aligns with the meaning of the chief method of tracking the usage of government vehicles?",
-          "options": [
-            "Logbooks.",
-            "Monthly meetings",
-            "Informal notes.",
-            "Verbal reports from drivers."
-          ],
-          "correct": 0,
-          "explanation": "Correct option: A (Logbooks.). Financial Regulation 2005-2007 consistently emphasizes the use and maintenance of the logbook for tracking vehicle usage.",
-          "difficulty": "easy",
-          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
-          "keywords": [
-            "context",
-            "option",
-            "aligns",
-            "meaning"
-          ],
-          "sourceDocument": "Directorate Competency Framework",
-          "sourceSection": "Verbal & Analytical Reasoning",
-          "year": 2020,
-          "lastReviewed": "2026-03-23",
-          "glBands": [
-            "GL14_15",
-            "GL15_16",
-            "GL16_17"
-          ],
-          "marks": 1,
-          "questionType": "single_best_answer",
-          "reviewStatus": "approved",
-          "tags": [
-            "verbal_reasoning",
-            "analytical_reasoning",
-            "context",
-            "option",
-            "aligns",
-            "meaning"
-          ],
-          "sourceTopicId": "competency_framework",
-          "sourceSubcategoryId": "comp_verbal_reasoning",
-          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
-          "topic": "Competency Framework"
-        },
-        {
-          "id": "competency_verbal_075",
-          "question": "In official practice, which office is the Chief Adviser to the Minister and also the Ministry's Accounting Officer?",
-          "options": [
-            "The Chairman of the Extra-Ministerial Department",
-            "The Permanent Secretary",
-            "The Minister of State",
-            "The Head of the Civil Service of the Federationa 374"
-          ],
-          "correct": 1,
-          "explanation": "Correct option: B (The Permanent Secretary). His Chief Adviser is the Permanent Secretary who is also the Ministry's Accounting Officer.",
-          "difficulty": "medium",
-          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
-          "keywords": [
-            "official",
-            "practice",
-            "office",
-            "chief"
-          ],
-          "sourceDocument": "Directorate Competency Framework",
-          "sourceSection": "Verbal & Analytical Reasoning",
-          "year": 2020,
-          "lastReviewed": "2026-03-23",
-          "glBands": [
-            "GL14_15",
-            "GL15_16",
-            "GL16_17"
-          ],
-          "marks": 1,
-          "questionType": "single_best_answer",
-          "reviewStatus": "approved",
-          "tags": [
-            "verbal_reasoning",
-            "analytical_reasoning",
-            "official",
-            "practice",
-            "office",
-            "chief",
+            "volunteerism",
+            "civic_service",
             "public_service_context"
           ],
           "sourceTopicId": "competency_framework",
@@ -8034,28 +7440,26 @@
           "topic": "Competency Framework"
         },
         {
-          "id": "competency_verbal_076",
-          "question": "In the public service context, which option aligns with the meaning of the ultimate aim of the Due workflow policy's objective to guarantee the elimination of waste?",
+          "id": "competency_verbal_069",
+          "question": "Who is accountable for ensuring that approved fees are paid to invigilators and examiners?",
           "options": [
-            "To prolong the duration of projects",
-            "To secure value for money",
-            "To increase government bureaucracy □.",
-            "To increase government spending"
+            "The Accountant-General of the Federation.",
+            "The Director of Human Resources.",
+            "The Permanent Secretary of the MDA.",
+            "The Head of the Civil Service of the Federation."
           ],
-          "correct": 1,
-          "explanation": "Correct option: B (To secure value for money). The objective to eliminate waste is directly linked to the aim of achieving value for money.",
+          "correct": 2,
+          "explanation": "The Permanent Secretary is accountable for the overall supervision of the examinations, including the disbursement of fees to invigilators and examiners.",
           "difficulty": "easy",
           "chapter": "Verbal & Analytical Reasoning - Expansion Set",
           "keywords": [
-            "context",
-            "option",
-            "aligns",
-            "meaning"
+            "permanent secretary",
+            "fees"
           ],
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-23",
+          "lastReviewed": "2026-04-15",
           "glBands": [
             "GL14_15",
             "GL15_16",
@@ -8067,10 +7471,131 @@
           "tags": [
             "verbal_reasoning",
             "analytical_reasoning",
-            "context",
-            "option",
-            "aligns",
-            "meaning"
+            "permanent_secretary",
+            "examinations",
+            "public_service_context"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
+          "topic": "Competency Framework"
+        },
+        {
+          "id": "competency_verbal_070",
+          "question": "If a disbursement is made on account for a contract, what amount may be claimed?",
+          "options": [
+            "The amount available in the vote.",
+            "An arbitrary percentage of the contract.",
+            "The full contract sum.",
+            "The cost of the work certified to have been performed."
+          ],
+          "correct": 3,
+          "explanation": "Financial Regulation 412 states that, in the case of payment on account, no money may be claimed other than the cost of the work certified to have been performed.",
+          "difficulty": "hard",
+          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
+          "keywords": [
+            "contract payment",
+            "work certified"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Verbal & Analytical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-04-15",
+          "glBands": [
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "contract_payment",
+            "financial_regulation",
+            "public_finance"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
+          "topic": "Competency Framework"
+        },
+        {
+          "id": "competency_verbal_072",
+          "question": "What must support a withdrawal from a deposit?",
+          "options": [
+            "The original receipt issued when the money was placed on deposit.",
+            "A handwritten note from the depositor.",
+            "A verbal confirmation from the Accounting Officer.",
+            "A photocopy of the original receipt."
+          ],
+          "correct": 0,
+          "explanation": "Financial Regulation 1306 states that withdrawals from deposit must be supported by the original receipt issued when the money was placed on deposit.",
+          "difficulty": "medium",
+          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
+          "keywords": [
+            "deposit",
+            "withdrawal"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Verbal & Analytical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-04-15",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "deposit",
+            "withdrawal",
+            "financial_regulation"
+          ],
+          "sourceTopicId": "competency_framework",
+          "sourceSubcategoryId": "comp_verbal_reasoning",
+          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
+          "topic": "Competency Framework"
+        },
+        {
+          "id": "competency_verbal_076",
+          "question": "What is the ultimate aim of a due-process workflow policy designed to eliminate waste?",
+          "options": [
+            "To prolong the duration of projects.",
+            "To secure value for money.",
+            "To increase government bureaucracy.",
+            "To increase government spending."
+          ],
+          "correct": 1,
+          "explanation": "The policy is aimed at eliminating waste so that public spending delivers value for money.",
+          "difficulty": "easy",
+          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
+          "keywords": [
+            "due process",
+            "value for money"
+          ],
+          "sourceDocument": "Directorate Competency Framework",
+          "sourceSection": "Verbal & Analytical Reasoning",
+          "year": 2020,
+          "lastReviewed": "2026-04-15",
+          "glBands": [
+            "GL14_15",
+            "GL15_16",
+            "GL16_17"
+          ],
+          "marks": 1,
+          "questionType": "single_best_answer",
+          "reviewStatus": "approved",
+          "tags": [
+            "verbal_reasoning",
+            "analytical_reasoning",
+            "due_process",
+            "value_for_money",
+            "public_procurement"
           ],
           "sourceTopicId": "competency_framework",
           "sourceSubcategoryId": "comp_verbal_reasoning",
@@ -8079,27 +7604,25 @@
         },
         {
           "id": "competency_verbal_077",
-          "question": "Within government administration, select the option that best answers: In the context of a Public Accounts Committee hearing, what is the role of the Accountant-General of the Federation?",
+          "question": "In a Public Accounts Committee hearing, what is the role of the Accountant-General of the Federation?",
           "options": [
-            "To prepare the Auditor-General's report □.",
-            "To represent all MDAs and answer for them",
-            "To provide clarification on accounting procedures and financial regulations",
-            "To manage the committee's budget"
+            "To prepare the Auditor-General's report.",
+            "To represent all MDAs and answer for them.",
+            "To provide clarification on accounting procedures and financial regulations.",
+            "To manage the committee's budget."
           ],
           "correct": 2,
-          "explanation": "Correct option: C (To provide clarification on accounting procedures and financial regulations). The Accountant-General of the Federation attends the committee's sittings and provides clarification on accounting procedures, treasury circulars, and financial regulations",
+          "explanation": "The Accountant-General attends the committee's sittings and provides clarification on accounting procedures, treasury circulars, and financial regulations.",
           "difficulty": "easy",
           "chapter": "Verbal & Analytical Reasoning - Expansion Set",
           "keywords": [
-            "within",
-            "select",
-            "option",
-            "best"
+            "pac",
+            "accountant-general"
           ],
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-23",
+          "lastReviewed": "2026-04-15",
           "glBands": [
             "GL14_15",
             "GL15_16",
@@ -8111,10 +7634,9 @@
           "tags": [
             "verbal_reasoning",
             "analytical_reasoning",
-            "within",
-            "select",
-            "option",
-            "best"
+            "pac_hearing",
+            "accountant_general",
+            "financial_regulations"
           ],
           "sourceTopicId": "competency_framework",
           "sourceSubcategoryId": "comp_verbal_reasoning",
@@ -8123,15 +7645,15 @@
         },
         {
           "id": "competency_verbal_078",
-          "question": "at what point should File Notes be made frequently?",
+          "question": "When should file notes be made?",
           "options": [
-            "Only for very important decisions.",
-            "When verbal discussions are held by telephone or otherwise.",
-            "Never, as they are not formal. □. 490",
-            "Only at the end of the day."
+            "Verbal discussions.",
+            "Important decisions only.",
+            "End-of-day notes only.",
+            "No formal notes."
           ],
-          "correct": 1,
-          "explanation": "Correct option: B (When verbal discussions are held by telephone or otherwise.). They should, therefore, be made as frequently as possible when verbal discussions are held by telephone or otherwise.",
+          "correct": 0,
+          "explanation": "File notes should be made when verbal discussions occur so the record is complete, accurate, and traceable.",
           "difficulty": "easy",
           "chapter": "Verbal & Analytical Reasoning - Expansion Set",
           "keywords": [
@@ -8143,7 +7665,7 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-23",
+          "lastReviewed": "2026-04-09",
           "glBands": [
             "GL14_15",
             "GL15_16",
@@ -8167,15 +7689,15 @@
         },
         {
           "id": "competency_verbal_079",
-          "question": "Within government administration, at what point should File Notes be made frequently?",
+          "question": "Why are file notes made after verbal discussions in government administration?",
           "options": [
-            "Only for very important decisions.",
-            "Only at the end of the day.",
-            "When verbal discussions are held by telephone or otherwise.",
-            "Never, as they are not formal.3. 498"
+            "To keep the record complete, accurate, and traceable.",
+            "To avoid writing any formal record.",
+            "To replace every written memo.",
+            "To delay administrative action indefinitely."
           ],
-          "correct": 2,
-          "explanation": "Correct option: C (When verbal discussions are held by telephone or otherwise.). They should, therefore, be made as frequently as possible when verbal discussions are held by telephone or otherwise.",
+          "correct": 0,
+          "explanation": "File notes are made so that government records remain complete and accountable after verbal discussions.",
           "difficulty": "medium",
           "chapter": "Verbal & Analytical Reasoning - Expansion Set",
           "keywords": [
@@ -8187,7 +7709,7 @@
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-23",
+          "lastReviewed": "2026-04-09",
           "glBands": [
             "GL14_15",
             "GL15_16",
@@ -8203,50 +7725,6 @@
             "point",
             "should",
             "file"
-          ],
-          "sourceTopicId": "competency_framework",
-          "sourceSubcategoryId": "comp_verbal_reasoning",
-          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
-          "topic": "Competency Framework"
-        },
-        {
-          "id": "competency_verbal_080",
-          "question": "According to established rules, select the option that best answers: According to Financial Regulation 202, what must an officer receiving public money issue for every sum of money paid to the government?",
-          "options": [
-            "A verbal confirmation",
-            "An official receipt",
-            "A bank deposit slip Q",
-            "A signed declaration"
-          ],
-          "correct": 1,
-          "explanation": "Correct option: B (An official receipt). Financial Regulation 202 mandates that an official receipt must be issued by the officer receiving public money for every sum paid to the government.",
-          "difficulty": "hard",
-          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
-          "keywords": [
-            "according",
-            "money",
-            "established",
-            "select"
-          ],
-          "sourceDocument": "Directorate Competency Framework",
-          "sourceSection": "Verbal & Analytical Reasoning",
-          "year": 2020,
-          "lastReviewed": "2026-03-23",
-          "glBands": [
-            "GL15_16",
-            "GL16_17"
-          ],
-          "marks": 1,
-          "questionType": "single_best_answer",
-          "reviewStatus": "approved",
-          "tags": [
-            "verbal_reasoning",
-            "analytical_reasoning",
-            "according",
-            "money",
-            "established",
-            "select",
-            "public_service_context"
           ],
           "sourceTopicId": "competency_framework",
           "sourceSubcategoryId": "comp_verbal_reasoning",
@@ -8255,27 +7733,26 @@
         },
         {
           "id": "competency_verbal_081",
-          "question": "In official practice, select the option that best answers: How is a cheque or bank draft returned to a sender, redirected, or remitted to another station recorded?",
+          "question": "How is a cheque or bank draft that is returned to the sender, redirected, or remitted to another station recorded?",
           "options": [
-            "An appropriate entry is made in the Paper Money Register.",
-            "By a verbal notification to the sender.",
-            "It is recorded in the General Ledger.",
-            "The cheque is simply returned without any log.a 163"
+            "By making an appropriate entry in the Paper Money Register.",
+            "By giving only verbal notice to the sender.",
+            "By recording it in the General Ledger.",
+            "By returning it without making any record."
           ],
           "correct": 0,
-          "explanation": "Correct option: A (An appropriate entry is made in the Paper Money Register.). Financial Regulation 233(iii) specifies that an appropriate entry will be made in the Paper Money Register, giving a reference to the covering memorandum or remittance voucher.",
+          "explanation": "Financial Regulation 233(iii) requires an appropriate entry in the Paper Money Register, with reference to the covering memorandum or remittance voucher.",
           "difficulty": "medium",
           "chapter": "Verbal & Analytical Reasoning - Expansion Set",
           "keywords": [
-            "official",
-            "practice",
-            "select",
-            "option"
+            "paper money register",
+            "cheque",
+            "bank draft"
           ],
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-23",
+          "lastReviewed": "2026-04-15",
           "glBands": [
             "GL14_15",
             "GL15_16",
@@ -8287,10 +7764,9 @@
           "tags": [
             "verbal_reasoning",
             "analytical_reasoning",
-            "official",
-            "practice",
-            "select",
-            "option"
+            "paper_money_register",
+            "remittance",
+            "financial_regulation"
           ],
           "sourceTopicId": "competency_framework",
           "sourceSubcategoryId": "comp_verbal_reasoning",
@@ -8343,27 +7819,25 @@
         },
         {
           "id": "competency_verbal_083",
-          "question": "Within government administration, responsibility for is accountable for providing adequate accounting systems and controls in ministries and extra-ministerial offices belongs to which role?",
+          "question": "Who is responsible for providing adequate accounting systems and controls in ministries and extra-ministerial offices?",
           "options": [
             "The Minister of Finance.",
-            "The Head of Finance and Accounts. □ 199",
+            "The Head of Finance and Accounts.",
             "The Accounting Officer.",
             "The Accountant-General of the Federation."
           ],
           "correct": 3,
-          "explanation": "Correct option: D (The Accountant-General of the Federation.). Financial Regulation 106 states: \"The Accountant-General of the Federation is the Head of the Federal Government Accounting Services and the Treasury. He has the duty for providing adequate accounting systems and controls in the ministries, extra-ministerial offices and other arms of Government.\"",
+          "explanation": "Financial Regulation 106 states that the Accountant-General of the Federation is responsible for providing adequate accounting systems and controls in ministries, extra-ministerial offices, and other arms of government.",
           "difficulty": "hard",
           "chapter": "Verbal & Analytical Reasoning - Expansion Set",
           "keywords": [
-            "within",
-            "responsibility",
-            "accountable",
-            "providing"
+            "accounting systems",
+            "controls"
           ],
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-23",
+          "lastReviewed": "2026-04-15",
           "glBands": [
             "GL15_16",
             "GL16_17"
@@ -8374,10 +7848,9 @@
           "tags": [
             "verbal_reasoning",
             "analytical_reasoning",
-            "within",
-            "responsibility",
-            "accountable",
-            "providing"
+            "accountant_general",
+            "accounting_systems",
+            "treasury"
           ],
           "sourceTopicId": "competency_framework",
           "sourceSubcategoryId": "comp_verbal_reasoning",
@@ -8386,27 +7859,24 @@
         },
         {
           "id": "competency_verbal_084",
-          "question": "In official practice, which option aligns with the meaning of the procedure if an alteration to the amount of a voucher is necessary?",
+          "question": "What should be done if an alteration to the amount of a voucher becomes necessary?",
           "options": [
             "A new voucher must be prepared.",
-            "The alteration can be made and stamped \"Corrected\".",
+            "The alteration can be made and stamped ?Corrected?.",
             "The alteration can be initiated by the certifying officer.",
-            "The Head of Finance and Accounts can approve the alteration"
+            "The Head of Finance and Accounts can approve the alteration."
           ],
           "correct": 0,
-          "explanation": "Correct option: A (A new voucher must be prepared.). Financial Regulation 610 states: \"Alterations to the amount of a voucher whether in words or figure are not allowed. A new voucher must be prepared when necessary.\" 204",
+          "explanation": "Financial Regulation 610 states that alterations to the amount of a voucher are not allowed, and a new voucher must be prepared when necessary.",
           "difficulty": "medium",
           "chapter": "Verbal & Analytical Reasoning - Expansion Set",
           "keywords": [
-            "official",
-            "practice",
-            "option",
-            "aligns"
+            "voucher alteration"
           ],
           "sourceDocument": "Directorate Competency Framework",
           "sourceSection": "Verbal & Analytical Reasoning",
           "year": 2020,
-          "lastReviewed": "2026-03-23",
+          "lastReviewed": "2026-04-15",
           "glBands": [
             "GL14_15",
             "GL15_16",
@@ -8418,54 +7888,9 @@
           "tags": [
             "verbal_reasoning",
             "analytical_reasoning",
-            "official",
-            "practice",
-            "option",
-            "aligns"
-          ],
-          "sourceTopicId": "competency_framework",
-          "sourceSubcategoryId": "comp_verbal_reasoning",
-          "sourceSubcategoryName": "Verbal & Analytical Reasoning",
-          "topic": "Competency Framework"
-        },
-        {
-          "id": "competency_verbal_085",
-          "question": "In the public service context, which option correctly addresses: What must be stamped on every cheque leaf?",
-          "options": [
-            "The amount in words.Q",
-            "The date of issue.",
-            "The correct account number.",
-            "The payee's name. 210"
-          ],
-          "correct": 2,
-          "explanation": "Correct option: C (The correct account number.). Financial Regulation 703(i) states: \"Every cheque leaf must be crossed and stamped with the correct account number.\"",
-          "difficulty": "medium",
-          "chapter": "Verbal & Analytical Reasoning - Expansion Set",
-          "keywords": [
-            "context",
-            "option",
-            "correctly",
-            "addresses"
-          ],
-          "sourceDocument": "Directorate Competency Framework",
-          "sourceSection": "Verbal & Analytical Reasoning",
-          "year": 2020,
-          "lastReviewed": "2026-03-23",
-          "glBands": [
-            "GL14_15",
-            "GL15_16",
-            "GL16_17"
-          ],
-          "marks": 1,
-          "questionType": "single_best_answer",
-          "reviewStatus": "approved",
-          "tags": [
-            "verbal_reasoning",
-            "analytical_reasoning",
-            "context",
-            "option",
-            "correctly",
-            "addresses"
+            "voucher_alteration",
+            "financial_regulation",
+            "controls"
           ],
           "sourceTopicId": "competency_framework",
           "sourceSubcategoryId": "comp_verbal_reasoning",

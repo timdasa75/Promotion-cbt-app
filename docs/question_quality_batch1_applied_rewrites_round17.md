@@ -1,0 +1,43 @@
+# Question Quality Batch 1 Applied Rewrites Round 17
+
+- Applied rewrites: **13**
+
+- `leadership_lsm_054` [data/leadership_negotiation.json]
+  - Old: select the option that best answers: The handbook mentions that all files should be classified into what?
+  - New: How should official files be classified in registry practice?
+- `leadership_lsm_055` [data/leadership_negotiation.json]
+  - Old: Within government administration, select the option that best answers: The handbook advises against removing documents from a file. What is the exception to this rule?
+  - New: Under what circumstance may a document be removed from a file?
+- `leadership_lsm_056` [data/leadership_negotiation.json]
+  - Old: According to established rules, which option correctly addresses: The handbook advises against removing documents from a file. What is the exception to this rule?
+  - New: When is it permissible to remove a document from a file?
+- `leadership_lsm_065` [data/leadership_negotiation.json]
+  - Old: In the public service context, which option correctly addresses: Within government administration, select the option that best answers: The handbook advises against removing documents from a file. What is the exception to this rule?
+  - New: Which situation justifies removing a document from a file?
+- `leadership_lsm_066` [data/leadership_negotiation.json]
+  - Old: According to established rules, which option correctly addresses: According to established rules, which option correctly addresses: The handbook advises against removing documents from a file. What is the exception to this rule?
+  - New: Which option states the approved exception to the rule against removing documents from a file?
+- `neg_principles_outcomes_gen_065` [data/leadership_negotiation.json]
+  - Old: which option correctly addresses: According to established rules, which option aligns with the meaning of one of the key responsibilities of the chairman in closing a meeting?
+  - New: When bringing a meeting to a close, what is one of the chairman's key responsibilities?
+- `policy_constitution_080` [data/policy_analysis.json]
+  - Old: select the option that best answers: What should be attached to the notice and agenda?
+  - New: What should accompany a meeting notice and agenda?
+- `policy_constitution_082` [data/policy_analysis.json]
+  - Old: select the statement that correctly defines the main danger of an organization's records not being kept properly?
+  - New: What is a major danger when an organization's records are not kept properly?
+- `policy_constitution_089` [data/policy_analysis.json]
+  - Old: which option aligns with the meaning of the implication of the Due procedure policy on projects funded by the government?
+  - New: What does due procedure require for projects funded by government?
+- `policy_psr_046` [data/policy_analysis.json]
+  - Old: In the public service context, which option best describes the role of the Administrative and Professional Officers?
+  - New: What is the role of Administrative and Professional Officers in government decision-making?
+- `policy_psr_049` [data/policy_analysis.json]
+  - Old: According to established rules, which option correctly addresses: What should a secretary do after receiving a notice to serve a meeting?
+  - New: After receiving notice to serve a meeting, what should the secretary do first?
+- `ethics_101` [data/civil_service_ethics.json]
+  - Old: According to established rules, select the option that best answers: The Manpower Development Office (MDO) has the accountability for coordinating what?
+  - New: What does the Manpower Development Office coordinate across the Civil Service?
+- `clg_constitutional_governance_gen_079` [data/constitutional_foi.json]
+  - Old: In the public service context, choose the best answer for: Within government administration, select the option that best answers: The principle of neutrality in the Civil Service guarantee that civil servants do what?
+  - New: What does the principle of neutrality require of civil servants?

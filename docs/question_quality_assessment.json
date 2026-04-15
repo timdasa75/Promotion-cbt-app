@@ -1,0 +1,17 @@
+{
+  "summary": {
+    "total_questions": 6307,
+    "flagged_questions": 0,
+    "recommended_actions": {},
+    "top_issues": {},
+    "top_topics": {},
+    "baseline_audit": {
+      "total_questions": 6307,
+      "duplicate_ids": 0,
+      "exact_duplicate_text_groups": 0,
+      "near_duplicate_pairs": 120,
+      "relevance_flags": 1321
+    }
+  },
+  "items": []
+}

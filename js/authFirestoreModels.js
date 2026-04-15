@@ -1,4 +1,4 @@
-import { normalizeEmail, normalizePlan, normalizeRole, normalizeStatus, normalizeUpgradeRequestStatus, toIsoTimestamp } from "./authNormalization.js";
+import { normalizeEmail, normalizeFeedbackCategory, normalizeFeedbackSource, normalizeFeedbackStatus, normalizePlan, normalizeRole, normalizeStatus, normalizeUpgradeRequestStatus, toIsoTimestamp } from "./authNormalization.js";
 
 const CLOUD_PROGRESS_MAX_ATTEMPTS = 50;
 const CLOUD_PROGRESS_MAX_SUMMARY_BYTES = 300000;
@@ -88,6 +88,55 @@ export function parseFirestoreProfileDocument(document) {
   };
 }
 
+function buildOptionalTimestampField(value) {
+  const normalized = String(value || "").trim();
+  return normalized ? { timestampValue: toIsoTimestamp(normalized) } : { stringValue: "" };
+}
+
+export function buildFirestoreFeedbackFields(feedback) {
+  return {
+    feedbackId: { stringValue: String(feedback?.feedbackId || feedback?.id || "").trim() },
+    userId: { stringValue: String(feedback?.userId || "").trim() },
+    email: { stringValue: normalizeEmail(feedback?.email || "") },
+    category: { stringValue: normalizeFeedbackCategory(feedback?.category) },
+    status: { stringValue: normalizeFeedbackStatus(feedback?.status) },
+    sourceScreen: { stringValue: normalizeFeedbackSource(feedback?.sourceScreen) },
+    message: { stringValue: String(feedback?.message || "").trim() },
+    createdAt: { timestampValue: toIsoTimestamp(feedback?.createdAt) },
+    updatedAt: { timestampValue: toIsoTimestamp(feedback?.updatedAt || feedback?.createdAt) },
+    reviewedAt: buildOptionalTimestampField(feedback?.reviewedAt),
+    reviewedBy: { stringValue: normalizeEmail(feedback?.reviewedBy || "") },
+    topicId: { stringValue: String(feedback?.topicId || "").trim() },
+    topicName: { stringValue: String(feedback?.topicName || "").trim() },
+    questionId: { stringValue: String(feedback?.questionId || "").trim() },
+    quizAttemptId: { stringValue: String(feedback?.quizAttemptId || "").trim() },
+    sessionMode: { stringValue: String(feedback?.sessionMode || "").trim().toLowerCase() },
+  };
+}
+
+export function parseFirestoreFeedbackDocument(document) {
+  const fields = document?.fields || {};
+  const pathParts = String(document?.name || "").split("/");
+  const id = decodeURIComponent(pathParts[pathParts.length - 1] || "");
+  return {
+    feedbackId: String(readFirestoreStringField(fields?.feedbackId) || id),
+    userId: String(readFirestoreStringField(fields?.userId) || ""),
+    email: normalizeEmail(readFirestoreStringField(fields?.email) || ""),
+    category: normalizeFeedbackCategory(readFirestoreStringField(fields?.category)),
+    status: normalizeFeedbackStatus(readFirestoreStringField(fields?.status)),
+    sourceScreen: normalizeFeedbackSource(readFirestoreStringField(fields?.sourceScreen)),
+    message: String(readFirestoreStringField(fields?.message) || ""),
+    createdAt: String(readFirestoreStringField(fields?.createdAt) || ""),
+    updatedAt: String(readFirestoreStringField(fields?.updatedAt) || ""),
+    reviewedAt: String(readFirestoreStringField(fields?.reviewedAt) || ""),
+    reviewedBy: normalizeEmail(readFirestoreStringField(fields?.reviewedBy) || ""),
+    topicId: String(readFirestoreStringField(fields?.topicId) || ""),
+    topicName: String(readFirestoreStringField(fields?.topicName) || ""),
+    questionId: String(readFirestoreStringField(fields?.questionId) || ""),
+    quizAttemptId: String(readFirestoreStringField(fields?.quizAttemptId) || ""),
+    sessionMode: String(readFirestoreStringField(fields?.sessionMode) || "").trim().toLowerCase(),
+  };
+}
 export function buildUpdateMask(fieldPaths) {
   const params = new URLSearchParams();
   (Array.isArray(fieldPaths) ? fieldPaths : []).forEach((fieldPath) => {
@@ -318,3 +367,4 @@ export function parseCloudProgressDocument(document) {
     schemaVersion: Number.parseInt(String(fields?.schemaVersion?.integerValue || "0"), 10) || 0,
   };
 }
+

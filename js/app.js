@@ -26,6 +26,8 @@ import {
   clearPersistedQuizRuntime,
   dismissRetryMissedQuestion,
   getCloudProgressSyncStatus,
+  getCurrentQuestionFeedbackContext,
+  getLatestResultsFeedbackContext,
   getPersistedQuizRuntime,
   getRetryMissedQueueCount,
   getRetryMissedQueueSnapshot,
@@ -49,34 +51,39 @@ import { initializeThemeShortcut, initializeThemeToggle } from "./app/theme.js";
 import { setToolbarIcon } from "./app/toolbar.js";
 import { createMockSetupController } from "./app/mockSetup.js";
 import {
+  FEEDBACK_MESSAGE_MAX_LENGTH,
   clearLocalPlanOverride,
   forceCloudPlanSync,
   getAccessibleTopics,
-  getCurrentEntitlement,
-  getFreeMockExamEligibility,
-  getAdminUserDirectory,
+  getAdminFeedbackSubmissions,
   getAdminOperationHistory,
-  logAdminOperationToCloud,
+  getAdminUserDirectory,
   getAuthSummaryLabel,
   getAuthProviderLabel,
+  getCurrentEntitlement,
   getCurrentUser,
   getCurrentUserUpgradeRequest,
+  getFeedbackAccessState,
+  getFreeMockExamEligibility,
   getLocalPlanOverrides,
   getPlanOverrideSyncMeta,
   getProgressStorageKeyForCurrentUser,
-  isCurrentUserAdmin,
   isCloudAuthMisconfigured,
   isCloudProgressSyncEnabled,
+  isCurrentUserAdmin,
+  logAdminOperationToCloud,
   loginUser,
   logoutUser,
+  registerUser,
   requestPasswordReset,
   resendVerificationEmailForUser,
-  registerUser,
+  setPlanOverride,
   setUpgradeRequestStatus,
   startCloudPlanAutoSync,
+  submitFeedbackSubmission,
   submitUpgradeRequest,
-  setPlanOverride,
   updateCloudUserStatusById,
+  updateFeedbackSubmissionStatus,
 } from "./auth.js";
 
 let currentTopic = null;
@@ -85,6 +92,8 @@ let allTopics = [];
 let recommendedTopicId = null;
 let lastSessionTopicId = null;
 let adminDirectoryUsers = [];
+let adminFeedbackSubmissions = [];
+let activeFeedbackContext = null;
 let pendingMockExamTemplateId = DEFAULT_MOCK_EXAM_TEMPLATE_ID;
 const REVIEW_MISTAKES_DEFAULT_FILTERS = Object.freeze({
   topic: "all",
@@ -111,6 +120,7 @@ const ADMIN_DIRECTORY_SYNC_STORAGE_KEYS = new Set([
 let adminDirectorySyncIntervalHandle = null;
 let adminDirectorySyncVisibilityBound = false;
 let adminDirectoryRefreshInFlight = null;
+let adminFeedbackRefreshInFlight = null;
 let volatileUpgradeRequests = [];
 let volatileAdminOperationHistory = [];
 const RESTORABLE_SCREEN_IDS = new Set([
@@ -2466,6 +2476,7 @@ function refreshDashboardInsights() {
   const totalAttemptsStat = document.getElementById("totalAttemptsStat");
   const averageScoreStat = document.getElementById("averageScoreStat");
   const streakStat = document.getElementById("streakStat");
+  const streakPurposeText = document.getElementById("streakPurposeText");
   const streakStatusBadge = document.getElementById("streakStatusBadge");
   const continueTopicTitle = document.getElementById("continueTopicTitle");
   const continueTopicMeta = document.getElementById("continueTopicMeta");
@@ -2488,13 +2499,16 @@ function refreshDashboardInsights() {
   if (streakStat) {
     streakStat.textContent = `${insights.streakDays} day${insights.streakDays === 1 ? "" : "s"}`;
   }
+  if (streakPurposeText) {
+    streakPurposeText.textContent = "Consecutive days with at least one completed session.";
+  }
   if (streakStatusBadge) {
     streakStatusBadge.textContent =
       insights.streakDays >= 5
-        ? "On Track"
+        ? "Strong study rhythm"
         : insights.streakDays > 0
-          ? "Building momentum"
-          : "Start today";
+          ? "Study today to keep it going"
+          : "Take one quiz today to begin";
   }
 
   if (continueTopicTitle && continueTopicMeta) {
@@ -2992,7 +3006,9 @@ async function restoreScreenState() {
   if (savedScreenId === "adminScreen") {
     renderAdminRequests();
     renderAdminOverrides();
+    renderAdminFeedbackList();
     await refreshAdminUserDirectory();
+    await refreshAdminFeedbackSubmissions();
   }
 
   await showScreen(savedScreenId);
@@ -3658,6 +3674,7 @@ function updateAuthUI() {
     openStatesBtn.classList.toggle("hidden", !isAdmin);
   }
   updateProfileDataSyncUI();
+  renderFeedbackUiState();
   refreshUserUpgradeStatus().catch(() => {});
 }
 
@@ -4019,6 +4036,399 @@ function formatRelativeTime(value) {
   if (diffHr < 24) return `${diffHr} hour${diffHr === 1 ? "" : "s"} ago`;
   const diffDay = Math.floor(diffHr / 24);
   return `${diffDay} day${diffDay === 1 ? "" : "s"} ago`;
+}
+
+function formatFeedbackCategoryLabel(category) {
+  const value = String(category || "").trim().toLowerCase();
+  if (value === "bug") return "Bug";
+  if (value === "suggestion") return "Suggestion";
+  if (value === "question_issue") return "Question Issue";
+  return "Other";
+}
+
+function formatFeedbackSourceLabel(source) {
+  const value = String(source || "").trim().toLowerCase();
+  if (value === "quiz") return "Quiz";
+  if (value === "results") return "Results";
+  return "Help";
+}
+
+function formatFeedbackStatusLabel(status) {
+  const value = String(status || "").trim().toLowerCase();
+  if (value === "in_review") return "In Review";
+  if (value === "resolved") return "Resolved";
+  if (value === "dismissed") return "Dismissed";
+  return "New";
+}
+
+function formatSessionModeLabel(mode) {
+  const value = String(mode || "").trim().toLowerCase();
+  if (value === "practice") return "Practice";
+  if (value === "exam") return "Exam";
+  if (value === "review") return "Review";
+  return value ? `${value.charAt(0).toUpperCase()}${value.slice(1)}` : "-";
+}
+
+function feedbackStatusBadgeClass(status) {
+  const value = String(status || "").trim().toLowerCase();
+  if (value === "resolved") return "approved";
+  if (value === "dismissed") return "rejected";
+  if (value === "in_review") return "neutral";
+  return "pending";
+}
+
+function trimFeedbackPreview(value, limit = 180) {
+  const text = String(value || "").trim();
+  if (text.length <= limit) return text;
+  return `${text.slice(0, Math.max(0, limit - 3)).trimEnd()}...`;
+}
+
+function getFeedbackModalCopy(source) {
+  const normalizedSource = String(source || "help").trim().toLowerCase();
+  if (normalizedSource === "quiz") {
+    return {
+      title: "Report This Question",
+      intro: "Tell us what is wrong with this question, answer, or explanation.",
+    };
+  }
+  if (normalizedSource === "results") {
+    return {
+      title: "Share Session Feedback",
+      intro: "Tell us what worked, what felt off, or what would improve this results flow.",
+    };
+  }
+  return {
+    title: "Send Feedback",
+    intro: "Share what is working, what is unclear, or what should be improved.",
+  };
+}
+
+function updateFeedbackCharCount() {
+  const messageInput = document.getElementById("feedbackMessage");
+  const counter = document.getElementById("feedbackCharCount");
+  if (!messageInput || !counter) return;
+  const length = String(messageInput.value || "").length;
+  counter.textContent = `${length}/${FEEDBACK_MESSAGE_MAX_LENGTH}`;
+}
+
+function renderFeedbackContextSummary(context = null) {
+  const container = document.getElementById("feedbackContextSummary");
+  if (!container) return;
+
+  const source = context && typeof context === "object" ? context : null;
+  const contextItems = [];
+  if (source?.topicName) {
+    contextItems.push(`<div><span class="meta">Topic</span><strong>${escapeHtml(source.topicName)}</strong></div>`);
+  }
+  if (source?.questionId) {
+    contextItems.push(`<div><span class="meta">Question ID</span><strong>${escapeHtml(source.questionId)}</strong></div>`);
+  }
+  if (source?.quizAttemptId) {
+    contextItems.push(`<div><span class="meta">Session ID</span><strong>${escapeHtml(source.quizAttemptId)}</strong></div>`);
+  }
+  if (source?.sessionMode) {
+    contextItems.push(`<div><span class="meta">Mode</span><strong>${escapeHtml(formatSessionModeLabel(source.sessionMode))}</strong></div>`);
+  }
+
+  const previewHtml = source?.questionPreview
+    ? `<p class="feedback-context-preview"><strong>Question:</strong> ${escapeHtml(trimFeedbackPreview(source.questionPreview))}</p>`
+    : "";
+  const scoreSummaryHtml = source?.scoreSummary
+    ? `<p class="feedback-context-preview"><strong>Summary:</strong> ${escapeHtml(trimFeedbackPreview(source.scoreSummary))}</p>`
+    : "";
+
+  if (!contextItems.length && !previewHtml && !scoreSummaryHtml) {
+    container.classList.add("hidden");
+    container.innerHTML = "";
+    return;
+  }
+
+  container.classList.remove("hidden");
+  container.innerHTML = `
+    <div class="feedback-context-grid">
+      ${contextItems.join("")}
+    </div>
+    ${previewHtml}
+    ${scoreSummaryHtml}
+  `;
+}
+
+function closeFeedbackModal() {
+  const modal = document.getElementById("feedbackModal");
+  const form = document.getElementById("feedbackForm");
+  const messageInput = document.getElementById("feedbackMessage");
+  const categorySelect = document.getElementById("feedbackCategory");
+  if (modal) {
+    modal.classList.add("hidden");
+  }
+  if (form) {
+    form.reset();
+  }
+  if (messageInput) {
+    messageInput.value = "";
+  }
+  if (categorySelect) {
+    categorySelect.value = "";
+  }
+  activeFeedbackContext = null;
+  renderFeedbackContextSummary(null);
+  updateFeedbackCharCount();
+}
+
+function openFeedbackModal(context = {}) {
+  const access = getFeedbackAccessState();
+  if (!access.allowed) {
+    showWarning(access.message);
+    return;
+  }
+
+  const modal = document.getElementById("feedbackModal");
+  const title = document.getElementById("feedbackModalTitle");
+  const intro = document.getElementById("feedbackModalIntro");
+  const categorySelect = document.getElementById("feedbackCategory");
+  const messageInput = document.getElementById("feedbackMessage");
+  if (!modal || !title || !intro || !categorySelect || !messageInput) return;
+
+  activeFeedbackContext = context && typeof context === "object" ? { ...context } : {};
+  const copy = getFeedbackModalCopy(activeFeedbackContext?.sourceScreen);
+  title.textContent = copy.title;
+  intro.textContent = copy.intro;
+  categorySelect.value = String(activeFeedbackContext?.defaultCategory || "").trim().toLowerCase();
+  messageInput.value = "";
+  renderFeedbackContextSummary(activeFeedbackContext);
+  updateFeedbackCharCount();
+  modal.classList.remove("hidden");
+  messageInput.focus();
+}
+
+function renderFeedbackUiState() {
+  const access = getFeedbackAccessState();
+  const helpBtn = document.getElementById("openHelpFeedbackBtn");
+  const helpNote = document.getElementById("helpFeedbackNote");
+  const quizBtn = document.getElementById("openQuizFeedbackBtn");
+  const resultsBtn = document.getElementById("openResultsFeedbackBtn");
+  const feedbackModal = document.getElementById("feedbackModal");
+
+  if (helpBtn) {
+    helpBtn.disabled = !access.allowed;
+    helpBtn.setAttribute("aria-disabled", String(!access.allowed));
+    helpBtn.title = access.allowed ? "Send feedback" : access.message;
+  }
+
+  if (helpNote) {
+    if (access.allowed) {
+      helpNote.textContent = "";
+      helpNote.classList.add("hidden");
+    } else {
+      helpNote.textContent = access.message;
+      helpNote.classList.remove("hidden");
+    }
+  }
+
+  if (quizBtn) {
+    quizBtn.classList.toggle("hidden", !access.allowed);
+  }
+  if (resultsBtn) {
+    resultsBtn.classList.toggle("hidden", !access.allowed);
+  }
+
+  if (!access.allowed && feedbackModal && !feedbackModal.classList.contains("hidden")) {
+    closeFeedbackModal();
+  }
+}
+
+function renderAdminFeedbackList() {
+  const container = document.getElementById("adminFeedbackList");
+  const searchInput = document.getElementById("adminFeedbackSearch");
+  const statusFilter = document.getElementById("adminFeedbackStatusFilter");
+  const categoryFilter = document.getElementById("adminFeedbackCategoryFilter");
+  const sourceFilter = document.getElementById("adminFeedbackSourceFilter");
+  const countLabel = document.getElementById("adminFeedbackCount");
+  if (!container) return;
+
+  const query = String(searchInput?.value || "").trim().toLowerCase();
+  const status = String(statusFilter?.value || "all").trim().toLowerCase();
+  const category = String(categoryFilter?.value || "all").trim().toLowerCase();
+  const source = String(sourceFilter?.value || "all").trim().toLowerCase();
+  const filtered = adminFeedbackSubmissions.filter((entry) => {
+    const matchesStatus = status === "all" || String(entry?.status || "").toLowerCase() === status;
+    const matchesCategory = category === "all" || String(entry?.category || "").toLowerCase() === category;
+    const matchesSource = source === "all" || String(entry?.sourceScreen || "").toLowerCase() === source;
+    if (!matchesStatus || !matchesCategory || !matchesSource) {
+      return false;
+    }
+    if (!query) {
+      return true;
+    }
+    return [
+      entry?.email,
+      entry?.message,
+      entry?.topicName,
+      entry?.topicId,
+      entry?.questionId,
+      entry?.quizAttemptId,
+    ].some((value) => String(value || "").toLowerCase().includes(query));
+  });
+
+  if (countLabel) {
+    countLabel.textContent = `Feedback: ${filtered.length}/${adminFeedbackSubmissions.length}`;
+  }
+
+  container.innerHTML = "";
+  if (!filtered.length) {
+    const emptyCopy = adminFeedbackSubmissions.length
+      ? "No feedback matches the current filter."
+      : "No feedback submitted yet.";
+    container.innerHTML = `<div class="admin-request-item"><p class="meta">${escapeHtml(emptyCopy)}</p></div>`;
+    return;
+  }
+
+  const list = document.createElement("div");
+  list.className = "admin-feedback-list";
+
+  filtered.forEach((entry) => {
+    const item = document.createElement("article");
+    item.className = "admin-feedback-item";
+    const safeId = escapeHtml(entry?.feedbackId || "");
+    const safeEmail = escapeHtml(entry?.email || "-");
+    const safeMessage = escapeHtml(entry?.message || "");
+    const createdLabel = escapeHtml(formatDateTime(entry?.createdAt));
+    const relativeLabel = escapeHtml(formatRelativeTime(entry?.createdAt) || createdLabel);
+    const reviewedLabel = entry?.reviewedAt
+      ? `${escapeHtml(formatDateTime(entry.reviewedAt))}${entry?.reviewedBy ? ` by ${escapeHtml(entry.reviewedBy)}` : ""}`
+      : "Not reviewed yet";
+    const contextChips = [];
+    if (entry?.topicName) {
+      contextChips.push(`<span class="chip">Topic: ${escapeHtml(entry.topicName)}</span>`);
+    }
+    if (entry?.questionId) {
+      contextChips.push(`<span class="chip">Question ID: ${escapeHtml(entry.questionId)}</span>`);
+    }
+    if (entry?.quizAttemptId) {
+      contextChips.push(`<span class="chip">Session ID: ${escapeHtml(entry.quizAttemptId)}</span>`);
+    }
+    if (entry?.sessionMode) {
+      contextChips.push(`<span class="chip">Mode: ${escapeHtml(formatSessionModeLabel(entry.sessionMode))}</span>`);
+    }
+
+    item.innerHTML = `
+      <div class="admin-feedback-head">
+        <div class="admin-feedback-title-wrap">
+          <h4 class="admin-feedback-title">${safeEmail}</h4>
+          <p class="meta">${relativeLabel}</p>
+        </div>
+        <div class="admin-user-badges">
+          <span class="admin-badge ${feedbackStatusBadgeClass(entry?.status)}">Status: ${escapeHtml(formatFeedbackStatusLabel(entry?.status))}</span>
+          <span class="admin-badge neutral">Category: ${escapeHtml(formatFeedbackCategoryLabel(entry?.category))}</span>
+          <span class="admin-badge neutral">Source: ${escapeHtml(formatFeedbackSourceLabel(entry?.sourceScreen))}</span>
+        </div>
+      </div>
+      <div class="admin-feedback-message">
+        <p>${safeMessage}</p>
+      </div>
+      ${contextChips.length ? `<div class="chip-row admin-feedback-context-row">${contextChips.join("")}</div>` : ""}
+      <div class="admin-feedback-meta-grid">
+        <div><span class="meta">Created</span><strong>${createdLabel}</strong></div>
+        <div><span class="meta">Review</span><strong>${reviewedLabel}</strong></div>
+      </div>
+      <div class="button-row compact-actions admin-feedback-actions">
+        <button class="btn btn-secondary" data-feedback-id="${safeId}" data-feedback-status="in_review" type="button" ${entry?.status === "in_review" ? 'disabled aria-disabled="true"' : ""}>Mark In Review</button>
+        <button class="btn btn-primary" data-feedback-id="${safeId}" data-feedback-status="resolved" type="button" ${entry?.status === "resolved" ? 'disabled aria-disabled="true"' : ""}>Resolve</button>
+        <button class="btn btn-ghost" data-feedback-id="${safeId}" data-feedback-status="dismissed" type="button" ${entry?.status === "dismissed" ? 'disabled aria-disabled="true"' : ""}>Dismiss</button>
+      </div>
+    `;
+
+    list.appendChild(item);
+  });
+
+  container.appendChild(list);
+
+  list.querySelectorAll("[data-feedback-status]").forEach((button) => {
+    button.addEventListener("click", async () => {
+      const feedbackId = String(button.getAttribute("data-feedback-id") || "").trim();
+      const nextStatus = String(button.getAttribute("data-feedback-status") || "").trim().toLowerCase();
+      if (!feedbackId || !nextStatus) return;
+      const target = adminFeedbackSubmissions.find((entry) => String(entry?.feedbackId || "") === feedbackId);
+      const targetLabel = target?.email || feedbackId;
+      try {
+        await runOperationWithFeedback(
+          () => updateFeedbackSubmissionStatus(feedbackId, nextStatus),
+          {
+            loadingMessage: "Updating feedback status...",
+            successMessage: `Feedback marked as ${formatFeedbackStatusLabel(nextStatus)}.`,
+            failurePrefix: "Unable to update feedback:",
+          },
+        );
+        logAdminOperation({
+          action: "Update feedback status",
+          target: targetLabel,
+          status: "success",
+          message: `Marked feedback as ${formatFeedbackStatusLabel(nextStatus)}.`,
+        });
+      } catch (error) {
+        logAdminOperation({
+          action: "Update feedback status",
+          target: targetLabel,
+          status: "failed",
+          message: error?.message || "Unknown error.",
+        });
+      } finally {
+        renderAdminOperationHistory();
+        await refreshAdminFeedbackSubmissions();
+      }
+    });
+  });
+}
+
+async function refreshAdminFeedbackSubmissions() {
+  if (adminFeedbackRefreshInFlight) {
+    return adminFeedbackRefreshInFlight;
+  }
+  adminFeedbackRefreshInFlight = (async () => {
+    const notice = document.getElementById("adminFeedbackNotice");
+    const countLabel = document.getElementById("adminFeedbackCount");
+    if (!isCurrentUserAdmin()) {
+      adminFeedbackSubmissions = [];
+      renderAdminFeedbackList();
+      if (countLabel) {
+        countLabel.textContent = "Feedback: 0/0";
+      }
+      if (notice) {
+        notice.textContent = "";
+        notice.classList.add("hidden");
+      }
+      return [];
+    }
+
+    try {
+      const rows = await getAdminFeedbackSubmissions();
+      adminFeedbackSubmissions = Array.isArray(rows) ? rows : [];
+      renderAdminFeedbackList();
+      if (notice) {
+        notice.textContent = "";
+        notice.classList.add("hidden");
+      }
+      return adminFeedbackSubmissions;
+    } catch (error) {
+      adminFeedbackSubmissions = [];
+      renderAdminFeedbackList();
+      if (countLabel) {
+        countLabel.textContent = "Feedback: 0/0";
+      }
+      if (notice) {
+        notice.textContent = error?.message || "Unable to load feedback inbox.";
+        notice.classList.remove("hidden");
+      }
+      console.error("Failed to refresh feedback inbox:", error);
+      return [];
+    }
+  })();
+
+  try {
+    return await adminFeedbackRefreshInFlight;
+  } finally {
+    adminFeedbackRefreshInFlight = null;
+  }
 }
 
 function updateProfileDataSyncUI() {
@@ -4590,7 +5000,9 @@ async function openAdminScreen() {
         renderAdminRequests();
         renderAdminOverrides();
         renderAdminOperationHistory();
+        renderAdminFeedbackList();
         await refreshAdminUserDirectory();
+        await refreshAdminFeedbackSubmissions();
         await showScreen("adminScreen");
       },
       {
@@ -4658,6 +5070,19 @@ function initializeAuthUI() {
   const clearAdminOperationHistoryBtn = document.getElementById(
     "clearAdminOperationHistoryBtn",
   );
+  const openHelpFeedbackBtn = document.getElementById("openHelpFeedbackBtn");
+  const openQuizFeedbackBtn = document.getElementById("openQuizFeedbackBtn");
+  const openResultsFeedbackBtn = document.getElementById("openResultsFeedbackBtn");
+  const feedbackModal = document.getElementById("feedbackModal");
+  const feedbackCloseBtn = document.getElementById("feedbackCloseBtn");
+  const feedbackCancelBtn = document.getElementById("feedbackCancelBtn");
+  const feedbackForm = document.getElementById("feedbackForm");
+  const feedbackMessage = document.getElementById("feedbackMessage");
+  const adminFeedbackSearch = document.getElementById("adminFeedbackSearch");
+  const adminFeedbackStatusFilter = document.getElementById("adminFeedbackStatusFilter");
+  const adminFeedbackCategoryFilter = document.getElementById("adminFeedbackCategoryFilter");
+  const adminFeedbackSourceFilter = document.getElementById("adminFeedbackSourceFilter");
+  const refreshAdminFeedbackBtn = document.getElementById("refreshAdminFeedbackBtn");
 
   if (authActionBtn) {
     authActionBtn.addEventListener("click", async () => {
@@ -5138,6 +5563,156 @@ function initializeAuthUI() {
     });
   }
 
+  if (openHelpFeedbackBtn) {
+    openHelpFeedbackBtn.addEventListener("click", () => {
+      openFeedbackModal({
+        sourceScreen: "help",
+        defaultCategory: "",
+      });
+    });
+  }
+
+  if (openQuizFeedbackBtn) {
+    openQuizFeedbackBtn.addEventListener("click", () => {
+      const context = getCurrentQuestionFeedbackContext();
+      if (!context) {
+        showWarning("Question details are unavailable right now. Please try again on the active question.");
+        return;
+      }
+      openFeedbackModal(context);
+    });
+  }
+
+  if (openResultsFeedbackBtn) {
+    openResultsFeedbackBtn.addEventListener("click", () => {
+      const context = getLatestResultsFeedbackContext() || {
+        sourceScreen: "results",
+        defaultCategory: "",
+        topicId: String(currentTopic?.id || "").trim(),
+        topicName: String(currentTopic?.name || "").trim(),
+        sessionMode: String(getCurrentMode() || "").trim().toLowerCase(),
+      };
+      openFeedbackModal(context);
+    });
+  }
+
+  if (feedbackCloseBtn) {
+    feedbackCloseBtn.addEventListener("click", closeFeedbackModal);
+  }
+
+  if (feedbackCancelBtn) {
+    feedbackCancelBtn.addEventListener("click", closeFeedbackModal);
+  }
+
+  if (feedbackModal) {
+    feedbackModal.addEventListener("click", (event) => {
+      if (event.target === feedbackModal) {
+        closeFeedbackModal();
+      }
+    });
+  }
+
+  if (feedbackMessage) {
+    feedbackMessage.addEventListener("input", updateFeedbackCharCount);
+  }
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape") return;
+    if (!feedbackModal || feedbackModal.classList.contains("hidden")) return;
+    closeFeedbackModal();
+  });
+
+  if (feedbackForm) {
+    feedbackForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const category = document.getElementById("feedbackCategory")?.value || "";
+      const message = document.getElementById("feedbackMessage")?.value || "";
+      const context = activeFeedbackContext && typeof activeFeedbackContext === "object"
+        ? { ...activeFeedbackContext }
+        : { sourceScreen: "help" };
+
+      try {
+        await runOperationWithFeedback(
+          async () => {
+            return submitFeedbackSubmission({
+              sourceScreen: context.sourceScreen || "help",
+              category,
+              message,
+              topicId: context.topicId || "",
+              topicName: context.topicName || "",
+              questionId: context.questionId || "",
+              quizAttemptId: context.quizAttemptId || "",
+              sessionMode: context.sessionMode || "",
+            });
+          },
+          {
+            loadingMessage: "Sending feedback...",
+            successMessage: "Feedback sent. Thank you.",
+            failurePrefix: "Unable to send feedback:",
+          },
+        );
+        closeFeedbackModal();
+        if (isCurrentUserAdmin()) {
+          refreshAdminFeedbackSubmissions().catch(() => {});
+        }
+      } catch (error) {
+        // Error toast already displayed by runOperationWithFeedback.
+      }
+    });
+  }
+
+  if (adminFeedbackSearch) {
+    adminFeedbackSearch.addEventListener("input", () => renderAdminFeedbackList());
+  }
+
+  if (adminFeedbackStatusFilter) {
+    adminFeedbackStatusFilter.addEventListener("change", () => renderAdminFeedbackList());
+  }
+
+  if (adminFeedbackCategoryFilter) {
+    adminFeedbackCategoryFilter.addEventListener("change", () => renderAdminFeedbackList());
+  }
+
+  if (adminFeedbackSourceFilter) {
+    adminFeedbackSourceFilter.addEventListener("change", () => renderAdminFeedbackList());
+  }
+
+  if (refreshAdminFeedbackBtn) {
+    refreshAdminFeedbackBtn.addEventListener("click", async () => {
+      if (!isCurrentUserAdmin()) {
+        showWarning("Admin access is restricted.");
+        return;
+      }
+      try {
+        await runOperationWithFeedback(
+          async () => {
+            await refreshAdminFeedbackSubmissions();
+          },
+          {
+            loadingMessage: "Refreshing feedback inbox...",
+            successMessage: "Feedback inbox refreshed.",
+            failurePrefix: "Unable to refresh feedback inbox:",
+          },
+        );
+        logAdminOperation({
+          action: "Refresh feedback inbox",
+          target: "feedback queue",
+          status: "success",
+          message: "Feedback inbox refreshed from Firestore.",
+        });
+        renderAdminOperationHistory();
+      } catch (error) {
+        logAdminOperation({
+          action: "Refresh feedback inbox",
+          target: "feedback queue",
+          status: "failed",
+          message: error?.message || "Unknown error.",
+        });
+        renderAdminOperationHistory();
+      }
+    });
+  }
+
   if (adminUserSearch) {
     adminUserSearch.addEventListener("input", () => {
       renderAdminUserDirectory();
@@ -5193,6 +5768,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   document.addEventListener("screenchange", (event) => {
     persistScreenState(event?.detail?.screenId);
+    renderFeedbackUiState();
     if (
       event?.detail?.screenId === "topicSelectionScreen" ||
       event?.detail?.screenId === "analyticsScreen" ||
@@ -5204,6 +5780,10 @@ document.addEventListener("DOMContentLoaded", async function () {
     if (event?.detail?.screenId === "profileScreen") {
       updateProfileDataSyncUI();
       refreshUserUpgradeStatus().catch(() => {});
+    }
+    if (event?.detail?.screenId === "adminScreen" && isCurrentUserAdmin()) {
+      renderAdminFeedbackList();
+      refreshAdminFeedbackSubmissions().catch(() => {});
     }
   });
 
@@ -5242,7 +5822,9 @@ document.addEventListener("DOMContentLoaded", async function () {
   if (isCurrentUserAdmin()) {
     renderAdminRequests();
     renderAdminOverrides();
+    renderAdminFeedbackList();
     refreshAdminUserDirectory();
+    refreshAdminFeedbackSubmissions().catch(() => {});
   }
   ensureAuthPromptOnStartup();
 
@@ -5259,6 +5841,10 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   initializeThemeToggle();
 });
+
+
+
+
 
 
 

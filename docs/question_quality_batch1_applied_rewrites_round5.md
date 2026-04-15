@@ -1,0 +1,55 @@
+# Question Quality Batch 1 Applied Rewrites Round 5
+
+- Applied rewrites: **17**
+
+- `csh_ap_073` [data/civil_service_ethics.json]
+  - Old: In official practice, select the statement that correctly defines the Office of the Head of the Civil Service of the Federation (OHCSF) in charge for?
+  - New: What is the Office of the Head of the Civil Service of the Federation (OHCSF) primarily responsible for?
+- `csh_ap_078` [data/civil_service_ethics.json]
+  - Old: Within government administration, choose the best answer for: What should typed drafts of minutes, briefs, and letters have?
+  - New: What should typed drafts of minutes, briefs, and letters include?
+- `csh_ap_082` [data/civil_service_ethics.json]
+  - Old: According to established rules, select the option that best answers: What should typed drafts of minutes, briefs, and letters have?
+  - New: For clarity and proper handling, what should typed drafts of minutes, briefs, and letters contain?
+- `csh_disc_054` [data/civil_service_ethics.json]
+  - Old: In official practice, select the option that best answers: What does the term "Minute/Memo" mean?
+  - New: In official correspondence, what does the term 'minute/memo' mean?
+- `csh_disc_059` [data/civil_service_ethics.json]
+  - Old: In official practice, which option correctly addresses: What does the principle of "diligence" demand from a Civil Servant?
+  - New: What does the principle of diligence require of a civil servant?
+- `csh_disc_060` [data/civil_service_ethics.json]
+  - Old: Within government administration, select the statement that correctly defines the implication of failing to take reasonable care of documents entrusted to a Civil Servant?
+  - New: What is the implication of failing to take reasonable care of documents entrusted to a civil servant?
+- `csh_duty_073` [data/civil_service_ethics.json]
+  - Old: In the public service context, which role should receive a copy of a handing-over note?
+  - New: Who should receive copies of a handing-over note?
+- `FOI_EX_058` [data/constitutional_foi.json]
+  - Old: According to established rules, choose the best answer for: What should a brief try to recommend?
+  - New: What should a good brief try to recommend?
+- `FOI_EX_068` [data/constitutional_foi.json]
+  - Old: According to established rules, which option correctly addresses: What should never be used for drafting, especially if it contains classified information?
+  - New: What should never be used for drafting if it contains classified information?
+- `clg_constitutional_governance_gen_063` [data/constitutional_foi.json]
+  - Old: According to established rules, select the option that best answers: The Udoji Public Service Review Commission in 1972 was primarily focused on what?
+  - New: What was the primary focus of the Udoji Public Service Review Commission of 1972?
+- `clg_constitutional_governance_gen_066` [data/constitutional_foi.json]
+  - Old: According to established rules, choose the best answer for: The Principle of Neutrality means the public service as a whole remains neutral with respect to whom?
+  - New: The principle of neutrality means the public service remains neutral with respect to whom?
+- `clg_constitutional_governance_gen_067` [data/constitutional_foi.json]
+  - Old: According to established rules, choose the best answer for: The Principle of Quality, Effectiveness, and Efficiency necessitate the public service to make optimal use of what?
+  - New: Under the principle of quality, effectiveness, and efficiency, the public service should make optimal use of what?
+- `ict_eg_082` [data/ict_digital.json]
+  - Old: which option correctly addresses: Which characteristic of good governance demand that institutions and processes try to serve all stakeholders within a reasonable timeframe?
+  - New: Which characteristic of good governance requires institutions and processes to serve all stakeholders within a reasonable timeframe?
+- `ict_eg_092` [data/ict_digital.json]
+  - Old: According to established rules, select the option that best answers: What should Appendices or Schedules attached to a letter always be marked with?
+  - New: What should appendices or schedules attached to a letter always be marked with?
+- `ict_eg_093` [data/ict_digital.json]
+  - Old: According to established rules, select the option that best answers: If a letter has more than one enclosure, what should be indicated?
+  - New: If a letter has more than one enclosure, what should be indicated?
+- `ict_li_099` [data/ict_digital.json]
+  - Old: According to established rules, which role should sign the original and copies of the Handing Over Notes?
+  - New: Who should sign the original and copies of the handing-over notes?
+- `ict_sec_080` [data/ict_digital.json]
+  - Old: In the public service context, which office is personally accountable for the safe custody of original keys of strong-rooms, safes, cash tanks, or cash boxes, and collectively accountable for their contents?
+  - New: Which officers are personally responsible for the safe custody of the original keys of strong-rooms, safes, cash tanks, or cash boxes, and collectively responsible for their contents?

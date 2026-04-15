@@ -1,0 +1,69 @@
+{
+  "round": 35,
+  "applied": [
+    {
+      "question_id": "csh_ap_071",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_administrative_procedures",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "In official practice, which option best describes the principal accountability of the Executive arm of government?",
+      "new_question": "Which arm of government is responsible for the day-to-day management of government?"
+    },
+    {
+      "question_id": "csh_ap_081",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_administrative_procedures",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "In official practice, select the statement that correctly defines the term for a set of official correspondence and documents on a particular subject matter?",
+      "new_question": "What is the term for a collection of official correspondence and documents on a particular subject?"
+    },
+    {
+      "question_id": "csh_disc_010",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_discipline_conduct",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "Insubordination is defined as:",
+      "new_question": "What does insubordination mean in the civil service?"
+    },
+    {
+      "question_id": "csh_disc_063",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_discipline_conduct",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "In the public service context, which option aligns with the meaning of the role of an \"official letter\" in the Civil Service?",
+      "new_question": "Which document is used for formal communication with other Ministries, parastatals, and the public?"
+    },
+    {
+      "question_id": "csh_disc_069",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_discipline_conduct",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "According to established rules, which option best describes the aim of an \"official letter\" in the Civil Service?",
+      "new_question": "What is the main purpose of an official letter in the Civil Service?"
+    },
+    {
+      "question_id": "csh_duty_054",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_duties_responsibilities",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "According to established rules, which option aligns with the meaning of specifically forbidden in handling money received in the course of official duties by an officer who is not a Revenue Collector or Sub-Accounting Officer?",
+      "new_question": "When an officer who is not a Revenue Collector or Sub-Accounting Officer receives money in the course of duty, what is specifically forbidden?"
+    },
+    {
+      "question_id": "csh_principle_055",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_principles_ethics",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "According to established rules, select the statement that correctly defines the main accountability of the Executive arm of government?",
+      "new_question": "What is the principal accountability of the Executive arm of government?"
+    },
+    {
+      "question_id": "csh_it_063",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_innovation_technology",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "select the statement that correctly defines the main objective of government vehicles, as stated in Financial Regulation 2001?",
+      "new_question": "Under Financial Regulation 2001, what is the primary purpose of government vehicles?"
+    }
+  ]
+}

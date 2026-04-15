@@ -6,6 +6,10 @@ export default defineConfig(({ mode }) => {
   return {
     base: isProd ? "/Promotion-cbt-app/" : "/",
     publicDir: false,
+    server: {
+      port: 5500,
+      strictPort: true,
+    },
     build: {
       outDir: "dist",
       emptyOutDir: true,

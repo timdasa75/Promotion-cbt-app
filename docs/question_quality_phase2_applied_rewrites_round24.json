@@ -1,0 +1,53 @@
+{
+  "round": 24,
+  "applied": [
+    {
+      "question_id": "csh_discipline_conduct_gen_003",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_discipline_conduct",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "Which option most strongly aligns with good public-service practice on discipline & conduct risk management within Discipline & Conduct",
+      "new_question": "Which step best helps a supervisor detect discipline risks before they become formal misconduct cases?"
+    },
+    {
+      "question_id": "csh_discipline_conduct_gen_010",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_discipline_conduct",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "Which practice should a responsible officer prioritize to sustain compliance assurance in Discipline & Conduct",
+      "new_question": "Which practice best strengthens compliance assurance when handling a suspected breach of conduct?"
+    },
+    {
+      "question_id": "csh_discipline_conduct_gen_013",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_discipline_conduct",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "Which option most strongly aligns with good public-service practice on risk control within Discipline & Conduct",
+      "new_question": "When a conduct complaint is received, which control best reduces the risk of a flawed disciplinary process?"
+    },
+    {
+      "question_id": "csh_discipline_conduct_gen_015",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_discipline_conduct",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "Which practice should a responsible officer prioritize to sustain operational discipline in Discipline & Conduct",
+      "new_question": "Which routine best sustains operational discipline in a unit that handles sensitive official work?"
+    },
+    {
+      "question_id": "csh_discipline_conduct_gen_018",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_discipline_conduct",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "Which option most strongly aligns with good public-service practice on performance standards within Discipline & Conduct",
+      "new_question": "Which approach best supports performance standards in a discipline-sensitive public-service unit?"
+    },
+    {
+      "question_id": "csh_discipline_conduct_gen_020",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_discipline_conduct",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "Which practice should a responsible officer prioritize to sustain discipline & conduct compliance in Discipline & Conduct",
+      "new_question": "Which practice best preserves transparency when disciplinary decisions are taken?"
+    }
+  ]
+}

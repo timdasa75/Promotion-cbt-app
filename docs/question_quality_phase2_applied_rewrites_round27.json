@@ -1,0 +1,21 @@
+{
+  "round": 27,
+  "applied": [
+    {
+      "question_id": "eth_general_gen_002",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "eth_general",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "For effective general ethics, what is the most appropriate approach to ensure general ethics compliance",
+      "new_question": "Which daily work habit best helps a public officer keep routine decisions ethically sound?"
+    },
+    {
+      "question_id": "eth_general_gen_037",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "eth_general",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "For effective general ethics, what is the most appropriate approach to ensure general ethics governance",
+      "new_question": "Which governance practice most strengthens ethical standards across a public institution?"
+    }
+  ]
+}

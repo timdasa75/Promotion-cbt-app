@@ -22,17 +22,18 @@ test("firebase transport user builders normalize payloads", () => {
     },
   );
 
-  assert.deepEqual(
-    buildCloudUserFromAuthPayload({ localId: 456, email: "USER2@EXAMPLE.COM", displayName: "Test User", emailVerified: false }),
-    {
-      id: "456",
-      name: "Test User",
-      email: "user2@example.com",
-      plan: "free",
-      createdAt: buildCloudUserFromAuthPayload({ localId: 456, email: "USER2@EXAMPLE.COM", displayName: "Test User", emailVerified: false }).createdAt,
-      emailVerified: false,
-    },
-  );
+  const normalizedAuthUser = buildCloudUserFromAuthPayload({
+    localId: 456,
+    email: "USER2@EXAMPLE.COM",
+    displayName: "Test User",
+    emailVerified: false,
+  });
+  assert.equal(normalizedAuthUser.id, "456");
+  assert.equal(normalizedAuthUser.name, "Test User");
+  assert.equal(normalizedAuthUser.email, "user2@example.com");
+  assert.equal(normalizedAuthUser.plan, "free");
+  assert.equal(normalizedAuthUser.emailVerified, false);
+  assert.equal(Number.isNaN(Date.parse(normalizedAuthUser.createdAt)), false);
 });
 
 test("firebase transport requests read config from auth runtime", async () => {

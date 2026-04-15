@@ -1,0 +1,85 @@
+{
+  "round": 31,
+  "applied": [
+    {
+      "question_id": "pol_analysis_methods_gen_047",
+      "source_topic": "policy_analysis",
+      "source_subcategory": "pol_analysis_methods",
+      "source_file": "data/policy_analysis.json",
+      "old_question": "During routine policy analysis methods operations, which approach most strongly supports accountable implementation' (Implementation realism scenario 1)",
+      "new_question": "Which implementation-planning step most strongly improves accountability before a policy rollout begins?"
+    },
+    {
+      "question_id": "pol_analysis_methods_gen_049",
+      "source_topic": "policy_analysis",
+      "source_subcategory": "pol_analysis_methods",
+      "source_file": "data/policy_analysis.json",
+      "old_question": "When decisions are made in policy analysis methods, which step most directly improves traceability and fairness' (Implementation realism scenario 1)",
+      "new_question": "Which step most improves traceability when implementation responsibilities are shared across agencies?"
+    },
+    {
+      "question_id": "pol_analysis_methods_gen_051",
+      "source_topic": "policy_analysis",
+      "source_subcategory": "pol_analysis_methods",
+      "source_file": "data/policy_analysis.json",
+      "old_question": "In a time-sensitive matter under policy analysis methods, which action best aligns with lawful administrative standards' (Implementation realism scenario 1)",
+      "new_question": "In an urgent policy case, which action best keeps implementation planning within lawful administrative standards?"
+    },
+    {
+      "question_id": "pol_analysis_methods_gen_053",
+      "source_topic": "policy_analysis",
+      "source_subcategory": "pol_analysis_methods",
+      "source_file": "data/policy_analysis.json",
+      "old_question": "During routine policy analysis methods operations, which approach most strongly supports accountable implementation' (Evidence integrity scenario 1)",
+      "new_question": "Which practice best protects evidence integrity when analysts are under pressure to finalize recommendations?"
+    },
+    {
+      "question_id": "pol_analysis_methods_gen_055",
+      "source_topic": "policy_analysis",
+      "source_subcategory": "pol_analysis_methods",
+      "source_file": "data/policy_analysis.json",
+      "old_question": "When decisions are made in policy analysis methods, which step most directly improves traceability and fairness' (Evidence integrity scenario 1)",
+      "new_question": "Which step most directly improves fairness when different evidence sources point in different directions?"
+    },
+    {
+      "question_id": "pol_analysis_methods_gen_065",
+      "source_topic": "policy_analysis",
+      "source_subcategory": "pol_analysis_methods",
+      "source_file": "data/policy_analysis.json",
+      "old_question": "During routine policy analysis methods operations, which approach most strongly supports accountable implementation' (Implementation realism scenario 2)",
+      "new_question": "Which implementation check most strongly improves delivery realism in a second review cycle?"
+    },
+    {
+      "question_id": "pol_analysis_methods_gen_067",
+      "source_topic": "policy_analysis",
+      "source_subcategory": "pol_analysis_methods",
+      "source_file": "data/policy_analysis.json",
+      "old_question": "When decisions are made in policy analysis methods, which step most directly improves traceability and fairness' (Implementation realism scenario 2)",
+      "new_question": "Which step most improves traceability when implementation assumptions are revised during a second review?"
+    },
+    {
+      "question_id": "pol_analysis_methods_gen_069",
+      "source_topic": "policy_analysis",
+      "source_subcategory": "pol_analysis_methods",
+      "source_file": "data/policy_analysis.json",
+      "old_question": "In a time-sensitive matter under policy analysis methods, which action best aligns with lawful administrative standards' (Implementation realism scenario 2)",
+      "new_question": "In a time-sensitive second review, which action best aligns implementation planning with lawful standards?"
+    },
+    {
+      "question_id": "pol_analysis_methods_gen_071",
+      "source_topic": "policy_analysis",
+      "source_subcategory": "pol_analysis_methods",
+      "source_file": "data/policy_analysis.json",
+      "old_question": "During routine policy analysis methods operations, which approach most strongly supports accountable implementation' (Evidence integrity scenario 2)",
+      "new_question": "Which routine best supports evidence integrity during a second evidence review cycle?"
+    },
+    {
+      "question_id": "pol_analysis_methods_gen_073",
+      "source_topic": "policy_analysis",
+      "source_subcategory": "pol_analysis_methods",
+      "source_file": "data/policy_analysis.json",
+      "old_question": "When decisions are made in policy analysis methods, which step most directly improves traceability and fairness' (Evidence integrity scenario 2)",
+      "new_question": "Which step most improves fairness when new evidence requires a policy recommendation to be revised?"
+    }
+  ]
+}

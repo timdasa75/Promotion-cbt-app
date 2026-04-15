@@ -1,0 +1,46 @@
+# Question Quality Batch 1 Applied Rewrites Round 11
+
+- Applied rewrites: **14**
+
+- `leadership_lsm_051` [data/leadership_negotiation.json]
+  - Old: In the public service context, select the option that best answers: The relationship between a Minister and a Parastatal is expected to be based on which of the following?
+  - New: How should the relationship between a Minister and a Parastatal be understood in public administration?
+- `leadership_lsm_052` [data/leadership_negotiation.json]
+  - Old: select the option that best answers: According to the handbook, when the role of a meeting is complex, what should be done?
+  - New: When the objective of a meeting is complex, how should it be stated?
+- `leadership_lsm_053` [data/leadership_negotiation.json]
+  - Old: In official practice, which time frame writing a minute, what should an officer reference to support their position?
+  - New: When writing a minute, what should an officer cite to support a recommendation or position?
+- `leadership_lsm_063` [data/leadership_negotiation.json]
+  - Old: In the public service context, select the option that best answers: What should be done if one's handwriting is not easily readable for minutes or drafts covering more than half of an A4 page?
+  - New: What should be done if a handwritten minute or draft covering more than half an A4 page is not easily readable?
+- `leadership_lsm_075` [data/leadership_negotiation.json]
+  - Old: In the public service context, select the statement that correctly defines the role of the "Duplicate Note-Book System"?
+  - New: What is the purpose of the Duplicate Note-Book System?
+- `leadership_smp_057` [data/leadership_negotiation.json]
+  - Old: Within government administration, choose the best answer for: How should communication addressed to Overseas Government never be made?
+  - New: Which method should never be used for communication addressed to an overseas government?
+- `leadership_smp_059` [data/leadership_negotiation.json]
+  - Old: Within government administration, choose the best answer for: How is a memo different from a letter?
+  - New: How does a memorandum differ from an official letter?
+- `neg_principles_outcomes_gen_063` [data/leadership_negotiation.json]
+  - Old: According to established rules, which option aligns with the meaning of one of the key responsibilities of the chairman in closing a meeting?
+  - New: What is one of the chairman's key responsibilities when closing a meeting?
+- `csh_disc_053` [data/civil_service_ethics.json]
+  - Old: Within government administration, which office should an officer not communicate with on official business, outside of the proper channel?
+  - New: With whom must an officer not communicate on official business outside the proper channel unless directed by a superior officer?
+- `csh_sdg_051` [data/civil_service_ethics.json]
+  - Old: In official practice, choose the best answer for: If the chairman has follow-up actions to take before a meeting, what must he do?
+  - New: If the chairman has follow-up actions to complete before a meeting, what should he do?
+- `csh_sdg_056` [data/civil_service_ethics.json]
+  - Old: In official practice, responsibility for is in charge for receiving allegations that a public officer has committed a breach of the Code of Conduct belongs to which role?
+  - New: Which body receives allegations that a public officer has breached the Code of Conduct?
+- `csh_sdg_062` [data/civil_service_ethics.json]
+  - Old: According to established rules, which option correctly addresses: In the public service context, which option best describes considered a very serious offense for a Civil Servant?
+  - New: What is considered a very serious offence for a Civil Servant?
+- `eth_general_gen_085` [data/civil_service_ethics.json]
+  - Old: Within government administration, which option correctly addresses: A minute should contain a summary of the facts of the case, as well as what?
+  - New: What should a minute contain in addition to a summary of the facts of the case?
+- `eth_general_gen_086` [data/civil_service_ethics.json]
+  - Old: Within government administration, choose the option that a key characteristic of a good minute?
+  - New: Which quality best describes a good minute?

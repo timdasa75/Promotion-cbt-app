@@ -100,6 +100,26 @@ Recommended `progress` fields:
 - `retryQueueJson` (string JSON array for retry-missed queue)
 - `spacedQueueJson` (string JSON array for spaced-practice scheduler)
 
+Use collection: `feedbackSubmissions`
+Use document id: generated feedback id (for example `fbk_...`)
+
+Recommended `feedbackSubmissions` fields:
+- `feedbackId` (string)
+- `userId` (string, Firebase Auth uid)
+- `email` (string, lowercase)
+- `category` (string: `bug`, `suggestion`, `question_issue`, `other`)
+- `status` (string: `new`, `in_review`, `resolved`, `dismissed`)
+- `sourceScreen` (string: `help`, `quiz`, `results`)
+- `message` (string, max 1000 chars)
+- `createdAt` (timestamp)
+- `updatedAt` (timestamp)
+- `reviewedAt` (timestamp, or empty string until reviewed)
+- `reviewedBy` (string, lowercase email)
+- `topicId` (string, optional)
+- `topicName` (string, optional)
+- `questionId` (string, optional)
+- `quizAttemptId` (string, optional)
+- `sessionMode` (string, optional)
 ## 7. Firestore Security Rules (Starter)
 
 Set rules in `Firestore Database -> Rules`:
@@ -156,6 +176,21 @@ service cloud.firestore {
         && request.resource.data.email == request.auth.token.email
         && request.resource.data.status == "pending"
       );
+
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    match /feedbackSubmissions/{feedbackId} {
+      allow read: if isAdmin() || (isSignedIn() && resource.data.userId == request.auth.uid);
+
+      allow create: if isSignedIn()
+        && request.resource.data.userId == request.auth.uid
+        && request.auth.token.email != null
+        && request.resource.data.email == request.auth.token.email
+        && request.resource.data.category in ["bug", "suggestion", "question_issue", "other"]
+        && request.resource.data.status == "new"
+        && request.resource.data.sourceScreen in ["help", "quiz", "results"];
 
       allow update: if isAdmin();
       allow delete: if isAdmin();

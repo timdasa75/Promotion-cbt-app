@@ -1,0 +1,21 @@
+{
+  "round": 18,
+  "applied": [
+    {
+      "question_id": "leadership_lsm_056",
+      "source_topic": "leadership_management",
+      "source_subcategory": "lead_principles_styles",
+      "source_file": "data/leadership_negotiation.json",
+      "old_question": "When is it permissible to remove a document from a file?",
+      "new_question": "When is it permissible to remove a document from a file?"
+    },
+    {
+      "question_id": "clg_constitutional_governance_gen_079",
+      "source_topic": "constitutional_law",
+      "source_subcategory": "clg_constitutional_governance",
+      "source_file": "data/constitutional_foi.json",
+      "old_question": "What does the principle of neutrality require of civil servants?",
+      "new_question": "How should civil servants apply the principle of neutrality when serving the government of the day?"
+    }
+  ]
+}

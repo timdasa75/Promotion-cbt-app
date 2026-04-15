@@ -1,0 +1,116 @@
+{
+  "applied": [
+    {
+      "question_id": "csh_ap_055",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_administrative_procedures",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "In official practice, which option best describes the aim of the Code of Conduct Bureau?",
+      "new_question": "What is the main function of the Code of Conduct Bureau?"
+    },
+    {
+      "question_id": "csh_it_066",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_innovation_technology",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "select the option that best answers: How should the deadlines for service delivery be determined?",
+      "new_question": "How should service-delivery deadlines be determined and communicated?"
+    },
+    {
+      "question_id": "csh_it_074",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_innovation_technology",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "In the public service context, which option best describes the implication of failing to take reasonable care of documents entrusted to a Civil Servant?",
+      "new_question": "What is the consequence of failing to take reasonable care of documents entrusted to a Civil Servant?"
+    },
+    {
+      "question_id": "csh_duty_071",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_duties_responsibilities",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "According to established rules, choose the best answer for: What should adjustments to the way services are organized and operated lead to?",
+      "new_question": "What should adjustments to the way services are organized and operated achieve?"
+    },
+    {
+      "question_id": "csh_pt_053",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_performance_training",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "In the public service context, select the option that best answers: According to the handbook, what is the proper action if papers or documents come to you by mistake from members of staff or the general public?",
+      "new_question": "What should you do if papers or documents come to you by mistake from staff or members of the public?"
+    },
+    {
+      "question_id": "csh_pt_059",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_performance_training",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "According to established rules, choose the best answer for: How should the evaluation of services be based?",
+      "new_question": "On what should the evaluation of services be based?"
+    },
+    {
+      "question_id": "csh_sdg_060",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_service_delivery_grievance",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "In the public service context, select the statement that correctly defines the objective of a \"handing over note\"?",
+      "new_question": "What is the purpose of a handing-over note?"
+    },
+    {
+      "question_id": "eth_general_gen_076",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "eth_general",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "According to established rules, choose the best answer for: What should letters always have?",
+      "new_question": "What should every official letter contain?"
+    },
+    {
+      "question_id": "FOI_AO_058",
+      "source_topic": "constitutional_law",
+      "source_subcategory": "foi_access_obligations",
+      "source_file": "data/constitutional_foi.json",
+      "old_question": "select the statement that correctly defines the aim of classifying documents?",
+      "new_question": "Why are official documents classified?"
+    },
+    {
+      "question_id": "FOI_AO_068",
+      "source_topic": "constitutional_law",
+      "source_subcategory": "foi_access_obligations",
+      "source_file": "data/constitutional_foi.json",
+      "old_question": "Within government administration, choose the best answer for: What should be attached to the notice and agenda?",
+      "new_question": "What should be attached to a meeting notice and agenda?"
+    },
+    {
+      "question_id": "FOI_AO_074",
+      "source_topic": "constitutional_law",
+      "source_subcategory": "foi_access_obligations",
+      "source_file": "data/constitutional_foi.json",
+      "old_question": "In official practice, select the option that best answers: Within government administration, which option aligns with the meaning of the role of keeping a \"Reference\" in the top right-hand corner of a letter?",
+      "new_question": "Why is a reference placed in the top right-hand corner of an official letter?"
+    },
+    {
+      "question_id": "clg_legal_compliance_gen_061",
+      "source_topic": "constitutional_law",
+      "source_subcategory": "clg_legal_compliance",
+      "source_file": "data/constitutional_foi.json",
+      "old_question": "which option correctly addresses: The Principle of Quality, Effectiveness, and Efficiency demand the public service to make optimal use of what?",
+      "new_question": "Under the principle of quality, effectiveness, and efficiency, what should the public service make optimal use of?"
+    },
+    {
+      "question_id": "FOI_AO_052",
+      "source_topic": "constitutional_law",
+      "source_subcategory": "foi_access_obligations",
+      "source_file": "data/constitutional_foi.json",
+      "old_question": "Within government administration, which option aligns with the meaning of the role of keeping a \"Reference\" in the top right-hand corner of a letter?",
+      "new_question": "What is the purpose of keeping a reference in the top right-hand corner of a letter?"
+    },
+    {
+      "question_id": "FOI_EX_075",
+      "source_topic": "constitutional_law",
+      "source_subcategory": "foi_exemptions_public_interest",
+      "source_file": "data/constitutional_foi.json",
+      "old_question": "According to established rules, choose the best answer for: The hours of work in Federal offices are from what time to what time?",
+      "new_question": "What are the normal hours of work in Federal offices?"
+    }
+  ]
+}

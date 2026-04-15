@@ -1,0 +1,125 @@
+{
+  "round": 15,
+  "applied": [
+    {
+      "question_id": "ca_general_062",
+      "source_topic": "general_current_affairs",
+      "source_subcategory": "ca_general",
+      "source_file": "data/general_current_affairs.json",
+      "old_question": "According to established rules, choose the best answer for: Before procuring safes, strong-rooms, cash tanks, and boxes, whose specification must first be obtained?",
+      "new_question": "Before procuring safes, strong-rooms, cash tanks, or cash boxes, whose specification must first be obtained?"
+    },
+    {
+      "question_id": "ca_general_063",
+      "source_topic": "general_current_affairs",
+      "source_subcategory": "ca_general",
+      "source_file": "data/general_current_affairs.json",
+      "old_question": "which option correctly addresses: How often should annual returns of all Government strong-rooms and safes be rendered, and to whom?",
+      "new_question": "How often should annual returns of all Government strong-rooms and safes be rendered, and to whom?"
+    },
+    {
+      "question_id": "ca_general_067",
+      "source_topic": "general_current_affairs",
+      "source_subcategory": "ca_general",
+      "source_file": "data/general_current_affairs.json",
+      "old_question": "According to established rules, choose the best answer for: What does the Bureau do to guarantee compliance with the principles of due procedure?",
+      "new_question": "What does the Bureau do to ensure compliance with due process in Federal Government contracts?"
+    },
+    {
+      "question_id": "ca_general_070",
+      "source_topic": "general_current_affairs",
+      "source_subcategory": "ca_general",
+      "source_file": "data/general_current_affairs.json",
+      "old_question": "select the statement that correctly defines described as a major cause for all the reform efforts in the Civil Service over the years?",
+      "new_question": "What has been described as a major reason for repeated Civil Service reform efforts over the years?"
+    },
+    {
+      "question_id": "ca_general_071",
+      "source_topic": "general_current_affairs",
+      "source_subcategory": "ca_general",
+      "source_file": "data/general_current_affairs.json",
+      "old_question": "In the public service context, which option best describes the Office of the Head of the Civil Service of the Federation (OHCSF) in charge for?",
+      "new_question": "What is the Office of the Head of the Civil Service of the Federation primarily responsible for?"
+    },
+    {
+      "question_id": "fin_aud_069",
+      "source_topic": "financial_regulations",
+      "source_subcategory": "fin_audits_sanctions",
+      "source_file": "data/financial_regulations.json",
+      "old_question": "choose the best answer for: If a key holder suspects interference with the keys or locks of a strong-room or safe, what must they do?",
+      "new_question": "If a key holder suspects interference with the keys or locks of a strong-room or safe, what must be done?"
+    },
+    {
+      "question_id": "fin_bgt_068",
+      "source_topic": "financial_regulations",
+      "source_subcategory": "fin_budgeting",
+      "source_file": "data/financial_regulations.json",
+      "old_question": "According to established rules, responsibility for is personally in charge for obtaining acquittal for payments out of public funds until the relevant payment vouchers are obtained belongs to which role?",
+      "new_question": "Which officer bears personal responsibility for obtaining acquittal for payments made out of public funds until the relevant payment vouchers are produced?"
+    },
+    {
+      "question_id": "psr_disc_053",
+      "source_topic": "psr",
+      "source_subcategory": "psr_discipline",
+      "source_file": "data/psr_rules.json",
+      "old_question": "In the public service context, which option best describes the role of the Code of Conduct Bureau?",
+      "new_question": "What is the primary role of the Code of Conduct Bureau in relation to public officers?"
+    },
+    {
+      "question_id": "psr_eth_059",
+      "source_topic": "psr",
+      "source_subcategory": "psr_ethics",
+      "source_file": "data/psr_rules.json",
+      "old_question": "Within government administration, select the option that best answers: Which characteristic of good governance means that decisions are taken and enforced in a manner that follows rules and regulations, and information is freely available?",
+      "new_question": "Which feature of good governance means that decisions are taken according to rules and regulations and that information is openly available?"
+    },
+    {
+      "question_id": "psr_eth_060",
+      "source_topic": "psr",
+      "source_subcategory": "psr_ethics",
+      "source_file": "data/psr_rules.json",
+      "old_question": "According to established rules, which role is in charge for receiving allegations that a public officer has committed a breach of the Code of Conduct?",
+      "new_question": "Which body receives allegations that a public officer has breached the Code of Conduct?"
+    },
+    {
+      "question_id": "psr_train_056",
+      "source_topic": "psr",
+      "source_subcategory": "psr_training",
+      "source_file": "data/psr_rules.json",
+      "old_question": "which option correctly addresses: The Management Services Office (MSO) within the OHCSF deals with issues of:?",
+      "new_question": "What issues does the Management Services Office (MSO) in the Office of the Head of the Civil Service of the Federation primarily handle?"
+    },
+    {
+      "question_id": "psr_admin_060",
+      "source_topic": "psr",
+      "source_subcategory": "psr_general_admin",
+      "source_file": "data/psr_rules.json",
+      "old_question": "In the public service context, choose the best answer for: According to established rules, which option aligns with the meaning of typically contained in a \"Subject File\"?",
+      "new_question": "What is typically contained in a subject file?"
+    },
+    {
+      "question_id": "psr_admin_069",
+      "source_topic": "psr",
+      "source_subcategory": "psr_general_admin",
+      "source_file": "data/psr_rules.json",
+      "old_question": "In official practice, select the option that best answers: The public service must establish or strengthen reception and information units for users in order to assist them in what?",
+      "new_question": "Why must the public service establish or strengthen reception and information units for users?"
+    },
+    {
+      "question_id": "circ_appointments_tenure_discipline_gen_075",
+      "source_topic": "psr",
+      "source_subcategory": "circ_appointments_tenure_discipline",
+      "source_file": "data/psr_rules.json",
+      "old_question": "select the option that best answers: What types of transfers are effected by Principal Journal Vouchers (PJVs) at the end of the month?",
+      "new_question": "What type of month-end transfer is effected by Principal Journal Vouchers (PJVs)?"
+    },
+    {
+      "question_id": "circ_personnel_performance_gen_087",
+      "source_topic": "psr",
+      "source_subcategory": "circ_personnel_performance",
+      "source_file": "data/psr_rules.json",
+      "old_question": "According to established rules, select the option that best answers: The existence of \"ghost workers\" is symptomatic of what problem in the Civil Service?",
+      "new_question": "The existence of \"ghost workers\" is usually a sign of what problem in the Civil Service?"
+    }
+  ]
+}
