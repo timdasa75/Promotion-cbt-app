@@ -1,0 +1,24 @@
+{
+  "applied": [
+    {
+      "old_id": "leadership_lsm_054",
+      "new_id": "csh_ap_135",
+      "source_topic": "leadership_management",
+      "source_subcategory": "lead_principles_styles",
+      "target_topic": "civil_service_admin",
+      "target_subcategory": "csh_administrative_procedures",
+      "target_file": "data/civil_service_ethics.json",
+      "question": "How should official files be classified in registry practice?"
+    },
+    {
+      "old_id": "leadership_lsm_065",
+      "new_id": "csh_ap_136",
+      "source_topic": "leadership_management",
+      "source_subcategory": "lead_principles_styles",
+      "target_topic": "civil_service_admin",
+      "target_subcategory": "csh_administrative_procedures",
+      "target_file": "data/civil_service_ethics.json",
+      "question": "Which situation justifies removing a document from a file?"
+    }
+  ]
+}

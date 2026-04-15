@@ -1604,6 +1604,28 @@ function normalizeQuestionFingerprint(question = {}) {
   return byText ? `text:${byText}` : "";
 }
 
+function getQuestionAliasIds(question = {}) {
+  const ids = [];
+  const primaryId = String(question?.id || "").trim();
+  if (primaryId) ids.push(primaryId);
+  const legacyIds = Array.isArray(question?.legacyQuestionIds) ? question.legacyQuestionIds : [];
+  legacyIds.forEach((value) => {
+    const normalized = String(value || "").trim();
+    if (normalized && !ids.includes(normalized)) {
+      ids.push(normalized);
+    }
+  });
+  return ids;
+}
+
+function indexQuestionByKnownIds(questionById, question) {
+  getQuestionAliasIds(question).forEach((questionId) => {
+    if (questionId && !questionById.has(questionId)) {
+      questionById.set(questionId, question);
+    }
+  });
+}
+
 function toRetryQueueEntry(question, userAnswer = undefined) {
   const fingerprint = normalizeQuestionFingerprint(question);
   if (!fingerprint) return null;
@@ -1827,10 +1849,7 @@ async function resolveSpacedPracticeQuestions(entries, limit) {
 
     topicDataFiles.forEach((topicData) => {
       extractQuestionsByCategory(topicData, "all", {}).forEach((question) => {
-        const questionId = String(question?.id || "").trim();
-        if (questionId && !questionById.has(questionId)) {
-          questionById.set(questionId, question);
-        }
+        indexQuestionByKnownIds(questionById, question);
         const fingerprint = normalizeQuestionFingerprint(question);
         if (fingerprint && !questionByFingerprint.has(fingerprint)) {
           questionByFingerprint.set(fingerprint, question);
@@ -1857,6 +1876,58 @@ async function resolveSpacedPracticeQuestions(entries, limit) {
         ...question,
         sourceTopicId: String(entry.sourceTopicId || topic.id || ""),
         sourceTopicName: String(entry.sourceTopicName || topic.name || ""),
+      });
+    });
+  }
+
+  const unresolvedEntries = selectedEntries.filter(
+    (entry) => !resolvedByEntryId.has(String(entry?.id || "")),
+  );
+
+  if (unresolvedEntries.length) {
+    const globalQuestionById = new Map();
+    const globalQuestionByFingerprint = new Map();
+
+    for (const topic of topicMap.values()) {
+      if (!topic?.file) continue;
+      let topicDataFiles = [];
+      try {
+        topicDataFiles = await fetchTopicDataFiles(topic, { tolerateFailures: true });
+      } catch (error) {
+        topicDataFiles = [];
+      }
+      if (!topicDataFiles.length) continue;
+
+      topicDataFiles.forEach((topicData) => {
+        extractQuestionsByCategory(topicData, "all", {}).forEach((question) => {
+          indexQuestionByKnownIds(globalQuestionById, question);
+          const fingerprint = normalizeQuestionFingerprint(question);
+          if (fingerprint && !globalQuestionByFingerprint.has(fingerprint)) {
+            globalQuestionByFingerprint.set(fingerprint, question);
+          }
+        });
+      });
+    }
+
+    unresolvedEntries.forEach((entry) => {
+      if (resolvedByEntryId.size >= limit) return;
+      let question = null;
+      const questionId = String(entry?.questionId || "").trim();
+      if (questionId && globalQuestionById.has(questionId)) {
+        question = globalQuestionById.get(questionId);
+      }
+      if (!question) {
+        const fingerprint = String(entry?.fingerprint || "").trim();
+        if (fingerprint && globalQuestionByFingerprint.has(fingerprint)) {
+          question = globalQuestionByFingerprint.get(fingerprint);
+        }
+      }
+      if (!question) return;
+
+      resolvedByEntryId.set(String(entry?.id || ""), {
+        ...question,
+        sourceTopicId: String(question?.sourceTopicId || entry?.sourceTopicId || ""),
+        sourceTopicName: String(question?.sourceTopicName || entry?.sourceTopicName || ""),
       });
     });
   }
@@ -4123,47 +4194,3 @@ function initializeQuiz(options = {}) {
   updateProgress();
   persistQuizRuntime();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

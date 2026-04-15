@@ -1,0 +1,37 @@
+{
+  "round": 29,
+  "applied": [
+    {
+      "question_id": "csh_ap_005",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_administrative_procedures",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "All official documents must be treated as the property of whom",
+      "new_question": "In official registry practice, who owns official documents created or received in government service?"
+    },
+    {
+      "question_id": "csh_duty_012",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_duties_responsibilities",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "All official documents must be treated as the property of:",
+      "new_question": "What is an officer's primary duty regarding official documents in their custody?"
+    },
+    {
+      "question_id": "csh_disc_068",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_discipline_conduct",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "What should a Civil Servant do if a file has remained on their desk for a long time without action?",
+      "new_question": "What should a civil servant do if an assigned file has remained on the desk too long without action?"
+    },
+    {
+      "question_id": "csh_pt_053",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_performance_training",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "What should you do if papers or documents come to you by mistake from staff or members of the public?",
+      "new_question": "What should an officer do when papers or documents are delivered to the wrong desk by mistake?"
+    }
+  ]
+}

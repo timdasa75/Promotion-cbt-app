@@ -1,0 +1,122 @@
+#!/usr/bin/env python3
+"""Apply curated question quality rewrites for round 7."""
+
+from __future__ import annotations
+
+import argparse
+import json
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+TOPICS_FILE = ROOT / "data" / "topics.json"
+DEFAULT_LOG_JSON = ROOT / "docs" / "question_quality_batch1_applied_rewrites_round7.json"
+DEFAULT_LOG_MD = ROOT / "docs" / "question_quality_batch1_applied_rewrites_round7.md"
+
+REWRITES = {
+    "ict_eg_087": {
+        "question": "What does the good-governance principle of responsiveness require institutions and processes to do?",
+        "explanation": "The principle of responsiveness requires institutions and processes to serve stakeholders within a reasonable timeframe.",
+        "keywords": ["good_governance", "responsiveness", "institutions", "stakeholders"],
+        "tags": ["ict_management", "ict_e_governance", "good_governance", "responsiveness_principle"],
+    },
+    "eth_general_gen_087": {
+        "question": "Apart from the officer handing over, which officials should receive copies of the handing-over note?",
+        "explanation": "Copies of the handing-over note should go to the Head of Department, the Personnel Officer, and the officer's successor so that continuity and accountability are maintained.",
+        "keywords": ["handing_over_note", "head_of_department", "personnel_officer", "officer_successor"],
+        "tags": ["civil_service_admin", "eth_general", "handing_over_note", "continuity"],
+    },
+}
+
+
+def load_json(path: Path):
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def save_json(path: Path, payload):
+    path.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+
+def write_markdown(path: Path, payload):
+    applied = payload.get("applied", [])
+    lines = [
+        "# Question Quality Batch 1 Applied Rewrites Round 7",
+        "",
+        f"- Applied rewrites: **{len(applied)}**",
+        "",
+    ]
+    for item in applied:
+        lines.append(f"- `{item['question_id']}` [{item['source_file']}]")
+        lines.append(f"  - Old: {item['old_question']}")
+        lines.append(f"  - New: {item['new_question']}")
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def find_topic_files(root: Path):
+    topics = load_json(TOPICS_FILE)
+    mapping = {}
+    for topic in topics.get("topics", []):
+        topic_file = root / str(topic.get("file") or "")
+        mapping[str(topic.get("id") or "").strip()] = topic_file
+    return mapping
+
+
+def apply_rewrites(root: Path):
+    topic_files = find_topic_files(root)
+    docs = {topic: load_json(path) for topic, path in topic_files.items() if path.exists()}
+    applied = []
+
+    for question_id, patch in REWRITES.items():
+        found = False
+        for topic_id, doc in docs.items():
+            for subcategory in doc.get("subcategories", []):
+                for question in subcategory.get("questions", []):
+                    if question.get("id") != question_id:
+                        continue
+                    old_question = question.get("question", "")
+                    question.update(patch)
+                    question["lastReviewed"] = "2026-04-03"
+                    applied.append(
+                        {
+                            "question_id": question_id,
+                            "source_topic": topic_id,
+                            "source_subcategory": subcategory.get("id"),
+                            "source_file": str(topic_files[topic_id].relative_to(root)).replace("\\", "/"),
+                            "old_question": old_question,
+                            "new_question": question.get("question", ""),
+                        }
+                    )
+                    found = True
+                    break
+                if found:
+                    break
+            if found:
+                break
+        if not found:
+            raise SystemExit(f"Question {question_id} not found")
+
+    for topic_id, doc in docs.items():
+        save_json(topic_files[topic_id], doc)
+
+    return applied
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--root", type=Path, default=ROOT)
+    parser.add_argument("--log-out", type=Path, default=DEFAULT_LOG_JSON)
+    parser.add_argument("--markdown-out", type=Path, default=DEFAULT_LOG_MD)
+    return parser.parse_args()
+
+
+def main() -> int:
+    args = parse_args()
+    applied = apply_rewrites(args.root)
+    payload = {"applied": applied}
+    save_json(args.log_out, payload)
+    write_markdown(args.markdown_out, payload)
+    print(json.dumps({"applied_rewrites": len(applied), "rewrites": applied}, indent=2))
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

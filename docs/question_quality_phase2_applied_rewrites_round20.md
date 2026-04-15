@@ -1,0 +1,40 @@
+# Question Quality Phase 2 Applied Rewrites Round 20
+
+- Applied rewrites: **12**
+
+- `pol_analysis_methods_gen_046` [data/policy_analysis.json]
+  - Old: A unit handling policy analysis methods receives a case with competing priorities. Which action best preserves compliance and service quality' (Implementation realism scenario 1)
+  - New: A policy-analysis team is handling competing priorities ahead of rollout. Which step best preserves implementation discipline?
+- `pol_analysis_methods_gen_048` [data/policy_analysis.json]
+  - Old: A supervisor is reviewing gaps in policy analysis methods. Which option best strengthens control and consistency' (Implementation realism scenario 1)
+  - New: A supervisor finds uneven analytical outputs across several policy-analysis submissions. Which corrective step best improves control and consistency?
+- `pol_analysis_methods_gen_050` [data/policy_analysis.json]
+  - Old: For sustainable results in policy analysis methods, which practice should be prioritized first' (Implementation realism scenario 1)
+  - New: For sustainable policy-analysis practice, which habit should be prioritized first?
+- `pol_analysis_methods_gen_052` [data/policy_analysis.json]
+  - Old: A unit handling policy analysis methods receives a case with competing priorities. Which action best preserves compliance and service quality' (Evidence integrity scenario 1)
+  - New: A policy-analysis unit is working under pressure. Which action best protects evidence integrity before recommendations are issued?
+- `pol_analysis_methods_gen_054` [data/policy_analysis.json]
+  - Old: A supervisor is reviewing gaps in policy analysis methods. Which option best strengthens control and consistency' (Evidence integrity scenario 1)
+  - New: A supervisor is reviewing weak evidence standards in policy-analysis submissions. Which requirement best strengthens consistency?
+- `pol_analysis_methods_gen_056` [data/policy_analysis.json]
+  - Old: For sustainable results in policy analysis methods, which practice should be prioritized first' (Evidence integrity scenario 1)
+  - New: Which practice should be prioritized first to sustain evidence integrity in policy analysis over time?
+- `pol_analysis_methods_gen_064` [data/policy_analysis.json]
+  - Old: A unit handling policy analysis methods receives a case with competing priorities. Which action best preserves compliance and service quality' (Implementation realism scenario 2)
+  - New: A cross-ministerial policy rollout has overlapping tasks and deadlines. Which planning step best preserves implementation realism?
+- `pol_analysis_methods_gen_066` [data/policy_analysis.json]
+  - Old: A supervisor is reviewing gaps in policy analysis methods. Which option best strengthens control and consistency' (Implementation realism scenario 2)
+  - New: A supervisor notices that implementation follow-up is inconsistent across similar policy projects. Which tool best improves control?
+- `pol_analysis_methods_gen_068` [data/policy_analysis.json]
+  - Old: For sustainable results in policy analysis methods, which practice should be prioritized first' (Implementation realism scenario 2)
+  - New: For sustainable implementation planning in policy analysis, what should be prioritized first?
+- `pol_analysis_methods_gen_070` [data/policy_analysis.json]
+  - Old: A unit handling policy analysis methods receives a case with competing priorities. Which action best preserves compliance and service quality' (Evidence integrity scenario 2)
+  - New: A policy-analysis unit is under time pressure. Which step best preserves evidence integrity in the final recommendation?
+- `pol_analysis_methods_gen_072` [data/policy_analysis.json]
+  - Old: A supervisor is reviewing gaps in policy analysis methods. Which option best strengthens control and consistency' (Evidence integrity scenario 2)
+  - New: A supervisor wants stronger evidence discipline in policy-analysis work. Which requirement best improves assurance?
+- `pol_analysis_methods_gen_074` [data/policy_analysis.json]
+  - Old: For sustainable results in policy analysis methods, which practice should be prioritized first' (Evidence integrity scenario 2)
+  - New: What should be prioritized first to sustain evidence integrity across repeated policy-analysis cycles?

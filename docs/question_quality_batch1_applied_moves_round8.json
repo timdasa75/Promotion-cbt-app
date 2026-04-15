@@ -1,0 +1,14 @@
+{
+  "applied": [
+    {
+      "old_id": "FOI_AO_051",
+      "new_id": "csh_ap_129",
+      "source_topic": "constitutional_law",
+      "source_subcategory": "foi_access_obligations",
+      "target_topic": "civil_service_admin",
+      "target_subcategory": "csh_administrative_procedures",
+      "target_file": "data/civil_service_ethics.json",
+      "question": "What is typically contained in a personal file?"
+    }
+  ]
+}

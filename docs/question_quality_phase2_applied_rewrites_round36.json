@@ -1,0 +1,45 @@
+{
+  "round": 36,
+  "applied": [
+    {
+      "question_id": "csh_principle_062",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_principles_ethics",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "According to established rules, select the statement that correctly defines the chief objective of government vehicles, as stated in Financial Regulation 2001?",
+      "new_question": "Under Financial Regulation 2001, what is the chief objective of providing government vehicles?"
+    },
+    {
+      "question_id": "csh_pt_037",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_performance_training",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "Which **PSR** rule covers the definition and objectives of staff development",
+      "new_question": "Which PSR rules cover the definition and objectives of staff development?"
+    },
+    {
+      "question_id": "csh_sdg_053",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_service_delivery_grievance",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "In the public service context, which option best describes specifically forbidden in handling money received in the course of official duties by an officer who is not a Revenue Collector or Sub-Accounting Officer?",
+      "new_question": "What is forbidden when an officer who is not a Revenue Collector or Sub-Accounting Officer handles money received in the course of official duty?"
+    },
+    {
+      "question_id": "eth_general_gen_073",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "eth_general",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "Within government administration, select the statement that correctly defines the term for a set of official correspondence and documents on a particular subject matter?",
+      "new_question": "What is the term for a set of official correspondence and documents kept together on one subject?"
+    },
+    {
+      "question_id": "ethics_107",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "eth_values_integrity",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "In official practice, select the option that best answers: In official practice, which option aligns with the meaning of the duty of Sub-Accounting Officers regarding receipt and licence books?",
+      "new_question": "What is the duty of Sub-Accounting Officers regarding receipt and licence books?"
+    }
+  ]
+}

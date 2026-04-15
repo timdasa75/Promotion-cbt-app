@@ -1,0 +1,101 @@
+{
+  "round": 30,
+  "applied": [
+    {
+      "question_id": "pol_analysis_methods_gen_040",
+      "source_topic": "policy_analysis",
+      "source_subcategory": "pol_analysis_methods",
+      "source_file": "data/policy_analysis.json",
+      "old_question": "A unit handling policy analysis methods receives a case with competing priorities. Which action best preserves compliance and service quality' (Policy formulation rigour scenario 1)",
+      "new_question": "A policy unit is under pressure to recommend action quickly. Which first step best preserves formulation rigour?"
+    },
+    {
+      "question_id": "pol_analysis_methods_gen_041",
+      "source_topic": "policy_analysis",
+      "source_subcategory": "pol_analysis_methods",
+      "source_file": "data/policy_analysis.json",
+      "old_question": "During routine policy analysis methods operations, which approach most strongly supports accountable implementation' (Policy formulation rigour scenario 1)",
+      "new_question": "Which routine most strongly supports accountable policy formulation when several teams are contributing inputs?"
+    },
+    {
+      "question_id": "pol_analysis_methods_gen_042",
+      "source_topic": "policy_analysis",
+      "source_subcategory": "pol_analysis_methods",
+      "source_file": "data/policy_analysis.json",
+      "old_question": "A supervisor is reviewing gaps in policy analysis methods. Which option best strengthens control and consistency' (Policy formulation rigour scenario 1)",
+      "new_question": "A supervisor finds that similar policy proposals are being assessed inconsistently. Which fix best improves formulation control?"
+    },
+    {
+      "question_id": "pol_analysis_methods_gen_043",
+      "source_topic": "policy_analysis",
+      "source_subcategory": "pol_analysis_methods",
+      "source_file": "data/policy_analysis.json",
+      "old_question": "When decisions are made in policy analysis methods, which step most directly improves traceability and fairness' (Policy formulation rigour scenario 1)",
+      "new_question": "Which step most directly improves fairness and traceability when policy options are narrowed down?"
+    },
+    {
+      "question_id": "pol_analysis_methods_gen_044",
+      "source_topic": "policy_analysis",
+      "source_subcategory": "pol_analysis_methods",
+      "source_file": "data/policy_analysis.json",
+      "old_question": "For sustainable results in policy analysis methods, which practice should be prioritized first' (Policy formulation rigour scenario 1)",
+      "new_question": "For sustainable formulation quality, what should a policy team prioritize first?"
+    },
+    {
+      "question_id": "pol_analysis_methods_gen_045",
+      "source_topic": "policy_analysis",
+      "source_subcategory": "pol_analysis_methods",
+      "source_file": "data/policy_analysis.json",
+      "old_question": "In a time-sensitive matter under policy analysis methods, which action best aligns with lawful administrative standards' (Policy formulation rigour scenario 1)",
+      "new_question": "In a time-sensitive policy matter, which action best aligns with lawful administrative standards during formulation?"
+    },
+    {
+      "question_id": "pol_analysis_methods_gen_058",
+      "source_topic": "policy_analysis",
+      "source_subcategory": "pol_analysis_methods",
+      "source_file": "data/policy_analysis.json",
+      "old_question": "A unit handling policy analysis methods receives a case with competing priorities. Which action best preserves compliance and service quality' (Policy formulation rigour scenario 2)",
+      "new_question": "A second policy team is handling a competing-priorities case. Which step best preserves formulation rigour at the appraisal stage?"
+    },
+    {
+      "question_id": "pol_analysis_methods_gen_059",
+      "source_topic": "policy_analysis",
+      "source_subcategory": "pol_analysis_methods",
+      "source_file": "data/policy_analysis.json",
+      "old_question": "During routine policy analysis methods operations, which approach most strongly supports accountable implementation' (Policy formulation rigour scenario 2)",
+      "new_question": "During routine formulation work, which approach most strongly supports accountable implementation planning?"
+    },
+    {
+      "question_id": "pol_analysis_methods_gen_060",
+      "source_topic": "policy_analysis",
+      "source_subcategory": "pol_analysis_methods",
+      "source_file": "data/policy_analysis.json",
+      "old_question": "A supervisor is reviewing gaps in policy analysis methods. Which option best strengthens control and consistency' (Policy formulation rigour scenario 2)",
+      "new_question": "A supervisor wants stronger consistency across policy submissions. Which tool best improves formulation control?"
+    },
+    {
+      "question_id": "pol_analysis_methods_gen_061",
+      "source_topic": "policy_analysis",
+      "source_subcategory": "pol_analysis_methods",
+      "source_file": "data/policy_analysis.json",
+      "old_question": "When decisions are made in policy analysis methods, which step most directly improves traceability and fairness' (Policy formulation rigour scenario 2)",
+      "new_question": "Which step most directly improves traceability when a policy option is recommended over several alternatives?"
+    },
+    {
+      "question_id": "pol_analysis_methods_gen_062",
+      "source_topic": "policy_analysis",
+      "source_subcategory": "pol_analysis_methods",
+      "source_file": "data/policy_analysis.json",
+      "old_question": "For sustainable results in policy analysis methods, which practice should be prioritized first' (Policy formulation rigour scenario 2)",
+      "new_question": "For sustainable policy formulation rigour, which practice should be prioritized first in a second review cycle?"
+    },
+    {
+      "question_id": "pol_analysis_methods_gen_063",
+      "source_topic": "policy_analysis",
+      "source_subcategory": "pol_analysis_methods",
+      "source_file": "data/policy_analysis.json",
+      "old_question": "In a time-sensitive matter under policy analysis methods, which action best aligns with lawful administrative standards' (Policy formulation rigour scenario 2)",
+      "new_question": "In a time-sensitive formulation case, which action best aligns with lawful administrative standards in a second review cycle?"
+    }
+  ]
+}

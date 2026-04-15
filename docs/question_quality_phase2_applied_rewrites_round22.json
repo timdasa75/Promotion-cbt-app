@@ -1,0 +1,53 @@
+{
+  "round": 22,
+  "applied": [
+    {
+      "question_id": "neg_structure_bodies_gen_002",
+      "source_topic": "leadership_management",
+      "source_subcategory": "neg_structure_bodies",
+      "source_file": "data/leadership_negotiation.json",
+      "old_question": "For effective negotiating structures & bodies, what is the most appropriate approach to ensure negotiating structures & bodies compliance",
+      "new_question": "When constituting a negotiating body, which step best strengthens compliance from the outset?"
+    },
+    {
+      "question_id": "neg_structure_bodies_gen_007",
+      "source_topic": "leadership_management",
+      "source_subcategory": "neg_structure_bodies",
+      "source_file": "data/leadership_negotiation.json",
+      "old_question": "For effective negotiating structures & bodies, what is the most appropriate approach to ensure change management",
+      "new_question": "A ministry is restructuring its negotiating committees. Which step best supports orderly change management?"
+    },
+    {
+      "question_id": "neg_structure_bodies_gen_017",
+      "source_topic": "leadership_management",
+      "source_subcategory": "neg_structure_bodies",
+      "source_file": "data/leadership_negotiation.json",
+      "old_question": "For effective negotiating structures & bodies, what is the most appropriate approach to ensure record management",
+      "new_question": "Which recordkeeping practice best preserves continuity when negotiating-body membership changes?"
+    },
+    {
+      "question_id": "neg_structure_bodies_gen_025",
+      "source_topic": "leadership_management",
+      "source_subcategory": "neg_structure_bodies",
+      "source_file": "data/leadership_negotiation.json",
+      "old_question": "Which practice should a responsible officer prioritize to sustain change management in Negotiating Structures & Bodies",
+      "new_question": "Which practice best helps a negotiating body coordinate the work of its main committee and technical subcommittees?"
+    },
+    {
+      "question_id": "neg_structure_bodies_gen_035",
+      "source_topic": "leadership_management",
+      "source_subcategory": "neg_structure_bodies",
+      "source_file": "data/leadership_negotiation.json",
+      "old_question": "Which practice should a responsible officer prioritize to sustain record management in Negotiating Structures & Bodies",
+      "new_question": "Which routine best preserves accountability for decisions made by a negotiating body?"
+    },
+    {
+      "question_id": "neg_structure_bodies_gen_037",
+      "source_topic": "leadership_management",
+      "source_subcategory": "neg_structure_bodies",
+      "source_file": "data/leadership_negotiation.json",
+      "old_question": "For effective negotiating structures & bodies, what is the most appropriate approach to ensure negotiating structures & bodies governance",
+      "new_question": "Which governance safeguard most strengthens oversight of a negotiating body?"
+    }
+  ]
+}

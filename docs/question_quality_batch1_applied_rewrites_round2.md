@@ -1,0 +1,52 @@
+# Question Quality Batch 1 Applied Rewrites Round 2
+
+- Applied rewrites: **16**
+
+- `csh_ap_035` [civil_service_admin/csh_administrative_procedures]
+  - Before: The **PSR** states that an officer on secondment shall be appraised by:
+  - After: Under the **PSR**, which authority appraises an officer who is on secondment?
+- `csh_principle_074` [civil_service_admin/csh_principles_ethics]
+  - Before: According to established rules, select the option that best answers: What happens to arrears of revenue still outstanding from previous years?
+  - After: What should happen to arrears of revenue that remain outstanding from previous years?
+- `csh_sdg_032` [civil_service_admin/csh_service_delivery_grievance]
+  - Before: What is the consequence if an appeal/petition is illegible or meaningless (**Rule 110208(iii**))
+  - After: What is the consequence if an appeal or petition is illegible or meaningless under **Rule 110208(iii)**?
+- `ethics_091` [civil_service_admin/eth_values_integrity]
+  - Before: In the public service context, choose the best answer for: What happens to arrears of revenue still outstanding from previous years?
+  - After: What should happen to arrears of revenue that remain outstanding from previous years?
+- `competency_verbal_081` [competency_framework/comp_verbal_reasoning]
+  - Before: In official practice, select the option that best answers: How is a cheque or bank draft returned to a sender, redirected, or remitted to another station recorded?
+  - After: How is a cheque or bank draft that is returned to the sender, redirected, or remitted to another station recorded?
+- `clg_legal_compliance_gen_071` [constitutional_law/clg_legal_compliance]
+  - Before: In official practice, which option correctly addresses: For effective legal frameworks & statutory compliance, what is the most appropriate approach to guarantee legal frameworks & statutory compliance compliance?
+  - After: Which approach best promotes effective legal and statutory compliance?
+- `fin_bgt_045` [financial_regulations/fin_budgeting]
+  - Before: Payment of promotion arrears to an officer shall be made within what timeframe of the promotion being effected
+  - After: Within what timeframe must promotion arrears be paid after a promotion is effected?
+- `fin_pro_066` [financial_regulations/fin_procurement]
+  - Before: choose the best answer for: The Due procedure policy aims to prevent extra-budgetary spending in MDAs by ensuring what?
+  - After: What does the Due Process policy seek to ensure in order to prevent extra-budgetary spending in MDAs?
+- `neg_structure_bodies_gen_079` [leadership_management/neg_structure_bodies]
+  - Before: choose the best answer for: Under the NPSNC structure, which council is accountable for representing the senior staff category (typically Grade Level 07 and above)?
+  - After: Under the NPSNC structure, which council represents the senior staff category, typically Grade Level 07 and above?
+- `circ_leave_welfare_allowances_gen_083` [psr/circ_leave_welfare_allowances]
+  - Before: which option correctly addresses: Question: If a cashier or officer temporarily leaves receipt books with another officer, who is held accountable for any misuse?
+  - After: If a cashier or officer temporarily leaves receipt books with another officer, who is accountable for any misuse?
+- `fin_gen_024` [financial_regulations/fin_general]
+  - Before: Who is responsible for issuing receipts for government revenue upon collection
+  - After: Who is responsible for issuing receipts for government revenue when it is collected?
+- `FOI_EX_044` [constitutional_law/foi_exemptions_public_interest]
+  - Before: Information concerning trade secrets that are submitted to a government regulator is exempt under **Section 15** only if the information was:
+  - After: Information concerning trade secrets submitted to a government regulator is exempt under **Section 15** only if the information was:
+- `FOI_OP_040` [constitutional_law/foi_offences_penalties]
+  - Before: The annual compliance report submitted by the Attorney-General must detail:
+  - After: What must be included in the annual FOI compliance report submitted by the Attorney-General?
+- `FOI_OP_043` [constitutional_law/foi_offences_penalties]
+  - Before: Which **FOI** provision emphasizes that exemptions must be narrowly construed
+  - After: Which **FOI** provision states that exemptions must be narrowly construed?
+- `ict_eg_100` [ict_management/ict_e_governance]
+  - Before: Within government administration, select the option that best answers: Which agency utilizes the BVAS system for voter accreditation?
+  - After: Which Nigerian public agency uses the Bimodal Voter Accreditation System (BVAS) for voter accreditation?
+- `policy_constitution_063` [policy_analysis/pol_formulation_cycle]
+  - Before: Which term best describes the act of returning unspent budget balance at year end to the Treasury
+  - After: Which term best describes the return of unspent budget balances at year end to the Treasury?

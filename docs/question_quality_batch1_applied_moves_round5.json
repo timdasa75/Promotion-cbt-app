@@ -1,0 +1,54 @@
+{
+  "applied": [
+    {
+      "old_id": "clg_gc_080",
+      "new_id": "csh_ap_122",
+      "source_topic": "constitutional_law",
+      "source_subcategory": "clg_general_competency",
+      "target_topic": "civil_service_admin",
+      "target_subcategory": "csh_administrative_procedures",
+      "target_file": "data/civil_service_ethics.json",
+      "question": "The primary role of the Registry Unit in an **MDA** is to:"
+    },
+    {
+      "old_id": "ppa_bid_062",
+      "new_id": "csh_ap_123",
+      "source_topic": "procurement_act",
+      "source_subcategory": "proc_bidding_evaluation",
+      "target_topic": "civil_service_admin",
+      "target_subcategory": "csh_administrative_procedures",
+      "target_file": "data/civil_service_ethics.json",
+      "question": "In official practice, select the statement that correctly defines the role of having separate \"Minutes\" and \"Correspondence\" sides in a file?"
+    },
+    {
+      "old_id": "ppa_bid_063",
+      "new_id": "csh_ap_124",
+      "source_topic": "procurement_act",
+      "source_subcategory": "proc_bidding_evaluation",
+      "target_topic": "civil_service_admin",
+      "target_subcategory": "csh_administrative_procedures",
+      "target_file": "data/civil_service_ethics.json",
+      "question": "Within government administration, select the statement that correctly defines a key role of a \"handing-over note\"?"
+    },
+    {
+      "old_id": "ppa_bid_068",
+      "new_id": "csh_ap_125",
+      "source_topic": "procurement_act",
+      "source_subcategory": "proc_bidding_evaluation",
+      "target_topic": "civil_service_admin",
+      "target_subcategory": "csh_administrative_procedures",
+      "target_file": "data/civil_service_ethics.json",
+      "question": "which option best describes the objective of a \"handing-over note\"?"
+    },
+    {
+      "old_id": "ppa_ethic_053",
+      "new_id": "csh_ap_126",
+      "source_topic": "procurement_act",
+      "source_subcategory": "proc_transparency_ethics",
+      "target_topic": "civil_service_admin",
+      "target_subcategory": "csh_administrative_procedures",
+      "target_file": "data/civil_service_ethics.json",
+      "question": "According to established rules, select the statement that correctly defines the objective of having separate \"Minutes\" and \"Correspondence\" sides in a file?"
+    }
+  ]
+}

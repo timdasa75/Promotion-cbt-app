@@ -1,0 +1,21 @@
+{
+  "round": 16,
+  "applied": [
+    {
+      "question_id": "psr_admin_060",
+      "source_topic": "psr",
+      "source_subcategory": "psr_general_admin",
+      "source_file": "data/psr_rules.json",
+      "old_question": "What is typically contained in a subject file?",
+      "new_question": "Which description best matches a subject file in office records management?"
+    },
+    {
+      "question_id": "psr_eth_060",
+      "source_topic": "psr",
+      "source_subcategory": "psr_ethics",
+      "source_file": "data/psr_rules.json",
+      "old_question": "Which body receives allegations that a public officer has breached the Code of Conduct?",
+      "new_question": "To which body should allegations that a public officer has breached the Code of Conduct be reported?"
+    }
+  ]
+}

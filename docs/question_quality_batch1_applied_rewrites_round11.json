@@ -1,0 +1,117 @@
+{
+  "round": 11,
+  "applied": [
+    {
+      "question_id": "leadership_lsm_051",
+      "source_topic": "leadership_management",
+      "source_subcategory": "lead_principles_styles",
+      "source_file": "data/leadership_negotiation.json",
+      "old_question": "In the public service context, select the option that best answers: The relationship between a Minister and a Parastatal is expected to be based on which of the following?",
+      "new_question": "How should the relationship between a Minister and a Parastatal be understood in public administration?"
+    },
+    {
+      "question_id": "leadership_lsm_052",
+      "source_topic": "leadership_management",
+      "source_subcategory": "lead_principles_styles",
+      "source_file": "data/leadership_negotiation.json",
+      "old_question": "select the option that best answers: According to the handbook, when the role of a meeting is complex, what should be done?",
+      "new_question": "When the objective of a meeting is complex, how should it be stated?"
+    },
+    {
+      "question_id": "leadership_lsm_053",
+      "source_topic": "leadership_management",
+      "source_subcategory": "lead_principles_styles",
+      "source_file": "data/leadership_negotiation.json",
+      "old_question": "In official practice, which time frame writing a minute, what should an officer reference to support their position?",
+      "new_question": "When writing a minute, what should an officer cite to support a recommendation or position?"
+    },
+    {
+      "question_id": "leadership_lsm_063",
+      "source_topic": "leadership_management",
+      "source_subcategory": "lead_principles_styles",
+      "source_file": "data/leadership_negotiation.json",
+      "old_question": "In the public service context, select the option that best answers: What should be done if one's handwriting is not easily readable for minutes or drafts covering more than half of an A4 page?",
+      "new_question": "What should be done if a handwritten minute or draft covering more than half an A4 page is not easily readable?"
+    },
+    {
+      "question_id": "leadership_lsm_075",
+      "source_topic": "leadership_management",
+      "source_subcategory": "lead_principles_styles",
+      "source_file": "data/leadership_negotiation.json",
+      "old_question": "In the public service context, select the statement that correctly defines the role of the \"Duplicate Note-Book System\"?",
+      "new_question": "What is the purpose of the Duplicate Note-Book System?"
+    },
+    {
+      "question_id": "leadership_smp_057",
+      "source_topic": "leadership_management",
+      "source_subcategory": "lead_strategic_management",
+      "source_file": "data/leadership_negotiation.json",
+      "old_question": "Within government administration, choose the best answer for: How should communication addressed to Overseas Government never be made?",
+      "new_question": "Which method should never be used for communication addressed to an overseas government?"
+    },
+    {
+      "question_id": "leadership_smp_059",
+      "source_topic": "leadership_management",
+      "source_subcategory": "lead_strategic_management",
+      "source_file": "data/leadership_negotiation.json",
+      "old_question": "Within government administration, choose the best answer for: How is a memo different from a letter?",
+      "new_question": "How does a memorandum differ from an official letter?"
+    },
+    {
+      "question_id": "neg_principles_outcomes_gen_063",
+      "source_topic": "leadership_management",
+      "source_subcategory": "neg_principles_outcomes",
+      "source_file": "data/leadership_negotiation.json",
+      "old_question": "According to established rules, which option aligns with the meaning of one of the key responsibilities of the chairman in closing a meeting?",
+      "new_question": "What is one of the chairman's key responsibilities when closing a meeting?"
+    },
+    {
+      "question_id": "csh_disc_053",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_discipline_conduct",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "Within government administration, which office should an officer not communicate with on official business, outside of the proper channel?",
+      "new_question": "With whom must an officer not communicate on official business outside the proper channel unless directed by a superior officer?"
+    },
+    {
+      "question_id": "csh_sdg_051",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_service_delivery_grievance",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "In official practice, choose the best answer for: If the chairman has follow-up actions to take before a meeting, what must he do?",
+      "new_question": "If the chairman has follow-up actions to complete before a meeting, what should he do?"
+    },
+    {
+      "question_id": "csh_sdg_056",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_service_delivery_grievance",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "In official practice, responsibility for is in charge for receiving allegations that a public officer has committed a breach of the Code of Conduct belongs to which role?",
+      "new_question": "Which body receives allegations that a public officer has breached the Code of Conduct?"
+    },
+    {
+      "question_id": "csh_sdg_062",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_service_delivery_grievance",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "According to established rules, which option correctly addresses: In the public service context, which option best describes considered a very serious offense for a Civil Servant?",
+      "new_question": "What is considered a very serious offence for a Civil Servant?"
+    },
+    {
+      "question_id": "eth_general_gen_085",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "eth_general",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "Within government administration, which option correctly addresses: A minute should contain a summary of the facts of the case, as well as what?",
+      "new_question": "What should a minute contain in addition to a summary of the facts of the case?"
+    },
+    {
+      "question_id": "eth_general_gen_086",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "eth_general",
+      "source_file": "data/civil_service_ethics.json",
+      "old_question": "Within government administration, choose the option that a key characteristic of a good minute?",
+      "new_question": "Which quality best describes a good minute?"
+    }
+  ]
+}

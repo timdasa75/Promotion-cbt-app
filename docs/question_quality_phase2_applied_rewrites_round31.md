@@ -1,0 +1,34 @@
+# Question Quality Phase 2 Applied Rewrites Round 31
+
+- Applied rewrites: **10**
+
+- `pol_analysis_methods_gen_047` [data/policy_analysis.json]
+  - Old: During routine policy analysis methods operations, which approach most strongly supports accountable implementation' (Implementation realism scenario 1)
+  - New: Which implementation-planning step most strongly improves accountability before a policy rollout begins?
+- `pol_analysis_methods_gen_049` [data/policy_analysis.json]
+  - Old: When decisions are made in policy analysis methods, which step most directly improves traceability and fairness' (Implementation realism scenario 1)
+  - New: Which step most improves traceability when implementation responsibilities are shared across agencies?
+- `pol_analysis_methods_gen_051` [data/policy_analysis.json]
+  - Old: In a time-sensitive matter under policy analysis methods, which action best aligns with lawful administrative standards' (Implementation realism scenario 1)
+  - New: In an urgent policy case, which action best keeps implementation planning within lawful administrative standards?
+- `pol_analysis_methods_gen_053` [data/policy_analysis.json]
+  - Old: During routine policy analysis methods operations, which approach most strongly supports accountable implementation' (Evidence integrity scenario 1)
+  - New: Which practice best protects evidence integrity when analysts are under pressure to finalize recommendations?
+- `pol_analysis_methods_gen_055` [data/policy_analysis.json]
+  - Old: When decisions are made in policy analysis methods, which step most directly improves traceability and fairness' (Evidence integrity scenario 1)
+  - New: Which step most directly improves fairness when different evidence sources point in different directions?
+- `pol_analysis_methods_gen_065` [data/policy_analysis.json]
+  - Old: During routine policy analysis methods operations, which approach most strongly supports accountable implementation' (Implementation realism scenario 2)
+  - New: Which implementation check most strongly improves delivery realism in a second review cycle?
+- `pol_analysis_methods_gen_067` [data/policy_analysis.json]
+  - Old: When decisions are made in policy analysis methods, which step most directly improves traceability and fairness' (Implementation realism scenario 2)
+  - New: Which step most improves traceability when implementation assumptions are revised during a second review?
+- `pol_analysis_methods_gen_069` [data/policy_analysis.json]
+  - Old: In a time-sensitive matter under policy analysis methods, which action best aligns with lawful administrative standards' (Implementation realism scenario 2)
+  - New: In a time-sensitive second review, which action best aligns implementation planning with lawful standards?
+- `pol_analysis_methods_gen_071` [data/policy_analysis.json]
+  - Old: During routine policy analysis methods operations, which approach most strongly supports accountable implementation' (Evidence integrity scenario 2)
+  - New: Which routine best supports evidence integrity during a second evidence review cycle?
+- `pol_analysis_methods_gen_073` [data/policy_analysis.json]
+  - Old: When decisions are made in policy analysis methods, which step most directly improves traceability and fairness' (Evidence integrity scenario 2)
+  - New: Which step most improves fairness when new evidence requires a policy recommendation to be revised?

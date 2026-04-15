@@ -1,0 +1,37 @@
+{
+  "round": 23,
+  "applied": [
+    {
+      "question_id": "neg_dispute_law_gen_007",
+      "source_topic": "leadership_management",
+      "source_subcategory": "neg_dispute_law",
+      "source_file": "data/leadership_negotiation.json",
+      "old_question": "For effective dispute resolution & labour law, what is the most appropriate approach to ensure change management",
+      "new_question": "A labour-dispute unit is introducing a revised grievance procedure. Which step best supports orderly transition?"
+    },
+    {
+      "question_id": "neg_dispute_law_gen_017",
+      "source_topic": "leadership_management",
+      "source_subcategory": "neg_dispute_law",
+      "source_file": "data/leadership_negotiation.json",
+      "old_question": "For effective dispute resolution & labour law, what is the most appropriate approach to ensure record management",
+      "new_question": "Which recordkeeping practice best protects the integrity of a labour-dispute case file?"
+    },
+    {
+      "question_id": "neg_dispute_law_gen_025",
+      "source_topic": "leadership_management",
+      "source_subcategory": "neg_dispute_law",
+      "source_file": "data/leadership_negotiation.json",
+      "old_question": "Which practice should a responsible officer prioritize to sustain change management in Dispute Resolution & Labour Law",
+      "new_question": "After a labour dispute has been resolved, which practice best sustains implementation of the agreement?"
+    },
+    {
+      "question_id": "neg_dispute_law_gen_035",
+      "source_topic": "leadership_management",
+      "source_subcategory": "neg_dispute_law",
+      "source_file": "data/leadership_negotiation.json",
+      "old_question": "Which practice should a responsible officer prioritize to sustain record management in Dispute Resolution & Labour Law",
+      "new_question": "Which routine best preserves continuity in the records of an ongoing dispute hearing?"
+    }
+  ]
+}

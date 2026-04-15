@@ -1,0 +1,109 @@
+{
+  "round": 12,
+  "applied": [
+    {
+      "question_id": "FOI_EX_065",
+      "source_topic": "constitutional_law",
+      "source_subcategory": "foi_exemptions_public_interest",
+      "source_file": "data/constitutional_foi.json",
+      "old_question": "Within government administration, select the option that best answers: How should a Civil Servant handle a file that has been on their desk for a long time without any action?",
+      "new_question": "What should a Civil Servant do if a file has remained on the desk for a long time without action?"
+    },
+    {
+      "question_id": "fin_aud_054",
+      "source_topic": "financial_regulations",
+      "source_subcategory": "fin_audits_sanctions",
+      "source_file": "data/financial_regulations.json",
+      "old_question": "Within government administration, which office is in charge for the proper custody of public funds, stamps, and other government documents in a Ministry, Department, or Agency (MDA)?",
+      "new_question": "Which officer is responsible for the proper custody of public funds, stamps, and other government documents in an MDA?"
+    },
+    {
+      "question_id": "fin_gen_067",
+      "source_topic": "financial_regulations",
+      "source_subcategory": "fin_general",
+      "source_file": "data/financial_regulations.json",
+      "old_question": "In official practice, responsibility for has the authority to inspect the accounts of cash advance Holders belongs to which role?",
+      "new_question": "Who has authority to inspect the accounts of cash-advance holders?"
+    },
+    {
+      "question_id": "fin_gen_068",
+      "source_topic": "financial_regulations",
+      "source_subcategory": "fin_general",
+      "source_file": "data/financial_regulations.json",
+      "old_question": "In the public service context, choose the best answer for: How often must monthly returns of all receipt and licence books issued, used, and unused be rendered, and to whom?",
+      "new_question": "How often, and to whom, must returns of receipt and licence books issued, used, and unused be rendered?"
+    },
+    {
+      "question_id": "IRA_153",
+      "source_topic": "general_current_affairs",
+      "source_subcategory": "ca_international_affairs",
+      "source_file": "data/general_current_affairs.json",
+      "old_question": "Within government administration, choose the best answer for: The Public Service Reform Programme of 1999 was a response to what?",
+      "new_question": "What prompted the Public Service Reform Programme of 1999?"
+    },
+    {
+      "question_id": "IRA_161",
+      "source_topic": "general_current_affairs",
+      "source_subcategory": "ca_international_affairs",
+      "source_file": "data/general_current_affairs.json",
+      "old_question": "In official practice, which option best describes the chief consideration in the pursuit of Nigeria's foreign policy?",
+      "new_question": "What is the chief consideration in the pursuit of Nigeria's foreign policy?"
+    },
+    {
+      "question_id": "NGPD_054",
+      "source_topic": "general_current_affairs",
+      "source_subcategory": "ca_national_governance",
+      "source_file": "data/general_current_affairs.json",
+      "old_question": "Within government administration, which option aligns with the meaning of the role of the Chairman of the Board of a Parastatal?",
+      "new_question": "What is the role of the Chairman of the Board of a Parastatal?"
+    },
+    {
+      "question_id": "PSIR_119",
+      "source_topic": "general_current_affairs",
+      "source_subcategory": "ca_public_service_reforms",
+      "source_file": "data/general_current_affairs.json",
+      "old_question": "According to established rules, choose the best answer for: The \"golden handshake\" was part of which reform?",
+      "new_question": "The 'golden handshake' scheme was part of which reform?"
+    },
+    {
+      "question_id": "psr_train_057",
+      "source_topic": "psr",
+      "source_subcategory": "psr_training",
+      "source_file": "data/psr_rules.json",
+      "old_question": "In the public service context, select the statement that correctly defines the consequence of lack of diligence in the Civil Service?",
+      "new_question": "What is a likely consequence of lack of diligence in the Civil Service?"
+    },
+    {
+      "question_id": "psr_train_071",
+      "source_topic": "psr",
+      "source_subcategory": "psr_training",
+      "source_file": "data/psr_rules.json",
+      "old_question": "Within government administration, which option best describes the procedure for the disposal of unused stock of receipt and licence books?",
+      "new_question": "What is the procedure for disposing of unused stocks of receipt and licence books?"
+    },
+    {
+      "question_id": "psr_admin_054",
+      "source_topic": "psr",
+      "source_subcategory": "psr_general_admin",
+      "source_file": "data/psr_rules.json",
+      "old_question": "In the public service context, which option best describes the objective of a \"secret registry\"?",
+      "new_question": "What is the purpose of a secret registry?"
+    },
+    {
+      "question_id": "psr_admin_061",
+      "source_topic": "psr",
+      "source_subcategory": "psr_general_admin",
+      "source_file": "data/psr_rules.json",
+      "old_question": "In official practice, which option correctly addresses: What should never be used for drafting, especially if it contains classified information?",
+      "new_question": "What material should never be used for drafting, especially when classified information is involved?"
+    },
+    {
+      "question_id": "circ_leave_welfare_allowances_gen_088",
+      "source_topic": "psr",
+      "source_subcategory": "circ_leave_welfare_allowances",
+      "source_file": "data/psr_rules.json",
+      "old_question": "Within government administration, which option aligns with the meaning of the best way to destroy classified documents that are no longer needed?",
+      "new_question": "What is the best way to destroy classified documents that are no longer needed?"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "applied": [
+    {
+      "old_id": "leadership_lsm_063",
+      "new_id": "csh_ap_131",
+      "source_topic": "leadership_management",
+      "source_subcategory": "lead_principles_styles",
+      "target_topic": "civil_service_admin",
+      "target_subcategory": "csh_administrative_procedures",
+      "target_file": "data/civil_service_ethics.json",
+      "question": "What should be done if a handwritten minute or draft covering more than half an A4 page is not easily readable?"
+    },
+    {
+      "old_id": "leadership_lsm_075",
+      "new_id": "csh_ap_132",
+      "source_topic": "leadership_management",
+      "source_subcategory": "lead_principles_styles",
+      "target_topic": "civil_service_admin",
+      "target_subcategory": "csh_administrative_procedures",
+      "target_file": "data/civil_service_ethics.json",
+      "question": "What is the purpose of the Duplicate Note-Book System?"
+    },
+    {
+      "old_id": "leadership_smp_059",
+      "new_id": "csh_ap_133",
+      "source_topic": "leadership_management",
+      "source_subcategory": "lead_strategic_management",
+      "target_topic": "civil_service_admin",
+      "target_subcategory": "csh_administrative_procedures",
+      "target_file": "data/civil_service_ethics.json",
+      "question": "How does a memorandum differ from an official letter?"
+    }
+  ]
+}

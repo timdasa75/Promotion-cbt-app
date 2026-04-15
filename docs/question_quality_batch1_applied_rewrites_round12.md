@@ -1,0 +1,43 @@
+# Question Quality Batch 1 Applied Rewrites Round 12
+
+- Applied rewrites: **13**
+
+- `FOI_EX_065` [data/constitutional_foi.json]
+  - Old: Within government administration, select the option that best answers: How should a Civil Servant handle a file that has been on their desk for a long time without any action?
+  - New: What should a Civil Servant do if a file has remained on the desk for a long time without action?
+- `fin_aud_054` [data/financial_regulations.json]
+  - Old: Within government administration, which office is in charge for the proper custody of public funds, stamps, and other government documents in a Ministry, Department, or Agency (MDA)?
+  - New: Which officer is responsible for the proper custody of public funds, stamps, and other government documents in an MDA?
+- `fin_gen_067` [data/financial_regulations.json]
+  - Old: In official practice, responsibility for has the authority to inspect the accounts of cash advance Holders belongs to which role?
+  - New: Who has authority to inspect the accounts of cash-advance holders?
+- `fin_gen_068` [data/financial_regulations.json]
+  - Old: In the public service context, choose the best answer for: How often must monthly returns of all receipt and licence books issued, used, and unused be rendered, and to whom?
+  - New: How often, and to whom, must returns of receipt and licence books issued, used, and unused be rendered?
+- `IRA_153` [data/general_current_affairs.json]
+  - Old: Within government administration, choose the best answer for: The Public Service Reform Programme of 1999 was a response to what?
+  - New: What prompted the Public Service Reform Programme of 1999?
+- `IRA_161` [data/general_current_affairs.json]
+  - Old: In official practice, which option best describes the chief consideration in the pursuit of Nigeria's foreign policy?
+  - New: What is the chief consideration in the pursuit of Nigeria's foreign policy?
+- `NGPD_054` [data/general_current_affairs.json]
+  - Old: Within government administration, which option aligns with the meaning of the role of the Chairman of the Board of a Parastatal?
+  - New: What is the role of the Chairman of the Board of a Parastatal?
+- `PSIR_119` [data/general_current_affairs.json]
+  - Old: According to established rules, choose the best answer for: The "golden handshake" was part of which reform?
+  - New: The 'golden handshake' scheme was part of which reform?
+- `psr_train_057` [data/psr_rules.json]
+  - Old: In the public service context, select the statement that correctly defines the consequence of lack of diligence in the Civil Service?
+  - New: What is a likely consequence of lack of diligence in the Civil Service?
+- `psr_train_071` [data/psr_rules.json]
+  - Old: Within government administration, which option best describes the procedure for the disposal of unused stock of receipt and licence books?
+  - New: What is the procedure for disposing of unused stocks of receipt and licence books?
+- `psr_admin_054` [data/psr_rules.json]
+  - Old: In the public service context, which option best describes the objective of a "secret registry"?
+  - New: What is the purpose of a secret registry?
+- `psr_admin_061` [data/psr_rules.json]
+  - Old: In official practice, which option correctly addresses: What should never be used for drafting, especially if it contains classified information?
+  - New: What material should never be used for drafting, especially when classified information is involved?
+- `circ_leave_welfare_allowances_gen_088` [data/psr_rules.json]
+  - Old: Within government administration, which option aligns with the meaning of the best way to destroy classified documents that are no longer needed?
+  - New: What is the best way to destroy classified documents that are no longer needed?

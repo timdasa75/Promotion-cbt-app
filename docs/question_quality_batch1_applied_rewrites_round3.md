@@ -1,0 +1,70 @@
+# Question Quality Batch 1 Applied Rewrites Round 3
+
+- Applied rewrites: **22**
+
+- `csh_principle_045` [civil_service_admin/csh_principles_ethics]
+  - Before: Civil servants are discouraged from joining or maintaining membership in any **Secret Society** under which **PSR** Rule
+  - After: Under which **PSR** rule are civil servants discouraged from joining or maintaining membership in any **Secret Society**?
+- `clg_lc_036` [constitutional_law/clg_legal_compliance]
+  - Before: If, during the course of a disciplinary inquiry, further grounds for dismissal are disclosed, the **FCSC** shall furnish the Officer with:
+  - After: If additional grounds for dismissal are disclosed during a disciplinary inquiry, what must the **FCSC** furnish the officer with?
+- `fin_bgt_012` [financial_regulations/fin_budgeting]
+  - Before: The payment of promotion arrears to an officer shall be made within the year the promotion is effected, calculated from the:
+  - After: Promotion arrears are payable within the year the promotion is effected and are calculated from which date?
+- `fin_bgt_044` [financial_regulations/fin_budgeting]
+  - Before: If an officer is promoted and the new salary grade level does NOT overlap the old grade level, emolument payment commences at the minimum point of the new grade level, taking effect from:
+  - After: If an officer is promoted and the new salary grade level does not overlap the old grade level, from what date does payment at the minimum point of the new grade level take effect?
+- `fin_bgt_065` [financial_regulations/fin_budgeting]
+  - Before: In the public service context, which option correctly addresses: Virement from a Recurrent Expenditure Head of Account to a Capital Expenditure Head of Account is:?
+  - After: Is virement from a Recurrent Expenditure Head of Account to a Capital Expenditure Head of Account allowed?
+- `IRA_130` [general_current_affairs/ca_international_affairs]
+  - Before: An officer who is injured in the course of his official duties and is permanently invalided will retire in accordance with which rule
+  - After: An officer who is injured in the course of official duty and is permanently invalided will retire in accordance with which rule?
+- `ca_national_events_gen_073` [general_current_affairs/ca_national_events]
+  - Before: According to established rules, choose the best answer for: Question: What rank should officers empower to draw cash/cheques on the strength of a Cheque Order Form NOT be below?
+  - After: What is the minimum rank required for an officer empowered to draw cash or cheques on the strength of a Cheque Order Form?
+- `ict_eg_027` [ict_management/ict_e_governance]
+  - Before: The ****OHCSF** ICT Transformation Agenda** includes implementation of which three key areas
+  - After: Which three key areas are included in the **OHCSF ICT Transformation Agenda**?
+- `ict_eg_070` [ict_management/ict_e_governance]
+  - Before: The implementation of the **Cloud Migration of **MDAs**** involves moving services to:
+  - After: What does the **Cloud Migration of MDAs** involve moving services to?
+- `NLR_S_016` [leadership_management/neg_structure_bodies]
+  - Before: Under the NPSNC structure, which council is responsible for representing the senior staff category (typically Grade Level 07 and above)
+  - After: Under the NPSNC structure, which council represents the senior staff category, typically Grade Level 07 and above?
+- `leadership_lsm_024` [leadership_management/lead_principles_styles]
+  - Before: In the Civil Service Handbook, **Nepotism** is explicitly discouraged because it violates the principle of:
+  - After: In the Civil Service Handbook, **Nepotism** is explicitly discouraged because it violates which principle?
+- `policy_constitution_007` [policy_analysis/pol_formulation_cycle]
+  - Before: Which chapter of the 1999 Constitution of Nigeria guarantees fundamental human rights
+  - After: Which chapter of the 1999 Constitution of Nigeria guarantees fundamental human rights?
+- `psr_app_024` [psr/psr_appointments]
+  - Before: How often shall pool officers in the Service be mandatorily posted (as per **PSR**)
+  - After: Under the **PSR**, after how many years must pool officers in the Service be mandatorily posted?
+- `psr_app_035` [psr/psr_appointments]
+  - Before: Which rule prohibits acceptance of staff seconded to an **MDA** without endorsement of the Federal Civil Service Commission/Board
+  - After: Which rule prohibits an **MDA** from accepting staff on secondment without endorsement by the Federal Civil Service Commission or Board?
+- `psr_docx_016` [psr/psr_allowances]
+  - Before: What are "Junior Posts"?
+  - After: What are "Junior Posts"?
+- `psr_med_001` [psr/psr_medical]
+  - Before: According to **PSR** 130101, what is the general policy regarding medical treatment of public officers
+  - After: According to **PSR** 130101, what is the general policy on the medical treatment of public officers?
+- `csh_principle_016` [psr/psr_general_admin]
+  - Before: Under **PSR** **Rule 100429**, an officer on leave of absence must obtain express approval before engaging in:
+  - After: Under **PSR Rule 100429**, an officer on leave of absence must obtain express approval before engaging in what activity?
+- `ppa_bid_043` [procurement_act/proc_bidding_evaluation]
+  - Before: If a bidder attempts to influence the evaluation process through bribery or collusion, they are subject to penalties prescribed in which section
+  - After: If a bidder attempts to influence the evaluation process through bribery or collusion, penalties are prescribed under which section?
+- `ppa_elb_045` [procurement_act/proc_eligibility_consultants_budgeting]
+  - Before: If a consulting contract is found to contain gross irregularities, the BPP is empowered to suspend or cancel the proceedings under which section
+  - After: If a consulting contract is found to contain gross irregularities, under which section may the BPP suspend or cancel the proceedings?
+- `ppa_ethic_002` [procurement_act/proc_transparency_ethics]
+  - Before: The intentional act of fixing or manipulating bid outcomes to restrict competition is known as collusion or bid rigging, which is prohibited under which section
+  - After: The intentional act of fixing or manipulating bid outcomes to restrict competition is known as collusion or bid rigging. Under which section is it prohibited?
+- `ppa_ethic_009` [procurement_act/proc_transparency_ethics]
+  - Before: The core principle requiring all bidders to be treated without prejudice or discrimination throughout the process is enshrined in which section
+  - After: Which section enshrines the principle that all bidders must be treated without prejudice or discrimination throughout the procurement process?
+- `ppa_ethic_015` [procurement_act/proc_transparency_ethics]
+  - Before: An officer who fails to report an offer of bribe or inducement immediately to the appropriate authority violates ethical standards under which **PSR** Chapter
+  - After: An officer who fails to report an offer of bribe or inducement immediately to the appropriate authority violates ethical standards under which **PSR** chapter?

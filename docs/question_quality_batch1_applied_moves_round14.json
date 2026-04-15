@@ -1,0 +1,24 @@
+{
+  "applied": [
+    {
+      "old_id": "neg_dispute_law_gen_017",
+      "new_id": "csh_ap_138",
+      "source_topic": "leadership_management",
+      "source_subcategory": "neg_dispute_law",
+      "target_topic": "civil_service_admin",
+      "target_subcategory": "csh_administrative_procedures",
+      "target_file": "data/civil_service_ethics.json",
+      "question": "Which recordkeeping practice best protects the integrity of a labour-dispute case file?"
+    },
+    {
+      "old_id": "neg_dispute_law_gen_035",
+      "new_id": "csh_ap_139",
+      "source_topic": "leadership_management",
+      "source_subcategory": "neg_dispute_law",
+      "target_topic": "civil_service_admin",
+      "target_subcategory": "csh_administrative_procedures",
+      "target_file": "data/civil_service_ethics.json",
+      "question": "Which routine best preserves continuity in the records of an ongoing dispute hearing?"
+    }
+  ]
+}

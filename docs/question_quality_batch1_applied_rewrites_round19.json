@@ -1,0 +1,109 @@
+{
+  "round": 19,
+  "applied": [
+    {
+      "question_id": "FOI_EX_052",
+      "source_topic": "constitutional_law",
+      "source_subcategory": "foi_exemptions_public_interest",
+      "source_file": "data/constitutional_foi.json",
+      "old_question": "In official practice, which time frame cash has to be transported from one place to another (e.g., for salary payments), what must the accountable officer be provided with?",
+      "new_question": "When cash has to be transported from one place to another, what must be provided to the accountable officer?"
+    },
+    {
+      "question_id": "FOI_EX_057",
+      "source_topic": "constitutional_law",
+      "source_subcategory": "foi_exemptions_public_interest",
+      "source_file": "data/constitutional_foi.json",
+      "old_question": "Within government administration, select the option that best answers: According to the handbook, what is a key asset for a schedule officer?",
+      "new_question": "What is considered an important asset for a schedule officer?"
+    },
+    {
+      "question_id": "FOI_EX_075",
+      "source_topic": "constitutional_law",
+      "source_subcategory": "foi_exemptions_public_interest",
+      "source_file": "data/constitutional_foi.json",
+      "old_question": "What are the normal hours of work in Federal offices?",
+      "new_question": "What are the normal working hours in Federal offices?"
+    },
+    {
+      "question_id": "pol_analysis_methods_gen_075",
+      "source_topic": "policy_analysis",
+      "source_subcategory": "pol_analysis_methods",
+      "source_file": "data/policy_analysis.json",
+      "old_question": "Within government administration, choose the best answer for: A minute should contain a summary of the facts of the case, as well as what?",
+      "new_question": "Besides a summary of the facts of the case, what should a minute contain?"
+    },
+    {
+      "question_id": "ppa_bid_053",
+      "source_topic": "procurement_act",
+      "source_subcategory": "proc_bidding_evaluation",
+      "source_file": "data/public_procurement.json",
+      "old_question": "According to established rules, choose the best answer for: A public officer who does an act prohibited by the Code through a nominee, trustee, or other agent is deemed to have done what?",
+      "new_question": "If a public officer performs a prohibited act through a nominee, trustee, or agent, how is that conduct treated under the Code?"
+    },
+    {
+      "question_id": "ppa_bid_058",
+      "source_topic": "procurement_act",
+      "source_subcategory": "proc_bidding_evaluation",
+      "source_file": "data/public_procurement.json",
+      "old_question": "In the public service context, which option correctly addresses: According to the handbook, what is the proper action if papers or documents come to you by mistake from members of staff or the general public?",
+      "new_question": "What should you do if papers or documents are sent to you by mistake from staff or members of the public?"
+    },
+    {
+      "question_id": "ppa_ethic_051",
+      "source_topic": "procurement_act",
+      "source_subcategory": "proc_transparency_ethics",
+      "source_file": "data/public_procurement.json",
+      "old_question": "In the public service context, which option best describes a key objective of the \"Official Secret Act\"?",
+      "new_question": "What is a key objective of the Official Secrets Act?"
+    },
+    {
+      "question_id": "ppa_ethic_052",
+      "source_topic": "procurement_act",
+      "source_subcategory": "proc_transparency_ethics",
+      "source_file": "data/public_procurement.json",
+      "old_question": "which option correctly addresses: Government communication is described as having its own what?",
+      "new_question": "Government communication is often described as having its own what?"
+    },
+    {
+      "question_id": "ppa_ethic_074",
+      "source_topic": "procurement_act",
+      "source_subcategory": "proc_transparency_ethics",
+      "source_file": "data/public_procurement.json",
+      "old_question": "In official practice, which option aligns with the meaning of the objective of the \"Duplicate Note-Book System\"?",
+      "new_question": "What is the purpose of the duplicate note-book system?"
+    },
+    {
+      "question_id": "ppa_objectives_062",
+      "source_topic": "procurement_act",
+      "source_subcategory": "proc_objectives_institutions",
+      "source_file": "data/public_procurement.json",
+      "old_question": "In official practice, select the option that best answers: A public officer who does an act prohibited by the Code through a nominee, trustee, or other agent is deemed to have done what?",
+      "new_question": "What is the consequence when a public officer carries out a prohibited act through a nominee, trustee, or other agent?"
+    },
+    {
+      "question_id": "ppa_objectives_068",
+      "source_topic": "procurement_act",
+      "source_subcategory": "proc_objectives_institutions",
+      "source_file": "data/public_procurement.json",
+      "old_question": "According to established rules, choose the best answer for: What should officers try to avoid, as mentioned in the \"Irrelevance\" section?",
+      "new_question": "According to guidance on irrelevance in official writing, what should officers avoid?"
+    },
+    {
+      "question_id": "ppa_objectives_074",
+      "source_topic": "procurement_act",
+      "source_subcategory": "proc_objectives_institutions",
+      "source_file": "data/public_procurement.json",
+      "old_question": "In the public service context, select the statement that correctly defines a key aim of the \"Official Secret Act\"?",
+      "new_question": "What is a central aim of the Official Secrets Act?"
+    },
+    {
+      "question_id": "psr_admin_027",
+      "source_topic": "psr",
+      "source_subcategory": "psr_general_admin",
+      "source_file": "data/psr_rules.json",
+      "old_question": "**PSR** 110120 provides that government offices must remain open to the public between:",
+      "new_question": "According to PSR 110120, between what hours must government offices remain open to the public?"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+# Question Quality Batch 1 Applied Rewrites Round 8
+
+- Applied rewrites: **14**
+
+- `csh_principle_067` [data/civil_service_ethics.json]
+  - Old: select the statement that correctly defines the accountability of the administration regarding participation, consultation, and mediation?
+  - New: What is the accountability of the administration regarding participation, consultation, and mediation?
+- `csh_duty_055` [data/civil_service_ethics.json]
+  - Old: In the public service context, choose the best answer for: The Administrative and Professional Officers' duties are derived from what?
+  - New: From what are the duties of Administrative and Professional Officers derived?
+- `csh_duty_056` [data/civil_service_ethics.json]
+  - Old: According to established rules, select the option that best answers: How should the deadlines for service delivery be determined?
+  - New: How should deadlines for service delivery be set?
+- `csh_duty_069` [data/civil_service_ethics.json]
+  - Old: choose the best answer for: The Manpower Development Office (MDO) has the duty for coordinating what?
+  - New: What does the Manpower Development Office (MDO) coordinate on a service-wide basis?
+- `csh_disc_068` [data/civil_service_ethics.json]
+  - Old: Within government administration, choose the best answer for: How should a Civil Servant handle a file that has been on their desk for a long time without any action?
+  - New: What should a Civil Servant do if a file has remained on their desk for a long time without action?
+- `csh_ap_072` [data/civil_service_ethics.json]
+  - Old: choose the best answer for: Which characteristic of good governance means that decisions are taken and enforced in a manner that follows rules and regulations, and information is freely available?
+  - New: Which characteristic of good governance means that decisions are taken and enforced according to rules and regulations, while information is openly available?
+- `csh_sdg_063` [data/civil_service_ethics.json]
+  - Old: which option correctly addresses: In official practice, choose the best answer for: If the chairman has follow-up actions to take before a meeting, what must he do?
+  - New: If a chairman has follow-up actions to complete before a meeting, what should be done?
+- `ethics_105` [data/civil_service_ethics.json]
+  - Old: Within government administration, which option correctly addresses: According to established rules, select the option that best answers: The Manpower Development Office (MDO) has the accountability for coordinating what?
+  - New: What does the Manpower Development Office (MDO) coordinate in the Civil Service?
+- `eth_general_gen_088` [data/civil_service_ethics.json]
+  - Old: According to established rules, select the option that best answers: The handbook mentions that all files should be classified into what?
+  - New: Into which two classes should official files generally be grouped?
+- `eth_general_gen_094` [data/civil_service_ethics.json]
+  - Old: In official practice, which option correctly addresses: A good minute should be what?
+  - New: What should characterize a good minute of a meeting?
+- `clg_constitutional_governance_gen_078` [data/constitutional_foi.json]
+  - Old: select the option that best answers: According to established rules, select the option that best answers: The Udoji Public Service Review Commission in 1972 was primarily focused on what?
+  - New: What was the primary focus of the Udoji Public Service Review Commission of 1972?
+- `clg_general_competency_gen_069` [data/constitutional_foi.json]
+  - Old: In official practice, which option correctly addresses: A key part of the Principle of Motivation is that employees must be provided with what?
+  - New: What must employees be provided with under the principle of motivation?
+- `FOI_AO_051` [data/constitutional_foi.json]
+  - Old: In the public service context, select the statement that correctly defines typically contained in a "Personal File"?
+  - New: What is typically contained in a personal file?
+- `FOI_AO_055` [data/constitutional_foi.json]
+  - Old: According to established rules, select the option that best answers: A key objective of HRM is to enhance the capabilities of employees and guarantee they possess the requisite level of competence, knowledge, skill, and attitude to do what?
+  - New: What is a key objective of human resource management in the public service?

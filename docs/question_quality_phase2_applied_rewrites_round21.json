@@ -1,0 +1,53 @@
+{
+  "round": 21,
+  "applied": [
+    {
+      "question_id": "neg_principles_outcomes_gen_002",
+      "source_topic": "leadership_management",
+      "source_subcategory": "neg_principles_outcomes",
+      "source_file": "data/leadership_negotiation.json",
+      "old_question": "Which negotiation practice best preserves compliance with agreed rules and standards?",
+      "new_question": "Which negotiation practice best preserves compliance with agreed rules and standards?"
+    },
+    {
+      "question_id": "neg_principles_outcomes_gen_007",
+      "source_topic": "leadership_management",
+      "source_subcategory": "neg_principles_outcomes",
+      "source_file": "data/leadership_negotiation.json",
+      "old_question": "During a negotiated reform process, which step best supports effective change management?",
+      "new_question": "During a negotiated reform process, which step best supports effective change management?"
+    },
+    {
+      "question_id": "neg_principles_outcomes_gen_017",
+      "source_topic": "leadership_management",
+      "source_subcategory": "neg_principles_outcomes",
+      "source_file": "data/leadership_negotiation.json",
+      "old_question": "What is the most reliable way to maintain record management during negotiation follow-up?",
+      "new_question": "What is the most reliable way to maintain record management during negotiation follow-up?"
+    },
+    {
+      "question_id": "neg_principles_outcomes_gen_025",
+      "source_topic": "leadership_management",
+      "source_subcategory": "neg_principles_outcomes",
+      "source_file": "data/leadership_negotiation.json",
+      "old_question": "Which leadership habit helps sustain change management after a negotiation outcome has been agreed?",
+      "new_question": "Which leadership habit helps sustain change management after a negotiation outcome has been agreed?"
+    },
+    {
+      "question_id": "neg_principles_outcomes_gen_035",
+      "source_topic": "leadership_management",
+      "source_subcategory": "neg_principles_outcomes",
+      "source_file": "data/leadership_negotiation.json",
+      "old_question": "Which routine best sustains record management across negotiation processes?",
+      "new_question": "Which routine best sustains record management across negotiation processes?"
+    },
+    {
+      "question_id": "neg_principles_outcomes_gen_037",
+      "source_topic": "leadership_management",
+      "source_subcategory": "neg_principles_outcomes",
+      "source_file": "data/leadership_negotiation.json",
+      "old_question": "Which approach best strengthens governance in negotiation processes?",
+      "new_question": "Which approach best strengthens governance in negotiation processes?"
+    }
+  ]
+}

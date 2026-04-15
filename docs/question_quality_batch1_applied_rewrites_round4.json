@@ -1,0 +1,84 @@
+{
+  "applied": [
+    {
+      "question_id": "csh_administrative_procedures_gen_001",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_administrative_procedures",
+      "source_file": "data/civil_service_ethics.json",
+      "before_question": "In the context of Administrative Procedures, which action best demonstrates administrative procedures governance",
+      "after_question": "Which action best demonstrates sound administrative procedure in government service?"
+    },
+    {
+      "question_id": "csh_administrative_procedures_gen_020",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_administrative_procedures",
+      "source_file": "data/civil_service_ethics.json",
+      "before_question": "When handling administrative procedures, which choice reflects proper administrative procedures governance standards",
+      "after_question": "Which choice reflects proper standards when handling administrative procedures?"
+    },
+    {
+      "question_id": "csh_administrative_procedures_gen_027",
+      "source_topic": "civil_service_admin",
+      "source_subcategory": "csh_administrative_procedures",
+      "source_file": "data/civil_service_ethics.json",
+      "before_question": "A desk officer handling Administrative Procedures receives a case that requires administrative procedures governance. What should be done first' while maintaining fairness and legal compliance",
+      "after_question": "A desk officer handling administrative procedures receives a case that requires careful compliance. What should be done first?"
+    },
+    {
+      "question_id": "clg_legal_compliance_gen_002",
+      "source_topic": "constitutional_law",
+      "source_subcategory": "clg_legal_compliance",
+      "source_file": "data/constitutional_foi.json",
+      "before_question": "For effective legal frameworks & statutory compliance, what is the most appropriate approach to ensure legal frameworks & statutory compliance compliance",
+      "after_question": "Which approach best supports effective legal and statutory compliance?"
+    },
+    {
+      "question_id": "clg_legal_compliance_gen_033",
+      "source_topic": "constitutional_law",
+      "source_subcategory": "clg_legal_compliance",
+      "source_file": "data/constitutional_foi.json",
+      "before_question": "Which practice should a responsible officer prioritize to sustain legal frameworks & statutory compliance compliance in Legal Frameworks & Statutory Compliance",
+      "after_question": "Which practice should a responsible officer prioritize to sustain legal and statutory compliance?"
+    },
+    {
+      "question_id": "clg_legal_compliance_gen_040",
+      "source_topic": "constitutional_law",
+      "source_subcategory": "clg_legal_compliance",
+      "source_file": "data/constitutional_foi.json",
+      "before_question": "During routine legal frameworks & statutory compliance operations, which approach best ensures legal frameworks & statutory compliance compliance' in line with public-sector accountability expectations",
+      "after_question": "During routine legal and statutory compliance work, which approach best supports public-sector accountability?"
+    },
+    {
+      "question_id": "fin_audits_sanctions_gen_002",
+      "source_topic": "financial_regulations",
+      "source_subcategory": "fin_audits_sanctions",
+      "source_file": "data/financial_regulations.json",
+      "before_question": "For effective audits, sanctions & compliance, what is the most appropriate approach to ensure audits, sanctions & compliance compliance",
+      "after_question": "Which approach best supports effective audits, sanctions, and compliance?"
+    },
+    {
+      "question_id": "fin_audits_sanctions_gen_020",
+      "source_topic": "financial_regulations",
+      "source_subcategory": "fin_audits_sanctions",
+      "source_file": "data/financial_regulations.json",
+      "before_question": "Which practice should a responsible officer prioritize to sustain audits, sanctions & compliance compliance in Audits, Sanctions & Compliance",
+      "after_question": "Which practice should a responsible officer prioritize to sustain audits, sanctions, and compliance?"
+    },
+    {
+      "question_id": "NLR_S_016",
+      "source_topic": "leadership_management",
+      "source_subcategory": "neg_structure_bodies",
+      "source_file": "data/leadership_negotiation.json",
+      "before_question": "Under the NPSNC structure, which council represents the senior staff category, typically Grade Level 07 and above?",
+      "after_question": "Under the NPSNC structure, which council represents senior staff members, generally on Grade Level 07 and above?"
+    },
+    {
+      "question_id": "neg_structure_bodies_gen_079",
+      "source_topic": "leadership_management",
+      "source_subcategory": "neg_structure_bodies",
+      "source_file": "data/leadership_negotiation.json",
+      "before_question": "Within the NPSNC structure, which council speaks for the senior staff category, typically Grade Level 07 and above?",
+      "after_question": "Within the NPSNC structure, which council speaks for senior staff members, usually on Grade Level 07 and above?"
+    }
+  ]
+}

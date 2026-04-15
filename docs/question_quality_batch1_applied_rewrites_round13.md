@@ -1,0 +1,43 @@
+# Question Quality Batch 1 Applied Rewrites Round 13
+
+- Applied rewrites: **13**
+
+- `ppa_objectives_073` [data/public_procurement.json]
+  - Old: According to established rules, choose the best answer for: What does the principle of "diligence" demand from a Civil Servant?
+  - New: What does the principle of diligence require of a Civil Servant?
+- `ppa_bid_051` [data/public_procurement.json]
+  - Old: In official practice, which option correctly addresses: One of the limitations of the 1988 Civil Service Reforms was what?
+  - New: Which of the following was one limitation of the 1988 Civil Service Reforms?
+- `ppa_bid_061` [data/public_procurement.json]
+  - Old: In official practice, select the statement that correctly defines typically contained in a "Personal File"?
+  - New: What is typically contained in a personal file?
+- `ppa_bid_070` [data/public_procurement.json]
+  - Old: which option aligns with the meaning of the aim of "Minutes" of a meeting?
+  - New: What is the main purpose of the minutes of a meeting?
+- `ppa_ethic_060` [data/public_procurement.json]
+  - Old: select the statement that correctly defines the role of "Minutes" of a meeting?
+  - New: What role do the minutes of a meeting perform?
+- `ppa_ethic_068` [data/public_procurement.json]
+  - Old: In official practice, which time frame is it advisable to type short drafts or minutes if one's handwriting is not legible?
+  - New: When is it advisable to type short drafts or minutes?
+- `ppa_ethic_069` [data/public_procurement.json]
+  - Old: According to established rules, which option correctly addresses: What should be done if one's handwriting is not easily readable for minutes or drafts covering more than half of an A4 page?
+  - New: What should be done if handwriting is not easily readable on minutes or drafts covering more than half of an A4 page?
+- `clg_constitutional_governance_gen_064` [data/constitutional_foi.json]
+  - Old: Within government administration, select the option that best answers: The principle of neutrality in the Civil Service guarantee that civil servants do what?
+  - New: What does the principle of neutrality require of Civil Servants?
+- `clg_constitutional_governance_gen_065` [data/constitutional_foi.json]
+  - Old: Within government administration, select the option that best answers: According to the handbook, what does "unprofessional" behavior imply in a Civil Servant?
+  - New: What does unprofessional behaviour imply in a Civil Servant?
+- `clg_general_competency_gen_070` [data/constitutional_foi.json]
+  - Old: In the public service context, select the option that best answers: What can result from indifference to or disguised encouragement of nepotism and favouritism?
+  - New: What may result from indifference to, or disguised encouragement of, nepotism and favouritism?
+- `clg_general_competency_gen_088` [data/constitutional_foi.json]
+  - Old: In the public service context, which option correctly addresses: In official practice, which option correctly addresses: A key part of the Principle of Motivation is that employees must be provided with what?
+  - New: What is a key part of the principle of motivation in the public service?
+- `FOI_AO_063` [data/constitutional_foi.json]
+  - Old: Within government administration, which option correctly addresses: According to established rules, select the option that best answers: A key objective of HRM is to enhance the capabilities of employees and guarantee they possess the requisite level of competence, knowledge, skill, and attitude to do what?
+  - New: A key objective of human resource management is to improve employees' competence, knowledge, skill, and attitude in order to do what?
+- `FOI_AO_066` [data/constitutional_foi.json]
+  - Old: According to established rules, choose the best answer for: select the statement that correctly defines the aim of classifying documents?
+  - New: What is the aim of classifying documents?

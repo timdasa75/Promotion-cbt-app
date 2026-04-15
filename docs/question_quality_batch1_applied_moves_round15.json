@@ -1,0 +1,34 @@
+{
+  "applied": [
+    {
+      "old_id": "FOI_AO_067",
+      "new_id": "csh_ap_140",
+      "source_topic": "constitutional_law",
+      "source_subcategory": "foi_access_obligations",
+      "target_topic": "civil_service_admin",
+      "target_subcategory": "csh_administrative_procedures",
+      "target_file": "data/civil_service_ethics.json",
+      "question": "Within government administration, select the statement that correctly defines the role of the chairman arriving promptly at the venue and starting the meeting on time?"
+    },
+    {
+      "old_id": "FOI_EX_066",
+      "new_id": "csh_ap_141",
+      "source_topic": "constitutional_law",
+      "source_subcategory": "foi_exemptions_public_interest",
+      "target_topic": "civil_service_admin",
+      "target_subcategory": "csh_administrative_procedures",
+      "target_file": "data/civil_service_ethics.json",
+      "question": "According to established rules, which option aligns with the meaning of the role of the \"Action Points\" section in the minutes of a meeting?"
+    },
+    {
+      "old_id": "FOI_EX_067",
+      "new_id": "csh_ap_142",
+      "source_topic": "constitutional_law",
+      "source_subcategory": "foi_exemptions_public_interest",
+      "target_topic": "civil_service_admin",
+      "target_subcategory": "csh_administrative_procedures",
+      "target_file": "data/civil_service_ethics.json",
+      "question": "According to established rules, which option aligns with the meaning of the objective of the \"Action Points\" section in the minutes of a meeting? 482?"
+    }
+  ]
+}

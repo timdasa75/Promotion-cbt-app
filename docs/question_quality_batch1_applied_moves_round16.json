@@ -1,0 +1,14 @@
+{
+  "applied": [
+    {
+      "old_id": "lead_management_performance_gen_023",
+      "new_id": "csh_ap_143",
+      "source_topic": "leadership_management",
+      "source_subcategory": "lead_management_performance",
+      "target_topic": "civil_service_admin",
+      "target_subcategory": "csh_administrative_procedures",
+      "target_file": "data/civil_service_ethics.json",
+      "question": "Which recordkeeping practice best supports fair performance assessment across a department?"
+    }
+  ]
+}

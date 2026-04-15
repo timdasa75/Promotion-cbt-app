@@ -1,0 +1,37 @@
+# Question Quality Batch 1 Applied Moves Round 4
+
+- Applied moves: **11**
+
+- `policy_constitution_039` -> `csh_ap_111`
+  - policy_analysis/pol_formulation_cycle -> civil_service_admin/csh_administrative_procedures
+  - Which of these is a primary function of a registry in a ministry
+- `policy_constitution_041` -> `csh_ap_112`
+  - policy_analysis/pol_formulation_cycle -> civil_service_admin/csh_administrative_procedures
+  - Which is the correct order for official file arrangement that ensures easy tracking
+- `policy_constitution_044` -> `csh_ap_113`
+  - policy_analysis/pol_formulation_cycle -> civil_service_admin/csh_administrative_procedures
+  - Which of these describes a 'minute' on a file
+- `policy_constitution_051` -> `csh_ap_114`
+  - policy_analysis/pol_formulation_cycle -> civil_service_admin/csh_administrative_procedures
+  - Which of these is a valid method to index files for retrieval
+- `policy_constitution_052` -> `csh_ap_115`
+  - policy_analysis/pol_formulation_cycle -> civil_service_admin/csh_administrative_procedures
+  - Which of these best describes 'service book' in civil service records
+- `policy_constitution_057` -> `csh_ap_116`
+  - policy_analysis/pol_formulation_cycle -> civil_service_admin/csh_administrative_procedures
+  - Which course of action should a registry take when it receives classified material addressed to another ministry
+- `leadership_smp_052` -> `csh_ap_117`
+  - leadership_management/lead_strategic_management -> civil_service_admin/csh_administrative_procedures
+  - In the public service context, select the statement that correctly defines a key aim of a "handing-over note"?
+- `leadership_smp_053` -> `csh_ap_118`
+  - leadership_management/lead_strategic_management -> civil_service_admin/csh_administrative_procedures
+  - Within government administration, which option best describes the objective of a "handing-over note"?
+- `leadership_smp_054` -> `csh_ap_119`
+  - leadership_management/lead_strategic_management -> civil_service_admin/csh_administrative_procedures
+  - which option aligns with the meaning of the aim of a "handing-over note"?
+- `neg_structure_bodies_gen_064` -> `csh_ap_120`
+  - leadership_management/neg_structure_bodies -> civil_service_admin/csh_administrative_procedures
+  - In official practice, choose the best answer for: What abbreviations should be included at the foot of the letter if there are enclosures?
+- `neg_structure_bodies_gen_065` -> `csh_ap_121`
+  - leadership_management/neg_structure_bodies -> civil_service_admin/csh_administrative_procedures
+  - In the public service context, which option correctly addresses: In official practice, choose the best answer for: What abbreviations should be included at the foot of the letter if there are enclosures?

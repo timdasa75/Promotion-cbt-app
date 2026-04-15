@@ -1,0 +1,46 @@
+# Question Quality Batch 1 Applied Rewrites Round 10
+
+- Applied rewrites: **14**
+
+- `csh_ap_055` [data/civil_service_ethics.json]
+  - Old: In official practice, which option best describes the aim of the Code of Conduct Bureau?
+  - New: What is the main function of the Code of Conduct Bureau?
+- `csh_it_066` [data/civil_service_ethics.json]
+  - Old: select the option that best answers: How should the deadlines for service delivery be determined?
+  - New: How should service-delivery deadlines be determined and communicated?
+- `csh_it_074` [data/civil_service_ethics.json]
+  - Old: In the public service context, which option best describes the implication of failing to take reasonable care of documents entrusted to a Civil Servant?
+  - New: What is the consequence of failing to take reasonable care of documents entrusted to a Civil Servant?
+- `csh_duty_071` [data/civil_service_ethics.json]
+  - Old: According to established rules, choose the best answer for: What should adjustments to the way services are organized and operated lead to?
+  - New: What should adjustments to the way services are organized and operated achieve?
+- `csh_pt_053` [data/civil_service_ethics.json]
+  - Old: In the public service context, select the option that best answers: According to the handbook, what is the proper action if papers or documents come to you by mistake from members of staff or the general public?
+  - New: What should you do if papers or documents come to you by mistake from staff or members of the public?
+- `csh_pt_059` [data/civil_service_ethics.json]
+  - Old: According to established rules, choose the best answer for: How should the evaluation of services be based?
+  - New: On what should the evaluation of services be based?
+- `csh_sdg_060` [data/civil_service_ethics.json]
+  - Old: In the public service context, select the statement that correctly defines the objective of a "handing over note"?
+  - New: What is the purpose of a handing-over note?
+- `eth_general_gen_076` [data/civil_service_ethics.json]
+  - Old: According to established rules, choose the best answer for: What should letters always have?
+  - New: What should every official letter contain?
+- `FOI_AO_058` [data/constitutional_foi.json]
+  - Old: select the statement that correctly defines the aim of classifying documents?
+  - New: Why are official documents classified?
+- `FOI_AO_068` [data/constitutional_foi.json]
+  - Old: Within government administration, choose the best answer for: What should be attached to the notice and agenda?
+  - New: What should be attached to a meeting notice and agenda?
+- `FOI_AO_074` [data/constitutional_foi.json]
+  - Old: In official practice, select the option that best answers: Within government administration, which option aligns with the meaning of the role of keeping a "Reference" in the top right-hand corner of a letter?
+  - New: Why is a reference placed in the top right-hand corner of an official letter?
+- `clg_legal_compliance_gen_061` [data/constitutional_foi.json]
+  - Old: which option correctly addresses: The Principle of Quality, Effectiveness, and Efficiency demand the public service to make optimal use of what?
+  - New: Under the principle of quality, effectiveness, and efficiency, what should the public service make optimal use of?
+- `FOI_AO_052` [data/constitutional_foi.json]
+  - Old: Within government administration, which option aligns with the meaning of the role of keeping a "Reference" in the top right-hand corner of a letter?
+  - New: What is the purpose of keeping a reference in the top right-hand corner of a letter?
+- `FOI_EX_075` [data/constitutional_foi.json]
+  - Old: According to established rules, choose the best answer for: The hours of work in Federal offices are from what time to what time?
+  - New: What are the normal hours of work in Federal offices?

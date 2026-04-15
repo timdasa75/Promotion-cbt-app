@@ -1,0 +1,14 @@
+{
+  "applied": [
+    {
+      "old_id": "ppa_ethic_060",
+      "new_id": "csh_ap_134",
+      "source_topic": "procurement_act",
+      "source_subcategory": "proc_transparency_ethics",
+      "target_topic": "civil_service_admin",
+      "target_subcategory": "csh_administrative_procedures",
+      "target_file": "data/civil_service_ethics.json",
+      "question": "What role do the minutes of a meeting perform?"
+    }
+  ]
+}
