@@ -4209,11 +4209,12 @@ function renderFeedbackUiState() {
   const resultsBtn = document.getElementById("openResultsFeedbackBtn");
   const feedbackModal = document.getElementById("feedbackModal");
 
-  if (helpBtn) {
-    helpBtn.disabled = !access.allowed;
-    helpBtn.setAttribute("aria-disabled", String(!access.allowed));
-    helpBtn.title = access.allowed ? "Send feedback" : access.message;
-  }
+  [helpBtn, dashboardFeedbackBtn, headerFeedbackBtn].forEach((button) => {
+    if (!button) return;
+    button.disabled = !access.allowed;
+    button.setAttribute("aria-disabled", String(!access.allowed));
+    button.title = access.allowed ? "Send feedback" : access.message;
+  });
 
   if (helpNote) {
     if (access.allowed) {
@@ -5071,6 +5072,8 @@ function initializeAuthUI() {
     "clearAdminOperationHistoryBtn",
   );
   const openHelpFeedbackBtn = document.getElementById("openHelpFeedbackBtn");
+  const dashboardFeedbackBtn = document.getElementById("dashboardFeedbackBtn");
+  const headerFeedbackBtn = document.getElementById("headerFeedbackBtn");
   const openQuizFeedbackBtn = document.getElementById("openQuizFeedbackBtn");
   const openResultsFeedbackBtn = document.getElementById("openResultsFeedbackBtn");
   const feedbackModal = document.getElementById("feedbackModal");
@@ -5565,6 +5568,24 @@ function initializeAuthUI() {
 
   if (openHelpFeedbackBtn) {
     openHelpFeedbackBtn.addEventListener("click", () => {
+      openFeedbackModal({
+        sourceScreen: "help",
+        defaultCategory: "",
+      });
+    });
+  }
+
+  if (dashboardFeedbackBtn) {
+    dashboardFeedbackBtn.addEventListener("click", () => {
+      openFeedbackModal({
+        sourceScreen: "help",
+        defaultCategory: "",
+      });
+    });
+  }
+
+  if (headerFeedbackBtn) {
+    headerFeedbackBtn.addEventListener("click", () => {
       openFeedbackModal({
         sourceScreen: "help",
         defaultCategory: "",
