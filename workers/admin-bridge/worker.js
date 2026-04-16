@@ -1,8 +1,6 @@
 const IDENTITY_TOOLKIT_BASE_URL = "https://identitytoolkit.googleapis.com/v1";
 const FIRESTORE_BASE_URL = "https://firestore.googleapis.com/v1";
 const GOOGLE_OAUTH_TOKEN_URL = "https://oauth2.googleapis.com/token";
-const DEFAULT_ADMIN_EMAILS = ["timdasa75@gmail.com"];
-
 let adminTokenCache = {
   token: "",
   expiresAtMs: 0,
@@ -24,7 +22,13 @@ function parseCsvSet(value, defaults = []) {
 }
 
 function parseAdminEmails(value) {
-  return new Set(Array.from(parseCsvSet(value, DEFAULT_ADMIN_EMAILS)).map((entry) => normalizeEmail(entry)).filter(Boolean));
+  const emails = Array.from(parseCsvSet(value, []))
+    .map((entry) => normalizeEmail(entry))
+    .filter(Boolean);
+  if (!emails.length) {
+    throw new Error("ADMIN_EMAILS is not configured.");
+  }
+  return new Set(emails);
 }
 
 function resolveAllowedOrigin(request, env) {
@@ -397,22 +401,20 @@ async function handleAdminSendVerificationEmail(request, env) {
   const payload = {
     requestType: "VERIFY_EMAIL",
     email,
-    returnOobLink: true,
   };
   const continueUrl = String(body?.continueUrl || "").trim();
   if (continueUrl) {
     payload.continueUrl = continueUrl;
   }
 
-  const response = await identityAdminRequest(env, "accounts:sendOobCode", {
+  await identityAdminRequest(env, "accounts:sendOobCode", {
     body: payload,
   });
 
-  const link = String(response?.oobLink || response?.link || response?.emailLink || "").trim();
   return {
     ok: true,
     delivered: true,
-    ...(link ? { link, warning: `Verification link generated. Send it to the user: ${link}` } : {}),
+    warning: "Verification email requested from Firebase Auth.",
   };
 }
 
@@ -581,7 +583,3 @@ export default {
     }
   },
 };
-
-
-
-

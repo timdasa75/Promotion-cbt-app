@@ -2,14 +2,15 @@ const admin = require("firebase-admin");
 const functions = require("firebase-functions");
 
 admin.initializeApp();
-const DEFAULT_ADMIN_EMAILS = ["timdasa75@gmail.com"];
-
 function getAllowedAdminEmails() {
   const configured = String(process.env.ADMIN_EMAILS || "")
     .split(",")
     .map((entry) => String(entry || "").trim().toLowerCase())
     .filter(Boolean);
-  return new Set([...DEFAULT_ADMIN_EMAILS, ...configured]);
+  if (!configured.length) {
+    throw new Error("ADMIN_EMAILS is not configured.");
+  }
+  return new Set(configured);
 }
 
 async function authenticateAdminRequest(req) {
@@ -32,16 +33,58 @@ async function authenticateAdminRequest(req) {
   return decoded;
 }
 
-function setCors(res) {
-  res.set("Access-Control-Allow-Origin", "*");
+function parseCsvSet(value) {
+  return String(value || "")
+    .split(",")
+    .map((entry) => String(entry || "").trim())
+    .filter(Boolean);
+}
+
+function resolveAllowedOrigin(req) {
+  const configured = parseCsvSet(process.env.ALLOWED_ORIGINS || "");
+  if (!configured.length) return "*";
+  if (configured.includes("*")) return "*";
+  const origin = String(req.headers.origin || "").trim();
+  if (!origin) return "";
+  return configured.includes(origin) ? origin : "";
+}
+
+function setCors(res, origin = "*") {
+  if (origin) {
+    res.set("Access-Control-Allow-Origin", origin);
+  }
+  res.set("Vary", "Origin");
   res.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
   res.set("Access-Control-Allow-Methods", "POST, OPTIONS");
 }
 
-exports.adminDeleteUserById = functions.https.onRequest(async (req, res) => {
-  setCors(res);
+function handleCors(req, res) {
+  const configured = parseCsvSet(process.env.ALLOWED_ORIGINS || "");
+  const origin = resolveAllowedOrigin(req);
+
   if (req.method === "OPTIONS") {
+    if (configured.length && !origin) {
+      setCors(res, "");
+      res.status(403).json({ ok: false, error: "Origin not allowed." });
+      return false;
+    }
+    setCors(res, origin || "*");
     res.status(204).send("");
+    return false;
+  }
+
+  if (configured.length && !origin) {
+    setCors(res, "");
+    res.status(403).json({ ok: false, error: "Origin not allowed." });
+    return false;
+  }
+
+  setCors(res, origin || "*");
+  return true;
+}
+
+exports.adminDeleteUserById = functions.https.onRequest(async (req, res) => {
+  if (!handleCors(req, res)) {
     return;
   }
   if (req.method !== "POST") {
@@ -91,9 +134,7 @@ exports.adminDeleteUserById = functions.https.onRequest(async (req, res) => {
 });
 
 exports.adminListUsers = functions.https.onRequest(async (req, res) => {
-  setCors(res);
-  if (req.method === "OPTIONS") {
-    res.status(204).send("");
+  if (!handleCors(req, res)) {
     return;
   }
   if (req.method !== "POST") {
@@ -191,9 +232,7 @@ exports.deleteProfileOnAuthDeletion = functions.auth.user().onDelete(async (user
 });
 
 exports.adminLookupUsers = functions.https.onRequest(async (req, res) => {
-  setCors(res);
-  if (req.method === "OPTIONS") {
-    res.status(204).send("");
+  if (!handleCors(req, res)) {
     return;
   }
   if (req.method !== "POST") {
@@ -242,9 +281,7 @@ exports.adminLookupUsers = functions.https.onRequest(async (req, res) => {
 });
 
 exports.adminSetUserStatus = functions.https.onRequest(async (req, res) => {
-  setCors(res);
-  if (req.method === "OPTIONS") {
-    res.status(204).send("");
+  if (!handleCors(req, res)) {
     return;
   }
   if (req.method !== "POST") {
@@ -292,9 +329,7 @@ exports.adminSetUserStatus = functions.https.onRequest(async (req, res) => {
 });
 
 exports.adminSendVerificationEmail = functions.https.onRequest(async (req, res) => {
-  setCors(res);
-  if (req.method === "OPTIONS") {
-    res.status(204).send("");
+  if (!handleCors(req, res)) {
     return;
   }
   if (req.method !== "POST") {
@@ -310,15 +345,12 @@ exports.adminSendVerificationEmail = functions.https.onRequest(async (req, res) 
       return;
     }
 
-    const continueUrl = String(req.body?.continueUrl || "").trim();
-    const actionCodeSettings = continueUrl ? { url: continueUrl } : undefined;
-    const link = await admin.auth().generateEmailVerificationLink(email, actionCodeSettings);
-
     res.status(200).json({
       ok: true,
       email,
-      link,
-      warning: `Verification link generated. Send it to the user: ${link}`,
+      delivered: false,
+      warning:
+        "Cloud Functions fallback no longer returns verification links. Use the Cloudflare admin bridge or add server-side email delivery for secure resend support.",
     });
   } catch (error) {
     functions.logger.error("adminSendVerificationEmail failed:", error);

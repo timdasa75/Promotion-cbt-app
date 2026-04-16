@@ -764,15 +764,13 @@ export async function resendVerificationEmailForUser(email, redirectTo = "") {
       continueTarget,
       freshSession.accessToken,
     );
-    markVerificationResend(normalizedEmail);
     const warning = String(bridgeResult?.warning || "").trim();
-    const link = String(bridgeResult?.link || "").trim();
-    const combinedWarning = [warning, link ? `Manual verification link: ${link}` : ""]
-      .filter(Boolean)
-      .join(" ");
+    if (bridgeResult?.delivered !== false) {
+      markVerificationResend(normalizedEmail);
+    }
     return {
-      delivered: true,
-      warning: combinedWarning,
+      delivered: bridgeResult?.delivered !== false,
+      warning,
     };
   } catch (bridgeError) {
     throw new Error(
@@ -1173,7 +1171,3 @@ export async function updateCloudUserStatusById(profileId, status) {
 export async function deleteCloudUserById(profileId) {
   return deleteCloudUserByIdService(profileId, ensureAdminCloudSession);
 }
-
-
-
-

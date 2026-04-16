@@ -189,8 +189,9 @@ Optional runtime keys in `window.PROMOTION_CBT_AUTH`:
 
 - Preferred (free-tier): deploy `workers/admin-bridge/worker.js` on Cloudflare Workers and set `adminApiBaseUrl`.
 - Keep Firebase function fallback available (`functions/index.js`) for `adminListUsers`, `adminLookupUsers`, `adminSetUserStatus`, `adminSendVerificationEmail`, `adminDeleteUserById`.
-- Set `ADMIN_EMAILS` for Functions (comma-separated admin emails); defaults to the built-in list if omitted.
-- Note: `adminSendVerificationEmail` returns a verification link; add an email provider if you want automatic delivery.
+- Set `ADMIN_EMAILS` for Functions (comma-separated admin emails); admin access now fails closed if it is omitted.
+- Set `ALLOWED_ORIGINS` for Functions (comma-separated browser origins) if you want the Firebase Functions fallback to reject unlisted or missing browser origins.
+- Note: `adminSendVerificationEmail` no longer returns raw verification links. The Cloudflare Worker path requests Firebase Auth to send the email directly; the Firebase Functions fallback reports delivery as unavailable unless you add a server-side mail path.
 - Keep `deleteAuthUserOnProfileDeletion` deployed too; it remains a safety net that cascades profile deletions to Firebase Auth.
 - Run `cd functions && npm install` and `firebase deploy --only functions` only if you use the Firebase function fallback path.
 
@@ -200,15 +201,3 @@ If secrets are missing, deployment fails and the app shows:
 ## License
 
 MIT (see `LICENSE` if present in your distribution).
-
-
-
-
-
-
-
-
-
-
-
-

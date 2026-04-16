@@ -4863,8 +4863,13 @@ function renderAdminUserDirectory() {
             return;
           }
           if (action === "resend-verification") {
-            await resendVerificationEmailForUser(profileEmail);
-            actionWarning = "Verification email sent.";
+            const resendResult = await resendVerificationEmailForUser(profileEmail);
+            actionWarning = String(
+              resendResult?.warning
+              || (resendResult?.delivered === false
+                ? "Verification email delivery is unavailable in the current backend path."
+                : "Verification email sent."),
+            ).trim();
             return;
           }
           if (action === "set-account-state") {
@@ -5862,132 +5867,4 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   initializeThemeToggle();
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

@@ -25,12 +25,12 @@ Set in Worker secrets:
 Set as Worker vars:
 
 - `FIREBASE_PROJECT_ID`
+- `ADMIN_EMAILS` (comma-separated admin emails)
 
 Optional vars:
 
 - `ALLOWED_ORIGINS` (comma-separated)
 - `FIREBASE_QUOTA_PROJECT_ID`
-- `ADMIN_EMAILS` (comma-separated)
 - `SYNC_AUTH_DISABLED` (`true` or `false`)
 
 ## Deploy
@@ -47,7 +47,9 @@ Optional vars:
 ## Notes
 
 - If `ALLOWED_ORIGINS` is set, non-listed browser origins are blocked.
-- The worker verifies caller ID tokens and enforces email-based admin allowlist.
-- FIREBASE_QUOTA_PROJECT_ID should only be set when you intentionally need x-goog-user-project billing semantics (and the service account has serviceUsage.services.use permission).`r`n- Keep service account scope minimal and rotate key material regularly.
-
+- The worker verifies caller ID tokens and enforces an email-based admin allowlist from `ADMIN_EMAILS`.
+- If `ADMIN_EMAILS` is empty or missing, admin routes fail closed.
+- `/adminSendVerificationEmail` asks Firebase Auth to send the verification email and does not return raw links to the browser.
+- FIREBASE_QUOTA_PROJECT_ID should only be set when you intentionally need x-goog-user-project billing semantics (and the service account has `serviceUsage.services.use` permission).
+- Keep service account scope minimal and rotate key material regularly.
 
