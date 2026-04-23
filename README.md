@@ -184,6 +184,16 @@ Optional runtime keys in `window.PROMOTION_CBT_AUTH`:
 - `adminApiBaseUrl`:
   - empty: use Firebase Cloud Functions endpoints.
   - set URL (recommended): route admin list/lookup/status/delete/verification actions to Cloudflare Worker admin bridge.
+- `authProvider`:
+  - `firebase`: current production mode.
+  - `hybrid`: future migration mode; prefer Cloudflare auth while keeping Firebase fallback for legacy users.
+  - `cloudflare`: final cutover mode after migration completes.
+- `cloudflareAuthBaseUrl`:
+  - reserved for the future Cloudflare auth API base URL during hybrid rollout.
+- `cloudflareTurnstileSiteKey`:
+  - reserved for Cloudflare Turnstile on future register/login endpoints.
+- `allowFirebaseFallback`:
+  - when `authProvider` is `hybrid`, keeps the legacy Firebase bridge available until migration is complete.
 
 ### Identity Toolkit admin operations (Recommendation)
 
@@ -197,6 +207,8 @@ Optional runtime keys in `window.PROMOTION_CBT_AUTH`:
 
 If secrets are missing, deployment fails and the app shows:
 - `Auth mode: Cloud required (runtime config missing)`
+
+For the hybrid-auth rollout plan and D1 schema, see `docs/cloudflare-hybrid-auth-migration.md` and `workers/admin-bridge/schema/cloudflare-auth.sql`.
 
 ## License
 

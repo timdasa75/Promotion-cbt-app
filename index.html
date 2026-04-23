@@ -807,6 +807,39 @@
                 <p class="auth-message hidden" id="authMessage"></p>
             </div>
         </div>
+
+        <div class="auth-modal hidden" id="migrationModal" role="dialog" aria-modal="true" aria-labelledby="migrationModalTitle">
+            <div class="auth-modal-card">
+                <button class="auth-close" id="migrationCloseBtn" type="button" aria-label="Close password setup panel">&times;</button>
+                <div class="section-head screen-header">
+                    <h2 id="migrationModalTitle">Set Your New Password</h2>
+                    <p id="migrationModalIntro">Use your one-time secure link to set a new password and continue signing in to your account.</p>
+                    <p class="hero-meta" id="migrationEmailHint"></p>
+                </div>
+                <form id="migrationForm" class="auth-form">
+                    <label class="auth-field">
+                        <span>New Password</span>
+                        <div class="password-field">
+                            <input id="migrationPassword" type="password" minlength="8" autocomplete="new-password" required />
+                            <button class="password-toggle-btn" type="button" data-target="migrationPassword" aria-label="Show password" title="Show password">
+                                <span class="password-toggle-icon" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </label>
+                    <label class="auth-field">
+                        <span>Confirm Password</span>
+                        <div class="password-field">
+                            <input id="migrationConfirmPassword" type="password" minlength="8" autocomplete="new-password" required />
+                            <button class="password-toggle-btn" type="button" data-target="migrationConfirmPassword" aria-label="Show password" title="Show password">
+                                <span class="password-toggle-icon" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </label>
+                    <button class="btn btn-primary" type="submit">Save password and sign in</button>
+                </form>
+                <p class="auth-message hidden" id="migrationMessage"></p>
+            </div>
+        </div>
         
         <div class="auth-modal hidden" id="freeTierModal" role="dialog" aria-modal="true" aria-labelledby="freeTierTitle">
             <div class="auth-modal-card">

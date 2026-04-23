@@ -33,6 +33,31 @@ Optional vars:
 - `FIREBASE_QUOTA_PROJECT_ID`
 - `SYNC_AUTH_DISABLED` (`true` or `false`)
 
+## Hybrid auth groundwork
+
+These endpoints are now scaffolded for the Cloudflare-first migration path:
+
+- `/auth/register`
+- `/auth/login`
+- `/auth/session`
+- `/auth/logout`
+
+Important:
+- they require a future `AUTH_DB` D1 binding before they can serve live traffic
+- they are not wired into the frontend yet
+- Firebase remains the active auth provider until the hybrid rollout is switched on
+
+## Legacy user bootstrap helper
+
+If an existing Firebase user is blocked by Firebase login quotas during migration, you can seed a Cloudflare login for that known account directly into D1:
+
+- `node ./scripts/bootstrap-legacy-user.mjs --email timdasa75@gmail.com --password "StrongPass123!" --plan premium --role admin --verified true`
+
+Notes:
+- this runs `wrangler d1 execute AUTH_DB --remote` under the hood
+- it marks the D1 user as `legacy_provider = firebase`
+- use it only for accounts you intentionally control or have verified administratively
+
 ## Deploy
 
 1. Copy `wrangler.toml.example` to `wrangler.toml` and update values.

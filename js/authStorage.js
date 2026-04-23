@@ -53,6 +53,9 @@ function sanitizeStoredSession(session) {
   if (sanitized.provider === "firebase" && (!sanitized.accessToken || !sanitized.refreshToken || !sanitized.user)) {
     return null;
   }
+  if (sanitized.provider === "cloudflare" && (!sanitized.accessToken || !sanitized.user)) {
+    return null;
+  }
   if (sanitized.provider === "local" && !sanitized.user) {
     return null;
   }

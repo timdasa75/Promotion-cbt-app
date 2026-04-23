@@ -67,6 +67,10 @@ export async function listUsersViaCloudFunction(accessToken, fetchImpl = fetch) 
     id: String(entry?.id || entry?.uid || entry?.localId || ""),
     email: normalizeEmail(entry?.email || ""),
     name: String(entry?.name || entry?.displayName || ""),
+    role: String(entry?.role || ""),
+    plan: String(entry?.plan || ""),
+    status: String(entry?.status || ""),
+    source: String(entry?.source || ""),
     emailVerified: normalizeEmailVerificationState(entry?.emailVerified, false),
     disabled: Boolean(entry?.disabled),
     createdAt: toOptionalIsoTimestamp(entry?.createdAt),
@@ -129,6 +133,22 @@ export async function sendVerificationViaAdminApi(email, continueUrl, accessToke
     accessToken,
     {
       email: normalizeEmail(email),
+      continueUrl: String(continueUrl || "").trim(),
+    },
+    fetchImpl,
+  );
+}
+
+export async function createCloudflareMigrationLinkViaAdminApi({ email, role, plan, status, emailVerified, continueUrl }, accessToken, fetchImpl = fetch) {
+  return postAdminApiJson(
+    buildAdminApiUrl("adminCreateCloudflareMigrationLink"),
+    accessToken,
+    {
+      email: normalizeEmail(email),
+      role: String(role || "user"),
+      plan: String(plan || "free"),
+      status: String(status || "active"),
+      emailVerified: Boolean(emailVerified),
       continueUrl: String(continueUrl || "").trim(),
     },
     fetchImpl,

@@ -1,3 +1,4 @@
+import { buildPublicAuthUser, hashPassword, issueSession, parseBearerToken, resolveHybridAuthRouteHandler, sha256Base64Url, timingSafeEqual } from "./auth-hybrid.js";
 const IDENTITY_TOOLKIT_BASE_URL = "https://identitytoolkit.googleapis.com/v1";
 const FIRESTORE_BASE_URL = "https://firestore.googleapis.com/v1";
 const GOOGLE_OAUTH_TOKEN_URL = "https://oauth2.googleapis.com/token";
@@ -260,10 +261,138 @@ async function firestoreRequest(env, url, { method = "GET", body = null } = {}) 
   return payload;
 }
 
+function readFirestoreString(fields, key, fallback = "") {
+  const value = fields?.[key];
+  if (typeof value?.stringValue === "string") return value.stringValue;
+  if (typeof value?.timestampValue === "string") return value.timestampValue;
+  return fallback;
+}
+
+function parseProfileDocument(document) {
+  const fields = document?.fields || {};
+  return {
+    role: readFirestoreString(fields, "role", ""),
+    plan: readFirestoreString(fields, "plan", ""),
+    status: readFirestoreString(fields, "status", ""),
+    billingCycle: readFirestoreString(fields, "billingCycle", readFirestoreString(fields, "subscriptionType", "")),
+    planExpiresAt: readFirestoreString(fields, "planExpiresAt", readFirestoreString(fields, "subscriptionExpiresAt", "")),
+  };
+}
+
+async function readProfileDocumentById(env, userId) {
+  const docUrl = firestoreDocumentUrl(env, `profiles/${encodeURIComponent(userId)}`);
+  try {
+    const payload = await firestoreRequest(env, docUrl, { method: "GET" });
+    return parseProfileDocument(payload);
+  } catch (error) {
+    if (Number(error?.httpStatus) === 404) {
+      return null;
+    }
+    throw error;
+  }
+}
+
 function fromFirebaseMillisToIso(value, fallback = "") {
   const numeric = Number(value);
   if (!Number.isFinite(numeric) || numeric <= 0) return fallback;
   return new Date(numeric).toISOString();
+}
+
+function parseCloudflareSessionToken(token) {
+  const normalized = String(token || "").trim();
+  const separatorIndex = normalized.indexOf(".");
+  if (!normalized || separatorIndex <= 0 || separatorIndex >= normalized.length - 1) {
+    throw new Error("Invalid Cloudflare session token.");
+  }
+  return {
+    sessionId: normalized.slice(0, separatorIndex),
+    sessionSecret: normalized.slice(separatorIndex + 1),
+  };
+}
+
+async function verifyCloudflareAdminCaller(sessionToken, env, allowedAdmins) {
+  const database = env.AUTH_DB;
+  if (!database || typeof database.prepare !== "function") {
+    throw new Error("Cloudflare auth database is not configured.");
+  }
+
+  const { sessionId, sessionSecret } = parseCloudflareSessionToken(sessionToken);
+  const session = await database
+    .prepare(`
+      SELECT s.session_id, s.user_id, s.session_secret_hash, s.expires_at,
+             u.id, u.email, u.role, u.status
+      FROM auth_sessions s
+      INNER JOIN auth_users u ON u.id = s.user_id
+      WHERE s.session_id = ?1
+      LIMIT 1
+    `)
+    .bind(sessionId)
+    .first();
+
+  if (!session) {
+    throw new Error("Cloudflare session not found.");
+  }
+
+  const expectedHash = await sha256Base64Url(sessionSecret);
+  if (!timingSafeEqual(expectedHash, String(session.session_secret_hash || ""))) {
+    throw new Error("Cloudflare session is invalid.");
+  }
+
+  if (Date.parse(String(session.expires_at || "")) <= Date.now()) {
+    throw new Error("Cloudflare session expired.");
+  }
+
+  const email = normalizeEmail(session.email || "");
+  if (!email) {
+    throw new Error("Authenticated Cloudflare user has no email.");
+  }
+  if (!allowedAdmins.has(email)) {
+    throw new Error("Admin access denied.");
+  }
+  if (String(session.status || "active").toLowerCase() !== "active") {
+    throw new Error("Admin account is not active.");
+  }
+
+  await database
+    .prepare("UPDATE auth_sessions SET last_seen_at = ?2 WHERE session_id = ?1")
+    .bind(sessionId, new Date().toISOString())
+    .run();
+
+  return {
+    email,
+    id: String(session.id || session.user_id || ""),
+    provider: "cloudflare",
+  };
+}
+
+async function listCloudflareAuthUsers(env) {
+  const database = env.AUTH_DB;
+  if (!database || typeof database.prepare !== "function") {
+    return [];
+  }
+
+  const result = await database
+    .prepare(`
+      SELECT id, email, role, plan, status, email_verified, created_at, last_login_at
+      FROM auth_users
+      ORDER BY created_at DESC
+    `)
+    .all();
+
+  const rows = Array.isArray(result?.results) ? result.results : [];
+  return rows.map((entry) => ({
+    id: String(entry?.id || ""),
+    email: normalizeEmail(entry?.email || ""),
+    name: "",
+    role: String(entry?.role || "user"),
+    plan: String(entry?.plan || "free"),
+    status: String(entry?.status || "active"),
+    emailVerified: Boolean(Number(entry?.email_verified || 0)),
+    disabled: String(entry?.status || "active").toLowerCase() !== "active",
+    createdAt: String(entry?.created_at || ""),
+    lastSignInAt: String(entry?.last_login_at || ""),
+    source: "cloudflare-auth",
+  }));
 }
 
 async function verifyAdminCaller(request, env) {
@@ -272,30 +401,39 @@ async function verifyAdminCaller(request, env) {
     throw new Error("Missing bearer token.");
   }
 
-  const idToken = header.slice("Bearer ".length).trim();
-  if (!idToken) {
+  const token = header.slice("Bearer ".length).trim();
+  if (!token) {
     throw new Error("Missing bearer token.");
   }
 
-  const payload = await identityAdminRequest(env, "accounts:lookup", {
-    body: { idToken },
-  });
-
-  const user = Array.isArray(payload?.users) ? payload.users[0] : null;
-  const email = normalizeEmail(user?.email || "");
-  if (!email) {
-    throw new Error("Authenticated user has no email.");
-  }
-
   const allowedAdmins = parseAdminEmails(env.ADMIN_EMAILS || "");
-  if (!allowedAdmins.has(email)) {
-    throw new Error("Admin access denied.");
-  }
 
-  return {
-    email,
-    id: String(user?.localId || ""),
-  };
+  try {
+    const payload = await identityAdminRequest(env, "accounts:lookup", {
+      body: { idToken: token },
+    });
+
+    const user = Array.isArray(payload?.users) ? payload.users[0] : null;
+    const email = normalizeEmail(user?.email || "");
+    if (!email) {
+      throw new Error("Authenticated user has no email.");
+    }
+    if (!allowedAdmins.has(email)) {
+      throw new Error("Admin access denied.");
+    }
+
+    return {
+      email,
+      id: String(user?.localId || ""),
+      provider: "firebase",
+    };
+  } catch (firebaseError) {
+    try {
+      return await verifyCloudflareAdminCaller(token, env, allowedAdmins);
+    } catch (cloudflareError) {
+      throw new Error(cloudflareError?.message || firebaseError?.message || "Admin access denied.");
+    }
+  }
 }
 
 async function readJsonBody(request) {
@@ -306,10 +444,230 @@ async function readJsonBody(request) {
   }
 }
 
+async function handleAdminCreateCloudflareMigrationLink(request, env) {
+  await verifyAdminCaller(request, env);
+  const database = env.AUTH_DB;
+  if (!database || typeof database.prepare !== "function") {
+    throw new Error("Cloudflare auth database is not configured.");
+  }
+
+  const body = await readJsonBody(request);
+  const email = normalizeEmail(body?.email || "");
+  const role = String(body?.role || "user").trim().toLowerCase() === "admin" ? "admin" : "user";
+  const plan = String(body?.plan || "free").trim().toLowerCase() === "premium" ? "premium" : "free";
+  const status = String(body?.status || "active").trim().toLowerCase() === "suspended" ? "suspended" : "active";
+  const emailVerified = Boolean(body?.emailVerified);
+  const continueUrl = String(body?.continueUrl || "").trim();
+  if (!email || !email.includes("@")) {
+    throw new Error("email is required.");
+  }
+
+  const nowIso = new Date().toISOString();
+  let user = await database
+    .prepare(`
+      SELECT id, email, password_hash, role, plan, status, email_verified
+      FROM auth_users
+      WHERE email = ?1
+      LIMIT 1
+    `)
+    .bind(email)
+    .first();
+
+  if (user?.id) {
+    await database
+      .prepare(`
+        UPDATE auth_users
+        SET role = ?2,
+            plan = ?3,
+            status = ?4,
+            email_verified = ?5,
+            legacy_provider = 'firebase',
+            updated_at = ?6
+        WHERE id = ?1
+      `)
+      .bind(
+        String(user.id),
+        role,
+        plan,
+        status,
+        emailVerified ? 1 : 0,
+        nowIso,
+      )
+      .run();
+  } else {
+    const placeholderHash = await hashPassword(crypto.randomUUID() + generateRandomBase64Url(SESSION_SECRET_BYTES));
+    const userId = crypto.randomUUID();
+    await database
+      .prepare(`
+        INSERT INTO auth_users (
+          id,
+          email,
+          password_hash,
+          role,
+          plan,
+          status,
+          email_verified,
+          legacy_provider,
+          legacy_user_id,
+          created_at,
+          updated_at,
+          last_login_at
+        ) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, 'firebase', '', ?8, ?8, '')
+      `)
+      .bind(
+        userId,
+        email,
+        placeholderHash,
+        role,
+        plan,
+        status,
+        emailVerified ? 1 : 0,
+        nowIso,
+      )
+      .run();
+      user = { id: userId, email };
+  }
+
+  const tokenId = crypto.randomUUID();
+  const tokenSecret = generateRandomBase64Url(SESSION_SECRET_BYTES);
+  const tokenSecretHash = await sha256Base64Url(tokenSecret);
+  const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString();
+  await database
+    .prepare("DELETE FROM auth_email_tokens WHERE user_id = ?1 AND token_type = 'password_reset' AND consumed_at = ''")
+    .bind(String(user.id || ''))
+    .run();
+  await database
+    .prepare(`
+      INSERT INTO auth_email_tokens (
+        token_id,
+        user_id,
+        token_type,
+        token_secret_hash,
+        created_at,
+        expires_at,
+        consumed_at
+      ) VALUES (?1, ?2, 'password_reset', ?3, ?4, ?5, '')
+    `)
+    .bind(tokenId, String(user.id || ''), tokenSecretHash, nowIso, expiresAt)
+    .run();
+
+  const migrationToken = `${tokenId}.${tokenSecret}`;
+  const baseUrl = continueUrl || String(request.headers.get('origin') || '').trim();
+  if (!baseUrl) {
+    throw new Error('continueUrl is required to build the migration link.');
+  }
+  const url = new URL(baseUrl);
+  url.searchParams.set('migration', migrationToken);
+  return {
+    ok: true,
+    email,
+    url: url.toString(),
+    expiresAt,
+    warning: 'Share this one-time link with the user so they can set a new password.',
+  };
+}
+
+async function handleAuthMigrationBootstrap(request, env) {
+  const database = env.AUTH_DB;
+  if (!database || typeof database.prepare !== "function") {
+    throw new Error("Cloud auth database is not configured.");
+  }
+
+  const body = await readJsonBody(request);
+  const password = String(body?.password || "");
+  const token = parseBearerToken(request);
+  const allowedAdmins = parseAdminEmails(env.ADMIN_EMAILS || "");
+
+  const firebaseLookup = await identityAdminRequest(env, "accounts:lookup", {
+    body: { idToken: token },
+  });
+  const firebaseUser = Array.isArray(firebaseLookup?.users) ? firebaseLookup.users[0] : null;
+  const email = normalizeEmail(firebaseUser?.email || "");
+  const localId = String(firebaseUser?.localId || "");
+  if (!email || !localId) {
+    throw new Error("Authenticated user could not be resolved.");
+  }
+
+  const profile = await readProfileDocumentById(env, localId).catch(() => null);
+  const role = String(profile?.role || (allowedAdmins.has(email) ? "admin" : "user")).trim().toLowerCase() === "admin" ? "admin" : "user";
+  const plan = String(profile?.plan || "free").trim().toLowerCase() === "premium" ? "premium" : "free";
+  const status = String(profile?.status || "active").trim().toLowerCase() === "suspended" ? "suspended" : "active";
+  const emailVerified = Boolean(firebaseUser?.emailVerified);
+  const passwordHash = await hashPassword(password);
+  const nowIso = new Date().toISOString();
+
+  const existing = await database
+    .prepare(`
+      SELECT id
+      FROM auth_users
+      WHERE email = ?1
+      LIMIT 1
+    `)
+    .bind(email)
+    .first();
+
+  if (existing?.id) {
+    await database
+      .prepare(`
+        UPDATE auth_users
+        SET password_hash = ?2,
+            role = ?3,
+            plan = ?4,
+            status = ?5,
+            email_verified = ?6,
+            legacy_provider = 'firebase',
+            legacy_user_id = ?7,
+            updated_at = ?8
+        WHERE id = ?1
+      `)
+      .bind(String(existing.id), passwordHash, role, plan, status, emailVerified ? 1 : 0, localId, nowIso)
+      .run();
+  } else {
+    await database
+      .prepare(`
+        INSERT INTO auth_users (
+          id,
+          email,
+          password_hash,
+          role,
+          plan,
+          status,
+          email_verified,
+          legacy_provider,
+          legacy_user_id,
+          created_at,
+          updated_at,
+          last_login_at
+        ) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, 'firebase', ?8, ?9, ?9, '')
+      `)
+      .bind(crypto.randomUUID(), email, passwordHash, role, plan, status, emailVerified ? 1 : 0, localId, nowIso)
+      .run();
+  }
+
+  const authUser = await database
+    .prepare(`
+      SELECT id, email, role, plan, status, email_verified, legacy_provider, legacy_user_id, created_at, updated_at, last_login_at
+      FROM auth_users
+      WHERE email = ?1
+      LIMIT 1
+    `)
+    .bind(email)
+    .first();
+  const session = await issueSession(database, String(authUser?.id || ""), request, env);
+
+  return {
+    ok: true,
+    mode: "cloudflare-auth",
+    user: buildPublicAuthUser(authUser),
+    session,
+    warning: "Password updated successfully. Your account is ready to use.",
+  };
+}
+
 async function handleAdminListUsers(request, env) {
   await verifyAdminCaller(request, env);
 
-  const users = [];
+  const firebaseUsers = [];
   let pageToken = "";
   let loop = 0;
 
@@ -324,7 +682,7 @@ async function handleAdminListUsers(request, env) {
 
     const pageUsers = Array.isArray(payload?.users) ? payload.users : [];
     pageUsers.forEach((entry) => {
-      users.push({
+      firebaseUsers.push({
         id: String(entry?.localId || ""),
         email: normalizeEmail(entry?.email || ""),
         name: String(entry?.displayName || ""),
@@ -332,12 +690,36 @@ async function handleAdminListUsers(request, env) {
         disabled: Boolean(entry?.disabled),
         createdAt: fromFirebaseMillisToIso(entry?.createdAt, ""),
         lastSignInAt: fromFirebaseMillisToIso(entry?.lastLoginAt, ""),
+        source: "firebase-auth",
       });
     });
 
     pageToken = String(payload?.nextPageToken || "");
     loop += 1;
   } while (pageToken && loop < 50);
+
+  const merged = new Map();
+  firebaseUsers.forEach((entry) => {
+    const email = normalizeEmail(entry?.email || "");
+    if (!email) return;
+    merged.set(email, entry);
+  });
+
+  const cloudflareUsers = await listCloudflareAuthUsers(env);
+  cloudflareUsers.forEach((entry) => {
+    const email = normalizeEmail(entry?.email || "");
+    if (!email) return;
+    merged.set(email, {
+      ...(merged.get(email) || {}),
+      ...entry,
+    });
+  });
+
+  const users = Array.from(merged.values()).sort((a, b) => {
+    const aTime = Date.parse(String(a?.createdAt || "")) || 0;
+    const bTime = Date.parse(String(b?.createdAt || "")) || 0;
+    return bTime - aTime;
+  });
 
   return {
     ok: true,
@@ -534,9 +916,13 @@ async function handleAdminDeleteUserById(request, env) {
 }
 
 function resolveRouteHandler(path) {
+  const authRouteHandler = resolveHybridAuthRouteHandler(path);
+  if (authRouteHandler) return authRouteHandler;
   if (path.endsWith("/adminListUsers")) return handleAdminListUsers;
   if (path.endsWith("/adminLookupUsers")) return handleAdminLookupUsers;
   if (path.endsWith("/adminSendVerificationEmail")) return handleAdminSendVerificationEmail;
+  if (path.endsWith("/adminCreateCloudflareMigrationLink")) return handleAdminCreateCloudflareMigrationLink;
+  if (path.endsWith("/auth/migration/bootstrap")) return handleAuthMigrationBootstrap;
   if (path.endsWith("/adminLogOperation")) return handleAdminLogOperation;
   if (path.endsWith("/adminListOperations")) return handleAdminListOperations;
   if (path.endsWith("/adminSetUserStatus")) return handleAdminSetUserStatus;
@@ -577,9 +963,11 @@ export default {
           ok: false,
           error: String(error?.message || "Unauthorized"),
         },
-        403,
+        Number(error?.httpStatus || 403),
         origin || "*",
       );
     }
   },
 };
+
+

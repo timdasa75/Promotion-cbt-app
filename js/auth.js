@@ -19,12 +19,14 @@ import { ensureCloudSessionActive } from "./authCloudSession.js";
 import { readCloudProgressSummary as readCloudProgressSummaryCloud, writeCloudProgressSummary as writeCloudProgressSummaryCloud } from "./authCloudProgress.js";
 import { findCloudProfilesByEmail, patchCloudProfileFields, upsertCloudProfile, upsertCloudUpgradeRequestRecord } from "./authCloudFirestore.js";
 import { sendVerificationViaAdminApi } from "./authAdminApi.js";
+import { bootstrapCloudflareMigrationFromFirebase as bootstrapCloudflareMigrationFromFirebaseClient, completeCloudflareMigrationToken as completeCloudflareMigrationTokenClient, resolveCloudflareMigrationToken as resolveCloudflareMigrationTokenClient } from "./authCloudflareClient.js";
 import { enrichDirectoryVerificationStates, ensureAdminCloudSession as ensureAdminCloudSessionHelper, getConfiguredAdminEmails as getConfiguredAdminEmailsHelper, isCurrentUserAdmin as isCurrentUserAdminHelper } from "./authAdminDirectory.js";
-import { deleteCloudUserById as deleteCloudUserByIdService, getAdminOperationHistory as getAdminOperationHistoryService, getAdminUserDirectory as getAdminUserDirectoryService, logAdminOperationToCloud as logAdminOperationToCloudService, updateCloudUserStatusById as updateCloudUserStatusByIdService } from "./authAdminService.js";
+import { deleteCloudUserById as deleteCloudUserByIdService, getAdminOperationHistory as getAdminOperationHistoryService, getAdminUserDirectory as getAdminUserDirectoryService, logAdminOperationToCloud as logAdminOperationToCloudService, createCloudflareMigrationLinkForUser as createCloudflareMigrationLinkForUserService, updateCloudUserStatusById as updateCloudUserStatusByIdService } from "./authAdminService.js";
 import { buildUpgradeRequestRecordFromProfile as buildUpgradeRequestRecordFromProfileService, ensureCloudProfileInSession as ensureCloudProfileInSessionService, getCurrentUserUpgradeRequest as getCurrentUserUpgradeRequestService, setUpgradeRequestStatus as setUpgradeRequestStatusService, submitUpgradeRequest as submitUpgradeRequestService } from "./authUpgradeService.js";
 import { FEEDBACK_MESSAGE_MAX_LENGTH, getAdminFeedbackSubmissions as getAdminFeedbackSubmissionsService, getFeedbackAccessState as getFeedbackAccessStateService, submitFeedbackSubmission as submitFeedbackSubmissionService, updateFeedbackSubmissionStatus as updateFeedbackSubmissionStatusService } from "./authFeedbackService.js";
 import { loginUserCloud as loginUserCloudService, logoutCloud as logoutCloudService, refreshCloudUserInSession as refreshCloudUserInSessionService, registerUserCloud as registerUserCloudService } from "./authCloudLifecycle.js";
-import { buildIdentityToolkitAdminHeaders, getFirebaseConfig, getPasswordResetCooldownMs, getVerificationResendCooldownMs, isCloudAuthEnabled, isCloudAuthMisconfigured, isCloudAuthRequired, isCloudProgressSyncEnabled, isLocalDemoAuthEnabled } from "./authRuntime.js";
+import { loginUserHybrid as loginUserHybridService, logoutHybrid as logoutHybridService, refreshCloudflareUserInSession as refreshCloudflareUserInSessionService, registerUserHybrid as registerUserHybridService } from "./authHybridLifecycle.js";
+import { buildIdentityToolkitAdminHeaders, getFirebaseConfig, getPasswordResetCooldownMs, getVerificationResendCooldownMs, isCloudAuthEnabled, isCloudAuthMisconfigured, isCloudAuthRequired, isCloudProgressSyncEnabled, isCloudflareAuthPrimary, isLocalDemoAuthEnabled, shouldAllowFirebaseAuthFallback } from "./authRuntime.js";
 
 const DEFAULT_ADMIN_EMAILS = ["timdasa75@gmail.com"];
 const PLAN_SYNC_INTERVAL_MS = 30 * 1000;
@@ -535,6 +537,28 @@ function logoutCloud() {
   return logoutCloudService();
 }
 
+async function registerUserHybrid(input) {
+  return registerUserHybridService(input, {
+    registerFirebase: registerUserCloud,
+  });
+}
+
+async function loginUserHybrid(input) {
+  return loginUserHybridService(input, {
+    loginFirebase: loginUserCloud,
+  });
+}
+
+async function refreshCloudflareUserInSession(session) {
+  return refreshCloudflareUserInSessionService(session);
+}
+
+async function logoutHybrid(session) {
+  return logoutHybridService(session, {
+    logoutFirebase: logoutCloud,
+  });
+}
+
 function assertLocalDemoAuthEnabled(actionLabel = "Authentication") {
   if (isLocalDemoAuthEnabled()) return;
   if (isCloudAuthRequired()) {
@@ -672,6 +696,9 @@ function applyPlanOverrideForEmail(user) {
 }
 
 export async function registerUser({ name, email, password }) {
+  if (isCloudflareAuthPrimary()) {
+    return registerUserHybrid({ name, email, password });
+  }
   if (isCloudAuthEnabled()) {
     return registerUserCloud({ name, email, password });
   }
@@ -680,6 +707,9 @@ export async function registerUser({ name, email, password }) {
 }
 
 export async function loginUser({ email, password }) {
+  if (isCloudflareAuthPrimary()) {
+    return loginUserHybrid({ email, password });
+  }
   if (isCloudAuthEnabled()) {
     return loginUserCloud({ email, password });
   }
@@ -688,6 +718,13 @@ export async function loginUser({ email, password }) {
 }
 
 export function logoutUser() {
+  const session = readSession();
+  if (session?.provider === "cloudflare") {
+    logoutHybrid(session).catch(() => {
+      clearSession();
+    });
+    return;
+  }
   if (isCloudAuthEnabled()) {
     logoutCloud();
     return;
@@ -904,6 +941,20 @@ export function getCurrentUser() {
     return applyPlanOverrideForEmail(session.user || null);
   }
 
+  if (session.provider === "cloudflare") {
+    if (sessionIsExpired(session)) {
+      clearSession();
+      return null;
+    }
+
+    if (!session.user && session.accessToken) {
+      refreshCloudflareUserInSession(session).catch(() => {});
+      return null;
+    }
+
+    return applyPlanOverrideForEmail(session.user || null);
+  }
+
   if (session.provider !== "local") {
     clearSession();
     return null;
@@ -974,10 +1025,25 @@ ${email} (${planLabel})`;
   return planLabel;
 }
 
-export function getAuthProviderLabel() {
-  if (isCloudAuthEnabled()) return "Cloud";
-  if (isLocalDemoAuthEnabled()) return "Demo";
-  return "Unavailable";
+export function getAuthProviderLabel(mode = "active") {
+  const normalizedMode = String(mode || "active").trim().toLowerCase();
+  if (normalizedMode === "configured") {
+    if (isCloudflareAuthPrimary()) {
+      return shouldAllowFirebaseAuthFallback() ? "Hybrid" : "Cloudflare";
+    }
+    if (isCloudAuthEnabled()) return "Cloud";
+    if (isLocalDemoAuthEnabled()) return "Demo";
+    return "Unavailable";
+  }
+
+  const session = readSession();
+  if (session?.provider === "firebase") return "Cloud";
+  if (session?.provider === "cloudflare") {
+    return shouldAllowFirebaseAuthFallback() ? "Hybrid" : "Cloudflare";
+  }
+  if (session?.provider === "local") return "Demo";
+
+  return getAuthProviderLabel("configured");
 }
 
 export function getLocalPlanOverrides() {
@@ -1168,6 +1234,26 @@ async function ensureAdminCloudSession() {
 export async function updateCloudUserStatusById(profileId, status) {
   return updateCloudUserStatusByIdService(profileId, status, ensureAdminCloudSession);
 }
+export async function createCloudflareMigrationLinkForUser(input) {
+  return createCloudflareMigrationLinkForUserService(input, ensureAdminCloudSession);
+}
+
+export async function resolveCloudflareMigrationToken(token) {
+  return resolveCloudflareMigrationTokenClient(token);
+}
+
+export async function completeCloudflareMigrationToken(token, password) {
+  return completeCloudflareMigrationTokenClient(token, password);
+}
+
+export async function bootstrapCloudflareMigrationFromFirebase(password) {
+  const session = readSession();
+  if (!session?.accessToken || session?.provider !== "firebase") {
+    throw new Error("A signed-in legacy account is required.");
+  }
+  return bootstrapCloudflareMigrationFromFirebaseClient(session.accessToken, password);
+}
 export async function deleteCloudUserById(profileId) {
   return deleteCloudUserByIdService(profileId, ensureAdminCloudSession);
 }
+

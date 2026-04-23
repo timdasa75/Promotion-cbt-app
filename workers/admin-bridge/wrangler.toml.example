@@ -14,8 +14,18 @@ FIREBASE_PROJECT_ID = "promotioncbt-app"
 # ADMIN_EMAILS = "admin@example.com"
 # Optional: set to false to skip Firebase Auth disabled-flag sync and only patch profile status.
 # SYNC_AUTH_DISABLED = "true"
+# Phase-2 hybrid auth rollout knobs (not live until auth endpoints are added):
+# CLOUDFLARE_AUTH_ISSUER = "https://promotion-cbt-auth.<your-subdomain>.workers.dev"
 
 # Secrets required (set via `wrangler secret put`):
 # - FIREBASE_API_KEY
 # - GCP_SERVICE_ACCOUNT_EMAIL
 # - GCP_SERVICE_ACCOUNT_PRIVATE_KEY
+# Optional hybrid-auth secret for later:
+# - TURNSTILE_SECRET_KEY
+
+# Optional D1 binding for the future hybrid auth rollout:
+# [[d1_databases]]
+# binding = "AUTH_DB"
+# database_name = "promotion-cbt-auth"
+# database_id = "replace-with-your-d1-database-id"

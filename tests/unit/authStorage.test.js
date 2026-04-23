@@ -184,3 +184,45 @@ test("profile storage helpers round-trip clean values", () => {
     syncedAt: "2026-03-18T12:00:00Z",
   });
 });
+
+
+test("session helpers keep valid cloudflare sessions and reject malformed ones", () => {
+  const sessionStorage = createStorage();
+  const localStorage = createStorage();
+  setupGlobals(sessionStorage, localStorage);
+
+  writeSession({
+    provider: "cloudflare",
+    accessToken: "cf-token-1",
+    expiresAt: 123456,
+    createdAt: "2026-03-18T10:00:00Z",
+    user: {
+      id: "cf-1",
+      email: "user@example.com",
+      plan: "free",
+    },
+  });
+
+  assert.deepEqual(readSession(), {
+    provider: "cloudflare",
+    accessToken: "cf-token-1",
+    refreshToken: "",
+    expiresAt: 123456,
+    createdAt: "2026-03-18T10:00:00Z",
+    lastPlanSyncAt: "",
+    user: {
+      id: "cf-1",
+      name: "",
+      email: "user@example.com",
+      plan: "free",
+      createdAt: "",
+      lastSeenAt: "",
+      emailVerified: "",
+      role: "",
+      status: "",
+    },
+  });
+
+  sessionStorage.setItem("cbt_session_v1", JSON.stringify({ provider: "cloudflare", user: { id: "cf-2" } }));
+  assert.equal(readSession(), null);
+});

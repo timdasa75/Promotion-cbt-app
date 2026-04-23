@@ -12,6 +12,7 @@ import {
   listAdminOperationsViaAdminApi,
   listUsersViaCloudFunction,
   logAdminOperationViaAdminApi,
+  createCloudflareMigrationLinkViaAdminApi,
   setUserStatusViaAdminApi,
 } from "./authAdminApi.js";
 
@@ -35,7 +36,7 @@ export async function getAdminUserDirectory(
     normalizeRow = normalizeDirectoryRow,
   } = {},
 ) {
-  if (cloudAuthEnabled && session?.provider === "firebase" && session.accessToken) {
+  if (cloudAuthEnabled && session?.accessToken) {
     try {
       const freshSession = await ensureAdminSession();
       if (!freshSession?.accessToken) {
@@ -44,15 +45,17 @@ export async function getAdminUserDirectory(
 
       let normalizedRows = [];
       const warnings = [];
-      try {
-        const rows = await listProfiles(freshSession.accessToken);
-        normalizedRows = rows.map((row) => normalizeRow(row, adminEmails));
-      } catch (profileError) {
-        warnings.push(`Cloud profiles unavailable. ${profileError?.message || ""}`.trim());
+      if (freshSession.provider === "firebase") {
+        try {
+          const rows = await listProfiles(freshSession.accessToken);
+          normalizedRows = rows.map((row) => normalizeRow(row, adminEmails));
+        } catch (profileError) {
+          warnings.push(`Cloud profiles unavailable. ${profileError?.message || ""}`.trim());
+        }
       }
 
       let users = normalizedRows;
-      let source = normalizedRows.length ? "cloud" : "local";
+      let source = normalizedRows.length ? "cloud" : freshSession.provider === "cloudflare" ? "cloud-auth" : "local";
 
       try {
         const authUsers = await listAuthUsers(freshSession.accessToken);
@@ -82,7 +85,7 @@ export async function getAdminUserDirectory(
             warnings.push(enriched.warning);
           }
         } else {
-          throw new Error("Firebase Auth list returned zero users and no cloud profiles are available.");
+          throw new Error("Admin API returned zero users and no cloud profiles are available.");
         }
       } catch (error) {
         const cloudFunctionWarning = `Admin API live list unavailable. ${error?.message || ""}`.trim();
@@ -166,4 +169,35 @@ export async function deleteCloudUserById(profileId, ensureAdminSession, deleteU
         "Deploy functions/adminDeleteUserById and confirm admin access is configured.",
     );
   }
+}
+
+
+export async function createCloudflareMigrationLinkForUser(
+  { email, role, plan, status, emailVerified, continueUrl },
+  ensureAdminSession,
+  createLink = createCloudflareMigrationLinkViaAdminApi,
+) {
+  const normalizedEmail = normalizeEmail(email || "");
+  if (!normalizedEmail) {
+    throw new Error("Email is required.");
+  }
+
+  const session = await ensureAdminSession();
+  const result = await createLink(
+    {
+      email: normalizedEmail,
+      role,
+      plan,
+      status,
+      emailVerified,
+      continueUrl,
+    },
+    session.accessToken,
+  );
+
+  return {
+    url: String(result?.url || '').trim(),
+    expiresAt: String(result?.expiresAt || '').trim(),
+    warning: String(result?.warning || '').trim(),
+  };
 }

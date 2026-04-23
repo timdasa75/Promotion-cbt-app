@@ -2,6 +2,11 @@
 // IMPORTANT: config/runtime-auth.js is git-ignored to prevent key leaks.
 
 window.PROMOTION_CBT_AUTH = {
+  // Current production mode is "firebase".
+  // Future migration modes:
+  // - "hybrid": prefer Cloudflare auth when configured, but keep Firebase fallback during cutover.
+  // - "cloudflare": Cloudflare-only auth after migration completes.
+  authProvider: "firebase",
   firebaseApiKey: "REPLACE_WITH_NEW_FIREBASE_API_KEY",
   firebaseProjectId: "promotioncbt-app",
   firebaseAuthDomain: "promotioncbt-app.firebaseapp.com",
@@ -14,6 +19,10 @@ window.PROMOTION_CBT_AUTH = {
   // Example: "https://promotion-cbt-admin.<your-subdomain>.workers.dev"
   // If omitted, app falls back to Firebase Cloud Functions URL.
   adminApiBaseUrl: "", // Required for GitHub Pages without Blaze (set to worker URL)
+  // Phase-1 hybrid auth rails. These are ignored by the current Firebase-first flow until we wire the next slices.
+  cloudflareAuthBaseUrl: "", // Example: "https://promotion-cbt-auth.<your-subdomain>.workers.dev"
+  cloudflareTurnstileSiteKey: "", // Optional until Cloudflare auth endpoints are active
+  allowFirebaseFallback: true,
   // Optional tuning for free-tier stability:
   // Admin directory live sync interval (minimum 15000, maximum 600000).
   adminDirectorySyncIntervalMs: 60000,
@@ -22,7 +31,3 @@ window.PROMOTION_CBT_AUTH = {
   // Password reset cooldown per email (minimum 60000, maximum 86400000).
   passwordResetCooldownMs: 600000,
 };
-
-
-
-

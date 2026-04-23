@@ -53,6 +53,9 @@ import { createMockSetupController } from "./app/mockSetup.js";
 import {
   FEEDBACK_MESSAGE_MAX_LENGTH,
   clearLocalPlanOverride,
+  bootstrapCloudflareMigrationFromFirebase,
+  completeCloudflareMigrationToken,
+  createCloudflareMigrationLinkForUser,
   forceCloudPlanSync,
   getAccessibleTopics,
   getAdminFeedbackSubmissions,
@@ -77,6 +80,7 @@ import {
   registerUser,
   requestPasswordReset,
   resendVerificationEmailForUser,
+  resolveCloudflareMigrationToken,
   setPlanOverride,
   setUpgradeRequestStatus,
   startCloudPlanAutoSync,
@@ -95,6 +99,8 @@ let adminDirectoryUsers = [];
 let adminFeedbackSubmissions = [];
 let activeFeedbackContext = null;
 let pendingMockExamTemplateId = DEFAULT_MOCK_EXAM_TEMPLATE_ID;
+let pendingMigrationToken = "";
+let pendingMigrationMode = "token";
 const REVIEW_MISTAKES_DEFAULT_FILTERS = Object.freeze({
   topic: "all",
   subcategory: "all",
@@ -3300,6 +3306,7 @@ function setActiveAuthTab(mode) {
   const isRegister = mode === "register";
   const loginForm = document.getElementById("loginForm");
   const registerForm = document.getElementById("registerForm");
+  const migrationForm = document.getElementById("migrationForm");
   const loginTab = document.getElementById("authTabLogin");
   const registerTab = document.getElementById("authTabRegister");
 
@@ -3334,6 +3341,91 @@ function closeAuthModal() {
   if (!modal) return;
   modal.classList.add("hidden");
   setAuthMessage("");
+}
+
+function setMigrationMessage(message = "", type = "error") {
+  const migrationMessage = document.getElementById("migrationMessage");
+  if (!migrationMessage) return;
+  if (!message) {
+    migrationMessage.textContent = "";
+    migrationMessage.className = "auth-message hidden";
+    return;
+  }
+  migrationMessage.textContent = message;
+  migrationMessage.className = `auth-message ${type}`;
+}
+
+function clearMigrationQueryParam() {
+  try {
+    const url = new URL(window.location.href);
+    url.searchParams.delete("migration");
+    window.history.replaceState({}, document.title, url.toString());
+  } catch (error) {
+    // Ignore URL cleanup issues.
+  }
+}
+
+function openMigrationModal(details = {}, { mode = "token" } = {}) {
+  const modal = document.getElementById("migrationModal");
+  const emailHint = document.getElementById("migrationEmailHint");
+  const title = document.getElementById("migrationModalTitle");
+  const intro = document.getElementById("migrationModalIntro");
+  if (!modal) return;
+  pendingMigrationMode = mode;
+  if (title) {
+    title.textContent = mode === "firebase-session" ? "Update Your Password" : "Set Your New Password";
+  }
+  if (intro) {
+    intro.textContent = mode === "firebase-session"
+      ? "You're signed in. To keep access seamless, set a new password now for future sign-ins."
+      : "Use your one-time secure link to set a new password and continue signing in to your account.";
+  }
+  if (emailHint) {
+    const email = String(details?.email || "").trim();
+    const expiresAt = String(details?.expiresAt || "").trim();
+    emailHint.textContent = email
+      ? `Account: ${email}${mode === "token" && expiresAt ? ` ? Link expires ${formatDateTime(expiresAt)}` : ""}`
+      : mode === "firebase-session"
+        ? "Set a new password for this account."
+        : "Use this one-time secure link to choose your new password.";
+  }
+  setMigrationMessage("");
+  modal.classList.remove("hidden");
+}
+
+function closeMigrationModal({ clearToken = false } = {}) {
+  const modal = document.getElementById("migrationModal");
+  if (modal) {
+    modal.classList.add("hidden");
+  }
+  const form = document.getElementById("migrationForm");
+  if (form) {
+    form.reset();
+  }
+  setMigrationMessage("");
+  if (clearToken) {
+    pendingMigrationToken = "";
+    clearMigrationQueryParam();
+  }
+  pendingMigrationMode = "token";
+}
+
+async function handleMigrationLinkOnStartup() {
+  const token = new URLSearchParams(window.location.search || "").get("migration");
+  if (!token) return false;
+  pendingMigrationToken = String(token || "").trim();
+  if (!pendingMigrationToken) return false;
+  try {
+    const payload = await resolveCloudflareMigrationToken(pendingMigrationToken);
+    openMigrationModal(payload?.migration || {}, { mode: "token" });
+    return true;
+  } catch (error) {
+    openAuthModal("login");
+    setAuthMessage(error?.message || "Password setup link is unavailable.");
+    clearMigrationQueryParam();
+    pendingMigrationToken = "";
+    return false;
+  }
 }
 
 function ensureAuthPromptOnStartup() {
@@ -3612,37 +3704,87 @@ function updateAuthUI() {
   }
   {
     const cloudConfigMissing = isCloudAuthMisconfigured();
-    const provider = getAuthProviderLabel();
-    const isCloudProvider = provider === "Cloud";
+    const configuredProvider = getAuthProviderLabel("configured");
+    const activeProvider = getAuthProviderLabel();
+    const supportsLegacyFirebaseRecovery = configuredProvider === "Cloud" || configuredProvider === "Hybrid";
 
     if (authModeHint) {
       authModeHint.textContent = cloudConfigMissing
         ? "Auth mode: Cloud required (runtime config missing)"
-        : provider === "Cloud"
+        : configuredProvider === "Cloud"
           ? "Auth mode: Cloud (multi-device)"
-          : provider === "Demo"
-            ? "Auth mode: Demo (single-device, no password storage)"
-            : "Auth mode: Cloud required";
+          : configuredProvider === "Hybrid"
+            ? "Auth mode: Hybrid (Cloudflare primary, Firebase fallback)"
+            : configuredProvider === "Cloudflare"
+              ? "Auth mode: Cloudflare (migration phase)"
+              : configuredProvider === "Demo"
+                ? "Auth mode: Demo (single-device, no password storage)"
+                : "Auth mode: Cloud required";
     }
 
     if (authModalIntro) {
       authModalIntro.textContent = cloudConfigMissing
         ? "Cloud authentication is required on this deployment."
-        : provider === "Cloud"
+        : configuredProvider === "Cloud" || configuredProvider === "Hybrid" || configuredProvider === "Cloudflare"
           ? "Register or login with your email to continue."
-          : provider === "Demo"
+          : configuredProvider === "Demo"
             ? "Local demo access is available on this device only. Passwords are not stored."
             : "Cloud authentication is required on this deployment.";
     }
 
-    if (forgotPasswordBtn) {
-      forgotPasswordBtn.classList.toggle("hidden", !isCloudProvider);
-      forgotPasswordBtn.disabled = !isCloudProvider;
+    if (migrationForm) {
+    migrationForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (pendingMigrationMode !== "firebase-session" && !pendingMigrationToken) {
+        setMigrationMessage("This password setup link is missing or has already been used.");
+        return;
+      }
+      const password = document.getElementById("migrationPassword")?.value || "";
+      const confirmPassword = document.getElementById("migrationConfirmPassword")?.value || "";
+      if (password !== confirmPassword) {
+        setMigrationMessage("Passwords do not match.");
+        return;
+      }
+      try {
+        const result = await runOperationWithFeedback(
+          async () => pendingMigrationMode === "firebase-session"
+            ? bootstrapCloudflareMigrationFromFirebase(password)
+            : completeCloudflareMigrationToken(pendingMigrationToken, password),
+          {
+            loadingMessage: "Saving your new password...",
+            successMessage: (output) => output?.payload?.warning || "Password set successfully.",
+            failurePrefix: "Unable to complete migration:",
+          },
+        );
+        pendingMigrationToken = "";
+        clearMigrationQueryParam();
+        updateAuthUI();
+        refreshDashboardInsights();
+        await refreshAccessibleTopics();
+        closeMigrationModal();
+        closeAuthModal();
+        await showScreen("topicSelectionScreen");
+        showFreeTierNoticeIfNeeded();
+      } catch (error) {
+        setMigrationMessage(error?.message || "Unable to complete migration.");
+      }
+    });
+  }
+
+  if (forgotPasswordBtn) {
+      forgotPasswordBtn.classList.toggle("hidden", !supportsLegacyFirebaseRecovery);
+      forgotPasswordBtn.disabled = !supportsLegacyFirebaseRecovery;
+      forgotPasswordBtn.title = configuredProvider === "Hybrid"
+        ? "Password reset is currently available for Firebase-backed accounts during migration."
+        : forgotPasswordBtn.title;
     }
 
     if (changePasswordBtn) {
-      changePasswordBtn.classList.toggle("hidden", !isCloudProvider);
-      changePasswordBtn.disabled = !isCloudProvider;
+      changePasswordBtn.classList.toggle("hidden", !supportsLegacyFirebaseRecovery);
+      changePasswordBtn.disabled = !supportsLegacyFirebaseRecovery;
+      changePasswordBtn.title = configuredProvider === "Hybrid"
+        ? "Password reset is currently available for Firebase-backed accounts during migration."
+        : changePasswordBtn.title;
     }
   }
   if (profileDisplayName) {
@@ -4464,7 +4606,9 @@ function updateProfileDataSyncUI() {
   }
 
   if (provider !== "Cloud") {
-    statusEl.textContent = "Cloud sync is unavailable in Local auth mode.";
+    statusEl.textContent = provider === "Demo"
+      ? "Cloud sync is unavailable in Local auth mode."
+      : "Cloud sync is not available for the current auth session yet.";
     return;
   }
 
@@ -4718,7 +4862,11 @@ function renderAdminUserDirectory() {
     const isSuspended = entry.status === "suspended";
     const accountActionLabel = isSuspended ? "Reactivate" : "Deactivate";
     const accountNextStatus = isSuspended ? "active" : "suspended";
+    const hasCloudflareLogin = entry.source === "cloudflare-auth";
+    const cloudflareActionLabel = hasCloudflareLogin ? "Create password reset link" : "Create password setup link";
     const safeProfileId = escapeHtml(entry.id);
+    const safeProfileRole = escapeHtml(entry.role || "user");
+    const safeProfileStatus = escapeHtml(entry.status || "active");
 
     const upgradeStatus = normalizeUpgradeRequestStatus(entry?.upgradeRequestStatus);
     const hasUpgrade =
@@ -4791,6 +4939,9 @@ function renderAdminUserDirectory() {
               <button class="directory-action directory-action-menu-item" data-action="resend-verification" data-profile-email="${safeEmail}" data-email-verified="${verification.dataValue}" type="button" role="menuitem">
                 Resend verification
               </button>
+              <button class="directory-action directory-action-menu-item" data-action="create-cloudflare-link" data-profile-email="${safeEmail}" data-profile-role="${safeProfileRole}" data-profile-plan="${safePlan}" data-profile-status="${safeProfileStatus}" data-email-verified="${verification.dataValue}" data-profile-source="${safeSource}" type="button" role="menuitem">
+                ${profileSource === "cloudflare-auth" ? "Create password reset link" : "Create password setup link"}
+              </button>
               <button class="directory-action directory-action-menu-item danger" data-action="set-account-state" data-profile-id="${safeProfileId}" data-profile-email="${safeEmail}" data-next-status="${accountNextStatus}" type="button" role="menuitem">
                 ${accountActionLabel} account
               </button>
@@ -4827,6 +4978,10 @@ function renderAdminUserDirectory() {
     if (!action) return;
     const profileId = button.dataset.profileId;
     const profileEmail = button.dataset.profileEmail;
+    const profileRole = String(button.dataset.profileRole || "user").trim().toLowerCase();
+    const profilePlan = String(button.dataset.profilePlan || "free").trim().toLowerCase();
+    const profileStatus = String(button.dataset.profileStatus || "active").trim().toLowerCase();
+    const profileSource = String(button.dataset.profileSource || "").trim().toLowerCase();
     const nextStatus = String(button.dataset.nextStatus || "").trim().toLowerCase();
     const emailVerificationState = String(button.dataset.emailVerified || "").trim().toLowerCase();
     const isEmailVerified = emailVerificationState === "true";
@@ -4841,6 +4996,8 @@ function renderAdminUserDirectory() {
           ? "Send password reset"
           : action === "resend-verification"
             ? "Resend verification email"
+            : action === "create-cloudflare-link"
+              ? (profileSource === "cloudflare-auth" ? "Create password reset link" : "Create password setup link")
         : "Update account status";
     let actionWarning = "";
     if (action === "set-account-state") {
@@ -4870,6 +5027,28 @@ function renderAdminUserDirectory() {
                 ? "Verification email delivery is unavailable in the current backend path."
                 : "Verification email sent."),
             ).trim();
+            return;
+          }
+          if (action === "create-cloudflare-link") {
+            const result = await createCloudflareMigrationLinkForUser({
+              email: profileEmail,
+              role: profileRole,
+              plan: profilePlan,
+              status: profileStatus,
+              emailVerified: isEmailVerified,
+              continueUrl: window.location.origin + window.location.pathname,
+            });
+            const link = String(result?.url || "").trim();
+            if (!link) {
+              throw new Error("Password setup link could not be created.");
+            }
+            try {
+              await navigator.clipboard.writeText(link);
+              actionWarning = `${profileSource === "cloudflare-auth" ? "Password reset link" : "Password setup link"} copied to clipboard.`;
+            } catch (clipboardError) {
+              window.prompt("Copy this one-time Cloudflare link:", link);
+              actionWarning = `${profileSource === "cloudflare-auth" ? "Password reset link" : "Password setup link"} generated.`;
+            }
             return;
           }
           if (action === "set-account-state") {
@@ -5053,12 +5232,15 @@ function initializeAuthUI() {
   const authCloseBtn = document.getElementById("authCloseBtn");
   const authModal = document.getElementById("authModal");
   const freeTierModal = document.getElementById("freeTierModal");
+  const migrationModal = document.getElementById("migrationModal");
   const freeTierCloseBtn = document.getElementById("freeTierCloseBtn");
   const freeTierAcknowledgeBtn = document.getElementById("freeTierAcknowledgeBtn");
+  const migrationCloseBtn = document.getElementById("migrationCloseBtn");
   const loginTab = document.getElementById("authTabLogin");
   const registerTab = document.getElementById("authTabRegister");
   const loginForm = document.getElementById("loginForm");
   const registerForm = document.getElementById("registerForm");
+  const migrationForm = document.getElementById("migrationForm");
   const forgotPasswordBtn = document.getElementById("forgotPasswordBtn");
   const changePasswordBtn = document.getElementById("changePasswordBtn");
   const profileLogoutBtn = document.getElementById("profileLogoutBtn");
@@ -5112,6 +5294,16 @@ function initializeAuthUI() {
     });
   }
 
+  if (migrationCloseBtn) {
+    migrationCloseBtn.addEventListener("click", () => closeMigrationModal({ clearToken: true }));
+  }
+
+  if (migrationModal) {
+    migrationModal.addEventListener("click", (event) => {
+      if (event.target === migrationModal) closeMigrationModal({ clearToken: true });
+    });
+  }
+
   if (freeTierCloseBtn) {
     freeTierCloseBtn.addEventListener("click", closeFreeTierNotice);
   }
@@ -5152,6 +5344,9 @@ function initializeAuthUI() {
             closeAuthModal();
             await showScreen("topicSelectionScreen");
             showFreeTierNoticeIfNeeded();
+            if (loginResult?.shouldPromptPasswordUpgrade) {
+              openMigrationModal({ email: loginResult?.email || email }, { mode: "firebase-session" });
+            }
             return loginResult;
           },
           {
@@ -5852,7 +6047,10 @@ document.addEventListener("DOMContentLoaded", async function () {
     refreshAdminUserDirectory();
     refreshAdminFeedbackSubmissions().catch(() => {});
   }
-  ensureAuthPromptOnStartup();
+  const openedMigrationFlow = await handleMigrationLinkOnStartup();
+  if (!openedMigrationFlow) {
+    ensureAuthPromptOnStartup();
+  }
 
   document.addEventListener("authplanchange", async () => {
     updateAuthUI();

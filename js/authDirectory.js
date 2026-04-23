@@ -126,9 +126,9 @@ export function buildAuthBackedDirectoryRows(authUsers, profileRows, adminEmails
       if (!id || !email) return null;
 
       const profile = profileById.get(id) || profileByEmail.get(email) || null;
-      const role = normalizeRole(profile?.role || (adminSet.has(email) ? "admin" : "user"));
-      const status = normalizeStatus(profile?.status || (authUser?.disabled ? "suspended" : "active"));
-      const plan = normalizePlan(overrides[email] || profile?.plan || "free");
+      const role = normalizeRole(profile?.role || authUser?.role || (adminSet.has(email) ? "admin" : "user"));
+      const status = normalizeStatus(profile?.status || authUser?.status || (authUser?.disabled ? "suspended" : "active"));
+      const plan = normalizePlan(overrides[email] || profile?.plan || authUser?.plan || "free");
 
       return {
         id,
@@ -150,7 +150,7 @@ export function buildAuthBackedDirectoryRows(authUsers, profileRows, adminEmails
         upgradeReviewedAt: String(profile?.upgradeReviewedAt || ""),
         upgradeReviewedBy: normalizeEmail(profile?.upgradeReviewedBy || ""),
         upgradeRequestReviewNote: String(profile?.upgradeRequestReviewNote || ""),
-        source: "cloud-auth",
+        source: String(authUser?.source || "cloud-auth"),
       };
     })
     .filter(Boolean);

@@ -55,8 +55,12 @@ export async function ensureAdminCloudSession({
   if (!isCurrentUserAdmin(currentUser, adminEmails)) {
     throw new Error("Admin access is required.");
   }
-  if (!cloudAuthEnabled || session?.provider !== "firebase") {
+  if (!cloudAuthEnabled || !session?.provider || !session?.accessToken) {
     throw new Error("Cloud session is unavailable.");
+  }
+
+  if (session.provider === "cloudflare") {
+    return session;
   }
 
   const freshSession = await refreshSession(session, { clearOnFailure: true });
