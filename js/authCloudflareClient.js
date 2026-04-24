@@ -98,6 +98,34 @@ export async function logoutCloudflareSession(accessToken, fetchImpl = fetch) {
   });
 }
 
+export async function changeCloudflarePassword(accessToken, password, fetchImpl = fetch) {
+  const payload = await requestCloudflareAuth("auth/password/change", {
+    method: "POST",
+    accessToken,
+    body: {
+      password: String(password || ""),
+    },
+    fetchImpl,
+  });
+  const session = writeCloudflareSessionFromAuthPayload(payload);
+  return {
+    payload,
+    session,
+  };
+}
+
+export async function requestCloudflarePasswordRecovery(email, continueUrl = "", fetchImpl = fetch) {
+  return requestCloudflareAuth("auth/password/request", {
+    method: "POST",
+    body: {
+      email: normalizeEmail(email || ""),
+      continueUrl: String(continueUrl || "").trim(),
+    },
+    fetchImpl,
+  });
+}
+
+
 
 export async function resolveCloudflareMigrationToken(token, fetchImpl = fetch) {
   return requestCloudflareAuth("auth/migration/resolve", {

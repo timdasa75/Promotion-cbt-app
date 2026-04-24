@@ -445,6 +445,37 @@ export async function handleAuthMigrationComplete(request, env) {
   };
 }
 
+export async function handleAuthPasswordChange(request, env) {
+  const database = requireAuthDatabase(env);
+  const sessionToken = parseBearerToken(request);
+  const body = await readJsonBody(request);
+  const password = String(body?.password || '');
+  const session = await readSessionRecord(database, sessionToken);
+  const authUser = await getAuthUserById(database, String(session.user_id || ''));
+  if (!authUser?.id) {
+    throw createHttpError(401, 'Session user not found.');
+  }
+
+  const passwordHash = await hashPassword(password);
+  const nowIso = new Date().toISOString();
+  await database
+    .prepare('UPDATE auth_users SET password_hash = ?2, updated_at = ?3 WHERE id = ?1')
+    .bind(String(authUser.id), passwordHash, nowIso)
+    .run();
+
+  await deleteSession(database, String(session.session_id || ''));
+  const rotatedSession = await issueSession(database, String(authUser.id), request, env);
+  const refreshedUser = await getAuthUserById(database, String(authUser.id));
+
+  return {
+    ok: true,
+    mode: 'cloudflare-auth',
+    user: buildPublicAuthUser(refreshedUser),
+    session: rotatedSession,
+    warning: "Password updated successfully. You're still signed in.",
+  };
+}
+
 export async function handleAuthRegister(request, env) {
   const database = requireAuthDatabase(env);
   const body = await readJsonBody(request);
@@ -573,6 +604,7 @@ export function resolveHybridAuthRouteHandler(path) {
   if (path.endsWith("/auth/login")) return handleAuthLogin;
   if (path.endsWith("/auth/session")) return handleAuthSession;
   if (path.endsWith("/auth/logout")) return handleAuthLogout;
+  if (path.endsWith("/auth/password/change")) return handleAuthPasswordChange;
   if (path.endsWith("/auth/migration/resolve")) return handleAuthMigrationResolve;
   if (path.endsWith("/auth/migration/complete")) return handleAuthMigrationComplete;
   return null;

@@ -19,7 +19,7 @@ import { ensureCloudSessionActive } from "./authCloudSession.js";
 import { readCloudProgressSummary as readCloudProgressSummaryCloud, writeCloudProgressSummary as writeCloudProgressSummaryCloud } from "./authCloudProgress.js";
 import { findCloudProfilesByEmail, patchCloudProfileFields, upsertCloudProfile, upsertCloudUpgradeRequestRecord } from "./authCloudFirestore.js";
 import { sendVerificationViaAdminApi } from "./authAdminApi.js";
-import { bootstrapCloudflareMigrationFromFirebase as bootstrapCloudflareMigrationFromFirebaseClient, completeCloudflareMigrationToken as completeCloudflareMigrationTokenClient, resolveCloudflareMigrationToken as resolveCloudflareMigrationTokenClient } from "./authCloudflareClient.js";
+import { bootstrapCloudflareMigrationFromFirebase as bootstrapCloudflareMigrationFromFirebaseClient, changeCloudflarePassword as changeCloudflarePasswordClient, completeCloudflareMigrationToken as completeCloudflareMigrationTokenClient, requestCloudflarePasswordRecovery as requestCloudflarePasswordRecoveryClient, resolveCloudflareMigrationToken as resolveCloudflareMigrationTokenClient } from "./authCloudflareClient.js";
 import { enrichDirectoryVerificationStates, ensureAdminCloudSession as ensureAdminCloudSessionHelper, getConfiguredAdminEmails as getConfiguredAdminEmailsHelper, isCurrentUserAdmin as isCurrentUserAdminHelper } from "./authAdminDirectory.js";
 import { deleteCloudUserById as deleteCloudUserByIdService, getAdminOperationHistory as getAdminOperationHistoryService, getAdminUserDirectory as getAdminUserDirectoryService, logAdminOperationToCloud as logAdminOperationToCloudService, createCloudflareMigrationLinkForUser as createCloudflareMigrationLinkForUserService, updateCloudUserStatusById as updateCloudUserStatusByIdService } from "./authAdminService.js";
 import { buildUpgradeRequestRecordFromProfile as buildUpgradeRequestRecordFromProfileService, ensureCloudProfileInSession as ensureCloudProfileInSessionService, getCurrentUserUpgradeRequest as getCurrentUserUpgradeRequestService, setUpgradeRequestStatus as setUpgradeRequestStatusService, submitUpgradeRequest as submitUpgradeRequestService } from "./authUpgradeService.js";
@@ -743,19 +743,69 @@ export async function requestPasswordReset(email, redirectTo = "") {
   }
   assertPasswordResetAllowed(normalizedEmail);
 
-  const body = {
-    requestType: "PASSWORD_RESET",
-    email: normalizedEmail,
-  };
-  if (String(redirectTo || "").trim()) {
-    body.continueUrl = String(redirectTo).trim();
+  const continueUrl = String(redirectTo || "").trim();
+  const genericMessage = "If this email matches an account, recovery instructions will follow shortly.";
+
+  if (isCloudflareAuthPrimary()) {
+    let cloudflareAccepted = false;
+    let cloudflareMessage = genericMessage;
+    try {
+      const cloudflareRecovery = await requestCloudflarePasswordRecoveryClient(normalizedEmail, continueUrl);
+      cloudflareAccepted = cloudflareRecovery?.accepted !== false;
+      cloudflareMessage = String(cloudflareRecovery?.warning || cloudflareRecovery?.message || genericMessage).trim() || genericMessage;
+    } catch (cloudflareError) {
+      if (!shouldAllowFirebaseAuthFallback()) {
+        throw cloudflareError;
+      }
+    }
+
+    if (shouldAllowFirebaseAuthFallback()) {
+      try {
+        await firebaseAuthRequest("accounts:sendOobCode", {
+          method: "POST",
+          body: {
+            requestType: "PASSWORD_RESET",
+            email: normalizedEmail,
+            ...(continueUrl ? { continueUrl } : {}),
+          },
+        });
+        markPasswordResetRequest(normalizedEmail);
+        return {
+          delivered: true,
+          mode: "firebase-reset",
+          message: genericMessage,
+        };
+      } catch (firebaseError) {
+        const failureCode = String(firebaseError?.message || "").toUpperCase();
+        const canSuppressFirebaseFailure = cloudflareAccepted || failureCode.includes("EMAIL_NOT_FOUND") || failureCode.includes("USER_NOT_FOUND");
+        if (!canSuppressFirebaseFailure) {
+          throw firebaseError;
+        }
+      }
+    }
+
+    markPasswordResetRequest(normalizedEmail);
+    return {
+      delivered: true,
+      mode: cloudflareAccepted ? "cloudflare-recovery-request" : "generic",
+      message: cloudflareMessage,
+    };
   }
 
   await firebaseAuthRequest("accounts:sendOobCode", {
     method: "POST",
-    body,
+    body: {
+      requestType: "PASSWORD_RESET",
+      email: normalizedEmail,
+      ...(continueUrl ? { continueUrl } : {}),
+    },
   });
   markPasswordResetRequest(normalizedEmail);
+  return {
+    delivered: true,
+    mode: "firebase-reset",
+    message: genericMessage,
+  };
 }
 
 export async function resendVerificationEmailForUser(email, redirectTo = "") {
@@ -1253,6 +1303,15 @@ export async function bootstrapCloudflareMigrationFromFirebase(password) {
   }
   return bootstrapCloudflareMigrationFromFirebaseClient(session.accessToken, password);
 }
+
+export async function changeCloudflarePasswordForCurrentUser(password) {
+  const session = readSession();
+  if (!session?.accessToken || session?.provider !== "cloudflare") {
+    throw new Error("A signed-in cloud account is required.");
+  }
+  return changeCloudflarePasswordClient(session.accessToken, password);
+}
+
 export async function deleteCloudUserById(profileId) {
   return deleteCloudUserByIdService(profileId, ensureAdminCloudSession);
 }

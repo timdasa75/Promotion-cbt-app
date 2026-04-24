@@ -54,6 +54,7 @@ import {
   FEEDBACK_MESSAGE_MAX_LENGTH,
   clearLocalPlanOverride,
   bootstrapCloudflareMigrationFromFirebase,
+  changeCloudflarePasswordForCurrentUser,
   completeCloudflareMigrationToken,
   createCloudflareMigrationLinkForUser,
   forceCloudPlanSync,
@@ -3370,22 +3371,32 @@ function openMigrationModal(details = {}, { mode = "token" } = {}) {
   const emailHint = document.getElementById("migrationEmailHint");
   const title = document.getElementById("migrationModalTitle");
   const intro = document.getElementById("migrationModalIntro");
+  const submitButton = document.querySelector("#migrationForm button[type='submit']");
   if (!modal) return;
   pendingMigrationMode = mode;
   if (title) {
-    title.textContent = mode === "firebase-session" ? "Update Your Password" : "Set Your New Password";
+    title.textContent = mode === "firebase-session"
+      ? "Update Your Password"
+      : mode === "cloudflare-session"
+        ? "Change Your Password"
+        : "Set Your New Password";
   }
   if (intro) {
     intro.textContent = mode === "firebase-session"
       ? "You're signed in. To keep access seamless, set a new password now for future sign-ins."
-      : "Use your one-time secure link to set a new password and continue signing in to your account.";
+      : mode === "cloudflare-session"
+        ? "You're signed in with your new account. Choose a fresh password now and we'll keep you signed in."
+        : "Use your one-time secure link to set a new password and continue signing in to your account.";
+  }
+  if (submitButton) {
+    submitButton.textContent = mode === "cloudflare-session" ? "Save new password" : "Save password and sign in";
   }
   if (emailHint) {
     const email = String(details?.email || "").trim();
     const expiresAt = String(details?.expiresAt || "").trim();
     emailHint.textContent = email
       ? `Account: ${email}${mode === "token" && expiresAt ? ` ? Link expires ${formatDateTime(expiresAt)}` : ""}`
-      : mode === "firebase-session"
+      : mode === "firebase-session" || mode === "cloudflare-session"
         ? "Set a new password for this account."
         : "Use this one-time secure link to choose your new password.";
   }
@@ -3707,6 +3718,7 @@ function updateAuthUI() {
     const configuredProvider = getAuthProviderLabel("configured");
     const activeProvider = getAuthProviderLabel();
     const supportsLegacyFirebaseRecovery = configuredProvider === "Cloud" || configuredProvider === "Hybrid";
+    const supportsSignedInCloudflarePasswordChange = Boolean(user) && (activeProvider === "Hybrid" || activeProvider === "Cloudflare");
 
     if (authModeHint) {
       authModeHint.textContent = cloudConfigMissing
@@ -3735,7 +3747,7 @@ function updateAuthUI() {
     if (migrationForm) {
     migrationForm.addEventListener("submit", async (event) => {
       event.preventDefault();
-      if (pendingMigrationMode !== "firebase-session" && !pendingMigrationToken) {
+      if (!["firebase-session", "cloudflare-session"].includes(pendingMigrationMode) && !pendingMigrationToken) {
         setMigrationMessage("This password setup link is missing or has already been used.");
         return;
       }
@@ -3746,14 +3758,18 @@ function updateAuthUI() {
         return;
       }
       try {
-        const result = await runOperationWithFeedback(
+        await runOperationWithFeedback(
           async () => pendingMigrationMode === "firebase-session"
             ? bootstrapCloudflareMigrationFromFirebase(password)
-            : completeCloudflareMigrationToken(pendingMigrationToken, password),
+            : pendingMigrationMode === "cloudflare-session"
+              ? changeCloudflarePasswordForCurrentUser(password)
+              : completeCloudflareMigrationToken(pendingMigrationToken, password),
           {
             loadingMessage: "Saving your new password...",
             successMessage: (output) => output?.payload?.warning || "Password set successfully.",
-            failurePrefix: "Unable to complete migration:",
+            failurePrefix: pendingMigrationMode === "cloudflare-session"
+              ? "Unable to update password:"
+              : "Unable to complete migration:",
           },
         );
         pendingMigrationToken = "";
@@ -3766,7 +3782,7 @@ function updateAuthUI() {
         await showScreen("topicSelectionScreen");
         showFreeTierNoticeIfNeeded();
       } catch (error) {
-        setMigrationMessage(error?.message || "Unable to complete migration.");
+        setMigrationMessage(error?.message || (pendingMigrationMode === "cloudflare-session" ? "Unable to update password." : "Unable to complete migration."));
       }
     });
   }
@@ -3775,16 +3791,19 @@ function updateAuthUI() {
       forgotPasswordBtn.classList.toggle("hidden", !supportsLegacyFirebaseRecovery);
       forgotPasswordBtn.disabled = !supportsLegacyFirebaseRecovery;
       forgotPasswordBtn.title = configuredProvider === "Hybrid"
-        ? "Password reset is currently available for Firebase-backed accounts during migration."
+        ? "If you're signed out, we'll either send a reset email or record a recovery request for follow-up."
         : forgotPasswordBtn.title;
     }
 
     if (changePasswordBtn) {
-      changePasswordBtn.classList.toggle("hidden", !supportsLegacyFirebaseRecovery);
-      changePasswordBtn.disabled = !supportsLegacyFirebaseRecovery;
-      changePasswordBtn.title = configuredProvider === "Hybrid"
-        ? "Password reset is currently available for Firebase-backed accounts during migration."
-        : changePasswordBtn.title;
+      const canUseChangePassword = supportsLegacyFirebaseRecovery || supportsSignedInCloudflarePasswordChange;
+      changePasswordBtn.classList.toggle("hidden", !canUseChangePassword);
+      changePasswordBtn.disabled = !canUseChangePassword;
+      changePasswordBtn.title = supportsSignedInCloudflarePasswordChange
+        ? "Choose a new password while signed in."
+        : configuredProvider === "Hybrid"
+          ? "If you're signed out, use Forgot password. If you're signed in, you can change it here."
+          : changePasswordBtn.title;
     }
   }
   if (profileDisplayName) {
@@ -5437,15 +5456,15 @@ function initializeAuthUI() {
         return;
       }
   try {
-        await runOperationWithFeedback(
+        const result = await runOperationWithFeedback(
           () => requestPasswordReset(email, window.location.href),
           {
-            loadingMessage: "Sending password reset link...",
-            successMessage: "Password reset link sent. Check your email inbox.",
-            failurePrefix: "Unable to send password reset link:",
+            loadingMessage: "Preparing account recovery...",
+            successMessage: (output) => output?.message || "If this email matches an account, recovery instructions will follow shortly.",
+            failurePrefix: "Unable to start account recovery:",
           },
         );
-        setAuthMessage("Password reset link sent. Check your email inbox.", "success");
+        setAuthMessage(result?.message || "If this email matches an account, recovery instructions will follow shortly.", "success");
       } catch (error) {
         setAuthMessage(error.message || "Unable to send password reset link.");
       }
@@ -5466,13 +5485,18 @@ function initializeAuthUI() {
         showWarning("Login is required to change password.");
         return;
       }
-  try {
+      const activeProvider = getAuthProviderLabel();
+      if (activeProvider === "Hybrid" || activeProvider === "Cloudflare") {
+        openMigrationModal({ email }, { mode: "cloudflare-session" });
+        return;
+      }
+      try {
         await runOperationWithFeedback(
           () => requestPasswordReset(email, window.location.href),
           {
-            loadingMessage: "Sending password reset link...",
-            successMessage: "Password reset link sent to your registered email.",
-            failurePrefix: "Unable to send password reset link:",
+            loadingMessage: "Preparing account recovery...",
+            successMessage: (output) => output?.message || "If this email matches an account, recovery instructions will follow shortly.",
+            failurePrefix: "Unable to start account recovery:",
           },
         );
       } catch (error) {

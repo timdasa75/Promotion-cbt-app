@@ -395,6 +395,73 @@ async function listCloudflareAuthUsers(env) {
   }));
 }
 
+function requireAuditDatabase(env) {
+  const database = env.AUTH_DB;
+  if (!database || typeof database.prepare !== "function") {
+    throw new Error("Cloudflare auth database is not configured.");
+  }
+  return database;
+}
+
+function safeParseJson(value, fallback = {}) {
+  try {
+    const parsed = JSON.parse(String(value || "{}"));
+    return parsed && typeof parsed === "object" ? parsed : fallback;
+  } catch {
+    return fallback;
+  }
+}
+
+async function insertAuditLogRecord(database, {
+  actorUserId = "",
+  actorEmail = "",
+  targetUserId = "",
+  action = "operation",
+  status = "success",
+  details = {},
+} = {}) {
+  const createdAt = new Date().toISOString();
+  const id = crypto.randomUUID();
+  await database
+    .prepare(`
+      INSERT INTO auth_audit_log (
+        id,
+        actor_user_id,
+        actor_email,
+        target_user_id,
+        action,
+        status,
+        details_json,
+        created_at
+      ) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8)
+    `)
+    .bind(
+      id,
+      String(actorUserId || ""),
+      normalizeEmail(actorEmail || ""),
+      String(targetUserId || ""),
+      String(action || "operation"),
+      String(status || "success").trim().toLowerCase() || "success",
+      JSON.stringify(details || {}),
+      createdAt,
+    )
+    .run();
+  return { id, createdAt };
+}
+
+function mapAuditLogToAdminOperation(row) {
+  const details = safeParseJson(row?.details_json || "{}", {});
+  return {
+    id: String(row?.id || "").trim(),
+    action: String(row?.action || details?.action || "operation").trim() || "operation",
+    target: String(details?.target || details?.targetEmail || row?.target_user_id || "-").trim() || "-",
+    status: String(row?.status || details?.status || "success").trim().toLowerCase() || "success",
+    message: String(details?.message || "").trim(),
+    actor: String(row?.actor_email || details?.actor || "system").trim() || "system",
+    createdAt: String(row?.created_at || "").trim(),
+  };
+}
+
 async function verifyAdminCaller(request, env) {
   const header = String(request.headers.get("authorization") || "");
   if (!header.startsWith("Bearer ")) {
@@ -800,6 +867,89 @@ async function handleAdminSendVerificationEmail(request, env) {
   };
 }
 
+async function handleAuthPasswordRecoveryRequest(request, env) {
+  const database = requireAuditDatabase(env);
+  const body = await readJsonBody(request);
+  const email = normalizeEmail(body?.email || "");
+  if (!email || !email.includes("@")) {
+    throw new Error("email is required.");
+  }
+
+  const authUser = await database
+    .prepare(`
+      SELECT id, email, status
+      FROM auth_users
+      WHERE email = ?1
+      LIMIT 1
+    `)
+    .bind(email)
+    .first();
+
+  if (authUser?.id && String(authUser?.status || "active").toLowerCase() !== "deleted") {
+    await insertAuditLogRecord(database, {
+      actorEmail: "self-service",
+      targetUserId: String(authUser.id || ""),
+      action: "Password recovery requested",
+      status: "pending",
+      details: {
+        targetEmail: email,
+        target: email,
+        actor: "self-service",
+        message: "User requested logged-out password recovery.",
+        channel: "forgot-password",
+      },
+    });
+  }
+
+  return {
+    ok: true,
+    accepted: true,
+    warning: "If this email matches an account, recovery instructions will follow shortly.",
+  };
+}
+
+async function handleAdminLogOperation(request, env) {
+  const actor = await verifyAdminCaller(request, env);
+  const database = requireAuditDatabase(env);
+  const body = await readJsonBody(request);
+  const details = {
+    target: String(body?.target || "").trim(),
+    message: String(body?.message || "").trim(),
+    actor: String(body?.actor || actor?.email || "system").trim(),
+  };
+  await insertAuditLogRecord(database, {
+    actorUserId: String(actor?.id || ""),
+    actorEmail: String(actor?.email || ""),
+    targetUserId: String(body?.targetUserId || "").trim(),
+    action: String(body?.action || "Admin action").trim() || "Admin action",
+    status: String(body?.status || "success").trim().toLowerCase() || "success",
+    details,
+  });
+  return { ok: true };
+}
+
+async function handleAdminListOperations(request, env) {
+  await verifyAdminCaller(request, env);
+  const database = requireAuditDatabase(env);
+  const body = await readJsonBody(request);
+  const rawLimit = Number(body?.limit || 120);
+  const limit = Math.max(1, Math.min(200, Number.isFinite(rawLimit) ? Math.floor(rawLimit) : 120));
+  const result = await database
+    .prepare(`
+      SELECT id, actor_user_id, actor_email, target_user_id, action, status, details_json, created_at
+      FROM auth_audit_log
+      ORDER BY created_at DESC
+      LIMIT ?1
+    `)
+    .bind(limit)
+    .all();
+  const rows = Array.isArray(result?.results) ? result.results : [];
+  return {
+    ok: true,
+    operations: rows.map((row) => mapAuditLogToAdminOperation(row)),
+  };
+}
+
 async function deleteProfileDocument(env, userId) {
   const docUrl = firestoreDocumentUrl(env, `profiles/${encodeURIComponent(userId)}`);
   let exists = false;
@@ -916,6 +1066,7 @@ async function handleAdminDeleteUserById(request, env) {
 }
 
 function resolveRouteHandler(path) {
+  if (path.endsWith("/auth/password/request")) return handleAuthPasswordRecoveryRequest;
   const authRouteHandler = resolveHybridAuthRouteHandler(path);
   if (authRouteHandler) return authRouteHandler;
   if (path.endsWith("/adminListUsers")) return handleAdminListUsers;

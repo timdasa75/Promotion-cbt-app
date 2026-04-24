@@ -26,5 +26,6 @@ test("cloudflare hybrid auth route resolver only claims auth routes", () => {
   assert.equal(typeof resolveHybridAuthRouteHandler("/auth/login"), "function");
   assert.equal(typeof resolveHybridAuthRouteHandler("/auth/session"), "function");
   assert.equal(typeof resolveHybridAuthRouteHandler("/auth/logout"), "function");
+  assert.equal(typeof resolveHybridAuthRouteHandler("/auth/password/change"), "function");
   assert.equal(resolveHybridAuthRouteHandler("/adminListUsers"), null);
 });
