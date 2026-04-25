@@ -43,9 +43,10 @@ export async function getAdminUserDirectory(
         throw new Error("Cloud session is unavailable.");
       }
 
+      const sessionProvider = String(freshSession?.provider || session?.provider || "").trim().toLowerCase();
       let normalizedRows = [];
       const warnings = [];
-      if (freshSession.provider === "firebase") {
+      if (sessionProvider === "firebase") {
         try {
           const rows = await listProfiles(freshSession.accessToken);
           normalizedRows = rows.map((row) => normalizeRow(row, adminEmails));
@@ -55,7 +56,7 @@ export async function getAdminUserDirectory(
       }
 
       let users = normalizedRows;
-      let source = normalizedRows.length ? "cloud" : freshSession.provider === "cloudflare" ? "cloud-auth" : "local";
+      let source = normalizedRows.length ? "cloud" : sessionProvider === "cloudflare" ? "cloud-auth" : "local";
 
       try {
         const authUsers = await listAuthUsers(freshSession.accessToken);

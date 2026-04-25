@@ -59,6 +59,10 @@ export async function ensureAdminCloudSession({
     throw new Error("Cloud session is unavailable.");
   }
 
+  if (!["firebase", "cloudflare"].includes(String(session.provider || "").trim().toLowerCase())) {
+    throw new Error("Cloud session is unavailable.");
+  }
+
   if (session.provider === "cloudflare") {
     return session;
   }
