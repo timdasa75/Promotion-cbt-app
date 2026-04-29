@@ -1,8 +1,17 @@
 import { isFeatureEnabled } from "./features.js";
+import { requestCloudflareAuth } from "./authCloudflareClient.js";
+import { readSession } from "./authStorage.js";
+import {
+  collectSubcategories,
+  countQuestionsFromTopicData,
+  extractQuestionsByCategory,
+  getQuestionsFromSubcategory,
+} from "./topicDataShape.js";
 
 // topicSources.js - shared utilities for topic data sources
 
 const jsonCache = new Map();
+const protectedTopicCache = new Map();
 const PERSISTENT_CACHE_PREFIX = "promotion-cbt:json-cache:v1:";
 const PERSISTENT_CACHE_INDEX_KEY = `${PERSISTENT_CACHE_PREFIX}index`;
 const PERSISTENT_CACHE_TTL_MS = 6 * 60 * 60 * 1000;
@@ -170,8 +179,73 @@ function parseJsonText(text, file) {
   return JSON.parse(normalizedText);
 }
 
+function getProtectedTopicCacheKey(topic, session) {
+  const provider = String(session?.provider || "guest").trim();
+  const userId = String(session?.user?.id || session?.user?.email || "anon").trim();
+  const plan = String(session?.user?.plan || "free").trim();
+  const topicId = String(topic?.id || topic?.file || "unknown").trim();
+  return `${provider}:${userId}:${plan}:${topicId}`;
+}
+
+async function fetchProtectedTopicDataFilesWithReport(topic, options = {}) {
+  const { onProgress } = options;
+  const session = readSession();
+  if (!session?.accessToken) {
+    throw new Error("Please sign in to load protected topic content.");
+  }
+
+  const cacheKey = getProtectedTopicCacheKey(topic, session);
+  if (protectedTopicCache.has(cacheKey)) {
+    const cached = protectedTopicCache.get(cacheKey);
+    if (typeof onProgress === "function") {
+      (cached.loadedFiles || []).forEach((file) => {
+        onProgress({
+          loaded: cached.loadedFiles.length,
+          failed: 0,
+          total: cached.totalFiles,
+          currentFile: file,
+        });
+      });
+    }
+    return cached;
+  }
+
+  const payload = await requestCloudflareAuth("content/topic-data", {
+    method: "POST",
+    accessToken: session.accessToken,
+    body: {
+      topicId: String(topic?.id || "").trim(),
+      tolerateFailures: Boolean(options?.tolerateFailures),
+    },
+  });
+
+  const result = {
+    payloads: Array.isArray(payload?.payloads) ? payload.payloads : [],
+    loadedFiles: Array.isArray(payload?.loadedFiles) ? payload.loadedFiles : [],
+    failedFiles: Array.isArray(payload?.failedFiles) ? payload.failedFiles : [],
+    totalFiles: Number(payload?.totalFiles || 0),
+  };
+
+  protectedTopicCache.set(cacheKey, result);
+
+  if (typeof onProgress === "function") {
+    const files = result.loadedFiles.length ? result.loadedFiles : [String(topic?.file || "")].filter(Boolean);
+    files.forEach((file, index) => {
+      onProgress({
+        loaded: Math.min(index + 1, result.loadedFiles.length || files.length),
+        failed: result.failedFiles.length,
+        total: result.totalFiles || files.length,
+        currentFile: file,
+      });
+    });
+  }
+
+  return result;
+}
+
 export function __resetTopicSourceCachesForTests() {
   jsonCache.clear();
+  protectedTopicCache.clear();
 }
 
 export function getBaseUrl() {
@@ -224,38 +298,7 @@ export async function fetchJsonFile(file) {
 }
 
 export async function fetchTopicDataFilesWithReport(topic, options = {}) {
-  const { tolerateFailures = false, onProgress } = options;
-  const files = getTopicFiles(topic);
-  const payloads = [];
-  const loadedFiles = [];
-  const failedFiles = [];
-
-  for (const file of files) {
-    try {
-      payloads.push(await fetchJsonFile(file));
-      loadedFiles.push(file);
-    } catch (error) {
-      failedFiles.push(file);
-      if (!tolerateFailures) throw error;
-      console.warn(`Skipping unavailable source file for topic ${topic?.id}: ${file}`, error);
-    } finally {
-      if (typeof onProgress === 'function') {
-        onProgress({
-          loaded: loadedFiles.length,
-          failed: failedFiles.length,
-          total: files.length,
-          currentFile: file,
-        });
-      }
-    }
-  }
-
-  return {
-    payloads,
-    loadedFiles,
-    failedFiles,
-    totalFiles: files.length,
-  };
+  return fetchProtectedTopicDataFilesWithReport(topic, options);
 }
 
 export async function fetchTopicDataFiles(topic, options = {}) {
@@ -263,99 +306,9 @@ export async function fetchTopicDataFiles(topic, options = {}) {
   return result.payloads;
 }
 
-export function collectSubcategories(data) {
-  if (data?.domains && Array.isArray(data.domains)) {
-    const out = [];
-    data.domains.forEach((domain) => {
-      if (domain?.topics && Array.isArray(domain.topics)) {
-        out.push(...domain.topics);
-      }
-    });
-    return out;
-  }
-
-  if (data?.subcategories && Array.isArray(data.subcategories)) {
-    return data.subcategories;
-  }
-
-  if (Array.isArray(data)) {
-    return data;
-  }
-
-  if (data?.psr_categories) {
-    return Object.keys(data.psr_categories).map((key) => ({
-      id: key,
-      name: data.psr_categories[key].name || key,
-      description: data.psr_categories[key].description || 'No description available',
-      questions: data.psr_categories[key].questions,
-    }));
-  }
-
-  return [];
-}
-
-export function countQuestionsFromTopicData(data) {
-  return collectSubcategories(data).reduce((sum, subcat) => {
-    return sum + getQuestionsFromSubcategory(subcat).length;
-  }, 0);
-}
-
-export function getQuestionsFromSubcategory(subcategory) {
-  if (!subcategory?.questions || !Array.isArray(subcategory.questions)) return [];
-
-  // Some data files (e.g. current affairs) nest actual question rows under a key.
-  if (
-    subcategory.id === "ca_general" &&
-    subcategory.questions.length > 0 &&
-    Array.isArray(subcategory.questions[0]?.ca_general)
-  ) {
-    return subcategory.questions[0].ca_general;
-  }
-
-  return subcategory.questions;
-}
-
-function decorateQuestionsForSubcategory(questions, subcategory) {
-  const items = Array.isArray(questions) ? questions : [];
-  const subcategoryId = String(subcategory?.id || "").trim();
-  const subcategoryName = String(subcategory?.name || subcategoryId || "").trim();
-
-  return items.map((question) => {
-    if (!question || typeof question !== "object") return question;
-    return {
-      ...question,
-      sourceSubcategoryId: String(question?.sourceSubcategoryId || subcategoryId || "").trim(),
-      sourceSubcategoryName: String(question?.sourceSubcategoryName || subcategoryName || subcategoryId || "").trim(),
-    };
-  });
-}
-
-export function extractQuestionsByCategory(data, selectedCategory = "all", options = {}) {
-  const { allowedCategoryIds = null, maxQuestionsPerSubcategory = null } = options;
-  const subcategories = collectSubcategories(data);
-  const allowedSet =
-    Array.isArray(allowedCategoryIds) && allowedCategoryIds.length
-      ? new Set(allowedCategoryIds)
-      : null;
-
-  if (selectedCategory === "all") {
-    return subcategories.flatMap((subcategory) => {
-      const questions = getQuestionsFromSubcategory(subcategory);
-      if (!questions.length) return [];
-      if (allowedSet && !allowedSet.has(subcategory.id)) return [];
-      const limited = typeof maxQuestionsPerSubcategory === "number"
-        ? questions.slice(0, maxQuestionsPerSubcategory)
-        : questions;
-      return decorateQuestionsForSubcategory(limited, subcategory);
-    });
-  }
-
-  const selected = subcategories.find((subcategory) => subcategory?.id === selectedCategory);
-  const questions = getQuestionsFromSubcategory(selected);
-  if (!questions.length) return [];
-  if (allowedSet && !allowedSet.has(selected.id)) return [];
-  const limited = typeof maxQuestionsPerSubcategory === "number"
-    ? questions.slice(0, maxQuestionsPerSubcategory)
-    : questions;
-  return decorateQuestionsForSubcategory(limited, selected);
-}
+export {
+  collectSubcategories,
+  countQuestionsFromTopicData,
+  extractQuestionsByCategory,
+  getQuestionsFromSubcategory,
+};

@@ -14,6 +14,13 @@ SYNC_AUTH_DISABLED = "true"
 # Optional quota billing project for x-goog-user-project header (omit unless needed).
 # FIREBASE_QUOTA_PROJECT_ID = "promotioncbt-app"
 
+[assets]
+directory = "../../data"
+binding = "PROTECTED_CONTENT"
+run_worker_first = true
+html_handling = "none"
+not_found_handling = "none"
+
 # Hybrid auth D1 binding (enable after creating the database and granting D1 token permissions):
 [[d1_databases]]
 binding = "AUTH_DB"

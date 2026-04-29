@@ -4,6 +4,7 @@ import assert from "node:assert/strict";
 import {
   __resetTopicSourceCachesForTests,
   fetchJsonFile,
+  fetchTopicDataFilesWithReport,
 } from "../../js/topicSources.js";
 
 class MemoryStorage {
@@ -28,27 +29,43 @@ class MemoryStorage {
   }
 }
 
-function installBrowserContext({ pathname = "/", flags = { enablePersistentJsonCache: true } } = {}) {
-  const storage = new MemoryStorage();
+function installBrowserContext({
+  pathname = "/",
+  flags = { enablePersistentJsonCache: true },
+  auth = {},
+  session = null,
+} = {}) {
+  const localStorage = new MemoryStorage();
+  const sessionStorage = new MemoryStorage();
   const previousWindow = global.window;
   const previousFetch = global.fetch;
   const previousWarn = console.warn;
+  const previousLocalStorage = global.localStorage;
 
   global.window = {
     location: { pathname },
-    localStorage: storage,
+    localStorage,
+    sessionStorage,
     PROMOTION_CBT_FEATURES: flags,
+    PROMOTION_CBT_AUTH: auth,
   };
+  global.localStorage = localStorage;
+
+  if (session) {
+    sessionStorage.setItem("cbt_session_v1", JSON.stringify(session));
+  }
 
   console.warn = () => {};
   __resetTopicSourceCachesForTests();
 
   return {
-    storage,
+    localStorage,
+    sessionStorage,
     restore() {
       __resetTopicSourceCachesForTests();
       global.window = previousWindow;
       global.fetch = previousFetch;
+      global.localStorage = previousLocalStorage;
       console.warn = previousWarn;
     },
   };
@@ -58,7 +75,7 @@ test("fetchJsonFile uses fresh persistent cache before network fetch", async () 
   const ctx = installBrowserContext();
   try {
     const cacheKey = "promotion-cbt:json-cache:v1:/data/cache-test.json";
-    ctx.storage.setItem(
+    ctx.localStorage.setItem(
       cacheKey,
       JSON.stringify({
         cachedAt: Date.now(),
@@ -84,7 +101,7 @@ test("fetchJsonFile falls back to stale persistent cache when fetch fails", asyn
   const ctx = installBrowserContext();
   try {
     const cacheKey = "promotion-cbt:json-cache:v1:/data/stale-cache.json";
-    ctx.storage.setItem(
+    ctx.localStorage.setItem(
       cacheKey,
       JSON.stringify({
         cachedAt: Date.now() - (7 * 60 * 60 * 1000),
@@ -110,7 +127,7 @@ test("fetchJsonFile discards malformed cache payloads and refreshes from network
   const ctx = installBrowserContext();
   try {
     const cacheKey = "promotion-cbt:json-cache:v1:/data/recover-cache.json";
-    ctx.storage.setItem(cacheKey, "{not-json");
+    ctx.localStorage.setItem(cacheKey, "{not-json");
 
     let fetchCalls = 0;
     global.fetch = async () => {
@@ -125,8 +142,69 @@ test("fetchJsonFile discards malformed cache payloads and refreshes from network
     assert.deepEqual(result, { source: "network", refreshed: true });
     assert.equal(fetchCalls, 1);
 
-    const refreshedEntry = JSON.parse(ctx.storage.getItem(cacheKey));
+    const refreshedEntry = JSON.parse(ctx.localStorage.getItem(cacheKey));
     assert.deepEqual(JSON.parse(refreshedEntry.text), { source: "network", refreshed: true });
+  } finally {
+    ctx.restore();
+  }
+});
+
+test("fetchTopicDataFilesWithReport requests protected topic content from the worker", async () => {
+  const ctx = installBrowserContext({
+    auth: {
+      cloudflareAuthBaseUrl: "https://worker.example.com",
+    },
+    session: {
+      provider: "cloudflare",
+      accessToken: "cf-session-token",
+      refreshToken: "",
+      expiresAt: Date.now() + 60_000,
+      createdAt: "2026-04-29T10:00:00Z",
+      lastPlanSyncAt: "",
+      user: {
+        id: "user-1",
+        email: "user@example.com",
+        plan: "free",
+      },
+    },
+  });
+
+  try {
+    let fetchCalls = 0;
+    global.fetch = async (url, options = {}) => {
+      fetchCalls += 1;
+      assert.equal(url, "https://worker.example.com/content/topic-data");
+      assert.equal(options.method, "POST");
+      assert.equal(options.headers.Authorization, "Bearer cf-session-token");
+      assert.deepEqual(JSON.parse(options.body), {
+        topicId: "psr",
+        tolerateFailures: true,
+      });
+      return {
+        ok: true,
+        json: async () => ({
+          ok: true,
+          payloads: [{ subcategories: [{ id: "a", questions: [{ id: "q1" }] }] }],
+          loadedFiles: ["data/psr_rules.json"],
+          failedFiles: [],
+          totalFiles: 1,
+        }),
+      };
+    };
+
+    const result = await fetchTopicDataFilesWithReport(
+      { id: "psr", file: "data/psr_rules.json" },
+      { tolerateFailures: true },
+    );
+    assert.equal(fetchCalls, 1);
+    assert.deepEqual(result.payloads, [{ subcategories: [{ id: "a", questions: [{ id: "q1" }] }] }]);
+
+    const cached = await fetchTopicDataFilesWithReport(
+      { id: "psr", file: "data/psr_rules.json" },
+      { tolerateFailures: true },
+    );
+    assert.equal(fetchCalls, 1);
+    assert.deepEqual(cached.loadedFiles, ["data/psr_rules.json"]);
   } finally {
     ctx.restore();
   }

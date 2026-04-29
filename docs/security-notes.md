@@ -2,8 +2,74 @@
 
 ## Accepted Alerts
 
-- Date: 2026-03-17
-- Scope: functions (Firebase Cloud Functions dependencies)
-- Severity: low
-- Source: firebase-admin transitive dependencies (e.g., @google-cloud/*, google-gax, http-proxy-agent)
-- Rationale: Only available remediation is a breaking downgrade to firebase-admin 10.3.0. We are keeping firebase-admin at ^13.7.0 and firebase-functions at ^7.2.0 for compatibility and support. We will revisit if a non-breaking fix becomes available.
+- Date: 2026-04-27
+- Scope: `functions` package only (`d:\MyApps\promotion-cbt\Promotion-cbt-app\functions\package-lock.json`)
+- Current direct dependency baseline:
+  - `firebase-admin` `^13.8.0`
+  - `firebase-functions` `^7.2.5`
+- Main app status:
+  - root app dependency audit has been cleaned separately
+  - remaining GitHub Dependabot alerts are limited to the Functions dependency tree
+
+### Remaining reviewed alerts
+
+1. `@tootallnate/once` — low
+2. `uuid` — medium
+
+### Why they remain
+
+- Both alerts are transitive dependencies pulled in by the Firebase / Google SDK chain used by the Functions package.
+- We already applied the safe non-breaking updates available at this layer:
+  - upgraded `firebase-admin`
+  - upgraded `firebase-functions`
+  - refreshed the lockfile with `npm audit fix`
+- GitHub re-analysis confirmed that the previously higher-severity alerts tied to older resolved versions (for example `node-forge`, `protobufjs`, `fast-xml-parser`, `flatted`, and `path-to-regexp`) were cleared after the lockfile update.
+- The remaining two alerts are still pinned under upstream dependency ranges, so forcing overrides would be higher risk than the benefit currently justifies.
+
+### Review rationale
+
+- We are intentionally keeping the current Firebase Functions stack for compatibility and support.
+- The remaining alerts are:
+  - lower severity than the issues already remediated
+  - not introduced by application code directly
+  - dependent on upstream SDK dependency movement
+- Plan:
+  - monitor the next `firebase-admin` / `firebase-functions` / Google SDK releases
+  - re-run Functions package audit after each dependency bump
+  - remove this note once upstream transitive fixes land cleanly
+
+## Protected Content Delivery
+
+- Date: 2026-04-28
+- Goal: stop shipping the full premium question bank inside the public frontend build.
+
+### What changed
+
+- `vite.config.js` now copies only public-safe metadata:
+  - `data/topics.json`
+  - `data/exam_templates.json`
+  - `data/gl_band_weights.json`
+- The full topic banks remain in `data/*.json` in source control for now, but they are no longer copied into `dist/data`.
+- `workers/admin-bridge/worker.js` now exposes a protected `POST /content/topic-data` route.
+- `workers/admin-bridge/wrangler.toml` binds `../../data` as private Worker assets under `PROTECTED_CONTENT`.
+- `js/topicSources.js` now loads topic banks through the Worker instead of direct public file fetches.
+
+### Why the split matters
+
+- `topics.json` is lightweight catalogue metadata and is safe to keep public.
+- The large topic-bank JSON files are the sensitive assets, because they contain the full question corpus.
+- By moving those files behind authenticated Worker requests, plan checks now happen before the browser receives topic-bank content.
+
+### Current entitlement enforcement
+
+- Free users:
+  - first `3` study topics
+  - first `5` subcategories per topic
+  - first `20` questions per subcategory
+- Premium/admin users:
+  - full topic-bank access
+
+### Important limitation
+
+- This reduces browser-side scraping significantly, but it does not hide the raw source files from GitHub while the repository remains public.
+- If source secrecy is also a goal, the repo itself should be made private only after hosting is moved away from GitHub Pages or upgraded to a plan that supports private-repo Pages.

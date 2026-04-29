@@ -1,4 +1,5 @@
-import { buildPublicAuthUser, hashPassword, issueSession, parseBearerToken, resolveHybridAuthRouteHandler, sha256Base64Url, timingSafeEqual } from "./auth-hybrid.js";
+import { buildPublicAuthUser, getAuthUserById, hashPassword, issueSession, parseBearerToken, readSessionRecord, resolveHybridAuthRouteHandler, sha256Base64Url, timingSafeEqual, touchSession } from "./auth-hybrid.js";
+import { collectSubcategories, getQuestionsFromSubcategory } from "../../js/topicDataShape.js";
 const IDENTITY_TOOLKIT_BASE_URL = "https://identitytoolkit.googleapis.com/v1";
 const FIRESTORE_BASE_URL = "https://firestore.googleapis.com/v1";
 const GOOGLE_OAUTH_TOKEN_URL = "https://oauth2.googleapis.com/token";
@@ -501,6 +502,250 @@ async function verifyAdminCaller(request, env) {
       throw new Error(cloudflareError?.message || firebaseError?.message || "Admin access denied.");
     }
   }
+}
+
+
+const FREE_CONTENT_LIMITS = Object.freeze({
+  id: "free",
+  maxTopics: 3,
+  maxSubcategories: 5,
+  maxQuestionsPerSubcategory: 20,
+});
+const PREMIUM_CONTENT_LIMITS = Object.freeze({
+  id: "premium",
+  maxTopics: null,
+  maxSubcategories: null,
+  maxQuestionsPerSubcategory: null,
+});
+let protectedTopicCatalogPromise = null;
+
+function createRouteError(status, message) {
+  const error = new Error(message);
+  error.httpStatus = status;
+  return error;
+}
+
+function resolveProtectedContentBinding(env) {
+  const binding = env.PROTECTED_CONTENT;
+  if (!binding || typeof binding.fetch !== "function") {
+    throw createRouteError(503, "Protected content storage is not configured.");
+  }
+  return binding;
+}
+
+function normalizeProtectedAssetPath(assetPath) {
+  const value = String(assetPath || "").trim().replace(/^\/+/, "").replace(/^data\//, "");
+  if (!value || value.includes("..")) {
+    throw createRouteError(400, "Invalid content asset path.");
+  }
+  return value;
+}
+
+async function fetchProtectedAssetJson(env, assetPath) {
+  const binding = resolveProtectedContentBinding(env);
+  const cleanPath = normalizeProtectedAssetPath(assetPath);
+  const response = await binding.fetch(new Request(`https://protected-content.local/${cleanPath}`));
+  if (!response.ok) {
+    throw createRouteError(response.status || 404, `Protected content asset is unavailable: ${cleanPath}`);
+  }
+  return response.json();
+}
+
+async function loadProtectedTopicCatalog(env) {
+  if (!protectedTopicCatalogPromise) {
+    protectedTopicCatalogPromise = (async () => {
+      const payload = await fetchProtectedAssetJson(env, "topics.json");
+      return Array.isArray(payload?.topics) ? payload.topics : [];
+    })().catch((error) => {
+      protectedTopicCatalogPromise = null;
+      throw error;
+    });
+  }
+  return protectedTopicCatalogPromise;
+}
+
+function resolveContentEntitlement(user) {
+  const role = String(user?.role || "user").trim().toLowerCase();
+  const plan = String(user?.plan || "free").trim().toLowerCase();
+  if (role === "admin" || plan === "premium") {
+    return PREMIUM_CONTENT_LIMITS;
+  }
+  return FREE_CONTENT_LIMITS;
+}
+
+function getAccessibleProtectedTopics(topics, entitlement) {
+  const source = Array.isArray(topics) ? topics.filter((topic) => topic?.id && topic?.file) : [];
+  if (!entitlement?.maxTopics) {
+    return source;
+  }
+  return source.slice(0, entitlement.maxTopics);
+}
+
+function normalizeProtectedSubcategory(subcategory, entitlement) {
+  const questions = getQuestionsFromSubcategory(subcategory);
+  const limitedQuestions = typeof entitlement?.maxQuestionsPerSubcategory === "number"
+    ? questions.slice(0, entitlement.maxQuestionsPerSubcategory)
+    : questions;
+
+  return {
+    ...subcategory,
+    questions: limitedQuestions,
+  };
+}
+
+function filterTopicDataForEntitlement(topicData, entitlement) {
+  const sourceSubcategories = collectSubcategories(topicData);
+  const visibleSubcategories = typeof entitlement?.maxSubcategories === "number"
+    ? sourceSubcategories.slice(0, entitlement.maxSubcategories)
+    : sourceSubcategories;
+
+  return {
+    subcategories: visibleSubcategories.map((subcategory) =>
+      normalizeProtectedSubcategory(subcategory, entitlement)
+    ),
+  };
+}
+
+function getProtectedTopicFiles(topic) {
+  return [topic?.file].filter(Boolean);
+}
+
+async function resolveFirebaseContentUser(sessionToken, env) {
+  const allowedAdmins = parseAdminEmails(env.ADMIN_EMAILS || "");
+  const payload = await identityAdminRequest(env, "accounts:lookup", {
+    body: { idToken: sessionToken },
+  });
+  const firebaseUser = Array.isArray(payload?.users) ? payload.users[0] : null;
+  const email = normalizeEmail(firebaseUser?.email || "");
+  const localId = String(firebaseUser?.localId || "");
+  if (!email || !localId) {
+    throw createRouteError(401, "Authenticated user could not be resolved.");
+  }
+
+  const profile = await readProfileDocumentById(env, localId).catch(() => null);
+  return {
+    id: localId,
+    email,
+    provider: "firebase",
+    role: String(profile?.role || (allowedAdmins.has(email) ? "admin" : "user")).trim().toLowerCase() === "admin" ? "admin" : "user",
+    plan: String(profile?.plan || "free").trim().toLowerCase() === "premium" ? "premium" : "free",
+    status: String(profile?.status || "active").trim().toLowerCase() === "suspended" ? "suspended" : "active",
+    emailVerified: Boolean(firebaseUser?.emailVerified),
+    createdAt: fromFirebaseMillisToIso(firebaseUser?.createdAt, ""),
+    lastLoginAt: fromFirebaseMillisToIso(firebaseUser?.lastLoginAt, ""),
+    legacyProvider: "firebase",
+  };
+}
+
+async function resolveCloudflareContentUser(sessionToken, env) {
+  const database = env.AUTH_DB;
+  if (!database || typeof database.prepare !== "function") {
+    throw createRouteError(503, "Cloudflare auth database is not configured.");
+  }
+
+  const session = await readSessionRecord(database, sessionToken);
+  const authUser = await getAuthUserById(database, String(session?.user_id || ""));
+  if (!authUser?.id) {
+    throw createRouteError(401, "Cloudflare account could not be resolved.");
+  }
+
+  await touchSession(database, String(session.session_id || ""));
+  return {
+    ...buildPublicAuthUser(authUser),
+    provider: "cloudflare",
+  };
+}
+
+async function resolveAuthenticatedContentUser(request, env) {
+  const token = parseBearerToken(request);
+  const tokenParts = token.split(".").filter(Boolean);
+
+  if (tokenParts.length === 2) {
+    return resolveCloudflareContentUser(token, env);
+  }
+
+  if (tokenParts.length >= 3) {
+    try {
+      return await resolveFirebaseContentUser(token, env);
+    } catch (firebaseError) {
+      try {
+        return await resolveCloudflareContentUser(token, env);
+      } catch (cloudflareError) {
+        throw createRouteError(
+          Number(cloudflareError?.httpStatus || firebaseError?.httpStatus || 401),
+          cloudflareError?.message || firebaseError?.message || "Authentication is required.",
+        );
+      }
+    }
+  }
+
+  try {
+    return await resolveCloudflareContentUser(token, env);
+  } catch (cloudflareError) {
+    throw createRouteError(
+      Number(cloudflareError?.httpStatus || 401),
+      cloudflareError?.message || "Authentication is required.",
+    );
+  }
+}
+
+async function handleProtectedTopicData(request, env) {
+  const viewer = await resolveAuthenticatedContentUser(request, env);
+  if (String(viewer?.status || "active").toLowerCase() !== "active") {
+    throw createRouteError(403, "Your account is not active.");
+  }
+
+  const body = await readJsonBody(request);
+  const topicId = String(body?.topicId || "").trim();
+  if (!topicId) {
+    throw createRouteError(400, "topicId is required.");
+  }
+
+  const catalog = await loadProtectedTopicCatalog(env);
+  const topic = catalog.find((entry) => String(entry?.id || "").trim() === topicId);
+  if (!topic?.file) {
+    throw createRouteError(404, "Topic content was not found.");
+  }
+
+  const entitlement = resolveContentEntitlement(viewer);
+  const accessibleTopicIds = new Set(
+    getAccessibleProtectedTopics(catalog, entitlement).map((entry) => String(entry?.id || "").trim()),
+  );
+  if (!accessibleTopicIds.has(topicId)) {
+    throw createRouteError(403, "This topic is locked on your current plan.");
+  }
+
+  const payloads = [];
+  const loadedFiles = [];
+  const failedFiles = [];
+  const files = getProtectedTopicFiles(topic);
+
+  for (const file of files) {
+    try {
+      const rawData = await fetchProtectedAssetJson(env, file);
+      payloads.push(filterTopicDataForEntitlement(rawData, entitlement));
+      loadedFiles.push(file);
+    } catch (error) {
+      failedFiles.push(file);
+      if (!body?.tolerateFailures) {
+        throw error;
+      }
+    }
+  }
+
+  if (!payloads.length) {
+    throw createRouteError(404, "No topic content could be loaded.");
+  }
+
+  return {
+    ok: true,
+    topicId,
+    entitlement: entitlement.id,
+    payloads,
+    loadedFiles,
+    failedFiles,
+    totalFiles: files.length,
+  };
 }
 
 async function readJsonBody(request) {
@@ -1067,6 +1312,7 @@ async function handleAdminDeleteUserById(request, env) {
 
 function resolveRouteHandler(path) {
   if (path.endsWith("/auth/password/request")) return handleAuthPasswordRecoveryRequest;
+  if (path.endsWith("/content/topic-data")) return handleProtectedTopicData;
   const authRouteHandler = resolveHybridAuthRouteHandler(path);
   if (authRouteHandler) return authRouteHandler;
   if (path.endsWith("/adminListUsers")) return handleAdminListUsers;

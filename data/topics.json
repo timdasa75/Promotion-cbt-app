@@ -86,7 +86,8 @@
           "description": "Official circular updates on personnel and reform directives.",
           "icon": "📰"
         }
-      ]
+      ],
+      "questionCount": 1443
     },
     {
       "id": "financial_regulations",
@@ -120,7 +121,8 @@
           "description": "TSA, reconciliation, statements, and core PFM principles.",
           "icon": "💼"
         }
-      ]
+      ],
+      "questionCount": 419
     },
     {
       "id": "procurement_act",
@@ -160,7 +162,8 @@
           "description": "Contract implementation, oversight, sanctions, and dispute management.",
           "icon": "🔍"
         }
-      ]
+      ],
+      "questionCount": 444
     },
     {
       "id": "constitutional_law",
@@ -206,7 +209,8 @@
           "description": "Sanctions, offences, and enforcement pathways under FOI.",
           "icon": "📂"
         }
-      ]
+      ],
+      "questionCount": 564
     },
     {
       "id": "civil_service_admin",
@@ -294,7 +298,8 @@
           "description": "General ethical reasoning for public officers.",
           "icon": "🎯"
         }
-      ]
+      ],
+      "questionCount": 1465
     },
     {
       "id": "leadership_management",
@@ -340,7 +345,8 @@
           "description": "Dispute mechanisms, unions, and labour-law intersections.",
           "icon": "⚖️"
         }
-      ]
+      ],
+      "questionCount": 555
     },
     {
       "id": "ict_management",
@@ -374,7 +380,8 @@
           "description": "Digital skills and innovation culture in public service.",
           "icon": "💡"
         }
-      ]
+      ],
+      "questionCount": 373
     },
     {
       "id": "policy_analysis",
@@ -408,7 +415,8 @@
           "description": "Planning frameworks and public sector strategy linkage.",
           "icon": "🗓️"
         }
-      ]
+      ],
+      "questionCount": 365
     },
     {
       "id": "general_current_affairs",
@@ -448,7 +456,8 @@
           "description": "General recency-focused affairs and factual updates.",
           "icon": "🔍"
         }
-      ]
+      ],
+      "questionCount": 490
     },
     {
       "id": "competency_framework",
@@ -470,7 +479,8 @@
           "description": "Verbal analysis, logical comprehension, and critical reasoning.",
           "icon": "🗣️"
         }
-      ]
+      ],
+      "questionCount": 189
     }
   ]
 }

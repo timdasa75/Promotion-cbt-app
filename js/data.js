@@ -104,6 +104,12 @@ export async function getTopicQuestionCounts(topics) {
   await Promise.all(
     topics.map(async (topic) => {
       try {
+        const metadataCount = Number(topic?.questionCount);
+        if (Number.isFinite(metadataCount) && metadataCount >= 0) {
+          counts[topic.id] = metadataCount;
+          return;
+        }
+
         const files = getTopicFiles(topic);
         let total = 0;
         for (const file of files) {
@@ -139,6 +145,11 @@ export async function getQuestionCountForSubcategory(topic, subcategoryId) {
 
 export async function getTotalQuestionCountForTopic(topic) {
   try {
+    const metadataCount = Number(topic?.questionCount);
+    if (Number.isFinite(metadataCount) && metadataCount >= 0) {
+      return metadataCount;
+    }
+
     const dataFiles = await fetchTopicDataFiles(topic, { tolerateFailures: true });
     return dataFiles.reduce((sum, data) => sum + countQuestionsFromTopicData(data), 0);
   } catch (error) {

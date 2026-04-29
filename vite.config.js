@@ -17,7 +17,9 @@ export default defineConfig(({ mode }) => {
     plugins: [
       viteStaticCopy({
         targets: [
-          { src: "data/*.json", dest: "data" },
+          { src: "data/topics.json", dest: "data" },
+          { src: "data/exam_templates.json", dest: "data" },
+          { src: "data/gl_band_weights.json", dest: "data" },
           { src: "config/runtime-auth.js", dest: "config" },
           { src: "config/runtime-auth.example.js", dest: "config" },
         ],

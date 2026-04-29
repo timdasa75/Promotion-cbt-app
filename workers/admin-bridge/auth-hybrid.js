@@ -220,7 +220,7 @@ async function getAuthUserByEmail(database, email) {
     .first();
 }
 
-async function getAuthUserById(database, userId) {
+export async function getAuthUserById(database, userId) {
   return database
     .prepare(`
       SELECT id, email, password_hash, role, plan, status, email_verified, legacy_provider, legacy_user_id,
@@ -278,7 +278,7 @@ export async function issueSession(database, userId, request, env) {
   };
 }
 
-async function readSessionRecord(database, token) {
+export async function readSessionRecord(database, token) {
   const { sessionId, sessionSecret } = parseSessionToken(token);
   const session = await database
     .prepare(`
@@ -303,7 +303,7 @@ async function readSessionRecord(database, token) {
   return session;
 }
 
-async function touchSession(database, sessionId) {
+export async function touchSession(database, sessionId) {
   await database
     .prepare("UPDATE auth_sessions SET last_seen_at = ?2 WHERE session_id = ?1")
     .bind(sessionId, new Date().toISOString())
