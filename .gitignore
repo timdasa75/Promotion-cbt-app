@@ -52,3 +52,6 @@ config/runtime-auth.js
 # Wrangler artifacts
 .wrangler/
 
+# Temporary content-import and audit artifacts (keep local/private unless explicitly needed)
+docs/**/*.json
+docs/**/*.txt
