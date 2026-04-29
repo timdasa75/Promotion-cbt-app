@@ -62,3 +62,18 @@ data/*.json
 !data/topics.json
 !data/exam_templates.json
 !data/gl_band_weights.json
+# Private process notes and curation work products in docs/
+docs/metadata_review*.md
+docs/question_quality*.md
+docs/question-quality-*.md
+docs/relevance_*.md
+docs/docx_*.md
+docs/*_proposed_removals.md
+docs/pdf_vs_fallback_summary.md
+docs/quality_audit_summary.md
+docs/import_question_counts.md
+docs/finalized-topics-subcategories.md
+docs/google-stitch-master-prompt.md
+docs/spot_check_samples.md
+docs/stitch-ui-extraction-brief.md
+docs/metadata_review_batches/**/*.md
