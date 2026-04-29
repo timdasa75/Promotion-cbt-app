@@ -10,7 +10,7 @@ Web-based CBT practice platform for Nigerian Federal Civil Service promotion pre
 - Dashboard insights (attempts, average score, streak, recommendations)
 - Post-quiz analytics with traffic-light performance styling
 - Keyboard shortcuts during quiz (A-D, arrows, Enter)
-- Local and Firebase cloud authentication
+- Hybrid authentication with Cloudflare-first protected content delivery
 - Profile sync status indicator with manual `Sync Now` action (when cloud progress sync is enabled)
 - Admin panel (upgrade requests, overrides, user directory + user count)
 
@@ -72,12 +72,16 @@ Detailed user walkthrough:
 
 - `Local` mode:
   - Single-device storage in browser localStorage.
-- `Cloud` mode (Firebase):
-  - Multi-device login and profile-backed plan state.
+- `Hybrid` mode:
+  - Cloudflare-backed auth and protected content for migrated/new users.
+  - Firebase fallback for legacy sign-in during migration.
+- `Cloudflare` mode:
+  - Cloudflare-only auth after migration is fully completed.
 
-Cloud setup guide:
+Setup guides:
 - `docs/firebase-auth-setup.md`
-- `workers/admin-bridge/README.md` (recommended free-tier admin bridge)
+- `docs/cloudflare-hybrid-auth-migration.md`
+- `workers/admin-bridge/README.md`
 
 ## Security Notes
 
@@ -85,6 +89,7 @@ Cloud setup guide:
 - Inject `window.PROMOTION_CBT_AUTH` at runtime/deploy time, not in tracked source.
 - Use `config/runtime-auth.js` for local/deploy-managed values (this file is git-ignored).
 - Use `config/runtime-auth.example.js` as the template.
+- Keep full topic-bank source files and raw source materials private; the public repo now tracks only safe metadata and operational docs.
 - If GitHub reports `Possible valid secrets detected`, rotate the key immediately and close the alert only after rotation.
 - Restrict Firebase/Google API key usage by:
   - allowed referrers (your production domain only)
@@ -112,7 +117,13 @@ Cloud setup guide:
 
 ## Data and Maintenance
 
-- Topic data lives in `data/*.json`
+- Public-safe metadata lives in:
+  - `data/topics.json`
+  - `data/exam_templates.json`
+  - `data/gl_band_weights.json`
+- Full topic-bank source files are intentionally **not tracked in git**.
+  - They must exist locally in `data/` for protected Worker content deploys and maintenance scripts.
+  - A fresh public clone will not include them; restore them from your private copy before running content-maintenance workflows.
 - Validation script:
   ```bash
   python scripts/validate_taxonomy.py
@@ -121,38 +132,7 @@ Cloud setup guide:
   ```bash
   python scripts/validate_taxonomy.py --strict-duplicates --strict-metadata
   ```
-  Build SME metadata review queue:
-  ```bash
-  python scripts/build_metadata_review_queue.py
-  ```
-  Seed editable SME decisions from high-confidence queue:
-  ```bash
-  python scripts/seed_metadata_review_decisions.py
-  ```
-  Apply approved metadata decisions (dry-run):
-  ```bash
-  python scripts/apply_metadata_review_decisions.py --decisions-file docs/metadata_review_decisions.json
-  ```
-  Apply approved metadata decisions (write):
-  ```bash
-  python scripts/apply_metadata_review_decisions.py --decisions-file docs/metadata_review_decisions.json --apply
-  ```
-  Split decisions into topic packs and balanced reviewer bundles:
-  ```bash
-  python scripts/split_metadata_review_decisions.py --in-file docs/metadata_review_decisions.json --out-dir docs/metadata_review_batches --reviewers 4
-  ```
-  Optional: keep full topic blocks per reviewer:
-  ```bash
-  python scripts/split_metadata_review_decisions.py --in-file docs/metadata_review_decisions.json --out-dir docs/metadata_review_batches --reviewers 4 --keep-topic-blocks
-  ```
-  Merge reviewer packs and generate progress report:
-  ```bash
-  python scripts/merge_metadata_review_batches.py --batch-dir docs/metadata_review_batches/by_reviewer --out-file docs/metadata_review_decisions_merged.json --report-json docs/metadata_review_merge_report.json --report-md docs/metadata_review_merge_report.md
-  ```
-  Optional: overwrite master decisions file after conflict-free merge:
-  ```bash
-  python scripts/merge_metadata_review_batches.py --batch-dir docs/metadata_review_batches/by_reviewer --overwrite-master
-  ```
+- Content-maintenance scripts under `scripts/` assume access to your private local topic-bank/source assets and may generate local-only work products that are intentionally ignored from git.
 - Refactor roadmap:
   - `docs/refactor-implementation-plan.md`
 
@@ -213,3 +193,4 @@ For the hybrid-auth rollout plan and D1 schema, see `docs/cloudflare-hybrid-auth
 ## License
 
 MIT (see `LICENSE` if present in your distribution).
+
