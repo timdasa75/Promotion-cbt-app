@@ -55,3 +55,5 @@ config/runtime-auth.js
 # Temporary content-import and audit artifacts (keep local/private unless explicitly needed)
 docs/**/*.json
 docs/**/*.txt
+# Private reference/source documents used during content curation
+docs/sources/*.pdf
