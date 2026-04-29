@@ -94,3 +94,21 @@
 
 - A fresh clone of the public repo will not include the private topic-bank JSON files.
 - To deploy or maintain the protected content route locally, you must restore those bank files into `data/` from your private copy before running Worker deploys or content-maintenance scripts.
+
+## Private Root-Level Source Artifacts
+
+- Date: 2026-04-29
+- Goal: stop publishing the original source PDF/DOCX materials in the public repository while preserving local maintenance workflows.
+
+### What changed
+
+- The following root-level source artifacts are no longer tracked by git:
+  - `Promotion  Exams CBT Questions.pdf`
+  - `CONSOLIDATED QUESTION BANK REPORT.docx`
+- They remain on disk locally and can still be used by maintenance/import scripts that reference them directly.
+- `.gitignore` now keeps these files private by default.
+
+### Operational note
+
+- A fresh public clone will not include these root-level source artifacts.
+- If you need to run the extraction/import scripts that depend on them, restore your private local copies into the repo root first.

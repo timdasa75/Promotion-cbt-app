@@ -80,3 +80,6 @@ docs/metadata_review_batches/**/*.md
 # Generated repo summary artifacts
 docs/promotion-cbt-app-one-page-summary.html
 docs/promotion-cbt-app-one-page-summary.pdf
+# Private root-level source artifacts used during content extraction/import
+/Promotion  Exams CBT Questions.pdf
+/CONSOLIDATED QUESTION BANK REPORT.docx
