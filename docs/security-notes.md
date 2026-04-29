@@ -73,3 +73,24 @@
 
 - This reduces browser-side scraping significantly, but it does not hide the raw source files from GitHub while the repository remains public.
 - If source secrecy is also a goal, the repo itself should be made private only after hosting is moved away from GitHub Pages or upgraded to a plan that supports private-repo Pages.
+
+## Private Topic-Bank Source Assets
+
+- Date: 2026-04-29
+- Goal: keep the full question-bank source files available for local Worker deployments without publishing them in the public repository.
+
+### What changed
+
+- The full topic-bank JSON files under `data/` are no longer tracked by git.
+- They remain on disk locally and are still read by:
+  - the Worker private asset binding in `workers/admin-bridge/wrangler.toml`
+  - local maintenance/import scripts that operate on the question bank
+- `.gitignore` now keeps these files private by default while allowing only the public-safe metadata files to remain tracked:
+  - `data/topics.json`
+  - `data/exam_templates.json`
+  - `data/gl_band_weights.json`
+
+### Operational note
+
+- A fresh clone of the public repo will not include the private topic-bank JSON files.
+- To deploy or maintain the protected content route locally, you must restore those bank files into `data/` from your private copy before running Worker deploys or content-maintenance scripts.

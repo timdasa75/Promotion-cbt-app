@@ -57,3 +57,8 @@ docs/**/*.json
 docs/**/*.txt
 # Private reference/source documents used during content curation
 docs/sources/*.pdf
+# Private topic-bank source assets (required locally for Worker-protected content, but should not be published in git)
+data/*.json
+!data/topics.json
+!data/exam_templates.json
+!data/gl_band_weights.json
