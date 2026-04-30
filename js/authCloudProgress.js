@@ -1,3 +1,7 @@
+import {
+  fetchCloudflareProgress,
+  writeCloudflareProgress,
+} from "./authCloudflareClient.js";
 import { firestoreRequest } from "./authFirebaseTransport.js";
 import { readSession } from "./authStorage.js";
 import { ensureCloudSessionActive } from "./authCloudSession.js";
@@ -27,23 +31,46 @@ export async function ensureCloudProgressSession({
   }
 
   const session = getSession();
-  if (!session?.accessToken || session?.provider !== "firebase") {
+  if (!session?.accessToken) {
     throw new Error("Cloud session is unavailable.");
   }
 
-  const freshSession = await refreshSession(session, { clearOnFailure: false });
-  if (!freshSession?.accessToken || !freshSession?.user?.id) {
-    throw new Error("Cloud session is unavailable.");
+  if (session.provider === "firebase") {
+    const freshSession = await refreshSession(session, { clearOnFailure: false });
+    if (!freshSession?.accessToken || !freshSession?.user?.id) {
+      throw new Error("Cloud session is unavailable.");
+    }
+    return freshSession;
   }
 
-  return freshSession;
+  if (session.provider === "cloudflare") {
+    return session;
+  }
+
+  throw new Error(`Unsupported cloud provider: ${session.provider}`);
 }
 
 export async function readCloudProgressSummary({
   ensureSession = ensureCloudProgressSession,
   getDocument = getCloudProgressDocument,
+  fetchCloudflare = fetchCloudflareProgress,
 } = {}) {
   const session = await ensureSession();
+
+  if (session.provider === "cloudflare") {
+    const payload = await fetchCloudflare(session.accessToken);
+    const progress = payload?.progress || {};
+    return {
+      exists: Boolean(payload?.progress),
+      updatedAt: String(progress.updatedAt || ""),
+      deviceId: String(progress.deviceId || ""),
+      schemaVersion: Number(progress.schemaVersion || CLOUD_PROGRESS_SCHEMA_VERSION),
+      summary: normalizeProgressSummary(progress.summary),
+      retryQueue: normalizeRetryQueue(progress.retryQueue),
+      spacedQueue: normalizeSpacedQueue(progress.spacedQueue),
+    };
+  }
+
   const document = await getDocument(session.accessToken, session.user.id);
   if (!document) {
     return {
@@ -75,6 +102,7 @@ export async function writeCloudProgressSummary(
   {
     ensureSession = ensureCloudProgressSession,
     requester = firestoreRequest,
+    writeCloudflare = writeCloudflareProgress,
   } = {},
 ) {
   const session = await ensureSession();
@@ -86,6 +114,27 @@ export async function writeCloudProgressSummary(
     spacedQueue,
   );
   const nowIso = new Date().toISOString();
+
+  if (session.provider === "cloudflare") {
+    await writeCloudflare(session.accessToken, {
+      progress: {
+        schemaVersion: CLOUD_PROGRESS_SCHEMA_VERSION,
+        updatedAt: nowIso,
+        deviceId: String(deviceId || "").trim(),
+        summary: normalized,
+        retryQueue: normalizedRetryQueue,
+        spacedQueue: normalizedSpacedQueue,
+      },
+    });
+    return {
+      saved: true,
+      updatedAt: nowIso,
+      summary: normalized,
+      retryQueue: normalizedRetryQueue,
+      spacedQueue: normalizedSpacedQueue,
+    };
+  }
+
   const updateMask = buildUpdateMask([
     "schemaVersion",
     "updatedAt",
@@ -112,6 +161,7 @@ export async function writeCloudProgressSummary(
       },
     },
   );
+
 
   return {
     saved: true,

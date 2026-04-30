@@ -166,3 +166,19 @@ export async function completeCloudflareMigrationToken(token, password, fetchImp
     session,
   };
 }
+export async function fetchCloudflareProgress(accessToken, fetchImpl = fetch) {
+  return requestCloudflareAuth("progress", {
+    method: "GET",
+    accessToken,
+    fetchImpl,
+  });
+}
+
+export async function writeCloudflareProgress(accessToken, body, fetchImpl = fetch) {
+  return requestCloudflareAuth("progress", {
+    method: "PATCH",
+    accessToken,
+    body,
+    fetchImpl,
+  });
+}

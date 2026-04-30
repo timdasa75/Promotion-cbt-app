@@ -8,26 +8,25 @@ const DEFAULT_VERIFICATION_RESEND_COOLDOWN_MS = 15 * 60 * 1000;
 const DEFAULT_PASSWORD_RESET_COOLDOWN_MS = 10 * 60 * 1000;
 const SUPPORTED_AUTH_PROVIDERS = new Set(["firebase", "hybrid", "cloudflare"]);
 
-function normalizeAuthProvider(value) {
-  const normalized = String(value || "firebase").trim().toLowerCase();
-  if (normalized === "cloudflare-hybrid") {
-    return "hybrid";
+function normalizeAuthProvider(cfg) {
+  const value = cfg.authProvider || cfg.authMode;
+  const hasCloudflare = Boolean(cfg.cloudflareAuthBaseUrl || cfg.cloudflareApiBaseUrl);
+  
+  if (value) {
+    const normalized = String(value).trim().toLowerCase();
+    if (normalized === "cloudflare-hybrid") return "hybrid";
+    if (SUPPORTED_AUTH_PROVIDERS.has(normalized)) return normalized;
   }
-  return SUPPORTED_AUTH_PROVIDERS.has(normalized) ? normalized : "firebase";
+  
+  // Default logic: If Cloudflare is configured, use hybrid as the modern default.
+  return hasCloudflare ? "hybrid" : "firebase";
 }
 
 /**
  * Read auth-related runtime settings from the browser and normalize legacy keys into one stable config object.
- * This keeps the rest of the auth layer focused on behavior instead of repetitive window/config parsing.
- *
- * Historical note for this codebase:
- * - Firebase keys still drive the live auth flow today.
- * - The extra Cloudflare fields below are phase-1 migration rails so we can introduce a hybrid path without
- *   breaking existing Firebase users during cutover.
  */
 export function getFirebaseConfig() {
   const cfg = (typeof window !== "undefined" && window.PROMOTION_CBT_AUTH) || {};
-  const authProvider = normalizeAuthProvider(cfg.authProvider || cfg.authMode);
   const firebaseApiKey = String(cfg.firebaseApiKey || cfg.apiKey || "").trim();
   const firebaseProjectId = String(cfg.firebaseProjectId || cfg.projectId || "").trim();
   const firebaseAuthDomain = String(cfg.firebaseAuthDomain || cfg.authDomain || "").trim();
@@ -35,15 +34,19 @@ export function getFirebaseConfig() {
   const firebaseQuotaProjectId = String(
     cfg.firebaseQuotaProjectId || cfg.quotaProjectId || firebaseProjectId || "",
   ).trim();
+  
+  const cloudflareAuthBaseUrl = normalizeBaseUrl(
+    cfg.cloudflareAuthBaseUrl || cfg.cloudflareApiBaseUrl || "",
+  );
+
+  const authProvider = normalizeAuthProvider({ ...cfg, cloudflareAuthBaseUrl });
+
   const enableCloudProgressSync = resolveRuntimeBoolean(cfg.enableCloudProgressSync, false);
   const enableLocalDemoAuth = resolveRuntimeBoolean(
     cfg.enableLocalDemoAuth ?? cfg.enableLocalAuth,
     false,
   );
   const adminApiBaseUrl = normalizeBaseUrl(cfg.adminApiBaseUrl);
-  const cloudflareAuthBaseUrl = normalizeBaseUrl(
-    cfg.cloudflareAuthBaseUrl || cfg.cloudflareApiBaseUrl || "",
-  );
   const cloudflareTurnstileSiteKey = String(
     cfg.cloudflareTurnstileSiteKey || cfg.turnstileSiteKey || "",
   ).trim();
@@ -85,6 +88,11 @@ export function isCloudflareAuthEnabled() {
   return Boolean(cloudflareAuthBaseUrl);
 }
 
+export function isFirebaseEnabled() {
+  const { firebaseApiKey, firebaseProjectId } = getFirebaseConfig();
+  return Boolean(firebaseApiKey && firebaseProjectId);
+}
+
 export function isCloudflareAuthPrimary() {
   const { authProvider, cloudflareAuthBaseUrl } = getFirebaseConfig();
   return Boolean(cloudflareAuthBaseUrl && (authProvider === "cloudflare" || authProvider === "hybrid"));
@@ -92,7 +100,7 @@ export function isCloudflareAuthPrimary() {
 
 export function shouldAllowFirebaseAuthFallback() {
   const { authProvider, allowFirebaseFallback } = getFirebaseConfig();
-  return authProvider === "hybrid" && allowFirebaseFallback;
+  return authProvider === "hybrid" && allowFirebaseFallback && isFirebaseEnabled();
 }
 
 export function buildIdentityToolkitAdminHeaders(accessToken) {
@@ -123,8 +131,7 @@ export function isLocalDevelopmentHost() {
 }
 
 export function isCloudAuthEnabled() {
-  const { firebaseApiKey, firebaseProjectId } = getFirebaseConfig();
-  return Boolean(firebaseApiKey && firebaseProjectId);
+  return isFirebaseEnabled() || isCloudflareAuthEnabled();
 }
 
 export function isCloudProgressSyncEnabled() {
