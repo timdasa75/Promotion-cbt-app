@@ -12,7 +12,7 @@
       "questions": [
         {
           "id": "ict_f_001",
-          "question": "What does ICT stand for in the context of public administration",
+          "question": "What does ICT stand for in the context of public administration?",
           "options": [
             "Institutional Control Technology.",
             "Information and Communication Technology.",
@@ -55,7 +55,7 @@
         },
         {
           "id": "ict_f_002",
-          "question": "Which component of a computer system is referred to as the 'brain' and is responsible for executing software instructions",
+          "question": "Which component of a computer system is referred to as the 'brain' and is responsible for executing software instructions?",
           "options": [
             "RAM.",
             "Hard Drive.",
@@ -144,7 +144,7 @@
         },
         {
           "id": "ict_f_004",
-          "question": "What is the primary function of an operating system (OS)",
+          "question": "What is the primary function of an operating system (OS)?",
           "options": [
             "To design web pages.",
             "To control hardware and manage software resources.",
@@ -188,7 +188,7 @@
         },
         {
           "id": "ict_f_005",
-          "question": "Which of the following is NOT considered an operating system",
+          "question": "Which of the following is NOT considered an operating system?",
           "options": [
             "Windows.",
             "macOS.",
@@ -230,7 +230,7 @@
         },
         {
           "id": "ict_f_006",
-          "question": "Which ICT device is used to convert paper documents into electronic format for digital archiving",
+          "question": "Which ICT device is used to convert paper documents into electronic format for digital archiving?",
           "options": [
             "Printer.",
             "Scanner.",
@@ -314,7 +314,7 @@
         },
         {
           "id": "ict_f_008",
-          "question": "What is the term for the set of rules or protocol that identifies a device on a network",
+          "question": "What is the term for the set of rules or protocol that identifies a device on a network?",
           "options": [
             "MAC Address.",
             "IP Address.",
@@ -356,7 +356,7 @@
         },
         {
           "id": "ict_f_009",
-          "question": "Which networking device connects multiple different networks (like a LAN to the Internet) and determines the best path for data packets",
+          "question": "Which networking device connects multiple different networks (like a LAN to the Internet) and determines the best path for data packets?",
           "options": [
             "Switch.",
             "Modem.",
@@ -399,7 +399,7 @@
         },
         {
           "id": "ict_f_010",
-          "question": "Which command is commonly used in IP networking to test connectivity to another system",
+          "question": "Which command is commonly used in IP networking to test connectivity to another system?",
           "options": [
             "run.",
             "ping.",
@@ -441,7 +441,7 @@
         },
         {
           "id": "ict_f_011",
-          "question": "The primary function of DNS (Domain Name System) is to:",
+          "question": "Which of the following describes the the primary function of dns (domain name system) is to?",
           "options": [
             "Assign MAC addresses automatically.",
             "Convert domain names into numerical IP addresses.",
@@ -481,7 +481,7 @@
         },
         {
           "id": "ict_f_012",
-          "question": "What is the smallest unit of data in computing",
+          "question": "What is the smallest unit of data in computing?",
           "options": [
             "Byte.",
             "Kilobyte.",
@@ -522,7 +522,7 @@
         },
         {
           "id": "ict_f_013",
-          "question": "What does LAN stand for",
+          "question": "What does LAN stand for?",
           "options": [
             "Local Access Node.",
             "Large Area Network.",
@@ -565,7 +565,7 @@
         },
         {
           "id": "ict_f_014",
-          "question": "What is the function of a web browser",
+          "question": "What is the function of a web browser?",
           "options": [
             "To create documents.",
             "To access and view websites on the internet.",
@@ -606,7 +606,7 @@
         },
         {
           "id": "ict_f_015",
-          "question": "Which protocol is commonly used for sending emails across the internet",
+          "question": "Which protocol is commonly used for sending emails across the internet?",
           "options": [
             "HTTP.",
             "FTP.",
@@ -647,7 +647,7 @@
         },
         {
           "id": "ict_f_016",
-          "question": "What is the primary function of a **Switch** in a local network",
+          "question": "What is the primary function of a **Switch** in a local network?",
           "options": [
             "Directs data between different networks.",
             "Connects devices within a LAN and filters data to the correct recipient.",
@@ -690,7 +690,7 @@
         },
         {
           "id": "ict_f_017",
-          "question": "Which storage type retains data even when the power is turned off",
+          "question": "Which storage type retains data even when the power is turned off?",
           "options": [
             "RAM (Random Access Memory).",
             "ROM (Read-Only Memory).",
@@ -772,7 +772,7 @@
         },
         {
           "id": "ict_f_019",
-          "question": "Which networking command is used in Windows to display your current IP configuration (IP, subnet mask, gateway)",
+          "question": "Which networking command is used in Windows to display your current IP configuration (IP, subnet mask, gateway)?",
           "options": [
             "netstat.",
             "ping.",
@@ -815,7 +815,7 @@
         },
         {
           "id": "ict_f_020",
-          "question": "What does HTML stand for",
+          "question": "What does HTML stand for?",
           "options": [
             "HyperText Management Link.",
             "HyperText Markup Language.",
@@ -858,7 +858,7 @@
         },
         {
           "id": "ict_f_021",
-          "question": "Which language is primarily used for structuring web content",
+          "question": "Which language is primarily used for structuring web content?",
           "options": [
             "Python.",
             "Java.",
@@ -898,7 +898,7 @@
         },
         {
           "id": "ict_f_022",
-          "question": "What is the ICT term for a computer or system that provides data, resources, or services to other computers over a network",
+          "question": "What is the ICT term for a computer or system that provides data, resources, or services to other computers over a network?",
           "options": [
             "Client.",
             "Server.",
@@ -941,7 +941,7 @@
         },
         {
           "id": "ict_f_023",
-          "question": "Which physical device is used to project presentations during government meetings",
+          "question": "Which physical device is used to project presentations during government meetings?",
           "options": [
             "Projector.",
             "Scanner.",
@@ -1028,7 +1028,7 @@
         },
         {
           "id": "ict_f_025",
-          "question": "Which ICT component refers to the unique identifier tied to the network interface hardware of a device",
+          "question": "Which ICT component refers to the unique identifier tied to the network interface hardware of a device?",
           "options": [
             "IP Address.",
             "MAC Address.",
@@ -1070,7 +1070,7 @@
         },
         {
           "id": "ict_f_026",
-          "question": "Which storage technology is faster and often preferred for modern government systems due to its speed and durability",
+          "question": "Which storage technology is faster and often preferred for modern government systems due to its speed and durability?",
           "options": [
             "HDD (Hard Disk Drive).",
             "Floppy Disk.",
@@ -1113,7 +1113,7 @@
         },
         {
           "id": "ict_f_027",
-          "question": "What term describes the temporary, high-speed storage used to speed up access to frequently used data by the CPU",
+          "question": "What term describes the temporary, high-speed storage used to speed up access to frequently used data by the CPU?",
           "options": [
             "Archive.",
             "Cache.",
@@ -1155,7 +1155,7 @@
         },
         {
           "id": "ict_f_028",
-          "question": "What does SQL stand for",
+          "question": "What does SQL stand for?",
           "options": [
             "Service Quality Link.",
             "Structured Query Language.",
@@ -1198,7 +1198,7 @@
         },
         {
           "id": "ict_f_029",
-          "question": "Which language is used for managing and querying relational databases in government systems",
+          "question": "Which language is used for managing and querying relational databases in government systems?",
           "options": [
             "HTML.",
             "CSS.",
@@ -1239,7 +1239,7 @@
         },
         {
           "id": "ict_f_030",
-          "question": "What device is used in ministries for official, formal communication that ensures formal record-keeping",
+          "question": "What device is used in ministries for official, formal communication that ensures formal record-keeping?",
           "options": [
             "Social Media.",
             "Telephone Calls.",
@@ -1280,7 +1280,7 @@
         },
         {
           "id": "ict_f_031",
-          "question": "What is the acronym for the standardized electronic communication system used for sending email messages across the internet",
+          "question": "What is the acronym for the standardized electronic communication system used for sending email messages across the internet?",
           "options": [
             "HTTP.",
             "FTP.",
@@ -1323,7 +1323,7 @@
         },
         {
           "id": "ict_f_032",
-          "question": "What is the acronym for the non-volatile memory used to store permanent data",
+          "question": "What is the acronym for the non-volatile memory used to store permanent data?",
           "options": [
             "RAM.",
             "ROM.",
@@ -1364,7 +1364,7 @@
         },
         {
           "id": "ict_f_033",
-          "question": "Which physical device is essential for biometric data collection and verification in mandated personnel or identity systems",
+          "question": "Which physical device is essential for biometric data collection and verification in mandated personnel or identity systems?",
           "options": [
             "Projector.",
             "Printer.",
@@ -1448,7 +1448,7 @@
         },
         {
           "id": "ict_f_035",
-          "question": "Which file type is used for storing structured data and is commonly used for data exchange between government systems",
+          "question": "Which file type is used for storing structured data and is commonly used for data exchange between government systems?",
           "options": [
             "CSV (Comma-Separated Values).",
             "DOCX.",
@@ -1488,7 +1488,7 @@
         },
         {
           "id": "ict_f_036",
-          "question": "The primary objective of using **version control systems** (like Git) in government application development is to enhance:",
+          "question": "What is the primary the primary objective of using **version control systems** (like git) in government application development is to enhance?",
           "options": [
             "Payroll secrecy.",
             "Collaboration and tracking code changes.",
@@ -1531,7 +1531,7 @@
         },
         {
           "id": "ict_f_037",
-          "question": "What is the acronym for the standard port typically used for unsecured web communication",
+          "question": "What is the acronym for the standard port typically used for unsecured web communication?",
           "options": [
             "HTTPS.",
             "HTTP.",
@@ -1613,7 +1613,7 @@
         },
         {
           "id": "ict_f_039",
-          "question": "What does WAN stand for",
+          "question": "What does WAN stand for?",
           "options": [
             "Wireless Access Node.",
             "Wide Area Network.",
@@ -1655,7 +1655,7 @@
         },
         {
           "id": "ict_f_040",
-          "question": "Which of these devices is primarily output hardware",
+          "question": "Which of these devices is primarily output hardware?",
           "options": [
             "Keyboard.",
             "Scanner.",
@@ -1696,7 +1696,7 @@
         },
         {
           "id": "ict_f_041",
-          "question": "Which software is commonly used for project planning and tracking in public administration",
+          "question": "Which software is commonly used for project planning and tracking in public administration?",
           "options": [
             "MS Paint.",
             "Microsoft Project.",
@@ -1737,7 +1737,7 @@
         },
         {
           "id": "ict_f_042",
-          "question": "What is the acronym for the web address identifying the location of a resource on the internet",
+          "question": "What is the acronym for the web address identifying the location of a resource on the internet?",
           "options": [
             "IP.",
             "URL.",
@@ -1778,7 +1778,7 @@
         },
         {
           "id": "ict_f_043",
-          "question": "Which command is often used in networking to trace the route data takes to reach a destination",
+          "question": "Which command is often used in networking to trace the route data takes to reach a destination?",
           "options": [
             "ping.",
             "ipconfig.",
@@ -1818,7 +1818,7 @@
         },
         {
           "id": "ict_f_044",
-          "question": "What does SDLC stand for in software development",
+          "question": "What does SDLC stand for in software development?",
           "options": [
             "System Deployment Life Cycle.",
             "Software Development Life Cycle.",
@@ -1859,7 +1859,7 @@
         },
         {
           "id": "ict_f_045",
-          "question": "What is the acronym for the protocol used to securely transmit data over the World Wide Web",
+          "question": "What is the acronym for the protocol used to securely transmit data over the World Wide Web?",
           "options": [
             "HTTPS.",
             "HTTP.",
@@ -1900,7 +1900,7 @@
         },
         {
           "id": "ict_f_046",
-          "question": "Which IT concept involves the delivery of computing services—including servers, storage, databases, networking, software, analytics, and intelligence—over the Internet",
+          "question": "Which IT concept involves the delivery of computing services—including servers, storage, databases, networking, software, analytics, and intelligence—over the Internet?",
           "options": [
             "Local Area Networking.",
             "Cloud Computing.",
@@ -1941,7 +1941,7 @@
         },
         {
           "id": "ict_f_047",
-          "question": "Which file transfer protocol is primarily used for uploading and downloading files over a network",
+          "question": "Which file transfer protocol is primarily used for uploading and downloading files over a network?",
           "options": [
             "SMTP.",
             "FTP.",
@@ -2025,7 +2025,7 @@
         },
         {
           "id": "ict_f_049",
-          "question": "What ICT tool allows real-time audio and visual communication for governance meetings",
+          "question": "What ICT tool allows real-time audio and visual communication for governance meetings?",
           "options": [
             "Fax machine.",
             "Video conferencing tools.",
@@ -2066,7 +2066,7 @@
         },
         {
           "id": "ict_f_050",
-          "question": "What is the acronym for the standard protocol used for the dynamic allocation of IP addresses to devices on a network",
+          "question": "What is the acronym for the standard protocol used for the dynamic allocation of IP addresses to devices on a network?",
           "options": [
             "DNS.",
             "DHCP.",
@@ -2108,7 +2108,7 @@
         },
         {
           "id": "ict_f_051",
-          "question": "What ICT tool is commonly used by ministries to hold webinars and virtual training sessions",
+          "question": "What ICT tool is commonly used by ministries to hold webinars and virtual training sessions?",
           "options": [
             "Zoom.",
             "Microsoft Word.",
@@ -2150,7 +2150,7 @@
         },
         {
           "id": "ict_f_052",
-          "question": "Which type of ICT memory is volatile, meaning data is lost when power is removed",
+          "question": "Which type of ICT memory is volatile, meaning data is lost when power is removed?",
           "options": [
             "ROM.",
             "HDD.",
@@ -2275,7 +2275,7 @@
         },
         {
           "id": "ict_f_055",
-          "question": "What language is primarily used for backend development and dynamic web page generation",
+          "question": "What language is primarily used for backend development and dynamic web page generation?",
           "options": [
             "CSS.",
             "PHP.",
@@ -2316,7 +2316,7 @@
         },
         {
           "id": "ict_f_056",
-          "question": "Which IT term refers to the delivery of software applications over the internet, typically on a subscription basis (e.g., Office 365)",
+          "question": "Which IT term refers to the delivery of software applications over the internet, typically on a subscription basis (e.g., Office 365)?",
           "options": [
             "PaaS (Platform as a Service).",
             "IaaS (Infrastructure as a Service).",
@@ -2357,7 +2357,7 @@
         },
         {
           "id": "ict_f_057",
-          "question": "What is the maximum number of bits in a Byte",
+          "question": "What is the maximum number of bits in a Byte?",
           "options": [
             "4.",
             "8.",
@@ -2398,7 +2398,7 @@
         },
         {
           "id": "ict_f_058",
-          "question": "Which type of professional uses SQL most frequently in their duties",
+          "question": "Which type of professional uses SQL most frequently in their duties?",
           "options": [
             "Network Engineer.",
             "Database Administrator.",
@@ -2438,7 +2438,7 @@
         },
         {
           "id": "ict_f_059",
-          "question": "What does IDE stand for in the context of programming",
+          "question": "What does IDE stand for in the context of programming?",
           "options": [
             "Information Documentation Editor.",
             "Integrated Development Environment.",
@@ -2480,7 +2480,7 @@
         },
         {
           "id": "ict_f_060",
-          "question": "The acronym for the secure connection over the internet that protects data privacy and integrity is:",
+          "question": "Which of the following describes the the acronym for the secure connection over the internet that protects data privacy and integrity is?",
           "options": [
             "LAN.",
             "VPN.",
@@ -2563,7 +2563,7 @@
         },
         {
           "id": "ict_f_062",
-          "question": "Which protocol is commonly used by computers to automatically obtain an IP address when connecting to a network",
+          "question": "Which protocol is commonly used by computers to automatically obtain an IP address when connecting to a network?",
           "options": [
             "DHCP.",
             "DNS.",
@@ -2605,7 +2605,7 @@
         },
         {
           "id": "ict_f_063",
-          "question": "Which networking device is responsible for connecting devices within a single Local Area Network (LAN)",
+          "question": "Which networking device is responsible for connecting devices within a single Local Area Network (LAN)?",
           "options": [
             "Router.",
             "Switch.",
@@ -2647,7 +2647,7 @@
         },
         {
           "id": "ict_f_064",
-          "question": "Which type of ICT skill is typically required for user support and incident resolution in an **MDA**'",
+          "question": "Which type of ICT skill is typically required for user support and incident resolution in an **MDA**'?",
           "options": [
             "Software development.",
             "Database administration.",
@@ -2688,7 +2688,7 @@
         },
         {
           "id": "ict_f_065",
-          "question": "What is the acronym for the unique electronic address of a web page",
+          "question": "What is the acronym for the unique electronic address of a web page?",
           "options": [
             "IP.",
             "URL.",
@@ -2814,7 +2814,7 @@
         },
         {
           "id": "ict_f_068",
-          "question": "What does SSL/TLS refer to",
+          "question": "What does SSL/TLS refer to?",
           "options": [
             "Software Standard Link/Tool Link System.",
             "Secure Sockets Layer/Transport Layer Security.",
@@ -2855,7 +2855,7 @@
         },
         {
           "id": "ict_f_069",
-          "question": "Which of these is a front-end programming language used for interactive client-side scripting",
+          "question": "Which of these is a front-end programming language used for interactive client-side scripting?",
           "options": [
             "PHP.",
             "Python.",
@@ -2896,7 +2896,7 @@
         },
         {
           "id": "ict_f_070",
-          "question": "What is the acronym for a collection of data that can be accessed, managed, and updated electronically",
+          "question": "What is the acronym for a collection of data that can be accessed, managed, and updated electronically?",
           "options": [
             "LAN.",
             "DBMS.",
@@ -2979,7 +2979,7 @@
         },
         {
           "id": "ict_f_072",
-          "question": "Which device is essential for converting signals for internet access in an **MDA**'",
+          "question": "Which device is essential for converting signals for internet access in an **MDA**'?",
           "options": [
             "Router.",
             "Modem.",
@@ -3020,7 +3020,7 @@
         },
         {
           "id": "ict_f_073",
-          "question": "What is the primary function of a **Virtual Private Network (**VPN**)** in remote government access",
+          "question": "What is the primary function of a **Virtual Private Network (**VPN**)** in remote government access?",
           "options": [
             "To speed up internal processing.",
             "To provide a secure and encrypted connection over the public internet.",
@@ -3061,7 +3061,7 @@
         },
         {
           "id": "ict_f_074",
-          "question": "Which acronym refers to the technical process of running multiple operating systems or applications on one physical machine",
+          "question": "Which acronym refers to the technical process of running multiple operating systems or applications on one physical machine?",
           "options": [
             "SQL.",
             "VPN.",
@@ -3820,7 +3820,7 @@
       "questions": [
         {
           "id": "ict_eg_001",
-          "question": "The primary objective of the Integrated Payroll and Personnel Information System (**IPPIS**) is to:",
+          "question": "What is the primary the primary objective of the integrated payroll and personnel information system (**ippis**) is to?",
           "options": [
             "Manage foreign policy decisions.",
             "Automate payroll, eliminate ghost workers, and improve transparency.",
@@ -3863,7 +3863,7 @@
         },
         {
           "id": "ict_eg_003",
-          "question": "What is the primary function of the Government Integrated Financial Management Information System (**GIFMIS**)",
+          "question": "What is the primary function of the Government Integrated Financial Management Information System (**GIFMIS**)?",
           "options": [
             "Issue driver's licenses.",
             "Integrate budget execution, accounting, and financial reporting in MDAs.",
@@ -3947,7 +3947,7 @@
         },
         {
           "id": "ict_eg_005",
-          "question": "Which platform enables digital management of staff records, leave, postings, and promotions",
+          "question": "Which platform enables digital management of staff records, leave, postings, and promotions?",
           "options": [
             "TSA.",
             "HRMIS.",
@@ -3989,7 +3989,7 @@
         },
         {
           "id": "ict_eg_006",
-          "question": "Which key ICT reform aims to replace manual filing with electronic document management",
+          "question": "Which key ICT reform aims to replace manual filing with electronic document management?",
           "options": [
             "E-Health Portal.",
             "Digitization of Registry/Records.",
@@ -4030,7 +4030,7 @@
         },
         {
           "id": "ict_eg_007",
-          "question": "The integration of digital identity systems (NIN) with HR/payroll systems is aimed at enhancing:",
+          "question": "Which of the following describes the the integration of digital identity systems (nin) with hr/payroll systems is aimed at enhancing?",
           "options": [
             "Staff social media presence.",
             "Data accuracy and integrity.",
@@ -4070,7 +4070,7 @@
         },
         {
           "id": "ict_eg_008",
-          "question": "The use of Biometric Attendance Systems in **MDAs** is part of the broader E-Governance reform focused on improving:",
+          "question": "Which of the following describes the the use of biometric attendance systems in **mdas** is part of the broader e-governance reform focused on improving?",
           "options": [
             "Service pricing.",
             "Staff punctuality and discipline tracking.",
@@ -4110,7 +4110,7 @@
         },
         {
           "id": "ict_eg_009",
-          "question": "The use of ICT to improve the delivery of government services, emphasizing transparency and efficiency, is known as:",
+          "question": "Which of the following describes the the use of ict to improve the delivery of government services, emphasizing transparency and efficiency, is known as?",
           "options": [
             "E-Learning.",
             "E-Governance.",
@@ -4151,7 +4151,7 @@
         },
         {
           "id": "ict_eg_010",
-          "question": "The Nigerian Open Contracting Portal (NOCOPO) is an ICT platform that supports:",
+          "question": "Which of the following describes the the nigerian open contracting portal (nocopo) is an ict platform that supports?",
           "options": [
             "Staff promotions.",
             "Electronic procurement and open contracting processes.",
@@ -4192,7 +4192,7 @@
         },
         {
           "id": "ict_eg_011",
-          "question": "Which ICT initiative focuses on improving transparency and physical verification of federal projects by incorporating GPS data",
+          "question": "Which ICT initiative focuses on improving transparency and physical verification of federal projects by incorporating GPS data?",
           "options": [
             "E-Health Portal.",
             "Geo-tagging for Project Monitoring.",
@@ -4276,7 +4276,7 @@
         },
         {
           "id": "ict_eg_013",
-          "question": "The use of **Digital Service Charters** is primarily aimed at enhancing accountability in service delivery through monitoring:",
+          "question": "Which of the following describes the the use of **digital service charters** is primarily aimed at enhancing accountability in service delivery through monitoring?",
           "options": [
             "Staff political affiliations.",
             "Citizen feedback and service quality metrics.",
@@ -4317,7 +4317,7 @@
         },
         {
           "id": "ict_eg_014",
-          "question": "Which document guides the automation of public services, inter-agency data sharing, and secure cloud infrastructure deployment",
+          "question": "Which document guides the automation of public services, inter-agency data sharing, and secure cloud infrastructure deployment?",
           "options": [
             "The Official Secrets Act.",
             "Nigeria’s e-Government Masterplan.",
@@ -4357,7 +4357,7 @@
         },
         {
           "id": "ict_eg_015",
-          "question": "The implementation of the CBT format for promotion examinations (COMPRO) is an ICT initiative aimed at:",
+          "question": "Which of the following describes the the implementation of the cbt format for promotion examinations (compro) is an ict initiative aimed at?",
           "options": [
             "Limiting staff participation.",
             "Standardizing evaluation and enhancing transparency.",
@@ -4400,7 +4400,7 @@
         },
         {
           "id": "ict_eg_016",
-          "question": "Which agency manages Nigeria's unified system for digital identity (NIN) linking citizens to various e-Governance platforms",
+          "question": "Which agency manages Nigeria's unified system for digital identity (NIN) linking citizens to various e-Governance platforms?",
           "options": [
             "NCC.",
             "NIMC.",
@@ -4440,7 +4440,7 @@
         },
         {
           "id": "ict_eg_017",
-          "question": "Who must certify that the information provided on staff emoluments in **IPPIS** is accurate before payment is processed",
+          "question": "Who must certify that the information provided on staff emoluments in **IPPIS** is accurate before payment is processed?",
           "options": [
             "The Minister of Finance.",
             "The Head of the MDA (Accounting Officer).",
@@ -4482,7 +4482,7 @@
         },
         {
           "id": "ict_eg_018",
-          "question": "Which platform supports Nigeria's Treasury Single Account (**TSA**)",
+          "question": "Which platform supports Nigeria's Treasury Single Account (**TSA**)?",
           "options": [
             "GIFMIS.",
             "IPPIS.",
@@ -4522,7 +4522,7 @@
         },
         {
           "id": "ict_eg_019",
-          "question": "The use of **e-Procurement** systems is mandated in the **PPA** (**Section 38**) primarily to enhance:",
+          "question": "Which of the following describes the the use of **e-procurement** systems is mandated in the **ppa** (**section 38**) primarily to enhance?",
           "options": [
             "Secrecy and non-competition.",
             "Efficiency and transparency.",
@@ -4564,7 +4564,7 @@
         },
         {
           "id": "ict_eg_020",
-          "question": "What is the acronym for the agency that promotes ICT policy and monitors its implementation in Nigeria",
+          "question": "What is the acronym for the agency that promotes ICT policy and monitors its implementation in Nigeria?",
           "options": [
             "NCC.",
             "NITDA.",
@@ -4607,7 +4607,7 @@
         },
         {
           "id": "ict_eg_021",
-          "question": "Which ICT platform ensures electronic procurement processes in Nigeria",
+          "question": "Which ICT platform ensures electronic procurement processes in Nigeria?",
           "options": [
             "NOCOPO.",
             "IPPIS.",
@@ -4648,7 +4648,7 @@
         },
         {
           "id": "ict_eg_022",
-          "question": "The e-Government Master Plan lays out Nigeria's vision for **Smart Government** through:",
+          "question": "Which of the following describes the the e-government master plan lays out nigeria's vision for **smart government** through?",
           "options": [
             "Manual accounting.",
             "ICT adoption and infrastructure development.",
@@ -4731,7 +4731,7 @@
         },
         {
           "id": "ict_eg_025",
-          "question": "The objective of the **Digitization of Registry** reform is primarily to replace manual filing with:",
+          "question": "What is the primary the objective of the **digitization of registry** reform is primarily to replace manual filing with?",
           "options": [
             "Physical storage in centralized warehouses.",
             "Electronic document management systems (ECM).",
@@ -4771,7 +4771,7 @@
         },
         {
           "id": "ict_eg_026",
-          "question": "Which ICT platform is used for online civil service recruitment tests, including the Directorate Promotion Exams",
+          "question": "Which ICT platform is used for online civil service recruitment tests, including the Directorate Promotion Exams?",
           "options": [
             "CBT platforms.",
             "NOCOPO.",
@@ -4897,7 +4897,7 @@
         },
         {
           "id": "ict_eg_029",
-          "question": "What does BVAS stand for in the context of Nigerian elections",
+          "question": "What does BVAS stand for in the context of Nigerian elections?",
           "options": [
             "Budget Virement and Allocation System.",
             "Bank Verification and Authentication System.",
@@ -4939,7 +4939,7 @@
         },
         {
           "id": "ict_eg_031",
-          "question": "Which ICT platform facilitates electronic payments for government services, including taxes and fees",
+          "question": "Which ICT platform facilitates electronic payments for government services, including taxes and fees?",
           "options": [
             "IPPIS.",
             "Remita.",
@@ -4980,7 +4980,7 @@
         },
         {
           "id": "ict_eg_032",
-          "question": "Which ICT initiative supports Nigeria's population census by improving accuracy and efficiency",
+          "question": "Which ICT initiative supports Nigeria's population census by improving accuracy and efficiency?",
           "options": [
             "E-Census.",
             "IPPIS.",
@@ -5021,7 +5021,7 @@
         },
         {
           "id": "ict_eg_033",
-          "question": "The use of **Gov.ng Portal** is primarily intended to provide citizens with:",
+          "question": "Which of the following describes the the use of **gov.ng portal** is primarily intended to provide citizens with?",
           "options": [
             "A private forum for complaints.",
             "Access to digital government services.",
@@ -5060,7 +5060,7 @@
         },
         {
           "id": "ict_eg_034",
-          "question": "Which reform integrates HR, finance, and procurement functions into a single system within **MDAs**'",
+          "question": "Which reform integrates HR, finance, and procurement functions into a single system within **MDAs**'?",
           "options": [
             "TSA.",
             "Enterprise Resource Planning (ERP).",
@@ -5100,7 +5100,7 @@
         },
         {
           "id": "ict_eg_035",
-          "question": "The **E-Health Portal** is a digital service aimed at promoting:",
+          "question": "Which of the following describes the the **e-health portal** is a digital service aimed at promoting?",
           "options": [
             "Manual medical record keeping.",
             "Electronic medical records and health service delivery.",
@@ -5141,7 +5141,7 @@
         },
         {
           "id": "ict_eg_036",
-          "question": "Which agency drives broadband rollout and digital inclusion across Nigeria",
+          "question": "Which agency drives broadband rollout and digital inclusion across Nigeria?",
           "options": [
             "DMO.",
             "Nigerian Communications Commission (NCC).",
@@ -5182,7 +5182,7 @@
         },
         {
           "id": "ict_eg_037",
-          "question": "The **BVN (Bank Verification Number)** initiative provides biometric verification primarily for:",
+          "question": "Which of the following describes the the **bvn (bank verification number)** initiative provides biometric verification primarily for?",
           "options": [
             "Public procurement.",
             "Nigerian bank accounts.",
@@ -5222,7 +5222,7 @@
         },
         {
           "id": "ict_eg_038",
-          "question": "Which ICT platform allows government services to be accessed via mobile devices",
+          "question": "Which ICT platform allows government services to be accessed via mobile devices?",
           "options": [
             "Mobile Gov Apps.",
             "IPPIS.",
@@ -5262,7 +5262,7 @@
         },
         {
           "id": "ict_eg_039",
-          "question": "Which ICT innovation promotes electronic justice delivery in Nigeria",
+          "question": "Which ICT innovation promotes electronic justice delivery in Nigeria?",
           "options": [
             "E-Court.",
             "Fax machine.",
@@ -5304,7 +5304,7 @@
         },
         {
           "id": "ict_eg_040",
-          "question": "The system used by the Office of the Accountant-General (OAGF) for centralized government accounting and ledger management is:",
+          "question": "Which of the following describes the the system used by the office of the accountant-general (oagf) for centralized government accounting and ledger management is?",
           "options": [
             "IPPIS.",
             "GIFMIS.",
@@ -5386,7 +5386,7 @@
         },
         {
           "id": "ict_eg_042",
-          "question": "Which ICT platform ensures transparent public procurement in Nigeria",
+          "question": "Which ICT platform ensures transparent public procurement in Nigeria?",
           "options": [
             "NOCOPO.",
             "IPPIS.",
@@ -5428,7 +5428,7 @@
         },
         {
           "id": "ict_eg_043",
-          "question": "What is the acronym for the agency that promotes ICT innovation in Nigeria",
+          "question": "What is the acronym for the agency that promotes ICT innovation in Nigeria?",
           "options": [
             "NITDA.",
             "NCC.",
@@ -5470,7 +5470,7 @@
         },
         {
           "id": "ict_eg_044",
-          "question": "The **Service Charter Automation** initiative is part of digital reforms aimed at:",
+          "question": "Which of the following describes the the **service charter automation** initiative is part of digital reforms aimed at?",
           "options": [
             "Automating political appointments.",
             "Enabling citizens to interact with MDAs online for service delivery.",
@@ -5510,7 +5510,7 @@
         },
         {
           "id": "ict_eg_045",
-          "question": "Which ICT platform is used for online civil service recruitment tests",
+          "question": "Which ICT platform is used for online civil service recruitment tests?",
           "options": [
             "CBT platforms.",
             "NOCOPO.",
@@ -5551,7 +5551,7 @@
         },
         {
           "id": "ict_eg_046",
-          "question": "Which ICT initiative is designed to promote Nigeria's ease of doing business",
+          "question": "Which ICT initiative is designed to promote Nigeria's ease of doing business?",
           "options": [
             "Presidential Enabling Business Environment Council (PEBEC) portal.",
             "Procedurally, ippis under applicable policy conditions.",
@@ -5592,7 +5592,7 @@
         },
         {
           "id": "ict_eg_047",
-          "question": "Who issues ICT-related circulars regarding digital reforms and systems implementation in the public service",
+          "question": "Who issues ICT-related circulars regarding digital reforms and systems implementation in the public service?",
           "options": [
             "NCC.",
             "FCSC.",
@@ -5720,7 +5720,7 @@
         },
         {
           "id": "ict_eg_050",
-          "question": "Which ICT reform aims to centralize government applications and data hosting",
+          "question": "Which ICT reform aims to centralize government applications and data hosting?",
           "options": [
             "Document Scanning Projects.",
             "Government Data Centers.",
@@ -5761,7 +5761,7 @@
         },
         {
           "id": "ict_eg_051",
-          "question": "Which **PSR** rule mandates that officers must be placed on the **IPPIS** platform within two months of assuming duty",
+          "question": "Which **PSR** rule mandates that officers must be placed on the **IPPIS** platform within two months of assuming duty?",
           "options": [
             "Rule 020303.",
             "Rule 040102.",
@@ -5801,7 +5801,7 @@
         },
         {
           "id": "ict_eg_052",
-          "question": "The use of **Digital Signatures** in e-memo systems is primarily designed to enhance:",
+          "question": "Which of the following describes the the use of **digital signatures** in e-memo systems is primarily designed to enhance?",
           "options": [
             "File compression.",
             "Authentication and security.",
@@ -5842,7 +5842,7 @@
         },
         {
           "id": "ict_eg_053",
-          "question": "Which agency is responsible for regulating telecommunication operators in Nigeria",
+          "question": "Which agency is responsible for regulating telecommunication operators in Nigeria?",
           "options": [
             "NCC.",
             "NITDA.",
@@ -5924,7 +5924,7 @@
         },
         {
           "id": "ict_eg_055",
-          "question": "Which ICT platform supports Nigeria's Treasury Single Account (**TSA**)",
+          "question": "Which ICT platform supports Nigeria's Treasury Single Account (**TSA**)?",
           "options": [
             "GIFMIS.",
             "IPPIS.",
@@ -6006,7 +6006,7 @@
         },
         {
           "id": "ict_eg_057",
-          "question": "The **Unified Personnel Database** reform aims to:",
+          "question": "Which of the following describes the the **unified personnel database** reform aims to?",
           "options": [
             "Avoid duplication and ensure accurate postings.",
             "Restrict access to sensitive data.",
@@ -6046,7 +6046,7 @@
         },
         {
           "id": "ict_eg_058",
-          "question": "Which **PSR** rule outlines the categories of training courses available to officers, including those relevant to ICT capacity building",
+          "question": "Which **PSR** rule outlines the categories of training courses available to officers, including those relevant to ICT capacity building?",
           "options": [
             "Rule 070101.",
             "Rule 070105.",
@@ -6087,7 +6087,7 @@
         },
         {
           "id": "ict_eg_059",
-          "question": "Which ICT platform ensures electronic passport applications in Nigeria",
+          "question": "Which ICT platform ensures electronic passport applications in Nigeria?",
           "options": [
             "NIS Portal.",
             "IPPIS.",
@@ -6128,7 +6128,7 @@
         },
         {
           "id": "ict_eg_060",
-          "question": "What is the acronym for the agency that oversees ICT policy and development in Nigeria",
+          "question": "What is the acronym for the agency that oversees ICT policy and development in Nigeria?",
           "options": [
             "NITDA.",
             "NCC.",
@@ -6252,7 +6252,7 @@
         },
         {
           "id": "ict_eg_063",
-          "question": "The use of **Servicom Dashboards** by **MDAs** is intended to facilitate better accountability in service delivery by monitoring:",
+          "question": "Which of the following describes the the use of **servicom dashboards** by **mdas** is intended to facilitate better accountability in service delivery by monitoring?",
           "options": [
             "Ministerial appointments.",
             "Citizen feedback and service quality metrics.",
@@ -6293,7 +6293,7 @@
         },
         {
           "id": "ict_eg_064",
-          "question": "Which agency is responsible for issuing guidelines on ICT standards in **MDAs**'",
+          "question": "Which agency is responsible for issuing guidelines on ICT standards in **MDAs**'?",
           "options": [
             "FCSC.",
             "NITDA.",
@@ -6334,7 +6334,7 @@
         },
         {
           "id": "ict_eg_065",
-          "question": "Which platform supports electronic land registration in Nigeria",
+          "question": "Which platform supports electronic land registration in Nigeria?",
           "options": [
             "E-Land Registry.",
             "IPPIS.",
@@ -6416,7 +6416,7 @@
         },
         {
           "id": "ict_eg_067",
-          "question": "Which ICT policy was established in 2012 to promote ICT development and application in governance",
+          "question": "Which ICT policy was established in 2012 to promote ICT development and application in governance?",
           "options": [
             "Cybercrime Act 2015.",
             "Nigeria ICT Policy 2012.",
@@ -6457,7 +6457,7 @@
         },
         {
           "id": "ict_eg_068",
-          "question": "The **CBT-Based Promotion Exams** initiative is designed to:",
+          "question": "Which of the following describes the the **cbt-based promotion exams** initiative is designed to?",
           "options": [
             "Increase subjectivity in grading.",
             "Standardize evaluation across cadres.",
@@ -6497,7 +6497,7 @@
         },
         {
           "id": "ict_eg_069",
-          "question": "Which ICT initiative is focused on converting paper records to digital archives",
+          "question": "Which ICT initiative is focused on converting paper records to digital archives?",
           "options": [
             "Cloud Migration.",
             "Document Scanning and Archiving Projects.",
@@ -6620,7 +6620,7 @@
         },
         {
           "id": "ict_eg_072",
-          "question": "Which ICT initiative is designed to promote cashless policy by encouraging electronic transactions",
+          "question": "Which ICT initiative is designed to promote cashless policy by encouraging electronic transactions?",
           "options": [
             "GIFMIS.",
             "NIN.",
@@ -6661,7 +6661,7 @@
         },
         {
           "id": "ict_eg_073",
-          "question": "Which officer manages staff records, including the completion and forwarding of relevant forms to the Pension Fund Administrator/National Pension Commission",
+          "question": "Which officer manages staff records, including the completion and forwarding of relevant forms to the Pension Fund Administrator/National Pension Commission?",
           "options": [
             "The Minister.",
             "The Director (HRM) of the MDA.",
@@ -7503,7 +7503,7 @@
         },
         {
           "id": "ict_eg_098",
-          "question": "which option correctly addresses: Which platform enables digital management of staff records, leave, postings, and promotions?",
+          "question": "Which option correctly addresses: Which platform enables digital management of staff records, leave, postings, and promotions?",
           "options": [
             "BPP.",
             "TSA.",
@@ -7639,7 +7639,7 @@
       "questions": [
         {
           "id": "ict_sec_001",
-          "question": "What does cybersecurity aim to protect",
+          "question": "What does cybersecurity aim to protect?",
           "options": [
             "Paper files only.",
             "Government vehicles.",
@@ -7678,7 +7678,7 @@
         },
         {
           "id": "ict_sec_002",
-          "question": "Which security measure is designed to control incoming and outgoing network traffic and prevent unauthorized external access",
+          "question": "Which security measure is designed to control incoming and outgoing network traffic and prevent unauthorized external access?",
           "options": [
             "Spreadsheet.",
             "Firewall.",
@@ -7720,7 +7720,7 @@
         },
         {
           "id": "ict_sec_003",
-          "question": "The practice of disguising communication, often via email, to trick users into stealing sensitive login credentials is known as:",
+          "question": "Which of the following describes the the practice of disguising communication, often via email, to trick users into stealing sensitive login credentials is known as?",
           "options": [
             "Encryption.",
             "Firewalling.",
@@ -7761,7 +7761,7 @@
         },
         {
           "id": "ict_sec_004",
-          "question": "Which ICT security practice involves updating software regularly to fix known vulnerabilities",
+          "question": "Which ICT security practice involves updating software regularly to fix known vulnerabilities?",
           "options": [
             "Phishing.",
             "Patching.",
@@ -7802,7 +7802,7 @@
         },
         {
           "id": "ict_sec_005",
-          "question": "What measure secures sensitive official emails and documents by converting them into a secure, unreadable format",
+          "question": "What measure secures sensitive official emails and documents by converting them into a secure, unreadable format?",
           "options": [
             "Encryption.",
             "Phishing.",
@@ -7886,7 +7886,7 @@
         },
         {
           "id": "ict_sec_007",
-          "question": "Which ICT term refers to malicious software (e.g., viruses, worms, trojans) that can damage or exploit systems",
+          "question": "Which ICT term refers to malicious software (e.g., viruses, worms, trojans) that can damage or exploit systems?",
           "options": [
             "Firewall.",
             "Antivirus.",
@@ -7927,7 +7927,7 @@
         },
         {
           "id": "ict_sec_008",
-          "question": "Which Nigerian law provides the legal framework for criminalizing online fraud, hacking, and related offences",
+          "question": "Which Nigerian law provides the legal framework for criminalizing online fraud, hacking, and related offences?",
           "options": [
             "ICT Policy 2012.",
             "Cybercrime Act 2015.",
@@ -7968,7 +7968,7 @@
         },
         {
           "id": "ict_sec_009",
-          "question": "What security measure involves making backup copies of official data to ensure availability in case of system failure or cyberattack",
+          "question": "What security measure involves making backup copies of official data to ensure availability in case of system failure or cyberattack?",
           "options": [
             "Data backup.",
             "Hacking.",
@@ -8009,7 +8009,7 @@
         },
         {
           "id": "ict_sec_010",
-          "question": "Which ICT policy mandates the safe, lawful, and transparent handling of citizens' personal digital data by government agencies",
+          "question": "Which ICT policy mandates the safe, lawful, and transparent handling of citizens' personal digital data by government agencies?",
           "options": [
             "ICT Policy 2012.",
             "Nigeria Data Protection Regulation (NDPR).",
@@ -8050,7 +8050,7 @@
         },
         {
           "id": "ict_sec_011",
-          "question": "The use of **Digital Signatures** in official e-correspondence is primarily designed to enhance:",
+          "question": "Which of the following describes the the use of **digital signatures** in official e-correspondence is primarily designed to enhance?",
           "options": [
             "Data compression.",
             "Authentication and security.",
@@ -8091,7 +8091,7 @@
         },
         {
           "id": "ict_sec_012",
-          "question": "What security method requires a password and a second verification (e.g., SMS code or biometric scan) for system access",
+          "question": "What security method requires a password and a second verification (e.g., SMS code or biometric scan) for system access?",
           "options": [
             "Single Sign-On (SSO).",
             "Two-Factor Authentication (2FA) / MFA.",
@@ -8133,7 +8133,7 @@
         },
         {
           "id": "ict_sec_013",
-          "question": "What is the consequence of an **MDA** breaching the NDPR regarding personal data handling",
+          "question": "What is the consequence of an **MDA** breaching the NDPR regarding personal data handling?",
           "options": [
             "Automatic promotion of staff.",
             "Fines and reputational damage.",
@@ -8175,7 +8175,7 @@
         },
         {
           "id": "ict_sec_014",
-          "question": "Which ICT measure prevents unauthorized persons from copying, modifying, or accessing sensitive files",
+          "question": "Which ICT measure prevents unauthorized persons from copying, modifying, or accessing sensitive files?",
           "options": [
             "Access Control.",
             "Phishing.",
@@ -8258,7 +8258,7 @@
         },
         {
           "id": "ict_sec_016",
-          "question": "The primary threat mitigated by data backup and disaster recovery planning is:",
+          "question": "Which of the following describes the the primary threat mitigated by data backup and disaster recovery planning is?",
           "options": [
             "Inadequate funding.",
             "Irrecoverable data loss or system corruption.",
@@ -8299,7 +8299,7 @@
         },
         {
           "id": "ict_sec_017",
-          "question": "What is the acronym for the agency that oversees the enforcement of data privacy in Nigeria",
+          "question": "What is the acronym for the agency that oversees the enforcement of data privacy in Nigeria?",
           "options": [
             "BPP.",
             "NDPC.",
@@ -8341,7 +8341,7 @@
         },
         {
           "id": "ict_sec_018",
-          "question": "Which type of malicious software encrypts a user's files and demands a ransom for decryption",
+          "question": "Which type of malicious software encrypts a user's files and demands a ransom for decryption?",
           "options": [
             "Trojan.",
             "Worm.",
@@ -8423,7 +8423,7 @@
         },
         {
           "id": "ict_sec_020",
-          "question": "What is the primary objective of ensuring **Data Integrity Checks** in digital systems",
+          "question": "What is the primary objective of ensuring **Data Integrity Checks** in digital systems?",
           "options": [
             "To prevent unauthorized modifications to sensitive files.",
             "To increase system processing speed.",
@@ -8464,7 +8464,7 @@
         },
         {
           "id": "ict_sec_021",
-          "question": "The principle of **cyber hygiene** (training on cyber safety) primarily focuses on:",
+          "question": "Which of the following describes the the principle of **cyber hygiene** (training on cyber safety) primarily focuses on?",
           "options": [
             "Physical security of buildings.",
             "Staff awareness against phishing and malware threats.",
@@ -8505,7 +8505,7 @@
         },
         {
           "id": "ict_sec_022",
-          "question": "Which security measure is achieved when official documents are secured by converting them into an unreadable format using a key",
+          "question": "Which security measure is achieved when official documents are secured by converting them into an unreadable format using a key?",
           "options": [
             "Data Compression.",
             "Encryption.",
@@ -8545,7 +8545,7 @@
         },
         {
           "id": "ict_sec_023",
-          "question": "Which security protocol protects web communication and is denoted by 'S' in HTTPS",
+          "question": "Which security protocol protects web communication and is denoted by 'S' in HTTPS?",
           "options": [
             "SSL/TLS.",
             "SMTP.",
@@ -8586,7 +8586,7 @@
         },
         {
           "id": "ict_sec_024",
-          "question": "Which type of ICT threat involves flooding a system with traffic to make it unavailable to legitimate users",
+          "question": "Which type of ICT threat involves flooding a system with traffic to make it unavailable to legitimate users?",
           "options": [
             "Phishing.",
             "Denial of Service (DoS).",
@@ -8627,7 +8627,7 @@
         },
         {
           "id": "ict_sec_025",
-          "question": "What is the acronym for malicious software that can damage systems",
+          "question": "What is the acronym for malicious software that can damage systems?",
           "options": [
             "Firewall.",
             "Antivirus.",
@@ -8668,7 +8668,7 @@
         },
         {
           "id": "ict_sec_026",
-          "question": "Which ICT measure prevents unauthorized system access and typically involves a password or biometric verification",
+          "question": "Which ICT measure prevents unauthorized system access and typically involves a password or biometric verification?",
           "options": [
             "Manual signatures.",
             "User authentication.",
@@ -8710,7 +8710,7 @@
         },
         {
           "id": "ict_sec_027",
-          "question": "Which Act requires service providers to retain traffic data for national security purposes",
+          "question": "Which Act requires service providers to retain traffic data for national security purposes?",
           "options": [
             "Cybercrime Act 2015.",
             "NDPR.",
@@ -8751,7 +8751,7 @@
         },
         {
           "id": "ict_sec_028",
-          "question": "What ICT term describes a software vulnerability for which no vendor patch or fix is yet available",
+          "question": "What ICT term describes a software vulnerability for which no vendor patch or fix is yet available?",
           "options": [
             "Patch Tuesday.",
             "Zero-day.",
@@ -8835,7 +8835,7 @@
         },
         {
           "id": "ict_sec_030",
-          "question": "Which principle of internal control is represented by the separation of roles for payment approval, fund custody, and transaction recording",
+          "question": "Which principle of internal control is represented by the separation of roles for payment approval, fund custody, and transaction recording?",
           "options": [
             "Virement.",
             "Segregation of Duties.",
@@ -8916,7 +8916,7 @@
         },
         {
           "id": "ict_sec_032",
-          "question": "What is the security risk associated with having a password written down on a sticky note near a computer",
+          "question": "What is the security risk associated with having a password written down on a sticky note near a computer?",
           "options": [
             "Network congestion.",
             "Phishing prevention.",
@@ -9001,7 +9001,7 @@
         },
         {
           "id": "ict_sec_034",
-          "question": "What type of attack involves unauthorized users gaining access to sensitive system files and data",
+          "question": "What type of attack involves unauthorized users gaining access to sensitive system files and data?",
           "options": [
             "Hacking.",
             "Encryption.",
@@ -9041,7 +9041,7 @@
         },
         {
           "id": "ict_sec_035",
-          "question": "What security measure is designed to detect and remove malicious software from computer systems",
+          "question": "What security measure is designed to detect and remove malicious software from computer systems?",
           "options": [
             "Firewall.",
             "Antivirus software.",
@@ -9082,7 +9082,7 @@
         },
         {
           "id": "ict_sec_036",
-          "question": "What does **NDPR** stand for",
+          "question": "What does **NDPR** stand for?",
           "options": [
             "National Digital Public Records.",
             "Nigeria Data Protection Regulation.",
@@ -9124,7 +9124,7 @@
         },
         {
           "id": "ict_sec_037",
-          "question": "Which security measure helps prevent unauthorized copying of sensitive files",
+          "question": "Which security measure helps prevent unauthorized copying of sensitive files?",
           "options": [
             "Access Control.",
             "Phishing.",
@@ -9165,7 +9165,7 @@
         },
         {
           "id": "ict_sec_038",
-          "question": "Which ICT law mandates service providers to retain traffic data for security purposes",
+          "question": "Which ICT law mandates service providers to retain traffic data for security purposes?",
           "options": [
             "Cybercrime Act 2015.",
             "NDPR.",
@@ -9206,7 +9206,7 @@
         },
         {
           "id": "ict_sec_039",
-          "question": "The primary anti-corruption agency responsible for investigating and prosecuting financial crimes like digital fraud in the public sector is the:",
+          "question": "Which of the following describes the the primary anti-corruption agency responsible for investigating and prosecuting financial crimes like digital fraud in the public sector is the?",
           "options": [
             "Independent Corrupt Practices Commission (ICPC).",
             "Economic and Financial Crimes Commission (EFCC).",
@@ -9247,7 +9247,7 @@
         },
         {
           "id": "ict_sec_040",
-          "question": "Which measure is critical for data loss prevention during a system crash or power outage",
+          "question": "Which measure is critical for data loss prevention during a system crash or power outage?",
           "options": [
             "Regular hardware replacement.",
             "Data backup and redundancy.",
@@ -9288,7 +9288,7 @@
         },
         {
           "id": "ict_sec_041",
-          "question": "What is the goal of **Data Redundancy** in government ICT systems",
+          "question": "What is the goal of **Data Redundancy** in government ICT systems?",
           "options": [
             "To increase data storage costs.",
             "To simplify encryption keys.",
@@ -9329,7 +9329,7 @@
         },
         {
           "id": "ict_sec_042",
-          "question": "In the context of the Official Secrets Act, disclosure of classified government data via an unsecured digital channel constitutes:",
+          "question": "Which of the following describes the in the context of the official secrets act, disclosure of classified government data via an unsecured digital channel constitutes?",
           "options": [
             "Minor misconduct.",
             "Breach of Secrecy/Official Secrets Act.",
@@ -9369,7 +9369,7 @@
         },
         {
           "id": "ict_sec_043",
-          "question": "Which type of audit is conducted **after** expenditure is incurred to verify its legality and proper classification",
+          "question": "Which type of audit is conducted **after** expenditure is incurred to verify its legality and proper classification?",
           "options": [
             "Concurrent audit.",
             "Post-audit.",
@@ -9409,7 +9409,7 @@
         },
         {
           "id": "ict_sec_044",
-          "question": "What does a **Proxy Server** primarily serve as in the **MDA** network environment",
+          "question": "What does a **Proxy Server** primarily serve as in the **MDA** network environment?",
           "options": [
             "A firewall replacement.",
             "An internal database.",
@@ -9453,7 +9453,7 @@
         },
         {
           "id": "ict_sec_045",
-          "question": "Which **PSR** rule ensures that officers must be given access to documentary evidence used against them in a disciplinary inquiry",
+          "question": "Which **PSR** rule ensures that officers must be given access to documentary evidence used against them in a disciplinary inquiry?",
           "options": [
             "Rule 100431.",
             "Rule 100307(vii).",
@@ -9493,7 +9493,7 @@
         },
         {
           "id": "ict_sec_046",
-          "question": "What is the acronym for the protocol used for secure file transfer over the internet",
+          "question": "What is the acronym for the protocol used for secure file transfer over the internet?",
           "options": [
             "FTP.",
             "SFTP.",
@@ -9574,7 +9574,7 @@
         },
         {
           "id": "ict_sec_048",
-          "question": "Which type of ICT threat involves unauthorized access to systems",
+          "question": "Which type of ICT threat involves unauthorized access to systems?",
           "options": [
             "Hacking.",
             "Encryption.",
@@ -9658,7 +9658,7 @@
         },
         {
           "id": "ict_sec_051",
-          "question": "Which **PSR** rule dictates that officers must be free from financial embarrassment upon application for employment",
+          "question": "Which **PSR** rule dictates that officers must be free from financial embarrassment upon application for employment?",
           "options": [
             "Rule 040102.",
             "Rule 020206.",
@@ -9698,7 +9698,7 @@
         },
         {
           "id": "ict_sec_052",
-          "question": "Which type of misconduct involves habitual lateness to duty, often tracked by biometric systems",
+          "question": "Which type of misconduct involves habitual lateness to duty, often tracked by biometric systems?",
           "options": [
             "Gross misconduct.",
             "Minor misconduct.",
@@ -9738,7 +9738,7 @@
         },
         {
           "id": "ict_sec_053",
-          "question": "What ICT measure involves ensuring that data is accurate, complete, and meets quality standards before use in a government system",
+          "question": "What ICT measure involves ensuring that data is accurate, complete, and meets quality standards before use in a government system?",
           "options": [
             "Data encryption.",
             "Data validation.",
@@ -9779,7 +9779,7 @@
         },
         {
           "id": "ict_sec_054",
-          "question": "The maximum penalty for procurement fraud, bid rigging, or collusion (**PPA** **Section 58**) for an officer may include:",
+          "question": "Which of the following describes the the maximum penalty for procurement fraud, bid rigging, or collusion (**ppa** **section 58**) for an officer may include?",
           "options": [
             "Reduction in salary.",
             "Imprisonment and/or heavy fines.",
@@ -9819,7 +9819,7 @@
         },
         {
           "id": "ict_sec_055",
-          "question": "What is the acronym for the law that provides the legal framework for criminalizing online fraud and hacking",
+          "question": "What is the acronym for the law that provides the legal framework for criminalizing online fraud and hacking?",
           "options": [
             "NDPR.",
             "CBT.",
@@ -9901,7 +9901,7 @@
         },
         {
           "id": "ict_sec_057",
-          "question": "Which of the following documents reinforces the duty of secrecy for civil servants handling official matters, including digital communication",
+          "question": "Which of the following documents reinforces the duty of secrecy for civil servants handling official matters, including digital communication?",
           "options": [
             "Civil Service Handbook.",
             "Official Secrets Act.",
@@ -9982,7 +9982,7 @@
         },
         {
           "id": "ict_sec_059",
-          "question": "Which ICT measure protects systems from unauthorized access",
+          "question": "Which ICT measure protects systems from unauthorized access?",
           "options": [
             "Firewall.",
             "Spreadsheet.",
@@ -10024,7 +10024,7 @@
         },
         {
           "id": "ict_sec_060",
-          "question": "Which ICT platform is used by banks to verify customers' identity biometrically",
+          "question": "Which ICT platform is used by banks to verify customers' identity biometrically?",
           "options": [
             "BVN.",
             "IPPIS.",
@@ -10065,7 +10065,7 @@
         },
         {
           "id": "ict_sec_061",
-          "question": "What is the primary function of an Antivirus software",
+          "question": "What is the primary function of an Antivirus software?",
           "options": [
             "To filter network traffic.",
             "To detect and remove malicious software (malware).",
@@ -10106,7 +10106,7 @@
         },
         {
           "id": "ict_sec_062",
-          "question": "What is the acronym for the agency established to enforce data protection standards",
+          "question": "What is the acronym for the agency established to enforce data protection standards?",
           "options": [
             "NDPR.",
             "NDPC.",
@@ -10148,7 +10148,7 @@
         },
         {
           "id": "ict_sec_063",
-          "question": "In the context of government digital assets, the primary concern of **Confidentiality** is to ensure that:",
+          "question": "Which of the following describes the in the context of government digital assets, the primary concern of **confidentiality** is to ensure that?",
           "options": [
             "Data is always available.",
             "Data is accurate and complete.",
@@ -10230,7 +10230,7 @@
         },
         {
           "id": "ict_sec_065",
-          "question": "Which document emphasizes accountability in the utilization of government funds and resources, including ICT assets",
+          "question": "Which document emphasizes accountability in the utilization of government funds and resources, including ICT assets?",
           "options": [
             "Chapter 1 of CSH.",
             "Chapter 4 of CSH.",
@@ -10271,7 +10271,7 @@
         },
         {
           "id": "ict_sec_066",
-          "question": "What is the penalty for falsification of records (digital or physical) in the civil service",
+          "question": "What is the penalty for falsification of records (digital or physical) in the civil service?",
           "options": [
             "Transfer to another Ministry.",
             "Minor misconduct.",
@@ -10311,7 +10311,7 @@
         },
         {
           "id": "ict_sec_067",
-          "question": "The Audit Trail is the sequential documentation of financial transactions intended to ensure:",
+          "question": "Which of the following describes the the audit trail is the sequential documentation of financial transactions intended to ensure?",
           "options": [
             "Delayed financial reporting.",
             "Integrity and traceability.",
@@ -10392,7 +10392,7 @@
         },
         {
           "id": "ict_sec_070",
-          "question": "Which ICT measure prevents unauthorized copying of sensitive files",
+          "question": "Which ICT measure prevents unauthorized copying of sensitive files?",
           "options": [
             "Access Control.",
             "Phishing.",
@@ -10433,7 +10433,7 @@
         },
         {
           "id": "ict_sec_071",
-          "question": "Which security measure is primarily designed to prevent unauthorized access to or from a private network",
+          "question": "Which security measure is primarily designed to prevent unauthorized access to or from a private network?",
           "options": [
             "Antivirus software.",
             "Encryption.",
@@ -10475,7 +10475,7 @@
         },
         {
           "id": "ict_sec_072",
-          "question": "The ultimate disciplinary penalty for gross misconduct, such as digital fraud or corruption detected through the **GIFMIS**/**IPPIS** audit trail, is:",
+          "question": "Which of the following describes the the ultimate disciplinary penalty for gross misconduct, such as digital fraud or corruption detected through the **gifmis**/**ippis** audit trail, is?",
           "options": [
             "Reduction in rank.",
             "Surcharge only.",
@@ -10517,7 +10517,7 @@
         },
         {
           "id": "ict_sec_075",
-          "question": "Who must approve the implementation of a new digital system or platform across all Federal **MDAs** for service-wide rollout",
+          "question": "Who must approve the implementation of a new digital system or platform across all Federal **MDAs** for service-wide rollout?",
           "options": [
             "The Minister of Works.",
             "The National Council on Establishments (NCE).",
@@ -10646,7 +10646,7 @@
         },
         {
           "id": "ict_sec_076",
-          "question": "responsibility for has free access to books of accounts, files, safes, security documents, and other records relating to government accounts belongs to which role?",
+          "question": "Responsibility for has free access to books of accounts, files, safes, security documents, and other records relating to government accounts belongs to which role?",
           "options": [
             "The Accountant-General and the Auditor-General or their representatives.",
             "Only the Auditor-General.",
@@ -10991,7 +10991,7 @@
         },
         {
           "id": "ict_sec_088",
-          "question": "which role must be present during the physical count and verification of cash, stamps, and other security documents by the Board of Survey?",
+          "question": "Which role must be present during the physical count and verification of cash, stamps, and other security documents by the Board of Survey?",
           "options": [
             "An external auditor.",
             "The officer-in-charge of the items being surveyed.",
@@ -11453,7 +11453,7 @@
       "questions": [
         {
           "id": "ict_li_001",
-          "question": "Which of the following is NOT typically considered a benefit of implementing ICT in governance",
+          "question": "Which of the following is NOT typically considered a benefit of implementing ICT in governance?",
           "options": [
             "Improved transparency.",
             "Faster service delivery.",
@@ -11495,7 +11495,7 @@
         },
         {
           "id": "ict_li_002",
-          "question": "What is the primary role of ICT in enhancing government transparency",
+          "question": "What is the primary role of ICT in enhancing government transparency?",
           "options": [
             "Hide information.",
             "Make processes secretive.",
@@ -11535,7 +11535,7 @@
         },
         {
           "id": "ict_li_003",
-          "question": "A key challenge to the widespread adoption of e-Governance services, especially affecting rural access, is:",
+          "question": "Which of the following describes the a key challenge to the widespread adoption of e-governance services, especially affecting rural access, is?",
           "options": [
             "Overinvestment in ICT.",
             "Low broadband penetration.",
@@ -11577,7 +11577,7 @@
         },
         {
           "id": "ict_li_004",
-          "question": "What does 'information literacy' primarily involve for a civil servant",
+          "question": "What does 'information literacy' primarily involve for a civil servant?",
           "options": [
             "The ability to use a computer.",
             "The ability to find, evaluate, and use information effectively.",
@@ -11617,7 +11617,7 @@
         },
         {
           "id": "ict_li_005",
-          "question": "Which innovation uses Artificial Intelligence (AI) to provide automated, chat-based service delivery in governance",
+          "question": "Which innovation uses Artificial Intelligence (AI) to provide automated, chat-based service delivery in governance?",
           "options": [
             "Fax machines.",
             "Chatbots.",
@@ -11660,7 +11660,7 @@
         },
         {
           "id": "ict_li_006",
-          "question": "Which platform allows multiple users to collaborate on spreadsheets simultaneously in real time",
+          "question": "Which platform allows multiple users to collaborate on spreadsheets simultaneously in real time?",
           "options": [
             "Google Sheets.",
             "MS Paint.",
@@ -11700,7 +11700,7 @@
         },
         {
           "id": "ict_li_007",
-          "question": "According to the regulations, The term **'cloud collaboration'** is defined as:",
+          "question": "Which of the following describes the according to the regulations, the term **'cloud collaboration'** is defined as?",
           "options": [
             "Working together using internet-based tools and storage.",
             "Working offline using shared flash drives.",
@@ -11740,7 +11740,7 @@
         },
         {
           "id": "ict_li_008",
-          "question": "What is the acronym for the technical tool used to analyze large government datasets for decision-making",
+          "question": "What is the acronym for the technical tool used to analyze large government datasets for decision-making?",
           "options": [
             "BPP.",
             "Big Data Analytics.",
@@ -11781,7 +11781,7 @@
         },
         {
           "id": "ict_li_009",
-          "question": "When evaluating online sources for official information, which is generally considered the most reliable source",
+          "question": "When evaluating online sources for official information, which is generally considered the most reliable source?",
           "options": [
             "Blogs.",
             "Wikipedia.",
@@ -11821,7 +11821,7 @@
         },
         {
           "id": "ict_li_010",
-          "question": "Which of the following is a key principle of effective online communication in the civil service",
+          "question": "Which of the following is a key principle of effective online communication in the civil service?",
           "options": [
             "Using vague messages.",
             "Being concise and clear.",
@@ -11863,7 +11863,7 @@
         },
         {
           "id": "ict_li_011",
-          "question": "The acronym for the technical skill involving the ability to find, evaluate, and use digital information effectively is:",
+          "question": "Which of the following describes the the acronym for the technical skill involving the ability to find, evaluate, and use digital information effectively is?",
           "options": [
             "Digital Access.",
             "Information Literacy.",
@@ -11903,7 +11903,7 @@
         },
         {
           "id": "ict_li_012",
-          "question": "What is **digital communication**'",
+          "question": "What is **digital communication**'?",
           "options": [
             "Sending letters through the postal service.",
             "The exchange of information through digital devices and platforms.",
@@ -11943,7 +11943,7 @@
         },
         {
           "id": "ict_li_013",
-          "question": "Which of these is an example of **asynchronous communication**'",
+          "question": "Which of these is an example of **asynchronous communication**'?",
           "options": [
             "Phone call.",
             "Video conference.",
@@ -11983,7 +11983,7 @@
         },
         {
           "id": "ict_li_014",
-          "question": "What ICT approach involves storing critical data in multiple locations to ensure recoverability and minimize downtime",
+          "question": "What ICT approach involves storing critical data in multiple locations to ensure recoverability and minimize downtime?",
           "options": [
             "Phishing.",
             "Data Redundancy.",
@@ -12065,7 +12065,7 @@
         },
         {
           "id": "ict_li_016",
-          "question": "The term **'netiquette'** refers to:",
+          "question": "Which of the following describes the the term **'netiquette'** refers to?",
           "options": [
             "Rules for computer programming.",
             "Polite and respectful behavior on the internet.",
@@ -12105,7 +12105,7 @@
         },
         {
           "id": "ict_li_017",
-          "question": "When sending an official email, which field allows you to send a copy to someone without revealing that person's address to the other recipients",
+          "question": "When sending an official email, which field allows you to send a copy to someone without revealing that person's address to the other recipients?",
           "options": [
             "To.",
             "CC.",
@@ -12145,7 +12145,7 @@
         },
         {
           "id": "ict_li_018",
-          "question": "What is the primary benefit of digital collaboration tools in the public service workplace",
+          "question": "What is the primary benefit of digital collaboration tools in the public service workplace?",
           "options": [
             "Encouraging individual isolation.",
             "Enhancing teamwork and communication efficiency.",
@@ -12185,7 +12185,7 @@
         },
         {
           "id": "ict_li_019",
-          "question": "Which of the following should be avoided in formal digital communication",
+          "question": "Which of the following should be avoided in formal digital communication?",
           "options": [
             "Using clear subject lines.",
             "Using emojis and slang.",
@@ -12225,7 +12225,7 @@
         },
         {
           "id": "ict_li_020",
-          "question": "Which platform is generally best suited for hosting secure virtual meetings and webinars within the public service",
+          "question": "Which platform is generally best suited for hosting secure virtual meetings and webinars within the public service?",
           "options": [
             "Instagram Live.",
             "Zoom or Microsoft Teams.",
@@ -12267,7 +12267,7 @@
         },
         {
           "id": "ict_li_021",
-          "question": "What is the primary function of **Geographic Information Systems (GIS)** in governance",
+          "question": "What is the primary function of **Geographic Information Systems (GIS)** in governance?",
           "options": [
             "Automated payroll processing.",
             "Mapping, spatial analysis, and resource planning.",
@@ -12352,7 +12352,7 @@
         },
         {
           "id": "ict_li_023",
-          "question": "Which ICT approach allows data to be stored across multiple servers accessible via the internet",
+          "question": "Which ICT approach allows data to be stored across multiple servers accessible via the internet?",
           "options": [
             "Cloud Storage.",
             "Manual Filing.",
@@ -12393,7 +12393,7 @@
         },
         {
           "id": "ict_li_024",
-          "question": "Which factor is often cited as a key challenge to ICT adoption in the Nigerian civil service",
+          "question": "Which factor is often cited as a key challenge to ICT adoption in the Nigerian civil service?",
           "options": [
             "Low ICT literacy among workers.",
             "Excessive use of AI.",
@@ -12434,7 +12434,7 @@
         },
         {
           "id": "ict_li_025",
-          "question": "Which of the following is NOT a best practice in virtual meeting etiquette (**Rule 090204**)",
+          "question": "Which of the following is NOT a best practice in virtual meeting etiquette (**Rule 090204**)?",
           "options": [
             "Muting your microphone when not speaking.",
             "Using a professional background.",
@@ -12474,7 +12474,7 @@
         },
         {
           "id": "ict_li_026",
-          "question": "When preparing for a scheduled virtual meeting, how many hours before the meeting should materials be circulated to participants",
+          "question": "When preparing for a scheduled virtual meeting, how many hours before the meeting should materials be circulated to participants?",
           "options": [
             "6 hours.",
             "12 hours.",
@@ -12557,7 +12557,7 @@
         },
         {
           "id": "ict_li_028",
-          "question": "Which tool allows real-time project tracking and task assignment in digital collaboration",
+          "question": "Which tool allows real-time project tracking and task assignment in digital collaboration?",
           "options": [
             "Trello or Asana.",
             "VLC Media Player.",
@@ -12599,7 +12599,7 @@
         },
         {
           "id": "ict_li_029",
-          "question": "What does the Handbook encourage innovation for",
+          "question": "What does the Handbook encourage innovation for?",
           "options": [
             "To disrupt continuity.",
             "To improve efficiency and adapt to modern challenges.",
@@ -12638,7 +12638,7 @@
         },
         {
           "id": "ict_li_030",
-          "question": "Which type of ICT challenge is caused by dependence on imported hardware and software",
+          "question": "Which type of ICT challenge is caused by dependence on imported hardware and software?",
           "options": [
             "Digital Dependency.",
             "Cybercrime.",
@@ -12761,7 +12761,7 @@
         },
         {
           "id": "ict_li_033",
-          "question": "Which of these platforms allows for document co-editing in real time",
+          "question": "Which of these platforms allows for document co-editing in real time?",
           "options": [
             "Google Docs.",
             "Adobe Reader.",
@@ -12843,7 +12843,7 @@
         },
         {
           "id": "ict_li_036",
-          "question": "Which tool is most appropriate for internal organizational communication, providing secure and efficient team collaboration features",
+          "question": "Which tool is most appropriate for internal organizational communication, providing secure and efficient team collaboration features?",
           "options": [
             "Slack or Microsoft Teams.",
             "Instagram.",
@@ -12885,7 +12885,7 @@
         },
         {
           "id": "ict_li_037",
-          "question": "What is the acronym for the agency that promotes digital literacy across Nigeria",
+          "question": "What is the acronym for the agency that promotes digital literacy across Nigeria?",
           "options": [
             "NITDA.",
             "NCC.",
@@ -12967,7 +12967,7 @@
         },
         {
           "id": "ict_li_039",
-          "question": "The use of shared calendars and digital task boards in the workplace enhances collaboration by supporting:",
+          "question": "Which of the following describes the the use of shared calendars and digital task boards in the workplace enhances collaboration by supporting?",
           "options": [
             "Restricting communication to office hours only.",
             "Synchronizing team activities across hybrid settings.",
@@ -13047,7 +13047,7 @@
         },
         {
           "id": "ict_li_042",
-          "question": "What does 'CC' stand for in email communication",
+          "question": "What does 'CC' stand for in email communication?",
           "options": [
             "Central Copy.",
             "Carbon Copy.",
@@ -13087,7 +13087,7 @@
         },
         {
           "id": "ict_li_043",
-          "question": "Which of the following is NOT a best practice in virtual meetings",
+          "question": "Which of the following is NOT a best practice in virtual meetings?",
           "options": [
             "Testing your equipment before joining.",
             "Joining on time.",
@@ -13127,7 +13127,7 @@
         },
         {
           "id": "ict_li_044",
-          "question": "Which innovation is supported by Python and is essential for data science and complex analysis in government planning",
+          "question": "Which innovation is supported by Python and is essential for data science and complex analysis in government planning?",
           "options": [
             "Artificial Intelligence (AI) / Machine Learning (ML).",
             "Manual Filing Systems.",
@@ -13168,7 +13168,7 @@
         },
         {
           "id": "ict_li_045",
-          "question": "What is the acronym for the long-term plan guiding automation of services and inter-agency data sharing",
+          "question": "What is the acronym for the long-term plan guiding automation of services and inter-agency data sharing?",
           "options": [
             "NDPR.",
             "E-Government Masterplan.",
@@ -13251,7 +13251,7 @@
         },
         {
           "id": "ict_li_047",
-          "question": "Why is **continuous professional development** stressed for civil servants",
+          "question": "Why is **continuous professional development** stressed for civil servants?",
           "options": [
             "To foster political ambition.",
             "To ensure skill enhancement and adaptability to modern practices.",
@@ -13333,7 +13333,7 @@
         },
         {
           "id": "ict_li_052",
-          "question": "Which programming language is most often used for data science and Artificial Intelligence (AI) applications in government planning",
+          "question": "Which programming language is most often used for data science and Artificial Intelligence (AI) applications in government planning?",
           "options": [
             "PHP.",
             "C.",
@@ -13374,7 +13374,7 @@
         },
         {
           "id": "ict_li_053",
-          "question": "What does **Digital Literacy** encompass",
+          "question": "What does **Digital Literacy** encompass?",
           "options": [
             "The ability to use a computer, the internet, and digital tools effectively.",
             "The ability to encrypt files only.",
@@ -13413,7 +13413,7 @@
         },
         {
           "id": "ict_li_054",
-          "question": "What is the acronym for the agency that drives ICT innovation in Nigeria",
+          "question": "What is the acronym for the agency that drives ICT innovation in Nigeria?",
           "options": [
             "NITDA.",
             "NCC.",
@@ -13453,7 +13453,7 @@
         },
         {
           "id": "ict_li_055",
-          "question": "When may an Officer be treated for the purpose of free transport facilities as **travelling on duty** (but not travelling allowance)",
+          "question": "When may an Officer be treated for the purpose of free transport facilities as **travelling on duty** (but not travelling allowance)?",
           "options": [
             "When attending a political rally.",
             "When visiting a Medical Specialist as certified by a Healthcare Provider.",
@@ -13536,7 +13536,7 @@
         },
         {
           "id": "ict_li_058",
-          "question": "Which section of the CSH outlines grievance procedures to resolve disputes within the civil service, including those arising from digital workflows",
+          "question": "Which section of the CSH outlines grievance procedures to resolve disputes within the civil service, including those arising from digital workflows?",
           "options": [
             "Chapter 5.",
             "Chapter 6.",
@@ -13618,7 +13618,7 @@
         },
         {
           "id": "ict_li_061",
-          "question": "What is the key role of **Version history or track changes** in digital documents",
+          "question": "What is the key role of **Version history or track changes** in digital documents?",
           "options": [
             "To encrypt files.",
             "To track and revert modifications made by team members.",
@@ -13659,7 +13659,7 @@
         },
         {
           "id": "ict_li_063",
-          "question": "If an officer is required to present himself to an approved Healthcare Provider for a Special Medical Test (**Rule 130105**), the test determines if the officer is capable of performing the duties of his appointment or of any appointment to which he may be proposed to:",
+          "question": "Which of the following best explains the if an officer is required to present himself to an approved healthcare provider for a special medical test (**rule 130105**), the test determines if the officer is capable of performing the duties of his appointment or of any appointment to which he may be proposed to?",
           "options": [
             "Promote him.",
             "Transfer him.",
@@ -13699,7 +13699,7 @@
         },
         {
           "id": "ict_li_064",
-          "question": "Which ICT approach involves storing critical data in multiple locations for safety",
+          "question": "Which ICT approach involves storing critical data in multiple locations for safety?",
           "options": [
             "Phishing.",
             "Data Redundancy.",
@@ -13782,7 +13782,7 @@
         },
         {
           "id": "ict_li_068",
-          "question": "Which ICT platform is commonly used to issue and manage **online payslips and staff leave requests**'",
+          "question": "Which ICT platform is commonly used to issue and manage **online payslips and staff leave requests**'?",
           "options": [
             "GIFMIS.",
             "HRMIS/e-Leave Portal.",
@@ -13950,7 +13950,7 @@
         },
         {
           "id": "ict_li_073",
-          "question": "If a female Officer's training course of not more than six months is interrupted due to pregnancy, she must enter into an agreement to:",
+          "question": "Which of the following describes the if a female officer's training course of not more than six months is interrupted due to pregnancy, she must enter into an agreement to?",
           "options": [
             "Transfer to a different course.",
             "Refund the whole or part of the cost of the course.",
@@ -13992,7 +13992,7 @@
         },
         {
           "id": "ict_li_074",
-          "question": "The goal of **Staff Development and training** (**Rule 070101**) is to enhance the knowledge, skills, attitude, effectiveness, and:",
+          "question": "Which of the following best explains the the goal of **staff development and training** (**rule 070101**) is to enhance the knowledge, skills, attitude, effectiveness, and?",
           "options": [
             "Political lobbying.",
             "Efficiency of staff.",
@@ -14032,7 +14032,7 @@
         },
         {
           "id": "ict_li_075",
-          "question": "Which section of the **PPA** mandates the use of e-procurement systems to enhance efficiency and transparency in purchasing",
+          "question": "Which section of the **PPA** mandates the use of e-procurement systems to enhance efficiency and transparency in purchasing?",
           "options": [
             "Section 16.",
             "Section 38.",
@@ -14254,7 +14254,7 @@
         },
         {
           "id": "ict_literacy_innovation_gen_005",
-          "question": "Which practice should a responsible officer prioritize to sustain digital service design in Digital Literacy & Innovation",
+          "question": "Which practice should a responsible officer prioritize to sustain digital service design in Digital Literacy & Innovation?",
           "options": [
             "Design services for usability, security, and accountability.",
             "Prioritize convenience over policy and legal requirements.",
@@ -14627,7 +14627,7 @@
         },
         {
           "id": "ict_li_080",
-          "question": "which option aligns with the meaning of the general rule regarding the disbursement of public funds in a self-accounting unit?",
+          "question": "Which option aligns with the meaning of the general rule regarding the disbursement of public funds in a self-accounting unit?",
           "options": [
             "Disbursements only demand verbal approval.",
             "Funds can be transferred to private accounts",
@@ -15204,7 +15204,7 @@
         },
         {
           "id": "ict_li_101",
-          "question": "which office should sign the original and copies of the Handing Over Notes?",
+          "question": "Which office should sign the original and copies of the Handing Over Notes?",
           "options": [
             "Both the Officer Handing Over and the Officer Taking Over.",
             "Only the Officer Taking Over.",

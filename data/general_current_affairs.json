@@ -14,7 +14,7 @@
       "questions": [
         {
           "id": "PSIR_051",
-          "question": "What is the minimum grade level for which a Contract Appointment shall be made",
+          "question": "What is the minimum grade level for which a Contract Appointment shall be made?",
           "options": [
             "SGL. 07.",
             "SGL. 08.",
@@ -94,7 +94,7 @@
         },
         {
           "id": "PSIR_053",
-          "question": "What mandatory duty must a **Contract Officer** undertake as a condition for their offer of appointment",
+          "question": "What mandatory duty must a **Contract Officer** undertake as a condition for their offer of appointment?",
           "options": [
             "Mentoring serving Officers.",
             "Obtaining foreign exchange.",
@@ -135,7 +135,7 @@
         },
         {
           "id": "PSIR_054",
-          "question": "Where retired officers are re-engaged into career posts, on what grade level shall their appointment be made",
+          "question": "Where retired officers are re-engaged into career posts, on what grade level shall their appointment be made?",
           "options": [
             "The grade level immediately above their retirement level.",
             "The grade level immediately below that on which they retired.",
@@ -175,7 +175,7 @@
         },
         {
           "id": "PSIR_055",
-          "question": "What is the maximum number of times a Trade Union/Staff Association Executive member is mandated to serve in their tenure in the Public Service",
+          "question": "What is the maximum number of times a Trade Union/Staff Association Executive member is mandated to serve in their tenure in the Public Service?",
           "options": [
             "One term.",
             "Two terms.",
@@ -217,7 +217,7 @@
         },
         {
           "id": "PSIR_056",
-          "question": "An Officer who resigns is liable to forfeit all claims to:",
+          "question": "Which of the following describes the an officer who resigns is liable to forfeit all claims to?",
           "options": [
             "Their pension benefits, under the applicable service framework.",
             "Salary only, within established administrative procedures.",
@@ -301,7 +301,7 @@
         },
         {
           "id": "PSIR_058",
-          "question": "What process replaces the Annual Performance Evaluation Report (APER) for the Federal Public Service",
+          "question": "What process replaces the Annual Performance Evaluation Report (APER) for the Federal Public Service?",
           "options": [
             "IPPIS.",
             "The Performance Management System (PMS).",
@@ -344,7 +344,7 @@
         },
         {
           "id": "PSIR_059",
-          "question": "What is the primary rationale for implementing virtual meetings/engagements in the Public Service",
+          "question": "What is the primary rationale for implementing virtual meetings/engagements in the Public Service?",
           "options": [
             "To reduce travel costs only, under the applicable service framework.",
             "To enhance political activities, within established administrative procedures.",
@@ -431,7 +431,7 @@
         },
         {
           "id": "PSIR_061",
-          "question": "How long after first appointment must officers eligible for compulsory confirmation examination have served before taking the exam",
+          "question": "How long after first appointment must officers eligible for compulsory confirmation examination have served before taking the exam?",
           "options": [
             "Three months.",
             "Six months.",
@@ -471,7 +471,7 @@
         },
         {
           "id": "PSIR_062",
-          "question": "What is the consequence for an officer who fails the compulsory confirmation examination after three consecutive attempts",
+          "question": "What is the consequence for an officer who fails the compulsory confirmation examination after three consecutive attempts?",
           "options": [
             "Promotion deferment.",
             "Required to resign or withdraw from the service.",
@@ -513,7 +513,7 @@
         },
         {
           "id": "PSIR_063",
-          "question": "What category of appointments were introduced to fill observed gaps and/or shore up the capacities of existing Officers, specifically covering Contract, Internship, and Volunteerism",
+          "question": "What category of appointments were introduced to fill observed gaps and/or shore up the capacities of existing Officers, specifically covering Contract, Internship, and Volunteerism?",
           "options": [
             "Trainee Appointments.",
             "Non-Pensionable Appointments.",
@@ -555,7 +555,7 @@
         },
         {
           "id": "PSIR_064",
-          "question": "What is the **PSR**’s definition of **Internship**'",
+          "question": "What is the **PSR**’s definition of **Internship**'?",
           "options": [
             "A temporary assignment abroad for serving officers under exchange arrangements.",
             "A non-structured, unpaid role with no linkage to defined learning outcomes.",
@@ -596,7 +596,7 @@
         },
         {
           "id": "PSIR_065",
-          "question": "What is the maximum continuous service period for which a Secondment may be granted to the service of another approved body or international organization",
+          "question": "What is the maximum continuous service period for which a Secondment may be granted to the service of another approved body or international organization?",
           "options": [
             "Two years (in the first instance).",
             "Three years.",
@@ -636,7 +636,7 @@
         },
         {
           "id": "PSIR_066",
-          "question": "What grade level must an officer be on to be eligible for Sabbatical Appointment",
+          "question": "What grade level must an officer be on to be eligible for Sabbatical Appointment?",
           "options": [
             "GL 12 and above.",
             "GL 14 and above.",
@@ -676,7 +676,7 @@
         },
         {
           "id": "PSIR_068",
-          "question": "What is the consequence of making a false statement on the employment application, if detected after engagement",
+          "question": "What is the consequence of making a false statement on the employment application, if detected after engagement?",
           "options": [
             "Withholding of increment, under the applicable service framework.",
             "Transfer to a new post, within established administrative procedures.",
@@ -716,7 +716,7 @@
         },
         {
           "id": "PSIR_069",
-          "question": "What is the primary objective of issuing a **Certificate of Service** to an officer leaving the service",
+          "question": "What is the primary objective of issuing a **Certificate of Service** to an officer leaving the service?",
           "options": [
             "To grant retirement benefits, under the applicable service framework.",
             "To serve as a reference covering the holder's public service when seeking other employment.",
@@ -756,7 +756,7 @@
         },
         {
           "id": "PSIR_070",
-          "question": "What must an officer submit upon return from annual leave to their Permanent Secretary/Head of Extra-Ministerial Office",
+          "question": "What must an officer submit upon return from annual leave to their Permanent Secretary/Head of Extra-Ministerial Office?",
           "options": [
             "Medical report, under the applicable service framework.",
             "Progress report, within established administrative procedures.",
@@ -837,7 +837,7 @@
         },
         {
           "id": "PSIR_072",
-          "question": "What is the entitlement for **Annual Leave** for officers on **GL 07** and above",
+          "question": "What is the entitlement for **Annual Leave** for officers on **GL 07** and above?",
           "options": [
             "14 working days.",
             "21 working days.",
@@ -921,7 +921,7 @@
         },
         {
           "id": "PSIR_075",
-          "question": "The **PSR** permits officers to publish or speak in public or broadcast on any matter which may reasonably be regarded as:",
+          "question": "Which of the following describes the the **psr** permits officers to publish or speak in public or broadcast on any matter which may reasonably be regarded as?",
           "options": [
             "A political or administrative nature, without permission.",
             "A personal affair, without permission, within established administrative procedures.",
@@ -1175,7 +1175,7 @@
         },
         {
           "id": "PSIR_082",
-          "question": "What is the maximum tenure for a Director, subject to satisfactory performance, under the Tenure Policy",
+          "question": "What is the maximum tenure for a Director, subject to satisfactory performance, under the Tenure Policy?",
           "options": [
             "Four years renewable for a further four years.",
             "Five years renewable.",
@@ -1217,7 +1217,7 @@
         },
         {
           "id": "PSIR_083",
-          "question": "What is the minimum number of years an officer on **GL.07**–14 must spend in post before being considered eligible for promotion",
+          "question": "What is the minimum number of years an officer on **GL.07**–14 must spend in post before being considered eligible for promotion?",
           "options": [
             "2 years.",
             "3 years.",
@@ -1259,7 +1259,7 @@
         },
         {
           "id": "PSIR_084",
-          "question": "What is the maximum period of continuous absence from duty without leave that makes an officer liable to dismissal (deemed to have resigned)",
+          "question": "What is the maximum period of continuous absence from duty without leave that makes an officer liable to dismissal (deemed to have resigned)?",
           "options": [
             "7 days.",
             "10 days.",
@@ -1344,7 +1344,7 @@
         },
         {
           "id": "PSIR_086",
-          "question": "Which specific allowance is not payable if the transfer is at the Officer's own request",
+          "question": "Which specific allowance is not payable if the transfer is at the Officer's own request?",
           "options": [
             "Duty Tour Allowance.",
             "Kilometer Allowance.",
@@ -1384,7 +1384,7 @@
         },
         {
           "id": "PSIR_087",
-          "question": "What is the rate of payment for **Resettlement Allowance**'",
+          "question": "What is the rate of payment for **Resettlement Allowance**'?",
           "options": [
             "5 per cent of annual emolument.",
             "2 per cent of an Officer's annual total emolument.",
@@ -1424,7 +1424,7 @@
         },
         {
           "id": "PSIR_088",
-          "question": "Who shall be paid the **Non-accident bonus** at the rate of N50,000.00 per annum",
+          "question": "Who shall be paid the **Non-accident bonus** at the rate of N50,000.00 per annum?",
           "options": [
             "All officers who drive government vehicles for any duty assignment.",
             "Drivers with at least six months of accident-free service within the year.",
@@ -1466,7 +1466,7 @@
         },
         {
           "id": "PSIR_089",
-          "question": "Which form of reward includes certificates, engraved plaques, medals, cash gifts, and sponsorship for attendance of Masterclass and local training programmes",
+          "question": "Which form of reward includes certificates, engraved plaques, medals, cash gifts, and sponsorship for attendance of Masterclass and local training programmes?",
           "options": [
             "Acting Allowance.",
             "Resettlement Allowance.",
@@ -1508,7 +1508,7 @@
         },
         {
           "id": "PSIR_090",
-          "question": "What is the primary objective of staff development policies",
+          "question": "What is the primary objective of staff development policies?",
           "options": [
             "To promote only senior staff.",
             "To enhance the knowledge, skills, attitude, effectiveness and efficiency of staff.",
@@ -1592,7 +1592,7 @@
         },
         {
           "id": "PSIR_092",
-          "question": "Which **PSR** rule prohibits officers from borrowing money in any manner that places them under a financial obligation to a person within the Public Service",
+          "question": "Which **PSR** rule prohibits officers from borrowing money in any manner that places them under a financial obligation to a person within the Public Service?",
           "options": [
             "Rule 100427 (Seeking Influence).",
             "Rule 100432 (Borrowing Money).",
@@ -1633,7 +1633,7 @@
         },
         {
           "id": "PSIR_093",
-          "question": "What is the entitlement for **Annual Leave** for officers on **GL 04**–06",
+          "question": "What is the entitlement for **Annual Leave** for officers on **GL 04**–06?",
           "options": [
             "14 working days.",
             "21 working days.",
@@ -1758,7 +1758,7 @@
         },
         {
           "id": "PSIR_097",
-          "question": "Which authority is responsible for the approval of conditions of service, schemes of service, and organizational structure for Parastatals",
+          "question": "Which authority is responsible for the approval of conditions of service, schemes of service, and organizational structure for Parastatals?",
           "options": [
             "Supervising Minister.",
             "The Board/Council.",
@@ -2015,7 +2015,7 @@
         },
         {
           "id": "ca_public_service_reforms_gen_005",
-          "question": "When handling public service & institutional reforms, which choice reflects proper institutional awareness standards",
+          "question": "When handling public service & institutional reforms, which choice reflects proper institutional awareness standards?",
           "options": [
             "Interpret current developments through verified public sources.",
             "Treat exceptions as routine without documented justification.",
@@ -2059,7 +2059,7 @@
         },
         {
           "id": "ca_public_service_reforms_gen_006",
-          "question": "Which practice should a responsible officer prioritize to sustain national governance updates in Public Service & Institutional Reforms",
+          "question": "Which practice should a responsible officer prioritize to sustain national governance updates in Public Service & Institutional Reforms?",
           "options": [
             "Track policy changes and implications for service delivery.",
             "Prioritize convenience over policy and legal requirements.",
@@ -2193,7 +2193,7 @@
         },
         {
           "id": "ca_public_service_reforms_gen_009",
-          "question": "Which option most strongly aligns with good public-service practice on civic relevance within Public Service & Institutional Reforms",
+          "question": "Which option most strongly aligns with good public-service practice on civic relevance within Public Service & Institutional Reforms?",
           "options": [
             "Connect current affairs to public-sector responsibilities.",
             "Rely on informal instructions without documentary evidence.",
@@ -2281,7 +2281,7 @@
         },
         {
           "id": "ca_public_service_reforms_gen_011",
-          "question": "Which practice should a responsible officer prioritize to sustain compliance assurance in Public Service & Institutional Reforms",
+          "question": "Which practice should a responsible officer prioritize to sustain compliance assurance in Public Service & Institutional Reforms?",
           "options": [
             "Apply approved rules consistently and escalate exceptions.",
             "Delay decisions until issues escalate into avoidable crises.",
@@ -2457,7 +2457,7 @@
         },
         {
           "id": "ca_public_service_reforms_gen_015",
-          "question": "When handling public service & institutional reforms, which choice reflects proper decision transparency standards",
+          "question": "When handling public service & institutional reforms, which choice reflects proper decision transparency standards?",
           "options": [
             "Use clear criteria and communicate decisions promptly.",
             "Close cases without validating facts or required records.",
@@ -2590,7 +2590,7 @@
         },
         {
           "id": "ca_public_service_reforms_gen_019",
-          "question": "Which option most strongly aligns with good public-service practice on performance standards within Public Service & Institutional Reforms",
+          "question": "Which option most strongly aligns with good public-service practice on performance standards within Public Service & Institutional Reforms?",
           "options": [
             "Set measurable targets, monitor progress, and correct deviations.",
             "Delay decisions until issues escalate into avoidable crises.",
@@ -2634,7 +2634,7 @@
         },
         {
           "id": "ca_public_service_reforms_gen_021",
-          "question": "Which practice should a responsible officer prioritize to sustain public service & institutional reforms compliance in Public Service & Institutional Reforms",
+          "question": "Which practice should a responsible officer prioritize to sustain public service & institutional reforms compliance in Public Service & Institutional Reforms?",
           "options": [
             "Use lawful criteria and document each decision step transparently.",
             "Treat exceptions as routine without documented justification.",
@@ -2812,7 +2812,7 @@
         },
         {
           "id": "ca_public_service_reforms_gen_025",
-          "question": "When handling public service & institutional reforms, which choice reflects proper regional and global context standards",
+          "question": "When handling public service & institutional reforms, which choice reflects proper regional and global context standards?",
           "options": [
             "Relate international events to national administrative priorities.",
             "Rely on informal instructions without documentary evidence.",
@@ -4219,7 +4219,7 @@
         },
         {
           "id": "NGPD_003",
-          "question": "Which body holds the authority for making appointments to posts graded **GL.07**–17 in the Federal Civil Service",
+          "question": "Which body holds the authority for making appointments to posts graded **GL.07**–17 in the Federal Civil Service?",
           "options": [
             "Permanent Secretaries of the respective MDAs.",
             "The Office of the Head of the Civil Service of the Federation (OHCSF).",
@@ -4262,7 +4262,7 @@
         },
         {
           "id": "NGPD_005",
-          "question": "What is the deadline for the submission of applications from interested candidates following a recruitment advertisement by the **FCSC**'",
+          "question": "What is the deadline for the submission of applications from interested candidates following a recruitment advertisement by the **FCSC**'?",
           "options": [
             "Two weeks.",
             "One month.",
@@ -4305,7 +4305,7 @@
         },
         {
           "id": "NGPD_007",
-          "question": "What is the policy regarding the employment of unpaid staff in the Federal Public Service",
+          "question": "What is the policy regarding the employment of unpaid staff in the Federal Public Service?",
           "options": [
             "It is encouraged for internship programs.",
             "It is restricted to GL 01-03.",
@@ -4477,7 +4477,7 @@
         },
         {
           "id": "NGPD_011",
-          "question": "Who must approve the deployment of an officer to a duty station or department, referred to as 'Posting'",
+          "question": "Who must approve the deployment of an officer to a duty station or department, referred to as 'Posting'?",
           "options": [
             "The Permanent Secretary/Head of Extra-Ministerial Office.",
             "The Director HR.",
@@ -4520,7 +4520,7 @@
         },
         {
           "id": "NGPD_012",
-          "question": "The **PSR** strongly advises that the posting system should not be used as a tool for:",
+          "question": "Which of the following describes the the **psr** strongly advises that the posting system should not be used as a tool for?",
           "options": [
             "Acquiring whole-service experience.",
             "Coercion, punishment, or cronyism.",
@@ -4607,7 +4607,7 @@
         },
         {
           "id": "NGPD_014",
-          "question": "Which allowance is payable to officers traveling to towns and cities where air transport services do not exist, based on distance",
+          "question": "Which allowance is payable to officers traveling to towns and cities where air transport services do not exist, based on distance?",
           "options": [
             "Duty Tour Allowance (DTA).",
             "Estacode Allowance.",
@@ -4648,7 +4648,7 @@
         },
         {
           "id": "NGPD_015",
-          "question": "How much of their Duty Tour Allowance (DTA) are officers granted for the purpose of local running (transport and local errands)",
+          "question": "How much of their Duty Tour Allowance (DTA) are officers granted for the purpose of local running (transport and local errands)?",
           "options": [
             "10% of DTA.",
             "20% of DTA.",
@@ -4691,7 +4691,7 @@
         },
         {
           "id": "NGPD_016",
-          "question": "Who must provide security guidelines for all high-level intra and inter-governmental virtual meetings",
+          "question": "Who must provide security guidelines for all high-level intra and inter-governmental virtual meetings?",
           "options": [
             "The Office of the Head of the Civil Service of the Federation (OHCSF).",
             "The Federal Ministry of Communications and Digital Economy.",
@@ -4735,7 +4735,7 @@
         },
         {
           "id": "NGPD_017",
-          "question": "What is strictly prohibited for participants during virtual meetings, especially high-level engagements",
+          "question": "What is strictly prohibited for participants during virtual meetings, especially high-level engagements?",
           "options": [
             "Use of mute technology.",
             "Sidebar conversations and multi-tasking.",
@@ -4779,7 +4779,7 @@
         },
         {
           "id": "NGPD_018",
-          "question": "Which category of allowances is NOT explicitly listed in Chapter 14 of the **PSR**'",
+          "question": "Which category of allowances is NOT explicitly listed in Chapter 14 of the **PSR**'?",
           "options": [
             "Warm Clothing Allowance.",
             "Books Allowance.",
@@ -4868,7 +4868,7 @@
         },
         {
           "id": "NGPD_020",
-          "question": "Which authority is delegated full disciplinary powers over officers on Salary **GL. 13** and below, with the exception of dismissal",
+          "question": "Which authority is delegated full disciplinary powers over officers on Salary **GL. 13** and below, with the exception of dismissal?",
           "options": [
             "The FCSC.",
             "The Office of the Head of the Civil Service of the Federation.",
@@ -4996,7 +4996,7 @@
         },
         {
           "id": "NGPD_024",
-          "question": "What rule applies to an officer who finds valuable minerals or makes a discovery during their official duties",
+          "question": "What rule applies to an officer who finds valuable minerals or makes a discovery during their official duties?",
           "options": [
             "They must give 10% to the Government.",
             "They must give full information to Government under pain of dismissal.",
@@ -5039,7 +5039,7 @@
         },
         {
           "id": "NGPD_025",
-          "question": "What is the definition of **Suspension** in the **PSR**'",
+          "question": "What is the definition of **Suspension** in the **PSR**'?",
           "options": [
             "Removal of an Officer from performing the duties of his office, with half salary.",
             "Temporary removal from office, with full salary, within established administrative procedures.",
@@ -5081,7 +5081,7 @@
         },
         {
           "id": "NGPD_026",
-          "question": "What are **Senior Posts** defined as in the **PSR**'",
+          "question": "What are **Senior Posts** defined as in the **PSR**'?",
           "options": [
             "Posts attracting emoluments on Grade Level GL 06 and below.",
             "Posts attracting emoluments on Grade Level GL 07 and above.",
@@ -5123,7 +5123,7 @@
         },
         {
           "id": "NGPD_027",
-          "question": "What is the basis upon which an officer is considered for an award or recognition under the Reward and Recognition Scheme (R&RS)",
+          "question": "What is the basis upon which an officer is considered for an award or recognition under the Reward and Recognition Scheme (R&RS)?",
           "options": [
             "Seniority only.",
             "Political connection.",
@@ -5164,7 +5164,7 @@
         },
         {
           "id": "NGPD_028",
-          "question": "Which body is responsible for ensuring the successful implementation of the Performance Management System (PMS) across all levels of officers in a Federal Public Service Institution",
+          "question": "Which body is responsible for ensuring the successful implementation of the Performance Management System (PMS) across all levels of officers in a Federal Public Service Institution?",
           "options": [
             "The FCSC.",
             "The Accounting Officer.",
@@ -5295,7 +5295,7 @@
         },
         {
           "id": "NGPD_032",
-          "question": "which option correctly addresses: All decisions on deferment or withholding of increment and stoppage of salaries must be communicated to the officer concerned within what period?",
+          "question": "Which option correctly addresses: All decisions on deferment or withholding of increment and stoppage of salaries must be communicated to the officer concerned within what period?",
           "options": [
             "Three months.",
             "Two weeks.",
@@ -5465,7 +5465,7 @@
         },
         {
           "id": "NGPD_036",
-          "question": "Who must approve the Conditions of Service, Scheme of Service, and Organizational Structure for Parastatals",
+          "question": "Who must approve the Conditions of Service, Scheme of Service, and Organizational Structure for Parastatals?",
           "options": [
             "The Parastatal Board/Council alone.",
             "The Office of the Head of the Civil Service of the Federation (OHCSF).",
@@ -5508,7 +5508,7 @@
         },
         {
           "id": "NGPD_037",
-          "question": "What is the ultimate penalty for **Serious Misconduct**'",
+          "question": "What is the ultimate penalty for **Serious Misconduct**'?",
           "options": [
             "Withholding of increment.",
             "Transfer.",
@@ -5636,7 +5636,7 @@
         },
         {
           "id": "NGPD_040",
-          "question": "Where an officer in a Parastatal wishes to make a representation to the Head of Government, the petition must route through the petitioner's superior officer, the Chief Executive Officer, the Board/Council, and whom",
+          "question": "Where an officer in a Parastatal wishes to make a representation to the Head of Government, the petition must route through the petitioner's superior officer, the Chief Executive Officer, the Board/Council, and whom?",
           "options": [
             "The FCSC.",
             "The Supervising Ministry of the Organization.",
@@ -5679,7 +5679,7 @@
         },
         {
           "id": "NGPD_041",
-          "question": "What is the frequency of medical examination required for officers in service, subsequent to their initial compulsory examination",
+          "question": "What is the frequency of medical examination required for officers in service, subsequent to their initial compulsory examination?",
           "options": [
             "Annually.",
             "Every two years.",
@@ -5763,7 +5763,7 @@
         },
         {
           "id": "NGPD_043",
-          "question": "What is the maximum period for which an officer may be allowed Sick Leave on the certificate of an approved Healthcare Provider",
+          "question": "What is the maximum period for which an officer may be allowed Sick Leave on the certificate of an approved Healthcare Provider?",
           "options": [
             "Six weeks.",
             "Three months in the first instance.",
@@ -5804,7 +5804,7 @@
         },
         {
           "id": "NGPD_044",
-          "question": "When a pensionable Officer dies in service, Government’s responsibility is limited to the payment of what percentage of the Officer’s total annual emolument to the family as burial expenses",
+          "question": "When a pensionable Officer dies in service, Government’s responsibility is limited to the payment of what percentage of the Officer’s total annual emolument to the family as burial expenses?",
           "options": [
             "50 per cent.",
             "75 per cent.",
@@ -5892,7 +5892,7 @@
         },
         {
           "id": "NGPD_046",
-          "question": "When an invention by an officer relates entirely to the execution of their employment, the full controlling rights in the invention are deemed to belong to whom",
+          "question": "When an invention by an officer relates entirely to the execution of their employment, the full controlling rights in the invention are deemed to belong to whom?",
           "options": [
             "The Officer (inventor).",
             "The Federal Government.",
@@ -5935,7 +5935,7 @@
         },
         {
           "id": "NGPD_047",
-          "question": "When an Officer is eligible for overtime payment, he will be paid overtime on his full emolument if he is in what status",
+          "question": "When an Officer is eligible for overtime payment, he will be paid overtime on his full emolument if he is in what status?",
           "options": [
             "On Leave of Absence.",
             "In an acting appointment.",
@@ -6020,7 +6020,7 @@
         },
         {
           "id": "NGPD_049",
-          "question": "Who must approve the deployment or payment of estacode allowance for Overseas Duty Tour by all public servants",
+          "question": "Who must approve the deployment or payment of estacode allowance for Overseas Duty Tour by all public servants?",
           "options": [
             "The Minister of Foreign Affairs.",
             "The Permanent Secretary/Head of the Extra-Ministerial Office only.",
@@ -6198,7 +6198,7 @@
         },
         {
           "id": "ca_national_governance_gen_004",
-          "question": "When handling national governance & policy developments, which choice reflects proper institutional awareness standards",
+          "question": "When handling national governance & policy developments, which choice reflects proper institutional awareness standards?",
           "options": [
             "Interpret current developments through verified public sources.",
             "Treat exceptions as routine without documented justification.",
@@ -6243,7 +6243,7 @@
         },
         {
           "id": "ca_national_governance_gen_005",
-          "question": "Which practice should a responsible officer prioritize to sustain national governance updates in National Governance & Policy Developments",
+          "question": "Which practice should a responsible officer prioritize to sustain national governance updates in National Governance & Policy Developments?",
           "options": [
             "Track policy changes and implications for service delivery.",
             "Prioritize convenience over policy and legal requirements.",
@@ -6379,7 +6379,7 @@
         },
         {
           "id": "ca_national_governance_gen_008",
-          "question": "Which option most strongly aligns with good public-service practice on civic relevance within National Governance & Policy Developments",
+          "question": "Which option most strongly aligns with good public-service practice on civic relevance within National Governance & Policy Developments?",
           "options": [
             "Connect current affairs to public-sector responsibilities.",
             "Rely on informal instructions without documentary evidence.",
@@ -6424,7 +6424,7 @@
         },
         {
           "id": "ca_national_governance_gen_010",
-          "question": "Which practice should a responsible officer prioritize to sustain compliance assurance in National Governance & Policy Developments",
+          "question": "Which practice should a responsible officer prioritize to sustain compliance assurance in National Governance & Policy Developments?",
           "options": [
             "Apply approved rules consistently and escalate exceptions.",
             "Delay decisions until issues escalate into avoidable crises.",
@@ -6559,7 +6559,7 @@
         },
         {
           "id": "ca_national_governance_gen_014",
-          "question": "When handling national governance & policy developments, which choice reflects proper decision transparency standards",
+          "question": "When handling national governance & policy developments, which choice reflects proper decision transparency standards?",
           "options": [
             "Use clear criteria and communicate decisions promptly.",
             "Close cases without validating facts or required records.",
@@ -6695,7 +6695,7 @@
         },
         {
           "id": "ca_national_governance_gen_018",
-          "question": "Which option most strongly aligns with good public-service practice on performance standards within National Governance & Policy Developments",
+          "question": "Which option most strongly aligns with good public-service practice on performance standards within National Governance & Policy Developments?",
           "options": [
             "Set measurable targets, monitor progress, and correct deviations.",
             "Delay decisions until issues escalate into avoidable crises.",
@@ -6740,7 +6740,7 @@
         },
         {
           "id": "ca_national_governance_gen_020",
-          "question": "Which practice should a responsible officer prioritize to sustain national governance & policy developments compliance in National Governance & Policy Developments",
+          "question": "Which practice should a responsible officer prioritize to sustain national governance & policy developments compliance in National Governance & Policy Developments?",
           "options": [
             "Use lawful criteria and document each decision step transparently.",
             "Treat exceptions as routine without documented justification.",
@@ -6921,7 +6921,7 @@
         },
         {
           "id": "ca_national_governance_gen_024",
-          "question": "When handling national governance & policy developments, which choice reflects proper regional and global context standards",
+          "question": "When handling national governance & policy developments, which choice reflects proper regional and global context standards?",
           "options": [
             "Relate international events to national administrative priorities.",
             "Rely on informal instructions without documentary evidence.",
@@ -7714,7 +7714,7 @@
         },
         {
           "id": "NGPD_064",
-          "question": "which option aligns with the meaning of the definition of an \"cash advance-holder\"?",
+          "question": "Which option aligns with the meaning of the definition of an \"cash advance-holder\"?",
           "options": [
             "An officer who approves all capital expenditure.",
             "An officer in charge for auditing revenue collections. Q",
@@ -8111,7 +8111,7 @@
         },
         {
           "id": "NGPD_073",
-          "question": "which role must approve any material variation of an existing accounting procedure or a proposed new accounting procedure?",
+          "question": "Which role must approve any material variation of an existing accounting procedure or a proposed new accounting procedure?",
           "options": [
             "The Head of Finance and Accounts. □",
             "The Minister of Finance only.",
@@ -8201,7 +8201,7 @@
         },
         {
           "id": "NGPD_075",
-          "question": "responsibility for is accountable for maintaining a payment voucher register and confirming the accuracy of entries before signing a voucher belongs to which role?",
+          "question": "Responsibility for is accountable for maintaining a payment voucher register and confirming the accuracy of entries before signing a voucher belongs to which role?",
           "options": [
             "The Head of Finance and Accounts.",
             "The Officer controlling the vote.",
@@ -8560,7 +8560,7 @@
         },
         {
           "id": "IRA_108",
-          "question": "What is prohibited concerning domestic staff of an entitled Officer at an overseas post, according to Foreign Service Regulations",
+          "question": "What is prohibited concerning domestic staff of an entitled Officer at an overseas post, according to Foreign Service Regulations?",
           "options": [
             "Paying their social security contribution.",
             "Employing a Nigerian.",
@@ -8602,7 +8602,7 @@
         },
         {
           "id": "IRA_109",
-          "question": "Who must approve an officer's official visit while on leave outside Nigeria",
+          "question": "Who must approve an officer's official visit while on leave outside Nigeria?",
           "options": [
             "The Minister of Foreign Affairs.",
             "Prior approval of the Head of the Civil Service of the Federation.",
@@ -8643,7 +8643,7 @@
         },
         {
           "id": "IRA_110",
-          "question": "What is the entitlement for a Head of Diplomatic Mission regarding domestic staff",
+          "question": "What is the entitlement for a Head of Diplomatic Mission regarding domestic staff?",
           "options": [
             "One cook and two security guards, under the applicable service framework.",
             "One cook and two stewards; two security guards; and two drivers.",
@@ -8768,7 +8768,7 @@
         },
         {
           "id": "IRA_114",
-          "question": "Which protocol is used for secure data transmission over the web",
+          "question": "Which protocol is used for secure data transmission over the web?",
           "options": [
             "HTTP.",
             "FTP.",
@@ -8811,7 +8811,7 @@
         },
         {
           "id": "IRA_115",
-          "question": "The second-largest continent in the world is:",
+          "question": "Which of the following describes the the second-largest continent in the world is?",
           "options": [
             "Asia.",
             "Africa.",
@@ -8851,7 +8851,7 @@
         },
         {
           "id": "IRA_116",
-          "question": "Which allowance covers lodging and per diem for officers on duty outside Nigeria",
+          "question": "Which allowance covers lodging and per diem for officers on duty outside Nigeria?",
           "options": [
             "DTA.",
             "Kilometer Allowance.",
@@ -9020,7 +9020,7 @@
         },
         {
           "id": "IRA_121",
-          "question": "Who provides the detailed instructions and allowances regarding overseas duty or course of instruction",
+          "question": "Who provides the detailed instructions and allowances regarding overseas duty or course of instruction?",
           "options": [
             "The Officer's Permanent Secretary/Head of Extra-Ministerial Office.",
             "The FCSC, within established administrative procedures.",
@@ -9101,7 +9101,7 @@
         },
         {
           "id": "IRA_123",
-          "question": "When was the FIFA World Cup hosted by Qatar",
+          "question": "When was the FIFA World Cup hosted by Qatar?",
           "options": [
             "2018.",
             "2022.",
@@ -9227,7 +9227,7 @@
         },
         {
           "id": "IRA_127",
-          "question": "Who must approve the deployment of staff in the Nigerian Civil Service",
+          "question": "Who must approve the deployment of staff in the Nigerian Civil Service?",
           "options": [
             "The Minister of Communications.",
             "The Federal Civil Service Commission.",
@@ -9397,7 +9397,7 @@
         },
         {
           "id": "IRA_131",
-          "question": "Which allowance is granted to enable Officers pay for lodging and feeding expenses during approved official tours within Nigeria",
+          "question": "Which allowance is granted to enable Officers pay for lodging and feeding expenses during approved official tours within Nigeria?",
           "options": [
             "Estacode Allowance.",
             "Duty Tour Allowance (DTA).",
@@ -9440,7 +9440,7 @@
         },
         {
           "id": "IRA_132",
-          "question": "What is the penalty if an officer fails to comply with instructions delivered to him at his address within seven days of being placed on Interdiction",
+          "question": "What is the penalty if an officer fails to comply with instructions delivered to him at his address within seven days of being placed on Interdiction?",
           "options": [
             "Warning.",
             "Payment of a fine.",
@@ -9568,7 +9568,7 @@
         },
         {
           "id": "IRA_137",
-          "question": "Which of the following bodies is NOT listed as a stakeholder for the National Council on Establishments (NCE)",
+          "question": "Which of the following bodies is NOT listed as a stakeholder for the National Council on Establishments (NCE)?",
           "options": [
             "National Assembly Service Commission.",
             "Federal Civil Service Commission.",
@@ -9650,7 +9650,7 @@
         },
         {
           "id": "IRA_139",
-          "question": "What is the core function of the National Council on Establishments (NCE)",
+          "question": "What is the core function of the National Council on Establishments (NCE)?",
           "options": [
             "Approving the national budget, under the applicable service framework.",
             "Approving the appointment of Ministers, within established administrative procedures.",
@@ -9691,7 +9691,7 @@
         },
         {
           "id": "IRA_140",
-          "question": "Who provides security guidelines for virtual meetings in line with **Rule 090104**'",
+          "question": "Who provides security guidelines for virtual meetings in line with **Rule 090104**'?",
           "options": [
             "The Office of the Head of the Civil Service of the Federation (OHCSF).",
             "The Federal Ministry of Communications and Digital Economy.",
@@ -9822,7 +9822,7 @@
         },
         {
           "id": "IRA_147",
-          "question": "When an Officer's increment has been withheld, the **FCSC** may grant one or more **special increments** at a subsequent incremental date to mitigate what",
+          "question": "When an Officer's increment has been withheld, the **FCSC** may grant one or more **special increments** at a subsequent incremental date to mitigate what?",
           "options": [
             "The cost of living.",
             "The lasting effects of the withheld increment.",
@@ -10042,7 +10042,7 @@
         },
         {
           "id": "ca_international_affairs_gen_004",
-          "question": "When handling international & regional affairs, which choice reflects proper institutional awareness standards",
+          "question": "When handling international & regional affairs, which choice reflects proper institutional awareness standards?",
           "options": [
             "Interpret current developments through verified public sources.",
             "Treat exceptions as routine without documented justification.",
@@ -10087,7 +10087,7 @@
         },
         {
           "id": "ca_international_affairs_gen_005",
-          "question": "Which practice should a responsible officer prioritize to sustain national governance updates in International & Regional Affairs",
+          "question": "Which practice should a responsible officer prioritize to sustain national governance updates in International & Regional Affairs?",
           "options": [
             "Track policy changes and implications for service delivery.",
             "Prioritize convenience over policy and legal requirements.",
@@ -10224,7 +10224,7 @@
         },
         {
           "id": "ca_international_affairs_gen_008",
-          "question": "Which option most strongly aligns with good public-service practice on civic relevance within International & Regional Affairs",
+          "question": "Which option most strongly aligns with good public-service practice on civic relevance within International & Regional Affairs?",
           "options": [
             "Connect current affairs to public-sector responsibilities.",
             "Rely on informal instructions without documentary evidence.",
@@ -10313,7 +10313,7 @@
         },
         {
           "id": "ca_international_affairs_gen_018",
-          "question": "Which practice should a responsible officer prioritize to sustain compliance assurance in International & Regional Affairs",
+          "question": "Which practice should a responsible officer prioritize to sustain compliance assurance in International & Regional Affairs?",
           "options": [
             "Apply approved rules consistently and escalate exceptions.",
             "Delay decisions until issues escalate into avoidable crises.",
@@ -10491,7 +10491,7 @@
         },
         {
           "id": "ca_international_affairs_gen_022",
-          "question": "When handling international & regional affairs, which choice reflects proper decision transparency standards",
+          "question": "When handling international & regional affairs, which choice reflects proper decision transparency standards?",
           "options": [
             "Use clear criteria and communicate decisions promptly.",
             "Close cases without validating facts or required records.",
@@ -10627,7 +10627,7 @@
         },
         {
           "id": "ca_international_affairs_gen_026",
-          "question": "Which option most strongly aligns with good public-service practice on performance standards within International & Regional Affairs",
+          "question": "Which option most strongly aligns with good public-service practice on performance standards within International & Regional Affairs?",
           "options": [
             "Set measurable targets, monitor progress, and correct deviations.",
             "Delay decisions until issues escalate into avoidable crises.",
@@ -10718,7 +10718,7 @@
         },
         {
           "id": "ca_international_affairs_gen_028",
-          "question": "Which practice should a responsible officer prioritize to sustain international & regional affairs compliance in International & Regional Affairs",
+          "question": "Which practice should a responsible officer prioritize to sustain international & regional affairs compliance in International & Regional Affairs?",
           "options": [
             "Use lawful criteria and document each decision step transparently.",
             "Treat exceptions as routine without documented justification.",
@@ -10899,7 +10899,7 @@
         },
         {
           "id": "ca_international_affairs_gen_032",
-          "question": "When handling international & regional affairs, which choice reflects proper regional and global context standards",
+          "question": "When handling international & regional affairs, which choice reflects proper regional and global context standards?",
           "options": [
             "Relate international events to national administrative priorities.",
             "Rely on informal instructions without documentary evidence.",
@@ -11124,7 +11124,7 @@
         },
         {
           "id": "ca_international_affairs_gen_037",
-          "question": "When applying rules in international & regional affairs, which option aligns best with institutional awareness standards' while maintaining fairness and legal compliance",
+          "question": "When applying rules in international & regional affairs, which option aligns best with institutional awareness standards' while maintaining fairness and legal compliance?",
           "options": [
             "Interpret current developments through verified public sources.",
             "Rely on informal instructions without documentary evidence.",
@@ -11305,7 +11305,7 @@
         },
         {
           "id": "ca_international_affairs_gen_041",
-          "question": "Which of the following is the strongest control action for civic relevance in international & regional affairs' in line with public-sector accountability expectations",
+          "question": "Which of the following is the strongest control action for civic relevance in international & regional affairs' in line with public-sector accountability expectations?",
           "options": [
             "Delay decisions until issues escalate into avoidable crises.",
             "Treat exceptions as routine without documented justification.",
@@ -11485,7 +11485,7 @@
         },
         {
           "id": "ca_international_affairs_gen_045",
-          "question": "When decisions are made in international & regional affairs, which step most directly improves traceability and fairness' (Verified civic awareness scenario 1)",
+          "question": "When decisions are made in international & regional affairs, which step most directly improves traceability and fairness' (Verified civic awareness scenario 1)?",
           "options": [
             "Proceed without validating source records and decision criteria.",
             "Rely on verbal approval and close the file without documentary trail.",
@@ -12891,7 +12891,7 @@
         },
         {
           "id": "NEKP_156",
-          "question": "The National Council on Establishments (NCE) is a consultative body for the Government on matters pertaining to staff establishments, salary structures, grading, and:",
+          "question": "Which of the following describes the the national council on establishments (nce) is a consultative body for the government on matters pertaining to staff establishments, salary structures, grading, and?",
           "options": [
             "Political appointments.",
             "Schemes of service.",
@@ -12972,7 +12972,7 @@
         },
         {
           "id": "NEKP_158",
-          "question": "What is the official definition of 'Interdiction' in the **PSR**'",
+          "question": "What is the official definition of 'Interdiction' in the **PSR**'?",
           "options": [
             "The permanent dismissal of an officer, under the applicable service framework.",
             "The temporary removal of an officer from performing his normal duties and placed on half salary.",
@@ -13222,7 +13222,7 @@
         },
         {
           "id": "NEKP_164",
-          "question": "When did Donald Trump assume duties as President of America",
+          "question": "When did Donald Trump assume duties as President of America?",
           "options": [
             "January 20, 2013.",
             "January 20, 2017.",
@@ -13349,7 +13349,7 @@
         },
         {
           "id": "NEKP_167",
-          "question": "which option correctly addresses: What must officers do with historical manuscripts or other documents of public interest discovered in the course of their official duties?",
+          "question": "Which option correctly addresses: What must officers do with historical manuscripts or other documents of public interest discovered in the course of their official duties?",
           "options": [
             "Report their existence to the Permanent Secretary/Head of Extra Ministerial Office for preservation.",
             "Sell them to private collectors, in line with formal public service practice.",
@@ -13436,7 +13436,7 @@
         },
         {
           "id": "NEKP_169",
-          "question": "which office must approve the deployment of staff in the Nigerian Civil Service?",
+          "question": "Which office must approve the deployment of staff in the Nigerian Civil Service?",
           "options": [
             "The Minister of Communications.",
             "The Office of the Head of the Civil Service of the Federation (OHCSF).",
@@ -13741,7 +13741,7 @@
         },
         {
           "id": "ca_national_events_gen_004",
-          "question": "When handling national events & key personalities, which choice reflects proper institutional awareness standards",
+          "question": "When handling national events & key personalities, which choice reflects proper institutional awareness standards?",
           "options": [
             "Interpret current developments through verified public sources.",
             "Treat exceptions as routine without documented justification.",
@@ -13786,7 +13786,7 @@
         },
         {
           "id": "ca_national_events_gen_005",
-          "question": "Which practice should a responsible officer prioritize to sustain national governance updates in National Events & Key Personalities",
+          "question": "Which practice should a responsible officer prioritize to sustain national governance updates in National Events & Key Personalities?",
           "options": [
             "Track policy changes and implications for service delivery.",
             "Prioritize convenience over policy and legal requirements.",
@@ -13922,7 +13922,7 @@
         },
         {
           "id": "ca_national_events_gen_008",
-          "question": "Which option most strongly aligns with good public-service practice on civic relevance within National Events & Key Personalities",
+          "question": "Which option most strongly aligns with good public-service practice on civic relevance within National Events & Key Personalities?",
           "options": [
             "Connect current affairs to public-sector responsibilities.",
             "Rely on informal instructions without documentary evidence.",
@@ -14012,7 +14012,7 @@
         },
         {
           "id": "ca_national_events_gen_010",
-          "question": "Which practice should a responsible officer prioritize to sustain compliance assurance in National Events & Key Personalities",
+          "question": "Which practice should a responsible officer prioritize to sustain compliance assurance in National Events & Key Personalities?",
           "options": [
             "Apply approved rules consistently and escalate exceptions.",
             "Delay decisions until issues escalate into avoidable crises.",
@@ -14192,7 +14192,7 @@
         },
         {
           "id": "ca_national_events_gen_014",
-          "question": "When handling national events & key personalities, which choice reflects proper decision transparency standards",
+          "question": "When handling national events & key personalities, which choice reflects proper decision transparency standards?",
           "options": [
             "Use clear criteria and communicate decisions promptly.",
             "Close cases without validating facts or required records.",
@@ -14328,7 +14328,7 @@
         },
         {
           "id": "ca_national_events_gen_018",
-          "question": "Which option most strongly aligns with good public-service practice on performance standards within National Events & Key Personalities",
+          "question": "Which option most strongly aligns with good public-service practice on performance standards within National Events & Key Personalities?",
           "options": [
             "Set measurable targets, monitor progress, and correct deviations.",
             "Delay decisions until issues escalate into avoidable crises.",
@@ -14372,7 +14372,7 @@
         },
         {
           "id": "ca_national_events_gen_020",
-          "question": "Which practice should a responsible officer prioritize to sustain national events & key personalities compliance in National Events & Key Personalities",
+          "question": "Which practice should a responsible officer prioritize to sustain national events & key personalities compliance in National Events & Key Personalities?",
           "options": [
             "Use lawful criteria and document each decision step transparently.",
             "Treat exceptions as routine without documented justification.",
@@ -14552,7 +14552,7 @@
         },
         {
           "id": "ca_national_events_gen_024",
-          "question": "When handling national events & key personalities, which choice reflects proper regional and global context standards",
+          "question": "When handling national events & key personalities, which choice reflects proper regional and global context standards?",
           "options": [
             "Relate international events to national administrative priorities.",
             "Rely on informal instructions without documentary evidence.",
@@ -14821,7 +14821,7 @@
         },
         {
           "id": "ca_national_events_gen_031",
-          "question": "When applying rules in national events & key personalities, which option aligns best with institutional awareness standards' while maintaining fairness and legal compliance",
+          "question": "When applying rules in national events & key personalities, which option aligns best with institutional awareness standards' while maintaining fairness and legal compliance?",
           "options": [
             "Close cases without validating facts or required records.",
             "Treat exceptions as routine without documented justification.",
@@ -15002,7 +15002,7 @@
         },
         {
           "id": "ca_national_events_gen_035",
-          "question": "Which of the following is the strongest control action for civic relevance in national events & key personalities' in line with public-sector accountability expectations",
+          "question": "Which of the following is the strongest control action for civic relevance in national events & key personalities' in line with public-sector accountability expectations?",
           "options": [
             "Treat exceptions as routine without documented justification.",
             "Connect current affairs to public-sector responsibilities.",
@@ -15136,7 +15136,7 @@
         },
         {
           "id": "ca_national_events_gen_039",
-          "question": "When applying rules in national events & key personalities, which option aligns best with service integrity standards' within approved timelines and governance standards",
+          "question": "When applying rules in national events & key personalities, which option aligns best with service integrity standards' within approved timelines and governance standards?",
           "options": [
             "Avoid conflicts of interest and disclose relevant constraints.",
             "Close cases without validating facts or required records.",
@@ -15318,7 +15318,7 @@
         },
         {
           "id": "ca_national_events_gen_043",
-          "question": "Which of the following is the strongest control action for citizen-focused service in national events & key personalities' under standard approval and documentation controls",
+          "question": "Which of the following is the strongest control action for citizen-focused service in national events & key personalities' under standard approval and documentation controls?",
           "options": [
             "Balance legality, fairness, timeliness, and service quality.",
             "Rely on informal instructions without documentary evidence.",
@@ -15408,7 +15408,7 @@
         },
         {
           "id": "ca_national_events_gen_047",
-          "question": "When applying rules in national events & key personalities, which option aligns best with national events & key personalities compliance standards' while preserving records for audit and oversight",
+          "question": "When applying rules in national events & key personalities, which option aligns best with national events & key personalities compliance standards' while preserving records for audit and oversight?",
           "options": [
             "Rely on informal instructions without documentary evidence.",
             "Treat exceptions as routine without documented justification.",
@@ -15542,7 +15542,7 @@
         },
         {
           "id": "ca_national_events_gen_051",
-          "question": "Which of the following is the strongest control action for regional and global context in national events & key personalities' while maintaining fairness and legal compliance",
+          "question": "Which of the following is the strongest control action for regional and global context in national events & key personalities' while maintaining fairness and legal compliance?",
           "options": [
             "Treat exceptions as routine without documented justification.",
             "Rely on informal instructions without documentary evidence.",
@@ -15766,7 +15766,7 @@
         },
         {
           "id": "ca_national_events_gen_056",
-          "question": "When decisions are made in national events & key personalities, which step most directly improves traceability and fairness' (Verified civic awareness scenario 1)",
+          "question": "When decisions are made in national events & key personalities, which step most directly improves traceability and fairness' (Verified civic awareness scenario 1)?",
           "options": [
             "Proceed without validating source records and decision criteria.",
             "Treat exceptions as normal practice without written justification.",
@@ -16424,7 +16424,7 @@
         },
         {
           "id": "ca_national_events_gen_071",
-          "question": "which office is in charge for furnishing proof of identity if demand when a disbursement is being claimed?",
+          "question": "Which office is in charge for furnishing proof of identity if demand when a disbursement is being claimed?",
           "options": [
             "The Paying Officer.",
             "The Accountant-General. s",
@@ -16915,7 +16915,7 @@
           "ca_general": [
             {
               "id": "ca_general_001",
-              "question": "Which Nigerian state is officially known as the 'Centre of Excellence'",
+              "question": "Which Nigerian state is officially known as the 'Centre of Excellence'?",
               "options": [
                 "Lagos State.",
                 "Ogun State.",
@@ -16958,7 +16958,7 @@
             },
             {
               "id": "ca_general_002",
-              "question": "which office is the Head of the Civil Service of the Federation (as of 2025)?",
+              "question": "Which office is the Head of the Civil Service of the Federation (as of 2025)?",
               "options": [
                 "Ebele Okeke.",
                 "Folashade Yemi-Esan.",
@@ -17001,7 +17001,7 @@
             },
             {
               "id": "ca_general_003",
-              "question": "Which Nigerian city is known as the 'Coal City'",
+              "question": "Which Nigerian city is known as the 'Coal City'?",
               "options": [
                 "Enugu.",
                 "Jos.",
@@ -17130,7 +17130,7 @@
             },
             {
               "id": "ca_general_006",
-              "question": "Which Nigerian state is called the 'Gateway State'",
+              "question": "Which Nigerian state is called the 'Gateway State'?",
               "options": [
                 "Ogun State.",
                 "Ekiti State.",
@@ -17173,7 +17173,7 @@
             },
             {
               "id": "ca_general_007",
-              "question": "What is the capital of Nasarawa State",
+              "question": "What is the capital of Nasarawa State?",
               "options": [
                 "Lafia.",
                 "Keffi.",
@@ -17216,7 +17216,7 @@
             },
             {
               "id": "ca_general_008",
-              "question": "Which Nigerian city is nicknamed 'Tin City'",
+              "question": "Which Nigerian city is nicknamed 'Tin City'?",
               "options": [
                 "Jos.",
                 "Kaduna.",
@@ -17344,7 +17344,7 @@
             },
             {
               "id": "ca_general_011",
-              "question": "Which Nigerian state is called the 'Sunshine State'",
+              "question": "Which Nigerian state is called the 'Sunshine State'?",
               "options": [
                 "Ondo State.",
                 "Ekiti State.",
@@ -17431,7 +17431,7 @@
             },
             {
               "id": "ca_general_013",
-              "question": "Which Nigerian state is known as the 'Land of Promise'",
+              "question": "Which Nigerian state is known as the 'Land of Promise'?",
               "options": [
                 "Akwa Ibom.",
                 "Cross River.",
@@ -17474,7 +17474,7 @@
             },
             {
               "id": "ca_general_014",
-              "question": "Which international organization is headquartered in Abuja, Nigeria",
+              "question": "Which international organization is headquartered in Abuja, Nigeria?",
               "options": [
                 "African Union.",
                 "ECOWAS.",
@@ -17518,7 +17518,7 @@
             },
             {
               "id": "ca_general_015",
-              "question": "What is the capital of Borno State",
+              "question": "What is the capital of Borno State?",
               "options": [
                 "Maiduguri.",
                 "Damaturu.",
@@ -17561,7 +17561,7 @@
             },
             {
               "id": "ca_general_016",
-              "question": "Which Nigerian state is nicknamed the 'Food Basket of the Nation'",
+              "question": "Which Nigerian state is nicknamed the 'Food Basket of the Nation'?",
               "options": [
                 "Benue State.",
                 "Plateau State.",
@@ -17603,7 +17603,7 @@
             },
             {
               "id": "ca_general_017",
-              "question": "What is the capital of Cross River State",
+              "question": "What is the capital of Cross River State?",
               "options": [
                 "Calabar.",
                 "Uyo.",
@@ -17646,7 +17646,7 @@
             },
             {
               "id": "ca_general_018",
-              "question": "Which Nigerian state is nicknamed the 'Home of Peace'",
+              "question": "Which Nigerian state is nicknamed the 'Home of Peace'?",
               "options": [
                 "Yobe.",
                 "Adamawa.",
@@ -17689,7 +17689,7 @@
             },
             {
               "id": "ca_general_019",
-              "question": "Which Nigerian leader introduced the Structural Adjustment Programme (SAP) in 1986",
+              "question": "Which Nigerian leader introduced the Structural Adjustment Programme (SAP) in 1986?",
               "options": [
                 "Olusegun Obasanjo.",
                 "Ibrahim Babangida.",
@@ -17732,7 +17732,7 @@
             },
             {
               "id": "ca_general_020",
-              "question": "What is the capital of Kogi State",
+              "question": "What is the capital of Kogi State?",
               "options": [
                 "Lokoja.",
                 "Okene.",
@@ -17775,7 +17775,7 @@
             },
             {
               "id": "ca_general_021",
-              "question": "Which Nigerian state is known as the 'Confluence State'",
+              "question": "Which Nigerian state is known as the 'Confluence State'?",
               "options": [
                 "Kogi.",
                 "Niger.",
@@ -17818,7 +17818,7 @@
             },
             {
               "id": "ca_general_022",
-              "question": "What is the capital of Gombe State",
+              "question": "What is the capital of Gombe State?",
               "options": [
                 "Gombe.",
                 "Bauchi.",
@@ -17903,7 +17903,7 @@
             },
             {
               "id": "ca_general_024",
-              "question": "Which Nigerian state is called the 'Seat of Caliphate'",
+              "question": "Which Nigerian state is called the 'Seat of Caliphate'?",
               "options": [
                 "Kano.",
                 "Kaduna.",
@@ -17946,7 +17946,7 @@
             },
             {
               "id": "ca_general_025",
-              "question": "Which Nigerian city is called the 'Centre of Learning'",
+              "question": "Which Nigerian city is called the 'Centre of Learning'?",
               "options": [
                 "Kano.",
                 "Kaduna.",
@@ -18033,7 +18033,7 @@
             },
             {
               "id": "ca_general_027",
-              "question": "Which Nigerian state is called the 'Big Heart'",
+              "question": "Which Nigerian state is called the 'Big Heart'?",
               "options": [
                 "Delta.",
                 "Edo.",
@@ -18076,7 +18076,7 @@
             },
             {
               "id": "ca_general_028",
-              "question": "Which Nigerian city is the capital of Anambra State",
+              "question": "Which Nigerian city is the capital of Anambra State?",
               "options": [
                 "Onitsha.",
                 "Awka.",
@@ -18118,7 +18118,7 @@
             },
             {
               "id": "ca_general_029",
-              "question": "Which Nigerian state is nicknamed the 'Home of Solid Minerals'",
+              "question": "Which Nigerian state is nicknamed the 'Home of Solid Minerals'?",
               "options": [
                 "Plateau.",
                 "Ebonyi.",
@@ -18161,7 +18161,7 @@
             },
             {
               "id": "ca_general_030",
-              "question": "What is the capital of Yobe State",
+              "question": "What is the capital of Yobe State?",
               "options": [
                 "Damaturu.",
                 "Maiduguri.",
@@ -18245,7 +18245,7 @@
             },
             {
               "id": "ca_general_032",
-              "question": "Which Nigerian city is called the 'Ancient City'",
+              "question": "Which Nigerian city is called the 'Ancient City'?",
               "options": [
                 "Ibadan.",
                 "Zaria.",
@@ -18330,7 +18330,7 @@
             },
             {
               "id": "ca_general_034",
-              "question": "Which Nigerian state is nicknamed the 'Hospitality State'",
+              "question": "Which Nigerian state is nicknamed the 'Hospitality State'?",
               "options": [
                 "Benue.",
                 "Plateau.",
@@ -18415,7 +18415,7 @@
             },
             {
               "id": "ca_general_036",
-              "question": "Which Nigerian city is nicknamed the 'Garden City'",
+              "question": "Which Nigerian city is nicknamed the 'Garden City'?",
               "options": [
                 "Port Harcourt.",
                 "Enugu.",
@@ -18457,7 +18457,7 @@
             },
             {
               "id": "ca_general_037",
-              "question": "Which Nigerian state is called the 'Land of Honour and Integrity'",
+              "question": "Which Nigerian state is called the 'Land of Honour and Integrity'?",
               "options": [
                 "Osun.",
                 "Ekiti.",
@@ -18500,7 +18500,7 @@
             },
             {
               "id": "ca_general_038",
-              "question": "Which Nigerian city is the capital of Katsina State",
+              "question": "Which Nigerian city is the capital of Katsina State?",
               "options": [
                 "Daura.",
                 "Funtua.",
@@ -18543,7 +18543,7 @@
             },
             {
               "id": "ca_general_039",
-              "question": "Which Nigerian state is nicknamed the 'Treasure Base of the Nation'",
+              "question": "Which Nigerian state is nicknamed the 'Treasure Base of the Nation'?",
               "options": [
                 "Bayelsa.",
                 "Rivers.",
@@ -18586,7 +18586,7 @@
             },
             {
               "id": "ca_general_040",
-              "question": "Which Nigerian city is called the 'Ancient City of Benin'",
+              "question": "Which Nigerian city is called the 'Ancient City of Benin'?",
               "options": [
                 "Ibadan.",
                 "Benin City.",
@@ -18629,7 +18629,7 @@
             },
             {
               "id": "ca_general_041",
-              "question": "Which Nigerian state is nicknamed the 'Land of Courage'",
+              "question": "Which Nigerian state is nicknamed the 'Land of Courage'?",
               "options": [
                 "Kaduna.",
                 "Zamfara.",
@@ -18672,7 +18672,7 @@
             },
             {
               "id": "ca_general_042",
-              "question": "Which Nigerian city is the capital of Ebonyi State",
+              "question": "Which Nigerian city is the capital of Ebonyi State?",
               "options": [
                 "Abakaliki.",
                 "Enugu.",
@@ -18756,7 +18756,7 @@
             },
             {
               "id": "ca_general_044",
-              "question": "Which Nigerian state is called the 'Home of Peace and Tourism'",
+              "question": "Which Nigerian state is called the 'Home of Peace and Tourism'?",
               "options": [
                 "Kaduna.",
                 "Plateau.",
@@ -18799,7 +18799,7 @@
             },
             {
               "id": "ca_general_045",
-              "question": "Which Nigerian city is nicknamed the 'City of Excellence'",
+              "question": "Which Nigerian city is nicknamed the 'City of Excellence'?",
               "options": [
                 "Abuja.",
                 "Port Harcourt.",
@@ -18842,7 +18842,7 @@
             },
             {
               "id": "ca_general_046",
-              "question": "Which Nigerian state is called the 'Power State'",
+              "question": "Which Nigerian state is called the 'Power State'?",
               "options": [
                 "Kano.",
                 "Niger.",
@@ -18885,7 +18885,7 @@
             },
             {
               "id": "ca_general_047",
-              "question": "Who was Nigeria’s first civilian President",
+              "question": "Who was Nigeria’s first civilian President?",
               "options": [
                 "Olusegun Obasanjo.",
                 "Shehu Shagari.",
@@ -18929,7 +18929,7 @@
             },
             {
               "id": "ca_general_048",
-              "question": "Which Nigerian state is called the 'Salt of the Nation'",
+              "question": "Which Nigerian state is called the 'Salt of the Nation'?",
               "options": [
                 "Ebonyi.",
                 "Enugu.",
@@ -19015,7 +19015,7 @@
             },
             {
               "id": "ca_general_050",
-              "question": "What is the capital of Niger State",
+              "question": "What is the capital of Niger State?",
               "options": [
                 "Mokwa.",
                 "Minna.",
@@ -19236,7 +19236,7 @@
             },
             {
               "id": "ca_general_gen_005",
-              "question": "which option correctly addresses: Which practice should a accountable officer prioritize to sustain national governance updates in General Affairs?",
+              "question": "Which option correctly addresses: Which practice should a accountable officer prioritize to sustain national governance updates in General Affairs?",
               "options": [
                 "Apply rules inconsistently based on personal preference.",
                 "Prioritize convenience over policy and legal requirements.",
@@ -20341,7 +20341,7 @@
             },
             {
               "id": "ca_general_056",
-              "question": "which option correctly addresses: Besides the Civil Service, which of the following is explicitly part of the Public Service?",
+              "question": "Which option correctly addresses: Besides the Civil Service, which of the following is explicitly part of the Public Service?",
               "options": [
                 "Foreign Embassies (non-Nigerian) □",
                 "Private Hospitals",
@@ -20682,7 +20682,7 @@
             },
             {
               "id": "ca_general_064",
-              "question": "which role is accountable for the general control of all Treasury and other receipt and licence books?",
+              "question": "Which role is accountable for the general control of all Treasury and other receipt and licence books?",
               "options": [
                 "The Minister of Finance.",
                 "The Head of Civil Service. Q.",
@@ -21149,7 +21149,7 @@
             },
             {
               "id": "ca_general_075",
-              "question": "which option correctly addresses: Where must each ministry, extra-ministerial office, and other arms of government sustain a separate bank account for revenue?",
+              "question": "Which option correctly addresses: Where must each ministry, extra-ministerial office, and other arms of government sustain a separate bank account for revenue?",
               "options": [
                 "In a private trust account □",
                 "At the Central Bank of Nigeria or any other designated bank",

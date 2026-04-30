@@ -58,7 +58,7 @@
         },
         {
           "id": "fin_bgt_002",
-          "question": "The legal instrument enacted by the National Assembly that authorizes the Federal Government to withdraw funds from the Consolidated Revenue Fund (CRF) for annual expenditure is the:",
+          "question": "Which of the following describes the the legal instrument enacted by the national assembly that authorizes the federal government to withdraw funds from the consolidated revenue fund (crf) for annual expenditure is the?",
           "options": [
             "Executive Order.",
             "Budget Call Circular.",
@@ -105,7 +105,7 @@
         },
         {
           "id": "fin_bgt_003",
-          "question": "How often must the Vote Book be updated to accurately reflect budget implementation and commitments, ensuring effective expenditure control",
+          "question": "How often must the Vote Book be updated to accurately reflect budget implementation and commitments, ensuring effective expenditure control?",
           "options": [
             "Weekly.",
             "Monthly.",
@@ -150,7 +150,7 @@
         },
         {
           "id": "fin_bgt_004",
-          "question": "What is the technical term for the authorized transfer of funds from one specified budget subhead to another within the same expenditure vote",
+          "question": "What is the technical term for the authorized transfer of funds from one specified budget subhead to another within the same expenditure vote?",
           "options": [
             "Excess Vote.",
             "Virement.",
@@ -195,7 +195,7 @@
         },
         {
           "id": "fin_bgt_005",
-          "question": "Any request for the legal movement of funds between budget subheads (Virement) must be formally backed by:",
+          "question": "Which of the following describes the any request for the legal movement of funds between budget subheads (virement) must be formally backed by?",
           "options": [
             "A Ministerial Policy Statement.",
             "A Virement Warrant.",
@@ -239,7 +239,7 @@
         },
         {
           "id": "fin_bgt_006",
-          "question": "Expenditure incurred by an **MDA** that exceeds the amount appropriated for that specific subhead without subsequent legislative sanction is termed:",
+          "question": "Which of the following describes the expenditure incurred by an **mda** that exceeds the amount appropriated for that specific subhead without subsequent legislative sanction is termed?",
           "options": [
             "Overdraft.",
             "Excess Vote.",
@@ -282,7 +282,7 @@
         },
         {
           "id": "fin_bgt_007",
-          "question": "At the end of the fiscal year, all unspent budget balances must generally be:",
+          "question": "Which of the following describes the at the end of the fiscal year, all unspent budget balances must generally be?",
           "options": [
             "Carried forward to the next year.",
             "Used immediately for capital projects.",
@@ -328,7 +328,7 @@
         },
         {
           "id": "fin_bgt_008",
-          "question": "Which official document is used to request for the release of funds from the Treasury to the **MDAs** for execution of both capital and recurrent projects",
+          "question": "Which official document is used to request for the release of funds from the Treasury to the **MDAs** for execution of both capital and recurrent projects?",
           "options": [
             "Treasury Circular.",
             "Payment Voucher.",
@@ -374,7 +374,7 @@
         },
         {
           "id": "fin_bgt_009",
-          "question": "What is the consequence of incurring expenditure far exceeding appropriation that requires subsequent legislative action via a supplementary budget",
+          "question": "What is the consequence of incurring expenditure far exceeding appropriation that requires subsequent legislative action via a supplementary budget?",
           "options": [
             "A monetary fine on the Accounting Officer.",
             "A Board of Inquiry report.",
@@ -420,7 +420,7 @@
         },
         {
           "id": "fin_bgt_010",
-          "question": "What must be checked in the **Vote Book** immediately before any commitment (like issuing an LPO) is made",
+          "question": "What must be checked in the **Vote Book** immediately before any commitment (like issuing an LPO) is made?",
           "options": [
             "The date the last Virement Warrant was issued.",
             "The balance remaining in the relevant subhead.",
@@ -466,7 +466,7 @@
         },
         {
           "id": "fin_bgt_011",
-          "question": "The **Medium-Term Expenditure Framework (MTEF)**, a key planning tool, requires government budgeting to focus on planning and projections over a rolling period of:",
+          "question": "Which of the following describes the the **medium-term expenditure framework (mtef)**, a key planning tool, requires government budgeting to focus on planning and projections over a rolling period of?",
           "options": [
             "One year.",
             "Three years.",
@@ -555,7 +555,7 @@
         },
         {
           "id": "fin_bgt_013",
-          "question": "An officer, upon first appointment, shall be eligible for emoluments as from the date of:",
+          "question": "Which of the following describes the an officer, upon first appointment, shall be eligible for emoluments as from the date of?",
           "options": [
             "The letter of appointment.",
             "The FCSC approval.",
@@ -598,7 +598,7 @@
         },
         {
           "id": "fin_bgt_015",
-          "question": "Funding used to acquire or maintain fixed assets that benefit future fiscal periods is classified as:",
+          "question": "Which of the following describes the funding used to acquire or maintain fixed assets that benefit future fiscal periods is classified as?",
           "options": [
             "Recurrent Expenditure.",
             "Non-Personnel Emoluments.",
@@ -643,7 +643,7 @@
         },
         {
           "id": "fin_bgt_016",
-          "question": "Which officer is primarily responsible for maintaining the departmental Vote Ledger (Vote Book), tracking budget allocations, and controlling expenditure commitments",
+          "question": "Which officer is primarily responsible for maintaining the departmental Vote Ledger (Vote Book), tracking budget allocations, and controlling expenditure commitments?",
           "options": [
             "Internal Auditor.",
             "Sub-Accountant.",
@@ -692,7 +692,7 @@
         },
         {
           "id": "fin_bgt_017",
-          "question": "Who is responsible for preparing departmental financial statements at the end of the fiscal year",
+          "question": "Who is responsible for preparing departmental financial statements at the end of the fiscal year?",
           "options": [
             "Vote Controller.",
             "Permanent Secretary.",
@@ -736,7 +736,7 @@
         },
         {
           "id": "fin_bgt_018",
-          "question": "Which officer must sign all Payment Vouchers before payments are processed, confirming the correctness and classification of the transaction",
+          "question": "Which officer must sign all Payment Vouchers before payments are processed, confirming the correctness and classification of the transaction?",
           "options": [
             "Auditor-General.",
             "Vote Controller.",
@@ -780,7 +780,7 @@
         },
         {
           "id": "fin_bgt_019",
-          "question": "The primary responsibility of the Permanent Secretary/CEO as the Chief Accounting Officer is:",
+          "question": "Which of the following describes the the primary responsibility of the permanent secretary/ceo as the chief accounting officer is?",
           "options": [
             "To regulate commercial banks.",
             "To manage the MDA's budget, expenditure, and compliance with Financial Regulations.",
@@ -825,7 +825,7 @@
         },
         {
           "id": "fin_bgt_020",
-          "question": "What does the term **“Budget”** primarily represent",
+          "question": "What does the term **“Budget”** primarily represent?",
           "options": [
             "A formal request for Virement.",
             "Detailed estimates of government revenue and expenditure for a fiscal year.",
@@ -871,7 +871,7 @@
         },
         {
           "id": "fin_bgt_021",
-          "question": "An Officer's increment is typically withheld or deferred on grounds of unsatisfactory performance, or when the officer is under:",
+          "question": "Which of the following describes the an officer's increment is typically withheld or deferred on grounds of unsatisfactory performance, or when the officer is under?",
           "options": [
             "Annual leave.",
             "Secondment to an international body.",
@@ -916,7 +916,7 @@
         },
         {
           "id": "fin_bgt_022",
-          "question": "What is the standard incremental date for an Officer appointed or promoted to a post in the Federal Public Service",
+          "question": "What is the standard incremental date for an Officer appointed or promoted to a post in the Federal Public Service?",
           "options": [
             "The date of appointment/promotion, under the applicable service framework.",
             "The 1st January of the year following at least six months of service or promotion.",
@@ -960,7 +960,7 @@
         },
         {
           "id": "fin_bgt_023",
-          "question": "A staff on transfer shall be eligible for the emolument attached to his new office with effect from the date he:",
+          "question": "Which of the following describes the a staff on transfer shall be eligible for the emolument attached to his new office with effect from the date he?",
           "options": [
             "Receives the transfer letter.",
             "Resigns from the old service.",
@@ -1003,7 +1003,7 @@
         },
         {
           "id": "fin_bgt_024",
-          "question": "If an Officer is promoted to a grade level that does NOT overlap his old grade level, he shall be placed at the:",
+          "question": "Which of the following describes the if an officer is promoted to a grade level that does not overlap his old grade level, he shall be placed at the?",
           "options": [
             "Mid-point of the new grade level.",
             "Minimum point of his new salary grade level.",
@@ -1091,7 +1091,7 @@
         },
         {
           "id": "fin_bgt_026",
-          "question": "What document accompanies all government payments made in Ministries, detailing the expenditure, head, subhead, and required authorization",
+          "question": "What document accompanies all government payments made in Ministries, detailing the expenditure, head, subhead, and required authorization?",
           "options": [
             "Appropriation Bill.",
             "Payment Voucher.",
@@ -1136,7 +1136,7 @@
         },
         {
           "id": "fin_bgt_027",
-          "question": "Who, as the Head of Department, must certify payments by confirming that services have been duly performed before payment is made to a contractor or service provider",
+          "question": "Who, as the Head of Department, must certify payments by confirming that services have been duly performed before payment is made to a contractor or service provider?",
           "options": [
             "Internal Auditor.",
             "Vote Controller.",
@@ -1180,7 +1180,7 @@
         },
         {
           "id": "fin_bgt_028",
-          "question": "What financial status occurs when government expenditure exceeds its revenue within a specific fiscal period",
+          "question": "What financial status occurs when government expenditure exceeds its revenue within a specific fiscal period?",
           "options": [
             "Budget Surplus.",
             "Budget Deficit.",
@@ -1226,7 +1226,7 @@
         },
         {
           "id": "fin_bgt_029",
-          "question": "What document is used to track all outstanding cash advances issued to staff and contractors against the budget",
+          "question": "What document is used to track all outstanding cash advances issued to staff and contractors against the budget?",
           "options": [
             "The Vote Book.",
             "The Advance Ledger.",
@@ -1360,7 +1360,7 @@
         },
         {
           "id": "fin_bgt_032",
-          "question": "Which **MDA** classification is authorized to manage its financial records internally but must still comply with **FR** and submit statutory returns to the OAGF",
+          "question": "Which **MDA** classification is authorized to manage its financial records internally but must still comply with **FR** and submit statutory returns to the OAGF?",
           "options": [
             "Non-Scheduled MDA.",
             "Self-Accounting MDA.",
@@ -1402,7 +1402,7 @@
         },
         {
           "id": "fin_bgt_033",
-          "question": "The fund established for the replacement of depreciating government assets is the:",
+          "question": "Which of the following describes the the fund established for the replacement of depreciating government assets is the?",
           "options": [
             "Development Fund.",
             "Renewal Fund.",
@@ -1445,7 +1445,7 @@
         },
         {
           "id": "fin_bgt_034",
-          "question": "If an officer's increment is deferred due to unsatisfactory performance, the deferment must be fixed for a minimum period of:",
+          "question": "Which of the following describes the if an officer's increment is deferred due to unsatisfactory performance, the deferment must be fixed for a minimum period of?",
           "options": [
             "One month.",
             "Three months.",
@@ -1489,7 +1489,7 @@
         },
         {
           "id": "fin_bgt_035",
-          "question": "Decisions on deferment or withholding of increment and stoppage of salaries must be communicated to the officer concerned and simultaneously to:",
+          "question": "Which of the following describes the decisions on deferment or withholding of increment and stoppage of salaries must be communicated to the officer concerned and simultaneously to?",
           "options": [
             "The Federal Civil Service Commission (FCSC), under the applicable service framework.",
             "The Ministry of Justice, within established administrative procedures.",
@@ -1534,7 +1534,7 @@
         },
         {
           "id": "fin_bgt_036",
-          "question": "If an officer's salary is withheld due to unauthorized absence from duty, the sanction is governed by:",
+          "question": "Which of the following describes the if an officer's salary is withheld due to unauthorized absence from duty, the sanction is governed by?",
           "options": [
             "Rule 040202.",
             "Rule 040206.",
@@ -1622,7 +1622,7 @@
         },
         {
           "id": "fin_bgt_038",
-          "question": "The **Government Integrated Financial Management Information System (**GIFMIS**)** supports the budgeting process by providing:",
+          "question": "Which of the following describes the the **government integrated financial management information system (**gifmis**)** supports the budgeting process by providing?",
           "options": [
             "A platform for political campaign financing.",
             "Integrated financial operations, accounting, and expenditure tracking.",
@@ -1667,7 +1667,7 @@
         },
         {
           "id": "fin_bgt_039",
-          "question": "If an officer is promoted across overlapping salary levels, the placement rule dictates the officer is placed at the:",
+          "question": "Which of the following best explains the if an officer is promoted across overlapping salary levels, the placement rule dictates the officer is placed at the?",
           "options": [
             "Maximum point of the new grade.",
             "Minimum point of the new grade.",
@@ -1711,7 +1711,7 @@
         },
         {
           "id": "fin_bgt_040",
-          "question": "Which body prepares Nigeria’s annual budget performance reports for review",
+          "question": "Which body prepares Nigeria’s annual budget performance reports for review?",
           "options": [
             "Permanent Secretary.",
             "Vote Controller.",
@@ -1798,7 +1798,7 @@
         },
         {
           "id": "fin_bgt_042",
-          "question": "Who authorizes payments from the Consolidated Revenue Fund (CRF)",
+          "question": "Who authorizes payments from the Consolidated Revenue Fund (CRF)?",
           "options": [
             "The Minister of Finance.",
             "The National Assembly.",
@@ -1843,7 +1843,7 @@
         },
         {
           "id": "fin_bgt_043",
-          "question": "The **Annual Financial Statement** is prepared to report on government's:",
+          "question": "Which of the following describes the the **annual financial statement** is prepared to report on government's?",
           "options": [
             "Annual budget proposal.",
             "Financial performance within the fiscal year.",
@@ -2021,7 +2021,7 @@
         },
         {
           "id": "fin_bgt_047",
-          "question": "The Head of the **MDA** or Permanent Secretary must ensure that all personnel data entered into **IPPIS** are accurate and:",
+          "question": "Which of the following describes the the head of the **mda** or permanent secretary must ensure that all personnel data entered into **ippis** are accurate and?",
           "options": [
             "Verified by the Minister of Finance.",
             "Certified to be correct.",
@@ -2064,7 +2064,7 @@
         },
         {
           "id": "fin_bgt_048",
-          "question": "The authority responsible for granting a special increment to mitigate the lasting negative effects of an increment that was previously withheld rests with the:",
+          "question": "Which of the following describes the the authority responsible for granting a special increment to mitigate the lasting negative effects of an increment that was previously withheld rests with the?",
           "options": [
             "Permanent Secretary, CMO, OHCSF.",
             "Federal Civil Service Commission (FCSC).",
@@ -2388,7 +2388,7 @@
         },
         {
           "id": "fin_budgeting_gen_005",
-          "question": "Which practice should a responsible officer prioritize to sustain virement process in Budgeting & Financial Planning",
+          "question": "Which practice should a responsible officer prioritize to sustain virement process in Budgeting & Financial Planning?",
           "options": [
             "Obtain proper authorization before moving funds between heads.",
             "Prioritize convenience over policy and legal requirements.",
@@ -2532,7 +2532,7 @@
         },
         {
           "id": "fin_budgeting_gen_008",
-          "question": "Which option most strongly aligns with good public-service practice on cash management within Budgeting & Financial Planning",
+          "question": "Which option most strongly aligns with good public-service practice on cash management within Budgeting & Financial Planning?",
           "options": [
             "Reconcile accounts promptly and resolve variances with evidence.",
             "Rely on informal instructions without documentary evidence.",
@@ -2626,7 +2626,7 @@
         },
         {
           "id": "fin_budgeting_gen_010",
-          "question": "Which practice should a responsible officer prioritize to sustain compliance assurance in Budgeting & Financial Planning",
+          "question": "Which practice should a responsible officer prioritize to sustain compliance assurance in Budgeting & Financial Planning?",
           "options": [
             "Apply approved rules consistently and escalate exceptions.",
             "Delay decisions until issues escalate into avoidable crises.",
@@ -2814,7 +2814,7 @@
         },
         {
           "id": "fin_budgeting_gen_014",
-          "question": "When handling budgeting & financial planning, which choice reflects proper decision transparency standards",
+          "question": "When handling budgeting & financial planning, which choice reflects proper decision transparency standards?",
           "options": [
             "Use clear criteria and communicate decisions promptly.",
             "Close cases without validating facts or required records.",
@@ -2955,7 +2955,7 @@
         },
         {
           "id": "fin_budgeting_gen_018",
-          "question": "Which option most strongly aligns with good public-service practice on performance standards within Budgeting & Financial Planning",
+          "question": "Which option most strongly aligns with good public-service practice on performance standards within Budgeting & Financial Planning?",
           "options": [
             "Set measurable targets, monitor progress, and correct deviations.",
             "Delay decisions until issues escalate into avoidable crises.",
@@ -3049,7 +3049,7 @@
         },
         {
           "id": "fin_budgeting_gen_020",
-          "question": "Which practice should a responsible officer prioritize to sustain budgeting & financial planning compliance in Budgeting & Financial Planning",
+          "question": "Which practice should a responsible officer prioritize to sustain budgeting & financial planning compliance in Budgeting & Financial Planning?",
           "options": [
             "Use lawful criteria and document each decision step transparently.",
             "Treat exceptions as routine without documented justification.",
@@ -3241,7 +3241,7 @@
         },
         {
           "id": "fin_budgeting_gen_024",
-          "question": "When handling budgeting & financial planning, which choice reflects proper expenditure discipline standards",
+          "question": "When handling budgeting & financial planning, which choice reflects proper expenditure discipline standards?",
           "options": [
             "Commit and spend only within approved budget limits.",
             "Rely on informal instructions without documentary evidence.",
@@ -3566,7 +3566,7 @@
         },
         {
           "id": "fin_bgt_055",
-          "question": "which option aligns with the meaning of the chief aim of a Development Fund Virement Warrant?",
+          "question": "Which option aligns with the meaning of the chief aim of a Development Fund Virement Warrant?",
           "options": [
             "To empower expenditure from the Contingencies Fund",
             "To fund new capital projects.",
@@ -3879,7 +3879,7 @@
         },
         {
           "id": "fin_bgt_062",
-          "question": "which option correctly addresses: Warrants issued by the Minister of Finance approve the Accountant-General of the Federation to disburse funds from which accounts?",
+          "question": "Which option correctly addresses: Warrants issued by the Minister of Finance approve the Accountant-General of the Federation to disburse funds from which accounts?",
           "options": [
             "Only the Development Fund.",
             "Consolidated Revenue Fund and Development Fund.",
@@ -4510,7 +4510,7 @@
         },
         {
           "id": "fin_bgt_076",
-          "question": "Which financial platform controls the total amount of funds allocated for staff salaries (Personnel Emoluments) in the budget",
+          "question": "Which financial platform controls the total amount of funds allocated for staff salaries (Personnel Emoluments) in the budget?",
           "options": [
             "TSA.",
             "GIFMIS.",
@@ -4555,7 +4555,7 @@
         },
         {
           "id": "fin_bgt_077",
-          "question": "The process by which funds are legally moved between budget subheads within the same expenditure head is known as:",
+          "question": "Which of the following describes the the process by which funds are legally moved between budget subheads within the same expenditure head is known as?",
           "options": [
             "Appropriation.",
             "Excess Vote.",
@@ -4792,7 +4792,7 @@
       "questions": [
         {
           "id": "fin_pro_001",
-          "question": "The foundational legal framework governing the acquisition of goods, works, and services by all Federal **MDAs** is the:",
+          "question": "Which of the following describes the the foundational legal framework governing the acquisition of goods, works, and services by all federal **mdas** is the?",
           "options": [
             "Financial Regulations.",
             "Appropriation Act.",
@@ -4834,7 +4834,7 @@
         },
         {
           "id": "fin_pro_002",
-          "question": "What is the main objective of the Public Procurement Act, 2007",
+          "question": "What is the main objective of the Public Procurement Act, 2007?",
           "options": [
             "To increase revenue collection.",
             "To ensure transparency, fairness, accountability, and value for money.",
@@ -4921,7 +4921,7 @@
         },
         {
           "id": "fin_pro_004",
-          "question": "The procurement plan for an **MDA** must be based on and aligned with:",
+          "question": "Which of the following describes the the procurement plan for an **mda** must be based on and aligned with?",
           "options": [
             "Political priorities of the Minister.",
             "Contractor availability and convenience.",
@@ -4965,7 +4965,7 @@
         },
         {
           "id": "fin_pro_005",
-          "question": "What is the mandatory period for the archive retention of procurement records and documents",
+          "question": "What is the mandatory period for the archive retention of procurement records and documents?",
           "options": [
             "2 years.",
             "3 years.",
@@ -5008,7 +5008,7 @@
         },
         {
           "id": "fin_pro_006",
-          "question": "The mandatory pre-qualification requirement for all bidders includes the submission of a valid:",
+          "question": "Which of the following describes the the mandatory pre-qualification requirement for all bidders includes the submission of a valid?",
           "options": [
             "Asset Declaration Form.",
             "Tax Clearance Certificate (TCC).",
@@ -5051,7 +5051,7 @@
         },
         {
           "id": "fin_pro_007",
-          "question": "Which document is mandatory for processing payment to a contractor after goods or services have been received and verified",
+          "question": "Which document is mandatory for processing payment to a contractor after goods or services have been received and verified?",
           "options": [
             "Local Purchase Order (LPO).",
             "Job Completion Certificate (JCC).",
@@ -5094,7 +5094,7 @@
         },
         {
           "id": "fin_pro_008",
-          "question": "Which of the following describes a **Responsive Bid**'",
+          "question": "Which of the following describes a **Responsive Bid**'?",
           "options": [
             "The cheapest bid received, under the applicable service framework.",
             "A bid that meets all the technical and administrative requirements of the tender document.",
@@ -5137,7 +5137,7 @@
         },
         {
           "id": "fin_pro_009",
-          "question": "What is the primary function of **Bid Security** provided by bidders",
+          "question": "What is the primary function of **Bid Security** provided by bidders?",
           "options": [
             "To finance government projects.",
             "To serve as a performance bond for the awarded contract.",
@@ -5180,7 +5180,7 @@
         },
         {
           "id": "fin_pro_010",
-          "question": "The principle of **Due Process** in public procurement primarily emphasizes:",
+          "question": "Which of the following describes the the principle of **due process** in public procurement primarily emphasizes?",
           "options": [
             "Rapid contract award regardless of procedure.",
             "Adherence to legal and procedural requirements in awarding contracts.",
@@ -5267,7 +5267,7 @@
         },
         {
           "id": "fin_pro_013",
-          "question": "Who is the officer responsible for ensuring compliance with procurement thresholds and the Public Procurement Act",
+          "question": "Who is the officer responsible for ensuring compliance with procurement thresholds and the Public Procurement Act?",
           "options": [
             "The Head of Accounts.",
             "The Procurement Officer.",
@@ -5311,7 +5311,7 @@
         },
         {
           "id": "fin_pro_014",
-          "question": "The Public Procurement Act prohibits the practice of illegally breaking down a contract into smaller units to circumvent approval limits. This practice is known as:",
+          "question": "Which of the following describes the the public procurement act prohibits the practice of illegally breaking down a contract into smaller units to circumvent approval limits. this practice is known as?",
           "options": [
             "Bid Rigging.",
             "Contract Variation.",
@@ -5401,7 +5401,7 @@
         },
         {
           "id": "fin_pro_016",
-          "question": "Which authority approves emergency procurements, subject to later audit and ratification",
+          "question": "Which authority approves emergency procurements, subject to later audit and ratification?",
           "options": [
             "The Permanent Secretary.",
             "The Minister.",
@@ -5445,7 +5445,7 @@
         },
         {
           "id": "fin_pro_017",
-          "question": "The **PPA** mandates that the opening of bids for all competitive tenders must be conducted:",
+          "question": "Which of the following describes the the **ppa** mandates that the opening of bids for all competitive tenders must be conducted?",
           "options": [
             "In the Minister's office.",
             "In public and transparently.",
@@ -5531,7 +5531,7 @@
         },
         {
           "id": "fin_pro_020",
-          "question": "The minimum time frame required for submission of bids under national competitive bidding is:",
+          "question": "Which of the following describes the the minimum time frame required for submission of bids under national competitive bidding is?",
           "options": [
             "1 week.",
             "2 weeks.",
@@ -5574,7 +5574,7 @@
         },
         {
           "id": "fin_pro_021",
-          "question": "The essential administrative procedure principle that ensures capability and eligibility is assessed before the formal submission of competitive bids is:",
+          "question": "Which of the following describes the the essential administrative procedure principle that ensures capability and eligibility is assessed before the formal submission of competitive bids is?",
           "options": [
             "Bid Security Requirement.",
             "Contract Splitting.",
@@ -5617,7 +5617,7 @@
         },
         {
           "id": "fin_pro_022",
-          "question": "Which section mandates that evaluation of bids must be based strictly on criteria stated in the solicitation documents",
+          "question": "Which section mandates that evaluation of bids must be based strictly on criteria stated in the solicitation documents?",
           "options": [
             "Section 25.",
             "Section 27.",
@@ -5660,7 +5660,7 @@
         },
         {
           "id": "fin_pro_024",
-          "question": "Which section allows for the cancellation of a procurement proceeding at any time before the contract award",
+          "question": "Which section allows for the cancellation of a procurement proceeding at any time before the contract award?",
           "options": [
             "Section 30.",
             "Section 31.",
@@ -5703,7 +5703,7 @@
         },
         {
           "id": "fin_pro_025",
-          "question": "All procurements above certain thresholds must be advertised publicly, as stipulated by:",
+          "question": "Which of the following describes the all procurements above certain thresholds must be advertised publicly, as stipulated by?",
           "options": [
             "Section 21.",
             "Section 23.",
@@ -5746,7 +5746,7 @@
         },
         {
           "id": "fin_pro_026",
-          "question": "Which section requires the publication of contract awards above certain thresholds to ensure transparency",
+          "question": "Which section requires the publication of contract awards above certain thresholds to ensure transparency?",
           "options": [
             "Section 25.",
             "Section 28.",
@@ -5790,7 +5790,7 @@
         },
         {
           "id": "fin_pro_027",
-          "question": "Which section promotes efficiency and transparency in procurement by providing for the use of e-procurement systems",
+          "question": "Which section promotes efficiency and transparency in procurement by providing for the use of e-procurement systems?",
           "options": [
             "Section 37.",
             "Section 38.",
@@ -5876,7 +5876,7 @@
         },
         {
           "id": "fin_pro_029",
-          "question": "Which section prescribes imprisonment and fines for procurement-related fraud, misrepresentation, and bid-rigging",
+          "question": "Which section prescribes imprisonment and fines for procurement-related fraud, misrepresentation, and bid-rigging?",
           "options": [
             "Section 56.",
             "Section 57.",
@@ -5920,7 +5920,7 @@
         },
         {
           "id": "fin_pro_030",
-          "question": "The BPP is empowered to suspend procurement proceedings if irregularities are detected, as stipulated in:",
+          "question": "Which of the following describes the the bpp is empowered to suspend procurement proceedings if irregularities are detected, as stipulated in?",
           "options": [
             "Section 5.",
             "Section 23.",
@@ -5963,7 +5963,7 @@
         },
         {
           "id": "fin_pro_031",
-          "question": "**Section 16** of the **PPA** requires eligible contractors to demonstrate that they are currently not:",
+          "question": "Which of the following describes the **section 16** of the **ppa** requires eligible contractors to demonstrate that they are currently not?",
           "options": [
             "In receipt of government loans.",
             "In receivership, bankruptcy, or insolvency.",
@@ -6006,7 +6006,7 @@
         },
         {
           "id": "fin_pro_032",
-          "question": "Procurement of goods and works is prohibited without:",
+          "question": "Which of the following describes the procurement of goods and works is prohibited without?",
           "options": [
             "A security clearance report.",
             "Approved budgetary provision and availability of funds.",
@@ -6049,7 +6049,7 @@
         },
         {
           "id": "fin_pro_033",
-          "question": "The primary objective of pre-qualification of bidders in the public procurement process is:",
+          "question": "What is the primary the primary objective of pre-qualification of bidders in the public procurement process is?",
           "options": [
             "To simplify payment processing.",
             "To ensure capability and eligibility before submission of bids.",
@@ -6092,7 +6092,7 @@
         },
         {
           "id": "fin_pro_035",
-          "question": "Which section empowers the BPP to inspect procurement documents and records of entities",
+          "question": "Which section empowers the BPP to inspect procurement documents and records of entities?",
           "options": [
             "Section 4.",
             "Section 5.",
@@ -6179,7 +6179,7 @@
         },
         {
           "id": "fin_pro_037",
-          "question": "Which section stipulates the mandatory contents of standard bidding documents",
+          "question": "Which section stipulates the mandatory contents of standard bidding documents?",
           "options": [
             "Section 25.",
             "Section 26.",
@@ -6222,7 +6222,7 @@
         },
         {
           "id": "fin_pro_040",
-          "question": "Which section empowers the BPP to blacklist or debar contractors found guilty of misconduct",
+          "question": "Which section empowers the BPP to blacklist or debar contractors found guilty of misconduct?",
           "options": [
             "Section 54.",
             "Section 55.",
@@ -6265,7 +6265,7 @@
         },
         {
           "id": "fin_pro_041",
-          "question": "**Section 16** of the **PPA** requires bidders to demonstrate they have fulfilled obligations regarding:",
+          "question": "Which of the following describes the **section 16** of the **ppa** requires bidders to demonstrate they have fulfilled obligations regarding?",
           "options": [
             "Political party funding.",
             "Taxes, pensions, and social security contributions.",
@@ -6308,7 +6308,7 @@
         },
         {
           "id": "fin_pro_043",
-          "question": "Which method is allowed under the **PPA** when goods or services are available only from a limited number of suppliers",
+          "question": "Which method is allowed under the **PPA** when goods or services are available only from a limited number of suppliers?",
           "options": [
             "Direct Contracting.",
             "Open Competitive Bidding.",
@@ -6438,7 +6438,7 @@
         },
         {
           "id": "fin_pro_046",
-          "question": "Which section of the **PPA** permits negotiations only under limited circumstances, such as single-source procurement",
+          "question": "Which section of the **PPA** permits negotiations only under limited circumstances, such as single-source procurement?",
           "options": [
             "Section 25.",
             "Section 29.",
@@ -6523,7 +6523,7 @@
         },
         {
           "id": "fin_pro_048",
-          "question": "Which section allows for the engagement of procurement consultants to assist procuring entities",
+          "question": "Which section allows for the engagement of procurement consultants to assist procuring entities?",
           "options": [
             "Section 12.",
             "Section 14.",
@@ -6566,7 +6566,7 @@
         },
         {
           "id": "fin_pro_049",
-          "question": "Which body must approve the release of funds for emergency procurements, subject to later audit and ratification",
+          "question": "Which body must approve the release of funds for emergency procurements, subject to later audit and ratification?",
           "options": [
             "The Minister.",
             "The Permanent Secretary.",
@@ -6610,7 +6610,7 @@
         },
         {
           "id": "fin_pro_050",
-          "question": "Which section empowers the BPP to blacklist contractors for procurement misconduct",
+          "question": "Which section empowers the BPP to blacklist contractors for procurement misconduct?",
           "options": [
             "Section 54.",
             "Section 55.",
@@ -6798,7 +6798,7 @@
         },
         {
           "id": "fin_procurement_gen_009",
-          "question": "Which practice should a responsible officer prioritize to sustain virement process in Procurement Under Financial Controls",
+          "question": "Which practice should a responsible officer prioritize to sustain virement process in Procurement Under Financial Controls?",
           "options": [
             "Obtain proper authorization before moving funds between heads.",
             "Prioritize convenience over policy and legal requirements.",
@@ -6943,7 +6943,7 @@
         },
         {
           "id": "fin_procurement_gen_012",
-          "question": "Which option most strongly aligns with good public-service practice on cash management within Procurement Under Financial Controls",
+          "question": "Which option most strongly aligns with good public-service practice on cash management within Procurement Under Financial Controls?",
           "options": [
             "Reconcile accounts promptly and resolve variances with evidence.",
             "Rely on informal instructions without documentary evidence.",
@@ -7037,7 +7037,7 @@
         },
         {
           "id": "fin_procurement_gen_014",
-          "question": "Which practice should a responsible officer prioritize to sustain compliance assurance in Procurement Under Financial Controls",
+          "question": "Which practice should a responsible officer prioritize to sustain compliance assurance in Procurement Under Financial Controls?",
           "options": [
             "Apply approved rules consistently and escalate exceptions.",
             "Delay decisions until issues escalate into avoidable crises.",
@@ -7225,7 +7225,7 @@
         },
         {
           "id": "fin_procurement_gen_018",
-          "question": "When handling procurement under financial controls, which choice reflects proper decision transparency standards",
+          "question": "When handling procurement under financial controls, which choice reflects proper decision transparency standards?",
           "options": [
             "Use clear criteria and communicate decisions promptly.",
             "Close cases without validating facts or required records.",
@@ -7366,7 +7366,7 @@
         },
         {
           "id": "fin_procurement_gen_022",
-          "question": "Which option most strongly aligns with good public-service practice on performance standards within Procurement Under Financial Controls",
+          "question": "Which option most strongly aligns with good public-service practice on performance standards within Procurement Under Financial Controls?",
           "options": [
             "Set measurable targets, monitor progress, and correct deviations.",
             "Delay decisions until issues escalate into avoidable crises.",
@@ -7413,7 +7413,7 @@
         },
         {
           "id": "fin_procurement_gen_024",
-          "question": "Which practice should a responsible officer prioritize to sustain procurement under financial controls compliance in Procurement Under Financial Controls",
+          "question": "Which practice should a responsible officer prioritize to sustain procurement under financial controls compliance in Procurement Under Financial Controls?",
           "options": [
             "Use lawful criteria and document each decision step transparently.",
             "Treat exceptions as routine without documented justification.",
@@ -7606,7 +7606,7 @@
         },
         {
           "id": "fin_procurement_gen_028",
-          "question": "When handling procurement under financial controls, which choice reflects proper expenditure discipline standards",
+          "question": "When handling procurement under financial controls, which choice reflects proper expenditure discipline standards?",
           "options": [
             "Commit and spend only within approved budget limits.",
             "Rely on informal instructions without documentary evidence.",
@@ -8743,7 +8743,7 @@
         },
         {
           "id": "fin_pro_067",
-          "question": "responsibility for is the regulatory authority in charge for setting standards and developing the legal framework for public procurement in Nigeria belongs to which role?",
+          "question": "Responsibility for is the regulatory authority in charge for setting standards and developing the legal framework for public procurement in Nigeria belongs to which role?",
           "options": [
             "The Auditor-General for the Federationa",
             "The Accountant-General of the Federation",
@@ -9008,7 +9008,7 @@
         },
         {
           "id": "fin_pro_073",
-          "question": "which option aligns with the meaning of necessitate for the abandonment of claims in the case of irrecoverable arrears of revenue?",
+          "question": "Which option aligns with the meaning of necessitate for the abandonment of claims in the case of irrecoverable arrears of revenue?",
           "options": [
             "The authority of the Auditor-General. □",
             "The approval of the Accounting Officer.",
@@ -9100,7 +9100,7 @@
         },
         {
           "id": "fin_pro_075",
-          "question": "which role is primarily in charge for making disbursements of public funds?",
+          "question": "Which role is primarily in charge for making disbursements of public funds?",
           "options": [
             "The Accountant-General and Accounting Officers.",
             "The Minister of Finance. □",
@@ -9154,7 +9154,7 @@
       "questions": [
         {
           "id": "fin_aud_001",
-          "question": "The term **Audit Trail** refers to the sequential documentation of financial transactions to ensure:",
+          "question": "Which of the following describes the the term **audit trail** refers to the sequential documentation of financial transactions to ensure?",
           "options": [
             "Rapid fund disbursement.",
             "Integrity and traceability, thereby ensuring accountability and transparency.",
@@ -9198,7 +9198,7 @@
         },
         {
           "id": "fin_aud_002",
-          "question": "The type of internal control function that involves checking financial commitment before funds are paid, confirming legality and budgetary provision, is known as:",
+          "question": "Which of the following describes the the type of internal control function that involves checking financial commitment before funds are paid, confirming legality and budgetary provision, is known as?",
           "options": [
             "Concurrent audit.",
             "Post-audit.",
@@ -9243,7 +9243,7 @@
         },
         {
           "id": "fin_aud_003",
-          "question": "The loss of government funds or property must be communicated immediately to:",
+          "question": "Which of the following describes the the loss of government funds or property must be communicated immediately to?",
           "options": [
             "The Head of the Civil Service and the Minister of Justice.",
             "The Auditor-General of the Federation and the Accountant-General of the Federation.",
@@ -9287,7 +9287,7 @@
         },
         {
           "id": "fin_aud_004",
-          "question": "The maximum penalty for financial misconduct or fraud under the Financial Regulations may include:",
+          "question": "Which of the following describes the the maximum penalty for financial misconduct or fraud under the financial regulations may include?",
           "options": [
             "Surcharge and dismissal.",
             "A written warning only.",
@@ -9332,7 +9332,7 @@
         },
         {
           "id": "fin_aud_005",
-          "question": "The primary anti-corruption agency responsible for investigating and prosecuting financial crimes like fraud and money laundering is the:",
+          "question": "Which of the following describes the the primary anti-corruption agency responsible for investigating and prosecuting financial crimes like fraud and money laundering is the?",
           "options": [
             "Independent Corrupt Practices Commission (ICPC).",
             "Economic and Financial Crimes Commission (EFCC).",
@@ -9377,7 +9377,7 @@
         },
         {
           "id": "fin_aud_006",
-          "question": "Which body monitors compliance with anti-corruption laws, focuses on institutional corruption, and enforces ethical standards in public finance",
+          "question": "Which body monitors compliance with anti-corruption laws, focuses on institutional corruption, and enforces ethical standards in public finance?",
           "options": [
             "Central Bank of Nigeria (CBN).",
             "Independent Corrupt Practices Commission (ICPC).",
@@ -9421,7 +9421,7 @@
         },
         {
           "id": "fin_aud_007",
-          "question": "Dismissal of an officer for serious financial misconduct must be supported by:",
+          "question": "Which of the following describes the dismissal of an officer for serious financial misconduct must be supported by?",
           "options": [
             "A direct memo from the Minister.",
             "A Board of Inquiry report and internal investigation findings.",
@@ -9466,7 +9466,7 @@
         },
         {
           "id": "fin_aud_008",
-          "question": "The concept of organizing financial tasks such that no single individual controls all stages of a transaction, thereby preventing fraud, is known as:",
+          "question": "Which of the following describes the the concept of organizing financial tasks such that no single individual controls all stages of a transaction, thereby preventing fraud, is known as?",
           "options": [
             "Budget Consolidation.",
             "Segregation of Duties.",
@@ -9509,7 +9509,7 @@
         },
         {
           "id": "fin_aud_009",
-          "question": "Which concept describes mechanisms put in place to trace financial transactions and detect irregularities",
+          "question": "Which concept describes mechanisms put in place to trace financial transactions and detect irregularities?",
           "options": [
             "Budget Virement.",
             "Audit Trail and Internal Audit.",
@@ -9554,7 +9554,7 @@
         },
         {
           "id": "fin_aud_010",
-          "question": "The penalty for unauthorized expenditure, known as **Excess Vote**, is typically identified through:",
+          "question": "Which of the following describes the the penalty for unauthorized expenditure, known as **excess vote**, is typically identified through?",
           "options": [
             "Monthly staff meetings.",
             "The Auditor-General's Report on public accounts.",
@@ -9598,7 +9598,7 @@
         },
         {
           "id": "fin_aud_011",
-          "question": "The use of government funds beyond the budget without subsequent legislative approval is classified as:",
+          "question": "Which of the following describes the the use of government funds beyond the budget without subsequent legislative approval is classified as?",
           "options": [
             "Adjustment.",
             "Misappropriation.",
@@ -9642,7 +9642,7 @@
         },
         {
           "id": "fin_aud_012",
-          "question": "The final authority to restore a deferred increment, which requires assessing service improvement and conduct, lies with the:",
+          "question": "Which of the following describes the the final authority to restore a deferred increment, which requires assessing service improvement and conduct, lies with the?",
           "options": [
             "Federal Civil Service Commission (FCSC).",
             "Permanent Secretary/Head of Extra-Ministerial Office.",
@@ -9686,7 +9686,7 @@
         },
         {
           "id": "fin_aud_013",
-          "question": "If an officer causes financial loss, the penalty imposed (surcharge) is intended to recover:",
+          "question": "Which of the following describes the if an officer causes financial loss, the penalty imposed (surcharge) is intended to recover?",
           "options": [
             "Future salaries.",
             "The exact amount of financial loss caused by the officer's fault.",
@@ -9728,7 +9728,7 @@
         },
         {
           "id": "fin_aud_014",
-          "question": "Which of the following bodies is empowered to grant special increments to an officer whose increment was previously withheld",
+          "question": "Which of the following bodies is empowered to grant special increments to an officer whose increment was previously withheld?",
           "options": [
             "The National Salaries, Incomes and Wages Commission (NSIWC).",
             "The Federal Civil Service Commission (FCSC).",
@@ -9772,7 +9772,7 @@
         },
         {
           "id": "fin_aud_015",
-          "question": "The ultimate disciplinary penalty for serious misconduct, such as fraud or corruption, resulting in the forfeiture of all claims to retirement benefits, is:",
+          "question": "Which of the following describes the the ultimate disciplinary penalty for serious misconduct, such as fraud or corruption, resulting in the forfeiture of all claims to retirement benefits, is?",
           "options": [
             "Interdiction.",
             "Reduction in rank.",
@@ -9817,7 +9817,7 @@
         },
         {
           "id": "fin_aud_016",
-          "question": "Which officer's responsibility includes advising the Accounting Officer on the adequacy and functioning of the internal controls within the **MDA**'",
+          "question": "Which officer's responsibility includes advising the Accounting Officer on the adequacy and functioning of the internal controls within the **MDA**'?",
           "options": [
             "The Head of Administration.",
             "The Permanent Secretary.",
@@ -9861,7 +9861,7 @@
         },
         {
           "id": "fin_aud_017",
-          "question": "The purpose of activating an **Audit Alarm** is to necessitate:",
+          "question": "What is the main the purpose of activating an **audit alarm** is to necessitate?",
           "options": [
             "Immediate payment of the expense.",
             "A detailed investigation into the suspected irregularity.",
@@ -9949,7 +9949,7 @@
         },
         {
           "id": "fin_aud_019",
-          "question": "Which type of audit, mandated under the **PPA**, involves the review of a bidder's documentation to confirm eligibility after the bid opening",
+          "question": "Which type of audit, mandated under the **PPA**, involves the review of a bidder's documentation to confirm eligibility after the bid opening?",
           "options": [
             "Post-qualification audit.",
             "Forensic audit.",
@@ -9992,7 +9992,7 @@
         },
         {
           "id": "fin_aud_020",
-          "question": "What is the penalty for an officer who fails the compulsory confirmation examination after three consecutive attempts",
+          "question": "What is the penalty for an officer who fails the compulsory confirmation examination after three consecutive attempts?",
           "options": [
             "Demotion to the junior cadre.",
             "Required to resign or be withdrawn from the service.",
@@ -10036,7 +10036,7 @@
         },
         {
           "id": "fin_aud_021",
-          "question": "Which agency is responsible for enforcing ethical standards in public office, particularly by receiving and verifying public officers’ asset declarations",
+          "question": "Which agency is responsible for enforcing ethical standards in public office, particularly by receiving and verifying public officers’ asset declarations?",
           "options": [
             "The Economic and Financial Crimes Commission (EFCC).",
             "The Code of Conduct Bureau (CCB).",
@@ -10078,7 +10078,7 @@
         },
         {
           "id": "fin_aud_022",
-          "question": "When issuing an Audit Query (**FR** 1204), the Accounting Officer must address the formal response to",
+          "question": "When issuing an Audit Query (**FR** 1204), the Accounting Officer must address the formal response to?",
           "options": [
             "The Accountant-General.",
             "The National Assembly.",
@@ -10122,7 +10122,7 @@
         },
         {
           "id": "fin_aud_023",
-          "question": "The Auditor-General's Report primarily focuses on the review of:",
+          "question": "Which of the following describes the the auditor-general's report primarily focuses on the review of?",
           "options": [
             "Future budget estimates.",
             "Past expenditure and revenue reports.",
@@ -10213,7 +10213,7 @@
         },
         {
           "id": "fin_aud_025",
-          "question": "The disciplinary authority responsible for exercising control over Officers in the Federal Civil Service (**GL 07** and above) is vested in the:",
+          "question": "Which of the following describes the the disciplinary authority responsible for exercising control over officers in the federal civil service (**gl 07** and above) is vested in the?",
           "options": [
             "Permanent Secretary.",
             "Federal Civil Service Commission (FCSC).",
@@ -10258,7 +10258,7 @@
         },
         {
           "id": "fin_aud_026",
-          "question": "Which specific body has delegated full disciplinary powers to Permanent Secretaries/Heads of Extra-Ministerial Offices in respect of officers on Salary **GL 13** and below",
+          "question": "Which specific body has delegated full disciplinary powers to Permanent Secretaries/Heads of Extra-Ministerial Offices in respect of officers on Salary **GL 13** and below?",
           "options": [
             "The Head of the Civil Service of the Federation.",
             "The Federal Civil Service Commission (FCSC).",
@@ -10302,7 +10302,7 @@
         },
         {
           "id": "fin_aud_027",
-          "question": "If the **FCSC** does not approve the Officer's dismissal or impose any penalty, the Officer shall be reinstated forthwith and be entitled to the full amount of salary denied him if he was interdicted or suspended, as stipulated by:",
+          "question": "Which of the following describes the if the **fcsc** does not approve the officer's dismissal or impose any penalty, the officer shall be reinstated forthwith and be entitled to the full amount of salary denied him if he was interdicted or suspended, as stipulated by?",
           "options": [
             "Rule 100407.",
             "Rule 100307(xi).",
@@ -10346,7 +10346,7 @@
         },
         {
           "id": "fin_aud_028",
-          "question": "Which of the following acts constitutes **Gross Misconduct** under the Civil Service Handbook",
+          "question": "Which of the following acts constitutes **Gross Misconduct** under the Civil Service Handbook?",
           "options": [
             "Habitual lateness.",
             "Fraud and falsification of records.",
@@ -10391,7 +10391,7 @@
         },
         {
           "id": "fin_aud_029",
-          "question": "The misconduct described as absenteeism without official permission is classified as:",
+          "question": "Which of the following describes the the misconduct described as absenteeism without official permission is classified as?",
           "options": [
             "Minor misconduct.",
             "Serious misconduct.",
@@ -10433,7 +10433,7 @@
         },
         {
           "id": "fin_aud_030",
-          "question": "Which committee's recommendation forms the basis for the discipline (including removal from office) of officers on Salary **GL 06** and below by the Permanent Secretary/Head of Extra-Ministerial Office",
+          "question": "Which committee's recommendation forms the basis for the discipline (including removal from office) of officers on Salary **GL 06** and below by the Permanent Secretary/Head of Extra-Ministerial Office?",
           "options": [
             "Senior Staff Committee (SSC).",
             "Junior Staff Committee (JSC).",
@@ -10477,7 +10477,7 @@
         },
         {
           "id": "fin_aud_031",
-          "question": "Concealment of facts or any false statement made in an application for Government employment shall be regarded as sufficient grounds for:",
+          "question": "Which of the following describes the concealment of facts or any false statement made in an application for government employment shall be regarded as sufficient grounds for?",
           "options": [
             "Granting probation only, under the applicable service framework.",
             "Non-engagement or subsequent termination of appointment without notice.",
@@ -10521,7 +10521,7 @@
         },
         {
           "id": "fin_aud_032",
-          "question": "Which type of assessment report is often used as evidence of **General Inefficiency** (**Rule 100201**)",
+          "question": "Which type of assessment report is often used as evidence of **General Inefficiency** (**Rule 100201**)?",
           "options": [
             "Financial Audit Report, under the applicable service framework.",
             "Poor performance appraisals, within established administrative procedures.",
@@ -10563,7 +10563,7 @@
         },
         {
           "id": "fin_aud_033",
-          "question": "Before documentary evidence can be used against an officer during an inquiry (**Rule 100307(vii**)), the officer must previously have been provided with a copy thereof or given:",
+          "question": "Which of the following best explains the before documentary evidence can be used against an officer during an inquiry (**rule 100307(vii**)), the officer must previously have been provided with a copy thereof or given?",
           "options": [
             "Counsel.",
             "Open access to the documents.",
@@ -10607,7 +10607,7 @@
         },
         {
           "id": "fin_aud_034",
-          "question": "The ultimate penalty for serious misconduct, resulting in the forfeiture of all claims to retirement benefits, leave, or transport grant, is subject to the provisions of the:",
+          "question": "Which of the following describes the the ultimate penalty for serious misconduct, resulting in the forfeiture of all claims to retirement benefits, leave, or transport grant, is subject to the provisions of the?",
           "options": [
             "Fiscal Responsibility Act.",
             "Pension Reform Act, 2014 (as amended).",
@@ -10741,7 +10741,7 @@
         },
         {
           "id": "fin_aud_037",
-          "question": "Which of the following disciplinary penalties is generally **prohibited** under the Financial Regulations (**FR** 3401)",
+          "question": "Which of the following disciplinary penalties is generally **prohibited** under the Financial Regulations (**FR** 3401)?",
           "options": [
             "Surcharge.",
             "Reduction in salary.",
@@ -10785,7 +10785,7 @@
         },
         {
           "id": "fin_aud_038",
-          "question": "The expression 'serious financial embarrassment' (**Rule 100414**) refers to an officer's state of indebtedness which has actually caused serious financial hardship to him and which may be prejudicial to:",
+          "question": "Which of the following best explains the the expression 'serious financial embarrassment' (**rule 100414**) refers to an officer's state of indebtedness which has actually caused serious financial hardship to him and which may be prejudicial to?",
           "options": [
             "His career prospects.",
             "His political ambition.",
@@ -10829,7 +10829,7 @@
         },
         {
           "id": "fin_aud_039",
-          "question": "If an officer is suspected of **General Inefficiency**, the superior officer must first administer instruction and warning, and give the officer adequate time to redeem his image, for the objective of improving the officer's:",
+          "question": "What is the primary if an officer is suspected of **general inefficiency**, the superior officer must first administer instruction and warning, and give the officer adequate time to redeem his image, for the objective of improving the officer's?",
           "options": [
             "Political influence.",
             "Usefulness and efficiency.",
@@ -10873,7 +10873,7 @@
         },
         {
           "id": "fin_aud_040",
-          "question": "The minimum period for which an increment deferment must be fixed is:",
+          "question": "Which of the following describes the the minimum period for which an increment deferment must be fixed is?",
           "options": [
             "One month.",
             "Three months.",
@@ -10917,7 +10917,7 @@
         },
         {
           "id": "fin_aud_041",
-          "question": "Which of the following disciplinary measures can be taken against a Permanent Secretary found guilty of misconduct (**Rule 100702**)",
+          "question": "Which of the following disciplinary measures can be taken against a Permanent Secretary found guilty of misconduct (**Rule 100702**)?",
           "options": [
             "Imprisonment only.",
             "Dismissal, termination, or retirement.",
@@ -11049,7 +11049,7 @@
         },
         {
           "id": "fin_aud_044",
-          "question": "If an officer resigns from the Service, they will forfeit all claims to vacation leave, and any leave privileges granted will be:",
+          "question": "Which of the following describes the if an officer resigns from the service, they will forfeit all claims to vacation leave, and any leave privileges granted will be?",
           "options": [
             "Compulsory.",
             "Ex-gratia (as a favor).",
@@ -11139,7 +11139,7 @@
         },
         {
           "id": "fin_aud_046",
-          "question": "Which of the following is considered 'serious misconduct' under the **PSR** (**Rule 100402**)",
+          "question": "Which of the following is considered 'serious misconduct' under the **PSR** (**Rule 100402**)?",
           "options": [
             "Minor absenteeism.",
             "Falsification of records.",
@@ -11183,7 +11183,7 @@
         },
         {
           "id": "fin_aud_047",
-          "question": "In the case of an inquiry into serious misconduct, the head of the officer’s department shall generally **not** be a member of the inquiry board, in order to maintain:",
+          "question": "Which of the following describes the in the case of an inquiry into serious misconduct, the head of the officer’s department shall generally **not** be a member of the inquiry board, in order to maintain?",
           "options": [
             "Security.",
             "Neutrality.",
@@ -11227,7 +11227,7 @@
         },
         {
           "id": "fin_aud_048",
-          "question": "An officer convicted of a criminal offence (other than a minor traffic or sanitary offence) shall be placed under suspension with effect from the date of conviction, pending determination of his case by the Commission, as per:",
+          "question": "Which of the following describes the an officer convicted of a criminal offence (other than a minor traffic or sanitary offence) shall be placed under suspension with effect from the date of conviction, pending determination of his case by the commission, as per?",
           "options": [
             "Rule 100401.",
             "Rule 100412.",
@@ -11271,7 +11271,7 @@
         },
         {
           "id": "fin_aud_049",
-          "question": "An officer absent from duty without leave (**Rule 100413**) renders himself liable to be dismissed from the Service, and the onus rests entirely on him to show that circumstances do not justify the imposition of the full penalty, due to the concept of:",
+          "question": "Which of the following best explains the an officer absent from duty without leave (**rule 100413**) renders himself liable to be dismissed from the service, and the onus rests entirely on him to show that circumstances do not justify the imposition of the full penalty, due to the concept of?",
           "options": [
             "General Insolvency.",
             "Insubordination.",
@@ -11315,7 +11315,7 @@
         },
         {
           "id": "fin_aud_050",
-          "question": "What is the penalty for unauthorized absence from duty",
+          "question": "What is the penalty for unauthorized absence from duty?",
           "options": [
             "Immediate promotion.",
             "Loss of pay for the period of absence.",
@@ -11546,7 +11546,7 @@
         },
         {
           "id": "fin_audits_sanctions_gen_005",
-          "question": "Which practice should a responsible officer prioritize to sustain virement process in Audits, Sanctions & Compliance",
+          "question": "Which practice should a responsible officer prioritize to sustain virement process in Audits, Sanctions & Compliance?",
           "options": [
             "Obtain proper authorization before moving funds between heads.",
             "Prioritize convenience over policy and legal requirements.",
@@ -11687,7 +11687,7 @@
         },
         {
           "id": "fin_audits_sanctions_gen_008",
-          "question": "Which option most strongly aligns with good public-service practice on cash management within Audits, Sanctions & Compliance",
+          "question": "Which option most strongly aligns with good public-service practice on cash management within Audits, Sanctions & Compliance?",
           "options": [
             "Reconcile accounts promptly and resolve variances with evidence.",
             "Rely on informal instructions without documentary evidence.",
@@ -11779,7 +11779,7 @@
         },
         {
           "id": "fin_audits_sanctions_gen_010",
-          "question": "Which practice should a responsible officer prioritize to sustain compliance assurance in Audits, Sanctions & Compliance",
+          "question": "Which practice should a responsible officer prioritize to sustain compliance assurance in Audits, Sanctions & Compliance?",
           "options": [
             "Apply approved rules consistently and escalate exceptions.",
             "Delay decisions until issues escalate into avoidable crises.",
@@ -11963,7 +11963,7 @@
         },
         {
           "id": "fin_audits_sanctions_gen_014",
-          "question": "When handling audits, sanctions & compliance, which choice reflects proper decision transparency standards",
+          "question": "When handling audits, sanctions & compliance, which choice reflects proper decision transparency standards?",
           "options": [
             "Use clear criteria and communicate decisions promptly.",
             "Close cases without validating facts or required records.",
@@ -12101,7 +12101,7 @@
         },
         {
           "id": "fin_audits_sanctions_gen_018",
-          "question": "Which option most strongly aligns with good public-service practice on performance standards within Audits, Sanctions & Compliance",
+          "question": "Which option most strongly aligns with good public-service practice on performance standards within Audits, Sanctions & Compliance?",
           "options": [
             "Set measurable targets, monitor progress, and correct deviations.",
             "Delay decisions until issues escalate into avoidable crises.",
@@ -12381,7 +12381,7 @@
         },
         {
           "id": "fin_audits_sanctions_gen_024",
-          "question": "When handling audits, sanctions & compliance, which choice reflects proper expenditure discipline standards",
+          "question": "When handling audits, sanctions & compliance, which choice reflects proper expenditure discipline standards?",
           "options": [
             "Commit and spend only within approved budget limits.",
             "Rely on informal instructions without documentary evidence.",
@@ -13523,7 +13523,7 @@
         },
         {
           "id": "fin_aud_075",
-          "question": "which office is accountable for examining the logbook regularly and signing against the entries?",
+          "question": "Which office is accountable for examining the logbook regularly and signing against the entries?",
           "options": [
             "The Transport Officer.",
             "The Accounting Officer.",
@@ -13893,7 +13893,7 @@
       "questions": [
         {
           "id": "fin_gen_001",
-          "question": "Who is designated as the Chief Accounting Officer personally responsible for the control, custody, and disbursement of funds within a Ministry or Extra-Ministerial Department (**MDA**)",
+          "question": "Who is designated as the Chief Accounting Officer personally responsible for the control, custody, and disbursement of funds within a Ministry or Extra-Ministerial Department (**MDA**)?",
           "options": [
             "The Accountant-General of the Federation.",
             "The Director of Finance.",
@@ -13936,7 +13936,7 @@
         },
         {
           "id": "fin_gen_002",
-          "question": "Which government official is responsible for issuing **Treasury Circulars** that provide detailed instructions on financial procedures and implementation across **MDAs**'",
+          "question": "Which government official is responsible for issuing **Treasury Circulars** that provide detailed instructions on financial procedures and implementation across **MDAs**'?",
           "options": [
             "Auditor-General.",
             "Minister of Finance.",
@@ -13979,7 +13979,7 @@
         },
         {
           "id": "fin_gen_003",
-          "question": "Which officer is primarily responsible for maintaining the departmental **Vote Book** to monitor budgetary allocations and expenditures against commitments",
+          "question": "Which officer is primarily responsible for maintaining the departmental **Vote Book** to monitor budgetary allocations and expenditures against commitments?",
           "options": [
             "Internal Auditor.",
             "Sub-Accountant.",
@@ -14023,7 +14023,7 @@
         },
         {
           "id": "fin_gen_004",
-          "question": "The main purpose of the **Cash Book** is:",
+          "question": "What is the main the main purpose of the **cash book** is?",
           "options": [
             "To record all bank loans.",
             "To monitor inflow and outflow of cash.",
@@ -14066,7 +14066,7 @@
         },
         {
           "id": "fin_gen_005",
-          "question": "Which agency is responsible for managing Nigeria’s public debt, covering both domestic and external obligations",
+          "question": "Which agency is responsible for managing Nigeria’s public debt, covering both domestic and external obligations?",
           "options": [
             "Ministry of Finance.",
             "Debt Management Office (DMO).",
@@ -14108,7 +14108,7 @@
         },
         {
           "id": "fin_gen_006",
-          "question": "What does **TSA** stand for in Nigeria’s financial system",
+          "question": "What does **TSA** stand for in Nigeria’s financial system?",
           "options": [
             "Total Savings Account.",
             "Treasury Single Account.",
@@ -14151,7 +14151,7 @@
         },
         {
           "id": "fin_gen_007",
-          "question": "Which law provides the legal framework for prudent management of public finances in Nigeria",
+          "question": "Which law provides the legal framework for prudent management of public finances in Nigeria?",
           "options": [
             "Fiscal Responsibility Act.",
             "Public Procurement Act.",
@@ -14237,7 +14237,7 @@
         },
         {
           "id": "fin_gen_009",
-          "question": "Which document accompanies all payments made in Ministries, detailing the expenditure and authorization",
+          "question": "Which document accompanies all payments made in Ministries, detailing the expenditure and authorization?",
           "options": [
             "Appropriation Bill.",
             "Payment Voucher.",
@@ -14324,7 +14324,7 @@
         },
         {
           "id": "fin_gen_012",
-          "question": "Who is responsible for ensuring that all government revenue is remitted into the Treasury Single Account (**TSA**)",
+          "question": "Who is responsible for ensuring that all government revenue is remitted into the Treasury Single Account (**TSA**)?",
           "options": [
             "Permanent Secretary.",
             "Revenue Collector.",
@@ -14369,7 +14369,7 @@
         },
         {
           "id": "fin_gen_013",
-          "question": "Which specific Nigerian legal instrument established the Office of the Auditor-General for the Federation (AuGF)",
+          "question": "Which specific Nigerian legal instrument established the Office of the Auditor-General for the Federation (AuGF)?",
           "options": [
             "Audit Ordinance 1956.",
             "Constitution of Nigeria 1999.",
@@ -14411,7 +14411,7 @@
         },
         {
           "id": "fin_gen_014",
-          "question": "What is the purpose of issuing a **Treasury Receipt**'",
+          "question": "What is the purpose of issuing a **Treasury Receipt**'?",
           "options": [
             "To certify expenditure.",
             "To acknowledge revenue payment.",
@@ -14455,7 +14455,7 @@
         },
         {
           "id": "fin_gen_015",
-          "question": "Which government fund is statutorily established to meet unforeseen and urgent government expenditures",
+          "question": "Which government fund is statutorily established to meet unforeseen and urgent government expenditures?",
           "options": [
             "Contingencies Fund.",
             "Development Fund.",
@@ -14541,7 +14541,7 @@
         },
         {
           "id": "fin_gen_017",
-          "question": "What does **'Recurrent Expenditure'** include",
+          "question": "What does **'Recurrent Expenditure'** include?",
           "options": [
             "Purchase of new fixed assets.",
             "Salaries and Overhead Costs.",
@@ -14627,7 +14627,7 @@
         },
         {
           "id": "fin_gen_019",
-          "question": "Who is the principal signatory to government bank accounts",
+          "question": "Who is the principal signatory to government bank accounts?",
           "options": [
             "Minister of Finance.",
             "Permanent Secretary.",
@@ -14669,7 +14669,7 @@
         },
         {
           "id": "fin_gen_020",
-          "question": "Which officer is responsible for certifying that services have been duly performed before payment is made to a vendor",
+          "question": "Which officer is responsible for certifying that services have been duly performed before payment is made to a vendor?",
           "options": [
             "Internal Auditor.",
             "Vote Controller.",
@@ -14754,7 +14754,7 @@
         },
         {
           "id": "fin_gen_022",
-          "question": "Which agency regulates Nigeria’s capital market",
+          "question": "Which agency regulates Nigeria’s capital market?",
           "options": [
             "Central Bank of Nigeria.",
             "Nigerian Stock Exchange.",
@@ -14796,7 +14796,7 @@
         },
         {
           "id": "fin_gen_023",
-          "question": "What does **IGR** stand for in public finance",
+          "question": "What does **IGR** stand for in public finance?",
           "options": [
             "Internal Government Revenue.",
             "Internally Generated Revenue.",
@@ -14882,7 +14882,7 @@
         },
         {
           "id": "fin_gen_025",
-          "question": "Which specific account holds all federal revenues before distribution among the three tiers of government",
+          "question": "Which specific account holds all federal revenues before distribution among the three tiers of government?",
           "options": [
             "Treasury Single Account.",
             "Federation Account.",
@@ -14924,7 +14924,7 @@
         },
         {
           "id": "fin_gen_026",
-          "question": "Which account is historically used for financing capital projects in Nigeria",
+          "question": "Which account is historically used for financing capital projects in Nigeria?",
           "options": [
             "Federation Account.",
             "Development Fund.",
@@ -14966,7 +14966,7 @@
         },
         {
           "id": "fin_gen_027",
-          "question": "Which dedicated account is used for repayment of Nigeria’s external and domestic debts",
+          "question": "Which dedicated account is used for repayment of Nigeria’s external and domestic debts?",
           "options": [
             "Debt Service Account.",
             "Consolidated Revenue Fund.",
@@ -15050,7 +15050,7 @@
         },
         {
           "id": "fin_gen_029",
-          "question": "What is the primary responsibility of the **Treasury** in Nigeria",
+          "question": "What is the primary responsibility of the **Treasury** in Nigeria?",
           "options": [
             "To prepare budgets.",
             "To manage government cash flow and payments.",
@@ -15093,7 +15093,7 @@
         },
         {
           "id": "fin_gen_030",
-          "question": "What is the primary role of the **Accountant-General of the Federation**'",
+          "question": "What is the primary role of the **Accountant-General of the Federation**'?",
           "options": [
             "To regulate banks, under the applicable service framework.",
             "To manage and control all receipts and payments of the federal government.",
@@ -15135,7 +15135,7 @@
         },
         {
           "id": "fin_gen_031",
-          "question": "Which Nigerian agency regulates and supervises banks",
+          "question": "Which Nigerian agency regulates and supervises banks?",
           "options": [
             "Debt Management Office.",
             "CBN.",
@@ -15177,7 +15177,7 @@
         },
         {
           "id": "fin_gen_032",
-          "question": "What is the main source of Nigeria’s Federation Account revenue",
+          "question": "What is the main source of Nigeria’s Federation Account revenue?",
           "options": [
             "Taxes.",
             "Customs duties.",
@@ -15220,7 +15220,7 @@
         },
         {
           "id": "fin_gen_033",
-          "question": "What is the main source of Local Government revenue",
+          "question": "What is the main source of Local Government revenue?",
           "options": [
             "Oil revenue.",
             "Internally Generated Revenue (IGR).",
@@ -15263,7 +15263,7 @@
         },
         {
           "id": "fin_gen_034",
-          "question": "What is the primary function of the Fiscal Responsibility Act",
+          "question": "What is the primary function of the Fiscal Responsibility Act?",
           "options": [
             "To regulate procurement.",
             "To promote transparency in public finance.",
@@ -15305,7 +15305,7 @@
         },
         {
           "id": "fin_gen_035",
-          "question": "Which financial instrument is issued by the Federal Government to raise short-term funds in the money market",
+          "question": "Which financial instrument is issued by the Federal Government to raise short-term funds in the money market?",
           "options": [
             "Treasury Bills.",
             "Development Bonds.",
@@ -15348,7 +15348,7 @@
         },
         {
           "id": "fin_gen_036",
-          "question": "Which officer is responsible for preparing and maintaining the departmental **vote ledger**'",
+          "question": "Which officer is responsible for preparing and maintaining the departmental **vote ledger**'?",
           "options": [
             "Vote Controller.",
             "Head of Department.",
@@ -15391,7 +15391,7 @@
         },
         {
           "id": "fin_gen_037",
-          "question": "Which officer is responsible for preparing bank reconciliation statements monthly",
+          "question": "Which officer is responsible for preparing bank reconciliation statements monthly?",
           "options": [
             "Permanent Secretary.",
             "Vote Controller.",
@@ -15433,7 +15433,7 @@
         },
         {
           "id": "fin_gen_038",
-          "question": "What is the main purpose of a **Bank Reconciliation Statement**'",
+          "question": "What is the main purpose of a **Bank Reconciliation Statement**'?",
           "options": [
             "To calculate imprest, under the applicable service framework.",
             "To reconcile differences between Cash Book and Bank Statement.",
@@ -15475,7 +15475,7 @@
         },
         {
           "id": "fin_gen_039",
-          "question": "Which officer is responsible for maintaining the General Ledger for the entire Federal Government",
+          "question": "Which officer is responsible for maintaining the General Ledger for the entire Federal Government?",
           "options": [
             "Auditor-General.",
             "Accountant-General.",
@@ -15518,7 +15518,7 @@
         },
         {
           "id": "fin_gen_040",
-          "question": "Which officer certifies that funds are available in the budget before any expenditure or commitment is incurred",
+          "question": "Which officer certifies that funds are available in the budget before any expenditure or commitment is incurred?",
           "options": [
             "Vote Controller.",
             "Internal Auditor.",
@@ -15562,7 +15562,7 @@
         },
         {
           "id": "fin_gen_041",
-          "question": "Which officer is statutorily designated as the Chief Financial Adviser to the Federal Government",
+          "question": "Which officer is statutorily designated as the Chief Financial Adviser to the Federal Government?",
           "options": [
             "Accountant-General.",
             "Auditor-General.",
@@ -15604,7 +15604,7 @@
         },
         {
           "id": "fin_gen_042",
-          "question": "Which fund is established specifically for the replacement of depreciating government assets",
+          "question": "Which fund is established specifically for the replacement of depreciating government assets?",
           "options": [
             "Development Fund.",
             "Renewal Fund.",
@@ -15646,7 +15646,7 @@
         },
         {
           "id": "fin_gen_043",
-          "question": "What must **'public revenue'** include",
+          "question": "What must **'public revenue'** include?",
           "options": [
             "Only oil revenue, under the applicable service framework.",
             "Only taxes, within established administrative procedures.",
@@ -15733,7 +15733,7 @@
         },
         {
           "id": "fin_gen_045",
-          "question": "The **Government Integrated Financial Management Information System (**GIFMIS**)** is primarily designed to integrate:",
+          "question": "Which of the following describes the the **government integrated financial management information system (**gifmis**)** is primarily designed to integrate?",
           "options": [
             "Personnel records only.",
             "All MDA financial operations, accounting, and expenditure tracking.",
@@ -15820,7 +15820,7 @@
         },
         {
           "id": "fin_gen_047",
-          "question": "Which officer prepares Nigeria’s annual budget performance reports for review",
+          "question": "Which officer prepares Nigeria’s annual budget performance reports for review?",
           "options": [
             "Permanent Secretary.",
             "Vote Controller.",
@@ -15863,7 +15863,7 @@
         },
         {
           "id": "fin_gen_048",
-          "question": "Which document is used to request for the release of funds from the Treasury to the **MDAs**'",
+          "question": "Which document is used to request for the release of funds from the Treasury to the **MDAs**'?",
           "options": [
             "Treasury Circular.",
             "Payment Voucher.",
@@ -15907,7 +15907,7 @@
         },
         {
           "id": "fin_gen_049",
-          "question": "Which officer is responsible for certifying stock balances in government stores periodically",
+          "question": "Which officer is responsible for certifying stock balances in government stores periodically?",
           "options": [
             "Store Officer.",
             "Internal Auditor.",
@@ -15949,7 +15949,7 @@
         },
         {
           "id": "fin_gen_050",
-          "question": "Which officer is responsible for certifying the physical existence and accuracy of stores received or periodically verifying stock balances in government stores",
+          "question": "Which officer is responsible for certifying the physical existence and accuracy of stores received or periodically verifying stock balances in government stores?",
           "options": [
             "The Head of Accounts.",
             "The Store Officer.",
@@ -15995,7 +15995,7 @@
         },
         {
           "id": "clg_gc_068",
-          "question": "The movement of funds from one specified budget subhead to another **within the same expenditure vote**, authorized by a Warrant, is known as:",
+          "question": "Which of the following describes the the movement of funds from one specified budget subhead to another **within the same expenditure vote**, authorized by a warrant, is known as?",
           "options": [
             "Appropriation.",
             "Virement.",
@@ -16038,7 +16038,7 @@
         },
         {
           "id": "clg_gc_072",
-          "question": "The use of the Government Integrated Financial Management Information System (**GIFMIS**) primarily supports the financial management process by providing:",
+          "question": "Which of the following describes the the use of the government integrated financial management information system (**gifmis**) primarily supports the financial management process by providing?",
           "options": [
             "A platform for political campaigning.",
             "Integrated financial operations, accounting, and expenditure tracking.",
@@ -16259,7 +16259,7 @@
         },
         {
           "id": "fin_general_gen_005",
-          "question": "Which practice should a responsible officer prioritize to sustain virement process in General Financial Management",
+          "question": "Which practice should a responsible officer prioritize to sustain virement process in General Financial Management?",
           "options": [
             "Obtain proper authorization before moving funds between heads.",
             "Prioritize convenience over policy and legal requirements.",
@@ -16395,7 +16395,7 @@
         },
         {
           "id": "fin_general_gen_008",
-          "question": "Which option most strongly aligns with good public-service practice on cash management within General Financial Management",
+          "question": "Which option most strongly aligns with good public-service practice on cash management within General Financial Management?",
           "options": [
             "Reconcile accounts promptly and resolve variances with evidence.",
             "Rely on informal instructions without documentary evidence.",
@@ -16483,7 +16483,7 @@
         },
         {
           "id": "fin_general_gen_010",
-          "question": "Which practice should a responsible officer prioritize to sustain compliance assurance in General Financial Management",
+          "question": "Which practice should a responsible officer prioritize to sustain compliance assurance in General Financial Management?",
           "options": [
             "Apply approved rules consistently and escalate exceptions.",
             "Delay decisions until issues escalate into avoidable crises.",
@@ -16659,7 +16659,7 @@
         },
         {
           "id": "fin_general_gen_014",
-          "question": "When handling general financial management, which choice reflects proper decision transparency standards",
+          "question": "When handling general financial management, which choice reflects proper decision transparency standards?",
           "options": [
             "Use clear criteria and communicate decisions promptly.",
             "Close cases without validating facts or required records.",
@@ -16791,7 +16791,7 @@
         },
         {
           "id": "fin_general_gen_018",
-          "question": "Which option most strongly aligns with good public-service practice on performance standards within General Financial Management",
+          "question": "Which option most strongly aligns with good public-service practice on performance standards within General Financial Management?",
           "options": [
             "Set measurable targets, monitor progress, and correct deviations.",
             "Delay decisions until issues escalate into avoidable crises.",
@@ -16879,7 +16879,7 @@
         },
         {
           "id": "fin_general_gen_020",
-          "question": "Which practice should a responsible officer prioritize to sustain general financial management compliance in General Financial Management",
+          "question": "Which practice should a responsible officer prioritize to sustain general financial management compliance in General Financial Management?",
           "options": [
             "Use lawful criteria and document each decision step transparently.",
             "Treat exceptions as routine without documented justification.",
@@ -17236,7 +17236,7 @@
         },
         {
           "id": "fin_gen_054",
-          "question": "select the option that best answers: Funds transferred from the Contingencies Fund by a Supplementary (Contingencies) Warrant are transferred to which fund?",
+          "question": "Select the option that best answers: Funds transferred from the Contingencies Fund by a Supplementary (Contingencies) Warrant are transferred to which fund?",
           "options": [
             "Development Fund.",
             "Treasury Single Account. 172 Q",
@@ -17980,7 +17980,7 @@
         },
         {
           "id": "fin_gen_071",
-          "question": "select the statement that correctly defines the scope of application for the financial regulations issued by the Minister of Finance?",
+          "question": "Select the statement that correctly defines the scope of application for the financial regulations issued by the Minister of Finance?",
           "options": [
             "Only federal ministries.",
             "Only extra-ministerial offices.",

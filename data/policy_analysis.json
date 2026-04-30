@@ -49,7 +49,7 @@
         },
         {
           "id": "policy_constitution_003",
-          "question": "What are the three arms of the Presidential System of Government",
+          "question": "What are the three arms of the Presidential System of Government?",
           "options": [
             "Executive, Legislative, and Judiciary.",
             "President, Senate, and House of Representatives.",
@@ -84,7 +84,7 @@
         },
         {
           "id": "policy_constitution_004",
-          "question": "What are the ways a person can become a citizen of Nigeria",
+          "question": "What are the ways a person can become a citizen of Nigeria?",
           "options": [
             "By birth, by registration, and by naturalization.",
             "By birth, by marriage, and by investment.",
@@ -118,7 +118,7 @@
         },
         {
           "id": "policy_constitution_005",
-          "question": "What are the sources of Nigerian Law",
+          "question": "What are the sources of Nigerian Law?",
           "options": [
             "The Constitution, Legislation, English Law, and Customary Law.",
             "The Queen's Edicts, Parliamentary Acts, and Judicial Precedents.",
@@ -152,7 +152,7 @@
         },
         {
           "id": "policy_constitution_006",
-          "question": "What does the principle of \"Separation of Powers\" entail",
+          "question": "What does the principle of \"Separation of Powers\" entail?",
           "options": [
             "The division of government into executive, legislative, and judicial branches.",
             "The separation of the federal government from state governments.",
@@ -221,7 +221,7 @@
         },
         {
           "id": "policy_constitution_008",
-          "question": "What type of government does Nigeria operate",
+          "question": "What type of government does Nigeria operate?",
           "options": [
             "Presidential system.",
             "Parliamentary system.",
@@ -256,7 +256,7 @@
         },
         {
           "id": "policy_constitution_009",
-          "question": "What is the composition of the Nigerian National Assembly",
+          "question": "What is the composition of the Nigerian National Assembly?",
           "options": [
             "A Senate with 109 members and a House of Representatives with 360 members.",
             "A unicameral legislature with 469 members.",
@@ -293,7 +293,7 @@
         },
         {
           "id": "policy_constitution_011",
-          "question": "Which branch of government enforces the law",
+          "question": "Which branch of government enforces the law?",
           "options": [
             "Legislature.",
             "Executive.",
@@ -330,7 +330,7 @@
         },
         {
           "id": "policy_constitution_012",
-          "question": "Which part of government is responsible for making laws in Nigeria",
+          "question": "Which part of government is responsible for making laws in Nigeria?",
           "options": [
             "The Executive.",
             "The Judiciary.",
@@ -403,7 +403,7 @@
         },
         {
           "id": "policy_constitution_014",
-          "question": "Which Nigerian institution hears appeals from lower courts",
+          "question": "Which Nigerian institution hears appeals from lower courts?",
           "options": [
             "Supreme Court.",
             "Federal High Court.",
@@ -477,7 +477,7 @@
         },
         {
           "id": "policy_constitution_016",
-          "question": "Which day is commemorated as Nigeria’s Independence Day",
+          "question": "Which day is commemorated as Nigeria’s Independence Day?",
           "options": [
             "January 1.",
             "May 29.",
@@ -514,7 +514,7 @@
         },
         {
           "id": "policy_constitution_018",
-          "question": "Who was Nigeria’s first military Head of State",
+          "question": "Who was Nigeria’s first military Head of State?",
           "options": [
             "Yakubu Gowon.",
             "Aguiyi Ironsi.",
@@ -551,7 +551,7 @@
         },
         {
           "id": "policy_constitution_020",
-          "question": "Which Nigerian leader handed over power to a civilian government in 1979",
+          "question": "Which Nigerian leader handed over power to a civilian government in 1979?",
           "options": [
             "Ibrahim Babangida.",
             "Olusegun Obasanjo.",
@@ -588,7 +588,7 @@
         },
         {
           "id": "policy_constitution_022",
-          "question": "When was the War Against Indiscipline (WAI) inaugurated in Nigeria",
+          "question": "When was the War Against Indiscipline (WAI) inaugurated in Nigeria?",
           "options": [
             "1984.",
             "1985.",
@@ -698,7 +698,7 @@
         },
         {
           "id": "policy_constitution_028",
-          "question": "Which federal body is primarily responsible for auditing public accounts",
+          "question": "Which federal body is primarily responsible for auditing public accounts?",
           "options": [
             "Office of the Accountant-General.",
             "Auditor-General for the Federation.",
@@ -734,7 +734,7 @@
         },
         {
           "id": "policy_constitution_029",
-          "question": "Which organization regulates public procurement in Nigeria",
+          "question": "Which organization regulates public procurement in Nigeria?",
           "options": [
             "Federal Ministry of Finance.",
             "Bureau of Public Procurement (BPP).",
@@ -773,7 +773,7 @@
         },
         {
           "id": "policy_constitution_030",
-          "question": "Which agency is responsible for preparing the Federation’s annual budget proposals",
+          "question": "Which agency is responsible for preparing the Federation’s annual budget proposals?",
           "options": [
             "Federal Ministry of Finance (Budget Office).",
             "National Assembly.",
@@ -811,7 +811,7 @@
         },
         {
           "id": "policy_constitution_031",
-          "question": "Which body appoints Permanent Secretaries in the Federal Civil Service",
+          "question": "Which body appoints Permanent Secretaries in the Federal Civil Service?",
           "options": [
             "Federal Civil Service Commission.",
             "The President.",
@@ -850,7 +850,7 @@
         },
         {
           "id": "policy_constitution_032",
-          "question": "Which is the principal law establishing the Federal Civil Service Commission",
+          "question": "Which is the principal law establishing the Federal Civil Service Commission?",
           "options": [
             "1999 Constitution.",
             "Civil Service Act.",
@@ -929,7 +929,7 @@
         },
         {
           "id": "policy_constitution_034",
-          "question": "Which of these is a core principle of public service ethics",
+          "question": "Which of these is a core principle of public service ethics?",
           "options": [
             "Partisanship.",
             "Accountability and impartiality.",
@@ -1006,7 +1006,7 @@
         },
         {
           "id": "policy_constitution_036",
-          "question": "Which of these is a primary function of the Office of the Head of Service",
+          "question": "Which of these is a primary function of the Office of the Head of Service?",
           "options": [
             "Conduct criminal trials.",
             "Manage and coordinate the civil service.",
@@ -1045,7 +1045,7 @@
         },
         {
           "id": "policy_constitution_037",
-          "question": "Which of these is NOT typically a purpose of official circulars",
+          "question": "Which of these is NOT typically a purpose of official circulars?",
           "options": [
             "Transmit policies or directives.",
             "Announce administrative changes.",
@@ -1163,7 +1163,7 @@
         },
         {
           "id": "policy_constitution_042",
-          "question": "Which Nigerian institution publishes the official gazette for notices such as appointments and laws",
+          "question": "Which Nigerian institution publishes the official gazette for notices such as appointments and laws?",
           "options": [
             "National Assembly.",
             "Federal Ministry of Information.",
@@ -1202,7 +1202,7 @@
         },
         {
           "id": "policy_constitution_043",
-          "question": "What does the term 'imprest' refer to",
+          "question": "What does the term 'imprest' refer to?",
           "options": [
             "A permanent fund.",
             "A temporary cash advance for official duties.",
@@ -1240,7 +1240,7 @@
         },
         {
           "id": "policy_constitution_045",
-          "question": "Which of these is a valid purpose for an office circular",
+          "question": "Which of these is a valid purpose for an office circular?",
           "options": [
             "To publish national laws.",
             "To communicate new internal procedures or policy clarifications.",
@@ -1278,7 +1278,7 @@
         },
         {
           "id": "policy_constitution_046",
-          "question": "In a financial context, to remit money means to:",
+          "question": "Which of the following describes the in a financial context, to remit money means to?",
           "options": [
             "Delay.",
             "Send or pay money.",
@@ -1317,7 +1317,7 @@
         },
         {
           "id": "policy_constitution_047",
-          "question": "Which of these is normally required when retiring an imprest",
+          "question": "Which of these is normally required when retiring an imprest?",
           "options": [
             "A ministerial approval.",
             "Receipts and invoices to support expenditures.",
@@ -1432,7 +1432,7 @@
         },
         {
           "id": "policy_constitution_054",
-          "question": "What does 'PS' commonly denote on internal memos in civil service",
+          "question": "What does 'PS' commonly denote on internal memos in civil service?",
           "options": [
             "Personal Secretary.",
             "Permanent Secretary.",
@@ -1471,7 +1471,7 @@
         },
         {
           "id": "policy_constitution_055",
-          "question": "Which is the primary purpose of an office diary",
+          "question": "Which is the primary purpose of an office diary?",
           "options": [
             "File storage.",
             "Schedule and record official appointments and engagements.",
@@ -1549,7 +1549,7 @@
         },
         {
           "id": "policy_constitution_058",
-          "question": "Which of these is part of a good filing practice",
+          "question": "Which of these is part of a good filing practice?",
           "options": [
             "Leaving files unlabelled.",
             "Numbering files, keeping indexes and using subject codes.",
@@ -1627,7 +1627,7 @@
         },
         {
           "id": "policy_constitution_060",
-          "question": "Which of these is NOT normally included in minutes of a meeting",
+          "question": "Which of these is NOT normally included in minutes of a meeting?",
           "options": [
             "Major decisions and assigned action points.",
             "Names of attendees.",
@@ -1782,7 +1782,7 @@
         },
         {
           "id": "policy_constitution_064",
-          "question": "Which of these abbreviations commonly appears on file covers to indicate urgency",
+          "question": "Which of these abbreviations commonly appears on file covers to indicate urgency?",
           "options": [
             "FYI.",
             "UFS.",
@@ -1941,7 +1941,7 @@
         },
         {
           "id": "pol_formulation_cycle_gen_004",
-          "question": "When handling policy formulation & cycle, which choice reflects proper policy formulation standards",
+          "question": "When handling policy formulation & cycle, which choice reflects proper policy formulation standards?",
           "options": [
             "Define the problem, options, and decision criteria clearly.",
             "Treat exceptions as routine without documented justification.",
@@ -1982,7 +1982,7 @@
         },
         {
           "id": "pol_formulation_cycle_gen_005",
-          "question": "Which practice should a responsible officer prioritize to sustain implementation planning in Policy Formulation & Cycle",
+          "question": "Which practice should a responsible officer prioritize to sustain implementation planning in Policy Formulation & Cycle?",
           "options": [
             "Assign responsibilities, timelines, and performance metrics.",
             "Prioritize convenience over policy and legal requirements.",
@@ -2102,7 +2102,7 @@
         },
         {
           "id": "pol_formulation_cycle_gen_008",
-          "question": "Which option most strongly aligns with good public-service practice on public-sector planning within Policy Formulation & Cycle",
+          "question": "Which option most strongly aligns with good public-service practice on public-sector planning within Policy Formulation & Cycle?",
           "options": [
             "Align plans with budget, legal mandate, and service priorities.",
             "Rely on informal instructions without documentary evidence.",
@@ -2181,7 +2181,7 @@
         },
         {
           "id": "pol_formulation_cycle_gen_010",
-          "question": "Which practice should a responsible officer prioritize to sustain compliance assurance in Policy Formulation & Cycle",
+          "question": "Which practice should a responsible officer prioritize to sustain compliance assurance in Policy Formulation & Cycle?",
           "options": [
             "Apply approved rules consistently and escalate exceptions.",
             "Delay decisions until issues escalate into avoidable crises.",
@@ -2378,7 +2378,7 @@
         },
         {
           "id": "pol_formulation_cycle_gen_015",
-          "question": "When decisions are made in policy formulation & cycle, which step most directly improves traceability and fairness' (Policy formulation rigour scenario 1)",
+          "question": "When decisions are made in policy formulation & cycle, which step most directly improves traceability and fairness' (Policy formulation rigour scenario 1)?",
           "options": [
             "Treat exceptions as normal practice without written justification.",
             "Proceed without validating source records and decision criteria.",
@@ -2907,7 +2907,7 @@
         },
         {
           "id": "policy_constitution_074",
-          "question": "choose the best answer for: Before presenting the budget to the National Assembly, an MDA must secure that the proposed budget is in conformity with what?",
+          "question": "Choose the best answer for: Before presenting the budget to the National Assembly, an MDA must secure that the proposed budget is in conformity with what?",
           "options": [
             "The previous year's budget",
             "The demands of international donors □.",
@@ -3626,7 +3626,7 @@
         },
         {
           "id": "policy_states_039",
-          "question": "Which Nigerian state is nicknamed the 'Home of Heroes'",
+          "question": "Which Nigerian state is nicknamed the 'Home of Heroes'?",
           "options": [
             "Imo.",
             "Anambra.",
@@ -3819,7 +3819,7 @@
         },
         {
           "id": "pol_analysis_methods_gen_004",
-          "question": "When handling policy analysis methods, which choice reflects proper policy formulation standards",
+          "question": "When handling policy analysis methods, which choice reflects proper policy formulation standards?",
           "options": [
             "Define the problem, options, and decision criteria clearly.",
             "Treat exceptions as routine without documented justification.",
@@ -3859,7 +3859,7 @@
         },
         {
           "id": "pol_analysis_methods_gen_005",
-          "question": "Which practice should a responsible officer prioritize to sustain implementation planning in Policy Analysis Methods",
+          "question": "Which practice should a responsible officer prioritize to sustain implementation planning in Policy Analysis Methods?",
           "options": [
             "Assign responsibilities, timelines, and performance metrics.",
             "Prioritize convenience over policy and legal requirements.",
@@ -3979,7 +3979,7 @@
         },
         {
           "id": "pol_analysis_methods_gen_015",
-          "question": "Which option most strongly aligns with good public-service practice on public-sector planning within Policy Analysis Methods",
+          "question": "Which option most strongly aligns with good public-service practice on public-sector planning within Policy Analysis Methods?",
           "options": [
             "Align plans with budget, legal mandate, and service priorities.",
             "Rely on informal instructions without documentary evidence.",
@@ -4059,7 +4059,7 @@
         },
         {
           "id": "pol_analysis_methods_gen_017",
-          "question": "Which practice should a responsible officer prioritize to sustain compliance assurance in Policy Analysis Methods",
+          "question": "Which practice should a responsible officer prioritize to sustain compliance assurance in Policy Analysis Methods?",
           "options": [
             "Apply approved rules consistently and escalate exceptions.",
             "Delay decisions until issues escalate into avoidable crises.",
@@ -4221,7 +4221,7 @@
         },
         {
           "id": "pol_analysis_methods_gen_021",
-          "question": "When handling policy analysis methods, which choice reflects proper decision transparency standards",
+          "question": "When handling policy analysis methods, which choice reflects proper decision transparency standards?",
           "options": [
             "Use clear criteria and communicate decisions promptly.",
             "Close cases without validating facts or required records.",
@@ -4341,7 +4341,7 @@
         },
         {
           "id": "pol_analysis_methods_gen_025",
-          "question": "Which option most strongly aligns with good public-service practice on performance standards within Policy Analysis Methods",
+          "question": "Which option most strongly aligns with good public-service practice on performance standards within Policy Analysis Methods?",
           "options": [
             "Set measurable targets, monitor progress, and correct deviations.",
             "Delay decisions until issues escalate into avoidable crises.",
@@ -4421,7 +4421,7 @@
         },
         {
           "id": "pol_analysis_methods_gen_027",
-          "question": "Which practice should a responsible officer prioritize to sustain policy analysis methods compliance in Policy Analysis Methods",
+          "question": "Which practice should a responsible officer prioritize to sustain policy analysis methods compliance in Policy Analysis Methods?",
           "options": [
             "Use lawful criteria and document each decision step transparently.",
             "Treat exceptions as routine without documented justification.",
@@ -4585,7 +4585,7 @@
         },
         {
           "id": "pol_analysis_methods_gen_031",
-          "question": "When handling policy analysis methods, which choice reflects proper impact evaluation standards",
+          "question": "When handling policy analysis methods, which choice reflects proper impact evaluation standards?",
           "options": [
             "Measure outcomes against baseline and policy objectives.",
             "Rely on informal instructions without documentary evidence.",
@@ -4789,7 +4789,7 @@
         },
         {
           "id": "pol_analysis_methods_gen_036",
-          "question": "When applying rules in policy analysis methods, which option aligns best with policy formulation standards' while maintaining fairness and legal compliance",
+          "question": "When applying rules in policy analysis methods, which option aligns best with policy formulation standards' while maintaining fairness and legal compliance?",
           "options": [
             "Define the problem, options, and decision criteria clearly.",
             "Close cases without validating facts or required records.",
@@ -7348,7 +7348,7 @@
         },
         {
           "id": "policy_psr_002",
-          "question": "How many chapters are in the 2021 Public Service Rules",
+          "question": "How many chapters are in the 2021 Public Service Rules?",
           "options": [
             "A) 15 chapters.",
             "B) 19 chapters.",
@@ -7385,7 +7385,7 @@
         },
         {
           "id": "policy_psr_003",
-          "question": "What is the normal working time per week",
+          "question": "What is the normal working time per week?",
           "options": [
             "A) 35 hours.",
             "B) 40 hours.",
@@ -7424,7 +7424,7 @@
         },
         {
           "id": "policy_psr_004",
-          "question": "What is the meaning of 'established post'",
+          "question": "What is the meaning of 'established post'?",
           "options": [
             "A) A post provided for in the budget.",
             "B) A post approved by the President.",
@@ -7462,7 +7462,7 @@
         },
         {
           "id": "policy_psr_005",
-          "question": "What is the purpose of Public Service Rules",
+          "question": "What is the purpose of Public Service Rules?",
           "options": [
             "A) To punish officers.",
             "B) To define employment relationship between employees and Government.",
@@ -7498,7 +7498,7 @@
         },
         {
           "id": "policy_psr_006",
-          "question": "What is the meaning of 'officer' in the Public Service",
+          "question": "What is the meaning of 'officer' in the Public Service?",
           "options": [
             "A) Any government employee.",
             "B) A person appointed to a pensionable post.",
@@ -8098,7 +8098,7 @@
         },
         {
           "id": "policy_psr_021",
-          "question": "When did the Public Service Rules 2021 come into effect",
+          "question": "When did the Public Service Rules 2021 come into effect?",
           "options": [
             "January 1, 2020.",
             "June 1, 2021.",
@@ -8726,7 +8726,7 @@
         },
         {
           "id": "pol_implementation_evaluation_gen_004",
-          "question": "When handling policy implementation & evaluation, which choice reflects proper policy formulation standards",
+          "question": "When handling policy implementation & evaluation, which choice reflects proper policy formulation standards?",
           "options": [
             "Define the problem, options, and decision criteria clearly.",
             "Treat exceptions as routine without documented justification.",
@@ -8767,7 +8767,7 @@
         },
         {
           "id": "pol_implementation_evaluation_gen_005",
-          "question": "Which practice should a responsible officer prioritize to sustain implementation planning in Policy Implementation & Evaluation",
+          "question": "Which practice should a responsible officer prioritize to sustain implementation planning in Policy Implementation & Evaluation?",
           "options": [
             "Assign responsibilities, timelines, and performance metrics.",
             "Prioritize convenience over policy and legal requirements.",
@@ -8890,7 +8890,7 @@
         },
         {
           "id": "pol_implementation_evaluation_gen_008",
-          "question": "Which option most strongly aligns with good public-service practice on public-sector planning within Policy Implementation & Evaluation",
+          "question": "Which option most strongly aligns with good public-service practice on public-sector planning within Policy Implementation & Evaluation?",
           "options": [
             "Align plans with budget, legal mandate, and service priorities.",
             "Rely on informal instructions without documentary evidence.",
@@ -8971,7 +8971,7 @@
         },
         {
           "id": "pol_implementation_evaluation_gen_010",
-          "question": "Which practice should a responsible officer prioritize to sustain compliance assurance in Policy Implementation & Evaluation",
+          "question": "Which practice should a responsible officer prioritize to sustain compliance assurance in Policy Implementation & Evaluation?",
           "options": [
             "Apply approved rules consistently and escalate exceptions.",
             "Delay decisions until issues escalate into avoidable crises.",
@@ -9132,7 +9132,7 @@
         },
         {
           "id": "pol_implementation_evaluation_gen_026",
-          "question": "When handling policy implementation & evaluation, which choice reflects proper decision transparency standards",
+          "question": "When handling policy implementation & evaluation, which choice reflects proper decision transparency standards?",
           "options": [
             "Use clear criteria and communicate decisions promptly.",
             "Close cases without validating facts or required records.",
@@ -9254,7 +9254,7 @@
         },
         {
           "id": "pol_implementation_evaluation_gen_030",
-          "question": "Which option most strongly aligns with good public-service practice on performance standards within Policy Implementation & Evaluation",
+          "question": "Which option most strongly aligns with good public-service practice on performance standards within Policy Implementation & Evaluation?",
           "options": [
             "Set measurable targets, monitor progress, and correct deviations.",
             "Delay decisions until issues escalate into avoidable crises.",
@@ -9334,7 +9334,7 @@
         },
         {
           "id": "pol_implementation_evaluation_gen_032",
-          "question": "Which practice should a responsible officer prioritize to sustain policy implementation & evaluation compliance in Policy Implementation & Evaluation",
+          "question": "Which practice should a responsible officer prioritize to sustain policy implementation & evaluation compliance in Policy Implementation & Evaluation?",
           "options": [
             "Use lawful criteria and document each decision step transparently.",
             "Treat exceptions as routine without documented justification.",
@@ -9498,7 +9498,7 @@
         },
         {
           "id": "pol_implementation_evaluation_gen_036",
-          "question": "When handling policy implementation & evaluation, which choice reflects proper impact evaluation standards",
+          "question": "When handling policy implementation & evaluation, which choice reflects proper impact evaluation standards?",
           "options": [
             "Measure outcomes against baseline and policy objectives.",
             "Rely on informal instructions without documentary evidence.",
@@ -9700,7 +9700,7 @@
         },
         {
           "id": "pol_implementation_evaluation_gen_041",
-          "question": "When applying rules in policy implementation & evaluation, which option aligns best with policy formulation standards' while maintaining fairness and legal compliance",
+          "question": "When applying rules in policy implementation & evaluation, which option aligns best with policy formulation standards' while maintaining fairness and legal compliance?",
           "options": [
             "Close cases without validating facts or required records.",
             "Define the problem, options, and decision criteria clearly.",
@@ -9864,7 +9864,7 @@
         },
         {
           "id": "pol_implementation_evaluation_gen_045",
-          "question": "Which of the following is the strongest control action for public-sector planning in policy implementation & evaluation' in line with public-sector accountability expectations",
+          "question": "Which of the following is the strongest control action for public-sector planning in policy implementation & evaluation' in line with public-sector accountability expectations?",
           "options": [
             "Rely on informal instructions without documentary evidence.",
             "Align plans with budget, legal mandate, and service priorities.",
@@ -9987,7 +9987,7 @@
         },
         {
           "id": "pol_implementation_evaluation_gen_049",
-          "question": "When applying rules in policy implementation & evaluation, which option aligns best with service integrity standards' within approved timelines and governance standards",
+          "question": "When applying rules in policy implementation & evaluation, which option aligns best with service integrity standards' within approved timelines and governance standards?",
           "options": [
             "Avoid conflicts of interest and disclose relevant constraints.",
             "Rely on informal instructions without documentary evidence.",
@@ -10479,7 +10479,7 @@
         },
         {
           "id": "policy_psr_054",
-          "question": "which option correctly addresses: What should a Clerk do with the top copy of their list from the duplicate note-book system at the end of each day?",
+          "question": "Which option correctly addresses: What should a Clerk do with the top copy of their list from the duplicate note-book system at the end of each day?",
           "options": [
             "Discard it.",
             "Keep it for themselves.",
@@ -11006,7 +11006,7 @@
         },
         {
           "id": "pol_public_sector_planning_gen_004",
-          "question": "When handling public sector planning, which choice reflects proper policy formulation standards",
+          "question": "When handling public sector planning, which choice reflects proper policy formulation standards?",
           "options": [
             "Define the problem, options, and decision criteria clearly.",
             "Treat exceptions as routine without documented justification.",
@@ -11046,7 +11046,7 @@
         },
         {
           "id": "pol_public_sector_planning_gen_005",
-          "question": "Which practice should a responsible officer prioritize to sustain implementation planning in Public Sector Planning",
+          "question": "Which practice should a responsible officer prioritize to sustain implementation planning in Public Sector Planning?",
           "options": [
             "Assign responsibilities, timelines, and performance metrics.",
             "Prioritize convenience over policy and legal requirements.",
@@ -11166,7 +11166,7 @@
         },
         {
           "id": "pol_public_sector_planning_gen_008",
-          "question": "Which option most strongly aligns with good public-service practice on public-sector planning within Public Sector Planning",
+          "question": "Which option most strongly aligns with good public-service practice on public-sector planning within Public Sector Planning?",
           "options": [
             "Align plans with budget, legal mandate, and service priorities.",
             "Rely on informal instructions without documentary evidence.",
@@ -11245,7 +11245,7 @@
         },
         {
           "id": "pol_public_sector_planning_gen_010",
-          "question": "Which practice should a responsible officer prioritize to sustain compliance assurance in Public Sector Planning",
+          "question": "Which practice should a responsible officer prioritize to sustain compliance assurance in Public Sector Planning?",
           "options": [
             "Apply approved rules consistently and escalate exceptions.",
             "Delay decisions until issues escalate into avoidable crises.",
@@ -11406,7 +11406,7 @@
         },
         {
           "id": "pol_public_sector_planning_gen_014",
-          "question": "When handling public sector planning, which choice reflects proper decision transparency standards",
+          "question": "When handling public sector planning, which choice reflects proper decision transparency standards?",
           "options": [
             "Use clear criteria and communicate decisions promptly.",
             "Close cases without validating facts or required records.",
@@ -11527,7 +11527,7 @@
         },
         {
           "id": "pol_public_sector_planning_gen_018",
-          "question": "Which option most strongly aligns with good public-service practice on performance standards within Public Sector Planning",
+          "question": "Which option most strongly aligns with good public-service practice on performance standards within Public Sector Planning?",
           "options": [
             "Set measurable targets, monitor progress, and correct deviations.",
             "Delay decisions until issues escalate into avoidable crises.",
@@ -11607,7 +11607,7 @@
         },
         {
           "id": "pol_public_sector_planning_gen_020",
-          "question": "Which practice should a responsible officer prioritize to sustain public sector planning compliance in Public Sector Planning",
+          "question": "Which practice should a responsible officer prioritize to sustain public sector planning compliance in Public Sector Planning?",
           "options": [
             "Use lawful criteria and document each decision step transparently.",
             "Treat exceptions as routine without documented justification.",
@@ -11767,7 +11767,7 @@
         },
         {
           "id": "pol_public_sector_planning_gen_024",
-          "question": "When handling public sector planning, which choice reflects proper impact evaluation standards",
+          "question": "When handling public sector planning, which choice reflects proper impact evaluation standards?",
           "options": [
             "Measure outcomes against baseline and policy objectives.",
             "Rely on informal instructions without documentary evidence.",
@@ -11928,7 +11928,7 @@
         },
         {
           "id": "pol_public_sector_planning_gen_028",
-          "question": "Which option most strongly aligns with good public-service practice on compliance assurance within Public Sector Planning",
+          "question": "Which option most strongly aligns with good public-service practice on compliance assurance within Public Sector Planning?",
           "options": [
             "Apply approved rules consistently and escalate exceptions.",
             "Treat exceptions as routine without documented justification.",
@@ -11969,7 +11969,7 @@
         },
         {
           "id": "pol_public_sector_planning_gen_029",
-          "question": "When handling public sector planning, which choice reflects proper public accountability standards",
+          "question": "When handling public sector planning, which choice reflects proper public accountability standards?",
           "options": [
             "Provide traceable decisions and evidence-based justification.",
             "Prioritize convenience over policy and legal requirements.",
@@ -12010,7 +12010,7 @@
         },
         {
           "id": "pol_public_sector_planning_gen_030",
-          "question": "Which practice should a responsible officer prioritize to sustain service integrity in Public Sector Planning",
+          "question": "Which practice should a responsible officer prioritize to sustain service integrity in Public Sector Planning?",
           "options": [
             "Avoid conflicts of interest and disclose relevant constraints.",
             "Close cases without validating facts or required records.",
@@ -12173,7 +12173,7 @@
         },
         {
           "id": "pol_public_sector_planning_gen_034",
-          "question": "When handling public sector planning, which choice reflects proper citizen-focused service standards",
+          "question": "When handling public sector planning, which choice reflects proper citizen-focused service standards?",
           "options": [
             "Balance legality, fairness, timeliness, and service quality.",
             "Delay decisions until issues escalate into avoidable crises.",
@@ -12295,7 +12295,7 @@
         },
         {
           "id": "pol_public_sector_planning_gen_038",
-          "question": "Which option most strongly aligns with good public-service practice on public sector planning compliance within Public Sector Planning",
+          "question": "Which option most strongly aligns with good public-service practice on public sector planning compliance within Public Sector Planning?",
           "options": [
             "Use lawful criteria and document each decision step transparently.",
             "Close cases without validating facts or required records.",
@@ -12375,7 +12375,7 @@
         },
         {
           "id": "pol_public_sector_planning_gen_040",
-          "question": "Which practice should a responsible officer prioritize to sustain policy formulation in Public Sector Planning",
+          "question": "Which practice should a responsible officer prioritize to sustain policy formulation in Public Sector Planning?",
           "options": [
             "Define the problem, options, and decision criteria clearly.",
             "Rely on informal instructions without documentary evidence.",
@@ -12536,7 +12536,7 @@
         },
         {
           "id": "pol_public_sector_planning_gen_044",
-          "question": "When handling public sector planning, which choice reflects proper public-sector planning standards",
+          "question": "When handling public sector planning, which choice reflects proper public-sector planning standards?",
           "options": [
             "Align plans with budget, legal mandate, and service priorities.",
             "Treat exceptions as routine without documented justification.",
@@ -12698,7 +12698,7 @@
         },
         {
           "id": "pol_public_sector_planning_gen_048",
-          "question": "When applying rules in public sector planning, which option aligns best with policy formulation standards' while maintaining fairness and legal compliance",
+          "question": "When applying rules in public sector planning, which option aligns best with policy formulation standards' while maintaining fairness and legal compliance?",
           "options": [
             "Rely on informal instructions without documentary evidence.",
             "Define the problem, options, and decision criteria clearly.",
@@ -12858,7 +12858,7 @@
         },
         {
           "id": "pol_public_sector_planning_gen_052",
-          "question": "Which of the following is the strongest control action for public-sector planning in public sector planning' in line with public-sector accountability expectations",
+          "question": "Which of the following is the strongest control action for public-sector planning in public sector planning' in line with public-sector accountability expectations?",
           "options": [
             "Delay decisions until issues escalate into avoidable crises.",
             "Treat exceptions as routine without documented justification.",
@@ -13019,7 +13019,7 @@
         },
         {
           "id": "pol_public_sector_planning_gen_056",
-          "question": "When applying rules in public sector planning, which option aligns best with service integrity standards' within approved timelines and governance standards",
+          "question": "When applying rules in public sector planning, which option aligns best with service integrity standards' within approved timelines and governance standards?",
           "options": [
             "Rely on informal instructions without documentary evidence.",
             "Close cases without validating facts or required records.",
@@ -13139,7 +13139,7 @@
         },
         {
           "id": "pol_public_sector_planning_gen_060",
-          "question": "Which of the following is the strongest control action for citizen-focused service in public sector planning' under standard approval and documentation controls",
+          "question": "Which of the following is the strongest control action for citizen-focused service in public sector planning' under standard approval and documentation controls?",
           "options": [
             "Treat exceptions as routine without documented justification.",
             "Delay decisions until issues escalate into avoidable crises.",
@@ -13260,7 +13260,7 @@
         },
         {
           "id": "pol_public_sector_planning_gen_064",
-          "question": "When applying rules in public sector planning, which option aligns best with public sector planning compliance standards' while preserving records for audit and oversight",
+          "question": "When applying rules in public sector planning, which option aligns best with public sector planning compliance standards' while preserving records for audit and oversight?",
           "options": [
             "Treat exceptions as routine without documented justification.",
             "Rely on informal instructions without documentary evidence.",
@@ -13381,7 +13381,7 @@
         },
         {
           "id": "pol_public_sector_planning_gen_068",
-          "question": "Which of the following is the strongest control action for impact evaluation in public sector planning' while maintaining fairness and legal compliance",
+          "question": "Which of the following is the strongest control action for impact evaluation in public sector planning' while maintaining fairness and legal compliance?",
           "options": [
             "Rely on informal instructions without documentary evidence.",
             "Measure outcomes against baseline and policy objectives.",
@@ -13584,7 +13584,7 @@
         },
         {
           "id": "pol_public_sector_planning_gen_073",
-          "question": "When decisions are made in public sector planning, which step most directly improves traceability and fairness' (Policy formulation rigour scenario 1)",
+          "question": "When decisions are made in public sector planning, which step most directly improves traceability and fairness' (Policy formulation rigour scenario 1)?",
           "options": [
             "Define the problem, options, and measurable criteria before selecting a policy path.",
             "Proceed without validating source records and decision criteria.",

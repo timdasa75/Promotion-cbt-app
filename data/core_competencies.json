@@ -308,7 +308,7 @@
         },
         {
           "id": "competency_num_008",
-          "question": "What is ⅔ of 360",
+          "question": "What is ⅔ of 360?",
           "options": [
             "220.",
             "230.",
@@ -516,7 +516,7 @@
         },
         {
           "id": "competency_num_013",
-          "question": "What is the simple interest on ₦100,000 at 10% per annum for 3 years",
+          "question": "What is the simple interest on ₦100,000 at 10% per annum for 3 years?",
           "options": [
             "₦20,000.",
             "₦25,000.",
@@ -683,7 +683,7 @@
         },
         {
           "id": "competency_num_017",
-          "question": "What is the mean of the following salaries: ₦120,000, ₦130,000, ₦150,000, ₦100,000, ₦200,000",
+          "question": "What is the mean of the following salaries: ₦120,000, ₦130,000, ₦150,000, ₦100,000, ₦200,000?",
           "options": [
             "₦134,000.",
             "₦140,000.",
@@ -1139,7 +1139,7 @@
         },
         {
           "id": "competency_num_028",
-          "question": "A machine cost ₦1,000,000 with salvage value ₦100,000 and useful life 5 years. Straight-line depreciation per year is:",
+          "question": "Which of the following describes the a machine cost ₦1,000,000 with salvage value ₦100,000 and useful life 5 years. straight-line depreciation per year is?",
           "options": [
             "₦160,000.",
             "₦170,000.",
@@ -1222,7 +1222,7 @@
         },
         {
           "id": "competency_num_030",
-          "question": "What is 5% of ₦2,000,000",
+          "question": "What is 5% of ₦2,000,000?",
           "options": [
             "₦50,000.",
             "₦100,000.",
@@ -1342,7 +1342,7 @@
         },
         {
           "id": "competency_num_033",
-          "question": "A town of 1,000 people grows at 2% per annum. After 2 years the population is approximately:",
+          "question": "Which of the following describes the a town of 1,000 people grows at 2% per annum. after 2 years the population is approximately?",
           "options": [
             "1,040.",
             "1,041.",
@@ -1383,7 +1383,7 @@
         },
         {
           "id": "competency_num_034",
-          "question": "What is the median of the set: 12, 15, 20, 22, 30",
+          "question": "What is the median of the set: 12, 15, 20, 22, 30?",
           "options": [
             "15.",
             "18.",
@@ -1995,7 +1995,7 @@
         },
         {
           "id": "competency_num_049",
-          "question": "What is the range of the dataset: 45, 60, 75, 90, 100",
+          "question": "What is the range of the dataset: 45, 60, 75, 90, 100?",
           "options": [
             "55.",
             "60.",
@@ -2607,7 +2607,7 @@
         },
         {
           "id": "comp_numerical_reasoning_gen_004",
-          "question": "When handling numerical & mathematical reasoning, which choice reflects proper numerical reasoning standards",
+          "question": "When handling numerical & mathematical reasoning, which choice reflects proper numerical reasoning standards?",
           "options": [
             "Use quantitative evidence to support administrative decisions.",
             "Treat exceptions as routine without documented justification.",
@@ -2650,7 +2650,7 @@
         },
         {
           "id": "comp_numerical_reasoning_gen_005",
-          "question": "Which practice should a responsible officer prioritize to sustain verbal reasoning in Numerical & Mathematical Reasoning",
+          "question": "Which practice should a responsible officer prioritize to sustain verbal reasoning in Numerical & Mathematical Reasoning?",
           "options": [
             "Interpret official text accurately before action.",
             "Prioritize convenience over policy and legal requirements.",
@@ -2786,7 +2786,7 @@
         },
         {
           "id": "comp_numerical_reasoning_gen_008",
-          "question": "Which option most strongly aligns with good public-service practice on communication clarity within Numerical & Mathematical Reasoning",
+          "question": "Which option most strongly aligns with good public-service practice on communication clarity within Numerical & Mathematical Reasoning?",
           "options": [
             "Present conclusions clearly with defensible rationale.",
             "Rely on informal instructions without documentary evidence.",
@@ -2875,7 +2875,7 @@
         },
         {
           "id": "comp_numerical_reasoning_gen_010",
-          "question": "Which practice should a responsible officer prioritize to sustain compliance assurance in Numerical & Mathematical Reasoning",
+          "question": "Which practice should a responsible officer prioritize to sustain compliance assurance in Numerical & Mathematical Reasoning?",
           "options": [
             "Apply approved rules consistently and escalate exceptions.",
             "Delay decisions until issues escalate into avoidable crises.",
@@ -3054,7 +3054,7 @@
         },
         {
           "id": "comp_numerical_reasoning_gen_014",
-          "question": "When handling numerical & mathematical reasoning, which choice reflects proper decision transparency standards",
+          "question": "When handling numerical & mathematical reasoning, which choice reflects proper decision transparency standards?",
           "options": [
             "Use clear criteria and communicate decisions promptly.",
             "Close cases without validating facts or required records.",
@@ -3267,7 +3267,7 @@
         },
         {
           "id": "competency_num_065",
-          "question": "which role projects estimates of oil and non-oil revenues in consultation with revenue generating agencies?",
+          "question": "Which role projects estimates of oil and non-oil revenues in consultation with revenue generating agencies?",
           "options": [
             "The Central BankQ",
             "The Minister of Finance 380",
@@ -3599,7 +3599,7 @@
         },
         {
           "id": "competency_num_073",
-          "question": "which office is accountable for posting and redeploying all senior staff?",
+          "question": "Which office is accountable for posting and redeploying all senior staff?",
           "options": [
             "The Ministry/Extra-Ministerial Department",
             "The Federal Civil Service Commission",
@@ -3765,7 +3765,7 @@
         },
         {
           "id": "competency_num_077",
-          "question": "choose the best answer for: The Development Fund is primarily meant for what type of projects?",
+          "question": "Choose the best answer for: The Development Fund is primarily meant for what type of projects?",
           "options": [
             "Emergency response",
             "Capital projects",
@@ -4066,7 +4066,7 @@
       "questions": [
         {
           "id": "competency_verbal_001",
-          "question": "What are the three main categories of competencies in the Federal Civil Service",
+          "question": "What are the three main categories of competencies in the Federal Civil Service?",
           "options": [
             "Technical, Managerial, Leadership.",
             "Core, Leadership, Functional.",
@@ -4146,7 +4146,7 @@
         },
         {
           "id": "competency_verbal_003",
-          "question": "Which of the following is the opposite of 'transparent'",
+          "question": "Which of the following is the opposite of 'transparent'?",
           "options": [
             "Clear.",
             "Obvious.",
@@ -4187,7 +4187,7 @@
         },
         {
           "id": "competency_verbal_004",
-          "question": "Which word correctly completes the sentence: 'The officer was praised for his ______ in handling the matter'",
+          "question": "Which word correctly completes the sentence: 'The officer was praised for his ______ in handling the matter'?",
           "options": [
             "Negligence.",
             "Tact.",
@@ -4271,7 +4271,7 @@
         },
         {
           "id": "competency_verbal_006",
-          "question": "Which word is most opposite in meaning to 'benevolent'",
+          "question": "Which word is most opposite in meaning to 'benevolent'?",
           "options": [
             "Kind.",
             "Malevolent.",
@@ -4352,7 +4352,7 @@
         },
         {
           "id": "competency_verbal_008",
-          "question": "What is the plural of 'crisis'",
+          "question": "What is the plural of 'crisis'?",
           "options": [
             "Crisises.",
             "Crises.",
@@ -4433,7 +4433,7 @@
         },
         {
           "id": "competency_verbal_010",
-          "question": "Which word is most similar in meaning to 'expedite'",
+          "question": "Which word is most similar in meaning to 'expedite'?",
           "options": [
             "Delay.",
             "Hasten.",
@@ -4557,7 +4557,7 @@
         },
         {
           "id": "competency_verbal_013",
-          "question": "Which of the following is the antonym of 'diligent'",
+          "question": "Which of the following is the antonym of 'diligent'?",
           "options": [
             "Hardworking.",
             "Careless.",
@@ -4598,7 +4598,7 @@
         },
         {
           "id": "competency_verbal_014",
-          "question": "Which word best completes the sentence: 'The committee reached a unanimous ______ on the issue.",
+          "question": "Which word best completes the sentence: 'The committee reached a unanimous ______ on the issue.?",
           "options": [
             "Decision.",
             "Fight.",
@@ -4798,7 +4798,7 @@
         },
         {
           "id": "competency_verbal_019",
-          "question": "Which pair is correctly matched as synonyms: 'Expand: '",
+          "question": "Which pair is correctly matched as synonyms: 'Expand: '?",
           "options": [
             "Reduce.",
             "Increase.",
@@ -4961,7 +4961,7 @@
         },
         {
           "id": "competency_verbal_023",
-          "question": "What is the synonym of 'ambiguous'",
+          "question": "What is the synonym of 'ambiguous'?",
           "options": [
             "Clear.",
             "Uncertain.",
@@ -5002,7 +5002,7 @@
         },
         {
           "id": "competency_verbal_024",
-          "question": "Which of the following completes the proverb: 'A stitch in time saves ____'",
+          "question": "Which of the following completes the proverb: 'A stitch in time saves ____'?",
           "options": [
             "One.",
             "Nine.",
@@ -5043,7 +5043,7 @@
         },
         {
           "id": "competency_verbal_025",
-          "question": "Which of these is the antonym of 'rigid'",
+          "question": "Which of these is the antonym of 'rigid'?",
           "options": [
             "Flexible.",
             "Strict.",
@@ -5084,7 +5084,7 @@
         },
         {
           "id": "competency_verbal_026",
-          "question": "Which of these words is synonymous with 'impartial'",
+          "question": "Which of these words is synonymous with 'impartial'?",
           "options": [
             "Biased.",
             "Neutral.",
@@ -5125,7 +5125,7 @@
         },
         {
           "id": "competency_verbal_027",
-          "question": "Which word best completes the sentence: 'The officer was known for his strict ______ to rules.",
+          "question": "Which word best completes the sentence: 'The officer was known for his strict ______ to rules.?",
           "options": [
             "Negligence.",
             "Adherence.",
@@ -5208,7 +5208,7 @@
         },
         {
           "id": "competency_verbal_029",
-          "question": "Which of the following is a synonym for 'obsolete'",
+          "question": "Which of the following is a synonym for 'obsolete'?",
           "options": [
             "Modern.",
             "Outdated.",
@@ -5248,7 +5248,7 @@
         },
         {
           "id": "competency_verbal_030",
-          "question": "Which word correctly completes the sentence: 'The manager gave a detailed ______ of the incident.'",
+          "question": "Which word correctly completes the sentence: 'The manager gave a detailed ______ of the incident.'?",
           "options": [
             "Account.",
             "Discount.",
@@ -5332,7 +5332,7 @@
         },
         {
           "id": "competency_verbal_032",
-          "question": "What is the synonym of 'vivid'",
+          "question": "What is the synonym of 'vivid'?",
           "options": [
             "Dull.",
             "Clear.",
@@ -5412,7 +5412,7 @@
         },
         {
           "id": "competency_verbal_034",
-          "question": "Which of these is the antonym of 'generous'",
+          "question": "Which of these is the antonym of 'generous'?",
           "options": [
             "Selfish.",
             "Kind.",
@@ -5453,7 +5453,7 @@
         },
         {
           "id": "competency_verbal_035",
-          "question": "Which of the following words is closest in meaning to 'lucid'",
+          "question": "Which of the following words is closest in meaning to 'lucid'?",
           "options": [
             "Confusing.",
             "Clear.",
@@ -5535,7 +5535,7 @@
         },
         {
           "id": "competency_verbal_037",
-          "question": "Which proverb is correctly completed: 'Too many cooks spoil the ____'",
+          "question": "Which proverb is correctly completed: 'Too many cooks spoil the ____'?",
           "options": [
             "Broth.",
             "Soup.",
@@ -5575,7 +5575,7 @@
         },
         {
           "id": "competency_verbal_038",
-          "question": "Which of the following is NOT a synonym for 'happy'",
+          "question": "Which of the following is NOT a synonym for 'happy'?",
           "options": [
             "Joyful.",
             "Elated.",
@@ -5817,7 +5817,7 @@
         },
         {
           "id": "competency_verbal_044",
-          "question": "Which of these words is closest in meaning to 'benevolent'",
+          "question": "Which of these words is closest in meaning to 'benevolent'?",
           "options": [
             "Cruel.",
             "Kind.",
@@ -5858,7 +5858,7 @@
         },
         {
           "id": "competency_verbal_045",
-          "question": "What is the antonym of 'artificial'",
+          "question": "What is the antonym of 'artificial'?",
           "options": [
             "Natural.",
             "Fake.",
@@ -5980,7 +5980,7 @@
         },
         {
           "id": "competency_verbal_048",
-          "question": "Which of the following is closest in meaning to 'candid'",
+          "question": "Which of the following is closest in meaning to 'candid'?",
           "options": [
             "Secretive.",
             "Honest.",
@@ -6021,7 +6021,7 @@
         },
         {
           "id": "competency_verbal_049",
-          "question": "Which of these is the antonym of 'expand'",
+          "question": "Which of these is the antonym of 'expand'?",
           "options": [
             "Grow.",
             "Increase.",
@@ -6061,7 +6061,7 @@
         },
         {
           "id": "competency_verbal_050",
-          "question": "Which word correctly completes: 'The officer was praised for his ______ in handling the crisis.",
+          "question": "Which word correctly completes: 'The officer was praised for his ______ in handling the crisis.?",
           "options": [
             "Tact.",
             "Negligence.",
@@ -6144,7 +6144,7 @@
         },
         {
           "id": "competency_verbal_052",
-          "question": "Which proverb is correctly completed: 'The pen is mightier than the ____'",
+          "question": "Which proverb is correctly completed: 'The pen is mightier than the ____'?",
           "options": [
             "Sword.",
             "Gun.",
@@ -6185,7 +6185,7 @@
         },
         {
           "id": "competency_verbal_053",
-          "question": "What is the antonym of 'prosperity'",
+          "question": "What is the antonym of 'prosperity'?",
           "options": [
             "Wealth.",
             "Success.",
@@ -6226,7 +6226,7 @@
         },
         {
           "id": "competency_verbal_054",
-          "question": "Which of these words is synonymous with 'fragile'",
+          "question": "Which of these words is synonymous with 'fragile'?",
           "options": [
             "Strong.",
             "Delicate.",
@@ -6387,7 +6387,7 @@
         },
         {
           "id": "competency_verbal_058",
-          "question": "Which of these words is closest in meaning to 'precise'",
+          "question": "Which of these words is closest in meaning to 'precise'?",
           "options": [
             "Exact.",
             "Vague.",
@@ -6428,7 +6428,7 @@
         },
         {
           "id": "competency_verbal_059",
-          "question": "Which word best completes: 'The Head of Service issued a strong ______ on discipline.'",
+          "question": "Which word best completes: 'The Head of Service issued a strong ______ on discipline.'?",
           "options": [
             "Command.",
             "Directive.",
@@ -6644,7 +6644,7 @@
         },
         {
           "id": "comp_verbal_reasoning_gen_004",
-          "question": "When handling verbal & analytical reasoning, which choice reflects proper numerical reasoning standards",
+          "question": "When handling verbal & analytical reasoning, which choice reflects proper numerical reasoning standards?",
           "options": [
             "Use quantitative evidence to support administrative decisions.",
             "Treat exceptions as routine without documented justification.",
@@ -6689,7 +6689,7 @@
         },
         {
           "id": "comp_verbal_reasoning_gen_005",
-          "question": "Which practice should a responsible officer prioritize to sustain verbal reasoning in Verbal & Analytical Reasoning",
+          "question": "Which practice should a responsible officer prioritize to sustain verbal reasoning in Verbal & Analytical Reasoning?",
           "options": [
             "Interpret official text accurately before action.",
             "Prioritize convenience over policy and legal requirements.",
@@ -6825,7 +6825,7 @@
         },
         {
           "id": "comp_verbal_reasoning_gen_008",
-          "question": "Which option most strongly aligns with good public-service practice on communication clarity within Verbal & Analytical Reasoning",
+          "question": "Which option most strongly aligns with good public-service practice on communication clarity within Verbal & Analytical Reasoning?",
           "options": [
             "Present conclusions clearly with defensible rationale.",
             "Rely on informal instructions without documentary evidence.",
@@ -6916,7 +6916,7 @@
         },
         {
           "id": "comp_verbal_reasoning_gen_010",
-          "question": "Which practice should a responsible officer prioritize to sustain compliance assurance in Verbal & Analytical Reasoning",
+          "question": "Which practice should a responsible officer prioritize to sustain compliance assurance in Verbal & Analytical Reasoning?",
           "options": [
             "Apply approved rules consistently and escalate exceptions.",
             "Delay decisions until issues escalate into avoidable crises.",
@@ -7097,7 +7097,7 @@
         },
         {
           "id": "comp_verbal_reasoning_gen_014",
-          "question": "When handling verbal & analytical reasoning, which choice reflects proper decision transparency standards",
+          "question": "When handling verbal & analytical reasoning, which choice reflects proper decision transparency standards?",
           "options": [
             "Use clear criteria and communicate decisions promptly.",
             "Close cases without validating facts or required records.",
@@ -7188,7 +7188,7 @@
         },
         {
           "id": "competency_verbal_061",
-          "question": "which option aligns with the meaning of the legal framework demand for processing short-term engagements?",
+          "question": "Which option aligns with the meaning of the legal framework demand for processing short-term engagements?",
           "options": [
             "A circular from the Head of the Civil Service of the Federation",
             "An official memo.",
@@ -7355,7 +7355,7 @@
         },
         {
           "id": "competency_verbal_067",
-          "question": "which role is in charge for keeping the up-to-date personal log of every officer?",
+          "question": "Which role is in charge for keeping the up-to-date personal log of every officer?",
           "options": [
             "The respective Ministry/Extra-Ministerial Office",
             "The Office of the Head of the Civil Service of the Federation",
@@ -7775,7 +7775,7 @@
         },
         {
           "id": "competency_verbal_082",
-          "question": "which role can effect an alteration to the classification of a voucher?",
+          "question": "Which role can effect an alteration to the classification of a voucher?",
           "options": [
             "The officer controlling expenditure.",
             "The Head of Finance and Accounts. □",
