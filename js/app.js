@@ -2772,6 +2772,39 @@ async function startSpacedPracticeSession() {
   );
 }
 
+function syncRevisionButtonState() {
+  const revisionModeBtn = document.getElementById("revisionModeBtn");
+  const queueCount = getFlaggedQueueCount();
+  renderUtilityActionButton(
+    revisionModeBtn,
+    "Revision (Flagged)",
+    queueCount,
+    "Flag questions during a quiz to review them here.",
+  );
+}
+
+async function startRevisionSession() {
+  const flaggedQuestions = getFlaggedQuestions(40);
+  if (!flaggedQuestions.length) {
+    showWarning("No flagged questions yet. Flag questions during a quiz to review them here.");
+    syncRevisionButtonState();
+    return;
+  }
+
+  currentTopic = { ...REVISION_TOPIC };
+  setCurrentTopic(currentTopic);
+  setCurrentMode("practice");
+
+  await runOperationWithFeedback(
+    () => loadQuestions(flaggedQuestions),
+    {
+      loadingMessage: "Loading flagged questions...",
+      successMessage: "",
+      failurePrefix: "Unable to start revision session:",
+    },
+  );
+}
+
 function initializeReviewMistakesControls() {
   const topicFilter = document.getElementById("reviewMistakesTopicFilter");
   const subcategoryFilter = document.getElementById("reviewMistakesSubcategoryFilter");
