@@ -30,4 +30,6 @@ window.PROMOTION_CBT_AUTH = {
   verificationResendCooldownMs: 900000,
   // Password reset cooldown per email (minimum 60000, maximum 86400000).
   passwordResetCooldownMs: 600000,
+  // Admin emails: users who receive admin panel access. Set here only — never commit real emails to source.
+  adminEmails: [], // e.g. ["admin@youragency.gov.ng"]
 };

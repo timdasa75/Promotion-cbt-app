@@ -2,7 +2,6 @@
   "name": "promotion-cbt-app",
   "version": "1.0.0",
   "description": "An interactive CBT practice application for Nigerian civil service promotion exams at the directorate level.",
-  "main": "playwright.config.js",
   "directories": {
     "doc": "docs",
     "test": "tests"

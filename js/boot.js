@@ -11,7 +11,9 @@
 
   window.PROMOTION_CBT_AUTH = window.PROMOTION_CBT_AUTH || {};
   window.PROMOTION_CBT_ADMIN_EMAILS =
-    window.PROMOTION_CBT_ADMIN_EMAILS || ["timdasa75@gmail.com"];
+    (window.PROMOTION_CBT_AUTH && Array.isArray(window.PROMOTION_CBT_AUTH.adminEmails))
+      ? window.PROMOTION_CBT_AUTH.adminEmails
+      : window.PROMOTION_CBT_ADMIN_EMAILS || [];
 
   const cfg = window.PROMOTION_CBT_AUTH || {};
   const fields = [cfg.firebaseApiKey, cfg.firebaseProjectId, cfg.firebaseAuthDomain];

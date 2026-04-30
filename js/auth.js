@@ -28,7 +28,7 @@ import { loginUserCloud as loginUserCloudService, logoutCloud as logoutCloudServ
 import { loginUserHybrid as loginUserHybridService, logoutHybrid as logoutHybridService, refreshCloudflareUserInSession as refreshCloudflareUserInSessionService, registerUserHybrid as registerUserHybridService } from "./authHybridLifecycle.js";
 import { buildIdentityToolkitAdminHeaders, getFirebaseConfig, getPasswordResetCooldownMs, getVerificationResendCooldownMs, isCloudAuthEnabled, isCloudAuthMisconfigured, isCloudAuthRequired, isCloudProgressSyncEnabled, isCloudflareAuthPrimary, isLocalDemoAuthEnabled, shouldAllowFirebaseAuthFallback } from "./authRuntime.js";
 
-const DEFAULT_ADMIN_EMAILS = ["timdasa75@gmail.com"];
+const DEFAULT_ADMIN_EMAILS = [];
 const PLAN_SYNC_INTERVAL_MS = 30 * 1000;
 const CLOUD_PLAN_POLL_MS = 5 * 1000;
 const TOKEN_REFRESH_SKEW_MS = 30 * 1000;

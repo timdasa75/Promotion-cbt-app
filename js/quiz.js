@@ -92,6 +92,7 @@ const QUIZ_RUNTIME_STORAGE_KEY = "cbt_quiz_runtime_v1";
 const QUIZ_RUNTIME_MAX_AGE_MS = 24 * 60 * 60 * 1000;
 const RETRY_MISSED_STORAGE_PREFIX = "cbt_retry_missed_v1_";
 const SPACED_PRACTICE_STORAGE_PREFIX = "cbt_spaced_practice_v1_";
+const FLAGGED_STORAGE_PREFIX = "cbt_flagged_v1_";
 const RETRY_MISSED_MAX_ITEMS = 300;
 const RETRY_MISSED_DEFAULT_SESSION_SIZE = 40;
 const SPACED_PRACTICE_MAX_ITEMS = 600;
@@ -337,6 +338,7 @@ function isCloudProgressSyncReady() {
 }
 export const RETRY_MISSED_TOPIC_ID = "retry_missed";
 export const SPACED_PRACTICE_TOPIC_ID = "spaced_practice";
+export const REVISION_TOPIC_ID = "topic_revision";
 
 let reviewContext = "study"; // "study" (pre-quiz) or "session" (post-quiz)
 let lastCompletedSession = null;
@@ -1245,6 +1247,94 @@ function saveProgressSummary(summary) {
     window.localStorage.setItem(getProgressStorageKeyForCurrentUser(), JSON.stringify(normalized));
   } catch (error) {
     console.warn("Unable to persist progress summary", error);
+  }
+}
+
+function getFlaggedStorageKeyForCurrentUser() {
+  const user = getCurrentUser();
+  const userId = String(user?.id || "").trim();
+  return userId ? `${FLAGGED_STORAGE_PREFIX}${userId}` : "";
+}
+
+function readFlaggedQueue() {
+  const storageKey = getFlaggedStorageKeyForCurrentUser();
+  if (!storageKey) return [];
+  try {
+    const raw = window.localStorage.getItem(storageKey);
+    if (!raw) return [];
+    return JSON.parse(raw);
+  } catch (error) {
+    return [];
+  }
+}
+
+function saveFlaggedQueue(queue) {
+  const storageKey = getFlaggedStorageKeyForCurrentUser();
+  if (!storageKey) return;
+  try {
+    window.localStorage.setItem(storageKey, JSON.stringify(queue));
+  } catch (error) {
+    console.warn("Unable to persist flagged queue", error);
+  }
+}
+
+export function toggleFlaggedQuestion(question, topicData) {
+  if (!question) return false;
+  const queue = readFlaggedQueue();
+  const qId = String(question.id || "").trim();
+  const idx = queue.findIndex((q) => String(q.id || "").trim() === qId);
+  
+  if (idx >= 0) {
+    queue.splice(idx, 1);
+    saveFlaggedQueue(queue);
+    return false;
+  } else {
+    queue.push({
+      ...question,
+      flaggedAt: new Date().toISOString(),
+      sourceTopicId: topicData?.id || question.sourceTopicId,
+      sourceTopicName: topicData?.name || question.sourceTopicName,
+    });
+    saveFlaggedQueue(queue);
+    return true;
+  }
+}
+
+export function isQuestionFlagged(questionId) {
+  if (!questionId) return false;
+  const queue = readFlaggedQueue();
+  const qId = String(questionId).trim();
+  return queue.some((q) => String(q.id || "").trim() === qId);
+}
+
+export function getFlaggedQueueCount() {
+  return readFlaggedQueue().length;
+}
+
+export function getFlaggedQuestions(limit = RETRY_MISSED_DEFAULT_SESSION_SIZE) {
+  let queue = readFlaggedQueue();
+  queue.sort((a, b) => {
+    return (Date.parse(b.flaggedAt) || 0) - (Date.parse(a.flaggedAt) || 0);
+  });
+  return queue.slice(0, limit);
+}
+
+export function toggleCurrentQuestionFlag() {
+  if (quizState.currentQuestionIndex >= quizState.allQuestions.length) return;
+  const question = quizState.allQuestions[quizState.currentQuestionIndex];
+  if (!question) return;
+  
+  const isNowFlagged = toggleFlaggedQuestion(question, currentTopic);
+  
+  const flagBtn = document.getElementById("flagQuestionBtn");
+  if (flagBtn) {
+    if (isNowFlagged) {
+      flagBtn.classList.add("active-flag");
+      flagBtn.style.color = "var(--primary)";
+    } else {
+      flagBtn.classList.remove("active-flag");
+      flagBtn.style.color = "";
+    }
   }
 }
 
@@ -2333,6 +2423,18 @@ function showQuestion() {
   // Make sure quiz screen is visible
   quizScreen.classList.remove("hidden");
   quizScreen.classList.add("active");
+  
+  const flagBtn = document.getElementById("flagQuestionBtn");
+  if (flagBtn) {
+    const isFlagged = isQuestionFlagged(question.id || normalizeQuestionFingerprint(question));
+    if (isFlagged) {
+      flagBtn.classList.add("active-flag");
+      flagBtn.style.color = "var(--primary)";
+    } else {
+      flagBtn.classList.remove("active-flag");
+      flagBtn.style.color = ""; // reset to inherit
+    }
+  }
   
   questionElement.innerHTML = `
     <div class="question-number-container">

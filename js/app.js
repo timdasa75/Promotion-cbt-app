@@ -37,6 +37,10 @@ import {
   loadQuestions,
   RETRY_MISSED_TOPIC_ID,
   SPACED_PRACTICE_TOPIC_ID,
+  REVISION_TOPIC_ID,
+  toggleCurrentQuestionFlag,
+  getFlaggedQueueCount,
+  getFlaggedQuestions,
   restorePersistedQuizRuntime,
   setCurrentTopic,
   setCurrentMode,
@@ -44,7 +48,7 @@ import {
   syncProgressFromCloudNow,
   retakeFullQuiz,
 } from "./quiz.js";
-import { normalizeExplanationText, parseMarkdown } from "./quiz/formatting.js";
+import { escapeHtml, normalizeExplanationText, parseMarkdown } from "./quiz/formatting.js";
 import { debugLog } from "./logger.js";
 import { calculateStreakDays, getWeakestTopicId } from "./metrics.js";
 import { initializeThemeShortcut, initializeThemeToggle } from "./app/theme.js";
@@ -161,6 +165,16 @@ const SPACED_PRACTICE_TOPIC = {
   description: "Review weak questions that are due for reinforcement.",
   icon: "SP",
   type: "spaced_practice",
+  skipCategorySelection: true,
+  requiresPremium: false,
+  mockExamQuestionCount: 40,
+};
+const REVISION_TOPIC = {
+  id: REVISION_TOPIC_ID,
+  name: "Revision Mode",
+  description: "Review specific questions you flagged for later.",
+  icon: "RV",
+  type: "revision",
   skipCategorySelection: true,
   requiresPremium: false,
   mockExamQuestionCount: 40,
@@ -704,14 +718,7 @@ function statusBadgeClass(status) {
   return "pending";
 }
 
-function escapeHtml(value) {
-  return String(value || "")
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
-}
+
 
 function clearElementContent(element) {
   if (element) {
@@ -2610,6 +2617,7 @@ function refreshDashboardInsights() {
   renderSupportStateCards(insights);
   syncRetryMissedButtonState();
   syncSpacedPracticeButtonState();
+  syncRevisionButtonState();
 }
 
 async function resumeLastSession() {
@@ -2759,7 +2767,7 @@ async function startSpacedPracticeSession() {
     {
       loadingMessage: "Loading spaced-practice queue...",
       successMessage: "",
-      failurePrefix: "Unable to start spaced-practice session:",
+      failurePrefix: "Unable to start spaced practice session:",
     },
   );
 }
@@ -3033,8 +3041,6 @@ function initializeDashboardActions() {
   const filterDocumentBtn = document.getElementById("filterDocumentBtn");
   const filterCompetencyBtn = document.getElementById("filterCompetencyBtn");
   const filterRecentBtn = document.getElementById("filterRecentBtn");
-  const retryMissedBtn = document.getElementById("retryMissedBtn");
-  const spacedPracticeBtn = document.getElementById("spacedPracticeBtn");
   const openAdminBtn = document.getElementById("openAdminBtn");
 
   if (startLearningBtn) {
@@ -3117,14 +3123,24 @@ function initializeDashboardActions() {
     });
   }
 
+  const dashboardSpacedPracticeBtn = document.getElementById("spacedPracticeBtn");
+  const retryMissedBtn = document.getElementById("retryMissedBtn");
+  const dashboardRevisionBtn = document.getElementById("revisionModeBtn");
+
   if (retryMissedBtn) {
     retryMissedBtn.addEventListener("click", () => {
       startRetryMissedSession();
     });
   }
 
-  if (spacedPracticeBtn) {
-    spacedPracticeBtn.addEventListener("click", () => {
+  if (dashboardRevisionBtn) {
+    dashboardRevisionBtn.addEventListener("click", () => {
+      startRevisionSession();
+    });
+  }
+
+  if (dashboardSpacedPracticeBtn) {
+    dashboardSpacedPracticeBtn.addEventListener("click", () => {
       startSpacedPracticeSession();
     });
   }
@@ -5989,8 +6005,45 @@ function initializeResultButtons() {
       }
     });
   }
+
+  const shareResultBtn = document.getElementById("shareResultBtn");
+  if (shareResultBtn) {
+    shareResultBtn.addEventListener("click", async () => {
+      const scoreElement = document.getElementById("finalScore");
+      const score = scoreElement ? scoreElement.textContent : "a great score";
+      const topicName = currentTopic ? currentTopic.name : "my exams";
+      
+      const shareData = {
+        title: 'Promotion CBT Result',
+        text: `I just scored ${score} in "${topicName}" on Promotion CBT! Can you beat my score?`,
+        url: window.location.href,
+      };
+
+      try {
+        if (navigator.share) {
+          await navigator.share(shareData);
+        } else {
+          await navigator.clipboard.writeText(`${shareData.text} \n${shareData.url}`);
+          showSuccess("Score copied to clipboard!");
+        }
+      } catch (err) {
+        if (err.name !== 'AbortError') {
+          console.error("Error sharing:", err);
+        }
+      }
+    });
+  }
 }
 
+function initializeQuizScreenHandlers() {
+  const flagQuestionBtn = document.getElementById("flagQuestionBtn");
+  if (flagQuestionBtn) {
+    flagQuestionBtn.addEventListener("click", () => {
+      toggleCurrentQuestionFlag();
+      syncRevisionButtonState(); // in case they go to dashboard next
+    });
+  }
+}
 
 document.addEventListener("DOMContentLoaded", async function () {
   startCloudPlanAutoSync();
@@ -6009,6 +6062,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     showLoadingOverlay(false);
   }
   initializeResultButtons();
+  initializeQuizScreenHandlers();
   refreshDashboardInsights();
 
   document.addEventListener("screenchange", (event) => {

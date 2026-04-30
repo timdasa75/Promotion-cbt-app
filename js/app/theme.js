@@ -48,7 +48,8 @@ export function initializeThemeToggle() {
   const body = document.body;
 
   const savedTheme = localStorage.getItem("theme");
-  const osDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const osThemeQuery = window.matchMedia("(prefers-color-scheme: dark)");
+  const osDark = osThemeQuery.matches;
 
   if (savedTheme === "dark" || (!savedTheme && osDark)) {
     body.classList.add("dark-mode");
@@ -56,6 +57,19 @@ export function initializeThemeToggle() {
     body.classList.remove("dark-mode");
   }
   syncThemeTogglePresentation();
+
+  // Listen for OS theme changes
+  osThemeQuery.addEventListener("change", (e) => {
+    // Only auto-switch if user hasn't explicitly set a preference
+    if (!localStorage.getItem("theme")) {
+      if (e.matches) {
+        body.classList.add("dark-mode");
+      } else {
+        body.classList.remove("dark-mode");
+      }
+      syncThemeTogglePresentation();
+    }
+  });
 
   if (themeToggle) {
     themeToggle.addEventListener("click", () => {

@@ -12,6 +12,22 @@
             content="default-src 'self'; script-src 'self' https://www.gstatic.com https://www.googleapis.com https://identitytoolkit.googleapis.com; connect-src 'self' https://www.googleapis.com https://identitytoolkit.googleapis.com https://firestore.googleapis.com https://securetoken.googleapis.com https://promotion-cbt-admin-bridge.promotioncbtadmin.workers.dev; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; base-uri 'self'; form-action 'self';"
         />
         <title>Promotion CBT</title>
+
+        <!-- Social sharing -->
+        <meta property="og:title" content="Promotion CBT — Nigerian Civil Service Exam Prep" />
+        <meta
+            property="og:description"
+            content="Master your Nigerian Federal Civil Service promotion exams with confidence. 10 core topics, timed mock exams, and spaced practice."
+        />
+        <meta property="og:type" content="website" />
+        <meta name="theme-color" content="#1fa463" />
+
+        <!-- Preconnect to external origins for faster initial connections -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="preconnect" href="https://firestore.googleapis.com" />
+        <link rel="preconnect" href="https://identitytoolkit.googleapis.com" />
+
         <link rel="stylesheet" href="css/normalize.css" />
         <link rel="stylesheet" href="css/fonts.css" />
         <link rel="stylesheet" href="css/styles.css" />
@@ -203,6 +219,7 @@
                         </div>
                         <div class="screen-nav-row dashboard-utility-row">
                         <button class="btn btn-ghost" id="retryMissedBtn" type="button" disabled>Retry Missed</button>
+                        <button class="btn btn-ghost" id="revisionModeBtn" type="button" disabled>Revision (Flagged)</button>
                         <button class="btn btn-ghost" id="spacedPracticeBtn" type="button" disabled>Spaced Practice</button>
                         <button class="btn btn-ghost" data-screen-target="reviewMistakesScreen" type="button">Review Mistakes</button>
                         <button class="btn btn-ghost" data-screen-target="analyticsScreen" type="button">Analytics</button>
@@ -408,6 +425,11 @@
                                 <button class="btn btn-primary" id="nextBtn" type="button">Next</button>
                             </div>
                             <div class="quiz-actions-right">
+                                <button class="btn btn-ghost" id="flagQuestionBtn" title="Flag for Review" aria-label="Flag Question for Review" type="button">
+                                    <svg viewBox="0 0 24 24" class="toolbar-icon" aria-hidden="true" fill="currentColor">
+                                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                                    </svg>
+                                </button>
                                 <button class="btn btn-ghost hidden" id="openQuizFeedbackBtn" type="button">Report Question</button>
                                 <button class="btn btn-destructive hidden" id="endExamBtn" type="button">End Exam</button>
                             </div>
@@ -445,6 +467,7 @@
                     <div class="card results-breakdown-shell" id="categoryBreakdown"></div>
                     <div class="button-row compact-actions results-actions" id="resultsActionRow">
                         <button class="btn btn-primary" id="retakeQuizBtn" type="button">Retake Session</button>
+                        <button class="btn btn-secondary" id="shareResultBtn" type="button">Share Score</button>
                         <button class="btn btn-secondary" id="reviewAnswersBtn" type="button">Review Last Session</button>
                         <button class="btn btn-secondary hidden" id="retryPathResultsBtn" type="button">Use Suggested Next Step</button>
                         <button class="btn btn-ghost hidden" id="openResultsFeedbackBtn" type="button">Share Session Feedback</button>
@@ -893,49 +916,3 @@
         <script type="module" src="js/app.js"></script>
     </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

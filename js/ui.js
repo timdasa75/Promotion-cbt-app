@@ -17,6 +17,7 @@ import {
   isAuthenticated,
 } from "./auth.js";
 import { debugLog } from "./logger.js";
+import { escapeHtml } from "./quiz/formatting.js";
 import { showError, showSuccess, showWarning } from "./ui/notifications.js";
 import { showScreen } from "./ui/screen.js";
 
@@ -57,14 +58,7 @@ function attachStudyFiltersToTopic(topic, topicDataFiles = []) {
   topic.availableStudyFilters = availableStudyFilters;
   topic.studyFilters = availableStudyFilters.defaults;
 }
-function escapeHtml(value) {
-  return String(value || "")
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
-}
+
 
 function formatShortDate(iso) {
   if (!iso) return "";
@@ -326,7 +320,6 @@ export async function displayTopics(topics, onSelect) {
   if (mockExamFeature) {
     mockExamFeature.innerHTML = '<div class="loading">Loading mock exam...</div>';
   }
-  await new Promise((resolve) => setTimeout(resolve, 500));
   topicList.innerHTML = "";
   if (mockExamFeature) {
     mockExamFeature.innerHTML = "";
@@ -658,44 +651,3 @@ export async function selectTopic(topic) {
 }
 
 // Make functions available globally for HTML onclick handlers
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
