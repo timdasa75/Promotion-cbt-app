@@ -40,22 +40,17 @@ jobs:
       - name: Run unit tests
         run: npm run test:unit
 
-      - name: Validate required Firebase secrets
+      - name: Validate auth configuration (Firebase & Cloudflare)
         env:
           FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
           FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
-          FIREBASE_AUTH_DOMAIN: ${{ secrets.FIREBASE_AUTH_DOMAIN }}
-          ADMIN_API_BASE_URL: ${{ secrets.ADMIN_API_BASE_URL }}
+          CLOUDFLARE_AUTH_BASE_URL: ${{ secrets.CLOUDFLARE_AUTH_BASE_URL }}
         run: |
-          missing=0
-          for key in FIREBASE_API_KEY FIREBASE_PROJECT_ID FIREBASE_AUTH_DOMAIN ADMIN_API_BASE_URL; do
-            if [ -z "${!key}" ]; then
-              echo "::error::Missing required repository secret: ${key}"
-              missing=1
-            fi
-          done
-          if [ "$missing" -ne 0 ]; then
-            exit 1
+          if [ -z "${FIREBASE_API_KEY}" ]; then
+            echo "::warning::Firebase secrets missing. Legacy fallback disabled."
+          fi
+          if [ -z "${CLOUDFLARE_AUTH_BASE_URL}" ]; then
+            echo "::warning::Cloudflare secret missing. Cloudflare-first disabled."
           fi
 
       - name: Generate runtime auth config from secrets
@@ -64,13 +59,16 @@ jobs:
           FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
           FIREBASE_AUTH_DOMAIN: ${{ secrets.FIREBASE_AUTH_DOMAIN }}
           ADMIN_API_BASE_URL: ${{ secrets.ADMIN_API_BASE_URL }}
+          CLOUDFLARE_AUTH_BASE_URL: ${{ secrets.CLOUDFLARE_AUTH_BASE_URL }}
         run: |
           cat > config/runtime-auth.js <<EOF
           // Generated during GitHub Pages deploy. Do not commit live values.
           window.PROMOTION_CBT_AUTH = {
+            authProvider: "${CLOUDFLARE_AUTH_BASE_URL:+hybrid}",
             firebaseApiKey: "${FIREBASE_API_KEY}",
             firebaseProjectId: "${FIREBASE_PROJECT_ID}",
             firebaseAuthDomain: "${FIREBASE_AUTH_DOMAIN}",
+            cloudflareAuthBaseUrl: "${CLOUDFLARE_AUTH_BASE_URL}",
             enableCloudProgressSync: true,
             adminApiBaseUrl: "${ADMIN_API_BASE_URL}",
           };
@@ -90,6 +88,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
-
-
