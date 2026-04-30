@@ -27,16 +27,41 @@
 }
 
 body.dark-mode {
-    --surface: #0e1713;
-    --card: #14201a;
-    --line: #274236;
-    --ink-900: #e6f0ea;
-    --ink-700: #c2d3ca;
+    --surface: #060a08;
+    --card: #0d1411;
+    --line: #1c2e26;
+    --ink-900: #f1f7f4;
+    --ink-700: #d1dfd8;
+    --ink-600: #a9bcaf;
     --ink-500: #8da095;
-    --shadow: 0 14px 36px rgba(0, 0, 0, 0.42);
-    --danger-bg: #3d1516;
-    --warning-bg: #3f2d13;
-    --ok-bg: #123221;
+    --green-900: #2ed17d;
+    --green-700: #28b66e;
+    --shadow: 0 16px 48px rgba(0, 0, 0, 0.6);
+    --ok: #4ade80;
+    --danger: #f87171;
+    --warning: #fbbf24;
+    --danger-bg: #451011;
+    --warning-bg: #432c0b;
+    --ok-bg: #0b3d22;
+}
+
+body.dark-mode .option-feedback-label.correct,
+body.dark-mode .option-feedback-label.incorrect {
+    color: #060a08;
+    font-weight: 800;
+}
+
+body.dark-mode .eyebrow {
+    color: var(--ink-600);
+}
+
+body.dark-mode .topic-description,
+body.dark-mode .hero-meta {
+    color: var(--ink-700);
+}
+
+body.dark-mode .auth-field span {
+    color: var(--ink-700);
 }
 
 body.dark-mode #splashScreen .hero-panel {
