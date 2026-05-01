@@ -1,6 +1,6 @@
 // quiz.js - Module for quiz logic
 
-import { showScreen, showError, showWarning } from "./ui.js";
+import { showScreen, showError, showWarning, showConfirm } from "./ui.js";
 import { extractQuestionsByCategory, fetchTopicDataFiles } from "./topicSources.js";
 import { debugLog } from "./logger.js";
 import { getTopics, getExamTemplateById, getGLBandWeights } from "./data.js";
@@ -2922,24 +2922,21 @@ function getAnsweredQuestionCount() {
   );
 }
 
-function confirmEndExam() {
+async function confirmEndExam() {
   if (currentMode !== "exam") return;
 
   const totalQuestions = quizState.allQuestions.length;
   const answeredCount = getAnsweredQuestionCount();
   const unansweredCount = Math.max(0, totalQuestions - answeredCount);
-  const warningMessage = [
-    "End this exam now?",
-    "",
-    "This will submit your current answers immediately and move straight to Results.",
-    `Answered: ${answeredCount}/${totalQuestions}`,
-    `Unanswered: ${unansweredCount}`,
-    `Time remaining: ${formatDuration(quizState.timeLeft)}`,
-    "",
-    "Only use this if you are sure you want to finish early.",
-  ].join("\n");
+  
+  const confirmed = await showConfirm({
+    title: "End Exam Early?",
+    message: `You have ${unansweredCount} questions unanswered. Are you sure you want to submit your current answers and finish now?`,
+    okText: "End Exam",
+    cancelText: "Keep Going"
+  });
 
-  if (!window.confirm(warningMessage)) {
+  if (!confirmed) {
     return;
   }
 

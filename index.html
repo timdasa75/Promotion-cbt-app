@@ -128,6 +128,13 @@
                         </span>
                     </button>
                     <button
+                        id="headerUpgradeBtn"
+                        class="btn btn-primary btn-sm hidden"
+                        type="button"
+                    >
+                        Upgrade
+                    </button>
+                    <button
                         id="themeToggle"
                         class="icon-button icon-only"
                         aria-label="Toggle light and dark theme"
@@ -191,6 +198,14 @@
                         </article>
                         <article class="card recommendation-card emphasis mock-feature-shell hidden" id="mockExamFeatureCard">
                             <div id="mockExamFeature"></div>
+                        </article>
+                        <article class="card recommendation-card emphasis premium-cta-card hidden" id="premiumCtaCard">
+                            <div class="premium-cta-content">
+                                <p class="eyebrow">Premium Access</p>
+                                <h3>Unlock Your Full Potential</h3>
+                                <p>Upgrade to access all 10 topics, full directorate mock exams, and advanced performance analytics.</p>
+                                <button class="btn btn-primary" id="dashboardUpgradeBtn" type="button">View Upgrade Options</button>
+                            </div>
                         </article>
                     </div>
                     <div class="card topic-toolbar-shell">
@@ -473,6 +488,10 @@
                         <button class="btn btn-ghost hidden" id="openResultsFeedbackBtn" type="button">Share Session Feedback</button>
                         <button class="btn btn-ghost hidden" id="reviewIncorrectResultsBtn" type="button">Review Missed Questions</button>
                         <button class="btn btn-ghost" data-screen-target="topicSelectionScreen" type="button">Back to Dashboard</button>
+                    </div>
+                    <div id="resultsPremiumCta" class="results-premium-cta hidden">
+                        <p>Want more? Upgrade to Premium for 10x more questions and full mock exams.</p>
+                        <button class="btn btn-primary btn-sm" id="resultsUpgradeBtn" type="button">Upgrade Now</button>
                     </div>
                 </section>
 
@@ -914,5 +933,104 @@
             </div>
         </div>
         <script type="module" src="js/app.js"></script>
+        <div class="auth-modal hidden" id="premiumModal" role="dialog" aria-modal="true">
+            <div class="auth-modal-card premium-cta-card">
+                <button class="auth-close" id="premiumCloseBtn" aria-label="Close modal">&times;</button>
+                <div class="premium-lock-icon">
+                    <svg viewBox="0 0 24 24" width="48" height="48" stroke="currentColor" fill="none" stroke-width="2">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                </div>
+                <div class="premium-cta-content">
+                    <h3>Premium Content</h3>
+                    <p>Unlock all 10 core topics and full Directorate mock exams.</p>
+                    <div class="premium-benefits-list">
+                        <ul>
+                            <li>Full access to PSR, FR, and specialized topics</li>
+                            <li>Timed Directorate-level Mock Exams</li>
+                            <li>In-depth Performance Heatmaps</li>
+                            <li>Cross-device Cloud Progress Sync</li>
+                        </ul>
+                    </div>
+                    <button class="btn btn-primary" id="premiumExplorePlansBtn">Explore Plans</button>
+                    <button class="btn btn-ghost" id="premiumMaybeLaterBtn">Maybe Later</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pricing Plans Modal -->
+        <div class="auth-modal hidden" id="pricingModal" role="dialog" aria-modal="true">
+            <div class="auth-modal-card pricing-modal-card">
+                <button class="auth-close" id="pricingCloseBtn" aria-label="Close modal">&times;</button>
+                <div class="pricing-header">
+                    <h2>Choose Your Plan</h2>
+                    <p>Select the best option to accelerate your career growth.</p>
+                </div>
+                
+                <div class="pricing-comparison">
+                    <div class="comparison-row head">
+                        <span>Features</span>
+                        <span>Free</span>
+                        <span class="highlight">Premium</span>
+                    </div>
+                    <div class="comparison-row">
+                        <span>Core Topics</span>
+                        <span>1 Topic</span>
+                        <span>All 10+ Topics</span>
+                    </div>
+                    <div class="comparison-row">
+                        <span>Mock Exams</span>
+                        <span>None</span>
+                        <span>Unlimited Mocks</span>
+                    </div>
+                    <div class="comparison-row">
+                        <span>Analytics</span>
+                        <span>Basic</span>
+                        <span>Detailed Heatmaps</span>
+                    </div>
+                    <div class="comparison-row">
+                        <span>Cloud Sync</span>
+                        <span>&times;</span>
+                        <span>&checkmark;</span>
+                    </div>
+                </div>
+
+                <div class="pricing-grid">
+                    <div class="pricing-card" data-plan-cycle="monthly">
+                        <div class="plan-name">Monthly</div>
+                        <div class="plan-price">₦3,000</div>
+                        <div class="plan-meta">Per Month</div>
+                        <button class="btn btn-secondary select-plan-btn">Choose Monthly</button>
+                    </div>
+                    <div class="pricing-card popular" data-plan-cycle="bi-annual">
+                        <div class="plan-badge">Most Popular</div>
+                        <div class="plan-name">Bi-Annual</div>
+                        <div class="plan-price">₦7,500</div>
+                        <div class="plan-meta">Save 58%</div>
+                        <button class="btn btn-primary select-plan-btn">Choose Bi-Annual</button>
+                    </div>
+                    <div class="pricing-card" data-plan-cycle="annual">
+                        <div class="plan-badge best-value">Best Value</div>
+                        <div class="plan-name">Annual</div>
+                        <div class="plan-price">₦12,000</div>
+                        <div class="plan-meta">Save 66%</div>
+                        <button class="btn btn-secondary select-plan-btn">Choose Annual</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Generic Confirmation Modal -->
+        <div class="auth-modal hidden" id="confirmModal" role="dialog" aria-modal="true">
+            <div class="auth-modal-card confirm-modal-card">
+                <h3 id="confirmTitle">Confirm Action</h3>
+                <p id="confirmMessage">Are you sure you want to proceed?</p>
+                <div class="button-row">
+                    <button class="btn btn-ghost" id="confirmCancelBtn">Cancel</button>
+                    <button class="btn btn-primary" id="confirmOkBtn">Confirm</button>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

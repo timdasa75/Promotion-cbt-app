@@ -23,6 +23,88 @@ import { showScreen } from "./ui/screen.js";
 
 export { showScreen, showError, showSuccess, showWarning };
 
+let confirmPromiseResolve = null;
+let confirmBindingsInitialized = false;
+let confirmLastFocusedElement = null;
+
+export function openPricingModal() {
+  const modal = document.getElementById("pricingModal");
+  if (modal) modal.classList.remove("hidden");
+}
+
+function getConfirmModalElements() {
+  return {
+    modal: document.getElementById("confirmModal"),
+    titleEl: document.getElementById("confirmTitle"),
+    messageEl: document.getElementById("confirmMessage"),
+    okBtn: document.getElementById("confirmOkBtn"),
+    cancelBtn: document.getElementById("confirmCancelBtn"),
+  };
+}
+
+function initializeConfirmBindings() {
+  if (confirmBindingsInitialized) return;
+
+  const { modal, okBtn, cancelBtn } = getConfirmModalElements();
+  if (!modal || !okBtn || !cancelBtn) return;
+
+  okBtn.addEventListener("click", () => closeConfirm(true));
+  cancelBtn.addEventListener("click", () => closeConfirm(false));
+  modal.addEventListener("click", (event) => {
+    if (event.target === modal) closeConfirm(false);
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !modal.classList.contains("hidden")) {
+      closeConfirm(false);
+    }
+  });
+
+  confirmBindingsInitialized = true;
+}
+
+export function showConfirm({ title, message, okText = "Confirm", cancelText = "Cancel" }) {
+  const { modal, titleEl, messageEl, okBtn, cancelBtn } = getConfirmModalElements();
+
+  if (!modal || !titleEl || !messageEl || !okBtn || !cancelBtn) {
+    return Promise.resolve(window.confirm(message));
+  }
+
+  initializeConfirmBindings();
+
+  if (confirmPromiseResolve) {
+    const resolvePending = confirmPromiseResolve;
+    confirmPromiseResolve = null;
+    resolvePending(false);
+  }
+
+  confirmLastFocusedElement =
+    document.activeElement instanceof HTMLElement ? document.activeElement : null;
+
+  titleEl.textContent = title;
+  messageEl.textContent = message;
+  okBtn.textContent = okText;
+  cancelBtn.textContent = cancelText;
+
+  modal.classList.remove("hidden");
+  okBtn.focus();
+
+  return new Promise((resolve) => {
+    confirmPromiseResolve = resolve;
+  });
+}
+
+export function closeConfirm(result = false) {
+  const { modal } = getConfirmModalElements();
+  if (modal) modal.classList.add("hidden");
+  if (confirmPromiseResolve) {
+    const resolvePending = confirmPromiseResolve;
+    confirmPromiseResolve = null;
+    resolvePending(Boolean(result));
+  }
+  confirmLastFocusedElement?.focus?.();
+  confirmLastFocusedElement = null;
+}
+
 
 function clearStudyFiltersForTopic(topic) {
   if (!topic || typeof topic !== "object") return;

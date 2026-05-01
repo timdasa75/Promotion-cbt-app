@@ -16,11 +16,13 @@ import { DEFAULT_MOCK_EXAM_TEMPLATE_ID } from "./mockExamTemplates.js";
 import {
   applySessionSetupCopy,
   displayTopics,
+  openPricingModal,
   selectTopic,
   showError,
   showScreen,
   showSuccess,
   showWarning,
+  showConfirm
 } from "./ui.js";
 import {
   clearPersistedQuizRuntime,
@@ -3263,7 +3265,7 @@ async function handleTopicSelect(topic, options = {}) {
     return;
   }
   if (!isTopicUnlocked(topic)) {
-    showWarning("This topic is locked on Free plan. Upgrade to access all topics.");
+    openPremiumModal();
     return;
   }
 
@@ -3388,9 +3390,23 @@ function openAuthModal(mode = "login") {
 
 function closeAuthModal() {
   const modal = document.getElementById("authModal");
-  if (!modal) return;
-  modal.classList.add("hidden");
+  if (modal) modal.classList.add("hidden");
   setAuthMessage("");
+}
+
+function openPremiumModal() {
+  const modal = document.getElementById("premiumModal");
+  if (modal) modal.classList.remove("hidden");
+}
+
+function closePremiumModal() {
+  const modal = document.getElementById("premiumModal");
+  if (modal) modal.classList.add("hidden");
+}
+
+function closePricingModal() {
+  const modal = document.getElementById("pricingModal");
+  if (modal) modal.classList.add("hidden");
 }
 
 function setMigrationMessage(message = "", type = "error") {
@@ -3886,6 +3902,20 @@ function updateAuthUI() {
   updateProfileDataSyncUI();
   renderFeedbackUiState();
   refreshUserUpgradeStatus().catch(() => {});
+  renderPremiumCTA();
+}
+
+function renderPremiumCTA() {
+  const user = getCurrentUser();
+  const isFree = user && user.plan !== "premium" && !isCurrentUserAdmin();
+
+  const headerUpgradeBtn = document.getElementById("headerUpgradeBtn");
+  const premiumCtaCard = document.getElementById("premiumCtaCard");
+  const resultsPremiumCta = document.getElementById("resultsPremiumCta");
+
+  if (headerUpgradeBtn) headerUpgradeBtn.classList.toggle("hidden", !isFree);
+  if (premiumCtaCard) premiumCtaCard.classList.toggle("hidden", !isFree);
+  if (resultsPremiumCta) resultsPremiumCta.classList.toggle("hidden", !isFree);
 }
 
 function renderAdminOverrides() {
@@ -5072,7 +5102,11 @@ function renderAdminUserDirectory() {
       const confirmMessage = isDeactivateFlow
         ? `Deactivate ${targetLabel}? They will no longer be able to login.`
         : `Reactivate ${targetLabel}? They will regain access.`;
-      const confirmed = confirm(confirmMessage);
+      const confirmed = await showConfirm({
+        title: isDeactivateFlow ? "Deactivate User" : "Activate User",
+        message: confirmMessage,
+        okText: isDeactivateFlow ? "Deactivate" : "Activate"
+      });
       if (!confirmed) return;
     }
     if (action === "resend-verification" && isEmailVerified) {
@@ -5818,7 +5852,12 @@ function initializeAuthUI() {
         showWarning("Admin access is restricted.");
         return;
       }
-      if (!confirm("Clear all operation history entries on this device?")) {
+      const confirmed = await showConfirm({
+        title: "Clear History",
+        message: "Clear all operation history entries on this device?",
+        okText: "Clear History"
+      });
+      if (!confirmed) {
         return;
       }
   try {
@@ -5854,6 +5893,57 @@ function initializeAuthUI() {
         sourceScreen: "help",
         defaultCategory: "",
       });
+    });
+  }
+
+  const handleUpgradeClick = () => {
+    closePremiumModal();
+    openPricingModal();
+  };
+
+  const handlePlanSelect = (cycle) => {
+    closePricingModal();
+    const cycleSelect = document.getElementById("upgradeBillingCycle");
+    if (cycleSelect) cycleSelect.value = cycle;
+    showScreen("profileScreen");
+    setTimeout(() => {
+      document.getElementById("upgradePaymentReference")?.focus();
+    }, 300);
+  };
+
+  const headerUpgradeBtn = document.getElementById("headerUpgradeBtn");
+  if (headerUpgradeBtn) headerUpgradeBtn.addEventListener("click", handleUpgradeClick);
+
+  const dashboardUpgradeBtn = document.getElementById("dashboardUpgradeBtn");
+  if (dashboardUpgradeBtn) dashboardUpgradeBtn.addEventListener("click", handleUpgradeClick);
+
+  const resultsUpgradeBtn = document.getElementById("resultsUpgradeBtn");
+  if (resultsUpgradeBtn) resultsUpgradeBtn.addEventListener("click", handleUpgradeClick);
+
+  const premiumExplorePlansBtn = document.getElementById("premiumExplorePlansBtn");
+  if (premiumExplorePlansBtn) premiumExplorePlansBtn.addEventListener("click", handleUpgradeClick);
+
+  const pricingCloseBtn = document.getElementById("pricingCloseBtn");
+  if (pricingCloseBtn) pricingCloseBtn.addEventListener("click", closePricingModal);
+
+  const selectPlanBtns = document.querySelectorAll(".select-plan-btn");
+  selectPlanBtns.forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      const cycle = e.target.closest(".pricing-card")?.dataset.planCycle;
+      if (cycle) handlePlanSelect(cycle);
+    });
+  });
+
+  const premiumMaybeLaterBtn = document.getElementById("premiumMaybeLaterBtn");
+  if (premiumMaybeLaterBtn) premiumMaybeLaterBtn.addEventListener("click", closePremiumModal);
+
+  const premiumCloseBtn = document.getElementById("premiumCloseBtn");
+  if (premiumCloseBtn) premiumCloseBtn.addEventListener("click", closePremiumModal);
+
+  const premiumModal = document.getElementById("premiumModal");
+  if (premiumModal) {
+    premiumModal.addEventListener("click", (event) => {
+      if (event.target === premiumModal) closePremiumModal();
     });
   }
 
@@ -6101,6 +6191,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   document.addEventListener("screenchange", (event) => {
     persistScreenState(event?.detail?.screenId);
     renderFeedbackUiState();
+    renderPremiumCTA();
     if (
       event?.detail?.screenId === "topicSelectionScreen" ||
       event?.detail?.screenId === "analyticsScreen" ||

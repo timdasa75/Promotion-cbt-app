@@ -15,6 +15,8 @@
     --ok: #027a48;
     --ok-bg: #ecfdf3;
     --line: #d0d9d4;
+    --accent-secondary: #ffc107;
+    --accent-premium: #c4eed0;
     --card: #ffffff;
     --shadow: 0 12px 32px rgba(11, 107, 58, 0.1);
     --radius: 14px;
@@ -6542,5 +6544,163 @@ select:focus-visible,
     #quizScreen .quiz-actions-left .btn,
     #quizScreen .quiz-actions-right .btn {
         flex-basis: 100%;
+    }
+}
+
+/* Pricing Modal & Plan Cards */
+.pricing-modal-card {
+    width: min(100%, 800px) !important;
+    padding: var(--space-4) !important;
+}
+
+.pricing-header {
+    text-align: center;
+    margin-bottom: var(--space-4);
+}
+
+.pricing-header h2 {
+    font-size: 2rem;
+    color: var(--green-900);
+    margin: 0;
+}
+
+.pricing-header p {
+    color: var(--ink-700);
+    margin: 8px 0 0;
+}
+
+.pricing-comparison {
+    background: color-mix(in srgb, var(--green-700) 5%, var(--card));
+    border-radius: 12px;
+    padding: var(--space-2);
+    margin-bottom: var(--space-4);
+    border: 1px solid var(--line);
+}
+
+.comparison-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1.2fr;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--line);
+    font-size: 0.9rem;
+    align-items: center;
+}
+
+.comparison-row:last-child {
+    border-bottom: none;
+}
+
+.comparison-row.head {
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--ink-500);
+    font-size: 0.75rem;
+}
+
+.comparison-row .highlight {
+    color: var(--green-900);
+    font-weight: 800;
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-3);
+}
+
+.pricing-card {
+    position: relative;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: var(--space-3);
+    text-align: center;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: var(--space-2);
+}
+
+.pricing-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--green-700);
+    box-shadow: var(--shadow);
+}
+
+.pricing-card.popular {
+    border: 2px solid var(--green-700);
+    background: linear-gradient(180deg, var(--card), color-mix(in srgb, var(--green-700) 8%, var(--card)));
+}
+
+.plan-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--green-700);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.plan-badge.best-value {
+    background: var(--gold);
+    color: #000;
+}
+
+.plan-name {
+    font-weight: 800;
+    color: var(--ink-900);
+    font-size: 1.1rem;
+}
+
+.plan-price {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--green-900);
+}
+
+.plan-meta {
+    font-size: 0.8rem;
+    color: var(--ink-500);
+    margin-bottom: var(--space-2);
+}
+
+/* Confirm Modal */
+.confirm-modal-card {
+    width: min(100%, 420px) !important;
+    text-align: center;
+    padding: var(--space-4) !important;
+}
+
+.confirm-modal-card h3 {
+    margin: 0 0 12px;
+    color: var(--ink-900);
+    font-size: 1.25rem;
+}
+
+.confirm-modal-card p {
+    color: var(--ink-700);
+    margin-bottom: var(--space-4);
+    line-height: 1.5;
+}
+
+.confirm-modal-card .button-row {
+    justify-content: center;
+    gap: var(--space-2);
+}
+
+@media (max-width: 600px) {
+    .pricing-comparison {
+        display: none; /* Hide detailed comparison on small mobiles to save space */
+    }
+    .pricing-modal-card {
+        padding: var(--space-2) !important;
     }
 }
