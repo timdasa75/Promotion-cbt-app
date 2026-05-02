@@ -470,6 +470,8 @@ export async function displayTopics(topics, onSelect) {
           showWarning(
             `Free mock exam is available weekly. Next free attempt ${nextDate ? `on ${nextDate}` : "soon"}. Upgrade for unlimited mock exams.`,
           );
+        } else if (onSelect) {
+          onSelect(topic, selectionOptions);
         } else {
           showWarning("This topic is locked on Free plan. Upgrade to access all topics.");
         }
