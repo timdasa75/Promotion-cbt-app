@@ -6,6 +6,7 @@ import {
   buildRecentScoreSignal,
   buildSubcategoryInsights,
   buildTimingSignal,
+  buildTopicMastery,
   classifyRecommendationPattern,
   formatDifficultyLabel,
   formatGlBandLabel,
@@ -219,4 +220,46 @@ test("analytics shared latest mock weak topic only considers mock-attempt source
   assert.equal(weakest?.topicId, "topic_c");
   assert.equal(getLatestMockWeakTopic(mockAttempt, "study_topic"), null);
   assert.equal(getLatestMockWeakTopic({ topicId: "mock_exam", sourceTopicBreakdown: [] }, "mock_exam"), null);
+});
+
+
+test("analytics shared topic mastery merges direct topic attempts with mock source breakdowns", () => {
+  const topics = [
+    { id: "psr", name: "Public Service Rules" },
+    { id: "proc", name: "Public Procurement" },
+    { id: "ignored", name: "Ignored Topic" },
+  ];
+  const attempts = [
+    { topicId: "psr", topicName: "Public Service Rules", scorePercentage: 60 },
+    {
+      topicId: "mock_exam",
+      sourceTopicBreakdown: [
+        { topicId: "psr", topicName: "Public Service Rules", accuracy: 80 },
+        { topicId: "proc", topicName: "Public Procurement", accuracy: 40 },
+      ],
+    },
+    { topicId: "ignored", topicName: "Ignored Topic", scorePercentage: 99 },
+  ];
+
+  const mastery = buildTopicMastery(attempts, {
+    topics,
+    isIncludedTopicId: (topicId) => topicId !== "ignored",
+    getFallbackTopicName: (topicId) => `Fallback ${topicId}`,
+    mockExamTopicId: "mock_exam",
+  });
+
+  assert.deepEqual(mastery, [
+    {
+      topicId: "psr",
+      topicName: "Public Service Rules",
+      averageScore: 70,
+      attempts: 2,
+    },
+    {
+      topicId: "proc",
+      topicName: "Public Procurement",
+      averageScore: 40,
+      attempts: 1,
+    },
+  ]);
 });

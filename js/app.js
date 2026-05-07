@@ -18,6 +18,7 @@ import {
   buildRecentScoreSignal,
   buildSubcategoryInsights,
   buildTimingSignal,
+  buildTopicMastery,
   classifyRecommendationPattern,
   formatDifficultyLabel,
   formatGlBandLabel,
@@ -1209,57 +1210,6 @@ function buildWeeklyConsistency(attempts = []) {
   return days;
 }
 
-function buildTopicMastery(attempts = []) {
-  const byTopic = new Map();
-
-  const recordTopicScore = (topicId, topicName, score) => {
-    if (!isCoreAnalyticsTopicId(topicId)) return;
-    const numericScore = Number(score);
-    if (!Number.isFinite(numericScore)) return;
-
-    const existing = byTopic.get(topicId) || {
-      topicId,
-      topicName: topicName || getTopicNameById(topicId),
-      scoreTotal: 0,
-      attempts: 0,
-    };
-    existing.topicName = topicName || existing.topicName;
-    existing.scoreTotal += numericScore;
-    existing.attempts += 1;
-    byTopic.set(topicId, existing);
-  };
-
-  attempts.forEach((attempt) => {
-    const topicId = String(attempt?.topicId || "").trim();
-    const sourceBreakdown = Array.isArray(attempt?.sourceTopicBreakdown)
-      ? attempt.sourceTopicBreakdown
-      : [];
-
-    if (topicId === MOCK_EXAM_TOPIC_ID && sourceBreakdown.length) {
-      sourceBreakdown.forEach((entry) => {
-        recordTopicScore(entry?.topicId, entry?.topicName, entry?.accuracy);
-      });
-      return;
-    }
-
-    recordTopicScore(topicId, attempt?.topicName, attempt?.scorePercentage);
-  });
-
-  return allTopics
-    .filter((topic) => isCoreAnalyticsTopicId(topic?.id))
-    .map((topic) => {
-      const entry = byTopic.get(topic.id);
-      const attemptsCount = Number(entry?.attempts || 0);
-      return {
-        topicId: topic.id,
-        topicName: topic.name || entry?.topicName || topic.id,
-        averageScore: attemptsCount
-          ? Math.round(entry.scoreTotal / attemptsCount)
-          : null,
-        attempts: attemptsCount,
-      };
-    });
-}
 
 
 
@@ -1726,7 +1676,12 @@ function buildAnalyticsSnapshot(attempts = []) {
   const latestAttempt = totalAttempts ? attempts[totalAttempts - 1] : null;
   const trendItems = buildTrendItems(attempts);
   const weeklyConsistency = buildWeeklyConsistency(attempts);
-  const topicMastery = buildTopicMastery(attempts);
+  const topicMastery = buildTopicMastery(attempts, {
+    topics: allTopics,
+    isIncludedTopicId: isCoreAnalyticsTopicId,
+    getFallbackTopicName: getTopicNameById,
+    mockExamTopicId: MOCK_EXAM_TOPIC_ID,
+  });
   const weakestTopic =
     [...topicMastery]
       .filter((entry) => entry.averageScore !== null)

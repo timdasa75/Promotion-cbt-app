@@ -234,3 +234,68 @@ export function getLatestMockWeakTopic(attempt, mockExamTopicId = "") {
       Number(right?.total || 0) - Number(left?.total || 0),
   )[0] || null;
 }
+
+
+export function buildTopicMastery(
+  attempts = [],
+  {
+    topics = [],
+    isIncludedTopicId = () => true,
+    getFallbackTopicName = (topicId) => topicId,
+    mockExamTopicId = "",
+  } = {},
+) {
+  const byTopic = new Map();
+  const safeTopics = Array.isArray(topics) ? topics : [];
+
+  const recordTopicScore = (topicId, topicName, score) => {
+    const normalizedTopicId = String(topicId || "").trim();
+    if (!normalizedTopicId || !isIncludedTopicId(normalizedTopicId)) return;
+
+    const numericScore = Number(score);
+    if (!Number.isFinite(numericScore)) return;
+
+    const existing = byTopic.get(normalizedTopicId) || {
+      topicId: normalizedTopicId,
+      topicName: topicName || getFallbackTopicName(normalizedTopicId),
+      scoreTotal: 0,
+      attempts: 0,
+    };
+    existing.topicName = topicName || existing.topicName;
+    existing.scoreTotal += numericScore;
+    existing.attempts += 1;
+    byTopic.set(normalizedTopicId, existing);
+  };
+
+  attempts.forEach((attempt) => {
+    const topicId = String(attempt?.topicId || "").trim();
+    const sourceBreakdown = Array.isArray(attempt?.sourceTopicBreakdown)
+      ? attempt.sourceTopicBreakdown
+      : [];
+
+    if (topicId === String(mockExamTopicId || "").trim() && sourceBreakdown.length) {
+      sourceBreakdown.forEach((entry) => {
+        recordTopicScore(entry?.topicId, entry?.topicName, entry?.accuracy);
+      });
+      return;
+    }
+
+    recordTopicScore(topicId, attempt?.topicName, attempt?.scorePercentage);
+  });
+
+  return safeTopics
+    .filter((topic) => isIncludedTopicId(topic?.id))
+    .map((topic) => {
+      const normalizedTopicId = String(topic?.id || "").trim();
+      const entry = byTopic.get(normalizedTopicId);
+      const attemptsCount = Number(entry?.attempts || 0);
+      return {
+        topicId: normalizedTopicId,
+        topicName: topic?.name || entry?.topicName || normalizedTopicId,
+        averageScore: attemptsCount
+          ? Math.round(entry.scoreTotal / attemptsCount)
+          : null,
+        attempts: attemptsCount,
+      };
+    });
+}
