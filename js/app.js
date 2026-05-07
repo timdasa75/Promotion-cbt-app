@@ -83,6 +83,19 @@ import {
   getPreferredRecommendedTopic,
 } from "./appRecommendations.js";
 import { initializeThemeShortcut, initializeThemeToggle } from "./app/theme.js";
+import {
+  applyReviewMistakeFilters,
+  getReviewMistakeDifficultyLabel,
+  getReviewMistakeDifficultyValue,
+  getReviewMistakeFilterOptions,
+  getReviewMistakeOptionPresentation,
+  getReviewMistakePreviousResponse,
+  getReviewMistakeSubcategoryLabel,
+  getReviewMistakeTopicKey,
+  getReviewMistakeTopicLabel,
+  renderReviewMistakeInlineMarkdown,
+  renderReviewMistakesEmptyState,
+} from "./appReviewMistakes.js";
 import { setToolbarIcon } from "./app/toolbar.js";
 import { createMockSetupController } from "./app/mockSetup.js";
 import {
@@ -1264,164 +1277,6 @@ function resetReviewMistakesFilters() {
   reviewMistakesFilters = { ...REVIEW_MISTAKES_DEFAULT_FILTERS };
 }
 
-function getReviewMistakeTopicKey(entry) {
-  return String(entry?.sourceTopicId || entry?.question?.sourceTopicId || entry?.sourceTopicName || "").trim();
-}
-
-function getReviewMistakeTopicLabel(entry) {
-  return String(entry?.sourceTopicName || getTopicNameById(getReviewMistakeTopicKey(entry)) || "Mixed Queue").trim();
-}
-
-function getReviewMistakeSubcategoryLabel(question = {}) {
-  return String(
-    question?.sourceSubcategoryName ||
-      question?.sourceSection ||
-      question?.topic ||
-      "",
-  ).trim();
-}
-
-function getReviewMistakeDifficultyValue(question = {}) {
-  return String(question?.difficulty || "").trim().toLowerCase();
-}
-
-function getReviewMistakeDifficultyLabel(question = {}) {
-  return formatDifficultyLabel(getReviewMistakeDifficultyValue(question));
-}
-
-function getReviewMistakeFilterOptions(entries = []) {
-  const topicMap = new Map();
-  const subcategorySet = new Set();
-  const difficultySet = new Set();
-
-  entries.forEach((entry) => {
-    const question = entry?.question || {};
-    const topicKey = getReviewMistakeTopicKey(entry);
-    const topicLabel = getReviewMistakeTopicLabel(entry);
-    if (topicKey && topicLabel && !topicMap.has(topicKey)) {
-      topicMap.set(topicKey, topicLabel);
-    }
-
-    const subcategory = getReviewMistakeSubcategoryLabel(question);
-    if (subcategory) {
-      subcategorySet.add(subcategory);
-    }
-
-    const difficulty = getReviewMistakeDifficultyValue(question);
-    if (difficulty) {
-      difficultySet.add(difficulty);
-    }
-  });
-
-  return {
-    topics: Array.from(topicMap.entries())
-      .sort((left, right) => left[1].localeCompare(right[1]))
-      .map(([value, label]) => ({ value, label })),
-    subcategories: Array.from(subcategorySet)
-      .sort((left, right) => left.localeCompare(right))
-      .map((value) => ({ value, label: value })),
-    difficulties: Array.from(difficultySet)
-      .sort((left, right) => left.localeCompare(right))
-      .map((value) => ({ value, label: formatDifficultyLabel(value) || value })),
-  };
-}
-
-function applyReviewMistakeFilters(entries = []) {
-  return entries.filter((entry) => {
-    const question = entry?.question || {};
-    if (reviewMistakesFilters.topic !== "all" && getReviewMistakeTopicKey(entry) !== reviewMistakesFilters.topic) {
-      return false;
-    }
-    if (
-      reviewMistakesFilters.subcategory !== "all" &&
-      getReviewMistakeSubcategoryLabel(question) !== reviewMistakesFilters.subcategory
-    ) {
-      return false;
-    }
-    if (
-      reviewMistakesFilters.difficulty !== "all" &&
-      getReviewMistakeDifficultyValue(question) !== reviewMistakesFilters.difficulty
-    ) {
-      return false;
-    }
-    return true;
-  });
-}
-
-function renderReviewMistakeInlineMarkdown(text, fallback = "") {
-  const value = String(text || fallback || "").trim() || String(fallback || "").trim();
-  return String(parseMarkdown(value || ""))
-    .replace(/^<p>/, "")
-    .replace(/<\/p>$/, "");
-}
-
-function getReviewMistakeOptionPresentation(question = {}, answerIndex = null) {
-  const normalizedIndex = Number(answerIndex);
-  const options = Array.isArray(question?.options) ? question.options : [];
-  if (!Number.isInteger(normalizedIndex) || normalizedIndex < 0 || normalizedIndex >= options.length) {
-    return {
-      text: "Answer choice unavailable.",
-      html: "<p>Answer choice unavailable.</p>",
-    };
-  }
-  const optionLetter = String.fromCharCode(65 + normalizedIndex);
-  const optionText = String(options[normalizedIndex] || "").trim();
-  const text = optionText ? `Option ${optionLetter} - ${optionText}` : `Option ${optionLetter}`;
-  return {
-    text,
-    html: parseMarkdown(text),
-  };
-}
-
-function getReviewMistakePreviousResponse(entry) {
-  const question = entry?.question || {};
-  const wasUnanswered = String(entry?.lastOutcome || "").trim().toLowerCase() === "unanswered";
-  if (wasUnanswered) {
-    return {
-      title: "Previous Response",
-      html: "<p>This question was left unanswered in a prior session.</p>",
-    };
-  }
-
-  if (!Number.isInteger(entry?.lastUserAnswerIndex)) {
-    return {
-      title: "Previous Response",
-      html: "<p>This miss was saved before answer capture was added, so only the question is available.</p>",
-    };
-  }
-
-  return {
-    title: "Previous Response",
-    html: getReviewMistakeOptionPresentation(question, entry.lastUserAnswerIndex).html,
-  };
-}
-
-function renderReviewMistakesEmptyState({ title, body, primaryAction, secondaryAction = null }) {
-  const actions = [primaryAction, secondaryAction]
-    .filter(Boolean)
-    .map(
-      (action) => `
-        <button
-          class="btn ${escapeHtml(action.variant || "btn-secondary") }"
-          data-review-action="${escapeHtml(action.action)}"
-          type="button"
-        >${escapeHtml(action.label)}</button>
-      `,
-    )
-    .join("");
-
-  return `
-    <article class="mistake-item review-mistake-card review-mistakes-empty review-mistake-case review-mistake-case-primary">
-      <p class="eyebrow">Review Queue</p>
-      <h3>${escapeHtml(title)}</h3>
-      <p>${escapeHtml(body)}</p>
-      <div class="button-row compact-actions review-mistake-actions">
-        ${actions}
-      </div>
-    </article>
-  `;
-}
-
 function renderReviewMistakesScreen() {
   const user = getCurrentUser();
   const intro = document.getElementById("reviewMistakesIntro");
@@ -1435,7 +1290,10 @@ function renderReviewMistakesScreen() {
   if (!list) return;
 
   const queueEntries = user ? getRetryMissedQueueSnapshot(80) : [];
-  const filterOptions = getReviewMistakeFilterOptions(queueEntries);
+  const filterOptions = getReviewMistakeFilterOptions(queueEntries, {
+    getTopicNameById,
+    formatDifficultyLabel,
+  });
 
   fillSelectOptions(topicFilter, filterOptions.topics, {
     selectedValue: reviewMistakesFilters.topic,
@@ -1460,7 +1318,7 @@ function renderReviewMistakesScreen() {
     select.disabled = queueEntries.length === 0;
   });
 
-  const filteredEntries = applyReviewMistakeFilters(queueEntries);
+  const filteredEntries = applyReviewMistakeFilters(queueEntries, reviewMistakesFilters);
   const hasActiveFilters = Object.values(reviewMistakesFilters).some((value) => value !== "all");
 
   if (startBtn) {
@@ -1523,7 +1381,7 @@ function renderReviewMistakesScreen() {
       body: "Login or create an account to keep missed questions, retry them later, and sync the queue across devices.",
       primaryAction: { action: "open-login", label: "Login or Register", variant: "btn-primary" },
       secondaryAction: { action: "open-dashboard", label: "Back to Dashboard", variant: "btn-ghost" },
-    });
+    }, { escapeHtml });
     return;
   }
 
@@ -1533,7 +1391,7 @@ function renderReviewMistakesScreen() {
       body: "Complete a scored Practice or Timed Topic Test session and any incorrect or unanswered items will appear here for follow-up.",
       primaryAction: { action: "open-dashboard", label: "Start a Scored Session", variant: "btn-primary" },
       secondaryAction: { action: "open-analytics", label: "Open Analytics", variant: "btn-secondary" },
-    });
+    }, { escapeHtml });
     return;
   }
 
@@ -1543,20 +1401,20 @@ function renderReviewMistakesScreen() {
       body: "Clear one or more filters to reveal the rest of your retry queue.",
       primaryAction: { action: "clear-filters", label: "Clear Filters", variant: "btn-primary" },
       secondaryAction: { action: "retry-queue", label: "Start Retry Session", variant: "btn-secondary" },
-    });
+    }, { escapeHtml });
     return;
   }
 
   list.innerHTML = filteredEntries
     .map((entry, index) => {
       const question = entry?.question || {};
-      const topicLabel = getReviewMistakeTopicLabel(entry);
+      const topicLabel = getReviewMistakeTopicLabel(entry, { getTopicNameById });
       const subcategoryLabel = getReviewMistakeSubcategoryLabel(question);
-      const difficultyLabel = getReviewMistakeDifficultyLabel(question);
+      const difficultyLabel = getReviewMistakeDifficultyLabel(question, { formatDifficultyLabel });
       const relativeLabel = formatRelativeTime(entry.updatedAt);
       const statusLabel = relativeLabel ? `Missed ${relativeLabel}` : `Reviewed ${formatDateTime(entry.updatedAt)}`;
-      const previousResponse = getReviewMistakePreviousResponse(entry);
-      const correctResponse = getReviewMistakeOptionPresentation(question, question?.correct);
+      const previousResponse = getReviewMistakePreviousResponse(entry, { parseMarkdown });
+      const correctResponse = getReviewMistakeOptionPresentation(question, question?.correct, { parseMarkdown });
       const explanationHtml = parseMarkdown(
         normalizeExplanationText(String(question?.explanation || "").trim()),
       );
@@ -1577,7 +1435,7 @@ function renderReviewMistakesScreen() {
             <span class="hero-meta">${escapeHtml(statusLabel)}</span>
           </div>
           <div class="review-question-body">
-            <h3>${renderReviewMistakeInlineMarkdown(question?.question, "Question text unavailable.")}</h3>
+            <h3>${renderReviewMistakeInlineMarkdown(question?.question, { fallback: "Question text unavailable.", parseMarkdown })}</h3>
             ${
               sourceMetaParts.length
                 ? `<p class="hero-meta">${escapeHtml(sourceMetaParts.join(" | "))}</p>`
