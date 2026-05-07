@@ -34,8 +34,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Validate taxonomy integrity and metadata coverage
-        run: python3 scripts/validate_taxonomy.py --strict-duplicates --strict-metadata
+      - name: Validate public taxonomy metadata and linked assets
+        run: python3 scripts/validate_taxonomy.py --strict-duplicates --strict-metadata --allow-missing-topic-files
 
       - name: Run unit tests
         run: npm run test:unit

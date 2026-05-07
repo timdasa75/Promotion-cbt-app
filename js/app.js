@@ -71,7 +71,7 @@ import {
 } from "./quiz.js";
 import { escapeHtml, normalizeExplanationText, parseMarkdown } from "./quiz/formatting.js";
 import { debugLog } from "./logger.js";
-import { calculateStreakDays, getWeakestTopicId } from "./metrics.js";
+import { buildAnalyticsSnapshot, getAnalyticsReadinessState } from "./appAnalytics.js";
 import { initializeThemeShortcut, initializeThemeToggle } from "./app/theme.js";
 import { setToolbarIcon } from "./app/toolbar.js";
 import { createMockSetupController } from "./app/mockSetup.js";
@@ -1577,123 +1577,6 @@ function buildDashboardSetupSuggestion(topic, insights) {
   };
 }
 
-function buildAnalyticsSnapshot(attempts = []) {
-  const totalAttempts = attempts.length;
-  const averageScore =
-    totalAttempts > 0
-      ? Math.round(
-          attempts.reduce(
-            (sum, attempt) => sum + Number(attempt?.scorePercentage || 0),
-            0,
-          ) / totalAttempts,
-        )
-      : null;
-  const streakDays = calculateStreakDays(attempts);
-  const latestAttempt = totalAttempts ? attempts[totalAttempts - 1] : null;
-  const trendItems = buildTrendItems(attempts, {
-    getHeadline: (attempt) => getAttemptHeadline(attempt, {
-      mockExamTopicId: MOCK_EXAM_TOPIC_ID,
-      getTopicNameById,
-    }),
-    getTopicLabel: (attempt) => getAttemptTopicLabel(attempt, {
-      mockExamTopicId: MOCK_EXAM_TOPIC_ID,
-      getTopicNameById,
-    }),
-    getWhenLabel: (attempt) => formatRelativeTime(attempt?.createdAt) || formatDateTime(attempt?.createdAt),
-  });
-  const weeklyConsistency = buildWeeklyConsistency(attempts, {
-    getDayLabel: (date) => date.toLocaleDateString(undefined, { weekday: "short" }),
-    getDateLabel: (date) => date.toLocaleDateString(undefined, { month: "short", day: "numeric" }),
-    getClassName: getActivityTrafficClass,
-  });
-  const topicMastery = buildTopicMastery(attempts, {
-    topics: allTopics,
-    isIncludedTopicId: isCoreAnalyticsTopicId,
-    getFallbackTopicName: getTopicNameById,
-    mockExamTopicId: MOCK_EXAM_TOPIC_ID,
-  });
-  const weakestTopic =
-    [...topicMastery]
-      .filter((entry) => entry.averageScore !== null)
-      .sort(
-        (left, right) =>
-          left.averageScore - right.averageScore ||
-          right.attempts - left.attempts ||
-          left.topicName.localeCompare(right.topicName),
-      )[0] || null;
-  const fallbackWeakestId = getWeakestTopicId(attempts);
-  const recommendedTopicId =
-    weakestTopic?.topicId ||
-    (isCoreAnalyticsTopicId(fallbackWeakestId) ? fallbackWeakestId : null);
-  const weakestSubcategory = buildSubcategoryInsights(attempts)[0] || null;
-  const weakestDifficulty = buildDifficultyInsights(attempts)[0] || null;
-  const latestMockWeakTopic = getLatestMockWeakTopic(latestAttempt, MOCK_EXAM_TOPIC_ID);
-  const recentScoreSignal = buildRecentScoreSignal(attempts);
-  const latestTimingSignal = getAttemptTimingSignal(latestAttempt);
-  const recommendation = buildRecommendation({
-    attempts,
-    totalAttempts,
-    latestAttempt,
-    weakestTopic,
-    weakestSubcategory,
-    weakestDifficulty,
-    latestMockWeakTopic,
-    recentScoreSignal,
-    latestTimingSignal,
-  });
-
-  return {
-    attempts,
-    totalAttempts,
-    averageScore,
-    streakDays,
-    latestAttempt,
-    trendItems,
-    weeklyConsistency,
-    topicMastery,
-    weakestTopic,
-    weakestSubcategory,
-    weakestDifficulty,
-    latestMockWeakTopic,
-    recentScoreSignal,
-    latestTimingSignal,
-    recommendedTopicId,
-    recommendation,
-  };
-}
-
-function getAnalyticsReadinessState(insights) {
-  if (!insights?.totalAttempts) {
-    return {
-      tone: "low",
-      title: "Build your first baseline",
-      body: "Complete a scored session to unlock readiness signals and a clearer next step.",
-    };
-  }
-
-  const averageScore = Number(insights.averageScore ?? 0);
-  if (averageScore >= 75 && insights.streakDays >= 3) {
-    return {
-      tone: "high",
-      title: "Ready for exam-style drills",
-      body: "Your recent scores and consistency are strong enough for more timed reinforcement.",
-    };
-  }
-
-  if (averageScore >= 60) {
-    return {
-      tone: "medium",
-      title: "Solid foundation, keep tightening weak areas",
-      body: "You are building a good base, but the weakest topics still need guided reinforcement.",
-    };
-  }
-
-  return {
-    tone: "low",
-    title: "Rebuild weak areas before timed pressure",
-    body: "Use practice and review to lift weak areas before leaning too hard on timed sessions.",
-  };
-}
 
 function renderSupportStateCards(insights = null) {
   const attemptsMeta = document.getElementById("stateAttemptsMeta");

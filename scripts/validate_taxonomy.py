@@ -227,6 +227,11 @@ def main():
         action="store_true",
         help="Fail when required question metadata fields are missing",
     )
+    parser.add_argument(
+        "--allow-missing-topic-files",
+        action="store_true",
+        help="Treat missing topic bank source files as warnings so public metadata-only clones can still validate",
+    )
     args = parser.parse_args()
 
     topics_doc = load_json(TOPICS_FILE)
@@ -261,7 +266,11 @@ def main():
         qcount = 0
 
         if not path.exists():
-            add_error(errors, f"Topic '{tid}' references missing file: {file_path}")
+            message = f"Topic '{tid}' references missing file: {file_path}"
+            if args.allow_missing_topic_files:
+                add_warning(warnings, f"{message} (skipped in metadata-only validation mode)")
+            else:
+                add_error(errors, message)
             continue
         try:
             data = load_json(path)
