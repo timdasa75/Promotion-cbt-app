@@ -68,7 +68,14 @@ import {
 } from "./quiz.js";
 import { escapeHtml, normalizeExplanationText, parseMarkdown } from "./quiz/formatting.js";
 import { debugLog } from "./logger.js";
-import { buildAnalyticsSnapshot as composeAnalyticsSnapshot, getAnalyticsReadinessState } from "./appAnalytics.js";
+import { buildAnalyticsSnapshot as composeAnalyticsSnapshot } from "./appAnalytics.js";
+import {
+  buildAnalyticsConsistencyHtml,
+  buildAnalyticsHeatmapHtml,
+  buildAnalyticsOverviewModel,
+  buildAnalyticsRecommendationModel,
+  buildAnalyticsTrendHtml,
+} from "./appAnalyticsView.js";
 import {
   buildDashboardSetupSuggestion,
   buildDashboardSuggestionSignature,
@@ -1621,273 +1628,70 @@ function renderAnalyticsScreen(insights) {
   const recommendationMeta = document.getElementById("analyticsRecommendationMeta");
   const recommendationSignals = document.getElementById("analyticsRecommendationSignals");
   const recommendationConfidence = document.getElementById("analyticsRecommendationConfidence");
-  const readiness = getAnalyticsReadinessState(insights);
-  const signalChips = Array.isArray(insights.recommendation?.signalChips)
-    ? insights.recommendation.signalChips.filter((entry) => String(entry || "").trim())
-    : [];
+
+  const overview = buildAnalyticsOverviewModel(insights, {
+    getAttemptHeadline: (attempt) => getAttemptHeadline(attempt, { mockExamTopicId: MOCK_EXAM_TOPIC_ID, getTopicNameById }),
+    formatModeLabel,
+    formatRelativeTime,
+    formatDateTime,
+  });
+  const recommendation = buildAnalyticsRecommendationModel(insights);
 
   if (overviewCard) {
     overviewCard.classList.remove("high", "medium", "low");
-    overviewCard.classList.add(readiness.tone);
+    overviewCard.classList.add(overview.tone);
   }
   if (overviewReadiness) {
-    overviewReadiness.textContent = readiness.title;
+    overviewReadiness.textContent = overview.title;
   }
   if (overviewNarrative) {
-    const weakestTopicLead = insights.weakestTopic?.topicName && insights.weakestTopic?.averageScore !== null
-      ? `Weakest core topic: ${insights.weakestTopic.topicName} at ${insights.weakestTopic.averageScore}%. `
-      : "";
-    overviewNarrative.textContent = weakestTopicLead + readiness.body;
+    overviewNarrative.textContent = overview.narrative;
   }
   if (overviewSignals) {
-    renderChipList(overviewSignals, signalChips);
+    renderChipList(overviewSignals, overview.signalChips);
   }
   if (overviewLatest) {
-    const latestWhen = formatRelativeTime(insights.latestAttempt?.createdAt) || formatDateTime(insights.latestAttempt?.createdAt);
-    overviewLatest.textContent = insights.latestAttempt
-      ? `Latest scored session: ${getAttemptHeadline(insights.latestAttempt, { mockExamTopicId: MOCK_EXAM_TOPIC_ID, getTopicNameById })} | ${formatModeLabel(insights.latestAttempt.mode)} | ${latestWhen}`
-      : "No scored sessions yet.";
+    overviewLatest.textContent = overview.latestText;
   }
   if (overviewScore) {
-    overviewScore.textContent = insights.averageScore === null ? "-" : `${insights.averageScore}%`;
+    overviewScore.textContent = overview.scoreText;
   }
   if (overviewStreak) {
-    overviewStreak.textContent = `${insights.streakDays}`;
+    overviewStreak.textContent = overview.streakText;
   }
   if (overviewAttempts) {
-    overviewAttempts.textContent = `${insights.totalAttempts}`;
+    overviewAttempts.textContent = overview.attemptsText;
   }
 
   if (trendList) {
-    trendList.innerHTML = insights.trendItems.length
-      ? insights.trendItems
-          .map(
-            (entry) => `
-              <div class="analytic-item ${entry.className}">
-                <div class="analytic-value">${entry.score}%</div>
-                <div class="analytic-label">${escapeHtml(entry.headline)}</div>
-                <p class="mock-breakdown-meta">${escapeHtml(entry.meta)}</p>
-                <p class="mock-breakdown-meta">${escapeHtml(entry.when)}</p>
-              </div>
-            `,
-          )
-          .join("")
-      : `
-          <div class="analytic-item">
-            <div class="analytic-value">-</div>
-            <div class="analytic-label">No scored attempts yet</div>
-            <p class="mock-breakdown-meta">Complete a practice or timed session to start tracking trend lines.</p>
-          </div>
-        `;
+    trendList.innerHTML = buildAnalyticsTrendHtml(insights.trendItems, { escapeHtml });
   }
 
   if (consistencyList) {
-    consistencyList.innerHTML = insights.weeklyConsistency
-      .map(
-        (entry) => `
-          <div class="analytic-item ${entry.className}">
-            <div class="analytic-value">${entry.count}</div>
-            <div class="analytic-label">${escapeHtml(entry.dayLabel)}</div>
-            <p class="mock-breakdown-meta">${escapeHtml(entry.dateLabel)}</p>
-            <p class="mock-breakdown-meta">${entry.count === 1 ? "1 attempt" : `${entry.count} attempts`}</p>
-          </div>
-        `,
-      )
-      .join("");
+    consistencyList.innerHTML = buildAnalyticsConsistencyHtml(insights.weeklyConsistency, { escapeHtml });
   }
 
   if (heatmapGrid) {
-    heatmapGrid.innerHTML = insights.topicMastery
-      .map((entry) => {
-        if (entry.averageScore === null) {
-          return `
-            <div class="heatmap-tile">
-              <strong>${escapeHtml(entry.topicName)}</strong>
-              <span>Not attempted yet</span>
-            </div>
-          `;
-        }
-        return `
-          <div class="heatmap-tile ${getTrafficClassByPercentage(entry.averageScore)}">
-            <strong>${escapeHtml(entry.topicName)}</strong>
-            <span>${entry.averageScore}% average</span>
-            <span>${entry.attempts} scored session${entry.attempts === 1 ? "" : "s"}</span>
-          </div>
-        `;
-      })
-      .join("");
+    heatmapGrid.innerHTML = buildAnalyticsHeatmapHtml(insights.topicMastery, {
+      escapeHtml,
+      getTrafficClassByPercentage,
+    });
   }
 
   if (recommendationTitle) {
-    recommendationTitle.textContent = insights.recommendation.title;
+    recommendationTitle.textContent = recommendation.title;
   }
   if (recommendationMeta) {
-    recommendationMeta.textContent = insights.recommendation.meta;
+    recommendationMeta.textContent = recommendation.meta;
   }
   if (recommendationSignals) {
-    renderChipList(recommendationSignals, signalChips);
+    renderChipList(recommendationSignals, recommendation.signalChips);
   }
   if (recommendationConfidence) {
-    const confidenceLabel = String(insights.recommendation?.confidenceLabel || "").trim();
-    const confidenceDescription = String(insights.recommendation?.confidenceDescription || "").trim();
-    const confidenceTone = String(insights.recommendation?.confidenceTone || "medium").trim().toLowerCase();
     recommendationConfidence.classList.remove("high", "medium", "low");
-    recommendationConfidence.classList.add(["high", "medium", "low"].includes(confidenceTone) ? confidenceTone : "medium");
-    renderConfidenceText(recommendationConfidence, confidenceLabel, confidenceDescription);
+    recommendationConfidence.classList.add(["high", "medium", "low"].includes(recommendation.confidenceTone) ? recommendation.confidenceTone : "medium");
+    renderConfidenceText(recommendationConfidence, recommendation.confidenceLabel, recommendation.confidenceDescription);
   }
-}
-function refreshDashboardInsights() {
-  const currentUser = getCurrentUser();
-  const summary = readProgressSummary();
-  const attempts = summary.attempts || [];
-  const insights = buildAppAnalyticsSnapshot(attempts);
-
-  lastSessionTopicId = insights.latestAttempt?.topicId || null;
-  recommendedTopicId = insights.recommendedTopicId || cachedTopics[0]?.id || "psr";
-
-  const totalAttemptsStat = document.getElementById("totalAttemptsStat");
-  const averageScoreStat = document.getElementById("averageScoreStat");
-  const streakStat = document.getElementById("streakStat");
-  const streakPurposeText = document.getElementById("streakPurposeText");
-  const streakStatusBadge = document.getElementById("streakStatusBadge");
-  const continueTopicTitle = document.getElementById("continueTopicTitle");
-  const continueTopicMeta = document.getElementById("continueTopicMeta");
-  const continueSessionChips = document.getElementById("continueSessionChips");
-  const continueSessionNote = document.getElementById("continueSessionNote");
-  const recommendedTopicTitle = document.getElementById("recommendedTopicTitle");
-  const recommendedTopicMeta = document.getElementById("recommendedTopicMeta");
-  const recommendedTopicChips = document.getElementById("recommendedTopicChips");
-  const recommendedTopicSetupMeta = document.getElementById("recommendedTopicSetupMeta");
-  const recommendedTopicSignalChips = document.getElementById("recommendedTopicSignalChips");
-  const recommendedTopicConfidence = document.getElementById("recommendedTopicConfidence");
-  const clearRecommendedSetupBtn = document.getElementById("clearRecommendedSetupBtn");
-  const splashResumeBtn = document.getElementById("splashResumeBtn");
-
-  if (totalAttemptsStat) totalAttemptsStat.textContent = String(insights.totalAttempts);
-  if (averageScoreStat) {
-    averageScoreStat.textContent =
-      insights.averageScore === null ? "-" : `${insights.averageScore}%`;
-  }
-  if (streakStat) {
-    streakStat.textContent = `${insights.streakDays} day${insights.streakDays === 1 ? "" : "s"}`;
-  }
-  if (streakPurposeText) {
-    streakPurposeText.textContent = "Consecutive days with at least one completed session.";
-  }
-  if (streakStatusBadge) {
-    streakStatusBadge.textContent =
-      insights.streakDays >= 5
-        ? "Strong study rhythm"
-        : insights.streakDays > 0
-          ? "Study today to keep it going"
-          : "Take one quiz today to begin";
-  }
-
-  if (continueTopicTitle && continueTopicMeta) {
-    if (insights.latestAttempt?.topicId) {
-      continueTopicTitle.textContent = getAttemptHeadline(insights.latestAttempt, { mockExamTopicId: MOCK_EXAM_TOPIC_ID, getTopicNameById });
-      const modeLabel = formatModeLabel(insights.latestAttempt.mode);
-      const relativeTime =
-        formatRelativeTime(insights.latestAttempt.createdAt) ||
-        formatDateTime(insights.latestAttempt.createdAt);
-      const topicContext = getAttemptTopicLabel(insights.latestAttempt, { mockExamTopicId: MOCK_EXAM_TOPIC_ID, getTopicNameById });
-      const contextPrefix =
-        topicContext && topicContext !== getAttemptHeadline(insights.latestAttempt, { mockExamTopicId: MOCK_EXAM_TOPIC_ID, getTopicNameById })
-          ? `${topicContext} | `
-          : "";
-      const scoreLabel = `${Math.round(Number(insights.latestAttempt.scorePercentage || 0))}%`;
-      continueTopicMeta.textContent = `${contextPrefix}${modeLabel} | ${scoreLabel} | ${relativeTime}`;
-      if (continueSessionChips) {
-        const chips = [modeLabel, scoreLabel, relativeTime].filter((entry) => String(entry || "").trim());
-        renderChipList(continueSessionChips, chips);
-      }
-      if (continueSessionNote) {
-        continueSessionNote.classList.remove("hidden");
-        continueSessionNote.textContent = "Resume your latest saved flow or re-enter the same topic with context still fresh.";
-      }
-    } else {
-      continueTopicTitle.textContent = "No session yet";
-      continueTopicMeta.textContent = "Start a topic to track session continuity.";
-      if (continueSessionChips) {
-        continueSessionChips.classList.add("hidden");
-        renderChipList(continueSessionChips, [], { hiddenWhenEmpty: false });
-      }
-      if (continueSessionNote) {
-        continueSessionNote.classList.add("hidden");
-        continueSessionNote.textContent = "Pick up where you left off.";
-      }
-    }
-  }
-
-  const suggestedTopic = getPreferredRecommendedTopic(insights, {
-    topics: cachedTopics,
-    fallbackTopicId: recommendedTopicId,
-    isTopicUnlocked,
-  });
-  const dashboardSetupSuggestion = buildDashboardSetupSuggestion(suggestedTopic, insights, {
-    normalizeStudyFilters,
-    resolveStudyQuestionCount,
-    getAttemptTimingSignal,
-    formatDifficultyLabel,
-    formatTargetGlBandLabel,
-    formatQuestionFocusLabel,
-    mockExamTopicId: MOCK_EXAM_TOPIC_ID,
-  });
-  const recommendationSignature = buildDashboardSuggestionSignature(suggestedTopic, dashboardSetupSuggestion);
-  const dismissedRecommendationSignature = readDismissedDashboardRecommendationSignature(currentUser);
-  const showTunedRecommendation = Boolean(
-    dashboardSetupSuggestion && recommendationSignature && recommendationSignature !== dismissedRecommendationSignature,
-  );
-
-  if (recommendedTopicTitle && recommendedTopicMeta) {
-    recommendedTopicTitle.textContent = insights.recommendation.title;
-    recommendedTopicMeta.textContent = insights.recommendation.meta;
-  }
-  if (recommendedTopicChips) {
-    const chips = showTunedRecommendation && Array.isArray(dashboardSetupSuggestion?.chips)
-      ? dashboardSetupSuggestion.chips.filter((entry) => String(entry || "").trim())
-      : [];
-    renderChipList(recommendedTopicChips, chips);
-  }
-  if (recommendedTopicSetupMeta) {
-    const message = showTunedRecommendation ? String(dashboardSetupSuggestion?.message || "").trim() : "";
-    recommendedTopicSetupMeta.classList.toggle("hidden", !message);
-    recommendedTopicSetupMeta.textContent = message ? `Suggested setup: ${message}` : "Suggested setup: Reinforce Weak Areas.";
-  }
-  if (recommendedTopicSignalChips) {
-    const signalChips = showTunedRecommendation && Array.isArray(dashboardSetupSuggestion?.signalChips)
-      ? dashboardSetupSuggestion.signalChips.filter((entry) => String(entry || "").trim())
-      : [];
-    renderChipList(recommendedTopicSignalChips, signalChips);
-  }
-  if (recommendedTopicConfidence) {
-    const confidenceLabel = showTunedRecommendation ? String(dashboardSetupSuggestion?.confidenceLabel || "").trim() : "";
-    const confidenceDescription = showTunedRecommendation ? String(dashboardSetupSuggestion?.confidenceDescription || "").trim() : "";
-    const confidenceTone = String(dashboardSetupSuggestion?.confidenceTone || "medium").trim().toLowerCase();
-    recommendedTopicConfidence.classList.remove("high", "medium", "low");
-    recommendedTopicConfidence.classList.add(["high", "medium", "low"].includes(confidenceTone) ? confidenceTone : "medium");
-    renderConfidenceText(recommendedTopicConfidence, confidenceLabel, confidenceDescription);
-  }
-  if (clearRecommendedSetupBtn) {
-    clearRecommendedSetupBtn.classList.toggle("hidden", !showTunedRecommendation);
-    clearRecommendedSetupBtn.onclick = () => {
-      if (!currentUser || !recommendationSignature) return;
-      writeDismissedDashboardRecommendationSignature(currentUser, recommendationSignature);
-      refreshDashboardInsights();
-    };
-  }
-
-  if (splashResumeBtn) {
-    const canResume = Boolean(currentUser && insights.latestAttempt?.topicId);
-    splashResumeBtn.classList.toggle("hidden", !canResume);
-  }
-
-  renderAnalyticsScreen(insights);
-  renderReviewMistakesScreen();
-  renderSupportStateCards(insights);
-  syncRetryMissedButtonState();
-  syncSpacedPracticeButtonState();
-  syncRevisionButtonState();
 }
 
 async function resumeLastSession() {
