@@ -15,7 +15,6 @@ import {
 import {
   averageAttemptScores,
   buildDifficultyInsights,
-  buildRecentScoreSignal,
   buildSubcategoryInsights,
   buildTimingSignal,
   buildTopicMastery,
@@ -71,9 +70,10 @@ import { escapeHtml, normalizeExplanationText, parseMarkdown } from "./quiz/form
 import { debugLog } from "./logger.js";
 import { buildAnalyticsSnapshot as composeAnalyticsSnapshot, getAnalyticsReadinessState } from "./appAnalytics.js";
 import {
-  buildDashboardRecommendationConfidence,
-  buildDashboardRecommendationSignals,
+  buildDashboardSetupSuggestion,
+  buildDashboardSuggestionSignature,
   buildRecommendation,
+  getPreferredRecommendedTopic,
 } from "./appRecommendations.js";
 import { initializeThemeShortcut, initializeThemeToggle } from "./app/theme.js";
 import { setToolbarIcon } from "./app/toolbar.js";
@@ -1213,169 +1213,6 @@ function writeDismissedDashboardRecommendationSignature(user, signature) {
   }
 }
 
-function buildDashboardSuggestionSignature(topic, suggestion) {
-  if (!topic || !suggestion) return "";
-  return JSON.stringify({
-    topicId: String(topic?.id || "").trim(),
-    message: String(suggestion?.message || "").trim(),
-    chips: Array.isArray(suggestion?.chips) ? suggestion.chips.filter(Boolean) : [],
-    signalChips: Array.isArray(suggestion?.signalChips) ? suggestion.signalChips.filter(Boolean) : [],
-    confidenceLabel: String(suggestion?.confidenceLabel || "").trim(),
-    confidenceTone: String(suggestion?.confidenceTone || "").trim(),
-  });
-}
-function getPreferredRecommendedTopic(insights) {
-  if (!cachedTopics.length) return null;
-  const preferredIds = [
-    insights?.recommendedTopicId || recommendedTopicId,
-    "financial_regulations",
-    "psr",
-    "procurement_act",
-  ].filter(Boolean);
-  return (
-    cachedTopics.find((topic) => preferredIds.includes(topic.id) && isTopicUnlocked(topic)) ||
-    cachedTopics.find((topic) => isTopicUnlocked(topic)) ||
-    cachedTopics[0] ||
-    null
-  );
-}
-
-function buildDashboardSetupSuggestion(topic, insights) {
-  if (!topic || !insights?.totalAttempts) return null;
-
-  const totalQuestions = Number(topic?.availableStudyFilters?.totalQuestions || 0);
-  const defaultQuestionCount = Number(topic?.availableStudyFilters?.defaultQuestionCount || 40);
-  const currentFilters = normalizeStudyFilters(topic?.studyFilters, {
-    totalQuestions,
-    defaultQuestionCount,
-  });
-  const nextFilters = { ...currentFilters };
-  const notes = [];
-  let questionCountGuidanceActive = false;
-  const latestAttempt = insights?.latestAttempt || null;
-  const recentScoreSignal = insights?.recentScoreSignal || buildRecentScoreSignal(insights?.attempts);
-  const latestTimingSignal = insights?.latestTimingSignal || getAttemptTimingSignal(latestAttempt);
-  const availableQuestionCounts = Array.isArray(topic?.availableStudyFilters?.questionCountOptions)
-    ? topic.availableStudyFilters.questionCountOptions
-    : [];
-  const currentQuestionCount = resolveStudyQuestionCount(currentFilters, {
-    totalQuestions,
-    defaultQuestionCount,
-  });
-  const questionCountCandidates = [[10, 20, 40, 60, 80], availableQuestionCounts, [currentQuestionCount, totalQuestions]]
-    .flat()
-    .map((value) => Number(value))
-    .filter((value, index, items) => Number.isInteger(value) && value > 0 && items.indexOf(value) === index)
-    .sort((left, right) => left - right);
-  const chooseQuestionCountAtMost = (limit) => {
-    const safeLimit = Math.max(10, Math.min(totalQuestions || limit, Number(limit) || currentQuestionCount));
-    const candidates = questionCountCandidates.filter((value) => value <= safeLimit);
-    return candidates[candidates.length - 1] || questionCountCandidates[0] || safeLimit;
-  };
-  const chooseQuestionCountAtLeast = (minimum) => {
-    const safeMinimum = Math.max(10, Math.min(totalQuestions || minimum, Number(minimum) || currentQuestionCount));
-    return (
-      questionCountCandidates.find((value) => value >= safeMinimum) ||
-      questionCountCandidates[questionCountCandidates.length - 1] ||
-      safeMinimum
-    );
-  };
-  nextFilters.questionFocus = "weak_areas";
-
-  const averageScore = Number(insights?.averageScore ?? 0);
-  if (latestTimingSignal?.severity === "high") {
-    nextFilters.questionCount = chooseQuestionCountAtMost(Math.min(currentQuestionCount, 20));
-    questionCountGuidanceActive = true;
-    notes.push(
-      latestTimingSignal.unansweredCount > 0
-        ? "Shorten the next run so you can finish every question cleanly."
-        : "Keep the next timed drill shorter so pacing steadies first.",
-    );
-  } else if (averageScore > 0 && averageScore < 55) {
-    nextFilters.questionCount = chooseQuestionCountAtMost(20);
-    questionCountGuidanceActive = true;
-    notes.push("Keep the next run shorter so accuracy recovers before you scale back up.");
-  } else if (
-    averageScore >= 80 &&
-    recentScoreSignal?.direction === "improving" &&
-    latestTimingSignal?.severity !== "high"
-  ) {
-    nextFilters.questionCount = chooseQuestionCountAtLeast(40);
-    questionCountGuidanceActive = true;
-    notes.push("You can stretch the next drill a little further without losing control.");
-  } else {
-    nextFilters.questionCount = chooseQuestionCountAtMost(20);
-    questionCountGuidanceActive = true;
-  }
-
-  const weakestDifficulty = insights?.weakestDifficulty || null;
-  if (weakestDifficulty?.difficulty) {
-    const weakDifficultyAccuracy = Number(weakestDifficulty.accuracy || 0);
-    if (latestTimingSignal?.severity === "high" && weakestDifficulty.difficulty === "hard") {
-      nextFilters.difficulty = "medium";
-      notes.push("Step back to Medium difficulty first so pace and accuracy recover together.");
-    } else if (weakDifficultyAccuracy <= 45) {
-      nextFilters.difficulty = weakestDifficulty.difficulty === "hard" ? "medium" : weakestDifficulty.difficulty;
-      notes.push("Stay around " + formatDifficultyLabel(nextFilters.difficulty) + " difficulty while you rebuild confidence.");
-    } else if (
-      weakDifficultyAccuracy >= 70 &&
-      averageScore >= 70 &&
-      recentScoreSignal?.direction !== "slipping"
-    ) {
-      nextFilters.difficulty = weakestDifficulty.difficulty === "easy" ? "medium" : weakestDifficulty.difficulty;
-      notes.push("Keep " + formatDifficultyLabel(nextFilters.difficulty) + " difficulty in the mix for a steadier challenge.");
-    }
-  }
-
-  const latestMockGlBand =
-    insights?.latestAttempt?.topicId === MOCK_EXAM_TOPIC_ID
-      ? String(insights?.latestAttempt?.glBand || "").trim().toLowerCase()
-      : "";
-  if (latestMockGlBand && latestMockGlBand !== "general") {
-    nextFilters.targetGlBand = latestMockGlBand;
-    notes.push("Carry " + formatGlBandLabel(latestMockGlBand) + " emphasis into this follow-up drill.");
-  }
-
-  const summaryChips = [];
-  if (nextFilters.questionFocus !== currentFilters.questionFocus) {
-    summaryChips.push(formatQuestionFocusLabel(nextFilters.questionFocus));
-  }
-  if (questionCountGuidanceActive || String(nextFilters.questionCount) !== String(currentFilters.questionCount)) {
-    summaryChips.push(String(nextFilters.questionCount) + " Questions");
-  }
-  if (nextFilters.difficulty !== currentFilters.difficulty && nextFilters.difficulty !== "all") {
-    summaryChips.push(formatDifficultyLabel(nextFilters.difficulty));
-  }
-  if (nextFilters.targetGlBand !== currentFilters.targetGlBand && nextFilters.targetGlBand !== "general") {
-    summaryChips.push(formatTargetGlBandLabel(nextFilters.targetGlBand));
-  }
-
-  if (!summaryChips.length) return null;
-
-  const weakestSubcategoryName = String(insights?.weakestSubcategory?.subcategoryName || "").trim();
-  const focusTopicName = String(
-    insights?.latestMockWeakTopic?.topicName || insights?.weakestTopic?.topicName || topic?.name || "this topic",
-  ).trim();
-  const messageLead = weakestSubcategoryName
-    ? "Use " + focusTopicName + " to revisit " + weakestSubcategoryName + "."
-    : "Open " + focusTopicName + " with a tighter follow-up setup.";
-
-  const confidence = buildDashboardRecommendationConfidence(topic, insights);
-  const signalChips = buildDashboardRecommendationSignals(insights);
-
-  return {
-    title: "Suggested Setup",
-    message: (messageLead + " " + notes.join(" ")).trim(),
-    chips: summaryChips,
-    signalChips,
-    confidenceLabel: confidence.label,
-    confidenceTone: confidence.tone,
-    confidenceDescription: confidence.description,
-    nextFilters,
-  };
-}
-
-
 function renderSupportStateCards(insights = null) {
   const attemptsMeta = document.getElementById("stateAttemptsMeta");
   const reviewQueueMeta = document.getElementById("stateReviewQueueMeta");
@@ -1982,8 +1819,20 @@ function refreshDashboardInsights() {
     }
   }
 
-  const suggestedTopic = getPreferredRecommendedTopic(insights);
-  const dashboardSetupSuggestion = buildDashboardSetupSuggestion(suggestedTopic, insights);
+  const suggestedTopic = getPreferredRecommendedTopic(insights, {
+    topics: cachedTopics,
+    fallbackTopicId: recommendedTopicId,
+    isTopicUnlocked,
+  });
+  const dashboardSetupSuggestion = buildDashboardSetupSuggestion(suggestedTopic, insights, {
+    normalizeStudyFilters,
+    resolveStudyQuestionCount,
+    getAttemptTimingSignal,
+    formatDifficultyLabel,
+    formatTargetGlBandLabel,
+    formatQuestionFocusLabel,
+    mockExamTopicId: MOCK_EXAM_TOPIC_ID,
+  });
   const recommendationSignature = buildDashboardSuggestionSignature(suggestedTopic, dashboardSetupSuggestion);
   const dismissedRecommendationSignature = readDismissedDashboardRecommendationSignature(currentUser);
   const showTunedRecommendation = Boolean(
@@ -2065,8 +1914,20 @@ async function startRecommendation() {
 
   const summary = readProgressSummary();
   const insights = buildAppAnalyticsSnapshot(summary.attempts || []);
-  const topic = getPreferredRecommendedTopic(insights) || cachedTopics[0];
-  const dashboardSetupSuggestion = buildDashboardSetupSuggestion(topic, insights);
+  const topic = getPreferredRecommendedTopic(insights, {
+    topics: cachedTopics,
+    fallbackTopicId: recommendedTopicId,
+    isTopicUnlocked,
+  }) || cachedTopics[0];
+  const dashboardSetupSuggestion = buildDashboardSetupSuggestion(topic, insights, {
+    normalizeStudyFilters,
+    resolveStudyQuestionCount,
+    getAttemptTimingSignal,
+    formatDifficultyLabel,
+    formatTargetGlBandLabel,
+    formatQuestionFocusLabel,
+    mockExamTopicId: MOCK_EXAM_TOPIC_ID,
+  });
   const recommendationSignature = buildDashboardSuggestionSignature(topic, dashboardSetupSuggestion);
   const dismissedRecommendationSignature = readDismissedDashboardRecommendationSignature(getCurrentUser());
   const activeDashboardSetupSuggestion =
