@@ -15,6 +15,14 @@ import {
   summarizeStudyFilterOptions,
 } from "./studyFilters.js";
 import {
+  averageAttemptScores,
+  buildRecentScoreSignal as buildRecentAttemptSignal,
+  buildTimingSignal,
+  formatDifficultyLabel,
+  formatGlBandLabel,
+  getTrafficClassByPercentage,
+} from "./analyticsShared.js";
+import {
   DEFAULT_MOCK_EXAM_TEMPLATE_ID,
   buildMockExamBlueprint,
   getDefaultMockExamBlueprint,
@@ -843,15 +851,9 @@ function buildMockExamTopicBreakdown() {
     .sort((a, b) => b.accuracy - a.accuracy || b.correct - a.correct || a.topicName.localeCompare(b.topicName));
 }
 
-function formatGlBandLabel(glBand) {
-  return formatTargetGlBandLabel(glBand);
-}
 
-function formatDifficultyLabel(difficulty) {
-  const value = String(difficulty || "").trim().toLowerCase();
-  if (!value) return "";
-  return value.charAt(0).toUpperCase() + value.slice(1);
-}
+
+
 
 function getTopicSessionGlBand(topic) {
   const normalizedStudyFilters = normalizeStudyFilters(topic?.studyFilters);
@@ -883,76 +885,21 @@ function getQuestionPreferredGlBand(question) {
   return questionBands[0] || "";
 }
 
-function averageAttemptScores(attempts = []) {
-  const scoredAttempts = Array.isArray(attempts)
-    ? attempts
-        .map((attempt) => Number(attempt?.scorePercentage))
-        .filter((score) => Number.isFinite(score))
-    : [];
-  if (!scoredAttempts.length) return null;
-  return Math.round(
-    scoredAttempts.reduce((sum, score) => sum + score, 0) / scoredAttempts.length,
-  );
-}
 
-function buildRecentAttemptSignal(attempts = []) {
-  const scoredAttempts = Array.isArray(attempts)
-    ? attempts.filter((attempt) => Number.isFinite(Number(attempt?.scorePercentage)))
-    : [];
-  if (scoredAttempts.length < 2) return null;
 
-  const latestWindowSize = Math.min(3, Math.max(1, Math.floor(scoredAttempts.length / 2)));
-  const latestWindow = scoredAttempts.slice(-latestWindowSize);
-  const previousWindow = scoredAttempts.slice(
-    Math.max(0, scoredAttempts.length - latestWindowSize * 2),
-    Math.max(0, scoredAttempts.length - latestWindowSize),
-  );
-  const baselineWindow = previousWindow.length
-    ? previousWindow
-    : scoredAttempts.slice(0, Math.max(1, scoredAttempts.length - latestWindow.length));
-  if (!baselineWindow.length) return null;
 
-  const latestAverage = averageAttemptScores(latestWindow);
-  const previousAverage = averageAttemptScores(baselineWindow);
-  if (latestAverage === null || previousAverage === null) return null;
-
-  const delta = latestAverage - previousAverage;
-  let direction = "steady";
-  if (delta >= 6) direction = "improving";
-  if (delta <= -6) direction = "slipping";
-
-  return {
-    direction,
-    delta,
-    latestAverage,
-    previousAverage,
-    latestCount: latestWindow.length,
-    previousCount: baselineWindow.length,
-  };
-}
 
 function getSessionTimingSignal({ mode = currentMode, timeElapsed = 0, configuredExamSeconds = 0, unansweredCount = 0 } = {}) {
-  if (mode !== "exam" || configuredExamSeconds <= 0) return null;
+  const timingSignal = buildTimingSignal({
+    mode,
+    allowedSeconds: configuredExamSeconds,
+    elapsedSeconds: timeElapsed,
+    unansweredCount,
+  });
+  if (!timingSignal) return null;
 
-  const safeConfiguredSeconds = Math.max(0, Number(configuredExamSeconds || 0));
-  const elapsedSeconds = Math.max(0, Math.min(safeConfiguredSeconds, Number(timeElapsed || 0)));
-  const remainingSeconds = Math.max(0, safeConfiguredSeconds - elapsedSeconds);
-  const safeUnansweredCount = Math.max(0, Number(unansweredCount || 0));
-  const usedRatio = safeConfiguredSeconds > 0 ? elapsedSeconds / safeConfiguredSeconds : 0;
-  let severity = "steady";
-  if (safeUnansweredCount > 0 || usedRatio >= 0.95) {
-    severity = "high";
-  } else if (usedRatio <= 0.6) {
-    severity = "comfortable";
-  }
-
-  return {
-    severity,
-    elapsedSeconds,
-    remainingSeconds,
-    usedRatio,
-    unansweredCount: safeUnansweredCount,
-  };
+  const { allowedSeconds: _allowedSeconds, ...sessionTimingSignal } = timingSignal;
+  return sessionTimingSignal;
 }
 
 function buildResultsRecommendationConfidence({
@@ -1207,11 +1154,7 @@ function buildRecommendedSessionSetup({
     confidenceDescription: recommendationConfidence?.description || "",
   };
 }
-function getTrafficClassByPercentage(percentage) {
-  if (percentage >= 70) return "traffic-green";
-  if (percentage >= 50) return "traffic-amber";
-  return "traffic-red";
-}
+
 
 function getInverseTrafficClassByPercentage(percentage) {
   if (percentage <= 20) return "traffic-green";
