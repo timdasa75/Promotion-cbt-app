@@ -104,9 +104,14 @@ import {
   getHeaderSyncSummary,
 } from "./appSupportView.js";
 import {
+  buildAdminFeedbackEmptyState,
+  buildAdminFeedbackItemModel,
+  buildAdminFeedbackStatusMessage,
+  buildFeedbackAccessUiModel,
   buildFeedbackCharCountLabel,
   buildFeedbackContextSummaryHtml,
   feedbackStatusBadgeClass,
+  filterAdminFeedbackSubmissions,
   formatFeedbackCategoryLabel,
   formatFeedbackSourceLabel,
   formatFeedbackStatusLabel,
@@ -3247,6 +3252,7 @@ function openFeedbackModal(context = {}) {
 
 function renderFeedbackUiState() {
   const access = getFeedbackAccessState();
+  const model = buildFeedbackAccessUiModel(access);
   const helpBtn = document.getElementById("openHelpFeedbackBtn");
   const helpNote = document.getElementById("helpFeedbackNote");
   const quizBtn = document.getElementById("openQuizFeedbackBtn");
@@ -3255,33 +3261,27 @@ function renderFeedbackUiState() {
 
   [helpBtn, dashboardFeedbackBtn, headerFeedbackBtn].forEach((button) => {
     if (!button) return;
-    button.disabled = !access.allowed;
-    button.setAttribute("aria-disabled", String(!access.allowed));
-    button.title = access.allowed ? "Send feedback" : access.message;
+    button.disabled = model.buttonDisabled;
+    button.setAttribute("aria-disabled", model.buttonAriaDisabled);
+    button.title = model.buttonTitle;
   });
 
   if (helpNote) {
-    if (access.allowed) {
-      helpNote.textContent = "";
-      helpNote.classList.add("hidden");
-    } else {
-      helpNote.textContent = access.message;
-      helpNote.classList.remove("hidden");
-    }
+    helpNote.textContent = model.helpNoteText;
+    helpNote.classList.toggle("hidden", model.helpNoteHidden);
   }
 
   if (quizBtn) {
-    quizBtn.classList.toggle("hidden", !access.allowed);
+    quizBtn.classList.toggle("hidden", model.quizHidden);
   }
   if (resultsBtn) {
-    resultsBtn.classList.toggle("hidden", !access.allowed);
+    resultsBtn.classList.toggle("hidden", model.resultsHidden);
   }
 
-  if (!access.allowed && feedbackModal && !feedbackModal.classList.contains("hidden")) {
+  if (model.shouldCloseModal && feedbackModal && !feedbackModal.classList.contains("hidden")) {
     closeFeedbackModal();
   }
 }
-
 function renderAdminFeedbackList() {
   const container = document.getElementById("adminFeedbackList");
   const searchInput = document.getElementById("adminFeedbackSearch");
@@ -3291,28 +3291,11 @@ function renderAdminFeedbackList() {
   const countLabel = document.getElementById("adminFeedbackCount");
   if (!container) return;
 
-  const query = String(searchInput?.value || "").trim().toLowerCase();
-  const status = String(statusFilter?.value || "all").trim().toLowerCase();
-  const category = String(categoryFilter?.value || "all").trim().toLowerCase();
-  const source = String(sourceFilter?.value || "all").trim().toLowerCase();
-  const filtered = adminFeedbackSubmissions.filter((entry) => {
-    const matchesStatus = status === "all" || String(entry?.status || "").toLowerCase() === status;
-    const matchesCategory = category === "all" || String(entry?.category || "").toLowerCase() === category;
-    const matchesSource = source === "all" || String(entry?.sourceScreen || "").toLowerCase() === source;
-    if (!matchesStatus || !matchesCategory || !matchesSource) {
-      return false;
-    }
-    if (!query) {
-      return true;
-    }
-    return [
-      entry?.email,
-      entry?.message,
-      entry?.topicName,
-      entry?.topicId,
-      entry?.questionId,
-      entry?.quizAttemptId,
-    ].some((value) => String(value || "").toLowerCase().includes(query));
+  const filtered = filterAdminFeedbackSubmissions(adminFeedbackSubmissions, {
+    query: searchInput?.value,
+    status: statusFilter?.value,
+    category: categoryFilter?.value,
+    source: sourceFilter?.value,
   });
 
   if (countLabel) {
@@ -3321,9 +3304,7 @@ function renderAdminFeedbackList() {
 
   container.innerHTML = "";
   if (!filtered.length) {
-    const emptyCopy = adminFeedbackSubmissions.length
-      ? "No feedback matches the current filter."
-      : "No feedback submitted yet.";
+    const emptyCopy = buildAdminFeedbackEmptyState(adminFeedbackSubmissions.length);
     container.innerHTML = `<div class="admin-request-item"><p class="meta">${escapeHtml(emptyCopy)}</p></div>`;
     return;
   }
@@ -3334,55 +3315,12 @@ function renderAdminFeedbackList() {
   filtered.forEach((entry) => {
     const item = document.createElement("article");
     item.className = "admin-feedback-item";
-    const safeId = escapeHtml(entry?.feedbackId || "");
-    const safeEmail = escapeHtml(entry?.email || "-");
-    const safeMessage = escapeHtml(entry?.message || "");
-    const createdLabel = escapeHtml(formatDateTime(entry?.createdAt));
-    const relativeLabel = escapeHtml(formatRelativeTime(entry?.createdAt) || createdLabel);
-    const reviewedLabel = entry?.reviewedAt
-      ? `${escapeHtml(formatDateTime(entry.reviewedAt))}${entry?.reviewedBy ? ` by ${escapeHtml(entry.reviewedBy)}` : ""}`
-      : "Not reviewed yet";
-    const contextChips = [];
-    if (entry?.topicName) {
-      contextChips.push(`<span class="chip">Topic: ${escapeHtml(entry.topicName)}</span>`);
-    }
-    if (entry?.questionId) {
-      contextChips.push(`<span class="chip">Question ID: ${escapeHtml(entry.questionId)}</span>`);
-    }
-    if (entry?.quizAttemptId) {
-      contextChips.push(`<span class="chip">Session ID: ${escapeHtml(entry.quizAttemptId)}</span>`);
-    }
-    if (entry?.sessionMode) {
-      contextChips.push(`<span class="chip">Mode: ${escapeHtml(formatSessionModeLabel(entry.sessionMode))}</span>`);
-    }
-
-    item.innerHTML = `
-      <div class="admin-feedback-head">
-        <div class="admin-feedback-title-wrap">
-          <h4 class="admin-feedback-title">${safeEmail}</h4>
-          <p class="meta">${relativeLabel}</p>
-        </div>
-        <div class="admin-user-badges">
-          <span class="admin-badge ${feedbackStatusBadgeClass(entry?.status)}">Status: ${escapeHtml(formatFeedbackStatusLabel(entry?.status))}</span>
-          <span class="admin-badge neutral">Category: ${escapeHtml(formatFeedbackCategoryLabel(entry?.category))}</span>
-          <span class="admin-badge neutral">Source: ${escapeHtml(formatFeedbackSourceLabel(entry?.sourceScreen))}</span>
-        </div>
-      </div>
-      <div class="admin-feedback-message">
-        <p>${safeMessage}</p>
-      </div>
-      ${contextChips.length ? `<div class="chip-row admin-feedback-context-row">${contextChips.join("")}</div>` : ""}
-      <div class="admin-feedback-meta-grid">
-        <div><span class="meta">Created</span><strong>${createdLabel}</strong></div>
-        <div><span class="meta">Review</span><strong>${reviewedLabel}</strong></div>
-      </div>
-      <div class="button-row compact-actions admin-feedback-actions">
-        <button class="btn btn-secondary" data-feedback-id="${safeId}" data-feedback-status="in_review" type="button" ${entry?.status === "in_review" ? 'disabled aria-disabled="true"' : ""}>Mark In Review</button>
-        <button class="btn btn-primary" data-feedback-id="${safeId}" data-feedback-status="resolved" type="button" ${entry?.status === "resolved" ? 'disabled aria-disabled="true"' : ""}>Resolve</button>
-        <button class="btn btn-ghost" data-feedback-id="${safeId}" data-feedback-status="dismissed" type="button" ${entry?.status === "dismissed" ? 'disabled aria-disabled="true"' : ""}>Dismiss</button>
-      </div>
-    `;
-
+    const itemModel = buildAdminFeedbackItemModel(entry, {
+      formatDateTime,
+      formatRelativeTime,
+      escapeHtml,
+    });
+    item.innerHTML = itemModel.html;
     list.appendChild(item);
   });
 
@@ -3400,7 +3338,7 @@ function renderAdminFeedbackList() {
           () => updateFeedbackSubmissionStatus(feedbackId, nextStatus),
           {
             loadingMessage: "Updating feedback status...",
-            successMessage: `Feedback marked as ${formatFeedbackStatusLabel(nextStatus)}.`,
+            successMessage: buildAdminFeedbackStatusMessage(nextStatus),
             failurePrefix: "Unable to update feedback:",
           },
         );
@@ -3408,7 +3346,7 @@ function renderAdminFeedbackList() {
           action: "Update feedback status",
           target: targetLabel,
           status: "success",
-          message: `Marked feedback as ${formatFeedbackStatusLabel(nextStatus)}.`,
+          message: buildAdminFeedbackStatusMessage(nextStatus),
         });
       } catch (error) {
         logAdminOperation({
@@ -3424,7 +3362,6 @@ function renderAdminFeedbackList() {
     });
   });
 }
-
 async function refreshAdminFeedbackSubmissions() {
   if (adminFeedbackRefreshInFlight) {
     return adminFeedbackRefreshInFlight;
@@ -5071,6 +5008,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   initializeThemeToggle();
 });
+
 
 
 
