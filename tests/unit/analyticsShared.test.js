@@ -7,10 +7,15 @@ import {
   buildSubcategoryInsights,
   buildTimingSignal,
   buildTopicMastery,
+  buildTrendItems,
   buildWeeklyConsistency,
   classifyRecommendationPattern,
   formatDifficultyLabel,
   formatGlBandLabel,
+  formatModeLabel,
+  getActivityTrafficClass,
+  getAttemptHeadline,
+  getAttemptTopicLabel,
   getLatestMockWeakTopic,
   getTrafficClassByPercentage,
   toLocalDayKey,
@@ -295,4 +300,96 @@ test("analytics shared local day keys and weekly consistency bucket attempts by 
     { id: "2026-05-06", count: 0, className: "count-0" },
     { id: "2026-05-07", count: 1, className: "count-1" },
   ]);
+});
+
+
+test("analytics shared mode/activity helpers and trend items keep analytics summaries stable", () => {
+  assert.equal(formatModeLabel("practice"), "Practice");
+  assert.equal(formatModeLabel("exam"), "Timed Topic Test");
+  assert.equal(formatModeLabel("review"), "Study Review");
+  assert.equal(formatModeLabel("custom"), "Custom");
+  assert.equal(getActivityTrafficClass(0), "traffic-red");
+  assert.equal(getActivityTrafficClass(1), "traffic-amber");
+  assert.equal(getActivityTrafficClass(3), "traffic-green");
+
+  const trendItems = buildTrendItems(
+    [
+      {
+        attemptId: "one",
+        mode: "practice",
+        topicName: "Topic One",
+        glBand: "general",
+        totalQuestions: 20,
+        scorePercentage: 45,
+        createdAt: "2026-05-06T09:00:00Z",
+      },
+      {
+        attemptId: "two",
+        mode: "exam",
+        topicName: "Topic Two",
+        templateName: "General Mock",
+        glBand: "gl_15_16",
+        totalQuestions: 40,
+        scorePercentage: 82,
+        createdAt: "2026-05-07T09:00:00Z",
+      },
+    ],
+    {
+      getHeadline: (attempt) => attempt.templateName || attempt.topicName,
+      getTopicLabel: (attempt) => attempt.topicName,
+      getWhenLabel: (attempt) => `when:${attempt.attemptId}`,
+    },
+  );
+
+  assert.deepEqual(trendItems, [
+    {
+      id: "two",
+      score: 82,
+      headline: "General Mock",
+      meta: "Timed Topic Test | Topic Two | GL 15-16 | 40 questions",
+      when: "when:two",
+      className: "traffic-green",
+    },
+    {
+      id: "one",
+      score: 45,
+      headline: "Topic One",
+      meta: "Practice | 20 questions",
+      when: "when:one",
+      className: "traffic-red",
+    },
+  ]);
+});
+
+
+test("analytics shared attempt label helpers keep mock and direct attempt naming stable", () => {
+  const options = {
+    mockExamTopicId: "mock_exam",
+    getTopicNameById: (topicId) => (topicId === "psr" ? "Public Service Rules" : "Unknown topic"),
+  };
+
+  assert.equal(
+    getAttemptTopicLabel({ topicId: "psr", topicName: "" }, options),
+    "Public Service Rules",
+  );
+  assert.equal(
+    getAttemptTopicLabel({ topicId: "mock_exam", topicName: "Directorate Mock" }, options),
+    "Directorate Mock",
+  );
+  assert.equal(
+    getAttemptTopicLabel({ topicId: "mock_exam", topicName: "" }, options),
+    "Directorate Mock Exam",
+  );
+  assert.equal(
+    getAttemptHeadline({ topicId: "mock_exam", templateName: "GL 15 Mock" }, options),
+    "GL 15 Mock",
+  );
+  assert.equal(
+    getAttemptHeadline({ topicId: "mock_exam", templateName: "" }, options),
+    "General Mock",
+  );
+  assert.equal(
+    getAttemptHeadline({ topicId: "psr", topicName: "Public Service Rules" }, options),
+    "Public Service Rules",
+  );
 });

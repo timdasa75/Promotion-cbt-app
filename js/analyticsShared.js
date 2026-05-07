@@ -345,3 +345,93 @@ export function buildWeeklyConsistency(
 
   return days;
 }
+
+
+export function getActivityTrafficClass(count) {
+  const total = Number(count || 0);
+  if (total >= 2) return "traffic-green";
+  if (total === 1) return "traffic-amber";
+  return "traffic-red";
+}
+
+export function formatModeLabel(mode) {
+  const value = String(mode || "").trim().toLowerCase();
+  if (!value) return "Session";
+  if (value === "practice") return "Practice";
+  if (value === "exam") return "Timed Topic Test";
+  if (value === "review") return "Study Review";
+  return `${value.charAt(0).toUpperCase()}${value.slice(1)}`;
+}
+
+export function buildTrendItems(
+  attempts = [],
+  {
+    getHeadline = () => "",
+    getTopicLabel = () => "",
+    getWhenLabel = () => "",
+  } = {},
+) {
+  return (Array.isArray(attempts) ? attempts : [])
+    .slice(-8)
+    .reverse()
+    .map((attempt) => {
+      const headline = getHeadline(attempt);
+      const topicLabel = getTopicLabel(attempt);
+      const parts = [formatModeLabel(attempt?.mode)];
+      if (topicLabel && topicLabel !== headline) {
+        parts.push(topicLabel);
+      }
+      const glBandLabel = formatGlBandLabel(attempt?.glBand);
+      if (glBandLabel && glBandLabel !== "General") {
+        parts.push(glBandLabel);
+      }
+      if (Number(attempt?.totalQuestions || 0) > 0) {
+        parts.push(`${Number(attempt.totalQuestions)} questions`);
+      }
+
+      return {
+        id: String(attempt?.attemptId || attempt?.createdAt || Math.random()),
+        score: Math.round(Number(attempt?.scorePercentage || 0)),
+        headline,
+        meta: parts.filter(Boolean).join(" | "),
+        when: getWhenLabel(attempt),
+        className: getTrafficClassByPercentage(attempt?.scorePercentage),
+      };
+    });
+}
+
+
+export function getAttemptTopicLabel(
+  attempt,
+  {
+    mockExamTopicId = "",
+    getTopicNameById = () => "Unknown topic",
+    mockExamTopicLabel = "Directorate Mock Exam",
+  } = {},
+) {
+  const topicId = String(attempt?.topicId || "").trim();
+  const explicitName = String(attempt?.topicName || "").trim();
+  if (topicId === String(mockExamTopicId || "").trim()) {
+    return explicitName || mockExamTopicLabel;
+  }
+  return explicitName || getTopicNameById(topicId);
+}
+
+export function getAttemptHeadline(
+  attempt,
+  {
+    mockExamTopicId = "",
+    getTopicNameById = () => "Unknown topic",
+    mockExamTopicLabel = "Directorate Mock Exam",
+    mockExamHeadline = "General Mock",
+  } = {},
+) {
+  if (String(attempt?.topicId || "").trim() === String(mockExamTopicId || "").trim()) {
+    return String(attempt?.templateName || "").trim() || mockExamHeadline;
+  }
+  return getAttemptTopicLabel(attempt, {
+    mockExamTopicId,
+    getTopicNameById,
+    mockExamTopicLabel,
+  });
+}

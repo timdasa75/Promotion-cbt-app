@@ -19,13 +19,17 @@ import {
   buildSubcategoryInsights,
   buildTimingSignal,
   buildTopicMastery,
+  buildTrendItems,
   buildWeeklyConsistency,
   classifyRecommendationPattern,
   formatDifficultyLabel,
   formatGlBandLabel,
+  formatModeLabel,
+  getActivityTrafficClass,
+  getAttemptHeadline,
+  getAttemptTopicLabel,
   getLatestMockWeakTopic,
   getTrafficClassByPercentage,
-  toLocalDayKey,
 } from "./analyticsShared.js";
 import { DEFAULT_MOCK_EXAM_TEMPLATE_ID } from "./mockExamTemplates.js";
 import {
@@ -792,21 +796,7 @@ function getTopicNameById(topicId) {
 
 
 
-function getActivityTrafficClass(count) {
-  const total = Number(count || 0);
-  if (total >= 2) return "traffic-green";
-  if (total === 1) return "traffic-amber";
-  return "traffic-red";
-}
 
-function formatModeLabel(mode) {
-  const value = String(mode || "").trim().toLowerCase();
-  if (!value) return "Session";
-  if (value === "practice") return "Practice";
-  if (value === "exam") return "Timed Topic Test";
-  if (value === "review") return "Study Review";
-  return `${value.charAt(0).toUpperCase()}${value.slice(1)}`;
-}
 
 
 
@@ -1131,51 +1121,9 @@ function isCoreAnalyticsTopicId(topicId) {
   );
 }
 
-function getAttemptTopicLabel(attempt) {
-  const topicId = String(attempt?.topicId || "").trim();
-  const explicitName = String(attempt?.topicName || "").trim();
-  if (topicId === MOCK_EXAM_TOPIC_ID) {
-    return explicitName || "Directorate Mock Exam";
-  }
-  return explicitName || getTopicNameById(topicId);
-}
 
-function getAttemptHeadline(attempt) {
-  if (String(attempt?.topicId || "").trim() === MOCK_EXAM_TOPIC_ID) {
-    return String(attempt?.templateName || "").trim() || "General Mock";
-  }
-  return getAttemptTopicLabel(attempt);
-}
 
-function getTrendMeta(attempt) {
-  const parts = [formatModeLabel(attempt?.mode)];
-  const topicLabel = getAttemptTopicLabel(attempt);
-  if (topicLabel && topicLabel !== getAttemptHeadline(attempt)) {
-    parts.push(topicLabel);
-  }
-  const glBandLabel = formatGlBandLabel(attempt?.glBand);
-  if (glBandLabel && glBandLabel !== "General") {
-    parts.push(glBandLabel);
-  }
-  if (Number(attempt?.totalQuestions || 0) > 0) {
-    parts.push(`${Number(attempt.totalQuestions)} questions`);
-  }
-  return parts.filter(Boolean).join(" | ");
-}
 
-function buildTrendItems(attempts = []) {
-  return attempts
-    .slice(-8)
-    .reverse()
-    .map((attempt) => ({
-      id: String(attempt?.attemptId || attempt?.createdAt || Math.random()),
-      score: Math.round(Number(attempt?.scorePercentage || 0)),
-      headline: getAttemptHeadline(attempt),
-      meta: getTrendMeta(attempt),
-      when: formatRelativeTime(attempt?.createdAt) || formatDateTime(attempt?.createdAt),
-      className: getTrafficClassByPercentage(attempt?.scorePercentage),
-    }));
-}
 
 
 
@@ -1461,10 +1409,10 @@ function buildRecommendation(insights) {
 
   return {
     title: isRepeatedPattern
-      ? `Prioritize ${getAttemptHeadline(latestAttempt)} once more.`
+      ? `Prioritize ${getAttemptHeadline(latestAttempt, { mockExamTopicId: MOCK_EXAM_TOPIC_ID, getTopicNameById })} once more.`
       : isBuildingPattern
-        ? `Keep building with ${getAttemptHeadline(latestAttempt)}.`
-        : `Review ${getAttemptHeadline(latestAttempt)} once more.`,
+        ? `Keep building with ${getAttemptHeadline(latestAttempt, { mockExamTopicId: MOCK_EXAM_TOPIC_ID, getTopicNameById })}.`
+        : `Review ${getAttemptHeadline(latestAttempt, { mockExamTopicId: MOCK_EXAM_TOPIC_ID, getTopicNameById })} once more.`,
     meta: `${
       isRepeatedPattern
         ? "The same pressure signals keep resurfacing, so the best next step is a focused reinforcement pass."
@@ -1642,7 +1590,17 @@ function buildAnalyticsSnapshot(attempts = []) {
       : null;
   const streakDays = calculateStreakDays(attempts);
   const latestAttempt = totalAttempts ? attempts[totalAttempts - 1] : null;
-  const trendItems = buildTrendItems(attempts);
+  const trendItems = buildTrendItems(attempts, {
+    getHeadline: (attempt) => getAttemptHeadline(attempt, {
+      mockExamTopicId: MOCK_EXAM_TOPIC_ID,
+      getTopicNameById,
+    }),
+    getTopicLabel: (attempt) => getAttemptTopicLabel(attempt, {
+      mockExamTopicId: MOCK_EXAM_TOPIC_ID,
+      getTopicNameById,
+    }),
+    getWhenLabel: (attempt) => formatRelativeTime(attempt?.createdAt) || formatDateTime(attempt?.createdAt),
+  });
   const weeklyConsistency = buildWeeklyConsistency(attempts, {
     getDayLabel: (date) => date.toLocaleDateString(undefined, { weekday: "short" }),
     getDateLabel: (date) => date.toLocaleDateString(undefined, { month: "short", day: "numeric" }),
@@ -2169,7 +2127,7 @@ function renderAnalyticsScreen(insights) {
   if (overviewLatest) {
     const latestWhen = formatRelativeTime(insights.latestAttempt?.createdAt) || formatDateTime(insights.latestAttempt?.createdAt);
     overviewLatest.textContent = insights.latestAttempt
-      ? `Latest scored session: ${getAttemptHeadline(insights.latestAttempt)} | ${formatModeLabel(insights.latestAttempt.mode)} | ${latestWhen}`
+      ? `Latest scored session: ${getAttemptHeadline(insights.latestAttempt, { mockExamTopicId: MOCK_EXAM_TOPIC_ID, getTopicNameById })} | ${formatModeLabel(insights.latestAttempt.mode)} | ${latestWhen}`
       : "No scored sessions yet.";
   }
   if (overviewScore) {
@@ -2309,14 +2267,14 @@ function refreshDashboardInsights() {
 
   if (continueTopicTitle && continueTopicMeta) {
     if (insights.latestAttempt?.topicId) {
-      continueTopicTitle.textContent = getAttemptHeadline(insights.latestAttempt);
+      continueTopicTitle.textContent = getAttemptHeadline(insights.latestAttempt, { mockExamTopicId: MOCK_EXAM_TOPIC_ID, getTopicNameById });
       const modeLabel = formatModeLabel(insights.latestAttempt.mode);
       const relativeTime =
         formatRelativeTime(insights.latestAttempt.createdAt) ||
         formatDateTime(insights.latestAttempt.createdAt);
-      const topicContext = getAttemptTopicLabel(insights.latestAttempt);
+      const topicContext = getAttemptTopicLabel(insights.latestAttempt, { mockExamTopicId: MOCK_EXAM_TOPIC_ID, getTopicNameById });
       const contextPrefix =
-        topicContext && topicContext !== getAttemptHeadline(insights.latestAttempt)
+        topicContext && topicContext !== getAttemptHeadline(insights.latestAttempt, { mockExamTopicId: MOCK_EXAM_TOPIC_ID, getTopicNameById })
           ? `${topicContext} | `
           : "";
       const scoreLabel = `${Math.round(Number(insights.latestAttempt.scorePercentage || 0))}%`;
