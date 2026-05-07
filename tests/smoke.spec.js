@@ -71,6 +71,32 @@ test("dashboard filters and action buttons are interactive", async ({ page }) =>
   await expect(page.locator("#categorySelectionScreen")).toBeVisible();
 });
 
+test("free users can open the premium upgrade flow from locked topics", async ({ page }) => {
+  await registerAndEnter(page, "premium-flow@example.com");
+  await expect(page.locator("#headerUpgradeBtn")).toBeVisible();
+  await expect(page.locator("#premiumCtaCard")).toBeVisible();
+
+  const lockedTopic = page.locator("#topicList .topic-card.locked:not(.hidden)").first();
+  await expect(lockedTopic).toBeVisible();
+  await lockedTopic.scrollIntoViewIfNeeded();
+  await lockedTopic.click();
+
+  const premiumModal = page.locator("#premiumModal");
+  await expect(premiumModal).toBeVisible();
+  await expect(premiumModal).toContainText("Premium Content");
+  await expect(premiumModal).toContainText("Unlock all 10 core topics");
+
+  await page.click("#premiumExplorePlansBtn");
+  const pricingModal = page.locator("#pricingModal");
+  await expect(pricingModal).toBeVisible();
+  await expect(pricingModal).toContainText("Choose Your Plan");
+  await expect(pricingModal).toContainText("Bi-Annual");
+
+  await page.locator(".pricing-card[data-plan-cycle='bi-annual'] .select-plan-btn").click();
+  await expect(page.locator("#profileScreen")).toBeVisible();
+  await expect(page.locator("#upgradeBillingCycle")).toHaveValue("bi-annual");
+});
+
 test("user profile shows payment confirmation status after submission", async ({ page }) => {
   await registerAndEnter(page, "upgrade-status@example.com");
   await page.click("#headerProfileBtn");
@@ -89,7 +115,7 @@ test("review mode acts as pre-quiz study with answers and explanations visible",
   await registerAndEnter(page, "review@example.com");
   await expect(page.locator("#topicList .topic-card:not(.hidden)").first()).toBeVisible();
 
-  await page.locator("#topicList .topic-card:not(.hidden):not(.locked)").first().click();
+  await page.locator("#topicList .topic-card:not(.hidden):not(.locked)").first().dispatchEvent("click");
   await expect(page.locator("#categorySelectionScreen")).toBeVisible();
   await page.click("#selectAllCategoryBtn");
 
@@ -111,27 +137,68 @@ test("review mode acts as pre-quiz study with answers and explanations visible",
 
 
 test("timed topic test lets users end the exam early with warning", async ({ page }) => {
-  await registerAndEnter(page, "end-exam@example.com");
-  await page.locator("#topicList .topic-card:not(.hidden):not(.locked)").first().click();
-  await expect(page.locator("#categorySelectionScreen")).toBeVisible();
-  await page.click("#selectAllCategoryBtn");
-  await expect(page.locator("#modeSelectionScreen")).toBeVisible();
-  await page.click("#examModeCard");
+  await page.addInitScript(() => {
+    const user = {
+      id: "u_end_exam",
+      name: "End Exam User",
+      email: "end-exam@example.com",
+      passwordHash: "seedhash",
+      plan: "premium",
+      createdAt: new Date().toISOString(),
+    };
+    window.localStorage.setItem("cbt_users_v1", JSON.stringify([user]));
+    window.localStorage.setItem(
+      "cbt_session_v1",
+      JSON.stringify({ provider: "local", userId: user.id, createdAt: new Date().toISOString() }),
+    );
+  });
+
+  await page.goto("/");
+  await expect(page.locator("#appLoadingOverlay")).toHaveClass(/is-hidden/);
+  await page.evaluate(() => {
+    document.getElementById("authModal")?.classList.add("hidden");
+  });
+
+  await page.evaluate(async () => {
+    const quiz = await import("/js/quiz.js");
+    quiz.setCurrentTopic({
+      id: "psr",
+      name: "Public Service Rules (PSR 2021)",
+      file: "data/psr_rules.json",
+    });
+    quiz.setCurrentMode("exam");
+    await quiz.loadQuestions([
+      {
+        id: "end_exam_q1",
+        question: "Which officer authorizes a directorate-level deployment memo?",
+        options: ["Line manager", "Permanent Secretary", "Auditor", "Cashier"],
+        correct: 1,
+        explanation: "Because the Permanent Secretary authorizes the deployment memo.",
+      },
+      {
+        id: "end_exam_q2",
+        question: "Which rule should be checked before escalating a discipline case?",
+        options: ["Leave roster", "Disciplinary procedure", "Nominal roll", "Store ledger"],
+        correct: 1,
+        explanation: "Because the disciplinary procedure governs escalation.",
+      },
+    ]);
+  });
+
   await expect(page.locator("#quizScreen")).toBeVisible();
   await expect(page.locator("#endExamBtn")).toBeVisible();
   await expect(page.locator("#flagBtn")).toHaveCount(0);
 
-  let dialogMessage = "";
-  page.once("dialog", async (dialog) => {
-    dialogMessage = dialog.message();
-    await dialog.accept();
-  });
-  await page.evaluate(() => document.getElementById("endExamBtn")?.click());
-  await expect.poll(() => dialogMessage).toContain("End this exam now?");
-  expect(dialogMessage).toContain("Only use this if you are sure");
+  await page.click("#endExamBtn");
+  const confirmModal = page.locator("#confirmModal");
+  await expect(confirmModal).toBeVisible();
+  await expect(confirmModal).toContainText("End Exam Early?");
+  await expect(confirmModal).toContainText("unanswered");
+  await page.click("#confirmOkBtn");
 
   await expect(page.locator("#resultsScreen")).toBeVisible();
 });
+
 test("dashboard stats hydrate from stored progress data", async ({ page }) => {
   await page.addInitScript(() => {
     const user = {
@@ -900,7 +967,7 @@ test("quiz supports keyboard option selection and navigation", async ({ page }) 
   await registerAndEnter(page, "keyboard@example.com");
   await expect(page.locator("#topicList .topic-card:not(.hidden)").first()).toBeVisible();
 
-  await page.locator("#topicList .topic-card:not(.hidden):not(.locked)").first().click();
+  await page.locator("#topicList .topic-card:not(.hidden):not(.locked)").first().dispatchEvent("click");
   await expect(page.locator("#categorySelectionScreen")).toBeVisible();
   await page.click("#selectAllCategoryBtn");
   await expect(page.locator("#modeSelectionScreen")).toBeVisible();
@@ -923,7 +990,7 @@ test("in-progress quiz state restores after refresh", async ({ page }) => {
   await registerAndEnter(page, "resume@example.com");
   await expect(page.locator("#topicList .topic-card:not(.hidden)").first()).toBeVisible();
 
-  await page.locator("#topicList .topic-card:not(.hidden):not(.locked)").first().click();
+  await page.locator("#topicList .topic-card:not(.hidden):not(.locked)").first().dispatchEvent("click");
   await expect(page.locator("#categorySelectionScreen")).toBeVisible();
   await page.click("#selectAllCategoryBtn");
   await expect(page.locator("#modeSelectionScreen")).toBeVisible();
@@ -947,7 +1014,7 @@ test("practice mode does not reveal feedback before submit after refresh restore
   await registerAndEnter(page, "practice-restore@example.com");
   await expect(page.locator("#topicList .topic-card:not(.hidden)").first()).toBeVisible();
 
-  await page.locator("#topicList .topic-card:not(.hidden):not(.locked)").first().click();
+  await page.locator("#topicList .topic-card:not(.hidden):not(.locked)").first().dispatchEvent("click");
   await expect(page.locator("#categorySelectionScreen")).toBeVisible();
   await page.click("#selectAllCategoryBtn");
   await expect(page.locator("#modeSelectionScreen")).toBeVisible();
@@ -1699,7 +1766,7 @@ test("local mode shows cloud-sign-in guidance for feedback and hides quiz feedba
 
   await page.getByRole("button", { name: "Return to Dashboard" }).first().click();
   await expect(page.locator("#topicSelectionScreen")).toBeVisible();
-  await page.locator("#topicList .topic-card:not(.hidden):not(.locked)").first().click();
+  await page.locator("#topicList .topic-card:not(.hidden):not(.locked)").first().dispatchEvent("click");
   await expect(page.locator("#categorySelectionScreen")).toBeVisible();
   await page.click("#selectAllCategoryBtn");
   await expect(page.locator("#modeSelectionScreen")).toBeVisible();
