@@ -18,6 +18,7 @@ import {
   averageAttemptScores,
   buildRecentScoreSignal as buildRecentAttemptSignal,
   buildTimingSignal,
+  classifyRecommendationPattern,
   formatDifficultyLabel,
   formatGlBandLabel,
   getTrafficClassByPercentage,
@@ -925,7 +926,13 @@ function buildResultsRecommendationConfidence({
     timingEvidence;
   const hasStrongHistory = repeatedSessions >= 3 || Number(topicAttemptCount || 0) >= 4;
 
-  if (hasStrongHistory && alignedSignalCount >= 2) {
+  const patternLevel = classifyRecommendationPattern({
+    alignedSignalCount,
+    hasStrongHistory,
+    allowStrongHistoryForBuilding: true,
+  });
+
+  if (patternLevel === "repeated") {
     return {
       label: "Repeated Pattern",
       tone: "high",
@@ -933,7 +940,7 @@ function buildResultsRecommendationConfidence({
     };
   }
 
-  if (alignedSignalCount >= 2) {
+  if (patternLevel === "building") {
     return {
       label: "Building Pattern",
       tone: "medium",

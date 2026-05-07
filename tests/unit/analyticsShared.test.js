@@ -4,6 +4,7 @@ import {
   averageAttemptScores,
   buildRecentScoreSignal,
   buildTimingSignal,
+  classifyRecommendationPattern,
   formatDifficultyLabel,
   formatGlBandLabel,
   getTrafficClassByPercentage,
@@ -88,4 +89,74 @@ test("analytics shared timing signal normalizes exam pacing states", () => {
 
   assert.equal(buildTimingSignal({ mode: "study", allowedSeconds: 1200, elapsedSeconds: 600 }), null);
   assert.equal(buildTimingSignal({ mode: "exam", allowedSeconds: 0, elapsedSeconds: 600 }), null);
+});
+
+test("analytics shared recommendation classifier distinguishes early, building, and repeated patterns", () => {
+  assert.equal(
+    classifyRecommendationPattern({
+      alignedSignalCount: 1,
+      hasStrongHistory: false,
+      totalAttempts: 1,
+      repeatedMinAttempts: 4,
+      buildingMinAttempts: 2,
+      allowStrongHistoryForBuilding: true,
+    }),
+    "early",
+  );
+
+  assert.equal(
+    classifyRecommendationPattern({
+      alignedSignalCount: 2,
+      hasStrongHistory: false,
+      totalAttempts: 2,
+      repeatedMinAttempts: 4,
+      buildingMinAttempts: 2,
+      allowStrongHistoryForBuilding: true,
+    }),
+    "building",
+  );
+
+  assert.equal(
+    classifyRecommendationPattern({
+      alignedSignalCount: 2,
+      hasStrongHistory: true,
+      totalAttempts: 4,
+      repeatedMinAttempts: 4,
+      buildingMinAttempts: 2,
+      allowStrongHistoryForBuilding: true,
+    }),
+    "repeated",
+  );
+
+  assert.equal(
+    classifyRecommendationPattern({
+      alignedSignalCount: 2,
+      hasStrongHistory: true,
+      totalAttempts: 0,
+      allowStrongHistoryForBuilding: true,
+    }),
+    "repeated",
+  );
+  assert.equal(
+    classifyRecommendationPattern({
+      alignedSignalCount: 2,
+      hasStrongHistory: true,
+      totalAttempts: 0,
+      repeatedMinAttempts: 3,
+      buildingMinAttempts: 3,
+      allowStrongHistoryForBuilding: false,
+    }),
+    "early",
+  );
+  assert.equal(
+    classifyRecommendationPattern({
+      alignedSignalCount: 2,
+      hasStrongHistory: true,
+      totalAttempts: 0,
+      repeatedMinAttempts: 3,
+      buildingMinAttempts: 3,
+      allowStrongHistoryForBuilding: true,
+    }),
+    "building",
+  );
 });

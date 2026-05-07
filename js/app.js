@@ -16,6 +16,7 @@ import {
   averageAttemptScores,
   buildRecentScoreSignal,
   buildTimingSignal,
+  classifyRecommendationPattern,
   formatDifficultyLabel,
   formatGlBandLabel,
   getTrafficClassByPercentage,
@@ -1415,7 +1416,16 @@ function buildDashboardRecommendationConfidence(topic, insights) {
   const hasStrongHistory = topicAttempts >= 4 || repeatedSubcategorySessions >= 3;
   const totalAttempts = Number(insights?.totalAttempts || 0);
 
-  if (totalAttempts >= 4 && hasStrongHistory && alignedSignalCount >= 2) {
+  const patternLevel = classifyRecommendationPattern({
+    alignedSignalCount,
+    hasStrongHistory,
+    totalAttempts,
+    repeatedMinAttempts: 4,
+    buildingMinAttempts: 2,
+    allowStrongHistoryForBuilding: true,
+  });
+
+  if (patternLevel === "repeated") {
     return {
       label: "Repeated Pattern",
       tone: "high",
@@ -1423,10 +1433,7 @@ function buildDashboardRecommendationConfidence(topic, insights) {
     };
   }
 
-  if (
-    (totalAttempts >= 2 && alignedSignalCount >= 2) ||
-    (hasStrongHistory && alignedSignalCount >= 2)
-  ) {
+  if (patternLevel === "building") {
     return {
       label: "Building Pattern",
       tone: "medium",

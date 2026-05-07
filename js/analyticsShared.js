@@ -95,3 +95,42 @@ export function buildTimingSignal({
     unansweredCount: safeUnansweredCount,
   };
 }
+
+
+export function classifyRecommendationPattern({
+  alignedSignalCount = 0,
+  hasStrongHistory = false,
+  totalAttempts = 0,
+  repeatedMinAligned = 2,
+  buildingMinAligned = 2,
+  repeatedMinAttempts = 0,
+  buildingMinAttempts = 0,
+  allowStrongHistoryForBuilding = false,
+} = {}) {
+  const safeAlignedSignalCount = Math.max(0, Number(alignedSignalCount || 0));
+  const safeTotalAttempts = Math.max(0, Number(totalAttempts || 0));
+  const safeRepeatedMinAligned = Math.max(0, Number(repeatedMinAligned || 0));
+  const safeBuildingMinAligned = Math.max(0, Number(buildingMinAligned || 0));
+  const safeRepeatedMinAttempts = Math.max(0, Number(repeatedMinAttempts || 0));
+  const safeBuildingMinAttempts = Math.max(0, Number(buildingMinAttempts || 0));
+  const strongHistory = Boolean(hasStrongHistory);
+
+  const qualifiesForRepeated =
+    strongHistory &&
+    safeAlignedSignalCount >= safeRepeatedMinAligned &&
+    safeTotalAttempts >= safeRepeatedMinAttempts;
+  if (qualifiesForRepeated) return "repeated";
+
+  const qualifiesForBuildingByAttempts =
+    safeAlignedSignalCount >= safeBuildingMinAligned &&
+    safeTotalAttempts >= safeBuildingMinAttempts;
+  const qualifiesForBuildingByHistory =
+    allowStrongHistoryForBuilding &&
+    strongHistory &&
+    safeAlignedSignalCount >= safeBuildingMinAligned;
+  if (qualifiesForBuildingByAttempts || qualifiesForBuildingByHistory) {
+    return "building";
+  }
+
+  return "early";
+}
