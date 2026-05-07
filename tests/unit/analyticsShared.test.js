@@ -2,11 +2,14 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
   averageAttemptScores,
+  buildDifficultyInsights,
   buildRecentScoreSignal,
+  buildSubcategoryInsights,
   buildTimingSignal,
   classifyRecommendationPattern,
   formatDifficultyLabel,
   formatGlBandLabel,
+  getLatestMockWeakTopic,
   getTrafficClassByPercentage,
 } from "../../js/analyticsShared.js";
 
@@ -159,4 +162,61 @@ test("analytics shared recommendation classifier distinguishes early, building, 
     }),
     "building",
   );
+});
+
+
+test("analytics shared subcategory and difficulty insights aggregate and sort weakest areas first", () => {
+  const attempts = [
+    {
+      subcategoryBreakdown: [
+        { subcategoryId: "procurement", subcategoryName: "Procurement", correct: 2, answered: 4, total: 4 },
+        { subcategoryId: "ethics", subcategoryName: "Ethics", correct: 3, answered: 3, total: 3 },
+      ],
+      difficultyBreakdown: [
+        { difficulty: "hard", correct: 1, answered: 4, total: 4 },
+        { difficulty: "easy", correct: 3, answered: 3, total: 3 },
+      ],
+    },
+    {
+      subcategoryBreakdown: [
+        { subcategoryId: "procurement", subcategoryName: "Procurement", correct: 1, answered: 2, total: 2 },
+        { subcategoryId: "ethics", subcategoryName: "Ethics", correct: 1, answered: 2, total: 2 },
+      ],
+      difficultyBreakdown: [
+        { difficulty: "hard", correct: 2, answered: 4, total: 4 },
+        { difficulty: "medium", correct: 1, answered: 2, total: 2 },
+      ],
+    },
+  ];
+
+  const subcategoryInsights = buildSubcategoryInsights(attempts);
+  assert.equal(subcategoryInsights[0]?.subcategoryId, "procurement");
+  assert.equal(subcategoryInsights[0]?.accuracy, 50);
+  assert.equal(subcategoryInsights[0]?.sessions, 2);
+  assert.equal(subcategoryInsights[1]?.subcategoryId, "ethics");
+  assert.equal(subcategoryInsights[1]?.accuracy, 80);
+
+  const difficultyInsights = buildDifficultyInsights(attempts);
+  assert.equal(difficultyInsights[0]?.difficulty, "hard");
+  assert.equal(difficultyInsights[0]?.accuracy, 38);
+  assert.equal(difficultyInsights[1]?.difficulty, "medium");
+  assert.equal(difficultyInsights[1]?.accuracy, 50);
+  assert.equal(difficultyInsights[2]?.difficulty, "easy");
+  assert.equal(difficultyInsights[2]?.accuracy, 100);
+});
+
+test("analytics shared latest mock weak topic only considers mock-attempt source breakdown", () => {
+  const mockAttempt = {
+    topicId: "mock_exam",
+    sourceTopicBreakdown: [
+      { topicId: "topic_a", topicName: "Topic A", accuracy: 75, total: 6 },
+      { topicId: "topic_b", topicName: "Topic B", accuracy: 40, total: 5 },
+      { topicId: "topic_c", topicName: "Topic C", accuracy: 40, total: 8 },
+    ],
+  };
+
+  const weakest = getLatestMockWeakTopic(mockAttempt, "mock_exam");
+  assert.equal(weakest?.topicId, "topic_c");
+  assert.equal(getLatestMockWeakTopic(mockAttempt, "study_topic"), null);
+  assert.equal(getLatestMockWeakTopic({ topicId: "mock_exam", sourceTopicBreakdown: [] }, "mock_exam"), null);
 });

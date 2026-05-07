@@ -14,11 +14,14 @@ import {
 } from "./studyFilters.js";
 import {
   averageAttemptScores,
+  buildDifficultyInsights,
   buildRecentScoreSignal,
+  buildSubcategoryInsights,
   buildTimingSignal,
   classifyRecommendationPattern,
   formatDifficultyLabel,
   formatGlBandLabel,
+  getLatestMockWeakTopic,
   getTrafficClassByPercentage,
 } from "./analyticsShared.js";
 import { DEFAULT_MOCK_EXAM_TEMPLATE_ID } from "./mockExamTemplates.js";
@@ -1258,106 +1261,10 @@ function buildTopicMastery(attempts = []) {
     });
 }
 
-function buildSubcategoryInsights(attempts = []) {
-  const bySubcategory = new Map();
-
-  attempts.forEach((attempt) => {
-    const breakdown = Array.isArray(attempt?.subcategoryBreakdown)
-      ? attempt.subcategoryBreakdown
-      : [];
-    breakdown.forEach((entry) => {
-      const subcategoryId = String(entry?.subcategoryId || "").trim();
-      if (!subcategoryId) return;
-
-      const existing = bySubcategory.get(subcategoryId) || {
-        subcategoryId,
-        subcategoryName: String(entry?.subcategoryName || subcategoryId).trim(),
-        correct: 0,
-        answered: 0,
-        total: 0,
-        sessions: 0,
-      };
-      existing.correct += Number(entry?.correct || 0);
-      existing.answered += Number(entry?.answered || 0);
-      existing.total += Number(entry?.total || 0);
-      existing.sessions += 1;
-      bySubcategory.set(subcategoryId, existing);
-    });
-  });
-
-  return Array.from(bySubcategory.values())
-    .map((entry) => ({
-      ...entry,
-      accuracy: entry.answered
-        ? Math.round((entry.correct / entry.answered) * 100)
-        : 0,
-    }))
-    .sort(
-      (left, right) =>
-        left.accuracy - right.accuracy ||
-        right.total - left.total ||
-        left.subcategoryName.localeCompare(right.subcategoryName),
-    );
-}
-
-function buildDifficultyInsights(attempts = []) {
-  const byDifficulty = new Map();
-
-  attempts.forEach((attempt) => {
-    const breakdown = Array.isArray(attempt?.difficultyBreakdown)
-      ? attempt.difficultyBreakdown
-      : [];
-    breakdown.forEach((entry) => {
-      const difficulty = String(entry?.difficulty || "").trim().toLowerCase();
-      if (!difficulty) return;
-
-      const existing = byDifficulty.get(difficulty) || {
-        difficulty,
-        correct: 0,
-        answered: 0,
-        total: 0,
-        sessions: 0,
-      };
-      existing.correct += Number(entry?.correct || 0);
-      existing.answered += Number(entry?.answered || 0);
-      existing.total += Number(entry?.total || 0);
-      existing.sessions += 1;
-      byDifficulty.set(difficulty, existing);
-    });
-  });
-
-  const rank = { easy: 0, medium: 1, hard: 2 };
-  return Array.from(byDifficulty.values())
-    .map((entry) => ({
-      ...entry,
-      accuracy: entry.answered
-        ? Math.round((entry.correct / entry.answered) * 100)
-        : 0,
-    }))
-    .sort(
-      (left, right) =>
-        left.accuracy - right.accuracy ||
-        (rank[left.difficulty] ?? 99) - (rank[right.difficulty] ?? 99) ||
-        right.total - left.total,
-    );
-}
 
 
 
-function getLatestMockWeakTopic(attempt) {
-  const sourceBreakdown = Array.isArray(attempt?.sourceTopicBreakdown)
-    ? attempt.sourceTopicBreakdown
-    : [];
-  if (String(attempt?.topicId || "").trim() !== MOCK_EXAM_TOPIC_ID || !sourceBreakdown.length) {
-    return null;
-  }
 
-  return [...sourceBreakdown].sort(
-    (left, right) =>
-      Number(left?.accuracy || 0) - Number(right?.accuracy || 0) ||
-      Number(right?.total || 0) - Number(left?.total || 0),
-  )[0] || null;
-}
 
 
 
@@ -1527,7 +1434,7 @@ function buildRecommendation(insights) {
   const weakestTopic = insights.weakestTopic;
   const weakestSubcategory = insights.weakestSubcategory;
   const weakestDifficulty = insights.weakestDifficulty;
-  const latestWeakTopic = insights.latestMockWeakTopic || getLatestMockWeakTopic(latestAttempt);
+  const latestWeakTopic = insights.latestMockWeakTopic || getLatestMockWeakTopic(latestAttempt, MOCK_EXAM_TOPIC_ID);
   const recentScoreSignal = insights.recentScoreSignal || buildRecentScoreSignal(insights.attempts);
   const latestTimingSignal = insights.latestTimingSignal || getAttemptTimingSignal(latestAttempt);
   const recommendationConfidence = buildDashboardRecommendationConfidence({ id: insights.recommendedTopicId }, insights);
@@ -1835,7 +1742,7 @@ function buildAnalyticsSnapshot(attempts = []) {
     (isCoreAnalyticsTopicId(fallbackWeakestId) ? fallbackWeakestId : null);
   const weakestSubcategory = buildSubcategoryInsights(attempts)[0] || null;
   const weakestDifficulty = buildDifficultyInsights(attempts)[0] || null;
-  const latestMockWeakTopic = getLatestMockWeakTopic(latestAttempt);
+  const latestMockWeakTopic = getLatestMockWeakTopic(latestAttempt, MOCK_EXAM_TOPIC_ID);
   const recentScoreSignal = buildRecentScoreSignal(attempts);
   const latestTimingSignal = getAttemptTimingSignal(latestAttempt);
   const recommendation = buildRecommendation({

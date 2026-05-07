@@ -134,3 +134,103 @@ export function classifyRecommendationPattern({
 
   return "early";
 }
+
+
+export function buildSubcategoryInsights(attempts = []) {
+  const bySubcategory = new Map();
+
+  attempts.forEach((attempt) => {
+    const breakdown = Array.isArray(attempt?.subcategoryBreakdown)
+      ? attempt.subcategoryBreakdown
+      : [];
+    breakdown.forEach((entry) => {
+      const subcategoryId = String(entry?.subcategoryId || "").trim();
+      if (!subcategoryId) return;
+
+      const existing = bySubcategory.get(subcategoryId) || {
+        subcategoryId,
+        subcategoryName: String(entry?.subcategoryName || subcategoryId).trim(),
+        correct: 0,
+        answered: 0,
+        total: 0,
+        sessions: 0,
+      };
+      existing.correct += Number(entry?.correct || 0);
+      existing.answered += Number(entry?.answered || 0);
+      existing.total += Number(entry?.total || 0);
+      existing.sessions += 1;
+      bySubcategory.set(subcategoryId, existing);
+    });
+  });
+
+  return Array.from(bySubcategory.values())
+    .map((entry) => ({
+      ...entry,
+      accuracy: entry.answered
+        ? Math.round((entry.correct / entry.answered) * 100)
+        : 0,
+    }))
+    .sort(
+      (left, right) =>
+        left.accuracy - right.accuracy ||
+        right.total - left.total ||
+        left.subcategoryName.localeCompare(right.subcategoryName),
+    );
+}
+
+export function buildDifficultyInsights(attempts = []) {
+  const byDifficulty = new Map();
+
+  attempts.forEach((attempt) => {
+    const breakdown = Array.isArray(attempt?.difficultyBreakdown)
+      ? attempt.difficultyBreakdown
+      : [];
+    breakdown.forEach((entry) => {
+      const difficulty = String(entry?.difficulty || "").trim().toLowerCase();
+      if (!difficulty) return;
+
+      const existing = byDifficulty.get(difficulty) || {
+        difficulty,
+        correct: 0,
+        answered: 0,
+        total: 0,
+        sessions: 0,
+      };
+      existing.correct += Number(entry?.correct || 0);
+      existing.answered += Number(entry?.answered || 0);
+      existing.total += Number(entry?.total || 0);
+      existing.sessions += 1;
+      byDifficulty.set(difficulty, existing);
+    });
+  });
+
+  const rank = { easy: 0, medium: 1, hard: 2 };
+  return Array.from(byDifficulty.values())
+    .map((entry) => ({
+      ...entry,
+      accuracy: entry.answered
+        ? Math.round((entry.correct / entry.answered) * 100)
+        : 0,
+    }))
+    .sort(
+      (left, right) =>
+        left.accuracy - right.accuracy ||
+        (rank[left.difficulty] ?? 99) - (rank[right.difficulty] ?? 99) ||
+        right.total - left.total,
+    );
+}
+
+export function getLatestMockWeakTopic(attempt, mockExamTopicId = "") {
+  const sourceBreakdown = Array.isArray(attempt?.sourceTopicBreakdown)
+    ? attempt.sourceTopicBreakdown
+    : [];
+  if (String(attempt?.topicId || "").trim() !== String(mockExamTopicId || "").trim() || !sourceBreakdown.length) {
+    return null;
+  }
+
+  return [...sourceBreakdown].sort(
+    (left, right) =>
+      Number(left?.accuracy || 0) - Number(right?.accuracy || 0) ||
+      Number(right?.total || 0) - Number(left?.total || 0),
+  )[0] || null;
+}
