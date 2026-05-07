@@ -97,6 +97,12 @@ import {
   renderReviewMistakesEmptyState,
 } from "./appReviewMistakes.js";
 import { setToolbarIcon } from "./app/toolbar.js";
+import {
+  buildHeaderSummaryModel,
+  buildSupportStateCardsModel,
+  buildUtilityActionButtonModel,
+  getHeaderSyncSummary,
+} from "./appSupportView.js";
 import { createMockSetupController } from "./app/mockSetup.js";
 import {
   FEEDBACK_MESSAGE_MAX_LENGTH,
@@ -1238,39 +1244,39 @@ function renderSupportStateCards(insights = null) {
   const reviewQueueMeta = document.getElementById("stateReviewQueueMeta");
   const syncMeta = document.getElementById("stateSyncMeta");
   const summary = readProgressSummary();
-  const attemptsCount = Array.isArray(insights?.attempts)
-    ? insights.attempts.length
-    : Array.isArray(summary?.attempts)
-      ? summary.attempts.length
-      : 0;
-  const retryCount = getRetryMissedQueueCount();
-  const spacedDueCount = getSpacedPracticeDueCount();
   const user = getCurrentUser();
-  const syncSummary = getHeaderSyncSummary(user);
+  const supportModel = buildSupportStateCardsModel({
+    attempts: Array.isArray(insights?.attempts) ? insights.attempts : summary?.attempts,
+    retryCount: getRetryMissedQueueCount(),
+    spacedDueCount: getSpacedPracticeDueCount(),
+    syncSummary: getHeaderSyncSummary(user, {
+      providerLabel: getAuthProviderLabel(),
+      syncEnabled: isCloudProgressSyncEnabled(),
+      syncStatus: getCloudProgressSyncStatus(),
+      formatRelativeTime,
+      formatDateTime,
+    }),
+    hasUser: Boolean(user),
+  });
 
-  if (attemptsMeta) {
-    attemptsMeta.textContent = attemptsCount > 0
-      ? `You have ${attemptsCount} scored session${attemptsCount === 1 ? "" : "s"} saved. Open Analytics to review your trend.`
-      : "Start your first scored session to unlock progress analytics.";
-  }
+  if (attemptsMeta) attemptsMeta.textContent = supportModel.attemptsMeta;
+  if (reviewQueueMeta) reviewQueueMeta.textContent = supportModel.reviewQueueMeta;
+  if (syncMeta) syncMeta.textContent = supportModel.syncMeta;
+}
 
-  if (reviewQueueMeta) {
-    if (retryCount > 0 && spacedDueCount > 0) {
-      reviewQueueMeta.textContent = `${retryCount} retry question${retryCount === 1 ? "" : "s"} and ${spacedDueCount} spaced-review item${spacedDueCount === 1 ? "" : "s"} are ready right now.`;
-    } else if (retryCount > 0) {
-      reviewQueueMeta.textContent = `${retryCount} retry question${retryCount === 1 ? "" : "s"} are ready from recent mistakes.`;
-    } else if (spacedDueCount > 0) {
-      reviewQueueMeta.textContent = `${spacedDueCount} spaced-review item${spacedDueCount === 1 ? "" : "s"} are due for reinforcement.`;
-    } else {
-      reviewQueueMeta.textContent = "No missed questions are queued yet. Finish a session to build your retry path.";
-    }
+function renderUtilityActionButton(button, label, count, emptyTitle) {
+  if (!button) return;
+  const model = buildUtilityActionButtonModel({ label, count, emptyTitle });
+  button.classList.toggle("has-count", model.hasCount);
+  if (model.hasCount) {
+    button.setAttribute("data-count", model.countText);
+  } else {
+    button.removeAttribute("data-count");
   }
-
-  if (syncMeta) {
-    syncMeta.textContent = user
-      ? syncSummary.title
-      : "Sign in to enable multi-device sync and cross-device recovery.";
-  }
+  button.textContent = model.text;
+  button.disabled = model.disabled;
+  button.setAttribute("aria-label", model.ariaLabel);
+  button.setAttribute("title", model.title);
 }
 
 function resetReviewMistakesFilters() {
@@ -1619,24 +1625,6 @@ async function startRecommendation() {
     : topic;
 
   await handleTopicSelect(nextTopic);
-}
-
-function renderUtilityActionButton(button, label, count, emptyTitle) {
-  if (!button) return;
-  const hasCount = count > 0;
-  button.classList.toggle("has-count", hasCount);
-  if (hasCount) {
-    button.setAttribute("data-count", String(count));
-  } else {
-    button.removeAttribute("data-count");
-  }
-  button.textContent = hasCount ? `${label} (${count})` : label;
-  button.disabled = count === 0;
-  button.setAttribute(
-    "aria-label",
-    hasCount ? `${label}, ${count} ready` : `${label}, unavailable until you complete more sessions`,
-  );
-  button.setAttribute("title", hasCount ? `${label}: ${count} ready` : emptyTitle);
 }
 
 function syncRetryMissedButtonState() {
@@ -2596,69 +2584,29 @@ function getHeaderPlanLabel(user) {
   return user.plan === "premium" ? "Premium" : "Free";
 }
 
-function getHeaderSyncSummary(user) {
-  const provider = getAuthProviderLabel();
-  if (!user) {
-    return {
-      label: "Signed out",
-      tone: "muted",
-      title: "Login to enable saved progress and sync guidance.",
-    };
-  }
-
-  if (provider !== "Cloud" || !isCloudProgressSyncEnabled()) {
-    return {
-      label: "Device only",
-      tone: "muted",
-      title: "Progress stays on this device until Cloud auth and sync are available.",
-    };
-  }
-
-  const status = getCloudProgressSyncStatus();
-  if (status?.inFlight) {
-    return {
-      label: "Syncing",
-      tone: "medium",
-      title: "Progress sync is running now.",
-    };
-  }
-
-  if (status?.synced && status?.lastSuccessAt) {
-    const when = formatRelativeTime(status.lastSuccessAt) || formatDateTime(status.lastSuccessAt);
-    return {
-      label: "Synced",
-      tone: "high",
-      title: `Last synced ${when}.`,
-    };
-  }
-
-  if (status?.lastReason && status.lastReason !== "success") {
-    return {
-      label: "Retry sync",
-      tone: "low",
-      title: String(status.lastError || "Cloud sync needs another try.").trim(),
-    };
-  }
-
-  return {
-    label: "Cloud ready",
-    tone: "medium",
-    title: "Cloud profile is ready to sync progress.",
-  };
-}
-
 function renderHeaderSummary(container, user) {
   if (!container) return "";
   clearElementContent(container);
-  const displayName = String(user?.name || user?.email || "Signed in").trim();
-  const syncSummary = getHeaderSyncSummary(user);
   const provider = getAuthProviderLabel();
+  const syncSummary = getHeaderSyncSummary(user, {
+    providerLabel: provider,
+    syncEnabled: isCloudProgressSyncEnabled(),
+    syncStatus: getCloudProgressSyncStatus(),
+    formatRelativeTime,
+    formatDateTime,
+  });
+  const headerModel = buildHeaderSummaryModel({
+    user,
+    planLabel: getHeaderPlanLabel(user),
+    providerLabel: provider,
+    syncSummary,
+  });
   const userLine = document.createElement("span");
   userLine.className = "summary-user-line";
-  userLine.textContent = displayName;
+  userLine.textContent = headerModel.displayName;
   const pillRow = document.createElement("span");
   pillRow.className = "summary-pill-row";
-  [{ text: getHeaderPlanLabel(user), className: "summary-pill summary-pill-plan" }, { text: provider, className: "summary-pill" }, { text: syncSummary.label, className: "summary-pill summary-pill-" + syncSummary.tone }].forEach((entry) => {
+  headerModel.pills.forEach((entry) => {
     const pill = document.createElement("span");
     pill.className = entry.className;
     pill.textContent = entry.text;
@@ -2666,9 +2614,8 @@ function renderHeaderSummary(container, user) {
   });
   container.appendChild(userLine);
   container.appendChild(pillRow);
-  return getAuthSummaryLabel() + ". " + syncSummary.title;
+  return getAuthSummaryLabel() + ". " + headerModel.syncTitle;
 }
-
 function updateAuthUI() {
   const user = getCurrentUser();
   const authActionBtn = document.getElementById("authActionBtn");
@@ -5209,4 +5156,5 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   initializeThemeToggle();
 });
+
 
