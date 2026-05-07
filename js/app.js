@@ -19,11 +19,13 @@ import {
   buildSubcategoryInsights,
   buildTimingSignal,
   buildTopicMastery,
+  buildWeeklyConsistency,
   classifyRecommendationPattern,
   formatDifficultyLabel,
   formatGlBandLabel,
   getLatestMockWeakTopic,
   getTrafficClassByPercentage,
+  toLocalDayKey,
 } from "./analyticsShared.js";
 import { DEFAULT_MOCK_EXAM_TEMPLATE_ID } from "./mockExamTemplates.js";
 import {
@@ -1118,14 +1120,6 @@ function applySessionSetupState(topic) {
   configureSessionSetup(topic);
   configureStudyFilterPanel(topic);
 }
-function toLocalDayKey(value) {
-  const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return "";
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const day = String(date.getDate()).padStart(2, "0");
-  return `${year}-${month}-${day}`;
-}
 
 function isCoreAnalyticsTopicId(topicId) {
   const value = String(topicId || "").trim();
@@ -1183,32 +1177,6 @@ function buildTrendItems(attempts = []) {
     }));
 }
 
-function buildWeeklyConsistency(attempts = []) {
-  const attemptsByDay = new Map();
-  attempts.forEach((attempt) => {
-    const dayKey = toLocalDayKey(attempt?.createdAt);
-    if (!dayKey) return;
-    attemptsByDay.set(dayKey, (attemptsByDay.get(dayKey) || 0) + 1);
-  });
-
-  const days = [];
-  for (let offset = 6; offset >= 0; offset -= 1) {
-    const date = new Date();
-    date.setHours(0, 0, 0, 0);
-    date.setDate(date.getDate() - offset);
-    const dayKey = toLocalDayKey(date);
-    const count = attemptsByDay.get(dayKey) || 0;
-    days.push({
-      id: dayKey,
-      dayLabel: date.toLocaleDateString(undefined, { weekday: "short" }),
-      dateLabel: date.toLocaleDateString(undefined, { month: "short", day: "numeric" }),
-      count,
-      className: getActivityTrafficClass(count),
-    });
-  }
-
-  return days;
-}
 
 
 
@@ -1675,7 +1643,11 @@ function buildAnalyticsSnapshot(attempts = []) {
   const streakDays = calculateStreakDays(attempts);
   const latestAttempt = totalAttempts ? attempts[totalAttempts - 1] : null;
   const trendItems = buildTrendItems(attempts);
-  const weeklyConsistency = buildWeeklyConsistency(attempts);
+  const weeklyConsistency = buildWeeklyConsistency(attempts, {
+    getDayLabel: (date) => date.toLocaleDateString(undefined, { weekday: "short" }),
+    getDateLabel: (date) => date.toLocaleDateString(undefined, { month: "short", day: "numeric" }),
+    getClassName: getActivityTrafficClass,
+  });
   const topicMastery = buildTopicMastery(attempts, {
     topics: allTopics,
     isIncludedTopicId: isCoreAnalyticsTopicId,

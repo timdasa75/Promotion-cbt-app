@@ -299,3 +299,49 @@ export function buildTopicMastery(
       };
     });
 }
+
+
+export function toLocalDayKey(value) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "";
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
+export function buildWeeklyConsistency(
+  attempts = [],
+  {
+    now = new Date(),
+    getDayLabel = (date) => date.toLocaleDateString(undefined, { weekday: "short" }),
+    getDateLabel = (date) => date.toLocaleDateString(undefined, { month: "short", day: "numeric" }),
+    getClassName = () => "",
+  } = {},
+) {
+  const attemptsByDay = new Map();
+  attempts.forEach((attempt) => {
+    const dayKey = toLocalDayKey(attempt?.createdAt);
+    if (!dayKey) return;
+    attemptsByDay.set(dayKey, (attemptsByDay.get(dayKey) || 0) + 1);
+  });
+
+  const days = [];
+  const referenceDate = new Date(now);
+  for (let offset = 6; offset >= 0; offset -= 1) {
+    const date = new Date(referenceDate);
+    date.setHours(0, 0, 0, 0);
+    date.setDate(referenceDate.getDate() - offset);
+    const dayKey = toLocalDayKey(date);
+    const count = attemptsByDay.get(dayKey) || 0;
+    days.push({
+      id: dayKey,
+      dayLabel: getDayLabel(date),
+      dateLabel: getDateLabel(date),
+      count,
+      className: getClassName(count),
+    });
+  }
+
+  return days;
+}

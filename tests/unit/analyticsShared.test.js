@@ -7,11 +7,13 @@ import {
   buildSubcategoryInsights,
   buildTimingSignal,
   buildTopicMastery,
+  buildWeeklyConsistency,
   classifyRecommendationPattern,
   formatDifficultyLabel,
   formatGlBandLabel,
   getLatestMockWeakTopic,
   getTrafficClassByPercentage,
+  toLocalDayKey,
 } from "../../js/analyticsShared.js";
 
 test("analytics shared formatters normalize labels consistently", () => {
@@ -261,5 +263,36 @@ test("analytics shared topic mastery merges direct topic attempts with mock sour
       averageScore: 40,
       attempts: 1,
     },
+  ]);
+});
+
+
+test("analytics shared local day keys and weekly consistency bucket attempts by day", () => {
+  assert.equal(toLocalDayKey("2026-05-07T10:30:00Z"), "2026-05-07");
+  assert.equal(toLocalDayKey("not-a-date"), "");
+
+  const weekly = buildWeeklyConsistency(
+    [
+      { createdAt: "2026-05-05T08:00:00Z" },
+      { createdAt: "2026-05-05T18:00:00Z" },
+      { createdAt: "2026-05-07T09:00:00Z" },
+    ],
+    {
+      now: new Date("2026-05-07T12:00:00Z"),
+      getDayLabel: (date) => date.toISOString().slice(8, 10),
+      getDateLabel: (date) => date.toISOString().slice(5, 10),
+      getClassName: (count) => `count-${count}`,
+    },
+  );
+
+  assert.equal(weekly.length, 7);
+  assert.deepEqual(weekly.map((entry) => ({ id: entry.id, count: entry.count, className: entry.className })), [
+    { id: "2026-05-01", count: 0, className: "count-0" },
+    { id: "2026-05-02", count: 0, className: "count-0" },
+    { id: "2026-05-03", count: 0, className: "count-0" },
+    { id: "2026-05-04", count: 0, className: "count-0" },
+    { id: "2026-05-05", count: 2, className: "count-2" },
+    { id: "2026-05-06", count: 0, className: "count-0" },
+    { id: "2026-05-07", count: 1, className: "count-1" },
   ]);
 });
