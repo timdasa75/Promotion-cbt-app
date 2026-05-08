@@ -1573,6 +1573,15 @@ function renderAnalyticsScreen(insights) {
   }
 }
 
+function refreshDashboardInsights() {
+  const summary = readProgressSummary();
+  const attempts = Array.isArray(summary?.attempts) ? summary.attempts : [];
+  const insights = buildAppAnalyticsSnapshot(attempts);
+  recommendedTopicId = String(insights?.recommendedTopicId || "").trim() || null;
+  renderAnalyticsScreen(insights);
+  renderSupportStateCards(insights);
+  return insights;
+}
 async function resumeLastSession() {
   if (!cachedTopics.length) {
     showError("Topics are still loading. Please try again.");
@@ -5016,6 +5025,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   initializeThemeToggle();
 });
+
 
 
 
