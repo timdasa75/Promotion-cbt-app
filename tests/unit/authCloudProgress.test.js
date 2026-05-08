@@ -80,3 +80,54 @@ test("cloud progress writer persists normalized payloads", async () => {
   assert.equal(calls[0].options.idToken, "token-1");
   assert.equal(calls[0].options.body.fields.deviceId.stringValue, "device-1");
 });
+
+test("cloud progress reader and writer support Cloudflare sessions", async () => {
+  const readPayload = await readCloudProgressSummary({
+    ensureSession: async () => ({ provider: "cloudflare", accessToken: "cf-token", user: { id: "cf-1" } }),
+    fetchCloudflare: async (token) => {
+      assert.equal(token, "cf-token");
+      return {
+        progress: {
+          updatedAt: "2026-05-08T10:00:00.000Z",
+          deviceId: "device-1",
+          summary: {
+            attempts: [
+              {
+                topicId: "psr",
+                topicName: "Public Service Rules",
+                createdAt: "2026-05-08T09:00:00.000Z",
+              },
+            ],
+          },
+          retryQueue: [{ id: "r1", updatedAt: "2026-05-08T09:30:00.000Z", question: { id: "q1" } }],
+          spacedQueue: [{ questionId: "q1", dueAt: "2026-05-09T00:00:00.000Z" }],
+        },
+      };
+    },
+  });
+
+  assert.equal(readPayload.exists, true);
+  assert.equal(readPayload.summary.attempts.length, 1);
+  assert.equal(readPayload.retryQueue.length, 1);
+  assert.equal(readPayload.spacedQueue.length, 1);
+
+  const writePayload = await writeCloudProgressSummary(
+    readPayload.summary,
+    {
+      deviceId: "device-2",
+      retryQueue: readPayload.retryQueue,
+      spacedQueue: readPayload.spacedQueue,
+    },
+    {
+      ensureSession: async () => ({ provider: "cloudflare", accessToken: "cf-token", user: { id: "cf-1" } }),
+      writeCloudflare: async (token, body) => {
+        assert.equal(token, "cf-token");
+        assert.equal(body.progress.deviceId, "device-2");
+        assert.equal(body.progress.summary.attempts.length, 1);
+      },
+    },
+  );
+
+  assert.equal(writePayload.saved, true);
+  assert.equal(writePayload.summary.attempts.length, 1);
+});

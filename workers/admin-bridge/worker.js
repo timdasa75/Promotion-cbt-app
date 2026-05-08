@@ -1,5 +1,14 @@
 import { buildPublicAuthUser, getAuthUserById, hashPassword, issueSession, parseBearerToken, readSessionRecord, resolveHybridAuthRouteHandler, sha256Base64Url, timingSafeEqual, touchSession } from "./auth-hybrid.js";
 import { collectSubcategories, getQuestionsFromSubcategory } from "../../js/topicDataShape.js";
+import {
+  normalizeProgressSummary,
+  normalizeRetryQueue,
+  normalizeSpacedQueue,
+  parseCloudProgressDocument,
+  serializeProgressSummary,
+  serializeRetryQueue,
+  serializeSpacedQueue,
+} from "../../js/authFirestoreModels.js";
 const IDENTITY_TOOLKIT_BASE_URL = "https://identitytoolkit.googleapis.com/v1";
 const FIRESTORE_BASE_URL = "https://firestore.googleapis.com/v1";
 const GOOGLE_OAUTH_TOKEN_URL = "https://oauth2.googleapis.com/token";
@@ -49,7 +58,7 @@ function resolveAllowedOrigin(request, env) {
 function withCorsHeaders(response, origin) {
   response.headers.set("Access-Control-Allow-Origin", origin || "*");
   response.headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  response.headers.set("Access-Control-Allow-Methods", "POST, OPTIONS");
+  response.headers.set("Access-Control-Allow-Methods", "GET, POST, PATCH, OPTIONS");
   response.headers.set("Access-Control-Max-Age", "86400");
   return response;
 }
@@ -689,6 +698,93 @@ async function resolveAuthenticatedContentUser(request, env) {
   }
 }
 
+async function resolveCloudflareProgressUser(request, env) {
+  const token = parseBearerToken(request);
+  const user = await resolveCloudflareContentUser(token, env);
+  if (String(user?.status || "active").toLowerCase() !== "active") {
+    throw createRouteError(403, "Your account is not active.");
+  }
+  return user;
+}
+
+async function readProgressDocumentById(env, userId) {
+  const docUrl = firestoreDocumentUrl(env, `progress/${encodeURIComponent(userId)}`);
+  try {
+    const payload = await firestoreRequest(env, docUrl, { method: "GET" });
+    return parseCloudProgressDocument(payload);
+  } catch (error) {
+    if (Number(error?.httpStatus) === 404) {
+      return null;
+    }
+    throw error;
+  }
+}
+
+async function handleCloudflareProgress(request, env) {
+  const user = await resolveCloudflareProgressUser(request, env);
+  const method = String(request.method || "").toUpperCase();
+
+  if (method === "GET") {
+    const parsed = await readProgressDocumentById(env, user.id);
+    return {
+      ok: true,
+      progress: parsed
+        ? {
+            schemaVersion: Number(parsed.schemaVersion || 1),
+            updatedAt: String(parsed.updatedAt || ""),
+            deviceId: String(parsed.deviceId || ""),
+            summary: normalizeProgressSummary(parsed.summary),
+            retryQueue: normalizeRetryQueue(parsed.retryQueue),
+            spacedQueue: normalizeSpacedQueue(parsed.spacedQueue),
+          }
+        : null,
+    };
+  }
+
+  if (method !== "PATCH") {
+    throw createRouteError(405, "Method not allowed.");
+  }
+
+  const body = await readJsonBody(request);
+  const progress = body?.progress || {};
+  const { normalized: summary, serialized: progressSummaryJson } = serializeProgressSummary(progress.summary);
+  const { normalized: retryQueue, serialized: retryQueueJson } = serializeRetryQueue(progress.retryQueue);
+  const { normalized: spacedQueue, serialized: spacedQueueJson } = serializeSpacedQueue(progress.spacedQueue);
+  const nowIso = new Date().toISOString();
+  const params = new URLSearchParams();
+  ["schemaVersion", "updatedAt", "deviceId", "progressSummaryJson", "retryQueueJson", "spacedQueueJson"].forEach(
+    (field) => params.append("updateMask.fieldPaths", field),
+  );
+
+  const docUrl = firestoreDocumentUrl(env, `progress/${encodeURIComponent(user.id)}`);
+  await firestoreRequest(env, `${docUrl}?${params.toString()}`, {
+    method: "PATCH",
+    body: {
+      fields: {
+        schemaVersion: { integerValue: "1" },
+        updatedAt: { timestampValue: nowIso },
+        deviceId: { stringValue: String(progress.deviceId || "").trim() },
+        progressSummaryJson: { stringValue: progressSummaryJson },
+        retryQueueJson: { stringValue: retryQueueJson },
+        spacedQueueJson: { stringValue: spacedQueueJson },
+      },
+    },
+  });
+
+  return {
+    ok: true,
+    saved: true,
+    progress: {
+      schemaVersion: 1,
+      updatedAt: nowIso,
+      deviceId: String(progress.deviceId || "").trim(),
+      summary,
+      retryQueue,
+      spacedQueue,
+    },
+  };
+}
+
 async function handleProtectedTopicData(request, env) {
   const viewer = await resolveAuthenticatedContentUser(request, env);
   if (String(viewer?.status || "active").toLowerCase() !== "active") {
@@ -1312,6 +1408,7 @@ async function handleAdminDeleteUserById(request, env) {
 
 function resolveRouteHandler(path) {
   if (path.endsWith("/auth/password/request")) return handleAuthPasswordRecoveryRequest;
+  if (path.endsWith("/progress")) return handleCloudflareProgress;
   if (path.endsWith("/content/topic-data")) return handleProtectedTopicData;
   const authRouteHandler = resolveHybridAuthRouteHandler(path);
   if (authRouteHandler) return authRouteHandler;
@@ -1337,7 +1434,7 @@ export default {
       return withCorsHeaders(new Response("", { status: 204 }), origin || "*");
     }
 
-    if (request.method !== "POST") {
+    if (!["GET", "POST", "PATCH"].includes(request.method)) {
       return jsonResponse({ ok: false, error: "Method not allowed." }, 405, origin || "*");
     }
 
