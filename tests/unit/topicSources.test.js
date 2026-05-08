@@ -209,3 +209,29 @@ test("fetchTopicDataFilesWithReport requests protected topic content from the wo
     ctx.restore();
   }
 });
+
+test("fetchJsonFile retries a relative fallback path when the primary base path misses", async () => {
+  const ctx = installBrowserContext({ pathname: "/nested-preview/" });
+  try {
+    const calls = [];
+    global.fetch = async (url) => {
+      calls.push(url);
+      if (url === "/data/topics.json") {
+        return { ok: false, status: 404, text: async () => "not found" };
+      }
+      if (url === "data/topics.json") {
+        return {
+          ok: true,
+          text: async () => JSON.stringify({ topics: [{ id: "psr" }] }),
+        };
+      }
+      throw new Error(`Unexpected fetch URL: ${url}`);
+    };
+
+    const result = await fetchJsonFile("data/topics.json");
+    assert.deepEqual(result, { topics: [{ id: "psr" }] });
+    assert.deepEqual(calls, ["/data/topics.json", "data/topics.json"]);
+  } finally {
+    ctx.restore();
+  }
+});

@@ -262,41 +262,53 @@ export function getTopicFiles(topic) {
 
 export async function fetchJsonFile(file) {
   const BASE_URL = getBaseUrl();
-  const filePath = `${BASE_URL}/${file}`;
+  const primaryPath = `${BASE_URL}/${file}`;
+  const candidatePaths = Array.from(new Set([
+    primaryPath,
+    String(file || "").startsWith("/") ? String(file || "") : `/${file}`,
+    String(file || ""),
+  ].filter(Boolean)));
 
-  if (jsonCache.has(filePath)) {
-    return jsonCache.get(filePath);
-  }
-
-  const cachedEntry = readPersistentJsonText(filePath);
-  if (cachedEntry?.isFresh) {
-    const cachedData = parseJsonText(cachedEntry.text, file);
-    jsonCache.set(filePath, cachedData);
-    return cachedData;
-  }
-
-  try {
-    const response = await fetch(filePath);
-    if (!response.ok) {
-      throw new Error(`Failed to fetch ${file}: ${response.status}`);
+  for (const filePath of candidatePaths) {
+    if (jsonCache.has(filePath)) {
+      return jsonCache.get(filePath);
     }
 
-    const text = await response.text();
-    const data = parseJsonText(text, file);
-    jsonCache.set(filePath, data);
-    persistJsonText(filePath, text);
-    return data;
-  } catch (error) {
-    if (cachedEntry?.text) {
-      console.warn(`Using cached JSON fallback for ${filePath}`, error);
+    const cachedEntry = readPersistentJsonText(filePath);
+    if (cachedEntry?.isFresh) {
       const cachedData = parseJsonText(cachedEntry.text, file);
       jsonCache.set(filePath, cachedData);
       return cachedData;
     }
-    throw error;
-  }
-}
 
+    try {
+      const response = await fetch(filePath);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch ${file}: ${response.status}`);
+      }
+
+      const text = await response.text();
+      const data = parseJsonText(text, file);
+      jsonCache.set(filePath, data);
+      persistJsonText(filePath, text);
+      return data;
+    } catch (error) {
+      if (cachedEntry?.text) {
+        console.warn(`Using cached JSON fallback for ${filePath}`, error);
+        const cachedData = parseJsonText(cachedEntry.text, file);
+        jsonCache.set(filePath, cachedData);
+        return cachedData;
+      }
+
+      const isLastCandidate = filePath === candidatePaths[candidatePaths.length - 1];
+      if (isLastCandidate) {
+        throw error;
+      }
+    }
+  }
+
+  throw new Error(`Failed to fetch ${file}`);
+}
 export async function fetchTopicDataFilesWithReport(topic, options = {}) {
   return fetchProtectedTopicDataFilesWithReport(topic, options);
 }
@@ -312,3 +324,4 @@ export {
   extractQuestionsByCategory,
   getQuestionsFromSubcategory,
 };
+

@@ -3398,7 +3398,15 @@ async function refreshAdminFeedbackSubmissions() {
         countLabel.textContent = "Feedback: 0/0";
       }
       if (notice) {
-        notice.textContent = error?.message || "Unable to load feedback inbox.";
+        const rawMessage = String(error?.message || "").trim();
+        const providerLabel = String(getAuthProviderLabel() || "").trim();
+        const feedbackLoadMessage =
+          rawMessage === "Cloud session is unavailable." || rawMessage === "Data request failed."
+            ? (providerLabel === "Hybrid"
+                ? "Feedback inbox needs a cloud-backed admin session. Sign in through the cloud auth path instead of device-only mode."
+                : "Feedback inbox requires a cloud-backed admin session.")
+            : rawMessage || "Unable to load feedback inbox.";
+        notice.textContent = feedbackLoadMessage;
         notice.classList.remove("hidden");
       }
       console.error("Failed to refresh feedback inbox:", error);
@@ -3779,7 +3787,7 @@ function renderAdminUserDirectory() {
                 Resend verification
               </button>
               <button class="directory-action directory-action-menu-item" data-action="create-cloudflare-link" data-profile-email="${safeEmail}" data-profile-role="${safeProfileRole}" data-profile-plan="${safePlan}" data-profile-status="${safeProfileStatus}" data-email-verified="${verification.dataValue}" data-profile-source="${safeSource}" type="button" role="menuitem">
-                ${profileSource === "cloudflare-auth" ? "Create password reset link" : "Create password setup link"}
+                ${cloudflareActionLabel}
               </button>
               <button class="directory-action directory-action-menu-item danger" data-action="set-account-state" data-profile-id="${safeProfileId}" data-profile-email="${safeEmail}" data-next-status="${accountNextStatus}" type="button" role="menuitem">
                 ${accountActionLabel} account
@@ -5008,6 +5016,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   initializeThemeToggle();
 });
+
 
 
 
