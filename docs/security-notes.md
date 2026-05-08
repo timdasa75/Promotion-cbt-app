@@ -5,26 +5,36 @@
 - Date: 2026-04-27
 - Scope: `functions` package only (`d:\MyApps\promotion-cbt\Promotion-cbt-app\functions\package-lock.json`)
 - Current direct dependency baseline:
-  - `firebase-admin` `^13.8.0`
+  - `firebase-admin` `^13.8.0` resolved to `13.9.0`
   - `firebase-functions` `^7.2.5`
 - Main app status:
   - root app dependency audit has been cleaned separately
   - remaining GitHub Dependabot alerts are limited to the Functions dependency tree
 
+### Latest remediation pass
+
+- Date: 2026-05-09
+- Refreshed `functions/package-lock.json` with `npm audit fix`.
+- Resolved the high-severity `fast-xml-builder` alert by moving the lockfile from `1.1.5` to `1.2.0`.
+- Resolved the moderate `uuid` alert by moving the lockfile from `11.1.0` to `11.1.1`.
+- Re-ran the Functions package audit and confirmed:
+  - `high`: `0`
+  - `moderate`: `0`
+  - `low`: `9`
+
 ### Remaining reviewed alerts
 
 1. `@tootallnate/once` - low
-2. `uuid` - medium
 
 ### Why they remain
 
-- Both alerts are transitive dependencies pulled in by the Firebase / Google SDK chain used by the Functions package.
+- The remaining alerts are transitive dependencies pulled in by the Firebase / Google SDK chain used by the Functions package.
 - We already applied the safe non-breaking updates available at this layer:
   - upgraded `firebase-admin`
   - upgraded `firebase-functions`
   - refreshed the lockfile with `npm audit fix`
 - GitHub re-analysis confirmed that the previously higher-severity alerts tied to older resolved versions (for example `node-forge`, `protobufjs`, `fast-xml-parser`, `flatted`, and `path-to-regexp`) were cleared after the lockfile update.
-- The remaining two alerts are still pinned under upstream dependency ranges, so forcing overrides would be higher risk than the benefit currently justifies.
+- The remaining low-severity chain is still pinned under upstream dependency ranges, and `npm audit fix --force` proposes a major Firebase downgrade (`firebase-admin@10.3.0` / `firebase-functions@4.9.0`), so forcing that change would be higher risk than the benefit currently justifies.
 
 ### Review rationale
 
