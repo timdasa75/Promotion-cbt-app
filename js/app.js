@@ -13,13 +13,7 @@ import {
   resolveStudyQuestionCount,
 } from "./studyFilters.js";
 import {
-  averageAttemptScores,
-  buildDifficultyInsights,
-  buildSubcategoryInsights,
   buildTimingSignal,
-  buildTopicMastery,
-  buildTrendItems,
-  buildWeeklyConsistency,
   formatDifficultyLabel,
   formatGlBandLabel,
   formatModeLabel,
@@ -82,6 +76,15 @@ import {
   buildRecommendation,
   getPreferredRecommendedTopic,
 } from "./appRecommendations.js";
+import {
+  readDismissedDashboardRecommendationSignature,
+  writeDismissedDashboardRecommendationSignature,
+} from "./appRecommendationDismissals.js";
+import {
+  clearScreenState,
+  readScreenState,
+  writeScreenState,
+} from "./appScreenStateStorage.js";
 import { initializeThemeShortcut, initializeThemeToggle } from "./app/theme.js";
 import {
   applyReviewMistakeFilters,
@@ -183,8 +186,6 @@ const ADMIN_OPERATION_HISTORY_MAX = 120;
 const EXPIRY_WARNING_DAYS = 7;
 const LOGIN_EMAIL_PREFILL_STORAGE_KEY = "cbt_login_prefill_email_v1";
 const FREE_TIER_NOTICE_STORAGE_PREFIX = "cbt_free_tier_notice_dismissed_v1";
-const SCREEN_STATE_STORAGE_KEY = "cbt_screen_state_v1";
-const DASHBOARD_RECOMMENDATION_DISMISSAL_STORAGE_PREFIX = "cbt_dashboard_recommendation_dismissed_v1_";
 const DEFAULT_ADMIN_DIRECTORY_SYNC_INTERVAL_MS = 60000;
 const ADMIN_DIRECTORY_SYNC_STORAGE_KEYS = new Set([
   "cbt_session_v1",
@@ -1225,35 +1226,6 @@ function buildAppAnalyticsSnapshot(attempts) {
   });
 }
 
-function getDashboardRecommendationDismissalKey(user) {
-  const userId = String(user?.id || "").trim();
-  return userId ? `${DASHBOARD_RECOMMENDATION_DISMISSAL_STORAGE_PREFIX}${userId}` : "";
-}
-
-function readDismissedDashboardRecommendationSignature(user) {
-  const storageKey = getDashboardRecommendationDismissalKey(user);
-  if (!storageKey) return "";
-  try {
-    return String(localStorage.getItem(storageKey) || "").trim();
-  } catch (error) {
-    return "";
-  }
-}
-
-function writeDismissedDashboardRecommendationSignature(user, signature) {
-  const storageKey = getDashboardRecommendationDismissalKey(user);
-  if (!storageKey) return;
-  try {
-    if (!signature) {
-      localStorage.removeItem(storageKey);
-      return;
-    }
-    localStorage.setItem(storageKey, String(signature));
-  } catch (error) {
-    console.warn("Unable to persist dismissed dashboard recommendation", error);
-  }
-}
-
 function renderSupportStateCards(insights = null) {
   const attemptsMeta = document.getElementById("stateAttemptsMeta");
   const reviewQueueMeta = document.getElementById("stateReviewQueueMeta");
@@ -1859,25 +1831,6 @@ function initializeReviewMistakesControls() {
       }
     });
   }
-}
-
-function readScreenState() {
-  try {
-    const raw = localStorage.getItem(SCREEN_STATE_STORAGE_KEY);
-    if (!raw) return null;
-    const parsed = JSON.parse(raw);
-    return parsed && typeof parsed === "object" ? parsed : null;
-  } catch (error) {
-    return null;
-  }
-}
-
-function writeScreenState(state) {
-  localStorage.setItem(SCREEN_STATE_STORAGE_KEY, JSON.stringify(state || {}));
-}
-
-function clearScreenState() {
-  localStorage.removeItem(SCREEN_STATE_STORAGE_KEY);
 }
 
 function persistScreenState(screenId) {
