@@ -56,6 +56,7 @@ export function buildAnalyticsSnapshot(
     getWhenLabel: (attempt) => getWhenLabel(attempt),
   });
   const weeklyConsistency = buildWeeklyConsistency(safeAttempts, {
+    now: latestAttempt?.createdAt || undefined,
     getDayLabel,
     getDateLabel,
     getClassName: getWeeklyActivityClass,
@@ -140,3 +141,4 @@ export function getAnalyticsReadinessState(insights) {
     body: "Use practice and review to lift weak areas before leaning too hard on timed sessions.",
   };
 }
+
