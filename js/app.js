@@ -47,6 +47,7 @@ import {
   getSpacedPracticeDueCount,
   getSpacedPracticeQuestions,
   loadQuestions,
+  readProgressSummary,
   RETRY_MISSED_TOPIC_ID,
   SPACED_PRACTICE_TOPIC_ID,
   REVISION_TOPIC_ID,
@@ -143,7 +144,6 @@ import {
   getFreeMockExamEligibility,
   getLocalPlanOverrides,
   getPlanOverrideSyncMeta,
-  getProgressStorageKeyForCurrentUser,
   isCloudAuthMisconfigured,
   isCloudProgressSyncEnabled,
   isCurrentUserAdmin,
@@ -431,30 +431,10 @@ function applyTopicFilter(filter) {
 }
 
 function getLatestAttemptTopic() {
-  try {
-    const raw = localStorage.getItem(getProgressStorageKeyForCurrentUser());
-    if (!raw) return null;
-    const parsed = JSON.parse(raw);
-    if (!parsed || !Array.isArray(parsed.attempts) || !parsed.attempts.length) {
-      return null;
-    }
-    const latestAttempt = parsed.attempts[parsed.attempts.length - 1];
-    return latestAttempt?.topicId || null;
-  } catch (error) {
-    return null;
-  }
-}
-
-function readProgressSummary() {
-  try {
-    const raw = localStorage.getItem(getProgressStorageKeyForCurrentUser());
-    if (!raw) return { attempts: [] };
-    const parsed = JSON.parse(raw);
-    if (!parsed || !Array.isArray(parsed.attempts)) return { attempts: [] };
-    return parsed;
-  } catch (error) {
-    return { attempts: [] };
-  }
+  const summary = readProgressSummary();
+  const attempts = Array.isArray(summary?.attempts) ? summary.attempts : [];
+  const latestAttempt = attempts[attempts.length - 1];
+  return latestAttempt?.topicId || null;
 }
 
 function normalizeUpgradeRequestRecord(entry) {

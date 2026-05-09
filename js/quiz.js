@@ -39,6 +39,7 @@ import {
   normalizeGLBandKey,
   prioritizeQuestionPool,
 } from "./questionPriority.js";
+import { recoverProgressSummaryForStorageKey } from "./progressSummaryStorage.js";
 import {
   EXAM_CRITICAL_THRESHOLD_SEC,
   EXAM_WARNING_MESSAGES,
@@ -102,8 +103,6 @@ const QUIZ_RUNTIME_MAX_AGE_MS = 24 * 60 * 60 * 1000;
 const RETRY_MISSED_STORAGE_PREFIX = "cbt_retry_missed_v1_";
 const SPACED_PRACTICE_STORAGE_PREFIX = "cbt_spaced_practice_v1_";
 const FLAGGED_STORAGE_PREFIX = "cbt_flagged_v1_";
-const PROGRESS_STORAGE_PREFIX = "cbt_progress_summary_v1_";
-const GUEST_PROGRESS_STORAGE_KEY = "cbt_progress_summary_v1_guest";
 const RETRY_MISSED_MAX_ITEMS = 300;
 const RETRY_MISSED_DEFAULT_SESSION_SIZE = 40;
 const SPACED_PRACTICE_MAX_ITEMS = 600;
@@ -1181,7 +1180,7 @@ function applyTrafficClass(element, className) {
  * DOM Elements cache
  */
 
-function readProgressSummary() {
+export function readProgressSummary() {
   try {
     const storageKey = getProgressStorageKeyForCurrentUser();
     const raw = window.localStorage.getItem(storageKey);
@@ -1207,37 +1206,12 @@ function saveProgressSummary(summary) {
 
 function recoverLegacyProgressSummaryForCurrentUser(currentStorageKey) {
   if (!getCurrentUser()?.id || typeof window === "undefined" || !window.localStorage) return null;
-
-  const candidates = [];
-  for (let index = 0; index < window.localStorage.length; index += 1) {
-    const key = window.localStorage.key(index);
-    if (
-      !key ||
-      key === currentStorageKey ||
-      key === GUEST_PROGRESS_STORAGE_KEY ||
-      !key.startsWith(PROGRESS_STORAGE_PREFIX)
-    ) {
-      continue;
-    }
-
-    try {
-      const parsed = JSON.parse(window.localStorage.getItem(key) || "");
-      const summary = normalizeProgressSummary(parsed);
-      if (summary.attempts.length) {
-        candidates.push({ key, summary });
-      }
-    } catch (error) {
-      // Ignore malformed legacy buckets; they should not block signed-in progress.
-    }
-  }
-
-  if (candidates.length !== 1) return null;
-  try {
-    window.localStorage.setItem(currentStorageKey, JSON.stringify(candidates[0].summary));
-  } catch (error) {
-    console.warn("Unable to migrate legacy progress summary", error);
-  }
-  return candidates[0].summary;
+  return recoverProgressSummaryForStorageKey({
+    storage: window.localStorage,
+    currentStorageKey,
+    normalizeProgressSummary,
+    mergeProgressSummaries,
+  })?.summary || null;
 }
 
 function getFlaggedStorageKeyForCurrentUser() {
