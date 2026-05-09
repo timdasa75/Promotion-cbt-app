@@ -22,6 +22,7 @@ export default defineConfig(({ mode }) => {
           { src: "data/gl_band_weights.json", dest: "data" },
           { src: "config/runtime-auth.js", dest: "config" },
           { src: "config/runtime-auth.example.js", dest: "config" },
+          { src: "tools/progress-diagnostic.html", dest: "tools" },
         ],
       }),
     ],

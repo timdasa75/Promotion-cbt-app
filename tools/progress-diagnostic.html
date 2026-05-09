@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Progress Storage Diagnostic</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+      body {
+        margin: 0;
+        padding: 24px;
+        background: #eef8f2;
+        color: #102033;
+      }
+      main {
+        max-width: 960px;
+        margin: 0 auto;
+        background: #fff;
+        border: 1px solid #b8d3c5;
+        border-radius: 18px;
+        padding: 24px;
+        box-shadow: 0 20px 45px rgba(16, 32, 51, 0.08);
+      }
+      h1 {
+        margin-top: 0;
+        color: #08733d;
+      }
+      button {
+        border: 0;
+        border-radius: 12px;
+        background: #08733d;
+        color: #fff;
+        cursor: pointer;
+        font-weight: 700;
+        padding: 12px 16px;
+      }
+      button.secondary {
+        background: #eef8f2;
+        border: 1px solid #87bea1;
+        color: #07532d;
+      }
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin: 18px 0;
+      }
+      pre {
+        white-space: pre-wrap;
+        word-break: break-word;
+        background: #0f172a;
+        color: #e5eefb;
+        border-radius: 14px;
+        padding: 18px;
+        min-height: 300px;
+      }
+      .note {
+        color: #42526a;
+        line-height: 1.5;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Progress Storage Diagnostic</h1>
+      <p class="note">
+        This page reads only this browser origin's app storage. It redacts access tokens and does not modify progress data.
+        Use it from the same tab/origin where you are logged in.
+      </p>
+      <div class="actions">
+        <button type="button" id="refreshBtn">Refresh Summary</button>
+        <button type="button" id="copyBtn" class="secondary">Copy Summary</button>
+        <button type="button" id="backBtn" class="secondary">Back to App</button>
+      </div>
+      <pre id="output">Loading...</pre>
+    </main>
+
+    <script src="../config/runtime-auth.js"></script>
+    <script>
+      const SESSION_KEY = "cbt_session_v1";
+      const PROGRESS_PREFIX = "cbt_progress_summary_v1_";
+      const RETRY_PREFIX = "cbt_retry_missed_v1_";
+      const SPACED_PREFIX = "cbt_spaced_practice_v1_";
+
+      function readJson(storage, key) {
+        try {
+          const raw = storage.getItem(key);
+          return raw ? JSON.parse(raw) : null;
+        } catch (_error) {
+          return null;
+        }
+      }
+
+      function summarizeProgressValue(key, value) {
+        const attempts = Array.isArray(value?.attempts) ? value.attempts : [];
+        const latest = attempts[attempts.length - 1] || null;
+        return {
+          key,
+          attempts: attempts.length,
+          latestTopic: latest?.topicName || latest?.topicId || "",
+          latestScore: latest?.scorePercentage ?? null,
+          latestCreatedAt: latest?.createdAt || "",
+          firstCreatedAt: attempts[0]?.createdAt || "",
+        };
+      }
+
+      function summarizeQueue(prefix) {
+        const rows = [];
+        for (let index = 0; index < localStorage.length; index += 1) {
+          const key = localStorage.key(index);
+          if (!key || !key.startsWith(prefix)) continue;
+          const value = readJson(localStorage, key);
+          rows.push({
+            key,
+            items: Array.isArray(value) ? value.length : 0,
+          });
+        }
+        return rows.sort((left, right) => left.key.localeCompare(right.key));
+      }
+
+      function collectSummary() {
+        const session = readJson(sessionStorage, SESSION_KEY) || readJson(localStorage, SESSION_KEY);
+        const user = session?.user || null;
+        const currentUserId = String(user?.id || "").trim();
+        const currentProgressKey = currentUserId ? `${PROGRESS_PREFIX}${currentUserId}` : `${PROGRESS_PREFIX}guest`;
+        const progressBuckets = [];
+
+        for (let index = 0; index < localStorage.length; index += 1) {
+          const key = localStorage.key(index);
+          if (!key || !key.startsWith(PROGRESS_PREFIX)) continue;
+          progressBuckets.push(summarizeProgressValue(key, readJson(localStorage, key)));
+        }
+
+        return {
+          origin: location.origin,
+          url: location.href,
+          session: session
+            ? {
+                provider: session.provider || "",
+                userId: user?.id || "",
+                email: user?.email || "",
+                plan: user?.plan || "",
+                hasAccessToken: Boolean(session.accessToken),
+              }
+            : null,
+          currentProgressKey,
+          currentProgressBucket:
+            progressBuckets.find((bucket) => bucket.key === currentProgressKey) || null,
+          allProgressBuckets: progressBuckets.sort((left, right) => left.key.localeCompare(right.key)),
+          retryQueues: summarizeQueue(RETRY_PREFIX),
+          spacedPracticeQueues: summarizeQueue(SPACED_PREFIX),
+          localStorageKeys: Array.from({ length: localStorage.length }, (_, index) => localStorage.key(index))
+            .filter(Boolean)
+            .sort(),
+        };
+      }
+
+      function getCloudflareAuthBaseUrl() {
+        const cfg = window.PROMOTION_CBT_AUTH || {};
+        return String(cfg.cloudflareAuthBaseUrl || cfg.cloudflareApiBaseUrl || "").replace(/\/+$/, "");
+      }
+
+      function summarizeCloudProgress(payload) {
+        const progress = payload?.progress || null;
+        const summary = progress?.summary || {};
+        const attempts = Array.isArray(summary?.attempts) ? summary.attempts : [];
+        const latest = attempts[attempts.length - 1] || null;
+        return {
+          ok: Boolean(payload?.ok),
+          exists: Boolean(progress),
+          updatedAt: progress?.updatedAt || "",
+          deviceId: progress?.deviceId || "",
+          attempts: attempts.length,
+          latestTopic: latest?.topicName || latest?.topicId || "",
+          latestScore: latest?.scorePercentage ?? null,
+          latestCreatedAt: latest?.createdAt || "",
+          retryQueueItems: Array.isArray(progress?.retryQueue) ? progress.retryQueue.length : 0,
+          spacedQueueItems: Array.isArray(progress?.spacedQueue) ? progress.spacedQueue.length : 0,
+        };
+      }
+
+      async function fetchCloudProgress(session) {
+        const baseUrl = getCloudflareAuthBaseUrl();
+        const accessToken = String(session?.accessToken || "").trim();
+        if (!baseUrl || !accessToken) {
+          return {
+            skipped: true,
+            reason: !baseUrl ? "missing-cloudflare-base-url" : "missing-access-token",
+          };
+        }
+
+        try {
+          const response = await fetch(`${baseUrl}/progress`, {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${accessToken}`,
+            },
+          });
+          const payload = await response.json().catch(() => ({}));
+          if (!response.ok || !payload?.ok) {
+            return {
+              ok: false,
+              status: response.status,
+              error: payload?.error || payload?.message || "Cloud progress request failed.",
+            };
+          }
+          return summarizeCloudProgress(payload);
+        } catch (error) {
+          return {
+            ok: false,
+            error: error?.message || "Cloud progress request failed.",
+          };
+        }
+      }
+
+      async function collectFullSummary() {
+        const summary = collectSummary();
+        const session = readJson(sessionStorage, SESSION_KEY) || readJson(localStorage, SESSION_KEY);
+        summary.cloudflareAuthBaseUrlConfigured = Boolean(getCloudflareAuthBaseUrl());
+        summary.cloudProgress = await fetchCloudProgress(session);
+        return summary;
+      }
+
+      async function render() {
+        document.getElementById("output").textContent = "Loading...";
+        document.getElementById("output").textContent = JSON.stringify(await collectFullSummary(), null, 2);
+      }
+
+      document.getElementById("refreshBtn").addEventListener("click", render);
+      document.getElementById("copyBtn").addEventListener("click", async () => {
+        const text = document.getElementById("output").textContent;
+        await navigator.clipboard.writeText(text);
+      });
+      document.getElementById("backBtn").addEventListener("click", () => {
+        location.href = new URL("../", location.href).href;
+      });
+      render();
+    </script>
+  </body>
+</html>
