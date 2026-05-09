@@ -48,6 +48,26 @@
         gap: 12px;
         margin: 18px 0;
       }
+      textarea {
+        width: 100%;
+        min-height: 160px;
+        box-sizing: border-box;
+        border: 1px solid #b8d3c5;
+        border-radius: 14px;
+        font: 13px/1.5 ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+        padding: 14px;
+      }
+      .panel {
+        border: 1px solid #d1e7da;
+        border-radius: 14px;
+        margin: 18px 0;
+        padding: 16px;
+      }
+      .status {
+        color: #07532d;
+        font-weight: 700;
+        min-height: 1.4em;
+      }
       pre {
         white-space: pre-wrap;
         word-break: break-word;
@@ -73,8 +93,21 @@
       <div class="actions">
         <button type="button" id="refreshBtn">Refresh Summary</button>
         <button type="button" id="copyBtn" class="secondary">Copy Summary</button>
+        <button type="button" id="exportBtn" class="secondary">Copy Transfer Package</button>
         <button type="button" id="backBtn" class="secondary">Back to App</button>
       </div>
+      <section class="panel">
+        <h2>Import Transfer Package</h2>
+        <p class="note">
+          Paste a transfer package copied from another origin, then import it into the currently logged-in user on this origin.
+          This merges attempts and queues; it does not remove the source copy.
+        </p>
+        <textarea id="importBox" placeholder="Paste transfer package JSON here"></textarea>
+        <div class="actions">
+          <button type="button" id="importBtn">Import Into Current User</button>
+        </div>
+        <p id="status" class="status"></p>
+      </section>
       <pre id="output">Loading...</pre>
     </main>
 
@@ -121,6 +154,59 @@
         return rows.sort((left, right) => left.key.localeCompare(right.key));
       }
 
+      function readQueuesForUser(prefix, userId) {
+        if (!userId) return [];
+        const value = readJson(localStorage, `${prefix}${userId}`);
+        return Array.isArray(value) ? value : [];
+      }
+
+      function normalizeAttempts(summary) {
+        return Array.isArray(summary?.attempts) ? summary.attempts : [];
+      }
+
+      function mergeAttempts(existingSummary, incomingSummary) {
+        const byId = new Map();
+        [...normalizeAttempts(existingSummary), ...normalizeAttempts(incomingSummary)].forEach((attempt) => {
+          const topicId = String(attempt?.topicId || "").trim();
+          if (!topicId) return;
+          const attemptId = String(
+            attempt?.attemptId ||
+              `${topicId}|${attempt?.mode || ""}|${attempt?.createdAt || ""}|${attempt?.scorePercentage ?? ""}`,
+          );
+          const previous = byId.get(attemptId);
+          const previousMs = Date.parse(previous?.createdAt || "") || 0;
+          const nextMs = Date.parse(attempt?.createdAt || "") || 0;
+          if (!previous || nextMs >= previousMs) {
+            byId.set(attemptId, attempt);
+          }
+        });
+        return {
+          attempts: Array.from(byId.values())
+            .sort((left, right) => {
+              const leftMs = Date.parse(left?.createdAt || "") || 0;
+              const rightMs = Date.parse(right?.createdAt || "") || 0;
+              if (leftMs !== rightMs) return leftMs - rightMs;
+              return String(left?.attemptId || "").localeCompare(String(right?.attemptId || ""));
+            })
+            .slice(-50),
+        };
+      }
+
+      function mergeQueue(existing, incoming) {
+        const byId = new Map();
+        [...(Array.isArray(existing) ? existing : []), ...(Array.isArray(incoming) ? incoming : [])].forEach((entry) => {
+          const id = String(entry?.id || entry?.questionId || entry?.fingerprint || "").trim();
+          if (!id) return;
+          const previous = byId.get(id);
+          const previousMs = Date.parse(previous?.updatedAt || previous?.dueAt || "") || 0;
+          const nextMs = Date.parse(entry?.updatedAt || entry?.dueAt || "") || 0;
+          if (!previous || nextMs >= previousMs) {
+            byId.set(id, entry);
+          }
+        });
+        return Array.from(byId.values());
+      }
+
       function collectSummary() {
         const session = readJson(sessionStorage, SESSION_KEY) || readJson(localStorage, SESSION_KEY);
         const user = session?.user || null;
@@ -155,6 +241,66 @@
           localStorageKeys: Array.from({ length: localStorage.length }, (_, index) => localStorage.key(index))
             .filter(Boolean)
             .sort(),
+        };
+      }
+
+      function buildTransferPackage() {
+        const session = readJson(sessionStorage, SESSION_KEY) || readJson(localStorage, SESSION_KEY);
+        const user = session?.user || null;
+        const userId = String(user?.id || "").trim();
+        const currentProgressKey = userId ? `${PROGRESS_PREFIX}${userId}` : `${PROGRESS_PREFIX}guest`;
+        const summary = readJson(localStorage, currentProgressKey) || { attempts: [] };
+        return {
+          schema: "promotion-cbt-progress-transfer-v1",
+          exportedAt: new Date().toISOString(),
+          origin: location.origin,
+          sourceUser: {
+            provider: session?.provider || "",
+            userId,
+            email: user?.email || "",
+          },
+          progressSummary: {
+            attempts: normalizeAttempts(summary),
+          },
+          retryQueue: readQueuesForUser(RETRY_PREFIX, userId),
+          spacedQueue: readQueuesForUser(SPACED_PREFIX, userId),
+        };
+      }
+
+      function importTransferPackage(text) {
+        const session = readJson(sessionStorage, SESSION_KEY) || readJson(localStorage, SESSION_KEY);
+        const user = session?.user || null;
+        const userId = String(user?.id || "").trim();
+        if (!userId) {
+          throw new Error("Log in on this origin before importing.");
+        }
+
+        const transfer = JSON.parse(String(text || "").trim());
+        if (transfer?.schema !== "promotion-cbt-progress-transfer-v1") {
+          throw new Error("Transfer package schema is not recognized.");
+        }
+
+        const progressKey = `${PROGRESS_PREFIX}${userId}`;
+        const retryKey = `${RETRY_PREFIX}${userId}`;
+        const spacedKey = `${SPACED_PREFIX}${userId}`;
+        const mergedSummary = mergeAttempts(
+          readJson(localStorage, progressKey) || { attempts: [] },
+          transfer.progressSummary || { attempts: [] },
+        );
+        const mergedRetryQueue = mergeQueue(readJson(localStorage, retryKey), transfer.retryQueue);
+        const mergedSpacedQueue = mergeQueue(readJson(localStorage, spacedKey), transfer.spacedQueue);
+
+        localStorage.setItem(progressKey, JSON.stringify(mergedSummary));
+        localStorage.setItem(retryKey, JSON.stringify(mergedRetryQueue));
+        localStorage.setItem(spacedKey, JSON.stringify(mergedSpacedQueue));
+
+        return {
+          importedAttempts: normalizeAttempts(transfer.progressSummary).length,
+          savedAttempts: mergedSummary.attempts.length,
+          importedRetryItems: Array.isArray(transfer.retryQueue) ? transfer.retryQueue.length : 0,
+          savedRetryItems: mergedRetryQueue.length,
+          importedSpacedItems: Array.isArray(transfer.spacedQueue) ? transfer.spacedQueue.length : 0,
+          savedSpacedItems: mergedSpacedQueue.length,
         };
       }
 
@@ -234,6 +380,20 @@
       document.getElementById("copyBtn").addEventListener("click", async () => {
         const text = document.getElementById("output").textContent;
         await navigator.clipboard.writeText(text);
+      });
+      document.getElementById("exportBtn").addEventListener("click", async () => {
+        await navigator.clipboard.writeText(JSON.stringify(buildTransferPackage(), null, 2));
+        document.getElementById("status").textContent = "Transfer package copied.";
+      });
+      document.getElementById("importBtn").addEventListener("click", async () => {
+        try {
+          const result = importTransferPackage(document.getElementById("importBox").value);
+          document.getElementById("status").textContent =
+            `Imported ${result.importedAttempts} attempts; current user now has ${result.savedAttempts} saved attempts.`;
+          await render();
+        } catch (error) {
+          document.getElementById("status").textContent = error?.message || "Import failed.";
+        }
       });
       document.getElementById("backBtn").addEventListener("click", () => {
         location.href = new URL("../", location.href).href;
