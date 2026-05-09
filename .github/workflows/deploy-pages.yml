@@ -11,9 +11,6 @@ permissions:
   pages: write
   id-token: write
 
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
 concurrency:
   group: pages
   cancel-in-progress: true
@@ -26,10 +23,10 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: 24
           cache: npm
@@ -50,10 +47,10 @@ jobs:
           CLOUDFLARE_AUTH_BASE_URL: ${{ secrets.CLOUDFLARE_AUTH_BASE_URL }}
         run: |
           if [ -z "${FIREBASE_API_KEY}" ]; then
-            echo "::notice::Firebase secrets missing. Legacy fallback disabled."
+            echo "Firebase secrets missing. Legacy fallback disabled."
           fi
           if [ -z "${CLOUDFLARE_AUTH_BASE_URL}" ]; then
-            echo "::notice::Cloudflare secret missing. Cloudflare-first disabled."
+            echo "Cloudflare secret missing. Cloudflare-first disabled."
           fi
 
       - name: Generate runtime auth config from secrets
@@ -86,13 +83,13 @@ jobs:
         run: npm run build
 
       - name: Configure Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: dist
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
