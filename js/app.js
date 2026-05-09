@@ -70,6 +70,7 @@ import {
   buildAnalyticsOverviewModel,
   buildAnalyticsRecommendationModel,
   buildAnalyticsTrendHtml,
+  buildDashboardStatsModel,
 } from "./appAnalyticsView.js";
 import {
   buildDashboardSetupSuggestion,
@@ -1525,11 +1526,25 @@ function renderAnalyticsScreen(insights) {
   }
 }
 
+function renderDashboardStats(insights) {
+  const totalAttemptsStat = document.getElementById("totalAttemptsStat");
+  const averageScoreStat = document.getElementById("averageScoreStat");
+  const streakStat = document.getElementById("streakStat");
+  const streakStatusBadge = document.getElementById("streakStatusBadge");
+  const stats = buildDashboardStatsModel(insights);
+
+  if (totalAttemptsStat) totalAttemptsStat.textContent = stats.totalAttemptsText;
+  if (averageScoreStat) averageScoreStat.textContent = stats.averageScoreText;
+  if (streakStat) streakStat.textContent = stats.streakText;
+  if (streakStatusBadge) streakStatusBadge.textContent = stats.streakBadgeText;
+}
+
 function refreshDashboardInsights() {
   const summary = readProgressSummary();
   const attempts = Array.isArray(summary?.attempts) ? summary.attempts : [];
   const insights = buildAppAnalyticsSnapshot(attempts);
   recommendedTopicId = String(insights?.recommendedTopicId || "").trim() || null;
+  renderDashboardStats(insights);
   renderAnalyticsScreen(insights);
   renderSupportStateCards(insights);
   return insights;

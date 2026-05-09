@@ -6,6 +6,7 @@ import {
   buildAnalyticsOverviewModel,
   buildAnalyticsRecommendationModel,
   buildAnalyticsTrendHtml,
+  buildDashboardStatsModel,
 } from "../../js/appAnalyticsView.js";
 
 test("buildAnalyticsOverviewModel composes readiness and latest session summary", () => {
@@ -89,4 +90,34 @@ test("buildAnalyticsRecommendationModel normalizes recommendation display fields
     confidenceDescription: "Strong repeat signal",
     confidenceTone: "high",
   });
+});
+
+test("buildDashboardStatsModel formats recovered dashboard progress stats", () => {
+  assert.deepEqual(
+    buildDashboardStatsModel({
+      totalAttempts: 18,
+      averageScore: 67,
+      streakDays: 2,
+    }),
+    {
+      totalAttemptsText: "18",
+      averageScoreText: "67%",
+      streakText: "2 days",
+      streakBadgeText: "2 days active",
+    },
+  );
+
+  assert.deepEqual(
+    buildDashboardStatsModel({
+      totalAttempts: 0,
+      averageScore: null,
+      streakDays: 0,
+    }),
+    {
+      totalAttemptsText: "0",
+      averageScoreText: "-",
+      streakText: "0 days",
+      streakBadgeText: "Take one quiz today to begin",
+    },
+  );
 });

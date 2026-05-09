@@ -115,3 +115,20 @@ export function buildAnalyticsRecommendationModel(insights) {
     confidenceTone: String(insights?.recommendation?.confidenceTone || "medium").trim().toLowerCase(),
   };
 }
+
+export function buildDashboardStatsModel(insights) {
+  const totalAttempts = Number(insights?.totalAttempts || 0);
+  const averageScore = insights?.averageScore === null || insights?.averageScore === undefined
+    ? null
+    : Number(insights.averageScore);
+  const streakDays = Number(insights?.streakDays || 0);
+
+  return {
+    totalAttemptsText: String(totalAttempts),
+    averageScoreText: Number.isFinite(averageScore) ? `${Math.round(averageScore)}%` : "-",
+    streakText: `${streakDays} day${streakDays === 1 ? "" : "s"}`,
+    streakBadgeText: streakDays > 0
+      ? `${streakDays} day${streakDays === 1 ? "" : "s"} active`
+      : "Take one quiz today to begin",
+  };
+}
