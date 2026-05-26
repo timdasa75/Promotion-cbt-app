@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { spawnSync } from "node:child_process";
+import { runPythonScript } from "./pythonRunner.js";
 
 const REPO_ROOT = path.resolve(".");
 const SCRIPT_PATH = path.join(REPO_ROOT, "scripts", "build_question_quality_phase2_queue.py");
@@ -97,10 +97,9 @@ test("phase2 queue partitions rewrite backlog into editorial batches", () => {
     ],
   });
 
-  const result = spawnSync(
-    "python",
+  const result = runPythonScript(
+    SCRIPT_PATH,
     [
-      SCRIPT_PATH,
       "--assessment",
       assessmentPath,
       "--json-out",

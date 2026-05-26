@@ -40,7 +40,7 @@ export async function getAdminUserDirectory(
     try {
       const freshSession = await ensureAdminSession();
       if (!freshSession?.accessToken) {
-        throw new Error("Cloud session is unavailable.");
+        throw new Error("Session is unavailable.");
       }
 
       const sessionProvider = String(freshSession?.provider || session?.provider || "").trim().toLowerCase();
@@ -75,11 +75,11 @@ export async function getAdminUserDirectory(
           source = "cloud-auth";
           if (staleProfiles.length > 0) {
             warnings.push(
-              `${staleProfiles.length} stale profile record(s) were excluded because they are not in Firebase Auth.`,
+              `${staleProfiles.length} stale profile record(s) were excluded because they are not in the auth system.`,
             );
           }
         } else if (normalizedRows.length > 0) {
-          warnings.push("Firebase Auth list returned zero users. Showing profile-based fallback.");
+          warnings.push("User directory returned zero users. Showing profile-based fallback.");
           const enriched = await enrichVerificationStates(normalizedRows, freshSession.accessToken);
           users = enriched.users;
           if (enriched.warning) {
@@ -114,10 +114,10 @@ export async function getAdminUserDirectory(
         users: fallback.users,
         source: "local",
         warning: fallback.hasCachedCloudSnapshot
-          ? `Cloud user directory unavailable. Showing cached cloud snapshot from ${formatCacheTime(
+          ? `User directory unavailable. Showing cached snapshot from ${formatCacheTime(
               fallback.cachedSyncedAt,
             )} plus local data.`
-          : `Cloud user directory unavailable. ${error?.message || "Configure Firestore profiles collection and security rules."}`,
+          : `User directory unavailable. ${error?.message || "Configure profiles collection and security rules."}`,
       };
     }
   }
@@ -154,7 +154,12 @@ export async function updateCloudUserStatusById(profileId, status, ensureAdminSe
   };
 }
 
-export async function deleteCloudUserById(profileId, ensureAdminSession, deleteUser = deleteUserViaCloudFunction) {
+export async function deleteCloudUserById(profileId, email = "", ensureAdminSession, deleteUser = deleteUserViaCloudFunction) {
+  if (typeof email === "function") {
+    deleteUser = ensureAdminSession || deleteUserViaCloudFunction;
+    ensureAdminSession = email;
+    email = "";
+  }
   const normalizedProfileId = String(profileId || "").trim();
   if (!normalizedProfileId) {
     throw new Error("Profile id is required.");
@@ -162,11 +167,17 @@ export async function deleteCloudUserById(profileId, ensureAdminSession, deleteU
 
   const session = await ensureAdminSession();
   try {
-    await deleteUser(normalizedProfileId, session.accessToken);
-    return { authDeleted: true, warning: "" };
+    const result = await deleteUser(normalizedProfileId, normalizeEmail(email), session.accessToken);
+    return {
+      authDeleted: Boolean(result?.authDeleted || result?.cloudflareDeleted || result?.firebaseDeleted),
+      cloudflareDeleted: Boolean(result?.cloudflareDeleted),
+      firebaseDeleted: Boolean(result?.firebaseDeleted),
+      profileDeleted: Boolean(result?.profileDeleted),
+      warning: String(result?.warning || "").trim(),
+    };
   } catch (cloudFunctionError) {
     throw new Error(
-      `Unable to delete this account from Firebase Authentication: ${cloudFunctionError.message || "Cloud Function unavailable"}. ` +
+      `Unable to delete this account: ${cloudFunctionError.message || "Function unavailable"}. ` +
         "Deploy functions/adminDeleteUserById and confirm admin access is configured.",
     );
   }

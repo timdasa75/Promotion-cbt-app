@@ -27,18 +27,18 @@ export async function ensureCloudProgressSession({
   cloudProgressEnabled = isCloudProgressSyncEnabled(),
 } = {}) {
   if (!cloudProgressEnabled) {
-    throw new Error("Cloud progress sync is not enabled.");
+    throw new Error("Progress sync is not enabled.");
   }
 
   const session = getSession();
   if (!session?.accessToken) {
-    throw new Error("Cloud session is unavailable.");
+    throw new Error("Session is unavailable.");
   }
 
   if (session.provider === "firebase") {
     const freshSession = await refreshSession(session, { clearOnFailure: false });
     if (!freshSession?.accessToken || !freshSession?.user?.id) {
-      throw new Error("Cloud session is unavailable.");
+      throw new Error("Session is unavailable.");
     }
     return freshSession;
   }
@@ -47,7 +47,7 @@ export async function ensureCloudProgressSession({
     return session;
   }
 
-  throw new Error(`Unsupported cloud provider: ${session.provider}`);
+  throw new Error("Unsupported session provider.");
 }
 
 export async function readCloudProgressSummary({

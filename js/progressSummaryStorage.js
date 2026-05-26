@@ -1,4 +1,5 @@
 export const PROGRESS_STORAGE_PREFIX = "cbt_progress_summary_v1_";
+export const LEGACY_STORAGE_KEY = "cbt_progress_summary_v1";
 
 function getStorageLength(storage) {
   return Math.max(0, Number(storage?.length || 0));
@@ -25,40 +26,50 @@ export function recoverProgressSummaryForStorageKey({
             ],
           });
 
-  const candidates = [];
+  const legacyEntries = [];
   for (let index = 0; index < getStorageLength(storage); index += 1) {
     const key = storage.key(index);
-    if (!key || key === currentStorageKey || !key.startsWith(PROGRESS_STORAGE_PREFIX)) {
-      continue;
-    }
-
-    try {
-      const parsed = JSON.parse(storage.getItem(key) || "");
-      const summary = normalizeProgressSummary(parsed);
-      if (summary?.attempts?.length) {
-        candidates.push({ key, summary });
-      }
-    } catch (error) {
-      // Ignore malformed legacy buckets; they should not block signed-in recovery.
+    if (!key || key === currentStorageKey) continue;
+    if (key === LEGACY_STORAGE_KEY) {
+      try {
+        const raw = storage.getItem(key);
+        if (raw) {
+          legacyEntries.push({ key, raw });
+        }
+      } catch (_) {}
     }
   }
 
-  if (!candidates.length) return null;
+  if (!legacyEntries.length) return null;
 
-  const recovered = candidates.reduce(
-    (summary, candidate) => merge(summary, candidate.summary),
-    normalizeProgressSummary({ attempts: [] }),
-  );
-  if (!recovered?.attempts?.length) return null;
+  let recoveredSummary = normalizeProgressSummary({ attempts: [] });
+  const migratedKeys = [];
 
   try {
-    storage.setItem(currentStorageKey, JSON.stringify(recovered));
-  } catch (error) {
-    console.warn("Unable to migrate legacy progress summary", error);
-  }
+    legacyEntries.forEach(({ key, raw }) => {
+      const parsed = JSON.parse(raw);
+      const summary = normalizeProgressSummary(parsed);
+      if (!summary?.attempts?.length) return;
+      recoveredSummary = merge(recoveredSummary, summary);
+      migratedKeys.push(key);
+    });
 
-  return {
-    summary: recovered,
-    migratedKeys: candidates.map((candidate) => candidate.key),
-  };
+    if (!recoveredSummary?.attempts?.length) return null;
+
+    storage.setItem(currentStorageKey, JSON.stringify(recoveredSummary));
+    migratedKeys.forEach((key) => {
+      try {
+        if (typeof storage.removeItem === "function") {
+          storage.removeItem(key);
+        }
+      } catch (_) {}
+    });
+
+    return {
+      summary: recoveredSummary,
+      migratedKeys,
+    };
+  } catch (error) {
+    return null;
+  }
 }

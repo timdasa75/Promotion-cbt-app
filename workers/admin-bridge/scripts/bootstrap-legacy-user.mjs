@@ -13,7 +13,7 @@ const VALID_PLANS = new Set(["free", "premium"]);
 const VALID_STATUSES = new Set(["active", "suspended", "deleted"]);
 
 function printUsage() {
-  console.log(`Usage:\n  node ./scripts/bootstrap-legacy-user.mjs --email <email> --password <password> [--plan free|premium] [--role user|admin] [--status active|suspended|deleted] [--verified true|false] [--remote true|false]\n\nExample:\n  node ./scripts/bootstrap-legacy-user.mjs --email timdasa75@gmail.com --password "StrongPass123!" --plan premium --role admin --verified true`);
+  console.log(`Usage:\n  node ./scripts/bootstrap-legacy-user.mjs --email <email> --password <password> [--plan free|premium] [--role user|admin] [--status active|suspended|deleted] [--verified true|false] [--remote true|false]\n\nExample:\n  node ./scripts/bootstrap-legacy-user.mjs --email admin@example.com --password "<temporary-password>" --plan premium --role admin --verified true`);
 }
 
 function parseArgs(argv) {

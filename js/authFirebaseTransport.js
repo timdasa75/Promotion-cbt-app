@@ -5,7 +5,7 @@ import { getFirebaseConfig } from "./authRuntime.js";
 export async function firebaseAuthRequest(endpoint, { method = "POST", body = null } = {}) {
   const { firebaseApiKey } = getFirebaseConfig();
   if (!firebaseApiKey) {
-    throw new Error("Firebase configuration is missing.");
+    throw new Error("Auth configuration is missing.");
   }
 
   const response = await fetch(
@@ -41,7 +41,7 @@ export async function firebaseAuthRequest(endpoint, { method = "POST", body = nu
 export async function firebaseRefreshToken(refreshToken) {
   const { firebaseApiKey } = getFirebaseConfig();
   if (!firebaseApiKey) {
-    throw new Error("Firebase configuration is missing.");
+    throw new Error("Auth configuration is missing.");
   }
 
   const response = await fetch(
@@ -77,7 +77,7 @@ export async function firebaseRefreshToken(refreshToken) {
 export function getFirestoreBaseUrl() {
   const { firebaseProjectId } = getFirebaseConfig();
   if (!firebaseProjectId) {
-    throw new Error("Firebase configuration is missing.");
+    throw new Error("Auth configuration is missing.");
   }
   return `https://firestore.googleapis.com/v1/projects/${encodeURIComponent(
     firebaseProjectId,

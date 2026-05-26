@@ -210,6 +210,34 @@ test("fetchTopicDataFilesWithReport requests protected topic content from the wo
   }
 });
 
+test("fetchTopicDataFilesWithReport falls back to public files without a cloud token", async () => {
+  const ctx = installBrowserContext();
+  try {
+    const calls = [];
+    global.fetch = async (url) => {
+      calls.push(url);
+      assert.notEqual(url, "https://worker.example.com/content/topic-data");
+      return {
+        ok: true,
+        text: async () => JSON.stringify({ subcategories: [{ id: "public", questions: [] }] }),
+      };
+    };
+
+    const result = await fetchTopicDataFilesWithReport(
+      { id: "psr", file: "data/psr_rules.json" },
+      { tolerateFailures: true },
+    );
+
+    assert.deepEqual(calls, ["/data/psr_rules.json"]);
+    assert.deepEqual(result.payloads, [{ subcategories: [{ id: "public", questions: [] }] }]);
+    assert.deepEqual(result.loadedFiles, ["data/psr_rules.json"]);
+    assert.deepEqual(result.failedFiles, []);
+    assert.equal(result.totalFiles, 1);
+  } finally {
+    ctx.restore();
+  }
+});
+
 test("fetchJsonFile retries a relative fallback path when the primary base path misses", async () => {
   const ctx = installBrowserContext({ pathname: "/nested-preview/" });
   try {

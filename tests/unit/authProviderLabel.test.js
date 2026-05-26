@@ -44,8 +44,8 @@ test("getAuthProviderLabel uses configured hybrid mode before login and active p
   });
 
   try {
-    assert.equal(getAuthProviderLabel(), "Hybrid");
-    assert.equal(getAuthProviderLabel("configured"), "Hybrid");
+    assert.equal(getAuthProviderLabel(), "Online");
+    assert.equal(getAuthProviderLabel("configured"), "Online");
 
     writeSession({
       provider: "firebase",
@@ -56,8 +56,8 @@ test("getAuthProviderLabel uses configured hybrid mode before login and active p
       user: { id: "u1", email: "user@example.com", plan: "free" },
     });
 
-    assert.equal(getAuthProviderLabel(), "Cloud");
-    assert.equal(getAuthProviderLabel("configured"), "Hybrid");
+    assert.equal(getAuthProviderLabel(), "Online");
+    assert.equal(getAuthProviderLabel("configured"), "Online");
 
     clearSession();
     writeSession({
@@ -68,7 +68,26 @@ test("getAuthProviderLabel uses configured hybrid mode before login and active p
       user: { id: "cf-1", email: "user@example.com", plan: "free" },
     });
 
-    assert.equal(getAuthProviderLabel(), "Hybrid");
+    assert.equal(getAuthProviderLabel(), "Online");
+  } finally {
+    global.window = originalWindow;
+    global.localStorage = originalLocalStorage;
+  }
+});
+
+test("getAuthProviderLabel reports Online when Cloud auth is configured", () => {
+  const originalWindow = global.window;
+  const originalLocalStorage = global.localStorage;
+  setupGlobals({
+    authProvider: "firebase",
+    cloudflareAuthBaseUrl: "https://auth.example.com",
+    firebaseApiKey: "key-1",
+    firebaseProjectId: "project-1",
+  });
+
+  try {
+    assert.equal(getAuthProviderLabel(), "Online");
+    assert.equal(getAuthProviderLabel("configured"), "Online");
   } finally {
     global.window = originalWindow;
     global.localStorage = originalLocalStorage;

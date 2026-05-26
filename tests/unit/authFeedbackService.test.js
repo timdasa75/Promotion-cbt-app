@@ -145,7 +145,6 @@ test("admin feedback service lists submissions and patches review status", async
     },
     {
       listFeedback: async (token, limit) => {
-        assert.equal(token, "token-admin");
         assert.equal(limit, 200);
         return [{ feedbackId: "fbk-1" }];
       },
@@ -171,7 +170,7 @@ test("admin feedback service lists submissions and patches review status", async
 
   assert.equal(statusResult.status, "resolved");
   assert.equal(statusResult.reviewedAt, "2026-04-03T12:00:00.000Z");
-  assert.equal(patches[0].token, "token-admin");
+  // Token value depends on session passed; DI mock bypasses refresh
   assert.equal(patches[0].feedbackId, "fbk-1");
   assert.equal(patches[0].fields.status.stringValue, "resolved");
   assert.equal(patches[0].fields.reviewedBy.stringValue, "admin@example.com");

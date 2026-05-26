@@ -37,8 +37,14 @@ jobs:
       - name: Validate public taxonomy metadata and linked assets
         run: python3 scripts/validate_taxonomy.py --strict-duplicates --strict-metadata --allow-missing-topic-files
 
+      - name: Audit topic banks when present
+        run: npm run audit:topic-banks:ci
+
       - name: Run unit tests
         run: npm run test:unit
+
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
 
       - name: Validate auth configuration (Firebase & Cloudflare)
         env:
@@ -61,15 +67,12 @@ jobs:
           ADMIN_API_BASE_URL: ${{ secrets.ADMIN_API_BASE_URL }}
           CLOUDFLARE_AUTH_BASE_URL: ${{ secrets.CLOUDFLARE_AUTH_BASE_URL }}
         run: |
-          AUTH_PROVIDER="firebase"
-          if [ -n "${CLOUDFLARE_AUTH_BASE_URL}" ]; then
-            AUTH_PROVIDER="hybrid"
-          fi
-
           cat > config/runtime-auth.js <<EOF
           // Generated during GitHub Pages deploy. Do not commit live values.
           window.PROMOTION_CBT_AUTH = {
-            authProvider: "${AUTH_PROVIDER}",
+            // Keep Firebase as the public auth/email provider until a transactional
+            // email sender is configured for Cloudflare auth.
+            authProvider: "firebase",
             firebaseApiKey: "${FIREBASE_API_KEY}",
             firebaseProjectId: "${FIREBASE_PROJECT_ID}",
             firebaseAuthDomain: "${FIREBASE_AUTH_DOMAIN}",
@@ -81,6 +84,12 @@ jobs:
 
       - name: Build site
         run: npm run build
+
+      - name: Run smoke tests
+        run: npm run test:smoke
+
+      - name: Run UI audit tests
+        run: npm run test:ui-audit
 
       - name: Configure Pages
         uses: actions/configure-pages@v6

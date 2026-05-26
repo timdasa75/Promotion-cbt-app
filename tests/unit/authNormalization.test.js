@@ -17,7 +17,7 @@ import {
 } from "../../js/authNormalization.js";
 
 test("auth normalization helpers map common string values", () => {
-  assert.equal(normalizeEmail("  TIMDASA75@GMAIL.COM "), "timdasa75@gmail.com");
+  assert.equal(normalizeEmail("  ADMIN@EXAMPLE.COM "), "admin@example.com");
   assert.equal(normalizePlan("premium"), "premium");
   assert.equal(normalizePlan("anything else"), "free");
   assert.equal(normalizeRole("admin"), "admin");

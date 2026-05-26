@@ -2,10 +2,12 @@ import { debugLog } from "../logger.js";
 import { SCREEN_TRANSITION_DELAY_MS } from "../constants.js";
 
 let currentScreenId = "splashScreen";
+let screenTransitionId = 0;
 
 export function showScreen(screenId) {
   window.scrollTo(0, 0);
   debugLog(`Switching to screen: ${screenId}`);
+  const transitionId = ++screenTransitionId;
   return new Promise((resolve, reject) => {
     // Validate input
     if (!screenId) {
@@ -43,6 +45,10 @@ export function showScreen(screenId) {
     requestAnimationFrame(() => {
       // Add active class after a brief delay to ensure transition triggers
       setTimeout(() => {
+        if (transitionId !== screenTransitionId) {
+          resolve();
+          return;
+        }
         targetScreen.classList.add("active");
         debugLog(`Activated ${screenId}`);
 

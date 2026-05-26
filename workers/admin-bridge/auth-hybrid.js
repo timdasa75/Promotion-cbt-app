@@ -5,6 +5,28 @@ const SESSION_SECRET_BYTES = 32;
 const DEFAULT_SESSION_TTL_SECONDS = 60 * 60 * 24 * 30;
 const TURNSTILE_VERIFY_URL = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
 
+function isManualVerificationLinkAllowed(env) {
+  return String(env.AUTH_ALLOW_MANUAL_VERIFICATION_LINKS || "").toLowerCase() === "true";
+}
+
+function buildEmailVerificationUrl(request, token, body = {}) {
+  const baseUrl = String(body?.baseUrl || body?.continueUrl || request.headers.get("origin") || "").trim();
+  if (!baseUrl) return "";
+  const url = new URL(baseUrl);
+  url.searchParams.set("verifyEmail", token);
+  return url.toString();
+}
+
+async function createVerificationChallenge(database, userId, request, env, body = {}) {
+  const tokenResult = await issueEmailToken(database, String(userId || ""), "verify_email", env);
+  const allowManualLink = isManualVerificationLinkAllowed(env);
+  const verificationUrl = allowManualLink ? buildEmailVerificationUrl(request, tokenResult.token, body) : "";
+  return {
+    expiresAt: tokenResult.expiresAt,
+    verificationUrl,
+  };
+}
+
 function createHttpError(status, message) {
   const error = new Error(message);
   error.httpStatus = status;
@@ -207,7 +229,7 @@ async function validateTurnstile(request, env, turnstileToken) {
   return payload;
 }
 
-async function getAuthUserByEmail(database, email) {
+export async function getAuthUserByEmail(database, email) {
   return database
     .prepare(`
       SELECT id, email, password_hash, role, plan, status, email_verified, legacy_provider, legacy_user_id,
@@ -314,7 +336,7 @@ async function deleteSession(database, sessionId) {
   await database.prepare("DELETE FROM auth_sessions WHERE session_id = ?1").bind(sessionId).run();
 }
 
-async function issueEmailToken(database, userId, tokenType, env) {
+export async function issueEmailToken(database, userId, tokenType, env) {
   const tokenId = crypto.randomUUID();
   const tokenSecret = generateRandomBase64Url(SESSION_SECRET_BYTES);
   const tokenSecretHash = await sha256Base64Url(tokenSecret);
@@ -367,18 +389,18 @@ async function readEmailTokenRecord(database, token, tokenType = 'password_reset
     .first();
 
   if (!record) {
-    throw createHttpError(404, 'Migration link was not found.');
+    throw createHttpError(404, 'Link was not found.');
   }
   if (String(record.consumed_at || '').trim()) {
-    throw createHttpError(410, 'This migration link has already been used.');
+    throw createHttpError(410, 'This link has already been used.');
   }
   if (Date.parse(String(record.expires_at || '')) <= Date.now()) {
-    throw createHttpError(410, 'This migration link has expired.');
+    throw createHttpError(410, 'This link has expired.');
   }
 
   const expectedHash = await sha256Base64Url(sessionSecret);
   if (!timingSafeEqual(expectedHash, String(record.token_secret_hash || ''))) {
-    throw createHttpError(401, 'This migration link is invalid.');
+    throw createHttpError(401, 'This link is invalid.');
   }
 
   return record;
@@ -445,6 +467,31 @@ export async function handleAuthMigrationComplete(request, env) {
   };
 }
 
+export async function handleAuthVerificationComplete(request, env) {
+  const database = requireAuthDatabase(env);
+  const body = await readJsonBody(request);
+  const token = String(body?.token || '').trim();
+  if (!token) {
+    throw createHttpError(400, 'Verification token is required.');
+  }
+
+  const record = await readEmailTokenRecord(database, token, 'verify_email');
+  const nowIso = new Date().toISOString();
+  await database
+    .prepare('UPDATE auth_users SET email_verified = 1, updated_at = ?2 WHERE id = ?1')
+    .bind(String(record.user_id || record.id || ''), nowIso)
+    .run();
+
+  await consumeEmailToken(database, record.token_id);
+  return {
+    ok: true,
+    mode: 'cloudflare-auth',
+    verified: true,
+    email: normalizeEmail(record.email || ''),
+    message: 'Email verified. You can now sign in.',
+  };
+}
+
 export async function handleAuthPasswordChange(request, env) {
   const database = requireAuthDatabase(env);
   const sessionToken = parseBearerToken(request);
@@ -476,10 +523,70 @@ export async function handleAuthPasswordChange(request, env) {
   };
 }
 
+const RATE_LIMIT = {
+  LOGIN_EMAIL: { type: "login_email", max: 5, windowSec: 300 },
+  LOGIN_IP: { type: "login_ip", max: 20, windowSec: 300 },
+  REGISTER_IP: { type: "register_ip", max: 5, windowSec: 3600 },
+  RECOVERY_IP: { type: "recovery_ip", max: 3, windowSec: 900 },
+};
+
+async function checkRateLimit(database, bucketKey, bucketType, maxAttempts, windowSec) {
+  const now = Date.now();
+  const row = await database
+    .prepare("SELECT window_started_at, count FROM auth_rate_limits WHERE bucket_key = ?1")
+    .bind(bucketKey)
+    .first();
+  if (!row) {
+    await database
+      .prepare("INSERT INTO auth_rate_limits (bucket_key, bucket_type, window_started_at, count) VALUES (?1, ?2, ?3, 1)")
+      .bind(bucketKey, bucketType, new Date(now).toISOString())
+      .run();
+    return { allowed: true };
+  }
+  const windowStart = Date.parse(String(row.window_started_at || ""));
+  if (!Number.isFinite(windowStart) || (now - windowStart) >= windowSec * 1000) {
+    await database
+      .prepare("UPDATE auth_rate_limits SET window_started_at = ?2, count = 1 WHERE bucket_key = ?1")
+      .bind(bucketKey, new Date(now).toISOString())
+      .run();
+    return { allowed: true };
+  }
+  if (Number(row.count) >= maxAttempts) {
+    const retryAfter = Math.ceil((windowStart + windowSec * 1000 - now) / 1000);
+    return { allowed: false, retryAfter };
+  }
+  await database
+    .prepare("UPDATE auth_rate_limits SET count = count + 1 WHERE bucket_key = ?1")
+    .bind(bucketKey)
+    .run();
+  return { allowed: true };
+}
+
+async function resetRateLimit(database, bucketKey) {
+  await database
+    .prepare("DELETE FROM auth_rate_limits WHERE bucket_key = ?1")
+    .bind(bucketKey)
+    .run();
+}
+
 export async function handleAuthRegister(request, env) {
   const database = requireAuthDatabase(env);
   const body = await readJsonBody(request);
   await validateTurnstile(request, env, body?.turnstileToken);
+
+  const ip = String(request.headers.get("CF-Connecting-IP") || "").trim();
+  const regIpBucket = `register:ip:${ip}`;
+  const regCheck = await checkRateLimit(
+    database,
+    regIpBucket,
+    RATE_LIMIT.REGISTER_IP.type,
+    RATE_LIMIT.REGISTER_IP.max,
+    RATE_LIMIT.REGISTER_IP.windowSec,
+  );
+  if (!regCheck.allowed) {
+    const retryAfter = regCheck.retryAfter ? ` Try again in ${regCheck.retryAfter} seconds.` : " Try again later.";
+    throw createHttpError(429, `Too many registration attempts from this IP.${retryAfter}`);
+  }
 
   const email = normalizeEmail(body?.email || "");
   const password = String(body?.password || "");
@@ -517,14 +624,18 @@ export async function handleAuthRegister(request, env) {
     .run();
 
   const user = await getAuthUserById(database, userId);
-  const session = await issueSession(database, userId, request, env);
+  const verification = await createVerificationChallenge(database, userId, request, env, body);
 
   return {
     ok: true,
     mode: "cloudflare-auth",
-    user: buildPublicAuthUser(user),
-    session,
-    warning: "Account created successfully. Email verification will be added in a later update.",
+    user: buildPublicAuthUser({ ...user, email_verified: 0 }),
+    requiresEmailVerification: true,
+    verificationUrl: verification.verificationUrl,
+    verificationExpiresAt: verification.expiresAt,
+    message: verification.verificationUrl
+      ? "Account created. Open the verification link below, then sign in."
+      : "Account created, but no email sender is configured for Cloudflare auth. Ask an admin to send a verification link.",
   };
 }
 
@@ -539,15 +650,70 @@ export async function handleAuthLogin(request, env) {
     throw createHttpError(400, "Email and password are required.");
   }
 
+  const ip = String(request.headers.get("CF-Connecting-IP") || "").trim();
+  const emailBucket = `login:email:${email}`;
+  const ipBucket = `login:ip:${ip}`;
+
+  async function readLimit(bucketKey, cfg) {
+    const row = await database
+      .prepare("SELECT window_started_at, count FROM auth_rate_limits WHERE bucket_key = ?1")
+      .bind(bucketKey)
+      .first();
+    if (!row) return { allowed: true };
+    const windowStart = Date.parse(String(row.window_started_at || ""));
+    const expired = !Number.isFinite(windowStart) || (Date.now() - windowStart) >= cfg.windowSec * 1000;
+    if (expired) return { allowed: true, expired };
+    if (Number(row.count) >= cfg.max) {
+      const retryAfter = Math.ceil((windowStart + cfg.windowSec * 1000 - Date.now()) / 1000);
+      return { allowed: false, retryAfter };
+    }
+    return { allowed: true };
+  }
+  async function incLimit(bucketKey) {
+    const row = await database
+      .prepare("SELECT window_started_at, count FROM auth_rate_limits WHERE bucket_key = ?1")
+      .bind(bucketKey)
+      .first();
+    const now = new Date().toISOString();
+    if (!row || !Number.isFinite(Date.parse(String(row.window_started_at || ""))) || (Date.now() - Date.parse(String(row.window_started_at || ""))) >= 300 * 1000) {
+      await database
+        .prepare("INSERT OR REPLACE INTO auth_rate_limits (bucket_key, bucket_type, window_started_at, count) VALUES (?1, ?2, ?3, 1)")
+        .bind(bucketKey, "", now)
+        .run();
+    } else {
+      await database
+        .prepare("UPDATE auth_rate_limits SET count = count + 1 WHERE bucket_key = ?1")
+        .bind(bucketKey)
+        .run();
+    }
+  }
+
+  const emailCheck = await readLimit(emailBucket, RATE_LIMIT.LOGIN_EMAIL);
+  if (!emailCheck.allowed) {
+    throw createHttpError(429, `Too many login attempts. Try again in ${emailCheck.retryAfter} seconds.`);
+  }
+  const ipCheck = await readLimit(ipBucket, RATE_LIMIT.LOGIN_IP);
+  if (!ipCheck.allowed) {
+    throw createHttpError(429, `Too many requests from this IP. Try again later.`);
+  }
+
   const user = await getAuthUserByEmail(database, email);
   if (!user) {
-    throw createHttpError(404, "Account not found in Cloudflare auth.");
-  }
-  if (!(await verifyPassword(password, user.password_hash))) {
+    await incLimit(emailBucket);
+    await incLimit(ipBucket);
     throw createHttpError(401, "Invalid email or password.");
   }
+  if (!(await verifyPassword(password, user.password_hash))) {
+    await incLimit(emailBucket);
+    await incLimit(ipBucket);
+    throw createHttpError(401, "Invalid email or password.");
+  }
+  await resetRateLimit(database, emailBucket);
   if (String(user.status || "active").toLowerCase() !== "active") {
     throw createHttpError(403, "This account is not active.");
+  }
+  if (!Number(user.email_verified || 0)) {
+    throw createHttpError(403, "Please verify your email before login. Check your inbox for the verification email.");
   }
 
   const nowIso = new Date().toISOString();
@@ -599,14 +765,215 @@ export async function handleAuthLogout(request, env) {
   };
 }
 
+export async function handleAuthVerificationResend(request, env) {
+  const database = requireAuthDatabase(env);
+  const body = await readJsonBody(request);
+  const email = normalizeEmail(body?.email || "");
+  if (!email || !email.includes("@")) {
+    throw createHttpError(400, "A valid email is required.");
+  }
+
+  const user = await getAuthUserByEmail(database, email);
+  if (!user) {
+    throw createHttpError(404, "No account found for this email.");
+  }
+  if (Number(user.email_verified || 0)) {
+    throw createHttpError(409, "This email is already verified.");
+  }
+
+  const bucketKey = `verify:email:${email}`;
+  const cooldownSec = 60;
+  const row = await database
+    .prepare("SELECT window_started_at, count FROM auth_rate_limits WHERE bucket_key = ?1")
+    .bind(bucketKey)
+    .first();
+  if (row) {
+    const ws = Date.parse(String(row.window_started_at || ""));
+    const expired = !Number.isFinite(ws) || (Date.now() - ws) >= cooldownSec * 1000;
+    if (!expired) {
+      const retryAfter = Math.ceil((ws + cooldownSec * 1000 - Date.now()) / 1000);
+      throw createHttpError(429, `Please wait ${retryAfter} seconds before requesting another verification email.`);
+    }
+  }
+  const now = new Date().toISOString();
+  await database
+    .prepare("INSERT OR REPLACE INTO auth_rate_limits (bucket_key, bucket_type, window_started_at, count) VALUES (?1, ?2, ?3, 1)")
+    .bind(bucketKey, "verify_email", now)
+    .run();
+
+  const verification = await createVerificationChallenge(database, String(user.id || ""), request, env, body);
+  return {
+    ok: true,
+    delivered: false,
+    verificationUrl: verification.verificationUrl,
+    verificationExpiresAt: verification.expiresAt,
+    message: verification.verificationUrl
+      ? "Verification link created. Open it to verify your email, then sign in."
+      : "Verification link created, but no email sender is configured for Cloudflare auth. Ask an admin to send it.",
+  };
+}
+
+async function verifyGoogleToken(token, expectedClientId) {
+  const parts = String(token || "").split(".");
+  if (parts.length !== 3) {
+    throw createHttpError(400, "Malformed ID token.");
+  }
+  const [headerB64, payloadB64, sigB64] = parts;
+
+  let header, payload;
+  try {
+    const decoder = new TextDecoder();
+    header = JSON.parse(decoder.decode(base64UrlDecodeToBytes(headerB64)));
+    payload = JSON.parse(decoder.decode(base64UrlDecodeToBytes(payloadB64)));
+  } catch (err) {
+    throw createHttpError(400, "Failed to decode ID token.");
+  }
+
+  const kid = header?.kid;
+  if (!kid) {
+    throw createHttpError(400, "Missing kid in token header.");
+  }
+
+  // Fetch JWKS
+  const jwksRes = await fetch("https://www.googleapis.com/oauth2/v3/certs");
+  if (!jwksRes.ok) {
+    throw createHttpError(500, "Failed to retrieve Google certificate authority keys.");
+  }
+  const jwks = await jwksRes.json();
+  const jwk = jwks?.keys?.find(k => k.kid === kid);
+  if (!jwk) {
+    throw createHttpError(400, "Google public key not found for kid.");
+  }
+
+  // Import JWK
+  let key;
+  try {
+    key = await crypto.subtle.importKey(
+      "jwk",
+      jwk,
+      {
+        name: "RSASSA-PKCS1-v1_5",
+        hash: "SHA-256",
+      },
+      false,
+      ["verify"]
+    );
+  } catch (err) {
+    throw createHttpError(500, "Failed to import Google public key.");
+  }
+
+  // Verify signature
+  const data = new TextEncoder().encode(`${headerB64}.${payloadB64}`);
+  const sig = base64UrlDecodeToBytes(sigB64);
+  const sigValid = await crypto.subtle.verify("RSASSA-PKCS1-v1_5", key, sig, data);
+  if (!sigValid) {
+    throw createHttpError(401, "Google token signature verification failed.");
+  }
+
+  // Verify claims
+  if (!["https://accounts.google.com", "accounts.google.com"].includes(payload?.iss)) {
+    throw createHttpError(401, "Invalid issuer in Google token.");
+  }
+  if (payload?.aud !== expectedClientId) {
+    throw createHttpError(401, "Google token audience mismatch.");
+  }
+  const now = Math.floor(Date.now() / 1000);
+  if (payload?.exp <= now) {
+    throw createHttpError(401, "Google token expired.");
+  }
+
+  return {
+    email: normalizeEmail(payload.email),
+    emailVerified: Boolean(payload.email_verified),
+    name: payload.name || "",
+    sub: payload.sub,
+  };
+}
+
+export async function handleAuthGoogle(request, env) {
+  const database = requireAuthDatabase(env);
+  const body = await readJsonBody(request);
+  const credential = String(body?.credential || "").trim();
+  if (!credential) {
+    throw createHttpError(400, "Google credential token is required.");
+  }
+
+  const clientId = String(env.GOOGLE_CLIENT_ID || "").trim();
+  if (!clientId) {
+    throw createHttpError(503, "Google sign-in is not configured.");
+  }
+  const decoded = await verifyGoogleToken(credential, clientId);
+
+  const email = normalizeEmail(decoded.email);
+  if (!email || !email.includes("@")) {
+    throw createHttpError(400, "Google account does not have a valid email.");
+  }
+
+  let user = await getAuthUserByEmail(database, email);
+  const nowIso = new Date().toISOString();
+
+  if (user) {
+    if (String(user.status || "active").toLowerCase() !== "active") {
+      throw createHttpError(403, "This account is not active.");
+    }
+    // If user exists, but wasn't verified, mark them verified since Google has verified their email
+    if (!Number(user.email_verified || 0)) {
+      await database
+        .prepare("UPDATE auth_users SET email_verified = 1, last_login_at = ?2, updated_at = ?2 WHERE id = ?1")
+        .bind(user.id, nowIso)
+        .run();
+    } else {
+      await database
+        .prepare("UPDATE auth_users SET last_login_at = ?2, updated_at = ?2 WHERE id = ?1")
+        .bind(user.id, nowIso)
+        .run();
+    }
+  } else {
+    // Register new user
+    const userId = crypto.randomUUID();
+    await database
+      .prepare(`
+        INSERT INTO auth_users (
+          id,
+          email,
+          password_hash,
+          role,
+          plan,
+          status,
+          email_verified,
+          legacy_provider,
+          legacy_user_id,
+          created_at,
+          updated_at,
+          last_login_at
+        ) VALUES (?1, ?2, '', 'user', 'free', 'active', 1, 'google', ?3, ?4, ?4, ?4)
+      `)
+      .bind(userId, email, decoded.sub, nowIso)
+      .run();
+    user = await getAuthUserById(database, userId);
+  }
+
+  const refreshedUser = await getAuthUserById(database, user.id);
+  const session = await issueSession(database, user.id, request, env);
+
+  return {
+    ok: true,
+    mode: "cloudflare-auth",
+    user: buildPublicAuthUser(refreshedUser),
+    session,
+  };
+}
+
 export function resolveHybridAuthRouteHandler(path) {
   if (path.endsWith("/auth/register")) return handleAuthRegister;
   if (path.endsWith("/auth/login")) return handleAuthLogin;
+  if (path.endsWith("/auth/google")) return handleAuthGoogle;
   if (path.endsWith("/auth/session")) return handleAuthSession;
   if (path.endsWith("/auth/logout")) return handleAuthLogout;
   if (path.endsWith("/auth/password/change")) return handleAuthPasswordChange;
   if (path.endsWith("/auth/migration/resolve")) return handleAuthMigrationResolve;
   if (path.endsWith("/auth/migration/complete")) return handleAuthMigrationComplete;
+  if (path.endsWith("/auth/verification/resend")) return handleAuthVerificationResend;
+  if (path.endsWith("/auth/verification/complete")) return handleAuthVerificationComplete;
   return null;
 }
-

@@ -14,6 +14,7 @@ function createMemoryStorage(initial = {}) {
     key: (index) => Array.from(values.keys())[index] || null,
     getItem: (key) => values.get(key) ?? null,
     setItem: (key, value) => values.set(key, String(value)),
+    removeItem: (key) => values.delete(key),
     snapshot: () => Object.fromEntries(values.entries()),
   };
 }
@@ -48,14 +49,14 @@ function mergeProgressSummaries(left, right) {
   });
 }
 
-test("progress summary recovery merges multiple legacy local buckets into current user", () => {
+test("progress summary recovery migrates only the unscoped legacy bucket", () => {
   const currentKey = `${PROGRESS_STORAGE_PREFIX}cloud-user`;
   const storage = createMemoryStorage({
-    [`${PROGRESS_STORAGE_PREFIX}firebase-user`]: JSON.stringify({
-      attempts: [{ attemptId: "a1", topicId: "psr", createdAt: "2026-05-01T10:00:00Z", scorePercentage: 70 }],
+    cbt_progress_summary_v1: JSON.stringify({
+      attempts: [{ attemptId: "legacy", topicId: "psr", createdAt: "2026-05-01T10:00:00Z", scorePercentage: 70 }],
     }),
-    [`${PROGRESS_STORAGE_PREFIX}guest`]: JSON.stringify({
-      attempts: [{ attemptId: "a2", topicId: "ict", createdAt: "2026-05-02T10:00:00Z", scorePercentage: 80 }],
+    [`${PROGRESS_STORAGE_PREFIX}other-user`]: JSON.stringify({
+      attempts: [{ attemptId: "other", topicId: "ict", createdAt: "2026-05-02T10:00:00Z", scorePercentage: 80 }],
     }),
     unrelated_key: JSON.stringify({
       attempts: [{ attemptId: "ignored", topicId: "bad", createdAt: "2026-05-03T10:00:00Z" }],
@@ -69,18 +70,37 @@ test("progress summary recovery merges multiple legacy local buckets into curren
     mergeProgressSummaries,
   });
 
-  assert.deepEqual(recovered.migratedKeys.sort(), [
-    `${PROGRESS_STORAGE_PREFIX}firebase-user`,
-    `${PROGRESS_STORAGE_PREFIX}guest`,
-  ].sort());
+  assert.deepEqual(recovered.migratedKeys, ["cbt_progress_summary_v1"]);
   assert.deepEqual(
     recovered.summary.attempts.map((attempt) => attempt.topicId),
-    ["psr", "ict"],
+    ["psr"],
   );
   assert.deepEqual(
     JSON.parse(storage.snapshot()[currentKey]).attempts.map((attempt) => attempt.topicId),
-    ["psr", "ict"],
+    ["psr"],
   );
+  assert.equal(storage.snapshot().cbt_progress_summary_v1, undefined);
+  assert.ok(storage.snapshot()[`${PROGRESS_STORAGE_PREFIX}other-user`]);
+});
+
+test("progress summary recovery never copies another scoped user's bucket", () => {
+  const currentKey = `${PROGRESS_STORAGE_PREFIX}new-user`;
+  const storage = createMemoryStorage({
+    [`${PROGRESS_STORAGE_PREFIX}existing-user`]: JSON.stringify({
+      attempts: [{ attemptId: "a1", topicId: "psr", createdAt: "2026-05-01T10:00:00Z", scorePercentage: 70 }],
+    }),
+  });
+
+  const recovered = recoverProgressSummaryForStorageKey({
+    storage,
+    currentStorageKey: currentKey,
+    normalizeProgressSummary,
+    mergeProgressSummaries,
+  });
+
+  assert.equal(recovered, null);
+  assert.equal(storage.snapshot()[currentKey], undefined);
+  assert.ok(storage.snapshot()[`${PROGRESS_STORAGE_PREFIX}existing-user`]);
 });
 
 test("progress summary recovery returns null when no legacy attempts exist", () => {

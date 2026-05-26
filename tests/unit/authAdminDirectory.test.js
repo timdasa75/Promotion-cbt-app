@@ -65,6 +65,6 @@ test("admin directory helpers validate and refresh admin sessions", async () => 
       cloudAuthEnabled: true,
       refreshSession: async () => ({ provider: "firebase", accessToken: "token" }),
     }),
-    /Cloud session is unavailable/,
+    /Session is unavailable/,
   );
 });

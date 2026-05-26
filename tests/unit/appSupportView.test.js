@@ -19,7 +19,7 @@ test("getHeaderSyncSummary reflects auth and cloud sync states", () => {
     {
       label: "Device only",
       tone: "muted",
-      title: "Progress stays on this device until Cloud auth and sync are available.",
+      title: "Progress stays on this device until you sign in and enable sync.",
     },
   );
 
@@ -27,7 +27,7 @@ test("getHeaderSyncSummary reflects auth and cloud sync states", () => {
     getHeaderSyncSummary(
       { id: "u1" },
       {
-        providerLabel: "Cloud",
+        providerLabel: "Online",
         syncEnabled: true,
         syncStatus: { synced: true, lastSuccessAt: "2026-05-07T09:00:00Z" },
         formatRelativeTime: () => "today",
@@ -46,14 +46,14 @@ test("buildHeaderSummaryModel composes display name and pills", () => {
   const model = buildHeaderSummaryModel({
     user: { name: "Tim", email: "tim@example.com" },
     planLabel: "Premium",
-    providerLabel: "Cloud",
+    providerLabel: "Online",
     syncSummary: { label: "Synced", tone: "high", title: "Last synced today." },
   });
 
   assert.equal(model.displayName, "Tim");
   assert.deepEqual(model.pills, [
     { text: "Premium", className: "summary-pill summary-pill-plan" },
-    { text: "Cloud", className: "summary-pill" },
+    { text: "Online", className: "summary-pill" },
     { text: "Synced", className: "summary-pill summary-pill-high" },
   ]);
   assert.equal(model.syncTitle, "Last synced today.");

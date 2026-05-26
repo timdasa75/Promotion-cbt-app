@@ -65,7 +65,7 @@ test("buildAnalyticsHeatmapHtml distinguishes attempted and untouched topics", (
     ],
     { getTrafficClassByPercentage: (value) => (value >= 60 ? "medium" : "low") },
   );
-  assert.match(html, /heatmap-tile medium/);
+  assert.match(html, /heatmap-tile drillable medium/);
   assert.match(html, /64% average/);
   assert.match(html, /Not attempted yet/);
 });

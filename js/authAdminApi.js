@@ -10,7 +10,7 @@ import { getFirebaseConfig } from "./authRuntime.js";
 function getCloudFunctionsBaseUrl() {
   const { firebaseProjectId, firebaseFunctionsRegion } = getFirebaseConfig();
   if (!firebaseProjectId) {
-    throw new Error("Firebase project ID is missing.");
+    throw new Error("Project ID is missing.");
   }
   return `https://${encodeURIComponent(firebaseFunctionsRegion)}-${encodeURIComponent(firebaseProjectId)}.cloudfunctions.net`;
 }
@@ -31,7 +31,7 @@ function buildAdminApiUrl(path) {
 
 async function postAdminApiJson(url, accessToken, body = {}, fetchImpl = fetch) {
   if (!accessToken) {
-    throw new Error("Cloud session is unavailable.");
+    throw new Error("Session is unavailable.");
   }
 
   const response = await fetchImpl(url, {
@@ -52,12 +52,24 @@ async function postAdminApiJson(url, accessToken, body = {}, fetchImpl = fetch) 
   return payload;
 }
 
-export async function deleteUserViaCloudFunction(userId, accessToken, fetchImpl = fetch) {
+export async function deleteUserViaCloudFunction(userId, email = "", accessToken, fetchImpl = fetch) {
   if (!userId) {
     throw new Error("User identifier is required.");
   }
+  if (!accessToken && typeof email === "string" && !String(email).includes("@")) {
+    accessToken = email;
+    email = "";
+  }
 
-  return postAdminApiJson(buildAdminApiUrl("adminDeleteUserById"), accessToken, { userId }, fetchImpl);
+  return postAdminApiJson(
+    buildAdminApiUrl("adminDeleteUserById"),
+    accessToken,
+    {
+      userId,
+      email: normalizeEmail(email),
+    },
+    fetchImpl,
+  );
 }
 
 export async function listUsersViaCloudFunction(accessToken, fetchImpl = fetch) {

@@ -19,13 +19,13 @@ Set in Worker secrets:
 - `FIREBASE_API_KEY`
 - `GCP_SERVICE_ACCOUNT_EMAIL`
 - `GCP_SERVICE_ACCOUNT_PRIVATE_KEY`
+- `ADMIN_EMAILS`
 
 ## Required Vars
 
 Set as Worker vars:
 
 - `FIREBASE_PROJECT_ID`
-- `ADMIN_EMAILS` (comma-separated admin emails)
 
 Optional vars:
 
@@ -51,7 +51,7 @@ Important:
 
 If an existing Firebase user is blocked by Firebase login quotas during migration, you can seed a Cloudflare login for that known account directly into D1:
 
-- `node ./scripts/bootstrap-legacy-user.mjs --email timdasa75@gmail.com --password "StrongPass123!" --plan premium --role admin --verified true`
+- `node ./scripts/bootstrap-legacy-user.mjs --email admin@example.com --password "<temporary-password>" --plan premium --role admin --verified true`
 
 Notes:
 - this runs `wrangler d1 execute AUTH_DB --remote` under the hood
@@ -65,13 +65,14 @@ Notes:
    - `wrangler secret put FIREBASE_API_KEY`
    - `wrangler secret put GCP_SERVICE_ACCOUNT_EMAIL`
    - `wrangler secret put GCP_SERVICE_ACCOUNT_PRIVATE_KEY`
+   - `wrangler secret put ADMIN_EMAILS`
 3. Deploy:
    - `wrangler deploy`
 4. Set `adminApiBaseUrl` in Promotion CBT runtime config to your worker URL.
 
 ## Notes
 
-- If `ALLOWED_ORIGINS` is set, non-listed browser origins are blocked.
+- Configure `ALLOWED_ORIGINS` for production. Non-listed browser origins are blocked, and missing production origins no longer fall back to wildcard CORS.
 - The worker verifies caller ID tokens and enforces an email-based admin allowlist from `ADMIN_EMAILS`.
 - If `ADMIN_EMAILS` is empty or missing, admin routes fail closed.
 - `/adminSendVerificationEmail` asks Firebase Auth to send the verification email and does not return raw links to the browser.

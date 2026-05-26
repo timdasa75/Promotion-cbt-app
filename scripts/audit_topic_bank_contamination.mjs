@@ -9,6 +9,7 @@ const TOPICS_FILE = path.join(ROOT_DIR, "data", "topics.json");
 const args = new Set(process.argv.slice(2));
 const shouldFail = args.has("--fail-on-findings");
 const shouldPrintJson = args.has("--json");
+const allowMissingTopicFiles = args.has("--allow-missing-topic-files");
 const topicArgIndex = process.argv.indexOf("--topic");
 const requestedTopicId = topicArgIndex >= 0 ? process.argv[topicArgIndex + 1] : "";
 
@@ -215,6 +216,7 @@ if (requestedTopicId && !topics.length) {
 
 const results = topics.map(auditTopic);
 const findings = results.flatMap((result) => result.findings);
+const missing = results.filter((result) => result.missing);
 
 if (shouldPrintJson) {
   console.log(JSON.stringify({ results, findings }, null, 2));
@@ -223,5 +225,9 @@ if (shouldPrintJson) {
 }
 
 if (shouldFail && findings.length) {
+  process.exit(1);
+}
+
+if (shouldFail && missing.length && !allowMissingTopicFiles) {
   process.exit(1);
 }

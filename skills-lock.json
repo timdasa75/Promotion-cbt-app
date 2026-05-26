@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "skills": {
+    "planning": {
+      "source": "Alicoder001/agent-skills",
+      "sourceType": "github",
+      "skillPath": "agent/planning/SKILL.md",
+      "computedHash": "c973e8cef28c6250a48b575ab55b472e6293d8dab01a7b500b684027be313fd7"
+    },
+    "testing": {
+      "source": "Alicoder001/agent-skills",
+      "sourceType": "github",
+      "skillPath": "core/testing/SKILL.md",
+      "computedHash": "b1cd88fe4a8a870fe528f2a2d6f0290933ef9aeaac1d1fd7b1f17850ef75e93c"
+    },
+    "web-design-guidelines": {
+      "source": "vercel-labs/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/web-design-guidelines/SKILL.md",
+      "computedHash": "d8e7d3afe37dcc8a97b99ffb5afdb4d0919ae0092ea8b68f44eb201f035e33ac"
+    }
+  }
+}

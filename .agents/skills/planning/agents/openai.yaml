@@ -1,0 +1,4 @@
+version: 1
+display_name: "Planning"
+short_description: "Task decomposition, goal-oriented planning, and adaptive execution strategies for AI agents. Use when facing complex multi-step tasks tha..."
+default_prompt: "Use this skill when: Task decomposition, goal-oriented planning, and adaptive execution strategies for AI agents. Use when facing complex multi-step tasks that require structured approach."

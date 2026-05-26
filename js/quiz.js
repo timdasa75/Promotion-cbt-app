@@ -1182,6 +1182,8 @@ function applyTrafficClass(element, className) {
 
 export function readProgressSummary() {
   try {
+    const user = getCurrentUser();
+    if (!user?.id) return { attempts: [] };
     const storageKey = getProgressStorageKeyForCurrentUser();
     const raw = window.localStorage.getItem(storageKey);
     if (!raw) return recoverLegacyProgressSummaryForCurrentUser(storageKey) || { attempts: [] };
@@ -1247,7 +1249,7 @@ export function toggleFlaggedQuestion(question, topicData) {
   const queue = readFlaggedQueue();
   const qId = String(question.id || "").trim();
   const idx = queue.findIndex((q) => String(q.id || "").trim() === qId);
-  
+
   if (idx >= 0) {
     queue.splice(idx, 1);
     saveFlaggedQueue(queue);
@@ -1287,9 +1289,9 @@ export function toggleCurrentQuestionFlag() {
   if (quizState.currentQuestionIndex >= quizState.allQuestions.length) return;
   const question = quizState.allQuestions[quizState.currentQuestionIndex];
   if (!question) return;
-  
+
   const isNowFlagged = toggleFlaggedQuestion(question, currentTopic);
-  
+
   const flagBtn = document.getElementById("flagQuestionBtn");
   if (flagBtn) {
     if (isNowFlagged) {
@@ -2366,7 +2368,7 @@ function showQuestion() {
   }
   const question = quizState.allQuestions[quizState.currentQuestionIndex];
   debugLog("Current question:", question);
-  
+
   // Query DOM elements here to ensure they exist
   const questionElement = document.getElementById("questionText");
   const optionsContainer = document.getElementById("optionsContainer");
@@ -2383,11 +2385,11 @@ function showQuestion() {
     );
     return;
   }
-  
+
   // Make sure quiz screen is visible
   quizScreen.classList.remove("hidden");
   quizScreen.classList.add("active");
-  
+
   const flagBtn = document.getElementById("flagQuestionBtn");
   if (flagBtn) {
     const isFlagged = isQuestionFlagged(question.id || normalizeQuestionFingerprint(question));
@@ -2399,7 +2401,7 @@ function showQuestion() {
       flagBtn.style.color = ""; // reset to inherit
     }
   }
-  
+
   questionElement.innerHTML = `
     <div class="question-number-container">
       <span class="question-number">${quizState.currentQuestionIndex + 1}</span>
@@ -2441,7 +2443,7 @@ function showQuestion() {
                   <span class="option-letter">${String.fromCharCode(65 + index)}</span>
                   <div class="option-text">${parseMarkdown(option)}</div>
               `;
-  
+
         // Different behavior based on mode
         if (currentMode === "review") {
           button.disabled = true;
@@ -2472,14 +2474,14 @@ function showQuestion() {
           // Practice mode
           button.onclick = () => selectOption(index);
         }
-  
+
         // If user already answered this question, show their answer
         const originalQuestionIndex = quizState.originalQuestions.indexOf(question);
         if (quizState.userAnswers[originalQuestionIndex] !== undefined) {
           if (quizState.userAnswers[originalQuestionIndex] === index) {
             button.classList.add("selected");
           }
-  
+
           // In practice mode, show feedback only after submit.
           // In review mode, always show answer state.
           // In exam mode, don't show feedback until exam is completed to maintain exam integrity
@@ -2498,7 +2500,7 @@ function showQuestion() {
             }
           }
         }
-  
+
         optionsContainer.appendChild(button);
       });
     refreshOptionFeedbackLabels();
@@ -2892,7 +2894,7 @@ async function confirmEndExam() {
   const totalQuestions = quizState.allQuestions.length;
   const answeredCount = getAnsweredQuestionCount();
   const unansweredCount = Math.max(0, totalQuestions - answeredCount);
-  
+
   const confirmed = await showConfirm({
     title: "End Exam Early?",
     message: `You have ${unansweredCount} questions unanswered. Are you sure you want to submit your current answers and finish now?`,
@@ -3679,7 +3681,7 @@ export function setCurrentMode(mode) {
     reviewContext = "study";
     clearPersistedQuizRuntime();
   }
-  
+
   // Update the quiz mode display in the header
   const quizModeDisplay = document.getElementById("quizModeDisplay");
   if (quizModeDisplay) {
@@ -3707,6 +3709,45 @@ export function getCurrentMode() {
 
 // Load questions for the selected topic
 export async function loadQuestions(questions = null) {
+  if (questions && currentMode === "browse") {
+    showScreen("quizScreen");
+    const qEl = document.getElementById("questionText");
+    const opts = document.getElementById("optionsContainer");
+    const expl = document.getElementById("explanation");
+    const timerWrap = document.getElementById("timerDisplay");
+    const progressLabel = document.querySelector(".progress-label");
+    const progressTrack = document.querySelector(".progress-track");
+    const quizActions = document.querySelector(".quiz-actions");
+    if (timerWrap) timerWrap.classList.add("hidden");
+    if (progressLabel) progressLabel.classList.add("hidden");
+    if (progressTrack) progressTrack.classList.add("hidden");
+    if (quizActions) quizActions.classList.add("hidden");
+    if (expl) { expl.classList.remove("show"); expl.style.display = "none"; }
+    if (opts) opts.innerHTML = "";
+    if (qEl) {
+      qEl.classList.add("browse-mode-container");
+      document.querySelector(".quiz-content-grid")?.classList.add("hidden");
+
+      qEl.innerHTML = `<div class="browse-header"><h3>Browse: ${escapeHtml(currentTopic?.name || "")}</h3><p class="hero-meta">${questions.length} questions · Answers and explanations shown</p></div>`;
+      const list = document.createElement("div");
+      list.className = "browse-list";
+      const cards = questions.map((q, i) => {
+        const diff = String(q.difficulty || "").toLowerCase();
+        const diffB = ["easy","medium","hard"].includes(diff) ? `<span class="diff-badge diff-${diff}">${diff.charAt(0).toUpperCase()+diff.slice(1)}</span>` : "";
+        const correctIdx = Number.isInteger(q.correct) ? q.correct : 0;
+        const optHtml = Array.isArray(q.options) ? q.options.map((o, oi) => {
+          const cls = oi === correctIdx ? "browse-opt browse-opt-correct" : "browse-opt";
+          return `<div class="${cls}">${escapeHtml(o)}${oi === correctIdx ? ' <span class="browse-correct-mark">✓ Correct</span>' : ""}</div>`;
+        }).join("") : "";
+        const explHtml = q.explanation ? `<div class="browse-explanation">${escapeHtml(q.explanation)}</div>` : "";
+        return `<div class="browse-card"><div class="browse-card-head"><span class="question-number">${i+1}</span>${diffB}</div><div class="browse-question-text">${parseMarkdown(q.question)}</div><div class="browse-options">${optHtml}</div>${explHtml}</div>`;
+      });
+      list.innerHTML = cards.join("");
+      qEl.appendChild(list);
+    }
+    return;
+  }
+
   if (questions) {
     const prioritizedQuestions = currentMode === "review"
       ? [...questions]
@@ -3719,6 +3760,10 @@ export async function loadQuestions(questions = null) {
         );
     quizState.allQuestions = prioritizedQuestions;
     quizState.originalQuestions = prioritizedQuestions;
+    if (currentMode === "browse") {
+      await loadQuestions(quizState.allQuestions);
+      return;
+    }
     initializeQuiz({ context: currentMode === "review" ? "study" : "session" });
     return;
   }
@@ -3855,6 +3900,10 @@ export async function loadQuestions(questions = null) {
     }
 
 
+    if (currentMode === "browse") {
+      await loadQuestions(quizState.allQuestions);
+      return;
+    }
     initializeQuiz({ context: currentMode === "review" ? "study" : "session" });
   } catch (error) {
     console.error("Error loading questions:", error);
@@ -4162,6 +4211,21 @@ function initializeQuiz(options = {}) {
 
   // Show the quiz screen first, then set up timer
   showScreen("quizScreen");
+
+  // Reset UI elements that might have been hidden in browse mode
+  const timerWrap = document.getElementById("timerDisplay");
+  const progressLabel = document.querySelector(".progress-label");
+  const progressTrack = document.querySelector(".progress-track");
+  const quizActions = document.querySelector(".quiz-actions");
+  if (timerWrap) timerWrap.classList.remove("hidden");
+  if (progressLabel) progressLabel.classList.remove("hidden");
+  if (progressTrack) progressTrack.classList.remove("hidden");
+  if (quizActions) quizActions.classList.remove("hidden");
+
+  // Remove browse mode classes
+  const qEl = document.getElementById("questionText");
+  if (qEl) qEl.classList.remove("browse-mode-container");
+  document.querySelector(".quiz-content-grid")?.classList.remove("hidden");
 
   // Now that the screen is shown, get DOM elements
   getDOMElements();

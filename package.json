@@ -8,10 +8,13 @@
   },
   "scripts": {
     "test": "playwright test",
-    "test:smoke": "playwright test tests/smoke.spec.js",
+    "test:smoke": "playwright test tests/smoke.spec.js --reporter=line --max-failures=1",
+    "test:smoke:full": "playwright test tests/smoke.spec.js",
+    "test:ui-audit": "playwright test tests/uiAudit.spec.js --reporter=line",
     "test:unit": "node --test tests/unit/*.test.js",
     "audit:topic-banks": "node scripts/audit_topic_bank_contamination.mjs",
     "audit:topic-banks:strict": "node scripts/audit_topic_bank_contamination.mjs --fail-on-findings",
+    "audit:topic-banks:ci": "node scripts/audit_topic_bank_contamination.mjs --fail-on-findings --allow-missing-topic-files",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
@@ -36,6 +39,7 @@
   },
   "overrides": {
     "undici": "^7.24.0",
+    "ws": "^8.20.1",
     "anymatch": {
       "picomatch": "^2.3.2"
     },

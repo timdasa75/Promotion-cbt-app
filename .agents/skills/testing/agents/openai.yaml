@@ -1,0 +1,4 @@
+version: 1
+display_name: "Testing"
+short_description: "Unified QA testing architecture for strategy, risk-based planning, functional and non-functional coverage, automation, infrastructure, go..."
+default_prompt: "Use this skill when: Unified QA testing architecture for strategy, risk-based planning, functional and non-functional coverage, automation, infrastructure, governance, and metrics across the SDLC."

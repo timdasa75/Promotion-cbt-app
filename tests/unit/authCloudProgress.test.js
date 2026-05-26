@@ -14,7 +14,7 @@ test("cloud progress session requires enabled firebase session", async () => {
       getSession: () => null,
       refreshSession: async () => null,
     }),
-    /Cloud progress sync is not enabled/,
+    /Progress sync is not enabled/,
   );
 
   const session = await ensureCloudProgressSession({

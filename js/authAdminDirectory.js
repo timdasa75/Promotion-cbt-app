@@ -56,11 +56,11 @@ export async function ensureAdminCloudSession({
     throw new Error("Admin access is required.");
   }
   if (!cloudAuthEnabled || !session?.provider || !session?.accessToken) {
-    throw new Error("Cloud session is unavailable.");
+    throw new Error("Session is unavailable.");
   }
 
   if (!["firebase", "cloudflare"].includes(String(session.provider || "").trim().toLowerCase())) {
-    throw new Error("Cloud session is unavailable.");
+    throw new Error("Session is unavailable.");
   }
 
   if (session.provider === "cloudflare") {
@@ -69,7 +69,7 @@ export async function ensureAdminCloudSession({
 
   const freshSession = await refreshSession(session, { clearOnFailure: true });
   if (!freshSession?.accessToken) {
-    throw new Error("Cloud session is unavailable.");
+    throw new Error("Session is unavailable.");
   }
 
   return freshSession;

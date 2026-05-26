@@ -1,0 +1,53 @@
+{
+  "$schema": "https://opencode.ai/schemas/opencode.json",
+  "instructions": ["AGENTS.md", "Design.md"],
+  "mcpServers": {
+    "@playwright/mcp": {
+      "command": "npx",
+      "args": ["-y", "@playwright/mcp"]
+    },
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"]
+    },
+    "stitch": {
+      "command": "npx",
+      "args": ["-y", "@keeponfirst/kof-stitch-mcp"],
+      "env": {
+        "GOOGLE_CLOUD_PROJECT": "<your-stitch-project-id>"
+      }
+    },
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@context7/server"]
+    },
+    "web-fetch": {
+      "command": "npx",
+      "args": ["-y", "@anthropic/server-web-fetch"]
+    }
+  },
+  "agent": {
+    "build": {
+      "instructions": "Full-stack development on the Promotion CBT app. Focus on JS frontend, Cloudflare Worker backend, auth, and tests."
+    },
+    "plan": {
+      "instructions": "Analyze architecture, design decisions, and tradeoffs. Read AGENTS.md and Design.md first."
+    }
+  },
+  "permissions": {
+    "tools": {
+      "shell": {
+        "glob": ["**"],
+        "permission": "ask"
+      },
+      "edit": {
+        "glob": ["**"],
+        "permission": "allow"
+      },
+      "write": {
+        "glob": ["**"],
+        "permission": "allow"
+      }
+    }
+  }
+}

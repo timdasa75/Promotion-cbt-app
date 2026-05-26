@@ -93,16 +93,24 @@ test("admin service wrappers pass tokens and normalize status", async () => {
   });
   assert.deepEqual(updated, { warning: "sync lag" });
 
-  const deleted = await deleteCloudUserById("user-1", ensureAdminSession, async (id, token) => {
+  const deleted = await deleteCloudUserById("user-1", " User@Example.com ", ensureAdminSession, async (id, email, token) => {
     assert.equal(id, "user-1");
+    assert.equal(email, "user@example.com");
     assert.equal(token, "token-2");
+    return { cloudflareDeleted: true, warning: "profile missing" };
   });
-  assert.deepEqual(deleted, { authDeleted: true, warning: "" });
+  assert.deepEqual(deleted, {
+    authDeleted: true,
+    cloudflareDeleted: true,
+    firebaseDeleted: false,
+    profileDeleted: false,
+    warning: "profile missing",
+  });
 
   await assert.rejects(
-    deleteCloudUserById("user-1", ensureAdminSession, async () => {
+    deleteCloudUserById("user-1", "", ensureAdminSession, async () => {
       throw new Error("bridge unavailable");
     }),
-    /Unable to delete this account from Firebase Authentication: bridge unavailable/,
+    /Unable to delete this account: bridge unavailable/,
   );
 });

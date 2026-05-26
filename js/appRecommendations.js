@@ -101,6 +101,9 @@ export function buildDashboardRecommendationSignals(insights) {
   return signalChips;
 }
 
+const defaultBuildDashboardRecommendationConfidence = buildDashboardRecommendationConfidence;
+const defaultBuildDashboardRecommendationSignals = buildDashboardRecommendationSignals;
+
 export function buildRecommendation(
   insights,
   {
@@ -298,8 +301,8 @@ export function buildDashboardSetupSuggestion(
     formatTargetGlBandLabel = (value) => String(value || ""),
     formatQuestionFocusLabel = (value) => String(value || ""),
     mockExamTopicId = "",
-    buildDashboardRecommendationConfidence = buildDashboardRecommendationConfidence,
-    buildDashboardRecommendationSignals = buildDashboardRecommendationSignals,
+    buildDashboardRecommendationConfidence = defaultBuildDashboardRecommendationConfidence,
+    buildDashboardRecommendationSignals = defaultBuildDashboardRecommendationSignals,
   } = {},
 ) {
   if (!topic || !insights?.totalAttempts) return null;

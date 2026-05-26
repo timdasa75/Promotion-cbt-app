@@ -243,6 +243,39 @@ async function fetchProtectedTopicDataFilesWithReport(topic, options = {}) {
   return result;
 }
 
+async function fetchPublicTopicDataFilesWithReport(topic, options = {}) {
+  const { onProgress } = options;
+  const files = getTopicFiles(topic);
+  const payloads = [];
+  const failedFiles = [];
+
+  for (const file of files) {
+    try {
+      payloads.push(await fetchJsonFile(file));
+      if (typeof onProgress === "function") {
+        onProgress({
+          loaded: payloads.length,
+          failed: failedFiles.length,
+          total: files.length,
+          currentFile: file,
+        });
+      }
+    } catch (error) {
+      failedFiles.push(file);
+      if (!options?.tolerateFailures) {
+        throw error;
+      }
+    }
+  }
+
+  return {
+    payloads,
+    loadedFiles: files.filter((file) => !failedFiles.includes(file)),
+    failedFiles,
+    totalFiles: files.length,
+  };
+}
+
 export function __resetTopicSourceCachesForTests() {
   jsonCache.clear();
   protectedTopicCache.clear();
@@ -310,12 +343,58 @@ export async function fetchJsonFile(file) {
   throw new Error(`Failed to fetch ${file}`);
 }
 export async function fetchTopicDataFilesWithReport(topic, options = {}) {
+  const session = readSession();
+  if (!session?.accessToken) {
+    return fetchPublicTopicDataFilesWithReport(topic, options);
+  }
   return fetchProtectedTopicDataFilesWithReport(topic, options);
 }
 
 export async function fetchTopicDataFiles(topic, options = {}) {
   const result = await fetchTopicDataFilesWithReport(topic, options);
   return result.payloads;
+}
+
+export async function fetchTopicDataFilesBatch(topics, options = {}) {
+  if (!Array.isArray(topics) || topics.length === 0) return {};
+  const session = readSession();
+  if (!session?.accessToken) return {};
+  const topicIds = topics.map((t) => String(t?.id || "").trim()).filter(Boolean);
+  if (!topicIds.length) return {};
+  const uncached = topicIds.filter((tid) => !protectedTopicCache.has(getProtectedTopicCacheKey({ id: tid }, session)));
+  if (!uncached.length) {
+    const results = {};
+    topicIds.forEach((tid) => {
+      const cached = protectedTopicCache.get(getProtectedTopicCacheKey({ id: tid }, session));
+      if (cached) results[tid] = cached.payloads;
+    });
+    return results;
+  }
+  const payload = await requestCloudflareAuth("content/topic-data", {
+    method: "POST",
+    accessToken: session.accessToken,
+    body: { topicIds: uncached, tolerateFailures: true },
+  });
+  const results = {};
+  if (payload?.batch && payload?.results) {
+    Object.entries(payload.results).forEach(([tid, result]) => {
+      if (result.ok && Array.isArray(result.payloads)) {
+        const cacheKey = getProtectedTopicCacheKey({ id: tid }, session);
+        protectedTopicCache.set(cacheKey, result);
+        results[tid] = result.payloads;
+      }
+    });
+  }
+  topicIds.forEach((tid) => {
+    if (!results[tid]) {
+      const cacheKey = getProtectedTopicCacheKey({ id: tid }, session);
+      if (protectedTopicCache.has(cacheKey)) {
+        const cached = protectedTopicCache.get(cacheKey);
+        if (cached.payloads) results[tid] = cached.payloads;
+      }
+    }
+  });
+  return results;
 }
 
 export {

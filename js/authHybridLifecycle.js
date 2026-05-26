@@ -29,21 +29,22 @@ function shouldFallbackToFirebase(error, { allowFallback = false, forRegister = 
 }
 
 export async function registerUserHybrid(
-  { name, email, password },
+  { name, email, password, turnstileToken },
   {
     registerCloudflare = async (input) => {
       const payload = await requestCloudflareAuth("auth/register", {
         method: "POST",
         body: input,
       });
-      const session = writeCloudflareSessionFromAuthPayload(payload);
+      const requiresEmailVerification = Boolean(payload?.requiresEmailVerification);
+      const session = requiresEmailVerification ? null : writeCloudflareSessionFromAuthPayload(payload);
       return {
         user: session?.user || payload?.user || null,
-        message:
-          payload?.warning
-          || "Account created successfully. Email verification will be added in a later update.",
-        authMessage: payload?.warning || "Login successful.",
-        requiresEmailVerification: false,
+        message: payload?.message || payload?.warning || "Account created. Check your email to verify.",
+        authMessage: payload?.message || payload?.warning || "Account created.",
+        requiresEmailVerification,
+        verificationUrl: payload?.verificationUrl || "",
+        verificationExpiresAt: payload?.verificationExpiresAt || "",
       };
     },
     registerFirebase = registerUserCloud,
@@ -51,7 +52,7 @@ export async function registerUserHybrid(
   } = {},
 ) {
   try {
-    return await registerCloudflare({ name, email, password });
+    return await registerCloudflare({ name, email, password, turnstileToken, baseUrl: (typeof window !== "undefined" ? window.location.origin : "") });
   } catch (error) {
     if (!shouldFallbackToFirebase(error, { allowFallback: allowFirebaseFallback, forRegister: true })) {
       throw error;
@@ -61,7 +62,7 @@ export async function registerUserHybrid(
 }
 
 export async function loginUserHybrid(
-  { email, password },
+  { email, password, turnstileToken },
   {
     loginCloudflare = async (input) => {
       const payload = await requestCloudflareAuth("auth/login", {
@@ -93,7 +94,7 @@ export async function loginUserHybrid(
   } = {},
 ) {
   try {
-    return await loginCloudflare({ email, password });
+    return await loginCloudflare({ email, password, turnstileToken });
   } catch (error) {
     if (!shouldFallbackToFirebase(error, { allowFallback: allowFirebaseFallback })) {
       throw error;

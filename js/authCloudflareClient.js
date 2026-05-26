@@ -5,7 +5,7 @@ import { writeSession } from "./authStorage.js";
 function getCloudflareAuthBaseUrl() {
   const { cloudflareAuthBaseUrl } = getFirebaseConfig();
   if (!cloudflareAuthBaseUrl) {
-    throw new Error("Cloudflare auth API is not configured.");
+    throw new Error("Online auth API is not configured.");
   }
   return cloudflareAuthBaseUrl;
 }
@@ -13,7 +13,7 @@ function getCloudflareAuthBaseUrl() {
 function buildCloudflareAuthUrl(path) {
   const cleanPath = String(path || "").replace(/^\/+/, "");
   if (!cleanPath) {
-    throw new Error("Cloudflare auth path is required.");
+    throw new Error("Auth path is required.");
   }
   return `${getCloudflareAuthBaseUrl()}/${cleanPath}`;
 }
@@ -50,7 +50,7 @@ export async function requestCloudflareAuth(path, {
 
   const payload = await response.json().catch(() => ({}));
   if (!response.ok || !payload?.ok) {
-    const message = payload?.error || payload?.message || "Cloudflare auth request failed.";
+    const message = payload?.error || payload?.message || "Authentication request failed.";
     const error = new Error(message);
     error.httpStatus = response.status;
     error.payload = payload;
@@ -120,6 +120,7 @@ export async function requestCloudflarePasswordRecovery(email, continueUrl = "",
     body: {
       email: normalizeEmail(email || ""),
       continueUrl: String(continueUrl || "").trim(),
+      baseUrl: window.location.origin,
     },
     fetchImpl,
   });
@@ -129,6 +130,14 @@ export async function requestCloudflarePasswordRecovery(email, continueUrl = "",
 
 export async function resolveCloudflareMigrationToken(token, fetchImpl = fetch) {
   return requestCloudflareAuth("auth/migration/resolve", {
+    method: "POST",
+    body: { token: String(token || "").trim() },
+    fetchImpl,
+  });
+}
+
+export async function completeCloudflareEmailVerification(token, fetchImpl = fetch) {
+  return requestCloudflareAuth("auth/verification/complete", {
     method: "POST",
     body: { token: String(token || "").trim() },
     fetchImpl,
@@ -166,6 +175,7 @@ export async function completeCloudflareMigrationToken(token, password, fetchImp
     session,
   };
 }
+
 export async function fetchCloudflareProgress(accessToken, fetchImpl = fetch) {
   return requestCloudflareAuth("progress", {
     method: "GET",
@@ -181,4 +191,17 @@ export async function writeCloudflareProgress(accessToken, body, fetchImpl = fet
     body,
     fetchImpl,
   });
+}
+
+export async function loginUserWithGoogleCloudflare(credential, fetchImpl = fetch) {
+  const payload = await requestCloudflareAuth("auth/google", {
+    method: "POST",
+    body: { credential: String(credential || "").trim() },
+    fetchImpl,
+  });
+  const session = writeCloudflareSessionFromAuthPayload(payload);
+  return {
+    payload,
+    session,
+  };
 }

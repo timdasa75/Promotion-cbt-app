@@ -13,6 +13,18 @@ export default defineConfig(({ mode }) => {
     build: {
       outDir: "dist",
       emptyOutDir: true,
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            if (id.includes("/js/appAnalytics") || id.includes("/js/appAnalyticsView") || id.includes("/js/appRecommendations") || id.includes("/js/appRecommendationDismissals")) {
+              return "analytics";
+            }
+            if (id.includes("/js/quiz.js") || id.includes("/js/quiz/")) {
+              return "quiz";
+            }
+          },
+        },
+      },
     },
     plugins: [
       viteStaticCopy({

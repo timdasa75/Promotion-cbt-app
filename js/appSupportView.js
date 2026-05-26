@@ -16,11 +16,11 @@ export function getHeaderSyncSummary(
     };
   }
 
-  if (providerLabel !== "Cloud" || !syncEnabled) {
+  if (providerLabel !== "Online" || !syncEnabled) {
     return {
       label: "Device only",
       tone: "muted",
-      title: "Progress stays on this device until Cloud auth and sync are available.",
+      title: "Progress stays on this device until you sign in and enable sync.",
     };
   }
 
@@ -45,14 +45,14 @@ export function getHeaderSyncSummary(
     return {
       label: "Retry sync",
       tone: "low",
-      title: String(syncStatus.lastError || "Cloud sync needs another try.").trim(),
+      title: String(syncStatus.lastError || "Sync needs another try.").trim(),
     };
   }
 
   return {
-    label: "Cloud ready",
+    label: "Ready",
     tone: "medium",
-    title: "Cloud profile is ready to sync progress.",
+    title: "Your profile is ready to sync progress.",
   };
 }
 

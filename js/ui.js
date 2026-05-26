@@ -7,7 +7,12 @@ import {
   fetchTopicDataFilesWithReport,
   getQuestionsFromSubcategory,
 } from "./topicSources.js";
-import { getExamTemplateById, getVisibleExamTemplates } from "./data.js";
+import {
+  getExamTemplateById,
+  getTopicQuestionCounts,
+  getTotalQuestionCountForTopic,
+  getVisibleExamTemplates,
+} from "./data.js";
 import { DEFAULT_MOCK_EXAM_TEMPLATE_ID } from "./mockExamTemplates.js";
 import { normalizeStudyFilters, summarizeStudyFilterOptions } from "./studyFilters.js";
 import {
@@ -292,7 +297,6 @@ export async function displayCategories(topic, onSelect) {
           if (!isUnlocked) {
             categoryCard.classList.add("locked");
           }
-          categoryCard.style.setProperty("--animation-order", index);
           const name = subcategory.name
             .replace(/^[A-Z]\.\s/, "")
             .replace(/ \(\d+ Questions\)/, "");
@@ -336,10 +340,6 @@ export async function displayCategories(topic, onSelect) {
 
       const allCategoryCard = document.createElement("div");
       allCategoryCard.className = "topic-card ripple scale-on-hover";
-      allCategoryCard.style.setProperty(
-        "--animation-order",
-        subcategoriesToDisplay.length,
-      );
       const totalQuestionsInTopic = subcategoriesToDisplay.reduce(
         (sum, entry) => sum + countSubcategoryQuestions(entry),
         0,
@@ -416,8 +416,7 @@ export async function displayTopics(topics, onSelect) {
 
   let counts = {};
   try {
-    const dataModule = await import("./data.js");
-    counts = await dataModule.getTopicQuestionCounts(topics);
+    counts = await getTopicQuestionCounts(topics);
     debugLog("Question counts:", counts);
   } catch (e) {
     console.error("Error getting question counts:", e);
@@ -536,21 +535,26 @@ export async function displayTopics(topics, onSelect) {
     mockExamFeature.innerHTML = `
       <article class="mock-feature-panel ripple scale-on-hover${isUnlocked ? "" : " locked"}" tabindex="0">
         <div class="mock-feature-content">
-          <p class="eyebrow">Directorate Mock Exam</p>
-          <div class="mock-feature-head">
-            <div>
-              <h3 class="topic-title">${safeName}</h3>
-              <p class="topic-description">${safeDescription}</p>
+            <p class="eyebrow premium-eyebrow">PREMIUM SIMULATION</p>
+            <div class="mock-feature-head">
+                <div>
+                    <h3 class="topic-title">${safeName}</h3>
+                    <p class="topic-description">${safeDescription}</p>
+                </div>
             </div>
-          </div>
         </div>
         <div class="mock-feature-footer">
-          <div class="mock-feature-meta">
-            <span class="mock-exam-badge">40 Questions | 45 Minutes</span>
-            ${freeMockBadge}
-            ${lockBadge}
-          </div>
-          <button class="btn btn-primary mock-exam-cta" type="button" ${disabledAttr}>${ctaLabel}</button>
+            <div class="mock-feature-meta">
+                <span class="mock-exam-badge">
+                    <svg class="icon-nudge-right" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                    40 Questions | 45 Minutes
+                </span>
+                ${freeMockBadge}
+                ${lockBadge}
+            </div>
+            <button class="btn btn-primary mock-exam-cta" type="button" ${disabledAttr}>
+                <span>${ctaLabel}</span>
+            </button>
         </div>
       </article>
     `;
@@ -565,10 +569,10 @@ export async function displayTopics(topics, onSelect) {
     const { isUnlocked } = getTopicAccessState(topic);
     const topicCard = document.createElement("div");
     topicCard.className = "topic-card ripple scale-on-hover";
+    topicCard.dataset.topicId = String(topic?.id || "");
     if (!isUnlocked) {
       topicCard.classList.add("locked");
     }
-    topicCard.style.setProperty("--animation-order", index);
     const name = topic.name
       .replace(/^[A-Z]\.\s/, "")
       .replace(/ \(\d+ Questions\)/, "");
@@ -579,14 +583,20 @@ export async function displayTopics(topics, onSelect) {
 
     topicCard.innerHTML = `
         <div class="card-content">
-            <div class="topic-icon">${safeIcon}</div>
+            <div class="topic-icon-wrap">
+                <div class="topic-icon">${safeIcon}</div>
+            </div>
             <h3 class="topic-title">${safeName}</h3>
             <p class="topic-description">${safeDescription}</p>
             ${lockBadge}
         </div>
         <div class="card-footer">
             <div class="question-count">
+                <svg class="icon-nudge-right" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
                 <strong>${counts[topic.id] || topic.mockExamQuestionCount || 0}</strong> Questions
+            </div>
+            <div class="card-action-indicator">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3"><path d="M9 18l6-6-6-6"></path></svg>
             </div>
         </div>
     `;
@@ -605,7 +615,7 @@ export async function displayTopics(topics, onSelect) {
     } else if (typeof topicLimit === "number") {
       freePlanNotice.classList.remove("hidden");
       freePlanNotice.textContent =
-        `Free plan: explore all topics preview, study ${topicLimit} unlocked topic with ${entitlement.maxSubcategories} subtopics and ${entitlement.maxQuestionsPerSubcategory} questions each, plus 1 free mock exam weekly (7-day window from registration). Upgrade to Premium for full question bank, unlimited topic access, and complete exam practice.`;
+        `Free plan: explore all topics preview, study ${topicLimit} unlocked topic${topicLimit > 1 ? "s" : ""} with ${entitlement.maxSubcategories} subtopics and ${entitlement.maxQuestionsPerSubcategory} questions each, plus 1 free mock exam weekly (7-day window from registration). Upgrade to Premium for unlimited topic access, full question bank, detailed analytics, and cloud sync.`;
     } else {
       freePlanNotice.classList.add("hidden");
     }
@@ -614,8 +624,7 @@ export async function displayTopics(topics, onSelect) {
 // Get total question count for a topic
 export async function getTotalQuestionCount(topic) {
   try {
-    const dataModule = await import("./data.js");
-    return await dataModule.getTotalQuestionCountForTopic(topic);
+    return await getTotalQuestionCountForTopic(topic);
   } catch (e) {
     console.error("Error getting total question count:", e);
     return 0;

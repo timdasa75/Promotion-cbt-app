@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { spawnSync } from "node:child_process";
+import { runPythonScript } from "./pythonRunner.js";
 
 const REPO_ROOT = path.resolve(".");
 const SCRIPT_PATH = path.join(REPO_ROOT, "scripts", "build_question_quality_assessment.py");
@@ -177,10 +177,9 @@ test("question quality assessment classifies weak stems into rewrite, move, and 
   const mdOut = path.join(fixtureRoot, "docs", "question_quality_assessment.md");
   const topicsFile = path.join(fixtureRoot, "data", "topics.json");
 
-  const result = spawnSync(
-    "python",
+  const result = runPythonScript(
+    SCRIPT_PATH,
     [
-      SCRIPT_PATH,
       "--root",
       fixtureRoot,
       "--topics-file",

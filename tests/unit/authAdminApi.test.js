@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import {
+  deleteUserViaCloudFunction,
   listUsersViaCloudFunction,
   sendVerificationViaAdminApi,
   setUserStatusViaAdminApi,
@@ -43,6 +44,7 @@ test("admin API helpers use custom base URL and normalize payloads", async () =>
     const users = await listUsersViaCloudFunction("token-1", fetchImpl);
     const statusResult = await setUserStatusViaAdminApi("user-1", "SUSPENDED", "token-2", fetchImpl);
     await sendVerificationViaAdminApi(" USER@Example.com ", " https://example.com/next ", "token-3", fetchImpl);
+    await deleteUserViaCloudFunction("user-1", " USER@Example.com ", "token-4", fetchImpl);
 
     assert.deepEqual(users, [
       {
@@ -73,6 +75,11 @@ test("admin API helpers use custom base URL and normalize payloads", async () =>
     assert.deepEqual(JSON.parse(calls[2].options.body), {
       email: "user@example.com",
       continueUrl: "https://example.com/next",
+    });
+    assert.equal(calls[3].url, "https://admin.example.com/adminDeleteUserById");
+    assert.deepEqual(JSON.parse(calls[3].options.body), {
+      userId: "user-1",
+      email: "user@example.com",
     });
   } finally {
     global.window = originalWindow;

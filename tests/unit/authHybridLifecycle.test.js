@@ -15,7 +15,7 @@ test("registerUserHybrid prefers Cloudflare auth when available", async () => {
     {
       registerCloudflare: async () => ({
         user: { id: "cf-1", email: "user@example.com" },
-        message: "Cloudflare account created.",
+        message: "Account created.",
         requiresEmailVerification: false,
       }),
       registerFirebase: async () => {
@@ -35,7 +35,7 @@ test("loginUserHybrid falls back to Firebase for legacy users when Cloudflare lo
     { email: "legacy@example.com", password: "secret123" },
     {
       loginCloudflare: async () => {
-        const error = new Error("Account not found in Cloudflare auth.");
+        const error = new Error("Account not found.");
         error.httpStatus = 404;
         throw error;
       },
