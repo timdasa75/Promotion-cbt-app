@@ -27,3 +27,10 @@ export function debugLog(...args) {
     console.log(...args);
   }
 }
+
+export const logger = {
+  debug: debugLog,
+  info: console.info.bind(console, "[INFO]"),
+  warn: console.warn.bind(console, "[WARN]"),
+  error: console.error.bind(console, "[ERROR]"),
+};
