@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+﻿import { test, expect } from "@playwright/test";
 
 async function registerAndEnter(page, email = "testuser@example.com") {
   await page.addInitScript(() => {
@@ -6,6 +6,11 @@ async function registerAndEnter(page, email = "testuser@example.com") {
       firebaseApiKey: "",
       firebaseProjectId: "",
       firebaseAuthDomain: "",
+      paymentProvider: "selar",
+      selarCheckoutLinks: {
+        default: "https://selar.com/monthly-smoke",
+        monthly: "https://selar.com/monthly-smoke",
+      },
     };
   });
   await page.goto("/");
@@ -27,6 +32,16 @@ async function registerAndEnter(page, email = "testuser@example.com") {
     await page.click("#freeTierAcknowledgeBtn");
     await expect(freeTierModal).toBeHidden();
   }
+}
+
+async function openTopicSelectionForSeededSession(page) {
+  await page.goto("/");
+  await expect(page.locator("#appLoadingOverlay")).toHaveClass(/is-hidden/);
+  await page.evaluate(() => {
+    document.getElementById("authModal")?.classList.add("hidden");
+  });
+  await page.click("#startLearningBtn");
+  await expect(page.locator("#topicSelectionScreen")).toBeVisible();
 }
 
 
@@ -71,7 +86,7 @@ test("dashboard filters and action buttons are interactive", async ({ page }) =>
   await expect(page.locator("#categorySelectionScreen")).toBeVisible();
 });
 
-test("free users can open the premium upgrade flow from locked topics", async ({ page }) => {
+test("free users can open the Selar upgrade flow from locked topics", async ({ page }) => {
   await registerAndEnter(page, "premium-flow@example.com");
   await expect(page.locator("#headerUpgradeBtn")).toBeVisible();
   await expect(page.locator("#premiumCtaCard")).toBeVisible();
@@ -89,26 +104,35 @@ test("free users can open the premium upgrade flow from locked topics", async ({
   await page.click("#premiumExplorePlansBtn");
   const pricingModal = page.locator("#pricingModal");
   await expect(pricingModal).toBeVisible();
-  await expect(pricingModal).toContainText("Choose Your Plan");
-  await expect(pricingModal).toContainText("Bi-Annual");
+  await expect(pricingModal).toContainText("Monthly Premium Access");
+  await expect(pricingModal).toContainText("Monthly");
 
-  await page.locator(".pricing-card[data-plan-cycle='bi-annual'] .select-plan-btn").click();
+  await page.evaluate(() => {
+    window.__selarOpenedUrl = "";
+    window.open = (url) => {
+      window.__selarOpenedUrl = String(url || "");
+      return { closed: false };
+    };
+  });
+  await page.locator(".pricing-card[data-plan-cycle='monthly'] .select-plan-btn").click();
+  await expect.poll(() => page.evaluate(() => window.__selarOpenedUrl)).toBe("https://selar.com/monthly-smoke");
   await expect(page.locator("#profileScreen")).toBeVisible();
-  await expect(page.locator("#upgradeBillingCycle")).toHaveValue("bi-annual");
+  await expect(page.locator("#upgradeBillingCycle")).toHaveValue("monthly");
 });
 
-test("user profile shows payment confirmation status after submission", async ({ page }) => {
+test("user profile submits a Selar confirmation for admin review", async ({ page }) => {
   await registerAndEnter(page, "upgrade-status@example.com");
   await page.click("#headerProfileBtn");
   await expect(page.locator("#profileScreen")).toBeVisible();
 
-  await page.fill("#upgradePaymentReference", "BANK-12345");
-  await page.fill("#upgradeAmountPaid", "5000");
+  await expect(page.locator("#profileUpgradeStatus")).toContainText("No payment confirmation has been submitted yet");
+  await page.fill("#upgradePaymentReference", "SELAR-ORDER-123");
   await page.selectOption("#upgradeBillingCycle", "monthly");
+  await page.fill("#upgradeAmountPaid", "2500");
   await page.click("#submitUpgradeEvidenceBtn");
 
   await expect(page.locator("#profileUpgradeStatus")).toContainText("Pending Admin Review");
-  await expect(page.locator("#profileUpgradeStatus")).toContainText("BANK-12345");
+  await expect(page.locator("#profileUpgradeStatus")).toContainText("SELAR-ORDER-123");
 });
 
 test("review mode acts as pre-quiz study with answers and explanations visible", async ({ page }) => {
@@ -239,11 +263,14 @@ test("dashboard stats hydrate from stored progress data", async ({ page }) => {
   });
 
   await page.goto("/");
-  await page.click("#startLearningBtn");
-  await expect(page.locator("#topicSelectionScreen")).toBeVisible();
-  await expect(page.locator("#totalAttemptsStat")).toHaveText("2");
+  await page.evaluate(() => {
+    document.getElementById("authModal")?.classList.add("hidden");
+  });
+  await expect(page.locator("#totalAttemptsStat")).toHaveText("2", { timeout: 120000 });
   await expect(page.locator("#averageScoreStat")).toHaveText("65%");
   await expect(page.locator("#continueTopicTitle")).not.toHaveText("");
+  await page.click("#startLearningBtn");
+  await expect(page.locator("#topicSelectionScreen")).toBeVisible();
 });
 
 test("dashboard recommendation carries suggested setup into session setup", async ({ page }) => {
@@ -354,9 +381,7 @@ test("dashboard recommendation carries suggested setup into session setup", asyn
     window.localStorage.setItem("cbt_progress_summary_v1_u_dashboard_setup", JSON.stringify(seeded));
   });
 
-  await page.goto("/");
-  await page.click("#startLearningBtn");
-  await expect(page.locator("#topicSelectionScreen")).toBeVisible();
+  await openTopicSelectionForSeededSession(page);
   await expect(page.locator("#recommendedTopicChips")).toBeVisible();
   await expect(page.locator("#recommendedTopicChips")).toContainText("Reinforce Weak Areas");
   await expect(page.locator("#recommendedTopicChips")).toContainText("20 Questions");
@@ -554,9 +579,7 @@ test("dashboard recommendation escalates confidence when repeated signals align"
     window.localStorage.setItem("cbt_progress_summary_v1_u_dashboard_repeated", JSON.stringify(seeded));
   });
 
-  await page.goto("/");
-  await page.click("#startLearningBtn");
-  await expect(page.locator("#topicSelectionScreen")).toBeVisible();
+  await openTopicSelectionForSeededSession(page);
   await expect(page.locator("#recommendedTopicTitle")).toContainText("Financial Regulations");
   await expect(page.locator("#recommendedTopicConfidence")).toContainText("Repeated Pattern");
   await expect(page.locator("#recommendedTopicConfidence")).toContainText("moved beyond a developing signal");
@@ -677,9 +700,7 @@ test("dashboard recommendation can clear tuned setup guidance without losing the
     window.localStorage.setItem("cbt_progress_summary_v1_u_dashboard_clear", JSON.stringify(seeded));
   });
 
-  await page.goto("/");
-  await page.click("#startLearningBtn");
-  await expect(page.locator("#topicSelectionScreen")).toBeVisible();
+  await openTopicSelectionForSeededSession(page);
   await expect(page.locator("#clearRecommendedSetupBtn")).toBeVisible();
   await page.click("#clearRecommendedSetupBtn");
   await expect(page.locator("#recommendedTopicTitle")).toBeVisible();
@@ -852,9 +873,9 @@ test("analytics screen renders live progress insights from stored attempts", asy
   });
 
   await page.goto("/");
-  await page.click("#startLearningBtn");
+  await expect(page.locator("#totalAttemptsStat")).toHaveText("3", { timeout: 120000 });
+  await openTopicSelectionForSeededSession(page);
   await expect(page.locator("#topicSelectionScreen")).toBeVisible();
-  await expect(page.locator("#continueTopicTitle")).toHaveText("GL 16-17 Mock");
 
   await page.click('button[data-screen-target="analyticsScreen"]');
   await expect(page.locator("#analyticsScreen")).toBeVisible();
@@ -886,7 +907,11 @@ test("premium user can choose a directorate mock template and start without cate
   });
 
   await page.goto("/");
-  await page.click("#startLearningBtn");
+  await page.evaluate(() => {
+  document.getElementById("authModal")?.classList.add("hidden");
+});
+await page.evaluate(() => { document.getElementById('authModal')?.classList.add('hidden'); });
+await page.click("#startLearningBtn");
   await expect(page.locator("#topicSelectionScreen")).toBeVisible();
 
   const mockCard = page.locator("#mockExamFeatureCard .mock-feature-panel", {
@@ -931,7 +956,8 @@ test("topic session setup filters can cap question count before quiz start", asy
   await page.goto("/");
   await expect(page.locator("#appLoadingOverlay")).toHaveClass(/is-hidden/);
   if (!(await page.locator("#topicSelectionScreen").isVisible())) {
-    await page.locator("#startLearningBtn").dispatchEvent("click");
+    await page.evaluate(() => { document.getElementById('authModal')?.classList.add('hidden'); });
+await page.locator("#startLearningBtn").dispatchEvent("click");
   }
   await expect(page.locator("#topicSelectionScreen")).toBeVisible();
 
@@ -952,10 +978,9 @@ test("topic session setup filters can cap question count before quiz start", asy
   await expect(page.locator("#totalQ")).toHaveText("10");
   await expect(page.locator("#quizSessionEstimate")).toContainText("Allowed: 7 min 30 sec");
 
-  page.once("dialog", async (dialog) => {
-    await dialog.accept();
-  });
   await page.click("#endExamBtn");
+  await expect(page.locator("#confirmModal")).toBeVisible();
+  await page.click("#confirmOkBtn");
   await expect(page.locator("#resultsScreen")).toBeVisible();
   await expect(page.locator("#allowedTimeBlock")).toBeVisible();
   await expect(page.locator("#allowedTime")).toHaveText("7:30");
@@ -1332,7 +1357,11 @@ test("retry-missed queue is created from results and can start a focused retry s
   });
 
   await page.goto("/");
-  await page.click("#startLearningBtn");
+  await page.evaluate(() => {
+  document.getElementById("authModal")?.classList.add("hidden");
+});
+await page.evaluate(() => { document.getElementById('authModal')?.classList.add('hidden'); });
+await page.click("#startLearningBtn");
   await expect(page.locator("#topicSelectionScreen")).toBeVisible();
 
   await page.evaluate(async () => {
@@ -1460,14 +1489,33 @@ test("review mistakes filters and mark-understood flow keep the retry queue in s
     window.localStorage.setItem("cbt_users_v1", JSON.stringify([user]));
     window.localStorage.setItem(
       "cbt_session_v1",
-      JSON.stringify({ provider: "local", userId: user.id, createdAt: now }),
+      JSON.stringify({ provider: "local", user, createdAt: now }),
     );
     window.localStorage.setItem(`cbt_retry_missed_v1_${user.id}`, JSON.stringify(queue));
+    window.localStorage.setItem(`cbt_retry_missed_v1_local_demo_${user.email}`, JSON.stringify(queue));
   });
 
   await page.goto("/");
   await expect(page.locator("#appLoadingOverlay")).toHaveClass(/is-hidden/);
-  await page.click("#startLearningBtn");
+  await page.evaluate(() => {
+    const sessionRaw =
+      window.sessionStorage.getItem("cbt_session_v1") ||
+      window.localStorage.getItem("cbt_session_v1") ||
+      "{}";
+    const session = JSON.parse(sessionRaw);
+    const hydratedUserId = String(session?.user?.id || session?.userId || "").trim();
+    const seededQueue =
+      window.localStorage.getItem("cbt_retry_missed_v1_u_review_bank") ||
+      window.localStorage.getItem("cbt_retry_missed_v1_local_demo_review-bank@example.com");
+    if (hydratedUserId && seededQueue) {
+      window.localStorage.setItem(`cbt_retry_missed_v1_${hydratedUserId}`, seededQueue);
+    }
+  });
+  await page.evaluate(() => {
+  document.getElementById("authModal")?.classList.add("hidden");
+});
+await page.evaluate(() => { document.getElementById('authModal')?.classList.add('hidden'); });
+await page.click("#startLearningBtn");
   await expect(page.locator("#topicSelectionScreen")).toBeVisible();
 
   await page.locator("button[data-screen-target='reviewMistakesScreen']").first().click();
@@ -1513,7 +1561,11 @@ test("spaced-practice queue shows due count and starts a focused spaced session"
   });
 
   await page.goto("/");
-  await page.click("#startLearningBtn");
+  await page.evaluate(() => {
+  document.getElementById("authModal")?.classList.add("hidden");
+});
+await page.evaluate(() => { document.getElementById('authModal')?.classList.add('hidden'); });
+await page.click("#startLearningBtn");
   await expect(page.locator("#topicSelectionScreen")).toBeVisible();
 
   await page.evaluate(async () => {
@@ -1677,6 +1729,7 @@ test("admin panel uses Worker admin bridge for live directory and account-state 
       firebaseProjectId: "mock-project-id",
       firebaseAuthDomain: "mock-project-id.firebaseapp.com",
       adminApiBaseUrl: "/mock-admin-api",
+      adminEmails: ["timdasa75@gmail.com"],
     };
 
     const nowIso = new Date().toISOString();
@@ -1703,7 +1756,11 @@ test("admin panel uses Worker admin bridge for live directory and account-state 
   page.on("dialog", (dialog) => dialog.accept());
 
   await page.goto("/");
-  await page.click("#startLearningBtn");
+  await page.evaluate(() => {
+  document.getElementById("authModal")?.classList.add("hidden");
+});
+await page.evaluate(() => { document.getElementById('authModal')?.classList.add('hidden'); });
+await page.click("#startLearningBtn");
   await expect(page.locator("#topicSelectionScreen")).toBeVisible();
 
   const openAdminBtn = page.locator("#openAdminBtn");

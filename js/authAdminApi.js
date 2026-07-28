@@ -1,6 +1,7 @@
 import {
   normalizeEmail,
   normalizeEmailVerificationState,
+  normalizePlan,
   normalizeStatus,
   toOptionalIsoTimestamp,
 } from "./authNormalization.js";
@@ -136,6 +137,31 @@ export async function setUserStatusViaAdminApi(userId, status, accessToken, fetc
   return {
     warning: String(payload?.warning || "").trim(),
     authDisabledSynced: Boolean(payload?.authDisabledSynced),
+  };
+}
+
+export async function setUserPlanViaAdminApi({ userId = "", email = "", plan = "free" } = {}, accessToken, fetchImpl = fetch) {
+  const normalizedEmail = normalizeEmail(email);
+  const normalizedUserId = String(userId || "").trim();
+  if (!normalizedUserId && !normalizedEmail) {
+    throw new Error("User identifier or email is required.");
+  }
+
+  const payload = await postAdminApiJson(
+    buildAdminApiUrl("adminSetUserPlan"),
+    accessToken,
+    {
+      userId: normalizedUserId,
+      email: normalizedEmail,
+      plan: normalizePlan(plan),
+    },
+    fetchImpl,
+  );
+
+  return {
+    warning: String(payload?.warning || "").trim(),
+    cloudflareUpdated: Boolean(payload?.cloudflareUpdated),
+    profileUpdated: Boolean(payload?.profileUpdated),
   };
 }
 

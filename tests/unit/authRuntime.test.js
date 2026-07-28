@@ -28,6 +28,7 @@ test("auth runtime helpers normalize config, auth flags, and hybrid rails", () =
       apiKey: "key-1",
       projectId: "project-1",
       authDomain: "project-1.firebaseapp.com",
+      googleClientId: "google-client-1.apps.googleusercontent.com",
       quotaProjectId: "quota-1",
       firebaseFunctionsRegion: "europe-west1",
       enableCloudProgressSync: "true",
@@ -47,6 +48,7 @@ test("auth runtime helpers normalize config, auth flags, and hybrid rails", () =
       firebaseAuthDomain: "project-1.firebaseapp.com",
       firebaseFunctionsRegion: "europe-west1",
       firebaseQuotaProjectId: "quota-1",
+      googleClientId: "google-client-1.apps.googleusercontent.com",
       enableCloudProgressSync: true,
       enableLocalDemoAuth: false,
       adminApiBaseUrl: "https://admin.example.com",
@@ -55,6 +57,10 @@ test("auth runtime helpers normalize config, auth flags, and hybrid rails", () =
       allowFirebaseFallback: true,
       verificationResendCooldownMs: 500,
       passwordResetCooldownMs: 3600001,
+      paymentProvider: "selar",
+      selarCheckoutLinks: {},
+      flutterwavePublicKey: "",
+      flutterwaveWebhookUrl: "",
     });
     assert.equal(getConfiguredAuthProvider(), "hybrid");
     assert.equal(isHybridAuthEnabled(), true);

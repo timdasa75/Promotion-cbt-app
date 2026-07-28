@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
@@ -9,12 +9,12 @@
         />
         <meta
             http-equiv="Content-Security-Policy"
-            content="default-src 'self'; script-src 'self' https://www.gstatic.com https://www.googleapis.com https://identitytoolkit.googleapis.com; connect-src 'self' https://www.googleapis.com https://identitytoolkit.googleapis.com https://firestore.googleapis.com https://securetoken.googleapis.com https://promotion-cbt-admin-bridge.promotioncbtadmin.workers.dev; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; base-uri 'self'; form-action 'self';"
+            content="default-src 'self'; script-src 'self' https://www.gstatic.com https://www.googleapis.com https://identitytoolkit.googleapis.com https://accounts.google.com https://checkout.flutterwave.com https://checkout-v3-ui-prod.f4b-flutterwave.com https://challenges.cloudflare.com; connect-src 'self' https://www.googleapis.com https://identitytoolkit.googleapis.com https://firestore.googleapis.com https://securetoken.googleapis.com https://accounts.google.com https://api.flutterwave.com https://api.ravepay.co https://checkout.flutterwave.com https://checkout-v3-ui-prod.f4b-flutterwave.com https://promotion-cbt-admin-bridge.promotioncbtadmin.workers.dev; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.gstatic.com https://accounts.google.com https://checkout.flutterwave.com https://checkout-v3-ui-prod.f4b-flutterwave.com https://app.9jabeats.com; frame-src 'self' https://accounts.google.com https://checkout.flutterwave.com https://checkout-v3-ui-prod.f4b-flutterwave.com https://challenges.cloudflare.com; object-src 'none'; base-uri 'self'; form-action 'self';"
         />
         <title>Promotion CBT</title>
 
         <!-- Social sharing -->
-        <meta property="og:title" content="Promotion CBT — Nigerian Civil Service Exam Prep" />
+        <meta property="og:title" content="Promotion CBT â€” Nigerian Civil Service Exam Prep" />
         <meta
             property="og:description"
             content="Master your Nigerian Federal Civil Service promotion exams with confidence. 10 core topics, timed mock exams, and spaced practice."
@@ -36,6 +36,7 @@
     <body>
         <script type="module" src="config/runtime-auth.js"></script>
         <script type="module" src="js/boot.js"></script>
+        <script src="https://accounts.google.com/gsi/client" async defer></script>
         <div class="app-loading-overlay" id="appLoadingOverlay">
             <div class="spinner-ring">
                 <div></div><div></div><div></div><div></div>
@@ -577,31 +578,28 @@
                             <button class="btn btn-secondary hidden" id="syncProgressNowBtn" type="button">Retry Sync</button>
                             <div class="profile-upgrade-shell">
                                 <div class="profile-upgrade-head">
-                                    <h3>Premium Upgrade Evidence</h3>
-                                    <p>Share your payment details for manual premium review.</p>
+                                    <h3>Selar Payment Confirmation</h3>
+                                    <p>After paying on Selar, submit your order reference for admin activation.</p>
                                 </div>
                                 <div class="profile-upgrade-form">
                                     <div class="auth-form profile-upgrade-fields">
                                         <label class="auth-field">
-                                            <span>Payment Reference</span>
-                                            <input id="upgradePaymentReference" type="text" placeholder="Bank transfer reference" />
+                                            <span>Selar Order Reference</span>
+                                            <input id="upgradePaymentReference" type="text" placeholder="Order ID, receipt code, or payment email" />
                                         </label>
                                         <label class="auth-field">
                                             <span>Billing Cycle</span>
                                             <select id="upgradeBillingCycle">
-                                                <option value="">Select plan cycle</option>
                                                 <option value="monthly">Monthly</option>
-                                                <option value="bi-annual">Bi-Annual</option>
-                                                <option value="annual">Annual</option>
                                             </select>
                                         </label>
                                         <label class="auth-field">
                                             <span>Amount Paid</span>
-                                            <input id="upgradeAmountPaid" type="text" placeholder="e.g. 5000" />
+                                            <input id="upgradeAmountPaid" type="text" placeholder="e.g. 2500" />
                                         </label>
                                     </div>
                                     <div class="button-row profile-upgrade-actions">
-                                        <button class="btn btn-secondary" id="submitUpgradeEvidenceBtn" type="button">Submit Upgrade Evidence</button>
+                                        <button class="btn btn-secondary" id="submitUpgradeEvidenceBtn" type="button">Submit Selar Confirmation</button>
                                     </div>
                                 </div>
                                 <div id="profileUpgradeStatus" class="admin-request-item hidden"></div>
@@ -646,7 +644,7 @@
                     <div class="card admin-head-card">
                         <div class="section-head screen-header">
                             <h2>Admin Panel</h2>
-                            <p>Manual subscription review and plan controls.</p>
+                            <p>Selar payment confirmations and plan controls.</p>
                         </div>
                         <p class="inline-warning">This panel is for configured admin emails only.</p>
                     </div>
@@ -674,13 +672,13 @@
                         </article>
                         <article class="card admin-section-card admin-requests-card">
                             <div class="section-head screen-header">
-                                <h3>Manual Upgrade Requests</h3>
-                                <p class="eyebrow">Bank transfer evidence queue</p>
+                                <h3>Selar Upgrade Requests</h3>
+                                <p class="eyebrow">Hosted checkout confirmations</p>
                             </div>
                             <p class="hero-meta" id="adminRequestCount">Requests: 0/0</p>
                             <div class="toolbar-row admin-request-toolbar">
                                 <label class="search-wrap" for="adminRequestSearch">
-                                    <input id="adminRequestSearch" type="search" placeholder="Search email, ref, note" />
+                                    <input id="adminRequestSearch" type="search" placeholder="Search email, reference, note" />
                                 </label>
                                 <select id="adminRequestStatusFilter" aria-label="Filter request status">
                                     <option value="all">All Statuses</option>
@@ -798,6 +796,13 @@
                 </div>
 
                 <form id="loginForm" class="auth-form">
+                    <div id="googleSignInLoginBtn" class="google-signin-container">
+                        <button class="google-fallback-btn" type="button" data-google-fallback>
+                            <span class="google-fallback-icon" aria-hidden="true">G</span>
+                            <span>Continue with Google</span>
+                        </button>
+                    </div>
+                    <div class="divider-text">or</div>
                     <label class="auth-field">
                         <span>Email</span>
                         <input id="loginEmail" type="email" autocomplete="email" required />
@@ -812,10 +817,18 @@
                         </div>
                     </label>
                     <button class="btn btn-ghost" id="forgotPasswordBtn" type="button">Forgot password?</button>
+                    <div id="cf-turnstile-login"></div>
                     <button class="btn btn-primary" type="submit">Login</button>
                 </form>
 
                 <form id="registerForm" class="auth-form hidden">
+                    <div id="googleSignInRegisterBtn" class="google-signin-container">
+                        <button class="google-fallback-btn" type="button" data-google-fallback>
+                            <span class="google-fallback-icon" aria-hidden="true">G</span>
+                            <span>Continue with Google</span>
+                        </button>
+                    </div>
+                    <div class="divider-text">or</div>
                     <label class="auth-field">
                         <span>Full Name</span>
                         <input id="registerName" type="text" autocomplete="name" required />
@@ -842,6 +855,7 @@
                             </button>
                         </div>
                     </label>
+                    <div id="cf-turnstile-register"></div>
                     <button class="btn btn-primary" type="submit">Create Account</button>
                     <p class="auth-helper-text">If your verification email is not in your inbox, check your Spam or Junk folder.</p>
                 </form>
@@ -932,6 +946,7 @@
                 </form>
             </div>
         </div>
+        <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
         <script type="module" src="js/app.js"></script>
         <div class="auth-modal hidden" id="premiumModal" role="dialog" aria-modal="true">
             <div class="auth-modal-card premium-cta-card">
@@ -964,8 +979,8 @@
             <div class="auth-modal-card pricing-modal-card">
                 <button class="auth-close" id="pricingCloseBtn" aria-label="Close modal">&times;</button>
                 <div class="pricing-header">
-                    <h2>Choose Your Plan</h2>
-                    <p>Select the best option to accelerate your career growth.</p>
+                    <h2>Monthly Premium Access</h2>
+                    <p>Start with monthly access now; more payment options can be added later.</p>
                 </div>
                 
                 <div class="pricing-comparison">
@@ -976,7 +991,7 @@
                     </div>
                     <div class="comparison-row">
                         <span>Core Topics</span>
-                        <span>1 Topic</span>
+                        <span>3 Topics</span>
                         <span>All 10+ Topics</span>
                     </div>
                     <div class="comparison-row">
@@ -997,26 +1012,30 @@
                 </div>
 
                 <div class="pricing-grid">
-                    <div class="pricing-card" data-plan-cycle="monthly">
+                    <div class="pricing-card popular" data-plan-cycle="monthly">
+                        <div class="plan-badge">Launch Plan</div>
                         <div class="plan-name">Monthly</div>
-                        <div class="plan-price">₦3,000</div>
+                        <div class="plan-price">â‚¦2,500</div>
                         <div class="plan-meta">Per Month</div>
-                        <button class="btn btn-secondary select-plan-btn">Choose Monthly</button>
+                        <button class="btn btn-primary select-plan-btn">Pay Monthly on Selar</button>
                     </div>
-                    <div class="pricing-card popular" data-plan-cycle="bi-annual">
-                        <div class="plan-badge">Most Popular</div>
-                        <div class="plan-name">Bi-Annual</div>
-                        <div class="plan-price">₦7,500</div>
-                        <div class="plan-meta">Save 58%</div>
-                        <button class="btn btn-primary select-plan-btn">Choose Bi-Annual</button>
-                    </div>
-                    <div class="pricing-card" data-plan-cycle="annual">
-                        <div class="plan-badge best-value">Best Value</div>
-                        <div class="plan-name">Annual</div>
-                        <div class="plan-price">₦12,000</div>
-                        <div class="plan-meta">Save 66%</div>
-                        <button class="btn btn-secondary select-plan-btn">Choose Annual</button>
-                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="auth-modal hidden" id="paymentReceiptModal" role="dialog" aria-modal="true" aria-labelledby="paymentReceiptTitle">
+            <div class="auth-modal-card payment-receipt-card">
+                <button class="auth-close" id="paymentReceiptCloseBtn" aria-label="Close receipt" type="button">&times;</button>
+                <div class="receipt-success-mark" aria-hidden="true">&checkmark;</div>
+                <div class="section-head screen-header">
+                    <h2 id="paymentReceiptTitle">Payment Successful!</h2>
+                    <p>You're now on Premium.</p>
+                </div>
+                <div id="paymentReceiptBody"></div>
+                <pre class="sub-card-receipt hidden" id="paymentReceiptDetails"></pre>
+                <div class="button-row">
+                    <button class="btn btn-primary" id="paymentReceiptStartBtn" type="button">Start Studying</button>
+                    <button class="btn btn-secondary" id="paymentReceiptDetailsBtn" type="button">Receipt</button>
                 </div>
             </div>
         </div>

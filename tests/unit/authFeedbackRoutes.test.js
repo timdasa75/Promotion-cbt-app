@@ -5,6 +5,7 @@ import {
   getAdminFeedbackSubmissions,
   submitFeedbackSubmission,
   updateFeedbackSubmissionStatus,
+  stopCloudPlanAutoSync,
 } from "../../js/auth.js";
 import { clearSession, writeSession } from "../../js/authStorage.js";
 
@@ -96,6 +97,7 @@ test("firebase feedback operations use Firestore instead of Cloudflare auth rout
     assert.ok(calls.some((call) => /documents\/feedbackSubmissions\/fbk-1/.test(call.url)));
     assert.ok(calls.every((call) => call.options.headers.Authorization === "Bearer firebase-token"));
   } finally {
+    stopCloudPlanAutoSync();
     clearSession();
     global.window = originalWindow;
     delete global.localStorage;

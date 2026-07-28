@@ -12,6 +12,18 @@ import {
 const IDENTITY_TOOLKIT_BASE_URL = "https://identitytoolkit.googleapis.com/v1";
 const FIRESTORE_BASE_URL = "https://firestore.googleapis.com/v1";
 const GOOGLE_OAUTH_TOKEN_URL = "https://oauth2.googleapis.com/token";
+const PAYMENT_PLAN_PRICES = Object.freeze({
+  monthly: 2500,
+  quarterly: 5500,
+  "bi-annual": 7500,
+  annual: 12000,
+});
+const PAYMENT_PLAN_DAYS = Object.freeze({
+  monthly: 30,
+  quarterly: 90,
+  "bi-annual": 180,
+  annual: 365,
+});
 let adminTokenCache = {
   token: "",
   expiresAtMs: 0,
@@ -57,7 +69,7 @@ function resolveAllowedOrigin(request, env) {
 
 function withCorsHeaders(response, origin) {
   response.headers.set("Access-Control-Allow-Origin", origin || "*");
-  response.headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  response.headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization, verif-hash");
   response.headers.set("Access-Control-Allow-Methods", "GET, POST, PATCH, OPTIONS");
   response.headers.set("Access-Control-Max-Age", "86400");
   return response;
@@ -75,6 +87,10 @@ function jsonResponse(body, status = 200, origin = "*") {
   );
 }
 
+function normalizePlanValue(value) {
+  return String(value || "").trim().toLowerCase() === "premium" ? "premium" : "free";
+}
+
 function parseBoolean(value, fallback = false) {
   const normalized = String(value || "").trim().toLowerCase();
   if (["1", "true", "yes", "on"].includes(normalized)) return true;
@@ -88,6 +104,14 @@ function requireEnv(env, key) {
     throw new Error(`Missing required environment variable: ${key}`);
   }
   return value;
+}
+
+function publicErrorMessage(error) {
+  const status = Number(error?.httpStatus || 0);
+  if (status > 0 && status < 500) {
+    return String(error?.message || "Request failed.");
+  }
+  return "Request failed. Please try again later.";
 }
 
 function base64UrlEncodeBytes(bytes) {
@@ -1325,6 +1349,515 @@ async function patchProfileStatus(env, userId, status) {
   });
 }
 
+async function patchProfilePlan(env, userId, plan) {
+  const docUrl = firestoreDocumentUrl(env, `profiles/${encodeURIComponent(userId)}`);
+  const params = new URLSearchParams();
+  params.append("updateMask.fieldPaths", "plan");
+  params.append("updateMask.fieldPaths", "lastSeenAt");
+
+  await firestoreRequest(env, `${docUrl}?${params.toString()}`, {
+    method: "PATCH",
+    body: {
+      fields: {
+        plan: { stringValue: plan },
+        lastSeenAt: { timestampValue: new Date().toISOString() },
+      },
+    },
+  });
+}
+
+function normalizePaymentPlanCycle(value) {
+  const cycle = String(value || "").trim().toLowerCase();
+  return Object.prototype.hasOwnProperty.call(PAYMENT_PLAN_PRICES, cycle) ? cycle : "";
+}
+
+function calculatePaymentExpiry(planCycle, nowMs = Date.now()) {
+  const days = PAYMENT_PLAN_DAYS[planCycle];
+  if (!days) throw new Error("Unsupported payment plan.");
+  return new Date(nowMs + days * 24 * 60 * 60 * 1000).toISOString();
+}
+
+function readFlutterwaveCustomerEmail(data) {
+  return normalizeEmail(data?.customer?.email || data?.customer_email || data?.email || "");
+}
+
+function buildPaymentReceipt({
+  flwData,
+  userId,
+  email,
+  planCycle,
+  expiresAt,
+}) {
+  const data = flwData?.data || flwData || {};
+  const transactionId = String(data.id || data.transaction_id || "").trim();
+  const txRef = String(data.tx_ref || data.txRef || "").trim();
+  const amount = Number(data.amount || PAYMENT_PLAN_PRICES[planCycle] || 0);
+  const createdAt = String(data.created_at || data.createdAt || new Date().toISOString());
+  return {
+    paymentId: `flw_${transactionId || txRef}`,
+    userId: String(userId || "").trim(),
+    email: normalizeEmail(email || readFlutterwaveCustomerEmail(data)),
+    amount,
+    currency: String(data.currency || "NGN").trim().toUpperCase() || "NGN",
+    billingCycle: planCycle,
+    plan: "premium",
+    flwTransactionId: transactionId,
+    flwCustomerEmail: readFlutterwaveCustomerEmail(data),
+    flwTxRef: txRef,
+    status: String(data.status || "successful").trim().toLowerCase(),
+    createdAt,
+    expiresAt,
+  };
+}
+
+function paymentRecordToFirestoreFields(receipt) {
+  const amount = Number(receipt.amount || 0);
+  const fields = {
+    paymentId: { stringValue: String(receipt.paymentId || "") },
+    userId: { stringValue: String(receipt.userId || "") },
+    email: { stringValue: normalizeEmail(receipt.email || "") },
+    amount: { integerValue: String(Number.isFinite(amount) ? Math.round(amount) : 0) },
+    currency: { stringValue: String(receipt.currency || "NGN").toUpperCase() },
+    billingCycle: { stringValue: String(receipt.billingCycle || "") },
+    plan: { stringValue: String(receipt.plan || "premium") },
+    flwTransactionId: { stringValue: String(receipt.flwTransactionId || "") },
+    flwCustomerEmail: { stringValue: normalizeEmail(receipt.flwCustomerEmail || "") },
+    flwTxRef: { stringValue: String(receipt.flwTxRef || "") },
+    status: { stringValue: String(receipt.status || "successful").toLowerCase() },
+    createdAt: { timestampValue: String(receipt.createdAt || new Date().toISOString()) },
+    expiresAt: { timestampValue: String(receipt.expiresAt || "") },
+  };
+  if (receipt.selarOrderRef) fields.selarOrderRef = { stringValue: String(receipt.selarOrderRef) };
+  if (receipt.selarProductName) fields.selarProductName = { stringValue: String(receipt.selarProductName) };
+  return fields;
+}
+
+function firestoreValueToPlain(value) {
+  if (typeof value?.stringValue === "string") return value.stringValue;
+  if (typeof value?.timestampValue === "string") return value.timestampValue;
+  if (typeof value?.integerValue === "string") return Number(value.integerValue);
+  if (typeof value?.doubleValue === "number") return value.doubleValue;
+  if (typeof value?.booleanValue === "boolean") return value.booleanValue;
+  return "";
+}
+
+function parsePaymentDocument(document) {
+  const fields = document?.fields || {};
+  return {
+    paymentId: String(firestoreValueToPlain(fields.paymentId) || document?.name?.split("/")?.pop() || ""),
+    userId: String(firestoreValueToPlain(fields.userId) || ""),
+    email: normalizeEmail(firestoreValueToPlain(fields.email)),
+    amount: Number(firestoreValueToPlain(fields.amount) || 0),
+    currency: String(firestoreValueToPlain(fields.currency) || "NGN").toUpperCase(),
+    billingCycle: String(firestoreValueToPlain(fields.billingCycle) || ""),
+    plan: String(firestoreValueToPlain(fields.plan) || "premium"),
+    flwTransactionId: String(firestoreValueToPlain(fields.flwTransactionId) || ""),
+    flwCustomerEmail: normalizeEmail(firestoreValueToPlain(fields.flwCustomerEmail)),
+    flwTxRef: String(firestoreValueToPlain(fields.flwTxRef) || ""),
+    selarOrderRef: String(firestoreValueToPlain(fields.selarOrderRef) || ""),
+    selarProductName: String(firestoreValueToPlain(fields.selarProductName) || ""),
+    status: String(firestoreValueToPlain(fields.status) || "successful").toLowerCase(),
+    createdAt: String(firestoreValueToPlain(fields.createdAt) || ""),
+    expiresAt: String(firestoreValueToPlain(fields.expiresAt) || ""),
+  };
+}
+
+async function verifyFlutterwaveTransaction(env, transactionId) {
+  const secretKey = requireEnv(env, "FLW_SECRET_KEY");
+  const response = await fetch(
+    `https://api.flutterwave.com/v3/transactions/${encodeURIComponent(transactionId)}/verify`,
+    {
+      headers: {
+        Authorization: `Bearer ${secretKey}`,
+      },
+    },
+  );
+  const payload = await response.json().catch(() => ({}));
+  if (!response.ok) {
+    throw new Error(payload?.message || "Flutterwave verification failed.");
+  }
+  return payload;
+}
+
+function assertVerifiedFlutterwavePayment(flwPayload, { planCycle, txRef = "", email = "" } = {}) {
+  const data = flwPayload?.data || {};
+  const status = String(data.status || "").trim().toLowerCase();
+  const topStatus = String(flwPayload?.status || "").trim().toLowerCase();
+  if (topStatus && topStatus !== "success") {
+    throw new Error("Flutterwave verification did not succeed.");
+  }
+  if (status !== "successful") {
+    throw new Error("Flutterwave transaction is not successful.");
+  }
+  const expectedAmount = PAYMENT_PLAN_PRICES[planCycle];
+  const paidAmount = Number(data.amount || 0);
+  if (!Number.isFinite(paidAmount) || Math.round(paidAmount) !== expectedAmount) {
+    throw new Error("Flutterwave transaction amount does not match the selected plan.");
+  }
+  if (String(data.currency || "").trim().toUpperCase() !== "NGN") {
+    throw new Error("Flutterwave transaction currency is invalid.");
+  }
+  const verifiedTxRef = String(data.tx_ref || "").trim();
+  if (txRef && verifiedTxRef && verifiedTxRef !== txRef) {
+    throw new Error("Flutterwave transaction reference mismatch.");
+  }
+  const customerEmail = readFlutterwaveCustomerEmail(data);
+  if (email && customerEmail && customerEmail !== normalizeEmail(email)) {
+    throw new Error("Flutterwave customer email does not match the signed-in account.");
+  }
+}
+
+async function patchPaymentProfile(env, userId, receipt) {
+  if (!userId) return;
+  const docUrl = firestoreDocumentUrl(env, `profiles/${encodeURIComponent(userId)}`);
+  const params = new URLSearchParams();
+  [
+    "plan",
+    "billingCycle",
+    "planExpiresAt",
+    "flwTransactionId",
+    "flwCustomerEmail",
+    "flwPaymentPlan",
+    "lastPaymentAt",
+  ].forEach((field) => params.append("updateMask.fieldPaths", field));
+
+  await firestoreRequest(env, `${docUrl}?${params.toString()}`, {
+    method: "PATCH",
+    body: {
+      fields: {
+        plan: { stringValue: "premium" },
+        billingCycle: { stringValue: String(receipt.billingCycle || "") },
+        planExpiresAt: { timestampValue: String(receipt.expiresAt || "") },
+        flwTransactionId: { stringValue: String(receipt.flwTransactionId || "") },
+        flwCustomerEmail: { stringValue: normalizeEmail(receipt.flwCustomerEmail || receipt.email || "") },
+        flwPaymentPlan: { stringValue: String(receipt.billingCycle || "") },
+        lastPaymentAt: { timestampValue: String(receipt.createdAt || new Date().toISOString()) },
+      },
+    },
+  });
+}
+
+async function patchCloudflareUserPaymentPlan(env, userId) {
+  const database = env.AUTH_DB;
+  if (!database || typeof database.prepare !== "function" || !userId) return;
+  await database
+    .prepare("UPDATE auth_users SET plan = 'premium', updated_at = ?2 WHERE id = ?1")
+    .bind(String(userId), new Date().toISOString())
+    .run();
+}
+
+async function patchSelarPaymentProfile(env, userId, receipt) {
+  if (!userId) return;
+  const docUrl = firestoreDocumentUrl(env, `profiles/${encodeURIComponent(userId)}`);
+  const params = new URLSearchParams();
+  [
+    "plan",
+    "billingCycle",
+    "planExpiresAt",
+    "selarOrderRef",
+    "selarProductName",
+    "lastPaymentAt",
+  ].forEach((field) => params.append("updateMask.fieldPaths", field));
+
+  await firestoreRequest(env, `${docUrl}?${params.toString()}`, {
+    method: "PATCH",
+    body: {
+      fields: {
+        plan: { stringValue: "premium" },
+        billingCycle: { stringValue: String(receipt.billingCycle || "") },
+        planExpiresAt: { timestampValue: String(receipt.expiresAt || "") },
+        selarOrderRef: { stringValue: String(receipt.selarOrderRef || "") },
+        selarProductName: { stringValue: String(receipt.selarProductName || "") },
+        lastPaymentAt: { timestampValue: String(receipt.createdAt || new Date().toISOString()) },
+      },
+    },
+  });
+}
+
+async function handleSelarWebhook(request, env) {
+  const body = await readJsonBody(request);
+
+  const email = normalizeEmail(
+    body?.customer_email ||
+    body?.customerEmail ||
+    body?.email ||
+    body?.buyer_email ||
+    body?.buyerEmail ||
+    ""
+  );
+
+  if (!email || !email.includes("@")) {
+    return { ok: true, ignored: true };
+  }
+
+  const productName = String(
+    body?.product_name ||
+    body?.productName ||
+    body?.product ||
+    body?.item_name ||
+    body?.itemName ||
+    body?.title ||
+    ""
+  ).trim().toLowerCase();
+
+  let planCycle = normalizePaymentPlanCycle(
+    body?.plan_cycle ||
+    body?.planCycle ||
+    body?.billing_cycle ||
+    body?.billingCycle ||
+    ""
+  );
+
+  if (!planCycle) {
+    if (productName.includes("monthly")) planCycle = "monthly";
+    else if (productName.includes("quarter")) planCycle = "quarterly";
+    else if (productName.includes("bi-annual") || productName.includes("biannual") || productName.includes("bi annual")) planCycle = "bi-annual";
+    else if (productName.includes("annual") || productName.includes("yearly")) planCycle = "annual";
+  }
+
+  if (!planCycle) {
+    return { ok: true, ignored: true };
+  }
+
+  let users = [];
+  try {
+    const payload = await identityAdminRequest(env, "accounts:lookup", {
+      body: { email: [email] },
+    });
+    users = Array.isArray(payload?.users) ? payload.users : [];
+  } catch (_) {
+    return { ok: true, ignored: true };
+  }
+
+  if (!users.length) return { ok: true, ignored: true };
+
+  const userId = String(users[0]?.localId || "").trim();
+  if (!userId) return { ok: true, ignored: true };
+
+  const orderRef = String(
+    body?.order_reference ||
+    body?.orderReference ||
+    body?.order_ref ||
+    body?.orderRef ||
+    body?.reference ||
+    body?.transaction_id ||
+    body?.transactionId ||
+    body?.id ||
+    ""
+  ).trim();
+
+  const amount = Math.round(Number(
+    body?.amount ||
+    body?.price ||
+    body?.total ||
+    body?.order_amount ||
+    body?.orderAmount ||
+    PAYMENT_PLAN_PRICES[planCycle] ||
+    0
+  ));
+
+  const currency = String(body?.currency || "NGN").trim().toUpperCase() || "NGN";
+  const expiresAt = calculatePaymentExpiry(planCycle);
+  const now = new Date().toISOString();
+  const paymentId = `selar_${orderRef || `${Date.now()}_${Math.random().toString(36).slice(2, 8)}`}`;
+
+  const receipt = {
+    paymentId,
+    userId,
+    email,
+    amount,
+    currency,
+    billingCycle: planCycle,
+    plan: "premium",
+    selarOrderRef: orderRef,
+    selarProductName: productName,
+    status: "successful",
+    createdAt: now,
+    expiresAt,
+  };
+
+  await patchSelarPaymentProfile(env, userId, receipt);
+  await patchCloudflareUserPaymentPlan(env, userId).catch(() => {});
+
+  try {
+    await writePaymentRecord(env, receipt);
+  } catch (_) {}
+
+  return { ok: true, processed: true };
+}
+
+async function findCloudflareUserByEmail(env, email) {
+  const database = env.AUTH_DB;
+  if (!database || typeof database.prepare !== "function") return null;
+  return database
+    .prepare("SELECT id, email FROM auth_users WHERE email = ?1 LIMIT 1")
+    .bind(normalizeEmail(email))
+    .first();
+}
+
+async function writePaymentRecord(env, receipt) {
+  if (!receipt.paymentId || receipt.paymentId === "flw_") {
+    throw new Error("Payment record is missing a transaction identifier.");
+  }
+  const docUrl = firestoreDocumentUrl(env, `payments/${encodeURIComponent(receipt.paymentId)}`);
+  const params = new URLSearchParams();
+  const fields = paymentRecordToFirestoreFields(receipt);
+  [...Object.keys(fields), "rawJson"].forEach((field) =>
+    params.append("updateMask.fieldPaths", field)
+  );
+  await firestoreRequest(env, `${docUrl}?${params.toString()}`, {
+    method: "PATCH",
+    body: { fields },
+  });
+}
+
+async function listPaymentRecords(env, filters = {}) {
+  const pageSize = Math.max(1, Math.min(200, Number(filters.pageSize || 100) || 100));
+  const url = firestoreDocumentUrl(env, `payments?pageSize=${pageSize}`);
+  let payload = {};
+  try {
+    payload = await firestoreRequest(env, url, { method: "GET" });
+  } catch (error) {
+    if (Number(error?.httpStatus) === 404) return [];
+    throw error;
+  }
+  const rows = Array.isArray(payload?.documents) ? payload.documents.map(parsePaymentDocument) : [];
+  const search = String(filters.search || "").trim().toLowerCase();
+  const status = String(filters.status || "all").trim().toLowerCase();
+  const planCycle = normalizePaymentPlanCycle(filters.planCycle) || "all";
+  const userId = String(filters.userId || "").trim();
+  const email = normalizeEmail(filters.email || "");
+  return rows
+    .filter((row) => {
+      if (userId && row.userId !== userId) return false;
+      if (email && row.email !== email && row.flwCustomerEmail !== email) return false;
+      if (status !== "all" && row.status !== status) return false;
+      if (planCycle !== "all" && row.billingCycle !== planCycle) return false;
+      if (!search) return true;
+      return (
+        row.email.includes(search) ||
+        row.flwTxRef.toLowerCase().includes(search) ||
+        row.flwTransactionId.toLowerCase().includes(search)
+      );
+    })
+    .sort((a, b) => (Date.parse(b.createdAt || "") || 0) - (Date.parse(a.createdAt || "") || 0));
+}
+
+async function handlePaymentVerify(request, env) {
+  const user = await resolveAuthenticatedContentUser(request, env);
+  if (String(user?.status || "active").toLowerCase() !== "active") {
+    throw createRouteError(403, "Your account is not active.");
+  }
+  const body = await readJsonBody(request);
+  const planCycle = normalizePaymentPlanCycle(body?.planCycle);
+  const transactionId = String(body?.transactionId || "").trim();
+  const txRef = String(body?.txRef || "").trim();
+  const email = normalizeEmail(body?.email || user?.email || "");
+  if (!planCycle) throw createRouteError(400, "A valid plan cycle is required.");
+  if (!transactionId) throw createRouteError(400, "transactionId is required.");
+  if (email !== normalizeEmail(user?.email || "")) {
+    throw createRouteError(403, "Payment email must match the signed-in account.");
+  }
+
+  const flwPayload = await verifyFlutterwaveTransaction(env, transactionId);
+  assertVerifiedFlutterwavePayment(flwPayload, { planCycle, txRef, email });
+  const expiresAt = calculatePaymentExpiry(planCycle);
+  const receipt = buildPaymentReceipt({
+    flwData: flwPayload,
+    userId: user.id,
+    email,
+    planCycle,
+    expiresAt,
+  });
+
+  await patchPaymentProfile(env, user.id, receipt);
+  await patchCloudflareUserPaymentPlan(env, user.id).catch(() => {});
+  await writePaymentRecord(env, receipt);
+
+  return {
+    ok: true,
+    plan: "premium",
+    billingCycle: planCycle,
+    expiresAt,
+    receipt,
+  };
+}
+
+async function handlePaymentHistory(request, env) {
+  const user = await resolveAuthenticatedContentUser(request, env);
+  const payments = await listPaymentRecords(env, {
+    userId: user.id,
+    email: user.email,
+    pageSize: 100,
+  });
+  return {
+    ok: true,
+    payments,
+    total: payments.length,
+  };
+}
+
+async function handlePaymentWebhook(request, env) {
+  const expectedHash = requireEnv(env, "FLW_WEBHOOK_SECRET_HASH");
+  const receivedHash = String(request.headers.get("verif-hash") || "").trim();
+  if (!receivedHash || !timingSafeEqual(receivedHash, expectedHash)) {
+    throw createRouteError(403, "Forbidden");
+  }
+
+  const event = await readJsonBody(request);
+  const eventType = String(event?.event?.type || event?.event || "").trim().toLowerCase();
+  const eventData = event?.data || {};
+  const eventStatus = String(eventData?.status || "").trim().toLowerCase();
+  if (eventType && eventType !== "charge.completed") {
+    return { ok: true, ignored: true };
+  }
+  if (eventStatus !== "successful") {
+    return { ok: true, ignored: true };
+  }
+
+  const transactionId = String(eventData.id || eventData.transaction_id || "").trim();
+  if (!transactionId) return { ok: true, ignored: true };
+
+  const meta = eventData.meta || {};
+  const planCycle = normalizePaymentPlanCycle(meta.planCycle || meta.plan_cycle || "");
+  if (!planCycle) return { ok: true, ignored: true };
+
+  const flwPayload = await verifyFlutterwaveTransaction(env, transactionId);
+  assertVerifiedFlutterwavePayment(flwPayload, { planCycle });
+  const verifiedData = flwPayload?.data || {};
+  const email = readFlutterwaveCustomerEmail(verifiedData);
+  const cloudflareUser = await findCloudflareUserByEmail(env, email).catch(() => null);
+  const userId = String(meta.userId || cloudflareUser?.id || "").trim();
+  const expiresAt = calculatePaymentExpiry(planCycle);
+  const receipt = buildPaymentReceipt({
+    flwData: flwPayload,
+    userId,
+    email,
+    planCycle,
+    expiresAt,
+  });
+
+  if (userId) {
+    await patchPaymentProfile(env, userId, receipt).catch(() => {});
+    await patchCloudflareUserPaymentPlan(env, userId).catch(() => {});
+  }
+  await writePaymentRecord(env, receipt);
+  return { ok: true, processed: true };
+}
+
+async function handleAdminListPayments(request, env) {
+  await verifyAdminCaller(request, env);
+  const body = await readJsonBody(request);
+  const payments = await listPaymentRecords(env, body || {});
+  return {
+    ok: true,
+    payments,
+    total: payments.length,
+    page: Number(body?.page || 1) || 1,
+    pageSize: Math.max(1, Math.min(200, Number(body?.pageSize || 100) || 100)),
+  };
+}
+
 async function handleAdminSetUserStatus(request, env) {
   await verifyAdminCaller(request, env);
   const body = await readJsonBody(request);
@@ -1359,6 +1892,89 @@ async function handleAdminSetUserStatus(request, env) {
     status,
     authDisabledSynced,
     warning,
+  };
+}
+
+async function handleAdminSetUserPlan(request, env) {
+  await verifyAdminCaller(request, env);
+  const body = await readJsonBody(request);
+  const userId = String(body?.userId || "").trim();
+  const email = normalizeEmail(body?.email || "");
+  const plan = normalizePlanValue(body?.plan || "free");
+  if (!userId && !email) {
+    throw new Error("userId or email is required.");
+  }
+
+  const nowIso = new Date().toISOString();
+  let cloudflareUpdated = false;
+  let resolvedUserId = userId;
+  let resolvedEmail = email;
+  const warnings = [];
+
+  const database = env.AUTH_DB;
+  if (database && typeof database.prepare === "function") {
+    if (userId) {
+      const result = await database
+        .prepare("UPDATE auth_users SET plan = ?2, updated_at = ?3 WHERE id = ?1")
+        .bind(userId, plan, nowIso)
+        .run();
+      cloudflareUpdated = Number(result?.meta?.changes || 0) > 0;
+    }
+    if (!cloudflareUpdated && email) {
+      const existing = await database
+        .prepare("SELECT id, email FROM auth_users WHERE email = ?1 LIMIT 1")
+        .bind(email)
+        .first();
+      if (existing?.id) {
+        resolvedUserId = String(existing.id || "");
+        resolvedEmail = normalizeEmail(existing.email || email);
+        const result = await database
+          .prepare("UPDATE auth_users SET plan = ?2, updated_at = ?3 WHERE id = ?1")
+          .bind(resolvedUserId, plan, nowIso)
+          .run();
+        cloudflareUpdated = Number(result?.meta?.changes || 0) > 0;
+      }
+    }
+  } else {
+    warnings.push("Cloudflare auth database is not configured.");
+  }
+
+  let profileUpdated = false;
+  if (resolvedUserId) {
+    try {
+      await patchProfilePlan(env, resolvedUserId, plan);
+      profileUpdated = true;
+    } catch (error) {
+      warnings.push(`Could not sync Firebase profile: ${error?.message || "request failed."}`);
+    }
+  }
+
+  if (!profileUpdated && resolvedEmail) {
+    try {
+      const lookup = await identityAdminRequest(env, "accounts:lookup", { body: { email: [resolvedEmail] } });
+      const firebaseUser = Array.isArray(lookup?.users) ? lookup.users[0] : null;
+      const firebaseUserId = String(firebaseUser?.localId || "");
+      if (firebaseUserId) {
+        await patchProfilePlan(env, firebaseUserId, plan);
+        profileUpdated = true;
+      }
+    } catch (error) {
+      warnings.push(`Could not sync Firebase profile by email: ${error?.message || "request failed."}`);
+    }
+  }
+
+  if (!cloudflareUpdated && !profileUpdated) {
+    throw new Error(warnings.join(" ").trim() || "User was not found in the cloud directory.");
+  }
+
+  return {
+    ok: true,
+    userId: resolvedUserId,
+    email: resolvedEmail,
+    plan,
+    cloudflareUpdated,
+    profileUpdated,
+    warning: warnings.join(" ").trim(),
   };
 }
 
@@ -1410,6 +2026,10 @@ function resolveRouteHandler(path) {
   if (path.endsWith("/auth/password/request")) return handleAuthPasswordRecoveryRequest;
   if (path.endsWith("/progress")) return handleCloudflareProgress;
   if (path.endsWith("/content/topic-data")) return handleProtectedTopicData;
+  if (path.endsWith("/payment/verify")) return handlePaymentVerify;
+  if (path.endsWith("/payment/history")) return handlePaymentHistory;
+  if (path.endsWith("/payment/webhook/flutterwave")) return handlePaymentWebhook;
+  if (path.endsWith("/payment/webhook/selar")) return handleSelarWebhook;
   const authRouteHandler = resolveHybridAuthRouteHandler(path);
   if (authRouteHandler) return authRouteHandler;
   if (path.endsWith("/adminListUsers")) return handleAdminListUsers;
@@ -1419,7 +2039,9 @@ function resolveRouteHandler(path) {
   if (path.endsWith("/auth/migration/bootstrap")) return handleAuthMigrationBootstrap;
   if (path.endsWith("/adminLogOperation")) return handleAdminLogOperation;
   if (path.endsWith("/adminListOperations")) return handleAdminListOperations;
+  if (path.endsWith("/adminListPayments")) return handleAdminListPayments;
   if (path.endsWith("/adminSetUserStatus")) return handleAdminSetUserStatus;
+  if (path.endsWith("/adminSetUserPlan")) return handleAdminSetUserPlan;
   if (path.endsWith("/adminDeleteUserById")) return handleAdminDeleteUserById;
   return null;
 }
@@ -1438,12 +2060,15 @@ export default {
       return jsonResponse({ ok: false, error: "Method not allowed." }, 405, origin || "*");
     }
 
-    if (!origin && String(env.ALLOWED_ORIGINS || "").trim()) {
+    const url = new URL(request.url);
+    const normalizedPath = url.pathname.replace(/\/+$/, "");
+    const isPaymentWebhook = normalizedPath.endsWith("/payment/webhook/flutterwave") || normalizedPath.endsWith("/payment/webhook/selar");
+
+    if (!origin && String(env.ALLOWED_ORIGINS || "").trim() && !isPaymentWebhook) {
       return jsonResponse({ ok: false, error: "Origin not allowed." }, 403, "");
     }
 
-    const url = new URL(request.url);
-    const routeHandler = resolveRouteHandler(url.pathname.replace(/\/+$/, ""));
+    const routeHandler = resolveRouteHandler(normalizedPath);
     if (!routeHandler) {
       return jsonResponse({ ok: false, error: "Route not found." }, 404, origin || "*");
     }
@@ -1455,7 +2080,7 @@ export default {
       return jsonResponse(
         {
           ok: false,
-          error: String(error?.message || "Unauthorized"),
+          error: publicErrorMessage(error),
         },
         Number(error?.httpStatus || 403),
         origin || "*",

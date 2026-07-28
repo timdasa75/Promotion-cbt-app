@@ -20,6 +20,12 @@ export function buildFirestoreProfileFields(profile) {
     plan: { stringValue: normalizePlan(profile?.plan) },
     role: { stringValue: normalizeRole(profile?.role) },
     status: { stringValue: normalizeStatus(profile?.status) },
+    billingCycle: { stringValue: String(profile?.billingCycle || profile?.subscriptionType || profile?.planInterval || "").trim() },
+    planExpiresAt: { stringValue: String(profile?.planExpiresAt || profile?.subscriptionExpiresAt || profile?.planExpiryAt || "").trim() },
+    flwTransactionId: { stringValue: String(profile?.flwTransactionId || "").trim() },
+    flwCustomerEmail: { stringValue: normalizeEmail(profile?.flwCustomerEmail || "") },
+    flwPaymentPlan: { stringValue: String(profile?.flwPaymentPlan || "").trim() },
+    lastPaymentAt: { stringValue: String(profile?.lastPaymentAt || "").trim() },
     createdAt: { timestampValue: toIsoTimestamp(profile?.createdAt) },
     lastSeenAt: { timestampValue: toIsoTimestamp(profile?.lastSeenAt) },
     emailVerified: { booleanValue: Boolean(profile?.emailVerified) },
@@ -85,6 +91,10 @@ export function parseFirestoreProfileDocument(document) {
     upgradeReviewedAt: String(readFirestoreStringField(fields?.upgradeReviewedAt) || ""),
     upgradeReviewedBy: normalizeEmail(readFirestoreStringField(fields?.upgradeReviewedBy) || ""),
     upgradeRequestReviewNote: String(readFirestoreStringField(fields?.upgradeRequestReviewNote) || ""),
+    flwTransactionId: String(readFirestoreStringField(fields?.flwTransactionId) || ""),
+    flwCustomerEmail: normalizeEmail(readFirestoreStringField(fields?.flwCustomerEmail) || ""),
+    flwPaymentPlan: String(readFirestoreStringField(fields?.flwPaymentPlan) || ""),
+    lastPaymentAt: String(readFirestoreStringField(fields?.lastPaymentAt) || ""),
   };
 }
 

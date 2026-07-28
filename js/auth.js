@@ -17,11 +17,11 @@ import { firebaseAuthRequest } from "./authFirebaseTransport.js";
 import { resolveCloudPlan } from "./authCloudProfile.js";
 import { ensureCloudSessionActive } from "./authCloudSession.js";
 import { readCloudProgressSummary as readCloudProgressSummaryCloud, writeCloudProgressSummary as writeCloudProgressSummaryCloud } from "./authCloudProgress.js";
-import { findCloudProfilesByEmail, patchCloudProfileFields, upsertCloudProfile, upsertCloudUpgradeRequestRecord } from "./authCloudFirestore.js";
+import { findCloudProfilesByEmail, patchCloudProfileFields, upsertCloudProfile, upsertCloudUpgradeRequestRecord, listCloudFeedbackSubmissions, upsertCloudFeedbackSubmission, patchCloudFeedbackSubmissionFields } from "./authCloudFirestore.js";
 import { sendVerificationViaAdminApi } from "./authAdminApi.js";
 import { bootstrapCloudflareMigrationFromFirebase as bootstrapCloudflareMigrationFromFirebaseClient, changeCloudflarePassword as changeCloudflarePasswordClient, completeCloudflareMigrationToken as completeCloudflareMigrationTokenClient, requestCloudflarePasswordRecovery as requestCloudflarePasswordRecoveryClient, resolveCloudflareMigrationToken as resolveCloudflareMigrationTokenClient } from "./authCloudflareClient.js";
 import { enrichDirectoryVerificationStates, ensureAdminCloudSession as ensureAdminCloudSessionHelper, getConfiguredAdminEmails as getConfiguredAdminEmailsHelper, isCurrentUserAdmin as isCurrentUserAdminHelper } from "./authAdminDirectory.js";
-import { deleteCloudUserById as deleteCloudUserByIdService, getAdminOperationHistory as getAdminOperationHistoryService, getAdminUserDirectory as getAdminUserDirectoryService, logAdminOperationToCloud as logAdminOperationToCloudService, createCloudflareMigrationLinkForUser as createCloudflareMigrationLinkForUserService, updateCloudUserStatusById as updateCloudUserStatusByIdService } from "./authAdminService.js";
+import { deleteCloudUserById as deleteCloudUserByIdService, getAdminOperationHistory as getAdminOperationHistoryService, getAdminUserDirectory as getAdminUserDirectoryService, logAdminOperationToCloud as logAdminOperationToCloudService, createCloudflareMigrationLinkForUser as createCloudflareMigrationLinkForUserService, updateCloudUserStatusById as updateCloudUserStatusByIdService, updateCloudUserPlan as updateCloudUserPlanService } from "./authAdminService.js";
 import { buildUpgradeRequestRecordFromProfile as buildUpgradeRequestRecordFromProfileService, ensureCloudProfileInSession as ensureCloudProfileInSessionService, getCurrentUserUpgradeRequest as getCurrentUserUpgradeRequestService, setUpgradeRequestStatus as setUpgradeRequestStatusService, submitUpgradeRequest as submitUpgradeRequestService } from "./authUpgradeService.js";
 import { FEEDBACK_MESSAGE_MAX_LENGTH, getAdminFeedbackSubmissions as getAdminFeedbackSubmissionsService, getFeedbackAccessState as getFeedbackAccessStateService, submitFeedbackSubmission as submitFeedbackSubmissionService, updateFeedbackSubmissionStatus as updateFeedbackSubmissionStatusService } from "./authFeedbackService.js";
 import { loginUserCloud as loginUserCloudService, logoutCloud as logoutCloudService, refreshCloudUserInSession as refreshCloudUserInSessionService, registerUserCloud as registerUserCloudService } from "./authCloudLifecycle.js";
@@ -50,6 +50,18 @@ const FREE_PLAN = {
   maxQuestionsPerSubcategory: 20,
 };
 
+export function getConfiguredAdminEmails() {
+  const runtimeAdminEmails = getFirebaseConfig().adminEmails;
+  const legacyWindowAdminEmails = typeof window !== "undefined" ? window.PROMOTION_CBT_ADMIN_EMAILS : [];
+  return getConfiguredAdminEmailsHelper(DEFAULT_ADMIN_EMAILS, [
+    ...(Array.isArray(runtimeAdminEmails) ? runtimeAdminEmails : []),
+    ...(Array.isArray(legacyWindowAdminEmails) ? legacyWindowAdminEmails : []),
+  ]);
+}
+
+export function isCurrentUserAdmin(user = getCurrentUser()) {
+  return isCurrentUserAdminHelper(user, getConfiguredAdminEmails());
+}
 const PREMIUM_PLAN = {
   id: "premium",
   maxTopics: null,
@@ -490,6 +502,50 @@ export async function forceCloudPlanSync() {
   }
 }
 
+export async function getCurrentAuthToken() {
+  const session = readSession();
+  if (!session?.accessToken) {
+    return "";
+  }
+  if (session.provider === "firebase") {
+    const freshSession = await ensureCloudSessionActive(session, { clearOnFailure: true });
+    return String(freshSession?.accessToken || session.accessToken || "").trim();
+  }
+  if (session.provider === "cloudflare") {
+    if (sessionIsExpired(session)) {
+      clearSession();
+      return "";
+    }
+    return String(session.accessToken || "").trim();
+  }
+  return "";
+}
+
+export function emitFlutterwavePlanActivation(result = {}) {
+  const session = readSession();
+  if (!session?.user) return null;
+  const receipt = result?.receipt || {};
+  const previousPlan = normalizePlan(session.user.plan || "free");
+  const nextUser = {
+    ...session.user,
+    plan: "premium",
+    billingCycle: String(result?.billingCycle || receipt.billingCycle || receipt.planCycle || "").trim(),
+    planExpiresAt: String(result?.expiresAt || receipt.expiresAt || receipt.planExpiresAt || "").trim(),
+    flwTransactionId: String(receipt.flwTransactionId || result?.flwTransactionId || "").trim(),
+    flwCustomerEmail: normalizeEmail(receipt.flwCustomerEmail || receipt.email || session.user.email || ""),
+    flwPaymentPlan: String(receipt.billingCycle || result?.billingCycle || "").trim(),
+    lastPaymentAt: String(receipt.createdAt || result?.lastPaymentAt || new Date().toISOString()).trim(),
+  };
+  const nextSession = {
+    ...session,
+    lastPlanSyncAt: new Date().toISOString(),
+    user: nextUser,
+  };
+  writeSession(nextSession);
+  emitPlanChange(previousPlan, "premium");
+  return nextUser;
+}
+
 export function startCloudPlanAutoSync() {
   if (!isCloudAuthEnabled() || cloudPlanPollingHandle) return;
 
@@ -497,13 +553,20 @@ export function startCloudPlanAutoSync() {
     syncCloudPlanNow();
   }, CLOUD_PLAN_POLL_MS);
 
-  if (!cloudPlanVisibilityBound) {
+  if (!cloudPlanVisibilityBound && typeof document !== "undefined") {
     cloudPlanVisibilityBound = true;
     document.addEventListener("visibilitychange", () => {
       if (!document.hidden) {
         syncCloudPlanNow();
       }
     });
+  }
+}
+
+export function stopCloudPlanAutoSync() {
+  if (cloudPlanPollingHandle) {
+    clearInterval(cloudPlanPollingHandle);
+    cloudPlanPollingHandle = null;
   }
 }
 
@@ -695,9 +758,9 @@ function applyPlanOverrideForEmail(user) {
   };
 }
 
-export async function registerUser({ name, email, password }) {
+export async function registerUser({ name, email, password, turnstileToken = "" }) {
   if (isCloudflareAuthPrimary()) {
-    return registerUserHybrid({ name, email, password });
+    return registerUserHybrid({ name, email, password, turnstileToken });
   }
   if (isCloudAuthEnabled()) {
     return registerUserCloud({ name, email, password });
@@ -706,9 +769,9 @@ export async function registerUser({ name, email, password }) {
   return registerUserLocal({ name, email, password });
 }
 
-export async function loginUser({ email, password }) {
+export async function loginUser({ email, password, turnstileToken = "" }) {
   if (isCloudflareAuthPrimary()) {
-    return loginUserHybrid({ email, password });
+    return loginUserHybrid({ email, password, turnstileToken });
   }
   if (isCloudAuthEnabled()) {
     return loginUserCloud({ email, password });
@@ -915,42 +978,48 @@ export function getFeedbackAccessState() {
 }
 
 export async function submitFeedbackSubmission(input = {}) {
-  return submitFeedbackSubmissionService(
-    input,
-    {
-      cloudAuthEnabled: isCloudAuthEnabled(),
-      currentUser: getCurrentUser(),
-      session: readSession(),
-      refreshSession: ensureCloudSessionActive,
-    },
-  );
+  const session = readSession();
+  const options = {
+    cloudAuthEnabled: isCloudAuthEnabled(),
+    currentUser: getCurrentUser(),
+    session,
+    refreshSession: ensureCloudSessionActive,
+  };
+  const extra = {};
+  if (session?.provider === "firebase") {
+    extra.upsertFeedback = upsertCloudFeedbackSubmission;
+  }
+  return submitFeedbackSubmissionService(input, options, extra);
 }
 
 export async function getAdminFeedbackSubmissions(limit = 200) {
-  return getAdminFeedbackSubmissionsService(
-    {
-      cloudAuthEnabled: isCloudAuthEnabled(),
-      currentUserIsAdmin: isCurrentUserAdmin(),
-      session: readSession(),
-      refreshSession: () => ensureAdminCloudSession(),
-    },
-    {
-      limit,
-    },
-  );
+  const session = readSession();
+  const options = {
+    cloudAuthEnabled: isCloudAuthEnabled(),
+    currentUserIsAdmin: isCurrentUserAdmin(),
+    session,
+    refreshSession: () => ensureAdminCloudSession(),
+  };
+  const extra = { limit };
+  if (session?.provider === "firebase") {
+    extra.listFeedback = listCloudFeedbackSubmissions;
+  }
+  return getAdminFeedbackSubmissionsService(options, extra);
 }
 
 export async function updateFeedbackSubmissionStatus(feedbackId, status) {
-  return updateFeedbackSubmissionStatusService(
-    feedbackId,
-    status,
-    {
-      cloudAuthEnabled: isCloudAuthEnabled(),
-      currentUserIsAdmin: isCurrentUserAdmin(),
-      session: readSession(),
-      refreshSession: () => ensureAdminCloudSession(),
-    },
-  );
+  const session = readSession();
+  const options = {
+    cloudAuthEnabled: isCloudAuthEnabled(),
+    currentUserIsAdmin: isCurrentUserAdmin(),
+    session,
+    refreshSession: () => ensureAdminCloudSession(),
+  };
+  const extra = {};
+  if (session?.provider === "firebase") {
+    extra.patchFeedback = patchCloudFeedbackSubmissionFields;
+  }
+  return updateFeedbackSubmissionStatusService(feedbackId, status, options, extra);
 }
 
 export function getCurrentUser() {
@@ -1114,6 +1183,18 @@ export function setLocalPlanOverride(email, plan) {
   writePlanOverrides(overrides);
 }
 
+export function clearLocalPlanOverride(email) {
+  const normalizedEmail = normalizeEmail(email);
+  if (!normalizedEmail) return false;
+  const overrides = readPlanOverrides();
+  const meta = readPlanOverrideMeta();
+  const existed = Object.prototype.hasOwnProperty.call(overrides, normalizedEmail);
+  delete overrides[normalizedEmail];
+  delete meta[normalizedEmail];
+  writePlanOverrides(overrides);
+  writePlanOverrideMeta(meta);
+  return existed;
+}
 export function setLocalBillingCycle(email, billingCycle) {
   const normalizedEmail = normalizeEmail(email);
   const normalizedCycle = String(billingCycle || "").trim();
@@ -1154,8 +1235,11 @@ export async function setPlanOverride(email, plan) {
     writePlanOverrideMeta(meta);
     return result;
   }
+
   const session = readSession();
-  if (!session?.accessToken || session?.provider !== "firebase" || !isCurrentUserAdmin()) {
+  const provider = String(session?.provider || "").trim().toLowerCase();
+  const providerCanSync = provider === "firebase" || provider === "cloudflare";
+  if (!session?.accessToken || !providerCanSync || !isCurrentUserAdmin()) {
     const result = {
       scope: "local",
       cloudUpdated: false,
@@ -1168,31 +1252,13 @@ export async function setPlanOverride(email, plan) {
   }
 
   try {
-    const freshSession = await ensureCloudSessionActive(session, { clearOnFailure: true });
-    if (!freshSession?.accessToken) throw new Error("Cloud session is unavailable.");
-
-    const rows = await findCloudProfilesByEmail(freshSession.accessToken, normalizedEmail, 1);
-    if (!rows.length || !rows[0]?.id) {
-      const result = {
-        scope: "local",
-        cloudUpdated: false,
-        warning:
-          "Saved locally. Cloud profile not found for this email yet; user must login once to create profile.",
-      };
-      const meta = readPlanOverrideMeta();
-      meta[normalizedEmail] = { ...result, updatedAt: new Date().toISOString() };
-      writePlanOverrideMeta(meta);
-      return result;
-    }
-
-    await upsertCloudProfile(freshSession.accessToken, {
-      ...rows[0],
-      plan: normalizedPlan,
-      lastSeenAt: new Date().toISOString(),
-    });
+    const syncResult = await updateCloudUserPlanService(
+      { email: normalizedEmail, plan: normalizedPlan },
+      ensureAdminCloudSession,
+    );
 
     const current = readSession();
-    if (current?.provider === "firebase" && normalizeEmail(current?.user?.email) === normalizedEmail) {
+    if ((current?.provider === "firebase" || current?.provider === "cloudflare") && normalizeEmail(current?.user?.email) === normalizedEmail) {
       const previousPlan = normalizePlan(current?.user?.plan || "free");
       const updatedSession = {
         ...current,
@@ -1206,7 +1272,11 @@ export async function setPlanOverride(email, plan) {
       emitPlanChange(previousPlan, normalizedPlan);
     }
 
-    const result = { scope: "cloud+local", cloudUpdated: true, warning: "" };
+    const result = {
+      scope: "cloud+local",
+      cloudUpdated: true,
+      warning: String(syncResult?.warning || "").trim(),
+    };
     const meta = readPlanOverrideMeta();
     meta[normalizedEmail] = { ...result, updatedAt: new Date().toISOString() };
     writePlanOverrideMeta(meta);
@@ -1215,7 +1285,7 @@ export async function setPlanOverride(email, plan) {
     const result = {
       scope: "local",
       cloudUpdated: false,
-      warning: error?.message || "Saved locally, but cloud sync failed. Check Firestore rules/collection.",
+      warning: `Saved locally only. Cloud sync failed: ${error?.message || "unknown error"}`,
     };
     const meta = readPlanOverrideMeta();
     meta[normalizedEmail] = { ...result, updatedAt: new Date().toISOString() };
@@ -1223,32 +1293,6 @@ export async function setPlanOverride(email, plan) {
     return result;
   }
 }
-
-export function clearLocalPlanOverride(email) {
-  const normalizedEmail = normalizeEmail(email);
-  const overrides = readPlanOverrides();
-  if (normalizedEmail in overrides) {
-    delete overrides[normalizedEmail];
-    writePlanOverrides(overrides);
-  }
-  const meta = readPlanOverrideMeta();
-  if (normalizedEmail in meta) {
-    delete meta[normalizedEmail];
-    writePlanOverrideMeta(meta);
-  }
-}
-
-export function getConfiguredAdminEmails() {
-  const configured = Array.isArray(window.PROMOTION_CBT_ADMIN_EMAILS)
-    ? window.PROMOTION_CBT_ADMIN_EMAILS
-    : [];
-  return getConfiguredAdminEmailsHelper(DEFAULT_ADMIN_EMAILS, configured);
-}
-
-export function isCurrentUserAdmin() {
-  return isCurrentUserAdminHelper(getCurrentUser(), getConfiguredAdminEmails());
-}
-
 export async function getAdminUserDirectory() {
   return getAdminUserDirectoryService(
     {

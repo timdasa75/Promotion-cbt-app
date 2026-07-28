@@ -1,4 +1,4 @@
-import { normalizeEmail, normalizeStatus } from "./authNormalization.js";
+import { normalizeEmail, normalizePlan, normalizeStatus } from "./authNormalization.js";
 import {
   buildAuthBackedDirectoryRows,
   buildFallbackUserDirectory,
@@ -13,6 +13,7 @@ import {
   listUsersViaCloudFunction,
   logAdminOperationViaAdminApi,
   createCloudflareMigrationLinkViaAdminApi,
+  setUserPlanViaAdminApi,
   setUserStatusViaAdminApi,
 } from "./authAdminApi.js";
 
@@ -154,6 +155,22 @@ export async function updateCloudUserStatusById(profileId, status, ensureAdminSe
   };
 }
 
+export async function updateCloudUserPlan({ userId = "", email = "", plan = "free" } = {}, ensureAdminSession, setPlan = setUserPlanViaAdminApi) {
+  const normalizedUserId = String(userId || "").trim();
+  const normalizedEmail = normalizeEmail(email);
+  if (!normalizedUserId && !normalizedEmail) {
+    throw new Error("User identifier or email is required.");
+  }
+
+  const nextPlan = normalizePlan(plan);
+  const session = await ensureAdminSession();
+  const syncResult = await setPlan({ userId: normalizedUserId, email: normalizedEmail, plan: nextPlan }, session.accessToken);
+  return {
+    warning: String(syncResult?.warning || "").trim(),
+    cloudflareUpdated: Boolean(syncResult?.cloudflareUpdated),
+    profileUpdated: Boolean(syncResult?.profileUpdated),
+  };
+}
 export async function deleteCloudUserById(profileId, email = "", ensureAdminSession, deleteUser = deleteUserViaCloudFunction) {
   if (typeof email === "function") {
     deleteUser = ensureAdminSession || deleteUserViaCloudFunction;

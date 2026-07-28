@@ -16,6 +16,12 @@ function sanitizeStoredUser(user) {
     name: String(source.name || "").trim(),
     email: String(source.email || "").trim(),
     plan: String(source.plan || "free").trim() || "free",
+    billingCycle: String(source.billingCycle || source.subscriptionType || source.planInterval || "").trim(),
+    planExpiresAt: String(source.planExpiresAt || source.subscriptionExpiresAt || source.planExpiryAt || "").trim(),
+    flwTransactionId: String(source.flwTransactionId || "").trim(),
+    flwCustomerEmail: String(source.flwCustomerEmail || "").trim(),
+    flwPaymentPlan: String(source.flwPaymentPlan || "").trim(),
+    lastPaymentAt: String(source.lastPaymentAt || "").trim(),
     createdAt: String(source.createdAt || "").trim(),
     lastSeenAt: String(source.lastSeenAt || "").trim(),
     emailVerified:
@@ -102,20 +108,29 @@ export function readUsers() {
   }
 }
 
+function hydrateLegacySessionUser(session) {
+  const source = normalizeStorageObject(session);
+  if (!source || source.user) return source;
+  const userId = String(source.userId || "").trim();
+  if (!userId) return source;
+  const user = readUsers().find((entry) => entry.id === userId);
+  return user ? { ...source, user } : source;
+}
+
 export function writeUsers(users) {
   localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify(sanitizeStoredUsers(users)));
 }
 
 export function readSession() {
   const sessionRaw = window.sessionStorage?.getItem?.(SESSION_STORAGE_KEY) || "";
-  const sessionScoped = sanitizeStoredSession(readJsonStorage(window.sessionStorage, SESSION_STORAGE_KEY));
+  const sessionScoped = sanitizeStoredSession(hydrateLegacySessionUser(readJsonStorage(window.sessionStorage, SESSION_STORAGE_KEY)));
   if (sessionScoped) {
     rewriteStorageIfChanged(window.sessionStorage, SESSION_STORAGE_KEY, sessionScoped, sessionRaw);
     return sessionScoped;
   }
 
   const legacyRaw = window.localStorage?.getItem?.(SESSION_STORAGE_KEY) || "";
-  const legacyPersistent = sanitizeStoredSession(readJsonStorage(window.localStorage, SESSION_STORAGE_KEY));
+  const legacyPersistent = sanitizeStoredSession(hydrateLegacySessionUser(readJsonStorage(window.localStorage, SESSION_STORAGE_KEY)));
   if (legacyPersistent) {
     try {
       window.sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(legacyPersistent));

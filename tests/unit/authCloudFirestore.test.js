@@ -35,7 +35,7 @@ test("cloud firestore helpers build expected request shapes", async () => {
   assert.deepEqual(await getCloudProgressDocument("token", "user-1", requester), { fields: {}, documents: [], nextPageToken: "" });
   assert.equal(await getCloudProgressDocument("token", "NOT_FOUND", requester), null);
   assert.equal((await getCloudProfileById("token", "user-1", requester)).id, "user-1");
-  assert.deepEqual(await findCloudProfilesByEmail("token", "USER@EXAMPLE.COM", 1, requester), [{ id: "user-1", email: "", name: "", plan: "free", billingCycle: "", role: "user", status: "active", createdAt: "", lastSeenAt: "", planExpiresAt: "", emailVerified: null, upgradeRequestId: "", upgradeRequestStatus: "none", upgradePaymentReference: "", upgradeAmountPaid: "", upgradeBillingCycle: "", upgradeRequestNote: "", upgradeRequestedAt: "", upgradeReviewedAt: "", upgradeReviewedBy: "", upgradeRequestReviewNote: "" }]);
+  assert.deepEqual(await findCloudProfilesByEmail("token", "USER@EXAMPLE.COM", 1, requester), [{ id: "user-1", email: "", name: "", plan: "free", billingCycle: "", role: "user", status: "active", createdAt: "", lastSeenAt: "", planExpiresAt: "", emailVerified: null, upgradeRequestId: "", upgradeRequestStatus: "none", upgradePaymentReference: "", upgradeAmountPaid: "", upgradeBillingCycle: "", upgradeRequestNote: "", upgradeRequestedAt: "", upgradeReviewedAt: "", upgradeReviewedBy: "", upgradeRequestReviewNote: "", flwTransactionId: "", flwCustomerEmail: "", flwPaymentPlan: "", lastPaymentAt: "" }]);
 
   await upsertCloudProfile("token", { id: "p1", email: "user@example.com" }, requester);
   await patchCloudProfileFields("token", "p1", { status: { stringValue: "active" } }, requester);

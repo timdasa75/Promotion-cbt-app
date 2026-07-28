@@ -79,6 +79,12 @@ test("session helpers prefer session storage and migrate legacy data", () => {
       name: "",
       email: "legacy@example.com",
       plan: "free",
+      billingCycle: "monthly",
+      planExpiresAt: "",
+      flwTransactionId: "",
+      flwCustomerEmail: "",
+      flwPaymentPlan: "",
+      lastPaymentAt: "",
       createdAt: "2026-03-18T09:00:00Z",
       lastSeenAt: "",
       emailVerified: "",
@@ -90,7 +96,7 @@ test("session helpers prefer session storage and migrate legacy data", () => {
   assert.deepEqual(readSession(), expectedSession);
   assert.deepEqual(JSON.parse(sessionStorage.snapshot()["cbt_session_v1"]), expectedSession);
   assert.equal(localStorage.snapshot()["cbt_session_v1"], undefined);
-  assert.equal(sessionStorage.snapshot()["cbt_session_v1"].includes("billingCycle"), false);
+  assert.equal(sessionStorage.snapshot()["cbt_session_v1"].includes("billingCycle"), true);
   assert.equal(sessionStorage.snapshot()["cbt_session_v1"].includes("passwordHash"), false);
 
   writeSession({
@@ -121,6 +127,12 @@ test("session helpers prefer session storage and migrate legacy data", () => {
       name: "",
       email: "current@example.com",
       plan: "premium",
+      billingCycle: "monthly",
+      planExpiresAt: "",
+      flwTransactionId: "",
+      flwCustomerEmail: "",
+      flwPaymentPlan: "",
+      lastPaymentAt: "",
       createdAt: "",
       lastSeenAt: "",
       emailVerified: "",
@@ -128,7 +140,7 @@ test("session helpers prefer session storage and migrate legacy data", () => {
       status: "",
     },
   });
-  assert.equal(sessionStorage.snapshot()["cbt_session_v1"].includes("billingCycle"), false);
+  assert.equal(sessionStorage.snapshot()["cbt_session_v1"].includes("billingCycle"), true);
   assert.equal(sessionStorage.snapshot()["cbt_session_v1"].includes("passwordHash"), false);
   assert.equal(localStorage.snapshot()["cbt_session_v1"], undefined);
 
@@ -162,6 +174,12 @@ test("profile storage helpers round-trip clean values", () => {
       name: "",
       email: "user@example.com",
       plan: "free",
+      billingCycle: "monthly",
+      planExpiresAt: "2026-12-01T00:00:00Z",
+      flwTransactionId: "",
+      flwCustomerEmail: "",
+      flwPaymentPlan: "",
+      lastPaymentAt: "",
       createdAt: "",
       lastSeenAt: "",
       emailVerified: "",
@@ -169,7 +187,7 @@ test("profile storage helpers round-trip clean values", () => {
       status: "",
     },
   ]);
-  assert.equal(localStorage.snapshot()["cbt_users_v1"].includes("billingCycle"), false);
+  assert.equal(localStorage.snapshot()["cbt_users_v1"].includes("billingCycle"), true);
   assert.equal(localStorage.snapshot()["cbt_users_v1"].includes("passwordHash"), false);
 
   writePlanOverrides({ "user@example.com": "premium" });
@@ -215,6 +233,12 @@ test("session helpers keep valid cloudflare sessions and reject malformed ones",
       name: "",
       email: "user@example.com",
       plan: "free",
+      billingCycle: "",
+      planExpiresAt: "",
+      flwTransactionId: "",
+      flwCustomerEmail: "",
+      flwPaymentPlan: "",
+      lastPaymentAt: "",
       createdAt: "",
       lastSeenAt: "",
       emailVerified: "",

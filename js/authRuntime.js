@@ -34,6 +34,7 @@ export function getFirebaseConfig() {
   const firebaseQuotaProjectId = String(
     cfg.firebaseQuotaProjectId || cfg.quotaProjectId || firebaseProjectId || "",
   ).trim();
+  const googleClientId = String(cfg.googleClientId || cfg.googleOAuthClientId || "").trim();
   
   const cloudflareAuthBaseUrl = normalizeBaseUrl(
     cfg.cloudflareAuthBaseUrl || cfg.cloudflareApiBaseUrl || "",
@@ -56,6 +57,13 @@ export function getFirebaseConfig() {
   );
   const verificationResendCooldownMs = Number(cfg.verificationResendCooldownMs);
   const passwordResetCooldownMs = Number(cfg.passwordResetCooldownMs);
+  const paymentProvider = String(cfg.paymentProvider || "selar").trim().toLowerCase();
+  const selarCheckoutLinks =
+    cfg.selarCheckoutLinks && typeof cfg.selarCheckoutLinks === "object"
+      ? cfg.selarCheckoutLinks
+      : {};
+  const flutterwavePublicKey = String(cfg.flutterwavePublicKey || "").trim();
+  const flutterwaveWebhookUrl = String(cfg.flutterwaveWebhookUrl || "").trim();
 
   return {
     authProvider,
@@ -64,6 +72,7 @@ export function getFirebaseConfig() {
     firebaseAuthDomain,
     firebaseFunctionsRegion,
     firebaseQuotaProjectId,
+    googleClientId,
     enableCloudProgressSync,
     enableLocalDemoAuth,
     adminApiBaseUrl,
@@ -72,6 +81,10 @@ export function getFirebaseConfig() {
     allowFirebaseFallback,
     verificationResendCooldownMs,
     passwordResetCooldownMs,
+    paymentProvider,
+    selarCheckoutLinks,
+    flutterwavePublicKey,
+    flutterwaveWebhookUrl,
   };
 }
 
@@ -148,6 +161,23 @@ export function isCloudAuthRequired() {
 
 export function isCloudAuthMisconfigured() {
   return isCloudAuthRequired() && !isCloudAuthEnabled();
+}
+
+export function getFlutterwavePublicKey() {
+  const { flutterwavePublicKey } = getFirebaseConfig();
+  return flutterwavePublicKey;
+}
+
+export function getPaymentProvider() {
+  const { paymentProvider } = getFirebaseConfig();
+  return paymentProvider === "flutterwave" ? "flutterwave" : "selar";
+}
+
+export function getSelarCheckoutUrl(planCycle = "") {
+  const { selarCheckoutLinks } = getFirebaseConfig();
+  const cycle = String(planCycle || "").trim().toLowerCase();
+  const links = selarCheckoutLinks && typeof selarCheckoutLinks === "object" ? selarCheckoutLinks : {};
+  return String(links[cycle] || links.default || "").trim();
 }
 
 /**
