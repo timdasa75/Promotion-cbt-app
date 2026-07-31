@@ -33,6 +33,21 @@ function normalizeEmail(value) {
   return String(value || "").trim().toLowerCase();
 }
 
+function normalizeFeedbackCategory(value) {
+  const category = String(value || "").trim().toLowerCase();
+  return ["bug", "suggestion", "question_issue", "other"].includes(category) ? category : "other";
+}
+
+function normalizeFeedbackSource(value) {
+  const source = String(value || "").trim().toLowerCase();
+  return ["help", "quiz", "results"].includes(source) ? source : "help";
+}
+
+function normalizeFeedbackStatus(value) {
+  const status = String(value || "").trim().toLowerCase();
+  return ["new", "in_review", "resolved", "dismissed"].includes(status) ? status : "new";
+}
+
 function parseCsvSet(value, defaults = []) {
   const entries = [
     ...defaults,
@@ -493,6 +508,27 @@ function mapAuditLogToAdminOperation(row) {
     message: String(details?.message || "").trim(),
     actor: String(row?.actor_email || details?.actor || "system").trim() || "system",
     createdAt: String(row?.created_at || "").trim(),
+  };
+}
+
+function parseFeedbackRow(row = {}) {
+  return {
+    feedbackId: String(row?.feedback_id || ""),
+    userId: String(row?.user_id || ""),
+    email: normalizeEmail(row?.email || ""),
+    category: normalizeFeedbackCategory(row?.category),
+    status: normalizeFeedbackStatus(row?.status),
+    sourceScreen: normalizeFeedbackSource(row?.source_screen),
+    message: String(row?.message || ""),
+    createdAt: String(row?.created_at || ""),
+    updatedAt: String(row?.updated_at || ""),
+    reviewedAt: String(row?.reviewed_at || ""),
+    reviewedBy: normalizeEmail(row?.reviewed_by || ""),
+    topicId: String(row?.topic_id || ""),
+    topicName: String(row?.topic_name || ""),
+    questionId: String(row?.question_id || ""),
+    quizAttemptId: String(row?.quiz_attempt_id || ""),
+    sessionMode: String(row?.session_mode || ""),
   };
 }
 
@@ -1743,6 +1779,95 @@ async function listPaymentRecords(env, filters = {}) {
     .sort((a, b) => (Date.parse(b.createdAt || "") || 0) - (Date.parse(a.createdAt || "") || 0));
 }
 
+async function handleFeedbackSubmit(request, env) {
+  const user = await resolveAuthenticatedContentUser(request, env);
+  if (String(user?.status || "active").toLowerCase() !== "active") {
+    throw createRouteError(403, "Your account is not active.");
+  }
+  const database = requireAuditDatabase(env);
+  const body = await readJsonBody(request);
+  const email = normalizeEmail(body?.email || user?.email || "");
+  if (!email || email !== normalizeEmail(user?.email || "")) {
+    throw createRouteError(403, "Feedback email must match the signed-in account.");
+  }
+  const message = String(body?.message || "").trim();
+  if (!message) throw createRouteError(400, "Feedback message is required.");
+  if (message.length > 1000) throw createRouteError(400, "Feedback message must be 1000 characters or fewer.");
+  const nowIso = new Date().toISOString();
+  const feedbackId = String(body?.feedbackId || `fbk_${Date.now()}_${crypto.randomUUID().slice(0, 8)}`).trim();
+  await database
+    .prepare(`
+      INSERT INTO feedback_submissions (
+        feedback_id, user_id, email, category, status, source_screen, message, created_at, updated_at,
+        topic_id, topic_name, question_id, quiz_attempt_id, session_mode
+      ) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14)
+      ON CONFLICT(feedback_id) DO UPDATE SET
+        category = excluded.category, source_screen = excluded.source_screen, message = excluded.message,
+        updated_at = excluded.updated_at, topic_id = excluded.topic_id, topic_name = excluded.topic_name,
+        question_id = excluded.question_id, quiz_attempt_id = excluded.quiz_attempt_id, session_mode = excluded.session_mode
+    `)
+    .bind(
+      feedbackId,
+      String(user?.id || ""),
+      email,
+      normalizeFeedbackCategory(body?.category),
+      "new",
+      normalizeFeedbackSource(body?.sourceScreen),
+      message,
+      nowIso,
+      nowIso,
+      String(body?.topicId || "").trim(),
+      String(body?.topicName || "").trim(),
+      String(body?.questionId || "").trim(),
+      String(body?.quizAttemptId || "").trim(),
+      String(body?.sessionMode || "").trim().toLowerCase(),
+    )
+    .run();
+  return { ok: true, feedbackId, createdAt: nowIso, status: "new" };
+}
+
+async function handleAdminFeedbackList(request, env) {
+  await verifyAdminCaller(request, env);
+  const database = requireAuditDatabase(env);
+  const body = await readJsonBody(request);
+  const rawLimit = Number(body?.limit || 200);
+  const limit = Math.max(1, Math.min(200, Number.isFinite(rawLimit) ? Math.floor(rawLimit) : 200));
+  const result = await database
+    .prepare(`
+      SELECT feedback_id, user_id, email, category, status, source_screen, message, created_at, updated_at,
+             reviewed_at, reviewed_by, topic_id, topic_name, question_id, quiz_attempt_id, session_mode
+      FROM feedback_submissions
+      ORDER BY created_at DESC
+      LIMIT ?1
+    `)
+    .bind(limit)
+    .all();
+  const rows = Array.isArray(result?.results) ? result.results.map(parseFeedbackRow) : [];
+  return { ok: true, feedback: rows, total: rows.length };
+}
+
+async function handleFeedbackStatusUpdate(request, env) {
+  const actor = await verifyAdminCaller(request, env);
+  const database = requireAuditDatabase(env);
+  const body = await readJsonBody(request);
+  const feedbackId = String(body?.feedbackId || "").trim();
+  const status = normalizeFeedbackStatus(body?.status);
+  if (!feedbackId) throw createRouteError(400, "Feedback id is required.");
+  if (!["in_review", "resolved", "dismissed"].includes(status)) throw createRouteError(400, "Invalid feedback status.");
+  const reviewedBy = normalizeEmail(body?.reviewer || actor?.email || "");
+  const nowIso = new Date().toISOString();
+  const result = await database
+    .prepare(`
+      UPDATE feedback_submissions
+      SET status = ?2, updated_at = ?3, reviewed_at = ?3, reviewed_by = ?4
+      WHERE feedback_id = ?1
+    `)
+    .bind(feedbackId, status, nowIso, reviewedBy)
+    .run();
+  if (Number(result?.meta?.changes || 0) < 1) throw createRouteError(404, "Feedback submission was not found.");
+  return { ok: true, feedbackId, status, reviewedAt: nowIso };
+}
+
 async function handlePaymentVerify(request, env) {
   const user = await resolveAuthenticatedContentUser(request, env);
   if (String(user?.status || "active").toLowerCase() !== "active") {
@@ -2026,6 +2151,7 @@ function resolveRouteHandler(path) {
   if (path.endsWith("/auth/password/request")) return handleAuthPasswordRecoveryRequest;
   if (path.endsWith("/progress")) return handleCloudflareProgress;
   if (path.endsWith("/content/topic-data")) return handleProtectedTopicData;
+  if (path.endsWith("/feedback/submit")) return handleFeedbackSubmit;
   if (path.endsWith("/payment/verify")) return handlePaymentVerify;
   if (path.endsWith("/payment/history")) return handlePaymentHistory;
   if (path.endsWith("/payment/webhook/flutterwave")) return handlePaymentWebhook;
@@ -2040,6 +2166,8 @@ function resolveRouteHandler(path) {
   if (path.endsWith("/adminLogOperation")) return handleAdminLogOperation;
   if (path.endsWith("/adminListOperations")) return handleAdminListOperations;
   if (path.endsWith("/adminListPayments")) return handleAdminListPayments;
+  if (path.endsWith("/adminFeedbackList")) return handleAdminFeedbackList;
+  if (path.endsWith("/feedback/status")) return handleFeedbackStatusUpdate;
   if (path.endsWith("/adminSetUserStatus")) return handleAdminSetUserStatus;
   if (path.endsWith("/adminSetUserPlan")) return handleAdminSetUserPlan;
   if (path.endsWith("/adminDeleteUserById")) return handleAdminDeleteUserById;

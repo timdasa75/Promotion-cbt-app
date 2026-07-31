@@ -99,7 +99,7 @@ export async function submitFeedbackSubmission(input = {}, { cloudAuthEnabled = 
   } else {
     if (typeof window !== "undefined") {
       await workerRequest("feedback/submit", {
-        email: feedback.email, userId: feedback.userId, category: feedback.category,
+        feedbackId: feedback.feedbackId, email: feedback.email, userId: feedback.userId, category: feedback.category,
         sourceScreen: feedback.sourceScreen, message: feedback.message,
         topicId: feedback.topicId, topicName: feedback.topicName, questionId: feedback.questionId,
         quizAttemptId: feedback.quizAttemptId, sessionMode: feedback.sessionMode,
