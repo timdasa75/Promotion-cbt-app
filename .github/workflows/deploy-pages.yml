@@ -51,6 +51,9 @@ jobs:
           FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
           FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
           CLOUDFLARE_AUTH_BASE_URL: ${{ secrets.CLOUDFLARE_AUTH_BASE_URL }}
+          PAYMENT_PROVIDER: ${{ vars.PAYMENT_PROVIDER }}
+          SELAR_MONTHLY_CHECKOUT_URL: ${{ secrets.SELAR_MONTHLY_CHECKOUT_URL }}
+          ADMIN_EMAILS: ${{ secrets.ADMIN_EMAILS }}
         run: |
           if [ -z "${FIREBASE_API_KEY}" ]; then
             echo "Firebase secrets missing. Legacy fallback disabled."
@@ -64,8 +67,12 @@ jobs:
           FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
           FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
           FIREBASE_AUTH_DOMAIN: ${{ secrets.FIREBASE_AUTH_DOMAIN }}
+          GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
           ADMIN_API_BASE_URL: ${{ secrets.ADMIN_API_BASE_URL }}
           CLOUDFLARE_AUTH_BASE_URL: ${{ secrets.CLOUDFLARE_AUTH_BASE_URL }}
+          PAYMENT_PROVIDER: ${{ vars.PAYMENT_PROVIDER }}
+          SELAR_MONTHLY_CHECKOUT_URL: ${{ secrets.SELAR_MONTHLY_CHECKOUT_URL }}
+          ADMIN_EMAILS: ${{ secrets.ADMIN_EMAILS }}
         run: |
           cat > config/runtime-auth.js <<EOF
           // Generated during GitHub Pages deploy. Do not commit live values.
@@ -76,9 +83,16 @@ jobs:
             firebaseApiKey: "${FIREBASE_API_KEY}",
             firebaseProjectId: "${FIREBASE_PROJECT_ID}",
             firebaseAuthDomain: "${FIREBASE_AUTH_DOMAIN}",
+            googleClientId: "${GOOGLE_CLIENT_ID}",
             cloudflareAuthBaseUrl: "${CLOUDFLARE_AUTH_BASE_URL}",
             enableCloudProgressSync: true,
             adminApiBaseUrl: "${ADMIN_API_BASE_URL}",
+            paymentProvider: "${PAYMENT_PROVIDER:-selar}",
+            selarCheckoutLinks: {
+              default: "${SELAR_MONTHLY_CHECKOUT_URL}",
+              monthly: "${SELAR_MONTHLY_CHECKOUT_URL}",
+            },
+            adminEmails: "${ADMIN_EMAILS}".split(",").map((email) => email.trim()).filter(Boolean),
           };
           EOF
 
