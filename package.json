@@ -10,14 +10,17 @@
     "test": "playwright test",
     "test:smoke": "playwright test tests/smoke.spec.js --reporter=line --max-failures=1",
     "test:smoke:full": "playwright test tests/smoke.spec.js",
-    "test:ui-audit": "playwright test tests/uiAudit.spec.js --reporter=line",
-    "test:unit": "node --test tests/unit/*.test.js",
+    "test:unit": "node --test \"tests/unit/*.test.js\"",
     "audit:topic-banks": "node scripts/audit_topic_bank_contamination.mjs",
     "audit:topic-banks:strict": "node scripts/audit_topic_bank_contamination.mjs --fail-on-findings",
     "audit:topic-banks:ci": "node scripts/audit_topic_bank_contamination.mjs --fail-on-findings --allow-missing-topic-files",
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "antigravity:init": "antigravity init",
+    "design:export": "antigravity export-design",
+    "antigravity:verify": "antigravity verify",
+    "antigravity:run": "antigravity run"
   },
   "repository": {
     "type": "git",

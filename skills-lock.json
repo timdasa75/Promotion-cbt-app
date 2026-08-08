@@ -18,6 +18,13 @@
       "sourceType": "github",
       "skillPath": "skills/web-design-guidelines/SKILL.md",
       "computedHash": "d8e7d3afe37dcc8a97b99ffb5afdb4d0919ae0092ea8b68f44eb201f035e33ac"
+    },
+    "gstack": {
+      "source": "garrytan/gstack",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/gstack/SKILL.md",
+      "computedHash": "local-curated",
+      "note": "Curated methodology index (not verbatim). Upstream: https://github.com/garrytan/gstack (MIT)"
     }
   }
 }

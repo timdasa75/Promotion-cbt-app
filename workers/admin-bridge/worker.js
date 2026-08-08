@@ -1611,7 +1611,33 @@ async function patchSelarPaymentProfile(env, userId, receipt) {
 }
 
 async function handleSelarWebhook(request, env) {
+  // Selar does not currently publish a signed-webhook contract, so this route
+  // fails closed: a shared secret must be configured (worker secret
+  // SELAR_WEBHOOK_SECRET) and sent back by the webhook caller. If Selar adds
+  // official signature support later, extend this check rather than relaxing it.
+  const expectedSecret = String(env.SELAR_WEBHOOK_SECRET || "").trim();
+  if (!expectedSecret) {
+    throw createRouteError(503, "Selar webhook secret is not configured.");
+  }
+  const receivedSignature = String(
+    request.headers.get("x-selar-signature") ||
+      request.headers.get("x-selar-hash") ||
+      request.headers.get("x-webhook-signature") ||
+      ""
+  ).trim();
+  if (!receivedSignature || !timingSafeEqual(receivedSignature, expectedSecret)) {
+    throw createRouteError(403, "Forbidden");
+  }
+
   const body = await readJsonBody(request);
+
+  // Only process clearly-successful purchase events; ignore anything else.
+  const eventStatus = String(
+    body?.status || body?.event_status || body?.payment_status || body?.event?.status || ""
+  ).trim().toLowerCase();
+  if (eventStatus && !["successful", "success", "paid", "completed"].includes(eventStatus)) {
+    return { ok: true, ignored: true };
+  }
 
   const email = normalizeEmail(
     body?.customer_email ||

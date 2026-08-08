@@ -7,7 +7,7 @@ Read the single source of truth: [`AGENTS.md`](../AGENTS.md) (project context, C
 - Codex doesn't use Claude Code hooks; ECC hook-based enforcement is instruction-based here.
 - Keep external tools read-only unless the user explicitly asks to publish, push, deploy, or modify third-party resources.
 - This app is plain vanilla JS (Vite), not React/Next.js.
-- Skills in `.agents/skills/` — see AGENTS.md for the full list (17 total).
+- Skills in `.agents/skills/` — see AGENTS.md for the full list (18 total).
 
 ## Multi-Agent Roles (`.codex/agents/`)
 

@@ -1778,6 +1778,11 @@ await page.click("#startLearningBtn");
   await page.locator("#adminUserList .directory-action-menu summary").first().click();
   await page.locator("button[data-action='set-account-state']").first().click();
 
+  // The admin flow confirms destructive account-state changes via the custom
+  // confirm modal (not a native dialog), so accept it explicitly.
+  await expect(page.locator("#confirmModal")).toBeVisible();
+  await page.locator("#confirmOkBtn").click();
+
   await expect.poll(() => setStatusCalls).toBe(1);
   expect(lastSetStatusPayload?.userId).toBe("u_target");
   expect(lastSetStatusPayload?.status).toBe("suspended");
@@ -1819,7 +1824,7 @@ test("local mode shows cloud-sign-in guidance for feedback and hides quiz feedba
   await page.click("#headerHelpBtn");
   await expect(page.locator("#helpScreen")).toBeVisible();
   await expect(page.locator("#openHelpFeedbackBtn")).toBeDisabled();
-  await expect(page.locator("#helpFeedbackNote")).toContainText("Cloud");
+  await expect(page.locator("#helpFeedbackNote")).toContainText("online sign-in");
 
   await page.getByRole("button", { name: "Return to Dashboard" }).first().click();
   await expect(page.locator("#topicSelectionScreen")).toBeVisible();

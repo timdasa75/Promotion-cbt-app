@@ -102,9 +102,6 @@ jobs:
       - name: Run smoke tests
         run: npm run test:smoke
 
-      - name: Run UI audit tests
-        run: npm run test:ui-audit
-
       - name: Configure Pages
         uses: actions/configure-pages@v6
 

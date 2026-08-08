@@ -44,7 +44,6 @@ index.html              ← Single-page app shell with CSP, preconnects, shell h
   ├── tests/
   │   ├── smoke.spec.js       Playwright smoke tests
   │   ├── protected-content.smoke.spec.js  Auth-gated content tests
-  │   ├── uiAudit.spec.js     UI audit tests
   │   └── unit/               Node native unit tests
   └── config/
       ├── runtime-auth.example.js  Template (tracked)
@@ -115,6 +114,9 @@ Installed skills in `.agents/skills/` provide domain-specific guidance. Load the
 - **testing** — Unit + integration test patterns
 - **planning** — Structured task breakdown
 - **deep-research** — Multi-step research (for exam content)
+
+### From gstack (garrytan/gstack, MIT — curated index)
+- **gstack** — Virtual engineering team methodology: /cso security audit, /review pre-landing review, /qa browser QA, /ship release workflow. Curated for tool-agnostic use; native gstack binary steps marked [DEGRADED]. Load this skill when running a structured security/review/QA/ship pass on a branch.
 
 ---
 

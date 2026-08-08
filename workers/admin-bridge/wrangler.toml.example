@@ -21,6 +21,9 @@ FIREBASE_PROJECT_ID = "promotioncbt-app"
 # - FIREBASE_API_KEY
 # - GCP_SERVICE_ACCOUNT_EMAIL
 # - GCP_SERVICE_ACCOUNT_PRIVATE_KEY
+# - FLW_SECRET_KEY
+# - FLW_WEBHOOK_SECRET_HASH
+# - SELAR_WEBHOOK_SECRET (shared secret required to call /payment/webhook/selar)
 # Optional hybrid-auth secret for later:
 # - TURNSTILE_SECRET_KEY
 

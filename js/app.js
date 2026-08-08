@@ -1657,6 +1657,9 @@ function refreshDashboardInsights() {
   renderAnalyticsScreen(insights);
   renderDashboardRecommendationSetup(insights);
   renderSupportStateCards(insights);
+  syncRetryMissedButtonState();
+  syncSpacedPracticeButtonState();
+  syncRevisionButtonState();
   return insights;
 }
 
@@ -1983,6 +1986,7 @@ function initializeReviewMistakesControls() {
         } else {
           showWarning("That question is no longer in the queue.");
         }
+        renderReviewMistakesScreen();
         refreshDashboardInsights();
       }
     });
@@ -3735,6 +3739,8 @@ async function refreshAdminFeedbackSubmissions() {
 }
 
 function updateProfileDataSyncUI() {
+  const user = getCurrentUser();
+  const provider = getAuthProviderLabel();
   const hintEl = document.getElementById("profileDataStorageHint");
   const statusEl = document.getElementById("profileCloudSyncStatus");
   const syncNowBtn = document.getElementById("syncProgressNowBtn");
