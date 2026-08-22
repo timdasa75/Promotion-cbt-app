@@ -85,9 +85,6 @@ function parseAdminEmails(value) {
   const emails = Array.from(parseCsvSet(value, []))
     .map((entry) => normalizeEmail(entry))
     .filter(Boolean);
-  if (!emails.length) {
-    throw new Error("ADMIN_EMAILS is not configured.");
-  }
   return new Set(emails);
 }
 
@@ -507,7 +504,7 @@ async function listCloudflareAuthUsers(env) {
 function requireAuditDatabase(env) {
   const database = env.AUTH_DB;
   if (!database || typeof database.prepare !== "function") {
-    throw new Error("Cloudflare auth database is not configured.");
+    throw createRouteError(503, "Cloudflare auth database is not configured.");
   }
   return database;
 }
@@ -602,15 +599,18 @@ function parseFeedbackRow(row = {}) {
 async function verifyAdminCaller(request, env) {
   const header = String(request.headers.get("authorization") || "");
   if (!header.startsWith("Bearer ")) {
-    throw new Error("Missing bearer token.");
+    throw createRouteError(401, "Missing bearer token.");
   }
 
   const token = header.slice("Bearer ".length).trim();
   if (!token) {
-    throw new Error("Missing bearer token.");
+    throw createRouteError(401, "Missing bearer token.");
   }
 
   const allowedAdmins = parseAdminEmails(env.ADMIN_EMAILS || "");
+  if (!allowedAdmins.size) {
+    throw createRouteError(403, "Admin access not configured.");
+  }
 
   try {
     const payload = await identityAdminRequest(env, "accounts:lookup", {
@@ -635,7 +635,7 @@ async function verifyAdminCaller(request, env) {
     try {
       return await verifyCloudflareAdminCaller(token, env, allowedAdmins);
     } catch (cloudflareError) {
-      throw new Error(cloudflareError?.message || firebaseError?.message || "Admin access denied.");
+      throw createRouteError(401, cloudflareError?.message || firebaseError?.message || "Admin access denied.");
     }
   }
 }
