@@ -983,7 +983,7 @@ async function handleAdminCreateCloudflareMigrationLink(request, env) {
   await verifyAdminCaller(request, env);
   const database = env.AUTH_DB;
   if (!database || typeof database.prepare !== "function") {
-    throw new Error("Cloudflare auth database is not configured.");
+    throw createRouteError(503, "Cloudflare auth database is not configured.");
   }
 
   const body = await readJsonBody(request);
@@ -994,7 +994,7 @@ async function handleAdminCreateCloudflareMigrationLink(request, env) {
   const emailVerified = Boolean(body?.emailVerified);
   const continueUrl = String(body?.continueUrl || "").trim();
   if (!email || !email.includes("@")) {
-    throw new Error("email is required.");
+    throw createRouteError(400, "email is required.");
   }
 
   const nowIso = new Date().toISOString();
@@ -1105,7 +1105,7 @@ async function handleAdminCreateCloudflareMigrationLink(request, env) {
 async function handleAuthMigrationBootstrap(request, env) {
   const database = env.AUTH_DB;
   if (!database || typeof database.prepare !== "function") {
-    throw new Error("Cloud auth database is not configured.");
+    throw createRouteError(503, "Cloud auth database is not configured.");
   }
 
   const body = await readJsonBody(request);
@@ -1120,7 +1120,7 @@ async function handleAuthMigrationBootstrap(request, env) {
   const email = normalizeEmail(firebaseUser?.email || "");
   const localId = String(firebaseUser?.localId || "");
   if (!email || !localId) {
-    throw new Error("Authenticated user could not be resolved.");
+    throw createRouteError(401, "Authenticated user could not be resolved.");
   }
 
   const profile = await readProfileDocumentById(env, localId).catch(() => null);
@@ -1312,7 +1312,7 @@ async function handleAdminSendVerificationEmail(request, env) {
   const body = await readJsonBody(request);
   const email = normalizeEmail(body?.email || "");
   if (!email || !email.includes("@")) {
-    throw new Error("email is required.");
+    throw createRouteError(400, "email is required.");
   }
 
   const payload = {
@@ -1340,7 +1340,7 @@ async function handleAuthPasswordRecoveryRequest(request, env) {
   const body = await readJsonBody(request);
   const email = normalizeEmail(body?.email || "");
   if (!email || !email.includes("@")) {
-    throw new Error("email is required.");
+    throw createRouteError(400, "email is required.");
   }
 
   // Apply the RECOVERY_IP bucket so this endpoint cannot be used to spam the
@@ -2423,7 +2423,7 @@ async function handleAdminSetUserStatus(request, env) {
   const userId = String(body?.userId || "").trim();
   const status = String(body?.status || "").trim().toLowerCase() === "suspended" ? "suspended" : "active";
   if (!userId) {
-    throw new Error("userId is required.");
+    throw createRouteError(400, "userId is required.");
   }
 
   let authDisabledSynced = false;
@@ -2479,7 +2479,7 @@ async function handleAdminSetUserPlan(request, env) {
   const email = normalizeEmail(body?.email || "");
   const plan = normalizePlanValue(body?.plan || "free");
   if (!userId && !email) {
-    throw new Error("userId or email is required.");
+    throw createRouteError(400, "userId or email is required.");
   }
 
   const nowIso = new Date().toISOString();
@@ -2560,7 +2560,7 @@ async function handleAdminDeleteUserById(request, env) {
   const body = await readJsonBody(request);
   const userId = String(body?.userId || "").trim();
   if (!userId) {
-    throw new Error("userId is required.");
+    throw createRouteError(400, "userId is required.");
   }
 
   let authDeleted = false;
