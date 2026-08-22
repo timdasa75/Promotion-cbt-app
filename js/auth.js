@@ -22,7 +22,7 @@ import { sendVerificationViaAdminApi } from "./authAdminApi.js";
 import { bootstrapCloudflareMigrationFromFirebase as bootstrapCloudflareMigrationFromFirebaseClient, changeCloudflarePassword as changeCloudflarePasswordClient, completeCloudflareMigrationToken as completeCloudflareMigrationTokenClient, requestCloudflarePasswordRecovery as requestCloudflarePasswordRecoveryClient, resolveCloudflareMigrationToken as resolveCloudflareMigrationTokenClient } from "./authCloudflareClient.js";
 import { enrichDirectoryVerificationStates, ensureAdminCloudSession as ensureAdminCloudSessionHelper, getConfiguredAdminEmails as getConfiguredAdminEmailsHelper, isCurrentUserAdmin as isCurrentUserAdminHelper } from "./authAdminDirectory.js";
 import { deleteCloudUserById as deleteCloudUserByIdService, getAdminOperationHistory as getAdminOperationHistoryService, getAdminUserDirectory as getAdminUserDirectoryService, logAdminOperationToCloud as logAdminOperationToCloudService, createCloudflareMigrationLinkForUser as createCloudflareMigrationLinkForUserService, updateCloudUserStatusById as updateCloudUserStatusByIdService, updateCloudUserPlan as updateCloudUserPlanService } from "./authAdminService.js";
-import { buildUpgradeRequestRecordFromProfile as buildUpgradeRequestRecordFromProfileService, ensureCloudProfileInSession as ensureCloudProfileInSessionService, getCurrentUserUpgradeRequest as getCurrentUserUpgradeRequestService, setUpgradeRequestStatus as setUpgradeRequestStatusService, submitUpgradeRequest as submitUpgradeRequestService } from "./authUpgradeService.js";
+import { buildUpgradeRequestRecordFromProfile as buildUpgradeRequestRecordFromProfileService, ensureCloudProfileInSession as ensureCloudProfileInSessionService, getCurrentUserUpgradeRequest as getCurrentUserUpgradeRequestService, setUpgradeRequestStatus as setUpgradeRequestStatusService, submitUpgradeRequest as submitUpgradeRequestService, verifySelarPayment as verifySelarPaymentService } from "./authUpgradeService.js";
 import { FEEDBACK_MESSAGE_MAX_LENGTH, getAdminFeedbackSubmissions as getAdminFeedbackSubmissionsService, getFeedbackAccessState as getFeedbackAccessStateService, submitFeedbackSubmission as submitFeedbackSubmissionService, updateFeedbackSubmissionStatus as updateFeedbackSubmissionStatusService } from "./authFeedbackService.js";
 import { loginUserCloud as loginUserCloudService, logoutCloud as logoutCloudService, refreshCloudUserInSession as refreshCloudUserInSessionService, registerUserCloud as registerUserCloudService } from "./authCloudLifecycle.js";
 import { loginUserHybrid as loginUserHybridService, logoutHybrid as logoutHybridService, refreshCloudflareUserInSession as refreshCloudflareUserInSessionService, registerUserHybrid as registerUserHybridService } from "./authHybridLifecycle.js";
@@ -463,6 +463,16 @@ async function syncCloudPlanNow() {
     return;
   }
 
+  // Skip when the plan was synced recently, matching the staleness check in
+  // getCurrentUser. The 5s poll must not hammer Firestore with a profile read
+  // (and session write) on every tick for an open session.
+  const lastSyncMs = Date.parse(session.lastPlanSyncAt || "") || 0;
+  const syncIsStale = Date.now() - lastSyncMs > PLAN_SYNC_INTERVAL_MS;
+  const missingPlan = !session.user.plan;
+  if (!missingPlan && !syncIsStale) {
+    return;
+  }
+
   cloudPlanSyncInFlight = true;
   try {
     await syncCloudPlanInSession(session);
@@ -522,8 +532,12 @@ export async function getCurrentAuthToken() {
 }
 
 export function emitFlutterwavePlanActivation(result = {}) {
+
   const session = readSession();
-  if (!session?.user) return null;
+  if (!session?.user) {
+
+    return null;
+  }
   const receipt = result?.receipt || {};
   const previousPlan = normalizePlan(session.user.plan || "free");
   const nextUser = {
@@ -612,8 +626,35 @@ async function loginUserHybrid(input) {
   });
 }
 
-async function refreshCloudflareUserInSession(session) {
+export async function refreshCloudflareUserInSession(session) {
   return refreshCloudflareUserInSessionService(session);
+}
+
+// Refresh the in-memory session after a server-side plan grant so premium
+// unlocks appear immediately for both Firebase and Cloudflare sessions.
+export async function refreshCurrentUserAfterGrant() {
+  const session = readSession();
+  if (!session?.accessToken) {
+    return { refreshed: false, warning: "Session is unavailable." };
+  }
+  try {
+    if (session.provider === "cloudflare") {
+      await refreshCloudflareUserInSession(session);
+      return { refreshed: true };
+    }
+    if (session.provider === "firebase") {
+      // Reuse the guarded sync path so a background sync already in flight
+      // is not duplicated; it will write the same freshly-fetched plan.
+      await forceCloudPlanSync();
+      return { refreshed: true };
+    }
+    return { refreshed: false, warning: "Session provider is not supported." };
+  } catch (error) {
+    return {
+      refreshed: false,
+      warning: error?.message || "Unable to refresh your session right now.",
+    };
+  }
 }
 
 async function logoutHybrid(session) {
@@ -737,6 +778,8 @@ function sanitizeUserLocal(user) {
 }
 
 function applyPlanOverrideForEmail(user) {
+  // Only meaningful for device-local demo sessions. Cloud sessions must rely on
+  // the server-authoritative plan, so this is never called for them.
   if (!user) return null;
 
   const normalizedEmail = normalizeEmail(user?.email || "");
@@ -967,6 +1010,18 @@ export async function getCurrentUserUpgradeRequest() {
   );
 }
 
+export async function verifySelarPayment(reference = "", billingCycle = "") {
+  return verifySelarPaymentService(
+    { reference, billingCycle },
+    {
+      cloudAuthEnabled: isCloudAuthEnabled(),
+      currentUser: getCurrentUser(),
+      session: readSession(),
+      refreshSession: ensureCloudSessionActive,
+    },
+  );
+}
+
 export { FEEDBACK_MESSAGE_MAX_LENGTH };
 
 export function getFeedbackAccessState() {
@@ -1057,7 +1112,10 @@ export function getCurrentUser() {
       }
     }
 
-    return applyPlanOverrideForEmail(session.user || null);
+    // Cloud plans are authoritative from the server. Local override maps must
+    // never influence cloud sessions: they would let a free user self-grant
+    // premium in the client by editing localStorage.
+    return session.user || null;
   }
 
   if (session.provider === "cloudflare") {
@@ -1071,7 +1129,8 @@ export function getCurrentUser() {
       return null;
     }
 
-    return applyPlanOverrideForEmail(session.user || null);
+    // Same server-authoritative rule as Firebase sessions above.
+    return session.user || null;
   }
 
   if (session.provider !== "local") {

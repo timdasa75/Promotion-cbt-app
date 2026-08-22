@@ -1,4 +1,23 @@
-import { buildPublicAuthUser, getAuthUserById, hashPassword, issueSession, parseBearerToken, readSessionRecord, resolveHybridAuthRouteHandler, sha256Base64Url, timingSafeEqual, touchSession } from "./auth-hybrid.js";
+import {
+  buildPublicAuthUser,
+  checkRateLimit,
+  getAuthUserById,
+  hashPassword,
+  issueSession,
+  parseBearerToken,
+  RATE_LIMIT,
+  readSessionRecord,
+  resolveHybridAuthRouteHandler,
+  sha256Base64Url,
+  timingSafeEqual,
+  touchSession,
+} from "./auth-hybrid.js";
+import {
+  sendVerificationEmail,
+  sendPasswordResetEmail,
+  sendWelcomeEmail,
+} from "./email-sender.js";
+import { readSelarApiConfig, verifySelarOrderByReference } from "./selarVerify.js";
 import { collectSubcategories, getQuestionsFromSubcategory } from "../../js/topicDataShape.js";
 import {
   normalizeProgressSummary,
@@ -9,6 +28,9 @@ import {
   serializeRetryQueue,
   serializeSpacedQueue,
 } from "../../js/authFirestoreModels.js";
+const EMAIL_VERIFICATION_TOKEN_EXPIRY_MS = 24 * 60 * 60 * 1000; // 24 hours
+const PASSWORD_RESET_TOKEN_EXPIRY_MS = 60 * 60 * 1000; // 1 hour
+
 const IDENTITY_TOOLKIT_BASE_URL = "https://identitytoolkit.googleapis.com/v1";
 const FIRESTORE_BASE_URL = "https://firestore.googleapis.com/v1";
 const GOOGLE_OAUTH_TOKEN_URL = "https://oauth2.googleapis.com/token";
@@ -90,15 +112,41 @@ function withCorsHeaders(response, origin) {
   return response;
 }
 
+function withSecurityHeaders(response) {
+  response.headers.set("X-Content-Type-Options", "nosniff");
+  response.headers.set("X-Frame-Options", "DENY");
+  response.headers.set("X-XSS-Protection", "1; mode=block");
+  response.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+  response.headers.set("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
+  response.headers.set(
+    "Content-Security-Policy",
+    "default-src 'self'; " +
+    "script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com; " +
+    "style-src 'self' 'unsafe-inline'; " +
+    "img-src 'self' data: https:; " +
+    "connect-src 'self' https://*.firebaseio.com https://*.googleapis.com https://api.flutterwave.com; " +
+    "frame-src https://challenges.cloudflare.com https://checkout.flutterwave.com; " +
+    "font-src 'self' data:; " +
+    "object-src 'none'; " +
+    "base-uri 'self'; " +
+    "form-action 'self'"
+  );
+  return response;
+}
+
+
+
 function jsonResponse(body, status = 200, origin = "*") {
-  return withCorsHeaders(
-    new Response(JSON.stringify(body), {
-      status,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }),
-    origin,
+  return withSecurityHeaders(
+    withCorsHeaders(
+      new Response(JSON.stringify(body), {
+        status,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }),
+      origin,
+    )
   );
 }
 
@@ -137,6 +185,18 @@ function base64UrlEncodeBytes(bytes) {
     binary += String.fromCharCode(...view.subarray(index, Math.min(index + chunkSize, view.length)));
   }
   return btoa(binary).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/g, "");
+}
+
+// Standard base64 (with padding) — used for Flutterwave's v4 webhook signature,
+// which is base64(HMAC-SHA256(rawBody, secretHash)).
+function bytesToBase64(bytes) {
+  let binary = "";
+  const view = bytes instanceof Uint8Array ? bytes : new Uint8Array(bytes);
+  const chunkSize = 0x8000;
+  for (let index = 0; index < view.length; index += chunkSize) {
+    binary += String.fromCharCode(...view.subarray(index, Math.min(index + chunkSize, view.length)));
+  }
+  return btoa(binary);
 }
 
 function base64UrlEncodeString(value) {
@@ -529,6 +589,13 @@ function parseFeedbackRow(row = {}) {
     questionId: String(row?.question_id || ""),
     quizAttemptId: String(row?.quiz_attempt_id || ""),
     sessionMode: String(row?.session_mode || ""),
+    questionPreview: String(row?.question_preview || ""),
+    scoreSummary: String(row?.score_summary || ""),
+    difficulty: String(row?.difficulty || ""),
+    sourceDocument: String(row?.source_document || ""),
+    sourceSection: String(row?.source_section || ""),
+    subcategoryName: String(row?.subcategory_name || ""),
+    clientInfo: safeParseJson(row?.client_info, {}),
   };
 }
 
@@ -1276,6 +1343,26 @@ async function handleAuthPasswordRecoveryRequest(request, env) {
     throw new Error("email is required.");
   }
 
+  // Apply the RECOVERY_IP bucket so this endpoint cannot be used to spam the
+  // audit log or probe registered addresses.
+  const ip = String(request.headers.get("CF-Connecting-IP") || "").trim();
+  const recoveryIpBucket = `recovery:ip:${ip}`;
+  const recoveryCheck = await checkRateLimit(
+    database,
+    recoveryIpBucket,
+    RATE_LIMIT.RECOVERY_IP.type,
+    RATE_LIMIT.RECOVERY_IP.max,
+    RATE_LIMIT.RECOVERY_IP.windowSec,
+  );
+  if (!recoveryCheck.allowed) {
+    const retryAfter = recoveryCheck.retryAfter
+      ? ` Try again in ${recoveryCheck.retryAfter} seconds.`
+      : " Try again later.";
+    const error = new Error(`Too many recovery requests from this IP.${retryAfter}`);
+    error.httpStatus = 429;
+    throw error;
+  }
+
   const authUser = await database
     .prepare(`
       SELECT id, email, status
@@ -1302,10 +1389,40 @@ async function handleAuthPasswordRecoveryRequest(request, env) {
     });
   }
 
+  // Send password reset email if configured
+  const emailSenderConfigured = String(env.AUTH_PASSWORD_RECOVERY_SENDER || "").trim() === "true";
+  const resendConfigured = Boolean(env.RESEND_API_KEY);
+  
+  let emailSendResult = null;
+  if ((resendConfigured || emailSenderConfigured) && authUser?.id) {
+    try {
+      const tokenResult = await (await import("./auth-hybrid.js")).issueEmailToken(
+        database,
+        authUser.id,
+        "password_reset",
+        env
+      );
+      const baseUrl = String(body?.baseUrl || request.headers.get("origin") || "").trim();
+      if (resendConfigured && baseUrl && tokenResult.token) {
+        emailSendResult = await sendPasswordResetEmail(env, {
+          email,
+          name: "",
+          token: tokenResult.token,
+          baseUrl,
+        });
+      }
+    } catch (error) {
+      console.error("Failed to send password reset email:", error);
+      emailSendResult = { ok: false, error: error.message };
+    }
+  }
+
   return {
     ok: true,
     accepted: true,
-    warning: "If this email matches an account, recovery instructions will follow shortly.",
+    warning: (resendConfigured || emailSenderConfigured)
+      ? "If this email matches an account, recovery instructions will follow shortly."
+      : "Password recovery by email is not enabled yet. Contact an administrator to reset your password.",
   };
 }
 
@@ -1417,6 +1534,28 @@ function readFlutterwaveCustomerEmail(data) {
   return normalizeEmail(data?.customer?.email || data?.customer_email || data?.email || "");
 }
 
+// App-built tx_refs look like: promocbt_<userId(32)>_<planCycle>_<ts>_<rand>
+// where the userId segment is the first 32 chars of the user's UUID. The
+// plan cycle always comes from the supported set, so the parse is strict.
+function parseFlutterwaveTxRefParts(txRef) {
+  const value = String(txRef || "").trim();
+  const match = value.match(/^promocbt_([a-zA-Z0-9-]{4,32})_([a-z-]+)_\d+_[a-z0-9]+$/i);
+  if (!match) return { userIdPrefix: "", planCycle: "" };
+  return {
+    userIdPrefix: match[1],
+    planCycle: normalizePaymentPlanCycle(match[2]),
+  };
+}
+
+async function findCloudflareUserByTxRefPrefix(env, userIdPrefix) {
+  const database = env.AUTH_DB;
+  if (!database || typeof database.prepare !== "function" || !userIdPrefix) return null;
+  return database
+    .prepare("SELECT id, email FROM auth_users WHERE substr(id, 1, ?1) = ?2 LIMIT 1")
+    .bind(String(userIdPrefix).length, String(userIdPrefix))
+    .first();
+}
+
 function buildPaymentReceipt({
   flwData,
   userId,
@@ -1510,36 +1649,111 @@ async function verifyFlutterwaveTransaction(env, transactionId) {
   );
   const payload = await response.json().catch(() => ({}));
   if (!response.ok) {
-    throw new Error(payload?.message || "Flutterwave verification failed.");
+    const err = new Error(payload?.message || "Flutterwave verification failed.");
+    err.httpStatus = 502;
+    throw err;
   }
   return payload;
 }
 
-function assertVerifiedFlutterwavePayment(flwPayload, { planCycle, txRef = "", email = "" } = {}) {
+// Look up a Flutterwave transaction by tx_ref when we don't have the
+// transaction ID (e.g. the inline checkout callback fired with empty data
+// due to an SSL error on Flutterwave's events endpoint).
+async function findFlutterwaveTransactionByTxRef(env, txRef) {
+  const secretKey = requireEnv(env, "FLW_SECRET_KEY");
+  const response = await fetch(
+    `https://api.flutterwave.com/v3/transactions?tx_ref=${encodeURIComponent(txRef)}`,
+    {
+      headers: {
+        Authorization: `Bearer ${secretKey}`,
+      },
+    },
+  );
+  const payload = await response.json().catch(() => ({}));
+  if (!response.ok || payload?.status !== "success") {
+    const err = new Error("Could not find transaction by tx_ref.");
+    err.httpStatus = 404;
+    throw err;
+  }
+  const transactions = Array.isArray(payload?.data) ? payload.data : [];
+  // Find the most recent successful transaction matching this tx_ref.
+  const match = transactions
+    .filter((tx) => tx.tx_ref === txRef && String(tx.status || "").toLowerCase() === "successful")
+    .sort((a, b) => new Date(b.created_at || 0) - new Date(a.created_at || 0))[0];
+  if (!match) {
+    const err = new Error("No successful Flutterwave transaction found for this reference.");
+    err.httpStatus = 404;
+    throw err;
+  }
+  // Return a verify-style payload using the found transaction's ID.
+  return {
+    status: "success",
+    data: {
+      id: match.id,
+      tx_ref: match.tx_ref,
+      amount: match.amount,
+      currency: match.currency,
+      status: match.status,
+      customer: match.customer,
+      created_at: match.created_at,
+    },
+  };
+}
+
+function assertVerifiedFlutterwavePayment(flwPayload, { planCycle, txRef = "", email = "", enforceFreshness = false } = {}) {
   const data = flwPayload?.data || {};
   const status = String(data.status || "").trim().toLowerCase();
   const topStatus = String(flwPayload?.status || "").trim().toLowerCase();
   if (topStatus && topStatus !== "success") {
-    throw new Error("Flutterwave verification did not succeed.");
+    const err = new Error("Flutterwave verification did not succeed.");
+    err.httpStatus = 422;
+    throw err;
   }
   if (status !== "successful") {
-    throw new Error("Flutterwave transaction is not successful.");
+    const err = new Error("Flutterwave transaction is not successful.");
+    err.httpStatus = 422;
+    throw err;
   }
   const expectedAmount = PAYMENT_PLAN_PRICES[planCycle];
   const paidAmount = Number(data.amount || 0);
   if (!Number.isFinite(paidAmount) || Math.round(paidAmount) !== expectedAmount) {
-    throw new Error("Flutterwave transaction amount does not match the selected plan.");
+    const err = new Error("Flutterwave transaction amount does not match the selected plan.");
+    err.httpStatus = 422;
+    throw err;
   }
   if (String(data.currency || "").trim().toUpperCase() !== "NGN") {
-    throw new Error("Flutterwave transaction currency is invalid.");
+    const err = new Error("Flutterwave transaction currency is invalid.");
+    err.httpStatus = 422;
+    throw err;
   }
   const verifiedTxRef = String(data.tx_ref || "").trim();
   if (txRef && verifiedTxRef && verifiedTxRef !== txRef) {
-    throw new Error("Flutterwave transaction reference mismatch.");
+    const err = new Error("Flutterwave transaction reference mismatch.");
+    err.httpStatus = 422;
+    throw err;
+  }
+  // Security check: When called from client-initiated /payment/verify, ensure
+  // the transaction was created recently (within 30 minutes) to prevent old
+  // transactions from being reused. Webhooks skip this since they can arrive late.
+  if (enforceFreshness) {
+    const createdAt = Date.parse(data.created_at || "");
+    if (createdAt && Date.now() - createdAt > 30 * 60 * 1000) {
+      const err = new Error("Flutterwave transaction is too old. Please start a new payment.");
+      err.httpStatus = 422;
+      throw err;
+    }
   }
   const customerEmail = readFlutterwaveCustomerEmail(data);
-  if (email && customerEmail && customerEmail !== normalizeEmail(email)) {
-    throw new Error("Flutterwave customer email does not match the signed-in account.");
+  // Flutterwave test mode substitutes the buyer with a sandbox customer
+  // (ravesb_<id>_<merchant-email>), so an exact email match cannot hold in
+  // test mode. The tx_ref binding (unique per checkout, embeds the user id) is
+  // the real control here; only enforce the email check against real
+  // (non-sandbox) customer emails.
+  const isSandboxCustomer = /^ravesb_[^@]*@/i.test(customerEmail);
+  if (email && customerEmail && !isSandboxCustomer && customerEmail !== normalizeEmail(email)) {
+    const err = new Error("Flutterwave customer email does not match the signed-in account.");
+    err.httpStatus = 422;
+    throw err;
   }
 }
 
@@ -1610,7 +1824,124 @@ async function patchSelarPaymentProfile(env, userId, receipt) {
   });
 }
 
-async function handleSelarWebhook(request, env) {
+// Shared Selar grant: applies premium to Firestore profile + Cloudflare auth
+// user and writes a payment record. Used by both the webhook and the new
+// server-side order verification endpoint so the two paths can never diverge.
+async function grantSelarPremium(env, { userId, email, orderRef, productName, planCycle, amount, currency, createdAt }) {
+  if (!userId) throw new Error("Missing user id for Selar grant.");
+  const normalizedCycle = normalizePaymentPlanCycle(planCycle);
+  if (!normalizedCycle) throw new Error("Unsupported payment plan.");
+  const now = createdAt || new Date().toISOString();
+  const expiresAt = calculatePaymentExpiry(normalizedCycle);
+  const paymentId = `selar_${orderRef || `${Date.now()}_${Math.random().toString(36).slice(2, 8)}`}`;
+  const receipt = {
+    paymentId,
+    userId: String(userId),
+    email: normalizeEmail(email || ""),
+    amount: Math.round(Number(amount) || PAYMENT_PLAN_PRICES[normalizedCycle] || 0),
+    currency: String(currency || "NGN").trim().toUpperCase() || "NGN",
+    billingCycle: normalizedCycle,
+    plan: "premium",
+    selarOrderRef: String(orderRef || ""),
+    selarProductName: String(productName || "").toLowerCase(),
+    status: "successful",
+    createdAt: now,
+    expiresAt,
+  };
+
+  await patchSelarPaymentProfile(env, userId, receipt);
+  await patchCloudflareUserPaymentPlan(env, userId).catch(() => {});
+  try {
+    await writePaymentRecord(env, receipt);
+  } catch (_) {}
+  return receipt;
+}
+
+// Server-side verification of a user-submitted Selar order reference.
+// The worker calls Selar's merchant API (api.selar.co/v2/orders) with
+// SELAR_API_KEY and, when the order is confirmed successful and matches the
+// signed-in buyer, grants premium automatically. If the API key is not
+// configured, or the order cannot be confirmed, it returns verified:false so
+// the client falls back to the manual-review queue — never a hard failure.
+async function handleSelarPaymentVerify(request, env) {
+  const user = await resolveAuthenticatedContentUser(request, env);
+  if (String(user?.status || "active").toLowerCase() !== "active") {
+    throw createRouteError(403, "Your account is not active.");
+  }
+
+  const body = await readJsonBody(request);
+  const orderReference = String(
+    body?.orderReference ||
+    body?.orderRef ||
+    body?.reference ||
+    body?.order_reference ||
+    ""
+  ).trim();
+  const planCycle = normalizePaymentPlanCycle(body?.planCycle || "");
+  if (!orderReference) throw createRouteError(400, "orderReference is required.");
+  if (!planCycle) throw createRouteError(400, "A valid plan cycle is required.");
+
+  const { apiKey } = readSelarApiConfig(env);
+  if (!apiKey) {
+    return {
+      ok: true,
+      verified: false,
+      reason: "api_not_configured",
+      warning: "Selar automatic verification is not configured. Your confirmation will be queued for admin review.",
+    };
+  }
+
+  const verification = await verifySelarOrderByReference(
+    { orderReference, buyerEmail: user.email, expectedAmount: PAYMENT_PLAN_PRICES[planCycle], apiKey },
+    {},
+  );
+
+  if (!verification.verified) {
+    return {
+      ok: true,
+      verified: false,
+      reason: verification.reason,
+      ...(verification.status ? { orderStatus: verification.status } : {}),
+      warning: selarVerifyFallbackWarning(verification.reason),
+    };
+  }
+
+  const productName = String(verification.order?.product_name || verification.order?.productName || "");
+  const receipt = await grantSelarPremium(env, {
+    userId: user.id,
+    email: user.email,
+    orderRef: orderReference,
+    productName,
+    planCycle,
+    amount: verification.amount || PAYMENT_PLAN_PRICES[planCycle],
+    currency: "NGN",
+  });
+
+  return {
+    ok: true,
+    verified: true,
+    plan: "premium",
+    billingCycle: planCycle,
+    expiresAt: receipt.expiresAt,
+    paymentId: receipt.paymentId,
+    warning: "Your Selar payment was verified and your premium access is now active.",
+  };
+}
+
+function selarVerifyFallbackWarning(reason) {
+  const messages = {
+    order_not_found: "We could not find this order on Selar yet. If you just paid, wait a few minutes and try again — or leave it for manual review.",
+    order_not_successful: "This Selar order is not marked as paid yet. If you just paid, try again in a few minutes.",
+    email_mismatch: "This Selar order belongs to a different email address. Use the same email on Selar and in the app.",
+    amount_mismatch: "The Selar order amount does not match the selected plan. Check the billing cycle you chose.",
+    reference_ambiguous: "We could not fully confirm this Selar order. Double-check the reference, then try again — or leave it for manual review.",
+    api_error: "Selar's service could not be reached right now. Your confirmation will be queued for manual review.",
+    api_not_configured: "Selar automatic verification is not configured. Your confirmation will be queued for admin review.",
+  };
+  return messages[reason] || "Your confirmation will be queued for manual review.";
+}
+
+async function handleSelarWebhook(request, env, ctx) {
   // Selar does not currently publish a signed-webhook contract, so this route
   // fails closed: a shared secret must be configured (worker secret
   // SELAR_WEBHOOK_SECRET) and sent back by the webhook caller. If Selar adds
@@ -1681,21 +2012,6 @@ async function handleSelarWebhook(request, env) {
     return { ok: true, ignored: true };
   }
 
-  let users = [];
-  try {
-    const payload = await identityAdminRequest(env, "accounts:lookup", {
-      body: { email: [email] },
-    });
-    users = Array.isArray(payload?.users) ? payload.users : [];
-  } catch (_) {
-    return { ok: true, ignored: true };
-  }
-
-  if (!users.length) return { ok: true, ignored: true };
-
-  const userId = String(users[0]?.localId || "").trim();
-  if (!userId) return { ok: true, ignored: true };
-
   const orderRef = String(
     body?.order_reference ||
     body?.orderReference ||
@@ -1719,33 +2035,53 @@ async function handleSelarWebhook(request, env) {
   ));
 
   const currency = String(body?.currency || "NGN").trim().toUpperCase() || "NGN";
-  const expiresAt = calculatePaymentExpiry(planCycle);
-  const now = new Date().toISOString();
-  const paymentId = `selar_${orderRef || `${Date.now()}_${Math.random().toString(36).slice(2, 8)}`}`;
 
-  const receipt = {
-    paymentId,
-    userId,
-    email,
-    amount,
-    currency,
-    billingCycle: planCycle,
-    plan: "premium",
-    selarOrderRef: orderRef,
-    selarProductName: productName,
-    status: "successful",
-    createdAt: now,
-    expiresAt,
+  const runGrant = async () => {
+    let users = [];
+    try {
+      const payload = await identityAdminRequest(env, "accounts:lookup", {
+        body: { email: [email] },
+      });
+      users = Array.isArray(payload?.users) ? payload.users : [];
+    } catch (_) {
+      return { ok: true, ignored: true };
+    }
+
+    if (!users.length) return { ok: true, ignored: true };
+
+    const userId = String(users[0]?.localId || "").trim();
+    if (!userId) return { ok: true, ignored: true };
+
+    await grantSelarPremium(env, {
+      userId,
+      email,
+      orderRef,
+      productName,
+      planCycle,
+      amount,
+      currency,
+    });
+
+    return { ok: true, processed: true };
   };
 
-  await patchSelarPaymentProfile(env, userId, receipt);
-  await patchCloudflareUserPaymentPlan(env, userId).catch(() => {});
+  // Zapier's free "Code by Zapier" step allows ~1s of execution, but a cold
+  // Worker running the full grant chain (lookup + D1 + Firestore) can exceed
+  // that. When a runtime context is available, validate synchronously (fast)
+  // and run the grant in the background via ctx.waitUntil so the response
+  // arrives in milliseconds — the 200 then means "accepted", not "already
+  // granted". Without a ctx (unit tests), await the grant so behavior is
+  // deterministic.
+  if (typeof ctx?.waitUntil === "function") {
+    ctx.waitUntil(
+      runGrant().catch((error) => {
+        console.error("selar webhook background grant failed:", error?.message || error);
+      })
+    );
+    return { ok: true, processed: true };
+  }
 
-  try {
-    await writePaymentRecord(env, receipt);
-  } catch (_) {}
-
-  return { ok: true, processed: true };
+  return runGrant();
 }
 
 async function findCloudflareUserByEmail(env, email) {
@@ -1820,17 +2156,28 @@ async function handleFeedbackSubmit(request, env) {
   if (!message) throw createRouteError(400, "Feedback message is required.");
   if (message.length > 1000) throw createRouteError(400, "Feedback message must be 1000 characters or fewer.");
   const nowIso = new Date().toISOString();
-  const feedbackId = String(body?.feedbackId || `fbk_${Date.now()}_${crypto.randomUUID().slice(0, 8)}`).trim();
+  // Always generate the id server-side. Accepting a client-supplied id would
+  // let a caller overwrite another user's row via the upsert below.
+  const feedbackId = `fbk_${Date.now()}_${crypto.randomUUID().slice(0, 8)}`;
+  const clientInfoRaw = body?.clientInfo && typeof body.clientInfo === "object"
+    ? JSON.stringify(body.clientInfo).slice(0, 600)
+    : "";
   await database
     .prepare(`
       INSERT INTO feedback_submissions (
         feedback_id, user_id, email, category, status, source_screen, message, created_at, updated_at,
-        topic_id, topic_name, question_id, quiz_attempt_id, session_mode
-      ) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14)
+        topic_id, topic_name, question_id, quiz_attempt_id, session_mode,
+        question_preview, score_summary, difficulty, source_document, source_section, subcategory_name, client_info
+      ) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15, ?16, ?17, ?18, ?19, ?20, ?21)
       ON CONFLICT(feedback_id) DO UPDATE SET
         category = excluded.category, source_screen = excluded.source_screen, message = excluded.message,
         updated_at = excluded.updated_at, topic_id = excluded.topic_id, topic_name = excluded.topic_name,
-        question_id = excluded.question_id, quiz_attempt_id = excluded.quiz_attempt_id, session_mode = excluded.session_mode
+        question_id = excluded.question_id, quiz_attempt_id = excluded.quiz_attempt_id, session_mode = excluded.session_mode,
+        question_preview = excluded.question_preview, score_summary = excluded.score_summary,
+        difficulty = excluded.difficulty, source_document = excluded.source_document,
+        source_section = excluded.source_section, subcategory_name = excluded.subcategory_name,
+        client_info = excluded.client_info
+      WHERE feedback_submissions.user_id = excluded.user_id
     `)
     .bind(
       feedbackId,
@@ -1847,6 +2194,13 @@ async function handleFeedbackSubmit(request, env) {
       String(body?.questionId || "").trim(),
       String(body?.quizAttemptId || "").trim(),
       String(body?.sessionMode || "").trim().toLowerCase(),
+      String(body?.questionPreview || "").trim().slice(0, 1000),
+      String(body?.scoreSummary || "").trim().slice(0, 500),
+      String(body?.difficulty || "").trim().toLowerCase().slice(0, 20),
+      String(body?.sourceDocument || "").trim().slice(0, 200),
+      String(body?.sourceSection || "").trim().slice(0, 200),
+      String(body?.subcategoryName || "").trim().slice(0, 200),
+      clientInfoRaw,
     )
     .run();
   return { ok: true, feedbackId, createdAt: nowIso, status: "new" };
@@ -1861,7 +2215,8 @@ async function handleAdminFeedbackList(request, env) {
   const result = await database
     .prepare(`
       SELECT feedback_id, user_id, email, category, status, source_screen, message, created_at, updated_at,
-             reviewed_at, reviewed_by, topic_id, topic_name, question_id, quiz_attempt_id, session_mode
+             reviewed_at, reviewed_by, topic_id, topic_name, question_id, quiz_attempt_id, session_mode,
+             question_preview, score_summary, difficulty, source_document, source_section, subcategory_name, client_info
       FROM feedback_submissions
       ORDER BY created_at DESC
       LIMIT ?1
@@ -1905,13 +2260,19 @@ async function handlePaymentVerify(request, env) {
   const txRef = String(body?.txRef || "").trim();
   const email = normalizeEmail(body?.email || user?.email || "");
   if (!planCycle) throw createRouteError(400, "A valid plan cycle is required.");
-  if (!transactionId) throw createRouteError(400, "transactionId is required.");
+  if (!transactionId && !txRef) throw createRouteError(400, "transactionId or txRef is required.");
   if (email !== normalizeEmail(user?.email || "")) {
     throw createRouteError(403, "Payment email must match the signed-in account.");
   }
 
-  const flwPayload = await verifyFlutterwaveTransaction(env, transactionId);
-  assertVerifiedFlutterwavePayment(flwPayload, { planCycle, txRef, email });
+  // Verify the transaction: use the ID if available, otherwise look up by tx_ref.
+  let flwPayload;
+  if (transactionId) {
+    flwPayload = await verifyFlutterwaveTransaction(env, transactionId);
+  } else {
+    flwPayload = await findFlutterwaveTransactionByTxRef(env, txRef);
+  }
+  assertVerifiedFlutterwavePayment(flwPayload, { planCycle, txRef, email, enforceFreshness: true });
   const expiresAt = calculatePaymentExpiry(planCycle);
   const receipt = buildPaymentReceipt({
     flwData: flwPayload,
@@ -1948,14 +2309,53 @@ async function handlePaymentHistory(request, env) {
   };
 }
 
+// Flutterwave has shipped two webhook signature schemes, and the bridge must
+// accept both to keep working:
+//   - legacy (v2/v3): the plain secret hash is sent as the `verif-hash` header
+//   - current (v4): HMAC-SHA256 of the raw body keyed with the secret hash,
+//     base64-encoded, sent as the `flutterwave-signature` header
+// Fail closed on any request that carries neither a valid signature.
+async function verifyFlutterwaveWebhookSignature(request, rawBody, expectedHash) {
+  const legacyHash = String(request.headers.get("verif-hash") || "").trim();
+  if (legacyHash && timingSafeEqual(legacyHash, expectedHash)) {
+    return true;
+  }
+  const hmacSignature = String(request.headers.get("flutterwave-signature") || "").trim();
+  if (!hmacSignature) return false;
+  try {
+    const key = await crypto.subtle.importKey(
+      "raw",
+      new TextEncoder().encode(expectedHash),
+      { name: "HMAC", hash: "SHA-256" },
+      false,
+      ["sign"],
+    );
+    const signature = await crypto.subtle.sign("HMAC", key, new TextEncoder().encode(rawBody));
+    return timingSafeEqual(hmacSignature, bytesToBase64(signature));
+  } catch {
+    return false;
+  }
+}
+
 async function handlePaymentWebhook(request, env) {
-  const expectedHash = requireEnv(env, "FLW_WEBHOOK_SECRET_HASH");
-  const receivedHash = String(request.headers.get("verif-hash") || "").trim();
-  if (!receivedHash || !timingSafeEqual(receivedHash, expectedHash)) {
+  const expectedHash = String(env.FLW_WEBHOOK_SECRET_HASH || "").trim();
+  if (!expectedHash) {
+    // Mirrors the Selar webhook's fail-closed pattern: an unset hash means the
+    // route answers 503 and the auto-grant bridge silently stops.
+    throw createRouteError(503, "Flutterwave webhook secret hash is not configured.");
+  }
+  const rawBody = await request.text();
+  const signatureOk = await verifyFlutterwaveWebhookSignature(request, rawBody, expectedHash);
+  if (!signatureOk) {
     throw createRouteError(403, "Forbidden");
   }
 
-  const event = await readJsonBody(request);
+  let event = {};
+  try {
+    event = JSON.parse(rawBody);
+  } catch {
+    event = {};
+  }
   const eventType = String(event?.event?.type || event?.event || "").trim().toLowerCase();
   const eventData = event?.data || {};
   const eventStatus = String(eventData?.status || "").trim().toLowerCase();
@@ -1970,7 +2370,12 @@ async function handlePaymentWebhook(request, env) {
   if (!transactionId) return { ok: true, ignored: true };
 
   const meta = eventData.meta || {};
-  const planCycle = normalizePaymentPlanCycle(meta.planCycle || meta.plan_cycle || "");
+  // Prefer the meta fields the checkout sends, but fall back to parsing the
+  // tx_ref (which embeds the user id and plan cycle) so the auto-grant keeps
+  // working even when the merchant disables "Add meta to webhook".
+  const txRefParts = parseFlutterwaveTxRefParts(eventData.tx_ref);
+  const planCycle =
+    normalizePaymentPlanCycle(meta.planCycle || meta.plan_cycle || "") || txRefParts.planCycle;
   if (!planCycle) return { ok: true, ignored: true };
 
   const flwPayload = await verifyFlutterwaveTransaction(env, transactionId);
@@ -1978,7 +2383,10 @@ async function handlePaymentWebhook(request, env) {
   const verifiedData = flwPayload?.data || {};
   const email = readFlutterwaveCustomerEmail(verifiedData);
   const cloudflareUser = await findCloudflareUserByEmail(env, email).catch(() => null);
-  const userId = String(meta.userId || cloudflareUser?.id || "").trim();
+  const userByTxRef = txRefParts.userIdPrefix
+    ? await findCloudflareUserByTxRefPrefix(env, txRefParts.userIdPrefix).catch(() => null)
+    : null;
+  const userId = String(meta.userId || userByTxRef?.id || cloudflareUser?.id || "").trim();
   const expiresAt = calculatePaymentExpiry(planCycle);
   const receipt = buildPaymentReceipt({
     flwData: flwPayload,
@@ -2019,7 +2427,8 @@ async function handleAdminSetUserStatus(request, env) {
   }
 
   let authDisabledSynced = false;
-  let warning = "";
+  let cloudflareUpdated = false;
+  const warnings = [];
   const shouldSyncAuthDisabled = parseBoolean(env.SYNC_AUTH_DISABLED, true);
   if (shouldSyncAuthDisabled) {
     try {
@@ -2031,7 +2440,23 @@ async function handleAdminSetUserStatus(request, env) {
       });
       authDisabledSynced = true;
     } catch (error) {
-      warning = `Could not sync Firebase Auth disabled flag: ${error?.message || "request failed."}`;
+      warnings.push(`Could not sync Firebase Auth disabled flag: ${error?.message || "request failed."}`);
+    }
+  }
+
+  // Mirror the status into the Cloudflare auth table (matched by id or the
+  // legacy Firebase localId) so a suspended user's Cloudflare sessions are
+  // rejected too, not just their Firebase login.
+  const database = env.AUTH_DB;
+  if (database && typeof database.prepare === "function") {
+    try {
+      const result = await database
+        .prepare("UPDATE auth_users SET status = ?2, updated_at = ?3 WHERE id = ?1 OR legacy_user_id = ?1")
+        .bind(userId, status, new Date().toISOString())
+        .run();
+      cloudflareUpdated = Number(result?.meta?.changes || 0) > 0;
+    } catch (error) {
+      warnings.push(`Could not sync Cloudflare auth status: ${error?.message || "request failed."}`);
     }
   }
 
@@ -2042,7 +2467,8 @@ async function handleAdminSetUserStatus(request, env) {
     userId,
     status,
     authDisabledSynced,
-    warning,
+    cloudflareUpdated,
+    warning: warnings.join(" ").trim(),
   };
 }
 
@@ -2139,6 +2565,8 @@ async function handleAdminDeleteUserById(request, env) {
 
   let authDeleted = false;
   let profileDeleted = false;
+  let cloudflareDeleted = false;
+  const warnings = [];
 
   try {
     await identityAdminRequest(env, "accounts:delete", {
@@ -2152,24 +2580,49 @@ async function handleAdminDeleteUserById(request, env) {
     }
   }
 
+  // When a Cloudflare auth row exists for this user (matched by id or the
+  // legacy Firebase localId stored at migration), purge it too. Otherwise the
+  // "deleted" user's Cloudflare session stays valid and keeps working.
+  const database = env.AUTH_DB;
+  if (database && typeof database.prepare === "function") {
+    try {
+      const cloudflareUser = await database
+        .prepare("SELECT id FROM auth_users WHERE id = ?1 OR legacy_user_id = ?1 LIMIT 1")
+        .bind(userId)
+        .first();
+      if (cloudflareUser?.id) {
+        await database
+          .prepare("DELETE FROM auth_sessions WHERE user_id = ?1")
+          .bind(String(cloudflareUser.id))
+          .run();
+        await database
+          .prepare("DELETE FROM auth_email_tokens WHERE user_id = ?1")
+          .bind(String(cloudflareUser.id))
+          .run();
+        await database
+          .prepare("DELETE FROM auth_users WHERE id = ?1")
+          .bind(String(cloudflareUser.id))
+          .run();
+        cloudflareDeleted = true;
+      }
+    } catch (error) {
+      warnings.push(`Cloudflare auth cleanup failed: ${error?.message || "request failed."}`);
+    }
+  }
+
   try {
     profileDeleted = await deleteProfileDocument(env, userId);
   } catch (error) {
-    // Leave auth deletion result intact and surface profile cleanup failure as warning.
-    return {
-      ok: true,
-      userId,
-      authDeleted,
-      profileDeleted: false,
-      warning: `Auth updated, but profile cleanup failed: ${error?.message || "request failed."}`,
-    };
+    warnings.push(`Profile cleanup failed: ${error?.message || "request failed."}`);
   }
 
   return {
     ok: true,
     userId,
     authDeleted,
+    cloudflareDeleted,
     profileDeleted,
+    warning: warnings.join(" ").trim(),
   };
 }
 
@@ -2182,6 +2635,7 @@ function resolveRouteHandler(path) {
   if (path.endsWith("/payment/history")) return handlePaymentHistory;
   if (path.endsWith("/payment/webhook/flutterwave")) return handlePaymentWebhook;
   if (path.endsWith("/payment/webhook/selar")) return handleSelarWebhook;
+  if (path.endsWith("/payment/selar/verify")) return handleSelarPaymentVerify;
   const authRouteHandler = resolveHybridAuthRouteHandler(path);
   if (authRouteHandler) return authRouteHandler;
   if (path.endsWith("/adminListUsers")) return handleAdminListUsers;
@@ -2200,7 +2654,7 @@ function resolveRouteHandler(path) {
   return null;
 }
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     const origin = resolveAllowedOrigin(request, env);
 
     if (request.method === "OPTIONS") {
@@ -2218,7 +2672,8 @@ export default {
     const normalizedPath = url.pathname.replace(/\/+$/, "");
     const isPaymentWebhook = normalizedPath.endsWith("/payment/webhook/flutterwave") || normalizedPath.endsWith("/payment/webhook/selar");
 
-    if (!origin && String(env.ALLOWED_ORIGINS || "").trim() && !isPaymentWebhook) {
+    const isPaymentApi = normalizedPath.endsWith("/payment/verify") || normalizedPath.endsWith("/payment/history");
+    if (!origin && String(env.ALLOWED_ORIGINS || "").trim() && !isPaymentWebhook && !isPaymentApi) {
       return jsonResponse({ ok: false, error: "Origin not allowed." }, 403, "");
     }
 
@@ -2228,15 +2683,17 @@ export default {
     }
 
     try {
-      const payload = await routeHandler(request, env);
+      const payload = await routeHandler(request, env, ctx);
       return jsonResponse(payload, 200, origin || "*");
     } catch (error) {
+      const status = Number(error?.httpStatus || 0);
+      const httpStatus = status > 0 ? status : 500;
       return jsonResponse(
         {
           ok: false,
           error: publicErrorMessage(error),
         },
-        Number(error?.httpStatus || 403),
+        httpStatus,
         origin || "*",
       );
     }

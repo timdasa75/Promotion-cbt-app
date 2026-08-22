@@ -123,3 +123,43 @@
 - A fresh public clone will not include these root-level source artifacts.
 - If you need to run the extraction/import scripts that depend on them, restore your private local copies into the repo root first.
 
+
+## Auth System Assessment (2026-08-08)
+
+A full audit of the auth surface (client `js/auth*.js` + Cloudflare Worker `workers/admin-bridge/`) was run. Findings and resolutions:
+
+### Resolved in this pass
+
+1. **Client-side plan override no longer applies to cloud sessions** (`js/auth.js`).
+   - Before: `applyPlanOverrideForEmail` was applied to Firebase and Cloudflare sessions, so a free user editing `cbt_plan_overrides_v1` in localStorage could claim premium client-side (bypassing client-gated limits such as the weekly free mock exam).
+   - After: cloud sessions return the server-authoritative plan directly. Local overrides still work for `local` demo sessions only, preserving the admin testing affordance.
+   - Server-side protected content was already enforced in the Worker; this closes the client-side bypass.
+
+2. **Admin delete / suspend now mirrors into Cloudflare auth** (`workers/admin-bridge/worker.js`).
+   - Before: `adminDeleteUserById` only removed the Firebase account and profile; the Cloudflare `auth_users` row and its sessions stayed valid, so a "deleted" user kept working with a Cloudflare session. `adminSetUserStatus` never updated `auth_users.status`, so a suspended user's Cloudflare sessions stayed active.
+   - After: delete purges the Cloudflare user, sessions, and email tokens (matched by id or `legacy_user_id`); status change updates `auth_users.status` (id or `legacy_user_id`) so Cloudflare sessions are rejected too.
+
+3. **Password recovery is no longer a silent no-op** (`workers/admin-bridge/worker.js`).
+   - Before: the recovery route only wrote an audit log and returned "recovery instructions will follow shortly" — but the Worker has **no email sender integration**, so Cloudflare-mode users were told instructions were on the way that never came.
+   - After: when `AUTH_PASSWORD_RECOVERY_SENDER=true` is not set, the route returns an honest "contact an administrator" message. A real sender can be wired later behind that flag.
+
+4. **Recovery endpoint is now rate-limited** (`workers/admin-bridge/worker.js` + `auth-hybrid.js`).
+   - The `RECOVERY_IP` bucket (3 attempts / 15 min) was defined but never applied. `handleAuthPasswordRecoveryRequest` now enforces it per `CF-Connecting-IP` (429), and `checkRateLimit` is exported for reuse.
+
+5. **Google login honors `email_verified`** (`workers/admin-bridge/auth-hybrid.js`).
+   - Before: any successful Google login force-marked the account `email_verified = 1`.
+   - After: only a Google ID token with `email_verified: true` auto-verifies the account; unverified Google emails stay unverified (and new accounts are stored accordingly).
+
+6. **Feedback upsert no longer accepts a client-controlled id** (`workers/admin-bridge/worker.js`).
+   - Before: `feedbackId` came from the request body and the `ON CONFLICT` upsert could overwrite another user's row content.
+   - After: the id is always generated server-side, and the upsert is guarded with `WHERE feedback_submissions.user_id = excluded.user_id` so a row can only ever be updated by its owner.
+
+7. **Password minimum aligned to 8** (`js/authCloudLifecycle.js`).
+   - The client Firebase path allowed 6-char passwords while the Worker (`hashPassword`) enforces 8. A Firebase user with a 6-char password could never complete Cloudflare migration. Both paths now require 8+.
+
+### Known remaining gaps (accepted / tracked)
+
+- **No email sender in the Worker**: Cloudflare-mode email verification and password recovery both depend on a sender that does not exist yet. Until `AUTH_PASSWORD_RECOVERY_SENDER` is backed by a real integration (Resend / SendGrid / Workers Email), Cloudflare-only deployments must rely on admin-issued migration/reset links for account recovery.
+- **Unreachable client-direct Identity Toolkit helpers**: `deleteFirebaseAuthUserById`, `listProjectAccountsByAccessToken`, `lookupProjectAccountsByEmails`, `sendProjectScopedOobCode` in `js/auth.js` are dead code (no callers). They send the *user's* idToken to Identity Toolkit admin endpoints and must not be wired up; admin operations should continue to go through the Worker (`verifyAdminCaller`). Remove them in a future cleanup pass.
+- **CORS default**: `resolveAllowedOrigin` falls back to `*` when `ALLOWED_ORIGINS` is unset. Bearer-token auth limits the practical risk, but production should set `ALLOWED_ORIGINS` to the site origin(s).
+- **Turnstile is optional**: `validateTurnstile` skips verification when `TURNSTILE_SECRET_KEY` is unset. Rate limits partially compensate; enable Turnstile for public registration in production.

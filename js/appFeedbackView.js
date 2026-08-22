@@ -21,6 +21,14 @@ export function formatFeedbackStatusLabel(status) {
   return "New";
 }
 
+export function formatFeedbackDifficultyLabel(difficulty) {
+  const value = String(difficulty || "").trim().toLowerCase();
+  if (value === "easy") return "Easy";
+  if (value === "medium") return "Medium";
+  if (value === "hard") return "Hard";
+  return value ? value.charAt(0).toUpperCase() + value.slice(1) : "";
+}
+
 export function formatSessionModeLabel(mode) {
   const value = String(mode || "").trim().toLowerCase();
   if (value === "practice") return "Practice";
@@ -82,6 +90,19 @@ export function buildFeedbackContextSummaryHtml(context = null, { escapeHtml = (
   }
   if (source?.sessionMode) {
     contextItems.push(`<div><span class="meta">Mode</span><strong>${escapeHtml(formatSessionModeLabel(source.sessionMode))}</strong></div>`);
+  }
+  if (source?.difficulty) {
+    contextItems.push(`<div><span class="meta">Difficulty</span><strong>${escapeHtml(formatFeedbackDifficultyLabel(source.difficulty))}</strong></div>`);
+  }
+  const sourceMetaParts = [
+    String(source?.sourceDocument || "").trim(),
+    String(source?.sourceSection || "").trim(),
+  ].filter(Boolean);
+  if (sourceMetaParts.length) {
+    contextItems.push(`<div><span class="meta">Source</span><strong>${escapeHtml(sourceMetaParts.join(" · "))}</strong></div>`);
+  }
+  if (source?.subcategoryName) {
+    contextItems.push(`<div><span class="meta">Subcategory</span><strong>${escapeHtml(source.subcategoryName)}</strong></div>`);
   }
 
   const previewHtml = source?.questionPreview
@@ -167,10 +188,34 @@ export function buildAdminFeedbackItemModel(entry = {}, {
   if (entry?.questionId) contextChips.push(`<span class="chip">Question ID: ${escapeHtml(entry.questionId)}</span>`);
   if (entry?.quizAttemptId) contextChips.push(`<span class="chip">Session ID: ${escapeHtml(entry.quizAttemptId)}</span>`);
   if (entry?.sessionMode) contextChips.push(`<span class="chip">Mode: ${escapeHtml(formatSessionModeLabel(entry.sessionMode))}</span>`);
+  if (entry?.difficulty) contextChips.push(`<span class="chip">Difficulty: ${escapeHtml(formatFeedbackDifficultyLabel(entry.difficulty))}</span>`);
+  if (entry?.subcategoryName) contextChips.push(`<span class="chip">${escapeHtml(entry.subcategoryName)}</span>`);
+  const sourceMetaParts = [
+    String(entry?.sourceDocument || "").trim(),
+    String(entry?.sourceSection || "").trim(),
+  ].filter(Boolean);
+  if (sourceMetaParts.length) {
+    contextChips.push(`<span class="chip">Source: ${escapeHtml(sourceMetaParts.join(" · "))}</span>`);
+  }
+  const clientInfo = entry?.clientInfo && typeof entry.clientInfo === "object" ? entry.clientInfo : {};
+  const clientParts = [
+    String(clientInfo.provider || "").trim(),
+    String(clientInfo.plan || "").trim(),
+    String(clientInfo.viewport || "").trim(),
+  ].filter(Boolean);
+  const clientInfoLine = clientParts.length
+    ? `<p class="admin-feedback-client-info" title="${escapeHtml(String(clientInfo.userAgent || ""))}">${escapeHtml(clientParts.join(" · "))}</p>`
+    : "";
+  const previewLine = entry?.questionPreview
+    ? `<p class="admin-feedback-preview admin-feedback-message-truncate" title="${escapeHtml(entry.questionPreview)}">${escapeHtml(entry.questionPreview)}</p>`
+    : "";
+  const scoreLine = entry?.scoreSummary
+    ? `<p class="admin-feedback-score">${escapeHtml(entry.scoreSummary)}</p>`
+    : "";
   return {
     feedbackId: String(entry?.feedbackId || ""),
     html: `
-      <div class="admin-feedback-head">
+      <div class="admin-feedback-row">
         <div class="admin-feedback-title-wrap">
           <h4 class="admin-feedback-title">${safeEmail}</h4>
           <p class="meta">${relativeLabel}</p>
@@ -180,20 +225,18 @@ export function buildAdminFeedbackItemModel(entry = {}, {
           <span class="admin-badge neutral">Category: ${escapeHtml(formatFeedbackCategoryLabel(entry?.category))}</span>
           <span class="admin-badge neutral">Source: ${escapeHtml(formatFeedbackSourceLabel(entry?.sourceScreen))}</span>
         </div>
+        <div class="admin-feedback-meta" title="${reviewedLabel}">${reviewedLabel}</div>
+        <div class="button-row compact-actions admin-feedback-actions">
+          <button class="btn btn-ghost btn-sm" data-feedback-id="${safeId}" data-feedback-status="in_review" type="button" ${entry?.status === "in_review" ? 'disabled aria-disabled="true"' : ""}>Mark In Review</button>
+          <button class="btn btn-ghost btn-sm" data-feedback-id="${safeId}" data-feedback-status="resolved" type="button" ${entry?.status === "resolved" ? 'disabled aria-disabled="true"' : ""}>Resolve</button>
+          <button class="btn btn-ghost btn-sm" data-feedback-id="${safeId}" data-feedback-status="dismissed" type="button" ${entry?.status === "dismissed" ? 'disabled aria-disabled="true"' : ""}>Dismiss</button>
+        </div>
       </div>
-      <div class="admin-feedback-message">
-        <p>${safeMessage}</p>
-      </div>
+      <p class="admin-feedback-message admin-feedback-message-truncate" title="${safeMessage}">${safeMessage}</p>
+      ${previewLine}
+      ${scoreLine}
       ${contextChips.length ? `<div class="chip-row admin-feedback-context-row">${contextChips.join("")}</div>` : ""}
-      <div class="admin-feedback-meta-grid">
-        <div><span class="meta">Created</span><strong>${createdLabel}</strong></div>
-        <div><span class="meta">Review</span><strong>${reviewedLabel}</strong></div>
-      </div>
-      <div class="button-row compact-actions admin-feedback-actions">
-        <button class="btn btn-secondary" data-feedback-id="${safeId}" data-feedback-status="in_review" type="button" ${entry?.status === "in_review" ? 'disabled aria-disabled="true"' : ""}>Mark In Review</button>
-        <button class="btn btn-primary" data-feedback-id="${safeId}" data-feedback-status="resolved" type="button" ${entry?.status === "resolved" ? 'disabled aria-disabled="true"' : ""}>Resolve</button>
-        <button class="btn btn-ghost" data-feedback-id="${safeId}" data-feedback-status="dismissed" type="button" ${entry?.status === "dismissed" ? 'disabled aria-disabled="true"' : ""}>Dismiss</button>
-      </div>
+      ${clientInfoLine}
     `,
   };
 }

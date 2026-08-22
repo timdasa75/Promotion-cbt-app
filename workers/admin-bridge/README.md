@@ -66,9 +66,15 @@ Notes:
    - `wrangler secret put GCP_SERVICE_ACCOUNT_EMAIL`
    - `wrangler secret put GCP_SERVICE_ACCOUNT_PRIVATE_KEY`
    - `wrangler secret put ADMIN_EMAILS`
-3. Deploy:
+3. Apply pending D1 migrations **before** deploying (new `feedback_submissions` columns
+   like `question_preview`, `difficulty`, `client_info` are added via migrations):
+   - `npx wrangler d1 migrations apply AUTH_DB --remote`
+   - or apply a specific file: `npx wrangler d1 execute AUTH_DB --remote --file=migrations/0002_feedback_context_columns.sql`
+   - Skipping this step causes every feedback submit to 500 (`no such column`) while
+     the route health check still reports the route as healthy.
+4. Deploy:
    - `wrangler deploy`
-4. Set `adminApiBaseUrl` in Promotion CBT runtime config to your worker URL.
+5. Set `adminApiBaseUrl` in Promotion CBT runtime config to your worker URL.
 
 ## Notes
 

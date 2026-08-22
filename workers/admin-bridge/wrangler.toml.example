@@ -23,9 +23,18 @@ FIREBASE_PROJECT_ID = "promotioncbt-app"
 # - GCP_SERVICE_ACCOUNT_PRIVATE_KEY
 # - FLW_SECRET_KEY
 # - FLW_WEBHOOK_SECRET_HASH
-# - SELAR_WEBHOOK_SECRET (shared secret required to call /payment/webhook/selar)
+# - SELAR_WEBHOOK_SECRET (shared secret for the Zapier bridge: Selar "New Sale"
+#   pushes to /payment/webhook/selar with x-selar-signature = this secret;
+#   unset = the route answers 503 and automation silently stops)
+# - SELAR_API_KEY (legacy Selar merchant API key for /payment/selar/verify;
+#   the polling endpoint does not exist — kept for the degraded path only)
+# - SELAR_API_BASE_URL (optional, defaults to https://api.selar.co/v2)
 # Optional hybrid-auth secret for later:
 # - TURNSTILE_SECRET_KEY
+# Optional flag: set AUTH_PASSWORD_RECOVERY_SENDER="true" only once a real
+# email sender (Resend/SendGrid/Workers Email) backs the recovery route.
+# Until then the /auth/password/request route honestly tells users to contact
+# an administrator instead of claiming instructions were emailed.
 
 # Optional D1 binding for the future hybrid auth rollout:
 # [[d1_databases]]

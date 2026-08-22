@@ -1,4 +1,24 @@
 import { getFlutterwavePublicKey } from "./authRuntime.js";
+import { showConfirm } from "./ui.js";
+
+// Load the Flutterwave inline SDK if not already present.
+function ensureFlutterwaveSdk() {
+  if (typeof window.FlutterwaveCheckout === "function") return Promise.resolve();
+  return new Promise((resolve, reject) => {
+    const existing = document.querySelector("script[src*='checkout.flutterwave.com']");
+    if (existing) {
+      existing.addEventListener("load", resolve, { once: true });
+      existing.addEventListener("error", reject, { once: true });
+      return;
+    }
+    const script = document.createElement("script");
+    script.src = "https://checkout.flutterwave.com/v3.js";
+    script.async = true;
+    script.onload = () => resolve();
+    script.onerror = () => reject(new Error("Failed to load Flutterwave SDK."));
+    document.head.appendChild(script);
+  });
+}
 import {
   getPaymentHistory,
   normalizePaymentReceipt,
@@ -20,9 +40,6 @@ const PLAN_LABELS = Object.freeze({
   "bi-annual": "Bi-Annual",
   annual: "Annual",
 });
-const FLUTTERWAVE_CHECKOUT_SCRIPT_URL = "https://checkout.flutterwave.com/v3.js";
-let flutterwaveCheckoutLoader = null;
-
 function normalizeCycle(value) {
   const cycle = String(value || "").trim().toLowerCase();
   return Object.prototype.hasOwnProperty.call(PLAN_PRICES, cycle) ? cycle : "";
@@ -72,57 +89,6 @@ function formatCheckoutCustomerName(user) {
     .trim();
   const email = String(user?.email || "").trim();
   return cleanedName || email || "Promotion CBT User";
-}
-
-export async function loadFlutterwaveCheckout({ timeoutMs = 12000 } = {}) {
-  if (typeof window.FlutterwaveCheckout === "function") {
-    return window.FlutterwaveCheckout;
-  }
-  if (flutterwaveCheckoutLoader) {
-    return flutterwaveCheckoutLoader;
-  }
-
-  flutterwaveCheckoutLoader = new Promise((resolve, reject) => {
-    let settled = false;
-    let intervalId = null;
-    let timeoutId = null;
-
-    const cleanup = () => {
-      if (intervalId) window.clearInterval(intervalId);
-      if (timeoutId) window.clearTimeout(timeoutId);
-    };
-    const resolveIfReady = () => {
-      if (typeof window.FlutterwaveCheckout !== "function") return false;
-      settled = true;
-      cleanup();
-      resolve(window.FlutterwaveCheckout);
-      return true;
-    };
-    const fail = () => {
-      if (settled || resolveIfReady()) return;
-      settled = true;
-      cleanup();
-      flutterwaveCheckoutLoader = null;
-      reject(new Error("Unable to load Flutterwave checkout. Check your internet connection or browser blockers, then try again."));
-    };
-
-    if (resolveIfReady()) return;
-
-    const script = document.createElement("script");
-    script.src = FLUTTERWAVE_CHECKOUT_SCRIPT_URL;
-    script.async = true;
-    script.dataset.flutterwaveCheckoutLoader = "true";
-    script.onload = () => {
-      if (!resolveIfReady()) fail();
-    };
-    script.onerror = fail;
-    document.head.appendChild(script);
-
-    intervalId = window.setInterval(resolveIfReady, 250);
-    timeoutId = window.setTimeout(fail, timeoutMs);
-  });
-
-  return flutterwaveCheckoutLoader;
 }
 
 export function buildReceiptHtml(receipt = {}) {
@@ -206,15 +172,188 @@ export function renderLocalPaymentHistory(email, container, { onReceipt = null }
   return receipts;
 }
 
-export async function handleFlutterwavePayment(cycle, {
-  user,
-  getAuthToken,
+// Flutterwave's hosted checkout is fronted by a Cloudflare WAF that blocks
+// URLs whose query params contain the literal hostname "localhost" (SSRF
+// protection). Local dev must therefore reference the app via 127.0.0.1 (or
+// [::1]) instead of localhost. Public/production origins pass through
+// untouched.
+export function wafSafeAppUrl(value) {
+  try {
+    const url = new URL(String(value || ""));
+    if (url.hostname.toLowerCase() === "localhost") {
+      url.hostname = "127.0.0.1";
+    }
+    return url.toString();
+  } catch (_) {
+    return String(value || "");
+  }
+}
+
+export function buildFlutterwaveCheckoutUrl({
+  publicKey,
+  txRef,
+  amount,
+  currency = "NGN",
+  planCycle = "",
+  user = null,
+  redirectUrl = "",
+}) {
+  const params = new URLSearchParams();
+  params.set("public_key", publicKey);
+  params.set("tx_ref", txRef);
+  params.set("amount", String(amount));
+  params.set("currency", String(currency || "NGN").trim().toUpperCase() || "NGN");
+  params.set("payment_options", "card");
+  if (redirectUrl) params.set("redirect_url", wafSafeAppUrl(redirectUrl));
+  const email = String(user?.email || "").trim().toLowerCase();
+  if (email) params.set("customer[email]", email);
+  params.set("customer[name]", formatCheckoutCustomerName(user));
+  params.set("customizations[title]", "Promotion CBT");
+  params.set("customizations[description]", `${formatPlanCycleLabel(planCycle)} Premium Access`);
+  // Only include logo URL when NOT on localhost — Flutterwave's WAF blocks
+  // URLs containing localhost/127.0.0.1 in the logo param, and local URLs
+  // are unreachable from Flutterwave's servers anyway.
+  const isLocalhost = /^(localhost|127\.0\.0\.1|\[::1\])$/i.test(window.location.hostname);
+  if (!isLocalhost) {
+    params.set("customizations[logo]", wafSafeAppUrl(`${window.location.origin}/assets/icons/promotion_cbt.png`));
+  }
+  if (user?.id) params.set("meta[userId]", String(user.id));
+  if (planCycle) params.set("meta[planCycle]", planCycle);
+  return `https://checkout.flutterwave.com/v3/hosted/pay?${params.toString()}`;
+}
+
+const PENDING_PAYMENT_RETURN_KEY = "promotion_cbt_pending_flw_return_v1";
+
+function planCycleFromTxRef(txRef) {
+  const match = String(txRef || "").match(/^promocbt_[a-zA-Z0-9-]{4,32}_([a-z-]+)_\d+_[a-z0-9]+$/i);
+  return match ? normalizeCycle(match[1]) : "";
+}
+
+function readPendingFlutterwavePaymentReturn() {
+  try {
+    const parsed = JSON.parse(window.localStorage.getItem(PENDING_PAYMENT_RETURN_KEY) || "null");
+    return parsed && parsed.txRef && parsed.transactionId
+      ? {
+          status: "successful",
+          txRef: String(parsed.txRef),
+          transactionId: String(parsed.transactionId),
+          planCycle: normalizeCycle(parsed.planCycle),
+        }
+      : null;
+  } catch (_) {
+    return null;
+  }
+}
+
+function savePendingFlutterwavePaymentReturn(ret) {
+  try {
+    window.localStorage.setItem(
+      PENDING_PAYMENT_RETURN_KEY,
+      JSON.stringify({
+        txRef: ret.txRef,
+        transactionId: ret.transactionId,
+        planCycle: ret.planCycle,
+      }),
+    );
+  } catch (_) {}
+}
+
+function clearPendingFlutterwavePaymentReturn() {
+  try {
+    window.localStorage.removeItem(PENDING_PAYMENT_RETURN_KEY);
+  } catch (_) {}
+}
+
+export function parseFlutterwavePaymentReturnParams(search = window.location.search) {
+  const params = new URLSearchParams(String(search || ""));
+  const status = String(params.get("status") || "").trim().toLowerCase();
+  const txRef = String(params.get("tx_ref") || "").trim();
+  const transactionId = String(params.get("transaction_id") || "").trim();
+  const planCycle = normalizeCycle(params.get("payment_cycle")) || planCycleFromTxRef(txRef);
+  // Accept entries with just a tx_ref (the webhook or poller can supply the transaction_id later).
+  if (!txRef) return null;
+  return { status, txRef, transactionId: transactionId || "", planCycle };
+}
+
+// Processes a Flutterwave redirect return (status/tx_ref/transaction_id in the
+// URL) or a pending return stored for a not-yet-logged-in user. Verifies the
+// transaction server-side, saves the receipt, and opens the receipt lightbox.
+// Returns false when there is nothing to process.
+export async function handleFlutterwavePaymentReturn({
+  getAuthToken = async () => "",
   showWarning = () => {},
   showSuccess = () => {},
   showError = () => {},
+  email = "",
   onVerified = null,
   onStartStudying = null,
 } = {}) {
+  let ret = parseFlutterwavePaymentReturnParams();
+  const fromUrl = Boolean(ret);
+  if (!ret) ret = readPendingFlutterwavePaymentReturn();
+  if (!ret) return false;
+
+  if (fromUrl) {
+    // Drop the payment params from the address bar so a refresh never
+    // re-verifies the same transaction.
+    try {
+      const url = new URL(window.location.href);
+      ["status", "tx_ref", "transaction_id", "payment_cycle"].forEach((key) =>
+        url.searchParams.delete(key),
+      );
+      window.history.replaceState({}, "", url.toString());
+    } catch (_) {}
+  }
+
+  if (ret.status && ret.status !== "successful" && ret.status !== "completed") {
+    clearPendingFlutterwavePaymentReturn();
+    showWarning("Payment was not completed. No charge was verified.");
+    return true;
+  }
+
+  const accessToken = String((await getAuthToken().catch(() => "")) || "");
+  const normalizedEmail = String(email || "").trim().toLowerCase();
+  if (!accessToken || !normalizedEmail) {
+    savePendingFlutterwavePaymentReturn(ret);
+    showWarning("Payment received. Log in to complete your Premium activation.");
+    return true;
+  }
+
+  clearPendingFlutterwavePaymentReturn();
+  try {
+    const result = await verifyFlutterwaveTransaction({
+      txRef: ret.txRef,
+      transactionId: ret.transactionId,
+      planCycle: ret.planCycle,
+      email: normalizedEmail,
+    }, accessToken);
+    const receipt = savePaymentReceipt(result.receipt || {
+      email: normalizedEmail,
+      amount: PLAN_PRICES[ret.planCycle] || 0,
+      currency: "NGN",
+      billingCycle: ret.planCycle,
+      status: "successful",
+      flwTransactionId: ret.transactionId,
+      flwTxRef: ret.txRef,
+    });
+    if (typeof onVerified === "function") await onVerified(result);
+    showSuccess("Payment verified. Premium access is active.");
+    openPaymentReceiptLightbox(receipt, { onStartStudying });
+    return true;
+  } catch (error) {
+    showError(error?.message || "Payment verification failed.");
+    return true;
+  }
+}
+
+// Starts the Flutterwave inline payment flow.  FlutterwaveCheckout() opens a
+// modal overlay on the current page; on success the callback fires, and we
+// verify server-side + open the receipt lightbox.
+//
+// NOTE: the hosted /v3/hosted/pay endpoint has getpaidSetup() commented out
+// for non-popup navigations, so window.location.assign() to that URL renders
+// a blank page.  The inline approach is the only reliable integration path.
+export async function handleFlutterwavePayment(cycle, { user, showWarning = () => {}, showSuccess = () => {}, showError = () => {}, getAuthToken = async () => "", onVerified = null } = {}) {
   const planCycle = normalizeCycle(cycle);
   if (!planCycle) {
     throw new Error("Select a valid plan before payment.");
@@ -224,70 +363,188 @@ export async function handleFlutterwavePayment(cycle, {
   if (!publicKey) {
     throw new Error("Flutterwave public key is not configured.");
   }
-  await loadFlutterwaveCheckout();
   const email = String(user?.email || "").trim().toLowerCase();
   if (!email) {
     showWarning("Login is required before payment.");
     throw new Error("Login is required before payment.");
   }
 
-  const txRef = buildTxRef(user?.id, planCycle);
-  return new Promise((resolve, reject) => {
-    window.FlutterwaveCheckout({
-      public_key: publicKey,
-      tx_ref: txRef,
-      amount,
-      currency: "NGN",
-      payment_options: "card",
-      customer: {
-        email,
-        name: formatCheckoutCustomerName(user),
-      },
-      meta: {
-        userId: String(user?.id || ""),
-        planCycle,
-      },
-      customizations: {
-        title: "Promotion CBT",
-        description: `${formatPlanCycleLabel(planCycle)} Premium Access`,
-        logo: `${window.location.origin}/assets/icons/promotion_cbt.png`,
-      },
-      callback: async (response) => {
-        try {
-          const transactionId = String(response?.transaction_id || response?.id || "").trim();
-          const status = String(response?.status || "").trim().toLowerCase();
-          if (status && status !== "successful" && status !== "completed") {
-            throw new Error("Flutterwave did not mark this payment as successful.");
-          }
-          const accessToken = await getAuthToken();
-          const result = await verifyFlutterwaveTransaction({
-            txRef,
-            transactionId,
-            planCycle,
-            email,
-          }, accessToken);
-          const receipt = savePaymentReceipt(result.receipt || {
-            email,
-            amount,
-            currency: "NGN",
-            billingCycle: planCycle,
-            status: "successful",
-            flwTransactionId: transactionId,
-            flwTxRef: txRef,
-          });
-          if (typeof onVerified === "function") await onVerified(result);
-          showSuccess("Payment verified. Premium access is active.");
-          openPaymentReceiptLightbox(receipt, { onStartStudying });
-          resolve(result);
-        } catch (error) {
-          showError(error?.message || "Payment verification failed.");
-          reject(error);
-        }
-      },
-      onclose: () => {
-        showWarning("Payment window closed. No charge was verified.");
-        resolve({ ok: false, closed: true });
-      },
-    });
+  // Show styled confirmation dialog before opening checkout
+  const confirmed = await showConfirm({
+    title: "Proceed to Payment",
+    message: `You are about to pay ₦${amount.toLocaleString()} for ${formatPlanCycleLabel(planCycle)} Premium Access. Do you want to continue?`,
+    okText: "Continue to Payment",
+    cancelText: "Cancel"
   });
+
+  if (!confirmed) {
+    throw new Error("Payment cancelled by user.");
+  }
+
+  const txRef = buildTxRef(user?.id, planCycle);
+
+  await ensureFlutterwaveSdk();
+
+  // Track whether the callback has already handled the result.
+  let callbackHandled = false;
+  let resolvePromise;
+  const resultPromise = new Promise((resolve, reject) => {
+    resolvePromise = resolve;
+    try {
+      /* global FlutterwaveCheckout */
+      FlutterwaveCheckout({
+        public_key: publicKey,
+        tx_ref: txRef,
+        amount,
+        currency: "NGN",
+        payment_options: "card",
+        customer: { email, name: formatCheckoutCustomerName(user) },
+        customizations: {
+          title: "Promotion CBT",
+          description: `${formatPlanCycleLabel(planCycle)} Premium Access`,
+        },
+        meta: {
+          userId: user?.id || "",
+          planCycle,
+        },
+        async callback(response) {
+          if (callbackHandled) return;
+          const flwRef = response?.tx?.flwRef || "";
+          const flwTxId = response?.tx?.id || "";
+          const status = response?.tx?.status || "";
+
+
+          // If the callback fired with empty data (SSL/network error in the
+          // checkout library's internal flow), don't mark as handled — let
+          // the recovery poller detect the grant via /payment/history.
+          if (!flwTxId && !status) {
+
+            return;
+          }
+
+          callbackHandled = true;
+          if (status === "successful" || status === "completed") {
+            try {
+              const token = await getAuthToken().catch(() => "");
+              if (!token) {
+                showError("Session expired. Please log in again to complete payment verification.");
+                resolve({ ok: false, txRef, error: "no_token" });
+                return;
+              }
+              const result = await verifyFlutterwaveTransaction({
+                txRef,
+                transactionId: String(flwTxId),
+                planCycle,
+                email,
+              }, token);
+
+              if (result?.receipt) openPaymentReceiptLightbox(result.receipt);
+              if (typeof onVerified === "function") await onVerified(result);
+              showSuccess("Payment verified. Premium access is active.");
+              resolve({ ok: true, txRef, result });
+            } catch (err) {
+
+              showError(err?.message || "Payment verification failed.");
+              resolve({ ok: false, txRef, error: err?.message });
+            }
+          } else {
+            showWarning("Payment was not completed.");
+            resolve({ ok: false, txRef, status });
+          }
+        },
+        onclose() {
+          if (callbackHandled) return;
+          callbackHandled = true;
+          showWarning("Payment window was closed.");
+          resolve({ ok: false, txRef, closed: true });
+        },
+      });
+    } catch (err) {
+      reject(err);
+    }
+  });
+
+  // ── Recovery poller ──────────────────────────────────────────────────
+  // When the callback fires with empty data (SSL error on events endpoint),
+  // verify the payment directly via /payment/verify using just the tx_ref.
+  // The Worker looks up the transaction by tx_ref in Flutterwave's API.
+  let verified = false;
+  const RECOVERY_POLL_INTERVAL = 5000;
+  const RECOVERY_POLL_MAX = 120000;
+  let elapsed = 0;
+  const pollTimer = setInterval(async () => {
+    if (callbackHandled || verified || elapsed >= RECOVERY_POLL_MAX) {
+      clearInterval(pollTimer);
+      return;
+    }
+    elapsed += RECOVERY_POLL_INTERVAL;
+    try {
+      const token = await getAuthToken().catch(() => "");
+      if (!token) return;
+
+      // First, check if the webhook already granted access.
+      const { getCurrentUserPaymentHistory } = await import("./paymentFlutterwaveService.js");
+      const histPayload = await getCurrentUserPaymentHistory(token);
+      const payments = Array.isArray(histPayload?.payments) ? histPayload.payments : [];
+      const match = payments.find((p) => p.flwTxRef === txRef);
+      if (match && (match.status === "successful" || match.status === "success")) {
+        // Verify the payment hasn't expired
+        const expiresAt = Date.parse(match.expiresAt || "");
+        if (expiresAt && expiresAt < Date.now()) {
+          // Payment expired, don't grant premium
+          callbackHandled = true;
+          clearInterval(pollTimer);
+          showWarning("Payment has expired. Please try again.");
+          resolve({ ok: false, txRef, error: "expired" });
+          return;
+        }
+        verified = true;
+        callbackHandled = true;
+        clearInterval(pollTimer);
+
+        const { normalizePaymentReceipt: norm } = await import("./paymentFlutterwaveService.js");
+        const normalized = norm(match);
+        openPaymentReceiptLightbox(normalized);
+        if (typeof onVerified === "function") await onVerified({ receipt: normalized });
+        showSuccess("Payment verified via recovery. Premium access is active.");
+        resolvePromise({ ok: true, txRef, result: { receipt: normalized } });
+        return;
+      }
+
+      // No history record yet — try direct verification via tx_ref.
+      // The Worker will look up the transaction in Flutterwave's API by tx_ref.
+
+      const { verifyFlutterwaveTransaction: verifyTx } = await import("./paymentFlutterwaveService.js");
+      const result = await verifyTx({
+        txRef,
+        transactionId: "",
+        planCycle,
+        email,
+      }, token);
+      if (result?.receipt) {
+        // Verify the payment hasn't expired
+        const expiresAt = Date.parse(result.receipt.expiresAt || "");
+        if (expiresAt && expiresAt < Date.now()) {
+          callbackHandled = true;
+          clearInterval(pollTimer);
+          showWarning("Payment has expired. Please try again.");
+          resolve({ ok: false, txRef, error: "expired" });
+          return;
+        }
+        verified = true;
+        callbackHandled = true;
+        clearInterval(pollTimer);
+
+        openPaymentReceiptLightbox(result.receipt);
+        if (typeof onVerified === "function") await onVerified(result);
+        showSuccess("Payment verified. Premium access is active.");
+        resolvePromise({ ok: true, txRef, result });
+      }
+    } catch (err) {
+
+    }
+  }, RECOVERY_POLL_INTERVAL);
+
+  resultPromise.then(() => clearInterval(pollTimer));
+  return resultPromise;
 }

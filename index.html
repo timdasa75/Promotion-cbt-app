@@ -9,18 +9,19 @@
         />
         <meta
             http-equiv="Content-Security-Policy"
-            content="default-src 'self'; script-src 'self' https://www.gstatic.com https://www.googleapis.com https://identitytoolkit.googleapis.com https://accounts.google.com https://checkout.flutterwave.com https://checkout-v3-ui-prod.f4b-flutterwave.com https://challenges.cloudflare.com; connect-src 'self' https://www.googleapis.com https://identitytoolkit.googleapis.com https://firestore.googleapis.com https://securetoken.googleapis.com https://accounts.google.com https://api.flutterwave.com https://api.ravepay.co https://checkout.flutterwave.com https://checkout-v3-ui-prod.f4b-flutterwave.com https://promotion-cbt-admin-bridge.promotioncbtadmin.workers.dev; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.gstatic.com https://accounts.google.com https://checkout.flutterwave.com https://checkout-v3-ui-prod.f4b-flutterwave.com https://app.9jabeats.com; frame-src 'self' https://accounts.google.com https://checkout.flutterwave.com https://checkout-v3-ui-prod.f4b-flutterwave.com https://challenges.cloudflare.com; object-src 'none'; base-uri 'self'; form-action 'self';"
+            content="default-src 'self'; script-src 'self' https://www.gstatic.com https://www.googleapis.com https://identitytoolkit.googleapis.com https://accounts.google.com https://checkout.flutterwave.com https://checkout-v3.flutterwave.com https://checkout-v3-ui-prod.f4b-flutterwave.com https://challenges.cloudflare.com; connect-src 'self' https://www.googleapis.com https://identitytoolkit.googleapis.com https://firestore.googleapis.com https://securetoken.googleapis.com https://accounts.google.com https://api.flutterwave.com https://api.ravepay.co https://checkout.flutterwave.com https://checkout-v3.flutterwave.com https://checkout-v3-ui-prod.f4b-flutterwave.com https://*.myflutterwave.com https://promotion-cbt-admin-bridge.promotioncbtadmin.workers.dev; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.gstatic.com https://accounts.google.com https://checkout.flutterwave.com https://checkout-v3.flutterwave.com https://checkout-v3-ui-prod.f4b-flutterwave.com https://app.9jabeats.com; frame-src 'self' https://accounts.google.com https://checkout.flutterwave.com https://checkout-v3.flutterwave.com https://checkout-v3-ui-prod.f4b-flutterwave.com https://challenges.cloudflare.com; object-src 'none'; base-uri 'self'; form-action 'self';"
         />
         <title>Promotion CBT</title>
 
         <!-- Social sharing -->
-        <meta property="og:title" content="Promotion CBT â€” Nigerian Civil Service Exam Prep" />
+        <meta property="og:title" content="Promotion CBT — Nigerian Civil Service Exam Prep" />
         <meta
             property="og:description"
             content="Master your Nigerian Federal Civil Service promotion exams with confidence. 10 core topics, timed mock exams, and spaced practice."
         />
         <meta property="og:type" content="website" />
         <meta name="theme-color" content="#1fa463" />
+        <meta name="referrer" content="same-origin" />
 
         <!-- Preconnect to external origins for faster initial connections -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -211,7 +212,7 @@
                     </div>
                     <div class="card topic-toolbar-shell">
                         <div class="toolbar-row topic-toolbar">
-                            <label class="search-wrap topic-search-wrap" for="topicSearch"><span class="search-glyph" aria-hidden="true">&#128269;</span><input id="topicSearch" type="search" placeholder="Search topics, laws, competencies" /></label>
+                            <div class="search-wrap topic-search-wrap"><span class="search-glyph" aria-hidden="true">&#128269;</span><input id="topicSearch" type="search" placeholder="Search topics, laws, competencies" aria-label="Search topics, laws, competencies" /><button class="search-clear" type="button" aria-label="Clear search" title="Clear search">&#10005;</button></div>
                             <div class="chip-row topic-filter-row" role="group" aria-label="Topic filters">
                                 <button class="chip active" id="filterAllBtn" type="button">All</button>
                                 <button class="chip" id="filterDocumentBtn" type="button">Document-based</button>
@@ -226,6 +227,19 @@
                         <div class="card-container" id="topicList">
                             <div class="loading-skeleton-grid" aria-hidden="true"><div class="skeleton-card"></div><div class="skeleton-card"></div><div class="skeleton-card"></div><div class="skeleton-card"></div></div>
                             <div class="loading">Loading topics...</div>
+                        </div>
+                    </div>
+                    <div class="card bookmark-manager-shell hidden" id="bookmarkManagerShell">
+                        <div class="section-head screen-header">
+                            <h2>Bookmarked Questions</h2>
+                            <p id="bookmarkManagerCount">0 questions saved for later review.</p>
+                        </div>
+                        <div class="bookmark-manager-list" id="bookmarkManagerList">
+                            <p class="empty-state">No bookmarked questions yet. Use the bookmark button (B) during a quiz to save questions here.</p>
+                        </div>
+                        <div class="button-row">
+                            <button class="btn btn-primary" id="startBookmarkReviewBtn" type="button">Review All Bookmarked</button>
+                            <button class="btn btn-ghost" id="clearBookmarksBtn" type="button">Clear All</button>
                         </div>
                     </div>
                     <div class="card dashboard-utility-shell">
@@ -446,6 +460,12 @@
                                         <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
                                     </svg>
                                 </button>
+                                <button class="btn btn-ghost" id="bookmarkQuestionBtn" title="Bookmark for Later (B)" aria-label="Bookmark Question" type="button">
+                                    <svg viewBox="0 0 24 24" class="toolbar-icon" aria-hidden="true" fill="currentColor">
+                                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="1" fill="none"/>
+                                    </svg>
+                                    <span class="bookmark-badge hidden" id="bookmarkBadge">0</span>
+                                </button>
                                 <button class="btn btn-ghost hidden" id="openQuizFeedbackBtn" type="button">Report Question</button>
                                 <button class="btn btn-destructive hidden" id="endExamBtn" type="button">End Exam</button>
                             </div>
@@ -570,18 +590,13 @@
                             <div class="setting-row profile-theme-row"><span>Theme</span><button class="btn btn-ghost" data-theme-action="toggle" type="button">Toggle Light/Dark</button></div>
                         </article>
                         <article class="card profile-card profile-data-card">
-                            <div class="section-head profile-section-head">
-                                <h2>Privacy and Data</h2>
-                                <p class="hero-meta" id="profileCloudSyncStatus">Cloud sync: Sign in to enable multi-device progress.</p>
-                            </div>
-                            <p class="inline-warning" id="profileDataStorageHint">Progress data is stored locally in this browser.</p>
-                            <button class="btn btn-secondary hidden" id="syncProgressNowBtn" type="button">Retry Sync</button>
-                            <div class="profile-upgrade-shell">
+                            <div class="profile-upgrade-shell" id="profileUpgradeShell">
                                 <div class="profile-upgrade-head">
-                                    <h3>Selar Payment Confirmation</h3>
-                                    <p>After paying on Selar, submit your order reference for admin activation.</p>
+                                    <h3 id="profileUpgradeTitle">Payment Confirmation</h3>
+                                    <p id="profileUpgradeSubtitle">Complete your payment to activate Premium access.</p>
                                 </div>
-                                <div class="profile-upgrade-form">
+                                <!-- Selar form (hidden when Flutterwave is active) -->
+                                <div class="profile-upgrade-form" id="selarUpgradeForm">
                                     <div class="auth-form profile-upgrade-fields">
                                         <label class="auth-field">
                                             <span>Selar Order Reference</span>
@@ -602,7 +617,18 @@
                                         <button class="btn btn-secondary" id="submitUpgradeEvidenceBtn" type="button">Submit Selar Confirmation</button>
                                     </div>
                                 </div>
+                                <!-- Flutterwave upgrade button (hidden when Selar is active) -->
+                                <div class="profile-upgrade-form" id="flutterwaveUpgradeForm" style="display:none;">
+                                    <p class="hero-meta">Upgrade to Premium to unlock all practice topics, detailed analytics, and priority support.</p>
+                                    <div class="button-row profile-upgrade-actions">
+                                        <button class="btn btn-primary" id="profileUpgradeBtn" type="button">Upgrade to Premium</button>
+                                    </div>
+                                </div>
                                 <div id="profileUpgradeStatus" class="admin-request-item hidden"></div>
+                            </div>
+                            <div class="payment-history-section" id="profilePaymentSection" style="display:none;">
+                                <h3>Payment History</h3>
+                                <div id="profilePaymentList" class="payment-history-list"></div>
                             </div>
                         </article>
                     </div>
@@ -644,15 +670,18 @@
                     <div class="card admin-head-card">
                         <div class="section-head screen-header">
                             <h2>Admin Panel</h2>
-                            <p>Selar payment confirmations and plan controls.</p>
+                            <p>Payment verification, plan controls, and user management.</p>
                         </div>
                         <p class="inline-warning">This panel is for configured admin emails only.</p>
                     </div>
-                    <div class="admin-stack admin-grid admin-content-led">
+                    <div class="admin-groups">
+                        <section class="admin-group" aria-labelledby="adminGroupAccessTitle">
+                            <h3 class="admin-group-title" id="adminGroupAccessTitle">Payments &amp; Access</h3>
+                            <div class="admin-grid">
                         <article class="card admin-section-card admin-plan-card">
-                            <div class="section-head screen-header">
+                            <div class="admin-card-head">
                                 <h3>Plan Override</h3>
-                                <p class="eyebrow">Apply immediate access updates</p>
+                                <span class="admin-count" id="adminOverrideCount">0</span>
                             </div>
                             <div class="plan-override-row">
                                 <label class="auth-field">
@@ -671,15 +700,15 @@
                             <div id="adminOverrideList" class="mistake-list"></div>
                         </article>
                         <article class="card admin-section-card admin-requests-card">
-                            <div class="section-head screen-header">
+                            <div class="admin-card-head">
                                 <h3>Selar Upgrade Requests</h3>
-                                <p class="eyebrow">Hosted checkout confirmations</p>
+                                <span class="admin-count" id="adminRequestCount">0/0</span>
                             </div>
-                            <p class="hero-meta" id="adminRequestCount">Requests: 0/0</p>
                             <div class="toolbar-row admin-request-toolbar">
-                                <label class="search-wrap" for="adminRequestSearch">
-                                    <input id="adminRequestSearch" type="search" placeholder="Search email, reference, note" />
-                                </label>
+                                <div class="search-wrap">
+                                    <input id="adminRequestSearch" type="search" placeholder="Search email, reference, note" aria-label="Search email, reference, note" />
+                                    <button class="search-clear" type="button" aria-label="Clear search" title="Clear search">&#10005;</button>
+                                </div>
                                 <select id="adminRequestStatusFilter" aria-label="Filter request status">
                                     <option value="all">All Statuses</option>
                                     <option value="pending">Pending</option>
@@ -696,19 +725,16 @@
                             <div id="adminRequestList" class="mistake-list"></div>
                         </article>
                         <article class="card admin-section-card admin-users-card">
-                            <div class="section-head screen-header">
+                            <div class="admin-card-head">
                                 <h3>Users and Account Status</h3>
-                                <p>Exclusive directory view for administrator accounts.</p>
-                            </div>
-                            <div class="hero-meta-row">
-                                <p class="hero-meta" id="adminUserSource">Source: loading...</p>
-                                <p class="hero-meta" id="adminUserCount">Users: 0</p>
+                                <span class="admin-count" id="adminUserCount">0</span>
                             </div>
                             <p class="inline-warning hidden" id="adminUserDirectoryNotice"></p>
                             <div class="toolbar-row admin-user-toolbar">
-                                <label class="search-wrap" for="adminUserSearch">
-                                    <input id="adminUserSearch" type="search" placeholder="Search user email" />
-                                </label>
+                                <div class="search-wrap">
+                                    <input id="adminUserSearch" type="search" placeholder="Search user email" aria-label="Search user email" />
+                                    <button class="search-clear" type="button" aria-label="Clear search" title="Clear search">&#10005;</button>
+                                </div>
                                 <select id="adminStatusFilter" aria-label="Filter user status">
                                     <option value="all">Status</option>
                                     <option value="active">Active</option>
@@ -723,20 +749,23 @@
                                 <button class="btn btn-secondary" id="refreshAdminUsersBtn" type="button">Refresh</button>
                             </div>
                             <div id="adminUserList" class="mistake-list"></div>
+                            </div>
                         </article>
+                        </section>
+                        <section class="admin-group" aria-labelledby="adminGroupSupportTitle">
+                            <h3 class="admin-group-title" id="adminGroupSupportTitle">Support &amp; Audit</h3>
+                            <div class="admin-grid">
                         <article class="card admin-section-card admin-feedback-card">
-                            <div class="section-head screen-header">
+                            <div class="admin-card-head">
                                 <h3>Feedback Inbox</h3>
-                                <p>Review app suggestions, bug reports, and question issues from cloud users.</p>
+                                <span class="admin-count" id="adminFeedbackCount">0/0</span>
                             </div>
                             <p class="inline-warning hidden" id="adminFeedbackNotice"></p>
-                            <div class="hero-meta-row">
-                                <p class="hero-meta" id="adminFeedbackCount">Feedback: 0/0</p>
-                            </div>
                             <div class="toolbar-row admin-feedback-toolbar">
-                                <label class="search-wrap" for="adminFeedbackSearch">
-                                    <input id="adminFeedbackSearch" type="search" placeholder="Search email, message, topic, question id" />
-                                </label>
+                                <div class="search-wrap">
+                                    <input id="adminFeedbackSearch" type="search" placeholder="Search email, message, topic, question id" aria-label="Search email, message, topic, question id" />
+                                    <button class="search-clear" type="button" aria-label="Clear search" title="Clear search">&#10005;</button>
+                                </div>
                                 <select id="adminFeedbackStatusFilter" aria-label="Filter feedback status">
                                     <option value="all">All Statuses</option>
                                     <option value="new">New</option>
@@ -762,16 +791,17 @@
                             <div id="adminFeedbackList" class="mistake-list"></div>
                         </article>
                         <article class="card admin-section-card admin-history-card">
-                            <div class="section-head screen-header">
+                            <div class="admin-card-head">
                                 <h3>Operations History</h3>
-                                <p>Recent admin actions and outcomes on this device.</p>
-                            </div>
-                            <div class="hero-meta-row admin-history-toolbar">
-                                <p class="hero-meta" id="adminOperationHistoryCount">Entries: 0</p>
-                                <button class="btn btn-ghost" id="clearAdminOperationHistoryBtn" type="button">Clear History</button>
+                                <div class="admin-card-actions">
+                                    <span class="admin-count" id="adminOperationHistoryCount">0</span>
+                                    <button class="btn btn-ghost btn-sm" id="clearAdminOperationHistoryBtn" type="button">Clear</button>
+                                </div>
                             </div>
                             <div id="adminOperationHistoryList" class="mistake-list"></div>
+                            </div>
                         </article>
+                        </section>
                     </div>
                     <div class="button-row compact-actions analytics-actions admin-actions support-screen-actions">
                         <button class="btn btn-ghost" data-screen-target="topicSelectionScreen" type="button">Back</button>
@@ -788,7 +818,7 @@
                 <div class="section-head screen-header">
                     <h2 id="authModalTitle">Access Promotion CBT</h2>
                     <p id="authModalIntro">Register or login with your email to continue.</p>
-                    <p class="hero-meta" id="authModeHint">Auth mode: Local (single-device)</p>
+                    <p class="hero-meta hidden" id="authModeHint">Auth mode: Local (single-device)</p>
                 </div>
                 <div class="chip-row auth-tabs" role="tablist" aria-label="Authentication tabs">
                     <button class="chip active" id="authTabLogin" type="button">Login</button>
@@ -1015,7 +1045,7 @@
                     <div class="pricing-card popular" data-plan-cycle="monthly">
                         <div class="plan-badge">Launch Plan</div>
                         <div class="plan-name">Monthly</div>
-                        <div class="plan-price">â‚¦2,500</div>
+                        <div class="plan-price">₦2,500</div>
                         <div class="plan-meta">Per Month</div>
                         <button class="btn btn-primary select-plan-btn">Pay Monthly on Selar</button>
                     </div>
@@ -1051,5 +1081,40 @@
                 </div>
             </div>
         </div>
+
+        <!-- Password Reset Screen -->
+        <section id="resetPasswordScreen" class="screen hidden">
+            <div class="auth-modal" style="display:flex;align-items:center;justify-content:center;min-height:100vh;">
+                <div class="auth-modal-card">
+                    <h2 style="margin-bottom:8px;">Reset Your Password</h2>
+                    <p id="resetPasswordMessage" style="margin-bottom:20px;color:var(--ink-600);">Enter your new password below.</p>
+                    <form id="resetPasswordForm" class="auth-form">
+                        <label class="auth-field">
+                            <span>New Password</span>
+                            <div class="password-field">
+                                <input id="resetNewPassword" type="password" minlength="8" autocomplete="new-password" required />
+                                <button class="password-toggle-btn" type="button" data-target="resetNewPassword" aria-label="Show password" title="Show password">
+                                    <span class="password-toggle-icon" aria-hidden="true"></span>
+                                </button>
+                            </div>
+                        </label>
+                        <label class="auth-field">
+                            <span>Confirm Password</span>
+                            <div class="password-field">
+                                <input id="resetConfirmPassword" type="password" minlength="8" autocomplete="new-password" required />
+                                <button class="password-toggle-btn" type="button" data-target="resetConfirmPassword" aria-label="Show password" title="Show password">
+                                    <span class="password-toggle-icon" aria-hidden="true"></span>
+                                </button>
+                            </div>
+                        </label>
+                        <div id="resetPasswordError" class="auth-message hidden"></div>
+                        <button class="btn btn-primary" type="submit" style="width:100%;">Reset Password</button>
+                    </form>
+                    <p style="margin-top:16px;text-align:center;">
+                        <button class="btn btn-ghost" id="resetPasswordBackBtn" type="button">Back to Login</button>
+                    </p>
+                </div>
+            </div>
+        </section>
     </body>
 </html>

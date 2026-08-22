@@ -7,6 +7,7 @@ import {
   getCurrentUserUpgradeRequest,
   setUpgradeRequestStatus,
   submitUpgradeRequest,
+  verifySelarPayment,
 } from "../../js/authUpgradeService.js";
 
 test("ensureCloudProfileInSession upserts profile and persists updated session", async () => {
@@ -139,4 +140,104 @@ test("getCurrentUserUpgradeRequest falls back to email lookup", async () => {
 
   assert.equal(result.id, "req-1");
   assert.equal(result.status, "pending");
+});
+
+test("verifySelarPayment reports a verified grant from the worker", async () => {
+  const result = await verifySelarPayment(
+    { reference: "SELAR-ORD-1", billingCycle: "monthly" },
+    {
+      cloudAuthEnabled: true,
+      currentUser: { email: "buyer@example.com" },
+      session: { provider: "cloudflare", accessToken: "token-1" },
+      refreshSession: async () => ({ accessToken: "token-2" }),
+    },
+    {
+      verifyViaApi: async (path, body, token) => ({
+        verified: true,
+        plan: "premium",
+        billingCycle: "monthly",
+        expiresAt: "2026-09-01T00:00:00Z",
+        warning: "Your Selar payment was verified.",
+      }),
+      now: () => "2026-08-08T00:00:00Z",
+    },
+  );
+
+  assert.equal(result.verified, true);
+  assert.equal(result.plan, "premium");
+  assert.equal(result.expiresAt, "2026-09-01T00:00:00Z");
+  assert.equal(result.verifiedAt, "2026-08-08T00:00:00Z");
+});
+
+test("verifySelarPayment falls back when the worker cannot confirm the order", async () => {
+  const result = await verifySelarPayment(
+    { reference: "SELAR-ORD-1", billingCycle: "monthly" },
+    {
+      cloudAuthEnabled: true,
+      currentUser: { email: "buyer@example.com" },
+      session: { provider: "cloudflare", accessToken: "token-1" },
+      refreshSession: async () => ({ accessToken: "token-2" }),
+    },
+    {
+      verifyViaApi: async () => ({
+        verified: false,
+        reason: "order_not_found",
+        warning: "We could not find this order on Selar yet.",
+      }),
+      now: () => "2026-08-08T00:00:00Z",
+    },
+  );
+
+  assert.equal(result.verified, false);
+  assert.equal(result.reason, "order_not_found");
+  assert.match(result.warning, /order on Selar/);
+});
+
+test("verifySelarPayment requires a valid reference and cycle", async () => {
+  const noReference = await verifySelarPayment(
+    { reference: "", billingCycle: "monthly" },
+    {
+      cloudAuthEnabled: true,
+      currentUser: { email: "buyer@example.com" },
+      session: { provider: "cloudflare", accessToken: "token-1" },
+      refreshSession: async () => ({ accessToken: "token-2" }),
+    },
+    { verifyViaApi: async () => ({ verified: true }) },
+  );
+  assert.equal(noReference.verified, false);
+  assert.equal(noReference.reason, "missing-reference");
+
+  const noCycle = await verifySelarPayment(
+    { reference: "SELAR-ORD-1", billingCycle: "" },
+    {
+      cloudAuthEnabled: true,
+      currentUser: { email: "buyer@example.com" },
+      session: { provider: "cloudflare", accessToken: "token-1" },
+      refreshSession: async () => ({ accessToken: "token-2" }),
+    },
+    { verifyViaApi: async () => ({ verified: true }) },
+  );
+  assert.equal(noCycle.verified, false);
+  assert.equal(noCycle.reason, "missing-cycle");
+});
+
+test("verifySelarPayment survives worker request failures without throwing", async () => {
+  const result = await verifySelarPayment(
+    { reference: "SELAR-ORD-1", billingCycle: "monthly" },
+    {
+      cloudAuthEnabled: true,
+      currentUser: { email: "buyer@example.com" },
+      session: { provider: "cloudflare", accessToken: "token-1" },
+      refreshSession: async () => ({ accessToken: "token-2" }),
+    },
+    {
+      verifyViaApi: async () => {
+        const error = new Error("Worker unavailable.");
+        throw error;
+      },
+    },
+  );
+
+  assert.equal(result.verified, false);
+  assert.equal(result.reason, "request-failed");
 });

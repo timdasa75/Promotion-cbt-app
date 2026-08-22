@@ -1,3 +1,8 @@
+import {
+  sendVerificationEmail,
+  sendPasswordResetEmail,
+} from "./email-sender.js";
+
 const PASSWORD_HASH_ITERATIONS = 100000;
 const PASSWORD_HASH_ALGORITHM = "pbkdf2_sha256";
 const PASSWORD_SALT_BYTES = 16;
@@ -21,6 +26,24 @@ async function createVerificationChallenge(database, userId, request, env, body 
   const tokenResult = await issueEmailToken(database, String(userId || ""), "verify_email", env);
   const allowManualLink = isManualVerificationLinkAllowed(env);
   const verificationUrl = allowManualLink ? buildEmailVerificationUrl(request, tokenResult.token, body) : "";
+  
+  // Send verification email if email sending is configured
+  if (env.RESEND_API_KEY && body?.email) {
+    try {
+      const baseUrl = String(body?.baseUrl || body?.continueUrl || request.headers.get("origin") || "").trim();
+      if (baseUrl && tokenResult.token) {
+        await sendVerificationEmail(env, {
+          email: body.email,
+          name: body.name || "",
+          token: tokenResult.token,
+          baseUrl,
+        });
+      }
+    } catch (error) {
+      console.error("Failed to send verification email:", error);
+    }
+  }
+  
   return {
     expiresAt: tokenResult.expiresAt,
     verificationUrl,
@@ -492,6 +515,40 @@ export async function handleAuthVerificationComplete(request, env) {
   };
 }
 
+export async function handleAuthPasswordResetComplete(request, env) {
+  const database = requireAuthDatabase(env);
+  const body = await readJsonBody(request);
+  const token = String(body?.token || '').trim();
+  const password = String(body?.password || '');
+  if (!token) {
+    throw createHttpError(400, 'Reset token is required.');
+  }
+  if (!password || password.length < 8) {
+    throw createHttpError(400, 'Password must be at least 8 characters.');
+  }
+
+  const record = await readEmailTokenRecord(database, token, 'password_reset');
+  const passwordHash = await hashPassword(password);
+  const nowIso = new Date().toISOString();
+
+  await database
+    .prepare('UPDATE auth_users SET password_hash = ?2, updated_at = ?3 WHERE id = ?1')
+    .bind(String(record.user_id || record.id || ''), passwordHash, nowIso)
+    .run();
+
+  await consumeEmailToken(database, record.token_id);
+  const session = await issueSession(database, String(record.user_id || record.id || ''), request, env);
+  const user = await getAuthUserById(database, String(record.user_id || record.id || ''));
+
+  return {
+    ok: true,
+    mode: 'cloudflare-auth',
+    user: buildPublicAuthUser(user),
+    session,
+    warning: 'Password reset successfully. You are now signed in.',
+  };
+}
+
 export async function handleAuthPasswordChange(request, env) {
   const database = requireAuthDatabase(env);
   const sessionToken = parseBearerToken(request);
@@ -523,14 +580,14 @@ export async function handleAuthPasswordChange(request, env) {
   };
 }
 
-const RATE_LIMIT = {
+export const RATE_LIMIT = {
   LOGIN_EMAIL: { type: "login_email", max: 5, windowSec: 300 },
   LOGIN_IP: { type: "login_ip", max: 20, windowSec: 300 },
   REGISTER_IP: { type: "register_ip", max: 5, windowSec: 3600 },
   RECOVERY_IP: { type: "recovery_ip", max: 3, windowSec: 900 },
 };
 
-async function checkRateLimit(database, bucketKey, bucketType, maxAttempts, windowSec) {
+export async function checkRateLimit(database, bucketKey, bucketType, maxAttempts, windowSec) {
   const now = Date.now();
   const row = await database
     .prepare("SELECT window_started_at, count FROM auth_rate_limits WHERE bucket_key = ?1")
@@ -908,6 +965,7 @@ export async function handleAuthGoogle(request, env) {
   if (!email || !email.includes("@")) {
     throw createHttpError(400, "Google account does not have a valid email.");
   }
+  const googleVerified = Boolean(decoded.emailVerified);
 
   let user = await getAuthUserByEmail(database, email);
   const nowIso = new Date().toISOString();
@@ -916,8 +974,9 @@ export async function handleAuthGoogle(request, env) {
     if (String(user.status || "active").toLowerCase() !== "active") {
       throw createHttpError(403, "This account is not active.");
     }
-    // If user exists, but wasn't verified, mark them verified since Google has verified their email
-    if (!Number(user.email_verified || 0)) {
+    if (!Number(user.email_verified || 0) && googleVerified) {
+      // Only mark the email verified when Google confirms it (email_verified
+      // claim true). Never assume verification from an unverified Google email.
       await database
         .prepare("UPDATE auth_users SET email_verified = 1, last_login_at = ?2, updated_at = ?2 WHERE id = ?1")
         .bind(user.id, nowIso)
@@ -946,9 +1005,9 @@ export async function handleAuthGoogle(request, env) {
           created_at,
           updated_at,
           last_login_at
-        ) VALUES (?1, ?2, '', 'user', 'free', 'active', 1, 'google', ?3, ?4, ?4, ?4)
+        ) VALUES (?1, ?2, '', 'user', 'free', 'active', ?5, 'google', ?3, ?4, ?4, ?4)
       `)
-      .bind(userId, email, decoded.sub, nowIso)
+      .bind(userId, email, decoded.sub, nowIso, googleVerified ? 1 : 0)
       .run();
     user = await getAuthUserById(database, userId);
   }
@@ -971,6 +1030,7 @@ export function resolveHybridAuthRouteHandler(path) {
   if (path.endsWith("/auth/session")) return handleAuthSession;
   if (path.endsWith("/auth/logout")) return handleAuthLogout;
   if (path.endsWith("/auth/password/change")) return handleAuthPasswordChange;
+  if (path.endsWith("/auth/password/complete")) return handleAuthPasswordResetComplete;
   if (path.endsWith("/auth/migration/resolve")) return handleAuthMigrationResolve;
   if (path.endsWith("/auth/migration/complete")) return handleAuthMigrationComplete;
   if (path.endsWith("/auth/verification/resend")) return handleAuthVerificationResend;

@@ -72,6 +72,12 @@ test("submitFeedbackSubmission normalizes payload and stores cooldown", async ()
       questionId: "psr-001",
       quizAttemptId: "attempt-1",
       sessionMode: "EXAM",
+      questionPreview: "What is the primary objective?",
+      difficulty: "HARD",
+      sourceDocument: "Civil Service Handbook",
+      sourceSection: "Chapter 4",
+      subcategoryName: "Ethics",
+      clientInfo: { provider: "firebase", plan: "free", viewport: "1280x720", userAgent: "Mozilla/5.0" },
     },
     {
       cloudAuthEnabled: true,
@@ -101,6 +107,16 @@ test("submitFeedbackSubmission normalizes payload and stores cooldown", async ()
   assert.equal(writes[0].feedback.email, "user@example.com");
   assert.equal(writes[0].feedback.category, "question_issue");
   assert.equal(writes[0].feedback.sessionMode, "exam");
+  assert.equal(writes[0].feedback.questionPreview, "What is the primary objective?");
+  assert.equal(writes[0].feedback.difficulty, "hard");
+  assert.equal(writes[0].feedback.sourceDocument, "Civil Service Handbook");
+  assert.equal(writes[0].feedback.subcategoryName, "Ethics");
+  assert.deepEqual(writes[0].feedback.clientInfo, {
+    provider: "firebase",
+    plan: "free",
+    viewport: "1280x720",
+    userAgent: "Mozilla/5.0",
+  });
   assert.equal(storage.getItem(getFeedbackCooldownStorageKey("u1")), "2026-04-03T10:00:00.000Z");
 });
 

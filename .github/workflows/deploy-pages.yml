@@ -43,6 +43,26 @@ jobs:
       - name: Run unit tests
         run: npm run test:unit
 
+      - name: Check deployed Worker routes and payment secrets (frontend/backend drift)
+        env:
+          WORKER_BASE_URL: ${{ secrets.CLOUDFLARE_AUTH_BASE_URL }}
+          # When a wrangler-scoped token exists, the route check also verifies
+          # the payment-provider secrets (SELAR_API_KEY, SELAR_WEBHOOK_SECRET,
+          # FLW_SECRET_KEY, FLW_WEBHOOK_SECRET_HASH) are deployed, so a
+          # silently unkeyed Selar or Flutterwave auto-grant path fails CI;
+          # without the token the secret checks are skipped, so CI stays green.
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          if [ -n "${WORKER_BASE_URL}" ]; then
+            if [ -n "${CLOUDFLARE_API_TOKEN}" ]; then
+              npm run check:worker-routes -- --check-selar-key --check-flutterwave-key
+            else
+              npm run check:worker-routes
+            fi
+          else
+            echo "CLOUDFLARE_AUTH_BASE_URL secret not set; skipping Worker route check."
+          fi
+
       - name: Install Playwright browser
         run: npx playwright install --with-deps chromium
 
@@ -72,11 +92,14 @@ jobs:
           CLOUDFLARE_AUTH_BASE_URL: ${{ secrets.CLOUDFLARE_AUTH_BASE_URL }}
           PAYMENT_PROVIDER: ${{ vars.PAYMENT_PROVIDER }}
           SELAR_MONTHLY_CHECKOUT_URL: ${{ secrets.SELAR_MONTHLY_CHECKOUT_URL }}
+          FLUTTERWAVE_PUBLIC_KEY: ${{ secrets.FLUTTERWAVE_PUBLIC_KEY }}
           ADMIN_EMAILS: ${{ secrets.ADMIN_EMAILS }}
         run: |
           cat > config/runtime-auth.js <<EOF
           // Generated during GitHub Pages deploy. Do not commit live values.
-          window.PROMOTION_CBT_AUTH = {
+          // Guarded so test runners and tools can inject an override config
+          // before this module loads (same pattern as the local template).
+          window.PROMOTION_CBT_AUTH = window.PROMOTION_CBT_AUTH || {
             // Keep Firebase as the public auth/email provider until a transactional
             // email sender is configured for Cloudflare auth.
             authProvider: "firebase",
@@ -92,6 +115,10 @@ jobs:
               default: "${SELAR_MONTHLY_CHECKOUT_URL}",
               monthly: "${SELAR_MONTHLY_CHECKOUT_URL}",
             },
+            // Dormant until PAYMENT_PROVIDER=flutterwave; public key is safe to
+            // ship (the secret key lives only in Worker secrets).
+            flutterwavePublicKey: "${FLUTTERWAVE_PUBLIC_KEY}",
+            flutterwaveWebhookUrl: "${CLOUDFLARE_AUTH_BASE_URL}/payment/webhook/flutterwave",
             adminEmails: "${ADMIN_EMAILS}".split(",").map((email) => email.trim()).filter(Boolean),
           };
           EOF

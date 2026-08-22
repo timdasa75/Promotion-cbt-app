@@ -87,7 +87,7 @@
           "icon": "📰"
         }
       ],
-      "questionCount": 1443
+      "questionCount": 1466
     },
     {
       "id": "financial_regulations",
@@ -122,7 +122,7 @@
           "icon": "💼"
         }
       ],
-      "questionCount": 419
+      "questionCount": 422
     },
     {
       "id": "procurement_act",
@@ -163,7 +163,7 @@
           "icon": "🔍"
         }
       ],
-      "questionCount": 430
+      "questionCount": 500
     },
     {
       "id": "constitutional_law",
@@ -210,7 +210,7 @@
           "icon": "📂"
         }
       ],
-      "questionCount": 559
+      "questionCount": 600
     },
     {
       "id": "civil_service_admin",
@@ -299,7 +299,7 @@
           "icon": "🎯"
         }
       ],
-      "questionCount": 1465
+      "questionCount": 1463
     },
     {
       "id": "leadership_management",
@@ -346,7 +346,7 @@
           "icon": "⚖️"
         }
       ],
-      "questionCount": 554
+      "questionCount": 600
     },
     {
       "id": "ict_management",
@@ -381,7 +381,7 @@
           "icon": "💡"
         }
       ],
-      "questionCount": 325
+      "questionCount": 600
     },
     {
       "id": "policy_analysis",
@@ -416,7 +416,7 @@
           "icon": "🗓️"
         }
       ],
-      "questionCount": 362
+      "questionCount": 400
     },
     {
       "id": "general_current_affairs",
@@ -457,7 +457,7 @@
           "icon": "🔍"
         }
       ],
-      "questionCount": 490
+      "questionCount": 501
     },
     {
       "id": "competency_framework",
@@ -480,7 +480,7 @@
           "icon": "🗣️"
         }
       ],
-      "questionCount": 189
+      "questionCount": 300
     }
   ]
 }

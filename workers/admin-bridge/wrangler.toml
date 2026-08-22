@@ -8,7 +8,7 @@ preview_urls = false
 
 [vars]
 FIREBASE_PROJECT_ID = "promotioncbt-app"
-ALLOWED_ORIGINS = "https://timdasa75.github.io,http://127.0.0.1:5500,http://localhost:5500"
+ALLOWED_ORIGINS = "https://timdasa75.github.io,http://127.0.0.1:5500,http://localhost:5500,http://[::1]:5500"
 ADMIN_EMAILS = "timdasa75@gmail.com"
 SYNC_AUTH_DISABLED = "true"
 GOOGLE_CLIENT_ID = "189179429434-9bktce89mgnj0nikgmdd0e5gjvteegnd.apps.googleusercontent.com"
@@ -32,3 +32,11 @@ database_id = "a4216d4f-2974-44c8-99f0-db5eb43ec6f0"
 # - FIREBASE_API_KEY
 # - GCP_SERVICE_ACCOUNT_EMAIL
 # - GCP_SERVICE_ACCOUNT_PRIVATE_KEY
+# - SELAR_WEBHOOK_SECRET (shared secret for the Zapier bridge: Selar "New Sale"
+#   pushes to /payment/webhook/selar with x-selar-signature = this secret;
+#   unset = the route answers 503 and automation silently stops)
+# - SELAR_API_KEY (legacy Selar merchant API key for /payment/selar/verify;
+#   the polling endpoint does not exist — kept for the degraded path only)
+# - SELAR_API_BASE_URL (optional, defaults to https://api.selar.co/v2)
+# - RESEND_API_KEY (optional, for sending verification/password reset emails)
+#   Sign up at https://resend.com for free tier (100 emails/day)

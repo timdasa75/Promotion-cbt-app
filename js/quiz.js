@@ -97,12 +97,14 @@ const quizState = {
   feedbackShown: [], // Track if feedback has been shown for each question
   timer: null,
   timeLeft: 0,
+  sessionRunId: "", // Stable id for the current quiz run; correlates feedback to a session.
 };
 const QUIZ_RUNTIME_STORAGE_KEY = "cbt_quiz_runtime_v1";
 const QUIZ_RUNTIME_MAX_AGE_MS = 24 * 60 * 60 * 1000;
 const RETRY_MISSED_STORAGE_PREFIX = "cbt_retry_missed_v1_";
 const SPACED_PRACTICE_STORAGE_PREFIX = "cbt_spaced_practice_v1_";
 const FLAGGED_STORAGE_PREFIX = "cbt_flagged_v1_";
+const BOOKMARKED_STORAGE_PREFIX = "cbt_bookmarked_v1_";
 const RETRY_MISSED_MAX_ITEMS = 300;
 const RETRY_MISSED_DEFAULT_SESSION_SIZE = 40;
 const SPACED_PRACTICE_MAX_ITEMS = 600;
@@ -343,6 +345,10 @@ function createProgressAttemptId(createdAtIso) {
   return `a-${timestampMs.toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
 }
 
+function createQuizRunId() {
+  return `run-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
+}
+
 function isCloudProgressSyncReady() {
   return Boolean(isCloudProgressSyncEnabled() && getCurrentUser()?.id);
 }
@@ -493,6 +499,7 @@ function persistQuizRuntime() {
     userAnswers: normalizeRuntimeAnswers(quizState.userAnswers, totalQuestions),
     feedbackShown: normalizeRuntimeFeedback(quizState.feedbackShown, totalQuestions),
     timeLeft: Math.max(0, Number(quizState.timeLeft || 0)),
+    sessionRunId: String(quizState.sessionRunId || ""),
     savedAt: new Date().toISOString(),
   };
 
@@ -545,6 +552,7 @@ export function restorePersistedQuizRuntime(runtime, topicOverride = null) {
       userAnswers: normalizeRuntimeAnswers(source.userAnswers, totalQuestions),
       feedbackShown: normalizeRuntimeFeedback(source.feedbackShown, totalQuestions),
       timeLeft: Math.max(0, Number(source.timeLeft || 0)),
+      sessionRunId: String(source.sessionRunId || ""),
     },
   });
 
@@ -592,9 +600,13 @@ export function getCurrentQuestionFeedbackContext() {
     topicId: topicContext.topicId,
     topicName: topicContext.topicName,
     questionId: String(question?.id || "").trim(),
-    quizAttemptId: "",
+    quizAttemptId: String(quizState.sessionRunId || "").trim(),
     sessionMode: String(currentMode || "").trim().toLowerCase(),
     questionPreview: String(question?.question || "").trim(),
+    difficulty: String(question?.difficulty || "").trim().toLowerCase(),
+    sourceDocument: String(question?.sourceDocument || "").trim(),
+    sourceSection: String(question?.sourceSection || "").trim(),
+    subcategoryName: String(question?.sourceSubcategoryName || "").trim(),
   };
 }
 
@@ -1301,6 +1313,109 @@ export function toggleCurrentQuestionFlag() {
       flagBtn.classList.remove("active-flag");
       flagBtn.style.color = "";
     }
+  }
+}
+
+// Bookmarked questions - saved for later review across sessions
+function getBookmarkedStorageKeyForCurrentUser() {
+  const user = getCurrentUser();
+  const userId = String(user?.id || "").trim();
+  return userId ? `${BOOKMARKED_STORAGE_PREFIX}${userId}` : "";
+}
+
+function readBookmarkedQueue() {
+  const storageKey = getBookmarkedStorageKeyForCurrentUser();
+  if (!storageKey) return [];
+  try {
+    const raw = window.localStorage.getItem(storageKey);
+    if (!raw) return [];
+    return JSON.parse(raw);
+  } catch (error) {
+    return [];
+  }
+}
+
+function saveBookmarkedQueue(queue) {
+  const storageKey = getBookmarkedStorageKeyForCurrentUser();
+  if (!storageKey) return;
+  try {
+    window.localStorage.setItem(storageKey, JSON.stringify(queue));
+  } catch (error) {
+    console.warn("Unable to persist bookmarked queue", error);
+  }
+}
+
+export function toggleBookmarkedQuestion(question, topicData) {
+  if (!question) return false;
+  const queue = readBookmarkedQueue();
+  const qId = String(question.id || "").trim();
+  const idx = queue.findIndex((q) => String(q.id || "").trim() === qId);
+
+  if (idx >= 0) {
+    queue.splice(idx, 1);
+    saveBookmarkedQueue(queue);
+    return false;
+  } else {
+    queue.push({
+      ...question,
+      bookmarkedAt: new Date().toISOString(),
+      sourceTopicId: topicData?.id || question.sourceTopicId,
+      sourceTopicName: topicData?.name || question.sourceTopicName,
+    });
+    saveBookmarkedQueue(queue);
+    return true;
+  }
+}
+
+export function isQuestionBookmarked(questionId) {
+  if (!questionId) return false;
+  const queue = readBookmarkedQueue();
+  const qId = String(questionId).trim();
+  return queue.some((q) => String(q.id || "").trim() === qId);
+}
+
+export function getBookmarkedQueueCount() {
+  return readBookmarkedQueue().length;
+}
+
+export function getBookmarkedQuestions(limit = 100) {
+  let queue = readBookmarkedQueue();
+  queue.sort((a, b) => {
+    return (Date.parse(b.bookmarkedAt) || 0) - (Date.parse(a.bookmarkedAt) || 0);
+  });
+  return queue.slice(0, limit);
+}
+
+export function toggleCurrentQuestionBookmark() {
+  if (quizState.currentQuestionIndex >= quizState.allQuestions.length) return;
+  const question = quizState.allQuestions[quizState.currentQuestionIndex];
+  if (!question) return;
+
+  const isNowBookmarked = toggleBookmarkedQuestion(question, currentTopic);
+
+  const bookmarkBtn = document.getElementById("bookmarkQuestionBtn");
+  if (bookmarkBtn) {
+    if (isNowBookmarked) {
+      bookmarkBtn.classList.add("active-bookmark");
+      bookmarkBtn.style.color = "var(--primary)";
+    } else {
+      bookmarkBtn.classList.remove("active-bookmark");
+      bookmarkBtn.style.color = "";
+    }
+  }
+
+  updateBookmarkBadge();
+}
+
+export function updateBookmarkBadge() {
+  const badge = document.getElementById("bookmarkBadge");
+  if (!badge) return;
+  const count = getBookmarkedQueueCount();
+  if (count > 0) {
+    badge.textContent = count > 99 ? "99+" : count;
+    badge.classList.remove("hidden");
+  } else {
+    badge.classList.add("hidden");
   }
 }
 
@@ -2402,6 +2517,20 @@ function showQuestion() {
     }
   }
 
+  const bookmarkBtn = document.getElementById("bookmarkQuestionBtn");
+  if (bookmarkBtn) {
+    const isBookmarked = isQuestionBookmarked(question.id || normalizeQuestionFingerprint(question));
+    if (isBookmarked) {
+      bookmarkBtn.classList.add("active-bookmark");
+      bookmarkBtn.style.color = "var(--primary)";
+    } else {
+      bookmarkBtn.classList.remove("active-bookmark");
+      bookmarkBtn.style.color = ""; // reset to inherit
+    }
+  }
+
+  updateBookmarkBadge();
+
   questionElement.innerHTML = `
     <div class="question-number-container">
       <span class="question-number">${quizState.currentQuestionIndex + 1}</span>
@@ -2582,16 +2711,21 @@ function selectOption(selectedIndex) {
   const optionsContainer = document.getElementById("optionsContainer");
   if (!optionsContainer) return;
 
+  // In practice mode, once feedback has been shown for this question,
+  // lock the answer — the user must move on, not change their response
+  // after seeing the correct answer.
+  if (currentMode === "practice" && quizState.feedbackShown[quizState.currentQuestionIndex]) {
+    return;
+  }
+
   // Update UI
   const options = document.querySelectorAll(".option-btn");
   options.forEach((option, index) => {
-    // Don't disable options in practice mode to allow changing answers
     option.classList.remove("selected", "correct", "incorrect");
     clearOptionFeedbackLabel(option);
 
     if (index === selectedIndex) {
       option.classList.add("selected");
-      // Don't show correct/incorrect in practice mode to allow experimentation
     }
   });
 
@@ -3994,6 +4128,16 @@ function handleLetterSelection(event) {
   return true;
 }
 
+function handleBookmarkShortcut(event) {
+  const key = String(event.key || "").toLowerCase();
+  if (key !== "b") return false;
+  if (currentMode === "review" && reviewContext === "session") return false;
+  if (!isQuizScreenActive()) return false;
+  
+  toggleCurrentQuestionBookmark();
+  return true;
+}
+
 function moveSelectionByArrow(delta) {
   if (currentMode === "review") return false;
   const optionCount = getCurrentOptionCount();
@@ -4020,6 +4164,11 @@ function handleQuizKeyboardShortcuts(event) {
   if (isTypingTarget(event.target)) return;
 
   if (handleLetterSelection(event)) {
+    event.preventDefault();
+    return;
+  }
+
+  if (handleBookmarkShortcut(event)) {
     event.preventDefault();
     return;
   }
@@ -4198,7 +4347,13 @@ function initializeQuiz(options = {}) {
     quizState.currentQuestionIndex = clampIndex(restoreState.currentQuestionIndex, totalQuestions);
     quizState.userAnswers = normalizeRuntimeAnswers(restoreState.userAnswers, totalQuestions);
     quizState.feedbackShown = normalizeRuntimeFeedback(restoreState.feedbackShown, totalQuestions);
+    // A resumed session keeps its run id so feedback still correlates to it;
+    // if none was persisted, start a fresh one.
+    quizState.sessionRunId = String(restoreState.sessionRunId || "") || createQuizRunId();
   } else {
+    // A brand-new session (including retakes) always gets a fresh run id so
+    // mid-session question feedback correlates to this specific run.
+    quizState.sessionRunId = createQuizRunId();
     quizState.currentQuestionIndex = 0;
     if (!preserveAnswers) {
       quizState.userAnswers = [];
@@ -4232,10 +4387,6 @@ function initializeQuiz(options = {}) {
 
   if (currentMode === "review" && reviewContext === "session") {
     showReviewControls();
-    const questionMap = document.getElementById("questionMap");
-    if (questionMap) {
-      questionMap.classList.add("hidden");
-    }
   } else {
     const reviewControls = document.getElementById("reviewControls");
     if (reviewControls) {

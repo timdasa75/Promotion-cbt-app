@@ -63,8 +63,11 @@ export async function registerUserCloud(
   if (!normalizedEmail || !normalizedEmail.includes("@")) {
     throw new Error("Valid email is required.");
   }
-  if (normalizedPassword.length < 6) {
-    throw new Error("Password must be at least 6 characters.");
+  // Must match the Cloudflare auth worker's minimum (hashPassword rejects
+  // passwords shorter than 8). Keeping them aligned avoids a Firebase user
+  // with a 6-char password being unable to migrate to Cloudflare auth.
+  if (normalizedPassword.length < 8) {
+    throw new Error("Password must be at least 8 characters.");
   }
 
   let payload = await authRequest("accounts:signUp", {

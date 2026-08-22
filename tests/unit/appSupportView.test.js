@@ -27,7 +27,7 @@ test("getHeaderSyncSummary reflects auth and cloud sync states", () => {
     getHeaderSyncSummary(
       { id: "u1" },
       {
-        providerLabel: "Online",
+        providerLabel: "Cloudflare",
         syncEnabled: true,
         syncStatus: { synced: true, lastSuccessAt: "2026-05-07T09:00:00Z" },
         formatRelativeTime: () => "today",
@@ -40,23 +40,53 @@ test("getHeaderSyncSummary reflects auth and cloud sync states", () => {
       title: "Last synced today.",
     },
   );
+
+  // Hybrid (Cloudflare-first with Firebase fallback) is also cloud-backed:
+  // the sync pill must reflect real sync state, not "Device only".
+  assert.deepEqual(
+    getHeaderSyncSummary(
+      { id: "u1" },
+      {
+        providerLabel: "Hybrid",
+        syncEnabled: true,
+        syncStatus: { synced: true, lastSuccessAt: "2026-05-07T09:00:00Z" },
+        formatRelativeTime: () => "today",
+        formatDateTime: () => "May 7",
+      },
+    ),
+    {
+      label: "Synced",
+      tone: "high",
+      title: "Last synced today.",
+    },
+  );
+
+  // A Cloudflare session with sync disabled in runtime config is device-only.
+  assert.deepEqual(
+    getHeaderSyncSummary({ id: "u1" }, { providerLabel: "Cloudflare", syncEnabled: false }),
+    {
+      label: "Device only",
+      tone: "muted",
+      title: "Progress stays on this device until you sign in and enable sync.",
+    },
+  );
 });
 
-test("buildHeaderSummaryModel composes display name and pills", () => {
+test("buildHeaderSummaryModel composes display name and the plan pill only", () => {
   const model = buildHeaderSummaryModel({
     user: { name: "Tim", email: "tim@example.com" },
     planLabel: "Premium",
-    providerLabel: "Online",
+    providerLabel: "Cloudflare",
     syncSummary: { label: "Synced", tone: "high", title: "Last synced today." },
   });
 
   assert.equal(model.displayName, "Tim");
+  // Provider (Cloudflare) and sync (Synced) metadata are intentionally
+  // excluded from the header; only the plan pill is surfaced.
   assert.deepEqual(model.pills, [
     { text: "Premium", className: "summary-pill summary-pill-plan" },
-    { text: "Online", className: "summary-pill" },
-    { text: "Synced", className: "summary-pill summary-pill-high" },
   ]);
-  assert.equal(model.syncTitle, "Last synced today.");
+  assert.equal(model.syncTitle, "");
 });
 test("buildSupportStateCardsModel summarizes attempts, review queues, and sync copy", () => {
   const model = buildSupportStateCardsModel({

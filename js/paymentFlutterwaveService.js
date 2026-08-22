@@ -120,6 +120,7 @@ export async function verifyFlutterwaveTransaction({
   planCycle = "",
   email = "",
 } = {}, accessToken = "", fetchImpl = fetch) {
+
   const payload = await postPaymentJson(
     "payment/verify",
     {
@@ -131,6 +132,7 @@ export async function verifyFlutterwaveTransaction({
     accessToken,
     fetchImpl,
   );
+
   if (payload?.receipt) {
     savePaymentReceipt(payload.receipt);
   }

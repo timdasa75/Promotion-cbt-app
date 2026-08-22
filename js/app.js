@@ -54,6 +54,10 @@ import {
   toggleCurrentQuestionFlag,
   getFlaggedQueueCount,
   getFlaggedQuestions,
+  toggleCurrentQuestionBookmark,
+  getBookmarkedQueueCount,
+  getBookmarkedQuestions,
+  toggleBookmarkedQuestion,
   restorePersistedQuizRuntime,
   setCurrentTopic,
   setCurrentMode,
@@ -157,19 +161,23 @@ import {
   requestPasswordReset,
   resendVerificationEmailForUser,
   resolveCloudflareMigrationToken,
+  refreshCurrentUserAfterGrant,
   setPlanOverride,
   setUpgradeRequestStatus,
   startCloudPlanAutoSync,
   submitFeedbackSubmission,
   submitUpgradeRequest,
   updateCloudUserStatusById,
+  verifySelarPayment,
   updateFeedbackSubmissionStatus,
 } from "./auth.js";
-import { getFirebaseConfig, getPaymentProvider, getSelarCheckoutUrl } from "./authRuntime.js";
+import { getFirebaseConfig, getPaymentProvider, getSelarCheckoutUrl, isCloudAuthEnabled } from "./authRuntime.js";
 import "./authGoogle.js";
 
 let currentTopic = null;
 let cachedTopics = [];
+let activeTopicFilter = "all";
+let topicSearchQuery = "";
 let allTopics = [];
 let recommendedTopicId = null;
 let lastSessionTopicId = null;
@@ -456,6 +464,7 @@ async function init() {
       return;
     }
     await displayTopics(cachedTopics, handleTopicSelect);
+    applyTopicFilters();
     refreshDashboardInsights();
     debugLog("Displayed topics");
   } catch (error) {
@@ -480,6 +489,11 @@ function classifyTopic(topic) {
 }
 
 function applyTopicFilter(filter) {
+  activeTopicFilter = filter;
+  applyTopicFilters();
+}
+
+function applyTopicFilters() {
   const topicCards = Array.from(document.querySelectorAll("#topicList .topic-card"));
   if (!topicCards.length) return;
 
@@ -492,13 +506,25 @@ function applyTopicFilter(filter) {
 
   Object.entries(chipMap).forEach(([key, chip]) => {
     if (!chip) return;
-    chip.classList.toggle("active", key === filter);
+    chip.classList.toggle("active", key === activeTopicFilter);
   });
 
+  const query = String(topicSearchQuery || "").trim().toLowerCase();
   topicCards.forEach((card, index) => {
     const topic = cachedTopics[index];
     const topicType = classifyTopic(topic);
-    const shouldShow = filter === "all" || topicType === filter;
+    const chipMatches = activeTopicFilter === "all" || topicType === activeTopicFilter;
+    const haystack = [
+      topic?.name,
+      topic?.description,
+      topic?.id,
+      ...(Array.isArray(topic?.tags) ? topic.tags : []),
+    ]
+      .filter(Boolean)
+      .join(" ")
+      .toLowerCase();
+    const textMatches = !query || haystack.includes(query);
+    const shouldShow = chipMatches && textMatches;
     card.classList.toggle("hidden", !shouldShow);
   });
 }
@@ -694,7 +720,7 @@ async function renderAdminOperationHistory() {
 
   const history = readAdminOperationHistory();
   if (countLabel) {
-    countLabel.textContent = "Entries: " + history.length;
+    countLabel.textContent = String(history.length);
   }
 
   clearElementContent(container);
@@ -731,35 +757,43 @@ async function renderAdminOperationHistory() {
     head.appendChild(titleWrap);
     head.appendChild(badge);
     card.appendChild(head);
-    const metaGrid = document.createElement("div");
-    metaGrid.className = "admin-history-meta-grid";
-    [["Time", formatDateTime(entry?.createdAt)], ["Target", entry?.target || "-"], ["Actor", entry?.actor || "-"], ["Outcome", entry?.status || "-"]].forEach(([label, value]) => {
-      const item = document.createElement("div");
-      item.className = "admin-history-meta-item";
+    const metaLine = document.createElement("div");
+    metaLine.className = "admin-history-meta-line";
+    const appendKv = (label, value) => {
+      const kv = document.createElement("span");
+      kv.className = "admin-history-meta-kv";
       const eyebrow = document.createElement("span");
       eyebrow.className = "eyebrow";
       eyebrow.textContent = label;
       const strong = document.createElement("strong");
       strong.textContent = String(value || "-");
-      item.appendChild(eyebrow);
-      item.appendChild(strong);
-      metaGrid.appendChild(item);
-    });
-    const messageItem = document.createElement("div");
-    messageItem.className = "admin-history-meta-item admin-history-meta-item-wide";
-    const messageLabel = document.createElement("span");
-    messageLabel.className = "eyebrow";
-    messageLabel.textContent = "Details";
-    const messageCell = document.createElement("div");
-    messageCell.className = "admin-history-message";
+      kv.appendChild(eyebrow);
+      kv.appendChild(document.createTextNode(" "));
+      kv.appendChild(strong);
+      metaLine.appendChild(kv);
+    };
+    appendKv("Time", formatDateTime(entry?.createdAt));
+    appendKv("Target", entry?.target || "-");
+    appendKv("Actor", entry?.actor || "-");
+    appendKv("Outcome", entry?.status || "-");
+    card.appendChild(metaLine);
     const messageText = String(entry?.message || "-");
     const linkMatch = messageText.match(/https?:\/\/[^\s]+/);
     if (!linkMatch) {
-      messageCell.textContent = messageText;
+      const details = document.createElement("div");
+      details.className = "admin-history-message admin-history-message-truncate";
+      details.textContent = messageText;
+      details.setAttribute("title", messageText);
+      details.addEventListener("click", () => {
+        details.classList.toggle("expanded");
+      });
+      card.appendChild(details);
     } else {
       const rawLink = linkMatch[0];
       const linkUrl = rawLink.replace(/[),.]+$/, "");
       const labelText = messageText.replace(rawLink, "").replace(/Manual verification link:?\s*/i, "").trim();
+      const messageCell = document.createElement("div");
+      messageCell.className = "admin-history-message";
       const label = document.createElement("p");
       label.textContent = labelText || "Manual verification link";
       messageCell.appendChild(label);
@@ -787,11 +821,8 @@ async function renderAdminOperationHistory() {
       actions.appendChild(link);
       actions.appendChild(copyButton);
       messageCell.appendChild(actions);
+      card.appendChild(messageCell);
     }
-    messageItem.appendChild(messageLabel);
-    messageItem.appendChild(messageCell);
-    metaGrid.appendChild(messageItem);
-    card.appendChild(metaGrid);
     list.appendChild(card);
   });
 
@@ -1660,6 +1691,7 @@ function refreshDashboardInsights() {
   syncRetryMissedButtonState();
   syncSpacedPracticeButtonState();
   syncRevisionButtonState();
+  renderBookmarkManager();
   return insights;
 }
 
@@ -1890,6 +1922,86 @@ async function startRevisionSession() {
       failurePrefix: "Unable to start revision session:",
     },
   );
+}
+
+// Bookmark Manager functions
+function renderBookmarkManager() {
+  const shell = document.getElementById("bookmarkManagerShell");
+  const list = document.getElementById("bookmarkManagerList");
+  const countEl = document.getElementById("bookmarkManagerCount");
+  const startBtn = document.getElementById("startBookmarkReviewBtn");
+  const clearBtn = document.getElementById("clearBookmarksBtn");
+
+  if (!shell || !list) return;
+
+  const bookmarked = getBookmarkedQuestions(100);
+  
+  if (bookmarked.length === 0) {
+    shell.classList.add("hidden");
+    return;
+  }
+
+  shell.classList.remove("hidden");
+  countEl.textContent = `${bookmarked.length} question${bookmarked.length === 1 ? "" : "s"} saved for later review.`;
+
+  list.innerHTML = "";
+  bookmarked.forEach((q, index) => {
+    const item = document.createElement("div");
+    item.className = "bookmark-manager-item";
+    item.innerHTML = `
+      <span class="question-preview">${escapeHtml(q.question || "")}</span>
+      <span class="topic-label">${escapeHtml(q.sourceTopicName || "Unknown")}</span>
+      <button class="remove-bookmark" data-index="${index}" title="Remove bookmark">&times;</button>
+    `;
+    list.appendChild(item);
+  });
+
+  // Add remove handlers
+  list.querySelectorAll(".remove-bookmark").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const idx = Number(btn.dataset.index);
+      if (Number.isFinite(idx) && bookmarked[idx]) {
+        toggleBookmarkedQuestion(bookmarked[idx], { id: bookmarked[idx].sourceTopicId, name: bookmarked[idx].sourceTopicName });
+        renderBookmarkManager();
+      }
+    });
+  });
+
+  // Start review button
+  if (startBtn) {
+    startBtn.onclick = async () => {
+      const questions = getBookmarkedQuestions(40);
+      if (!questions.length) {
+        showWarning("No bookmarked questions to review.");
+        return;
+      }
+      currentTopic = { ...REVISION_TOPIC };
+      setCurrentTopic(currentTopic);
+      setCurrentMode("practice");
+      await runOperationWithFeedback(
+        () => loadQuestions(questions),
+        {
+          loadingMessage: "Loading bookmarked questions...",
+          successMessage: "",
+          failurePrefix: "Unable to start review session:",
+        },
+      );
+    };
+  }
+
+  // Clear all button
+  if (clearBtn) {
+    clearBtn.onclick = () => {
+      const confirmed = window.confirm("Remove all bookmarked questions?");
+      if (!confirmed) return;
+      const all = getBookmarkedQuestions(1000);
+      all.forEach((q) => {
+        toggleBookmarkedQuestion(q, { id: q.sourceTopicId, name: q.sourceTopicName });
+      });
+      renderBookmarkManager();
+    };
+  }
 }
 
 function initializeReviewMistakesControls() {
@@ -2222,6 +2334,14 @@ function initializeDashboardActions() {
   if (filterRecentBtn) {
     filterRecentBtn.addEventListener("click", () => {
       applyTopicFilter("recent");
+    });
+  }
+
+  const topicSearchInput = document.getElementById("topicSearch");
+  if (topicSearchInput) {
+    topicSearchInput.addEventListener("input", () => {
+      topicSearchQuery = topicSearchInput.value;
+      applyTopicFilters();
     });
   }
 
@@ -2578,6 +2698,119 @@ function ensureAuthPromptOnStartup() {
   openAuthModal("login");
 }
 
+// ── Password Reset Token Handling ─────────────────────────────────────────
+let pendingPasswordResetToken = "";
+
+function clearPasswordResetQueryParam() {
+  try {
+    const url = new URL(window.location.href);
+    url.searchParams.delete("token");
+    window.history.replaceState({}, "", url.toString());
+  } catch (_) {}
+}
+
+async function handlePasswordResetLinkOnStartup() {
+  const token = new URLSearchParams(window.location.search || "").get("token");
+  if (!token) return false;
+  pendingPasswordResetToken = String(token || "").trim();
+  if (!pendingPasswordResetToken) return false;
+
+  // Show the password reset screen directly
+  const resetScreen = document.getElementById("resetPasswordScreen");
+  const messageEl = document.getElementById("resetPasswordMessage");
+  if (messageEl) {
+    messageEl.textContent = "Enter your new password below.";
+  }
+  showScreen("resetPasswordScreen");
+  clearPasswordResetQueryParam();
+  return true;
+}
+
+async function handlePasswordResetSubmit(event) {
+  event.preventDefault();
+  const newPassword = document.getElementById("resetNewPassword")?.value || "";
+  const confirmPassword = document.getElementById("resetConfirmPassword")?.value || "";
+  const errorEl = document.getElementById("resetPasswordError");
+
+  if (!pendingPasswordResetToken) {
+    if (errorEl) {
+      errorEl.textContent = "Invalid or expired reset link. Please request a new one.";
+      errorEl.classList.remove("hidden");
+    }
+    return;
+  }
+
+  if (newPassword.length < 8) {
+    if (errorEl) {
+      errorEl.textContent = "Password must be at least 8 characters.";
+      errorEl.classList.remove("hidden");
+    }
+    return;
+  }
+
+  if (newPassword !== confirmPassword) {
+    if (errorEl) {
+      errorEl.textContent = "Passwords do not match.";
+      errorEl.classList.remove("hidden");
+    }
+    return;
+  }
+
+  try {
+    const cfg = getFirebaseConfig();
+    const authApiBase = cfg.cloudflareAuthBaseUrl || "";
+    if (!authApiBase) {
+      throw new Error("Auth API is not configured.");
+    }
+    const response = await fetch(`${authApiBase}/auth/password/complete`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        token: pendingPasswordResetToken,
+        password: newPassword,
+      }),
+    });
+
+    const result = await response.json();
+    if (!response.ok || !result?.ok) {
+      throw new Error(result?.error || result?.message || "Password reset failed.");
+    }
+
+    // Store the session
+    if (result.session) {
+      sessionStorage.setItem("cbt_session_token", result.session);
+    }
+    if (result.user) {
+      localStorage.setItem("cbt_current_user", JSON.stringify(result.user));
+    }
+
+    pendingPasswordResetToken = "";
+    showSuccess("Password reset successfully! You are now signed in.");
+    await updateAuthUI();
+    closeAuthModal();
+    showScreen("topicSelectionScreen");
+  } catch (error) {
+    if (errorEl) {
+      errorEl.textContent = error.message || "Password reset failed. Please try again.";
+      errorEl.classList.remove("hidden");
+    }
+  }
+}
+
+function initializePasswordResetScreen() {
+  const resetForm = document.getElementById("resetPasswordForm");
+  if (resetForm) {
+    resetForm.addEventListener("submit", handlePasswordResetSubmit);
+  }
+  const backBtn = document.getElementById("resetPasswordBackBtn");
+  if (backBtn) {
+    backBtn.addEventListener("click", () => {
+      pendingPasswordResetToken = "";
+      openAuthModal("login");
+    });
+  }
+}
+
 function getMockExamTemplatesForUi() {
   const loadedTemplates = isFeatureEnabled("enableGlBandTemplateUi")
     ? getVisibleExamTemplates()
@@ -2664,6 +2897,7 @@ function showFreeTierNoticeIfNeeded() {
 async function refreshAccessibleTopics() {
   cachedTopics = allTopics;
   await displayTopics(cachedTopics, handleTopicSelect);
+  applyTopicFilters();
 }
 
 async function refreshUserUpgradeStatus() {
@@ -2804,19 +3038,9 @@ function getHeaderPlanLabel(user) {
 function renderHeaderSummary(container, user) {
   if (!container) return "";
   clearElementContent(container);
-  const provider = getAuthProviderLabel();
-  const syncSummary = getHeaderSyncSummary(user, {
-    providerLabel: provider,
-    syncEnabled: isCloudProgressSyncEnabled(),
-    syncStatus: getCloudProgressSyncStatus(),
-    formatRelativeTime,
-    formatDateTime,
-  });
   const headerModel = buildHeaderSummaryModel({
     user,
     planLabel: getHeaderPlanLabel(user),
-    providerLabel: provider,
-    syncSummary,
   });
   const userLine = document.createElement("span");
   userLine.className = "summary-user-line";
@@ -2833,8 +3057,30 @@ function renderHeaderSummary(container, user) {
   container.appendChild(pillRow);
   return getAuthSummaryLabel() + ". " + headerModel.syncTitle;
 }
+
+// Refresh only the header summary (auth pill row) so the sync pill stays in
+// step with the profile sync status after a background sync attempt — without
+// re-rendering the whole auth UI.
+function refreshHeaderSummary() {
+  const container = document.getElementById("authToolbarSummary");
+  if (!container) return;
+  const user = getCurrentUser();
+  if (!user) {
+    container.textContent = "";
+    container.classList.add("hidden");
+    container.removeAttribute("title");
+    container.removeAttribute("aria-label");
+    return;
+  }
+  const headerSummaryTitle = renderHeaderSummary(container, user);
+  container.classList.remove("hidden");
+  container.setAttribute("title", headerSummaryTitle);
+  container.setAttribute("aria-label", headerSummaryTitle);
+}
+
 function updateAuthUI() {
   const user = getCurrentUser();
+
   const authActionBtn = document.getElementById("authActionBtn");
   const authActionIcon = document.getElementById("authActionIcon");
   const authToolbarSummary = document.getElementById("authToolbarSummary");
@@ -2888,7 +3134,7 @@ function updateAuthUI() {
     const cloudConfigMissing = isCloudAuthMisconfigured();
     const configuredProvider = getAuthProviderLabel("configured");
     const activeProvider = getAuthProviderLabel();
-    const supportsLegacyFirebaseRecovery = configuredProvider === "Cloud" || configuredProvider === "Hybrid";
+    const supportsLegacyFirebaseRecovery = isCloudAuthEnabled();
     const supportsSignedInCloudflarePasswordChange = Boolean(user) && (activeProvider === "Hybrid" || activeProvider === "Cloudflare");
 
     if (authModeHint) {
@@ -3000,7 +3246,8 @@ function updateAuthUI() {
     }
   }
   if (profileDisplayName) {
-    profileDisplayName.textContent = user?.name || "Guest User";
+    profileDisplayName.textContent =
+      user?.name || user?.displayName || user?.email || "Guest User";
   }
   if (profileSubtitle) {
     if (!user) {
@@ -3012,7 +3259,7 @@ function updateAuthUI() {
     }
   }
   if (profileAvatar) {
-    const seed = user?.name || user?.email || "GU";
+    const seed = user?.name || user?.displayName || user?.email || "GU";
     const initials = seed
       .split(" ")
       .filter(Boolean)
@@ -3055,7 +3302,7 @@ function renderAdminOverrides() {
   const entries = Object.entries(overrides);
   const countLabel = document.getElementById("adminOverrideCount");
   if (countLabel) {
-    countLabel.textContent = `Overrides: ${entries.length}`;
+    countLabel.textContent = String(entries.length);
   }
   if (!entries.length) {
     container.innerHTML = '<div class="admin-request-item"><p class="meta">No local overrides yet.</p></div>';
@@ -3068,6 +3315,7 @@ function renderAdminOverrides() {
     const syncLabel = status.cloudUpdated ? "Cloud+Local" : "Local only";
     const safeEmail = escapeHtml(email);
     const safePlan = escapeHtml(plan);
+    const safeUpdatedAt = status.updatedAt ? escapeHtml(formatDateTime(status.updatedAt)) : "";
     const safeWarning = status.warning ? `<div class="meta">${escapeHtml(status.warning)}</div>` : "";
     const card = document.createElement("div");
     card.className = "admin-request-item plan-override-item";
@@ -3076,6 +3324,7 @@ function renderAdminOverrides() {
         <div class="plan-override-item-email"><strong>${safeEmail}</strong></div>
         <div class="meta">Override: <span class="admin-badge ${plan === "premium" ? "approved" : "pending"}">${safePlan}</span></div>
         <div class="meta">Sync: <span class="admin-badge ${syncBadgeClass}">${syncLabel}</span></div>
+        ${safeUpdatedAt ? `<div class="meta">Updated: ${safeUpdatedAt}</div>` : ""}
         ${safeWarning}
       </div>
       <div class="button-row compact-actions">
@@ -3151,7 +3400,7 @@ function renderAdminRequests() {
   });
 
   if (countLabel) {
-    countLabel.textContent = `Requests: ${filtered.length}/${requests.length}`;
+    countLabel.textContent = `${filtered.length}/${requests.length}`;
   }
 
   if (!filtered.length) {
@@ -3212,14 +3461,14 @@ function renderAdminRequests() {
       if (!request?.email || !action) return;
       const nextStatus = action === "approve" ? "approved" : "rejected";
       const reviewNote = action === "approve"
-        ? "Selar payment confirmation approved."
-        : "Selar payment confirmation rejected.";
+        ? "Payment confirmation approved."
+        : "Payment confirmation rejected.";
       try {
         const result = await runOperationWithFeedback(
           () => setUpgradeRequestStatus(request.email, nextStatus, reviewNote, request.billingCycle),
           {
-            loadingMessage: `${action === "approve" ? "Approving" : "Rejecting"} Selar confirmation...`,
-            successMessage: () => `Selar confirmation ${nextStatus}.`,
+            loadingMessage: `${action === "approve" ? "Approving" : "Rejecting"} payment confirmation...`,
+            successMessage: () => `Payment confirmation ${nextStatus}.`,
             failurePrefix: "Unable to update request:",
           },
         );
@@ -3247,9 +3496,126 @@ function renderAdminRequests() {
 }
 
 function refreshProfileUpgradeSection() {
-  return getPaymentProvider() === "selar"
-    ? refreshUserUpgradeStatus()
-    : renderProfilePaymentHistory();
+  const provider = getPaymentProvider();
+  const user = getCurrentUser();
+  const isPremium = user?.plan === "premium";
+
+  
+  const upgradeShell = document.getElementById("profileUpgradeShell");
+  const selarForm = document.getElementById("selarUpgradeForm");
+  const flutterwaveForm = document.getElementById("flutterwaveUpgradeForm");
+  const paymentSection = document.getElementById("profilePaymentSection");
+  const upgradeTitle = document.getElementById("profileUpgradeTitle");
+  const upgradeSubtitle = document.getElementById("profileUpgradeSubtitle");
+  
+  if (provider === "selar") {
+    // Show Selar form, hide Flutterwave form
+    if (selarForm) selarForm.style.display = "";
+    if (flutterwaveForm) flutterwaveForm.style.display = "none";
+    if (upgradeTitle) upgradeTitle.textContent = "Selar Payment Confirmation";
+    if (upgradeSubtitle) upgradeSubtitle.textContent = "After paying on Selar, submit your order reference for admin activation.";
+    if (paymentSection) paymentSection.style.display = "none";
+    prefillSelarReferenceFromReturnUrl();
+    return refreshUserUpgradeStatus();
+  }
+  
+  // Flutterwave or other provider
+  if (isPremium) {
+    // Premium users: hide upgrade shell, show payment history
+    if (upgradeShell) upgradeShell.style.display = "none";
+    if (paymentSection) paymentSection.style.display = "";
+    return renderProfilePaymentHistory();
+  }
+  
+  // Non-premium users: show upgrade button, hide Selar form
+  if (selarForm) selarForm.style.display = "none";
+  if (flutterwaveForm) flutterwaveForm.style.display = "";
+  if (upgradeShell) upgradeShell.style.display = "";
+  if (paymentSection) paymentSection.style.display = "none";
+  if (upgradeTitle) upgradeTitle.textContent = "Upgrade to Premium";
+  if (upgradeSubtitle) upgradeSubtitle.textContent = "Unlock all practice topics, detailed analytics, and priority support.";
+  
+  // Wire up the upgrade button
+  const profileUpgradeBtn = document.getElementById("profileUpgradeBtn");
+  if (profileUpgradeBtn) {
+    profileUpgradeBtn.onclick = () => handleUpgradeClick();
+  }
+  
+  return Promise.resolve();
+}
+
+// When the user returns from the Selar hosted checkout (return URL configured
+// as ?payment=selar&status=success, with Selar appending an order reference
+// when available), pre-fill the confirmation form so verification is one tap
+// away — closing the app → Selar → back loop automatically.
+function prefillSelarReferenceFromReturnUrl() {
+  if (typeof window === "undefined") return;
+  const params = new URLSearchParams(window.location.search || "");
+  const isSelarReturn = params.get("payment") === "selar" && params.get("status") === "success";
+  if (!isSelarReturn) return;
+
+  const reference = String(
+    params.get("reference") ||
+      params.get("order_reference") ||
+      params.get("orderReference") ||
+      params.get("order_ref") ||
+      params.get("orderRef") ||
+      params.get("txnref") ||
+      params.get("transaction_id") ||
+      params.get("transactionId") ||
+      params.get("order_id") ||
+      params.get("orderId") ||
+      ""
+  ).trim();
+
+  const referenceInput = document.getElementById("upgradePaymentReference");
+  if (reference && referenceInput && !String(referenceInput.value || "").trim()) {
+    referenceInput.value = reference;
+  }
+  if (referenceInput) {
+    referenceInput.focus();
+  }
+
+  // Consume the return-URL params so re-rendering the profile does not
+  // re-fill (or re-focus) the form after the user has moved on.
+  if (window.history?.replaceState) {
+    const url = new URL(window.location.href);
+    url.searchParams.delete("payment");
+    url.searchParams.delete("status");
+    [
+      "reference",
+      "order_reference",
+      "orderReference",
+      "order_ref",
+      "orderRef",
+      "txnref",
+      "transaction_id",
+      "transactionId",
+      "order_id",
+      "orderId",
+    ].forEach((key) => url.searchParams.delete(key));
+    window.history.replaceState({}, document.title, url.toString());
+  }
+}
+
+function clearSelarConfirmationForm() {
+  const refInput = document.getElementById("upgradePaymentReference");
+  const amtInput = document.getElementById("upgradeAmountPaid");
+  const cycleInput = document.getElementById("upgradeBillingCycle");
+  if (refInput) refInput.value = "";
+  if (amtInput) amtInput.value = "";
+  if (cycleInput) cycleInput.value = "";
+}
+
+// After an automatic grant, refresh the in-memory session so the plan badge
+// and premium unlocks appear immediately (Firebase and Cloudflare providers).
+async function refreshAuthSessionAfterGrant() {
+  try {
+    await refreshCurrentUserAfterGrant();
+    refreshDashboardInsights();
+  } catch (error) {
+    debugLog("Session refresh after Selar grant failed: " + (error?.message || "request failed."));
+  }
 }
 
 async function renderAdminPayments() {
@@ -3303,7 +3669,7 @@ async function renderAdminPayments() {
       .sort((a, b) => (Date.parse(b.createdAt || "") || 0) - (Date.parse(a.createdAt || "") || 0));
 
     if (countLabel) {
-      countLabel.textContent = `Payments: ${filtered.length}/${payments.length}`;
+      countLabel.textContent = `${filtered.length}/${payments.length}`;
     }
 
     if (!filtered.length) {
@@ -3398,7 +3764,7 @@ async function renderAdminPayments() {
   });
 
   if (countLabel) {
-    countLabel.textContent = `Payments: ${filtered.length}/${payments.length}`;
+    countLabel.textContent = `${filtered.length}/${payments.length}`;
   }
 
   if (!filtered.length) {
@@ -3488,6 +3854,26 @@ function updateFeedbackCharCount() {
   const counter = document.getElementById("feedbackCharCount");
   if (!messageInput || !counter) return;
   counter.textContent = buildFeedbackCharCountLabel(messageInput.value, FEEDBACK_MESSAGE_MAX_LENGTH);
+}
+
+function buildFeedbackClientInfo() {
+  let userAgent = "";
+  let viewport = "";
+  if (typeof navigator !== "undefined") {
+    userAgent = String(navigator.userAgent || "").trim();
+  }
+  if (typeof window !== "undefined") {
+    const width = Number(window.innerWidth || window.screen?.width || 0);
+    const height = Number(window.innerHeight || window.screen?.height || 0);
+    if (width && height) viewport = `${width}x${height}`;
+  }
+  const user = getCurrentUser();
+  return {
+    provider: getAuthProviderLabel() || "",
+    plan: String(user?.plan || "").trim() || "",
+    viewport,
+    userAgent: userAgent.slice(0, 240),
+  };
 }
 
 function renderFeedbackContextSummary(context = null) {
@@ -3600,7 +3986,7 @@ function renderAdminFeedbackList() {
   });
 
   if (countLabel) {
-    countLabel.textContent = `Feedback: ${filtered.length}/${adminFeedbackSubmissions.length}`;
+    countLabel.textContent = `${filtered.length}/${adminFeedbackSubmissions.length}`;
   }
 
   container.innerHTML = "";
@@ -3622,6 +4008,11 @@ function renderAdminFeedbackList() {
       escapeHtml,
     });
     item.innerHTML = itemModel.html;
+    item.querySelectorAll(".admin-feedback-message-truncate").forEach((messageEl) => {
+      messageEl.addEventListener("click", () => {
+        messageEl.classList.toggle("expanded");
+      });
+    });
     list.appendChild(item);
   });
 
@@ -3688,7 +4079,7 @@ async function refreshAdminFeedbackSubmissions() {
       adminFeedbackSubmissions = [];
       renderAdminFeedbackList();
       if (countLabel) {
-        countLabel.textContent = "Feedback: 0/0";
+        countLabel.textContent = "0/0";
       }
       if (notice) {
         notice.textContent = isCurrentUserAdmin()
@@ -3712,7 +4103,7 @@ async function refreshAdminFeedbackSubmissions() {
       adminFeedbackSubmissions = [];
       renderAdminFeedbackList();
       if (countLabel) {
-        countLabel.textContent = "Feedback: 0/0";
+        countLabel.textContent = "0/0";
       }
       if (notice) {
         const rawMessage = String(error?.message || "").trim();
@@ -3739,66 +4130,16 @@ async function refreshAdminFeedbackSubmissions() {
 }
 
 function updateProfileDataSyncUI() {
-  const user = getCurrentUser();
-  const provider = getAuthProviderLabel();
+  // Auth provider / cloud-sync messaging is intentionally hidden from the UI.
+  // Sync itself keeps running in the background; only the status copy is
+  // suppressed. Elements may not exist (removed from the markup), so every
+  // lookup is null-guarded.
   const hintEl = document.getElementById("profileDataStorageHint");
   const statusEl = document.getElementById("profileCloudSyncStatus");
   const syncNowBtn = document.getElementById("syncProgressNowBtn");
-  const cloudSyncEnabled = isCloudProgressSyncEnabled();
-  const canCloudSync = Boolean(hasCloudBackedUserSession() && cloudSyncEnabled);
-  const status = canCloudSync ? getCloudProgressSyncStatus() : null;
-  const syncFailed = Boolean(status?.lastReason && status?.lastReason !== "success" && status?.lastError);
-
-  if (hintEl) {
-    hintEl.textContent = canCloudSync
-      ? "Your progress syncs automatically in the background and follows your cloud profile across devices."
-      : "Progress data stays on this browser until you sign in with Cloud auth.";
-  }
-
-  if (syncNowBtn) {
-    syncNowBtn.classList.toggle("hidden", !syncFailed);
-    syncNowBtn.disabled = !syncFailed;
-  }
-
-  if (!statusEl) return;
-  statusEl.classList.remove("hidden");
-  statusEl.removeAttribute("title");
-
-  if (!user) {
-    statusEl.textContent = "Cloud sync is available after sign in.";
-    return;
-  }
-
-  if (provider !== "Cloud") {
-    statusEl.textContent = provider === "Demo"
-      ? "Cloud sync is unavailable in Local auth mode."
-      : "Cloud sync is not available for the current auth session yet.";
-    return;
-  }
-
-  if (!cloudSyncEnabled) {
-    statusEl.textContent = "Cloud sync is disabled by runtime config.";
-    return;
-  }
-
-  if (status?.inFlight) {
-    statusEl.textContent = "Syncing your latest progress in the background...";
-    return;
-  }
-
-  if (syncFailed) {
-    statusEl.textContent = "Background sync needs attention. Use Retry Sync to try again.";
-    statusEl.setAttribute("title", status.lastError);
-    return;
-  }
-
-  if (status?.lastSuccessAt) {
-    statusEl.textContent = `Last synced ${formatRelativeTime(status.lastSuccessAt)}.`;
-    statusEl.setAttribute("title", formatDateTime(status.lastSuccessAt));
-    return;
-  }
-
-  statusEl.textContent = "Automatic sync is ready.";
+  if (hintEl) hintEl.classList.add("hidden");
+  if (statusEl) statusEl.classList.add("hidden");
+  if (syncNowBtn) syncNowBtn.classList.add("hidden");
 }
 
 const AMBIENT_CLOUD_SYNC_INTERVAL_MS = 60000;
@@ -3814,11 +4155,13 @@ function triggerBackgroundProgressSync(options = {}) {
   return syncProgressFromCloudNow({ force })
     .then((result) => {
       updateProfileDataSyncUI();
+      refreshHeaderSummary();
       refreshDashboardInsights();
       return result;
     })
     .catch(() => {
       updateProfileDataSyncUI();
+      refreshHeaderSummary();
       return null;
     });
 }
@@ -3969,7 +4312,7 @@ function renderAdminUserDirectory() {
     return emailMatch && statusMatch && verificationMatch;
   });
   if (countLabel) {
-    countLabel.textContent = `Users: ${filtered.length}/${adminDirectoryUsers.length}`;
+    countLabel.textContent = `${filtered.length}/${adminDirectoryUsers.length}`;
   }
 
   container.innerHTML = "";
@@ -4041,6 +4384,8 @@ function renderAdminUserDirectory() {
     const safeUpgradeAmount = escapeHtml(entry?.upgradeAmountPaid || "-");
     const safeUpgradeReference = escapeHtml(entry?.upgradePaymentReference || "-");
 
+    const safeDates = `${safeCreated === "-" ? "" : `Created: ${safeCreated}`}${safeCreated !== "-" && safeLastSeen !== "-" ? " · " : ""}${safeLastSeen === "-" ? "" : `Last seen: ${safeLastSeen}`}`;
+
     row.innerHTML = `
       <summary class="admin-user-summary">
         <div class="admin-user-summary-main">
@@ -4054,10 +4399,9 @@ function renderAdminUserDirectory() {
               <span class="admin-badge ${verification.badgeClass}">Verified: ${safeVerification}</span>
             </div>
           </div>
-          ${expiry.dateLabel ? `<div class="meta">Expiry: ${safeExpiryDate}</div>` : ""}
         </div>
-        <div class="admin-user-summary-side">
-          <span class="meta">View details</span>
+        <div class="admin-user-summary-side" title="Account activity dates">
+          <span class="meta">${safeDates || "No dates recorded"}</span>
         </div>
       </summary>
       <div class="admin-user-details">
@@ -4287,7 +4631,7 @@ async function refreshAdminUserDirectory() {
         sourceLabel.textContent = "Source: unavailable";
       }
       if (countLabel) {
-        countLabel.textContent = "Users: 0/0";
+        countLabel.textContent = "0/0";
       }
       if (notice) {
         notice.textContent = error.message || "Unable to load admin user directory.";
@@ -4509,6 +4853,9 @@ function initializeAuthUI() {
             updateAuthUI();
             refreshDashboardInsights();
             await refreshAccessibleTopics();
+            if (typeof window.processFlutterwavePaymentReturn === "function") {
+              await window.processFlutterwavePaymentReturn();
+            }
             closeAuthModal();
             await showScreen("topicSelectionScreen");
             showFreeTierNoticeIfNeeded();
@@ -4711,25 +5058,75 @@ function initializeAuthUI() {
         showWarning("Select the billing cycle for your Selar payment.");
         return;
       }
-  try {
+
+      const normalizedReference = String(reference).trim();
+      const normalizedCycle = String(billingCycle).trim();
+      const normalizedAmount = String(amount).trim();
+
+      // 1) Try fully-automatic verification: the Worker checks the reference
+      //    against Selar's merchant API and grants premium immediately.
+      const verification = await runOperationWithFeedback(
+        () => verifySelarPayment(normalizedReference, normalizedCycle),
+        {
+          loadingMessage: "Verifying your Selar payment...",
+          successMessage: "",
+          failurePrefix: "Unable to verify Selar payment:",
+        },
+      ).catch((error) => ({
+        verified: false,
+        reason: "request-failed",
+        warning: error?.message || "Verification is unavailable right now.",
+      }));
+
+      if (verification?.verified) {
+        const next = readUpgradeRequests();
+        next.push({
+          id: `req_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`,
+          email: user.email,
+          reference: normalizedReference,
+          amount: normalizedAmount,
+          billingCycle: normalizedCycle,
+          note: "Auto-verified via Selar API",
+          status: "approved",
+          createdAt: new Date().toISOString(),
+          reviewedAt: new Date().toISOString(),
+          reviewedBy: "selar-api",
+          reviewNote: "Order reference confirmed against Selar merchant API.",
+        });
+        writeUpgradeRequests(next);
+        showSuccess(
+          verification.warning ||
+          "Your Selar payment was verified and your premium access is now active.",
+        );
+        clearSelarConfirmationForm();
+        await refreshProfileUpgradeSection().catch(() => {});
+        await forceCloudPlanSync().catch(() => {});
+        await refreshUserUpgradeStatus().catch(() => {});
+        await refreshAuthSessionAfterGrant();
+        return;
+      }
+
+      // 2) Verification unavailable / not confirmed: fall back to the manual
+      //    review queue so no payment is ever lost.
+      try {
         const cloudResult = await runOperationWithFeedback(
           async () => {
             const next = readUpgradeRequests();
             next.push({
               id: `req_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`,
               email: user.email,
-              reference: String(reference).trim(),
-              amount: String(amount).trim(),
-              billingCycle: String(billingCycle).trim(),
+              reference: normalizedReference,
+              amount: normalizedAmount,
+              billingCycle: normalizedCycle,
               note: "Submitted from Selar confirmation form",
               status: "pending",
               createdAt: new Date().toISOString(),
             });
             writeUpgradeRequests(next);
             return submitUpgradeRequest({
-              reference: String(reference).trim(),
-              amount: String(amount).trim(),
-              billingCycle: String(billingCycle).trim(),
+              reference: normalizedReference,
+              amount: normalizedAmount,
+              billingCycle: normalizedCycle,
               note: "Submitted from Selar confirmation form",
             });
           },
@@ -4740,30 +5137,26 @@ function initializeAuthUI() {
           },
         );
 
+        const baseCopy = cloudResult.cloudSaved
+          ? "Selar confirmation submitted and synced. Admin review is pending."
+          : "Selar confirmation submitted. Admin review is pending.";
+        const fallbackNote = verification?.warning
+          ? ` ${verification.warning}`
+          : "";
         if (cloudResult.cloudSaved) {
-          showSuccess(
-            cloudResult.warning
-              ? `Selar confirmation submitted and synced. Admin review is pending. ${cloudResult.warning}`.trim()
-              : "Selar confirmation submitted and synced. Admin review is pending.",
-          );
+          showSuccess(`${baseCopy}${cloudResult.warning ? ` ${cloudResult.warning}` : ""}${fallbackNote}`.trim());
         } else {
-          showWarning(
-            `Selar confirmation submitted. Admin review is pending. ${cloudResult.warning || ""}`.trim(),
-          );
-        }
-        const refInput = document.getElementById("upgradePaymentReference");
-        const amtInput = document.getElementById("upgradeAmountPaid");
-        const cycleInput = document.getElementById("upgradeBillingCycle");
-        if (refInput) refInput.value = "";
-        if (amtInput) amtInput.value = "";
-        if (cycleInput) cycleInput.value = "";
-        refreshProfileUpgradeSection().catch(() => {});
-        if (isCurrentUserAdmin()) {
-          await refreshAdminUserDirectory();
-            renderAdminRequests();
+          showWarning(`${baseCopy}${cloudResult.warning || ""}${fallbackNote}`.trim());
         }
       } catch (error) {
-        // Error toast already displayed by runOperationWithFeedback.
+        showError(`Unable to submit Selar confirmation: ${error?.message || "request failed."}`);
+      }
+
+      clearSelarConfirmationForm();
+      refreshProfileUpgradeSection().catch(() => {});
+      if (isCurrentUserAdmin()) {
+        await refreshAdminUserDirectory();
+        renderAdminRequests();
       }
     });
   }
@@ -5015,11 +5408,10 @@ function initializeAuthUI() {
       const { handleFlutterwavePayment } = await import("./paymentFlutterwave.js");
       await handleFlutterwavePayment(cycle, {
         user,
-        getAuthToken: getCurrentAuthToken,
         showWarning,
         showSuccess,
         showError,
-        onStartStudying: () => showScreen("topicSelectionScreen"),
+        getAuthToken: getCurrentAuthToken,
         onVerified: async (result) => {
           emitFlutterwavePlanActivation(result);
           updateAuthUI();
@@ -5035,6 +5427,37 @@ function initializeAuthUI() {
       showError(error?.message || "Payment could not be started.");
     }
   };
+
+  // Completes a Flutterwave redirect return: verifies the transaction,
+  // refreshes the UI, and opens the receipt lightbox. Runs at boot (after
+  // session restore) and again after login to cover pending returns.
+  const processFlutterwavePaymentReturn = async () => {
+    try {
+      const { handleFlutterwavePaymentReturn } = await import("./paymentFlutterwave.js");
+      await handleFlutterwavePaymentReturn({
+        getAuthToken: getCurrentAuthToken,
+        showWarning,
+        showSuccess,
+        showError,
+        email: String(getCurrentUser()?.email || ""),
+        onStartStudying: () => showScreen("topicSelectionScreen"),
+        onVerified: async (result) => {
+          emitFlutterwavePlanActivation(result);
+          updateAuthUI();
+          refreshDashboardInsights();
+          await refreshAccessibleTopics();
+          refreshProfileUpgradeSection().catch(() => {});
+          if (isCurrentUserAdmin()) {
+            renderAdminRequests();
+          }
+        },
+      });
+    } catch (_) {
+      // A failed payment return must never block normal app startup.
+    }
+  };
+
+  window.processFlutterwavePaymentReturn = processFlutterwavePaymentReturn;
 
   const headerUpgradeBtn = document.getElementById("headerUpgradeBtn");
   if (headerUpgradeBtn) headerUpgradeBtn.addEventListener("click", handleUpgradeClick);
@@ -5143,6 +5566,7 @@ function initializeAuthUI() {
       try {
         await runOperationWithFeedback(
           async () => {
+            const clientInfo = buildFeedbackClientInfo();
             return submitFeedbackSubmission({
               sourceScreen: context.sourceScreen || "help",
               category,
@@ -5152,6 +5576,13 @@ function initializeAuthUI() {
               questionId: context.questionId || "",
               quizAttemptId: context.quizAttemptId || "",
               sessionMode: context.sessionMode || "",
+              questionPreview: context.questionPreview || "",
+              scoreSummary: context.scoreSummary || "",
+              difficulty: context.difficulty || "",
+              sourceDocument: context.sourceDocument || "",
+              sourceSection: context.sourceSection || "",
+              subcategoryName: context.subcategoryName || "",
+              clientInfo,
             });
           },
           {
@@ -5291,21 +5722,54 @@ function initializeQuizScreenHandlers() {
       syncRevisionButtonState(); // in case they go to dashboard next
     });
   }
+
+  const bookmarkQuestionBtn = document.getElementById("bookmarkQuestionBtn");
+  if (bookmarkQuestionBtn) {
+    bookmarkQuestionBtn.addEventListener("click", () => {
+      toggleCurrentQuestionBookmark();
+    });
+  }
+}
+
+// Wire a clear-text (✕) control into every .search-wrap search box. The
+// button appears once the input has content and dispatches an input event so
+// the box's own filter listener re-runs with the cleared value.
+function initializeSearchClearControls() {
+  document.querySelectorAll(".search-wrap input[type='search']").forEach((input) => {
+    const wrap = input.closest(".search-wrap");
+    const clearButton = wrap ? wrap.querySelector(".search-clear") : null;
+    if (!wrap || !clearButton) return;
+    const sync = () => wrap.classList.toggle("has-text", Boolean(input.value));
+    input.addEventListener("input", sync);
+    clearButton.addEventListener("click", () => {
+      input.value = "";
+      input.dispatchEvent(new Event("input", { bubbles: true }));
+      input.focus();
+      sync();
+    });
+    sync();
+  });
 }
 
 document.addEventListener("DOMContentLoaded", async function () {
   startCloudPlanAutoSync();
   startAdminDirectoryAutoSync();
   initializeDashboardActions();
+  initializeSearchClearControls();
   initializeReviewMistakesControls();
   initializeScreenLinkHandlers();
   initializePasswordToggles();
   initializeThemeShortcut();
   initializeAuthUI();
+  initializePasswordResetScreen();
   updateAuthUI();
   showLoadingOverlay(true);
   try {
+    const handledResetLink = await handlePasswordResetLinkOnStartup();
     await init();
+    if (!handledResetLink) {
+      await handleMigrationLinkOnStartup();
+    }
   } finally {
     showLoadingOverlay(false);
   }
@@ -5376,6 +5840,12 @@ document.addEventListener("DOMContentLoaded", async function () {
     renderAdminFeedbackList();
     refreshAdminUserDirectory();
     refreshAdminFeedbackSubmissions().catch(() => {});
+  }
+  // A Flutterwave redirect return lands on this page with
+  // status/tx_ref/transaction_id query params; verify and activate now that
+  // the session is restored (or store it pending login).
+  if (typeof window.processFlutterwavePaymentReturn === "function") {
+    await window.processFlutterwavePaymentReturn();
   }
   const openedMigrationFlow = await handleMigrationLinkOnStartup();
   if (!openedMigrationFlow) {

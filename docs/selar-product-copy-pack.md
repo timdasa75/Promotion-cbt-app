@@ -32,7 +32,7 @@ With a monthly subscription, you get access to the full CBT practice experience:
 
 This is ideal if you want a practical study companion that keeps your preparation organised and measurable instead of relying only on scattered past questions or last-minute reading.
 
-After payment, return to the Promotion CBT app and submit your Selar order reference from your profile page. Your premium access will be reviewed and activated by an admin.
+After payment, return to the Promotion CBT app and submit your Selar order reference from your profile page. Premium access is activated automatically once your payment is confirmed; otherwise it is reviewed and activated by an admin.
 
 ## What Buyers Get
 
@@ -65,9 +65,9 @@ After payment:
 2. Open your profile.
 3. Enter your Selar order reference.
 4. Submit the confirmation.
-5. Wait for admin activation.
+5. Submit the reference — premium activates automatically when verification is enabled, or is queued for admin activation otherwise.
 
-Premium activation is currently reviewed manually.
+Premium activation is automatic when automatic Selar verification is enabled; otherwise it is reviewed manually.
 
 ## Suggested Custom Checkout Form Fields
 
@@ -84,7 +84,7 @@ Please use the same email address you use in the Promotion CBT app. This helps u
 
 ## Post-Payment Redirect Message
 
-Payment received. Please return to your Promotion CBT profile and submit your Selar order reference so an admin can activate your premium access.
+Payment received. Please return to your Promotion CBT profile and submit your Selar order reference — premium activates automatically when verification is enabled.
 
 ## FAQ Copy
 
@@ -94,11 +94,11 @@ No. Promotion CBT is an independent study and practice tool. It is not an offici
 
 ### What happens after I pay?
 
-After payment on Selar, return to the Promotion CBT app and submit your Selar order reference from your profile page. An admin will review your confirmation and activate premium access.
+After payment on Selar, return to the Promotion CBT app and submit your Selar order reference from your profile page. Premium activates automatically when automatic verification is enabled.
 
 ### How long does activation take?
 
-Activation is manually reviewed. Use the same email on Selar and in the app to make verification faster.
+Use the same email on Selar and in the app to make automatic verification instant.
 
 ### What do I get with Premium?
 
@@ -110,7 +110,7 @@ Yes. Selar manages the subscription billing. Use your Selar account or payment e
 
 ### What if I used a different email on Selar?
 
-Submit your Selar order reference in the app and include the payment email in the reference or note field if available. Admin review may take longer if the email does not match your Promotion CBT account.
+Submit your Selar order reference in the app and use the same email on Selar and in the app. If the emails do not match, automatic verification cannot confirm the order and it will be queued for manual review.
 
 ## Social Promo Captions
 

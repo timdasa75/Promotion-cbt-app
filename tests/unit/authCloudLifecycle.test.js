@@ -31,7 +31,7 @@ test("registerUserCloud creates account, sends verification, and clears session"
   const calls = [];
   let cleared = 0;
   const result = await registerUserCloud(
-    { name: "User", email: "USER@example.com", password: "secret1" },
+    { name: "User", email: "USER@example.com", password: "secret123" },
     {
       authRequest: async (path, options) => {
         calls.push({ path, options });

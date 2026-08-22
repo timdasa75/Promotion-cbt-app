@@ -63,6 +63,14 @@ function normalizeFeedbackMessage(message) {
 function buildFeedbackSubmissionRecord(input = {}, currentUser = null, nowIso = "", feedbackId = "") {
   const sourceScreen = normalizeFeedbackSource(input?.sourceScreen);
   const nextCategory = normalizeFeedbackCategory(input?.category || (sourceScreen === "quiz" ? "question_issue" : "other"));
+  const clientInfo = input?.clientInfo && typeof input.clientInfo === "object"
+    ? {
+        provider: String(input.clientInfo.provider || "").trim().slice(0, 40),
+        plan: String(input.clientInfo.plan || "").trim().slice(0, 20),
+        viewport: String(input.clientInfo.viewport || "").trim().slice(0, 20),
+        userAgent: String(input.clientInfo.userAgent || "").trim().slice(0, 240),
+      }
+    : {};
   return {
     feedbackId,
     userId: String(currentUser?.id || "").trim(),
@@ -80,6 +88,13 @@ function buildFeedbackSubmissionRecord(input = {}, currentUser = null, nowIso = 
     questionId: String(input?.questionId || "").trim(),
     quizAttemptId: String(input?.quizAttemptId || "").trim(),
     sessionMode: String(input?.sessionMode || "").trim().toLowerCase(),
+    questionPreview: String(input?.questionPreview || "").trim(),
+    scoreSummary: String(input?.scoreSummary || "").trim(),
+    difficulty: String(input?.difficulty || "").trim().toLowerCase(),
+    sourceDocument: String(input?.sourceDocument || "").trim(),
+    sourceSection: String(input?.sourceSection || "").trim(),
+    subcategoryName: String(input?.subcategoryName || "").trim(),
+    clientInfo,
   };
 }
 
@@ -94,20 +109,30 @@ export async function submitFeedbackSubmission(input = {}, { cloudAuthEnabled = 
   if (!freshSession?.accessToken) throw new Error("Session is unavailable.");
   const nowIso = toIsoTimestamp(now());
   const feedback = buildFeedbackSubmissionRecord(input, currentUser, nowIso, idFactory());
+  let serverFeedbackId = "";
   if (upsertFeedback) {
     await upsertFeedback(freshSession.accessToken, feedback);
   } else {
     if (typeof window !== "undefined") {
-      await workerRequest("feedback/submit", {
+      const result = await workerRequest("feedback/submit", {
         feedbackId: feedback.feedbackId, email: feedback.email, userId: feedback.userId, category: feedback.category,
         sourceScreen: feedback.sourceScreen, message: feedback.message,
         topicId: feedback.topicId, topicName: feedback.topicName, questionId: feedback.questionId,
         quizAttemptId: feedback.quizAttemptId, sessionMode: feedback.sessionMode,
+        questionPreview: feedback.questionPreview, scoreSummary: feedback.scoreSummary,
+        difficulty: feedback.difficulty, sourceDocument: feedback.sourceDocument,
+        sourceSection: feedback.sourceSection, subcategoryName: feedback.subcategoryName,
+        clientInfo: feedback.clientInfo,
       }, freshSession.accessToken);
+      // The worker generates the authoritative id (it ignores client-supplied
+      // ids to prevent cross-user upserts). Use it so later status updates
+      // reference the row that actually exists.
+      serverFeedbackId = String(result?.feedbackId || "").trim();
     }
   }
   writeFeedbackCooldown(userId, nowIso, storage);
-  return { feedbackId: feedback.feedbackId, createdAt: feedback.createdAt, status: feedback.status };
+  const resolvedFeedbackId = serverFeedbackId || feedback.feedbackId;
+  return { feedbackId: resolvedFeedbackId, createdAt: feedback.createdAt, status: feedback.status };
 }
 
 export async function getAdminFeedbackSubmissions({ cloudAuthEnabled = false, currentUserIsAdmin = false, session = null, refreshSession } = {}, { listFeedback, limit = 200 } = {}) {

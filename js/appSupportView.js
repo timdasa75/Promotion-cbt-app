@@ -1,3 +1,9 @@
+// Cloud-capable provider labels emitted by getAuthProviderLabel(): "Cloud"
+// for Firebase sessions, "Cloudflare"/"Hybrid" for the Cloudflare-first
+// paths. "Online" is kept for backward compatibility with older callers/tests
+// that used that label historically.
+const CLOUD_PROVIDER_LABELS = new Set(["Cloud", "Cloudflare", "Hybrid", "Online"]);
+
 export function getHeaderSyncSummary(
   user,
   {
@@ -16,7 +22,7 @@ export function getHeaderSyncSummary(
     };
   }
 
-  if (providerLabel !== "Online" || !syncEnabled) {
+  if (!CLOUD_PROVIDER_LABELS.has(providerLabel) || !syncEnabled) {
     return {
       label: "Device only",
       tone: "muted",
@@ -62,16 +68,16 @@ export function buildHeaderSummaryModel({
   providerLabel = "",
   syncSummary = null,
 } = {}) {
+  // Only the plan pill is surfaced. Auth provider (Cloud/Cloudflare/Hybrid)
+  // and sync state are intentionally omitted from the header. The extra
+  // params are accepted for call-site compatibility but ignored here.
   const displayName = String(user?.name || user?.email || "Signed in").trim();
-  const syncTone = String(syncSummary?.tone || "muted").trim() || "muted";
   return {
     displayName,
     pills: [
       { text: String(planLabel || "Guest").trim() || "Guest", className: "summary-pill summary-pill-plan" },
-      { text: String(providerLabel || "").trim(), className: "summary-pill" },
-      { text: String(syncSummary?.label || "").trim(), className: `summary-pill summary-pill-${syncTone}` },
     ],
-    syncTitle: String(syncSummary?.title || "").trim(),
+    syncTitle: "",
   };
 }
 

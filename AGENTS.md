@@ -86,6 +86,8 @@ Run from project root:
 | Topic contamination audit | `npm run audit:topic-banks` |
 | Strict audit (fails on warnings) | `npm run audit:topic-banks:strict` |
 | CI audit | `npm run audit:topic-banks:ci` |
+| Worker route health check (fails on drift) | `npm run check:worker-routes` |
+| Worker route health check (report only) | `npm run check:worker-routes:warn` |
 | Static syntax check | `node --check <file>` |
 
 ---
@@ -157,6 +159,7 @@ Choose the smallest useful verification set for the change:
 4. **Full smoke**: `npm run test:smoke:full`
 5. **Build**: `npm run build`
 6. **Topic audit** (if data changes): `npm run audit:topic-banks`
+7. **Worker route check** (if Worker/frontend routes change): `npm run check:worker-routes`
 
 If a verification step cannot be run, say exactly why.
 

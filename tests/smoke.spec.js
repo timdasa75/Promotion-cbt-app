@@ -1,5 +1,51 @@
 ﻿import { test, expect } from "@playwright/test";
 
+// The app loads config/runtime-auth.js as a module. In CI that file is
+// generated with real secrets and would overwrite the empty PROMOTION_CBT_AUTH
+// injected by these tests (registration would then take the cloud path and
+// require email verification, leaving #topicSelectionScreen hidden). Stub the
+// module so the injected config always wins and the suite stays hermetic.
+test.beforeEach(async ({ page }) => {
+  await page.route("**/config/runtime-auth.js", (route) =>
+    route.fulfill({
+      contentType: "application/javascript",
+      body: "window.PROMOTION_CBT_AUTH = window.PROMOTION_CBT_AUTH || {};",
+    }),
+  );
+});
+
+// The exact config/runtime-auth.js the deploy workflow generates from secrets
+// (see .github/workflows/deploy-pages.yml). `overrides` replaces any field so
+// tests can serve a variant (e.g. a different payment provider) while keeping
+// the `||` guard in place — without it, the generated secrets would clobber the
+// config injected by these tests.
+function buildCiGeneratedRuntimeConfigBody(overrides = {}) {
+  const config = {
+    authProvider: "firebase",
+    firebaseApiKey: "ci-real-key",
+    firebaseProjectId: "ci-real-project",
+    firebaseAuthDomain: "ci-real-project.firebaseapp.com",
+    googleClientId: "ci-google-client.apps.googleusercontent.com",
+    cloudflareAuthBaseUrl: "https://ci-worker.example.workers.dev",
+    enableCloudProgressSync: true,
+    adminApiBaseUrl: "https://ci-worker.example.workers.dev",
+    paymentProvider: "selar",
+    selarCheckoutLinks: { default: "https://selar.com/ci", monthly: "https://selar.com/ci" },
+    adminEmails: [],
+    ...overrides,
+  };
+  return `// Generated during GitHub Pages deploy. Do not commit live values.\nwindow.PROMOTION_CBT_AUTH = window.PROMOTION_CBT_AUTH || ${JSON.stringify(config, null, 2)};\n`;
+}
+
+async function serveCiGeneratedRuntimeConfig(page, overrides = {}) {
+  await page.route("**/config/runtime-auth.js", (route) =>
+    route.fulfill({
+      contentType: "application/javascript",
+      body: buildCiGeneratedRuntimeConfigBody(overrides),
+    }),
+  );
+}
+
 async function registerAndEnter(page, email = "testuser@example.com") {
   await page.addInitScript(() => {
     window.PROMOTION_CBT_AUTH = {
@@ -44,6 +90,367 @@ async function openTopicSelectionForSeededSession(page) {
   await expect(page.locator("#topicSelectionScreen")).toBeVisible();
 }
 
+
+test("registration reaches topic selection with a CI-style generated runtime config", async ({ page }) => {
+  // Override the beforeEach stub (last registered route wins) with the exact
+  // config/runtime-auth.js the deploy workflow generates from secrets. The
+  // generated file now uses the `||` guard, so the empty PROMOTION_CBT_AUTH
+  // injected below must survive the module load — registration then stays in
+  // local-demo mode and reaches topic selection instead of the cloud
+  // email-verification path. If the guard is ever removed from the workflow,
+  // this test fails and flags the regression.
+  await serveCiGeneratedRuntimeConfig(page);
+
+  await registerAndEnter(page, "ci-config@example.com");
+  // The injected empty config must have won over the generated secrets;
+  // otherwise registration took the cloud path and topic selection never opened.
+  const survivingConfig = await page.evaluate(() => window.PROMOTION_CBT_AUTH);
+  expect(survivingConfig.firebaseApiKey).toBe("");
+  expect(survivingConfig.authProvider).toBeUndefined();
+  await expect(page.locator("#topicSelectionScreen")).toBeVisible();
+});
+
+test("payment provider and Selar checkout links survive a CI-style generated runtime config", async ({ page }) => {
+  // Capture any checkout URL the app opens so we can assert on it, and prevent
+  // an actual tab from opening.
+  await page.addInitScript(() => {
+    window.__openedUrls = [];
+    window.open = (url) => {
+      window.__openedUrls.push(String(url));
+      return null;
+    };
+  });
+
+  // Serve the CI-generated config (real secrets). Its payment settings differ
+  // from the smoke config injected by registerAndEnter (flutterwave provider,
+  // ci checkout links); without the `||` guard they would clobber the injection
+  // and the app would open the CI Selar URL (or take the Flutterwave path).
+  await serveCiGeneratedRuntimeConfig(page, { paymentProvider: "flutterwave" });
+
+  // registerAndEnter injects paymentProvider "selar" with the smoke checkout URL.
+  await registerAndEnter(page, "ci-payment@example.com");
+
+  // The injected payment settings must have survived the generated module load.
+  const survivingConfig = await page.evaluate(() => window.PROMOTION_CBT_AUTH);
+  expect(survivingConfig.paymentProvider).toBe("selar");
+  expect(survivingConfig.selarCheckoutLinks.default).toBe("https://selar.com/monthly-smoke");
+
+  // Drive the real checkout path: open pricing, click Pay Monthly, and assert
+  // the app opened the injected Selar URL — not the CI-generated one.
+  await page.evaluate(() => {
+    document.getElementById("pricingModal")?.classList.remove("hidden");
+  });
+  await page.click(".pricing-card[data-plan-cycle='monthly'] .select-plan-btn");
+  await expect(page.locator("#profileScreen")).toBeVisible();
+  await expect
+    .poll(() => page.evaluate(() => window.__openedUrls))
+    .toContain("https://selar.com/monthly-smoke");
+  const openedUrls = await page.evaluate(() => window.__openedUrls);
+  expect(openedUrls).not.toContain("https://selar.com/ci");
+});
+
+test("admin API base URL survives a CI-style generated runtime config", async ({ page }) => {
+  let listCalls = 0;
+  const corsHeaders = {
+    "access-control-allow-origin": "*",
+    "access-control-allow-methods": "POST, OPTIONS",
+    "access-control-allow-headers": "authorization, content-type",
+  };
+
+  // Mock the admin bridge only at the injected base URL. If the CI-generated
+  // adminApiBaseUrl ever clobbered the injection, these routes would never
+  // match and listCalls would stay 0.
+  await page.route("**/mock-admin-api/adminListUsers*", async (route) => {
+    if (route.request().method() === "OPTIONS") {
+      await route.fulfill({ status: 204, headers: corsHeaders, body: "" });
+      return;
+    }
+    listCalls += 1;
+    await route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      headers: corsHeaders,
+      body: JSON.stringify({
+        ok: true,
+        total: 1,
+        users: [
+          {
+            id: "u_target",
+            email: "learner@example.com",
+            name: "Learner",
+            emailVerified: false,
+            disabled: false,
+            createdAt: new Date().toISOString(),
+            lastSignInAt: "",
+          },
+        ],
+      }),
+    });
+  });
+
+  await page.route("**/mock-admin-api/adminListOperations*", async (route) => {
+    if (route.request().method() === "OPTIONS") {
+      await route.fulfill({ status: 204, headers: corsHeaders, body: "" });
+      return;
+    }
+    await route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      headers: corsHeaders,
+      body: JSON.stringify({ ok: true, entries: [] }),
+    });
+  });
+
+  // Fail closed: if the app ever called the CI-generated admin base, this
+  // route answers 500 so the panel cannot render by accident.
+  await page.route("**/ci-worker.example.workers.dev/**", async (route) => {
+    await route.fulfill({
+      status: 500,
+      contentType: "application/json",
+      body: JSON.stringify({ ok: false }),
+    });
+  });
+
+  // Seed an admin session and inject the smoke admin config (relative API base).
+  await page.addInitScript(() => {
+    window.PROMOTION_CBT_AUTH = {
+      firebaseApiKey: "mock-api-key",
+      firebaseProjectId: "mock-project-id",
+      firebaseAuthDomain: "mock-project-id.firebaseapp.com",
+      adminApiBaseUrl: "/mock-admin-api",
+      adminEmails: ["timdasa75@gmail.com"],
+    };
+
+    const nowIso = new Date().toISOString();
+    window.sessionStorage.setItem(
+      "cbt_session_v1",
+      JSON.stringify({
+        provider: "firebase",
+        accessToken: "mock-id-token",
+        refreshToken: "mock-refresh-token",
+        expiresAt: Date.now() + 60 * 60 * 1000,
+        user: {
+          id: "u_admin",
+          name: "Admin User",
+          email: "timdasa75@gmail.com",
+          plan: "premium",
+          createdAt: nowIso,
+          emailVerified: true,
+        },
+        createdAt: nowIso,
+      }),
+    );
+  });
+
+  await page.route("https://firestore.googleapis.com/**", async (route) => {
+    await route.fulfill({
+      status: 403,
+      contentType: "application/json",
+      body: JSON.stringify({ error: { message: "Mocked Firestore unavailable" } }),
+    });
+  });
+
+  // Serve the CI-generated config (would clobber the injected adminApiBaseUrl
+  // and adminEmails without the `||` guard).
+  await serveCiGeneratedRuntimeConfig(page);
+
+  page.on("dialog", (dialog) => dialog.accept());
+
+  await page.goto("/");
+  await expect(page.locator("#appLoadingOverlay")).toHaveClass(/is-hidden/);
+
+  // The injected admin config must have survived the generated module load.
+  const survivingConfig = await page.evaluate(() => window.PROMOTION_CBT_AUTH);
+  expect(survivingConfig.adminApiBaseUrl).toBe("/mock-admin-api");
+  expect(survivingConfig.adminEmails).toEqual(["timdasa75@gmail.com"]);
+
+  await page.evaluate(() => {
+    document.getElementById("authModal")?.classList.add("hidden");
+  });
+  await page.click("#startLearningBtn");
+  await expect(page.locator("#topicSelectionScreen")).toBeVisible();
+
+  const openAdminBtn = page.locator("#openAdminBtn");
+  await expect(openAdminBtn).toBeVisible();
+  await openAdminBtn.click();
+
+  await expect(page.locator("#adminScreen")).toBeVisible();
+  // The directory count proves the admin bridge was called at the injected
+  // base URL: listCalls only increments when /mock-admin-api routes match.
+  await expect(page.locator("#adminUserCount")).toContainText("1/1");
+  await expect.poll(() => listCalls).toBeGreaterThan(0);
+});
+
+test("Google sign-in stays unconfigured when a CI-style generated runtime config is served", async ({ page }) => {
+  // Stub the Google Identity API so the app's initialization is observable and
+  // deterministic, and record every initialize() call with its client id.
+  await page.addInitScript(() => {
+    window.PROMOTION_CBT_AUTH = {};
+    window.__googleInitCalls = [];
+    window.google = {
+      accounts: {
+        id: {
+          initialize(options) {
+            window.__googleInitCalls.push(String(options?.client_id || ""));
+          },
+          renderButton(container) {
+            container.replaceChildren();
+          },
+        },
+      },
+    };
+  });
+
+  // Keep the real Google Identity script from overwriting the stub above.
+  await page.route("**/accounts.google.com/gsi/client*", (route) =>
+    route.fulfill({ contentType: "application/javascript", body: "" }),
+  );
+
+  // The CI-generated config ships a real Google OAuth client id. Without the
+  // `||` guard it would clobber the injected empty config and the app would
+  // initialize (and render) Google sign-in instead of keeping the fallback.
+  await serveCiGeneratedRuntimeConfig(page);
+
+  await page.goto("/");
+  await expect(page.locator("#appLoadingOverlay")).toHaveClass(/is-hidden/);
+
+  // The injected config (no client id) must have survived the module load.
+  const survivingConfig = await page.evaluate(() => window.PROMOTION_CBT_AUTH);
+  expect(survivingConfig.googleClientId || "").toBe("");
+
+  // The app must NOT have initialized Google sign-in — it only does so with a
+  // configured client id — so the fallback "Continue with Google" button stays
+  // rendered instead of being replaced by a rendered Google button.
+  await expect.poll(() => page.evaluate(() => window.__googleInitCalls)).toEqual([]);
+  const authModal = page.locator("#authModal");
+  if (!(await authModal.isVisible())) {
+    await page.locator("#startLearningBtn").dispatchEvent("click");
+  }
+  await expect(authModal).toBeVisible();
+  const googleFallback = page.locator("#googleSignInLoginBtn .google-fallback-btn");
+  await expect(googleFallback).toBeVisible();
+  await expect(googleFallback).toContainText("Continue with Google");
+});
+
+test("local demo auth stays available when a CI-style generated runtime config is served", async ({ page }) => {
+  // Any request to a cloud auth/progress endpoint would prove the cloud path
+  // was taken (the CI-generated config enables it); local demo auth touches
+  // none of these.
+  const cloudTraffic = [];
+  page.on("request", (request) => {
+    const url = request.url();
+    if (
+      url.includes("ci-worker.example.workers.dev") ||
+      url.includes("identitytoolkit.googleapis.com") ||
+      url.includes("firestore.googleapis.com") ||
+      url.includes("securetoken.googleapis.com")
+    ) {
+      cloudTraffic.push(url);
+    }
+  });
+
+  // The CI-generated config ships a Cloudflare auth base URL. Without the `||`
+  // guard it would clobber the injected empty config, enabling cloud auth and
+  // disabling local demo auth — registration would then take the cloud
+  // email-verification path and hit the endpoints tracked above.
+  await serveCiGeneratedRuntimeConfig(page);
+
+  await registerAndEnter(page, "ci-cloudflare@example.com");
+
+  // The injected empty cloudflareAuthBaseUrl must have survived the module load.
+  const survivingConfig = await page.evaluate(() => window.PROMOTION_CBT_AUTH);
+  expect(survivingConfig.cloudflareAuthBaseUrl || "").toBe("");
+
+  // Registration reached topic selection (local demo path) and never touched a
+  // cloud auth/progress endpoint.
+  await expect(page.locator("#topicSelectionScreen")).toBeVisible();
+  expect(cloudTraffic).toEqual([]);
+});
+
+test("cloud progress sync stays disabled when a CI-style generated runtime config is served", async ({ page }) => {
+  let firestoreCalls = 0;
+  const corsHeaders = {
+    "access-control-allow-origin": "*",
+    "access-control-allow-methods": "POST, OPTIONS",
+    "access-control-allow-headers": "authorization, content-type",
+  };
+
+  // Count only cloud-progress reads/writes (the /documents/progress/ path) —
+  // session restore legitimately reads the user's profile document from
+  // Firestore regardless of sync. The injected config disables sync, so zero
+  // progress calls must occur even though the CI-generated config enables it.
+  await page.route("https://firestore.googleapis.com/**", async (route) => {
+    if (route.request().url().includes("/documents/progress/")) {
+      firestoreCalls += 1;
+    }
+    if (route.request().method() === "OPTIONS") {
+      await route.fulfill({ status: 204, headers: corsHeaders, body: "" });
+      return;
+    }
+    await route.fulfill({
+      status: 403,
+      contentType: "application/json",
+      body: JSON.stringify({ error: { message: "Mocked Firestore unavailable" } }),
+    });
+  });
+
+  // Seed a cloud-backed (Firebase) session with sync explicitly disabled in the
+  // injected config — the same shape as the admin smoke test.
+  await page.addInitScript(() => {
+    window.PROMOTION_CBT_AUTH = {
+      firebaseApiKey: "mock-api-key",
+      firebaseProjectId: "mock-project-id",
+      firebaseAuthDomain: "mock-project-id.firebaseapp.com",
+      enableCloudProgressSync: false,
+    };
+
+    const nowIso = new Date().toISOString();
+    window.sessionStorage.setItem(
+      "cbt_session_v1",
+      JSON.stringify({
+        provider: "firebase",
+        accessToken: "mock-id-token",
+        refreshToken: "mock-refresh-token",
+        expiresAt: Date.now() + 60 * 60 * 1000,
+        user: {
+          id: "u_sync",
+          name: "Sync User",
+          email: "sync@example.com",
+          plan: "free",
+          createdAt: nowIso,
+          emailVerified: true,
+        },
+        createdAt: nowIso,
+      }),
+    );
+  });
+
+  // The CI-generated config enables cloud progress sync. Without the `||` guard
+  // it would clobber the injected `false` and the app would start hydrating
+  // progress from Firestore on load.
+  await serveCiGeneratedRuntimeConfig(page);
+
+  page.on("dialog", (dialog) => dialog.accept());
+
+  await page.goto("/");
+  await expect(page.locator("#appLoadingOverlay")).toHaveClass(/is-hidden/);
+
+  // The injected sync-off flag must have survived the module load.
+  const survivingConfig = await page.evaluate(() => window.PROMOTION_CBT_AUTH);
+  expect(survivingConfig.enableCloudProgressSync).toBe(false);
+
+  // Confirm the seeded session restored (so sync WOULD have fired if enabled),
+  // then let the initial load-time hydrate window elapse.
+  await page.evaluate(() => {
+    document.getElementById("authModal")?.classList.add("hidden");
+  });
+  await page.click("#startLearningBtn");
+  await expect(page.locator("#topicSelectionScreen")).toBeVisible();
+  await page.waitForTimeout(1500);
+
+  // With sync disabled, the app must not have touched Firestore at all.
+  expect(firestoreCalls).toBe(0);
+});
 
 test("register screen reminds users to check Spam or Junk for verification email", async ({ page }) => {
   await page.goto("/");
@@ -1768,7 +2175,8 @@ await page.click("#startLearningBtn");
   await openAdminBtn.click();
 
   await expect(page.locator("#adminScreen")).toBeVisible();
-  await expect(page.locator("#adminUserSource")).toContainText("Firebase Auth (live)");
+  // Auth-source metadata was intentionally removed from the admin UI; the
+  // directory count still proves the live admin session rendered the panel.
   await expect(page.locator("#adminUserCount")).toContainText("1/1");
   await expect.poll(() => listCalls).toBeGreaterThan(0);
 

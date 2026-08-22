@@ -74,7 +74,7 @@ function installBrowserContext({
 test("fetchJsonFile uses fresh persistent cache before network fetch", async () => {
   const ctx = installBrowserContext();
   try {
-    const cacheKey = "promotion-cbt:json-cache:v1:/data/cache-test.json";
+    const cacheKey = "promotion-cbt:json-cache:v2:/data/cache-test.json";
     ctx.localStorage.setItem(
       cacheKey,
       JSON.stringify({
@@ -100,7 +100,7 @@ test("fetchJsonFile uses fresh persistent cache before network fetch", async () 
 test("fetchJsonFile falls back to stale persistent cache when fetch fails", async () => {
   const ctx = installBrowserContext();
   try {
-    const cacheKey = "promotion-cbt:json-cache:v1:/data/stale-cache.json";
+    const cacheKey = "promotion-cbt:json-cache:v2:/data/stale-cache.json";
     ctx.localStorage.setItem(
       cacheKey,
       JSON.stringify({
@@ -126,7 +126,7 @@ test("fetchJsonFile falls back to stale persistent cache when fetch fails", asyn
 test("fetchJsonFile discards malformed cache payloads and refreshes from network", async () => {
   const ctx = installBrowserContext();
   try {
-    const cacheKey = "promotion-cbt:json-cache:v1:/data/recover-cache.json";
+    const cacheKey = "promotion-cbt:json-cache:v2:/data/recover-cache.json";
     ctx.localStorage.setItem(cacheKey, "{not-json");
 
     let fetchCalls = 0;

@@ -12,7 +12,7 @@ import {
 
 const jsonCache = new Map();
 const protectedTopicCache = new Map();
-const PERSISTENT_CACHE_PREFIX = "promotion-cbt:json-cache:v1:";
+const PERSISTENT_CACHE_PREFIX = "promotion-cbt:json-cache:v2:";
 const PERSISTENT_CACHE_INDEX_KEY = `${PERSISTENT_CACHE_PREFIX}index`;
 const PERSISTENT_CACHE_TTL_MS = 6 * 60 * 60 * 1000;
 const PERSISTENT_CACHE_MAX_TOTAL_BYTES = 3_500_000;

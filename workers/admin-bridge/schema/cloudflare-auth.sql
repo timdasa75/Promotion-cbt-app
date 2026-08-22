@@ -95,7 +95,14 @@ CREATE TABLE IF NOT EXISTS feedback_submissions (
   topic_name TEXT NOT NULL DEFAULT '',
   question_id TEXT NOT NULL DEFAULT '',
   quiz_attempt_id TEXT NOT NULL DEFAULT '',
-  session_mode TEXT NOT NULL DEFAULT ''
+  session_mode TEXT NOT NULL DEFAULT '',
+  question_preview TEXT NOT NULL DEFAULT '',
+  score_summary TEXT NOT NULL DEFAULT '',
+  difficulty TEXT NOT NULL DEFAULT '',
+  source_document TEXT NOT NULL DEFAULT '',
+  source_section TEXT NOT NULL DEFAULT '',
+  subcategory_name TEXT NOT NULL DEFAULT '',
+  client_info TEXT NOT NULL DEFAULT ''
 );
 
 CREATE INDEX IF NOT EXISTS idx_feedback_created_at ON feedback_submissions(created_at DESC);

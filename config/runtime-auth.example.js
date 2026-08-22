@@ -32,8 +32,13 @@ window.PROMOTION_CBT_AUTH = {
   verificationResendCooldownMs: 900000,
   // Password reset cooldown per email (minimum 60000, maximum 86400000).
   passwordResetCooldownMs: 600000,
-  // Launch payment mode. Use "selar" for hosted checkout + admin approval.
-  // Later, switch to "flutterwave" after business verification is complete.
+  // Launch payment mode. Use "selar" for hosted checkout.
+  // Automation runs via the Zapier bridge: Selar's "New Sale" trigger pushes
+  // to the Worker /payment/webhook/selar behind the SELAR_WEBHOOK_SECRET
+  // secret (premium granted instantly, no admin review). Submissions that
+  // don't match a sale fall back to manual admin approval. The legacy
+  // SELAR_API_KEY polling path is discontinued (no Selar order-lookup API).
+  // Later, switch to "flutterwave" after business verification.
   paymentProvider: "selar",
   selarCheckoutLinks: {
     default: "REPLACE_WITH_SELAR_MONTHLY_CHECKOUT_URL",

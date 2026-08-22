@@ -67,6 +67,59 @@ function createJsonResponse(body, status = 200) {
   });
 }
 
+test("cloudflare feedback submission uses the server-generated feedback id", async () => {
+  const originalWindow = global.window;
+  const originalFetch = global.fetch;
+  setupGlobals();
+  writeSession({
+    provider: "cloudflare",
+    accessToken: "cf-token",
+    expiresAt: Date.now() + 60 * 60 * 1000,
+    createdAt: "2026-04-20T12:00:00.000Z",
+    user: {
+      id: "cf-1",
+      email: "user@example.com",
+      name: "CF User",
+      plan: "free",
+      emailVerified: true,
+    },
+  });
+  global.window.PROMOTION_CBT_AUTH = {
+    ...global.window.PROMOTION_CBT_AUTH,
+    cloudflareAuthBaseUrl: "https://auth.example.com",
+    authProvider: "cloudflare",
+  };
+  const calls = [];
+  global.fetch = async (url, options = {}) => {
+    calls.push({ url: String(url), options });
+    if (String(url).includes("auth/refresh")) {
+      return createJsonResponse({});
+    }
+    if (String(url).endsWith("/feedback/submit")) {
+      return createJsonResponse({ ok: true, feedbackId: "server-generated-42", status: "new" });
+    }
+    return createJsonResponse({ ok: true });
+  };
+
+  try {
+    const result = await submitFeedbackSubmission({
+      sourceScreen: "help",
+      category: "suggestion",
+      message: "Please add more questions.",
+    });
+    assert.equal(result.feedbackId, "server-generated-42");
+    const submitCall = calls.find((call) => call.url.endsWith("/feedback/submit"));
+    assert.ok(submitCall, "feedback should be submitted to the worker route");
+  } finally {
+    stopCloudPlanAutoSync();
+    clearSession();
+    global.window = originalWindow;
+    delete global.localStorage;
+    delete global.sessionStorage;
+    global.fetch = originalFetch;
+  }
+});
+
 test("firebase feedback operations use Firestore instead of Cloudflare auth routes", async () => {
   const originalWindow = global.window;
   const originalFetch = global.fetch;

@@ -21,6 +21,7 @@ import {
   getFreeMockExamEligibility,
   isAuthenticated,
 } from "./auth.js";
+import { getPaymentProvider } from "./authRuntime.js";
 import { debugLog } from "./logger.js";
 import { escapeHtml } from "./quiz/formatting.js";
 import { showError, showSuccess, showWarning } from "./ui/notifications.js";
@@ -34,7 +35,17 @@ let confirmLastFocusedElement = null;
 
 export function openPricingModal() {
   const modal = document.getElementById("pricingModal");
-  if (modal) modal.classList.remove("hidden");
+  if (!modal) return;
+  // Reflect the active payment provider on the select-plan button label so the
+  // UI never names a provider the click handler won't use.
+  const selectBtn = modal.querySelector(".select-plan-btn");
+  if (selectBtn) {
+    selectBtn.textContent =
+      getPaymentProvider() === "flutterwave"
+        ? "Pay Monthly via Flutterwave"
+        : "Pay Monthly on Selar";
+  }
+  modal.classList.remove("hidden");
 }
 
 function getConfirmModalElements() {
