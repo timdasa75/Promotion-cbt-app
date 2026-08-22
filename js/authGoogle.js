@@ -89,7 +89,14 @@ async function initializeGoogleSignIn() {
     .filter(Boolean);
   if (!containers.length) return;
   if (!clientId) {
-    bindFallbackError(containers, "Google sign-in is not configured. Add a Google OAuth client ID to runtime auth config.");
+    // Hide the Google sign-in containers and their "or" divider when not configured
+    containers.forEach((container) => {
+      container.style.display = "none";
+      const divider = container.nextElementSibling;
+      if (divider && divider.classList.contains("divider-text")) {
+        divider.style.display = "none";
+      }
+    });
     return;
   }
 
