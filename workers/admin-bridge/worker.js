@@ -2626,6 +2626,312 @@ async function handleAdminDeleteUserById(request, env) {
   };
 }
 
+// ============================================================
+// Device Trust Management
+// ============================================================
+
+const DEVICE_TRUST_DEFAULT_DAYS = 30;
+const DEVICE_TRUST_MAX_DEVICES = 3;
+
+function generateId() {
+  return `${Date.now()}_${Math.random().toString(36).slice(2, 9)}`;
+}
+
+async function checkDeviceTrust(database, userId, deviceFingerprint) {
+  const result = await database
+    .prepare(`
+      SELECT id, device_name, expires_at, last_used_at
+      FROM trusted_devices
+      WHERE user_id = ?1
+        AND device_fingerprint = ?2
+        AND revoked_at = ''
+        AND (expires_at = '' OR expires_at > ?3)
+      LIMIT 1
+    `)
+    .bind(userId, deviceFingerprint, new Date().toISOString())
+    .first();
+  return result || null;
+}
+
+async function addTrustedDevice(database, userId, deviceFingerprint, deviceName, deviceInfo, ip, userAgent, trustDays) {
+  const days = trustDays || DEVICE_TRUST_DEFAULT_DAYS;
+  const now = new Date().toISOString();
+  const expiresAt = days > 0 ? new Date(Date.now() + days * 24 * 60 * 60 * 1000).toISOString() : '';
+  
+  // Check device limit
+  const countResult = await database
+    .prepare(`
+      SELECT COUNT(*) as cnt FROM trusted_devices
+      WHERE user_id = ?1 AND revoked_at = ''
+    `)
+    .bind(userId)
+    .first();
+  
+  const currentCount = countResult?.cnt || 0;
+  if (currentCount >= DEVICE_TRUST_MAX_DEVICES) {
+    // Remove oldest device to make room
+    const oldest = await database
+      .prepare(`
+        SELECT id FROM trusted_devices
+        WHERE user_id = ?1 AND revoked_at = ''
+        ORDER BY trusted_at ASC LIMIT 1
+      `)
+      .bind(userId)
+      .first();
+    if (oldest) {
+      await database
+        .prepare('DELETE FROM trusted_devices WHERE id = ?1')
+        .bind(oldest.id)
+        .run();
+    }
+  }
+  
+  const deviceId = generateId();
+  await database
+    .prepare(`
+      INSERT INTO trusted_devices (id, user_id, device_fingerprint, device_name, device_info, ip_address, user_agent, trusted_at, expires_at, last_used_at)
+      VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10)
+    `)
+    .bind(deviceId, userId, deviceFingerprint, deviceName || '', deviceInfo || '{}', ip || '', userAgent || '', now, expiresAt, now)
+    .run();
+  
+  return { deviceId, expiresAt };
+}
+
+async function revokeDevice(database, deviceId, userId) {
+  const now = new Date().toISOString();
+  const result = await database
+    .prepare(`
+      UPDATE trusted_devices SET revoked_at = ?1
+      WHERE id = ?2 AND user_id = ?3
+    `)
+    .bind(now, deviceId, userId)
+    .run();
+  return result.meta?.changes > 0;
+}
+
+async function revokeAllDevices(database, userId) {
+  const now = new Date().toISOString();
+  await database
+    .prepare(`
+      UPDATE trusted_devices SET revoked_at = ?1
+      WHERE user_id = ?2 AND revoked_at = ''
+    `)
+    .bind(now, userId)
+    .run();
+}
+
+async function listTrustedDevices(database, userId) {
+  const result = await database
+    .prepare(`
+      SELECT id, device_name, device_info, ip_address, trusted_at, expires_at, last_used_at, is_permanent
+      FROM trusted_devices
+      WHERE user_id = ?1 AND revoked_at = ''
+      ORDER BY last_used_at DESC
+    `)
+    .bind(userId)
+    .all();
+  return result.results || [];
+}
+
+async function logLoginEvent(database, userId, email, eventType, deviceFingerprint, deviceName, ip, userAgent, details) {
+  const id = generateId();
+  const now = new Date().toISOString();
+  await database
+    .prepare(`
+      INSERT INTO login_audit_log (id, user_id, email, event_type, device_fingerprint, device_name, ip_address, user_agent, details, created_at)
+      VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10)
+    `)
+    .bind(id, userId, email, eventType, deviceFingerprint || '', deviceName || '', ip || '', userAgent || '', details || '{}', now)
+    .run();
+}
+
+// ---- Device Trust Endpoints ----
+
+async function handleDeviceCheck(request, env) {
+  const database = requireAuditDatabase(env);
+  const body = await readJsonBody(request);
+  const email = normalizeEmail(body?.email || '');
+  const deviceFingerprint = String(body?.deviceFingerprint || '').trim();
+  
+  if (!email || !email.includes('@')) {
+    throw createRouteError(400, 'email is required.');
+  }
+  if (!deviceFingerprint) {
+    throw createRouteError(400, 'deviceFingerprint is required.');
+  }
+  
+  // Find user
+  const user = await database
+    .prepare('SELECT id, email FROM auth_users WHERE email = ?1')
+    .bind(email)
+    .first();
+  if (!user) {
+    return { ok: true, trusted: false, reason: 'user_not_found' };
+  }
+  
+  // Check device trust
+  const trustedDevice = await checkDeviceTrust(database, user.id, deviceFingerprint);
+  
+  if (trustedDevice) {
+    // Update last_used_at
+    await database
+      .prepare('UPDATE trusted_devices SET last_used_at = ?1 WHERE id = ?2')
+      .bind(new Date().toISOString(), trustedDevice.id)
+      .run();
+    
+    return {
+      ok: true,
+      trusted: true,
+      deviceId: trustedDevice.id,
+      deviceName: trustedDevice.device_name,
+      expiresAt: trustedDevice.expires_at,
+      lastUsedAt: trustedDevice.last_used_at,
+    };
+  }
+  
+  return { ok: true, trusted: false, reason: 'new_device' };
+}
+
+async function handleDeviceTrust(request, env) {
+  const database = requireAuditDatabase(env);
+  const body = await readJsonBody(request);
+  const email = normalizeEmail(body?.email || '');
+  const deviceFingerprint = String(body?.deviceFingerprint || '').trim();
+  const deviceName = String(body?.deviceName || '').trim();
+  const deviceInfo = String(body?.deviceInfo || '{}');
+  const trustDays = Number(body?.trustDays) || DEVICE_TRUST_DEFAULT_DAYS;
+  
+  if (!email || !email.includes('@')) {
+    throw createRouteError(400, 'email is required.');
+  }
+  if (!deviceFingerprint) {
+    throw createRouteError(400, 'deviceFingerprint is required.');
+  }
+  
+  // Find user
+  const user = await database
+    .prepare('SELECT id, email FROM auth_users WHERE email = ?1')
+    .bind(email)
+    .first();
+  if (!user) {
+    throw createRouteError(404, 'User not found.');
+  }
+  
+  const ip = String(request.headers.get('CF-Connecting-IP') || '').trim();
+  const userAgent = String(request.headers.get('User-Agent') || '').trim();
+  
+  // Add trusted device
+  const result = await addTrustedDevice(database, user.id, deviceFingerprint, deviceName, deviceInfo, ip, userAgent, trustDays);
+  
+  // Log the event
+  await logLoginEvent(database, user.id, email, 'device_trusted', deviceFingerprint, deviceName, ip, userAgent, JSON.stringify({ deviceId: result.deviceId }));
+  
+  return {
+    ok: true,
+    deviceId: result.deviceId,
+    expiresAt: result.expiresAt,
+    message: `Device trusted for ${trustDays} days.`,
+  };
+}
+
+async function handleDeviceRevoke(request, env) {
+  const database = requireAuditDatabase(env);
+  const body = await readJsonBody(request);
+  const deviceId = String(body?.deviceId || '').trim();
+  const email = normalizeEmail(body?.email || '');
+  
+  if (!deviceId) {
+    throw createRouteError(400, 'deviceId is required.');
+  }
+  
+  // Find user
+  const user = await database
+    .prepare('SELECT id, email FROM auth_users WHERE email = ?1')
+    .bind(email)
+    .first();
+  if (!user) {
+    throw createRouteError(404, 'User not found.');
+  }
+  
+  const revoked = await revokeDevice(database, deviceId, user.id);
+  if (!revoked) {
+    throw createRouteError(404, 'Device not found.');
+  }
+  
+  // Log the event
+  const ip = String(request.headers.get('CF-Connecting-IP') || '').trim();
+  const userAgent = String(request.headers.get('User-Agent') || '').trim();
+  await logLoginEvent(database, user.id, email, 'device_revoked', '', '', ip, userAgent, JSON.stringify({ deviceId }));
+  
+  return { ok: true, message: 'Device revoked successfully.' };
+}
+
+async function handleDeviceRevokeAll(request, env) {
+  const database = requireAuditDatabase(env);
+  const body = await readJsonBody(request);
+  const email = normalizeEmail(body?.email || '');
+  
+  if (!email || !email.includes('@')) {
+    throw createRouteError(400, 'email is required.');
+  }
+  
+  // Find user
+  const user = await database
+    .prepare('SELECT id, email FROM auth_users WHERE email = ?1')
+    .bind(email)
+    .first();
+  if (!user) {
+    throw createRouteError(404, 'User not found.');
+  }
+  
+  await revokeAllDevices(database, user.id);
+  
+  // Log the event
+  const ip = String(request.headers.get('CF-Connecting-IP') || '').trim();
+  const userAgent = String(request.headers.get('User-Agent') || '').trim();
+  await logLoginEvent(database, user.id, email, 'all_devices_revoked', '', '', ip, userAgent, '{}');
+  
+  return { ok: true, message: 'All devices revoked successfully.' };
+}
+
+async function handleDeviceList(request, env) {
+  const database = requireAuditDatabase(env);
+  const url = new URL(request.url);
+  const email = normalizeEmail(url.searchParams.get('email') || '');
+  
+  if (!email || !email.includes('@')) {
+    throw createRouteError(400, 'email is required.');
+  }
+  
+  // Find user
+  const user = await database
+    .prepare('SELECT id FROM auth_users WHERE email = ?1')
+    .bind(email)
+    .first();
+  if (!user) {
+    throw createRouteError(404, 'User not found.');
+  }
+  
+  const devices = await listTrustedDevices(database, user.id);
+  
+  return {
+    ok: true,
+    devices: devices.map(d => ({
+      id: d.id,
+      deviceName: d.device_name,
+      deviceInfo: d.device_info,
+      ipAddress: d.ip_address,
+      trustedAt: d.trusted_at,
+      expiresAt: d.expires_at,
+      lastUsedAt: d.last_used_at,
+      isPermanent: d.is_permanent === 1,
+    })),
+    count: devices.length,
+    maxDevices: DEVICE_TRUST_MAX_DEVICES,
+  };
+}
+
 function resolveRouteHandler(path) {
   if (path.endsWith("/auth/password/request")) return handleAuthPasswordRecoveryRequest;
   if (path.endsWith("/progress")) return handleCloudflareProgress;
@@ -2651,6 +2957,12 @@ function resolveRouteHandler(path) {
   if (path.endsWith("/adminSetUserStatus")) return handleAdminSetUserStatus;
   if (path.endsWith("/adminSetUserPlan")) return handleAdminSetUserPlan;
   if (path.endsWith("/adminDeleteUserById")) return handleAdminDeleteUserById;
+  // Device trust routes
+  if (path.endsWith("/device/check")) return handleDeviceCheck;
+  if (path.endsWith("/device/trust")) return handleDeviceTrust;
+  if (path.endsWith("/device/revoke")) return handleDeviceRevoke;
+  if (path.endsWith("/device/revoke-all")) return handleDeviceRevokeAll;
+  if (path.endsWith("/device/list")) return handleDeviceList;
   return null;
 }
 export default {

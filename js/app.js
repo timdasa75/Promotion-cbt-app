@@ -2950,10 +2950,6 @@ async function refreshUserUpgradeStatus() {
 }
 
 async function renderProfilePaymentHistory() {
-  if (getPaymentProvider() === "selar") {
-    await refreshUserUpgradeStatus();
-    return;
-  }
 
   const container = document.getElementById("profilePaymentList");
   if (!container) return;
@@ -3500,111 +3496,69 @@ function refreshProfileUpgradeSection() {
   const user = getCurrentUser();
   const isPremium = user?.plan === "premium";
 
-  
   const upgradeShell = document.getElementById("profileUpgradeShell");
-  const selarForm = document.getElementById("selarUpgradeForm");
   const flutterwaveForm = document.getElementById("flutterwaveUpgradeForm");
   const paymentSection = document.getElementById("profilePaymentSection");
   const upgradeTitle = document.getElementById("profileUpgradeTitle");
   const upgradeSubtitle = document.getElementById("profileUpgradeSubtitle");
-  
-  if (provider === "selar") {
-    // Show Selar form, hide Flutterwave form
-    if (selarForm) selarForm.style.display = "";
-    if (flutterwaveForm) flutterwaveForm.style.display = "none";
-    if (upgradeTitle) upgradeTitle.textContent = "Selar Payment Confirmation";
-    if (upgradeSubtitle) upgradeSubtitle.textContent = "After paying on Selar, submit your order reference for admin activation.";
-    if (paymentSection) paymentSection.style.display = "none";
-    prefillSelarReferenceFromReturnUrl();
-    return refreshUserUpgradeStatus();
-  }
-  
-  // Flutterwave or other provider
+  const subscriptionInfo = document.getElementById("profileSubscriptionInfo");
+  const subscriptionBadges = document.getElementById("profileSubscriptionBadges");
+
   if (isPremium) {
-    // Premium users: hide upgrade shell, show payment history
+    // Premium users: hide upgrade shell, show payment history and subscription info
     if (upgradeShell) upgradeShell.style.display = "none";
     if (paymentSection) paymentSection.style.display = "";
+
+    // Populate subscription info
+    if (subscriptionInfo && subscriptionBadges) {
+      subscriptionInfo.style.display = "";
+      const cycleLabel = formatBillingCycleLabel(user?.billingCycle || user?.subscriptionType || user?.planInterval);
+      const rawExpiry = String(user?.planExpiresAt || user?.subscriptionExpiresAt || user?.planExpiryAt || user?.expiresAt || "").trim();
+      const subDate = user?.lastPaymentAt || user?.createdAt || "";
+
+      let html = '';
+      if (cycleLabel) {
+        html += `<span class="admin-badge approved">Plan: ${escapeHtml(cycleLabel)}</span>`;
+      }
+      if (subDate && subDate !== "-") {
+        html += `<span class="admin-badge approved">Subscribed: ${escapeHtml(formatDate(subDate))}</span>`;
+      }
+      if (rawExpiry) {
+        const expiryDate = new Date(rawExpiry);
+        if (!Number.isNaN(expiryDate.getTime())) {
+          const diffMs = expiryDate.getTime() - Date.now();
+          if (diffMs < 0) {
+            html += `<span class="admin-badge rejected">Expired: ${escapeHtml(formatDateTime(rawExpiry))}</span>`;
+          } else {
+            const daysLeft = Math.ceil(diffMs / (24 * 60 * 60 * 1000));
+            const countdown = daysLeft <= 30 ? `${daysLeft} days left` : `${Math.ceil(daysLeft / 30)} months left`;
+            const badgeClass = daysLeft <= EXPIRY_WARNING_DAYS ? "pending" : "approved";
+            html += `<span class="admin-badge ${badgeClass}">Expires: ${escapeHtml(formatDateTime(rawExpiry))}</span>`;
+            html += `<span class="admin-badge ${badgeClass}">${escapeHtml(countdown)}</span>`;
+          }
+        }
+      }
+      subscriptionBadges.innerHTML = html || '<span class="admin-badge approved">Premium Access</span>';
+    }
+
     return renderProfilePaymentHistory();
   }
-  
-  // Non-premium users: show upgrade button, hide Selar form
-  if (selarForm) selarForm.style.display = "none";
+
+  // Non-premium users: show upgrade button
   if (flutterwaveForm) flutterwaveForm.style.display = "";
   if (upgradeShell) upgradeShell.style.display = "";
   if (paymentSection) paymentSection.style.display = "none";
+  if (subscriptionInfo) subscriptionInfo.style.display = "none";
   if (upgradeTitle) upgradeTitle.textContent = "Upgrade to Premium";
   if (upgradeSubtitle) upgradeSubtitle.textContent = "Unlock all practice topics, detailed analytics, and priority support.";
-  
+
   // Wire up the upgrade button
   const profileUpgradeBtn = document.getElementById("profileUpgradeBtn");
   if (profileUpgradeBtn) {
     profileUpgradeBtn.onclick = () => handleUpgradeClick();
   }
-  
+
   return Promise.resolve();
-}
-
-// When the user returns from the Selar hosted checkout (return URL configured
-// as ?payment=selar&status=success, with Selar appending an order reference
-// when available), pre-fill the confirmation form so verification is one tap
-// away — closing the app → Selar → back loop automatically.
-function prefillSelarReferenceFromReturnUrl() {
-  if (typeof window === "undefined") return;
-  const params = new URLSearchParams(window.location.search || "");
-  const isSelarReturn = params.get("payment") === "selar" && params.get("status") === "success";
-  if (!isSelarReturn) return;
-
-  const reference = String(
-    params.get("reference") ||
-      params.get("order_reference") ||
-      params.get("orderReference") ||
-      params.get("order_ref") ||
-      params.get("orderRef") ||
-      params.get("txnref") ||
-      params.get("transaction_id") ||
-      params.get("transactionId") ||
-      params.get("order_id") ||
-      params.get("orderId") ||
-      ""
-  ).trim();
-
-  const referenceInput = document.getElementById("upgradePaymentReference");
-  if (reference && referenceInput && !String(referenceInput.value || "").trim()) {
-    referenceInput.value = reference;
-  }
-  if (referenceInput) {
-    referenceInput.focus();
-  }
-
-  // Consume the return-URL params so re-rendering the profile does not
-  // re-fill (or re-focus) the form after the user has moved on.
-  if (window.history?.replaceState) {
-    const url = new URL(window.location.href);
-    url.searchParams.delete("payment");
-    url.searchParams.delete("status");
-    [
-      "reference",
-      "order_reference",
-      "orderReference",
-      "order_ref",
-      "orderRef",
-      "txnref",
-      "transaction_id",
-      "transactionId",
-      "order_id",
-      "orderId",
-    ].forEach((key) => url.searchParams.delete(key));
-    window.history.replaceState({}, document.title, url.toString());
-  }
-}
-
-function clearSelarConfirmationForm() {
-  const refInput = document.getElementById("upgradePaymentReference");
-  const amtInput = document.getElementById("upgradeAmountPaid");
-  const cycleInput = document.getElementById("upgradeBillingCycle");
-  if (refInput) refInput.value = "";
-  if (amtInput) amtInput.value = "";
-  if (cycleInput) cycleInput.value = "";
 }
 
 // After an automatic grant, refresh the in-memory session so the plan badge
@@ -3614,11 +3568,9 @@ async function refreshAuthSessionAfterGrant() {
     await refreshCurrentUserAfterGrant();
     refreshDashboardInsights();
   } catch (error) {
-    debugLog("Session refresh after Selar grant failed: " + (error?.message || "request failed."));
+    debugLog("Session refresh after grant failed: " + (error?.message || "request failed."));
   }
-}
-
-async function renderAdminPayments() {
+}async function renderAdminPayments() {
   const container = document.getElementById("adminRequestList");
   if (!container) return;
 
@@ -3626,10 +3578,15 @@ async function renderAdminPayments() {
   const searchInput = document.getElementById("adminRequestSearch");
   const statusFilter = document.getElementById("adminRequestStatusFilter");
   const planFilter = document.getElementById("adminRequestSourceFilter");
+  const sortSelect = document.getElementById("adminRequestSort");
   const countLabel = document.getElementById("adminRequestCount");
   const query = String(searchInput?.value || "").trim().toLowerCase();
   const statusValue = String(statusFilter?.value || "all").toLowerCase();
   const planValue = String(planFilter?.value || "all").toLowerCase();
+
+  if (sortSelect) {
+    adminRequestSortValue = sortSelect.value || "newest";
+  }
 
   let payments = [];
   try {
@@ -3666,11 +3623,23 @@ async function renderAdminPayments() {
           String(payment.flwTransactionId || "").toLowerCase().includes(query)
         );
       })
-      .sort((a, b) => (Date.parse(b.createdAt || "") || 0) - (Date.parse(a.createdAt || "") || 0));
+      .sort((a, b) => {
+        switch (adminRequestSortValue) {
+          case "oldest":
+            return (Date.parse(a.createdAt) || 0) - (Date.parse(b.createdAt) || 0);
+          case "email-asc":
+            return String(a.email || "").localeCompare(String(b.email || ""));
+          case "email-desc":
+            return String(b.email || "").localeCompare(String(a.email || ""));
+          case "newest":
+          default:
+            return (Date.parse(b.createdAt) || 0) - (Date.parse(a.createdAt) || 0);
+        }
+      });
 
-    if (countLabel) {
-      countLabel.textContent = `${filtered.length}/${payments.length}`;
-    }
+  if (countLabel) {
+    countLabel.textContent = `${filtered.length}/${payments.length}`;
+  }
 
     if (!filtered.length) {
       container.innerHTML =
@@ -3833,6 +3802,13 @@ function formatDateTime(value) {
   return date.toLocaleString();
 }
 
+function formatDate(value) {
+  if (!value) return "-";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "-";
+  return date.toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
+}
+
 function formatRelativeTime(value) {
   if (!value) return "";
   const timestamp = Date.parse(String(value));
@@ -3975,14 +3951,34 @@ function renderAdminFeedbackList() {
   const statusFilter = document.getElementById("adminFeedbackStatusFilter");
   const categoryFilter = document.getElementById("adminFeedbackCategoryFilter");
   const sourceFilter = document.getElementById("adminFeedbackSourceFilter");
+  const sortSelect = document.getElementById("adminFeedbackSort");
   const countLabel = document.getElementById("adminFeedbackCount");
   if (!container) return;
+
+  if (sortSelect) {
+    adminFeedbackSortValue = sortSelect.value || "newest";
+  }
 
   const filtered = filterAdminFeedbackSubmissions(adminFeedbackSubmissions, {
     query: searchInput?.value,
     status: statusFilter?.value,
     category: categoryFilter?.value,
     source: sourceFilter?.value,
+  });
+
+  // Apply sorting
+  filtered.sort((a, b) => {
+    switch (adminFeedbackSortValue) {
+      case "oldest":
+        return (Date.parse(a.createdAt) || 0) - (Date.parse(b.createdAt) || 0);
+      case "email-asc":
+        return String(a.email || "").localeCompare(String(b.email || ""));
+      case "email-desc":
+        return String(b.email || "").localeCompare(String(a.email || ""));
+      case "newest":
+      default:
+        return (Date.parse(b.createdAt) || 0) - (Date.parse(a.createdAt) || 0);
+    }
   });
 
   if (countLabel) {
@@ -4240,34 +4236,52 @@ function getDirectoryBillingCyclePresentation(entry) {
   }
   const label = formatBillingCycleLabel(entry?.billingCycle || entry?.subscriptionType || entry?.planInterval);
   if (!label) {
-    return { label: "Unknown", badgeClass: "neutral" };
+    // Try to infer from lastPaymentAt — if they paid, they have a cycle
+    if (entry?.lastPaymentAt) {
+      return { label: "Premium", badgeClass: "approved" };
+    }
+    return { label: "Premium", badgeClass: "approved" };
   }
   return { label, badgeClass: "approved" };
 }
 
 function getDirectoryExpiryPresentation(entry) {
   const plan = String(entry?.plan || "").toLowerCase();
-  const rawExpiry = String(entry?.planExpiresAt || "").trim();
+  let rawExpiry = String(entry?.planExpiresAt || "").trim();
   if (plan !== "premium") {
-    return { label: "Free", badgeClass: "neutral", dateLabel: "" };
+    return { label: "Free", badgeClass: "neutral", dateLabel: "", countdown: "" };
+  }
+  // If no explicit expiry, try to compute from lastPaymentAt + billingCycle
+  if (!rawExpiry && entry?.lastPaymentAt) {
+    const cycle = String(entry?.billingCycle || entry?.subscriptionType || entry?.planInterval || "").toLowerCase();
+    const cycleDays = cycle.includes("year") ? 365 : cycle.includes("quarter") ? 90 : 30; // default monthly
+    const paymentDate = new Date(entry.lastPaymentAt);
+    if (!Number.isNaN(paymentDate.getTime())) {
+      rawExpiry = new Date(paymentDate.getTime() + cycleDays * 24 * 60 * 60 * 1000).toISOString();
+    }
   }
   if (!rawExpiry) {
-    return { label: "No expiry", badgeClass: "neutral", dateLabel: "" };
+    // No expiry data but user is premium — show as active with subscription date
+    const subDate = entry?.lastPaymentAt || entry?.createdAt || "";
+    const subLabel = subDate ? `Since ${formatDate(subDate)}` : "Active";
+    return { label: "Active", badgeClass: "approved", dateLabel: subLabel, countdown: "" };
   }
   const expiryDate = new Date(rawExpiry);
   if (Number.isNaN(expiryDate.getTime())) {
-    return { label: "Unknown", badgeClass: "neutral", dateLabel: "" };
+    return { label: "Unknown", badgeClass: "neutral", dateLabel: "", countdown: "" };
   }
   const diffMs = expiryDate.getTime() - Date.now();
   const dateLabel = formatDateTime(rawExpiry);
   if (diffMs < 0) {
-    return { label: "Expired", badgeClass: "rejected", dateLabel };
+    return { label: "Expired", badgeClass: "rejected", dateLabel, countdown: "" };
   }
+  const daysLeft = Math.ceil(diffMs / (24 * 60 * 60 * 1000));
+  const countdown = daysLeft <= 30 ? `${daysLeft}d left` : `${Math.ceil(daysLeft / 30)}mo left`;
   const warnMs = EXPIRY_WARNING_DAYS * 24 * 60 * 60 * 1000;
   if (diffMs <= warnMs) {
-    return { label: "Expiring", badgeClass: "pending", dateLabel };
+    return { label: "Expiring", badgeClass: "pending", dateLabel, countdown };
   }
-  return { label: "Active", badgeClass: "approved", dateLabel };
+  return { label: "Active", badgeClass: "approved", dateLabel, countdown };
 }
 
 function getProfileSubscriptionLabel(user) {
@@ -4289,14 +4303,23 @@ function getProfileSubscriptionLabel(user) {
 }
 
 
+let adminUserSortValue = "newest";
+let adminRequestSortValue = "newest";
+let adminFeedbackSortValue = "newest";
+
 function renderAdminUserDirectory() {
   const container = document.getElementById("adminUserList");
   const searchInput = document.getElementById("adminUserSearch");
   const statusFilter = document.getElementById("adminStatusFilter");
   const verificationFilter = document.getElementById("adminVerificationFilter");
+  const sortSelect = document.getElementById("adminUserSort");
   const sourceLabel = document.getElementById("adminUserSource");
   const countLabel = document.getElementById("adminUserCount");
   if (!container) return;
+
+  if (sortSelect) {
+    adminUserSortValue = sortSelect.value || "newest";
+  }
 
   const query = String(searchInput?.value || "").trim().toLowerCase();
   const status = String(statusFilter?.value || "all").toLowerCase();
@@ -4311,6 +4334,24 @@ function renderAdminUserDirectory() {
       (verification === "unknown" && entry.emailVerified !== true && entry.emailVerified !== false);
     return emailMatch && statusMatch && verificationMatch;
   });
+
+  // Apply sorting
+  filtered.sort((a, b) => {
+    switch (adminUserSortValue) {
+      case "oldest":
+        return (Date.parse(a.createdAt) || 0) - (Date.parse(b.createdAt) || 0);
+      case "email-asc":
+        return String(a.email || "").localeCompare(String(b.email || ""));
+      case "email-desc":
+        return String(b.email || "").localeCompare(String(a.email || ""));
+      case "last-seen":
+        return (Date.parse(b.lastSeenAt) || 0) - (Date.parse(a.lastSeenAt) || 0);
+      case "newest":
+      default:
+        return (Date.parse(b.createdAt) || 0) - (Date.parse(a.createdAt) || 0);
+    }
+  });
+
   if (countLabel) {
     countLabel.textContent = `${filtered.length}/${adminDirectoryUsers.length}`;
   }
@@ -4351,17 +4392,30 @@ function renderAdminUserDirectory() {
     const safeBilling = escapeHtml(billingCycle.label);
     const safeVerification = escapeHtml(verification.label);
     const isPremiumPlan = entry.plan === "premium";
+    const safeCountdown = escapeHtml(expiry.countdown || "");
+    const countdownBadge = isPremiumPlan && safeCountdown
+      ? `<span class="admin-badge pending">${safeCountdown}</span>`
+      : "";
     const billingBadge = isPremiumPlan
       ? `<span class="admin-badge ${billingCycle.badgeClass}">Billing: ${safeBilling}</span>`
       : "";
     const expiryBadge = isPremiumPlan
       ? `<span class="admin-badge ${expiry.badgeClass}">Expiry: ${safeExpiryLabel}</span>`
       : "";
+    // Subscription date: prefer lastPaymentAt, fallback to createdAt
+    const subDate = isPremiumPlan ? (entry?.lastPaymentAt || entry?.createdAt || "") : "";
+    const safeSubDate = escapeHtml(subDate ? formatDate(subDate) : "");
+    const subDateBadge = isPremiumPlan && safeSubDate && safeSubDate !== "-"
+      ? `<span class="admin-badge approved">Subscribed: ${safeSubDate}</span>`
+      : "";
     const billingDetail = isPremiumPlan
       ? `<div><span class="meta">Billing</span><strong>${safeBilling}</strong></div>`
       : "";
     const expiryDetail = isPremiumPlan
-      ? `<div><span class="meta">Expiry</span><strong>${safeExpiryLabel}</strong></div>`
+      ? `<div><span class="meta">Expiry</span><strong>${safeExpiryLabel}</strong>${safeExpiryDate ? ` <span class="meta">(${safeExpiryDate})</span>` : ""}${safeCountdown ? ` <span class="admin-badge pending">${safeCountdown}</span>` : ""}</div>`
+      : "";
+    const subDateDetail = isPremiumPlan && safeSubDate && safeSubDate !== "-"
+      ? `<div><span class="meta">Subscribed</span><strong>${safeSubDate}</strong></div>`
       : "";
 
     const isSuspended = entry.status === "suspended";
@@ -4395,6 +4449,8 @@ function renderAdminUserDirectory() {
               <span class="admin-badge ${planClass}">Plan: ${safePlan}</span>
               ${billingBadge}
               ${expiryBadge}
+              ${countdownBadge}
+              ${subDateBadge}
               <span class="admin-badge ${statusClass}">Status: ${safeStatus}</span>
               <span class="admin-badge ${verification.badgeClass}">Verified: ${safeVerification}</span>
             </div>
@@ -4410,6 +4466,7 @@ function renderAdminUserDirectory() {
           <div><span class="meta">Plan</span><strong>${safePlan}</strong></div>
           ${billingDetail}
           ${expiryDetail}
+          ${subDateDetail}
           <div><span class="meta">Status</span><strong>${safeStatus}</strong></div>
           <div><span class="meta">Verified</span><strong>${safeVerification}</strong></div>
           <div><span class="meta">Created</span><strong>${safeCreated}</strong></div>
@@ -5279,6 +5336,10 @@ function initializeAuthUI() {
   if (adminRequestSourceFilter) {
     adminRequestSourceFilter.addEventListener("change", () => renderAdminRequests());
   }
+  const adminRequestSort = document.getElementById("adminRequestSort");
+  if (adminRequestSort) {
+    adminRequestSort.addEventListener("change", () => renderAdminRequests());
+  }
   if (refreshAdminRequestsBtn) {
     refreshAdminRequestsBtn.addEventListener("click", async () => {
   try {
@@ -5617,6 +5678,11 @@ function initializeAuthUI() {
     adminFeedbackSourceFilter.addEventListener("change", () => renderAdminFeedbackList());
   }
 
+  const adminFeedbackSort = document.getElementById("adminFeedbackSort");
+  if (adminFeedbackSort) {
+    adminFeedbackSort.addEventListener("change", () => renderAdminFeedbackList());
+  }
+
   if (refreshAdminFeedbackBtn) {
     refreshAdminFeedbackBtn.addEventListener("click", async () => {
       if (!isCurrentUserAdmin()) {
@@ -5667,6 +5733,13 @@ function initializeAuthUI() {
 
   if (adminVerificationFilter) {
     adminVerificationFilter.addEventListener("change", () => {
+      renderAdminUserDirectory();
+    });
+  }
+
+  const adminUserSort = document.getElementById("adminUserSort");
+  if (adminUserSort) {
+    adminUserSort.addEventListener("change", () => {
       renderAdminUserDirectory();
     });
   }

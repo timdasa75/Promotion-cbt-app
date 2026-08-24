@@ -595,36 +595,16 @@
                                     <h3 id="profileUpgradeTitle">Payment Confirmation</h3>
                                     <p id="profileUpgradeSubtitle">Complete your payment to activate Premium access.</p>
                                 </div>
-                                <!-- Selar form (hidden when Flutterwave is active) -->
-                                <div class="profile-upgrade-form" id="selarUpgradeForm">
-                                    <div class="auth-form profile-upgrade-fields">
-                                        <label class="auth-field">
-                                            <span>Selar Order Reference</span>
-                                            <input id="upgradePaymentReference" type="text" placeholder="Order ID, receipt code, or payment email" />
-                                        </label>
-                                        <label class="auth-field">
-                                            <span>Billing Cycle</span>
-                                            <select id="upgradeBillingCycle">
-                                                <option value="monthly">Monthly</option>
-                                            </select>
-                                        </label>
-                                        <label class="auth-field">
-                                            <span>Amount Paid</span>
-                                            <input id="upgradeAmountPaid" type="text" placeholder="e.g. 2500" />
-                                        </label>
-                                    </div>
-                                    <div class="button-row profile-upgrade-actions">
-                                        <button class="btn btn-secondary" id="submitUpgradeEvidenceBtn" type="button">Submit Selar Confirmation</button>
-                                    </div>
-                                </div>
-                                <!-- Flutterwave upgrade button (hidden when Selar is active) -->
-                                <div class="profile-upgrade-form" id="flutterwaveUpgradeForm" style="display:none;">
+                                <div class="profile-upgrade-form" id="flutterwaveUpgradeForm">
                                     <p class="hero-meta">Upgrade to Premium to unlock all practice topics, detailed analytics, and priority support.</p>
                                     <div class="button-row profile-upgrade-actions">
                                         <button class="btn btn-primary" id="profileUpgradeBtn" type="button">Upgrade to Premium</button>
                                     </div>
                                 </div>
                                 <div id="profileUpgradeStatus" class="admin-request-item hidden"></div>
+                            </div>
+                            <div class="profile-subscription-info" id="profileSubscriptionInfo" style="display:none;">
+                                <div class="profile-subscription-badges" id="profileSubscriptionBadges"></div>
                             </div>
                             <div class="payment-history-section" id="profilePaymentSection" style="display:none;">
                                 <h3>Payment History</h3>
@@ -701,7 +681,7 @@
                         </article>
                         <article class="card admin-section-card admin-requests-card">
                             <div class="admin-card-head">
-                                <h3>Selar Upgrade Requests</h3>
+                                <h3>Upgrade Requests</h3>
                                 <span class="admin-count" id="adminRequestCount">0/0</span>
                             </div>
                             <div class="toolbar-row admin-request-toolbar">
@@ -719,6 +699,12 @@
                                     <option value="all">All Sources</option>
                                     <option value="cloud-profile">Cloud Profile</option>
                                     <option value="local">Local Device</option>
+                                </select>
+                                <select id="adminRequestSort" aria-label="Sort requests">
+                                    <option value="newest">Newest First</option>
+                                    <option value="oldest">Oldest First</option>
+                                    <option value="email-asc">Email A-Z</option>
+                                    <option value="email-desc">Email Z-A</option>
                                 </select>
                                 <button class="btn btn-secondary" id="refreshAdminRequestsBtn" type="button">Refresh</button>
                             </div>
@@ -745,6 +731,13 @@
                                     <option value="verified">Verified</option>
                                     <option value="unverified">Not Verified</option>
                                     <option value="unknown">Unknown</option>
+                                </select>
+                                <select id="adminUserSort" aria-label="Sort users">
+                                    <option value="newest">Newest First</option>
+                                    <option value="oldest">Oldest First</option>
+                                    <option value="email-asc">Email A-Z</option>
+                                    <option value="email-desc">Email Z-A</option>
+                                    <option value="last-seen">Last Seen</option>
                                 </select>
                                 <button class="btn btn-secondary" id="refreshAdminUsersBtn" type="button">Refresh</button>
                             </div>
@@ -785,6 +778,12 @@
                                     <option value="help">Help</option>
                                     <option value="quiz">Quiz</option>
                                     <option value="results">Results</option>
+                                </select>
+                                <select id="adminFeedbackSort" aria-label="Sort feedback">
+                                    <option value="newest">Newest First</option>
+                                    <option value="oldest">Oldest First</option>
+                                    <option value="email-asc">Email A-Z</option>
+                                    <option value="email-desc">Email Z-A</option>
                                 </select>
                                 <button class="btn btn-secondary" id="refreshAdminFeedbackBtn" type="button">Refresh</button>
                             </div>
@@ -1047,7 +1046,7 @@
                         <div class="plan-name">Monthly</div>
                         <div class="plan-price">₦2,500</div>
                         <div class="plan-meta">Per Month</div>
-                        <button class="btn btn-primary select-plan-btn">Pay Monthly on Selar</button>
+                        <button class="btn btn-primary select-plan-btn">Pay Monthly</button>
                     </div>
                 </div>
             </div>
