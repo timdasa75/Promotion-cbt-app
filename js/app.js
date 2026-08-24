@@ -687,10 +687,41 @@ function writeAdminOperationHistory(history) {
 // Admin Dashboard Summary
 // ============================================================
 
+async function fetchDeviceCount() {
+  try {
+    const config = getRuntimeConfig();
+    const baseUrl = config?.cloudflareAuthBaseUrl || '';
+    const session = readSession();
+    if (!session?.accessToken || !baseUrl) return 0;
+    const resp = await fetch(`${baseUrl}/device/list`, {
+      headers: { 'Authorization': `Bearer ${session.accessToken}` }
+    });
+    const data = await resp.json().catch(() => ({}));
+    return data?.count || 0;
+  } catch { return 0; }
+}
+
+async function fetchRecentLoginsCount() {
+  try {
+    const config = getRuntimeConfig();
+    const baseUrl = config?.cloudflareAuthBaseUrl || '';
+    const session = readSession();
+    if (!session?.accessToken || !baseUrl) return 0;
+    const resp = await fetch(`${baseUrl}/otp/audit`, {
+      headers: { 'Authorization': `Bearer ${session.accessToken}` }
+    });
+    const data = await resp.json().catch(() => ({}));
+    const entries = Array.isArray(data?.entries) ? data.entries : [];
+    const cutoff = Date.now() - 24 * 60 * 60 * 1000;
+    return entries.filter(e => e.eventType === 'login_success' && new Date(e.createdAt).getTime() > cutoff).length;
+  } catch { return 0; }
+}
+
 function updateAdminDashboardSummary() {
   const users = adminDirectoryUsers || [];
   const totalUsers = users.length;
   const premiumUsers = users.filter(u => u.plan === 'premium').length;
+  const activeUsers = users.filter(u => u.status === 'active').length;
   
   const totalUsersEl = document.getElementById('adminStatTotalUsers');
   const premiumUsersEl = document.getElementById('adminStatPremiumUsers');
@@ -699,8 +730,17 @@ function updateAdminDashboardSummary() {
   
   if (totalUsersEl) totalUsersEl.textContent = String(totalUsers);
   if (premiumUsersEl) premiumUsersEl.textContent = String(premiumUsers);
-  if (trustedDevicesEl) trustedDevicesEl.textContent = '—'; // Will be updated after device load
-  if (recentLoginsEl) recentLoginsEl.textContent = '—'; // Will be updated after audit load
+  // Trusted devices and recent logins will be updated asynchronously
+  if (trustedDevicesEl && trustedDevicesEl.textContent === '0') {
+    fetchDeviceCount().then(count => {
+      if (trustedDevicesEl) trustedDevicesEl.textContent = String(count);
+    }).catch(() => {});
+  }
+  if (recentLoginsEl && recentLoginsEl.textContent === '0') {
+    fetchRecentLoginsCount().then(count => {
+      if (recentLoginsEl) recentLoginsEl.textContent = String(count);
+    }).catch(() => {});
+  }
 }
 
 // ============================================================
@@ -5553,6 +5593,21 @@ function startAdminDirectoryAutoSync() {
   });
 }
 
+function initializeAdminTabs() {
+  const tabs = document.querySelectorAll('.admin-tab');
+  const panels = document.querySelectorAll('.admin-tab-panel');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const targetId = 'adminTab' + tab.dataset.adminTab.charAt(0).toUpperCase() + tab.dataset.adminTab.slice(1);
+      tabs.forEach(t => t.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      const targetPanel = document.getElementById(targetId);
+      if (targetPanel) targetPanel.classList.add('active');
+    });
+  });
+}
+
 async function openAdminScreen() {
   if (!isCurrentUserAdmin()) {
     showWarning("Admin access is restricted.");
@@ -5572,6 +5627,7 @@ async function openAdminScreen() {
         renderAdminAuditLog().catch(() => {});
         // Update dashboard summary
         updateAdminDashboardSummary();
+        initializeAdminTabs();
         await showScreen("adminScreen");
       },
       {

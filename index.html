@@ -683,8 +683,13 @@
                             <div class="admin-stat-label">Recent Logins (24h)</div>
                         </div>
                     </div>
+                    <div class="admin-tabs">
+                        <button class="admin-tab active" data-admin-tab="payments">Payments & Access</button>
+                        <button class="admin-tab" data-admin-tab="support">Support & Audit</button>
+                        <button class="admin-tab" data-admin-tab="security">Security & Devices</button>
+                    </div>
                     <div class="admin-groups">
-                        <section class="admin-group" aria-labelledby="adminGroupAccessTitle">
+                        <section class="admin-group admin-tab-panel active" id="adminTabPayments" aria-labelledby="adminGroupAccessTitle">
                             <h3 class="admin-group-title" id="adminGroupAccessTitle">Payments &amp; Access</h3>
                             <div class="admin-grid">
                         <article class="card admin-section-card admin-plan-card">
@@ -785,7 +790,7 @@
                             </div>
                         </article>
                         </section>
-                        <section class="admin-group" aria-labelledby="adminGroupSupportTitle">
+                        <section class="admin-group admin-tab-panel" id="adminTabSupport" aria-labelledby="adminGroupSupportTitle">
                             <h3 class="admin-group-title" id="adminGroupSupportTitle">Support &amp; Audit</h3>
                             <div class="admin-grid">
                         <article class="card admin-section-card admin-feedback-card">
@@ -841,7 +846,7 @@
                             </div>
                         </article>
                         </section>
-                        <section class="admin-group" aria-labelledby="adminGroupSecurityTitle">
+                        <section class="admin-group admin-tab-panel" id="adminTabSecurity" aria-labelledby="adminGroupSecurityTitle">
                             <h3 class="admin-group-title" id="adminGroupSecurityTitle">Security &amp; Devices</h3>
                             <div class="admin-grid">
                         <article class="card admin-section-card admin-devices-card">

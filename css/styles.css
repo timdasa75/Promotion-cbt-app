@@ -2709,6 +2709,51 @@ select:focus-visible,
     margin-top: 4px;
 }
 
+/* Admin tabs */
+.admin-tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 2px solid var(--line);
+    margin-bottom: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.admin-tab {
+    flex: 1;
+    min-width: 120px;
+    padding: 10px 16px;
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    background: transparent;
+    color: var(--ink-600);
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+    white-space: nowrap;
+}
+
+.admin-tab:hover {
+    color: var(--ink-900);
+    background: var(--primary-light);
+}
+
+.admin-tab.active {
+    color: var(--primary);
+    border-bottom-color: var(--primary);
+    font-weight: 700;
+}
+
+.admin-tab-panel {
+    display: none;
+}
+
+.admin-tab-panel.active {
+    display: grid;
+}
+
 /* Demarcated admin sections: cards are grouped under labeled, bordered
    panels (Payments & Access / Support & Audit) so each area reads as a
    distinct block instead of one long column. */
