@@ -2813,6 +2813,95 @@ async function sendOTPEmail(env, email, otp, deviceName) {
   }
 }
 
+/**
+ * Send login alert email
+ */
+async function sendLoginAlertEmail(env, email, deviceName, ipAddress, loginTime) {
+  const resendApiKey = env.RESEND_API_KEY;
+  if (!resendApiKey) {
+    console.warn('[login-alert] RESEND_API_KEY not configured, skipping email');
+    return { sent: false, reason: 'Email service not configured' };
+  }
+  
+  const htmlContent = `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <style>
+        .container { max-width: 600px; margin: 0 auto; font-family: Arial, sans-serif; }
+        .header { background: linear-gradient(135deg, #2563eb, #16a34a); color: white; padding: 20px; text-align: center; border-radius: 8px 8px 0 0; }
+        .content { padding: 30px; background: #f9fafb; border: 1px solid #e5e7eb; }
+        .info-box { background: white; border-radius: 8px; padding: 15px; margin: 20px 0; border: 1px solid #e5e7eb; }
+        .info-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #f3f4f6; }
+        .info-row:last-child { border-bottom: none; }
+        .info-label { color: #6b7280; }
+        .info-value { font-weight: 500; }
+        .footer { color: #6b7280; font-size: 12px; text-align: center; padding: 20px; }
+        .warning { color: #dc2626; font-size: 14px; margin-top: 15px; }
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <div class="header">
+          <h1>Promotion CBT</h1>
+        </div>
+        <div class="content">
+          <h2>New Login to Your Account</h2>
+          <p>Hello,</p>
+          <p>We noticed a new login to your Promotion CBT account:</p>
+          <div class="info-box">
+            <div class="info-row">
+              <span class="info-label">Device:</span>
+              <span class="info-value">${deviceName || 'Unknown'}</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">IP Address:</span>
+              <span class="info-value">${ipAddress || 'Unknown'}</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Time:</span>
+              <span class="info-value">${loginTime || new Date().toISOString()}</span>
+            </div>
+          </div>
+          <p>If this was you, no action is needed.</p>
+          <p class="warning">⚠️ If you don't recognize this activity, please change your password immediately and contact support.</p>
+        </div>
+        <div class="footer">
+          <p>Promotion CBT © 2026. All rights reserved.</p>
+        </div>
+      </div>
+    </body>
+    </html>
+  `;
+  
+  try {
+    const response = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${resendApiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from: 'Promotion CBT <onboarding@resend.dev>',
+        to: [email],
+        subject: 'New Login to Your Account',
+        html: htmlContent,
+      }),
+    });
+    
+    if (!response.ok) {
+      const error = await response.text();
+      console.error('[login-alert] Email send failed:', error);
+      return { sent: false, reason: 'Email delivery failed' };
+    }
+    
+    return { sent: true };
+  } catch (error) {
+    console.error('[login-alert] Email send error:', error);
+    return { sent: false, reason: 'Email delivery error' };
+  }
+}
+
 // ---- OTP Endpoints ----
 
 async function handleOTPRequest(request, env) {
@@ -2980,6 +3069,39 @@ async function handleOTPResend(request, env) {
     message: 'New verification code sent.',
     email: maskEmail(email),
     expiresAt,
+    emailSent: emailResult.sent,
+  };
+}
+
+// ---- Login Alert Endpoint ----
+
+async function handleLoginAlert(request, env) {
+  const database = requireAuditDatabase(env);
+  const body = await readJsonBody(request);
+  const email = normalizeEmail(body?.email || '');
+  const deviceName = String(body?.deviceName || '').trim();
+  const ipAddress = String(body?.ipAddress || '').trim();
+  const loginTime = String(body?.loginTime || new Date().toISOString()).trim();
+  
+  if (!email || !email.includes('@')) {
+    throw createRouteError(400, 'email is required.');
+  }
+  
+  // Send login alert email
+  const emailResult = await sendLoginAlertEmail(env, email, deviceName, ipAddress, loginTime);
+  
+  // Log the event
+  const user = await database
+    .prepare('SELECT id FROM auth_users WHERE email = ?1')
+    .bind(email)
+    .first();
+  if (user) {
+    await logLoginEvent(database, user.id, email, 'login_alert_sent', '', deviceName, ipAddress, '', JSON.stringify({ loginTime }));
+  }
+  
+  return {
+    ok: true,
+    message: 'Login alert sent.',
     emailSent: emailResult.sent,
   };
 }
@@ -3319,6 +3441,8 @@ function resolveRouteHandler(path) {
   if (path.endsWith("/otp/request")) return handleOTPRequest;
   if (path.endsWith("/otp/verify")) return handleOTPVerify;
   if (path.endsWith("/otp/resend")) return handleOTPResend;
+  // Login alert route
+  if (path.endsWith("/login/alert")) return handleLoginAlert;
   // Device trust routes
   if (path.endsWith("/device/check")) return handleDeviceCheck;
   if (path.endsWith("/device/trust")) return handleDeviceTrust;

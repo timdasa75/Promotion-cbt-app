@@ -684,6 +684,26 @@ function writeAdminOperationHistory(history) {
 }
 
 // ============================================================
+// Admin Dashboard Summary
+// ============================================================
+
+function updateAdminDashboardSummary() {
+  const users = adminDirectoryUsers || [];
+  const totalUsers = users.length;
+  const premiumUsers = users.filter(u => u.plan === 'premium').length;
+  
+  const totalUsersEl = document.getElementById('adminStatTotalUsers');
+  const premiumUsersEl = document.getElementById('adminStatPremiumUsers');
+  const trustedDevicesEl = document.getElementById('adminStatTrustedDevices');
+  const recentLoginsEl = document.getElementById('adminStatRecentLogins');
+  
+  if (totalUsersEl) totalUsersEl.textContent = String(totalUsers);
+  if (premiumUsersEl) premiumUsersEl.textContent = String(premiumUsers);
+  if (trustedDevicesEl) trustedDevicesEl.textContent = '—'; // Will be updated after device load
+  if (recentLoginsEl) recentLoginsEl.textContent = '—'; // Will be updated after audit load
+}
+
+// ============================================================
 // Admin Device Management & Audit Log
 // ============================================================
 
@@ -3005,6 +3025,33 @@ async function getDeviceName() {
 /**
  * Complete login after device trust check or OTP verification
  */
+/**
+ * Send login alert email
+ */
+async function sendLoginAlert(email, deviceName, ipAddress) {
+  try {
+    const config = getRuntimeConfig();
+    const baseUrl = config?.cloudflareAuthBaseUrl || "";
+    if (!baseUrl) return;
+    
+    await fetch(`${baseUrl}/login/alert`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email,
+        deviceName,
+        ipAddress,
+        loginTime: new Date().toISOString(),
+      }),
+    });
+  } catch (error) {
+    console.error("Failed to send login alert:", error);
+  }
+}
+
+/**
+ * Complete login after device trust check or OTP verification
+ */
 async function completeLogin(loginResult, email) {
   try {
     await syncProgressFromCloudNow({ force: true }).catch(() => ({}));
@@ -3022,6 +3069,12 @@ async function completeLogin(loginResult, email) {
       openMigrationModal({ email: loginResult?.email || email }, { mode: "firebase-session" });
     }
     showSuccess("Login successful.");
+    
+    // Send login alert for new device logins
+    if (loginResult?.deviceTrusted === false) {
+      const deviceName = await getDeviceName();
+      sendLoginAlert(email, deviceName, "").catch(() => {});
+    }
   } catch (error) {
     console.error("Login completion error:", error);
     showWarning("Login completed but some features may not sync properly.");
@@ -5424,6 +5477,8 @@ async function openAdminScreen() {
         // Load security sections
         renderAdminDevices().catch(() => {});
         renderAdminAuditLog().catch(() => {});
+        // Update dashboard summary
+        updateAdminDashboardSummary();
         await showScreen("adminScreen");
       },
       {

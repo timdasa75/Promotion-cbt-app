@@ -2680,6 +2680,35 @@ select:focus-visible,
     font-size: 0.82rem;
 }
 
+/* Admin Dashboard Summary Cards */
+.admin-dashboard-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.admin-stat-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+}
+
+.admin-stat-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--primary);
+    line-height: 1.2;
+}
+
+.admin-stat-label {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-top: 4px;
+}
+
 /* Demarcated admin sections: cards are grouped under labeled, bordered
    panels (Payments & Access / Support & Audit) so each area reads as a
    distinct block instead of one long column. */
