@@ -812,6 +812,46 @@
                             </div>
                         </article>
                         </section>
+                        <section class="admin-group" aria-labelledby="adminGroupSecurityTitle">
+                            <h3 class="admin-group-title" id="adminGroupSecurityTitle">Security &amp; Devices</h3>
+                            <div class="admin-grid">
+                        <article class="card admin-section-card admin-devices-card">
+                            <div class="admin-card-head">
+                                <h3>Device Management</h3>
+                                <span class="admin-count" id="adminDeviceCount">0</span>
+                            </div>
+                            <div class="toolbar-row admin-device-toolbar">
+                                <div class="search-wrap">
+                                    <input id="adminDeviceSearch" type="search" placeholder="Search by email or device" aria-label="Search by email or device" />
+                                    <button class="search-clear" type="button" aria-label="Clear search" title="Clear search">&#10005;</button>
+                                </div>
+                                <select id="adminDeviceStatusFilter" aria-label="Filter device status">
+                                    <option value="all">All Status</option>
+                                    <option value="active">Active</option>
+                                    <option value="expired">Expired</option>
+                                </select>
+                                <button class="btn btn-secondary" id="refreshAdminDevicesBtn" type="button">Refresh</button>
+                            </div>
+                            <div id="adminDeviceList" class="mistake-list"></div>
+                        </article>
+                        <article class="card admin-section-card admin-audit-card">
+                            <div class="admin-card-head">
+                                <h3>Login Audit Log</h3>
+                                <span class="admin-count" id="adminAuditCount">0</span>
+                            </div>
+                            <div class="toolbar-row admin-audit-toolbar">
+                                <select id="adminAuditEventFilter" aria-label="Filter event type">
+                                    <option value="all">All Events</option>
+                                    <option value="otp_sent">OTP Sent</option>
+                                    <option value="otp_verified">OTP Verified</option>
+                                    <option value="device_trusted">Device Trusted</option>
+                                    <option value="device_revoked">Device Revoked</option>
+                                </select>
+                                <button class="btn btn-secondary" id="refreshAdminAuditBtn" type="button">Refresh</button>
+                            </div>
+                            <div id="adminAuditList" class="mistake-list"></div>
+                        </article>
+                        </section>
                     </div>
                     <div class="button-row compact-actions analytics-actions admin-actions support-screen-actions">
                         <button class="btn btn-ghost" data-screen-target="topicSelectionScreen" type="button">Back</button>

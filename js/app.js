@@ -683,6 +683,164 @@ function writeAdminOperationHistory(history) {
   localStorage.setItem(ADMIN_OPERATION_HISTORY_STORAGE_KEY, JSON.stringify(persisted));
 }
 
+// ============================================================
+// Admin Device Management & Audit Log
+// ============================================================
+
+let adminDeviceList = [];
+let adminAuditList = [];
+
+/**
+ * Render admin device management list
+ */
+async function renderAdminDevices() {
+  const container = document.getElementById("adminDeviceList");
+  const countLabel = document.getElementById("adminDeviceCount");
+  const searchInput = document.getElementById("adminDeviceSearch");
+  const statusFilter = document.getElementById("adminDeviceStatusFilter");
+  if (!container) return;
+
+  try {
+    const config = getRuntimeConfig();
+    const baseUrl = config?.cloudflareAuthBaseUrl || "";
+    if (!baseUrl) {
+      container.innerHTML = '<div class="admin-request-item"><p class="meta">Device management unavailable.</p></div>';
+      return;
+    }
+
+    // Get all users and their devices
+    const users = adminDirectoryUsers || [];
+    const allDevices = [];
+
+    for (const user of users.slice(0, 50)) {
+      if (!user.email) continue;
+      try {
+        const response = await fetch(`${baseUrl}/device/list?email=${encodeURIComponent(user.email)}`);
+        const result = await response.json();
+        if (result.ok && result.devices) {
+          result.devices.forEach(device => {
+            allDevices.push({
+              ...device,
+              email: user.email,
+              userId: user.id,
+            });
+          });
+        }
+      } catch (e) {
+        // Skip failed users
+      }
+    }
+
+    adminDeviceList = allDevices;
+
+    // Apply filters
+    const query = String(searchInput?.value || "").trim().toLowerCase();
+    const statusValue = String(statusFilter?.value || "all").toLowerCase();
+    const now = new Date().toISOString();
+
+    let filtered = allDevices.filter(device => {
+      // Search filter
+      if (query && !device.email.toLowerCase().includes(query) && 
+          !(device.deviceName || "").toLowerCase().includes(query)) {
+        return false;
+      }
+      // Status filter
+      if (statusValue === "active" && device.expiresAt && device.expiresAt < now) {
+        return false;
+      }
+      if (statusValue === "expired" && (!device.expiresAt || device.expiresAt >= now)) {
+        return false;
+      }
+      return true;
+    });
+
+    if (countLabel) {
+      countLabel.textContent = String(filtered.length);
+    }
+
+    if (filtered.length === 0) {
+      container.innerHTML = '<div class="admin-request-item"><p class="meta">No devices found.</p></div>';
+      return;
+    }
+
+    container.innerHTML = filtered.map(device => {
+      const isExpired = device.expiresAt && device.expiresAt < now;
+      const statusClass = isExpired ? "pending" : "approved";
+      const statusText = isExpired ? "Expired" : "Active";
+      const lastUsed = device.lastUsedAt ? formatRelativeTime(device.lastUsedAt) : "Never";
+      const expiresAt = device.expiresAt ? formatDate(device.expiresAt) : "Never";
+
+      return `
+        <div class="admin-request-item">
+          <div class="admin-user-summary">
+            <div class="admin-user-summary-main">
+              <div class="admin-user-summary-head">
+                <div class="admin-user-email">${escapeHtml(device.email)}</div>
+                <div class="admin-user-badges">
+                  <span class="admin-badge ${statusClass}">${statusText}</span>
+                </div>
+              </div>
+              <div class="meta">
+                ${escapeHtml(device.deviceName || "Unknown Device")} · Last seen: ${lastUsed} · Expires: ${expiresAt}
+              </div>
+            </div>
+            <button class="btn btn-ghost btn-sm btn-danger" data-admin-revoke-device data-email="${escapeHtml(device.email)}" data-device-id="${escapeHtml(device.id)}" type="button">Revoke</button>
+          </div>
+        </div>
+      `;
+    }).join("");
+
+    // Add revoke handlers
+    container.querySelectorAll("[data-admin-revoke-device]").forEach(btn => {
+      btn.addEventListener("click", async () => {
+        const email = btn.dataset.email;
+        const deviceId = btn.dataset.deviceId;
+        if (!email || !deviceId) return;
+        try {
+          const config = getRuntimeConfig();
+          const baseUrl = config?.cloudflareAuthBaseUrl || "";
+          await fetch(`${baseUrl}/device/revoke`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, deviceId }),
+          });
+          showSuccess("Device revoked.");
+          await renderAdminDevices();
+        } catch (error) {
+          showError("Failed to revoke device.");
+        }
+      });
+    });
+  } catch (error) {
+    container.innerHTML = '<div class="admin-request-item"><p class="meta">Failed to load devices.</p></div>';
+  }
+}
+
+/**
+ * Render admin audit log
+ */
+async function renderAdminAuditLog() {
+  const container = document.getElementById("adminAuditList");
+  const countLabel = document.getElementById("adminAuditCount");
+  const eventFilter = document.getElementById("adminAuditEventFilter");
+  if (!container) return;
+
+  try {
+    const config = getRuntimeConfig();
+    const baseUrl = config?.cloudflareAuthBaseUrl || "";
+    if (!baseUrl) {
+      container.innerHTML = '<div class="admin-request-item"><p class="meta">Audit log unavailable.</p></div>';
+      return;
+    }
+
+    // For now, show a placeholder - in production, you'd fetch from a dedicated endpoint
+    container.innerHTML = '<div class="admin-request-item"><p class="meta">Audit log will be available after security events are recorded.</p></div>';
+    if (countLabel) countLabel.textContent = "0";
+  } catch (error) {
+    container.innerHTML = '<div class="admin-request-item"><p class="meta">Failed to load audit log.</p></div>';
+  }
+}
+
 function logAdminOperation({ action = "", target = "", status = "success", message = "" } = {}) {
   const user = getCurrentUser();
   const nextEntry = {
@@ -5263,6 +5421,9 @@ async function openAdminScreen() {
         renderAdminFeedbackList();
         await refreshAdminUserDirectory();
         await refreshAdminFeedbackSubmissions();
+        // Load security sections
+        renderAdminDevices().catch(() => {});
+        renderAdminAuditLog().catch(() => {});
         await showScreen("adminScreen");
       },
       {
@@ -6288,6 +6449,53 @@ function initializeAuthUI() {
         });
         renderAdminOperationHistory();
       }
+    });
+  }
+
+  // Admin Device Management
+  const refreshAdminDevicesBtn = document.getElementById("refreshAdminDevicesBtn");
+  const adminDeviceSearch = document.getElementById("adminDeviceSearch");
+  const adminDeviceStatusFilter = document.getElementById("adminDeviceStatusFilter");
+
+  if (refreshAdminDevicesBtn) {
+    refreshAdminDevicesBtn.addEventListener("click", async () => {
+      if (!isCurrentUserAdmin()) {
+        showWarning("Admin access is restricted.");
+        return;
+      }
+      await renderAdminDevices();
+    });
+  }
+
+  if (adminDeviceSearch) {
+    adminDeviceSearch.addEventListener("input", () => {
+      renderAdminDevices();
+    });
+  }
+
+  if (adminDeviceStatusFilter) {
+    adminDeviceStatusFilter.addEventListener("change", () => {
+      renderAdminDevices();
+    });
+  }
+
+  // Admin Audit Log
+  const refreshAdminAuditBtn = document.getElementById("refreshAdminAuditBtn");
+  const adminAuditEventFilter = document.getElementById("adminAuditEventFilter");
+
+  if (refreshAdminAuditBtn) {
+    refreshAdminAuditBtn.addEventListener("click", async () => {
+      if (!isCurrentUserAdmin()) {
+        showWarning("Admin access is restricted.");
+        return;
+      }
+      await renderAdminAuditLog();
+    });
+  }
+
+  if (adminAuditEventFilter) {
+    adminAuditEventFilter.addEventListener("change", () => {
+      renderAdminAuditLog();
     });
   }
 
