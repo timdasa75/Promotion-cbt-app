@@ -6240,7 +6240,7 @@ function initializeAuthUI() {
             failurePrefix: "Refresh failed:",
           },
         );
-        if (!syncResult.synced && syncResult.warning && isCloudAuthEnabled()) {
+        if (!syncResult.synced && syncResult.warning) {
           showWarning(`Cloud sync notice: ${syncResult.warning}`);
         }
         logAdminOperation({

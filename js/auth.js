@@ -487,10 +487,14 @@ export async function forceCloudPlanSync() {
   const session = readSession();
   if (
     !session ||
-    session.provider !== "firebase" ||
     !session.accessToken ||
     !session.user
   ) {
+    return { synced: false, warning: "Cloud session is unavailable." };
+  }
+
+  const provider = session.provider;
+  if (provider !== "firebase" && provider !== "cloudflare") {
     return { synced: false, warning: "Cloud session is unavailable." };
   }
 
@@ -500,7 +504,11 @@ export async function forceCloudPlanSync() {
 
   cloudPlanSyncInFlight = true;
   try {
-    await syncCloudPlanInSession(session);
+    if (provider === "cloudflare") {
+      await refreshCloudflareUserInSession(session);
+    } else {
+      await syncCloudPlanInSession(session);
+    }
     return { synced: true, warning: "" };
   } catch (error) {
     return {
