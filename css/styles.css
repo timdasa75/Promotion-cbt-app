@@ -8059,6 +8059,78 @@ body.dark-mode .nav-btn.unanswered {
   padding: 0.45rem 0;
 }
 
+/* Device Management Styles */
+.device-list {
+  display: grid;
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+.device-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--card);
+}
+
+.device-card.device-current {
+  border-color: var(--green-500);
+  background: var(--green-50);
+}
+
+.device-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.device-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface);
+  border-radius: 10px;
+  color: var(--muted);
+}
+
+.device-details {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.device-details strong {
+  font-size: 0.95rem;
+}
+
+.device-details .meta {
+  font-size: 0.8rem;
+}
+
+.device-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.device-limit-info {
+  text-align: center;
+  margin: 0.5rem 0;
+}
+
+.btn-danger {
+  color: var(--red-600);
+}
+
+.btn-danger:hover {
+  background: var(--red-50);
+}
+
 .payment-receipt-card {
   max-width: 520px;
 }

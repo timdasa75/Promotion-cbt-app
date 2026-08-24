@@ -2845,6 +2845,32 @@ async function getDeviceName() {
 }
 
 /**
+ * Complete login after device trust check or OTP verification
+ */
+async function completeLogin(loginResult, email) {
+  try {
+    await syncProgressFromCloudNow({ force: true }).catch(() => ({}));
+    updateAuthUI();
+    refreshDashboardInsights();
+    await refreshAccessibleTopics();
+    if (typeof window.processFlutterwavePaymentReturn === "function") {
+      await window.processFlutterwavePaymentReturn();
+    }
+    closeAuthModal();
+    closeOTPModal();
+    await showScreen("topicSelectionScreen");
+    showFreeTierNoticeIfNeeded();
+    if (loginResult?.shouldPromptPasswordUpgrade) {
+      openMigrationModal({ email: loginResult?.email || email }, { mode: "firebase-session" });
+    }
+    showSuccess("Login successful.");
+  } catch (error) {
+    console.error("Login completion error:", error);
+    showWarning("Login completed but some features may not sync properly.");
+  }
+}
+
+/**
  * Handle OTP form submission
  */
 async function handleOTPVerification() {
@@ -2880,14 +2906,8 @@ async function handleOTPVerification() {
       };
       sessionStorage.setItem("cbt_session_v1", JSON.stringify(sessionData));
       
-      // Update UI
-      closeOTPModal();
-      closeAuthModal();
-      updateAuthUI();
-      refreshDashboardInsights();
-      await refreshAccessibleTopics();
-      await showScreen("topicSelectionScreen");
-      showSuccess("Login successful.");
+      // Complete login
+      await completeLogin(result, result.email);
     }
   } catch (error) {
     setOTPMessage(error.message || "Verification failed.");
@@ -3384,6 +3404,131 @@ async function renderProfilePaymentHistory() {
       if (receipt) openReceipt(receipt);
     });
   });
+}
+
+// ============================================================
+// Device Management UI
+// ============================================================
+
+/**
+ * Render trusted devices list in profile page
+ */
+async function renderTrustedDevices() {
+  const container = document.getElementById("trustedDevicesList");
+  const countEl = document.getElementById("deviceCount");
+  if (!container) return;
+
+  const user = getCurrentUser();
+  if (!user?.email) {
+    container.innerHTML = '<p class="meta">Login to manage devices.</p>';
+    return;
+  }
+
+  try {
+    const config = getRuntimeConfig();
+    const baseUrl = config?.cloudflareAuthBaseUrl || "";
+    if (!baseUrl) {
+      container.innerHTML = '<p class="meta">Device management unavailable.</p>';
+      return;
+    }
+
+    const response = await fetch(`${baseUrl}/device/list?email=${encodeURIComponent(user.email)}`);
+    const result = await response.json();
+
+    if (!result.ok || !result.devices) {
+      container.innerHTML = '<p class="meta">Failed to load devices.</p>';
+      return;
+    }
+
+    const devices = result.devices;
+    const maxDevices = result.maxDevices || 3;
+
+    if (countEl) {
+      countEl.textContent = `${devices.length}/${maxDevices}`;
+    }
+
+    if (devices.length === 0) {
+      container.innerHTML = '<p class="meta">No trusted devices.</p>';
+      return;
+    }
+
+    // Get current device fingerprint
+    const currentFp = await getDeviceFingerprint();
+
+    container.innerHTML = devices.map(device => {
+      const isCurrent = device.deviceInfo && JSON.parse(device.deviceInfo).fingerprint === currentFp;
+      const lastUsed = device.lastUsedAt ? formatRelativeTime(device.lastUsedAt) : 'Never';
+      const expiresAt = device.expiresAt ? formatDate(device.expiresAt) : 'Never';
+      
+      return `
+        <div class="device-card ${isCurrent ? 'device-current' : ''}" data-device-id="${escapeHtml(device.id)}">
+          <div class="device-info">
+            <div class="device-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+              </svg>
+            </div>
+            <div class="device-details">
+              <strong>${escapeHtml(device.deviceName || 'Unknown Device')}</strong>
+              <span class="meta">Last seen: ${lastUsed}</span>
+              <span class="meta">Trusted until: ${expiresAt}</span>
+            </div>
+          </div>
+          <div class="device-actions">
+            ${isCurrent ? '<span class="admin-badge approved">This Device</span>' : ''}
+            <button class="btn btn-ghost btn-sm btn-danger" data-revoke-device data-device-id="${escapeHtml(device.id)}" type="button">Revoke</button>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    // Add revoke handlers
+    container.querySelectorAll('[data-revoke-device]').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const deviceId = btn.dataset.deviceId;
+        if (!deviceId) return;
+        try {
+          const config = getRuntimeConfig();
+          const baseUrl = config?.cloudflareAuthBaseUrl || '';
+          await fetch(`${baseUrl}/device/revoke`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: user.email, deviceId }),
+          });
+          showSuccess('Device revoked.');
+          await renderTrustedDevices();
+        } catch (error) {
+          showError('Failed to revoke device.');
+        }
+      });
+    });
+  } catch (error) {
+    container.innerHTML = '<p class="meta">Failed to load devices.</p>';
+  }
+}
+
+/**
+ * Revoke all devices
+ */
+async function revokeAllDevices() {
+  const user = getCurrentUser();
+  if (!user?.email) return;
+
+  try {
+    const config = getRuntimeConfig();
+    const baseUrl = config?.cloudflareAuthBaseUrl || '';
+    await fetch(`${baseUrl}/device/revoke-all`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: user.email }),
+    });
+    showSuccess('All devices revoked. You will need to verify on your next login.');
+    await renderTrustedDevices();
+  } catch (error) {
+    showError('Failed to revoke devices.');
+  }
 }
 
 function getHeaderPlanLabel(user) {
@@ -3918,6 +4063,9 @@ function refreshProfileUpgradeSection() {
   if (profileUpgradeBtn) {
     profileUpgradeBtn.onclick = () => handleUpgradeClick();
   }
+
+  // Render trusted devices for all users
+  renderTrustedDevices().catch(() => {});
 
   return Promise.resolve();
 }
@@ -5278,6 +5426,21 @@ function initializeAuthUI() {
     });
   }
 
+  // Revoke All Devices button
+  const revokeAllDevicesBtn = document.getElementById("revokeAllDevicesBtn");
+  if (revokeAllDevicesBtn) {
+    revokeAllDevicesBtn.addEventListener("click", async () => {
+      const confirmed = await showConfirm({
+        title: "Revoke All Devices",
+        message: "This will require verification on all your devices. Continue?",
+        okText: "Revoke All"
+      });
+      if (confirmed) {
+        await revokeAllDevices();
+      }
+    });
+  }
+
   if (freeTierCloseBtn) {
     freeTierCloseBtn.addEventListener("click", closeFreeTierNotice);
   }
@@ -5309,30 +5472,33 @@ function initializeAuthUI() {
       const password = document.getElementById("loginPassword")?.value || "";
   try {
         const turnstileToken = getTurnstileToken("login");
-        await runOperationWithFeedback(
+        
+        // Step 1: Validate credentials
+        const loginResult = await runOperationWithFeedback(
           async () => {
-            const loginResult = await loginUser({ email, password, turnstileToken });
-            await syncProgressFromCloudNow({ force: true }).catch(() => ({}));
-            updateAuthUI();
-            refreshDashboardInsights();
-            await refreshAccessibleTopics();
-            if (typeof window.processFlutterwavePaymentReturn === "function") {
-              await window.processFlutterwavePaymentReturn();
-            }
-            closeAuthModal();
-            await showScreen("topicSelectionScreen");
-            showFreeTierNoticeIfNeeded();
-            if (loginResult?.shouldPromptPasswordUpgrade) {
-              openMigrationModal({ email: loginResult?.email || email }, { mode: "firebase-session" });
-            }
-            return loginResult;
+            return await loginUser({ email, password, turnstileToken });
           },
           {
             loadingMessage: "Signing in...",
-            successMessage: (result) => result?.authMessage || "Login successful.",
+            successMessage: "",
             failurePrefix: "Login failed:",
           },
         );
+        
+        // Step 2: Check device trust
+        const deviceFp = await getDeviceFingerprint();
+        const deviceCheck = await checkDeviceTrust(email, deviceFp);
+        
+        if (deviceCheck.trusted) {
+          // Device is trusted, complete login
+          await completeLogin(loginResult, email);
+        } else {
+          // Device not trusted, show OTP modal
+          closeAuthModal();
+          const deviceName = await getDeviceName();
+          await requestOTP(email, deviceFp, deviceName);
+          openOTPModal(email, deviceFp);
+        }
       } catch (error) {
         resetTurnstileWidget("login");
         setAuthMessage(error.message || "Login failed.");
