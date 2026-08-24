@@ -5250,6 +5250,100 @@ function renderAdminUserDirectory() {
     });
   });
 
+// ============================================================
+// Admin Bulk Operations
+// ============================================================
+
+let adminSelectedUsers = new Set();
+
+function updateBulkActionsUI() {
+  const bulkActions = document.getElementById('adminBulkActions');
+  const selectedCount = document.getElementById('adminSelectedCount');
+  if (bulkActions) {
+    bulkActions.style.display = adminSelectedUsers.size > 0 ? '' : 'none';
+  }
+  if (selectedCount) {
+    selectedCount.textContent = String(adminSelectedUsers.size);
+  }
+}
+
+async function applyBulkPlanChange() {
+  const planSelect = document.getElementById('adminBulkPlanSelect');
+  const newPlan = planSelect?.value;
+  if (!newPlan || adminSelectedUsers.size === 0) {
+    showWarning('Select users and a plan first.');
+    return;
+  }
+
+  const confirmed = await showConfirm({
+    title: 'Bulk Plan Change',
+    message: `Change ${adminSelectedUsers.size} users to ${newPlan}?`,
+    okText: 'Apply'
+  });
+  if (!confirmed) return;
+
+  let successCount = 0;
+  let failCount = 0;
+
+  for (const email of adminSelectedUsers) {
+    try {
+      const config = getRuntimeConfig();
+      const baseUrl = config?.cloudflareAuthBaseUrl || '';
+      await fetch(`${baseUrl}/adminSetUserPlan`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, plan: newPlan }),
+      });
+      successCount++;
+    } catch (error) {
+      failCount++;
+    }
+  }
+
+  showSuccess(`Updated ${successCount} users. ${failCount > 0 ? `${failCount} failed.` : ''}`);
+  adminSelectedUsers.clear();
+  updateBulkActionsUI();
+  await refreshAdminUserDirectory();
+}
+
+function clearBulkSelection() {
+  adminSelectedUsers.clear();
+  updateBulkActionsUI();
+  // Uncheck all checkboxes
+  document.querySelectorAll('.admin-user-checkbox:checked').forEach(cb => {
+    cb.checked = false;
+  });
+}
+
+function exportUserList() {
+  const users = adminDirectoryUsers || [];
+  if (users.length === 0) {
+    showWarning('No users to export.');
+    return;
+  }
+
+  const headers = ['Email', 'Plan', 'Status', 'Role', 'Verified', 'Created', 'Last Seen'];
+  const rows = users.map(u => [
+    u.email || '',
+    u.plan || 'free',
+    u.status || 'active',
+    u.role || 'user',
+    u.emailVerified === true ? 'Yes' : u.emailVerified === false ? 'No' : 'Unknown',
+    u.createdAt || '',
+    u.lastSeenAt || ''
+  ]);
+
+  const csv = [headers, ...rows].map(row => row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(',')).join('\n');
+  const blob = new Blob([csv], { type: 'text/csv' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `users_export_${new Date().toISOString().slice(0, 10)}.csv`;
+  a.click();
+  URL.revokeObjectURL(url);
+  showSuccess('User list exported.');
+}
+
   list.addEventListener("click", async (event) => {
     const button = event.target.closest(".directory-action");
     if (!button) return;
@@ -6113,6 +6207,23 @@ function initializeAuthUI() {
         renderAdminOperationHistory();
       }
     });
+  }
+
+  // Bulk Operations
+  const applyBulkPlanBtn = document.getElementById('applyBulkPlanBtn');
+  const clearBulkSelectionBtn = document.getElementById('clearBulkSelectionBtn');
+  const exportUsersBtn = document.getElementById('exportUsersBtn');
+
+  if (applyBulkPlanBtn) {
+    applyBulkPlanBtn.addEventListener('click', applyBulkPlanChange);
+  }
+
+  if (clearBulkSelectionBtn) {
+    clearBulkSelectionBtn.addEventListener('click', clearBulkSelection);
+  }
+
+  if (exportUsersBtn) {
+    exportUsersBtn.addEventListener('click', exportUserList);
   }
 
   if (adminRequestSearch) {

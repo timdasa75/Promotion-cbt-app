@@ -769,6 +769,17 @@
                                     <option value="last-seen">Last Seen</option>
                                 </select>
                                 <button class="btn btn-secondary" id="refreshAdminUsersBtn" type="button">Refresh</button>
+                                <button class="btn btn-ghost" id="exportUsersBtn" type="button">Export CSV</button>
+                            </div>
+                            <div class="admin-bulk-actions" id="adminBulkActions" style="display:none;">
+                                <span class="meta"><strong id="adminSelectedCount">0</strong> users selected</span>
+                                <select id="adminBulkPlanSelect" aria-label="Bulk plan change">
+                                    <option value="">Change Plan...</option>
+                                    <option value="free">Set Free</option>
+                                    <option value="premium">Set Premium</option>
+                                </select>
+                                <button class="btn btn-secondary" id="applyBulkPlanBtn" type="button">Apply</button>
+                                <button class="btn btn-ghost" id="clearBulkSelectionBtn" type="button">Clear</button>
                             </div>
                             <div id="adminUserList" class="mistake-list"></div>
                             </div>
