@@ -89,14 +89,7 @@ async function initializeGoogleSignIn() {
     .filter(Boolean);
   if (!containers.length) return;
   if (!clientId) {
-    // Hide the Google sign-in containers and their "or" divider when not configured
-    containers.forEach((container) => {
-      container.style.display = "none";
-      const divider = container.nextElementSibling;
-      if (divider && divider.classList.contains("divider-text")) {
-        divider.style.display = "none";
-      }
-    });
+    // Google sign-in is not configured — keep the fallback button visible
     return;
   }
 

@@ -3803,8 +3803,6 @@ select:focus-visible,
     .admin-request-table td {
         padding: 6px 4px;
     }
-}
-
     .brand-eyebrow {
         font-size: 0.76rem;
     }
@@ -3824,10 +3822,6 @@ select:focus-visible,
         flex-basis: 100%;
     }
 }
-
-
-
-
 
 .admin-user-cards {
     display: grid;

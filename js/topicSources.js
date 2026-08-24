@@ -315,7 +315,10 @@ export async function fetchJsonFile(file) {
     }
 
     try {
-      const response = await fetch(filePath);
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 10000);
+      const response = await fetch(filePath, { signal: controller.signal });
+      clearTimeout(timeoutId);
       if (!response.ok) {
         throw new Error(`Failed to fetch ${file}: ${response.status}`);
       }
