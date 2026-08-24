@@ -893,6 +893,44 @@
             </div>
         </div>
 
+        <!-- OTP Verification Modal -->
+        <div class="auth-modal hidden" id="otpModal" role="dialog" aria-modal="true" aria-labelledby="otpModalTitle">
+            <div class="auth-modal-card">
+                <button class="auth-close" id="otpCloseBtn" type="button" aria-label="Close verification panel">&times;</button>
+                <div class="section-head screen-header">
+                    <h2 id="otpModalTitle">Verify Your Identity</h2>
+                    <p id="otpInstruction">We sent a 6-digit code to <strong id="otpEmailDisplay"></strong></p>
+                </div>
+                
+                <form id="otpForm" class="auth-form">
+                    <div class="otp-input-group">
+                        <input type="text" maxlength="1" class="otp-digit" data-index="0" autocomplete="one-time-code" inputmode="numeric" pattern="[0-9]">
+                        <input type="text" maxlength="1" class="otp-digit" data-index="1" autocomplete="off" inputmode="numeric" pattern="[0-9]">
+                        <input type="text" maxlength="1" class="otp-digit" data-index="2" autocomplete="off" inputmode="numeric" pattern="[0-9]">
+                        <input type="text" maxlength="1" class="otp-digit" data-index="3" autocomplete="off" inputmode="numeric" pattern="[0-9]">
+                        <input type="text" maxlength="1" class="otp-digit" data-index="4" autocomplete="off" inputmode="numeric" pattern="[0-9]">
+                        <input type="text" maxlength="1" class="otp-digit" data-index="5" autocomplete="off" inputmode="numeric" pattern="[0-9]">
+                    </div>
+                    
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="trustDeviceCheck" checked>
+                        <span>Trust this device for 30 days</span>
+                    </label>
+                    
+                    <button class="btn btn-primary" type="submit">Verify</button>
+                </form>
+                
+                <div class="otp-resend">
+                    <span id="otpResendTimer"></span>
+                    <button id="otpResendBtn" class="btn btn-ghost hidden">Resend Code</button>
+                </div>
+                
+                <button id="otpBackBtn" class="btn btn-ghost">Back to Login</button>
+                
+                <p class="auth-message hidden" id="otpMessage"></p>
+            </div>
+        </div>
+
         <div class="auth-modal hidden" id="migrationModal" role="dialog" aria-modal="true" aria-labelledby="migrationModalTitle">
             <div class="auth-modal-card">
                 <button class="auth-close" id="migrationCloseBtn" type="button" aria-label="Close password setup panel">&times;</button>

@@ -2627,6 +2627,364 @@ async function handleAdminDeleteUserById(request, env) {
 }
 
 // ============================================================
+// OTP (One-Time Password) Verification
+// ============================================================
+
+const OTP_LENGTH = 6;
+const OTP_EXPIRY_MS = 10 * 60 * 1000; // 10 minutes
+const OTP_MAX_ATTEMPTS = 5;
+const OTP_RESEND_COOLDOWN_MS = 60 * 1000; // 1 minute
+
+function generateOTP() {
+  return String(Math.floor(100000 + Math.random() * 900000));
+}
+
+function hashOTP(otp) {
+  let hash = 0;
+  const str = String(otp);
+  for (let i = 0; i < str.length; i++) {
+    const char = str.charCodeAt(i);
+    hash = ((hash << 5) - hash) + char;
+    hash = hash & hash;
+  }
+  return Math.abs(hash).toString(16).padStart(8, '0');
+}
+
+function verifyOTPHash(otp, storedHash) {
+  return hashOTP(otp) === storedHash;
+}
+
+function isOTPExpired(expiresAt) {
+  if (!expiresAt) return true;
+  return new Date(expiresAt).getTime() < Date.now();
+}
+
+function isValidOTPFormat(otp) {
+  return /^\d{6}$/.test(String(otp || ''));
+}
+
+function maskEmail(email) {
+  if (!email || !email.includes('@')) return email || '';
+  const [local, domain] = email.split('@');
+  if (local.length <= 2) return `${local[0]}***@${domain}`;
+  return `${local[0]}${'*'.repeat(Math.min(local.length - 2, 3))}@${domain}`;
+}
+
+async function createOTPRecord(database, userId, email, deviceFingerprint) {
+  const otp = generateOTP();
+  const otpHash = hashOTP(otp);
+  const id = generateId();
+  const now = new Date().toISOString();
+  const expiresAt = new Date(Date.now() + OTP_EXPIRY_MS).toISOString();
+  
+  // Invalidate any existing OTPs for this user
+  await database
+    .prepare(`UPDATE otp_codes SET consumed_at = ?1 WHERE user_id = ?2 AND consumed_at = ''`)
+    .bind(now, userId)
+    .run();
+  
+  // Create new OTP
+  await database
+    .prepare(`
+      INSERT INTO otp_codes (id, user_id, email, otp_hash, otp_type, device_fingerprint, attempts, max_attempts, created_at, expires_at, consumed_at)
+      VALUES (?1, ?2, ?3, ?4, 'login', ?5, 0, ?6, ?7, ?8, '')
+    `)
+    .bind(id, userId, email, otpHash, deviceFingerprint || '', OTP_MAX_ATTEMPTS, now, expiresAt)
+    .run();
+  
+  return { otpId: id, otp, expiresAt };
+}
+
+async function verifyOTPRecord(database, email, otp, deviceFingerprint) {
+  const now = new Date().toISOString();
+  
+  // Find valid OTP
+  const record = await database
+    .prepare(`
+      SELECT id, user_id, otp_hash, attempts, max_attempts, expires_at, consumed_at
+      FROM otp_codes
+      WHERE email = ?1 AND otp_type = 'login' AND consumed_at = ''
+      ORDER BY created_at DESC LIMIT 1
+    `)
+    .bind(email)
+    .first();
+  
+  if (!record) {
+    return { valid: false, error: 'No verification code found. Please request a new one.' };
+  }
+  
+  if (isOTPExpired(record.expires_at)) {
+    return { valid: false, error: 'Verification code has expired. Please request a new one.' };
+  }
+  
+  if (record.attempts >= record.max_attempts) {
+    return { valid: false, error: 'Too many attempts. Please request a new code.' };
+  }
+  
+  if (!verifyOTPHash(otp, record.otp_hash)) {
+    // Increment attempts
+    await database
+      .prepare('UPDATE otp_codes SET attempts = attempts + 1 WHERE id = ?1')
+      .bind(record.id)
+      .run();
+    
+    const remaining = record.max_attempts - record.attempts - 1;
+    return { valid: false, error: `Invalid code. ${remaining} attempts remaining.` };
+  }
+  
+  // Mark as consumed
+  await database
+    .prepare('UPDATE otp_codes SET consumed_at = ?1 WHERE id = ?2')
+    .bind(now, record.id)
+    .run();
+  
+  return { valid: true, userId: record.user_id };
+}
+
+async function sendOTPEmail(env, email, otp, deviceName) {
+  const resendApiKey = env.RESEND_API_KEY;
+  if (!resendApiKey) {
+    console.warn('[otp] RESEND_API_KEY not configured, skipping email');
+    return { sent: false, reason: 'Email service not configured' };
+  }
+  
+  const maskedEmail = maskEmail(email);
+  const deviceInfo = deviceName ? ` from ${deviceName}` : '';
+  
+  const htmlContent = `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <style>
+        .container { max-width: 600px; margin: 0 auto; font-family: Arial, sans-serif; }
+        .header { background: linear-gradient(135deg, #2563eb, #16a34a); color: white; padding: 20px; text-align: center; border-radius: 8px 8px 0 0; }
+        .content { padding: 30px; background: #f9fafb; border: 1px solid #e5e7eb; }
+        .code { font-size: 36px; font-weight: bold; letter-spacing: 10px; text-align: center; padding: 25px; background: white; border-radius: 8px; margin: 25px 0; border: 2px dashed #d1d5db; }
+        .footer { color: #6b7280; font-size: 12px; text-align: center; padding: 20px; }
+        .warning { color: #dc2626; font-size: 14px; margin-top: 15px; }
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <div class="header">
+          <h1>Promotion CBT</h1>
+        </div>
+        <div class="content">
+          <h2>Login Verification Code</h2>
+          <p>Hello,</p>
+          <p>We received a login request${deviceInfo}. Your verification code is:</p>
+          <div class="code">${otp}</div>
+          <p>This code expires in <strong>10 minutes</strong>.</p>
+          <p class="warning">⚠️ If you didn't request this code, please ignore this email or contact support immediately.</p>
+        </div>
+        <div class="footer">
+          <p>Promotion CBT © 2026. All rights reserved.</p>
+        </div>
+      </div>
+    </body>
+    </html>
+  `;
+  
+  try {
+    const response = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${resendApiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from: 'Promotion CBT <onboarding@resend.dev>',
+        to: [email],
+        subject: 'Your Login Verification Code',
+        html: htmlContent,
+      }),
+    });
+    
+    if (!response.ok) {
+      const error = await response.text();
+      console.error('[otp] Email send failed:', error);
+      return { sent: false, reason: 'Email delivery failed' };
+    }
+    
+    return { sent: true };
+  } catch (error) {
+    console.error('[otp] Email send error:', error);
+    return { sent: false, reason: 'Email delivery error' };
+  }
+}
+
+// ---- OTP Endpoints ----
+
+async function handleOTPRequest(request, env) {
+  const database = requireAuditDatabase(env);
+  const body = await readJsonBody(request);
+  const email = normalizeEmail(body?.email || '');
+  const deviceFingerprint = String(body?.deviceFingerprint || '').trim();
+  const deviceName = String(body?.deviceName || '').trim();
+  
+  if (!email || !email.includes('@')) {
+    throw createRouteError(400, 'email is required.');
+  }
+  
+  // Find user
+  const user = await database
+    .prepare('SELECT id, email FROM auth_users WHERE email = ?1')
+    .bind(email)
+    .first();
+  if (!user) {
+    // Don't reveal if user exists
+    return { ok: true, message: 'If an account exists, a verification code has been sent.' };
+  }
+  
+  // Rate limit check
+  const ip = String(request.headers.get('CF-Connecting-IP') || '').trim();
+  const rateLimitCheck = await checkRateLimit(
+    database,
+    `otp:ip:${ip}`,
+    'otp_ip',
+    OTP_MAX_ATTEMPTS,
+    900 // 15 minutes
+  );
+  if (!rateLimitCheck.allowed) {
+    throw createRouteError(429, 'Too many requests. Please try again later.');
+  }
+  
+  // Create OTP
+  const { otpId, otp, expiresAt } = await createOTPRecord(database, user.id, email, deviceFingerprint);
+  
+  // Send email
+  const emailResult = await sendOTPEmail(env, email, otp, deviceName);
+  
+  // Log the event
+  await logLoginEvent(database, user.id, email, 'otp_sent', deviceFingerprint, deviceName, ip, '', JSON.stringify({ otpId }));
+  
+  return {
+    ok: true,
+    message: 'Verification code sent.',
+    email: maskEmail(email),
+    expiresAt,
+    emailSent: emailResult.sent,
+  };
+}
+
+async function handleOTPVerify(request, env) {
+  const database = requireAuditDatabase(env);
+  const body = await readJsonBody(request);
+  const email = normalizeEmail(body?.email || '');
+  const otp = String(body?.otp || '').trim();
+  const deviceFingerprint = String(body?.deviceFingerprint || '').trim();
+  const deviceName = String(body?.deviceName || '').trim();
+  const trustDevice = body?.trustDevice === true;
+  const trustDays = Number(body?.trustDays) || DEVICE_TRUST_DEFAULT_DAYS;
+  
+  if (!email || !email.includes('@')) {
+    throw createRouteError(400, 'email is required.');
+  }
+  if (!isValidOTPFormat(otp)) {
+    throw createRouteError(400, 'Invalid verification code format.');
+  }
+  
+  // Verify OTP
+  const result = await verifyOTPRecord(database, email, otp, deviceFingerprint);
+  if (!result.valid) {
+    throw createRouteError(401, result.error);
+  }
+  
+  // Get user details
+  const user = await database
+    .prepare('SELECT id, email, plan, role, status FROM auth_users WHERE id = ?1')
+    .bind(result.userId)
+    .first();
+  if (!user) {
+    throw createRouteError(404, 'User not found.');
+  }
+  
+  const ip = String(request.headers.get('CF-Connecting-IP') || '').trim();
+  const userAgent = String(request.headers.get('User-Agent') || '').trim();
+  
+  // Trust device if requested
+  let deviceId = null;
+  let expiresAt = null;
+  if (trustDevice && deviceFingerprint) {
+    const trustResult = await addTrustedDevice(database, user.id, deviceFingerprint, deviceName, '{}', ip, userAgent, trustDays);
+    deviceId = trustResult.deviceId;
+    expiresAt = trustResult.expiresAt;
+  }
+  
+  // Log the event
+  await logLoginEvent(database, user.id, email, 'otp_verified', deviceFingerprint, deviceName, ip, userAgent, JSON.stringify({ deviceId }));
+  
+  return {
+    ok: true,
+    userId: user.id,
+    email: user.email,
+    plan: user.plan,
+    role: user.role,
+    status: user.status,
+    deviceTrusted: trustDevice && !!deviceId,
+    deviceId,
+    deviceExpiresAt: expiresAt,
+  };
+}
+
+async function handleOTPResend(request, env) {
+  const database = requireAuditDatabase(env);
+  const body = await readJsonBody(request);
+  const email = normalizeEmail(body?.email || '');
+  const deviceFingerprint = String(body?.deviceFingerprint || '').trim();
+  const deviceName = String(body?.deviceName || '').trim();
+  
+  if (!email || !email.includes('@')) {
+    throw createRouteError(400, 'email is required.');
+  }
+  
+  // Find user
+  const user = await database
+    .prepare('SELECT id, email FROM auth_users WHERE email = ?1')
+    .bind(email)
+    .first();
+  if (!user) {
+    return { ok: true, message: 'If an account exists, a verification code has been sent.' };
+  }
+  
+  // Check cooldown
+  const lastOTP = await database
+    .prepare(`
+      SELECT created_at FROM otp_codes
+      WHERE user_id = ?1 AND otp_type = 'login'
+      ORDER BY created_at DESC LIMIT 1
+    `)
+    .bind(user.id)
+    .first();
+  
+  if (lastOTP?.created_at) {
+    const elapsed = Date.now() - new Date(lastOTP.created_at).getTime();
+    if (elapsed < OTP_RESEND_COOLDOWN_MS) {
+      const waitSeconds = Math.ceil((OTP_RESEND_COOLDOWN_MS - elapsed) / 1000);
+      throw createRouteError(429, `Please wait ${waitSeconds} seconds before requesting a new code.`);
+    }
+  }
+  
+  // Create new OTP
+  const { otpId, otp, expiresAt } = await createOTPRecord(database, user.id, email, deviceFingerprint);
+  
+  // Send email
+  const emailResult = await sendOTPEmail(env, email, otp, deviceName);
+  
+  // Log the event
+  const ip = String(request.headers.get('CF-Connecting-IP') || '').trim();
+  await logLoginEvent(database, user.id, email, 'otp_resent', deviceFingerprint, deviceName, ip, '', JSON.stringify({ otpId }));
+  
+  return {
+    ok: true,
+    message: 'New verification code sent.',
+    email: maskEmail(email),
+    expiresAt,
+    emailSent: emailResult.sent,
+  };
+}
+
+// ============================================================
 // Device Trust Management
 // ============================================================
 
@@ -2957,6 +3315,10 @@ function resolveRouteHandler(path) {
   if (path.endsWith("/adminSetUserStatus")) return handleAdminSetUserStatus;
   if (path.endsWith("/adminSetUserPlan")) return handleAdminSetUserPlan;
   if (path.endsWith("/adminDeleteUserById")) return handleAdminDeleteUserById;
+  // OTP routes
+  if (path.endsWith("/otp/request")) return handleOTPRequest;
+  if (path.endsWith("/otp/verify")) return handleOTPVerify;
+  if (path.endsWith("/otp/resend")) return handleOTPResend;
   // Device trust routes
   if (path.endsWith("/device/check")) return handleDeviceCheck;
   if (path.endsWith("/device/trust")) return handleDeviceTrust;

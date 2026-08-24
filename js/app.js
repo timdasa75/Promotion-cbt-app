@@ -2581,6 +2581,367 @@ function closeAuthModal() {
   setAuthMessage("");
 }
 
+// ============================================================
+// OTP Verification System
+// ============================================================
+
+let otpPendingEmail = "";
+let otpPendingFingerprint = "";
+let otpResendInterval = null;
+
+/**
+ * Open the OTP verification modal
+ */
+function openOTPModal(email, deviceFingerprint) {
+  otpPendingEmail = email;
+  otpPendingFingerprint = deviceFingerprint;
+  
+  const modal = document.getElementById("otpModal");
+  const emailDisplay = document.getElementById("otpEmailDisplay");
+  const messageEl = document.getElementById("otpMessage");
+  
+  if (!modal) return;
+  
+  // Mask email for display
+  if (emailDisplay) {
+    const [local, domain] = email.split("@");
+    const masked = local.length > 2 
+      ? `${local[0]}${"*".repeat(Math.min(local.length - 2, 3))}@${domain}`
+      : email;
+    emailDisplay.textContent = masked;
+  }
+  
+  // Clear previous state
+  if (messageEl) {
+    messageEl.classList.add("hidden");
+    messageEl.textContent = "";
+  }
+  
+  // Clear OTP inputs
+  document.querySelectorAll(".otp-digit").forEach(input => {
+    input.value = "";
+    input.classList.remove("filled");
+  });
+  
+  // Start resend timer
+  startOTPResendTimer();
+  
+  // Show modal
+  modal.classList.remove("hidden");
+  
+  // Focus first input
+  setTimeout(() => {
+    const firstInput = document.querySelector(".otp-digit[data-index='0']");
+    if (firstInput) firstInput.focus();
+  }, 100);
+}
+
+/**
+ * Close the OTP verification modal
+ */
+function closeOTPModal() {
+  const modal = document.getElementById("otpModal");
+  if (modal) modal.classList.add("hidden");
+  
+  if (otpResendInterval) {
+    clearInterval(otpResendInterval);
+    otpResendInterval = null;
+  }
+  
+  otpPendingEmail = "";
+  otpPendingFingerprint = "";
+}
+
+/**
+ * Set OTP message
+ */
+function setOTPMessage(message, type = "error") {
+  const messageEl = document.getElementById("otpMessage");
+  if (!messageEl) return;
+  
+  messageEl.textContent = message;
+  messageEl.classList.remove("hidden", "success", "error");
+  messageEl.classList.add(type);
+}
+
+/**
+ * Start the resend cooldown timer
+ */
+function startOTPResendTimer(seconds = 60) {
+  const timerEl = document.getElementById("otpResendTimer");
+  const resendBtn = document.getElementById("otpResendBtn");
+  
+  if (timerEl) timerEl.classList.remove("hidden");
+  if (resendBtn) resendBtn.classList.add("hidden");
+  
+  let remaining = seconds;
+  
+  if (otpResendInterval) clearInterval(otpResendInterval);
+  
+  otpResendInterval = setInterval(() => {
+    remaining--;
+    
+    if (timerEl) {
+      timerEl.textContent = remaining > 0 
+        ? `Resend code in ${remaining}s` 
+        : "";
+    }
+    
+    if (remaining <= 0) {
+      clearInterval(otpResendInterval);
+      otpResendInterval = null;
+      if (timerEl) timerEl.classList.add("hidden");
+      if (resendBtn) resendBtn.classList.remove("hidden");
+    }
+  }, 1000);
+}
+
+/**
+ * Get the OTP value from input fields
+ */
+function getOTPValue() {
+  return Array.from(document.querySelectorAll(".otp-digit"))
+    .map(input => input.value)
+    .join("");
+}
+
+/**
+ * Request OTP from server
+ */
+async function requestOTP(email, deviceFingerprint, deviceName) {
+  const config = getRuntimeConfig();
+  const baseUrl = config?.cloudflareAuthBaseUrl || "";
+  
+  if (!baseUrl) {
+    throw new Error("Auth service is not configured.");
+  }
+  
+  const response = await fetch(`${baseUrl}/otp/request`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, deviceFingerprint, deviceName }),
+  });
+  
+  const result = await response.json();
+  if (!response.ok || !result.ok) {
+    throw new Error(result.error || result.message || "Failed to send verification code.");
+  }
+  
+  return result;
+}
+
+/**
+ * Verify OTP with server
+ */
+async function verifyOTPLogin(email, otp, deviceFingerprint, deviceName, trustDevice) {
+  const config = getRuntimeConfig();
+  const baseUrl = config?.cloudflareAuthBaseUrl || "";
+  
+  if (!baseUrl) {
+    throw new Error("Auth service is not configured.");
+  }
+  
+  const response = await fetch(`${baseUrl}/otp/verify`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ 
+      email, 
+      otp, 
+      deviceFingerprint, 
+      deviceName,
+      trustDevice,
+      trustDays: 30
+    }),
+  });
+  
+  const result = await response.json();
+  if (!response.ok || !result.ok) {
+    throw new Error(result.error || "Verification failed.");
+  }
+  
+  return result;
+}
+
+/**
+ * Resend OTP
+ */
+async function resendOTP(email, deviceFingerprint, deviceName) {
+  const config = getRuntimeConfig();
+  const baseUrl = config?.cloudflareAuthBaseUrl || "";
+  
+  if (!baseUrl) {
+    throw new Error("Auth service is not configured.");
+  }
+  
+  const response = await fetch(`${baseUrl}/otp/resend`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, deviceFingerprint, deviceName }),
+  });
+  
+  const result = await response.json();
+  if (!response.ok || !result.ok) {
+    throw new Error(result.error || result.message || "Failed to resend code.");
+  }
+  
+  return result;
+}
+
+/**
+ * Check if device is trusted
+ */
+async function checkDeviceTrust(email, deviceFingerprint) {
+  const config = getRuntimeConfig();
+  const baseUrl = config?.cloudflareAuthBaseUrl || "";
+  
+  if (!baseUrl) {
+    return { trusted: false, reason: "no_config" };
+  }
+  
+  try {
+    const response = await fetch(`${baseUrl}/device/check`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, deviceFingerprint }),
+    });
+    
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error("Device check failed:", error);
+    return { trusted: false, reason: "check_failed" };
+  }
+}
+
+/**
+ * Get device fingerprint (lazy load from module)
+ */
+let deviceFingerprintModule = null;
+async function getDeviceFingerprint() {
+  if (!deviceFingerprintModule) {
+    try {
+      deviceFingerprintModule = await import("./deviceFingerprint.js");
+    } catch (error) {
+      console.error("Failed to load device fingerprint module:", error);
+      // Fallback: generate simple fingerprint
+      return btoa(navigator.userAgent + screen.width + screen.height).slice(0, 32);
+    }
+  }
+  return deviceFingerprintModule.generateDeviceFingerprint();
+}
+
+/**
+ * Get device name
+ */
+async function getDeviceName() {
+  if (!deviceFingerprintModule) {
+    try {
+      deviceFingerprintModule = await import("./deviceFingerprint.js");
+    } catch (error) {
+      return "Unknown Device";
+    }
+  }
+  return deviceFingerprintModule.getDeviceName();
+}
+
+/**
+ * Handle OTP form submission
+ */
+async function handleOTPVerification() {
+  const otp = getOTPValue();
+  if (otp.length !== 6) {
+    setOTPMessage("Please enter the complete 6-digit code.");
+    return;
+  }
+  
+  const trustDevice = document.getElementById("trustDeviceCheck")?.checked ?? true;
+  const deviceName = await getDeviceName();
+  
+  try {
+    setOTPMessage("", "success");
+    
+    const result = await verifyOTPLogin(
+      otpPendingEmail,
+      otp,
+      otpPendingFingerprint,
+      deviceName,
+      trustDevice
+    );
+    
+    // Store session
+    if (result.userId) {
+      const sessionData = {
+        userId: result.userId,
+        email: result.email,
+        plan: result.plan,
+        role: result.role,
+        status: result.status,
+        deviceTrusted: result.deviceTrusted,
+      };
+      sessionStorage.setItem("cbt_session_v1", JSON.stringify(sessionData));
+      
+      // Update UI
+      closeOTPModal();
+      closeAuthModal();
+      updateAuthUI();
+      refreshDashboardInsights();
+      await refreshAccessibleTopics();
+      await showScreen("topicSelectionScreen");
+      showSuccess("Login successful.");
+    }
+  } catch (error) {
+    setOTPMessage(error.message || "Verification failed.");
+  }
+}
+
+/**
+ * Setup OTP input handlers
+ */
+function setupOTPInputs() {
+  const otpDigits = document.querySelectorAll(".otp-digit");
+  
+  otpDigits.forEach((input, index) => {
+    // Auto-advance on input
+    input.addEventListener("input", (e) => {
+      const value = e.target.value.replace(/[^0-9]/g, "");
+      e.target.value = value;
+      
+      if (value) {
+        e.target.classList.add("filled");
+        if (index < 5) {
+          otpDigits[index + 1].focus();
+        }
+      } else {
+        e.target.classList.remove("filled");
+      }
+    });
+    
+    // Handle backspace
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Backspace" && !e.target.value && index > 0) {
+        otpDigits[index - 1].focus();
+        otpDigits[index - 1].value = "";
+        otpDigits[index - 1].classList.remove("filled");
+      }
+    });
+    
+    // Handle paste
+    input.addEventListener("paste", (e) => {
+      e.preventDefault();
+      const pasted = e.clipboardData.getData("text").replace(/[^0-9]/g, "").slice(0, 6);
+      pasted.split("").forEach((char, i) => {
+        if (otpDigits[i]) {
+          otpDigits[i].value = char;
+          otpDigits[i].classList.add("filled");
+        }
+      });
+      if (pasted.length > 0) {
+        otpDigits[Math.min(pasted.length, 5)].focus();
+      }
+    });
+  });
+}
+
 function openPremiumModal() {
   const modal = document.getElementById("premiumModal");
   if (modal) modal.classList.remove("hidden");
@@ -4869,6 +5230,51 @@ function initializeAuthUI() {
   if (migrationModal) {
     migrationModal.addEventListener("click", (event) => {
       if (event.target === migrationModal) closeMigrationModal({ clearToken: true });
+    });
+  }
+
+  // OTP Modal Event Listeners
+  const otpCloseBtn = document.getElementById("otpCloseBtn");
+  const otpModal = document.getElementById("otpModal");
+  const otpForm = document.getElementById("otpForm");
+  const otpResendBtn = document.getElementById("otpResendBtn");
+  const otpBackBtn = document.getElementById("otpBackBtn");
+
+  if (otpCloseBtn) {
+    otpCloseBtn.addEventListener("click", closeOTPModal);
+  }
+
+  if (otpModal) {
+    otpModal.addEventListener("click", (event) => {
+      if (event.target === otpModal) closeOTPModal();
+    });
+  }
+
+  if (otpForm) {
+    otpForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      handleOTPVerification();
+    });
+    setupOTPInputs();
+  }
+
+  if (otpResendBtn) {
+    otpResendBtn.addEventListener("click", async () => {
+      try {
+        const deviceName = await getDeviceName();
+        await resendOTP(otpPendingEmail, otpPendingFingerprint, deviceName);
+        startOTPResendTimer();
+        setOTPMessage("New code sent.", "success");
+      } catch (error) {
+        setOTPMessage(error.message || "Failed to resend code.");
+      }
+    });
+  }
+
+  if (otpBackBtn) {
+    otpBackBtn.addEventListener("click", () => {
+      closeOTPModal();
+      openAuthModal("login");
     });
   }
 
