@@ -2814,6 +2814,22 @@ select:focus-visible,
     gap: 12px;
 }
 
+.admin-pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+}
+
+.admin-pricing-grid .auth-field {
+    display: grid;
+    gap: 4px;
+}
+
+.admin-pricing-grid input {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
 .admin-section-card {
     display: grid;
     gap: 10px;

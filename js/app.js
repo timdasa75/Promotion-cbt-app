@@ -5636,6 +5636,92 @@ function startAdminDirectoryAutoSync() {
   });
 }
 
+// ============================================================
+// Product Pricing Management
+// ============================================================
+
+async function fetchProductPricing() {
+  try {
+    const config = getRuntimeConfig();
+    const baseUrl = config?.cloudflareAuthBaseUrl || '';
+    const session = readSession();
+    if (!session?.accessToken || !baseUrl) return null;
+    const resp = await fetch(`${baseUrl}/pricing/get`, {
+      headers: { 'Authorization': `Bearer ${session.accessToken}` }
+    });
+    const data = await resp.json().catch(() => ({}));
+    return data?.ok ? data.pricing : null;
+  } catch { return null; }
+}
+
+async function saveProductPricing(pricing) {
+  const config = getRuntimeConfig();
+  const baseUrl = config?.cloudflareAuthBaseUrl || '';
+  const session = readSession();
+  if (!session?.accessToken || !baseUrl) throw new Error('Session unavailable.');
+  const user = getCurrentUser();
+  const resp = await fetch(`${baseUrl}/pricing/update`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${session.accessToken}`
+    },
+    body: JSON.stringify({ ...pricing, updatedBy: user?.email || '' })
+  });
+  const data = await resp.json().catch(() => ({}));
+  if (!data?.ok) throw new Error(data?.error || 'Failed to update pricing.');
+  return data.pricing;
+}
+
+function loadPricingUI() {
+  fetchProductPricing().then(pricing => {
+    if (!pricing) return;
+    const monthlyEl = document.getElementById('pricingMonthly');
+    const quarterlyEl = document.getElementById('pricingQuarterly');
+    const biAnnualEl = document.getElementById('pricingBiAnnual');
+    const annualEl = document.getElementById('pricingAnnual');
+    const lastUpdatedEl = document.getElementById('pricingLastUpdated');
+    if (monthlyEl) monthlyEl.value = pricing.monthly || 0;
+    if (quarterlyEl) quarterlyEl.value = pricing.quarterly || 0;
+    if (biAnnualEl) biAnnualEl.value = pricing['bi-annual'] || 0;
+    if (annualEl) annualEl.value = pricing.annual || 0;
+    if (lastUpdatedEl && pricing.updatedAt) {
+      lastUpdatedEl.textContent = `Last updated: ${formatDateTime(pricing.updatedAt)}${pricing.updatedBy ? ` by ${pricing.updatedBy}` : ''}`;
+    }
+  }).catch(() => {});
+}
+
+function initializePricingUI() {
+  const refreshBtn = document.getElementById('refreshPricingBtn');
+  const saveBtn = document.getElementById('savePricingBtn');
+  if (refreshBtn) refreshBtn.addEventListener('click', loadPricingUI);
+  if (saveBtn) {
+    saveBtn.addEventListener('click', async () => {
+      const monthly = Number(document.getElementById('pricingMonthly')?.value || 0);
+      const quarterly = Number(document.getElementById('pricingQuarterly')?.value || 0);
+      const biAnnual = Number(document.getElementById('pricingBiAnnual')?.value || 0);
+      const annual = Number(document.getElementById('pricingAnnual')?.value || 0);
+      if (monthly <= 0 || quarterly <= 0 || biAnnual <= 0 || annual <= 0) {
+        showWarning('All prices must be greater than 0.');
+        return;
+      }
+      try {
+        await saveProductPricing({ monthly, quarterly, 'bi-annual': biAnnual, annual });
+        showSuccess('Pricing updated successfully.');
+        loadPricingUI();
+        logAdminOperation({
+          action: 'Update product pricing',
+          target: 'pricing',
+          status: 'success',
+          message: `Monthly: ₦${monthly}, Quarterly: ₦${quarterly}, Bi-Annual: ₦${biAnnual}, Annual: ₦${annual}`,
+        });
+      } catch (error) {
+        showError(error?.message || 'Failed to update pricing.');
+      }
+    });
+  }
+}
+
 function initializeAdminTabs() {
   const tabs = document.querySelectorAll('.admin-tab');
   const panels = document.querySelectorAll('.admin-tab-panel');
@@ -5742,6 +5828,8 @@ async function openAdminScreen() {
         // Update dashboard summary
         updateAdminDashboardSummary();
         initializeAdminTabs();
+        loadPricingUI();
+        initializePricingUI();
         await showScreen("adminScreen");
       },
       {

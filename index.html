@@ -692,6 +692,35 @@
                         <section class="admin-group admin-tab-panel active" id="adminTabPayments" aria-labelledby="adminGroupAccessTitle">
                             <h3 class="admin-group-title" id="adminGroupAccessTitle">Payments &amp; Access</h3>
                             <div class="admin-grid">
+                        <article class="card admin-section-card admin-pricing-card">
+                            <div class="admin-card-head">
+                                <h3>Product Pricing</h3>
+                                <button class="btn btn-ghost btn-sm" id="refreshPricingBtn" type="button">Refresh</button>
+                            </div>
+                            <p class="inline-warning hidden" id="pricingNotice"></p>
+                            <div class="admin-pricing-grid">
+                                <label class="auth-field">
+                                    <span>Monthly (NGN)</span>
+                                    <input id="pricingMonthly" type="number" min="0" step="100" />
+                                </label>
+                                <label class="auth-field">
+                                    <span>Quarterly (NGN)</span>
+                                    <input id="pricingQuarterly" type="number" min="0" step="100" />
+                                </label>
+                                <label class="auth-field">
+                                    <span>Bi-Annual (NGN)</span>
+                                    <input id="pricingBiAnnual" type="number" min="0" step="100" />
+                                </label>
+                                <label class="auth-field">
+                                    <span>Annual (NGN)</span>
+                                    <input id="pricingAnnual" type="number" min="0" step="100" />
+                                </label>
+                            </div>
+                            <div class="button-row">
+                                <button class="btn btn-primary" id="savePricingBtn" type="button">Save Pricing</button>
+                            </div>
+                            <p class="meta" id="pricingLastUpdated"></p>
+                        </article>
                         <article class="card admin-section-card admin-plan-card">
                             <div class="admin-card-head">
                                 <h3>Plan Override</h3>

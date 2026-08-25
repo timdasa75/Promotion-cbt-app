@@ -3107,6 +3107,88 @@ async function handleLoginAlert(request, env) {
 }
 
 // ============================================================
+// Product Pricing Management
+// ============================================================
+
+async function handleGetPricing(request, env) {
+  const database = requireAuditDatabase(env);
+  const result = await database
+    .prepare('SELECT * FROM product_pricing WHERE id = ?1')
+    .bind('default')
+    .first();
+  
+  if (!result) {
+    return {
+      ok: true,
+      pricing: {
+        monthly: PAYMENT_PLAN_PRICES.monthly,
+        quarterly: PAYMENT_PLAN_PRICES.quarterly,
+        'bi-annual': PAYMENT_PLAN_PRICES['bi-annual'],
+        annual: PAYMENT_PLAN_PRICES.annual,
+        currency: 'NGN',
+      },
+    };
+  }
+  
+  return {
+    ok: true,
+    pricing: {
+      monthly: result.monthly_price,
+      quarterly: result.quarterly_price,
+      'bi-annual': result.bi_annual_price,
+      annual: result.annual_price,
+      currency: result.currency,
+      updatedAt: result.updated_at,
+      updatedBy: result.updated_by,
+    },
+  };
+}
+
+async function handleUpdatePricing(request, env) {
+  const database = requireAuditDatabase(env);
+  const body = await readJsonBody(request);
+  
+  const monthly = Number(body?.monthly);
+  const quarterly = Number(body?.quarterly);
+  const biAnnual = Number(body?.['bi-annual']);
+  const annual = Number(body?.annual);
+  const currency = String(body?.currency || 'NGN').trim().toUpperCase();
+  const updatedBy = String(body?.updatedBy || '').trim();
+  
+  if (!Number.isFinite(monthly) || monthly < 0) throw new Error('Invalid monthly price.');
+  if (!Number.isFinite(quarterly) || quarterly < 0) throw new Error('Invalid quarterly price.');
+  if (!Number.isFinite(biAnnual) || biAnnual < 0) throw new Error('Invalid bi-annual price.');
+  if (!Number.isFinite(annual) || annual < 0) throw new Error('Invalid annual price.');
+  
+  const now = new Date().toISOString();
+  
+  await database
+    .prepare(`
+      INSERT INTO product_pricing (id, monthly_price, quarterly_price, bi_annual_price, annual_price, currency, updated_at, updated_by)
+      VALUES ('default', ?1, ?2, ?3, ?4, ?5, ?6, ?7)
+      ON CONFLICT(id) DO UPDATE SET
+        monthly_price = ?1, quarterly_price = ?2, bi_annual_price = ?3,
+        annual_price = ?4, currency = ?5, updated_at = ?6, updated_by = ?7
+    `)
+    .bind(monthly, quarterly, biAnnual, annual, currency, now, updatedBy)
+    .run();
+  
+  return {
+    ok: true,
+    message: 'Pricing updated successfully.',
+    pricing: {
+      monthly,
+      quarterly,
+      'bi-annual': biAnnual,
+      annual,
+      currency,
+      updatedAt: now,
+      updatedBy,
+    },
+  };
+}
+
+// ============================================================
 // Device Trust Management
 // ============================================================
 
@@ -3443,6 +3525,9 @@ function resolveRouteHandler(path) {
   if (path.endsWith("/otp/resend")) return handleOTPResend;
   // Login alert route
   if (path.endsWith("/login/alert")) return handleLoginAlert;
+  // Pricing routes
+  if (path.endsWith("/pricing/get")) return handleGetPricing;
+  if (path.endsWith("/pricing/update")) return handleUpdatePricing;
   // Device trust routes
   if (path.endsWith("/device/check")) return handleDeviceCheck;
   if (path.endsWith("/device/trust")) return handleDeviceTrust;
