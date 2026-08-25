@@ -5072,6 +5072,7 @@ function renderAdminUserDirectory() {
   const searchInput = document.getElementById("adminUserSearch");
   const statusFilter = document.getElementById("adminStatusFilter");
   const verificationFilter = document.getElementById("adminVerificationFilter");
+  const planFilter = document.getElementById("adminPlanFilter");
   const sortSelect = document.getElementById("adminUserSort");
   const sourceLabel = document.getElementById("adminUserSource");
   const countLabel = document.getElementById("adminUserCount");
@@ -5084,6 +5085,7 @@ function renderAdminUserDirectory() {
   const query = String(searchInput?.value || "").trim().toLowerCase();
   const status = String(statusFilter?.value || "all").toLowerCase();
   const verification = String(verificationFilter?.value || "all").toLowerCase();
+  const plan = String(planFilter?.value || "all").toLowerCase();
   const filtered = adminDirectoryUsers.filter((entry) => {
     const emailMatch = !query || String(entry.email || "").toLowerCase().includes(query);
     const statusMatch = status === "all" || entry.status === status;
@@ -5092,7 +5094,8 @@ function renderAdminUserDirectory() {
       (verification === "verified" && entry.emailVerified === true) ||
       (verification === "unverified" && entry.emailVerified === false) ||
       (verification === "unknown" && entry.emailVerified !== true && entry.emailVerified !== false);
-    return emailMatch && statusMatch && verificationMatch;
+    const planMatch = plan === "all" || entry.plan === plan;
+    return emailMatch && statusMatch && verificationMatch && planMatch;
   });
 
   // Apply sorting
@@ -5606,6 +5609,73 @@ function initializeAdminTabs() {
       if (targetPanel) targetPanel.classList.add('active');
     });
   });
+
+  // Clickable summary cards
+  const statCards = document.querySelectorAll('.admin-stat-card.clickable');
+  statCards.forEach(card => {
+    card.addEventListener('click', () => handleAdminStatCardClick(card.dataset.adminStat));
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        handleAdminStatCardClick(card.dataset.adminStat);
+      }
+    });
+  });
+}
+
+function switchAdminTab(tabName) {
+  const tabs = document.querySelectorAll('.admin-tab');
+  const panels = document.querySelectorAll('.admin-tab-panel');
+  tabs.forEach(t => t.classList.remove('active'));
+  panels.forEach(p => p.classList.remove('active'));
+  const targetTab = document.querySelector(`[data-admin-tab="${tabName}"]`);
+  const targetId = 'adminTab' + tabName.charAt(0).toUpperCase() + tabName.slice(1);
+  if (targetTab) targetTab.classList.add('active');
+  const targetPanel = document.getElementById(targetId);
+  if (targetPanel) targetPanel.classList.add('active');
+}
+
+function handleAdminStatCardClick(statType) {
+  switch (statType) {
+    case 'total-users':
+      switchAdminTab('payments');
+      setTimeout(() => {
+        const searchInput = document.getElementById('adminUserSearch');
+        if (searchInput) { searchInput.value = ''; searchInput.dispatchEvent(new Event('input')); }
+        const statusFilter = document.getElementById('adminStatusFilter');
+        if (statusFilter) statusFilter.value = 'all';
+        const planFilter = document.getElementById('adminPlanFilter');
+        if (planFilter) planFilter.value = 'all';
+        const verificationFilter = document.getElementById('adminVerificationFilter');
+        if (verificationFilter) verificationFilter.value = 'all';
+        const userCard = document.querySelector('.admin-users-card');
+        if (userCard) userCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+      break;
+    case 'premium-users':
+      switchAdminTab('payments');
+      setTimeout(() => {
+        const planFilter = document.getElementById('adminPlanFilter');
+        if (planFilter) { planFilter.value = 'premium'; planFilter.dispatchEvent(new Event('change')); }
+        const userCard = document.querySelector('.admin-users-card');
+        if (userCard) userCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+      break;
+    case 'trusted-devices':
+      switchAdminTab('security');
+      setTimeout(() => {
+        const deviceCard = document.querySelector('.admin-devices-card');
+        if (deviceCard) deviceCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+      break;
+    case 'recent-logins':
+      switchAdminTab('security');
+      setTimeout(() => {
+        const auditCard = document.querySelector('.admin-audit-card');
+        if (auditCard) auditCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+      break;
+  }
 }
 
 async function openAdminScreen() {
@@ -6734,6 +6804,13 @@ function initializeAuthUI() {
 
   if (adminVerificationFilter) {
     adminVerificationFilter.addEventListener("change", () => {
+      renderAdminUserDirectory();
+    });
+  }
+
+  const adminPlanFilter = document.getElementById("adminPlanFilter");
+  if (adminPlanFilter) {
+    adminPlanFilter.addEventListener("change", () => {
       renderAdminUserDirectory();
     });
   }

@@ -2694,6 +2694,22 @@ select:focus-visible,
     border-radius: 12px;
     padding: 16px;
     text-align: center;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+}
+
+.admin-stat-card.clickable {
+    cursor: pointer;
+}
+
+.admin-stat-card.clickable:hover,
+.admin-stat-card.clickable:focus-visible {
+    border-color: var(--primary);
+    box-shadow: 0 4px 12px rgba(10, 120, 64, 0.15);
+    transform: translateY(-2px);
+}
+
+.admin-stat-card.clickable:active {
+    transform: translateY(0);
 }
 
 .admin-stat-value {
