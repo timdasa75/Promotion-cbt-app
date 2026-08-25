@@ -680,14 +680,24 @@
                                 <div class="admin-nav-group">
                                     <button class="admin-nav-item admin-nav-parent" data-admin-nav="payments" type="button">
                                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
-                                        <span>Payments &amp; Users</span>
+                                        <span>Payments</span>
                                         <svg class="admin-nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
                                     </button>
                                     <div class="admin-nav-subitems">
                                         <button class="admin-nav-subitem" data-admin-sub="pricing" type="button">Product Pricing</button>
-                                        <button class="admin-nav-subitem" data-admin-sub="plan-override" type="button">Plan Override</button>
                                         <button class="admin-nav-subitem" data-admin-sub="upgrade-requests" type="button">Upgrade Requests</button>
-                                        <button class="admin-nav-subitem" data-admin-sub="users" type="button">User Directory</button>
+                                    </div>
+                                </div>
+                                
+                                <div class="admin-nav-group">
+                                    <button class="admin-nav-item admin-nav-parent" data-admin-nav="users" type="button">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                                        <span>Users</span>
+                                        <svg class="admin-nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                                    </button>
+                                    <div class="admin-nav-subitems">
+                                        <button class="admin-nav-subitem" data-admin-sub="user-directory" type="button">User Directory</button>
+                                        <button class="admin-nav-subitem" data-admin-sub="plan-override" type="button">Plan Override</button>
                                     </div>
                                 </div>
                                 
@@ -734,6 +744,15 @@
                                 <div class="admin-stat-label">Total Users</div>
                             </div>
                         </div>
+                                <div class="admin-dashboard-recent-payments" style="margin-top: 16px;">
+                                    <div class="admin-card-head" style="margin-bottom: 8px;">
+                                        <h3 style="margin: 0; font-size: 0.95rem; color: var(--ink-900);">Recent Payments</h3>
+                                        <button class="btn btn-ghost btn-sm" id="refreshRecentPaymentsBtn" type="button">Refresh</button>
+                                    </div>
+                                    <div id="recentPaymentsList" class="mistake-list" style="max-height: 200px; overflow-y: auto;">
+                                        <p class="meta" style="padding: 8px; text-align: center; color: var(--ink-600);">No recent payments</p>
+                                    </div>
+                                </div>
                         <div class="admin-stat-card clickable" data-admin-stat="premium-users" tabindex="0" role="button" aria-label="View premium users">
                             <div class="admin-stat-icon premium"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
                             <div class="admin-stat-content">
@@ -759,7 +778,7 @@
                             </div>
 
                     <div class="admin-groups">
-                        <div class="admin-view" id="adminViewPayments"><div class="admin-view-header"><h2>Payments &amp; Users</h2><p>Manage pricing, upgrades, and user accounts</p></div><section class="admin-group" id="adminTabPayments" aria-labelledby="adminGroupAccessTitle">
+                        <div class="admin-view" id="adminViewPayments"><div class="admin-view-header"><h2>Payments</h2><p>Manage pricing and upgrade requests</p></div><section class="admin-group" id="adminTabPayments" aria-labelledby="adminGroupAccessTitle">
                             <h3 class="admin-group-title" id="adminGroupAccessTitle">Payments &amp; Access</h3>
                             <div class="admin-grid">
                         <article class="card admin-section-card admin-pricing-card" data-admin-section="pricing">
@@ -791,27 +810,7 @@
                             </div>
                             <p class="meta" id="pricingLastUpdated"></p>
                         </article>
-                        <article class="card admin-section-card admin-plan-card" data-admin-section="plan-override">
-                            <div class="admin-card-head">
-                                <h3>Plan Override</h3>
-                                <span class="admin-count" id="adminOverrideCount">0</span>
-                            </div>
-                            <div class="plan-override-row">
-                                <label class="auth-field">
-                                    <span>User Email</span>
-                                    <input id="adminOverrideEmail" type="email" placeholder="user@email.com" />
-                                </label>
-                                <label class="auth-field">
-                                    <span>Plan</span>
-                                    <select id="adminOverridePlan">
-                                        <option value="free">Free</option>
-                                        <option value="premium">Premium</option>
-                                    </select>
-                                </label>
-                                <button class="btn btn-primary" id="applyPlanOverrideBtn" type="button">Apply Override</button>
-                            </div>
-                            <div id="adminOverrideList" class="mistake-list"></div>
-                        </article>
+                        
                         <article class="card admin-section-card admin-requests-card" data-admin-section="upgrade-requests">
                             <div class="admin-card-head">
                                 <h3>Upgrade Requests</h3>
@@ -843,56 +842,7 @@
                             </div>
                             <div id="adminRequestList" class="mistake-list"></div>
                         </article>
-                        <article class="card admin-section-card admin-users-card" data-admin-section="users">
-                            <div class="admin-card-head">
-                                <h3>Users and Account Status</h3>
-                                <span class="admin-count" id="adminUserCount">0</span>
-                            </div>
-                            <p class="inline-warning hidden" id="adminUserDirectoryNotice"></p>
-                            <div class="toolbar-row admin-user-toolbar">
-                                <div class="search-wrap">
-                                    <input id="adminUserSearch" type="search" placeholder="Search user email" aria-label="Search user email" />
-                                    <button class="search-clear" type="button" aria-label="Clear search" title="Clear search">&#10005;</button>
-                                </div>
-                                <select id="adminStatusFilter" aria-label="Filter user status">
-                                    <option value="all">Status</option>
-                                    <option value="active">Active</option>
-                                    <option value="suspended">Suspended</option>
-                                </select>
-                                <select id="adminPlanFilter" aria-label="Filter user plan">
-                                    <option value="all">Plan</option>
-                                    <option value="free">Free</option>
-                                    <option value="premium">Premium</option>
-                                </select>
-                                <select id="adminVerificationFilter" aria-label="Filter email verification status">
-                                    <option value="all">Email Verification</option>
-                                    <option value="verified">Verified</option>
-                                    <option value="unverified">Not Verified</option>
-                                    <option value="unknown">Unknown</option>
-                                </select>
-                                <select id="adminUserSort" aria-label="Sort users">
-                                    <option value="newest">Newest First</option>
-                                    <option value="oldest">Oldest First</option>
-                                    <option value="email-asc">Email A-Z</option>
-                                    <option value="email-desc">Email Z-A</option>
-                                    <option value="last-seen">Last Seen</option>
-                                </select>
-                                <button class="btn btn-secondary" id="refreshAdminUsersBtn" type="button">Refresh</button>
-                                <button class="btn btn-ghost" id="exportUsersBtn" type="button">Export CSV</button>
-                            </div>
-                            <div class="admin-bulk-actions" id="adminBulkActions" style="display:none;">
-                                <span class="meta"><strong id="adminSelectedCount">0</strong> users selected</span>
-                                <select id="adminBulkPlanSelect" aria-label="Bulk plan change">
-                                    <option value="">Change Plan...</option>
-                                    <option value="free">Set Free</option>
-                                    <option value="premium">Set Premium</option>
-                                </select>
-                                <button class="btn btn-secondary" id="applyBulkPlanBtn" type="button">Apply</button>
-                                <button class="btn btn-ghost" id="clearBulkSelectionBtn" type="button">Clear</button>
-                            </div>
-                            <div id="adminUserList" class="mistake-list"></div>
-                            </div>
-                        </article>
+                        
                         </section>
                         </div><div class="admin-view" id="adminViewSupport"><div class="admin-view-header"><h2>Feedback &amp; Audit</h2><p>Feedback inbox, operations history, and audit log</p></div><section class="admin-group" id="adminTabSupport" aria-labelledby="adminGroupSupportTitle">
                             <h3 class="admin-group-title" id="adminGroupSupportTitle">Support &amp; Audit</h3>

@@ -171,7 +171,7 @@ import {
   verifySelarPayment,
   updateFeedbackSubmissionStatus,
 } from "./auth.js";
-import { getFirebaseConfig, getPaymentProvider, getSelarCheckoutUrl, isCloudAuthEnabled } from "./authRuntime.js";
+import { getFirebaseConfig, getRuntimeConfig, getPaymentProvider, getSelarCheckoutUrl, isCloudAuthEnabled } from "./authRuntime.js";
 import "./authGoogle.js";
 
 let currentTopic = null;

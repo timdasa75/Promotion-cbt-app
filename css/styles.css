@@ -9297,3 +9297,99 @@ body.dark-mode .admin-nav-subitem.active::before {
         display: none;
     }
 }
+
+/* Forest Precision Admin - Dark mode contrast fixes */
+
+/* Summary metrics chips - improve contrast */
+body.dark-mode .category-summary-card .summary-metrics span {
+    background: var(--surface-container);
+    border-color: var(--outline);
+    color: var(--ink-900);
+}
+
+body.dark-mode .category-summary-card .summary-metrics span strong {
+    color: var(--primary);
+}
+
+/* Hero meta box - improve contrast */
+body.dark-mode #splashScreen .hero-meta-box {
+    background: var(--surface-container);
+    border-color: var(--outline);
+}
+
+body.dark-mode #splashScreen .hero-meta-box .hero-meta {
+    color: var(--ink-800);
+}
+
+/* Stat cards - improve contrast */
+body.dark-mode .stat-card {
+    background: var(--surface-container);
+    border-color: var(--outline);
+}
+
+body.dark-mode .stat-card h3 {
+    color: var(--primary);
+}
+
+/* Topic cards - improve contrast */
+body.dark-mode .topic-card {
+    background: var(--surface-container);
+    border-color: var(--outline);
+}
+
+body.dark-mode .topic-card:hover {
+    background: var(--surface-bright);
+    border-color: var(--primary);
+}
+
+/* Chip contrast improvements */
+body.dark-mode .chip {
+    background: var(--surface-container);
+    border-color: var(--outline);
+    color: var(--ink-800);
+}
+
+body.dark-mode .chip.active {
+    background: var(--primary-light);
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+/* Recommendation card confidence */
+body.dark-mode .recommendation-confidence {
+    background: var(--surface-container);
+    border-color: var(--outline);
+    color: var(--ink-800);
+}
+
+body.dark-mode .recommendation-confidence strong {
+    color: var(--primary);
+}
+
+/* Pill badges */
+body.dark-mode .pill {
+    background: var(--surface-container);
+    border-color: var(--outline);
+    color: var(--ink-800);
+}
+
+/* Lock badge */
+body.dark-mode .lock-badge {
+    background: var(--surface-container);
+    border-color: var(--outline);
+    color: var(--ink-700);
+}
+
+/* Mock exam badge */
+body.dark-mode .mock-exam-badge {
+    background: var(--surface-container);
+    border-color: var(--outline);
+    color: var(--ink-800);
+}
+
+/* Badge streak */
+body.dark-mode .badge-streak {
+    background: var(--surface-container);
+    border-color: var(--outline);
+    color: var(--ink-800);
+}

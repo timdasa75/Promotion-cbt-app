@@ -196,3 +196,6 @@ export function isLocalDemoAuthEnabled() {
 
   return !isCloudAuthEnabled() && !isCloudAuthRequired();
 }
+
+// Alias for backward compatibility
+export const getRuntimeConfig = getFirebaseConfig;
