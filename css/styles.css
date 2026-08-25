@@ -1,47 +1,65 @@
 :root {
-    /* Primary palette - Green (Civil Service theme) */
-    --green-900: #064222;
-    --green-700: #0a7840;
-    --green-500: #34d399;
-    --primary: #0a7840;
-    --primary-light: rgba(10, 120, 64, 0.12);
-    --primary-hover: #086636;
+    /* Forest Precision Admin - Light Mode */
     
-    /* Neutral palette */
-    --white: #ffffff;
-    --black: #000000;
-    --ink-900: #1f2937;
-    --ink-800: #2b3446;
-    --ink-700: #374151;
-    --ink-600: #4b5563;
-    --ink-500: #5a6360;
-    --ink-400: #9ca3af;
-    --ink-300: #d1d5db;
-    --surface: #f7faf8;
+    /* Surface colors */
+    --surface: #FFFFFF;
+    --surface-dim: #F8FAFC;
+    --surface-bright: #FFFFFF;
+    --surface-container-lowest: #F1F5F9;
+    --surface-container-low: #E2E8F0;
+    --surface-container: #F8FAFC;
+    
+    /* Primary colors */
+    --primary: #064E3B;
+    --primary-light: rgba(6, 78, 59, 0.12);
+    --primary-hover: #065f46;
+    --on-primary: #FFFFFF;
+    
+    /* Secondary colors */
+    --secondary: #334155;
+    --secondary-light: rgba(51, 65, 85, 0.12);
+    --on-secondary: #FFFFFF;
+    
+    /* Text colors (mapped to ink system) */
+    --ink-900: #0F172A;
+    --ink-800: #1E293B;
+    --ink-700: #334155;
+    --ink-600: #475569;
+    --ink-500: #64748B;
+    --ink-400: #94A3B8;
+    --ink-300: #CBD5E1;
+    
+    /* Borders and outlines */
+    --line: #CBD5E1;
+    --line-light: #E2E8F0;
+    --outline: #CBD5E1;
+    --outline-variant: #E2E8F0;
     
     /* Semantic colors */
-    --gold: #d4af37;
-    --danger: #b42318;
-    --danger-bg: #fef3f2;
-    --danger-light: rgba(180, 35, 24, 0.1);
-    --warning: #b54708;
-    --warning-bg: #fffaeb;
-    --warning-light: rgba(181, 71, 8, 0.1);
-    --ok: #027a48;
-    --ok-bg: #ecfdf3;
-    --ok-light: rgba(2, 122, 72, 0.1);
+    --success: #059669;
+    --success-bg: #ECFDF5;
+    --success-light: rgba(5, 150, 105, 0.12);
     
-    /* Borders and lines */
-    --line: #d0d9d4;
-    --line-light: #e5ebe8;
+    --warning: #D97706;
+    --warning-bg: #FFFBEB;
+    --warning-light: rgba(217, 119, 6, 0.12);
     
-    /* Accent colors */
-    --accent-secondary: #ffc107;
-    --accent-premium: #c4eed0;
+    --error: #DC2626;
+    --error-bg: #FEF2F2;
+    --error-light: rgba(220, 38, 38, 0.12);
     
-    /* Surfaces */
-    --card: #ffffff;
-    --card-hover: #f9fafb;
+    /* Legacy semantic (mapped to new system) */
+    --ok: var(--success);
+    --ok-bg: var(--success-bg);
+    --ok-light: var(--success-light);
+    --danger: var(--error);
+    --danger-bg: var(--error-bg);
+    --danger-light: var(--error-light);
+    --gold: #D97706;
+    
+    /* Card colors */
+    --card: #FFFFFF;
+    --card-hover: #F8FAFC;
     
     /* Shadows */
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
@@ -56,7 +74,7 @@
     --radius-full: 999px;
     
     /* Focus ring */
-    --focus: 0 0 0 3px rgba(10, 120, 64, 0.3);
+    --focus: 0 0 0 3px rgba(6, 78, 59, 0.3);
     
     /* Spacing scale */
     --space-1: 4px;
@@ -71,46 +89,132 @@
     --transition-fast: 150ms ease;
     --transition-normal: 200ms ease;
     --transition-slow: 300ms ease;
+    
+    /* Legacy green palette (mapped to primary) */
+    --green-900: var(--primary);
+    --green-700: var(--primary-hover);
+    --green-500: var(--success);
+    
+    /* White/Black */
+    --white: #FFFFFF;
+    --black: #000000;
 }
 
 body.dark-mode {
-    /* Dark mode surfaces */
-    --surface: #0f1212;
-    --card: #181d1d;
-    --card-hover: #1f2525;
+    /* Forest Precision Admin - Dark Mode */
     
-    /* Dark mode borders */
-    --line: #2d3636;
-    --line-light: #242c2c;
+    /* Surface colors */
+    --surface: #0B1326;
+    --surface-dim: #0B1326;
+    --surface-bright: #31394D;
+    --surface-container-lowest: #060E20;
+    --surface-container-low: #131B2E;
+    --surface-container: #1E293B;
     
-    /* Dark mode text - WCAG AA compliant */
-    --ink-900: #f0f4f2;
-    --ink-800: #dce3e0;
-    --ink-700: #c2ccc8;
-    --ink-600: #a8b8b3;
-    --ink-500: #92a5a0;
-    --ink-400: #748882;
+    /* Primary colors */
+    --primary: #10B981;
+    --primary-light: rgba(16, 185, 129, 0.2);
+    --primary-hover: #34D399;
+    --on-primary: #064E3B;
     
-    /* Dark mode primary */
-    --green-900: #7ed4a8;
-    --green-700: #2ea865;
+    /* Secondary colors */
+    --secondary: #94A3B8;
+    --secondary-light: rgba(148, 163, 184, 0.15);
+    --on-secondary: #0F172A;
+    
+    /* Text colors (mapped to ink system) */
+    --ink-900: #F8FAFC;
+    --ink-800: #E2E8F0;
+    --ink-700: #CBD5E1;
+    --ink-600: #94A3B8;
+    --ink-500: #64748B;
+    --ink-400: #475569;
+    --ink-300: #334155;
+    
+    /* Borders and outlines */
+    --line: #334155;
+    --line-light: #1E293B;
+    --outline: #334155;
+    --outline-variant: #1E293B;
+    
+    /* Semantic colors */
+    --success: #34D399;
+    --success-bg: rgba(52, 211, 153, 0.15);
+    --success-light: rgba(52, 211, 153, 0.2);
+    
+    --warning: #FBBF24;
+    --warning-bg: rgba(251, 191, 36, 0.15);
+    --warning-light: rgba(251, 191, 36, 0.2);
+    
+    --error: #F87171;
+    --error-bg: rgba(248, 113, 113, 0.15);
+    --error-light: rgba(248, 113, 113, 0.2);
+    
+    /* Legacy semantic (mapped to new system) */
+    --ok: var(--success);
+    --ok-bg: var(--success-bg);
+    --ok-light: var(--success-light);
+    --danger: var(--error);
+    --danger-bg: var(--error-bg);
+    --danger-light: var(--error-light);
+    --gold: #FBBF24;
+    
+    /* Card colors */
+    --card: #1E293B;
+    --card-hover: #31394D;
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.6);
+    --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.7);
+    
+    /* Legacy green palette (mapped to primary) */
+    --green-900: var(--primary);
+    --green-700: var(--primary-hover);
+    --green-500: #34D399;
+    
+    /* White/Black */
+    --white: #FFFFFF;
+    --black: #000000;
+} {
+    /* Dark mode surfaces - deeper navy tones */
+    --surface: #0d1117;
+    --card: #161b22;
+    --card-hover: #1c2128;
+    
+    /* Dark mode borders - subtle but visible */
+    --line: #30363d;
+    --line-light: #21262d;
+    
+    /* Dark mode text - WCAG AAA compliant for accessibility */
+    --ink-900: #f0f6fc;
+    --ink-800: #c9d1d9;
+    --ink-700: #8b949e;
+    --ink-600: #768390;
+    --ink-500: #6e7681;
+    --ink-400: #656d76;
+    
+    /* Dark mode primary - brighter green for better visibility */
+    --green-900: #7ee787;
+    --green-700: #3fb950;
     --primary: #2ea865;
-    --primary-light: rgba(46, 168, 101, 0.18);
+    --primary-light: rgba(46, 168, 101, 0.2);
     --primary-hover: #26905a;
     
-    /* Dark mode semantic */
-    --ok: #4ade80;
-    --ok-bg: rgba(74, 222, 128, 0.12);
-    --danger: #f87171;
-    --danger-bg: rgba(248, 113, 113, 0.12);
-    --warning: #fbbf24;
-    --warning-bg: rgba(251, 191, 36, 0.12);
+    /* Dark mode semantic colors */
+    --ok: #3fb950;
+    --ok-bg: rgba(63, 185, 80, 0.15);
+    --danger: #f85149;
+    --danger-bg: rgba(248, 81, 73, 0.15);
+    --warning: #d29922;
+    --warning-bg: rgba(210, 153, 34, 0.15);
     
     /* Dark mode shadows */
-    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
-    --shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-    --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.5);
-    --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.6);
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.6);
+    --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.7);
 }
 
 body.dark-mode .card,
@@ -2681,6 +2785,9 @@ select:focus-visible,
 }
 
 /* Admin Dashboard Summary Cards */
+
+
+/* Admin Dashboard Cards - Green Precision Admin inspired */
 .admin-dashboard-cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -2693,7 +2800,9 @@ select:focus-visible,
     border: 1px solid var(--line);
     border-radius: 12px;
     padding: 16px;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 12px;
     transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
 }
 
@@ -2701,29 +2810,74 @@ select:focus-visible,
     cursor: pointer;
 }
 
-.admin-stat-card.clickable:hover,
-.admin-stat-card.clickable:focus-visible {
+.admin-stat-card.clickable:hover {
     border-color: var(--primary);
-    box-shadow: 0 4px 12px rgba(10, 120, 64, 0.15);
     transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(46, 168, 101, 0.2);
 }
 
-.admin-stat-card.clickable:active {
-    transform: translateY(0);
+.admin-stat-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--primary-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.admin-stat-icon svg {
+    width: 20px;
+    height: 20px;
+    stroke: var(--primary);
+}
+
+.admin-stat-icon.premium {
+    background: rgba(212, 175, 55, 0.15);
+}
+
+.admin-stat-icon.premium svg {
+    stroke: var(--gold);
+}
+
+.admin-stat-icon.devices {
+    background: rgba(99, 102, 241, 0.12);
+}
+
+.admin-stat-icon.devices svg {
+    stroke: #6366f1;
+}
+
+.admin-stat-icon.logins {
+    background: rgba(16, 185, 129, 0.12);
+}
+
+.admin-stat-icon.logins svg {
+    stroke: #10b981;
+}
+
+.admin-stat-content {
+    flex: 1;
+    min-width: 0;
 }
 
 .admin-stat-value {
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--primary);
-    line-height: 1.2;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--ink-900);
+    line-height: 1;
+    margin-bottom: 4px;
 }
 
 .admin-stat-label {
-    color: var(--muted);
-    font-size: 0.85rem;
-    margin-top: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--ink-600);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
+
 
 /* Admin tabs */
 .admin-tabs {
@@ -2773,6 +2927,291 @@ select:focus-visible,
 /* Demarcated admin sections: cards are grouped under labeled, bordered
    panels (Payments & Access / Support & Audit) so each area reads as a
    distinct block instead of one long column. */
+
+
+/* ============================================================
+   Admin Sidebar Layout
+   ============================================================ */
+.admin-layout {
+    display: flex;
+    gap: 0;
+    min-height: 70vh;
+}
+
+.admin-sidebar {
+    width: 240px;
+    min-width: 240px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: var(--space-4) 0;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 80px;
+    height: fit-content;
+}
+
+.admin-sidebar-header {
+    padding: 0 var(--space-4) var(--space-4);
+    border-bottom: 1px solid var(--line-light);
+    margin-bottom: var(--space-2);
+}
+
+.admin-sidebar-header h2 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--green-900);
+}
+
+.admin-sidebar-header p {
+    margin: 2px 0 0;
+    font-size: 0.78rem;
+    color: var(--ink-500);
+}
+
+.admin-sidebar-nav {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 0 var(--space-2);
+}
+
+.admin-nav-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    border: none;
+    background: transparent;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--ink-700);
+    text-align: left;
+    width: 100%;
+    transition: all var(--transition-fast);
+    position: relative;
+}
+
+.admin-nav-item svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    opacity: 0.6;
+}
+
+.admin-nav-item span {
+    white-space: nowrap;
+}
+
+.admin-nav-item:hover {
+    background: var(--primary-light);
+    color: var(--primary);
+}
+
+.admin-nav-item:hover svg {
+    opacity: 1;
+}
+
+.admin-nav-item.active {
+    background: var(--primary);
+    color: var(--white);
+    font-weight: 700;
+}
+
+.admin-nav-item.active svg {
+    opacity: 1;
+    stroke: var(--white);
+}
+
+.admin-nav-badge {
+    margin-left: auto;
+    background: var(--danger);
+    color: var(--white);
+    font-size: 0.7rem;
+    font-weight: 700;
+    min-width: 18px;
+    height: 18px;
+    border-radius: 9px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5px;
+}
+
+.admin-nav-item.active .admin-nav-badge {
+    background: rgba(255,255,255,0.3);
+}
+
+.admin-sidebar-footer {
+    padding: var(--space-2) var(--space-2) 0;
+    border-top: 1px solid var(--line-light);
+    margin-top: var(--space-2);
+}
+
+.admin-main {
+    flex: 1;
+    min-width: 0;
+    padding: 0 var(--space-4);
+}
+
+.admin-view {
+    display: none;
+    animation: fade-up 0.2s ease;
+}
+
+.admin-view.active {
+    display: block;
+}
+
+.admin-view-header {
+    margin-bottom: var(--space-4);
+}
+
+.admin-view-header h2 {
+    margin: 0 0 4px;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--green-900);
+}
+
+.admin-view-header p {
+    margin: 0;
+    color: var(--ink-500);
+    font-size: 0.9rem;
+}
+
+/* Admin stat card icon */
+.admin-stat-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--primary-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.admin-stat-icon svg {
+    width: 20px;
+    height: 20px;
+    stroke: var(--primary);
+}
+
+.admin-stat-icon.premium {
+    background: rgba(212, 175, 55, 0.15);
+}
+
+.admin-stat-icon.premium svg {
+    stroke: var(--gold);
+}
+
+.admin-stat-icon.devices {
+    background: rgba(99, 102, 241, 0.12);
+}
+
+.admin-stat-icon.devices svg {
+    stroke: #6366f1;
+}
+
+.admin-stat-icon.logins {
+    background: rgba(16, 185, 129, 0.12);
+}
+
+.admin-stat-icon.logins svg {
+    stroke: #10b981;
+}
+
+.admin-stat-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.admin-stat-card {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+/* Dark mode sidebar */
+body.dark-mode .admin-sidebar {
+    background: var(--card);
+    border-color: var(--line);
+}
+
+body.dark-mode .admin-nav-item {
+    color: var(--ink-700);
+}
+
+body.dark-mode .admin-nav-item:hover {
+    background: var(--primary-light);
+    color: var(--green-900);
+}
+
+body.dark-mode .admin-nav-item.active {
+    background: var(--primary);
+    color: var(--white);
+}
+
+body.dark-mode .admin-nav-item.active svg {
+    stroke: var(--white);
+}
+
+body.dark-mode .admin-view-header h2 {
+    color: var(--green-900);
+}
+
+body.dark-mode .admin-view-header p {
+    color: var(--ink-500);
+}
+
+/* Responsive sidebar */
+@media (max-width: 768px) {
+    .admin-layout {
+        flex-direction: column;
+    }
+    .admin-sidebar {
+        width: 100%;
+        min-width: 100%;
+        position: static;
+        flex-direction: row;
+        overflow-x: auto;
+        padding: var(--space-2);
+        border-radius: var(--radius);
+    }
+    .admin-sidebar-header {
+        display: none;
+    }
+    .admin-sidebar-nav {
+        flex-direction: row;
+        flex: 1;
+        padding: 0;
+        gap: 4px;
+    }
+    .admin-nav-item {
+        padding: var(--space-2) var(--space-3);
+        font-size: 0.8rem;
+        white-space: nowrap;
+    }
+    .admin-nav-item svg {
+        display: none;
+    }
+    .admin-sidebar-footer {
+        border-top: none;
+        border-left: 1px solid var(--line-light);
+        margin: 0 0 0 var(--space-2);
+        padding: 0 0 0 var(--space-2);
+    }
+    .admin-main {
+        padding: var(--space-3) 0;
+    }
+}
+
 .admin-groups {
     display: grid;
     gap: 16px;
@@ -8457,4 +8896,404 @@ body.dark-mode #profileScreen .profile-upgrade-shell {
 body.dark-mode #profileScreen #profileAvatar {
     background: var(--primary);
     box-shadow: 0 4px 12px rgba(52, 211, 153, 0.3);
+}
+
+
+/* Mobile bottom navigation - inspired by Green Precision Admin */
+@media (max-width: 768px) {
+    .admin-layout {
+        flex-direction: column;
+    }
+    
+    .admin-sidebar {
+        width: 100%;
+        min-width: 100%;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: auto;
+        z-index: 100;
+        flex-direction: row;
+        overflow-x: auto;
+        padding: 8px 12px;
+        border-radius: 0;
+        border: none;
+        border-top: 1px solid var(--line);
+        background: var(--card);
+        box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.3);
+    }
+    
+    .admin-sidebar-header {
+        display: none;
+    }
+    
+    .admin-sidebar-nav {
+        flex-direction: row;
+        flex: 1;
+        padding: 0;
+        gap: 4px;
+        justify-content: space-around;
+    }
+    
+    .admin-nav-item {
+        padding: 8px 12px;
+        font-size: 0.7rem;
+        white-space: nowrap;
+        flex-direction: column;
+        gap: 4px;
+        min-width: 60px;
+    }
+    
+    .admin-nav-item svg {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .admin-sidebar-footer {
+        border-top: none;
+        border-left: 1px solid var(--line);
+        margin: 0 0 0 8px;
+        padding: 0 0 0 8px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .admin-main {
+        padding: 16px 12px 80px;
+    }
+    
+    /* Mobile-optimized stat cards */
+    .admin-dashboard-cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+    
+    .admin-stat-card {
+        padding: 12px;
+        min-height: 80px;
+    }
+    
+    .admin-stat-value {
+        font-size: 1.5rem;
+    }
+    
+    .admin-stat-label {
+        font-size: 0.75rem;
+    }
+}
+
+
+/* ============================================================
+   Forest Precision Admin - Navigation Styles
+   ============================================================ */
+
+/* Sidebar Navigation */
+.admin-sidebar {
+    background: var(--surface-container-low);
+    border: 1px solid var(--outline-variant);
+}
+
+.admin-nav-item {
+    color: var(--ink-600);
+}
+
+.admin-nav-item:hover {
+    background: var(--primary-light);
+    color: var(--primary);
+}
+
+.admin-nav-item.active {
+    background: var(--primary);
+    color: var(--on-primary);
+}
+
+.admin-nav-item.active svg {
+    stroke: var(--on-primary);
+}
+
+/* Bottom Navigation (Mobile) */
+@media (max-width: 768px) {
+    .admin-sidebar {
+        background: var(--surface-container-low);
+        border-top: 1px solid var(--outline-variant);
+    }
+    
+    .admin-nav-item.active {
+        background: var(--primary-light);
+        color: var(--primary);
+    }
+    
+    .admin-nav-item.active svg {
+        stroke: var(--primary);
+    }
+}
+
+/* Header / Top App Bar */
+.app-shell-header {
+    background: var(--surface);
+    border: 1px solid var(--outline-variant);
+}
+
+.brand-block h1 {
+    color: var(--primary);
+}
+
+/* Cards and Containers */
+.card {
+    background: var(--surface-container);
+    border: 1px solid var(--outline);
+}
+
+.card:hover {
+    background: var(--surface-container-low);
+    border-color: var(--primary);
+}
+
+/* Form Elements */
+input, select, textarea {
+    background: var(--surface-container-lowest);
+    border: 1px solid var(--outline);
+    color: var(--ink-900);
+}
+
+input::placeholder, textarea::placeholder {
+    color: var(--ink-500);
+    opacity: 0.6;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: var(--focus);
+}
+
+/* Status Badges */
+.admin-badge.pending {
+    color: var(--warning);
+    border-color: var(--warning);
+    background: var(--warning-bg);
+}
+
+.admin-badge.approved {
+    color: var(--success);
+    border-color: var(--success);
+    background: var(--success-bg);
+}
+
+.admin-badge.rejected {
+    color: var(--error);
+    border-color: var(--error);
+    background: var(--error-bg);
+}
+
+/* Buttons */
+.btn-primary {
+    background: var(--primary);
+    color: var(--on-primary);
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover);
+}
+
+.btn-secondary {
+    background: var(--secondary);
+    color: var(--on-secondary);
+}
+
+.btn-secondary:hover {
+    background: var(--ink-700);
+}
+
+.btn-ghost {
+    background: transparent;
+    border: 1px solid var(--outline);
+    color: var(--ink-700);
+}
+
+.btn-ghost:hover {
+    background: var(--primary-light);
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+/* Chips */
+.chip {
+    background: var(--surface-container);
+    border: 1px solid var(--outline);
+    color: var(--ink-700);
+}
+
+.chip.active {
+    background: var(--primary-light);
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+/* Dark Mode Overrides for Navigation */
+body.dark-mode .admin-sidebar {
+    background: var(--surface-container-low);
+    border-color: var(--outline-variant);
+}
+
+body.dark-mode .admin-nav-item {
+    color: var(--ink-600);
+}
+
+body.dark-mode .admin-nav-item:hover {
+    background: var(--primary-light);
+    color: var(--primary);
+}
+
+body.dark-mode .admin-nav-item.active {
+    background: var(--primary);
+    color: var(--on-primary);
+}
+
+body.dark-mode .app-shell-header {
+    background: var(--surface);
+    border-color: var(--outline-variant);
+}
+
+body.dark-mode .card {
+    background: var(--surface-container);
+    border-color: var(--outline);
+}
+
+body.dark-mode input, 
+body.dark-mode select, 
+body.dark-mode textarea {
+    background: var(--surface-container-lowest);
+    border-color: var(--outline);
+}
+
+
+/* ============================================================
+   Forest Precision Admin - Collapsible Sidebar Navigation
+   ============================================================ */
+
+/* Navigation group (parent + sub-items) */
+.admin-nav-group {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Parent item with chevron */
+.admin-nav-parent {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    width: 100%;
+    justify-content: space-between;
+}
+
+.admin-nav-parent span {
+    flex: 1;
+}
+
+/* Chevron icon */
+.admin-nav-chevron {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+    opacity: 0.5;
+}
+
+/* Expanded state - rotate chevron */
+.admin-nav-group.expanded .admin-nav-chevron {
+    transform: rotate(180deg);
+}
+
+/* Sub-items container */
+.admin-nav-subitems {
+    display: none;
+    flex-direction: column;
+    padding-left: 44px;
+    gap: 2px;
+    margin-top: 2px;
+}
+
+/* Expanded state - show sub-items */
+.admin-nav-group.expanded .admin-nav-subitems {
+    display: flex;
+}
+
+/* Sub-item button */
+.admin-nav-subitem {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    border: none;
+    background: transparent;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--ink-600);
+    text-align: left;
+    width: 100%;
+    transition: all var(--transition-fast);
+    position: relative;
+}
+
+/* Sub-item hover */
+.admin-nav-subitem:hover {
+    background: var(--primary-light);
+    color: var(--primary);
+}
+
+/* Sub-item active state */
+.admin-nav-subitem.active {
+    background: var(--primary-light);
+    color: var(--primary);
+    font-weight: 600;
+}
+
+/* Sub-item active indicator */
+.admin-nav-subitem.active::before {
+    content: '';
+    position: absolute;
+    left: -12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 20px;
+    background: var(--primary);
+    border-radius: 2px;
+}
+
+/* Dark mode sub-item styles */
+body.dark-mode .admin-nav-subitem {
+    color: var(--ink-600);
+}
+
+body.dark-mode .admin-nav-subitem:hover {
+    background: var(--primary-light);
+    color: var(--primary);
+}
+
+body.dark-mode .admin-nav-subitem.active {
+    background: var(--primary-light);
+    color: var(--primary);
+}
+
+body.dark-mode .admin-nav-subitem.active::before {
+    background: var(--primary);
+}
+
+/* Mobile responsive - bottom navigation */
+@media (max-width: 768px) {
+    .admin-nav-subitems {
+        display: none !important;
+    }
+    
+    .admin-nav-group.expanded .admin-nav-subitems {
+        display: none !important;
+    }
+    
+    .admin-nav-chevron {
+        display: none;
+    }
 }

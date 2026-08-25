@@ -5723,16 +5723,18 @@ function initializePricingUI() {
 }
 
 function initializeAdminTabs() {
-  const tabs = document.querySelectorAll('.admin-tab');
-  const panels = document.querySelectorAll('.admin-tab-panel');
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const targetId = 'adminTab' + tab.dataset.adminTab.charAt(0).toUpperCase() + tab.dataset.adminTab.slice(1);
-      tabs.forEach(t => t.classList.remove('active'));
-      panels.forEach(p => p.classList.remove('active'));
-      tab.classList.add('active');
-      const targetPanel = document.getElementById(targetId);
-      if (targetPanel) targetPanel.classList.add('active');
+  // Sidebar navigation
+  const navItems = document.querySelectorAll('.admin-nav-item[data-admin-nav]');
+  const views = document.querySelectorAll('.admin-view');
+  navItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const targetNav = item.dataset.adminNav;
+      const targetViewId = 'adminView' + targetNav.charAt(0).toUpperCase() + targetNav.slice(1);
+      navItems.forEach(n => n.classList.remove('active'));
+      views.forEach(v => v.classList.remove('active'));
+      item.classList.add('active');
+      const targetView = document.getElementById(targetViewId);
+      if (targetView) targetView.classList.add('active');
     });
   });
 
@@ -5750,15 +5752,22 @@ function initializeAdminTabs() {
 }
 
 function switchAdminTab(tabName) {
-  const tabs = document.querySelectorAll('.admin-tab');
-  const panels = document.querySelectorAll('.admin-tab-panel');
-  tabs.forEach(t => t.classList.remove('active'));
-  panels.forEach(p => p.classList.remove('active'));
-  const targetTab = document.querySelector(`[data-admin-tab="${tabName}"]`);
-  const targetId = 'adminTab' + tabName.charAt(0).toUpperCase() + tabName.slice(1);
-  if (targetTab) targetTab.classList.add('active');
-  const targetPanel = document.getElementById(targetId);
-  if (targetPanel) targetPanel.classList.add('active');
+  const navItems = document.querySelectorAll('.admin-nav-item[data-admin-nav]');
+  const views = document.querySelectorAll('.admin-view');
+  navItems.forEach(n => n.classList.remove('active'));
+  views.forEach(v => v.classList.remove('active'));
+  const targetNav = document.querySelector(`[data-admin-nav="${tabName}"]`);
+  const targetViewId = 'adminView' + tabName.charAt(0).toUpperCase() + tabName.slice(1);
+  if (targetNav) targetNav.classList.add('active');
+  const targetView = document.getElementById(targetViewId);
+  if (targetView) targetView.classList.add('active');
+}
+// Navigate to a specific sub-item in the admin sidebar
+function switchAdminSubTab(subName) {
+  const subItem = document.querySelector(`.admin-nav-subitem[data-admin-sub="${subName}"]`);
+  if (subItem) {
+    subItem.click();
+  }
 }
 
 function handleAdminStatCardClick(statType) {
@@ -5798,7 +5807,7 @@ function handleAdminStatCardClick(statType) {
       }, 150);
       break;
     case 'recent-logins':
-      switchAdminTab('security');
+      switchAdminTab('support');
       setTimeout(() => {
         renderAdminAuditLog();
         const auditCard = document.querySelector('.admin-audit-card');
