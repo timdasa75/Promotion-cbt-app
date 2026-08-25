@@ -9393,3 +9393,170 @@ body.dark-mode .badge-streak {
     border-color: var(--outline);
     color: var(--ink-800);
 }
+
+/* ============================================================
+   Flutterwave-style Transaction Table
+   ============================================================ */
+
+.admin-transactions-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--outline);
+    border-radius: var(--radius);
+    background: var(--surface);
+}
+
+.admin-transactions-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+}
+
+.admin-transactions-table thead th {
+    text-align: left;
+    padding: 12px 16px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ink-600);
+    background: var(--surface-dim);
+    border-bottom: 1px solid var(--outline);
+}
+
+.admin-transactions-table tbody td {
+    padding: 12px 16px;
+    font-size: 0.9rem;
+    color: var(--ink-800);
+    border-bottom: 1px solid var(--outline-variant);
+    vertical-align: middle;
+}
+
+.admin-transactions-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.admin-transactions-table tbody tr:hover {
+    background: var(--surface-dim);
+}
+
+/* Description cell */
+.admin-transactions-table .description-cell {
+    font-weight: 500;
+    color: var(--ink-900);
+}
+
+.admin-transactions-table .description-cell strong {
+    font-weight: 600;
+    color: var(--primary);
+}
+
+/* Amount cell */
+.admin-transactions-table .amount-cell {
+    font-weight: 600;
+    color: var(--ink-900);
+    white-space: nowrap;
+}
+
+/* Payment type cell */
+.admin-transactions-table .type-cell {
+    color: var(--ink-700);
+}
+
+/* Status badge */
+.admin-transactions-table .status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+
+.admin-transactions-table .status-badge.successful {
+    background: var(--success-bg);
+    color: var(--success);
+    border: 1px solid color-mix(in srgb, var(--success) 30%, transparent);
+}
+
+.admin-transactions-table .status-badge.pending {
+    background: var(--warning-bg);
+    color: var(--warning);
+    border: 1px solid color-mix(in srgb, var(--warning) 30%, transparent);
+}
+
+.admin-transactions-table .status-badge.failed {
+    background: var(--error-bg);
+    color: var(--error);
+    border: 1px solid color-mix(in srgb, var(--error) 30%, transparent);
+}
+
+/* Date cell */
+.admin-transactions-table .date-cell {
+    color: var(--ink-600);
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+
+/* Empty state */
+.admin-transactions-empty td {
+    color: var(--ink-600) !important;
+    font-style: italic;
+}
+
+/* Dark mode adjustments */
+body.dark-mode .admin-transactions-table-wrap {
+    background: var(--surface-container);
+    border-color: var(--outline);
+}
+
+body.dark-mode .admin-transactions-table thead th {
+    background: var(--surface-container-low);
+    color: var(--ink-600);
+}
+
+body.dark-mode .admin-transactions-table tbody td {
+    color: var(--ink-800);
+    border-color: var(--outline-variant);
+}
+
+body.dark-mode .admin-transactions-table tbody tr:hover {
+    background: var(--surface-bright);
+}
+
+body.dark-mode .admin-transactions-table .description-cell {
+    color: var(--ink-900);
+}
+
+body.dark-mode .admin-transactions-table .amount-cell {
+    color: var(--ink-900);
+}
+
+body.dark-mode .admin-transactions-table .status-badge.successful {
+    background: var(--success-bg);
+    color: var(--success);
+}
+
+body.dark-mode .admin-transactions-table .status-badge.pending {
+    background: var(--warning-bg);
+    color: var(--warning);
+}
+
+body.dark-mode .admin-transactions-table .status-badge.failed {
+    background: var(--error-bg);
+    color: var(--error);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .admin-transactions-table thead th,
+    .admin-transactions-table tbody td {
+        padding: 10px 12px;
+        font-size: 0.82rem;
+    }
+    
+    .admin-transactions-table .status-badge {
+        font-size: 0.72rem;
+        padding: 3px 8px;
+    }
+}

@@ -744,15 +744,32 @@
                                 <div class="admin-stat-label">Total Users</div>
                             </div>
                         </div>
-                                <div class="admin-dashboard-recent-payments" style="margin-top: 16px;">
-                                    <div class="admin-card-head" style="margin-bottom: 8px;">
-                                        <h3 style="margin: 0; font-size: 0.95rem; color: var(--ink-900);">Recent Payments</h3>
-                                        <button class="btn btn-ghost btn-sm" id="refreshRecentPaymentsBtn" type="button">Refresh</button>
-                                    </div>
-                                    <div id="recentPaymentsList" class="mistake-list" style="max-height: 200px; overflow-y: auto;">
-                                        <p class="meta" style="padding: 8px; text-align: center; color: var(--ink-600);">No recent payments</p>
-                                    </div>
+                            </div>
+                            <div class="admin-dashboard-recent-payments card admin-section-card" style="margin-top: 16px;">
+                                <div class="admin-card-head" style="margin-bottom: 12px;">
+                                    <h3 style="margin: 0; font-size: 1.1rem; font-weight: 700; color: var(--ink-900);">Recent Transactions</h3>
+                                    <button class="btn btn-ghost btn-sm" id="refreshRecentPaymentsBtn" type="button">See all transactions</button>
                                 </div>
+                                <div class="admin-transactions-table-wrap">
+                                    <table class="admin-transactions-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Description</th>
+                                                <th>Amount</th>
+                                                <th>Payment Type</th>
+                                                <th>Status</th>
+                                                <th>Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="recentPaymentsList">
+                                            <tr class="admin-transactions-empty">
+                                                <td colspan="5" style="text-align: center; padding: 24px; color: var(--ink-600);">No recent transactions</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                                
                         <div class="admin-stat-card clickable" data-admin-stat="premium-users" tabindex="0" role="button" aria-label="View premium users">
                             <div class="admin-stat-icon premium"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
                             <div class="admin-stat-content">

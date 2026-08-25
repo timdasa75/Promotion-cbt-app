@@ -736,9 +736,72 @@ function updateAdminDashboardSummary() {
   fetchRecentLoginsCount().then(count => {
     if (recentLoginsEl) recentLoginsEl.textContent = String(count);
   }).catch(() => {});
+  // Render recent transactions
+  renderRecentTransactions();
 }
 
 // ============================================================
+
+// ============================================================
+// Recent Transactions Table (Flutterwave-style)
+// ============================================================
+
+function renderRecentTransactions() {
+  const tbody = document.getElementById('recentPaymentsList');
+  if (!tbody) return;
+  
+  // Get upgrade requests from local storage
+  const requests = readUpgradeRequests() || [];
+  
+  // Sort by date (newest first) and take last 10
+  const recentRequests = requests
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+    .slice(0, 10);
+  
+  if (recentRequests.length === 0) {
+    tbody.innerHTML = '<tr class="admin-transactions-empty"><td colspan="5" style="text-align: center; padding: 24px; color: var(--ink-600);">No recent transactions</td></tr>';
+    return;
+  }
+  
+  tbody.innerHTML = recentRequests.map(req => {
+    const email = req.email || 'Unknown';
+    const amount = req.amount ? `NGN ${Number(req.amount).toLocaleString()}` : 'NGN 0';
+    const paymentType = req.billingCycle || req.paymentType || 'N/A';
+    const status = req.status || 'pending';
+    const statusClass = status === 'approved' ? 'successful' : status === 'rejected' ? 'failed' : 'pending';
+    const statusLabel = status === 'approved' ? 'Successful' : status === 'rejected' ? 'Failed' : 'Pending';
+    const date = req.createdAt ? formatRelativeDate(new Date(req.createdAt)) : 'Unknown';
+    
+    return `<tr>
+      <td class="description-cell">Payment from <strong>${escapeHtml(email)}</strong></td>
+      <td class="amount-cell">${amount}</td>
+      <td class="type-cell">${escapeHtml(paymentType)}</td>
+      <td><span class="status-badge ${statusClass}">${statusLabel}</span></td>
+      <td class="date-cell">${date}</td>
+    </tr>`;
+  }).join('');
+}
+
+function formatRelativeDate(date) {
+  const now = new Date();
+  const diffMs = now - date;
+  const diffMins = Math.floor(diffMs / 60000);
+  const diffHours = Math.floor(diffMs / 3600000);
+  const diffDays = Math.floor(diffMs / 86400000);
+  
+  if (diffMins < 1) return 'Just now';
+  if (diffMins < 60) return `${diffMins} min ago`;
+  if (diffHours < 24) return `${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
+  if (diffDays < 7) return `${diffDays} day${diffDays > 1 ? 's' : ''} ago`;
+  return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+}
+
+function escapeHtml(str) {
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
 // Admin Device Management & Audit Log
 // ============================================================
 
