@@ -7502,6 +7502,50 @@ body.dark-mode #quizScreen .quiz-actions .btn-secondary:hover {
     flex: 0 0 auto;
 }
 
+.admin-feedback-reply-section {
+    display: flex;
+    gap: 8px;
+    align-items: flex-end;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid var(--line);
+}
+
+.admin-feedback-reply-input {
+    flex: 1;
+    min-height: 36px;
+    padding: 8px 12px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    font-size: 0.85rem;
+    resize: vertical;
+    font-family: inherit;
+}
+
+.admin-feedback-reply-input:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: var(--focus);
+}
+
+.admin-feedback-reply-btn {
+    flex: 0 0 auto;
+}
+
+.admin-feedback-reply-history {
+    margin-top: 8px;
+    padding: 8px 12px;
+    background: color-mix(in srgb, var(--primary-light) 50%, var(--card));
+    border-radius: 8px;
+    font-size: 0.85rem;
+    color: var(--ink-700);
+}
+
+.admin-feedback-reply-history .reply-author {
+    font-weight: 600;
+    color: var(--ink-900);
+}
+
 @media (max-width: 699px) {
     .feedback-modal-card {
         width: 100%;

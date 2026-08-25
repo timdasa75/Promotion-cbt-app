@@ -4804,6 +4804,46 @@ function renderAdminFeedbackList() {
       }
     });
   });
+
+  // Reply buttons
+  list.querySelectorAll(".admin-feedback-reply-btn").forEach((button) => {
+    button.addEventListener("click", async () => {
+      const feedbackId = String(button.getAttribute("data-feedback-id") || "").trim();
+      const input = list.querySelector(`.admin-feedback-reply-input[data-feedback-id="${feedbackId}"]`);
+      const replyText = String(input?.value || "").trim();
+      if (!feedbackId || !replyText) {
+        showWarning("Please enter a reply message.");
+        return;
+      }
+      try {
+        const session = readSession();
+        const config = getRuntimeConfig();
+        const baseUrl = config?.cloudflareAuthBaseUrl || '';
+        if (!session?.accessToken || !baseUrl) {
+          showWarning("Session unavailable. Please log in again.");
+          return;
+        }
+        await fetch(`${baseUrl}/feedback/reply`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${session.accessToken}`
+          },
+          body: JSON.stringify({ feedbackId, reply: replyText })
+        });
+        if (input) input.value = '';
+        showSuccess("Reply sent successfully.");
+        logAdminOperation({
+          action: "Reply to feedback",
+          target: feedbackId,
+          status: "success",
+          message: replyText.substring(0, 100),
+        });
+      } catch (error) {
+        showError(error?.message || "Failed to send reply.");
+      }
+    });
+  });
 }
 
 function hasCloudBackedAdminSession() {
@@ -5527,6 +5567,10 @@ async function refreshAdminUserDirectory() {
         if (result.warning) {
           notice.textContent = result.warning;
           notice.classList.remove("hidden");
+          // Show session expired notification when using fallback data
+          if (result.source === "local" && result.warning.includes("unavailable")) {
+            showWarning("Your session may have expired. Please log out and log back in to refresh the data.");
+          }
         } else {
           notice.textContent = "";
           notice.classList.add("hidden");
@@ -5644,32 +5688,36 @@ function handleAdminStatCardClick(statType) {
         if (planFilter) planFilter.value = 'all';
         const verificationFilter = document.getElementById('adminVerificationFilter');
         if (verificationFilter) verificationFilter.value = 'all';
+        renderAdminUserDirectory();
         const userCard = document.querySelector('.admin-users-card');
         if (userCard) userCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 100);
+      }, 150);
       break;
     case 'premium-users':
       switchAdminTab('payments');
       setTimeout(() => {
         const planFilter = document.getElementById('adminPlanFilter');
-        if (planFilter) { planFilter.value = 'premium'; planFilter.dispatchEvent(new Event('change')); }
+        if (planFilter) planFilter.value = 'premium';
+        renderAdminUserDirectory();
         const userCard = document.querySelector('.admin-users-card');
         if (userCard) userCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 100);
+      }, 150);
       break;
     case 'trusted-devices':
       switchAdminTab('security');
       setTimeout(() => {
+        renderAdminDevices();
         const deviceCard = document.querySelector('.admin-devices-card');
         if (deviceCard) deviceCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 100);
+      }, 150);
       break;
     case 'recent-logins':
       switchAdminTab('security');
       setTimeout(() => {
+        renderAdminAuditLog();
         const auditCard = document.querySelector('.admin-audit-card');
         if (auditCard) auditCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 100);
+      }, 150);
       break;
   }
 }

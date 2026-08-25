@@ -237,6 +237,10 @@ export function buildAdminFeedbackItemModel(entry = {}, {
       ${scoreLine}
       ${contextChips.length ? `<div class="chip-row admin-feedback-context-row">${contextChips.join("")}</div>` : ""}
       ${clientInfoLine}
+      <div class="admin-feedback-reply-section">
+        <textarea class="admin-feedback-reply-input" placeholder="Reply to this feedback..." rows="2" data-feedback-id="${safeId}"></textarea>
+        <button class="btn btn-primary btn-sm admin-feedback-reply-btn" data-feedback-id="${safeId}" type="button">Send Reply</button>
+      </div>
     `,
   };
 }
