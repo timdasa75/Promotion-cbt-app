@@ -796,11 +796,7 @@ function formatRelativeDate(date) {
   return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 }
 
-function escapeHtml(str) {
-  const div = document.createElement('div');
-  div.textContent = str;
-  return div.innerHTML;
-}
+// escapeHtml is imported from ./quiz/formatting.js
 
 // Admin Device Management & Audit Log
 // ============================================================
