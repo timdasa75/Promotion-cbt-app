@@ -721,7 +721,6 @@ function updateAdminDashboardSummary() {
   const users = adminDirectoryUsers || [];
   const totalUsers = users.length;
   const premiumUsers = users.filter(u => u.plan === 'premium').length;
-  const activeUsers = users.filter(u => u.status === 'active').length;
   
   const totalUsersEl = document.getElementById('adminStatTotalUsers');
   const premiumUsersEl = document.getElementById('adminStatPremiumUsers');
@@ -730,17 +729,13 @@ function updateAdminDashboardSummary() {
   
   if (totalUsersEl) totalUsersEl.textContent = String(totalUsers);
   if (premiumUsersEl) premiumUsersEl.textContent = String(premiumUsers);
-  // Trusted devices and recent logins will be updated asynchronously
-  if (trustedDevicesEl && trustedDevicesEl.textContent === '0') {
-    fetchDeviceCount().then(count => {
-      if (trustedDevicesEl) trustedDevicesEl.textContent = String(count);
-    }).catch(() => {});
-  }
-  if (recentLoginsEl && recentLoginsEl.textContent === '0') {
-    fetchRecentLoginsCount().then(count => {
-      if (recentLoginsEl) recentLoginsEl.textContent = String(count);
-    }).catch(() => {});
-  }
+  // Fetch trusted devices and recent logins from Worker
+  fetchDeviceCount().then(count => {
+    if (trustedDevicesEl) trustedDevicesEl.textContent = String(count);
+  }).catch(() => {});
+  fetchRecentLoginsCount().then(count => {
+    if (recentLoginsEl) recentLoginsEl.textContent = String(count);
+  }).catch(() => {});
 }
 
 // ============================================================
@@ -5519,6 +5514,7 @@ async function refreshAdminUserDirectory() {
       adminDirectoryUsers = Array.isArray(result.users) ? result.users : [];
       renderAdminUserDirectory();
       renderAdminRequests();
+      updateAdminDashboardSummary();
       if (sourceLabel) {
         sourceLabel.textContent =
           result.source === "cloud-auth"
