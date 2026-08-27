@@ -6,6 +6,7 @@
 const PAGINATION_DEFAULTS = {
   itemsPerPage: 25,
   pageSizes: [10, 25, 50, 100],
+  showAllValue: 0, // Special value meaning "show all items"
   maxVisiblePages: 5,
 };
 
@@ -39,6 +40,10 @@ export function createPaginationState({
  */
 export function getPaginatedItems(items, state) {
   const { currentPage, itemsPerPage } = state;
+  // If itemsPerPage is 0 ("Show All"), return all items
+  if (itemsPerPage === 0) {
+    return items;
+  }
   const startIdx = (currentPage - 1) * itemsPerPage;
   return items.slice(startIdx, startIdx + itemsPerPage);
 }
@@ -61,6 +66,9 @@ export function createPaginationControls(state, containerId) {
     return wrapper;
   }
   
+  // Check if "Show All" is active
+  const showingAll = itemsPerPage === 0;
+  
   // Page size selector
   const pageSizeWrap = document.createElement("div");
   pageSizeWrap.className = "pagination-page-size";
@@ -78,6 +86,12 @@ export function createPaginationControls(state, containerId) {
     option.selected = size === itemsPerPage;
     pageSizeSelect.appendChild(option);
   });
+  // Add "All" option
+  const allOption = document.createElement("option");
+  allOption.value = PAGINATION_DEFAULTS.showAllValue;
+  allOption.textContent = "All";
+  allOption.selected = showingAll;
+  pageSizeSelect.appendChild(allOption);
   pageSizeSelect.addEventListener("change", (e) => {
     const event = new CustomEvent("pagination:pageSizeChange", {
       detail: { containerId, pageSize: Number(e.target.value) },
@@ -89,76 +103,83 @@ export function createPaginationControls(state, containerId) {
   
   const perPageLabel = document.createElement("span");
   perPageLabel.className = "meta";
-  perPageLabel.textContent = "per page";
+  perPageLabel.textContent = showingAll ? "showing all" : "per page";
   pageSizeWrap.appendChild(perPageLabel);
   wrapper.appendChild(pageSizeWrap);
   
-  // Navigation buttons
-  const navWrap = document.createElement("div");
-  navWrap.className = "pagination-nav";
-  
-  // Previous button
-  const prevBtn = document.createElement("button");
-  prevBtn.type = "button";
-  prevBtn.className = "pagination-btn";
-  prevBtn.innerHTML = "&laquo; Prev";
-  prevBtn.disabled = currentPage <= 1;
-  prevBtn.addEventListener("click", () => {
-    const event = new CustomEvent("pagination:pageChange", {
-      detail: { containerId, page: currentPage - 1 },
-      bubbles: true,
-    });
-    wrapper.dispatchEvent(event);
-  });
-  navWrap.appendChild(prevBtn);
-  
-  // Page numbers
-  const pageNumbers = getPageNumbers(currentPage, totalPages, PAGINATION_DEFAULTS.maxVisiblePages);
-  pageNumbers.forEach((pageNum) => {
-    if (pageNum === "...") {
-      const ellipsis = document.createElement("span");
-      ellipsis.className = "pagination-ellipsis";
-      ellipsis.textContent = "...";
-      navWrap.appendChild(ellipsis);
-    } else {
-      const pageBtn = document.createElement("button");
-      pageBtn.type = "button";
-      pageBtn.className = `pagination-btn pagination-page-num ${pageNum === currentPage ? "active" : ""}`;
-      pageBtn.textContent = pageNum;
-      pageBtn.addEventListener("click", () => {
-        const event = new CustomEvent("pagination:pageChange", {
-          detail: { containerId, page: pageNum },
-          bubbles: true,
-        });
-        wrapper.dispatchEvent(event);
+  // Only show navigation buttons if not showing all
+  if (!showingAll) {
+    // Navigation buttons
+    const navWrap = document.createElement("div");
+    navWrap.className = "pagination-nav";
+    
+    // Previous button
+    const prevBtn = document.createElement("button");
+    prevBtn.type = "button";
+    prevBtn.className = "pagination-btn";
+    prevBtn.innerHTML = "&laquo; Prev";
+    prevBtn.disabled = currentPage <= 1;
+    prevBtn.addEventListener("click", () => {
+      const event = new CustomEvent("pagination:pageChange", {
+        detail: { containerId, page: currentPage - 1 },
+        bubbles: true,
       });
-      navWrap.appendChild(pageBtn);
-    }
-  });
-  
-  // Next button
-  const nextBtn = document.createElement("button");
-  nextBtn.type = "button";
-  nextBtn.className = "pagination-btn";
-  nextBtn.innerHTML = "Next &raquo;";
-  nextBtn.disabled = currentPage >= totalPages;
-  nextBtn.addEventListener("click", () => {
-    const event = new CustomEvent("pagination:pageChange", {
-      detail: { containerId, page: currentPage + 1 },
-      bubbles: true,
+      wrapper.dispatchEvent(event);
     });
-    wrapper.dispatchEvent(event);
-  });
-  navWrap.appendChild(nextBtn);
-  
-  wrapper.appendChild(navWrap);
+    navWrap.appendChild(prevBtn);
+    
+    // Page numbers
+    const pageNumbers = getPageNumbers(currentPage, totalPages, PAGINATION_DEFAULTS.maxVisiblePages);
+    pageNumbers.forEach((pageNum) => {
+      if (pageNum === "...") {
+        const ellipsis = document.createElement("span");
+        ellipsis.className = "pagination-ellipsis";
+        ellipsis.textContent = "...";
+        navWrap.appendChild(ellipsis);
+      } else {
+        const pageBtn = document.createElement("button");
+        pageBtn.type = "button";
+        pageBtn.className = `pagination-btn pagination-page-num ${pageNum === currentPage ? "active" : ""}`;
+        pageBtn.textContent = pageNum;
+        pageBtn.addEventListener("click", () => {
+          const event = new CustomEvent("pagination:pageChange", {
+            detail: { containerId, page: pageNum },
+            bubbles: true,
+          });
+          wrapper.dispatchEvent(event);
+        });
+        navWrap.appendChild(pageBtn);
+      }
+    });
+    
+    // Next button
+    const nextBtn = document.createElement("button");
+    nextBtn.type = "button";
+    nextBtn.className = "pagination-btn";
+    nextBtn.innerHTML = "Next &raquo;";
+    nextBtn.disabled = currentPage >= totalPages;
+    nextBtn.addEventListener("click", () => {
+      const event = new CustomEvent("pagination:pageChange", {
+        detail: { containerId, page: currentPage + 1 },
+        bubbles: true,
+      });
+      wrapper.dispatchEvent(event);
+    });
+    navWrap.appendChild(nextBtn);
+    
+    wrapper.appendChild(navWrap);
+  }
   
   // Info text
-  const startItem = (currentPage - 1) * itemsPerPage + 1;
-  const endItem = Math.min(currentPage * itemsPerPage, totalItems);
   const info = document.createElement("div");
   info.className = "pagination-info";
-  info.textContent = `Showing ${startItem}-${endItem} of ${totalItems} items`;
+  if (showingAll) {
+    info.textContent = `Showing all ${totalItems} items`;
+  } else {
+    const startItem = (currentPage - 1) * itemsPerPage + 1;
+    const endItem = Math.min(currentPage * itemsPerPage, totalItems);
+    info.textContent = `Showing ${startItem}-${endItem} of ${totalItems} items`;
+  }
   wrapper.appendChild(info);
   
   return wrapper;
@@ -243,6 +264,10 @@ export class PaginationController {
   }
   
   getPageItems(allItems) {
+    // If showing all items, return the full array
+    if (this.itemsPerPage === 0) {
+      return allItems;
+    }
     const state = createPaginationState({
       totalItems: allItems.length,
       itemsPerPage: this.itemsPerPage,
@@ -252,6 +277,15 @@ export class PaginationController {
   }
   
   getState() {
+    // If showing all items, return a state with 1 page
+    if (this.itemsPerPage === 0) {
+      return {
+        totalItems: this.totalItems,
+        itemsPerPage: 0,
+        currentPage: 1,
+        totalPages: 1,
+      };
+    }
     return createPaginationState({
       totalItems: this.totalItems,
       itemsPerPage: this.itemsPerPage,
