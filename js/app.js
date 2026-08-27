@@ -67,6 +67,7 @@ import {
 } from "./quiz.js";
 import { escapeHtml, normalizeExplanationText, parseMarkdown } from "./quiz/formatting.js";
 import { debugLog } from "./logger.js";
+import { readSession } from "./authStorage.js";
 import { buildAnalyticsSnapshot as composeAnalyticsSnapshot } from "./appAnalytics.js";
 import {
   buildAnalyticsConsistencyHtml,
