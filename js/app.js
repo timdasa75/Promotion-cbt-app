@@ -977,17 +977,19 @@ function clearAdminOperationHistory() {
   writeAdminOperationHistory([]);
 }
 
-async function renderAdminOperationHistory() {
+async function renderAdminOperationHistory({ skipCloudSync = false } = {}) {
   const container = document.getElementById("adminOperationHistoryList");
   const countLabel = document.getElementById("adminOperationHistoryCount");
   if (!container) return;
-  try {
-    const cloudHistory = await getAdminOperationHistory(ADMIN_OPERATION_HISTORY_MAX);
-    if (Array.isArray(cloudHistory) && cloudHistory.length) {
-      writeAdminOperationHistory(cloudHistory);
+  if (!skipCloudSync) {
+    try {
+      const cloudHistory = await getAdminOperationHistory(ADMIN_OPERATION_HISTORY_MAX);
+      if (Array.isArray(cloudHistory) && cloudHistory.length) {
+        writeAdminOperationHistory(cloudHistory);
+      }
+    } catch (error) {
+      debugLog("Admin operation history sync failed: " + (error?.message || "request failed."));
     }
-  } catch (error) {
-    debugLog("Admin operation history sync failed: " + (error?.message || "request failed."));
   }
 
   const history = readAdminOperationHistory();
@@ -6617,7 +6619,7 @@ function initializeAuthUI() {
         await runOperationWithFeedback(
           async () => {
             clearAdminOperationHistory();
-            renderAdminOperationHistory();
+            renderAdminOperationHistory({ skipCloudSync: true });
           },
           {
             loadingMessage: "Clearing operation history...",

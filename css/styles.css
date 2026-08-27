@@ -3182,6 +3182,8 @@ body.dark-mode .admin-view-header p {
     border: 1px solid var(--line);
     border-radius: var(--radius-lg);
     background: color-mix(in srgb, var(--card) 60%, var(--surface));
+    overflow: hidden;
+    min-width: 0;
 }
 
 .admin-group-title {
@@ -3209,6 +3211,7 @@ body.dark-mode .admin-view-header p {
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr));
     align-items: start;
     gap: 12px;
+    min-width: 0;
 }
 
 .admin-pricing-grid {
@@ -3233,6 +3236,8 @@ body.dark-mode .admin-view-header p {
     align-content: start;
     padding: 14px;
     border-top: 3px solid color-mix(in srgb, var(--green-700) 45%, transparent);
+    min-width: 0;
+    overflow: hidden;
 }
 
 /* Compact card header: title on the left, count/actions on the right. */
