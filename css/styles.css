@@ -3237,7 +3237,7 @@ body.dark-mode .admin-view-header p {
     padding: 14px;
     border-top: 3px solid color-mix(in srgb, var(--green-700) 45%, transparent);
     min-width: 0;
-    overflow: hidden;
+    overflow-x: auto;
 }
 
 /* Compact card header: title on the left, count/actions on the right. */
@@ -3425,13 +3425,13 @@ body.dark-mode .admin-view-header p {
 }
 
 .admin-user-toolbar {
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     align-items: center;
 }
 
 .admin-user-toolbar .search-wrap {
-    flex: 1 1 auto;
-    min-width: 0;
+    flex: 1 1 200px;
+    min-width: 160px;
 }
 
 .admin-user-toolbar #adminStatusFilter {
@@ -4328,8 +4328,8 @@ body.dark-mode .admin-view-header p {
 
 .admin-user-summary {
     list-style: none;
-    display: grid;
-    grid-template-columns: 1fr auto;
+    display: flex;
+    flex-wrap: wrap;
     gap: var(--space-2);
     align-items: center;
     cursor: pointer;
@@ -4350,26 +4350,26 @@ body.dark-mode .admin-view-header p {
     font-weight: 700;
     color: var(--ink-900);
     margin-bottom: 0;
-    flex: 1 1 260px;
-    min-width: 220px;
+    flex: 1 1 200px;
+    min-width: 0;
     word-break: break-word;
+    overflow-wrap: anywhere;
 }
 
 .admin-user-badges {
-    margin-left: auto;
-    justify-content: flex-end;
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
+    align-items: center;
 }
 
 .admin-user-summary-side {
     color: var(--ink-500);
     font-size: 0.76rem;
-    white-space: nowrap;
-    max-width: 320px;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    white-space: normal;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    flex-basis: 100%;
 }
 
 .admin-user-details {
