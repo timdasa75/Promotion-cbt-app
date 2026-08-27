@@ -2507,9 +2507,16 @@ async function restoreScreenState() {
   if (savedScreenId === "adminScreen") {
     renderAdminRequests();
     renderAdminOverrides();
+    renderAdminOperationHistory();
     renderAdminFeedbackList();
     await refreshAdminUserDirectory();
     await refreshAdminFeedbackSubmissions();
+    renderAdminDevices().catch(() => {});
+    renderAdminAuditLog().catch(() => {});
+    updateAdminDashboardSummary();
+    initializeAdminTabs();
+    loadPricingUI();
+    initializePricingUI();
   }
 
   await showScreen(savedScreenId);
@@ -5781,7 +5788,10 @@ function initializePricingUI() {
   }
 }
 
+let adminTabsInitialized = false;
 function initializeAdminTabs() {
+  if (adminTabsInitialized) return;
+  adminTabsInitialized = true;
   // Sidebar navigation
   const navItems = document.querySelectorAll('.admin-nav-item[data-admin-nav]');
   const views = document.querySelectorAll('.admin-view');
