@@ -3283,6 +3283,32 @@ body.dark-mode .admin-view-header p {
     gap: 12px;
 }
 
+/* Feedback toolbar: arrange filters horizontally in a row */
+.admin-feedback-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    grid-column: 1 / -1;
+    width: 100%;
+}
+
+.admin-feedback-toolbar .search-wrap {
+    flex: 1 1 200px;
+    min-width: 150px;
+}
+
+.admin-feedback-toolbar select {
+    flex: 1 1 120px;
+    min-width: 120px;
+    width: auto;
+}
+
+.admin-feedback-toolbar .btn {
+    flex: 0 0 auto;
+    white-space: nowrap;
+}
+
 .admin-section-card > * {
     margin-top: 0;
 }
@@ -4221,6 +4247,19 @@ body.dark-mode .admin-view-header p {
     .admin-user-toolbar #adminStatusFilter,
     .admin-user-toolbar #refreshAdminUsersBtn {
         width: 100%;
+    }
+
+    /* Feedback toolbar responsive: stack on mobile */
+    .admin-feedback-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .admin-feedback-toolbar .search-wrap,
+    .admin-feedback-toolbar select,
+    .admin-feedback-toolbar .btn {
+        width: 100%;
+        flex: none;
     }
 
     .quiz-topbar {
