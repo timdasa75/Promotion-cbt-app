@@ -2790,7 +2790,7 @@ select:focus-visible,
 /* Admin Dashboard Cards - Green Precision Admin inspired */
 .admin-dashboard-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 12px;
     margin-bottom: 16px;
 }

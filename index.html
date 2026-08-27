@@ -676,43 +676,27 @@
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
                                     <span>Dashboard</span>
                                 </button>
-                                
-                                <div class="admin-nav-group">
-                                    <button class="admin-nav-item admin-nav-parent" data-admin-nav="users" type="button">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                                        <span>Users</span>
-                                        <svg class="admin-nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-                                    </button>
-                                    <div class="admin-nav-subitems">
-                                        <button class="admin-nav-subitem" data-admin-sub="user-directory" type="button">User Directory</button>
-                                        <button class="admin-nav-subitem" data-admin-sub="plan-override" type="button">Plan Override</button>
-                                    </div>
-                                </div>
-                                
-                                <div class="admin-nav-group">
-                                    <button class="admin-nav-item admin-nav-parent" data-admin-nav="support" type="button">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                                        <span>Feedback &amp; Audit</span>
-                                        <span class="admin-nav-badge" id="adminFeedbackBadge">0</span>
-                                        <svg class="admin-nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-                                    </button>
-                                    <div class="admin-nav-subitems">
-                                        <button class="admin-nav-subitem" data-admin-sub="feedback-inbox" type="button">Feedback Inbox</button>
-                                        <button class="admin-nav-subitem" data-admin-sub="operations-history" type="button">Operations History</button>
-                                    </div>
-                                </div>
-                                
-                                <div class="admin-nav-group">
-                                    <button class="admin-nav-item admin-nav-parent" data-admin-nav="security" type="button">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                                        <span>Security &amp; Devices</span>
-                                        <svg class="admin-nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-                                    </button>
-                                    <div class="admin-nav-subitems">
-                                        <button class="admin-nav-subitem" data-admin-sub="device-management" type="button">Device Management</button>
-                                        <button class="admin-nav-subitem" data-admin-sub="login-audit" type="button">Login Audit Log</button>
-                                    </div>
-                                </div>
+                                <button class="admin-nav-item" data-admin-nav="payments" type="button">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                                    <span>Payments</span>
+                                </button>
+                                <button class="admin-nav-item" data-admin-nav="users" type="button">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                                    <span>Users</span>
+                                </button>
+                                <button class="admin-nav-item" data-admin-nav="feedback" type="button">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                                    <span>Feedback</span>
+                                    <span class="admin-nav-badge" id="adminFeedbackBadge">0</span>
+                                </button>
+                                <button class="admin-nav-item" data-admin-nav="audit" type="button">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                                    <span>Audit</span>
+                                </button>
+                                <button class="admin-nav-item" data-admin-nav="security" type="button">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                                    <span>Security</span>
+                                </button>
                             </nav>
                             <div class="admin-sidebar-footer">
                                 <button class="admin-nav-item" data-screen-target="topicSelectionScreen" type="button">
@@ -722,16 +706,39 @@
                             </div>
                         </aside>
                         <main class="admin-main">
-                            <div class="admin-view active" id="adminViewDashboard">
-                                <div class="admin-view-header"><h2>Dashboard Overview</h2><p>Quick summary of your platform metrics</p></div>
-                                <div class="admin-dashboard-cards">
-                        <div class="admin-stat-card clickable" data-admin-stat="total-users" tabindex="0" role="button" aria-label="View all users">
-                            <div class="admin-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-                            <div class="admin-stat-content">
-                                <div class="admin-stat-value" id="adminStatTotalUsers">0</div>
-                                <div class="admin-stat-label">Total Users</div>
-                            </div>
-                        </div>
+                            
+<div class="admin-groups">
+                        <div class="admin-view active" id="adminViewDashboard">
+                            <div class="admin-view-header"><h2>Dashboard Overview</h2><p>Quick summary of your platform metrics</p></div>
+                            <div class="admin-dashboard-cards">
+                                <div class="admin-stat-card clickable" data-admin-stat="total-users" tabindex="0" role="button" aria-label="View all users">
+                                    <div class="admin-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+                                    <div class="admin-stat-content">
+                                        <div class="admin-stat-value" id="adminStatTotalUsers">0</div>
+                                        <div class="admin-stat-label">Total Users</div>
+                                    </div>
+                                </div>
+                                <div class="admin-stat-card clickable" data-admin-stat="premium-users" tabindex="0" role="button" aria-label="View premium users">
+                                    <div class="admin-stat-icon premium"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+                                    <div class="admin-stat-content">
+                                        <div class="admin-stat-value" id="adminStatPremiumUsers">0</div>
+                                        <div class="admin-stat-label">Premium Users</div>
+                                    </div>
+                                </div>
+                                <div class="admin-stat-card clickable" data-admin-stat="trusted-devices" tabindex="0" role="button" aria-label="View trusted devices">
+                                    <div class="admin-stat-icon devices"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+                                    <div class="admin-stat-content">
+                                        <div class="admin-stat-value" id="adminStatTrustedDevices">0</div>
+                                        <div class="admin-stat-label">Trusted Devices</div>
+                                    </div>
+                                </div>
+                                <div class="admin-stat-card clickable" data-admin-stat="recent-logins" tabindex="0" role="button" aria-label="View recent logins">
+                                    <div class="admin-stat-icon logins"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+                                    <div class="admin-stat-content">
+                                        <div class="admin-stat-value" id="adminStatRecentLogins">0</div>
+                                        <div class="admin-stat-label">Recent Logins (24h)</div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="admin-dashboard-recent-payments card admin-section-card" style="margin-top: 16px;">
                                 <div class="admin-card-head" style="margin-bottom: 12px;">
@@ -757,36 +764,14 @@
                                     </table>
                                 </div>
                             </div>
-                                
-                        <div class="admin-stat-card clickable" data-admin-stat="premium-users" tabindex="0" role="button" aria-label="View premium users">
-                            <div class="admin-stat-icon premium"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
-                            <div class="admin-stat-content">
-                                <div class="admin-stat-value" id="adminStatPremiumUsers">0</div>
-                                <div class="admin-stat-label">Premium Users</div>
-                            </div>
                         </div>
-                        <div class="admin-stat-card clickable" data-admin-stat="trusted-devices" tabindex="0" role="button" aria-label="View trusted devices">
-                            <div class="admin-stat-icon devices"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-                            <div class="admin-stat-content">
-                                <div class="admin-stat-value" id="adminStatTrustedDevices">0</div>
-                                <div class="admin-stat-label">Trusted Devices</div>
-                            </div>
-                        </div>
-                        <div class="admin-stat-card clickable" data-admin-stat="recent-logins" tabindex="0" role="button" aria-label="View recent logins">
-                            <div class="admin-stat-icon logins"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-                            <div class="admin-stat-content">
-                                <div class="admin-stat-value" id="adminStatRecentLogins">0</div>
-                                <div class="admin-stat-label">Recent Logins (24h)</div>
-                            </div>
-                        </div>
-                    </div>
-                            </div>
 
-                    <div class="admin-groups">
-                        <div class="admin-view" id="adminViewPayments"><div class="admin-view-header"><h2>Payments</h2><p>Manage pricing and upgrade requests</p></div><section class="admin-group" id="adminTabPayments" aria-labelledby="adminGroupAccessTitle">
-                            <h3 class="admin-group-title" id="adminGroupAccessTitle">Payments &amp; Access</h3>
-                            <div class="admin-grid">
-                        <article class="card admin-section-card admin-pricing-card" data-admin-section="pricing">
+                        <div class="admin-view" id="adminViewPayments">
+                            <div class="admin-view-header"><h2>Payments</h2><p>Manage pricing and upgrade requests</p></div>
+                            <section class="admin-group" id="adminTabPayments" aria-labelledby="adminGroupAccessTitle">
+                                <h3 class="admin-group-title" id="adminGroupAccessTitle">Payments &amp; Access</h3>
+                                <div class="admin-grid">
+                                    <article class="card admin-section-card admin-pricing-card" data-admin-section="pricing">
                             <div class="admin-card-head">
                                 <h3>Product Pricing</h3>
                                 <button class="btn btn-ghost btn-sm" id="refreshPricingBtn" type="button">Refresh</button>
@@ -815,8 +800,7 @@
                             </div>
                             <p class="meta" id="pricingLastUpdated"></p>
                         </article>
-                        
-                        <article class="card admin-section-card admin-requests-card" data-admin-section="upgrade-requests">
+                                    <article class="card admin-section-card admin-requests-card" data-admin-section="upgrade-requests">
                             <div class="admin-card-head">
                                 <h3>Upgrade Requests</h3>
                                 <span class="admin-count" id="adminRequestCount">0/0</span>
@@ -847,12 +831,96 @@
                             </div>
                             <div id="adminRequestList" class="mistake-list"></div>
                         </article>
-                        
-                        </section>
-                        </div><div class="admin-view" id="adminViewSupport"><div class="admin-view-header"><h2>Feedback &amp; Audit</h2><p>Feedback inbox, operations history, and audit log</p></div><section class="admin-group" id="adminTabSupport" aria-labelledby="adminGroupSupportTitle">
-                            <h3 class="admin-group-title" id="adminGroupSupportTitle">Support &amp; Audit</h3>
-                            <div class="admin-grid">
-                        <article class="card admin-section-card admin-feedback-card" data-admin-section="feedback-inbox">
+                                </div>
+                            </section>
+                        </div>
+
+                        <div class="admin-view" id="adminViewUsers">
+                            <div class="admin-view-header"><h2>Users</h2><p>User directory and plan management</p></div>
+                            <section class="admin-group" id="adminTabUsers" aria-labelledby="adminGroupUsersTitle">
+                                <h3 class="admin-group-title" id="adminGroupUsersTitle">User Management</h3>
+                                <div class="admin-grid">
+                                    <article class="card admin-section-card admin-users-card" data-admin-section="users">
+                            <div class="admin-card-head">
+                                <h3>Users and Account Status</h3>
+                                <span class="admin-count" id="adminUserCount">0</span>
+                            </div>
+                            <p class="inline-warning hidden" id="adminUserDirectoryNotice"></p>
+                            <div class="toolbar-row admin-user-toolbar">
+                                <div class="search-wrap">
+                                    <input id="adminUserSearch" type="search" placeholder="Search user email" aria-label="Search user email" />
+                                    <button class="search-clear" type="button" aria-label="Clear search" title="Clear search">&#10005;</button>
+                                </div>
+                                <select id="adminStatusFilter" aria-label="Filter user status">
+                                    <option value="all">Status</option>
+                                    <option value="active">Active</option>
+                                    <option value="suspended">Suspended</option>
+                                </select>
+                                <select id="adminPlanFilter" aria-label="Filter user plan">
+                                    <option value="all">Plan</option>
+                                    <option value="free">Free</option>
+                                    <option value="premium">Premium</option>
+                                </select>
+                                <select id="adminVerificationFilter" aria-label="Filter email verification status">
+                                    <option value="all">Email Verification</option>
+                                    <option value="verified">Verified</option>
+                                    <option value="unverified">Not Verified</option>
+                                    <option value="unknown">Unknown</option>
+                                </select>
+                                <select id="adminUserSort" aria-label="Sort users">
+                                    <option value="newest">Newest First</option>
+                                    <option value="oldest">Oldest First</option>
+                                    <option value="email-asc">Email A-Z</option>
+                                    <option value="email-desc">Email Z-A</option>
+                                    <option value="last-seen">Last Seen</option>
+                                </select>
+                                <button class="btn btn-secondary" id="refreshAdminUsersBtn" type="button">Refresh</button>
+                                <button class="btn btn-ghost" id="exportUsersBtn" type="button">Export CSV</button>
+                            </div>
+                            <div class="admin-bulk-actions" id="adminBulkActions" style="display:none;">
+                                <span class="meta"><strong id="adminSelectedCount">0</strong> users selected</span>
+                                <select id="adminBulkPlanSelect" aria-label="Bulk plan change">
+                                    <option value="">Change Plan...</option>
+                                    <option value="free">Set Free</option>
+                                    <option value="premium">Set Premium</option>
+                                </select>
+                                <button class="btn btn-secondary" id="applyBulkPlanBtn" type="button">Apply</button>
+                                <button class="btn btn-ghost" id="clearBulkSelectionBtn" type="button">Clear</button>
+                            </div>
+                            <div id="adminUserList" class="mistake-list"></div>
+                            </div>
+                        </article>
+                                    <article class="card admin-section-card admin-plan-card" data-admin-section="plan-override">
+                            <div class="admin-card-head">
+                                <h3>Plan Override</h3>
+                                <span class="admin-count" id="adminOverrideCount">0</span>
+                            </div>
+                            <div class="plan-override-row">
+                                <label class="auth-field">
+                                    <span>User Email</span>
+                                    <input id="adminOverrideEmail" type="email" placeholder="user@email.com" />
+                                </label>
+                                <label class="auth-field">
+                                    <span>Plan</span>
+                                    <select id="adminOverridePlan">
+                                        <option value="free">Free</option>
+                                        <option value="premium">Premium</option>
+                                    </select>
+                                </label>
+                                <button class="btn btn-primary" id="applyPlanOverrideBtn" type="button">Apply Override</button>
+                            </div>
+                            <div id="adminOverrideList" class="mistake-list"></div>
+                        </article>
+                                </div>
+                            </section>
+                        </div>
+
+                        <div class="admin-view" id="adminViewFeedback">
+                            <div class="admin-view-header"><h2>Feedback</h2><p>User feedback inbox</p></div>
+                            <section class="admin-group" id="adminTabFeedback" aria-labelledby="adminGroupFeedbackTitle">
+                                <h3 class="admin-group-title" id="adminGroupFeedbackTitle">Feedback Inbox</h3>
+                                <div class="admin-grid">
+                                    <article class="card admin-section-card admin-feedback-card" data-admin-section="feedback-inbox">
                             <div class="admin-card-head">
                                 <h3>Feedback Inbox</h3>
                                 <span class="admin-count" id="adminFeedbackCount">0/0</span>
@@ -893,7 +961,16 @@
                             </div>
                             <div id="adminFeedbackList" class="mistake-list"></div>
                         </article>
-                        <article class="card admin-section-card admin-history-card" data-admin-section="operations-history">
+                                </div>
+                            </section>
+                        </div>
+
+                        <div class="admin-view" id="adminViewAudit">
+                            <div class="admin-view-header"><h2>Audit</h2><p>Operations history and login audit</p></div>
+                            <section class="admin-group" id="adminTabAudit" aria-labelledby="adminGroupAuditTitle">
+                                <h3 class="admin-group-title" id="adminGroupAuditTitle">Operations &amp; Audit</h3>
+                                <div class="admin-grid">
+                                    <article class="card admin-section-card admin-history-card" data-admin-section="operations-history">
                             <div class="admin-card-head">
                                 <h3>Operations History</h3>
                                 <div class="admin-card-actions">
@@ -904,11 +981,33 @@
                             <div id="adminOperationHistoryList" class="mistake-list"></div>
                             </div>
                         </article>
-                        </section>
-                        </div><div class="admin-view" id="adminViewSecurity"><div class="admin-view-header"><h2>Security &amp; Devices</h2><p>Device management and audit log</p></div><section class="admin-group" id="adminTabSecurity" aria-labelledby="adminGroupSecurityTitle">
-                            <h3 class="admin-group-title" id="adminGroupSecurityTitle">Security &amp; Devices</h3>
-                            <div class="admin-grid">
-                        <article class="card admin-section-card admin-devices-card" data-admin-section="device-management">
+                                    <article class="card admin-section-card admin-audit-card" data-admin-section="login-audit">
+                            <div class="admin-card-head">
+                                <h3>Login Audit Log</h3>
+                                <span class="admin-count" id="adminAuditCount">0</span>
+                            </div>
+                            <div class="toolbar-row admin-audit-toolbar">
+                                <select id="adminAuditEventFilter" aria-label="Filter event type">
+                                    <option value="all">All Events</option>
+                                    <option value="otp_sent">OTP Sent</option>
+                                    <option value="otp_verified">OTP Verified</option>
+                                    <option value="device_trusted">Device Trusted</option>
+                                    <option value="device_revoked">Device Revoked</option>
+                                </select>
+                                <button class="btn btn-secondary" id="refreshAdminAuditBtn" type="button">Refresh</button>
+                            </div>
+                            <div id="adminAuditList" class="mistake-list"></div>
+                        </article>
+                                </div>
+                            </section>
+                        </div>
+
+                        <div class="admin-view" id="adminViewSecurity">
+                            <div class="admin-view-header"><h2>Security</h2><p>Device management and security</p></div>
+                            <section class="admin-group" id="adminTabSecurity" aria-labelledby="adminGroupSecurityTitle">
+                                <h3 class="admin-group-title" id="adminGroupSecurityTitle">Security &amp; Devices</h3>
+                                <div class="admin-grid">
+                                    <article class="card admin-section-card admin-devices-card" data-admin-section="device-management">
                             <div class="admin-card-head">
                                 <h3>Device Management</h3>
                                 <span class="admin-count" id="adminDeviceCount">0</span>
@@ -927,26 +1026,10 @@
                             </div>
                             <div id="adminDeviceList" class="mistake-list"></div>
                         </article>
-                        <article class="card admin-section-card admin-audit-card" data-admin-section="login-audit">
-                            <div class="admin-card-head">
-                                <h3>Login Audit Log</h3>
-                                <span class="admin-count" id="adminAuditCount">0</span>
-                            </div>
-                            <div class="toolbar-row admin-audit-toolbar">
-                                <select id="adminAuditEventFilter" aria-label="Filter event type">
-                                    <option value="all">All Events</option>
-                                    <option value="otp_sent">OTP Sent</option>
-                                    <option value="otp_verified">OTP Verified</option>
-                                    <option value="device_trusted">Device Trusted</option>
-                                    <option value="device_revoked">Device Revoked</option>
-                                </select>
-                                <button class="btn btn-secondary" id="refreshAdminAuditBtn" type="button">Refresh</button>
-                            </div>
-                            <div id="adminAuditList" class="mistake-list"></div>
-                        </article>
-                        </section>
-                    </div>
-                    </div></div></main></div><div class="button-row compact-actions analytics-actions admin-actions support-screen-actions">
+                                </div>
+                            </section>
+                        </div>
+                    </div></main></div><div class="button-row compact-actions analytics-actions admin-actions support-screen-actions">
                         <button class="btn btn-ghost" data-screen-target="topicSelectionScreen" type="button">Back</button>
                     </div>
                 </section>

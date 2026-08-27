@@ -5832,7 +5832,7 @@ function switchAdminSubTab(subName) {
 function handleAdminStatCardClick(statType) {
   switch (statType) {
     case 'total-users':
-      switchAdminTab('payments');
+      switchAdminTab('users');
       setTimeout(() => {
         const searchInput = document.getElementById('adminUserSearch');
         if (searchInput) { searchInput.value = ''; searchInput.dispatchEvent(new Event('input')); }
@@ -5848,7 +5848,7 @@ function handleAdminStatCardClick(statType) {
       }, 150);
       break;
     case 'premium-users':
-      switchAdminTab('payments');
+      switchAdminTab('users');
       setTimeout(() => {
         const planFilter = document.getElementById('adminPlanFilter');
         if (planFilter) planFilter.value = 'premium';
@@ -5866,7 +5866,7 @@ function handleAdminStatCardClick(statType) {
       }, 150);
       break;
     case 'recent-logins':
-      switchAdminTab('support');
+      switchAdminTab('audit');
       setTimeout(() => {
         renderAdminAuditLog();
         const auditCard = document.querySelector('.admin-audit-card');
