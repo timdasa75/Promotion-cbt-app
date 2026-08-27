@@ -2133,6 +2133,10 @@ await page.click("#startLearningBtn");
   await expect(page.locator("#adminUserCount")).toContainText("1/1");
   await expect.poll(() => listCalls).toBeGreaterThan(0);
 
+  // Switch to the Users tab (Dashboard is the default active view)
+  await page.locator('[data-admin-nav="users"]').click();
+  await expect(page.locator("#adminViewUsers")).toHaveClass(/active/);
+
   await expect(page.locator("#adminUserList .admin-user-summary").first()).toBeVisible();
   await page.locator("#adminUserList .admin-user-summary").first().click();
   await expect(page.locator("#adminUserList .directory-action-menu summary").first()).toBeVisible();
