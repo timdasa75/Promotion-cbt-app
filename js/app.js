@@ -1019,6 +1019,9 @@ async function renderAdminOperationHistory({ skipCloudSync = false } = {}) {
 
   clearElementContent(container);
 
+  // Add pagination controls at the top
+  adminOperationHistoryPagination.renderControls(container);
+
   if (!history.length) {
     const emptyCard = document.createElement("div");
     emptyCard.className = "admin-request-item";
@@ -1124,9 +1127,6 @@ async function renderAdminOperationHistory({ skipCloudSync = false } = {}) {
   });
 
   container.appendChild(list);
-
-  // Add pagination controls
-  adminOperationHistoryPagination.renderControls(container);
 }
 function normalizeUpgradeRequestStatus(value) {
   const normalized = String(value || "").trim().toLowerCase();
@@ -4838,9 +4838,16 @@ function renderAdminFeedbackList() {
   }
 
   container.innerHTML = "";
+
+  // Add pagination controls at the top
+  adminFeedbackPagination.renderControls(container);
+
   if (!filtered.length) {
     const emptyCopy = buildAdminFeedbackEmptyState(adminFeedbackSubmissions.length);
-    container.innerHTML = `<div class="admin-request-item"><p class="meta">${escapeHtml(emptyCopy)}</p></div>`;
+    const emptyDiv = document.createElement("div");
+    emptyDiv.className = "admin-request-item";
+    emptyDiv.innerHTML = `<p class="meta">${escapeHtml(emptyCopy)}</p>`;
+    container.appendChild(emptyDiv);
     return;
   }
 
@@ -4944,9 +4951,6 @@ function renderAdminFeedbackList() {
       }
     });
   });
-
-  // Add pagination controls
-  adminFeedbackPagination.renderControls(container);
 }
 
 function hasCloudBackedAdminSession() {
@@ -5261,9 +5265,15 @@ function renderAdminUserDirectory() {
   }
 
   container.innerHTML = "";
+
+  // Add pagination controls at the top
+  adminUsersPagination.renderControls(container);
+
   if (!filtered.length) {
-    container.innerHTML =
-      '<div class="admin-request-item"><p class="meta">No users match the current filter.</p></div>';
+    const emptyDiv = document.createElement("div");
+    emptyDiv.className = "admin-request-item";
+    emptyDiv.innerHTML = '<p class="meta">No users match the current filter.</p>';
+    container.appendChild(emptyDiv);
     if (sourceLabel && !adminDirectoryUsers.length) {
       sourceLabel.textContent = "Source: unavailable";
     }
@@ -5554,9 +5564,6 @@ function renderAdminUserDirectory() {
       await refreshAdminUserDirectory();
     }
   });
-
-  // Add pagination controls
-  adminUsersPagination.renderControls(container);
 }
 
 // ============================================================
