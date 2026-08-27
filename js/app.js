@@ -68,6 +68,7 @@ import {
 import { escapeHtml, normalizeExplanationText, parseMarkdown } from "./quiz/formatting.js";
 import { debugLog } from "./logger.js";
 import { readSession } from "./authStorage.js";
+import { PaginationController, getPaginatedItems } from "./pagination.js";
 import { buildAnalyticsSnapshot as composeAnalyticsSnapshot } from "./appAnalytics.js";
 import {
   buildAnalyticsConsistencyHtml,
@@ -187,6 +188,20 @@ let adminFeedbackSubmissions = [];
 let adminPaymentRows = [];
 let activeFeedbackContext = null;
 let pendingMockExamTemplateId = DEFAULT_MOCK_EXAM_TEMPLATE_ID;
+
+// Pagination controllers for admin lists
+const adminUsersPagination = new PaginationController("adminUserList", {
+  itemsPerPage: 25,
+  renderCallback: renderAdminUserDirectory,
+});
+const adminFeedbackPagination = new PaginationController("adminFeedbackList", {
+  itemsPerPage: 25,
+  renderCallback: renderAdminFeedbackList,
+});
+const adminOperationHistoryPagination = new PaginationController("adminOperationHistoryList", {
+  itemsPerPage: 25,
+  renderCallback: () => renderAdminOperationHistory({ skipCloudSync: true }),
+});
 let pendingMigrationToken = "";
 let pendingMigrationMode = "token";
 let googleAuthEventsBound = false;
@@ -994,6 +1009,10 @@ async function renderAdminOperationHistory({ skipCloudSync = false } = {}) {
   }
 
   const history = readAdminOperationHistory();
+  
+  // Update pagination state
+  const paginationState = adminOperationHistoryPagination.update(history.length);
+  
   if (countLabel) {
     countLabel.textContent = String(history.length);
   }
@@ -1008,10 +1027,13 @@ async function renderAdminOperationHistory({ skipCloudSync = false } = {}) {
     return;
   }
 
+  // Get paginated items
+  const paginatedItems = adminOperationHistoryPagination.getPageItems(history);
+
   const list = document.createElement("div");
   list.className = "mistake-list admin-history-list";
 
-  history.forEach((entry) => {
+  paginatedItems.forEach((entry) => {
     const normalizedStatus = String(entry?.status || "").trim().toLowerCase();
     const statusClass = normalizedStatus === "failed" || normalizedStatus === "rejected" ? "rejected" : normalizedStatus === "pending" ? "pending" : normalizedStatus ? "approved" : "neutral";
     const whenLabel = formatRelativeTime(entry?.createdAt) || formatDateTime(entry?.createdAt);
@@ -1102,6 +1124,9 @@ async function renderAdminOperationHistory({ skipCloudSync = false } = {}) {
   });
 
   container.appendChild(list);
+
+  // Add pagination controls
+  adminOperationHistoryPagination.renderControls(container);
 }
 function normalizeUpgradeRequestStatus(value) {
   const normalized = String(value || "").trim().toLowerCase();
@@ -4805,6 +4830,9 @@ function renderAdminFeedbackList() {
     }
   });
 
+  // Update pagination state
+  const paginationState = adminFeedbackPagination.update(filtered.length);
+  
   if (countLabel) {
     countLabel.textContent = `${filtered.length}/${adminFeedbackSubmissions.length}`;
   }
@@ -4816,10 +4844,13 @@ function renderAdminFeedbackList() {
     return;
   }
 
+  // Get paginated items
+  const paginatedItems = adminFeedbackPagination.getPageItems(filtered);
+
   const list = document.createElement("div");
   list.className = "admin-feedback-list";
 
-  filtered.forEach((entry) => {
+  paginatedItems.forEach((entry) => {
     const item = document.createElement("article");
     item.className = "admin-feedback-item";
     const itemModel = buildAdminFeedbackItemModel(entry, {
@@ -4913,6 +4944,9 @@ function renderAdminFeedbackList() {
       }
     });
   });
+
+  // Add pagination controls
+  adminFeedbackPagination.renderControls(container);
 }
 
 function hasCloudBackedAdminSession() {
@@ -5219,6 +5253,9 @@ function renderAdminUserDirectory() {
     }
   });
 
+  // Update pagination state
+  const paginationState = adminUsersPagination.update(filtered.length);
+  
   if (countLabel) {
     countLabel.textContent = `${filtered.length}/${adminDirectoryUsers.length}`;
   }
@@ -5233,10 +5270,13 @@ function renderAdminUserDirectory() {
     return;
   }
 
+  // Get paginated items
+  const paginatedItems = adminUsersPagination.getPageItems(filtered);
+
   const list = document.createElement("div");
   list.className = "admin-user-cards";
 
-  filtered.forEach((entry) => {
+  paginatedItems.forEach((entry) => {
     const row = document.createElement("details");
     row.className = "admin-user-card";
     const roleClass = entry.role === "admin" ? "approved" : "pending";
@@ -5514,6 +5554,9 @@ function renderAdminUserDirectory() {
       await refreshAdminUserDirectory();
     }
   });
+
+  // Add pagination controls
+  adminUsersPagination.renderControls(container);
 }
 
 // ============================================================
