@@ -5853,8 +5853,6 @@ function handleAdminStatCardClick(statType) {
         const verificationFilter = document.getElementById('adminVerificationFilter');
         if (verificationFilter) verificationFilter.value = 'all';
         renderAdminUserDirectory();
-        const userCard = document.querySelector('.admin-users-card');
-        if (userCard) userCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 150);
       break;
     case 'premium-users':
@@ -5863,24 +5861,18 @@ function handleAdminStatCardClick(statType) {
         const planFilter = document.getElementById('adminPlanFilter');
         if (planFilter) planFilter.value = 'premium';
         renderAdminUserDirectory();
-        const userCard = document.querySelector('.admin-users-card');
-        if (userCard) userCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 150);
       break;
     case 'trusted-devices':
       switchAdminTab('security');
       setTimeout(() => {
         renderAdminDevices();
-        const deviceCard = document.querySelector('.admin-devices-card');
-        if (deviceCard) deviceCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 150);
       break;
     case 'recent-logins':
       switchAdminTab('audit');
       setTimeout(() => {
         renderAdminAuditLog();
-        const auditCard = document.querySelector('.admin-audit-card');
-        if (auditCard) auditCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 150);
       break;
   }
