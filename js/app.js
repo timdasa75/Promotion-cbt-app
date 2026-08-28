@@ -3598,6 +3598,18 @@ function openFreeTierNotice() {
   const checkbox = document.getElementById("freeTierDontShowAgain");
   if (checkbox) checkbox.checked = false;
   modal.classList.remove("hidden");
+  // Fetch current price from API and update modal
+  const priceEl = document.getElementById("modalPlanPrice");
+  if (priceEl) {
+    import("./paymentFlutterwave.js")
+      .then(({ fetchAndCachePrices }) => fetchAndCachePrices())
+      .then((prices) => {
+        if (prices?.monthly) {
+          priceEl.textContent = `\u20A6${Number(prices.monthly).toLocaleString()}`;
+        }
+      })
+      .catch(() => {});
+  }
 }
 
 function closeFreeTierNotice() {
