@@ -9867,3 +9867,410 @@ body.dark-mode .admin-transactions-table .status-badge.failed {
         padding: 3px 8px;
     }
 }
+
+/* ============================================================
+   MOBILE QUIZ & HEADER FIXES
+   Compact layout, proper scrolling, no overflow
+   ============================================================ */
+
+/* Header: compact on mobile */
+@media (max-width: 520px) {
+    .app-container {
+        padding: 10px 8px 40px;
+    }
+
+    .app-shell-header {
+        padding: 8px 10px;
+        border-radius: 10px;
+        gap: 6px;
+    }
+
+    .brand-block {
+        gap: 6px;
+    }
+
+    .brand-logo {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+    }
+
+    .brand-logo-btn {
+        border-radius: 8px;
+    }
+
+    .brand-eyebrow {
+        font-size: 0.7rem;
+        letter-spacing: 0.8px;
+    }
+
+    .brand-block h1 {
+        font-size: 1.05rem;
+        line-height: 1.1;
+    }
+
+    .header-actions {
+        gap: 4px;
+        flex-wrap: nowrap;
+    }
+
+    .icon-button {
+        min-width: 38px;
+        min-height: 36px;
+        padding: 4px;
+        border-radius: 8px;
+        border-width: 1px;
+    }
+
+    .icon-button.icon-only {
+        width: 38px;
+        min-width: 38px;
+    }
+
+    .icon-button svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    #headerUpgradeBtn {
+        font-size: 0.78rem;
+        padding: 6px 12px;
+        min-height: 36px;
+        font-weight: 700;
+    }
+
+    /* Dark mode toggle */
+    .dark-mode-toggle {
+        min-width: 34px;
+        min-height: 34px;
+        padding: 4px;
+    }
+
+    /* Quiz screen */
+    #quizScreen .quiz-shell {
+        padding: 10px;
+        border-radius: 14px;
+        border: none;
+        box-shadow: none;
+    }
+
+    #quizScreen .quiz-topbar {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto auto auto;
+        gap: 6px 8px;
+        padding: 10px;
+        border-radius: 12px;
+        margin-bottom: 6px;
+    }
+
+    #quizScreen .quiz-topbar > .btn {
+        grid-column: 1;
+        grid-row: 1;
+        min-height: 34px;
+        font-size: 0.82rem;
+        padding: 4px 12px;
+        border-radius: 8px;
+    }
+
+    #quizScreen #quizTopicTitle {
+        grid-column: 2;
+        grid-row: 1;
+        font-size: 0.88rem;
+        line-height: 1.2;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin: 0;
+        text-align: left;
+    }
+
+    #quizScreen .timer-wrap {
+        grid-column: 1;
+        grid-row: 2;
+        min-width: auto;
+        padding: 4px 10px;
+        font-size: 0.82rem;
+        border-radius: 10px;
+        justify-self: start;
+    }
+
+    #quizScreen .timer-wrap .timer-badge {
+        font-size: 0.68rem;
+    }
+
+    #quizScreen .timer-wrap #timeLeft {
+        font-size: 0.95rem;
+        font-weight: 800;
+    }
+
+    #quizScreen .progress-label {
+        grid-column: 2;
+        grid-row: 2;
+        font-size: 0.78rem;
+        padding: 4px 10px;
+        border-radius: 10px;
+        text-align: right;
+        align-self: center;
+    }
+
+    #quizScreen .progress-track {
+        height: 6px;
+        margin-top: 6px;
+        border-radius: 999px;
+    }
+
+    #quizScreen #questionMap {
+        margin-top: 6px;
+        padding: 8px;
+        border-radius: 10px;
+    }
+
+    #questionMap .nav-btn {
+        width: 30px;
+        height: 30px;
+        border-radius: 8px;
+        font-size: 0.75rem;
+    }
+
+    #quizScreen .question-card {
+        padding: 12px;
+        border-radius: 14px;
+        font-size: 0.92rem;
+        line-height: 1.55;
+        gap: 10px;
+        margin-top: 8px;
+    }
+
+    #quizScreen .question-card .question-number {
+        width: 28px;
+        height: 28px;
+        font-size: 0.82rem;
+    }
+
+    #quizScreen .quiz-content-grid {
+        gap: 8px;
+        margin-top: 8px;
+    }
+
+    #quizScreen .options-grid {
+        gap: 8px;
+    }
+
+    #quizScreen .option-btn {
+        min-height: 52px;
+        padding: 10px 12px;
+        border-radius: 12px;
+        gap: 10px;
+        font-size: 0.88rem;
+    }
+
+    #quizScreen .option-letter {
+        width: 26px;
+        height: 26px;
+        border-radius: 8px;
+        font-size: 0.78rem;
+    }
+
+    #quizScreen .quiz-actions {
+        margin-top: 10px;
+        padding: 10px 12px 0;
+        border-radius: 12px;
+    }
+
+    #quizScreen .quiz-actions .btn {
+        min-height: 38px;
+        font-size: 0.82rem;
+        padding: 6px 10px;
+    }
+
+    #quizScreen .quiz-actions-left {
+        gap: 6px;
+    }
+
+    #quizScreen .quiz-actions-right {
+        gap: 4px;
+    }
+
+    #quizScreen .quiz-actions-right .icon-button {
+        min-width: 34px;
+        min-height: 34px;
+        width: 34px;
+    }
+
+    /* Topic cards grid */
+    .topic-cards-grid {
+        gap: 8px;
+    }
+
+    .topic-card {
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .topic-card h3 {
+        font-size: 0.88rem;
+    }
+
+    .topic-card .topic-meta {
+        font-size: 0.75rem;
+    }
+
+    .topic-card .chip-row {
+        gap: 4px;
+    }
+
+    .topic-card .chip {
+        font-size: 0.72rem;
+        padding: 4px 8px;
+    }
+
+    /* Card general */
+    .card {
+        padding: 12px;
+        border-radius: 12px;
+    }
+
+    /* Auth toolbar */
+    .auth-toolbar-summary {
+        font-size: 0.72rem;
+        max-width: none;
+        width: 100%;
+    }
+
+    /* Screen navigation */
+    .screen-nav-row {
+        gap: 4px;
+    }
+
+    .screen-nav-row .btn {
+        min-height: 38px;
+        font-size: 0.82rem;
+        padding: 6px 8px;
+    }
+
+    /* Results screen */
+    .result-hero {
+        padding: 14px;
+        border-radius: 14px;
+    }
+
+    #resultsStats .stat-card {
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    #resultsStats .stat-value {
+        font-size: 1.3rem;
+    }
+
+    #resultsStats .stat-label {
+        font-size: 0.7rem;
+    }
+
+    /* Review mistakes */
+    .review-mistakes-shell {
+        padding: 12px;
+        border-radius: 14px;
+    }
+
+    /* Mode selection */
+    .mode-selection-grid {
+        gap: 8px;
+    }
+
+    .mode-card {
+        padding: 12px;
+        border-radius: 12px;
+    }
+
+    /* Profile screen */
+    .profile-card {
+        padding: 12px;
+    }
+
+    /* Analytics */
+    .analytics-grid {
+        gap: 8px;
+    }
+
+    /* Tooltip hide on mobile */
+    .icon-button[data-tooltip]:hover::after {
+        display: none;
+    }
+
+    /* Quiz screen scrolling */
+    #quizScreen {
+        overflow-y: auto;
+        max-height: calc(100dvh - 20px);
+        -webkit-overflow-scrolling: touch;
+    }
+
+    #quizScreen .quiz-shell {
+        overflow: visible;
+    }
+
+    /* Ensure question card and options don't overflow */
+    #quizScreen .question-card {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        min-width: 0;
+    }
+
+    #quizScreen .options-grid {
+        min-width: 0;
+    }
+
+    #quizScreen .option-btn {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        min-width: 0;
+    }
+
+    /* Explanation box */
+    #quizScreen .explanation {
+        padding: 10px;
+        font-size: 0.84rem;
+        border-radius: 10px;
+    }
+}
+
+/* Ultra-compact for very small screens */
+@media (max-width: 360px) {
+    .app-shell-header {
+        padding: 6px 8px;
+    }
+
+    .brand-eyebrow {
+        font-size: 0.62rem;
+    }
+
+    .brand-block h1 {
+        font-size: 0.95rem;
+    }
+
+    .icon-button {
+        min-width: 34px;
+        min-height: 32px;
+    }
+
+    .icon-button.icon-only {
+        width: 34px;
+        min-width: 34px;
+    }
+
+    #quizScreen #quizTopicTitle {
+        font-size: 0.82rem;
+    }
+
+    #quizScreen .question-card {
+        font-size: 0.88rem;
+        padding: 10px;
+    }
+
+    #quizScreen .option-btn {
+        min-height: 46px;
+        padding: 8px 10px;
+        font-size: 0.84rem;
+    }
+}
