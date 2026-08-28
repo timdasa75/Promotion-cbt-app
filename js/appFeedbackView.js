@@ -212,6 +212,37 @@ export function buildAdminFeedbackItemModel(entry = {}, {
   const scoreLine = entry?.scoreSummary
     ? `<p class="admin-feedback-score">${escapeHtml(entry.scoreSummary)}</p>`
     : "";
+  const status = String(entry?.status || "").trim().toLowerCase();
+  const isResolved = status === "resolved";
+  const isDismissed = status === "dismissed";
+  const isClosed = isResolved || isDismissed;
+  const hasReply = Boolean(entry?.adminReply);
+  const safeReply = escapeHtml(entry?.adminReply || "");
+  const repliedLabel = hasReply
+    ? `<div class="admin-feedback-reply-display"><span class="meta">Admin Reply:</span><p>${safeReply}</p></div>`
+    : "";
+
+  // Action buttons: show reopen for resolved/dismissed, otherwise show status controls
+  let actionButtons = "";
+  if (isClosed) {
+    actionButtons = `<button class="btn btn-ghost btn-sm" data-feedback-id="${safeId}" data-feedback-status="in_review" type="button">Reopen</button>`;
+  } else {
+    actionButtons = `
+          <button class="btn btn-ghost btn-sm" data-feedback-id="${safeId}" data-feedback-status="in_review" type="button" ${status === "in_review" ? 'disabled aria-disabled="true"' : ""}>Mark In Review</button>
+          <button class="btn btn-ghost btn-sm" data-feedback-id="${safeId}" data-feedback-status="resolved" type="button">Resolve</button>
+          <button class="btn btn-ghost btn-sm" data-feedback-id="${safeId}" data-feedback-status="dismissed" type="button">Dismiss</button>`;
+  }
+
+  // Reply section: only show for non-closed items
+  let replySection = "";
+  if (!isClosed) {
+    replySection = `
+      <div class="admin-feedback-reply-section">
+        <textarea class="admin-feedback-reply-input" placeholder="Reply to this feedback..." rows="2" data-feedback-id="${safeId}"></textarea>
+        <button class="btn btn-primary btn-sm admin-feedback-reply-btn" data-feedback-id="${safeId}" type="button">Send Reply</button>
+      </div>`;
+  }
+
   return {
     feedbackId: String(entry?.feedbackId || ""),
     html: `
@@ -227,9 +258,7 @@ export function buildAdminFeedbackItemModel(entry = {}, {
         </div>
         <div class="admin-feedback-meta" title="${reviewedLabel}">${reviewedLabel}</div>
         <div class="button-row compact-actions admin-feedback-actions">
-          <button class="btn btn-ghost btn-sm" data-feedback-id="${safeId}" data-feedback-status="in_review" type="button" ${entry?.status === "in_review" ? 'disabled aria-disabled="true"' : ""}>Mark In Review</button>
-          <button class="btn btn-ghost btn-sm" data-feedback-id="${safeId}" data-feedback-status="resolved" type="button" ${entry?.status === "resolved" ? 'disabled aria-disabled="true"' : ""}>Resolve</button>
-          <button class="btn btn-ghost btn-sm" data-feedback-id="${safeId}" data-feedback-status="dismissed" type="button" ${entry?.status === "dismissed" ? 'disabled aria-disabled="true"' : ""}>Dismiss</button>
+          ${actionButtons}
         </div>
       </div>
       <p class="admin-feedback-message admin-feedback-message-truncate" title="${safeMessage}">${safeMessage}</p>
@@ -237,10 +266,8 @@ export function buildAdminFeedbackItemModel(entry = {}, {
       ${scoreLine}
       ${contextChips.length ? `<div class="chip-row admin-feedback-context-row">${contextChips.join("")}</div>` : ""}
       ${clientInfoLine}
-      <div class="admin-feedback-reply-section">
-        <textarea class="admin-feedback-reply-input" placeholder="Reply to this feedback..." rows="2" data-feedback-id="${safeId}"></textarea>
-        <button class="btn btn-primary btn-sm admin-feedback-reply-btn" data-feedback-id="${safeId}" type="button">Send Reply</button>
-      </div>
+      ${repliedLabel}
+      ${replySection}
     `,
   };
 }

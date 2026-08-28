@@ -4892,6 +4892,10 @@ function renderAdminFeedbackList() {
             failurePrefix: "Unable to update feedback:",
           },
         );
+        // Send email notification when resolved
+        if (nextStatus === "resolved" && target) {
+          sendFeedbackNotification(target, "resolved").catch(() => {});
+        }
         logAdminOperation({
           action: "Update feedback status",
           target: targetLabel,
@@ -4930,6 +4934,18 @@ function renderAdminFeedbackList() {
           showWarning("Session unavailable. Please log in again.");
           return;
         }
+        // Save reply to local feedback entry
+        const feedbackEntry = adminFeedbackSubmissions.find(f => String(f?.feedbackId || "") === feedbackId);
+        if (feedbackEntry) {
+          feedbackEntry.adminReply = replyText;
+          feedbackEntry.repliedAt = new Date().toISOString();
+          feedbackEntry.repliedBy = session.user?.email || "admin";
+          // Auto-set status to in_review when replying
+          if (feedbackEntry.status !== "in_review") {
+            await updateFeedbackSubmissionStatus(feedbackId, "in_review");
+            feedbackEntry.status = "in_review";
+          }
+        }
         await fetch(`${baseUrl}/feedback/reply`, {
           method: 'POST',
           headers: {
@@ -4946,11 +4962,44 @@ function renderAdminFeedbackList() {
           status: "success",
           message: replyText.substring(0, 100),
         });
+        // Send email notification to user
+        sendFeedbackNotification(feedbackEntry, "reply", replyText).catch(() => {});
+        renderAdminFeedbackList();
       } catch (error) {
         showError(error?.message || "Failed to send reply.");
       }
     });
   });
+}
+
+async function sendFeedbackNotification(feedbackEntry, type, message = "") {
+  try {
+    const config = getRuntimeConfig();
+    const baseUrl = config?.cloudflareAuthBaseUrl || '';
+    if (!baseUrl || !feedbackEntry?.email) return;
+    const subject = type === "reply"
+      ? "Your feedback has been replied to"
+      : type === "resolved"
+        ? "Your feedback has been resolved"
+        : "Feedback update";
+    const body = type === "reply"
+      ? `Hello,\n\nAn admin has replied to your feedback:\n\n"${message}"\n\nPlease log in to view the full response.\n\nBest regards,\nPromotion CBT Team`
+      : type === "resolved"
+        ? `Hello,\n\nYour feedback has been marked as resolved. Thank you for helping us improve!\n\nBest regards,\nPromotion CBT Team`
+        : `Hello,\n\nYour feedback status has been updated.\n\nBest regards,\nPromotion CBT Team`;
+    await fetch(`${baseUrl}/feedback/notify`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: feedbackEntry.email,
+        subject,
+        body,
+        feedbackId: feedbackEntry.feedbackId,
+      }),
+    });
+  } catch (error) {
+    debugLog(`Feedback notification failed: ${error?.message || "request failed."}`);
+  }
 }
 
 function hasCloudBackedAdminSession() {
