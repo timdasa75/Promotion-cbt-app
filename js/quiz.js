@@ -4472,3 +4472,145 @@ function initializeQuiz(options = {}) {
   updateProgress();
   persistQuizRuntime();
 }
+
+// ============================================================
+// Quiz History Screen
+// ============================================================
+
+export function renderQuizHistory() {
+  const listEl = document.getElementById("quizHistoryList");
+  const emptyEl = document.getElementById("quizHistoryEmpty");
+  const statsEl = document.getElementById("quizHistoryStats");
+  const topicFilter = document.getElementById("historyTopicFilter");
+  const modeFilter = document.getElementById("historyModeFilter");
+  const sortSelect = document.getElementById("historySort");
+  if (!listEl) return;
+
+  const summary = readProgressSummary();
+  const attempts = Array.isArray(summary?.attempts) ? summary.attempts : [];
+
+  // Populate topic filter options from unique topic names
+  if (topicFilter) {
+    const topicNames = [...new Set(attempts.map((a) => a.topicName).filter(Boolean))].sort();
+    const currentTopicVal = topicFilter.value;
+    topicFilter.innerHTML = '<option value="all">All Topics</option>';
+    topicNames.forEach((name) => {
+      const opt = document.createElement("option");
+      opt.value = name;
+      opt.textContent = name;
+      topicFilter.appendChild(opt);
+    });
+    topicFilter.value = topicNames.includes(currentTopicVal) ? currentTopicVal : "all";
+  }
+
+  // Populate mode filter
+  if (modeFilter) {
+    const modes = [...new Set(attempts.map((a) => a.mode).filter(Boolean))].sort();
+    const currentModeVal = modeFilter.value;
+    modeFilter.innerHTML = '<option value="all">All Modes</option>';
+    modes.forEach((mode) => {
+      const opt = document.createElement("option");
+      opt.value = mode;
+      opt.textContent = mode.charAt(0).toUpperCase() + mode.slice(1);
+      modeFilter.appendChild(opt);
+    });
+    modeFilter.value = modes.includes(currentModeVal) ? currentModeVal : "all";
+  }
+
+  function getFilteredSorted() {
+    let filtered = [...attempts];
+    const topicVal = topicFilter?.value || "all";
+    const modeVal = modeFilter?.value || "all";
+    const sortVal = sortSelect?.value || "newest";
+    if (topicVal !== "all") filtered = filtered.filter((a) => a.topicName === topicVal);
+    if (modeVal !== "all") filtered = filtered.filter((a) => a.mode === modeVal);
+    switch (sortVal) {
+      case "oldest":
+        filtered.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+        break;
+      case "highest":
+        filtered.sort((a, b) => (b.scorePercentage || 0) - (a.scorePercentage || 0));
+        break;
+      case "lowest":
+        filtered.sort((a, b) => (a.scorePercentage || 0) - (b.scorePercentage || 0));
+        break;
+      default: // newest
+        filtered.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    }
+    return filtered;
+  }
+
+  function render() {
+    const filtered = getFilteredSorted();
+    listEl.innerHTML = "";
+    if (!filtered.length) {
+      emptyEl?.classList.remove("hidden");
+      listEl.classList.add("hidden");
+    } else {
+      emptyEl?.classList.add("hidden");
+      listEl.classList.remove("hidden");
+    }
+
+    // Stats summary
+    if (statsEl) {
+      const totalAttempts = filtered.length;
+      const avgScore = totalAttempts
+        ? Math.round(filtered.reduce((s, a) => s + (a.scorePercentage || 0), 0) / totalAttempts)
+        : 0;
+      const totalTime = filtered.reduce((s, a) => s + (a.timeTakenSec || 0), 0);
+      const bestScore = totalAttempts ? Math.max(...filtered.map((a) => a.scorePercentage || 0)) : 0;
+      const passedCount = filtered.filter((a) => (a.scorePercentage || 0) >= 60).length;
+      statsEl.innerHTML = `
+        <div class="quiz-history-stat"><div class="quiz-history-stat-value">${totalAttempts}</div><div class="quiz-history-stat-label">Attempts</div></div>
+        <div class="quiz-history-stat"><div class="quiz-history-stat-value">${avgScore}%</div><div class="quiz-history-stat-label">Avg Score</div></div>
+        <div class="quiz-history-stat"><div class="quiz-history-stat-value">${bestScore}%</div><div class="quiz-history-stat-label">Best Score</div></div>
+        <div class="quiz-history-stat"><div class="quiz-history-stat-value">${passedCount}</div><div class="quiz-history-stat-label">Passed</div></div>
+        <div class="quiz-history-stat"><div class="quiz-history-stat-value">${formatDuration(totalTime)}</div><div class="quiz-history-stat-label">Total Time</div></div>
+      `;
+    }
+
+    filtered.forEach((attempt) => {
+      const score = attempt.scorePercentage || 0;
+      const scoreClass = score >= 70 ? "quiz-history-score-high" : score >= 50 ? "quiz-history-score-mid" : "quiz-history-score-low";
+      const date = attempt.createdAt ? new Date(attempt.createdAt) : null;
+      const dateStr = date ? date.toLocaleDateString("en-NG", { year: "numeric", month: "short", day: "numeric" }) : "";
+      const timeStr = date ? date.toLocaleTimeString("en-NG", { hour: "2-digit", minute: "2-digit" }) : "";
+      const timeTaken = formatDuration(attempt.timeTakenSec || 0);
+      const mode = (attempt.mode || "practice").charAt(0).toUpperCase() + (attempt.mode || "practice").slice(1);
+      const correct = attempt.correctCount ?? 0;
+      const wrong = attempt.wrongCount ?? 0;
+      const unanswered = attempt.unansweredCount ?? 0;
+      const total = attempt.totalQuestions || (correct + wrong + unanswered);
+
+      const card = document.createElement("article");
+      card.className = "quiz-history-card";
+      card.innerHTML = `
+        <div class="quiz-history-card-header">
+          <div class="quiz-history-card-topic">${escapeHtml(attempt.topicName || "Unknown Topic")}</div>
+          <div class="quiz-history-card-mode quiz-history-mode-${(attempt.mode || "practice").toLowerCase()}">${escapeHtml(mode)}</div>
+        </div>
+        <div class="quiz-history-card-body">
+          <div class="quiz-history-score ${scoreClass}">${score}%</div>
+          <div class="quiz-history-card-details">
+            <span class="quiz-history-detail">${correct}/${total} correct</span>
+            <span class="quiz-history-detail">${timeTaken} taken</span>
+            <span class="quiz-history-detail quiz-history-detail-wrong">${wrong} wrong</span>
+            ${unanswered ? `<span class="quiz-history-detail quiz-history-detail-unanswered">${unanswered} skipped</span>` : ""}
+          </div>
+        </div>
+        <div class="quiz-history-card-footer">
+          <span class="quiz-history-date">${dateStr}</span>
+          <span class="quiz-history-time">${timeStr}</span>
+        </div>
+      `;
+      listEl.appendChild(card);
+    });
+  }
+
+  // Attach filter/sort listeners
+  topicFilter?.addEventListener("change", render);
+  modeFilter?.addEventListener("change", render);
+  sortSelect?.addEventListener("change", render);
+
+  render();
+}

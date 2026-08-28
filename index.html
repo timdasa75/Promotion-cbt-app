@@ -253,6 +253,7 @@
                         <button class="btn btn-ghost" id="spacedPracticeBtn" type="button" disabled>Spaced Practice</button>
                         <button class="btn btn-ghost" data-screen-target="reviewMistakesScreen" type="button">Review Mistakes</button>
                         <button class="btn btn-ghost" data-screen-target="analyticsScreen" type="button">Analytics</button>
+                        <button class="btn btn-ghost" data-screen-target="quizHistoryScreen" type="button">Quiz History</button>
                         <button class="btn btn-ghost" data-screen-target="profileScreen" type="button">Profile and Settings</button>
                         <button class="btn btn-ghost hidden" id="openAdminBtn" type="button">Admin Panel</button>
                         <button class="btn btn-secondary" id="dashboardFeedbackBtn" type="button">Send Feedback</button>
@@ -580,6 +581,26 @@
                         <p class="recommendation-confidence hidden" id="analyticsRecommendationConfidence">Confidence: Early Pattern. This is a light starting signal.</p>
                     </div>
                     <div class="button-row compact-actions analytics-actions review-mistakes-actions profile-screen-actions"><button class="btn btn-ghost" data-screen-target="topicSelectionScreen" type="button">Back</button></div>
+                </section>
+
+                <section id="quizHistoryScreen" class="screen hidden">
+                    <div class="card quiz-history-shell">
+                        <div class="section-head screen-header">
+                            <h2>Quiz History</h2>
+                            <p>Review your past attempts, scores, and time taken across all topics.</p> </div>
+                        <div class="quiz-history-stats" id="quizHistoryStats"></div>
+                        <div class="toolbar-row quiz-history-toolbar">
+                            <select id="historyTopicFilter" aria-label="Filter by topic"><option value="all">All Topics</option></select>
+                            <select id="historyModeFilter" aria-label="Filter by mode"><option value="all">All Modes</option></select>
+                            <select id="historySort" aria-label="Sort by"><option value="newest">Newest First</option><option value="oldest">Oldest First</option><option value="highest">Highest Score</option><option value="lowest">Lowest Score</option></select>
+                        </div>
+                        <div class="quiz-history-list" id="quizHistoryList"></div>
+                        <div class="quiz-history-empty hidden" id="quizHistoryEmpty">
+                            <p>No quiz attempts recorded yet.</p>
+                            <button class="btn btn-primary" data-screen-target="topicSelectionScreen" type="button">Start Your First Quiz</button>
+                        </div>
+                        <div class="button-row compact-actions"><button class="btn btn-ghost" data-screen-target="topicSelectionScreen" type="button">Back to Dashboard</button></div>
+                    </div>
                 </section>
 
                 <section id="profileScreen" class="screen hidden">

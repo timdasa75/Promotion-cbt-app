@@ -64,6 +64,7 @@ import {
   getCurrentMode,
   syncProgressFromCloudNow,
   retakeFullQuiz,
+  renderQuizHistory,
 } from "./quiz.js";
 import { escapeHtml, normalizeExplanationText, parseMarkdown } from "./quiz/formatting.js";
 import { debugLog } from "./logger.js";
@@ -2697,6 +2698,9 @@ function initializeScreenLinkHandlers() {
     if (!target) return;
     element.addEventListener("click", () => {
       showScreen(target);
+      if (target === "quizHistoryScreen") {
+        renderQuizHistory();
+      }
     });
   });
 }

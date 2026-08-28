@@ -5978,6 +5978,201 @@ body.dark-mode .dashboard-utility-row .btn-ghost:hover {
     border-top: 1px solid color-mix(in srgb, var(--green-900) 10%, var(--line));
 }
 
+/* ============================================================
+   Quiz History Screen
+   ============================================================ */
+
+#quizHistoryScreen .quiz-history-shell {
+    border-color: color-mix(in srgb, var(--green-900) 12%, var(--line));
+    background: linear-gradient(180deg, color-mix(in srgb, var(--green-700) 2%, var(--card)), var(--card));
+}
+
+.quiz-history-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.quiz-history-stat {
+    text-align: center;
+    padding: 12px 8px;
+    border-radius: var(--radius);
+    background: color-mix(in srgb, var(--green-700) 4%, var(--card));
+    border: 1px solid color-mix(in srgb, var(--green-900) 8%, var(--line));
+}
+
+.quiz-history-stat-value {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--green-900);
+    line-height: 1.2;
+    font-variant-numeric: tabular-nums;
+}
+
+.quiz-history-stat-label {
+    font-size: 0.72rem;
+    color: var(--ink-500);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-top: 4px;
+}
+
+.quiz-history-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.quiz-history-toolbar select {
+    flex: 1 1 0;
+    min-width: 120px;
+    padding: 7px 10px;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    background: var(--card);
+    color: var(--ink-900);
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.quiz-history-list {
+    display: grid;
+    gap: 10px;
+}
+
+.quiz-history-card {
+    display: grid;
+    gap: 0;
+    padding: 14px 16px;
+    border-radius: var(--radius);
+    border: 1px solid color-mix(in srgb, var(--green-900) 10%, var(--line));
+    background: var(--card);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
+    transition: box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.quiz-history-card:hover {
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.06);
+    border-color: color-mix(in srgb, var(--green-900) 16%, var(--line));
+}
+
+.quiz-history-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.quiz-history-card-topic {
+    font-weight: 700;
+    font-size: 0.92rem;
+    color: var(--ink-900);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+}
+
+.quiz-history-card-mode {
+    font-size: 0.68rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 3px 8px;
+    border-radius: 999px;
+    flex-shrink: 0;
+    margin-left: 10px;
+}
+
+.quiz-history-mode-practice {
+    background: color-mix(in srgb, var(--green-700) 12%, var(--card));
+    color: var(--green-900);
+}
+
+.quiz-history-mode-exam {
+    background: color-mix(in srgb, var(--danger) 12%, var(--card));
+    color: var(--danger);
+}
+
+.quiz-history-mode-review {
+    background: color-mix(in srgb, var(--ink-500) 12%, var(--card));
+    color: var(--ink-700);
+}
+
+.quiz-history-card-body {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 8px;
+}
+
+.quiz-history-score {
+    font-size: 1.5rem;
+    font-weight: 900;
+    min-width: 56px;
+    text-align: center;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+}
+
+.quiz-history-score-high {
+    color: var(--ok);
+}
+
+.quiz-history-score-mid {
+    color: var(--warning);
+}
+
+.quiz-history-score-low {
+    color: var(--danger);
+}
+
+.quiz-history-card-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 12px;
+    font-size: 0.8rem;
+    color: var(--ink-600);
+}
+
+.quiz-history-detail {
+    white-space: nowrap;
+}
+
+.quiz-history-detail-wrong {
+    color: var(--danger);
+}
+
+.quiz-history-detail-unanswered {
+    color: var(--ink-400);
+}
+
+.quiz-history-card-footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.72rem;
+    color: var(--ink-400);
+    padding-top: 8px;
+    border-top: 1px solid color-mix(in srgb, var(--green-900) 6%, var(--line));
+}
+
+.quiz-history-empty {
+    text-align: center;
+    padding: 32px 16px;
+    color: var(--ink-500);
+    font-size: 0.95rem;
+}
+
+.quiz-history-empty .btn {
+    margin-top: 14px;
+}
+
+/* ============================================================
+   Profile Screen
+   ============================================================ */
+
 #profileScreen .profile-card {
     border: 1px solid var(--line);
     background: var(--card);
