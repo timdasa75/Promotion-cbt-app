@@ -2249,6 +2249,31 @@ async function handleFeedbackStatusUpdate(request, env) {
   return { ok: true, feedbackId, status, reviewedAt: nowIso };
 }
 
+async function handleUserFeedbackList(request, env) {
+  const user = await resolveAuthenticatedContentUser(request, env);
+  if (!user?.email) throw createRouteError(401, "Authentication required.");
+  const email = normalizeEmail(user.email);
+  const database = requireAuditDatabase(env);
+  const body = await readJsonBody(request);
+  const rawLimit = Number(body?.limit || 50);
+  const limit = Math.max(1, Math.min(50, Number.isFinite(rawLimit) ? Math.floor(rawLimit) : 50));
+  const result = await database
+    .prepare(`
+      SELECT feedback_id, user_id, email, category, status, source_screen, message, created_at, updated_at,
+             reviewed_at, reviewed_by, admin_reply, replied_at, replied_by,
+             topic_id, topic_name, question_id, quiz_attempt_id, session_mode,
+             question_preview, score_summary, difficulty, source_document, source_section, subcategory_name
+      FROM feedback_submissions
+      WHERE email = ?1
+      ORDER BY created_at DESC
+      LIMIT ?2
+    `)
+    .bind(email, limit)
+    .all();
+  const rows = Array.isArray(result?.results) ? result.results.map(parseFeedbackRow) : [];
+  return { ok: true, feedback: rows, total: rows.length };
+}
+
 async function handlePaymentVerify(request, env) {
   const user = await resolveAuthenticatedContentUser(request, env);
   if (String(user?.status || "active").toLowerCase() !== "active") {
@@ -3110,43 +3135,70 @@ async function handleLoginAlert(request, env) {
 // Product Pricing Management
 // ============================================================
 
+async function ensureProductPricingTable(database) {
+  try {
+    await database.exec(`
+      CREATE TABLE IF NOT EXISTS product_pricing (
+        id TEXT PRIMARY KEY,
+        monthly_price REAL NOT NULL DEFAULT 2500,
+        quarterly_price REAL NOT NULL DEFAULT 6000,
+        bi_annual_price REAL NOT NULL DEFAULT 10000,
+        annual_price REAL NOT NULL DEFAULT 18000,
+        currency TEXT NOT NULL DEFAULT 'NGN',
+        updated_at TEXT NOT NULL,
+        updated_by TEXT NOT NULL DEFAULT ''
+      )
+    `);
+  } catch (e) {
+    console.error('[pricing] ensureProductPricingTable error:', e?.message || e);
+  }
+}
+
 async function handleGetPricing(request, env) {
-  const database = requireAuditDatabase(env);
-  const result = await database
-    .prepare('SELECT * FROM product_pricing WHERE id = ?1')
-    .bind('default')
-    .first();
-  
-  if (!result) {
+  try {
+    const database = requireAuditDatabase(env);
+    await ensureProductPricingTable(database);
+    const result = await database
+      .prepare('SELECT * FROM product_pricing WHERE id = ?1')
+      .bind('default')
+      .first();
+    
+    if (!result) {
+      return {
+        ok: true,
+        pricing: {
+          monthly: PAYMENT_PLAN_PRICES.monthly,
+          quarterly: PAYMENT_PLAN_PRICES.quarterly,
+          'bi-annual': PAYMENT_PLAN_PRICES['bi-annual'],
+          annual: PAYMENT_PLAN_PRICES.annual,
+          currency: 'NGN',
+        },
+      };
+    }
+    
     return {
       ok: true,
       pricing: {
-        monthly: PAYMENT_PLAN_PRICES.monthly,
-        quarterly: PAYMENT_PLAN_PRICES.quarterly,
-        'bi-annual': PAYMENT_PLAN_PRICES['bi-annual'],
-        annual: PAYMENT_PLAN_PRICES.annual,
-        currency: 'NGN',
+        monthly: result.monthly_price,
+        quarterly: result.quarterly_price,
+        'bi-annual': result.bi_annual_price,
+        annual: result.annual_price,
+        currency: result.currency,
+        updatedAt: result.updated_at,
+        updatedBy: result.updated_by,
       },
     };
+  } catch (e) {
+    console.error('[pricing] handleGetPricing error:', e?.message || e);
+    return { ok: false, error: e?.message || 'Failed to get pricing.' };
   }
-  
-  return {
-    ok: true,
-    pricing: {
-      monthly: result.monthly_price,
-      quarterly: result.quarterly_price,
-      'bi-annual': result.bi_annual_price,
-      annual: result.annual_price,
-      currency: result.currency,
-      updatedAt: result.updated_at,
-      updatedBy: result.updated_by,
-    },
-  };
 }
 
 async function handleUpdatePricing(request, env) {
-  const database = requireAuditDatabase(env);
-  const body = await readJsonBody(request);
+  try {
+    const database = requireAuditDatabase(env);
+    await ensureProductPricingTable(database);
+    const body = await readJsonBody(request);
   
   const monthly = Number(body?.monthly);
   const quarterly = Number(body?.quarterly);
@@ -3186,6 +3238,10 @@ async function handleUpdatePricing(request, env) {
       updatedBy,
     },
   };
+  } catch (e) {
+    console.error('[pricing] handleUpdatePricing error:', e?.message || e);
+    return { ok: false, error: e?.message || 'Failed to update pricing.' };
+  }
 }
 
 // ============================================================
@@ -3516,6 +3572,7 @@ function resolveRouteHandler(path) {
   if (path.endsWith("/adminListPayments")) return handleAdminListPayments;
   if (path.endsWith("/adminFeedbackList")) return handleAdminFeedbackList;
   if (path.endsWith("/feedback/status")) return handleFeedbackStatusUpdate;
+  if (path.endsWith("/feedback/userList")) return handleUserFeedbackList;
   if (path.endsWith("/adminSetUserStatus")) return handleAdminSetUserStatus;
   if (path.endsWith("/adminSetUserPlan")) return handleAdminSetUserPlan;
   if (path.endsWith("/adminDeleteUserById")) return handleAdminDeleteUserById;
