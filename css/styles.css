@@ -8992,10 +8992,219 @@ body.dark-mode .option-btn.user-incorrect {
     background: var(--danger-bg);
 }
 
-/* Dark mode quiz actions */
+/* ============================================================
+   DARK MODE QUIZ SCREEN CONTRAST FIXES
+   ============================================================ */
+
+/* Quiz topbar: stronger gradient for visibility */
+body.dark-mode #quizScreen .quiz-topbar {
+    background: linear-gradient(180deg, var(--surface-container) 0%, var(--card) 100%);
+    border-color: var(--line);
+}
+
+/* Timer: dark background with bright text */
+body.dark-mode #quizScreen .timer-wrap {
+    background: var(--surface-container);
+    border-color: var(--line);
+    color: var(--ink-800);
+}
+
+body.dark-mode #quizScreen .timer-wrap .timer-badge {
+    color: var(--ink-600);
+}
+
+body.dark-mode #quizScreen .timer-wrap #timeLeft {
+    color: var(--primary-hover);
+}
+
+/* Progress label: readable on dark */
+body.dark-mode #quizScreen .progress-label {
+    background: var(--surface-container);
+    border-color: var(--line);
+    color: var(--ink-800);
+}
+
+/* Question map: visible buttons */
+body.dark-mode #quizScreen #questionMap {
+    background: var(--surface-container);
+    border-color: var(--line);
+}
+
+body.dark-mode #questionMap .nav-btn {
+    background: var(--card);
+    border-color: var(--line);
+    color: var(--ink-800);
+}
+
+body.dark-mode #questionMap .nav-btn.active {
+    background: var(--primary);
+    color: var(--white);
+    border-color: var(--primary);
+}
+
+body.dark-mode #questionMap .nav-btn.answered {
+    background: var(--primary-light);
+    color: var(--primary-hover);
+    border-color: var(--primary);
+}
+
+body.dark-mode #questionMap .nav-btn.flagged {
+    background: var(--warning-bg);
+    color: var(--warning);
+    border-color: var(--warning);
+}
+
+body.dark-mode #questionMap .nav-btn.incorrect-nav {
+    background: var(--danger-bg);
+    color: var(--danger);
+    border-color: var(--danger);
+}
+
+/* Question card: clear text on dark surface */
+body.dark-mode #quizScreen .question-card {
+    background: linear-gradient(180deg, var(--surface-container) 0%, var(--card) 100%);
+    border-color: var(--line);
+    color: var(--ink-900);
+}
+
+body.dark-mode #quizScreen .question-card .question-number {
+    background: var(--primary);
+    color: var(--white);
+}
+
+/* Option buttons: high contrast */
+body.dark-mode .option-btn {
+    background: var(--card);
+    border-color: var(--line);
+    color: var(--ink-900);
+}
+
+body.dark-mode .option-btn:hover {
+    border-color: var(--primary);
+    background: var(--primary-light);
+}
+
+body.dark-mode .option-btn.selected {
+    border-color: var(--primary);
+    background: var(--primary-light);
+    color: var(--ink-900);
+}
+
+body.dark-mode .option-btn.correct {
+    border-color: var(--ok);
+    background: var(--ok-bg);
+    color: var(--ink-900);
+}
+
+body.dark-mode .option-btn.incorrect,
+body.dark-mode .option-btn.user-incorrect {
+    border-color: var(--danger);
+    background: var(--danger-bg);
+    color: var(--ink-900);
+}
+
+/* Option letter: visible circle */
+body.dark-mode #quizScreen .option-letter {
+    background: var(--surface-container);
+    color: var(--ink-800);
+    border-color: var(--line);
+}
+
+body.dark-mode .option-btn.selected .option-letter {
+    background: var(--primary);
+    color: var(--white);
+}
+
+body.dark-mode .option-btn.correct .option-letter {
+    background: var(--ok);
+    color: var(--white);
+}
+
+body.dark-mode .option-btn.incorrect .option-letter,
+body.dark-mode .option-btn.user-incorrect .option-letter {
+    background: var(--danger);
+    color: var(--white);
+}
+
+/* Explanation box */
+body.dark-mode #quizScreen .explanation {
+    background: var(--surface-container);
+    border-color: var(--line);
+    color: var(--ink-800);
+}
+
+/* Feedback labels */
+body.dark-mode #quizScreen .option-feedback-label.correct {
+    background: var(--ok-bg);
+    color: var(--ok);
+}
+
+body.dark-mode #quizScreen .option-feedback-label.incorrect {
+    background: var(--danger-bg);
+    color: var(--danger);
+}
+
+body.dark-mode #quizScreen .feedback-status {
+    border-color: var(--line);
+}
+
+/* Quiz actions */
 body.dark-mode #quizScreen .quiz-actions {
     background: var(--card);
     border-top-color: var(--line);
+}
+
+/* Primary action button */
+body.dark-mode #quizScreen .quiz-actions .btn-primary {
+    background: var(--primary);
+    color: var(--white);
+}
+
+body.dark-mode #quizScreen .quiz-actions .btn-primary:hover {
+    background: var(--primary-hover);
+}
+
+/* Secondary action button — fix green-on-green contrast */
+body.dark-mode #quizScreen .quiz-actions .btn-secondary {
+    background: var(--surface-container);
+    color: var(--ink-900);
+    border: 2px solid var(--primary);
+}
+
+body.dark-mode #quizScreen .quiz-actions .btn-secondary:hover {
+    background: var(--primary);
+    color: var(--white);
+}
+
+/* Ghost action buttons */
+body.dark-mode #quizScreen .quiz-actions .btn-ghost {
+    color: var(--ink-700);
+}
+
+body.dark-mode #quizScreen .quiz-actions .btn-ghost:hover {
+    background: var(--surface-container);
+    color: var(--ink-900);
+}
+
+/* Back button in quiz */
+body.dark-mode #quizScreen .quiz-topbar > .btn {
+    color: var(--ink-800);
+}
+
+body.dark-mode #quizScreen .quiz-topbar > .btn:hover {
+    background: var(--surface-container);
+    color: var(--ink-900);
+}
+
+/* Review controls */
+body.dark-mode #quizScreen .review-controls {
+    background: var(--surface-container);
+    border-color: var(--line);
+}
+
+/* Practice pacing notice */
+body.dark-mode #quizScreen .practice-pacing-notice {
+    color: var(--ink-600);
 }
 
 /* Dark mode admin table */
