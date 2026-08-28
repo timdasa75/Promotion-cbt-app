@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
- * Generate a promotional PDF for Promotion CBT App
+ * Generate a single-page promotional PDF for Promotion CBT App
  * Usage: node scripts/generatePromoPDF.mjs
- * Output: docs/promo-freebuff-cbt.pdf
+ * Output: docs/promo-promotion-cbt.pdf
  */
 
 import { jsPDF } from "jspdf";
@@ -10,7 +10,7 @@ import fs from "fs";
 import path from "path";
 
 const OUTPUT_DIR = path.join(process.cwd(), "docs");
-const OUTPUT_FILE = path.join(OUTPUT_DIR, "promo-freebuff-cbt.pdf");
+const OUTPUT_FILE = path.join(OUTPUT_DIR, "promo-promotion-cbt.pdf");
 
 // Ensure output directory exists
 if (!fs.existsSync(OUTPUT_DIR)) {
@@ -25,7 +25,7 @@ const doc = new jsPDF({
 
 const WIDTH = 210;
 const HEIGHT = 297;
-const MARGIN = 20;
+const MARGIN = 15;
 const CONTENT_WIDTH = WIDTH - MARGIN * 2;
 
 // ============================================================
@@ -43,228 +43,167 @@ const COLORS = {
   textLight: [100, 116, 139],   // #64748B
 };
 
-// ============================================================
-// Helper Functions
-// ============================================================
-function setFill(r, g, b) {
-  doc.setFillColor(r, g, b);
-}
-
-function setDraw(r, g, b) {
-  doc.setDrawColor(r, g, b);
-}
-
-function setText(r, g, b) {
-  doc.setTextColor(r, g, b);
-}
-
-function drawRoundedRect(x, y, w, h, r, fill = true) {
-  doc.roundedRect(x, y, w, h, r, r, fill ? "F" : "S");
-}
-
-function drawCircle(cx, cy, r, fill = true) {
-  doc.circle(cx, cy, r, fill ? "F" : "S");
-}
+// Helper functions
+function setFill(r, g, b) { doc.setFillColor(r, g, b); }
+function setDraw(r, g, b) { doc.setDrawColor(r, g, b); }
+function setText(r, g, b) { doc.setTextColor(r, g, b); }
+function drawRoundedRect(x, y, w, h, r, fill = true) { doc.roundedRect(x, y, w, h, r, r, fill ? "F" : "S"); }
+function drawCircle(cx, cy, r, fill = true) { doc.circle(cx, cy, r, fill ? "F" : "S"); }
 
 // ============================================================
-// PAGE 1: Hero Section
+// BACKGROUND
 // ============================================================
-
-// Background gradient effect (simulated with rectangles)
 setFill(...COLORS.primary);
 doc.rect(0, 0, WIDTH, HEIGHT, "F");
 
 // Decorative circles
 setFill(...COLORS.primaryLight);
-drawCircle(180, 30, 40);
-drawCircle(20, 250, 25);
+drawCircle(185, 25, 35);
+drawCircle(25, 270, 20);
 
 setFill(...COLORS.accent);
-drawCircle(170, 260, 15);
-drawCircle(40, 60, 10);
+drawCircle(175, 250, 12);
+drawCircle(35, 50, 8);
 
-// White card in center
+// ============================================================
+// MAIN WHITE CARD
+// ============================================================
 setFill(...COLORS.white);
-drawRoundedRect(MARGIN, 40, CONTENT_WIDTH, 200, 8);
+drawRoundedRect(MARGIN, 20, CONTENT_WIDTH, 257, 8);
 
-// App Logo Area
+// ============================================================
+// HEADER SECTION
+// ============================================================
+
+// App Name Badge
 setFill(...COLORS.primary);
-drawRoundedRect(70, 55, 70, 25, 5);
+drawRoundedRect(60, 30, 90, 18, 4);
 setText(...COLORS.white);
 doc.setFont("helvetica", "bold");
-doc.setFontSize(16);
-doc.text("FREEBUFF", 105, 71, { align: "center" });
+doc.setFontSize(14);
+doc.text("PROMOTION CBT", WIDTH / 2, 42, { align: "center" });
 
 // Main Headline
 setText(...COLORS.dark);
 doc.setFont("helvetica", "bold");
-doc.setFontSize(28);
-doc.text("Promotion CBT", WIDTH / 2, 105, { align: "center" });
-doc.text("Practice App", WIDTH / 2, 118, { align: "center" });
+doc.setFontSize(26);
+doc.text("Promotion CBT", WIDTH / 2, 65, { align: "center" });
+doc.text("Practice App", WIDTH / 2, 78, { align: "center" });
 
-// Subheadline
+// Tagline
 setText(...COLORS.primary);
-doc.setFontSize(14);
+doc.setFontSize(11);
 doc.setFont("helvetica", "normal");
-doc.text("Your Gateway to Promotion Success", WIDTH / 2, 135, { align: "center" });
+doc.text("Your Gateway to Promotion Success", WIDTH / 2, 90, { align: "center" });
 
-// Divider line
+// Divider
 setDraw(...COLORS.primaryLight);
-doc.setLineWidth(0.5);
-doc.line(60, 145, 150, 145);
+doc.setLineWidth(0.4);
+doc.line(55, 98, 155, 98);
 
-// Key Features (3 columns)
-const features = [
-  { icon: "10+", label: "Core Topics" },
-  { icon: "500+", label: "Practice Questions" },
-  { icon: "24/7", label: "Cloud Sync" },
+// ============================================================
+// KEY STATS (3 columns)
+// ============================================================
+const stats = [
+  { value: "10+", label: "Core Topics" },
+  { value: "500+", label: "Questions" },
+  { value: "24/7", label: "Cloud Sync" },
 ];
 
-features.forEach((feat, i) => {
-  const x = 45 + i * 45;
+stats.forEach((stat, i) => {
+  const x = 50 + i * 40;
   
   setFill(...COLORS.primaryLight);
-  drawCircle(x, 165, 12);
+  drawCircle(x, 115, 14);
   
   setText(...COLORS.white);
   doc.setFont("helvetica", "bold");
   doc.setFontSize(10);
-  doc.text(feat.icon, x, 164, { align: "center" });
+  doc.text(stat.value, x, 114, { align: "center" });
   
   setText(...COLORS.text);
-  doc.setFontSize(9);
+  doc.setFontSize(8);
   doc.setFont("helvetica", "normal");
-  doc.text(feat.label, x, 185, { align: "center" });
+  doc.text(stat.label, x, 137, { align: "center" });
 });
 
-// Price Tag
-setFill(...COLORS.gold);
-drawRoundedRect(65, 195, 80, 30, 5);
-
-setText(...COLORS.dark);
-doc.setFont("helvetica", "bold");
-doc.setFontSize(12);
-doc.text("Starting at", 105, 207, { align: "center" });
-doc.setFontSize(16);
-doc.text("N3,000/month", 105, 218, { align: "center" });
-
-// CTA Button
-setFill(...COLORS.primary);
-drawRoundedRect(55, 240, 100, 18, 4);
-
-setText(...COLORS.white);
-doc.setFont("helvetica", "bold");
-doc.setFontSize(12);
-doc.text("Download Now", 105, 252, { align: "center" });
-
-// Add clickable link to the button
-doc.link(55, 240, 100, 18, { url: "https://timdasa75.github.io/Promotion-cbt-app/" });
-
-// Footer on page 1
-setText(...COLORS.white);
-doc.setFont("helvetica", "normal");
-doc.setFontSize(8);
-doc.text("Available on Web  |  Works Offline  |  Free & Premium Plans", WIDTH / 2, 275, { align: "center" });
-
 // ============================================================
-// PAGE 2: Features & Benefits
+// FEATURES GRID (2x3)
 // ============================================================
-doc.addPage();
-
-// Header bar
-setFill(...COLORS.primary);
-doc.rect(0, 0, WIDTH, 40, "F");
-
-setText(...COLORS.white);
-doc.setFont("helvetica", "bold");
-doc.setFontSize(20);
-doc.text("Why Choose Freebuff CBT?", WIDTH / 2, 26, { align: "center" });
-
-// Features Grid
-const featureList = [
-  {
-    title: "Smart Study Modes",
-    desc: "Practice, Mock Exam, and Review modes adapt to your learning style",
-    color: COLORS.primary,
-  },
-  {
-    title: "Detailed Analytics",
-    desc: "Track progress with heatmaps, mistake analysis, and score trends",
-    color: COLORS.primaryLight,
-  },
-  {
-    title: "Bookmark & Retry",
-    desc: "Save difficult questions and retry your mistakes until mastered",
-    color: COLORS.accent,
-  },
-  {
-    title: "Cloud Sync",
-    desc: "Your progress syncs across all devices automatically",
-    color: COLORS.primary,
-  },
-  {
-    title: "Offline Support",
-    desc: "Study anywhere - the app works without internet connection",
-    color: COLORS.primaryLight,
-  },
-  {
-    title: "Premium Content",
-    desc: "Access all 10+ topics with hundreds of exam-standard questions",
-    color: COLORS.accent,
-  },
+const features = [
+  { icon: "📚", title: "Smart Study Modes", desc: "Practice, Mock Exam, Review" },
+  { icon: "📊", title: "Analytics", desc: "Heatmaps & Score Trends" },
+  { icon: "🔖", title: "Bookmark & Retry", desc: "Master Difficult Questions" },
+  { icon: "☁️", title: "Cloud Sync", desc: "Sync Across Devices" },
+  { icon: "📱", title: "Offline Support", desc: "Study Without Internet" },
+  { icon: "⭐", title: "Premium Content", desc: "All Topics & Questions" },
 ];
 
-featureList.forEach((feat, i) => {
+features.forEach((feat, i) => {
   const col = i % 2;
   const row = Math.floor(i / 2);
-  const x = MARGIN + col * (CONTENT_WIDTH / 2 + 5);
-  const y = 55 + row * 55;
+  const x = MARGIN + 10 + col * (CONTENT_WIDTH / 2);
+  const y = 148 + row * 28;
   
   // Card background
   setFill(...COLORS.lightBg);
-  drawRoundedRect(x, y, CONTENT_WIDTH / 2 - 5, 45, 5);
+  drawRoundedRect(x, y, CONTENT_WIDTH / 2 - 15, 22, 3);
   
-  // Color accent bar
-  setFill(...feat.color);
-  doc.rect(x, y, 4, 45, "F");
+  // Color accent
+  setFill(...COLORS.primaryLight);
+  doc.rect(x, y, 3, 22, "F");
   
   // Title
   setText(...COLORS.dark);
   doc.setFont("helvetica", "bold");
-  doc.setFontSize(11);
-  doc.text(feat.title, x + 12, y + 15);
+  doc.setFontSize(9);
+  doc.text(`${feat.icon} ${feat.title}`, x + 10, y + 9);
   
   // Description
   setText(...COLORS.textLight);
-  doc.setFont("helvetica", "normal");
-  doc.setFontSize(9);
-  const lines = doc.splitTextToSize(feat.desc, CONTENT_WIDTH / 2 - 25);
-  doc.text(lines, x + 12, y + 25);
+  doc.setFontSize(7);
+  doc.text(feat.desc, x + 10, y + 17);
 });
 
-// CTA Section
+// ============================================================
+// PRICE CARD
+// ============================================================
+setFill(...COLORS.gold);
+drawRoundedRect(55, 240, 100, 28, 5);
+
+setText(...COLORS.dark);
+doc.setFont("helvetica", "bold");
+doc.setFontSize(9);
+doc.text("LAUNCH PLAN", WIDTH / 2, 248, { align: "center" });
+doc.setFontSize(10);
+doc.text("Monthly", WIDTH / 2, 254, { align: "center" });
+doc.setFontSize(18);
+doc.text("₦3,000", WIDTH / 2, 264, { align: "center" });
+
+// ============================================================
+// CTA BUTTON
+// ============================================================
 setFill(...COLORS.primary);
-drawRoundedRect(MARGIN, 230, CONTENT_WIDTH, 45, 8);
+drawRoundedRect(50, 272, 110, 16, 4);
 
 setText(...COLORS.white);
 doc.setFont("helvetica", "bold");
-doc.setFontSize(14);
-doc.text("Start Your Promotion Journey Today!", WIDTH / 2, 248, { align: "center" });
-
-doc.setFont("helvetica", "normal");
 doc.setFontSize(10);
-doc.text("Visit: timdasa75.github.io/Promotion-cbt-app", WIDTH / 2, 258, { align: "center" });
+doc.text("Start Practicing Now →", WIDTH / 2, 282, { align: "center" });
 
-// Add clickable link
-doc.link(MARGIN, 230, CONTENT_WIDTH, 45, { url: "https://timdasa75.github.io/Promotion-cbt-app/" });
-
-// Footer
-setText(...COLORS.textLight);
-doc.setFontSize(8);
-doc.text("Freebuff CBT - Your Path to Promotion Success", WIDTH / 2, 285, { align: "center" });
+// Add clickable link to the CTA button
+doc.link(50, 272, 110, 16, { url: "https://timdasa75.github.io/Promotion-cbt-app/" });
 
 // ============================================================
-// Save PDF
+// FOOTER
+// ============================================================
+setText(...COLORS.white);
+doc.setFont("helvetica", "normal");
+doc.setFontSize(7);
+doc.text("Available on Web  |  Works Offline  |  Free & Premium Plans", WIDTH / 2, 290, { align: "center" });
+
+// ============================================================
+// SAVE PDF
 // ============================================================
 const pdfBuffer = Buffer.from(doc.output("arraybuffer"));
 fs.writeFileSync(OUTPUT_FILE, pdfBuffer);
