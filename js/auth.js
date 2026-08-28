@@ -23,7 +23,7 @@ import { bootstrapCloudflareMigrationFromFirebase as bootstrapCloudflareMigratio
 import { enrichDirectoryVerificationStates, ensureAdminCloudSession as ensureAdminCloudSessionHelper, getConfiguredAdminEmails as getConfiguredAdminEmailsHelper, isCurrentUserAdmin as isCurrentUserAdminHelper } from "./authAdminDirectory.js";
 import { deleteCloudUserById as deleteCloudUserByIdService, getAdminOperationHistory as getAdminOperationHistoryService, getAdminUserDirectory as getAdminUserDirectoryService, logAdminOperationToCloud as logAdminOperationToCloudService, createCloudflareMigrationLinkForUser as createCloudflareMigrationLinkForUserService, updateCloudUserStatusById as updateCloudUserStatusByIdService, updateCloudUserPlan as updateCloudUserPlanService } from "./authAdminService.js";
 import { buildUpgradeRequestRecordFromProfile as buildUpgradeRequestRecordFromProfileService, ensureCloudProfileInSession as ensureCloudProfileInSessionService, getCurrentUserUpgradeRequest as getCurrentUserUpgradeRequestService, setUpgradeRequestStatus as setUpgradeRequestStatusService, submitUpgradeRequest as submitUpgradeRequestService, verifySelarPayment as verifySelarPaymentService } from "./authUpgradeService.js";
-import { FEEDBACK_MESSAGE_MAX_LENGTH, getAdminFeedbackSubmissions as getAdminFeedbackSubmissionsService, getFeedbackAccessState as getFeedbackAccessStateService, submitFeedbackSubmission as submitFeedbackSubmissionService, updateFeedbackSubmissionStatus as updateFeedbackSubmissionStatusService } from "./authFeedbackService.js";
+import { FEEDBACK_MESSAGE_MAX_LENGTH, getAdminFeedbackSubmissions as getAdminFeedbackSubmissionsService, getFeedbackAccessState as getFeedbackAccessStateService, getUserFeedbackList as getUserFeedbackListService, submitFeedbackSubmission as submitFeedbackSubmissionService, updateFeedbackSubmissionStatus as updateFeedbackSubmissionStatusService } from "./authFeedbackService.js";
 import { loginUserCloud as loginUserCloudService, logoutCloud as logoutCloudService, refreshCloudUserInSession as refreshCloudUserInSessionService, registerUserCloud as registerUserCloudService } from "./authCloudLifecycle.js";
 import { loginUserHybrid as loginUserHybridService, logoutHybrid as logoutHybridService, refreshCloudflareUserInSession as refreshCloudflareUserInSessionService, registerUserHybrid as registerUserHybridService } from "./authHybridLifecycle.js";
 import { buildIdentityToolkitAdminHeaders, getFirebaseConfig, getPasswordResetCooldownMs, getVerificationResendCooldownMs, isCloudAuthEnabled, isCloudAuthMisconfigured, isCloudAuthRequired, isCloudProgressSyncEnabled, isCloudflareAuthPrimary, isLocalDemoAuthEnabled, shouldAllowFirebaseAuthFallback } from "./authRuntime.js";
@@ -1068,6 +1068,17 @@ export async function getAdminFeedbackSubmissions(limit = 200) {
     extra.listFeedback = listCloudFeedbackSubmissions;
   }
   return getAdminFeedbackSubmissionsService(options, extra);
+}
+
+export async function getUserFeedbackList(limit = 50) {
+  const session = readSession();
+  const options = {
+    cloudAuthEnabled: isCloudAuthEnabled(),
+    currentUser: getCurrentUser(),
+    session,
+    refreshSession: ensureCloudSessionActive,
+  };
+  return getUserFeedbackListService(options, { limit });
 }
 
 export async function updateFeedbackSubmissionStatus(feedbackId, status) {

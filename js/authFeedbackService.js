@@ -173,3 +173,14 @@ export async function updateFeedbackSubmissionStatus(feedbackId, status, { cloud
   }
   return { feedbackId: normalizedFeedbackId, status: nextStatus, reviewedAt: nowIso };
 }
+
+export async function getUserFeedbackList({ cloudAuthEnabled = false, currentUser = null, session = null, refreshSession } = {}, { limit = 50 } = {}) {
+  if (!currentUser?.email) throw new Error("Sign in required.");
+  if (!cloudAuthEnabled) throw new Error("Feedback list requires an online session.");
+  if (typeof refreshSession !== "function") throw new Error("Session refresh is unavailable.");
+  const freshSession = await refreshSession(session, { clearOnFailure: true });
+  if (!freshSession?.accessToken) throw new Error("Session is unavailable.");
+  if (typeof window === "undefined") return [];
+  const result = await workerRequest("feedback/userList", { limit }, freshSession.accessToken);
+  return Array.isArray(result?.feedback) ? result.feedback : [];
+}

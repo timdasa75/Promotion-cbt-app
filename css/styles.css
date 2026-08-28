@@ -8028,6 +8028,81 @@ body.dark-mode #quizScreen .quiz-actions .btn-secondary:hover {
     color: var(--ink-900);
 }
 
+/* User Feedback List */
+.user-feedback-list {
+    display: grid;
+    gap: 12px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.user-feedback-item {
+    padding: 12px 14px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--card);
+}
+
+.user-feedback-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.user-feedback-category {
+    font-size: 0.8rem;
+    color: var(--ink-500);
+    font-weight: 500;
+}
+
+.user-feedback-status {
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.user-feedback-status.new {
+    background: var(--info-bg);
+    color: var(--info);
+}
+
+.user-feedback-status.in-review {
+    background: var(--warning-bg);
+    color: var(--warning);
+}
+
+.user-feedback-status.resolved {
+    background: var(--success-bg);
+    color: var(--success);
+}
+
+.user-feedback-status.dismissed {
+    background: var(--surface-dim);
+    color: var(--ink-500);
+}
+
+.user-feedback-message {
+    font-size: 0.9rem;
+    color: var(--ink-700);
+    margin-bottom: 6px;
+    line-height: 1.4;
+}
+
+.user-feedback-meta {
+    font-size: 0.8rem;
+    color: var(--ink-500);
+    margin-bottom: 4px;
+}
+
+.user-feedback-date {
+    font-size: 0.75rem;
+    color: var(--ink-400);
+}
+
 @media (max-width: 699px) {
     .feedback-modal-card {
         width: 100%;

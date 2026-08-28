@@ -172,6 +172,7 @@ import {
   updateCloudUserStatusById,
   verifySelarPayment,
   updateFeedbackSubmissionStatus,
+  getUserFeedbackList,
 } from "./auth.js";
 import { getFirebaseConfig, getRuntimeConfig, getPaymentProvider, getSelarCheckoutUrl, isCloudAuthEnabled } from "./authRuntime.js";
 import "./authGoogle.js";
@@ -5089,6 +5090,65 @@ function updateProfileDataSyncUI() {
   if (syncNowBtn) syncNowBtn.classList.add("hidden");
 }
 
+async function renderUserFeedbackList() {
+  const container = document.getElementById("userFeedbackList");
+  if (!container) return;
+  
+  const session = readSession();
+  if (!session || !session.accessToken) {
+    container.innerHTML = '<p class="meta">Sign in to view your feedback.</p>';
+    return;
+  }
+  
+  try {
+    container.innerHTML = '<p class="meta">Loading feedback...</p>';
+    const feedbackList = await getUserFeedbackList(50);
+    
+    if (!feedbackList || feedbackList.length === 0) {
+      container.innerHTML = '<p class="meta">No feedback submitted yet.</p>';
+      return;
+    }
+    
+    container.innerHTML = "";
+    feedbackList.forEach((entry) => {
+      const item = document.createElement("article");
+      item.className = "user-feedback-item";
+      
+      const statusClass = feedbackStatusBadgeClass(entry.status);
+      const statusLabel = formatFeedbackStatusLabel(entry.status);
+      const categoryLabel = formatFeedbackCategoryLabel(entry.category);
+      const createdAt = formatDateTime(entry.createdAt);
+      
+      let adminReplyHtml = "";
+      if (entry.adminReply) {
+        const replyDate = formatDateTime(entry.repliedAt);
+        adminReplyHtml = `
+          <div class="admin-feedback-reply-display">
+            <span class="meta">Admin Reply (${replyDate}):</span>
+            <p>${escapeHtml(entry.adminReply)}</p>
+          </div>
+        `;
+      }
+      
+      item.innerHTML = `
+        <div class="user-feedback-header">
+          <span class="user-feedback-category">${escapeHtml(categoryLabel)}</span>
+          <span class="user-feedback-status ${statusClass}">${escapeHtml(statusLabel)}</span>
+        </div>
+        <div class="user-feedback-message">${escapeHtml(entry.message)}</div>
+        ${entry.topicName ? `<div class="user-feedback-meta">Topic: ${escapeHtml(entry.topicName)}</div>` : ""}
+        <div class="user-feedback-date">Submitted: ${escapeHtml(createdAt)}</div>
+        ${adminReplyHtml}
+      `;
+      
+      container.appendChild(item);
+    });
+  } catch (error) {
+    console.error("[user-feedback] Failed to load feedback:", error);
+    container.innerHTML = '<p class="meta">Failed to load feedback. Please try again later.</p>';
+  }
+}
+
 const AMBIENT_CLOUD_SYNC_INTERVAL_MS = 60000;
 let ambientCloudSyncIntervalId = null;
 
@@ -7247,6 +7307,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     if (event?.detail?.screenId === "profileScreen") {
       updateProfileDataSyncUI();
       refreshProfileUpgradeSection().catch(() => {});
+      renderUserFeedbackList().catch(() => {});
     }
     if (event?.detail?.screenId === "reviewMistakesScreen") {
       renderReviewMistakesScreen();
