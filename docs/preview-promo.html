@@ -5,18 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Promotion CBT - Practice App</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
     
     * { margin: 0; padding: 0; box-sizing: border-box; }
     
     body { 
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #1a1a2e;
+      background: #0a3d2e;
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       padding: 20px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
     
     .card {
@@ -63,18 +65,19 @@
       display: flex;
       align-items: center;
       gap: 14px;
-      margin-bottom: 20px;
+      margin-bottom: 22px;
     }
     
     .logo-icon {
-      width: 48px;
-      height: 48px;
+      width: 50px;
+      height: 50px;
       background: rgba(255,255,255,0.12);
-      border-radius: 12px;
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 24px;
+      font-size: 26px;
+      border: 1px solid rgba(255,255,255,0.08);
     }
     
     .logo-text {
@@ -82,41 +85,44 @@
     }
     
     .logo-subtitle {
-      font-size: 10px;
-      color: rgba(255,255,255,0.6);
+      font-size: 10.5px;
+      color: rgba(255,255,255,0.55);
       text-transform: uppercase;
-      letter-spacing: 1.5px;
-      font-weight: 500;
+      letter-spacing: 2px;
+      font-weight: 600;
+      margin-bottom: 2px;
     }
     
     .logo-title {
-      font-size: 18px;
+      font-size: 20px;
       color: #fff;
-      font-weight: 700;
+      font-weight: 800;
+      letter-spacing: -0.3px;
     }
     
     /* Badge */
     .badge {
       display: inline-block;
-      background: rgba(16,185,129,0.2);
-      border: 1px solid rgba(16,185,129,0.4);
+      background: rgba(16,185,129,0.18);
+      border: 1.5px solid rgba(16,185,129,0.35);
       color: #34D399;
-      padding: 6px 14px;
+      padding: 7px 16px;
       border-radius: 20px;
-      font-size: 10px;
-      font-weight: 600;
+      font-size: 10.5px;
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 20px;
+      letter-spacing: 1.2px;
+      margin-bottom: 22px;
     }
     
     /* Headline */
     .headline {
-      font-size: 28px;
+      font-size: 30px;
       color: #fff;
-      font-weight: 800;
-      line-height: 1.2;
+      font-weight: 900;
+      line-height: 1.18;
       margin-bottom: 16px;
+      letter-spacing: -0.5px;
     }
     
     .headline .highlight {
@@ -125,45 +131,48 @@
     
     /* Description */
     .description {
-      font-size: 13px;
-      color: rgba(255,255,255,0.7);
-      line-height: 1.6;
+      font-size: 13.5px;
+      color: rgba(255,255,255,0.72);
+      line-height: 1.65;
       margin-bottom: 24px;
+      font-weight: 400;
     }
     
     /* Level Badge */
     .level-badge {
       display: flex;
       align-items: center;
-      gap: 12px;
-      background: rgba(220,38,38,0.15);
-      border: 1px solid rgba(220,38,38,0.3);
-      border-radius: 12px;
-      padding: 14px 16px;
-      margin-bottom: 24px;
+      gap: 14px;
+      background: rgba(220,38,38,0.12);
+      border: 1.5px solid rgba(220,38,38,0.25);
+      border-radius: 14px;
+      padding: 14px 18px;
+      margin-bottom: 26px;
     }
     
     .level-icon {
-      width: 36px;
-      height: 36px;
+      width: 40px;
+      height: 40px;
       background: #DC2626;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 18px;
+      font-size: 20px;
+      flex-shrink: 0;
     }
     
     .level-text h4 {
-      font-size: 13px;
+      font-size: 13.5px;
       color: #fff;
-      font-weight: 600;
-      margin-bottom: 2px;
+      font-weight: 700;
+      margin-bottom: 3px;
     }
     
     .level-text p {
-      font-size: 11px;
-      color: rgba(255,255,255,0.6);
+      font-size: 11.5px;
+      color: rgba(255,255,255,0.55);
+      font-weight: 400;
     }
     
     /* Features Grid */
@@ -175,28 +184,29 @@
     }
     
     .feature-card {
-      background: rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.07);
       border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 12px;
-      padding: 16px;
+      border-radius: 14px;
+      padding: 16px 14px;
     }
     
     .feature-card .icon {
-      font-size: 20px;
+      font-size: 22px;
       margin-bottom: 8px;
     }
     
     .feature-card h4 {
-      font-size: 12px;
+      font-size: 12.5px;
       color: #fff;
-      font-weight: 600;
+      font-weight: 700;
       margin-bottom: 4px;
     }
     
     .feature-card p {
-      font-size: 10px;
+      font-size: 10.5px;
       color: rgba(255,255,255,0.5);
       line-height: 1.4;
+      font-weight: 400;
     }
     
     /* CTA Button */
@@ -206,27 +216,23 @@
       background: linear-gradient(135deg, #10B981 0%, #059669 100%);
       color: #fff;
       padding: 16px;
-      border-radius: 12px;
-      font-size: 15px;
-      font-weight: 700;
+      border-radius: 14px;
+      font-size: 16px;
+      font-weight: 800;
       text-align: center;
       text-decoration: none;
-      transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 8px 24px rgba(16,185,129,0.3);
-      margin-bottom: 12px;
-    }
-    
-    .cta-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 32px rgba(16,185,129,0.4);
+      box-shadow: 0 8px 28px rgba(16,185,129,0.35);
+      margin-bottom: 14px;
+      letter-spacing: 0.2px;
     }
     
     /* URL */
     .url {
       text-align: center;
-      font-size: 11px;
-      color: rgba(255,255,255,0.5);
+      font-size: 11.5px;
+      color: rgba(255,255,255,0.45);
       margin-bottom: 24px;
+      font-weight: 400;
     }
     
     /* Stats Bar */
@@ -234,9 +240,9 @@
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 8px;
-      background: rgba(0,0,0,0.2);
-      border-radius: 12px;
-      padding: 16px 12px;
+      background: rgba(0,0,0,0.25);
+      border-radius: 14px;
+      padding: 18px 14px;
     }
     
     .stat-item {
@@ -244,17 +250,25 @@
     }
     
     .stat-value {
-      font-size: 16px;
+      font-size: 18px;
       color: #34D399;
-      font-weight: 800;
-      margin-bottom: 2px;
+      font-weight: 900;
+      margin-bottom: 3px;
+      letter-spacing: -0.3px;
     }
     
     .stat-label {
-      font-size: 8px;
+      font-size: 8.5px;
       color: rgba(255,255,255,0.5);
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.8px;
+      font-weight: 600;
+    }
+
+    /* Print optimizations */
+    @media print {
+      body { padding: 0; background: #0a3d2e; }
+      .card { box-shadow: none; border-radius: 0; max-width: 100%; }
     }
   </style>
 </head>
