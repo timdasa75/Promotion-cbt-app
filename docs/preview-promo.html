@@ -5,10 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Promotion CBT - Practice App</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    
     body { 
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; 
-      background: #064E3B; 
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #1a1a2e;
       min-height: 100vh;
       display: flex;
       justify-content: center;
@@ -17,91 +20,150 @@
     }
     
     .card {
-      max-width: 600px;
       width: 100%;
-      background: #fff;
-      border-radius: 16px;
+      max-width: 420px;
+      background: linear-gradient(165deg, #0a3d2e 0%, #0d4a35 30%, #0f5a40 60%, #0a3d2e 100%);
+      border-radius: 24px;
       overflow: hidden;
       position: relative;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      box-shadow: 0 25px 80px rgba(0,0,0,0.4);
     }
     
-    /* Decorative circles */
-    .circle { position: absolute; border-radius: 50%; z-index: 0; }
-    .circle-1 { width: 150px; height: 150px; background: #10B981; top: -40px; right: -40px; opacity: 0.15; }
-    .circle-2 { width: 100px; height: 100px; background: #34D399; bottom: 150px; left: -30px; opacity: 0.15; }
-    .circle-3 { width: 60px; height: 60px; background: #10B981; bottom: 80px; right: 20px; opacity: 0.1; }
+    /* Decorative elements */
+    .card::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(16,185,129,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    
+    .card::after {
+      content: '';
+      position: absolute;
+      bottom: 100px;
+      left: -80px;
+      width: 250px;
+      height: 250px;
+      background: radial-gradient(circle, rgba(52,211,153,0.1) 0%, transparent 70%);
+      border-radius: 50%;
+    }
     
     .content {
       position: relative;
       z-index: 1;
-      padding: 40px 30px;
+      padding: 32px 28px;
     }
     
     /* Header */
-    .logo-badge {
-      display: inline-block;
-      background: #064E3B;
-      color: #fff;
-      padding: 8px 24px;
-      border-radius: 6px;
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      margin-bottom: 24px;
-    }
-    
-    h1 {
-      font-size: 36px;
-      color: #0F172A;
-      font-weight: 800;
-      line-height: 1.1;
-      margin-bottom: 8px;
-    }
-    
-    .tagline {
-      font-size: 16px;
-      color: #064E3B;
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
       margin-bottom: 20px;
     }
     
-    .divider {
-      width: 80px;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, #10B981, transparent);
-      margin: 20px auto;
-    }
-    
-    /* Stats Row */
-    .stats-row {
+    .logo-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(255,255,255,0.12);
+      border-radius: 12px;
       display: flex;
+      align-items: center;
       justify-content: center;
-      gap: 30px;
-      margin: 24px 0;
+      font-size: 24px;
     }
     
-    .stat-item {
-      text-align: center;
+    .logo-text {
+      flex: 1;
     }
     
-    .stat-icon {
-      width: 50px;
-      height: 50px;
-      background: #10B981;
+    .logo-subtitle {
+      font-size: 10px;
+      color: rgba(255,255,255,0.6);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 500;
+    }
+    
+    .logo-title {
+      font-size: 18px;
+      color: #fff;
+      font-weight: 700;
+    }
+    
+    /* Badge */
+    .badge {
+      display: inline-block;
+      background: rgba(16,185,129,0.2);
+      border: 1px solid rgba(16,185,129,0.4);
+      color: #34D399;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+    
+    /* Headline */
+    .headline {
+      font-size: 28px;
+      color: #fff;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    
+    .headline .highlight {
+      color: #34D399;
+    }
+    
+    /* Description */
+    .description {
+      font-size: 13px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    
+    /* Level Badge */
+    .level-badge {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(220,38,38,0.15);
+      border: 1px solid rgba(220,38,38,0.3);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-bottom: 24px;
+    }
+    
+    .level-icon {
+      width: 36px;
+      height: 36px;
+      background: #DC2626;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 8px;
-      color: #fff;
-      font-size: 14px;
-      font-weight: 700;
+      font-size: 18px;
     }
     
-    .stat-label {
-      font-size: 12px;
-      color: #334155;
-      font-weight: 500;
+    .level-text h4 {
+      font-size: 13px;
+      color: #fff;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+    
+    .level-text p {
+      font-size: 11px;
+      color: rgba(255,255,255,0.6);
     }
     
     /* Features Grid */
@@ -109,163 +171,179 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 12px;
-      margin: 24px 0;
+      margin-bottom: 28px;
     }
     
     .feature-card {
-      background: #F8FAFC;
-      border-radius: 8px;
-      padding: 12px 14px;
-      border-left: 3px solid #10B981;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 16px;
     }
     
-    .feature-card h3 {
+    .feature-card .icon {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+    
+    .feature-card h4 {
       font-size: 12px;
-      color: #0F172A;
+      color: #fff;
+      font-weight: 600;
       margin-bottom: 4px;
     }
     
     .feature-card p {
       font-size: 10px;
-      color: #64748B;
-    }
-    
-    /* Price Card */
-    .price-card {
-      background: linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%);
-      border-radius: 10px;
-      padding: 16px;
-      text-align: center;
-      margin: 20px auto;
-      max-width: 200px;
-    }
-    
-    .price-label {
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: #92400E;
-      font-weight: 600;
-    }
-    
-    .price-name {
-      font-size: 14px;
-      color: #0F172A;
-      font-weight: 700;
-      margin: 4px 0;
-    }
-    
-    .price-amount {
-      font-size: 28px;
-      color: #0F172A;
-      font-weight: 800;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.4;
     }
     
     /* CTA Button */
-    .cta-section {
-      text-align: center;
-      margin-top: 20px;
-    }
-    
     .cta-button {
-      display: inline-block;
-      background: linear-gradient(135deg, #064E3B 0%, #047857 100%);
+      display: block;
+      width: 100%;
+      background: linear-gradient(135deg, #10B981 0%, #059669 100%);
       color: #fff;
-      padding: 14px 36px;
-      border-radius: 8px;
-      font-size: 14px;
+      padding: 16px;
+      border-radius: 12px;
+      font-size: 15px;
       font-weight: 700;
+      text-align: center;
       text-decoration: none;
       transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 4px 12px rgba(6, 78, 59, 0.3);
+      box-shadow: 0 8px 24px rgba(16,185,129,0.3);
+      margin-bottom: 12px;
     }
     
     .cta-button:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(6, 78, 59, 0.4);
+      box-shadow: 0 12px 32px rgba(16,185,129,0.4);
     }
     
-    .footer {
+    /* URL */
+    .url {
       text-align: center;
-      padding: 16px;
-      color: #64748B;
       font-size: 11px;
-      border-top: 1px solid #E2E8F0;
-      margin-top: 20px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 24px;
+    }
+    
+    /* Stats Bar */
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      background: rgba(0,0,0,0.2);
+      border-radius: 12px;
+      padding: 16px 12px;
+    }
+    
+    .stat-item {
+      text-align: center;
+    }
+    
+    .stat-value {
+      font-size: 16px;
+      color: #34D399;
+      font-weight: 800;
+      margin-bottom: 2px;
+    }
+    
+    .stat-label {
+      font-size: 8px;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
   </style>
 </head>
 <body>
   <div class="card">
-    <div class="circle circle-1"></div>
-    <div class="circle circle-2"></div>
-    <div class="circle circle-3"></div>
-    
     <div class="content">
-      <div class="logo-badge">PROMOTION CBT</div>
+      <!-- Header -->
+      <div class="header">
+        <div class="logo-icon">📋</div>
+        <div class="logo-text">
+          <div class="logo-subtitle">Nigerian Federal Civil Service</div>
+          <div class="logo-title">Promotion CBT</div>
+        </div>
+      </div>
       
-      <h1>Promotion CBT<br>Practice App</h1>
+      <!-- Badge -->
+      <div class="badge">Directorate Level Exam Prep</div>
       
-      <p class="tagline">Your Gateway to Promotion Success</p>
+      <!-- Headline -->
+      <h1 class="headline">
+        Ace Your Directorate Level Promotion Exam with <span class="highlight">Confidence</span>
+      </h1>
       
-      <div class="divider"></div>
+      <!-- Description -->
+      <p class="description">
+        Purpose-built for GL 14 and above — the only CBT practice platform focused exclusively on Directorate Level promotion exams in the Nigerian Federal Civil Service.
+      </p>
       
-      <div class="stats-row">
+      <!-- Level Badge -->
+      <div class="level-badge">
+        <div class="level-icon">🎯</div>
+        <div class="level-text">
+          <h4>Directorate Level (GL 14 & Above)</h4>
+          <p>Federal Civil Service Commission Promotion Exams</p>
+        </div>
+      </div>
+      
+      <!-- Features Grid -->
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="icon">📚</div>
+          <h4>10 Core Topics</h4>
+          <p>PSR, FR, Constitution & more</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">⏱️</div>
+          <h4>Timed Mock Exams</h4>
+          <p>Real CBT simulation</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">📊</div>
+          <h4>Performance Analytics</h4>
+          <p>Know your weak spots</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">🔄</div>
+          <h4>Spaced Practice</h4>
+          <p>Reinforce what sticks</p>
+        </div>
+      </div>
+      
+      <!-- CTA Button -->
+      <a href="https://timdasa75.github.io/Promotion-cbt-app/" class="cta-button" target="_blank">
+        Start Practicing Free →
+      </a>
+      
+      <!-- URL -->
+      <div class="url">timdasa75.github.io/Promotion-cbt-app</div>
+      
+      <!-- Stats Bar -->
+      <div class="stats-bar">
         <div class="stat-item">
-          <div class="stat-icon">10+</div>
+          <div class="stat-value">10+</div>
           <div class="stat-label">Core Topics</div>
         </div>
         <div class="stat-item">
-          <div class="stat-icon">500+</div>
-          <div class="stat-label">Questions</div>
+          <div class="stat-value">3</div>
+          <div class="stat-label">Study Modes</div>
         </div>
         <div class="stat-item">
-          <div class="stat-icon">24/7</div>
-          <div class="stat-label">Cloud Sync</div>
+          <div class="stat-value">₦3,000</div>
+          <div class="stat-label">Premium/Month</div>
         </div>
-      </div>
-      
-      <div class="features-grid">
-        <div class="feature-card">
-          <h3>📚 Smart Study Modes</h3>
-          <p>Practice, Mock Exam, Review</p>
+        <div class="stat-item">
+          <div class="stat-value">Free</div>
+          <div class="stat-label">To Start</div>
         </div>
-        <div class="feature-card">
-          <h3>📊 Analytics</h3>
-          <p>Heatmaps & Score Trends</p>
-        </div>
-        <div class="feature-card">
-          <h3>🔖 Bookmark & Retry</h3>
-          <p>Master Difficult Questions</p>
-        </div>
-        <div class="feature-card">
-          <h3>☁️ Cloud Sync</h3>
-          <p>Sync Across Devices</p>
-        </div>
-        <div class="feature-card">
-          <h3>📱 Offline Support</h3>
-          <p>Study Without Internet</p>
-        </div>
-        <div class="feature-card">
-          <h3>⭐ Premium Content</h3>
-          <p>All Topics & Questions</p>
-        </div>
-      </div>
-      
-      <div class="price-card">
-        <div class="price-label">Launch Plan</div>
-        <div class="price-name">Monthly</div>
-        <div class="price-amount">₦3,000</div>
-      </div>
-      
-      <div class="cta-section">
-        <a href="https://timdasa75.github.io/Promotion-cbt-app/" class="cta-button" target="_blank">
-          Start Practicing Now →
-        </a>
       </div>
     </div>
-    
-    <div class="footer">Available on Web | Works Offline | Free & Premium Plans</div>
   </div>
 </body>
 </html>
