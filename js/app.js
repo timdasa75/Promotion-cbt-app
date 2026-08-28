@@ -6675,7 +6675,11 @@ function initializeAuthUI() {
           },
         );
         if (!syncResult.synced && syncResult.warning) {
-          showWarning(`Cloud sync notice: ${syncResult.warning}`);
+          // Suppress cloud sync warnings for known device-only states
+          const suppressedWarnings = ["Cloud session is unavailable.", "Data request failed."];
+          if (!suppressedWarnings.includes(syncResult.warning)) {
+            showWarning(`Cloud sync notice: ${syncResult.warning}`);
+          }
         }
         logAdminOperation({
           action: "Refresh users and overrides",

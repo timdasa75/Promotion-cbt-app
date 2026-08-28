@@ -1854,6 +1854,7 @@ select {
     color: var(--ink-600);
     font-weight: 600;
     font-size: 0.85rem;
+    font-variant-numeric: tabular-nums;
 }
 
 body.dark-mode .topic-count,
@@ -1884,6 +1885,7 @@ body.dark-mode .card-footer {
 .card-footer .question-count,
 .card-footer .topic-count {
     margin-top: 0;
+    font-variant-numeric: tabular-nums;
 }
 
 .btn-compact {
@@ -2883,6 +2885,7 @@ select:focus-visible,
     color: var(--ink-900);
     line-height: 1;
     margin-bottom: 4px;
+    font-variant-numeric: tabular-nums;
 }
 
 .admin-stat-label {
@@ -3285,6 +3288,7 @@ body.dark-mode .admin-view-header p {
     text-transform: uppercase;
     color: var(--ink-600);
     white-space: nowrap;
+    font-variant-numeric: tabular-nums;
 }
 
 .admin-card-actions {
@@ -4169,6 +4173,26 @@ body.dark-mode .admin-view-header p {
     .button-row .btn {
         width: 100%;
     }
+
+    /* Admin user cards - mobile layout */
+    .admin-user-summary-head {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-1);
+    }
+
+    .admin-user-email {
+        font-size: 0.88rem;
+        word-break: break-all;
+    }
+
+    .admin-user-badges {
+        flex-wrap: wrap;
+    }
+
+    .admin-user-summary-side {
+        font-size: 0.72rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -4406,21 +4430,23 @@ body.dark-mode .admin-view-header p {
     align-items: center;
     gap: var(--space-2);
     flex-wrap: wrap;
+    width: 100%;
 }
 
 .admin-user-email {
     font-weight: 700;
     color: var(--ink-900);
     margin-bottom: 0;
-    flex: 1 1 200px;
+    flex: 1 1 auto;
     min-width: 0;
     word-break: break-word;
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
+    font-size: 0.95rem;
 }
 
 .admin-user-badges {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 6px;
     align-items: center;
 }
@@ -9727,6 +9753,7 @@ body.dark-mode .admin-transactions-table .status-badge.failed {
     font-weight: 500;
     cursor: pointer;
     transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    font-variant-numeric: tabular-nums;
 }
 
 .pagination-btn:hover:not(:disabled) {
@@ -9748,6 +9775,7 @@ body.dark-mode .admin-transactions-table .status-badge.failed {
 
 .pagination-page-num {
     min-width: 36px;
+    font-variant-numeric: tabular-nums;
 }
 
 .pagination-ellipsis {
@@ -9766,6 +9794,7 @@ body.dark-mode .admin-transactions-table .status-badge.failed {
     font-size: 0.8125rem;
     color: var(--ink-500);
     margin-top: 4px;
+    font-variant-numeric: tabular-nums;
 }
 
 /* Dark mode pagination */
