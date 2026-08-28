@@ -5888,7 +5888,7 @@ function startAdminDirectoryAutoSync() {
 // Product Pricing Management
 // ============================================================
 
-async function fetchProductPricing() {
+export async function fetchProductPricing() {
   try {
     const config = getRuntimeConfig();
     const baseUrl = config?.cloudflareAuthBaseUrl || '';
