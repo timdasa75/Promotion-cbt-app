@@ -42,7 +42,7 @@
             <div class="spinner-ring">
                 <div></div><div></div><div></div><div></div>
             </div>
-            <p id="appLoadingMessage">Loading Promotion CBT...</p>
+            <p id="appLoadingMessage">Loading Promotion CBT…</p>
         </div>
         <div class="app-container">
             <header class="app-shell-header">
@@ -226,7 +226,7 @@
                         <div class="topic-highlight-row"><span class="pill">PSR</span><span class="pill">FR</span><span class="pill">PPA</span><span class="pill">Constitutional and Legal</span></div>
                         <div class="card-container" id="topicList">
                             <div class="loading-skeleton-grid" aria-hidden="true"><div class="skeleton-card"></div><div class="skeleton-card"></div><div class="skeleton-card"></div><div class="skeleton-card"></div></div>
-                            <div class="loading">Loading topics...</div>
+                            <div class="loading">Loading topics…</div>
                         </div>
                     </div>
                     <div class="card bookmark-manager-shell hidden" id="bookmarkManagerShell">
@@ -333,7 +333,7 @@
                     </div>
                     <div class="card category-selection-shell">
                         <div class="section-head screen-header category-selection-head"><h2>Subcategories</h2><p>Topic selected: <span id="selectedTopicForCategory">-</span></p></div>
-                        <div class="card-container category-card-grid" id="categoryList"><div class="loading">Loading categories...</div></div>
+                        <div class="card-container category-card-grid" id="categoryList"><div class="loading">Loading categories…</div></div>
                         <div class="button-row compact-actions category-selection-actions"><button class="btn btn-secondary" id="backToTopicBtn" type="button">Back</button><button class="btn btn-primary" id="selectAllCategoryBtn" type="button">Select All</button></div>
                     </div>
                 </section>
@@ -427,7 +427,7 @@
                     <div class="card quiz-shell">
                         <div class="quiz-topbar">
                             <button class="btn btn-ghost" data-screen-target="modeSelectionScreen" type="button">Back</button>
-                            <p id="quizTopicTitle">Topic: Loading...</p>
+                            <p id="quizTopicTitle">Topic: Loading…</p>
                             <div class="timer-wrap" id="timerDisplay" title="Remaining time"><span class="timer-badge">Timer</span><span id="timeLeft">00:00</span></div>
                             <p class="progress-label"><span id="currentQ">0</span>/<span id="totalQ">0</span> <span id="quizModeDisplay">Practice</span><span id="quizSessionEstimate" class="quiz-session-estimate hidden"></span></p>
                         </div>
@@ -443,7 +443,7 @@
                             </div>
                             <div id="reviewNavigator"></div>
                         </div>
-                        <article class="question-card" id="questionText">Loading question...</article>
+                        <article class="question-card" id="questionText">Loading question…</article>
                         <div class="quiz-content-grid">
                             <div class="quiz-main-column"><div class="options-grid" id="optionsContainer"></div></div>
                             <aside class="quiz-explanation-column"><div class="explanation" id="explanation"></div></aside>
@@ -615,12 +615,19 @@
                             <h3>Trusted Devices</h3>
                             <p class="hero-meta">Manage devices that can access your account without verification.</p>
                             <div id="trustedDevicesList" class="device-list">
-                                <p class="meta">Loading devices...</p>
+                                <p class="meta">Loading devices…</p>
                             </div>
                             <div class="device-limit-info">
                                 <span class="meta">Device limit: <strong id="deviceCount">0/3</strong></span>
                             </div>
                             <button class="btn btn-ghost" id="revokeAllDevicesBtn" type="button">Revoke All Devices</button>
+                        </article>
+                        <article class="card profile-card profile-feedback-card">
+                            <h3>My Feedback</h3>
+                            <p class="hero-meta">View your submitted feedback and admin responses.</p>
+                            <div id="userFeedbackList" class="user-feedback-list">
+                                <p class="meta">No feedback submitted yet.</p>
+                            </div>
                         </article>
                     </div>
                     <div class="button-row compact-actions analytics-actions review-mistakes-actions profile-screen-actions"><button class="btn btn-ghost" data-screen-target="topicSelectionScreen" type="button">Back</button></div>
@@ -880,7 +887,7 @@
                             <div class="admin-bulk-actions" id="adminBulkActions" style="display:none;">
                                 <span class="meta"><strong id="adminSelectedCount">0</strong> users selected</span>
                                 <select id="adminBulkPlanSelect" aria-label="Bulk plan change">
-                                    <option value="">Change Plan...</option>
+                                    <option value="">Change Plan…</option>
                                     <option value="free">Set Free</option>
                                     <option value="premium">Set Premium</option>
                                 </select>

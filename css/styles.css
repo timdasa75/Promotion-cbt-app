@@ -101,6 +101,7 @@
 }
 
 body.dark-mode {
+    color-scheme: dark;
     /* Forest Precision Admin - Dark Mode */
     
     /* Surface colors */
@@ -1904,6 +1905,7 @@ body.dark-mode .card-footer {
     line-height: 1;
     cursor: pointer;
     text-decoration: none;
+    touch-action: manipulation;
 }
 
 .btn-primary,
@@ -2165,6 +2167,25 @@ select:focus-visible,
 @keyframes pulse {
     50% {
         transform: scale(1.03);
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    .spinner-ring div {
+        animation: none !important;
+    }
+    .skeleton-card {
+        animation: none !important;
+        background: var(--surface-dim) !important;
     }
 }
 
@@ -2987,7 +3008,7 @@ select:focus-visible,
     color: var(--ink-700);
     text-align: left;
     width: 100%;
-    transition: all var(--transition-fast);
+    transition: background var(--transition-fast), color var(--transition-fast);
     position: relative;
 }
 
@@ -9336,7 +9357,7 @@ body.dark-mode textarea {
     color: var(--ink-600);
     text-align: left;
     width: 100%;
-    transition: all var(--transition-fast);
+    transition: background var(--transition-fast), color var(--transition-fast);
     position: relative;
 }
 
@@ -9705,7 +9726,7 @@ body.dark-mode .admin-transactions-table .status-badge.failed {
     font-size: 0.875rem;
     font-weight: 500;
     cursor: pointer;
-    transition: all 0.15s ease;
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 }
 
 .pagination-btn:hover:not(:disabled) {
