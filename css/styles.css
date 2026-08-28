@@ -6149,6 +6149,50 @@ body.dark-mode .dashboard-utility-row .btn-ghost:hover {
     color: var(--ink-400);
 }
 
+.quiz-history-card-actions {
+    display: flex;
+    gap: 8px;
+    padding-top: 10px;
+    padding-bottom: 4px;
+}
+
+.quiz-history-retake-btn,
+.quiz-history-review-btn {
+    flex: 1 1 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 7px 10px;
+    border-radius: 8px;
+    border: 1px solid color-mix(in srgb, var(--green-900) 14%, var(--line));
+    background: color-mix(in srgb, var(--green-700) 5%, var(--card));
+    color: var(--green-900);
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+}
+
+.quiz-history-retake-btn:hover,
+.quiz-history-review-btn:hover {
+    background: color-mix(in srgb, var(--green-700) 14%, var(--card));
+    border-color: var(--green-900);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.quiz-history-retake-btn:active,
+.quiz-history-review-btn:active {
+    transform: translateY(0);
+}
+
+.quiz-history-btn-icon {
+    font-size: 0.85rem;
+    line-height: 1;
+}
+
 .quiz-history-card-footer {
     display: flex;
     justify-content: space-between;

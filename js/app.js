@@ -2703,6 +2703,52 @@ function initializeScreenLinkHandlers() {
       }
     });
   });
+
+  // Event delegation for quiz history retake/review buttons
+  const historyList = document.getElementById("quizHistoryList");
+  if (historyList) {
+    historyList.addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-action]");
+      if (!btn) return;
+      e.stopPropagation();
+      const action = String(btn.dataset.action || "").trim();
+      const topicId = String(btn.dataset.topicId || "").trim();
+      const mode = String(btn.dataset.mode || "practice").trim();
+      if (!topicId) {
+        showError("Topic not found for this history entry.");
+        return;
+      }
+      handleHistoryAction(action, topicId, mode);
+    });
+  }
+}
+
+function handleHistoryAction(action, topicId, mode) {
+  if (!getCurrentUser()) {
+    openAuthModal("login");
+    return;
+  }
+  const topic = allTopics.find((t) => t.id === topicId);
+  if (!topic) {
+    showError("The topic for this history entry is no longer available.");
+    return;
+  }
+  if (!isTopicUnlocked(topic)) {
+    openPremiumModal();
+    return;
+  }
+
+  currentTopic = topic;
+  setCurrentTopic(topic);
+
+  if (action === "retake") {
+    setCurrentMode(mode);
+    loadQuestions();
+  } else if (action === "review") {
+    // Browse mode shows all questions with answers and explanations
+    setCurrentMode("browse");
+    loadQuestions();
+  }
 }
 
 function getPasswordToggleIconMarkup(isVisible) {

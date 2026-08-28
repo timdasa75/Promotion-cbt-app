@@ -4584,6 +4584,8 @@ export function renderQuizHistory() {
 
       const card = document.createElement("article");
       card.className = "quiz-history-card";
+      card.dataset.topicId = attempt.topicId || "";
+      card.dataset.mode = attempt.mode || "practice";
       card.innerHTML = `
         <div class="quiz-history-card-header">
           <div class="quiz-history-card-topic">${escapeHtml(attempt.topicName || "Unknown Topic")}</div>
@@ -4597,6 +4599,14 @@ export function renderQuizHistory() {
             <span class="quiz-history-detail quiz-history-detail-wrong">${wrong} wrong</span>
             ${unanswered ? `<span class="quiz-history-detail quiz-history-detail-unanswered">${unanswered} skipped</span>` : ""}
           </div>
+        </div>
+        <div class="quiz-history-card-actions">
+          <button class="quiz-history-retake-btn" data-action="retake" data-topic-id="${escapeHtml(attempt.topicId || "")}" data-mode="${escapeHtml(attempt.mode || "practice")}" title="Start a fresh quiz on this topic">
+            <span class="quiz-history-btn-icon">🔄</span> Retake
+          </button>
+          <button class="quiz-history-review-btn" data-action="review" data-topic-id="${escapeHtml(attempt.topicId || "")}" data-mode="${escapeHtml(attempt.mode || "practice")}" title="Browse questions and answers for this topic">
+            <span class="quiz-history-btn-icon">📖</span> Review
+          </button>
         </div>
         <div class="quiz-history-card-footer">
           <span class="quiz-history-date">${dateStr}</span>
