@@ -27,11 +27,56 @@ import {
 } from "./paymentFlutterwaveService.js";
 import { escapeHtml } from "./quiz/formatting.js";
 
-export const PLAN_PRICES = Object.freeze({
+// Fallback prices (used if API fetch fails)
+const FALLBACK_PRICES = Object.freeze({
   monthly: 2500,
   quarterly: 5500,
   "bi-annual": 7500,
   annual: 12000,
+});
+
+// Mutable cache — updated from API on first use
+let cachedPrices = { ...FALLBACK_PRICES };
+let pricesFetchInFlight = null;
+
+/** Fetch prices from the Worker API and cache them. Falls back to defaults on error. */
+export async function fetchAndCachePrices() {
+  if (pricesFetchInFlight) return pricesFetchInFlight;
+  pricesFetchInFlight = (async () => {
+    try {
+      const { fetchProductPricing } = await import("./app.js");
+      const pricing = await fetchProductPricing();
+      if (pricing && typeof pricing === "object") {
+        cachedPrices = {
+          monthly: Number(pricing.monthly) || FALLBACK_PRICES.monthly,
+          quarterly: Number(pricing.quarterly) || FALLBACK_PRICES.quarterly,
+          "bi-annual": Number(pricing["bi-annual"]) || FALLBACK_PRICES["bi-annual"],
+          annual: Number(pricing.annual) || FALLBACK_PRICES.annual,
+        };
+      }
+    } catch {
+      // Keep fallback prices
+    }
+    pricesFetchInFlight = null;
+    return cachedPrices;
+  })();
+  return pricesFetchInFlight;
+}
+
+/** Get current prices (cached from API or fallback). Syncs once on first call. */
+export function getPlanPrices() {
+  // Fire-and-forget the first fetch if not already done
+  if (!pricesFetchInFlight && cachedPrices.monthly === FALLBACK_PRICES.monthly) {
+    fetchAndCachePrices();
+  }
+  return cachedPrices;
+}
+
+/** Legacy export for backward compat — now returns cached (possibly stale) prices. */
+export const PLAN_PRICES = new Proxy(FALLBACK_PRICES, {
+  get(_, prop) {
+    return getPlanPrices()[prop] ?? FALLBACK_PRICES[prop];
+  },
 });
 
 const PLAN_LABELS = Object.freeze({
@@ -358,7 +403,9 @@ export async function handleFlutterwavePayment(cycle, { user, showWarning = () =
   if (!planCycle) {
     throw new Error("Select a valid plan before payment.");
   }
-  const amount = PLAN_PRICES[planCycle];
+  // Fetch fresh prices from API before checkout
+  const prices = await fetchAndCachePrices();
+  const amount = prices[planCycle] || PLAN_PRICES[planCycle];
   const publicKey = getFlutterwavePublicKey();
   if (!publicKey) {
     throw new Error("Flutterwave public key is not configured.");

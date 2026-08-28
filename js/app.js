@@ -763,40 +763,48 @@ function updateAdminDashboardSummary() {
 // Recent Transactions Table (Flutterwave-style)
 // ============================================================
 
-function renderRecentTransactions() {
+async function renderRecentTransactions() {
   const tbody = document.getElementById('recentPaymentsList');
   if (!tbody) return;
   
-  // Get upgrade requests from local storage
-  const requests = readUpgradeRequests() || [];
-  
-  // Sort by date (newest first) and take last 10
-  const recentRequests = requests
-    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-    .slice(0, 10);
-  
-  if (recentRequests.length === 0) {
-    tbody.innerHTML = '<tr class="admin-transactions-empty"><td colspan="5" style="text-align: center; padding: 24px; color: var(--ink-600);">No recent transactions</td></tr>';
-    return;
-  }
-  
-  tbody.innerHTML = recentRequests.map(req => {
-    const email = req.email || 'Unknown';
-    const amount = req.amount ? `NGN ${Number(req.amount).toLocaleString()}` : 'NGN 0';
-    const paymentType = req.billingCycle || req.paymentType || 'N/A';
-    const status = req.status || 'pending';
-    const statusClass = status === 'approved' ? 'successful' : status === 'rejected' ? 'failed' : 'pending';
-    const statusLabel = status === 'approved' ? 'Successful' : status === 'rejected' ? 'Failed' : 'Pending';
-    const date = req.createdAt ? formatRelativeDate(new Date(req.createdAt)) : 'Unknown';
+  try {
+    const [{ getAdminPaymentHistory, normalizePaymentReceipt }, { formatPaymentAmount }] =
+      await Promise.all([
+        import('./paymentFlutterwaveService.js'),
+        import('./paymentFlutterwave.js'),
+      ]);
+    const token = await getCurrentAuthToken();
+    const payload = await getAdminPaymentHistory({ pageSize: 10 }, token);
+    const payments = Array.isArray(payload?.payments)
+      ? payload.payments.map(normalizePaymentReceipt)
+      : [];
     
-    return `<tr>
-      <td class="description-cell">Payment from <strong>${escapeHtml(email)}</strong></td>
-      <td class="amount-cell">${amount}</td>
-      <td class="type-cell">${escapeHtml(paymentType)}</td>
-      <td><span class="status-badge ${statusClass}">${statusLabel}</span></td>
-      <td class="date-cell">${date}</td>
-    </tr>`;
-  }).join('');
+    if (payments.length === 0) {
+      tbody.innerHTML = '<tr class="admin-transactions-empty"><td colspan="5" style="text-align: center; padding: 24px; color: var(--ink-600);">No recent transactions</td></tr>';
+      return;
+    }
+    
+    tbody.innerHTML = payments.map(p => {
+      const email = p.email || 'Unknown';
+      const amount = formatPaymentAmount ? formatPaymentAmount(p.amount, p.currency) : `NGN ${Number(p.amount || 0).toLocaleString()}`;
+      const paymentType = p.billingCycle || 'N/A';
+      const status = (p.status || 'pending').toLowerCase();
+      const statusClass = status === 'successful' || status === 'completed' ? 'successful' : status === 'failed' ? 'failed' : 'pending';
+      const statusLabel = status === 'successful' || status === 'completed' ? 'Successful' : status === 'failed' ? 'Failed' : 'Pending';
+      const date = p.createdAt ? formatRelativeDate(new Date(p.createdAt)) : 'Unknown';
+      
+      return `<tr>
+        <td class="description-cell">Payment from <strong>${escapeHtml(email)}</strong></td>
+        <td class="amount-cell">${amount}</td>
+        <td class="type-cell">${escapeHtml(paymentType)}</td>
+        <td><span class="status-badge ${statusClass}">${statusLabel}</span></td>
+        <td class="date-cell">${date}</td>
+      </tr>`;
+    }).join('');
+  } catch (err) {
+    console.error('[dashboard] Failed to load recent transactions:', err);
+    tbody.innerHTML = '<tr class="admin-transactions-empty"><td colspan="5" style="text-align: center; padding: 24px; color: var(--ink-600);">Unable to load transactions</td></tr>';
+  }
 }
 
 function formatRelativeDate(date) {
