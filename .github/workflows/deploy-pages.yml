@@ -100,9 +100,10 @@ jobs:
           // Guarded so test runners and tools can inject an override config
           // before this module loads (same pattern as the local template).
           window.PROMOTION_CBT_AUTH = window.PROMOTION_CBT_AUTH || {
-            // Keep Firebase as the public auth/email provider until a transactional
-            // email sender is configured for Cloudflare auth.
-            authProvider: "firebase",
+            // Cloudflare auth is primary — all login/register/session flows go
+            // through the Worker so Firebase keys are never exposed to the client.
+            authProvider: "cloudflare",
+            // Minimal Firebase stubs kept only for Firestore document reads.
             firebaseApiKey: "${FIREBASE_API_KEY}",
             firebaseProjectId: "${FIREBASE_PROJECT_ID}",
             firebaseAuthDomain: "${FIREBASE_AUTH_DOMAIN}",
@@ -110,13 +111,11 @@ jobs:
             cloudflareAuthBaseUrl: "${CLOUDFLARE_AUTH_BASE_URL}",
             enableCloudProgressSync: true,
             adminApiBaseUrl: "${ADMIN_API_BASE_URL}",
-            paymentProvider: "${PAYMENT_PROVIDER:-selar}",
-            selarCheckoutLinks: {
-              default: "${SELAR_MONTHLY_CHECKOUT_URL}",
-              monthly: "${SELAR_MONTHLY_CHECKOUT_URL}",
-            },
-            // Dormant until PAYMENT_PROVIDER=flutterwave; public key is safe to
-            // ship (the secret key lives only in Worker secrets).
+            allowFirebaseFallback: false,
+            adminDirectorySyncIntervalMs: 60000,
+            verificationResendCooldownMs: 900000,
+            passwordResetCooldownMs: 600000,
+            paymentProvider: "${PAYMENT_PROVIDER:-flutterwave}",
             flutterwavePublicKey: "${FLUTTERWAVE_PUBLIC_KEY}",
             flutterwaveWebhookUrl: "${CLOUDFLARE_AUTH_BASE_URL}/payment/webhook/flutterwave",
             adminEmails: "${ADMIN_EMAILS}".split(",").map((email) => email.trim()).filter(Boolean),
