@@ -4568,7 +4568,7 @@ function renderAdminRequests() {
 
   if (!filtered.length) {
     container.innerHTML =
-      '<div class="admin-request-item"><p class="meta">No Selar upgrade confirmations found yet.</p></div>';
+      '<div class="admin-request-item"><p class="meta">No upgrade requests found. Payments via Flutterwave are auto-approved.</p></div>';
     return;
   }
 
@@ -4636,7 +4636,7 @@ function renderAdminRequests() {
           },
         );
         logAdminOperation({
-          action: `${action === "approve" ? "Approve" : "Reject"} Selar confirmation`,
+          action: `${action === "approve" ? "Approve" : "Reject"} upgrade request`,
           target: request.email,
           status: result?.warning ? "warning" : "success",
           message: result?.warning || reviewNote,
@@ -4647,7 +4647,7 @@ function renderAdminRequests() {
         renderAdminOperationHistory();
       } catch (error) {
         logAdminOperation({
-          action: `${action === "approve" ? "Approve" : "Reject"} Selar confirmation`,
+          action: `${action === "approve" ? "Approve" : "Reject"} upgrade request`,
           target: request.email,
           status: "failed",
           message: error?.message || "Unknown error.",
