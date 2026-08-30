@@ -501,9 +501,10 @@ export async function handleFlutterwavePayment(cycle, { user, showWarning = () =
         },
         onclose() {
           if (callbackHandled) return;
-          callbackHandled = true;
-          showWarning("Payment window was closed.");
-          resolve({ ok: false, txRef, closed: true });
+          // Don't set callbackHandled here — let the recovery poller continue
+          // in case the payment succeeded but the callback didn't fire.
+          showWarning("Payment window was closed. Checking payment status...");
+          // Don't resolve yet — the recovery poller will resolve when it finds the payment.
         },
       });
     } catch (err) {
@@ -515,19 +516,40 @@ export async function handleFlutterwavePayment(cycle, { user, showWarning = () =
   // When the callback fires with empty data (SSL error on events endpoint),
   // verify the payment directly via /payment/verify using just the tx_ref.
   // The Worker looks up the transaction by tx_ref in Flutterwave's API.
+  // Also continues running when the popup is closed, in case the payment
+  // succeeded but the callback didn't fire properly.
   let verified = false;
   const RECOVERY_POLL_INTERVAL = 5000;
-  const RECOVERY_POLL_MAX = 120000;
+  const RECOVERY_POLL_MAX = 180000; // 3 minutes to allow time for webhook
   let elapsed = 0;
   const pollTimer = setInterval(async () => {
-    if (callbackHandled || verified || elapsed >= RECOVERY_POLL_MAX) {
+    if (verified || elapsed >= RECOVERY_POLL_MAX) {
       clearInterval(pollTimer);
+      // If we exhausted all attempts, resolve with an error
+      if (!verified && !callbackHandled) {
+        callbackHandled = true;
+        showWarning("Payment verification timed out. Please check your email for confirmation or try again.");
+        resolve({ ok: false, txRef, error: "timeout" });
+      }
       return;
     }
     elapsed += RECOVERY_POLL_INTERVAL;
     try {
       const token = await getAuthToken().catch(() => "");
-      if (!token) return;
+      if (!token) {
+        // If no token, wait and try again (user might need to re-login)
+        if (elapsed >= 30000 && !callbackHandled) {
+          callbackHandled = true;
+          showWarning("Session expired. Please log in again to check payment status.");
+          resolve({ ok: false, txRef, error: "no_token" });
+        }
+        return;
+      }
+
+      // Show progress to user on first poll
+      if (elapsed === RECOVERY_POLL_INTERVAL && !callbackHandled) {
+        showWarning("Verifying payment... Please wait.");
+      }
 
       // First, check if the webhook already granted access.
       const { getCurrentUserPaymentHistory } = await import("./paymentFlutterwaveService.js");
