@@ -768,6 +768,90 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="admin-migration-header" id="adminMigrationHeader" style="display: none;">
+                                <h3 class="admin-activity-title">Migration Status</h3>
+                                <span class="admin-activity-last-updated" id="migrationLastUpdated">Last updated: --</span>
+                            </div>
+                            <div class="admin-migration-cards" id="adminMigrationCards" style="display: none;">
+                                <div class="admin-activity-card">
+                                    <div class="admin-activity-icon" style="background: var(--primary-light); color: var(--primary);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>
+                                    <div class="admin-activity-content">
+                                        <div class="admin-activity-value" id="migrationPending">0</div>
+                                        <div class="admin-activity-label">Pending Migration</div>
+                                        <div class="admin-activity-sublabel">Firebase users not yet in Cloudflare</div>
+                                    </div>
+                                </div>
+                                <div class="admin-activity-card">
+                                    <div class="admin-activity-icon" style="background: var(--success-bg); color: var(--success);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+                                    <div class="admin-activity-content">
+                                        <div class="admin-activity-value" id="migrationMigrated">0</div>
+                                        <div class="admin-activity-label">Migrated</div>
+                                        <div class="admin-activity-sublabel">Users with Cloudflare accounts</div>
+                                    </div>
+                                </div>
+                                <div class="admin-activity-card">
+                                    <div class="admin-activity-icon" style="background: var(--warning-bg); color: var(--warning);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+                                    <div class="admin-activity-content">
+                                        <div class="admin-activity-value" id="migrationPercentage">0%</div>
+                                        <div class="admin-activity-label">Completion</div>
+                                        <div class="admin-activity-sublabel">Migration progress</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="admin-activity-header">
+                                <h3 class="admin-activity-title">User Activity</h3>
+                                <div class="admin-activity-controls">
+                                    <span class="admin-activity-last-updated" id="activityMetricsLastRefreshed">Last updated: --</span>
+                                    <button class="btn btn-ghost btn-sm admin-activity-pause-btn" id="activityMetricsPauseBtn" type="button" title="Pause auto-refresh" aria-label="Pause auto-refresh">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+                                    </button>
+                                    <button class="btn btn-ghost btn-sm admin-activity-refresh-btn" id="activityMetricsRefreshBtn" type="button" title="Refresh now" aria-label="Refresh now">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="admin-activity-cards">
+                                <div class="admin-activity-card">
+                                    <div class="admin-activity-icon active-now"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+                                    <div class="admin-activity-content">
+                                        <div class="admin-activity-value" id="adminStatActiveNow">0</div>
+                                        <div class="admin-activity-label">Active Now</div>
+                                        <div class="admin-activity-sublabel">Last 5 minutes</div>
+                                    </div>
+                                </div>
+                                <div class="admin-activity-card">
+                                    <div class="admin-activity-icon hourly"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+                                    <div class="admin-activity-content">
+                                        <div class="admin-activity-value" id="adminStatHourlyActive">0</div>
+                                        <div class="admin-activity-label">Hourly Active</div>
+                                        <div class="admin-activity-sublabel">Last 60 minutes</div>
+                                    </div>
+                                </div>
+                                <div class="admin-activity-card">
+                                    <div class="admin-activity-icon daily"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+                                    <div class="admin-activity-content">
+                                        <div class="admin-activity-value" id="adminStatDailyActive">0</div>
+                                        <div class="admin-activity-label">Daily Active</div>
+                                        <div class="admin-activity-sublabel">Last 24 hours</div>
+                                    </div>
+                                </div>
+                                <div class="admin-activity-card">
+                                    <div class="admin-activity-icon weekly"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+                                    <div class="admin-activity-content">
+                                        <div class="admin-activity-value" id="adminStatWeeklyActive">0</div>
+                                        <div class="admin-activity-label">Weekly Active</div>
+                                        <div class="admin-activity-sublabel">Last 7 days</div>
+                                    </div>
+                                </div>
+                                <div class="admin-activity-card">
+                                    <div class="admin-activity-icon monthly"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+                                    <div class="admin-activity-content">
+                                        <div class="admin-activity-value" id="adminStatMonthlyActive">0</div>
+                                        <div class="admin-activity-label">Monthly Active</div>
+                                        <div class="admin-activity-sublabel">Last 30 days</div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="admin-dashboard-recent-payments card admin-section-card" style="margin-top: 16px;">
                                 <div class="admin-card-head" style="margin-bottom: 12px;">
                                     <h3 style="margin: 0; font-size: 1.1rem; font-weight: 700; color: var(--ink-900);">Recent Transactions</h3>

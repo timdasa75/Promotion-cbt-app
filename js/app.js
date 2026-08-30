@@ -238,6 +238,9 @@ let adminDirectoryRefreshInFlight = null;
 let adminFeedbackRefreshInFlight = null;
 let volatileUpgradeRequests = [];
 let volatileAdminOperationHistory = [];
+let activityMetricsRefreshInterval = null;
+let activityMetricsPaused = false;
+const ACTIVITY_METRICS_REFRESH_MS = 30000; // 30 seconds
 const RESTORABLE_SCREEN_IDS = new Set([
   "splashScreen",
   "topicSelectionScreen",
@@ -735,6 +738,92 @@ async function fetchRecentLoginsCount() {
   } catch { return 0; }
 }
 
+async function fetchActivityMetrics() {
+  try {
+    const config = getRuntimeConfig();
+    const baseUrl = config?.cloudflareAuthBaseUrl || '';
+    const session = readSession();
+    if (!session?.accessToken || !baseUrl) return null;
+    const resp = await fetch(`${baseUrl}/adminActivityMetrics`, {
+      headers: { 'Authorization': `Bearer ${session.accessToken}` }
+    });
+    const data = await resp.json().catch(() => ({}));
+    return data?.metrics || null;
+  } catch { return null; }
+}
+
+function updateActivityMetricsDisplay(metrics) {
+  if (!metrics) return;
+  const activeNowEl = document.getElementById('adminStatActiveNow');
+  const hourlyActiveEl = document.getElementById('adminStatHourlyActive');
+  const dailyActiveEl = document.getElementById('adminStatDailyActive');
+  const weeklyActiveEl = document.getElementById('adminStatWeeklyActive');
+  const monthlyActiveEl = document.getElementById('adminStatMonthlyActive');
+  
+  if (activeNowEl) activeNowEl.textContent = String(metrics.currentlyActive || 0);
+  if (hourlyActiveEl) hourlyActiveEl.textContent = String(metrics.hourlyActive || 0);
+  if (dailyActiveEl) dailyActiveEl.textContent = String(metrics.dailyActive || 0);
+  if (weeklyActiveEl) weeklyActiveEl.textContent = String(metrics.weeklyActive || 0);
+  if (monthlyActiveEl) monthlyActiveEl.textContent = String(metrics.monthlyActive || 0);
+  
+  // Update the last refreshed timestamp
+  const lastRefreshedEl = document.getElementById('activityMetricsLastRefreshed');
+  if (lastRefreshedEl) {
+    const now = new Date();
+    lastRefreshedEl.textContent = `Last updated: ${now.toLocaleTimeString()}`;
+  }
+}
+
+async function refreshActivityMetrics() {
+  const metrics = await fetchActivityMetrics();
+  updateActivityMetricsDisplay(metrics);
+}
+
+function startActivityMetricsAutoRefresh() {
+  // Clear any existing interval
+  stopActivityMetricsAutoRefresh();
+  
+  // Initial fetch
+  refreshActivityMetrics();
+  
+  // Start auto-refresh interval
+  activityMetricsRefreshInterval = setInterval(() => {
+    if (!activityMetricsPaused) {
+      refreshActivityMetrics();
+    }
+  }, ACTIVITY_METRICS_REFRESH_MS);
+  
+  // Update the pause button state
+  updateActivityMetricsPauseButton();
+}
+
+function stopActivityMetricsAutoRefresh() {
+  if (activityMetricsRefreshInterval) {
+    clearInterval(activityMetricsRefreshInterval);
+    activityMetricsRefreshInterval = null;
+  }
+}
+
+function toggleActivityMetricsAutoRefresh() {
+  activityMetricsPaused = !activityMetricsPaused;
+  updateActivityMetricsPauseButton();
+}
+
+function updateActivityMetricsPauseButton() {
+  const pauseBtn = document.getElementById('activityMetricsPauseBtn');
+  if (!pauseBtn) return;
+  
+  if (activityMetricsPaused) {
+    pauseBtn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>`;
+    pauseBtn.title = 'Resume auto-refresh';
+    pauseBtn.setAttribute('aria-label', 'Resume auto-refresh');
+  } else {
+    pauseBtn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>`;
+    pauseBtn.title = 'Pause auto-refresh';
+    pauseBtn.setAttribute('aria-label', 'Pause auto-refresh');
+  }
+}
+
 function updateAdminDashboardSummary() {
   const users = adminDirectoryUsers || [];
   const totalUsers = users.length;
@@ -754,8 +843,53 @@ function updateAdminDashboardSummary() {
   fetchRecentLoginsCount().then(count => {
     if (recentLoginsEl) recentLoginsEl.textContent = String(count);
   }).catch(() => {});
+  // Start activity metrics auto-refresh
+  startActivityMetricsAutoRefresh();
   // Render recent transactions
   renderRecentTransactions();
+  // Fetch migration stats
+  fetchMigrationStats();
+}
+
+/**
+ * Fetch and display migration statistics
+ */
+async function fetchMigrationStats() {
+  try {
+    const config = getRuntimeConfig();
+    const baseUrl = config?.cloudflareAuthBaseUrl || '';
+    const session = readSession();
+    if (!session?.accessToken || !baseUrl) return;
+    
+    const resp = await fetch(`${baseUrl}/migration/stats`, {
+      headers: { 'Authorization': `Bearer ${session.accessToken}` }
+    });
+    const data = await resp.json().catch(() => ({}));
+    
+    if (data?.ok && data?.stats) {
+      const { pending, migrated, percentage } = data.stats;
+      
+      const pendingEl = document.getElementById('migrationPending');
+      const migratedEl = document.getElementById('migrationMigrated');
+      const percentageEl = document.getElementById('migrationPercentage');
+      const lastUpdatedEl = document.getElementById('migrationLastUpdated');
+      const headerEl = document.getElementById('adminMigrationHeader');
+      const cardsEl = document.getElementById('adminMigrationCards');
+      
+      if (pendingEl) pendingEl.textContent = String(pending);
+      if (migratedEl) migratedEl.textContent = String(migrated);
+      if (percentageEl) percentageEl.textContent = `${percentage}%`;
+      if (lastUpdatedEl) lastUpdatedEl.textContent = `Last updated: ${new Date().toLocaleTimeString()}`;
+      
+      // Show migration section if there are pending users
+      if (pending > 0 && headerEl && cardsEl) {
+        headerEl.style.display = '';
+        cardsEl.style.display = '';
+      }
+    }
+  } catch {
+    // Migration stats are optional — don't break the dashboard
+  }
 }
 
 // ============================================================
@@ -793,6 +927,8 @@ async function renderRecentTransactions() {
       const statusClass = status === 'successful' || status === 'completed' ? 'successful' : status === 'failed' ? 'failed' : 'pending';
       const statusLabel = status === 'successful' || status === 'completed' ? 'Successful' : status === 'failed' ? 'Failed' : 'Pending';
       const date = p.createdAt ? formatRelativeDate(new Date(p.createdAt)) : 'Unknown';
+      const paymentId = p.paymentId || '';
+      const canDelete = status === 'pending' || status === 'failed';
       
       return `<tr>
         <td class="description-cell">Payment from <strong>${escapeHtml(email)}</strong></td>
@@ -800,8 +936,38 @@ async function renderRecentTransactions() {
         <td class="type-cell">${escapeHtml(paymentType)}</td>
         <td><span class="status-badge ${statusClass}">${statusLabel}</span></td>
         <td class="date-cell">${date}</td>
+        ${canDelete ? `<td class="action-cell"><button class="btn btn-ghost btn-sm btn-delete-payment" data-payment-id="${escapeHtml(paymentId)}" data-email="${escapeHtml(email)}" data-status="${escapeHtml(status)}" type="button" title="Delete payment">&times;</button></td>` : ''}
       </tr>`;
     }).join('');
+    
+    // Add delete handlers
+    tbody.querySelectorAll('.btn-delete-payment').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const paymentId = btn.dataset.paymentId;
+        const paymentEmail = btn.dataset.email;
+        const paymentStatus = btn.dataset.status;
+        if (!paymentId) return;
+        const confirmed = await showConfirm({ title: 'Delete Payment', message: 'Are you sure you want to delete this payment record?', okText: 'Delete' });
+        if (!confirmed) return;
+        try {
+          const config = getRuntimeConfig();
+          const baseUrl = config?.cloudflareAuthBaseUrl || '';
+          const session = readSession();
+          if (!session?.accessToken || !baseUrl) throw new Error('Authentication required.');
+          const resp = await fetch(`${baseUrl}/adminDeletePayment`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${session.accessToken}` },
+            body: JSON.stringify({ paymentId, email: paymentEmail, status: paymentStatus }),
+          });
+          const result = await resp.json().catch(() => ({}));
+          if (!resp.ok || !result.ok) throw new Error(result?.error || 'Failed to delete payment.');
+          showSuccess('Payment deleted.');
+          renderRecentTransactions();
+        } catch (error) {
+          showError(error?.message || 'Failed to delete payment.');
+        }
+      });
+    });
   } catch (err) {
     console.error('[dashboard] Failed to load recent transactions:', err);
     tbody.innerHTML = '<tr class="admin-transactions-empty"><td colspan="5" style="text-align: center; padding: 24px; color: var(--ink-600);">Unable to load transactions</td></tr>';
@@ -821,11 +987,6 @@ function formatRelativeDate(date) {
   if (diffDays < 7) return `${diffDays} day${diffDays > 1 ? 's' : ''} ago`;
   return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 }
-
-// escapeHtml is imported from ./quiz/formatting.js
-
-// Admin Device Management & Audit Log
-// ============================================================
 
 let adminDeviceList = [];
 let adminAuditList = [];
@@ -851,11 +1012,14 @@ async function renderAdminDevices() {
     // Get all users and their devices
     const users = adminDirectoryUsers || [];
     const allDevices = [];
+    const token = await getCurrentAuthToken();
 
     for (const user of users.slice(0, 50)) {
       if (!user.email) continue;
       try {
-        const response = await fetch(`${baseUrl}/device/list?email=${encodeURIComponent(user.email)}`);
+        const headers = {};
+        if (token) headers['Authorization'] = `Bearer ${token}`;
+        const response = await fetch(`${baseUrl}/device/list?email=${encodeURIComponent(user.email)}`, { headers });
         const result = await response.json();
         if (result.ok && result.devices) {
           result.devices.forEach(device => {
@@ -899,7 +1063,7 @@ async function renderAdminDevices() {
     }
 
     if (filtered.length === 0) {
-      container.innerHTML = '<div class="admin-request-item"><p class="meta">No devices found.</p></div>';
+      container.innerHTML = '<div class="admin-request-item"><p class="meta">No trusted devices found. Devices are registered automatically when users log in. New users and existing users will appear here after their next login.</p></div>';
       return;
     }
 
@@ -909,6 +1073,8 @@ async function renderAdminDevices() {
       const statusText = isExpired ? "Expired" : "Active";
       const lastUsed = device.lastUsedAt ? formatRelativeTime(device.lastUsedAt) : "Never";
       const expiresAt = device.expiresAt ? formatDate(device.expiresAt) : "Never";
+      const isPrimary = device.isPermanent;
+      const primaryBadge = isPrimary ? '<span class="admin-badge approved" style="background: var(--primary-light); color: var(--primary); border-color: var(--primary);">\u2B50 Primary</span>' : '';
 
       return `
         <div class="admin-request-item">
@@ -917,6 +1083,7 @@ async function renderAdminDevices() {
               <div class="admin-user-summary-head">
                 <div class="admin-user-email">${escapeHtml(device.email)}</div>
                 <div class="admin-user-badges">
+                  ${primaryBadge}
                   <span class="admin-badge ${statusClass}">${statusText}</span>
                 </div>
               </div>
@@ -924,7 +1091,7 @@ async function renderAdminDevices() {
                 ${escapeHtml(device.deviceName || "Unknown Device")} · Last seen: ${lastUsed} · Expires: ${expiresAt}
               </div>
             </div>
-            <button class="btn btn-ghost btn-sm btn-danger" data-admin-revoke-device data-email="${escapeHtml(device.email)}" data-device-id="${escapeHtml(device.id)}" type="button">Revoke</button>
+            ${isPrimary ? '<span class="meta" style="color: var(--ink-500); font-style: italic;">Cannot revoke primary device</span>' : `<button class="btn btn-ghost btn-sm btn-danger" data-admin-revoke-device data-email="${escapeHtml(device.email)}" data-device-id="${escapeHtml(device.id)}" type="button">Revoke</button>`}
           </div>
         </div>
       `;
@@ -973,9 +1140,56 @@ async function renderAdminAuditLog() {
       return;
     }
 
-    // For now, show a placeholder - in production, you'd fetch from a dedicated endpoint
-    container.innerHTML = '<div class="admin-request-item"><p class="meta">Audit log will be available after security events are recorded.</p></div>';
-    if (countLabel) countLabel.textContent = "0";
+    const token = await getCurrentAuthToken();
+    const eventType = eventFilter?.value || '';
+    let url = `${baseUrl}/adminAuditLog?limit=50`;
+    if (eventType) url += `&eventType=${encodeURIComponent(eventType)}`;
+    
+    const response = await fetch(url, {
+      headers: token ? { 'Authorization': `Bearer ${token}` } : {},
+    });
+    const result = await response.json().catch(() => ({}));
+    
+    if (!result.ok || !Array.isArray(result.entries)) {
+      container.innerHTML = '<div class="admin-request-item"><p class="meta">No audit events recorded yet.</p></div>';
+      if (countLabel) countLabel.textContent = '0';
+      return;
+    }
+    
+    const entries = result.entries;
+    if (countLabel) countLabel.textContent = String(entries.length);
+    
+    if (entries.length === 0) {
+      container.innerHTML = '<div class="admin-request-item"><p class="meta">No audit events recorded yet.</p></div>';
+      return;
+    }
+    
+    container.innerHTML = entries.map(entry => {
+      const eventType = entry.eventType || 'unknown';
+      const isLogin = eventType === 'login_success';
+      const isFailed = eventType.includes('fail') || eventType.includes('error');
+      const statusClass = isLogin ? 'approved' : isFailed ? 'rejected' : 'pending';
+      const icon = isLogin ? '&#9654;' : isFailed ? '&#10006;' : '&#9881;';
+      const when = entry.createdAt ? formatRelativeTime(entry.createdAt) : '';
+      const device = entry.deviceName || entry.userAgent?.slice(0, 50) || '';
+      const ip = entry.ipAddress || '';
+      
+      return `<div class="admin-request-item">
+        <div class="admin-user-summary">
+          <div class="admin-user-summary-main">
+            <div class="admin-user-summary-head">
+              <div class="admin-user-email">${escapeHtml(entry.email || 'Unknown')}</div>
+              <div class="admin-user-badges">
+                <span class="admin-badge ${statusClass}">${escapeHtml(eventType)}</span>
+              </div>
+            </div>
+            <div class="meta">
+              ${icon} ${device ? escapeHtml(device) + ' &middot; ' : ''}${ip ? escapeHtml(ip) + ' &middot; ' : ''}${when}
+            </div>
+          </div>
+        </div>
+      </div>`;
+    }).join('');
   } catch (error) {
     container.innerHTML = '<div class="admin-request-item"><p class="meta">Failed to load audit log.</p></div>';
   }
@@ -3165,10 +3379,11 @@ async function checkDeviceTrust(email, deviceFingerprint) {
   }
   
   try {
+    const deviceName = await getDeviceName();
     const response = await fetch(`${baseUrl}/device/check`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, deviceFingerprint }),
+      body: JSON.stringify({ email, deviceFingerprint, deviceName }),
     });
     
     const result = await response.json();
@@ -3258,6 +3473,41 @@ async function completeLogin(loginResult, email) {
     }
     showSuccess("Login successful.");
     
+    // Silent migration: sync Firebase profile to Cloudflare D1
+    if (loginResult?.authProvider === "firebase" || loginResult?.shouldPromptPasswordUpgrade) {
+      const config = getRuntimeConfig();
+      const baseUrl = config?.cloudflareAuthBaseUrl || "";
+      if (baseUrl) {
+        fetch(`${baseUrl}/migration/sync-profile`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, userId: loginResult?.userId || loginResult?.id || '' }),
+        }).catch(() => {});
+      }
+    }
+    
+    // Auto-register current device as trusted to seed the device list
+    try {
+      const deviceFp = await getDeviceFingerprint();
+      const deviceName = await getDeviceName();
+      const config = getRuntimeConfig();
+      const baseUrl = config?.cloudflareAuthBaseUrl || "";
+      if (baseUrl && deviceFp) {
+        await fetch(`${baseUrl}/device/trust`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email,
+            deviceFingerprint: deviceFp,
+            deviceName,
+            trustDays: 30
+          }),
+        }).catch(() => {});
+      }
+    } catch (e) {
+      // Silent fail — device registration is best-effort
+    }
+
     // Send login alert for new device logins
     if (loginResult?.deviceTrusted === false) {
       const deviceName = await getDeviceName();
@@ -4942,6 +5192,16 @@ function renderAdminFeedbackList() {
         messageEl.classList.toggle("expanded");
       });
     });
+    item.querySelectorAll(".admin-feedback-expand-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const feedbackId = btn.getAttribute("data-feedback-id");
+        const previewEl = document.getElementById(`questionPreview-${feedbackId}`);
+        if (previewEl) {
+          previewEl.classList.toggle("expanded");
+          btn.textContent = previewEl.classList.contains("expanded") ? "Collapse" : "Expand";
+        }
+      });
+    });
     list.appendChild(item);
   });
 
@@ -5519,6 +5779,7 @@ function renderAdminUserDirectory() {
     const accountNextStatus = isSuspended ? "active" : "suspended";
     const hasCloudflareLogin = entry.source === "cloudflare-auth";
     const cloudflareActionLabel = hasCloudflareLogin ? "Create password reset link" : "Create password setup link";
+    const isFirebaseOnly = entry.source === "firebase-auth" || (!hasCloudflareLogin && entry.source !== "cloudflare-auth");
     const safeProfileId = escapeHtml(entry.id);
     const safeProfileRole = escapeHtml(entry.role || "user");
     const safeProfileStatus = escapeHtml(entry.status || "active");
@@ -5549,6 +5810,7 @@ function renderAdminUserDirectory() {
               ${subDateBadge}
               <span class="admin-badge ${statusClass}">Status: ${safeStatus}</span>
               <span class="admin-badge ${verification.badgeClass}">Verified: ${safeVerification}</span>
+              ${isFirebaseOnly ? `<button class="directory-action admin-badge warning-badge migrate-btn" data-action="create-cloudflare-link" data-profile-email="${safeEmail}" data-profile-role="${safeProfileRole}" data-profile-plan="${safePlan}" data-profile-status="${safeProfileStatus}" data-profile-source="${safeSource}" data-email-verified="${verification.dataValue}" type="button" title="Migrate this user to Cloudflare auth">⚠️ Migrate</button>` : ''}
             </div>
           </div>
         </div>
@@ -6050,6 +6312,24 @@ function initializeAdminTabs() {
       }
     });
   });
+  
+  // Activity metrics controls
+  const pauseBtn = document.getElementById('activityMetricsPauseBtn');
+  const refreshBtn = document.getElementById('activityMetricsRefreshBtn');
+  
+  if (pauseBtn) {
+    pauseBtn.addEventListener('click', toggleActivityMetricsAutoRefresh);
+  }
+  
+  if (refreshBtn) {
+    refreshBtn.addEventListener('click', () => {
+      refreshActivityMetrics();
+      // Add a brief spin animation to the refresh button
+      refreshBtn.classList.add('spinning');
+      setTimeout(() => refreshBtn.classList.remove('spinning'), 1000);
+    });
+  }
+  
 }
 
 function switchAdminTab(tabName) {
@@ -6360,6 +6640,7 @@ function initializeAuthUI() {
         
         if (deviceCheck.trusted) {
           // Device is trusted, complete login
+          // Primary devices (first device) never need OTP
           await completeLogin(loginResult, email);
         } else {
           // Device not trusted, show OTP modal
@@ -7389,6 +7670,10 @@ document.addEventListener("DOMContentLoaded", async function () {
     if (event?.detail?.screenId === "adminScreen" && isCurrentUserAdmin()) {
       renderAdminFeedbackList();
       refreshAdminFeedbackSubmissions().catch(() => {});
+    }
+    // Stop activity metrics auto-refresh when leaving admin screen
+    if (event?.detail?.screenId && event.detail.screenId !== "adminScreen") {
+      stopActivityMetricsAutoRefresh();
     }
   });
 

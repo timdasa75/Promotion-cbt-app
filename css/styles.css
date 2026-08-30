@@ -1310,6 +1310,7 @@ h3,
     background: color-mix(in srgb, var(--gold) 22%, var(--card));
     border: 1px solid color-mix(in srgb, var(--gold) 50%, var(--line));
     padding: 4px 8px;
+    white-space: nowrap;
     border-radius: 999px;
     font-size: 0.74rem;
     font-weight: 700;
@@ -1716,6 +1717,7 @@ select {
     border-radius: 999px;
     border: 1px solid var(--line);
     font-size: 0.76rem;
+    white-space: nowrap;
     background: color-mix(in srgb, var(--green-900) 7%, var(--card));
 }
 
@@ -1905,6 +1907,7 @@ body.dark-mode .card-footer {
     padding: 0 14px;
     font-weight: 700;
     line-height: 1;
+    white-space: nowrap;
     cursor: pointer;
     text-decoration: none;
     touch-action: manipulation;
@@ -2899,6 +2902,221 @@ select:focus-visible,
     letter-spacing: 0.05em;
 }
 
+/* Admin Activity Metrics Cards */
+.admin-activity-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 24px;
+    margin-bottom: 12px;
+}
+
+.admin-activity-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--ink-900);
+    margin: 0;
+}
+
+.admin-activity-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.admin-activity-last-updated {
+    font-size: 0.7rem;
+    color: var(--ink-500);
+    font-variant-numeric: tabular-nums;
+}
+
+.admin-activity-pause-btn,
+.admin-activity-refresh-btn {
+    width: 28px;
+    height: 28px;
+    padding: 4px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.admin-activity-pause-btn svg,
+.admin-activity-refresh-btn svg {
+    width: 14px;
+    height: 14px;
+}
+
+.admin-activity-refresh-btn.spinning svg {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.admin-activity-cards {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin-top: 0;
+}
+
+.admin-activity-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+}
+
+.admin-activity-card:hover {
+    border-color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(46, 168, 101, 0.2);
+}
+
+.admin-activity-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.admin-activity-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.admin-activity-icon.active-now {
+    background: rgba(16, 185, 129, 0.15);
+}
+
+.admin-activity-icon.active-now svg {
+    stroke: #10b981;
+}
+
+.admin-activity-icon.hourly {
+    background: rgba(59, 130, 246, 0.15);
+}
+
+.admin-activity-icon.hourly svg {
+    stroke: #3b82f6;
+}
+
+.admin-activity-icon.daily {
+    background: rgba(139, 92, 246, 0.15);
+}
+
+.admin-activity-icon.daily svg {
+    stroke: #8b5cf6;
+}
+
+.admin-activity-icon.weekly {
+    background: rgba(245, 158, 11, 0.15);
+}
+
+.admin-activity-icon.weekly svg {
+    stroke: #f59e0b;
+}
+
+.admin-activity-icon.monthly {
+    background: rgba(236, 72, 153, 0.15);
+}
+
+.admin-activity-icon.monthly svg {
+    stroke: #ec4899;
+}
+
+.admin-activity-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.admin-activity-value {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--ink-900);
+    line-height: 1;
+    margin-bottom: 4px;
+    font-variant-numeric: tabular-nums;
+}
+
+.admin-activity-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--ink-600);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.admin-activity-sublabel {
+    font-size: 0.625rem;
+    color: var(--ink-500);
+    margin-top: 2px;
+}
+
+/* Dark mode activity cards */
+body.dark-mode .admin-activity-header {
+    border-bottom-color: var(--line);
+}
+
+body.dark-mode .admin-activity-title {
+    color: var(--ink-900);
+}
+
+body.dark-mode .admin-activity-last-updated {
+    color: var(--ink-500);
+}
+
+body.dark-mode .admin-activity-card {
+    background: var(--card);
+    border-color: var(--line);
+}
+
+body.dark-mode .admin-activity-card:hover {
+    border-color: var(--primary);
+    box-shadow: 0 4px 12px rgba(46, 168, 101, 0.3);
+}
+
+body.dark-mode .admin-activity-value {
+    color: var(--ink-900);
+}
+
+body.dark-mode .admin-activity-label {
+    color: var(--ink-600);
+}
+
+body.dark-mode .admin-activity-sublabel {
+    color: var(--ink-500);
+}
+
+/* Responsive activity cards */
+@media (max-width: 1200px) {
+    .admin-activity-cards {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-activity-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-activity-cards {
+        grid-template-columns: 1fr;
+    }
+}
+
 
 /* Admin tabs */
 .admin-tabs {
@@ -3107,6 +3325,21 @@ select:focus-visible,
     color: var(--ink-500);
     font-size: 0.9rem;
 }
+
+.admin-view-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.admin-view-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
 
 /* Admin stat card icon */
 .admin-stat-icon {
@@ -3468,6 +3701,28 @@ body.dark-mode .admin-view-header p {
     color: var(--ink-700);
     border-color: color-mix(in srgb, var(--ink-500) 45%, var(--line));
     background: color-mix(in srgb, var(--card) 75%, var(--surface));
+}
+
+.admin-badge.warning-badge {
+    color: var(--warning);
+    border-color: color-mix(in srgb, var(--warning) 45%, var(--line));
+    background: var(--warning-bg);
+}
+
+.migrate-btn {
+    cursor: pointer;
+    transition: all 0.15s ease;
+    border: 1px solid;
+    font-weight: 600;
+}
+
+.migrate-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.migrate-btn:active {
+    transform: translateY(0);
 }
 
 .admin-table-wrap {
@@ -8234,6 +8489,38 @@ body.dark-mode #quizScreen .quiz-actions .btn-secondary:hover {
     margin: 6px 0 0;
     color: var(--ink-800);
     font-size: 0.84rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.admin-feedback-preview:hover {
+    color: var(--green-900);
+}
+
+.admin-feedback-preview.expanded {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    text-overflow: clip;
+}
+
+.admin-feedback-question-preview {
+    margin: 10px 0;
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: color-mix(in srgb, var(--green-700) 3%, var(--card));
+    border: 1px solid color-mix(in srgb, var(--green-900) 10%, var(--line));
+}
+
+.admin-feedback-question-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.admin-feedback-expand-btn {
+    font-size: 0.75rem;
+    padding: 2px 8px;
 }
 
 .admin-feedback-score {
@@ -10078,6 +10365,7 @@ body.dark-mode .badge-streak {
     padding: 4px 10px;
     border-radius: 999px;
     font-size: 0.78rem;
+    white-space: nowrap;
     font-weight: 600;
 }
 
@@ -10174,6 +10462,11 @@ body.dark-mode .admin-transactions-table .status-badge.failed {
     display: flex;
     align-items: center;
     gap: 8px;
+    flex-wrap: nowrap;
+}
+
+.pagination-page-size .meta {
+    white-space: nowrap;
 }
 
 .pagination-select {

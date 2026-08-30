@@ -207,7 +207,15 @@ export function buildAdminFeedbackItemModel(entry = {}, {
     ? `<p class="admin-feedback-client-info" title="${escapeHtml(String(clientInfo.userAgent || ""))}">${escapeHtml(clientParts.join(" · "))}</p>`
     : "";
   const previewLine = entry?.questionPreview
-    ? `<p class="admin-feedback-preview admin-feedback-message-truncate" title="${escapeHtml(entry.questionPreview)}">${escapeHtml(entry.questionPreview)}</p>`
+    ? `<div class="admin-feedback-question-preview">
+        <div class="admin-feedback-question-header">
+          <span class="meta">Reported Question</span>
+          <button class="btn btn-ghost btn-sm admin-feedback-expand-btn" data-feedback-id="${safeId}" type="button" title="Show full question">Expand</button>
+        </div>
+        <p class="admin-feedback-preview admin-feedback-message-truncate" id="questionPreview-${safeId}" title="Click to expand">${escapeHtml(entry.questionPreview)}</p>
+        ${entry?.difficulty ? `<span class="admin-badge neutral">Difficulty: ${escapeHtml(formatFeedbackDifficultyLabel(entry.difficulty))}</span>` : ''}
+        ${entry?.sourceDocument ? `<span class="admin-badge neutral">Source: ${escapeHtml(entry.sourceDocument)}${entry?.sourceSection ? ` · ${escapeHtml(entry.sourceSection)}` : ''}</span>` : ''}
+      </div>`
     : "";
   const scoreLine = entry?.scoreSummary
     ? `<p class="admin-feedback-score">${escapeHtml(entry.scoreSummary)}</p>`

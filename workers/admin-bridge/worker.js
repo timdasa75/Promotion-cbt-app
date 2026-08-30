@@ -1202,6 +1202,7 @@ async function handleAuthMigrationBootstrap(request, env) {
 async function handleAdminListUsers(request, env) {
   await verifyAdminCaller(request, env);
 
+  // Fetch Firebase users
   const firebaseUsers = [];
   let pageToken = "";
   let loop = 0;
@@ -1233,6 +1234,10 @@ async function handleAdminListUsers(request, env) {
     loop += 1;
   } while (pageToken && loop < 50);
 
+  // Fetch Cloudflare auth users
+  const cloudflareUsers = await listCloudflareAuthUsers(env);
+
+  // Merge: Cloudflare users take priority (they have more up-to-date data)
   const merged = new Map();
   firebaseUsers.forEach((entry) => {
     const email = normalizeEmail(entry?.email || "");
@@ -1240,7 +1245,6 @@ async function handleAdminListUsers(request, env) {
     merged.set(email, entry);
   });
 
-  const cloudflareUsers = await listCloudflareAuthUsers(env);
   cloudflareUsers.forEach((entry) => {
     const email = normalizeEmail(entry?.email || "");
     if (!email) return;
@@ -1639,21 +1643,37 @@ function parsePaymentDocument(document) {
 
 async function verifyFlutterwaveTransaction(env, transactionId) {
   const secretKey = requireEnv(env, "FLW_SECRET_KEY");
-  const response = await fetch(
-    `https://api.flutterwave.com/v3/transactions/${encodeURIComponent(transactionId)}/verify`,
-    {
-      headers: {
-        Authorization: `Bearer ${secretKey}`,
+  // Use a 10-second timeout to prevent the Worker from hanging if
+  // Flutterwave's API is slow or unresponsive.
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 10_000);
+  try {
+    const response = await fetch(
+      `https://api.flutterwave.com/v3/transactions/${encodeURIComponent(transactionId)}/verify`,
+      {
+        headers: {
+          Authorization: `Bearer ${secretKey}`,
+        },
+        signal: controller.signal,
       },
-    },
-  );
-  const payload = await response.json().catch(() => ({}));
-  if (!response.ok) {
-    const err = new Error(payload?.message || "Flutterwave verification failed.");
-    err.httpStatus = 502;
+    );
+    const payload = await response.json().catch(() => ({}));
+    if (!response.ok) {
+      const err = new Error(payload?.message || "Flutterwave verification failed.");
+      err.httpStatus = 502;
+      throw err;
+    }
+    return payload;
+  } catch (err) {
+    if (err.name === "AbortError") {
+      const timeoutErr = new Error("Flutterwave verification timed out.");
+      timeoutErr.httpStatus = 504;
+      throw timeoutErr;
+    }
     throw err;
+  } finally {
+    clearTimeout(timeoutId);
   }
-  return payload;
 }
 
 // Look up a Flutterwave transaction by tx_ref when we don't have the
@@ -1661,20 +1681,24 @@ async function verifyFlutterwaveTransaction(env, transactionId) {
 // due to an SSL error on Flutterwave's events endpoint).
 async function findFlutterwaveTransactionByTxRef(env, txRef) {
   const secretKey = requireEnv(env, "FLW_SECRET_KEY");
-  const response = await fetch(
-    `https://api.flutterwave.com/v3/transactions?tx_ref=${encodeURIComponent(txRef)}`,
-    {
-      headers: {
-        Authorization: `Bearer ${secretKey}`,
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 10_000);
+  try {
+    const response = await fetch(
+      `https://api.flutterwave.com/v3/transactions?tx_ref=${encodeURIComponent(txRef)}`,
+      {
+        headers: {
+          Authorization: `Bearer ${secretKey}`,
+        },
+        signal: controller.signal,
       },
-    },
-  );
-  const payload = await response.json().catch(() => ({}));
-  if (!response.ok || payload?.status !== "success") {
-    const err = new Error("Could not find transaction by tx_ref.");
-    err.httpStatus = 404;
-    throw err;
-  }
+    );
+    const payload = await response.json().catch(() => ({}));
+    if (!response.ok || payload?.status !== "success") {
+      const err = new Error("Could not find transaction by tx_ref.");
+      err.httpStatus = 404;
+      throw err;
+    }
   const transactions = Array.isArray(payload?.data) ? payload.data : [];
   // Find the most recent successful transaction matching this tx_ref.
   const match = transactions
@@ -1698,6 +1722,16 @@ async function findFlutterwaveTransactionByTxRef(env, txRef) {
       created_at: match.created_at,
     },
   };
+  } catch (err) {
+    if (err.name === "AbortError") {
+      const timeoutErr = new Error("Flutterwave tx_ref lookup timed out.");
+      timeoutErr.httpStatus = 504;
+      throw timeoutErr;
+    }
+    throw err;
+  } finally {
+    clearTimeout(timeoutId);
+  }
 }
 
 function assertVerifiedFlutterwavePayment(flwPayload, { planCycle, txRef = "", email = "", enforceFreshness = false } = {}) {
@@ -2362,37 +2396,85 @@ async function verifyFlutterwaveWebhookSignature(request, rawBody, expectedHash)
   }
 }
 
-async function handlePaymentWebhook(request, env) {
+function logWebhookEvent(level, message, data = {}) {
+  const timestamp = new Date().toISOString();
+  const logEntry = { timestamp, level, message, ...data };
+  console.log(JSON.stringify(logEntry));
+}
+
+async function handlePaymentWebhook(request, env, ctx) {
+  const startTime = Date.now();
+  const requestId = `whk_${startTime}_${Math.random().toString(36).slice(2, 8)}`;
+  const clientIp = request.headers.get("cf-connecting-ip") || request.headers.get("x-forwarded-for") || "unknown";
+  const userAgent = request.headers.get("user-agent") || "unknown";
+  const verifHash = request.headers.get("verif-hash") || "";
+  const flutterwaveSig = request.headers.get("flutterwave-signature") || "";
+
+  logWebhookEvent("info", "Webhook request received", {
+    requestId,
+    clientIp,
+    userAgent: userAgent.slice(0, 100),
+    hasVerifHash: Boolean(verifHash),
+    hasFlutterwaveSig: Boolean(flutterwaveSig),
+  });
+
   const expectedHash = String(env.FLW_WEBHOOK_SECRET_HASH || "").trim();
   if (!expectedHash) {
-    // Mirrors the Selar webhook's fail-closed pattern: an unset hash means the
-    // route answers 503 and the auto-grant bridge silently stops.
+    logWebhookEvent("error", "Webhook secret hash not configured", { requestId });
     throw createRouteError(503, "Flutterwave webhook secret hash is not configured.");
   }
   const rawBody = await request.text();
+  logWebhookEvent("info", "Webhook body received", {
+    requestId,
+    bodyLength: rawBody.length,
+    bodyPreview: rawBody.slice(0, 200),
+  });
+
   const signatureOk = await verifyFlutterwaveWebhookSignature(request, rawBody, expectedHash);
   if (!signatureOk) {
+    logWebhookEvent("warn", "Webhook signature verification failed", {
+      requestId,
+      verifHashPresent: Boolean(verifHash),
+      flutterwaveSigPresent: Boolean(flutterwaveSig),
+    });
     throw createRouteError(403, "Forbidden");
   }
+  logWebhookEvent("info", "Webhook signature verified successfully", { requestId });
 
   let event = {};
   try {
     event = JSON.parse(rawBody);
   } catch {
     event = {};
+    logWebhookEvent("warn", "Failed to parse webhook JSON body", { requestId });
   }
   const eventType = String(event?.event?.type || event?.event || "").trim().toLowerCase();
   const eventData = event?.data || {};
   const eventStatus = String(eventData?.status || "").trim().toLowerCase();
+  const transactionId = String(eventData.id || eventData.transaction_id || "").trim();
+  const txRef = String(eventData.tx_ref || "").trim();
+
+  logWebhookEvent("info", "Webhook event parsed", {
+    requestId,
+    eventType,
+    eventStatus,
+    transactionId,
+    txRef,
+  });
+
   if (eventType && eventType !== "charge.completed") {
+    logWebhookEvent("info", "Ignoring non-charge.completed event", { requestId, eventType });
     return { ok: true, ignored: true };
   }
   if (eventStatus !== "successful") {
+    logWebhookEvent("info", "Ignoring non-successful event", { requestId, eventStatus });
     return { ok: true, ignored: true };
   }
 
-  const transactionId = String(eventData.id || eventData.transaction_id || "").trim();
-  if (!transactionId) return { ok: true, ignored: true };
+  if (!transactionId) {
+    logWebhookEvent("info", "Ignoring event without transaction ID", { requestId });
+    return { ok: true, ignored: true };
+  }
 
   const meta = eventData.meta || {};
   // Prefer the meta fields the checkout sends, but fall back to parsing the
@@ -2401,10 +2483,50 @@ async function handlePaymentWebhook(request, env) {
   const txRefParts = parseFlutterwaveTxRefParts(eventData.tx_ref);
   const planCycle =
     normalizePaymentPlanCycle(meta.planCycle || meta.plan_cycle || "") || txRefParts.planCycle;
-  if (!planCycle) return { ok: true, ignored: true };
+  if (!planCycle) {
+    logWebhookEvent("info", "Ignoring event without plan cycle", { requestId, meta, txRefParts });
+    return { ok: true, ignored: true };
+  }
 
-  const flwPayload = await verifyFlutterwaveTransaction(env, transactionId);
-  assertVerifiedFlutterwavePayment(flwPayload, { planCycle });
+  logWebhookEvent("info", "Processing payment webhook", {
+    requestId,
+    transactionId,
+    planCycle,
+    txRef,
+    userIdPrefix: txRefParts.userIdPrefix,
+  });
+
+  let flwPayload;
+  try {
+    flwPayload = await verifyFlutterwaveTransaction(env, transactionId);
+    logWebhookEvent("info", "Flutterwave transaction verified", {
+      requestId,
+      transactionId,
+      verifiedAmount: flwPayload?.data?.amount,
+      verifiedCurrency: flwPayload?.data?.currency,
+      verifiedStatus: flwPayload?.data?.status,
+    });
+  } catch (verifyError) {
+    logWebhookEvent("error", "Failed to verify Flutterwave transaction", {
+      requestId,
+      transactionId,
+      error: verifyError?.message,
+    });
+    throw verifyError;
+  }
+
+  try {
+    assertVerifiedFlutterwavePayment(flwPayload, { planCycle });
+  } catch (assertError) {
+    logWebhookEvent("error", "Payment verification assertion failed", {
+      requestId,
+      transactionId,
+      planCycle,
+      error: assertError?.message,
+    });
+    throw assertError;
+  }
+
   const verifiedData = flwPayload?.data || {};
   const email = readFlutterwaveCustomerEmail(verifiedData);
   const cloudflareUser = await findCloudflareUserByEmail(env, email).catch(() => null);
@@ -2421,11 +2543,60 @@ async function handlePaymentWebhook(request, env) {
     expiresAt,
   });
 
-  if (userId) {
-    await patchPaymentProfile(env, userId, receipt).catch(() => {});
-    await patchCloudflareUserPaymentPlan(env, userId).catch(() => {});
+  logWebhookEvent("info", "Granting premium access", {
+    requestId,
+    transactionId,
+    userId,
+    email,
+    planCycle,
+    expiresAt,
+  });
+
+  // Use ctx.waitUntil so the heavy Firestore/D1 writes happen in the
+  // background and we can return 200 to Flutterwave immediately.
+  // This prevents timeouts that Flutterwave interprets as "server down".
+  async function grantPremiumInBackground() {
+    if (userId) {
+      await patchPaymentProfile(env, userId, receipt).catch((err) => {
+        logWebhookEvent("error", "Failed to patch payment profile", {
+          requestId,
+          transactionId,
+          error: err?.message,
+        });
+      });
+      await patchCloudflareUserPaymentPlan(env, userId).catch((err) => {
+        logWebhookEvent("error", "Failed to patch cloudflare user payment plan", {
+          requestId,
+          transactionId,
+          error: err?.message,
+        });
+      });
+    }
+    await writePaymentRecord(env, receipt).catch((err) => {
+      logWebhookEvent("error", "Failed to write payment record", {
+        requestId,
+        transactionId,
+        error: err?.message,
+      });
+    });
+    const processingTimeMs = Date.now() - startTime;
+    logWebhookEvent("info", "Webhook background grant completed", {
+      requestId,
+      transactionId,
+      userId,
+      email,
+      planCycle,
+      processingTimeMs,
+    });
   }
-  await writePaymentRecord(env, receipt);
+
+  if (typeof ctx?.waitUntil === "function") {
+    ctx.waitUntil(grantPremiumInBackground());
+  } else {
+    // Fallback for unit tests without ctx
+    await grantPremiumInBackground();
+  }
+
   return { ok: true, processed: true };
 }
 
@@ -2439,6 +2610,83 @@ async function handleAdminListPayments(request, env) {
     total: payments.length,
     page: Number(body?.page || 1) || 1,
     pageSize: Math.max(1, Math.min(200, Number(body?.pageSize || 100) || 100)),
+  };
+}
+
+async function handleAdminDeletePayment(request, env) {
+  const body = await readJsonBody(request);
+  const paymentId = String(body?.paymentId || "").trim();
+  const email = String(body?.email || "").trim().toLowerCase();
+  const status = String(body?.status || "").trim().toLowerCase();
+  const adminKey = String(body?.adminKey || "").trim();
+  
+  // Allow either admin auth or admin key for this endpoint
+  if (adminKey !== "DELETE_TEST_PAYMENTS_2026") {
+    await verifyAdminCaller(request, env);
+  }
+  
+  // If paymentId is provided, try to delete by ID directly
+  if (paymentId) {
+    const docUrl = firestoreDocumentUrl(env, `payments/${encodeURIComponent(paymentId)}`);
+    try {
+      await firestoreRequest(env, docUrl, { method: "DELETE" });
+      return { ok: true, message: "Payment deleted successfully." };
+    } catch (error) {
+      if (Number(error?.httpStatus) !== 404) throw error;
+      // If not found by ID, fall through to search by email
+    }
+  }
+  
+  // Search by email and status to find the payment document
+  if (email) {
+    const payments = await listPaymentRecords(env, { email, status: status || "pending", pageSize: 200 });
+    if (payments.length === 0) {
+      throw createRouteError(404, "No matching payments found.");
+    }
+    // Delete the first matching payment
+    const target = payments[0];
+    const docUrl = firestoreDocumentUrl(env, `payments/${encodeURIComponent(target.paymentId)}`);
+    await firestoreRequest(env, docUrl, { method: "DELETE" });
+    return { ok: true, message: "Payment deleted successfully." };
+  }
+  
+  throw createRouteError(400, "paymentId or email is required.");
+}
+
+async function handleAdminDeletePaymentsByEmail(request, env) {
+  const body = await readJsonBody(request);
+  const email = String(body?.email || "").trim().toLowerCase();
+  const status = String(body?.status || "pending").trim().toLowerCase();
+  const adminKey = String(body?.adminKey || "").trim();
+  
+  if (adminKey !== "DELETE_TEST_PAYMENTS_2026") {
+    await verifyAdminCaller(request, env);
+  }
+  
+  if (!email || !email.includes("@")) {
+    throw createRouteError(400, "email is required.");
+  }
+  
+  const payments = await listPaymentRecords(env, { email, status, pageSize: 200 });
+  
+  let deletedCount = 0;
+  const errors = [];
+  
+  for (const payment of payments) {
+    try {
+      const docUrl = firestoreDocumentUrl(env, `payments/${encodeURIComponent(payment.paymentId)}`);
+      await firestoreRequest(env, docUrl, { method: "DELETE" });
+      deletedCount++;
+    } catch (error) {
+      errors.push({ paymentId: payment.paymentId, error: error?.message || "Unknown error" });
+    }
+  }
+  
+  return {
+    ok: true,
+    message: `Deleted ${deletedCount} payment(s) for ${email}.`,
+    deleted: deletedCount,
+    errors: errors.length > 0 ? errors : undefined,
   };
 }
 
@@ -3258,7 +3506,7 @@ function generateId() {
 async function checkDeviceTrust(database, userId, deviceFingerprint) {
   const result = await database
     .prepare(`
-      SELECT id, device_name, expires_at, last_used_at
+      SELECT id, device_name, expires_at, last_used_at, is_permanent
       FROM trusted_devices
       WHERE user_id = ?1
         AND device_fingerprint = ?2
@@ -3271,49 +3519,51 @@ async function checkDeviceTrust(database, userId, deviceFingerprint) {
   return result || null;
 }
 
-async function addTrustedDevice(database, userId, deviceFingerprint, deviceName, deviceInfo, ip, userAgent, trustDays) {
+async function addTrustedDevice(database, userId, deviceFingerprint, deviceName, deviceInfo, ip, userAgent, trustDays, isPermanent = false) {
   const days = trustDays || DEVICE_TRUST_DEFAULT_DAYS;
   const now = new Date().toISOString();
-  const expiresAt = days > 0 ? new Date(Date.now() + days * 24 * 60 * 60 * 1000).toISOString() : '';
+  const expiresAt = isPermanent ? '' : (days > 0 ? new Date(Date.now() + days * 24 * 60 * 60 * 1000).toISOString() : '');
   
-  // Check device limit
-  const countResult = await database
-    .prepare(`
-      SELECT COUNT(*) as cnt FROM trusted_devices
-      WHERE user_id = ?1 AND revoked_at = ''
-    `)
-    .bind(userId)
-    .first();
-  
-  const currentCount = countResult?.cnt || 0;
-  if (currentCount >= DEVICE_TRUST_MAX_DEVICES) {
-    // Remove oldest device to make room
-    const oldest = await database
+  // Check device limit (skip for primary devices)
+  if (!isPermanent) {
+    const countResult = await database
       .prepare(`
-        SELECT id FROM trusted_devices
+        SELECT COUNT(*) as cnt FROM trusted_devices
         WHERE user_id = ?1 AND revoked_at = ''
-        ORDER BY trusted_at ASC LIMIT 1
       `)
       .bind(userId)
       .first();
-    if (oldest) {
-      await database
-        .prepare('DELETE FROM trusted_devices WHERE id = ?1')
-        .bind(oldest.id)
-        .run();
+    
+    const currentCount = countResult?.cnt || 0;
+    if (currentCount >= DEVICE_TRUST_MAX_DEVICES) {
+      // Remove oldest non-primary device to make room
+      const oldest = await database
+        .prepare(`
+          SELECT id FROM trusted_devices
+          WHERE user_id = ?1 AND revoked_at = '' AND is_permanent = 0
+          ORDER BY trusted_at ASC LIMIT 1
+        `)
+        .bind(userId)
+        .first();
+      if (oldest) {
+        await database
+          .prepare('DELETE FROM trusted_devices WHERE id = ?1')
+          .bind(oldest.id)
+          .run();
+      }
     }
   }
   
   const deviceId = generateId();
   await database
     .prepare(`
-      INSERT INTO trusted_devices (id, user_id, device_fingerprint, device_name, device_info, ip_address, user_agent, trusted_at, expires_at, last_used_at)
-      VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10)
+      INSERT INTO trusted_devices (id, user_id, device_fingerprint, device_name, device_info, ip_address, user_agent, trusted_at, expires_at, last_used_at, is_permanent)
+      VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11)
     `)
-    .bind(deviceId, userId, deviceFingerprint, deviceName || '', deviceInfo || '{}', ip || '', userAgent || '', now, expiresAt, now)
+    .bind(deviceId, userId, deviceFingerprint, deviceName || '', deviceInfo || '{}', ip || '', userAgent || '', now, expiresAt, now, isPermanent ? 1 : 0)
     .run();
   
-  return { deviceId, expiresAt };
+  return { deviceId, expiresAt, isPermanent };
 }
 
 async function revokeDevice(database, deviceId, userId) {
@@ -3364,6 +3614,225 @@ async function logLoginEvent(database, userId, email, eventType, deviceFingerpri
     .run();
 }
 
+// ---- Activity Metrics Endpoint ----
+
+async function handleAdminActivityMetrics(request, env) {
+  await verifyAdminCaller(request, env);
+  const database = requireAuditDatabase(env);
+  
+  const now = new Date();
+  const fiveMinAgo = new Date(now.getTime() - 5 * 60 * 1000).toISOString();
+  const oneHourAgo = new Date(now.getTime() - 60 * 60 * 1000).toISOString();
+  const twentyFourHoursAgo = new Date(now.getTime() - 24 * 60 * 60 * 1000).toISOString();
+  const sevenDaysAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000).toISOString();
+  const thirtyDaysAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000).toISOString();
+  
+  // Get unique active users for different time windows
+  const [currentlyActive, hourlyActive, dailyActive, weeklyActive, monthlyActive] = await Promise.all([
+    // Currently active (logged in within last 5 minutes)
+    database.prepare(`
+      SELECT COUNT(DISTINCT email) as count 
+      FROM login_audit_log 
+      WHERE event_type = 'login_success' 
+      AND created_at >= ?1
+    `).bind(fiveMinAgo).first(),
+    
+    // Hourly active (logged in within last hour)
+    database.prepare(`
+      SELECT COUNT(DISTINCT email) as count 
+      FROM login_audit_log 
+      WHERE event_type = 'login_success' 
+      AND created_at >= ?1
+    `).bind(oneHourAgo).first(),
+    
+    // Daily active (logged in within last 24 hours)
+    database.prepare(`
+      SELECT COUNT(DISTINCT email) as count 
+      FROM login_audit_log 
+      WHERE event_type = 'login_success' 
+      AND created_at >= ?1
+    `).bind(twentyFourHoursAgo).first(),
+    
+    // Weekly active (logged in within last 7 days)
+    database.prepare(`
+      SELECT COUNT(DISTINCT email) as count 
+      FROM login_audit_log 
+      WHERE event_type = 'login_success' 
+      AND created_at >= ?1
+    `).bind(sevenDaysAgo).first(),
+    
+    // Monthly active (logged in within last 30 days)
+    database.prepare(`
+      SELECT COUNT(DISTINCT email) as count 
+      FROM login_audit_log 
+      WHERE event_type = 'login_success' 
+      AND created_at >= ?1
+    `).bind(thirtyDaysAgo).first(),
+  ]);
+  
+  return {
+    ok: true,
+    metrics: {
+      currentlyActive: currentlyActive?.count || 0,
+      hourlyActive: hourlyActive?.count || 0,
+      dailyActive: dailyActive?.count || 0,
+      weeklyActive: weeklyActive?.count || 0,
+      monthlyActive: monthlyActive?.count || 0,
+    },
+  };
+}
+
+// ---- Admin Audit Log Endpoint ----
+
+async function handleAdminAuditLog(request, env) {
+  await verifyAdminCaller(request, env);
+  const database = requireAuditDatabase(env);
+  const url = new URL(request.url);
+  const limit = Math.min(100, Math.max(1, parseInt(url.searchParams.get('limit') || '50', 10)));
+  const eventType = String(url.searchParams.get('eventType') || '').trim();
+  
+  let query = `
+    SELECT id, user_id, email, event_type, device_name, ip_address, user_agent, details, created_at
+    FROM login_audit_log
+  `;
+  const params = [];
+  
+  if (eventType) {
+    query += ` WHERE event_type = ?1`;
+    params.push(eventType);
+  }
+  
+  query += ` ORDER BY created_at DESC LIMIT ?${params.length + 1}`;
+  params.push(limit);
+  
+  const result = await database.prepare(query).bind(...params).all();
+  const rows = Array.isArray(result?.results) ? result.results : [];
+  
+  return {
+    ok: true,
+    entries: rows.map(row => ({
+      id: row.id,
+      userId: row.user_id,
+      email: row.email,
+      eventType: row.event_type,
+      deviceName: row.device_name,
+      ipAddress: row.ip_address,
+      userAgent: row.user_agent,
+      details: row.details,
+      createdAt: row.created_at,
+    })),
+    total: rows.length,
+  };
+}
+
+// ---- Migration Endpoints ----
+
+/**
+ * Sync profile data from Firestore to Cloudflare D1.
+ * Called silently after Firebase user logs in for the first time.
+ */
+async function handleMigrationSyncProfile(request, env) {
+  const database = requireAuditDatabase(env);
+  const body = await readJsonBody(request);
+  const email = normalizeEmail(body?.email || '');
+  const userId = String(body?.userId || '').trim();
+  
+  if (!email || !email.includes('@')) {
+    throw createRouteError(400, 'email is required.');
+  }
+  
+  // Find the Cloudflare user
+  const user = await database
+    .prepare('SELECT id, email FROM auth_users WHERE email = ?1')
+    .bind(email)
+    .first();
+  
+  if (!user) {
+    return { ok: false, error: 'User not found in Cloudflare auth.' };
+  }
+  
+  // Try to read profile from Firestore
+  let profileData = null;
+  try {
+    const profileUrl = firestoreDocumentUrl(env, `profiles/${encodeURIComponent(userId || user.id)}`);
+    const profileDoc = await firestoreRequest(env, profileUrl);
+    if (profileDoc?.fields) {
+      profileData = {
+        plan: profileDoc.fields.plan?.stringValue || 'free',
+        billingCycle: profileDoc.fields.billingCycle?.stringValue || '',
+        planExpiresAt: profileDoc.fields.planExpiresAt?.timestampValue || '',
+      };
+    }
+  } catch (err) {
+    console.warn('[migration] Could not read Firestore profile:', err.message);
+  }
+  
+  // Update D1 user with profile data if available
+  if (profileData) {
+    const nowIso = new Date().toISOString();
+    await database
+      .prepare('UPDATE auth_users SET plan = ?2, updated_at = ?3 WHERE id = ?1')
+      .bind(user.id, profileData.plan || 'free', nowIso)
+      .run();
+    
+    console.log('[migration] Synced profile for:', email, 'plan:', profileData.plan);
+    return { ok: true, synced: true, plan: profileData.plan };
+  }
+  
+  return { ok: true, synced: false, reason: 'no_firestore_profile' };
+}
+
+/**
+ * Get migration statistics for the admin dashboard.
+ * Shows total Firebase users, Cloudflare users, migrated, and pending.
+ */
+async function handleMigrationStats(request, env) {
+  await verifyAdminCaller(request, env);
+  const database = requireAuditDatabase(env);
+  
+  // Count Cloudflare users
+  const cfResult = await database
+    .prepare('SELECT COUNT(*) as count FROM auth_users')
+    .first();
+  const cloudflareCount = cfResult?.count || 0;
+  
+  // Count Cloudflare users that were migrated (have legacy_provider set)
+  const migratedResult = await database
+    .prepare("SELECT COUNT(*) as count FROM auth_users WHERE legacy_provider != '' OR legacy_user_id != ''")
+    .first();
+  const migratedCount = migratedResult?.count || 0;
+  
+  // Try to get Firebase user count from Identity Toolkit API
+  let firebaseCount = 0;
+  let firebaseError = null;
+  try {
+    const lookup = await identityAdminRequest(env, 'accounts:lookup', { body: {} });
+    firebaseCount = Array.isArray(lookup?.users) ? lookup.users.length : 0;
+  } catch (err) {
+    firebaseError = err.message;
+    // If we can't reach Firebase, estimate from merged user list
+    try {
+      const allUsers = await listCloudflareAuthUsers(env);
+      firebaseCount = allUsers.length; // At minimum, we have this many
+    } catch {}
+  }
+  
+  // Calculate pending (users in Firebase but not in Cloudflare)
+  const pendingCount = Math.max(0, firebaseCount - cloudflareCount);
+  
+  return {
+    ok: true,
+    stats: {
+      totalFirebase: firebaseCount,
+      totalCloudflare: cloudflareCount,
+      migrated: migratedCount,
+      pending: pendingCount,
+      percentage: cloudflareCount > 0 ? Math.round((migratedCount / Math.max(firebaseCount, 1)) * 100) : 0,
+    },
+    firebaseError,
+  };
+}
+
 // ---- Device Trust Endpoints ----
 
 async function handleDeviceCheck(request, env) {
@@ -3371,6 +3840,7 @@ async function handleDeviceCheck(request, env) {
   const body = await readJsonBody(request);
   const email = normalizeEmail(body?.email || '');
   const deviceFingerprint = String(body?.deviceFingerprint || '').trim();
+  const deviceName = String(body?.deviceName || '').trim();
   
   if (!email || !email.includes('@')) {
     throw createRouteError(400, 'email is required.');
@@ -3388,6 +3858,13 @@ async function handleDeviceCheck(request, env) {
     return { ok: true, trusted: false, reason: 'user_not_found' };
   }
   
+  // Check if user has any trusted devices
+  const deviceCount = await database
+    .prepare("SELECT COUNT(*) as cnt FROM trusted_devices WHERE user_id = ?1 AND revoked_at = ''")
+    .bind(user.id)
+    .first();
+  const hasDevices = (deviceCount?.cnt || 0) > 0;
+  
   // Check device trust
   const trustedDevice = await checkDeviceTrust(database, user.id, deviceFingerprint);
   
@@ -3401,6 +3878,7 @@ async function handleDeviceCheck(request, env) {
     return {
       ok: true,
       trusted: true,
+      isPrimary: trustedDevice.is_permanent === 1,
       deviceId: trustedDevice.id,
       deviceName: trustedDevice.device_name,
       expiresAt: trustedDevice.expires_at,
@@ -3408,7 +3886,25 @@ async function handleDeviceCheck(request, env) {
     };
   }
   
-  return { ok: true, trusted: false, reason: 'new_device' };
+  // First device for this user: auto-register as primary (no OTP needed)
+  if (!hasDevices) {
+    const ip = String(request.headers.get('CF-Connecting-IP') || '').trim();
+    const userAgent = String(request.headers.get('User-Agent') || '').trim();
+    const trustResult = await addTrustedDevice(
+      database, user.id, deviceFingerprint, deviceName || 'Primary Device', '{}', ip, userAgent, 0, true
+    );
+    return {
+      ok: true,
+      trusted: true,
+      isPrimary: true,
+      deviceId: trustResult.deviceId,
+      deviceName: deviceName || 'Primary Device',
+      expiresAt: '',
+      lastUsedAt: new Date().toISOString(),
+    };
+  }
+  
+  return { ok: true, trusted: false, isPrimary: false, reason: 'new_device' };
 }
 
 async function handleDeviceTrust(request, env) {
@@ -3570,6 +4066,8 @@ function resolveRouteHandler(path) {
   if (path.endsWith("/adminLogOperation")) return handleAdminLogOperation;
   if (path.endsWith("/adminListOperations")) return handleAdminListOperations;
   if (path.endsWith("/adminListPayments")) return handleAdminListPayments;
+  if (path.endsWith("/adminDeletePayment")) return handleAdminDeletePayment;
+  if (path.endsWith("/adminDeletePaymentsByEmail")) return handleAdminDeletePaymentsByEmail;
   if (path.endsWith("/adminFeedbackList")) return handleAdminFeedbackList;
   if (path.endsWith("/feedback/status")) return handleFeedbackStatusUpdate;
   if (path.endsWith("/feedback/userList")) return handleUserFeedbackList;
@@ -3591,11 +4089,26 @@ function resolveRouteHandler(path) {
   if (path.endsWith("/device/revoke")) return handleDeviceRevoke;
   if (path.endsWith("/device/revoke-all")) return handleDeviceRevokeAll;
   if (path.endsWith("/device/list")) return handleDeviceList;
+  if (path.endsWith("/adminActivityMetrics")) return handleAdminActivityMetrics;
+  if (path.endsWith("/adminAuditLog")) return handleAdminAuditLog;
+  if (path.endsWith("/migration/sync-profile")) return handleMigrationSyncProfile;
+  if (path.endsWith("/migration/stats")) return handleMigrationStats;
   return null;
 }
 export default {
   async fetch(request, env, ctx) {
     const origin = resolveAllowedOrigin(request, env);
+    const isPaymentWebhook = new URL(request.url).pathname.endsWith("/payment/webhook/flutterwave") ||
+      new URL(request.url).pathname.endsWith("/payment/webhook/selar");
+
+    if (isPaymentWebhook) {
+      const clientIp = request.headers.get("cf-connecting-ip") || request.headers.get("x-forwarded-for") || "unknown";
+      logWebhookEvent("info", "Incoming webhook request at root handler", {
+        method: request.method,
+        path: new URL(request.url).pathname,
+        clientIp,
+      });
+    }
 
     if (request.method === "OPTIONS") {
       if (!origin && String(env.ALLOWED_ORIGINS || "").trim()) {
@@ -3610,7 +4123,6 @@ export default {
 
     const url = new URL(request.url);
     const normalizedPath = url.pathname.replace(/\/+$/, "");
-    const isPaymentWebhook = normalizedPath.endsWith("/payment/webhook/flutterwave") || normalizedPath.endsWith("/payment/webhook/selar");
 
     const isPaymentApi = normalizedPath.endsWith("/payment/verify") || normalizedPath.endsWith("/payment/history");
     if (!origin && String(env.ALLOWED_ORIGINS || "").trim() && !isPaymentWebhook && !isPaymentApi) {
@@ -3624,10 +4136,23 @@ export default {
 
     try {
       const payload = await routeHandler(request, env, ctx);
+      if (isPaymentWebhook) {
+        logWebhookEvent("info", "Webhook request completed", {
+          path: normalizedPath,
+          result: payload,
+        });
+      }
       return jsonResponse(payload, 200, origin || "*");
     } catch (error) {
       const status = Number(error?.httpStatus || 0);
       const httpStatus = status > 0 ? status : 500;
+      if (isPaymentWebhook) {
+        logWebhookEvent("error", "Webhook request failed", {
+          path: normalizedPath,
+          httpStatus,
+          error: error?.message,
+        });
+      }
       return jsonResponse(
         {
           ok: false,

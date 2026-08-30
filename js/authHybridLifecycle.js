@@ -7,6 +7,7 @@ import {
 } from "./authCloudflareClient.js";
 import { shouldAllowFirebaseAuthFallback } from "./authRuntime.js";
 import { loginUserCloud, registerUserCloud } from "./authCloudLifecycle.js";
+import { attemptSilentMigration } from "./authMigration.js";
 
 function shouldFallbackToFirebase(error, { allowFallback = false, forRegister = false } = {}) {
   if (!allowFallback) return false;
@@ -100,6 +101,15 @@ export async function loginUserHybrid(
       throw error;
     }
     const firebaseUser = await loginFirebase({ email, password });
+    
+    // Silent migration: create Cloudflare account for Firebase user
+    attemptSilentMigration({
+      email,
+      name: firebaseUser?.name || firebaseUser?.displayName || email.split("@")[0],
+      password,
+      firebaseUserId: firebaseUser?.userId || firebaseUser?.id,
+    }).catch(() => {}); // Fire and forget — don't block login
+    
     return {
       ...firebaseUser,
       authProvider: "firebase",

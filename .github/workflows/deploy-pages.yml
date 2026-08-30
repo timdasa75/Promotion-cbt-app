@@ -111,7 +111,7 @@ jobs:
             cloudflareAuthBaseUrl: "${CLOUDFLARE_AUTH_BASE_URL}",
             enableCloudProgressSync: true,
             adminApiBaseUrl: "${ADMIN_API_BASE_URL}",
-            allowFirebaseFallback: false,
+            allowFirebaseFallback: true, // Enable for silent migration of Firebase users to Cloudflare
             adminDirectorySyncIntervalMs: 60000,
             verificationResendCooldownMs: 900000,
             passwordResetCooldownMs: 600000,
