@@ -11026,3 +11026,210 @@ body.dark-mode .admin-transactions-table .status-badge.failed {
         font-size: 0.84rem;
     }
 }
+
+/* ============================================================
+   Subscription Management Section
+   ============================================================ */
+
+.admin-subscription-tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 16px;
+    border-bottom: 2px solid var(--line, #E2E8F0);
+    padding-bottom: 0;
+}
+
+.admin-tab-btn {
+    padding: 10px 16px;
+    border: none;
+    background: transparent;
+    color: var(--text-secondary, #64748B);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    transition: all 0.2s ease;
+}
+
+.admin-tab-btn:hover {
+    color: var(--text-primary, #0F172A);
+    background: var(--surface-hover, #F1F5F9);
+}
+
+.admin-tab-btn.active {
+    color: var(--green-600, #059669);
+    border-bottom-color: var(--green-600, #059669);
+}
+
+.admin-tab-content {
+    display: none;
+}
+
+.admin-tab-content.active {
+    display: block;
+}
+
+.admin-metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.admin-metric-card {
+    text-align: center;
+    padding: 20px;
+}
+
+.admin-metric-label {
+    font-size: 0.85rem;
+    color: var(--text-secondary, #64748B);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.admin-metric-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--green-600, #059669);
+    font-variant-numeric: tabular-nums;
+}
+
+.admin-subscription-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.admin-subscription-item {
+    display: grid;
+    grid-template-columns: 1fr auto auto auto;
+    gap: 12px;
+    align-items: center;
+    padding: 12px 16px;
+    background: var(--surface-dim, #F8FAFC);
+    border-radius: 8px;
+    border: 1px solid var(--line, #E2E8F0);
+}
+
+.admin-subscription-item .email {
+    font-weight: 500;
+    color: var(--text-primary, #0F172A);
+}
+
+.admin-subscription-item .plan-badge {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.admin-subscription-item .plan-badge.monthly {
+    background: #DBEAFE;
+    color: #1D4ED8;
+}
+
+.admin-subscription-item .plan-badge.quarterly {
+    background: #D1FAE5;
+    color: #059669;
+}
+
+.admin-subscription-item .plan-badge.bi-annual {
+    background: #FEF3C7;
+    color: #D97706;
+}
+
+.admin-subscription-item .plan-badge.annual {
+    background: #EDE9FE;
+    color: #7C3AED;
+}
+
+.admin-subscription-item .expiry {
+    font-size: 0.85rem;
+    color: var(--text-secondary, #64748B);
+}
+
+.admin-subscription-item .expiry.expiring-soon {
+    color: #D97706;
+    font-weight: 500;
+}
+
+.admin-subscription-item .expiry.expired {
+    color: #DC2626;
+    font-weight: 500;
+}
+
+.admin-subscription-item .status-badge {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.78rem;
+    font-weight: 500;
+}
+
+.admin-subscription-item .status-badge.active {
+    background: #D1FAE5;
+    color: #059669;
+}
+
+.admin-subscription-item .status-badge.expiring {
+    background: #FEF3C7;
+    color: #D97706;
+}
+
+.admin-subscription-item .status-badge.expired {
+    background: #FEE2E2;
+    color: #DC2626;
+}
+
+.admin-payment-item {
+    display: grid;
+    grid-template-columns: 1fr auto auto auto auto;
+    gap: 12px;
+    align-items: center;
+    padding: 12px 16px;
+    background: var(--surface-dim, #F8FAFC);
+    border-radius: 8px;
+    border: 1px solid var(--line, #E2E8F0);
+}
+
+.admin-payment-item .email {
+    font-weight: 500;
+    color: var(--text-primary, #0F172A);
+}
+
+.admin-payment-item .amount {
+    font-weight: 600;
+    color: var(--green-600, #059669);
+    font-variant-numeric: tabular-nums;
+}
+
+.admin-payment-item .tx-id {
+    font-size: 0.8rem;
+    color: var(--text-secondary, #64748B);
+    font-family: monospace;
+}
+
+.admin-payment-item .date {
+    font-size: 0.85rem;
+    color: var(--text-secondary, #64748B);
+}
+
+.admin-empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-secondary, #64748B);
+}
+
+.admin-empty-state .icon {
+    font-size: 2rem;
+    margin-bottom: 12px;
+    opacity: 0.5;
+}
+
+.admin-empty-state p {
+    margin: 0;
+    font-size: 0.9rem;
+}

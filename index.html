@@ -879,7 +879,7 @@
                         </div>
 
                         <div class="admin-view" id="adminViewPayments">
-                            <div class="admin-view-header"><h2>Payments</h2><p>Manage pricing and upgrade requests</p></div>
+                            <div class="admin-view-header"><h2>Payments</h2><p>Manage pricing and subscription overview</p></div>
                             <section class="admin-group" id="adminTabPayments" aria-labelledby="adminGroupAccessTitle">
                                 <h3 class="admin-group-title" id="adminGroupAccessTitle">Payments &amp; Access</h3>
                                 <div class="admin-grid">
@@ -912,37 +912,104 @@
                             </div>
                             <p class="meta" id="pricingLastUpdated"></p>
                         </article>
-                                    <article class="card admin-section-card admin-requests-card" data-admin-section="upgrade-requests">
-                            <div class="admin-card-head">
-                                <h3>Upgrade Requests</h3>
-                                <span class="admin-count" id="adminRequestCount">0/0</span>
-                            </div>
-                            <div class="toolbar-row admin-request-toolbar">
-                                <div class="search-wrap">
-                                    <input id="adminRequestSearch" type="search" placeholder="Search email, reference, note" aria-label="Search email, reference, note" />
-                                    <button class="search-clear" type="button" aria-label="Clear search" title="Clear search">&#10005;</button>
                                 </div>
-                                <select id="adminRequestStatusFilter" aria-label="Filter request status">
-                                    <option value="all">All Statuses</option>
-                                    <option value="pending">Pending</option>
-                                    <option value="approved">Approved</option>
-                                    <option value="rejected">Rejected</option>
-                                </select>
-                                <select id="adminRequestSourceFilter" aria-label="Filter request source">
-                                    <option value="all">All Sources</option>
-                                    <option value="cloud-profile">Cloud Profile</option>
-                                    <option value="local">Local Device</option>
-                                </select>
-                                <select id="adminRequestSort" aria-label="Sort requests">
-                                    <option value="newest">Newest First</option>
-                                    <option value="oldest">Oldest First</option>
-                                    <option value="email-asc">Email A-Z</option>
-                                    <option value="email-desc">Email Z-A</option>
-                                </select>
-                                <button class="btn btn-secondary" id="refreshAdminRequestsBtn" type="button">Refresh</button>
-                            </div>
-                            <div id="adminRequestList" class="mistake-list"></div>
-                        </article>
+                            </section>
+                            
+                            <!-- Subscription Management Tabs -->
+                            <section class="admin-group" id="adminTabSubscriptions">
+                                <div class="admin-subscription-tabs">
+                                    <button class="admin-tab-btn active" data-tab="active-subscriptions">Active Subscriptions</button>
+                                    <button class="admin-tab-btn" data-tab="expiring-soon">Expiring Soon</button>
+                                    <button class="admin-tab-btn" data-tab="payment-history">Payment History</button>
+                                    <button class="admin-tab-btn" data-tab="revenue-metrics">Revenue Metrics</button>
+                                </div>
+                                
+                                <!-- Active Subscriptions Tab -->
+                                <div class="admin-tab-content active" id="tab-active-subscriptions">
+                                    <article class="card admin-section-card">
+                                        <div class="admin-card-head">
+                                            <h3>Active Subscriptions</h3>
+                                            <span class="admin-count" id="activeSubCount">0</span>
+                                        </div>
+                                        <div class="toolbar-row">
+                                            <div class="search-wrap">
+                                                <input id="activeSubSearch" type="search" placeholder="Search by email" aria-label="Search subscriptions" />
+                                                <button class="search-clear" type="button" aria-label="Clear search">&#10005;</button>
+                                            </div>
+                                            <select id="activeSubFilter" aria-label="Filter by plan">
+                                                <option value="all">All Plans</option>
+                                                <option value="monthly">Monthly</option>
+                                                <option value="quarterly">Quarterly</option>
+                                                <option value="bi-annual">Bi-Annual</option>
+                                                <option value="annual">Annual</option>
+                                            </select>
+                                            <button class="btn btn-secondary" id="refreshActiveSubBtn" type="button">Refresh</button>
+                                        </div>
+                                        <div id="activeSubList" class="admin-subscription-list"></div>
+                                    </article>
+                                </div>
+                                
+                                <!-- Expiring Soon Tab -->
+                                <div class="admin-tab-content" id="tab-expiring-soon">
+                                    <article class="card admin-section-card">
+                                        <div class="admin-card-head">
+                                            <h3>Expiring Soon (7 days)</h3>
+                                            <span class="admin-count" id="expiringSubCount">0</span>
+                                        </div>
+                                        <div id="expiringSubList" class="admin-subscription-list"></div>
+                                    </article>
+                                </div>
+                                
+                                <!-- Payment History Tab -->
+                                <div class="admin-tab-content" id="tab-payment-history">
+                                    <article class="card admin-section-card">
+                                        <div class="admin-card-head">
+                                            <h3>Payment History</h3>
+                                            <span class="admin-count" id="paymentHistoryCount">0</span>
+                                        </div>
+                                        <div class="toolbar-row">
+                                            <div class="search-wrap">
+                                                <input id="paymentHistorySearch" type="search" placeholder="Search by email or transaction ID" aria-label="Search payments" />
+                                                <button class="search-clear" type="button" aria-label="Clear search">&#10005;</button>
+                                            </div>
+                                            <select id="paymentHistoryStatus" aria-label="Filter by status">
+                                                <option value="all">All Status</option>
+                                                <option value="successful">Successful</option>
+                                                <option value="pending">Pending</option>
+                                                <option value="failed">Failed</option>
+                                            </select>
+                                            <button class="btn btn-secondary" id="refreshPaymentHistoryBtn" type="button">Refresh</button>
+                                        </div>
+                                        <div id="paymentHistoryList" class="admin-subscription-list"></div>
+                                    </article>
+                                </div>
+                                
+                                <!-- Revenue Metrics Tab -->
+                                <div class="admin-tab-content" id="tab-revenue-metrics">
+                                    <div class="admin-metrics-grid">
+                                        <article class="card admin-section-card admin-metric-card">
+                                            <div class="admin-metric-label">Total Revenue</div>
+                                            <div class="admin-metric-value" id="totalRevenue">₦0</div>
+                                        </article>
+                                        <article class="card admin-section-card admin-metric-card">
+                                            <div class="admin-metric-label">Monthly Revenue</div>
+                                            <div class="admin-metric-value" id="monthlyRevenue">₦0</div>
+                                        </article>
+                                        <article class="card admin-section-card admin-metric-card">
+                                            <div class="admin-metric-label">Active Subscribers</div>
+                                            <div class="admin-metric-value" id="activeSubscriberCount">0</div>
+                                        </article>
+                                        <article class="card admin-section-card admin-metric-card">
+                                            <div class="admin-metric-label">Conversion Rate</div>
+                                            <div class="admin-metric-value" id="conversionRate">0%</div>
+                                        </article>
+                                    </div>
+                                    <article class="card admin-section-card">
+                                        <div class="admin-card-head">
+                                            <h3>Revenue by Plan</h3>
+                                        </div>
+                                        <div id="revenueByPlanList" class="admin-subscription-list"></div>
+                                    </article>
                                 </div>
                             </section>
                         </div>

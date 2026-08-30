@@ -177,6 +177,7 @@ import {
 } from "./auth.js";
 import { getFirebaseConfig, getRuntimeConfig, getPaymentProvider, getSelarCheckoutUrl, isCloudAuthEnabled } from "./authRuntime.js";
 import "./authGoogle.js";
+import { initSubscriptionManagement, setupRefreshHandlers } from "./adminSubscriptionManagement.js";
 
 let currentTopic = null;
 let cachedTopics = [];
@@ -2769,6 +2770,8 @@ async function restoreScreenState() {
     initializeAdminTabs();
     loadPricingUI();
     initializePricingUI();
+    initSubscriptionManagement();
+    setupRefreshHandlers();
   }
 
   await showScreen(savedScreenId);
