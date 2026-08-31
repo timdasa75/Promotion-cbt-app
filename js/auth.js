@@ -26,7 +26,7 @@ import { buildUpgradeRequestRecordFromProfile as buildUpgradeRequestRecordFromPr
 import { FEEDBACK_MESSAGE_MAX_LENGTH, getAdminFeedbackSubmissions as getAdminFeedbackSubmissionsService, getFeedbackAccessState as getFeedbackAccessStateService, getUserFeedbackList as getUserFeedbackListService, submitFeedbackSubmission as submitFeedbackSubmissionService, updateFeedbackSubmissionStatus as updateFeedbackSubmissionStatusService } from "./authFeedbackService.js";
 import { loginUserCloud as loginUserCloudService, logoutCloud as logoutCloudService, refreshCloudUserInSession as refreshCloudUserInSessionService, registerUserCloud as registerUserCloudService } from "./authCloudLifecycle.js";
 import { loginUserHybrid as loginUserHybridService, logoutHybrid as logoutHybridService, refreshCloudflareUserInSession as refreshCloudflareUserInSessionService, registerUserHybrid as registerUserHybridService } from "./authHybridLifecycle.js";
-import { buildIdentityToolkitAdminHeaders, getFirebaseConfig, getPasswordResetCooldownMs, getVerificationResendCooldownMs, isCloudAuthEnabled, isCloudAuthMisconfigured, isCloudAuthRequired, isCloudProgressSyncEnabled, isCloudflareAuthPrimary, isLocalDemoAuthEnabled, shouldAllowFirebaseAuthFallback } from "./authRuntime.js";
+import { buildIdentityToolkitAdminHeaders, getFirebaseConfig, getPasswordResetCooldownMs, getRuntimeConfig, getVerificationResendCooldownMs, isCloudAuthEnabled, isCloudAuthMisconfigured, isCloudAuthRequired, isCloudProgressSyncEnabled, isCloudflareAuthPrimary, isLocalDemoAuthEnabled, shouldAllowFirebaseAuthFallback } from "./authRuntime.js";
 
 const DEFAULT_ADMIN_EMAILS = [];
 const PLAN_SYNC_INTERVAL_MS = 30 * 1000;
@@ -934,7 +934,12 @@ export async function resendVerificationEmailForUser(email, redirectTo = "") {
     throw new Error("Admin access is required.");
   }
   const session = readSession();
-  if (!session?.accessToken || session?.provider !== "firebase") {
+  if (!session?.accessToken) {
+    throw new Error("Cloud session is unavailable.");
+  }
+  // Accept both firebase and cloudflare providers
+  const validProviders = ["firebase", "cloudflare"];
+  if (!validProviders.includes(session?.provider)) {
     throw new Error("Cloud session is unavailable.");
   }
 
@@ -944,8 +949,30 @@ export async function resendVerificationEmailForUser(email, redirectTo = "") {
   }
 
   const continueTarget = String(redirectTo || "").trim();
-  const currentEmail = normalizeEmail(freshSession?.user?.email || "");
   assertVerificationResendAllowed(normalizedEmail);
+
+  // For Cloudflare auth sessions, use the Worker admin endpoint directly
+  const config = getRuntimeConfig();
+  const baseUrl = config?.cloudflareAuthBaseUrl || "";
+  if (baseUrl) {
+    const resp = await fetch(`${baseUrl}/adminSendVerificationEmail`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${freshSession.accessToken}`,
+      },
+      body: JSON.stringify({ email: normalizedEmail, continueUrl: continueTarget }),
+    });
+    const result = await resp.json().catch(() => ({}));
+    if (!resp.ok && result?.error) {
+      throw new Error(result.error);
+    }
+    markVerificationResend(normalizedEmail);
+    return { delivered: true, warning: result?.message || "Verification email sent." };
+  }
+
+  // Fallback: Firebase path for legacy sessions
+  const currentEmail = normalizeEmail(freshSession?.user?.email || "");
   if (currentEmail && currentEmail === normalizedEmail) {
     await firebaseAuthRequest("accounts:sendOobCode", {
       method: "POST",

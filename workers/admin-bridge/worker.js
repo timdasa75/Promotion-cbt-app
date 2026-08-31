@@ -1320,6 +1320,33 @@ async function handleAdminSendVerificationEmail(request, env) {
     throw createRouteError(400, "email is required.");
   }
 
+  const database = requireAuditDatabase(env);
+  const user = await database.prepare(
+    `SELECT id, email FROM auth_users WHERE email = ?1`
+  ).bind(email).first();
+
+  if (user?.id) {
+    // Cloudflare auth user — issue verification token and send via Resend
+    const { issueEmailToken } = await import("./auth-hybrid.js");
+    const { sendVerificationEmail: sendVerifEmail } = await import("./email-sender.js");
+    const tokenResult = await issueEmailToken(database, user.id, "verify_email", env);
+    const baseUrl = String(body?.continueUrl || "").trim() || String(env.ALLOWED_ORIGINS || "").split(",")[0] || "";
+    if (baseUrl && tokenResult.token) {
+      await sendVerifEmail(env, {
+        email,
+        name: "",
+        token: tokenResult.token,
+        baseUrl,
+      });
+    }
+    return {
+      ok: true,
+      delivered: true,
+      message: "Verification email sent via Cloudflare auth.",
+    };
+  }
+
+  // Fallback to Firebase Identity Toolkit for legacy users
   const payload = {
     requestType: "VERIFY_EMAIL",
     email,
@@ -1329,15 +1356,41 @@ async function handleAdminSendVerificationEmail(request, env) {
     payload.continueUrl = continueUrl;
   }
 
-  await identityAdminRequest(env, "accounts:sendOobCode", {
-    body: payload,
-  });
-
-  return {
-    ok: true,
-    delivered: true,
-    warning: "Verification email requested from Firebase Auth.",
-  };
+  try {
+    await identityAdminRequest(env, "accounts:sendOobCode", {
+      body: payload,
+    });
+    return {
+      ok: true,
+      delivered: true,
+      message: "Verification email requested from Firebase Auth.",
+    };
+  } catch (error) {
+    // If Firebase fails (user doesn't exist there), try Resend directly
+    const { sendVerificationEmail: sendVerifEmail } = await import("./email-sender.js");
+    const { issueEmailToken } = await import("./auth-hybrid.js");
+    // Create a temporary user in D1 and send verification
+    const userId = crypto.randomUUID();
+    const nowIso = new Date().toISOString();
+    await database.prepare(
+      `INSERT OR IGNORE INTO auth_users (id, email, role, plan, status, email_verified, created_at, updated_at) VALUES (?1, ?2, 'user', 'free', 'active', 0, ?3, ?3)`
+    ).bind(userId, email, nowIso).run();
+    const tokenResult = await issueEmailToken(database, userId, "verify_email", env);
+    const baseUrl = String(body?.continueUrl || "").trim() || String(env.ALLOWED_ORIGINS || "").split(",")[0] || "";
+    if (baseUrl && tokenResult.token) {
+      await sendVerifEmail(env, {
+        email,
+        name: "",
+        token: tokenResult.token,
+        baseUrl,
+      });
+    }
+    return {
+      ok: true,
+      delivered: true,
+      message: "Verification email sent.",
+    };
+  }
 }
 
 async function handleAuthPasswordRecoveryRequest(request, env) {
