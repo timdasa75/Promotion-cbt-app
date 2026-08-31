@@ -715,7 +715,8 @@ async function fetchDeviceCount() {
     const baseUrl = config?.cloudflareAuthBaseUrl || '';
     const session = readSession();
     if (!session?.accessToken || !baseUrl) return 0;
-    const resp = await fetch(`${baseUrl}/device/list`, {
+    // Use admin endpoint for total device count (no email needed)
+    const resp = await fetch(`${baseUrl}/admin/device-count`, {
       headers: { 'Authorization': `Bearer ${session.accessToken}` }
     });
     const data = await resp.json().catch(() => ({}));
@@ -729,13 +730,14 @@ async function fetchRecentLoginsCount() {
     const baseUrl = config?.cloudflareAuthBaseUrl || '';
     const session = readSession();
     if (!session?.accessToken || !baseUrl) return 0;
-    const resp = await fetch(`${baseUrl}/otp/audit`, {
+    // Use the admin audit log endpoint with login_success filter
+    const resp = await fetch(`${baseUrl}/adminAuditLog?eventType=login_success&limit=100`, {
       headers: { 'Authorization': `Bearer ${session.accessToken}` }
     });
     const data = await resp.json().catch(() => ({}));
     const entries = Array.isArray(data?.entries) ? data.entries : [];
     const cutoff = Date.now() - 24 * 60 * 60 * 1000;
-    return entries.filter(e => e.eventType === 'login_success' && new Date(e.createdAt).getTime() > cutoff).length;
+    return entries.filter(e => new Date(e.createdAt).getTime() > cutoff).length;
   } catch { return 0; }
 }
 

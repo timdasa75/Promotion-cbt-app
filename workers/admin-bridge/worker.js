@@ -1734,7 +1734,29 @@ async function findFlutterwaveTransactionByTxRef(env, txRef) {
   }
 }
 
-function assertVerifiedFlutterwavePayment(flwPayload, { planCycle, txRef = "", email = "", enforceFreshness = false } = {}) {
+async function fetchCurrentPricing(env) {
+  try {
+    const database = requireAuditDatabase(env);
+    await ensureProductPricingTable(database);
+    const result = await database
+      .prepare('SELECT * FROM product_pricing WHERE id = ?1')
+      .bind('default')
+      .first();
+    if (result) {
+      return {
+        monthly: Number(result.monthly_price) || PAYMENT_PLAN_PRICES.monthly,
+        quarterly: Number(result.quarterly_price) || PAYMENT_PLAN_PRICES.quarterly,
+        'bi-annual': Number(result.bi_annual_price) || PAYMENT_PLAN_PRICES['bi-annual'],
+        annual: Number(result.annual_price) || PAYMENT_PLAN_PRICES.annual,
+      };
+    }
+  } catch (e) {
+    console.error('[pricing] fetchCurrentPricing error:', e?.message || e);
+  }
+  return { ...PAYMENT_PLAN_PRICES };
+}
+
+async function assertVerifiedFlutterwavePayment(flwPayload, { planCycle, txRef = "", email = "", enforceFreshness = false, env = null } = {}) {
   const data = flwPayload?.data || {};
   const status = String(data.status || "").trim().toLowerCase();
   const topStatus = String(flwPayload?.status || "").trim().toLowerCase();
@@ -1748,7 +1770,8 @@ function assertVerifiedFlutterwavePayment(flwPayload, { planCycle, txRef = "", e
     err.httpStatus = 422;
     throw err;
   }
-  const expectedAmount = PAYMENT_PLAN_PRICES[planCycle];
+  const pricing = env ? await fetchCurrentPricing(env) : PAYMENT_PLAN_PRICES;
+  const expectedAmount = pricing[planCycle];
   const paidAmount = Number(data.amount || 0);
   if (!Number.isFinite(paidAmount) || Math.round(paidAmount) !== expectedAmount) {
     const err = new Error("Flutterwave transaction amount does not match the selected plan.");
@@ -2331,7 +2354,7 @@ async function handlePaymentVerify(request, env) {
   } else {
     flwPayload = await findFlutterwaveTransactionByTxRef(env, txRef);
   }
-  assertVerifiedFlutterwavePayment(flwPayload, { planCycle, txRef, email, enforceFreshness: true });
+  assertVerifiedFlutterwavePayment(flwPayload, { planCycle, txRef, email, enforceFreshness: true, env });
   const expiresAt = calculatePaymentExpiry(planCycle);
   const receipt = buildPaymentReceipt({
     flwData: flwPayload,
@@ -2516,7 +2539,7 @@ async function handlePaymentWebhook(request, env, ctx) {
   }
 
   try {
-    assertVerifiedFlutterwavePayment(flwPayload, { planCycle });
+    assertVerifiedFlutterwavePayment(flwPayload, { planCycle, env });
   } catch (assertError) {
     logWebhookEvent("error", "Payment verification assertion failed", {
       requestId,
@@ -3614,6 +3637,22 @@ async function logLoginEvent(database, userId, email, eventType, deviceFingerpri
     .run();
 }
 
+// ---- Admin Device Count Endpoint ----
+
+async function handleAdminDeviceCount(request, env) {
+  await verifyAdminCaller(request, env);
+  const database = requireAuditDatabase(env);
+  
+  const result = await database.prepare(
+    `SELECT COUNT(*) as total FROM trusted_devices`
+  ).first();
+  
+  return {
+    ok: true,
+    count: result?.total || 0,
+  };
+}
+
 // ---- Activity Metrics Endpoint ----
 
 async function handleAdminActivityMetrics(request, env) {
@@ -4014,11 +4053,21 @@ async function handleDeviceList(request, env) {
   const url = new URL(request.url);
   const email = normalizeEmail(url.searchParams.get('email') || '');
   
+  // Admin mode: return all devices across all users
   if (!email || !email.includes('@')) {
-    throw createRouteError(400, 'email is required.');
+    const callerEmail = await verifyAdminCaller(request, env);
+    const result = await database.prepare(
+      `SELECT COUNT(*) as total FROM trusted_devices`
+    ).first();
+    return {
+      ok: true,
+      devices: [],
+      count: result?.total || 0,
+      maxDevices: DEVICE_TRUST_MAX_DEVICES,
+    };
   }
   
-  // Find user
+  // User mode: return devices for specific user
   const user = await database
     .prepare('SELECT id FROM auth_users WHERE email = ?1')
     .bind(email)
@@ -4089,6 +4138,7 @@ function resolveRouteHandler(path) {
   if (path.endsWith("/device/revoke")) return handleDeviceRevoke;
   if (path.endsWith("/device/revoke-all")) return handleDeviceRevokeAll;
   if (path.endsWith("/device/list")) return handleDeviceList;
+  if (path.endsWith("/admin/device-count")) return handleAdminDeviceCount;
   if (path.endsWith("/adminActivityMetrics")) return handleAdminActivityMetrics;
   if (path.endsWith("/adminAuditLog")) return handleAdminAuditLog;
   if (path.endsWith("/migration/sync-profile")) return handleMigrationSyncProfile;
