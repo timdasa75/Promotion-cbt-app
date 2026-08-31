@@ -356,4 +356,10 @@ export function setupRefreshHandlers() {
     await loadPayments();
     renderPaymentHistory();
   });
+
+  // "See all transactions" button on the dashboard navigates to Payments section
+  document.getElementById("refreshRecentPaymentsBtn")?.addEventListener("click", () => {
+    const navItem = document.querySelector('[data-admin-nav="payments"]');
+    if (navItem) navItem.click();
+  });
 }
