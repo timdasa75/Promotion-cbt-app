@@ -1638,6 +1638,7 @@ function parsePaymentDocument(document) {
     status: String(firestoreValueToPlain(fields.status) || "successful").toLowerCase(),
     createdAt: String(firestoreValueToPlain(fields.createdAt) || ""),
     expiresAt: String(firestoreValueToPlain(fields.expiresAt) || ""),
+    deletedAt: String(firestoreValueToPlain(fields.deletedAt) || ""),
   };
 }
 
@@ -2182,8 +2183,18 @@ async function listPaymentRecords(env, filters = {}) {
   const planCycle = normalizePaymentPlanCycle(filters.planCycle) || "all";
   const userId = String(filters.userId || "").trim();
   const email = normalizeEmail(filters.email || "");
+  const includeDeleted = filters.includeDeleted === true;
+  // Fetch deleted payment IDs from D1 for filtering
+  let deletedIds = new Set();
+  if (!includeDeleted) {
+    try {
+      deletedIds = await getDeletedPaymentIds(requireAuditDatabase(env));
+    } catch (_) {}
+  }
   return rows
     .filter((row) => {
+      // Filter out soft-deleted records
+      if (!includeDeleted && deletedIds.has(row.paymentId)) return false;
       if (userId && row.userId !== userId) return false;
       if (email && row.email !== email && row.flwCustomerEmail !== email) return false;
       if (status !== "all" && row.status !== status) return false;
@@ -2636,6 +2647,20 @@ async function handleAdminListPayments(request, env) {
   };
 }
 
+async function softDeletePayment(env, paymentId) {
+  const database = requireAuditDatabase(env);
+  await database.prepare(
+    `INSERT OR REPLACE INTO deleted_payments (payment_id, deleted_at) VALUES (?1, ?2)`
+  ).bind(paymentId, new Date().toISOString()).run();
+}
+
+async function getDeletedPaymentIds(database) {
+  const result = await database.prepare(
+    `SELECT payment_id FROM deleted_payments`
+  ).all();
+  return new Set((result?.results || []).map(r => r.payment_id));
+}
+
 async function handleAdminDeletePayment(request, env) {
   const body = await readJsonBody(request);
   const paymentId = String(body?.paymentId || "").trim();
@@ -2648,28 +2673,29 @@ async function handleAdminDeletePayment(request, env) {
     await verifyAdminCaller(request, env);
   }
   
-  // If paymentId is provided, try to delete by ID directly
+  // Soft-delete by paymentId
   if (paymentId) {
-    const docUrl = firestoreDocumentUrl(env, `payments/${encodeURIComponent(paymentId)}`);
     try {
-      await firestoreRequest(env, docUrl, { method: "DELETE" });
+      await softDeletePayment(env, paymentId);
       return { ok: true, message: "Payment deleted successfully." };
     } catch (error) {
-      if (Number(error?.httpStatus) !== 404) throw error;
-      // If not found by ID, fall through to search by email
+      if (Number(error?.httpStatus) === 404) {
+        // Not found by ID, fall through to search by email
+      } else {
+        throw error;
+      }
     }
   }
   
   // Search by email and status to find the payment document
   if (email) {
-    const payments = await listPaymentRecords(env, { email, status: status || "pending", pageSize: 200 });
+    const payments = await listPaymentRecords(env, { email, status: status || "all", pageSize: 200, includeDeleted: true });
     if (payments.length === 0) {
       throw createRouteError(404, "No matching payments found.");
     }
-    // Delete the first matching payment
+    // Soft-delete the first matching payment
     const target = payments[0];
-    const docUrl = firestoreDocumentUrl(env, `payments/${encodeURIComponent(target.paymentId)}`);
-    await firestoreRequest(env, docUrl, { method: "DELETE" });
+    await softDeletePayment(env, target.paymentId);
     return { ok: true, message: "Payment deleted successfully." };
   }
   
@@ -2690,15 +2716,20 @@ async function handleAdminDeletePaymentsByEmail(request, env) {
     throw createRouteError(400, "email is required.");
   }
   
-  const payments = await listPaymentRecords(env, { email, status, pageSize: 200 });
+  // Include already-deleted records to avoid re-processing
+  const payments = await listPaymentRecords(env, { email, status, pageSize: 200, includeDeleted: true });
   
   let deletedCount = 0;
+  let skippedCount = 0;
   const errors = [];
   
   for (const payment of payments) {
+    if (payment.deletedAt) {
+      skippedCount++;
+      continue;
+    }
     try {
-      const docUrl = firestoreDocumentUrl(env, `payments/${encodeURIComponent(payment.paymentId)}`);
-      await firestoreRequest(env, docUrl, { method: "DELETE" });
+      await softDeletePayment(env, payment.paymentId);
       deletedCount++;
     } catch (error) {
       errors.push({ paymentId: payment.paymentId, error: error?.message || "Unknown error" });
@@ -2707,8 +2738,9 @@ async function handleAdminDeletePaymentsByEmail(request, env) {
   
   return {
     ok: true,
-    message: `Deleted ${deletedCount} payment(s) for ${email}.`,
+    message: `Deleted ${deletedCount} payment(s) for ${email}.` + (skippedCount > 0 ? ` ${skippedCount} already deleted.` : ''),
     deleted: deletedCount,
+    skipped: skippedCount,
     errors: errors.length > 0 ? errors : undefined,
   };
 }

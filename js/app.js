@@ -931,7 +931,7 @@ async function renderRecentTransactions() {
       const statusLabel = status === 'successful' || status === 'completed' ? 'Successful' : status === 'failed' ? 'Failed' : 'Pending';
       const date = p.createdAt ? formatRelativeDate(new Date(p.createdAt)) : 'Unknown';
       const paymentId = p.paymentId || '';
-      const canDelete = status === 'pending' || status === 'failed';
+      const canDelete = isCurrentUserAdmin();
       
       return `<tr>
         <td class="description-cell">Payment from <strong>${escapeHtml(email)}</strong></td>
