@@ -968,7 +968,11 @@ export async function resendVerificationEmailForUser(email, redirectTo = "") {
       throw new Error(result.error);
     }
     markVerificationResend(normalizedEmail);
-    return { delivered: true, warning: result?.message || "Verification email sent." };
+    return {
+      delivered: result?.delivered !== false,
+      verificationUrl: result?.verificationUrl || "",
+      warning: result?.message || "Verification link generated.",
+    };
   }
 
   // Fallback: Firebase path for legacy sessions

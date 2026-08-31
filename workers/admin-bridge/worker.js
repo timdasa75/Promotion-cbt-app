@@ -1326,23 +1326,38 @@ async function handleAdminSendVerificationEmail(request, env) {
   ).bind(email).first();
 
   if (user?.id) {
-    // Cloudflare auth user — issue verification token and send via Resend
+    // Cloudflare auth user — issue verification token
     const { issueEmailToken } = await import("./auth-hybrid.js");
-    const { sendVerificationEmail: sendVerifEmail } = await import("./email-sender.js");
     const tokenResult = await issueEmailToken(database, user.id, "verify_email", env);
     const baseUrl = String(body?.continueUrl || "").trim() || String(env.ALLOWED_ORIGINS || "").split(",")[0] || "";
-    if (baseUrl && tokenResult.token) {
-      await sendVerifEmail(env, {
-        email,
-        name: "",
-        token: tokenResult.token,
-        baseUrl,
-      });
+    const verificationUrl = baseUrl && tokenResult.token
+      ? `${baseUrl}/verify?token=${encodeURIComponent(tokenResult.token)}`
+      : "";
+
+    // Try to send email, but always return the URL so admin can share it
+    let emailSent = false;
+    if (verificationUrl && env.RESEND_API_KEY) {
+      try {
+        const { sendVerificationEmail: sendVerifEmail } = await import("./email-sender.js");
+        const result = await sendVerifEmail(env, {
+          email,
+          name: "",
+          token: tokenResult.token,
+          baseUrl,
+        });
+        emailSent = result?.ok === true;
+      } catch (e) {
+        console.error("[admin] Failed to send verification email:", e);
+      }
     }
+
     return {
       ok: true,
-      delivered: true,
-      message: "Verification email sent via Cloudflare auth.",
+      delivered: emailSent,
+      verificationUrl,
+      message: emailSent
+        ? "Verification email sent."
+        : "Email service unavailable. Share the verification link manually.",
     };
   }
 

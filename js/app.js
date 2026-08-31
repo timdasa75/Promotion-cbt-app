@@ -5961,12 +5961,26 @@ function renderAdminUserDirectory() {
           }
           if (action === "resend-verification") {
             const resendResult = await resendVerificationEmailForUser(profileEmail);
-            actionWarning = String(
-              resendResult?.warning
-              || (resendResult?.delivered === false
-                ? "Verification email delivery is unavailable in the current backend path."
-                : "Verification email sent."),
-            ).trim();
+            const verUrl = String(resendResult?.verificationUrl || "").trim();
+            if (verUrl) {
+              try {
+                await navigator.clipboard.writeText(verUrl);
+                actionWarning = resendResult?.delivered
+                  ? "Verification email sent and link copied to clipboard."
+                  : `Verification link copied to clipboard. Share it with the user: ${verUrl}`;
+              } catch (clipboardError) {
+                actionWarning = resendResult?.delivered
+                  ? "Verification email sent."
+                  : `Verification link: ${verUrl}`;
+              }
+            } else {
+              actionWarning = String(
+                resendResult?.warning
+                || (resendResult?.delivered === false
+                  ? "Verification email delivery is unavailable."
+                  : "Verification email sent."),
+              ).trim();
+            }
             return;
           }
           if (action === "create-cloudflare-link") {
