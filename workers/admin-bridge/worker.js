@@ -479,7 +479,7 @@ async function listCloudflareAuthUsers(env) {
 
   const result = await database
     .prepare(`
-      SELECT id, email, role, plan, status, email_verified, created_at, last_login_at
+      SELECT id, email, role, plan, plan_source, status, email_verified, created_at, last_login_at
       FROM auth_users
       ORDER BY created_at DESC
     `)
@@ -492,6 +492,7 @@ async function listCloudflareAuthUsers(env) {
     name: "",
     role: String(entry?.role || "user"),
     plan: String(entry?.plan || "free"),
+    planSource: String(entry?.plan_source || "free"),
     status: String(entry?.status || "active"),
     emailVerified: Boolean(Number(entry?.email_verified || 0)),
     disabled: String(entry?.status || "active").toLowerCase() !== "active",
@@ -1849,7 +1850,7 @@ async function patchCloudflareUserPaymentPlan(env, userId) {
   const database = env.AUTH_DB;
   if (!database || typeof database.prepare !== "function" || !userId) return;
   await database
-    .prepare("UPDATE auth_users SET plan = 'premium', updated_at = ?2 WHERE id = ?1")
+    .prepare("UPDATE auth_users SET plan = 'premium', plan_source = 'payment', updated_at = ?2 WHERE id = ?1")
     .bind(String(userId), new Date().toISOString())
     .run();
 }
@@ -2816,12 +2817,15 @@ async function handleAdminSetUserPlan(request, env) {
   let resolvedEmail = email;
   const warnings = [];
 
+  // Determine plan_source: override when admin changes plan, payment when webhook grants
+  const planSource = plan === 'free' ? 'free' : 'override';
+
   const database = env.AUTH_DB;
   if (database && typeof database.prepare === "function") {
     if (userId) {
       const result = await database
-        .prepare("UPDATE auth_users SET plan = ?2, updated_at = ?3 WHERE id = ?1")
-        .bind(userId, plan, nowIso)
+        .prepare("UPDATE auth_users SET plan = ?2, plan_source = ?3, updated_at = ?4 WHERE id = ?1")
+        .bind(userId, plan, planSource, nowIso)
         .run();
       cloudflareUpdated = Number(result?.meta?.changes || 0) > 0;
     }
@@ -2834,8 +2838,8 @@ async function handleAdminSetUserPlan(request, env) {
         resolvedUserId = String(existing.id || "");
         resolvedEmail = normalizeEmail(existing.email || email);
         const result = await database
-          .prepare("UPDATE auth_users SET plan = ?2, updated_at = ?3 WHERE id = ?1")
-          .bind(resolvedUserId, plan, nowIso)
+          .prepare("UPDATE auth_users SET plan = ?2, plan_source = ?3, updated_at = ?4 WHERE id = ?1")
+          .bind(resolvedUserId, plan, planSource, nowIso)
           .run();
         cloudflareUpdated = Number(result?.meta?.changes || 0) > 0;
       }
@@ -3685,6 +3689,41 @@ async function handleAdminDeviceCount(request, env) {
   };
 }
 
+// ---- Admin All Devices Endpoint ----
+
+async function handleAdminAllDevices(request, env) {
+  await verifyAdminCaller(request, env);
+  const database = requireAuditDatabase(env);
+  
+  // Get all devices with user email in a single query
+  const result = await database.prepare(`
+    SELECT td.id, td.user_id, td.device_name, td.device_info, td.ip_address,
+           td.trusted_at, td.expires_at, td.last_used_at, td.is_permanent,
+           au.email
+    FROM trusted_devices td
+    JOIN auth_users au ON td.user_id = au.id
+    ORDER BY td.trusted_at DESC
+  `).all();
+  
+  const rows = Array.isArray(result?.results) ? result.results : [];
+  return {
+    ok: true,
+    devices: rows.map(d => ({
+      id: d.id,
+      userId: d.user_id,
+      email: String(d.email || ''),
+      deviceName: d.device_name,
+      deviceInfo: d.device_info,
+      ipAddress: d.ip_address,
+      trustedAt: d.trusted_at,
+      expiresAt: d.expires_at,
+      lastUsedAt: d.last_used_at,
+      isPrimary: d.is_permanent === 1,
+    })),
+    total: rows.length,
+  };
+}
+
 // ---- Activity Metrics Endpoint ----
 
 async function handleAdminActivityMetrics(request, env) {
@@ -4171,6 +4210,7 @@ function resolveRouteHandler(path) {
   if (path.endsWith("/device/revoke-all")) return handleDeviceRevokeAll;
   if (path.endsWith("/device/list")) return handleDeviceList;
   if (path.endsWith("/admin/device-count")) return handleAdminDeviceCount;
+  if (path.endsWith("/admin/all-devices")) return handleAdminAllDevices;
   if (path.endsWith("/adminActivityMetrics")) return handleAdminActivityMetrics;
   if (path.endsWith("/adminAuditLog")) return handleAdminAuditLog;
   if (path.endsWith("/migration/sync-profile")) return handleMigrationSyncProfile;

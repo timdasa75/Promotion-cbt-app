@@ -1030,32 +1030,13 @@ async function renderAdminDevices() {
       return;
     }
 
-    // Get all users and their devices
-    const users = adminDirectoryUsers || [];
-    const allDevices = [];
+    // Single query to get all devices with user emails (much faster than per-user loop)
     const token = await getCurrentAuthToken();
-
-    for (const user of users.slice(0, 50)) {
-      if (!user.email) continue;
-      try {
-        const headers = {};
-        if (token) headers['Authorization'] = `Bearer ${token}`;
-        const response = await fetch(`${baseUrl}/device/list?email=${encodeURIComponent(user.email)}`, { headers });
-        const result = await response.json();
-        if (result.ok && result.devices) {
-          result.devices.forEach(device => {
-            allDevices.push({
-              ...device,
-              email: user.email,
-              userId: user.id,
-            });
-          });
-        }
-      } catch (e) {
-        // Skip failed users
-      }
-    }
-
+    const headers = { 'Content-Type': 'application/json' };
+    if (token) headers['Authorization'] = `Bearer ${token}`;
+    const resp = await fetch(`${baseUrl}/admin/all-devices`, { method: 'POST', headers });
+    const result = await resp.json().catch(() => ({}));
+    const allDevices = Array.isArray(result?.devices) ? result.devices : [];
     adminDeviceList = allDevices;
 
     // Apply filters
@@ -5690,6 +5671,8 @@ function renderAdminUserDirectory() {
   const status = String(statusFilter?.value || "all").toLowerCase();
   const verification = String(verificationFilter?.value || "all").toLowerCase();
   const plan = String(planFilter?.value || "all").toLowerCase();
+  const planSourceFilter = document.getElementById("adminPlanSourceFilter");
+  const planSource = String(planSourceFilter?.value || "all").toLowerCase();
   const filtered = adminDirectoryUsers.filter((entry) => {
     const emailMatch = !query || String(entry.email || "").toLowerCase().includes(query);
     const statusMatch = status === "all" || entry.status === status;
@@ -5699,7 +5682,9 @@ function renderAdminUserDirectory() {
       (verification === "unverified" && entry.emailVerified === false) ||
       (verification === "unknown" && entry.emailVerified !== true && entry.emailVerified !== false);
     const planMatch = plan === "all" || entry.plan === plan;
-    return emailMatch && statusMatch && verificationMatch && planMatch;
+    const entryPlanSource = (entry.planSource || entry.plan_source || "").toLowerCase();
+    const planSourceMatch = planSource === "all" || entryPlanSource === planSource;
+    return emailMatch && statusMatch && verificationMatch && planMatch && planSourceMatch;
   });
 
   // Apply sorting
@@ -5761,6 +5746,12 @@ function renderAdminUserDirectory() {
     const safeEmail = escapeHtml(entry.email);
     const safeRole = escapeHtml(entry.role);
     const safePlan = escapeHtml(entry.plan);
+    const planSource = escapeHtml(entry.planSource || entry.plan_source || "");
+    const planSourceBadge = isPremiumPlan && planSource === 'override'
+      ? '<span class="admin-badge warning-badge" style="background: #fff3cd; color: #856404; border-color: #ffc107;">\u2699\uFE0F Override</span>'
+      : isPremiumPlan && planSource === 'payment'
+        ? '<span class="admin-badge approved" style="background: #d4edda; color: #155724; border-color: #28a745;">\uD83D\uDCB3 Paid</span>'
+        : '';
     const safeStatus = escapeHtml(entry.status);
     const safeSource = escapeHtml(entry.source || "-");
     const safeCreated = escapeHtml(formatDateTime(entry.createdAt));
@@ -5827,6 +5818,7 @@ function renderAdminUserDirectory() {
             <div class="admin-user-email">${safeEmail}</div>
             <div class="admin-user-badges">
               <span class="admin-badge ${planClass}">Plan: ${safePlan}</span>
+              ${planSourceBadge}
               ${billingBadge}
               ${expiryBadge}
               ${countdownBadge}
@@ -7553,6 +7545,13 @@ function initializeAuthUI() {
   const adminPlanFilter = document.getElementById("adminPlanFilter");
   if (adminPlanFilter) {
     adminPlanFilter.addEventListener("change", () => {
+      renderAdminUserDirectory();
+    });
+  }
+
+  const adminPlanSourceFilter = document.getElementById("adminPlanSourceFilter");
+  if (adminPlanSourceFilter) {
+    adminPlanSourceFilter.addEventListener("change", () => {
       renderAdminUserDirectory();
     });
   }
