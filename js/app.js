@@ -5746,6 +5746,7 @@ function renderAdminUserDirectory() {
     const safeEmail = escapeHtml(entry.email);
     const safeRole = escapeHtml(entry.role);
     const safePlan = escapeHtml(entry.plan);
+    const isPremiumPlan = entry.plan === "premium";
     const planSource = escapeHtml(entry.planSource || entry.plan_source || "");
     const planSourceBadge = isPremiumPlan && planSource === 'override'
       ? '<span class="admin-badge warning-badge" style="background: #fff3cd; color: #856404; border-color: #ffc107;">\u2699\uFE0F Override</span>'
@@ -5761,7 +5762,6 @@ function renderAdminUserDirectory() {
     const safeExpiryLabel = escapeHtml(expiryLabel);
     const safeBilling = escapeHtml(billingCycle.label);
     const safeVerification = escapeHtml(verification.label);
-    const isPremiumPlan = entry.plan === "premium";
     const safeCountdown = escapeHtml(expiry.countdown || "");
     const countdownBadge = isPremiumPlan && safeCountdown
       ? `<span class="admin-badge pending">${safeCountdown}</span>`
