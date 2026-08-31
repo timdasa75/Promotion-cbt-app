@@ -773,7 +773,7 @@ function updateActivityMetricsDisplay(metrics) {
   const lastRefreshedEl = document.getElementById('activityMetricsLastRefreshed');
   if (lastRefreshedEl) {
     const now = new Date();
-    lastRefreshedEl.textContent = `Last updated: ${now.toLocaleTimeString()}`;
+    lastRefreshedEl.textContent = `Dashboard refreshed: ${now.toLocaleTimeString()}`;
   }
 }
 
@@ -782,17 +782,35 @@ async function refreshActivityMetrics() {
   updateActivityMetricsDisplay(metrics);
 }
 
+function refreshAllDashboardData() {
+  // Refresh activity metrics
+  refreshActivityMetrics();
+  // Refresh stat cards (devices, recent logins)
+  fetchDeviceCount().then(count => {
+    const el = document.getElementById('adminStatTrustedDevices');
+    if (el) el.textContent = String(count);
+  }).catch(() => {});
+  fetchRecentLoginsCount().then(count => {
+    const el = document.getElementById('adminStatRecentLogins');
+    if (el) el.textContent = String(count);
+  }).catch(() => {});
+  // Refresh recent transactions
+  renderRecentTransactions();
+  // Refresh migration stats
+  fetchMigrationStats();
+}
+
 function startActivityMetricsAutoRefresh() {
   // Clear any existing interval
   stopActivityMetricsAutoRefresh();
   
-  // Initial fetch
-  refreshActivityMetrics();
+  // Initial fetch of all dashboard data
+  refreshAllDashboardData();
   
-  // Start auto-refresh interval
+  // Start auto-refresh interval (refreshes ALL dashboard data)
   activityMetricsRefreshInterval = setInterval(() => {
     if (!activityMetricsPaused) {
-      refreshActivityMetrics();
+      refreshAllDashboardData();
     }
   }, ACTIVITY_METRICS_REFRESH_MS);
   
@@ -818,12 +836,12 @@ function updateActivityMetricsPauseButton() {
   
   if (activityMetricsPaused) {
     pauseBtn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>`;
-    pauseBtn.title = 'Resume auto-refresh';
-    pauseBtn.setAttribute('aria-label', 'Resume auto-refresh');
+    pauseBtn.title = 'Resume dashboard auto-refresh';
+    pauseBtn.setAttribute('aria-label', 'Resume dashboard auto-refresh');
   } else {
     pauseBtn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>`;
-    pauseBtn.title = 'Pause auto-refresh';
-    pauseBtn.setAttribute('aria-label', 'Pause auto-refresh');
+    pauseBtn.title = 'Pause dashboard auto-refresh';
+    pauseBtn.setAttribute('aria-label', 'Pause dashboard auto-refresh');
   }
 }
 
