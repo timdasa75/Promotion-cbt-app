@@ -3857,47 +3857,60 @@ async function handleAdminActivityMetrics(request, env) {
   const sevenDaysAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000).toISOString();
   const thirtyDaysAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000).toISOString();
   
-  // Get unique active users for different time windows
-  const [currentlyActive, hourlyActive, dailyActive, weeklyActive, monthlyActive] = await Promise.all([
-    // Currently active (logged in within last 5 minutes)
-    database.prepare(`
-      SELECT COUNT(DISTINCT email) as count 
-      FROM login_audit_log 
-      WHERE event_type = 'login_success' 
-      AND created_at >= ?1
-    `).bind(fiveMinAgo).first(),
-    
-    // Hourly active (logged in within last hour)
-    database.prepare(`
-      SELECT COUNT(DISTINCT email) as count 
-      FROM login_audit_log 
-      WHERE event_type = 'login_success' 
-      AND created_at >= ?1
-    `).bind(oneHourAgo).first(),
-    
-    // Daily active (logged in within last 24 hours)
-    database.prepare(`
-      SELECT COUNT(DISTINCT email) as count 
-      FROM login_audit_log 
-      WHERE event_type = 'login_success' 
-      AND created_at >= ?1
-    `).bind(twentyFourHoursAgo).first(),
-    
-    // Weekly active (logged in within last 7 days)
-    database.prepare(`
-      SELECT COUNT(DISTINCT email) as count 
-      FROM login_audit_log 
-      WHERE event_type = 'login_success' 
-      AND created_at >= ?1
-    `).bind(sevenDaysAgo).first(),
-    
-    // Monthly active (logged in within last 30 days)
-    database.prepare(`
-      SELECT COUNT(DISTINCT email) as count 
-      FROM login_audit_log 
-      WHERE event_type = 'login_success' 
-      AND created_at >= ?1
-    `).bind(thirtyDaysAgo).first(),
+  // Use auth_sessions.last_seen_at for activity metrics — this tracks actual
+  // session activity rather than relying on login_audit_log which may have
+  // sparse event_type='login_success' records.
+  const [
+    currentlyActive,
+    hourlyActive,
+    dailyActive,
+    weeklyActive,
+    monthlyActive,
+    totalUsers,
+    premiumUsers,
+    verifiedUsers,
+    unverifiedUsers,
+    totalFeedback,
+    openFeedback,
+    totalSessions,
+    totalTrustedDevices,
+    recentLogins,
+  ] = await Promise.all([
+    // Currently active (session seen within last 5 minutes)
+    database.prepare(
+      `SELECT COUNT(DISTINCT user_id) as count FROM auth_sessions WHERE last_seen_at >= ?1`
+    ).bind(fiveMinAgo).first(),
+    // Hourly active (session seen within last hour)
+    database.prepare(
+      `SELECT COUNT(DISTINCT user_id) as count FROM auth_sessions WHERE last_seen_at >= ?1`
+    ).bind(oneHourAgo).first(),
+    // Daily active (session seen within last 24 hours)
+    database.prepare(
+      `SELECT COUNT(DISTINCT user_id) as count FROM auth_sessions WHERE last_seen_at >= ?1`
+    ).bind(twentyFourHoursAgo).first(),
+    // Weekly active (session seen within last 7 days)
+    database.prepare(
+      `SELECT COUNT(DISTINCT user_id) as count FROM auth_sessions WHERE last_seen_at >= ?1`
+    ).bind(sevenDaysAgo).first(),
+    // Monthly active (session seen within last 30 days)
+    database.prepare(
+      `SELECT COUNT(DISTINCT user_id) as count FROM auth_sessions WHERE last_seen_at >= ?1`
+    ).bind(thirtyDaysAgo).first(),
+    // User counts
+    database.prepare(`SELECT COUNT(*) as count FROM auth_users`).first(),
+    database.prepare(`SELECT COUNT(*) as count FROM auth_users WHERE plan = 'premium'`).first(),
+    database.prepare(`SELECT COUNT(*) as count FROM auth_users WHERE email_verified = 1`).first(),
+    database.prepare(`SELECT COUNT(*) as count FROM auth_users WHERE email_verified = 0 OR email_verified IS NULL`).first(),
+    // Feedback counts
+    database.prepare(`SELECT COUNT(*) as count FROM feedback_submissions`).first(),
+    database.prepare(`SELECT COUNT(*) as count FROM feedback_submissions WHERE status != 'resolved' AND status != 'dismissed'`).first(),
+    // Session and device counts
+    database.prepare(`SELECT COUNT(*) as count FROM auth_sessions`).first(),
+    database.prepare(`SELECT COUNT(*) as count FROM trusted_devices`).first(),
+    // Recent logins (last 24h via login_audit_log)
+    database.prepare(
+      `SELECT COUNT(DISTINCT email) as count FROM login_audit_log WHERE created_at >= ?1`
+    ).bind(twentyFourHoursAgo).first(),
   ]);
   
   return {
@@ -3908,6 +3921,15 @@ async function handleAdminActivityMetrics(request, env) {
       dailyActive: dailyActive?.count || 0,
       weeklyActive: weeklyActive?.count || 0,
       monthlyActive: monthlyActive?.count || 0,
+      totalUsers: totalUsers?.count || 0,
+      premiumUsers: premiumUsers?.count || 0,
+      verifiedUsers: verifiedUsers?.count || 0,
+      unverifiedUsers: unverifiedUsers?.count || 0,
+      totalFeedback: totalFeedback?.count || 0,
+      openFeedback: openFeedback?.count || 0,
+      totalSessions: totalSessions?.count || 0,
+      totalTrustedDevices: totalTrustedDevices?.count || 0,
+      recentLogins: recentLogins?.count || 0,
     },
   };
 }

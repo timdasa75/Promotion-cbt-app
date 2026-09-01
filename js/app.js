@@ -769,6 +769,16 @@ function updateActivityMetricsDisplay(metrics) {
   if (weeklyActiveEl) weeklyActiveEl.textContent = String(metrics.weeklyActive || 0);
   if (monthlyActiveEl) monthlyActiveEl.textContent = String(metrics.monthlyActive || 0);
   
+  // Update stat cards from enriched metrics
+  const totalUsersEl = document.getElementById('adminStatTotalUsers');
+  const premiumUsersEl = document.getElementById('adminStatPremiumUsers');
+  const trustedDevicesEl = document.getElementById('adminStatTrustedDevices');
+  const recentLoginsEl = document.getElementById('adminStatRecentLogins');
+  if (totalUsersEl && metrics.totalUsers != null) totalUsersEl.textContent = String(metrics.totalUsers);
+  if (premiumUsersEl && metrics.premiumUsers != null) premiumUsersEl.textContent = String(metrics.premiumUsers);
+  if (trustedDevicesEl && metrics.totalTrustedDevices != null) trustedDevicesEl.textContent = String(metrics.totalTrustedDevices);
+  if (recentLoginsEl && metrics.recentLogins != null) recentLoginsEl.textContent = String(metrics.recentLogins);
+  
   // Update the last refreshed timestamp
   const lastRefreshedEl = document.getElementById('activityMetricsLastRefreshed');
   if (lastRefreshedEl) {
