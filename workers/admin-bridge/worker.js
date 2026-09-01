@@ -1452,7 +1452,7 @@ async function handleUserVerificationResend(request, env) {
 
   // Send email — never return the link in the response
   let emailSent = false;
-  if (verificationUrl && env.RESEND_API_KEY) {
+  if (baseUrl && env.RESEND_API_KEY) {
     try {
       const { sendVerificationEmail: sendVerifEmail } = await import("./email-sender.js");
       const result = await sendVerifEmail(env, {
@@ -1472,7 +1472,6 @@ async function handleUserVerificationResend(request, env) {
     message: emailSent
       ? "Verification email sent. Please check your inbox."
       : "If this email is registered, a verification link has been sent.",
-    // Never include verificationUrl in the response for non-admin users
   };
 }
 
@@ -4312,10 +4311,10 @@ function resolveRouteHandler(path) {
   if (path.endsWith("/payment/webhook/flutterwave")) return handlePaymentWebhook;
   if (path.endsWith("/payment/webhook/selar")) return handleSelarWebhook;
   if (path.endsWith("/payment/selar/verify")) return handleSelarPaymentVerify;
+  // User-facing verification resend (no admin auth required) — check before hybrid auth
+  if (path.endsWith("/auth/verification/resend")) return handleUserVerificationResend;
   const authRouteHandler = resolveHybridAuthRouteHandler(path);
   if (authRouteHandler) return authRouteHandler;
-  // User-facing verification resend (no admin auth required)
-  if (path.endsWith("/auth/verification/resend")) return handleUserVerificationResend;
   if (path.endsWith("/adminListUsers")) return handleAdminListUsers;
   if (path.endsWith("/adminLookupUsers")) return handleAdminLookupUsers;
   if (path.endsWith("/adminSendVerificationEmail")) return handleAdminSendVerificationEmail;
