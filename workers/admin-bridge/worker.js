@@ -1329,13 +1329,9 @@ async function handleAdminSendVerificationEmail(request, env) {
     // Cloudflare auth user — issue verification token
     const { issueEmailToken } = await import("./auth-hybrid.js");
     const tokenResult = await issueEmailToken(database, user.id, "verify_email", env);
-    const configuredOrigins = String(env.ALLOWED_ORIGINS || "").split(",").map(s => s.trim()).filter(Boolean);
-    const primaryOrigin = configuredOrigins[0] || "";
-    // Use the full app URL (with subpath) if configured, else fall back to origin header
-    const appBaseUrl = String(env.APP_BASE_URL || "").trim() || primaryOrigin;
-    const baseUrl = String(body?.continueUrl || "").trim()
-      || String(request.headers.get("origin") || "").trim()
-      || appBaseUrl;
+    // Always use APP_BASE_URL for verification links — never trust client-supplied URLs
+    const baseUrl = String(env.APP_BASE_URL || "").trim()
+      || String(env.ALLOWED_ORIGINS || "").split(",")[0]?.trim() || "";
     const verificationUrl = baseUrl && tokenResult.token
       ? `${baseUrl}${baseUrl.includes('?') ? '&' : '?'}verifyEmail=${encodeURIComponent(tokenResult.token)}`
       : "";
@@ -1384,53 +1380,100 @@ async function handleAdminSendVerificationEmail(request, env) {
     };
   }
 
-  // Fallback to Firebase Identity Toolkit for legacy users
-  const payload = {
-    requestType: "VERIFY_EMAIL",
-    email,
-  };
-  const continueUrl = String(body?.continueUrl || "").trim();
-  if (continueUrl) {
-    payload.continueUrl = continueUrl;
-  }
-
+  // For users not found in D1, try Firebase Identity Toolkit (legacy users)
   try {
     await identityAdminRequest(env, "accounts:sendOobCode", {
-      body: payload,
+      body: { requestType: "VERIFY_EMAIL", email },
     });
     return {
       ok: true,
       delivered: true,
       message: "Verification email requested from Firebase Auth.",
     };
-  } catch (error) {
-    // If Firebase fails (user doesn't exist there), try Resend directly
-    const { sendVerificationEmail: sendVerifEmail } = await import("./email-sender.js");
-    const { issueEmailToken } = await import("./auth-hybrid.js");
-    // Create a temporary user in D1 and send verification
-    const userId = crypto.randomUUID();
-    const nowIso = new Date().toISOString();
-    await database.prepare(
-      `INSERT OR IGNORE INTO auth_users (id, email, role, plan, status, email_verified, created_at, updated_at) VALUES (?1, ?2, 'user', 'free', 'active', 0, ?3, ?3)`
-    ).bind(userId, email, nowIso).run();
-    const tokenResult = await issueEmailToken(database, userId, "verify_email", env);
-    const baseUrl = String(body?.continueUrl || "").trim()
-      || String(request.headers.get("origin") || "").trim()
-      || String(env.ALLOWED_ORIGINS || "").split(",")[0] || "";
-    if (baseUrl && tokenResult.token) {
-      await sendVerifEmail(env, {
+  } catch (firebaseError) {
+    // User does not exist in Firebase either — return a clear error
+    // instead of silently creating a password-less D1 account
+    throw createRouteError(404, `User ${email} not found in any authentication system. Register the user first.`);
+  }
+}
+
+/**
+ * User-facing verification resend endpoint.
+ * No admin auth required — any user can request a verification email for their own account.
+ * Never returns the raw verification link in the response.
+ */
+async function handleUserVerificationResend(request, env) {
+  const database = requireAuditDatabase(env);
+  const body = await readJsonBody(request);
+  const email = normalizeEmail(body?.email || "");
+  if (!email || !email.includes("@")) {
+    throw createRouteError(400, "email is required.");
+  }
+
+  // Rate limit: max 3 resends per email per hour
+  const rateLimitKey = `verify_resend:${email}`;
+  const rateCheck = await checkRateLimit(
+    database,
+    rateLimitKey,
+    RATE_LIMIT.RECOVERY_IP.type,
+    3,
+    3600,
+  );
+  if (!rateCheck.allowed) {
+    const retryAfter = rateCheck.retryAfter
+      ? ` Try again in ${rateCheck.retryAfter} seconds.`
+      : " Try again later.";
+    throw createRouteError(429, `Too many verification requests.${retryAfter}`);
+  }
+
+  const user = await database.prepare(
+    `SELECT id, email, email_verified FROM auth_users WHERE email = ?1`
+  ).bind(email).first();
+
+  // Always return success to prevent email enumeration
+  if (!user?.id) {
+    return { ok: true, message: "If this email is registered, a verification link has been sent." };
+  }
+
+  if (user.email_verified) {
+    return { ok: true, message: "This email is already verified. You can sign in." };
+  }
+
+  // Issue a fresh verification token
+  const { issueEmailToken } = await import("./auth-hybrid.js");
+  const tokenResult = await issueEmailToken(database, user.id, "verify_email", env);
+
+  // Build URL using APP_BASE_URL only — never trust client input
+  const baseUrl = String(env.APP_BASE_URL || "").trim()
+    || String(env.ALLOWED_ORIGINS || "").split(",")[0]?.trim() || "";
+  const verificationUrl = baseUrl && tokenResult.token
+    ? `${baseUrl}${baseUrl.includes('?') ? '&' : '?'}verifyEmail=${encodeURIComponent(tokenResult.token)}`
+    : "";
+
+  // Send email — never return the link in the response
+  let emailSent = false;
+  if (verificationUrl && env.RESEND_API_KEY) {
+    try {
+      const { sendVerificationEmail: sendVerifEmail } = await import("./email-sender.js");
+      const result = await sendVerifEmail(env, {
         email,
         name: "",
         token: tokenResult.token,
         baseUrl,
       });
+      emailSent = result?.ok === true;
+    } catch (e) {
+      console.error("[verification-resend] Failed to send email:", e);
     }
-    return {
-      ok: true,
-      delivered: true,
-      message: "Verification email sent.",
-    };
   }
+
+  return {
+    ok: true,
+    message: emailSent
+      ? "Verification email sent. Please check your inbox."
+      : "If this email is registered, a verification link has been sent.",
+    // Never include verificationUrl in the response for non-admin users
+  };
 }
 
 async function handleAuthPasswordRecoveryRequest(request, env) {
@@ -4271,6 +4314,8 @@ function resolveRouteHandler(path) {
   if (path.endsWith("/payment/selar/verify")) return handleSelarPaymentVerify;
   const authRouteHandler = resolveHybridAuthRouteHandler(path);
   if (authRouteHandler) return authRouteHandler;
+  // User-facing verification resend (no admin auth required)
+  if (path.endsWith("/auth/verification/resend")) return handleUserVerificationResend;
   if (path.endsWith("/adminListUsers")) return handleAdminListUsers;
   if (path.endsWith("/adminLookupUsers")) return handleAdminLookupUsers;
   if (path.endsWith("/adminSendVerificationEmail")) return handleAdminSendVerificationEmail;

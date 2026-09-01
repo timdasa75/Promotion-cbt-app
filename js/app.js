@@ -3123,6 +3123,13 @@ function setAuthMessage(message, type = "error") {
   }
   authMessage.textContent = message;
   authMessage.className = `auth-message ${type}`;
+  // Show resend verification button when the error mentions email not verified
+  const resendBtn = document.getElementById("resendVerificationBtn");
+  if (resendBtn) {
+    const msg = String(message).toLowerCase();
+    const isVerificationError = msg.includes("verify") || msg.includes("not verified") || msg.includes("unverified");
+    resendBtn.style.display = (type === "error" && isVerificationError) ? "" : "none";
+  }
 }
 
 function setActiveAuthTab(mode) {
@@ -6829,6 +6836,42 @@ function initializeAuthUI() {
         setAuthMessage(result?.message || "If this email matches an account, recovery instructions will follow shortly.", "success");
       } catch (error) {
         setAuthMessage(error.message || "Unable to send password reset link.");
+      }
+    });
+  }
+
+  // Resend verification email button on login screen
+  const resendVerificationBtn = document.getElementById("resendVerificationBtn");
+  if (resendVerificationBtn) {
+    resendVerificationBtn.addEventListener("click", async () => {
+      if (isCloudAuthMisconfigured()) {
+        setAuthMessage("Cloud auth is not configured. Contact support.");
+        return;
+      }
+      const email = document.getElementById("loginEmail")?.value || "";
+      if (!email) {
+        setAuthMessage("Enter your email first, then click the verification link.");
+        return;
+      }
+      try {
+        const config = getRuntimeConfig();
+        const baseUrl = config?.cloudflareAuthBaseUrl || "";
+        if (!baseUrl) {
+          setAuthMessage("Email verification is not available.");
+          return;
+        }
+        const resp = await fetch(`${baseUrl}/auth/verification/resend`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email }),
+        });
+        const result = await resp.json().catch(() => ({}));
+        setAuthMessage(
+          result?.message || "If this email is registered, a verification link has been sent.",
+          "success",
+        );
+      } catch (error) {
+        setAuthMessage("Unable to send verification email. Please try again.");
       }
     });
   }
