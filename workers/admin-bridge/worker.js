@@ -1332,17 +1332,13 @@ async function handleAdminSendVerificationEmail(request, env) {
     // Always use APP_BASE_URL for verification links — never trust client-supplied URLs
     const baseUrl = String(env.APP_BASE_URL || "").trim()
       || String(env.ALLOWED_ORIGINS || "").split(",")[0]?.trim() || "";
-    const verificationUrl = baseUrl && tokenResult.token
-      ? `${baseUrl}${baseUrl.includes('?') ? '&' : '?'}verifyEmail=${encodeURIComponent(tokenResult.token)}`
-      : "";
-
-    // Try to send email to the user AND to the admin
+    // Send only to the account holder. A second copy to an administrator
+    // consumes another Resend free-tier message and unnecessarily exposes a
+    // bearer verification token outside the recipient's mailbox.
     let emailSent = false;
-    let adminEmailSent = false;
-    if (verificationUrl && env.RESEND_API_KEY) {
+    if (baseUrl && env.RESEND_API_KEY) {
       try {
-        const { sendVerificationEmail: sendVerifEmail, sendEmail } = await import("./email-sender.js");
-        // Send to user
+        const { sendVerificationEmail: sendVerifEmail } = await import("./email-sender.js");
         const result = await sendVerifEmail(env, {
           email,
           name: "",
@@ -1350,33 +1346,22 @@ async function handleAdminSendVerificationEmail(request, env) {
           baseUrl,
         });
         emailSent = result?.ok === true;
-
-        // Also send to admin with the link for manual sharing
-        const adminEmail = String(env.ADMIN_EMAILS || "").split(",")[0]?.trim();
-        if (adminEmail && adminEmail !== email && verificationUrl) {
-          try {
-            await sendEmail(env, {
-              to: adminEmail,
-              subject: `Verification link for ${email} - Promotion CBT`,
-              html: `<p>Admin: Here is the verification link for <strong>${email}</strong>:</p><p style="word-break:break-all;background:#f0f0f0;padding:10px;border-radius:4px;">${verificationUrl}</p><p>Share this link with the user so they can verify their email and sign in.</p>`,
-            });
-            adminEmailSent = true;
-          } catch (adminEmailErr) {
-            console.error("[admin] Failed to send verification link to admin:", adminEmailErr);
-          }
-        }
       } catch (e) {
         console.error("[admin] Failed to send verification email:", e);
       }
     }
+
+    const verificationUrl = baseUrl && tokenResult.token
+      ? `${baseUrl}${baseUrl.includes('?') ? '&' : '?'}verifyEmail=${encodeURIComponent(tokenResult.token)}`
+      : "";
 
     return {
       ok: true,
       delivered: emailSent,
       verificationUrl,
       message: emailSent
-        ? `Verification email sent.${adminEmailSent ? " Link also sent to admin." : ""}`
-        : `Email service unavailable.${adminEmailSent ? " Link sent to admin." : " Share the verification link manually."}`,
+        ? "Verification email sent to the user."
+        : "Email service is unavailable; link copied to clipboard for manual sharing.",
     };
   }
 
@@ -4423,5 +4408,4 @@ export default {
     }
   },
 };
-
 

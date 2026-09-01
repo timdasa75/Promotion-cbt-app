@@ -5714,6 +5714,26 @@ let adminUserSortValue = "newest";
 let adminRequestSortValue = "newest";
 let adminFeedbackSortValue = "newest";
 
+function renderAdminVerificationSupport() {
+  const summary = document.getElementById("adminVerificationSupportSummary");
+  if (!summary) return;
+
+  const users = Array.isArray(adminDirectoryUsers) ? adminDirectoryUsers : [];
+  if (!users.length) {
+    summary.textContent = "No directory data is available yet. Refresh users to review verification support cases.";
+    return;
+  }
+
+  const pending = users.filter((entry) => entry.emailVerified === false);
+  const activePending = pending.filter((entry) => String(entry.status || "active").toLowerCase() === "active");
+  const recentCutoff = Date.now() - (24 * 60 * 60 * 1000);
+  const recentPending = activePending.filter((entry) => (Date.parse(entry.createdAt) || 0) >= recentCutoff);
+
+  summary.textContent = `${activePending.length} active user${activePending.length === 1 ? "" : "s"} awaiting verification` +
+    `${recentPending.length ? `; ${recentPending.length} registered in the last 24 hours` : ""}. ` +
+    "Resend only for users who report a missing email to conserve the 100-email daily free-tier quota.";
+}
+
 function renderAdminUserDirectory() {
   const container = document.getElementById("adminUserList");
   const searchInput = document.getElementById("adminUserSearch");
@@ -5772,6 +5792,7 @@ function renderAdminUserDirectory() {
   if (countLabel) {
     countLabel.textContent = `${filtered.length}/${adminDirectoryUsers.length}`;
   }
+  renderAdminVerificationSupport();
 
   container.innerHTML = "";
 
@@ -6566,6 +6587,8 @@ function initializeAuthUI() {
   const adminUserSearch = document.getElementById("adminUserSearch");
   const adminStatusFilter = document.getElementById("adminStatusFilter");
   const adminVerificationFilter = document.getElementById("adminVerificationFilter");
+  const adminShowUnverifiedBtn = document.getElementById("adminShowUnverifiedBtn");
+  const adminRefreshVerificationBtn = document.getElementById("adminRefreshVerificationBtn");
   const adminRequestSearch = document.getElementById("adminRequestSearch");
   const adminRequestStatusFilter = document.getElementById("adminRequestStatusFilter");
   const adminRequestSourceFilter = document.getElementById("adminRequestSourceFilter");
@@ -6866,6 +6889,9 @@ function initializeAuthUI() {
           body: JSON.stringify({ email }),
         });
         const result = await resp.json().catch(() => ({}));
+        if (!resp.ok || !result?.ok) {
+          throw new Error(result?.error || result?.message || "Unable to send verification email.");
+        }
         setAuthMessage(
           result?.message || "If this email is registered, a verification link has been sent.",
           "success",
@@ -7654,6 +7680,21 @@ function initializeAuthUI() {
     });
   }
 
+  if (adminShowUnverifiedBtn) {
+    adminShowUnverifiedBtn.addEventListener("click", () => {
+      if (adminVerificationFilter) adminVerificationFilter.value = "unverified";
+      if (adminStatusFilter) adminStatusFilter.value = "active";
+      renderAdminUserDirectory();
+      document.getElementById("adminUserList")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
+
+  if (adminRefreshVerificationBtn) {
+    adminRefreshVerificationBtn.addEventListener("click", () => {
+      refreshAdminUserDirectory().catch(() => {});
+    });
+  }
+
   const adminPlanFilter = document.getElementById("adminPlanFilter");
   if (adminPlanFilter) {
     adminPlanFilter.addEventListener("change", () => {
@@ -7875,8 +7916,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   initializeThemeToggle();
 });
-
-
 
 
 
