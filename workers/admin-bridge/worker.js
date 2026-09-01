@@ -1340,11 +1340,13 @@ async function handleAdminSendVerificationEmail(request, env) {
       ? `${baseUrl}${baseUrl.includes('?') ? '&' : '?'}verifyEmail=${encodeURIComponent(tokenResult.token)}`
       : "";
 
-    // Try to send email, but always return the URL so admin can share it
+    // Try to send email to the user AND to the admin
     let emailSent = false;
+    let adminEmailSent = false;
     if (verificationUrl && env.RESEND_API_KEY) {
       try {
-        const { sendVerificationEmail: sendVerifEmail } = await import("./email-sender.js");
+        const { sendVerificationEmail: sendVerifEmail, sendEmail } = await import("./email-sender.js");
+        // Send to user
         const result = await sendVerifEmail(env, {
           email,
           name: "",
@@ -1352,6 +1354,21 @@ async function handleAdminSendVerificationEmail(request, env) {
           baseUrl,
         });
         emailSent = result?.ok === true;
+
+        // Also send to admin with the link for manual sharing
+        const adminEmail = String(env.ADMIN_EMAILS || "").split(",")[0]?.trim();
+        if (adminEmail && adminEmail !== email && verificationUrl) {
+          try {
+            await sendEmail(env, {
+              to: adminEmail,
+              subject: `Verification link for ${email} - Promotion CBT`,
+              html: `<p>Admin: Here is the verification link for <strong>${email}</strong>:</p><p style="word-break:break-all;background:#f0f0f0;padding:10px;border-radius:4px;">${verificationUrl}</p><p>Share this link with the user so they can verify their email and sign in.</p>`,
+            });
+            adminEmailSent = true;
+          } catch (adminEmailErr) {
+            console.error("[admin] Failed to send verification link to admin:", adminEmailErr);
+          }
+        }
       } catch (e) {
         console.error("[admin] Failed to send verification email:", e);
       }
@@ -1362,8 +1379,8 @@ async function handleAdminSendVerificationEmail(request, env) {
       delivered: emailSent,
       verificationUrl,
       message: emailSent
-        ? "Verification email sent."
-        : "Email service unavailable. Share the verification link manually.",
+        ? `Verification email sent.${adminEmailSent ? " Link also sent to admin." : ""}`
+        : `Email service unavailable.${adminEmailSent ? " Link sent to admin." : " Share the verification link manually."}`,
     };
   }
 
