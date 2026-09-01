@@ -61,6 +61,7 @@ test("auth runtime helpers normalize config, auth flags, and hybrid rails", () =
       selarCheckoutLinks: {},
       flutterwavePublicKey: "",
       flutterwaveWebhookUrl: "",
+      adminEmails: [],
     });
     assert.equal(getConfiguredAuthProvider(), "hybrid");
     assert.equal(isHybridAuthEnabled(), true);

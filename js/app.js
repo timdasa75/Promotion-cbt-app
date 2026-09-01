@@ -3845,6 +3845,61 @@ function initializePasswordResetScreen() {
   }
 }
 
+// ── Email Verification Token Handling ─────────────────────────────────────
+async function handleEmailVerificationOnStartup() {
+  const params = new URLSearchParams(window.location.search || "");
+  const token = params.get("verifyEmail") || params.get("verifyEmailToken") || "";
+  if (!token || !token.includes(".")) return false;
+
+  const trimmedToken = String(token).trim();
+  if (!trimmedToken) return false;
+
+  // Show a loading message
+  openAuthModal("login");
+  setAuthMessage("Verifying your email address...");
+
+  try {
+    const cfg = getFirebaseConfig();
+    const authApiBase = cfg.cloudflareAuthBaseUrl || "";
+    if (!authApiBase) throw new Error("Auth service is unavailable.");
+
+    const response = await fetch(`${authApiBase}/auth/verification/complete`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ token: trimmedToken }),
+    });
+
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok || !result?.ok) {
+      throw new Error(result?.message || result?.error || "Email verification failed.");
+    }
+
+    // Clear the query parameter
+    try {
+      const url = new URL(window.location.href);
+      url.searchParams.delete("verifyEmail");
+      url.searchParams.delete("verifyEmailToken");
+      window.history.replaceState({}, "", url.toString());
+    } catch (_) {}
+
+    // Show success message on the login form
+    setAuthMessage("Email verified successfully! You can now sign in.");
+    showSuccess("Email verified! Please sign in with your credentials.");
+    return true;
+  } catch (error) {
+    // Clear the query parameter
+    try {
+      const url = new URL(window.location.href);
+      url.searchParams.delete("verifyEmail");
+      url.searchParams.delete("verifyEmailToken");
+      window.history.replaceState({}, "", url.toString());
+    } catch (_) {}
+
+    setAuthMessage(error?.message || "Email verification failed. Please try again.");
+    return false;
+  }
+}
+
 function getMockExamTemplatesForUi() {
   const loadedTemplates = isFeatureEnabled("enableGlBandTemplateUi")
     ? getVisibleExamTemplates()
@@ -7671,9 +7726,10 @@ document.addEventListener("DOMContentLoaded", async function () {
   updateAuthUI();
   showLoadingOverlay(true);
   try {
+    const handledVerificationLink = await handleEmailVerificationOnStartup();
     const handledResetLink = await handlePasswordResetLinkOnStartup();
     await init();
-    if (!handledResetLink) {
+    if (!handledVerificationLink && !handledResetLink) {
       await handleMigrationLinkOnStartup();
     }
   } finally {

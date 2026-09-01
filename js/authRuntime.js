@@ -85,6 +85,7 @@ export function getFirebaseConfig() {
     selarCheckoutLinks,
     flutterwavePublicKey,
     flutterwaveWebhookUrl,
+    adminEmails: Array.isArray(cfg.adminEmails) ? cfg.adminEmails : [],
   };
 }
 

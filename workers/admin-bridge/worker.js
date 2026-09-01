@@ -1331,7 +1331,7 @@ async function handleAdminSendVerificationEmail(request, env) {
     const tokenResult = await issueEmailToken(database, user.id, "verify_email", env);
     const baseUrl = String(body?.continueUrl || "").trim() || String(env.ALLOWED_ORIGINS || "").split(",")[0] || "";
     const verificationUrl = baseUrl && tokenResult.token
-      ? `${baseUrl}/verify?token=${encodeURIComponent(tokenResult.token)}`
+      ? `${baseUrl}${baseUrl.includes('?') ? '&' : '?'}verifyEmail=${encodeURIComponent(tokenResult.token)}`
       : "";
 
     // Try to send email, but always return the URL so admin can share it

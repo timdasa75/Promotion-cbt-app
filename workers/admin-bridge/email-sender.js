@@ -61,7 +61,7 @@ export async function sendEmail(env, { to, subject, html, from }) {
  * Send email verification email
  */
 export async function sendVerificationEmail(env, { email, name, token, baseUrl }) {
-  const verificationUrl = `${baseUrl}/verify?token=${encodeURIComponent(token)}`;
+  const verificationUrl = `${baseUrl}${baseUrl.includes('?') ? '&' : '?'}verifyEmail=${encodeURIComponent(token)}`;
   
   const html = buildVerificationEmail({
     name,
