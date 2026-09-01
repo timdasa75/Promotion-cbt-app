@@ -1329,7 +1329,13 @@ async function handleAdminSendVerificationEmail(request, env) {
     // Cloudflare auth user — issue verification token
     const { issueEmailToken } = await import("./auth-hybrid.js");
     const tokenResult = await issueEmailToken(database, user.id, "verify_email", env);
-    const baseUrl = String(body?.continueUrl || "").trim() || String(env.ALLOWED_ORIGINS || "").split(",")[0] || "";
+    const configuredOrigins = String(env.ALLOWED_ORIGINS || "").split(",").map(s => s.trim()).filter(Boolean);
+    const primaryOrigin = configuredOrigins[0] || "";
+    // Use the full app URL (with subpath) if configured, else fall back to origin header
+    const appBaseUrl = String(env.APP_BASE_URL || "").trim() || primaryOrigin;
+    const baseUrl = String(body?.continueUrl || "").trim()
+      || String(request.headers.get("origin") || "").trim()
+      || appBaseUrl;
     const verificationUrl = baseUrl && tokenResult.token
       ? `${baseUrl}${baseUrl.includes('?') ? '&' : '?'}verifyEmail=${encodeURIComponent(tokenResult.token)}`
       : "";
@@ -1391,7 +1397,9 @@ async function handleAdminSendVerificationEmail(request, env) {
       `INSERT OR IGNORE INTO auth_users (id, email, role, plan, status, email_verified, created_at, updated_at) VALUES (?1, ?2, 'user', 'free', 'active', 0, ?3, ?3)`
     ).bind(userId, email, nowIso).run();
     const tokenResult = await issueEmailToken(database, userId, "verify_email", env);
-    const baseUrl = String(body?.continueUrl || "").trim() || String(env.ALLOWED_ORIGINS || "").split(",")[0] || "";
+    const baseUrl = String(body?.continueUrl || "").trim()
+      || String(request.headers.get("origin") || "").trim()
+      || String(env.ALLOWED_ORIGINS || "").split(",")[0] || "";
     if (baseUrl && tokenResult.token) {
       await sendVerifEmail(env, {
         email,
