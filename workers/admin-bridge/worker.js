@@ -3677,6 +3677,8 @@ async function handleUpdatePricing(request, env) {
 
 const DEVICE_TRUST_DEFAULT_DAYS = 30;
 const DEVICE_TRUST_MAX_DEVICES = 3;
+const DEVICE_AUTH_RECOVERY_GRANT_TTL_MS = 15 * 60 * 1000;
+const DEVICE_AUTH_RECOVERY_REASON_MAX_LENGTH = 300;
 
 function generateId() {
   return `${Date.now()}_${Math.random().toString(36).slice(2, 9)}`;
@@ -3791,6 +3793,115 @@ async function logLoginEvent(database, userId, email, eventType, deviceFingerpri
     `)
     .bind(id, userId, email, eventType, deviceFingerprint || '', deviceName || '', ip || '', userAgent || '', details || '{}', now)
     .run();
+}
+
+async function resolveDeviceActor(request, env, targetEmail, { allowAdmin = false } = {}) {
+  const viewer = await resolveAuthenticatedContentUser(request, env);
+  const viewerEmail = normalizeEmail(viewer?.email || '');
+  const normalizedTargetEmail = normalizeEmail(targetEmail || '');
+  if (!viewerEmail || !normalizedTargetEmail) {
+    throw createRouteError(403, 'Authentication is required.');
+  }
+  if (String(viewer?.status || 'active').toLowerCase() !== 'active') {
+    throw createRouteError(403, 'Your account is not active.');
+  }
+  if (viewerEmail === normalizedTargetEmail) return viewer;
+
+  if (!allowAdmin) {
+    throw createRouteError(403, 'You can only manage devices for your own account.');
+  }
+  // Admins may revoke or inspect a user's devices from the security dashboard.
+  const admin = await verifyAdminCaller(request, env);
+  return { ...admin, isAdmin: true };
+}
+
+async function consumeDeviceAuthRecoveryGrant(database, userId, deviceFingerprint) {
+  const now = new Date().toISOString();
+  const grant = await database
+    .prepare(`
+      SELECT id
+      FROM device_auth_recovery_grants
+      WHERE user_id = ?1
+        AND consumed_at = ''
+        AND revoked_at = ''
+        AND expires_at > ?2
+      ORDER BY created_at DESC
+      LIMIT 1
+    `)
+    .bind(userId, now)
+    .first();
+  if (!grant?.id) return false;
+
+  const updated = await database
+    .prepare(`
+      UPDATE device_auth_recovery_grants
+      SET consumed_at = ?2, consumed_device_fingerprint = ?3
+      WHERE id = ?1
+        AND consumed_at = ''
+        AND revoked_at = ''
+        AND expires_at > ?2
+    `)
+    .bind(String(grant.id), now, deviceFingerprint)
+    .run();
+  return Number(updated?.meta?.changes || 0) === 1;
+}
+
+async function handleAdminCreateDeviceAuthRecoveryGrant(request, env) {
+  const admin = await verifyAdminCaller(request, env);
+  const database = requireAuditDatabase(env);
+  const body = await readJsonBody(request);
+  const email = normalizeEmail(body?.email || '');
+  const reason = String(body?.reason || '').trim().slice(0, DEVICE_AUTH_RECOVERY_REASON_MAX_LENGTH);
+  if (!email || !email.includes('@')) {
+    throw createRouteError(400, 'email is required.');
+  }
+  if (reason.length < 8) {
+    throw createRouteError(400, 'A brief support reason is required.');
+  }
+
+  const user = await database
+    .prepare(`SELECT id, email, status FROM auth_users WHERE email = ?1 LIMIT 1`)
+    .bind(email)
+    .first();
+  if (!user?.id) {
+    throw createRouteError(404, 'Cloudflare login was not found for this user.');
+  }
+  if (String(user.status || 'active').toLowerCase() !== 'active') {
+    throw createRouteError(409, 'Device recovery cannot be enabled for an inactive account.');
+  }
+
+  const now = new Date().toISOString();
+  const expiresAt = new Date(Date.now() + DEVICE_AUTH_RECOVERY_GRANT_TTL_MS).toISOString();
+  await database
+    .prepare(`
+      UPDATE device_auth_recovery_grants
+      SET revoked_at = ?2
+      WHERE user_id = ?1 AND consumed_at = '' AND revoked_at = ''
+    `)
+    .bind(String(user.id), now)
+    .run();
+  await database
+    .prepare(`
+      INSERT INTO device_auth_recovery_grants (
+        id, user_id, issued_by_user_id, issued_by_email, reason,
+        created_at, expires_at, consumed_at, revoked_at, consumed_device_fingerprint
+      ) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, '', '', '')
+    `)
+    .bind(crypto.randomUUID(), String(user.id), String(admin?.id || ''), normalizeEmail(admin?.email || ''), reason, now, expiresAt)
+    .run();
+  await insertAuditLogRecord(database, {
+    actorUserId: admin?.id,
+    actorEmail: admin?.email,
+    targetUserId: user.id,
+    action: 'device_auth_recovery_issued',
+    details: { expiresAt, reason },
+  });
+
+  return {
+    ok: true,
+    message: 'One-time device recovery is enabled for the user’s next authenticated login.',
+    expiresAt,
+  };
 }
 
 // ---- Admin Device Count Endpoint ----
@@ -4100,6 +4211,7 @@ async function handleDeviceCheck(request, env) {
   if (!deviceFingerprint) {
     throw createRouteError(400, 'deviceFingerprint is required.');
   }
+  await resolveDeviceActor(request, env, email);
   
   // Find user
   const user = await database
@@ -4135,6 +4247,36 @@ async function handleDeviceCheck(request, env) {
       deviceName: trustedDevice.device_name,
       expiresAt: trustedDevice.expires_at,
       lastUsedAt: trustedDevice.last_used_at,
+    };
+  }
+
+  // A support-issued grant is consumed atomically and applies only to this
+  // authenticated user's current device. It never disables device auth globally.
+  if (await consumeDeviceAuthRecoveryGrant(database, user.id, deviceFingerprint)) {
+    const ip = String(request.headers.get('CF-Connecting-IP') || '').trim();
+    const userAgent = String(request.headers.get('User-Agent') || '').trim();
+    const trustResult = await addTrustedDevice(
+      database, user.id, deviceFingerprint, deviceName || 'Recovery Device', '{}', ip, userAgent, DEVICE_TRUST_DEFAULT_DAYS
+    );
+    await logLoginEvent(
+      database, user.id, email, 'device_auth_recovery_consumed', deviceFingerprint,
+      deviceName, ip, userAgent, JSON.stringify({ deviceId: trustResult.deviceId })
+    );
+    await insertAuditLogRecord(database, {
+      actorUserId: user.id,
+      actorEmail: email,
+      targetUserId: user.id,
+      action: 'device_auth_recovery_consumed',
+      details: { deviceId: trustResult.deviceId },
+    });
+    return {
+      ok: true,
+      trusted: true,
+      recoveryUsed: true,
+      deviceId: trustResult.deviceId,
+      deviceName: deviceName || 'Recovery Device',
+      expiresAt: trustResult.expiresAt,
+      lastUsedAt: new Date().toISOString(),
     };
   }
   
@@ -4174,6 +4316,7 @@ async function handleDeviceTrust(request, env) {
   if (!deviceFingerprint) {
     throw createRouteError(400, 'deviceFingerprint is required.');
   }
+  await resolveDeviceActor(request, env, email);
   
   // Find user
   const user = await database
@@ -4210,6 +4353,7 @@ async function handleDeviceRevoke(request, env) {
   if (!deviceId) {
     throw createRouteError(400, 'deviceId is required.');
   }
+  await resolveDeviceActor(request, env, email, { allowAdmin: true });
   
   // Find user
   const user = await database
@@ -4241,6 +4385,7 @@ async function handleDeviceRevokeAll(request, env) {
   if (!email || !email.includes('@')) {
     throw createRouteError(400, 'email is required.');
   }
+  await resolveDeviceActor(request, env, email);
   
   // Find user
   const user = await database
@@ -4265,6 +4410,10 @@ async function handleDeviceList(request, env) {
   const database = requireAuditDatabase(env);
   const url = new URL(request.url);
   const email = normalizeEmail(url.searchParams.get('email') || '');
+
+  if (email) {
+    await resolveDeviceActor(request, env, email, { allowAdmin: true });
+  }
   
   // Admin mode: return all devices across all users
   if (!email || !email.includes('@')) {
@@ -4308,7 +4457,7 @@ async function handleDeviceList(request, env) {
   };
 }
 
-function resolveRouteHandler(path) {
+export function resolveRouteHandler(path) {
   if (path.endsWith("/auth/password/request")) return handleAuthPasswordRecoveryRequest;
   if (path.endsWith("/progress")) return handleCloudflareProgress;
   if (path.endsWith("/content/topic-data")) return handleProtectedTopicData;
@@ -4325,6 +4474,7 @@ function resolveRouteHandler(path) {
   if (path.endsWith("/adminListUsers")) return handleAdminListUsers;
   if (path.endsWith("/adminLookupUsers")) return handleAdminLookupUsers;
   if (path.endsWith("/adminSendVerificationEmail")) return handleAdminSendVerificationEmail;
+  if (path.endsWith("/admin/device-auth-recovery")) return handleAdminCreateDeviceAuthRecoveryGrant;
   if (path.endsWith("/adminCreateCloudflareMigrationLink")) return handleAdminCreateCloudflareMigrationLink;
   if (path.endsWith("/auth/migration/bootstrap")) return handleAuthMigrationBootstrap;
   if (path.endsWith("/adminLogOperation")) return handleAdminLogOperation;
@@ -4430,4 +4580,3 @@ export default {
     }
   },
 };
-

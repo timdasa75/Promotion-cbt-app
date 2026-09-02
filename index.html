@@ -1059,9 +1059,19 @@
                                     <option value="last-seen">Last Seen</option>
                                 </select>
                                 <button class="btn btn-secondary" id="refreshAdminUsersBtn" type="button">Refresh</button>
-                                <button class="btn btn-ghost" id="exportUsersBtn" type="button">Export CSV</button>
-                            </div>
-                            <div class="admin-bulk-actions" id="adminBulkActions" style="display:none;">
+                                  <button class="btn btn-ghost" id="exportUsersBtn" type="button">Export CSV</button>
+                              </div>
+                              <section class="admin-verification-support" aria-labelledby="adminVerificationSupportTitle">
+                                  <div>
+                                      <h4 id="adminVerificationSupportTitle">Verification support</h4>
+                                      <p id="adminVerificationSupportSummary" class="meta" aria-live="polite">Loading verification status…</p>
+                                  </div>
+                                  <div class="admin-verification-support-actions">
+                                      <button class="btn btn-secondary" id="adminShowUnverifiedBtn" type="button">View unverified users</button>
+                                      <button class="btn btn-ghost" id="adminRefreshVerificationBtn" type="button">Refresh status</button>
+                                  </div>
+                              </section>
+                              <div class="admin-bulk-actions" id="adminBulkActions" style="display:none;">
                                 <span class="meta"><strong id="adminSelectedCount">0</strong> users selected</span>
                                 <select id="adminBulkPlanSelect" aria-label="Bulk plan change">
                                     <option value="">Change Plan…</option>

@@ -1475,6 +1475,34 @@ h3,
     flex: 0 0 auto;
 }
 
+.admin-verification-support {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    margin: var(--space-3) 0;
+    padding: var(--space-3);
+    border: 1px solid var(--warning-border, #f0c36d);
+    border-radius: var(--radius-md);
+    background: var(--warning-bg, #fff8e8);
+}
+
+.admin-verification-support h4,
+.admin-verification-support p {
+    margin: 0;
+}
+
+.admin-verification-support p {
+    margin-top: var(--space-1);
+}
+
+.admin-verification-support-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    justify-content: flex-end;
+}
+
 .admin-section-card .hero-meta {
     margin: 0;
     color: var(--ink-700);
@@ -4358,9 +4386,14 @@ body.dark-mode .admin-view-header p {
 
     .admin-request-toolbar,
     .admin-user-toolbar,
+    .admin-verification-support,
     .plan-override-row {
         flex-direction: column;
         align-items: stretch;
+    }
+
+    .admin-verification-support-actions .btn {
+        width: 100%;
     }
 
     .profile-upgrade-fields {

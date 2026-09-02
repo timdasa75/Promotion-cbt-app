@@ -1118,9 +1118,10 @@ async function renderAdminDevices() {
         try {
           const config = getRuntimeConfig();
           const baseUrl = config?.cloudflareAuthBaseUrl || "";
+          const accessToken = String(readSession()?.accessToken || "").trim();
           await fetch(`${baseUrl}/device/revoke`, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: { "Content-Type": "application/json", ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {}) },
             body: JSON.stringify({ email, deviceId }),
           });
           showSuccess("Device revoked.");
@@ -3401,9 +3402,13 @@ async function checkDeviceTrust(email, deviceFingerprint) {
   
   try {
     const deviceName = await getDeviceName();
+    const accessToken = String(readSession()?.accessToken || "").trim();
+    if (!accessToken) {
+      return { trusted: false, reason: "session_unavailable" };
+    }
     const response = await fetch(`${baseUrl}/device/check`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", "Authorization": `Bearer ${accessToken}` },
       body: JSON.stringify({ email, deviceFingerprint, deviceName }),
     });
     
@@ -3513,10 +3518,11 @@ async function completeLogin(loginResult, email) {
       const deviceName = await getDeviceName();
       const config = getRuntimeConfig();
       const baseUrl = config?.cloudflareAuthBaseUrl || "";
+      const accessToken = String(readSession()?.accessToken || "").trim();
       if (baseUrl && deviceFp) {
         await fetch(`${baseUrl}/device/trust`, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/json', ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {}) },
           body: JSON.stringify({
             email,
             deviceFingerprint: deviceFp,
@@ -4169,7 +4175,10 @@ async function renderTrustedDevices() {
       return;
     }
 
-    const response = await fetch(`${baseUrl}/device/list?email=${encodeURIComponent(user.email)}`);
+    const accessToken = String(readSession()?.accessToken || '').trim();
+    const response = await fetch(`${baseUrl}/device/list?email=${encodeURIComponent(user.email)}`, {
+      headers: accessToken ? { Authorization: `Bearer ${accessToken}` } : {},
+    });
     const result = await response.json();
 
     if (!result.ok || !result.devices) {
@@ -4231,7 +4240,7 @@ async function renderTrustedDevices() {
           const baseUrl = config?.cloudflareAuthBaseUrl || '';
           await fetch(`${baseUrl}/device/revoke`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json', ...(String(readSession()?.accessToken || '').trim() ? { Authorization: `Bearer ${String(readSession()?.accessToken || '').trim()}` } : {}) },
             body: JSON.stringify({ email: user.email, deviceId }),
           });
           showSuccess('Device revoked.');
@@ -4258,7 +4267,7 @@ async function revokeAllDevices() {
     const baseUrl = config?.cloudflareAuthBaseUrl || '';
     await fetch(`${baseUrl}/device/revoke-all`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', ...(String(readSession()?.accessToken || '').trim() ? { Authorization: `Bearer ${String(readSession()?.accessToken || '').trim()}` } : {}) },
       body: JSON.stringify({ email: user.email }),
     });
     showSuccess('All devices revoked. You will need to verify on your next login.');
@@ -5968,6 +5977,9 @@ function renderAdminUserDirectory() {
               <button class="directory-action directory-action-menu-item" data-action="resend-verification" data-profile-email="${safeEmail}" data-email-verified="${verification.dataValue}" type="button" role="menuitem">
                 Resend verification
               </button>
+              ${hasCloudflareLogin ? `<button class="directory-action directory-action-menu-item" data-action="device-auth-recovery" data-profile-email="${safeEmail}" type="button" role="menuitem">
+                Allow next device login
+              </button>` : ''}
               <button class="directory-action directory-action-menu-item" data-action="create-cloudflare-link" data-profile-email="${safeEmail}" data-profile-role="${safeProfileRole}" data-profile-plan="${safePlan}" data-profile-status="${safeProfileStatus}" data-email-verified="${verification.dataValue}" data-profile-source="${safeSource}" type="button" role="menuitem">
                 ${cloudflareActionLabel}
               </button>
@@ -6023,8 +6035,10 @@ function renderAdminUserDirectory() {
         ? "Reactivate user account"
         : action === "send-reset"
           ? "Send password reset"
-          : action === "resend-verification"
+        : action === "resend-verification"
             ? "Resend verification email"
+            : action === "device-auth-recovery"
+              ? "Allow next device login"
             : action === "create-cloudflare-link"
               ? (profileSource === "cloudflare-auth" ? "Create password reset link" : "Create password setup link")
         : "Update account status";
@@ -6044,6 +6058,14 @@ function renderAdminUserDirectory() {
       showWarning(`${targetLabel} is already verified.`);
       return;
     }
+    if (action === "device-auth-recovery") {
+      const confirmed = await showConfirm({
+        title: "Allow Next Device Login",
+        message: `Allow ${targetLabel} to sign in once without the emailed device code? Confirm their identity through a separate support channel first. The grant expires in 15 minutes and applies only to their next authenticated login on the current device.`,
+        okText: "Enable 15-minute recovery",
+      });
+      if (!confirmed) return;
+    }
   try {
       await runOperationWithFeedback(
         async () => {
@@ -6054,26 +6076,38 @@ function renderAdminUserDirectory() {
           }
           if (action === "resend-verification") {
             const resendResult = await resendVerificationEmailForUser(profileEmail);
-            const verUrl = String(resendResult?.verificationUrl || "").trim();
-            if (verUrl) {
-              try {
-                await navigator.clipboard.writeText(verUrl);
-                actionWarning = resendResult?.delivered
-                  ? "Verification email sent and link copied to clipboard."
-                  : `Verification link copied to clipboard. Share it with the user: ${verUrl}`;
-              } catch (clipboardError) {
-                actionWarning = resendResult?.delivered
-                  ? "Verification email sent."
-                  : `Verification link: ${verUrl}`;
-              }
-            } else {
-              actionWarning = String(
-                resendResult?.warning
-                || (resendResult?.delivered === false
-                  ? "Verification email delivery is unavailable."
-                  : "Verification email sent."),
-              ).trim();
+            actionWarning = String(
+              resendResult?.warning
+              || (resendResult?.delivered === false
+                ? "Verification email delivery is unavailable."
+                : "Verification email sent."),
+            ).trim();
+            return;
+          }
+          if (action === "device-auth-recovery") {
+            const config = getRuntimeConfig();
+            const baseUrl = String(config?.cloudflareAuthBaseUrl || "").trim();
+            const session = readSession();
+            const accessToken = String(session?.accessToken || "").trim();
+            if (!baseUrl || !accessToken) {
+              throw new Error("Admin session is unavailable.");
             }
+            const response = await fetch(`${baseUrl}/admin/device-auth-recovery`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${accessToken}`,
+              },
+              body: JSON.stringify({
+                email: profileEmail,
+                reason: "Admin confirmed a reported missing device-authentication email through support.",
+              }),
+            });
+            const result = await response.json().catch(() => ({}));
+            if (!response.ok || !result?.ok) {
+              throw new Error(result?.error || result?.message || "Unable to enable device recovery.");
+            }
+            actionWarning = `One-time device recovery enabled until ${formatDateTime(result.expiresAt)}.`;
             return;
           }
           if (action === "create-cloudflare-link") {
@@ -7926,7 +7960,3 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   initializeThemeToggle();
 });
-
-
-
-
