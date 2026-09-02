@@ -808,6 +808,8 @@ function refreshAllDashboardData() {
   renderRecentTransactions();
   // Refresh migration stats
   fetchMigrationStats();
+  // Refresh recovery mode settings
+  refreshRecoveryModeSettings();
 }
 
 function startActivityMetricsAutoRefresh() {
@@ -826,6 +828,142 @@ function startActivityMetricsAutoRefresh() {
   
   // Update the pause button state
   updateActivityMetricsPauseButton();
+}
+
+// ---- Recovery Mode (Global + Per-User Device Verification Toggle) ----
+
+async function refreshRecoveryModeSettings() {
+  try {
+    const config = getRuntimeConfig();
+    const baseUrl = String(config?.cloudflareAuthBaseUrl || "").trim();
+    const session = readSession();
+    const accessToken = String(session?.accessToken || "").trim();
+    if (!baseUrl || !accessToken) return;
+    
+    const response = await fetch(`${baseUrl}/admin/device-verification/settings`, {
+      headers: { "Authorization": `Bearer ${accessToken}` },
+    });
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok || !result?.ok) return;
+    
+    // Update global toggle
+    const globalToggle = document.getElementById('globalRecoveryToggle');
+    const globalHint = document.getElementById('globalRecoveryHint');
+    const statusEl = document.getElementById('recoveryModeStatus');
+    
+    if (globalToggle) {
+      globalToggle.checked = result.global?.enabled === true;
+    }
+    if (globalHint) {
+      if (result.global?.enabled) {
+        globalHint.innerHTML = `Device verification is currently <strong>disabled</strong> for all users until <strong>${formatDateTime(result.global.expiresAt)}</strong>.`;
+      } else {
+        globalHint.innerHTML = 'Device verification is currently <strong>enabled</strong> for all users.';
+      }
+    }
+    if (statusEl) {
+      statusEl.textContent = result.global?.enabled ? 'Recovery Active' : 'Active';
+      statusEl.className = result.global?.enabled ? 'admin-recovery-status admin-recovery-active' : 'admin-recovery-status';
+    }
+    
+    // Update per-user bypasses list
+    const bypassesEl = document.getElementById('activeUserBypasses');
+    if (bypassesEl) {
+      if (result.perUserBypasses?.length > 0) {
+        bypassesEl.innerHTML = result.perUserBypasses.map(b => `
+          <div class="admin-bypass-item">
+            <span class="admin-bypass-email">${escapeHtml(b.email)}</span>
+            <span class="admin-bypass-expires">Until ${formatDateTime(b.expiresAt)}</span>
+            <button class="btn btn-ghost btn-sm admin-bypass-remove" data-email="${escapeHtml(b.email)}" type="button">Re-enable</button>
+          </div>
+        `).join('');
+        // Add click handlers for re-enable buttons
+        bypassesEl.querySelectorAll('.admin-bypass-remove').forEach(btn => {
+          btn.addEventListener('click', async () => {
+            const email = btn.dataset.email;
+            if (!email) return;
+            await toggleUserDeviceVerification(email, false);
+          });
+        });
+      } else {
+        bypassesEl.innerHTML = '<p class="admin-empty-state">No users with active bypass.</p>';
+      }
+    }
+  } catch (error) {
+    console.error('[recovery-mode] Failed to load settings:', error);
+  }
+}
+
+async function toggleGlobalRecoveryMode(enable) {
+  const config = getRuntimeConfig();
+  const baseUrl = String(config?.cloudflareAuthBaseUrl || "").trim();
+  const session = readSession();
+  const accessToken = String(session?.accessToken || "").trim();
+  if (!baseUrl || !accessToken) throw new Error('Admin session is unavailable.');
+  
+  const response = await fetch(`${baseUrl}/admin/device-verification/global-toggle`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${accessToken}`,
+    },
+    body: JSON.stringify({
+      enable,
+      hours: 24,
+      reason: 'Admin enabled recovery mode for device verification issues.',
+    }),
+  });
+  const result = await response.json().catch(() => ({}));
+  if (!response.ok || !result?.ok) {
+    throw new Error(result?.error || result?.message || 'Failed to toggle recovery mode.');
+  }
+  return result;
+}
+
+async function toggleUserDeviceVerification(email, enable) {
+  const config = getRuntimeConfig();
+  const baseUrl = String(config?.cloudflareAuthBaseUrl || "").trim();
+  const session = readSession();
+  const accessToken = String(session?.accessToken || "").trim();
+  if (!baseUrl || !accessToken) throw new Error('Admin session is unavailable.');
+  
+  const response = await fetch(`${baseUrl}/admin/device-verification/user-toggle`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${accessToken}`,
+    },
+    body: JSON.stringify({
+      email,
+      enable,
+      hours: 24,
+      reason: 'Admin toggled device verification for user.',
+    }),
+  });
+  const result = await response.json().catch(() => ({}));
+  if (!response.ok || !result?.ok) {
+    throw new Error(result?.error || result?.message || 'Failed to toggle user device verification.');
+  }
+  return result;
+}
+
+function initializeRecoveryModeToggle() {
+  const globalToggle = document.getElementById('globalRecoveryToggle');
+  if (globalToggle) {
+    globalToggle.addEventListener('change', async () => {
+      const enable = globalToggle.checked;
+      try {
+        const result = await toggleGlobalRecoveryMode(enable);
+        showSuccess(result?.message || (enable ? 'Recovery mode enabled.' : 'Recovery mode disabled.'));
+        await refreshRecoveryModeSettings();
+      } catch (error) {
+        globalToggle.checked = !enable;
+        showError(error.message || 'Failed to toggle recovery mode.');
+      }
+    });
+  }
+  // Load initial settings
+  refreshRecoveryModeSettings();
 }
 
 function stopActivityMetricsAutoRefresh() {
@@ -2784,6 +2922,7 @@ async function restoreScreenState() {
     initializePricingUI();
     initSubscriptionManagement();
     setupRefreshHandlers();
+    initializeRecoveryModeToggle();
   }
 
   await showScreen(savedScreenId);
@@ -5979,6 +6118,9 @@ function renderAdminUserDirectory() {
               </button>
               ${hasCloudflareLogin ? `<button class="directory-action directory-action-menu-item" data-action="device-auth-recovery" data-profile-email="${safeEmail}" type="button" role="menuitem">
                 Allow next device login
+              </button>
+              <button class="directory-action directory-action-menu-item" data-action="device-verification-bypass" data-profile-email="${safeEmail}" type="button" role="menuitem">
+                Disable device verification
               </button>` : ''}
               <button class="directory-action directory-action-menu-item" data-action="create-cloudflare-link" data-profile-email="${safeEmail}" data-profile-role="${safeProfileRole}" data-profile-plan="${safePlan}" data-profile-status="${safeProfileStatus}" data-email-verified="${verification.dataValue}" data-profile-source="${safeSource}" type="button" role="menuitem">
                 ${cloudflareActionLabel}
@@ -6066,6 +6208,14 @@ function renderAdminUserDirectory() {
       });
       if (!confirmed) return;
     }
+    if (action === "device-verification-bypass") {
+      const confirmed = await showConfirm({
+        title: "Disable Device Verification",
+        message: `Disable device verification for ${targetLabel} for 24 hours? They will be able to sign in from any device without the emailed verification code. This is useful when email delivery is not working.`,
+        okText: "Disable for 24 hours",
+      });
+      if (!confirmed) return;
+    }
   try {
       await runOperationWithFeedback(
         async () => {
@@ -6108,6 +6258,34 @@ function renderAdminUserDirectory() {
               throw new Error(result?.error || result?.message || "Unable to enable device recovery.");
             }
             actionWarning = `One-time device recovery enabled until ${formatDateTime(result.expiresAt)}.`;
+            return;
+          }
+          if (action === "device-verification-bypass") {
+            const config = getRuntimeConfig();
+            const baseUrl = String(config?.cloudflareAuthBaseUrl || "").trim();
+            const session = readSession();
+            const accessToken = String(session?.accessToken || "").trim();
+            if (!baseUrl || !accessToken) {
+              throw new Error("Admin session is unavailable.");
+            }
+            const response = await fetch(`${baseUrl}/admin/device-verification/user-toggle`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${accessToken}`,
+              },
+              body: JSON.stringify({
+                email: profileEmail,
+                enable: true,
+                hours: 24,
+                reason: "Admin disabled device verification due to email delivery issues.",
+              }),
+            });
+            const result = await response.json().catch(() => ({}));
+            if (!response.ok || !result?.ok) {
+              throw new Error(result?.error || result?.message || "Unable to disable device verification.");
+            }
+            actionWarning = result?.message || `Device verification disabled for ${profileEmail} until ${formatDateTime(result.expiresAt)}.`;
             return;
           }
           if (action === "create-cloudflare-link") {
@@ -6568,6 +6746,7 @@ async function openAdminScreen() {
         initializeAdminTabs();
         loadPricingUI();
         initializePricingUI();
+        initializeRecoveryModeToggle();
         await showScreen("adminScreen");
       },
       {

@@ -1199,6 +1199,28 @@
                             <section class="admin-group" id="adminTabSecurity" aria-labelledby="adminGroupSecurityTitle">
                                 <h3 class="admin-group-title" id="adminGroupSecurityTitle">Security &amp; Devices</h3>
                                 <div class="admin-grid">
+                                    <article class="card admin-section-card admin-recovery-mode-card">
+                            <div class="admin-card-head">
+                                <h3>Recovery Mode</h3>
+                                <span class="admin-recovery-status" id="recoveryModeStatus">Active</span>
+                            </div>
+                            <p class="admin-card-desc">Disable device verification temporarily for all users or specific users.</p>
+                            <div class="admin-recovery-controls">
+                                <div class="admin-recovery-global">
+                                    <label class="toggle-label">
+                                        <span>Global Recovery Mode</span>
+                                        <input type="checkbox" id="globalRecoveryToggle" class="toggle-input" aria-label="Toggle global recovery mode" />
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                    <p class="toggle-hint" id="globalRecoveryHint">Device verification is currently <strong>enabled</strong> for all users.</p>
+                                </div>
+                                <div class="admin-recovery-per-user">
+                                    <h4>Per-User Bypass</h4>
+                                    <p class="toggle-hint">Users with active bypass:</p>
+                                    <div id="activeUserBypasses" class="admin-user-bypass-list">Loading...</div>
+                                </div>
+                            </div>
+                        </article>
                                     <article class="card admin-section-card admin-devices-card" data-admin-section="device-management">
                             <div class="admin-card-head">
                                 <h3>Device Management</h3>

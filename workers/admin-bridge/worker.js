@@ -3920,6 +3920,224 @@ async function handleAdminDeviceCount(request, env) {
   };
 }
 
+// ---- Device Verification Settings (Global + Per-User) ----
+
+const RECOVERY_MODE_DEFAULT_HOURS = 24;
+
+/**
+ * Check if device verification is bypassed (global or per-user).
+ * Returns { bypassed: bool, reason: string }
+ */
+async function isDeviceVerificationBypassed(database, userId) {
+  const now = new Date().toISOString();
+  
+  // Check global recovery mode
+  const globalSetting = await database
+    .prepare(`
+      SELECT id, expires_at, reason FROM device_verification_settings
+      WHERE setting_type = 'global' AND enabled = 1 AND expires_at > ?1
+      ORDER BY created_at DESC LIMIT 1
+    `)
+    .bind(now)
+    .first();
+  
+  if (globalSetting) {
+    return { bypassed: true, reason: 'global_recovery_mode', expiresAt: globalSetting.expires_at };
+  }
+  
+  // Check per-user bypass
+  if (userId) {
+    const userSetting = await database
+      .prepare(`
+        SELECT id, expires_at, reason FROM device_verification_settings
+        WHERE setting_type = 'per_user' AND user_id = ?1 AND enabled = 1 AND expires_at > ?2
+        ORDER BY created_at DESC LIMIT 1
+      `)
+      .bind(userId, now)
+      .first();
+    
+    if (userSetting) {
+      return { bypassed: true, reason: 'per_user_bypass', expiresAt: userSetting.expires_at };
+    }
+  }
+  
+  return { bypassed: false };
+}
+
+/**
+ * Admin: Toggle global recovery mode (disables device verification for all users)
+ */
+async function handleDeviceVerificationGlobalToggle(request, env) {
+  const admin = await verifyAdminCaller(request, env);
+  const database = requireAuditDatabase(env);
+  const body = await readJsonBody(request);
+  const enable = body?.enable !== false;
+  const hours = Number(body?.hours) || RECOVERY_MODE_DEFAULT_HOURS;
+  const reason = String(body?.reason || '').trim().slice(0, 500);
+  
+  const now = new Date().toISOString();
+  const expiresAt = new Date(Date.now() + hours * 60 * 60 * 1000).toISOString();
+  
+  if (enable) {
+    // Disable any existing global setting first
+    await database
+      .prepare(`UPDATE device_verification_settings SET enabled = 0 WHERE setting_type = 'global' AND enabled = 1`)
+      .run();
+    
+    await database
+      .prepare(`
+        INSERT INTO device_verification_settings (id, setting_type, user_id, enabled, created_by, created_at, expires_at, reason)
+        VALUES (?1, 'global', '', 1, ?2, ?3, ?4, ?5)
+      `)
+      .bind(crypto.randomUUID(), normalizeEmail(admin?.email || ''), now, expiresAt, reason)
+      .run();
+    
+    await insertAuditLogRecord(database, {
+      actorUserId: admin?.id,
+      actorEmail: admin?.email,
+      action: 'device_verification_global_disabled',
+      details: { hours, expiresAt, reason },
+    });
+    
+    return { ok: true, enabled: true, expiresAt, message: `Device verification disabled for ${hours} hours. Auto-re-enables at ${expiresAt}.` };
+  } else {
+    // Re-enable: disable all active global settings
+    const result = await database
+      .prepare(`UPDATE device_verification_settings SET enabled = 0 WHERE setting_type = 'global' AND enabled = 1`)
+      .run();
+    
+    await insertAuditLogRecord(database, {
+      actorUserId: admin?.id,
+      actorEmail: admin?.email,
+      action: 'device_verification_global_re_enabled',
+      details: { changes: result.meta?.changes },
+    });
+    
+    return { ok: true, enabled: false, message: 'Device verification re-enabled for all users.' };
+  }
+}
+
+/**
+ * Admin: Toggle per-user device verification bypass
+ */
+async function handleDeviceVerificationUserToggle(request, env) {
+  const admin = await verifyAdminCaller(request, env);
+  const database = requireAuditDatabase(env);
+  const body = await readJsonBody(request);
+  const email = normalizeEmail(body?.email || '');
+  const enable = body?.enable !== false;
+  const hours = Number(body?.hours) || RECOVERY_MODE_DEFAULT_HOURS;
+  const reason = String(body?.reason || '').trim().slice(0, 500);
+  
+  if (!email || !email.includes('@')) {
+    throw createRouteError(400, 'email is required.');
+  }
+  
+  const user = await database
+    .prepare('SELECT id, email FROM auth_users WHERE email = ?1')
+    .bind(email)
+    .first();
+  if (!user) {
+    throw createRouteError(404, 'User not found.');
+  }
+  
+  const now = new Date().toISOString();
+  const expiresAt = new Date(Date.now() + hours * 60 * 60 * 1000).toISOString();
+  
+  if (enable) {
+    // Disable any existing per-user setting for this user
+    await database
+      .prepare(`UPDATE device_verification_settings SET enabled = 0 WHERE setting_type = 'per_user' AND user_id = ?1 AND enabled = 1`)
+      .bind(user.id)
+      .run();
+    
+    await database
+      .prepare(`
+        INSERT INTO device_verification_settings (id, setting_type, user_id, enabled, created_by, created_at, expires_at, reason)
+        VALUES (?1, 'per_user', ?2, 1, ?3, ?4, ?5, ?6)
+      `)
+      .bind(crypto.randomUUID(), user.id, normalizeEmail(admin?.email || ''), now, expiresAt, reason)
+      .run();
+    
+    await insertAuditLogRecord(database, {
+      actorUserId: admin?.id,
+      actorEmail: admin?.email,
+      targetUserId: user.id,
+      action: 'device_verification_user_disabled',
+      details: { targetEmail: email, hours, expiresAt, reason },
+    });
+    
+    return { ok: true, enabled: true, expiresAt, message: `Device verification disabled for ${email} for ${hours} hours.` };
+  } else {
+    const result = await database
+      .prepare(`UPDATE device_verification_settings SET enabled = 0 WHERE setting_type = 'per_user' AND user_id = ?1 AND enabled = 1`)
+      .bind(user.id)
+      .run();
+    
+    await insertAuditLogRecord(database, {
+      actorUserId: admin?.id,
+      actorEmail: admin?.email,
+      targetUserId: user.id,
+      action: 'device_verification_user_re_enabled',
+      details: { targetEmail: email, changes: result.meta?.changes },
+    });
+    
+    return { ok: true, enabled: false, message: `Device verification re-enabled for ${email}.` };
+  }
+}
+
+/**
+ * Admin: Get current device verification settings
+ */
+async function handleDeviceVerificationSettings(request, env) {
+  await verifyAdminCaller(request, env);
+  const database = requireAuditDatabase(env);
+  const now = new Date().toISOString();
+  
+  // Get active global setting
+  const globalSetting = await database
+    .prepare(`
+      SELECT enabled, expires_at, reason, created_by, created_at
+      FROM device_verification_settings
+      WHERE setting_type = 'global' AND enabled = 1 AND expires_at > ?1
+      ORDER BY created_at DESC LIMIT 1
+    `)
+    .bind(now)
+    .first();
+  
+  // Get all active per-user bypasses
+  const userSettings = await database
+    .prepare(`
+      SELECT dvs.user_id, dvs.enabled, dvs.expires_at, dvs.reason, dvs.created_by, dvs.created_at,
+             au.email
+      FROM device_verification_settings dvs
+      JOIN auth_users au ON dvs.user_id = au.id
+      WHERE dvs.setting_type = 'per_user' AND dvs.enabled = 1 AND dvs.expires_at > ?1
+      ORDER BY dvs.created_at DESC
+    `)
+    .bind(now)
+    .all();
+  
+  return {
+    ok: true,
+    global: globalSetting ? {
+      enabled: true,
+      expiresAt: globalSetting.expires_at,
+      reason: globalSetting.reason,
+      createdBy: globalSetting.created_by,
+      createdAt: globalSetting.created_at,
+    } : { enabled: false },
+    perUserBypasses: (userSettings?.results || []).map(s => ({
+      email: s.email,
+      userId: s.user_id,
+      expiresAt: s.expires_at,
+      reason: s.reason,
+      createdBy: s.created_by,
+      createdAt: s.created_at,
+    })),
+  };
+}
+
 // ---- Admin All Devices Endpoint ----
 
 async function handleAdminAllDevices(request, env) {
@@ -4298,6 +4516,37 @@ async function handleDeviceCheck(request, env) {
     };
   }
   
+  // Check if device verification is bypassed (global recovery mode or per-user bypass)
+  const bypass = await isDeviceVerificationBypassed(database, user.id);
+  if (bypass.bypassed) {
+    const ip = String(request.headers.get('CF-Connecting-IP') || '').trim();
+    const userAgent = String(request.headers.get('User-Agent') || '').trim();
+    const trustResult = await addTrustedDevice(
+      database, user.id, deviceFingerprint, deviceName || 'Recovery Device', '{}', ip, userAgent, DEVICE_TRUST_DEFAULT_DAYS
+    );
+    await logLoginEvent(
+      database, user.id, email, 'device_verification_bypassed', deviceFingerprint,
+      deviceName, ip, userAgent, JSON.stringify({ deviceId: trustResult.deviceId, reason: bypass.reason })
+    );
+    await insertAuditLogRecord(database, {
+      actorUserId: user.id,
+      actorEmail: email,
+      targetUserId: user.id,
+      action: 'device_verification_bypassed',
+      details: { deviceId: trustResult.deviceId, reason: bypass.reason, expiresAt: bypass.expiresAt },
+    });
+    return {
+      ok: true,
+      trusted: true,
+      bypassUsed: true,
+      bypassReason: bypass.reason,
+      deviceId: trustResult.deviceId,
+      deviceName: deviceName || 'Recovery Device',
+      expiresAt: trustResult.expiresAt,
+      lastUsedAt: new Date().toISOString(),
+    };
+  }
+  
   return { ok: true, trusted: false, isPrimary: false, reason: 'new_device' };
 }
 
@@ -4475,6 +4724,9 @@ export function resolveRouteHandler(path) {
   if (path.endsWith("/adminLookupUsers")) return handleAdminLookupUsers;
   if (path.endsWith("/adminSendVerificationEmail")) return handleAdminSendVerificationEmail;
   if (path.endsWith("/admin/device-auth-recovery")) return handleAdminCreateDeviceAuthRecoveryGrant;
+  if (path.endsWith("/admin/device-verification/global-toggle")) return handleDeviceVerificationGlobalToggle;
+  if (path.endsWith("/admin/device-verification/user-toggle")) return handleDeviceVerificationUserToggle;
+  if (path.endsWith("/admin/device-verification/settings")) return handleDeviceVerificationSettings;
   if (path.endsWith("/adminCreateCloudflareMigrationLink")) return handleAdminCreateCloudflareMigrationLink;
   if (path.endsWith("/auth/migration/bootstrap")) return handleAuthMigrationBootstrap;
   if (path.endsWith("/adminLogOperation")) return handleAdminLogOperation;

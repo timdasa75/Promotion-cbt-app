@@ -3637,6 +3637,129 @@ body.dark-mode .admin-view-header p {
     min-width: 140px;
 }
 
+/* Recovery Mode Card */
+.admin-recovery-mode-card {
+    grid-column: 1 / -1;
+}
+
+.admin-recovery-status {
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: var(--success-bg, #d1fae5);
+    color: var(--success-fg, #065f46);
+}
+
+.admin-recovery-active {
+    background: var(--warning-bg, #fef3c7);
+    color: var(--warning-fg, #92400e);
+}
+
+.admin-card-desc {
+    font-size: 0.85rem;
+    color: var(--ink-700);
+    margin: 0;
+}
+
+.admin-recovery-controls {
+    display: grid;
+    gap: 16px;
+}
+
+.admin-recovery-global {
+    display: grid;
+    gap: 6px;
+}
+
+.toggle-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.toggle-input {
+    position: relative;
+    width: 44px;
+    height: 24px;
+    appearance: none;
+    background: var(--line, #cbd5e1);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.2s;
+    flex-shrink: 0;
+}
+
+.toggle-input:checked {
+    background: var(--green-700, #047857);
+}
+
+.toggle-input::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+    transition: transform 0.2s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+
+.toggle-input:checked::after {
+    transform: translateX(20px);
+}
+
+.toggle-hint {
+    font-size: 0.82rem;
+    color: var(--ink-700);
+    margin: 0;
+}
+
+.admin-recovery-per-user h4 {
+    font-size: 0.9rem;
+    margin: 0 0 6px;
+}
+
+.admin-user-bypass-list {
+    display: grid;
+    gap: 8px;
+}
+
+.admin-bypass-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 12px;
+    border: 1px solid var(--line, #e2e8f0);
+    border-radius: 8px;
+    background: var(--card, #fff);
+    font-size: 0.85rem;
+    flex-wrap: wrap;
+}
+
+.admin-bypass-email {
+    font-weight: 500;
+    flex: 1 1 150px;
+    min-width: 120px;
+}
+
+.admin-bypass-expires {
+    color: var(--ink-700, #64748b);
+    font-size: 0.8rem;
+    flex: 1 1 120px;
+}
+
+.admin-empty-state {
+    font-size: 0.84rem;
+    color: var(--ink-700, #94a3b8);
+    font-style: italic;
+    margin: 0;
+}
+
 .admin-request-table-wrap {
     width: 100%;
     overflow-x: auto;
