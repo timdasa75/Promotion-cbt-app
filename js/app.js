@@ -757,6 +757,7 @@ async function fetchActivityMetrics() {
 
 function updateActivityMetricsDisplay(metrics) {
   if (!metrics) return;
+  dashboardStatsSource = 'worker';
   const activeNowEl = document.getElementById('adminStatActiveNow');
   const hourlyActiveEl = document.getElementById('adminStatHourlyActive');
   const dailyActiveEl = document.getElementById('adminStatDailyActive');
@@ -803,9 +804,11 @@ function refreshAllDashboardData() {
   refreshRecoveryModeSettings();
 }
 
+let activityMetricsAutoRefreshStarted = false;
+
 function startActivityMetricsAutoRefresh() {
-  // Clear any existing interval
-  stopActivityMetricsAutoRefresh();
+  if (activityMetricsAutoRefreshStarted) return;
+  activityMetricsAutoRefreshStarted = true;
   
   // Initial fetch of all dashboard data
   refreshAllDashboardData();
@@ -1056,23 +1059,17 @@ function updateActivityMetricsPauseButton() {
   }
 }
 
+let dashboardStatsSource = null; // 'worker' when Worker has provided values
+
 function updateAdminDashboardSummary() {
-  // Only set values if activity metrics haven't loaded yet (avoid overwriting Worker-provided values)
-  const totalUsersEl = document.getElementById('adminStatTotalUsers');
-  const premiumUsersEl = document.getElementById('adminStatPremiumUsers');
+  // Stat cards (totalUsers, premiumUsers, devices, logins) are ONLY updated
+  // by refreshActivityMetrics() from the Worker endpoint to prevent flickering.
+  // This function only handles non-stat-card dashboard content.
   
-  // Use client-side list as fallback only if Worker metrics haven't populated the cards yet
-  if (totalUsersEl && totalUsersEl.textContent === '0') {
-    const users = adminDirectoryUsers || [];
-    totalUsersEl.textContent = String(users.length);
+  // Start activity metrics auto-refresh (this is the single source of truth for stats)
+  if (dashboardStatsSource !== 'worker') {
+    startActivityMetricsAutoRefresh();
   }
-  if (premiumUsersEl && premiumUsersEl.textContent === '0') {
-    const users = adminDirectoryUsers || [];
-    const premiumUsers = users.filter(u => u.plan === 'premium').length;
-    premiumUsersEl.textContent = String(premiumUsers);
-  }
-  // Start activity metrics auto-refresh
-  startActivityMetricsAutoRefresh();
   // Render recent transactions
   renderRecentTransactions();
   // Fetch migration stats
