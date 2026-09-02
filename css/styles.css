@@ -3041,10 +3041,93 @@ select:focus-visible,
     transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
 }
 
-.admin-activity-card:hover {
+.admin-activity-card.clickable {
+    cursor: pointer;
+}
+
+.admin-activity-card.clickable:hover {
     border-color: var(--primary);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(46, 168, 101, 0.2);
+}
+
+.admin-activity-card.clickable.active {
+    border-color: var(--green-700, #047857);
+    box-shadow: 0 0 0 2px rgba(4, 120, 87, 0.15);
+}
+
+/* Active Users Panel */
+.admin-active-users-panel {
+    grid-column: 1 / -1;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 16px;
+    margin-top: 4px;
+}
+
+.admin-active-users-panel.hidden {
+    display: none;
+}
+
+.admin-active-users-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.admin-active-users-header h3 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.admin-active-users-list {
+    display: grid;
+    gap: 6px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.admin-active-user-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 12px;
+    border: 1px solid var(--line, #e2e8f0);
+    border-radius: 8px;
+    font-size: 0.85rem;
+}
+
+.admin-active-user-email {
+    font-weight: 500;
+    flex: 1 1 150px;
+    min-width: 120px;
+}
+
+.admin-active-user-plan {
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-weight: 500;
+}
+
+.admin-active-user-plan.premium {
+    background: rgba(16, 185, 129, 0.12);
+    color: #047857;
+}
+
+.admin-active-user-plan.free {
+    background: rgba(100, 116, 139, 0.12);
+    color: #64748b;
+}
+
+.admin-active-user-lastseen {
+    color: var(--ink-700, #64748b);
+    font-size: 0.8rem;
+    flex: 0 0 auto;
+    white-space: nowrap;
 }
 
 .admin-activity-icon {

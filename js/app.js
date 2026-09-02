@@ -1032,6 +1032,117 @@ function initializeRecoveryModeToggle() {
   refreshRecoveryModeSettings();
 }
 
+// ---- Active Users List (clickable activity cards) ----
+
+let activeUsersPeriod = null;
+
+async function loadActiveUsersList(period) {
+  const panel = document.getElementById('activeUsersPanel');
+  const titleEl = document.getElementById('activeUsersTitle');
+  const listEl = document.getElementById('activeUsersList');
+  if (!panel || !listEl) return;
+  
+  // Toggle off if same period clicked again
+  if (activeUsersPeriod === period) {
+    panel.classList.add('hidden');
+    activeUsersPeriod = null;
+    document.querySelectorAll('.admin-activity-card.clickable').forEach(c => c.classList.remove('active'));
+    return;
+  }
+  
+  activeUsersPeriod = period;
+  
+  // Highlight active card
+  document.querySelectorAll('.admin-activity-card.clickable').forEach(c => {
+    c.classList.toggle('active', c.dataset.period === period);
+  });
+  
+  // Show panel with loading state
+  panel.classList.remove('hidden');
+  if (titleEl) titleEl.textContent = 'Loading...';
+  listEl.innerHTML = '<p class="admin-empty-state">Loading...</p>';
+  
+  try {
+    const config = getRuntimeConfig();
+    const baseUrl = String(config?.cloudflareAuthBaseUrl || '').trim();
+    const session = readSession();
+    const accessToken = String(session?.accessToken || '').trim();
+    if (!baseUrl || !accessToken) throw new Error('Admin session unavailable');
+    
+    const response = await fetch(`${baseUrl}/adminActiveUsers?period=${period}`, {
+      headers: { 'Authorization': `Bearer ${accessToken}` },
+    });
+    const result = await response.json().catch(() => ({}));
+    
+    if (!response.ok || !result?.ok) {
+      throw new Error(result?.error || 'Failed to load active users');
+    }
+    
+    if (titleEl) titleEl.textContent = `${result.label} (${result.count} user${result.count !== 1 ? 's' : ''})`;
+    
+    if (result.users.length === 0) {
+      listEl.innerHTML = '<p class="admin-empty-state">No users active in this period.</p>';
+      return;
+    }
+    
+    listEl.innerHTML = result.users.map(user => {
+      const planClass = user.plan === 'premium' ? 'premium' : 'free';
+      const lastSeen = user.lastSeenAt ? formatTimeAgo(user.lastSeenAt) : 'Unknown';
+      return `
+        <div class="admin-active-user-item">
+          <span class="admin-active-user-email">${escapeHtml(user.email)}</span>
+          <span class="admin-active-user-plan ${planClass}">${user.plan || 'free'}</span>
+          <span class="admin-active-user-lastseen">${lastSeen}</span>
+        </div>
+      `;
+    }).join('');
+  } catch (error) {
+    listEl.innerHTML = `<p class="admin-empty-state">Error: ${escapeHtml(error.message)}</p>`;
+  }
+}
+
+function initializeActivityCardClicks() {
+  document.querySelectorAll('.admin-activity-card.clickable').forEach(card => {
+    card.addEventListener('click', () => {
+      const period = card.dataset.period;
+      if (period) loadActiveUsersList(period);
+    });
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        const period = card.dataset.period;
+        if (period) loadActiveUsersList(period);
+      }
+    });
+  });
+  
+  // Close button
+  const closeBtn = document.getElementById('closeActiveUsersBtn');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+      const panel = document.getElementById('activeUsersPanel');
+      if (panel) panel.classList.add('hidden');
+      activeUsersPeriod = null;
+      document.querySelectorAll('.admin-activity-card.clickable').forEach(c => c.classList.remove('active'));
+    });
+  }
+}
+
+function formatTimeAgo(isoString) {
+  if (!isoString) return '';
+  const date = new Date(isoString);
+  if (Number.isNaN(date.getTime())) return '';
+  const diffMs = Date.now() - date.getTime();
+  const seconds = Math.floor(diffMs / 1000);
+  if (seconds < 60) return `${seconds}s ago`;
+  const minutes = Math.floor(seconds / 60);
+  if (minutes < 60) return `${minutes}m ago`;
+  const hours = Math.floor(minutes / 60);
+  if (hours < 24) return `${hours}h ago`;
+  const days = Math.floor(hours / 24);
+  return `${days}d ago`;
+}
+
 function stopActivityMetricsAutoRefresh() {
   if (activityMetricsRefreshInterval) {
     clearInterval(activityMetricsRefreshInterval);
@@ -2979,6 +3090,7 @@ async function restoreScreenState() {
     initSubscriptionManagement();
     setupRefreshHandlers();
     initializeRecoveryModeToggle();
+    initializeActivityCardClicks();
   }
 
   await showScreen(savedScreenId);
@@ -6816,6 +6928,7 @@ async function openAdminScreen() {
         loadPricingUI();
         initializePricingUI();
         initializeRecoveryModeToggle();
+        initializeActivityCardClicks();
         await showScreen("adminScreen");
       },
       {

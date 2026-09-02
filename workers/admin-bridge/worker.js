@@ -4326,6 +4326,72 @@ async function handleAdminActivityMetrics(request, env) {
   };
 }
 
+// ---- Active Users List Endpoint ----
+
+const ACTIVITY_PERIOD_MAP = {
+  'active-now': { interval: '5 minutes', label: 'Active Now' },
+  'hourly': { interval: '60 minutes', label: 'Hourly Active' },
+  'daily': { interval: '24 hours', label: 'Daily Active' },
+  'weekly': { interval: '7 days', label: 'Weekly Active' },
+  'monthly': { interval: '30 days', label: 'Monthly Active' },
+};
+
+async function handleActiveUsersList(request, env) {
+  await verifyAdminCaller(request, env);
+  const database = requireAuditDatabase(env);
+  const url = new URL(request.url);
+  const period = String(url.searchParams.get('period') || 'daily').trim();
+  
+  const periodConfig = ACTIVITY_PERIOD_MAP[period];
+  if (!periodConfig) {
+    throw createRouteError(400, 'Invalid period. Use: active-now, hourly, daily, weekly, monthly');
+  }
+  
+  const now = new Date();
+  let sinceDate;
+  switch (period) {
+    case 'active-now': sinceDate = new Date(now.getTime() - 5 * 60 * 1000); break;
+    case 'hourly': sinceDate = new Date(now.getTime() - 60 * 60 * 1000); break;
+    case 'daily': sinceDate = new Date(now.getTime() - 24 * 60 * 60 * 1000); break;
+    case 'weekly': sinceDate = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000); break;
+    case 'monthly': sinceDate = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000); break;
+  }
+  const sinceIso = sinceDate.toISOString();
+  
+  // Get active users with their email and last seen time
+  const result = await database.prepare(`
+    SELECT DISTINCT
+      s.user_id,
+      u.email,
+      u.plan,
+      s.last_seen_at,
+      s.device_name,
+      s.ip_address
+    FROM auth_sessions s
+    JOIN auth_users u ON s.user_id = u.id
+    WHERE s.last_seen_at >= ?1
+    ORDER BY s.last_seen_at DESC
+  `).bind(sinceIso).all();
+  
+  const rows = Array.isArray(result?.results) ? result.results : [];
+  
+  return {
+    ok: true,
+    period,
+    label: periodConfig.label,
+    since: sinceIso,
+    count: rows.length,
+    users: rows.map(row => ({
+      userId: row.user_id,
+      email: row.email,
+      plan: row.plan,
+      lastSeenAt: row.last_seen_at,
+      deviceName: row.device_name || '',
+      ipAddress: row.ip_address || '',
+    })),
+  };
+}
+
 // ---- Admin Audit Log Endpoint ----
 
 async function handleAdminAuditLog(request, env) {
@@ -4863,6 +4929,7 @@ export function resolveRouteHandler(path) {
   if (path.endsWith("/admin/device-count")) return handleAdminDeviceCount;
   if (path.endsWith("/admin/all-devices")) return handleAdminAllDevices;
   if (path.endsWith("/adminActivityMetrics")) return handleAdminActivityMetrics;
+  if (path.endsWith("/adminActiveUsers")) return handleActiveUsersList;
   if (path.endsWith("/adminAuditLog")) return handleAdminAuditLog;
   if (path.endsWith("/migration/sync-profile")) return handleMigrationSyncProfile;
   if (path.endsWith("/migration/stats")) return handleMigrationStats;
