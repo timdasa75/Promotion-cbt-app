@@ -3978,42 +3978,51 @@ async function handleDeviceVerificationGlobalToggle(request, env) {
   const now = new Date().toISOString();
   const expiresAt = new Date(Date.now() + hours * 60 * 60 * 1000).toISOString();
   
-  if (enable) {
-    // Disable any existing global setting first
-    await database
-      .prepare(`UPDATE device_verification_settings SET enabled = 0 WHERE setting_type = 'global' AND enabled = 1`)
-      .run();
-    
-    await database
-      .prepare(`
-        INSERT INTO device_verification_settings (id, setting_type, user_id, enabled, created_by, created_at, expires_at, reason)
-        VALUES (?1, 'global', '', 1, ?2, ?3, ?4, ?5)
-      `)
-      .bind(crypto.randomUUID(), normalizeEmail(admin?.email || ''), now, expiresAt, reason)
-      .run();
-    
-    await insertAuditLogRecord(database, {
-      actorUserId: admin?.id,
-      actorEmail: admin?.email,
-      action: 'device_verification_global_disabled',
-      details: { hours, expiresAt, reason },
-    });
-    
-    return { ok: true, enabled: true, expiresAt, message: `Device verification disabled for ${hours} hours. Auto-re-enables at ${expiresAt}.` };
-  } else {
-    // Re-enable: disable all active global settings
-    const result = await database
-      .prepare(`UPDATE device_verification_settings SET enabled = 0 WHERE setting_type = 'global' AND enabled = 1`)
-      .run();
-    
-    await insertAuditLogRecord(database, {
-      actorUserId: admin?.id,
-      actorEmail: admin?.email,
-      action: 'device_verification_global_re_enabled',
-      details: { changes: result.meta?.changes },
-    });
-    
-    return { ok: true, enabled: false, message: 'Device verification re-enabled for all users.' };
+  try {
+    if (enable) {
+      // Disable any existing global setting first
+      await database
+        .prepare(`UPDATE device_verification_settings SET enabled = 0 WHERE setting_type = 'global' AND enabled = 1`)
+        .run();
+      
+      await database
+        .prepare(`
+          INSERT INTO device_verification_settings (id, setting_type, user_id, enabled, created_by, created_at, expires_at, reason)
+          VALUES (?1, 'global', '', 1, ?2, ?3, ?4, ?5)
+        `)
+        .bind(crypto.randomUUID(), normalizeEmail(admin?.email || ''), now, expiresAt, reason)
+        .run();
+      
+      await insertAuditLogRecord(database, {
+        actorUserId: admin?.id,
+        actorEmail: admin?.email,
+        action: 'device_verification_global_disabled',
+        details: { hours, expiresAt, reason },
+      });
+      
+      return { ok: true, enabled: true, expiresAt, message: `Device verification disabled for ${hours} hours. Auto-re-enables at ${expiresAt}.` };
+    } else {
+      // Re-enable: disable all active global settings
+      const result = await database
+        .prepare(`UPDATE device_verification_settings SET enabled = 0 WHERE setting_type = 'global' AND enabled = 1`)
+        .run();
+      
+      await insertAuditLogRecord(database, {
+        actorUserId: admin?.id,
+        actorEmail: admin?.email,
+        action: 'device_verification_global_re_enabled',
+        details: { changes: result.meta?.changes },
+      });
+      
+      return { ok: true, enabled: false, message: 'Device verification re-enabled for all users.' };
+    }
+  } catch (error) {
+    // Table may not exist locally - return graceful error
+    const msg = String(error?.message || error || '');
+    if (msg.includes('no such table') || msg.includes('device_verification_settings')) {
+      throw createRouteError(503, 'Device verification settings table not found. Run the D1 migration first.');
+    }
+    throw error;
   }
 }
 
@@ -4044,45 +4053,53 @@ async function handleDeviceVerificationUserToggle(request, env) {
   const now = new Date().toISOString();
   const expiresAt = new Date(Date.now() + hours * 60 * 60 * 1000).toISOString();
   
-  if (enable) {
-    // Disable any existing per-user setting for this user
-    await database
-      .prepare(`UPDATE device_verification_settings SET enabled = 0 WHERE setting_type = 'per_user' AND user_id = ?1 AND enabled = 1`)
-      .bind(user.id)
-      .run();
-    
-    await database
-      .prepare(`
-        INSERT INTO device_verification_settings (id, setting_type, user_id, enabled, created_by, created_at, expires_at, reason)
-        VALUES (?1, 'per_user', ?2, 1, ?3, ?4, ?5, ?6)
-      `)
-      .bind(crypto.randomUUID(), user.id, normalizeEmail(admin?.email || ''), now, expiresAt, reason)
-      .run();
-    
-    await insertAuditLogRecord(database, {
-      actorUserId: admin?.id,
-      actorEmail: admin?.email,
-      targetUserId: user.id,
-      action: 'device_verification_user_disabled',
-      details: { targetEmail: email, hours, expiresAt, reason },
-    });
-    
-    return { ok: true, enabled: true, expiresAt, message: `Device verification disabled for ${email} for ${hours} hours.` };
-  } else {
-    const result = await database
-      .prepare(`UPDATE device_verification_settings SET enabled = 0 WHERE setting_type = 'per_user' AND user_id = ?1 AND enabled = 1`)
-      .bind(user.id)
-      .run();
-    
-    await insertAuditLogRecord(database, {
-      actorUserId: admin?.id,
-      actorEmail: admin?.email,
-      targetUserId: user.id,
-      action: 'device_verification_user_re_enabled',
-      details: { targetEmail: email, changes: result.meta?.changes },
-    });
-    
-    return { ok: true, enabled: false, message: `Device verification re-enabled for ${email}.` };
+  try {
+    if (enable) {
+      // Disable any existing per-user setting for this user
+      await database
+        .prepare(`UPDATE device_verification_settings SET enabled = 0 WHERE setting_type = 'per_user' AND user_id = ?1 AND enabled = 1`)
+        .bind(user.id)
+        .run();
+      
+      await database
+        .prepare(`
+          INSERT INTO device_verification_settings (id, setting_type, user_id, enabled, created_by, created_at, expires_at, reason)
+          VALUES (?1, 'per_user', ?2, 1, ?3, ?4, ?5, ?6)
+        `)
+        .bind(crypto.randomUUID(), user.id, normalizeEmail(admin?.email || ''), now, expiresAt, reason)
+        .run();
+      
+      await insertAuditLogRecord(database, {
+        actorUserId: admin?.id,
+        actorEmail: admin?.email,
+        targetUserId: user.id,
+        action: 'device_verification_user_disabled',
+        details: { targetEmail: email, hours, expiresAt, reason },
+      });
+      
+      return { ok: true, enabled: true, expiresAt, message: `Device verification disabled for ${email} for ${hours} hours.` };
+    } else {
+      const result = await database
+        .prepare(`UPDATE device_verification_settings SET enabled = 0 WHERE setting_type = 'per_user' AND user_id = ?1 AND enabled = 1`)
+        .bind(user.id)
+        .run();
+      
+      await insertAuditLogRecord(database, {
+        actorUserId: admin?.id,
+        actorEmail: admin?.email,
+        targetUserId: user.id,
+        action: 'device_verification_user_re_enabled',
+        details: { targetEmail: email, changes: result.meta?.changes },
+      });
+      
+      return { ok: true, enabled: false, message: `Device verification re-enabled for ${email}.` };
+    }
+  } catch (error) {
+    const msg = String(error?.message || error || '');
+    if (msg.includes('no such table') || msg.includes('device_verification_settings')) {
+      throw createRouteError(503, 'Device verification settings table not found. Run the D1 migration first.');
+    }
+    throw error;
   }
 }
 
@@ -4094,25 +4111,26 @@ async function handleDeviceVerificationSettings(request, env) {
   const database = requireAuditDatabase(env);
   const now = new Date().toISOString();
   
-  // Get active global setting
-  const globalSetting = await database
-    .prepare(`
-      SELECT enabled, expires_at, reason, created_by, created_at
-      FROM device_verification_settings
-      WHERE setting_type = 'global' AND enabled = 1 AND expires_at > ?1
-      ORDER BY created_at DESC LIMIT 1
-    `)
-    .bind(now)
-    .first();
-  
-  // Get all active per-user bypasses
-  const userSettings = await database
-    .prepare(`
-      SELECT dvs.user_id, dvs.enabled, dvs.expires_at, dvs.reason, dvs.created_by, dvs.created_at,
-             au.email
-      FROM device_verification_settings dvs
-      JOIN auth_users au ON dvs.user_id = au.id
-      WHERE dvs.setting_type = 'per_user' AND dvs.enabled = 1 AND dvs.expires_at > ?1
+  try {
+    // Get active global setting
+    const globalSetting = await database
+      .prepare(`
+        SELECT enabled, expires_at, reason, created_by, created_at
+        FROM device_verification_settings
+        WHERE setting_type = 'global' AND enabled = 1 AND expires_at > ?1
+        ORDER BY created_at DESC LIMIT 1
+      `)
+      .bind(now)
+      .first();
+    
+    // Get all active per-user bypasses
+    const userSettings = await database
+      .prepare(`
+        SELECT dvs.user_id, dvs.enabled, dvs.expires_at, dvs.reason, dvs.created_by, dvs.created_at,
+               au.email
+        FROM device_verification_settings dvs
+        JOIN auth_users au ON dvs.user_id = au.id
+        WHERE dvs.setting_type = 'per_user' AND dvs.enabled = 1 AND dvs.expires_at > ?1
       ORDER BY dvs.created_at DESC
     `)
     .bind(now)
@@ -4136,6 +4154,13 @@ async function handleDeviceVerificationSettings(request, env) {
       createdAt: s.created_at,
     })),
   };
+  } catch (error) {
+    const msg = String(error?.message || error || '');
+    if (msg.includes('no such table') || msg.includes('device_verification_settings')) {
+      return { ok: true, global: { enabled: false }, perUserBypasses: [], warning: 'Device verification settings table not found. Run the D1 migration.' };
+    }
+    throw error;
+  }
 }
 
 // ---- Admin All Devices Endpoint ----

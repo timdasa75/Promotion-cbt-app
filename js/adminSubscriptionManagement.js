@@ -92,8 +92,13 @@ async function loadSubscriptions() {
     const baseUrl = config?.adminApiBaseUrl || config?.cloudflareAuthBaseUrl || "";
     if (!baseUrl) return;
 
-    const response = await fetch(`${baseUrl}/adminUserList`, {
-      headers: { "Content-Type": "application/json" },
+    const session = JSON.parse(localStorage.getItem('promotionCbtSession') || '{}');
+    const accessToken = session?.accessToken || '';
+    const response = await fetch(`${baseUrl}/adminListUsers`, {
+      headers: {
+        "Content-Type": "application/json",
+        ...(accessToken ? { "Authorization": `Bearer ${accessToken}` } : {}),
+      },
     });
     const data = await response.json();
 
@@ -116,8 +121,13 @@ async function loadPayments() {
     const baseUrl = config?.adminApiBaseUrl || config?.cloudflareAuthBaseUrl || "";
     if (!baseUrl) return;
 
-    const response = await fetch(`${baseUrl}/adminPaymentHistory`, {
-      headers: { "Content-Type": "application/json" },
+    const session = JSON.parse(localStorage.getItem('promotionCbtSession') || '{}');
+    const accessToken = session?.accessToken || '';
+    const response = await fetch(`${baseUrl}/adminListPayments`, {
+      headers: {
+        "Content-Type": "application/json",
+        ...(accessToken ? { "Authorization": `Bearer ${accessToken}` } : {}),
+      },
     });
     const data = await response.json();
 

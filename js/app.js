@@ -793,17 +793,8 @@ async function refreshActivityMetrics() {
 }
 
 function refreshAllDashboardData() {
-  // Refresh activity metrics
+  // Single fetch for all dashboard stats (activity metrics, devices, logins, users)
   refreshActivityMetrics();
-  // Refresh stat cards (devices, recent logins)
-  fetchDeviceCount().then(count => {
-    const el = document.getElementById('adminStatTrustedDevices');
-    if (el) el.textContent = String(count);
-  }).catch(() => {});
-  fetchRecentLoginsCount().then(count => {
-    const el = document.getElementById('adminStatRecentLogins');
-    if (el) el.textContent = String(count);
-  }).catch(() => {});
   // Refresh recent transactions
   renderRecentTransactions();
   // Refresh migration stats
@@ -994,24 +985,20 @@ function updateActivityMetricsPauseButton() {
 }
 
 function updateAdminDashboardSummary() {
-  const users = adminDirectoryUsers || [];
-  const totalUsers = users.length;
-  const premiumUsers = users.filter(u => u.plan === 'premium').length;
-  
+  // Only set values if activity metrics haven't loaded yet (avoid overwriting Worker-provided values)
   const totalUsersEl = document.getElementById('adminStatTotalUsers');
   const premiumUsersEl = document.getElementById('adminStatPremiumUsers');
-  const trustedDevicesEl = document.getElementById('adminStatTrustedDevices');
-  const recentLoginsEl = document.getElementById('adminStatRecentLogins');
   
-  if (totalUsersEl) totalUsersEl.textContent = String(totalUsers);
-  if (premiumUsersEl) premiumUsersEl.textContent = String(premiumUsers);
-  // Fetch trusted devices and recent logins from Worker
-  fetchDeviceCount().then(count => {
-    if (trustedDevicesEl) trustedDevicesEl.textContent = String(count);
-  }).catch(() => {});
-  fetchRecentLoginsCount().then(count => {
-    if (recentLoginsEl) recentLoginsEl.textContent = String(count);
-  }).catch(() => {});
+  // Use client-side list as fallback only if Worker metrics haven't populated the cards yet
+  if (totalUsersEl && totalUsersEl.textContent === '0') {
+    const users = adminDirectoryUsers || [];
+    totalUsersEl.textContent = String(users.length);
+  }
+  if (premiumUsersEl && premiumUsersEl.textContent === '0') {
+    const users = adminDirectoryUsers || [];
+    const premiumUsers = users.filter(u => u.plan === 'premium').length;
+    premiumUsersEl.textContent = String(premiumUsers);
+  }
   // Start activity metrics auto-refresh
   startActivityMetricsAutoRefresh();
   // Render recent transactions

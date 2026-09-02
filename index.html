@@ -852,30 +852,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="admin-dashboard-recent-payments card admin-section-card" style="margin-top: 16px;">
-                                <div class="admin-card-head" style="margin-bottom: 12px;">
-                                    <h3 style="margin: 0; font-size: 1.1rem; font-weight: 700; color: var(--ink-900);">Recent Transactions</h3>
-                                    <button class="btn btn-ghost btn-sm" id="refreshRecentPaymentsBtn" type="button">See all transactions</button>
-                                </div>
-                                <div class="admin-transactions-table-wrap">
-                                    <table class="admin-transactions-table">
-                                        <thead>
-                                            <tr>
-                                                <th>Description</th>
-                                                <th>Amount</th>
-                                                <th>Payment Type</th>
-                                                <th>Status</th>
-                                                <th>Date</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="recentPaymentsList">
-                                            <tr class="admin-transactions-empty">
-                                                <td colspan="5" style="text-align: center; padding: 24px; color: var(--ink-600);">No recent transactions</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
                         </div>
 
                         <div class="admin-view" id="adminViewPayments">
@@ -1010,6 +986,34 @@
                                         </div>
                                         <div id="revenueByPlanList" class="admin-subscription-list"></div>
                                     </article>
+                                </div>
+                            </section>
+                            
+                            <!-- Recent Transactions -->
+                            <section class="admin-group">
+                                <div class="admin-dashboard-recent-payments card admin-section-card">
+                                    <div class="admin-card-head">
+                                        <h3>Recent Transactions</h3>
+                                        <button class="btn btn-ghost btn-sm" id="refreshRecentPaymentsBtn" type="button">Refresh</button>
+                                    </div>
+                                    <div class="admin-transactions-table-wrap">
+                                        <table class="admin-transactions-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Description</th>
+                                                    <th>Amount</th>
+                                                    <th>Payment Type</th>
+                                                    <th>Status</th>
+                                                    <th>Date</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="recentPaymentsList">
+                                                <tr class="admin-transactions-empty">
+                                                    <td colspan="5" style="text-align: center; padding: 24px; color: var(--ink-600);">No recent transactions</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </section>
                         </div>
