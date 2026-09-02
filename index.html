@@ -1216,6 +1216,19 @@
                                         <input type="checkbox" id="globalRecoveryToggle" class="toggle-input" aria-label="Toggle global recovery mode" />
                                         <span class="toggle-slider"></span>
                                     </label>
+                                    <div class="recovery-duration-row" id="recoveryDurationRow">
+                                        <label class="recovery-duration-label">Duration:</label>
+                                        <div class="recovery-duration-options">
+                                            <button type="button" class="recovery-duration-btn" data-hours="1">1h</button>
+                                            <button type="button" class="recovery-duration-btn" data-hours="6">6h</button>
+                                            <button type="button" class="recovery-duration-btn" data-hours="12">12h</button>
+                                            <button type="button" class="recovery-duration-btn active" data-hours="24">24h</button>
+                                            <div class="recovery-duration-custom">
+                                                <input type="number" id="recoveryCustomHours" min="1" max="72" placeholder="Custom" aria-label="Custom hours" />
+                                                <span class="recovery-duration-suffix">h</span>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <p class="toggle-hint" id="globalRecoveryHint">Device verification is currently <strong>enabled</strong> for all users.</p>
                                 </div>
                                 <div class="admin-recovery-per-user">

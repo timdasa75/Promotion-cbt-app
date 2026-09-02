@@ -841,13 +841,19 @@ async function refreshRecoveryModeSettings() {
     const globalToggle = document.getElementById('globalRecoveryToggle');
     const globalHint = document.getElementById('globalRecoveryHint');
     const statusEl = document.getElementById('recoveryModeStatus');
+    const durationRow = document.getElementById('recoveryDurationRow');
     
     if (globalToggle) {
       globalToggle.checked = result.global?.enabled === true;
     }
+    // Show/hide duration row based on current state
+    if (durationRow) {
+      durationRow.classList.toggle('hidden', result.global?.enabled === true);
+    }
     if (globalHint) {
       if (result.global?.enabled) {
-        globalHint.innerHTML = `Device verification is currently <strong>disabled</strong> for all users until <strong>${formatDateTime(result.global.expiresAt)}</strong>.`;
+        const remaining = getTimeRemaining(result.global.expiresAt);
+        globalHint.innerHTML = `Device verification is currently <strong>disabled</strong> for all users. ${remaining}`;
       } else {
         globalHint.innerHTML = 'Device verification is currently <strong>enabled</strong> for all users.';
       }
@@ -886,6 +892,10 @@ async function refreshRecoveryModeSettings() {
 }
 
 async function toggleGlobalRecoveryMode(enable) {
+  return toggleGlobalRecoveryModeWithHours(enable, 24);
+}
+
+async function toggleGlobalRecoveryModeWithHours(enable, hours) {
   const config = getRuntimeConfig();
   const baseUrl = String(config?.cloudflareAuthBaseUrl || "").trim();
   const session = readSession();
@@ -900,7 +910,7 @@ async function toggleGlobalRecoveryMode(enable) {
     },
     body: JSON.stringify({
       enable,
-      hours: 24,
+      hours: hours || 24,
       reason: 'Admin enabled recovery mode for device verification issues.',
     }),
   });
@@ -938,18 +948,80 @@ async function toggleUserDeviceVerification(email, enable) {
   return result;
 }
 
+let selectedRecoveryHours = 24;
+
 function initializeRecoveryModeToggle() {
   const globalToggle = document.getElementById('globalRecoveryToggle');
+  const durationRow = document.getElementById('recoveryDurationRow');
+  const customInput = document.getElementById('recoveryCustomHours');
+  
+  // Duration picker button handlers
+  document.querySelectorAll('.recovery-duration-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.recovery-duration-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      selectedRecoveryHours = Number(btn.dataset.hours) || 24;
+      if (customInput) {
+        customInput.value = '';
+        customInput.classList.remove('active');
+      }
+    });
+  });
+  
+  // Custom hours input handler
+  if (customInput) {
+    customInput.addEventListener('input', () => {
+      const val = Number(customInput.value);
+      if (val > 0 && val <= 72) {
+        selectedRecoveryHours = val;
+        document.querySelectorAll('.recovery-duration-btn').forEach(b => b.classList.remove('active'));
+        customInput.classList.add('active');
+      } else {
+        customInput.classList.remove('active');
+      }
+    });
+    customInput.addEventListener('blur', () => {
+      const val = Number(customInput.value);
+      if (!val || val < 1) {
+        customInput.value = '';
+        customInput.classList.remove('active');
+        // Re-select 24h default
+        const defaultBtn = document.querySelector('.recovery-duration-btn[data-hours="24"]');
+        if (defaultBtn) {
+          defaultBtn.classList.add('active');
+          selectedRecoveryHours = 24;
+        }
+      }
+    });
+  }
+  
   if (globalToggle) {
     globalToggle.addEventListener('change', async () => {
       const enable = globalToggle.checked;
+      // Show/hide duration row based on toggle state
+      if (durationRow) {
+        durationRow.classList.toggle('hidden', !enable);
+      }
+      if (!enable) {
+        // Disabling - no duration needed
+        try {
+          const result = await toggleGlobalRecoveryMode(false);
+          showSuccess(result?.message || 'Recovery mode disabled.');
+          await refreshRecoveryModeSettings();
+        } catch (error) {
+          globalToggle.checked = true;
+          showError(error.message || 'Failed to disable recovery mode.');
+        }
+        return;
+      }
+      // Enabling - use selected duration
       try {
-        const result = await toggleGlobalRecoveryMode(enable);
-        showSuccess(result?.message || (enable ? 'Recovery mode enabled.' : 'Recovery mode disabled.'));
+        const result = await toggleGlobalRecoveryModeWithHours(true, selectedRecoveryHours);
+        showSuccess(result?.message || `Recovery mode enabled for ${selectedRecoveryHours} hours.`);
         await refreshRecoveryModeSettings();
       } catch (error) {
-        globalToggle.checked = !enable;
-        showError(error.message || 'Failed to toggle recovery mode.');
+        globalToggle.checked = false;
+        showError(error.message || 'Failed to enable recovery mode.');
       }
     });
   }
@@ -5181,6 +5253,18 @@ function formatDateTime(value) {
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return "-";
   return date.toLocaleString();
+}
+
+function getTimeRemaining(expiresAt) {
+  if (!expiresAt) return '';
+  const expiry = new Date(expiresAt);
+  if (Number.isNaN(expiry.getTime())) return '';
+  const diffMs = expiry.getTime() - Date.now();
+  if (diffMs <= 0) return 'Expired.';
+  const hours = Math.floor(diffMs / (1000 * 60 * 60));
+  const minutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+  if (hours > 0) return `Expires in ${hours}h ${minutes}m.`;
+  return `Expires in ${minutes}m.`;
 }
 
 function formatDate(value) {

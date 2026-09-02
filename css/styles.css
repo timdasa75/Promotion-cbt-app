@@ -3760,6 +3760,93 @@ body.dark-mode .admin-view-header p {
     margin: 0;
 }
 
+/* Recovery Duration Picker */
+.recovery-duration-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.recovery-duration-label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--ink-700, #64748b);
+    flex-shrink: 0;
+}
+
+.recovery-duration-options {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.recovery-duration-btn {
+    padding: 4px 12px;
+    border: 1px solid var(--line, #e2e8f0);
+    border-radius: 6px;
+    background: var(--card, #fff);
+    color: var(--ink-900, #1e293b);
+    font-size: 0.82rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    min-width: 40px;
+    text-align: center;
+}
+
+.recovery-duration-btn:hover {
+    border-color: var(--green-700, #047857);
+    color: var(--green-700, #047857);
+}
+
+.recovery-duration-btn.active {
+    background: var(--green-700, #047857);
+    color: white;
+    border-color: var(--green-700, #047857);
+}
+
+.recovery-duration-custom {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    position: relative;
+}
+
+.recovery-duration-custom input {
+    width: 60px;
+    padding: 4px 24px 4px 8px;
+    border: 1px solid var(--line, #e2e8f0);
+    border-radius: 6px;
+    font-size: 0.82rem;
+    text-align: center;
+    background: var(--card, #fff);
+}
+
+.recovery-duration-custom input:focus {
+    outline: none;
+    border-color: var(--green-700, #047857);
+    box-shadow: 0 0 0 2px rgba(4, 120, 87, 0.15);
+}
+
+.recovery-duration-custom input.active {
+    border-color: var(--green-700, #047857);
+    background: rgba(4, 120, 87, 0.04);
+}
+
+.recovery-duration-suffix {
+    position: absolute;
+    right: 8px;
+    font-size: 0.82rem;
+    color: var(--ink-700, #94a3b8);
+    pointer-events: none;
+}
+
+.recovery-duration-row.hidden {
+    display: none;
+}
+
 .admin-request-table-wrap {
     width: 100%;
     overflow-x: auto;
