@@ -733,7 +733,7 @@
                             </div>
                         </aside>
                         <div class="admin-main">
-                            
+
 <div class="admin-groups">
                         <div class="admin-view active" id="adminViewDashboard">
                             <div class="admin-view-header"><h2>Dashboard Overview</h2><p>Quick summary of your platform metrics</p></div>
@@ -897,21 +897,44 @@
                         </article>
                                 </div>
                             </section>
-                            
+
                             <!-- Subscription Management Tabs -->
                             <section class="admin-group" id="adminTabSubscriptions">
                                 <div class="admin-subscription-tabs">
-                                    <button class="admin-tab-btn active" data-tab="active-subscriptions">Active Subscriptions</button>
-                                    <button class="admin-tab-btn" data-tab="expiring-soon">Expiring Soon</button>
-                                    <button class="admin-tab-btn" data-tab="payment-history">Payment History</button>
-                                    <button class="admin-tab-btn" data-tab="revenue-metrics">Revenue Metrics</button>
+                                    <button class="admin-tab-btn active" data-tab="subscriptions">Subscriptions</button>
+                                    <button class="admin-tab-btn" data-tab="transactions">Transactions</button>
                                 </div>
-                                
-                                <!-- Active Subscriptions Tab -->
-                                <div class="admin-tab-content active" id="tab-active-subscriptions">
+
+                                <!-- Subscriptions Tab -->
+                                <div class="admin-tab-content active" id="tab-subscriptions">
+                                    <!-- Summary Stats -->
+                                    <div class="admin-subscription-summary">
+                                        <article class="card admin-section-card admin-metric-card">
+                                            <div class="admin-metric-label">Total Active</div>
+                                            <div class="admin-metric-value" id="totalActiveSubs">0</div>
+                                        </article>
+                                        <article class="card admin-section-card admin-metric-card">
+                                            <div class="admin-metric-label">Expiring Soon</div>
+                                            <div class="admin-metric-value expiring" id="expiringSoonCount">0</div>
+                                        </article>
+                                        <article class="card admin-section-card admin-metric-card">
+                                            <div class="admin-metric-label">Total Revenue</div>
+                                            <div class="admin-metric-value" id="totalRevenue">₦0</div>
+                                        </article>
+                                        <article class="card admin-section-card admin-metric-card">
+                                            <div class="admin-metric-label">Conversion Rate</div>
+                                            <div class="admin-metric-value" id="conversionRate">0%</div>
+                                        </article>
+                                    </div>
+                                    <!-- Compatibility metrics retained for the shared admin renderer. -->
+                                    <span id="monthlyRevenue" hidden>₦0</span>
+                                    <span id="activeSubscriberCount" hidden>0</span>
+                                    <div id="revenueByPlanList" hidden></div>
+
+                                    <!-- Subscriptions List -->
                                     <article class="card admin-section-card">
                                         <div class="admin-card-head">
-                                            <h3>Active Subscriptions</h3>
+                                            <h3>Subscriptions</h3>
                                             <span class="admin-count" id="activeSubCount">0</span>
                                         </div>
                                         <div class="toolbar-row">
@@ -919,7 +942,13 @@
                                                 <input id="activeSubSearch" type="search" placeholder="Search by email" aria-label="Search subscriptions" />
                                                 <button class="search-clear" type="button" aria-label="Clear search">&#10005;</button>
                                             </div>
-                                            <select id="activeSubFilter" aria-label="Filter by plan">
+                                            <select id="activeSubFilter" aria-label="Filter by status">
+                                                <option value="all">All Status</option>
+                                                <option value="active">Active</option>
+                                                <option value="expiring">Expiring Soon</option>
+                                                <option value="expired">Expired</option>
+                                            </select>
+                                            <select id="activeSubPlanFilter" aria-label="Filter by plan">
                                                 <option value="all">All Plans</option>
                                                 <option value="monthly">Monthly</option>
                                                 <option value="quarterly">Quarterly</option>
@@ -931,23 +960,33 @@
                                         <div id="activeSubList" class="admin-subscription-list"></div>
                                     </article>
                                 </div>
-                                
-                                <!-- Expiring Soon Tab -->
-                                <div class="admin-tab-content" id="tab-expiring-soon">
+
+                                <!-- Transactions Tab -->
+                                <div class="admin-tab-content" id="tab-transactions">
+                                    <!-- Transactions Summary -->
+                                    <div class="admin-subscription-summary">
+                                        <article class="card admin-section-card admin-metric-card">
+                                            <div class="admin-metric-label">Total Transactions</div>
+                                            <div class="admin-metric-value" id="totalTransactions">0</div>
+                                        </article>
+                                        <article class="card admin-section-card admin-metric-card">
+                                            <div class="admin-metric-label">Successful</div>
+                                            <div class="admin-metric-value success" id="successfulTxCount">0</div>
+                                        </article>
+                                        <article class="card admin-section-card admin-metric-card">
+                                            <div class="admin-metric-label">Pending</div>
+                                            <div class="admin-metric-value warning" id="pendingTxCount">0</div>
+                                        </article>
+                                        <article class="card admin-section-card admin-metric-card">
+                                            <div class="admin-metric-label">Failed</div>
+                                            <div class="admin-metric-value error" id="failedTxCount">0</div>
+                                        </article>
+                                    </div>
+
+                                    <!-- Transactions Table -->
                                     <article class="card admin-section-card">
                                         <div class="admin-card-head">
-                                            <h3>Expiring Soon (7 days)</h3>
-                                            <span class="admin-count" id="expiringSubCount">0</span>
-                                        </div>
-                                        <div id="expiringSubList" class="admin-subscription-list"></div>
-                                    </article>
-                                </div>
-                                
-                                <!-- Payment History Tab -->
-                                <div class="admin-tab-content" id="tab-payment-history">
-                                    <article class="card admin-section-card">
-                                        <div class="admin-card-head">
-                                            <h3>Payment History</h3>
+                                            <h3>Transaction History</h3>
                                             <span class="admin-count" id="paymentHistoryCount">0</span>
                                         </div>
                                         <div class="toolbar-row">
@@ -963,64 +1002,26 @@
                                             </select>
                                             <button class="btn btn-secondary" id="refreshPaymentHistoryBtn" type="button">Refresh</button>
                                         </div>
-                                        <div id="paymentHistoryList" class="admin-subscription-list"></div>
-                                    </article>
-                                </div>
-                                
-                                <!-- Revenue Metrics Tab -->
-                                <div class="admin-tab-content" id="tab-revenue-metrics">
-                                    <div class="admin-metrics-grid">
-                                        <article class="card admin-section-card admin-metric-card">
-                                            <div class="admin-metric-label">Total Revenue</div>
-                                            <div class="admin-metric-value" id="totalRevenue">₦0</div>
-                                        </article>
-                                        <article class="card admin-section-card admin-metric-card">
-                                            <div class="admin-metric-label">Monthly Revenue</div>
-                                            <div class="admin-metric-value" id="monthlyRevenue">₦0</div>
-                                        </article>
-                                        <article class="card admin-section-card admin-metric-card">
-                                            <div class="admin-metric-label">Active Subscribers</div>
-                                            <div class="admin-metric-value" id="activeSubscriberCount">0</div>
-                                        </article>
-                                        <article class="card admin-section-card admin-metric-card">
-                                            <div class="admin-metric-label">Conversion Rate</div>
-                                            <div class="admin-metric-value" id="conversionRate">0%</div>
-                                        </article>
-                                    </div>
-                                    <article class="card admin-section-card">
-                                        <div class="admin-card-head">
-                                            <h3>Revenue by Plan</h3>
+                                        <div class="admin-transactions-table-wrap">
+                                            <table class="admin-transactions-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Email</th>
+                                                        <th>Amount</th>
+                                                        <th>Plan</th>
+                                                        <th>Status</th>
+                                                        <th>Transaction ID</th>
+                                                        <th>Date</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="paymentHistoryList">
+                                                    <tr class="admin-transactions-empty">
+                                                        <td colspan="6" style="text-align: center; padding: 24px; color: var(--ink-600);">No transactions found</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
-                                        <div id="revenueByPlanList" class="admin-subscription-list"></div>
                                     </article>
-                                </div>
-                            </section>
-                            
-                            <!-- Recent Transactions -->
-                            <section class="admin-group">
-                                <div class="admin-dashboard-recent-payments card admin-section-card">
-                                    <div class="admin-card-head">
-                                        <h3>Recent Transactions</h3>
-                                        <button class="btn btn-ghost btn-sm" id="refreshRecentPaymentsBtn" type="button">Refresh</button>
-                                    </div>
-                                    <div class="admin-transactions-table-wrap">
-                                        <table class="admin-transactions-table">
-                                            <thead>
-                                                <tr>
-                                                    <th>Description</th>
-                                                    <th>Amount</th>
-                                                    <th>Payment Type</th>
-                                                    <th>Status</th>
-                                                    <th>Date</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody id="recentPaymentsList">
-                                                <tr class="admin-transactions-empty">
-                                                    <td colspan="5" style="text-align: center; padding: 24px; color: var(--ink-600);">No recent transactions</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
                                 </div>
                             </section>
                         </div>
@@ -1210,41 +1211,6 @@
                             <section class="admin-group" id="adminTabSecurity" aria-labelledby="adminGroupSecurityTitle">
                                 <h3 class="admin-group-title" id="adminGroupSecurityTitle">Security &amp; Devices</h3>
                                 <div class="admin-grid">
-                                    <article class="card admin-section-card admin-recovery-mode-card">
-                            <div class="admin-card-head">
-                                <h3>Recovery Mode</h3>
-                                <span class="admin-recovery-status" id="recoveryModeStatus">Active</span>
-                            </div>
-                            <p class="admin-card-desc">Disable device verification temporarily for all users or specific users.</p>
-                            <div class="admin-recovery-controls">
-                                <div class="admin-recovery-global">
-                                    <label class="toggle-label" data-tooltip="When enabled, all users can sign in from any device without OTP verification">
-                                        <span>Global Recovery Mode</span>
-                                        <input type="checkbox" id="globalRecoveryToggle" class="toggle-input" aria-label="Toggle global recovery mode" />
-                                        <span class="toggle-slider"></span>
-                                    </label>
-                                    <div class="recovery-duration-row" id="recoveryDurationRow">
-                                        <label class="recovery-duration-label">Duration:</label>
-                                        <div class="recovery-duration-options">
-                                            <button type="button" class="recovery-duration-btn" data-hours="1">1h</button>
-                                            <button type="button" class="recovery-duration-btn" data-hours="6">6h</button>
-                                            <button type="button" class="recovery-duration-btn" data-hours="12">12h</button>
-                                            <button type="button" class="recovery-duration-btn active" data-hours="24">24h</button>
-                                            <div class="recovery-duration-custom">
-                                                <input type="number" id="recoveryCustomHours" min="1" max="72" placeholder="Custom" aria-label="Custom hours" />
-                                                <span class="recovery-duration-suffix">h</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p class="toggle-hint" id="globalRecoveryHint">Device verification is currently <strong>enabled</strong> for all users.</p>
-                                </div>
-                                <div class="admin-recovery-per-user">
-                                    <h4>Per-User Bypass</h4>
-                                    <p class="toggle-hint">Users with active bypass:</p>
-                                    <div id="activeUserBypasses" class="admin-user-bypass-list">Loading...</div>
-                                </div>
-                            </div>
-                        </article>
                                     <article class="card admin-section-card admin-devices-card" data-admin-section="device-management">
                             <div class="admin-card-head">
                                 <h3>Device Management</h3>
@@ -1368,7 +1334,7 @@
                     <h2 id="otpModalTitle">Verify Your Identity</h2>
                     <p id="otpInstruction">We sent a 6-digit code to <strong id="otpEmailDisplay"></strong></p>
                 </div>
-                
+
                 <form id="otpForm" class="auth-form">
                     <div class="otp-input-group">
                         <input type="text" maxlength="1" class="otp-digit" data-index="0" autocomplete="one-time-code" inputmode="numeric" pattern="[0-9]">
@@ -1378,22 +1344,22 @@
                         <input type="text" maxlength="1" class="otp-digit" data-index="4" autocomplete="off" inputmode="numeric" pattern="[0-9]">
                         <input type="text" maxlength="1" class="otp-digit" data-index="5" autocomplete="off" inputmode="numeric" pattern="[0-9]">
                     </div>
-                    
+
                     <label class="checkbox-label">
                         <input type="checkbox" id="trustDeviceCheck" checked>
                         <span>Trust this device for 30 days</span>
                     </label>
-                    
+
                     <button class="btn btn-primary" type="submit">Verify</button>
                 </form>
-                
+
                 <div class="otp-resend">
                     <span id="otpResendTimer"></span>
                     <button id="otpResendBtn" class="btn btn-ghost hidden">Resend Code</button>
                 </div>
-                
+
                 <button id="otpBackBtn" class="btn btn-ghost">Back to Login</button>
-                
+
                 <p class="auth-message hidden" id="otpMessage"></p>
             </div>
         </div>
@@ -1430,7 +1396,7 @@
                 <p class="auth-message hidden" id="migrationMessage"></p>
             </div>
         </div>
-        
+
         <div class="auth-modal hidden" id="freeTierModal" role="dialog" aria-modal="true" aria-labelledby="freeTierTitle">
             <div class="auth-modal-card">
                 <button class="auth-close" id="freeTierCloseBtn" type="button" aria-label="Close free tier notice">&times;</button>
@@ -1448,7 +1414,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="auth-modal hidden" id="feedbackModal" role="dialog" aria-modal="true" aria-labelledby="feedbackModalTitle">
             <div class="auth-modal-card feedback-modal-card">
                 <button class="auth-close" id="feedbackCloseBtn" type="button" aria-label="Close feedback panel">&times;</button>
@@ -1516,7 +1482,7 @@
                     <h2>Monthly Premium Access</h2>
                     <p>Start with monthly access now; more payment options can be added later.</p>
                 </div>
-                
+
                 <div class="pricing-comparison">
                     <div class="comparison-row head">
                         <span>Features</span>

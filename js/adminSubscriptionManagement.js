@@ -11,7 +11,7 @@ import { getRuntimeConfig } from "./authRuntime.js";
 
 let cachedSubscriptions = [];
 let cachedPayments = [];
-let currentTab = "active-subscriptions";
+let currentTab = "subscriptions";
 
 /**
  * Set user data from the main admin panel and enrich with payment expiry dates.
@@ -128,17 +128,12 @@ function enrichSubscriptionsWithPaymentData() {
  */
 async function loadTabData(tabId) {
   switch (tabId) {
-    case "active-subscriptions":
+    case "subscriptions":
       renderActiveSubscriptions();
-      break;
-    case "expiring-soon":
-      renderExpiringSoon();
-      break;
-    case "payment-history":
-      renderPaymentHistory();
-      break;
-    case "revenue-metrics":
       renderRevenueMetrics();
+      break;
+    case "transactions":
+      renderPaymentHistory();
       break;
   }
 }
@@ -212,7 +207,7 @@ function renderActiveSubscriptions() {
     return !expiresAt || expiresAt > Date.now();
   });
 
-  countEl.textContent = activeSubs.length;
+  if (countEl) countEl.textContent = activeSubs.length;
 
   if (activeSubs.length === 0) {
     container.innerHTML = `
@@ -269,7 +264,7 @@ function renderExpiringSoon() {
     return expiresAt && expiresAt > now && expiresAt - now < sevenDays;
   });
 
-  countEl.textContent = expiringSoon.length;
+  if (countEl) countEl.textContent = expiringSoon.length;
 
   if (expiringSoon.length === 0) {
     container.innerHTML = `
@@ -306,7 +301,7 @@ function renderPaymentHistory() {
   const countEl = document.getElementById("paymentHistoryCount");
   if (!container) return;
 
-  countEl.textContent = cachedPayments.length;
+  if (countEl) countEl.textContent = cachedPayments.length;
 
   if (cachedPayments.length === 0) {
     container.innerHTML = `
@@ -381,6 +376,15 @@ function renderRevenueMetrics() {
 
   // Revenue by plan
   renderRevenueByPlan();
+
+  const expiringSoonCount = cachedSubscriptions.filter((sub) => {
+    const expiresAt = Date.parse(sub.planExpiresAt || "");
+    return expiresAt && expiresAt > Date.now() && expiresAt - Date.now() < 7 * 24 * 60 * 60 * 1000;
+  }).length;
+  const totalActive = document.getElementById("totalActiveSubs");
+  const expiringSoon = document.getElementById("expiringSoonCount");
+  if (totalActive) totalActive.textContent = String(activeSubs.length);
+  if (expiringSoon) expiringSoon.textContent = String(expiringSoonCount);
 }
 
 /**
