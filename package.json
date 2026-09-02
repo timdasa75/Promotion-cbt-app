@@ -12,6 +12,7 @@
     "test:smoke:full": "playwright test tests/smoke.spec.js",
     "test:unit": "node --test \"tests/unit/*.test.js\"",
     "verify:release": "python scripts/validate_taxonomy.py --strict-duplicates --strict-metadata --allow-missing-topic-files && npm run audit:topic-banks:ci && npm run test:unit && npm run build && npm run test:smoke",
+    "verify:pages": "python scripts/validate_taxonomy.py --strict-duplicates --strict-metadata --allow-missing-topic-files && npm run audit:topic-banks:ci && npm run test:unit && npm run build",
     "audit:topic-banks": "node scripts/audit_topic_bank_contamination.mjs",
     "audit:topic-banks:strict": "node scripts/audit_topic_bank_contamination.mjs --fail-on-findings",
     "audit:topic-banks:ci": "node scripts/audit_topic_bank_contamination.mjs --fail-on-findings --allow-missing-topic-files",

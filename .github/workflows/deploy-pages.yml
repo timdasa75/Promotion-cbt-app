@@ -113,8 +113,11 @@ jobs:
           };
           EOF
 
-      - name: Verify release (content, unit, build, and deterministic smoke tests)
-        run: npm run verify:release
+      # The Pages checkout intentionally excludes private question-bank files.
+      # Run checks that remain deterministic without protected content; the full
+      # smoke suite continues to run from an environment with those assets.
+      - name: Verify Pages release (metadata, unit tests, and build)
+        run: npm run verify:pages
 
       - name: Configure Pages
         uses: actions/configure-pages@v6
