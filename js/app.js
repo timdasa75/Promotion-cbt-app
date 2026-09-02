@@ -764,11 +764,16 @@ function updateActivityMetricsDisplay(metrics) {
   const weeklyActiveEl = document.getElementById('adminStatWeeklyActive');
   const monthlyActiveEl = document.getElementById('adminStatMonthlyActive');
   
-  if (activeNowEl) activeNowEl.textContent = String(metrics.currentlyActive || 0);
-  if (hourlyActiveEl) hourlyActiveEl.textContent = String(metrics.hourlyActive || 0);
-  if (dailyActiveEl) dailyActiveEl.textContent = String(metrics.dailyActive || 0);
-  if (weeklyActiveEl) weeklyActiveEl.textContent = String(metrics.weeklyActive || 0);
-  if (monthlyActiveEl) monthlyActiveEl.textContent = String(metrics.monthlyActive || 0);
+  // Subtract admin from activity counts (Worker counts include admin)
+  const config = getRuntimeConfig();
+  const adminEmailSet = new Set((config.adminEmails || []).map(e => String(e).toLowerCase()));
+  const isAdminActive = (adminDirectoryUsers || []).some(u => adminEmailSet.has(String(u.email || '').toLowerCase()));
+  const adminDeduction = isAdminActive ? 1 : 0;
+  if (activeNowEl) activeNowEl.textContent = String(Math.max(0, (metrics.currentlyActive || 0) - adminDeduction));
+  if (hourlyActiveEl) hourlyActiveEl.textContent = String(Math.max(0, (metrics.hourlyActive || 0) - adminDeduction));
+  if (dailyActiveEl) dailyActiveEl.textContent = String(Math.max(0, (metrics.dailyActive || 0) - adminDeduction));
+  if (weeklyActiveEl) weeklyActiveEl.textContent = String(Math.max(0, (metrics.weeklyActive || 0) - adminDeduction));
+  if (monthlyActiveEl) monthlyActiveEl.textContent = String(Math.max(0, (metrics.monthlyActive || 0) - adminDeduction));
   
   // Update stat cards from enriched metrics
   const totalUsersEl = document.getElementById('adminStatTotalUsers');
@@ -776,8 +781,6 @@ function updateActivityMetricsDisplay(metrics) {
   const trustedDevicesEl = document.getElementById('adminStatTrustedDevices');
   const recentLoginsEl = document.getElementById('adminStatRecentLogins');
   // Use merged list count (Firebase + Cloudflare) excluding admins, if available
-  const config = getRuntimeConfig();
-  const adminEmailSet = new Set((config.adminEmails || []).map(e => String(e).toLowerCase()));
   const mergedUserCount = (adminDirectoryUsers || []).filter(u => !adminEmailSet.has(String(u.email || '').toLowerCase())).length;
   const totalUsersCount = mergedUserCount > (metrics.totalUsers || 0) ? mergedUserCount : (metrics.totalUsers || 0);
   if (totalUsersEl) totalUsersEl.textContent = String(totalUsersCount);

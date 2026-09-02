@@ -4241,9 +4241,6 @@ async function handleAdminAllDevices(request, env) {
 async function handleAdminActivityMetrics(request, env) {
   await verifyAdminCaller(request, env);
   const database = requireAuditDatabase(env);
-  const adminEmails = parseAdminEmails(env.ADMIN_EMAILS || '');
-  const adminEmailList = Array.from(adminEmails);
-  const adminPlaceholders = adminEmailList.map((_, i) => `?${i + 1}`).join(',');
   
   const now = new Date();
   const fiveMinAgo = new Date(now.getTime() - 5 * 60 * 1000).toISOString();
@@ -4252,18 +4249,10 @@ async function handleAdminActivityMetrics(request, env) {
   const sevenDaysAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000).toISOString();
   const thirtyDaysAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000).toISOString();
   
-  // Build exclusion clause: exclude admin emails from all counts
-  const excludeAdmin = adminEmailList.length > 0
-    ? `AND user_id NOT IN (SELECT id FROM auth_users WHERE email IN (${adminPlaceholders}))`
-    : '';
-  const excludeAdminEmail = adminEmailList.length > 0
-    ? `AND email NOT IN (${adminPlaceholders})`
-    : '';
-  const adminParams = adminEmailList;
-  
   // Use auth_sessions.last_seen_at for activity metrics — this tracks actual
   // session activity rather than relying on login_audit_log which may have
   // sparse event_type='login_success' records.
+  // Admin exclusion is handled client-side to keep queries simple and reliable.
   const [
     currentlyActive,
     hourlyActive,
@@ -4280,31 +4269,31 @@ async function handleAdminActivityMetrics(request, env) {
     totalTrustedDevices,
     recentLogins,
   ] = await Promise.all([
-    // Currently active (session seen within last 5 minutes, excluding admins)
+    // Currently active (session seen within last 5 minutes)
     database.prepare(
-      `SELECT COUNT(DISTINCT user_id) as count FROM auth_sessions WHERE last_seen_at >= ?1 ${excludeAdmin}`
-    ).bind(fiveMinAgo, ...adminParams).first(),
-    // Hourly active (session seen within last hour, excluding admins)
+      `SELECT COUNT(DISTINCT user_id) as count FROM auth_sessions WHERE last_seen_at >= ?1`
+    ).bind(fiveMinAgo).first(),
+    // Hourly active (session seen within last hour)
     database.prepare(
-      `SELECT COUNT(DISTINCT user_id) as count FROM auth_sessions WHERE last_seen_at >= ?1 ${excludeAdmin}`
-    ).bind(oneHourAgo, ...adminParams).first(),
-    // Daily active (session seen within last 24 hours, excluding admins)
+      `SELECT COUNT(DISTINCT user_id) as count FROM auth_sessions WHERE last_seen_at >= ?1`
+    ).bind(oneHourAgo).first(),
+    // Daily active (session seen within last 24 hours)
     database.prepare(
-      `SELECT COUNT(DISTINCT user_id) as count FROM auth_sessions WHERE last_seen_at >= ?1 ${excludeAdmin}`
-    ).bind(twentyFourHoursAgo, ...adminParams).first(),
-    // Weekly active (session seen within last 7 days, excluding admins)
+      `SELECT COUNT(DISTINCT user_id) as count FROM auth_sessions WHERE last_seen_at >= ?1`
+    ).bind(twentyFourHoursAgo).first(),
+    // Weekly active (session seen within last 7 days)
     database.prepare(
-      `SELECT COUNT(DISTINCT user_id) as count FROM auth_sessions WHERE last_seen_at >= ?1 ${excludeAdmin}`
-    ).bind(sevenDaysAgo, ...adminParams).first(),
-    // Monthly active (session seen within last 30 days, excluding admins)
+      `SELECT COUNT(DISTINCT user_id) as count FROM auth_sessions WHERE last_seen_at >= ?1`
+    ).bind(sevenDaysAgo).first(),
+    // Monthly active (session seen within last 30 days)
     database.prepare(
-      `SELECT COUNT(DISTINCT user_id) as count FROM auth_sessions WHERE last_seen_at >= ?1 ${excludeAdmin}`
-    ).bind(thirtyDaysAgo, ...adminParams).first(),
-    // User counts (excluding admin emails)
-    database.prepare(`SELECT COUNT(*) as count FROM auth_users WHERE email NOT IN (${adminPlaceholders || "''"})`).bind(...adminParams).first(),
-    database.prepare(`SELECT COUNT(*) as count FROM auth_users WHERE plan = 'premium' AND email NOT IN (${adminPlaceholders || "''"})`).bind(...adminParams).first(),
-    database.prepare(`SELECT COUNT(*) as count FROM auth_users WHERE email_verified = 1 AND email NOT IN (${adminPlaceholders || "''"})`).bind(...adminParams).first(),
-    database.prepare(`SELECT COUNT(*) as count FROM auth_users WHERE (email_verified = 0 OR email_verified IS NULL) AND email NOT IN (${adminPlaceholders || "''"})`).bind(...adminParams).first(),
+      `SELECT COUNT(DISTINCT user_id) as count FROM auth_sessions WHERE last_seen_at >= ?1`
+    ).bind(thirtyDaysAgo).first(),
+    // User counts
+    database.prepare(`SELECT COUNT(*) as count FROM auth_users`).first(),
+    database.prepare(`SELECT COUNT(*) as count FROM auth_users WHERE plan = 'premium'`).first(),
+    database.prepare(`SELECT COUNT(*) as count FROM auth_users WHERE email_verified = 1`).first(),
+    database.prepare(`SELECT COUNT(*) as count FROM auth_users WHERE email_verified = 0 OR email_verified IS NULL`).first(),
     // Feedback counts
     database.prepare(`SELECT COUNT(*) as count FROM feedback_submissions`).first(),
     database.prepare(`SELECT COUNT(*) as count FROM feedback_submissions WHERE status != 'resolved' AND status != 'dismissed'`).first(),
@@ -4352,7 +4341,7 @@ async function handleActiveUsersList(request, env) {
   await verifyAdminCaller(request, env);
   const database = requireAuditDatabase(env);
   const adminEmails = parseAdminEmails(env.ADMIN_EMAILS || '');
-  const adminEmailList = Array.from(adminEmails);
+  const adminEmailSet = new Set(Array.from(adminEmails).map(e => e.toLowerCase()));
   const url = new URL(request.url);
   const period = String(url.searchParams.get('period') || 'daily').trim();
   
@@ -4372,12 +4361,7 @@ async function handleActiveUsersList(request, env) {
   }
   const sinceIso = sinceDate.toISOString();
   
-  // Build admin exclusion clause
-  const excludeAdmin = adminEmailList.length > 0
-    ? `AND u.email NOT IN (${adminEmailList.map(() => '?').join(',')})`
-    : '';
-  
-  // Get active users with their email and last seen time (excluding admins)
+  // Get active users with their email and last seen time
   const result = await database.prepare(`
     SELECT DISTINCT
       s.user_id,
@@ -4388,11 +4372,13 @@ async function handleActiveUsersList(request, env) {
       s.ip_address
     FROM auth_sessions s
     JOIN auth_users u ON s.user_id = u.id
-    WHERE s.last_seen_at >= ?1 ${excludeAdmin}
+    WHERE s.last_seen_at >= ?1
     ORDER BY s.last_seen_at DESC
-  `).bind(sinceIso, ...adminEmailList).all();
+  `).bind(sinceIso).all();
   
-  const rows = Array.isArray(result?.results) ? result.results : [];
+  const allRows = Array.isArray(result?.results) ? result.results : [];
+  // Filter out admin users client-side
+  const rows = allRows.filter(row => !adminEmailSet.has(String(row.email || '').toLowerCase()));
   
   return {
     ok: true,
