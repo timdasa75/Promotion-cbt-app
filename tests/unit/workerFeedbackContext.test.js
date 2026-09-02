@@ -66,12 +66,12 @@ function createAuthDatabase({ captures, sessionOverrides = {} } = {}) {
 }
 
 function jsonHeaders() {
-  return { "Content-Type": "application/json" };
+  return { "Content-Type": "application/json", Origin: "https://app.example.test" };
 }
 
 test("feedback submit stores richer question context and client info", async () => {
   const captures = [];
-  const env = { AUTH_DB: createAuthDatabase({ captures }) };
+  const env = { AUTH_DB: createAuthDatabase({ captures }), ALLOWED_ORIGINS: "https://app.example.test" };
   const token = await buildToken();
 
   const request = new Request("https://worker.example.com/feedback/submit", {
@@ -127,7 +127,7 @@ test("feedback submit stores richer question context and client info", async () 
 
 test("feedback submit rejects when email does not match the signed-in account", async () => {
   const captures = [];
-  const env = { AUTH_DB: createAuthDatabase({ captures }) };
+  const env = { AUTH_DB: createAuthDatabase({ captures }), ALLOWED_ORIGINS: "https://app.example.test" };
   const token = await buildToken();
 
   const request = new Request("https://worker.example.com/feedback/submit", {

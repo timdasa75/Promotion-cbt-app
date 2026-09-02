@@ -163,6 +163,7 @@ test("flutterwave webhook processes a full successful charge and writes the prem
   const firestoreCalls = [];
 
   const env = {
+    ALLOWED_ORIGINS: "https://app.example.test",
     FLW_WEBHOOK_SECRET_HASH: SECRET_HASH,
     FLW_SECRET_KEY: "FLWSECK_TEST-dummy-key-for-unit-tests-only-X",
     FIREBASE_PROJECT_ID: "test-project",
@@ -405,6 +406,7 @@ test("payment verify accepts a Flutterwave sandbox-substituted customer email", 
   };
 
   const env = {
+    ALLOWED_ORIGINS: "https://app.example.test",
     FLW_SECRET_KEY: "FLWSECK_TEST-dummy-key-for-unit-tests-only-X",
     FIREBASE_PROJECT_ID: "test-project",
     GCP_SERVICE_ACCOUNT_EMAIL: "svc@test-project.iam.gserviceaccount.com",
@@ -475,6 +477,7 @@ test("payment verify accepts a Flutterwave sandbox-substituted customer email", 
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Origin: "https://app.example.test",
         Authorization: `Bearer ${sessionId}.${sessionSecret}`,
       },
       body: JSON.stringify({

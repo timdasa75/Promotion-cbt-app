@@ -34,15 +34,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Validate public taxonomy metadata and linked assets
-        run: python3 scripts/validate_taxonomy.py --strict-duplicates --strict-metadata --allow-missing-topic-files
-
-      - name: Audit topic banks when present
-        run: npm run audit:topic-banks:ci
-
-      - name: Run unit tests
-        run: npm run test:unit
-
       - name: Check deployed Worker routes and payment secrets (frontend/backend drift)
         env:
           WORKER_BASE_URL: ${{ secrets.CLOUDFLARE_AUTH_BASE_URL }}
@@ -75,11 +66,9 @@ jobs:
           SELAR_MONTHLY_CHECKOUT_URL: ${{ secrets.SELAR_MONTHLY_CHECKOUT_URL }}
           ADMIN_EMAILS: ${{ secrets.ADMIN_EMAILS }}
         run: |
-          if [ -z "${FIREBASE_API_KEY}" ]; then
-            echo "Firebase secrets missing. Legacy fallback disabled."
-          fi
           if [ -z "${CLOUDFLARE_AUTH_BASE_URL}" ]; then
-            echo "Cloudflare secret missing. Cloudflare-first disabled."
+            echo "CLOUDFLARE_AUTH_BASE_URL is required for the production Cloudflare auth mode."
+            exit 1
           fi
 
       - name: Generate runtime auth config from secrets
@@ -111,7 +100,9 @@ jobs:
             cloudflareAuthBaseUrl: "${CLOUDFLARE_AUTH_BASE_URL}",
             enableCloudProgressSync: true,
             adminApiBaseUrl: "${ADMIN_API_BASE_URL}",
-            allowFirebaseFallback: true, // Enable for silent migration of Firebase users to Cloudflare
+            // Production has one authentication authority. Existing Firebase
+            // accounts migrate through the explicit support flow instead.
+            allowFirebaseFallback: false,
             adminDirectorySyncIntervalMs: 60000,
             verificationResendCooldownMs: 900000,
             passwordResetCooldownMs: 600000,
@@ -122,12 +113,8 @@ jobs:
           };
           EOF
 
-      - name: Build site
-        run: npm run build
-
-      - name: Run smoke tests
-        run: npm run test:smoke
-        continue-on-error: true
+      - name: Verify release (content, unit, build, and deterministic smoke tests)
+        run: npm run verify:release
 
       - name: Configure Pages
         uses: actions/configure-pages@v6

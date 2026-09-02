@@ -47,10 +47,17 @@ function createMockDatabase() {
 async function callRecovery(ip, env) {
   const request = new Request(RECOVERY_URL, {
     method: "POST",
-    headers: { "Content-Type": "application/json", "CF-Connecting-IP": ip },
+    headers: {
+      "Content-Type": "application/json",
+      "CF-Connecting-IP": ip,
+      Origin: "https://app.example.test",
+    },
     body: JSON.stringify({ email: "recover@example.com" }),
   });
-  const response = await worker.fetch(request, env);
+  const response = await worker.fetch(request, {
+    ...env,
+    ALLOWED_ORIGINS: "https://app.example.test",
+  });
   let payload = {};
   try {
     payload = await response.json();

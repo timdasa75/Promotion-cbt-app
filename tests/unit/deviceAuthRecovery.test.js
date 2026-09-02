@@ -6,6 +6,9 @@ import { resolveRouteHandler } from "../../workers/admin-bridge/worker.js";
 
 test("device-auth recovery route is registered", () => {
   assert.equal(typeof resolveRouteHandler("/admin/device-auth-recovery"), "function");
+  assert.equal(resolveRouteHandler("/admin/device-verification/global-toggle"), null);
+  assert.equal(resolveRouteHandler("/admin/device-verification/user-toggle"), null);
+  assert.equal(resolveRouteHandler("/admin/device-verification/settings"), null);
 });
 
 test("device-auth recovery migration supports one-time, expiring grants", async () => {
