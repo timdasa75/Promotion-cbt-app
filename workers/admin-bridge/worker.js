@@ -18,6 +18,18 @@ import {
   sendWelcomeEmail,
 } from "./email-sender.js";
 import { readSelarApiConfig, verifySelarOrderByReference } from "./selarVerify.js";
+import {
+  upsertUserProfile,
+  getUserProfile,
+  getUserProfileByEmail,
+  upsertPaymentReceipt,
+  listPaymentReceipts,
+  dualWriteUserProfile,
+  dualWritePaymentReceipt,
+  migrateProfilesToD1,
+  migratePaymentsToD1,
+  getMigrationStatus,
+} from "./firestore-d1-sync.js";
 import { collectSubcategories, getQuestionsFromSubcategory } from "../../js/topicDataShape.js";
 import {
   normalizeProgressSummary,
@@ -1964,6 +1976,17 @@ async function patchPaymentProfile(env, userId, receipt) {
       },
     },
   });
+  // Dual-write to D1
+  await dualWriteUserProfile(env, userId, {
+    email: { stringValue: normalizeEmail(receipt.flwCustomerEmail || receipt.email || '') },
+    plan: { stringValue: 'premium' },
+    planSource: { stringValue: 'payment' },
+    flwTransactionId: { stringValue: String(receipt.flwTransactionId || '') },
+    flwCustomerEmail: { stringValue: normalizeEmail(receipt.flwCustomerEmail || receipt.email || '') },
+    flwPaymentPlan: { stringValue: String(receipt.billingCycle || '') },
+    planExpiresAt: { stringValue: String(receipt.expiresAt || '') },
+    lastPaymentAt: { timestampValue: String(receipt.createdAt || new Date().toISOString()) },
+  });
 }
 
 async function patchCloudflareUserPaymentPlan(env, userId) {
@@ -2286,10 +2309,25 @@ async function writePaymentRecord(env, receipt) {
     method: "PATCH",
     body: { fields },
   });
+  // Dual-write to D1
+  await dualWritePaymentReceipt(env, receipt);
 }
 
 async function listPaymentRecords(env, filters = {}) {
   const pageSize = Math.max(1, Math.min(200, Number(filters.pageSize || 100) || 100));
+  const database = env.AUTH_DB;
+  
+  // Read from D1 first (primary source)
+  try {
+    const d1Rows = await listPaymentReceipts(database, { ...filters, pageSize });
+    if (d1Rows.length > 0) {
+      return d1Rows;
+    }
+  } catch (err) {
+    console.warn('[payments] D1 read failed, falling back to Firestore:', err?.message);
+  }
+  
+  // Fall back to Firestore (legacy source)
   const url = firestoreDocumentUrl(env, `payments?pageSize=${pageSize}`);
   let payload = {};
   try {
@@ -4439,6 +4477,48 @@ async function handleMigrationStats(request, env) {
   };
 }
 
+// ---- Firestore-to-D1 Migration Endpoints ----
+
+async function handleFirestoreToD1Migration(request, env) {
+  const admin = await verifyAdminCaller(request, env);
+  const body = await readJsonBody(request);
+  const collection = String(body?.collection || 'all').trim();
+  
+  const results = {};
+  
+  if (collection === 'all' || collection === 'profiles') {
+    try {
+      results.profiles = await migrateProfilesToD1(env);
+    } catch (err) {
+      results.profiles = { error: err.message };
+    }
+  }
+  
+  if (collection === 'all' || collection === 'payments') {
+    try {
+      results.payments = await migratePaymentsToD1(env);
+    } catch (err) {
+      results.payments = { error: err.message };
+    }
+  }
+  
+  await insertAuditLogRecord(requireAuditDatabase(env), {
+    actorUserId: admin?.id,
+    actorEmail: admin?.email,
+    action: 'firestore_to_d1_migration',
+    details: { collection, results },
+  });
+  
+  return { ok: true, results };
+}
+
+async function handleD1MigrationStatus(request, env) {
+  await verifyAdminCaller(request, env);
+  const database = requireAuditDatabase(env);
+  const status = await getMigrationStatus(database);
+  return { ok: true, status };
+}
+
 // ---- Device Trust Endpoints ----
 
 async function handleDeviceCheck(request, env) {
@@ -4786,6 +4866,8 @@ export function resolveRouteHandler(path) {
   if (path.endsWith("/adminAuditLog")) return handleAdminAuditLog;
   if (path.endsWith("/migration/sync-profile")) return handleMigrationSyncProfile;
   if (path.endsWith("/migration/stats")) return handleMigrationStats;
+  if (path.endsWith("/migration/firestore-to-d1")) return handleFirestoreToD1Migration;
+  if (path.endsWith("/migration/d1-status")) return handleD1MigrationStatus;
   return null;
 }
 export default {
