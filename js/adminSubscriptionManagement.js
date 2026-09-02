@@ -14,16 +14,37 @@ let cachedPayments = [];
 let currentTab = "active-subscriptions";
 
 /**
- * Set user data from the main admin panel (avoids duplicate API calls)
+ * Set user data from the main admin panel and enrich with payment expiry dates.
+ * Expiry dates live in Firestore payment receipts, not in auth_users.
  */
 export function setSubscriptionUserData(users) {
   if (!Array.isArray(users)) return;
-  cachedSubscriptions = users.filter(
-    (u) => u.plan === "premium" || u.billingCycle
-  );
+  
+  // Build a map of email -> latest payment expiry from cached payments
+  const paymentExpiryMap = {};
+  const paymentCycleMap = {};
+  cachedPayments.forEach((p) => {
+    const email = (p.email || p.flwCustomerEmail || '').toLowerCase();
+    if (!email) return;
+    // Use the latest payment's expiry
+    if (!paymentExpiryMap[email] || (p.expiresAt && p.expiresAt > paymentExpiryMap[email])) {
+      paymentExpiryMap[email] = p.expiresAt || '';
+    }
+    if (p.billingCycle) paymentCycleMap[email] = p.billingCycle;
+  });
+  
+  cachedSubscriptions = users
+    .filter((u) => u.plan === "premium")
+    .map((u) => ({
+      ...u,
+      planExpiresAt: paymentExpiryMap[u.email] || '',
+      billingCycle: paymentCycleMap[u.email] || u.billingCycle || '',
+    }));
+  
   // Re-render if already initialized
   if (document.getElementById("activeSubList")) {
     renderActiveSubscriptions();
+    renderExpiringSoon();
     renderRevenueMetrics();
   }
 }
@@ -74,8 +95,32 @@ function switchTab(tabId) {
  */
 async function loadInitialData() {
   await Promise.all([loadSubscriptions(), loadPayments()]);
+  // Re-enrich subscriptions with payment expiry dates now that payments are loaded
+  enrichSubscriptionsWithPaymentData();
   renderActiveSubscriptions();
+  renderExpiringSoon();
   renderRevenueMetrics();
+}
+
+/**
+ * Enrich cached subscriptions with expiry dates from cached payments
+ */
+function enrichSubscriptionsWithPaymentData() {
+  const paymentExpiryMap = {};
+  const paymentCycleMap = {};
+  cachedPayments.forEach((p) => {
+    const email = (p.email || p.flwCustomerEmail || '').toLowerCase();
+    if (!email) return;
+    if (!paymentExpiryMap[email] || (p.expiresAt && p.expiresAt > paymentExpiryMap[email])) {
+      paymentExpiryMap[email] = p.expiresAt || '';
+    }
+    if (p.billingCycle) paymentCycleMap[email] = p.billingCycle;
+  });
+  cachedSubscriptions = cachedSubscriptions.map((u) => ({
+    ...u,
+    planExpiresAt: paymentExpiryMap[u.email] || u.planExpiresAt || '',
+    billingCycle: paymentCycleMap[u.email] || u.billingCycle || '',
+  }));
 }
 
 /**
@@ -184,14 +229,22 @@ function renderActiveSubscriptions() {
       const expiresAt = Date.parse(sub.planExpiresAt || "");
       const isExpiringSoon = expiresAt && expiresAt - Date.now() < 7 * 24 * 60 * 60 * 1000;
       const expiryClass = isExpiringSoon ? "expiring-soon" : "";
-      const expiryText = expiresAt
-        ? new Date(expiresAt).toLocaleDateString()
-        : "No expiry";
+      const source = sub.planSource || sub.plan_source || '';
+      const sourceLabel = source === 'override' ? ' (Admin)' : source === 'payment' ? ' (Paid)' : '';
+      let expiryText;
+      if (expiresAt) {
+        expiryText = new Date(expiresAt).toLocaleDateString();
+      } else if (source === 'override') {
+        expiryText = 'No expiry (Admin)';
+      } else {
+        expiryText = 'No expiry';
+      }
+      const cycleLabel = sub.billingCycle || 'premium';
 
       return `
         <div class="admin-subscription-item">
-          <span class="email">${escapeHtml(sub.email || "")}</span>
-          <span class="plan-badge ${sub.billingCycle || "monthly"}">${sub.billingCycle || "monthly"}</span>
+          <span class="email">${escapeHtml(sub.email || "")}${sourceLabel}</span>
+          <span class="plan-badge ${cycleLabel}">${cycleLabel}</span>
           <span class="expiry ${expiryClass}">Expires: ${expiryText}</span>
           <span class="status-badge active">Active</span>
         </div>

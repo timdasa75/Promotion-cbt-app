@@ -640,8 +640,7 @@
                             </div>
                             <div class="device-limit-info">
                                 <span class="meta">Device limit: <strong id="deviceCount">0/3</strong></span>
-                            </div>
-                            <button class="btn btn-ghost" id="revokeAllDevicesBtn" type="button">Revoke All Devices</button>
+                            </div>                                    <button class="btn btn-ghost" id="revokeAllDevicesBtn" type="button" data-tooltip="Remove all trusted devices - every user will need to verify via OTP on next login">Revoke All Devices</button>
                         </article>
                         <article class="card profile-card profile-feedback-card">
                             <h3>My Feedback</h3>
@@ -739,28 +738,28 @@
                         <div class="admin-view active" id="adminViewDashboard">
                             <div class="admin-view-header"><h2>Dashboard Overview</h2><p>Quick summary of your platform metrics</p></div>
                             <div class="admin-dashboard-cards">
-                                <div class="admin-stat-card clickable" data-admin-stat="total-users" tabindex="0" role="button" aria-label="View all users">
+                                <div class="admin-stat-card clickable" data-admin-stat="total-users" tabindex="0" role="button" aria-label="View all users" data-tooltip="All registered users (Firebase + Cloudflare)">
                                     <div class="admin-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
                                     <div class="admin-stat-content">
                                         <div class="admin-stat-value" id="adminStatTotalUsers">0</div>
                                         <div class="admin-stat-label">Total Users</div>
                                     </div>
                                 </div>
-                                <div class="admin-stat-card clickable" data-admin-stat="premium-users" tabindex="0" role="button" aria-label="View premium users">
+                                <div class="admin-stat-card clickable" data-admin-stat="premium-users" tabindex="0" role="button" aria-label="View premium users" data-tooltip="Users with active premium subscription (paid or admin-assigned)">
                                     <div class="admin-stat-icon premium"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
                                     <div class="admin-stat-content">
                                         <div class="admin-stat-value" id="adminStatPremiumUsers">0</div>
                                         <div class="admin-stat-label">Premium Users</div>
                                     </div>
                                 </div>
-                                <div class="admin-stat-card clickable" data-admin-stat="trusted-devices" tabindex="0" role="button" aria-label="View trusted devices">
+                                <div class="admin-stat-card clickable" data-admin-stat="trusted-devices" tabindex="0" role="button" aria-label="View trusted devices" data-tooltip="Devices that have been verified and can skip OTP on login">
                                     <div class="admin-stat-icon devices"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
                                     <div class="admin-stat-content">
                                         <div class="admin-stat-value" id="adminStatTrustedDevices">0</div>
                                         <div class="admin-stat-label">Trusted Devices</div>
                                     </div>
                                 </div>
-                                <div class="admin-stat-card clickable" data-admin-stat="recent-logins" tabindex="0" role="button" aria-label="View recent logins">
+                                <div class="admin-stat-card clickable" data-admin-stat="recent-logins" tabindex="0" role="button" aria-label="View recent logins" data-tooltip="Users who logged in during the last 24 hours">
                                     <div class="admin-stat-icon logins"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
                                     <div class="admin-stat-content">
                                         <div class="admin-stat-value" id="adminStatRecentLogins">0</div>
@@ -1211,7 +1210,7 @@
                             <p class="admin-card-desc">Disable device verification temporarily for all users or specific users.</p>
                             <div class="admin-recovery-controls">
                                 <div class="admin-recovery-global">
-                                    <label class="toggle-label">
+                                    <label class="toggle-label" data-tooltip="When enabled, all users can sign in from any device without OTP verification">
                                         <span>Global Recovery Mode</span>
                                         <input type="checkbox" id="globalRecoveryToggle" class="toggle-input" aria-label="Toggle global recovery mode" />
                                         <span class="toggle-slider"></span>
