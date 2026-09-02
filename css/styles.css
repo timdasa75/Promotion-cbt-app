@@ -3504,18 +3504,25 @@ body.dark-mode .admin-view-header p {
 
 .admin-pricing-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 12px;
 }
 
 .admin-pricing-grid .auth-field {
     display: grid;
     gap: 4px;
+    min-width: 0;
 }
 
 .admin-pricing-grid input {
     font-size: 1rem;
     font-weight: 600;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.admin-pricing-card .button-row {
+    margin-top: 8px;
 }
 
 .admin-section-card {

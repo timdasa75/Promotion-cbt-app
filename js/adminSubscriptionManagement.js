@@ -14,6 +14,21 @@ let cachedPayments = [];
 let currentTab = "active-subscriptions";
 
 /**
+ * Set user data from the main admin panel (avoids duplicate API calls)
+ */
+export function setSubscriptionUserData(users) {
+  if (!Array.isArray(users)) return;
+  cachedSubscriptions = users.filter(
+    (u) => u.plan === "premium" || u.billingCycle
+  );
+  // Re-render if already initialized
+  if (document.getElementById("activeSubList")) {
+    renderActiveSubscriptions();
+    renderRevenueMetrics();
+  }
+}
+
+/**
  * Initialize the subscription management section
  */
 export function initSubscriptionManagement() {
