@@ -775,7 +775,10 @@ function updateActivityMetricsDisplay(metrics) {
   const premiumUsersEl = document.getElementById('adminStatPremiumUsers');
   const trustedDevicesEl = document.getElementById('adminStatTrustedDevices');
   const recentLoginsEl = document.getElementById('adminStatRecentLogins');
-  if (totalUsersEl && metrics.totalUsers != null) totalUsersEl.textContent = String(metrics.totalUsers);
+  // Use merged list count (Firebase + Cloudflare) if available and larger than Worker count
+  const mergedUserCount = (adminDirectoryUsers || []).length;
+  const totalUsersCount = mergedUserCount > (metrics.totalUsers || 0) ? mergedUserCount : (metrics.totalUsers || 0);
+  if (totalUsersEl) totalUsersEl.textContent = String(totalUsersCount);
   if (premiumUsersEl && metrics.premiumUsers != null) premiumUsersEl.textContent = String(metrics.premiumUsers);
   if (trustedDevicesEl && metrics.totalTrustedDevices != null) trustedDevicesEl.textContent = String(metrics.totalTrustedDevices);
   if (recentLoginsEl && metrics.recentLogins != null) recentLoginsEl.textContent = String(metrics.recentLogins);

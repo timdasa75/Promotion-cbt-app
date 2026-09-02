@@ -4288,7 +4288,7 @@ async function handleAdminActivityMetrics(request, env) {
     database.prepare(
       `SELECT COUNT(DISTINCT user_id) as count FROM auth_sessions WHERE last_seen_at >= ?1`
     ).bind(thirtyDaysAgo).first(),
-    // User counts
+    // User counts (Cloudflare auth_users + Firebase users not yet migrated)
     database.prepare(`SELECT COUNT(*) as count FROM auth_users`).first(),
     database.prepare(`SELECT COUNT(*) as count FROM auth_users WHERE plan = 'premium'`).first(),
     database.prepare(`SELECT COUNT(*) as count FROM auth_users WHERE email_verified = 1`).first(),
@@ -4365,7 +4365,7 @@ async function handleActiveUsersList(request, env) {
       u.email,
       u.plan,
       s.last_seen_at,
-      s.device_name,
+      s.user_agent,
       s.ip_address
     FROM auth_sessions s
     JOIN auth_users u ON s.user_id = u.id
@@ -4386,7 +4386,7 @@ async function handleActiveUsersList(request, env) {
       email: row.email,
       plan: row.plan,
       lastSeenAt: row.last_seen_at,
-      deviceName: row.device_name || '',
+      userAgent: row.user_agent || '',
       ipAddress: row.ip_address || '',
     })),
   };
