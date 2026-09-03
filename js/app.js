@@ -4091,6 +4091,48 @@ async function checkDeviceTrust(email, deviceFingerprint) {
   }
 }
 
+let deviceCaptureInFlight = null;
+
+/**
+ * Best-effort device capture for the current session. The Worker's
+ * /device/check endpoint registers the user's first device as a permanent
+ * primary (no OTP) — this runs it wherever a session appears without going
+ * through the login form's explicit gate: Google sign-in, restored sessions
+ * on app load, and password-reset sign-ins. It is intentionally silent and
+ * idempotent: trusted devices and unknown users are left untouched, and
+ * concurrent calls share one in-flight request.
+ */
+async function captureCurrentDeviceForSession() {
+  const session = readSession();
+  const sessionUser = session?.user || null;
+  const email = String(sessionUser?.email || getCurrentUser()?.email || "").trim().toLowerCase();
+  if (!email || session?.provider === "local") {
+    return { ok: false, reason: "session_skipped" };
+  }
+  const fingerprint = await getDeviceFingerprint();
+  if (!fingerprint) {
+    return { ok: false, reason: "no_fingerprint" };
+  }
+  const result = await checkDeviceTrust(email, fingerprint);
+  if (result?.ok && result?.trusted) {
+    return { ok: true, isPrimary: result.isPrimary === true, deviceId: result.deviceId || "" };
+  }
+  // user_not_found / new_device / check errors are deliberately non-fatal:
+  // OTP gating for genuinely new devices still belongs to the login form.
+  return { ok: false, reason: result?.reason || "untrusted" };
+}
+
+function captureCurrentDeviceForSessionOnce() {
+  if (!deviceCaptureInFlight) {
+    deviceCaptureInFlight = captureCurrentDeviceForSession()
+      .catch(() => ({ ok: false }))
+      .finally(() => {
+        deviceCaptureInFlight = null;
+      });
+  }
+  return deviceCaptureInFlight;
+}
+
 /**
  * Get device fingerprint (lazy load from module)
  */
@@ -4183,28 +4225,14 @@ async function completeLogin(loginResult, email) {
       }
     }
     
-    // Auto-register current device as trusted to seed the device list
-    try {
-      const deviceFp = await getDeviceFingerprint();
-      const deviceName = await getDeviceName();
-      const config = getRuntimeConfig();
-      const baseUrl = config?.cloudflareAuthBaseUrl || "";
-      const accessToken = String(readSession()?.accessToken || "").trim();
-      if (baseUrl && deviceFp) {
-        await fetch(`${baseUrl}/device/trust`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {}) },
-          body: JSON.stringify({
-            email,
-            deviceFingerprint: deviceFp,
-            deviceName,
-            trustDays: 30
-          }),
-        }).catch(() => {});
-      }
-    } catch (e) {
-      // Silent fail — device registration is best-effort
-    }
+    // Device capture is intentionally NOT repeated here: /device/check already
+    // registered this device as the permanent primary when it was the user's
+    // first (login form), the OTP verify step recorded it when trustDevice was
+    // checked, and a blanket /device/trust call on every login previously
+    // stacked duplicate rows for the same fingerprint (one per login until the
+    // 3-device cap evicted them). Sessions restored without either path are
+    // captured best-effort by captureCurrentDeviceForSessionOnce() at boot and
+    // after Google sign-in.
 
     // Send login alert for new device logins
     if (loginResult?.deviceTrusted === false) {
@@ -4515,6 +4543,7 @@ async function handlePasswordResetSubmit(event) {
     pendingPasswordResetToken = "";
     showSuccess("Password reset successfully! You are now signed in.");
     await updateAuthUI();
+    captureCurrentDeviceForSessionOnce().catch(() => {});
     closeAuthModal();
     showScreen("topicSelectionScreen");
   } catch (error) {
@@ -5093,6 +5122,9 @@ function updateAuthUI() {
           try { await refreshAccessibleTopics(); } catch (e) { /* best-effort */ }
           try { startCloudPlanAutoSync(); } catch (e) { /* ignore */ }
           showSuccess("Signed in with Google.");
+          // Google sign-in bypasses the login form's device gate entirely, so
+          // capture the current device here — first device becomes primary.
+          await captureCurrentDeviceForSessionOnce().catch(() => {});
         } catch (err) {
           console.error("Error handling google-login-success:", err);
           showWarning("Signed in but UI update failed.");
@@ -5139,6 +5171,10 @@ function updateAuthUI() {
         updateAuthUI();
         refreshDashboardInsights();
         await refreshAccessibleTopics();
+        // A Cloudflare account now exists for this session (migration just
+        // completed) — capture the current device as primary if it wasn't
+        // possible before the account row existed.
+        captureCurrentDeviceForSessionOnce().catch(() => {});
         closeMigrationModal();
         closeAuthModal();
         await showScreen("topicSelectionScreen");
@@ -8578,6 +8614,10 @@ document.addEventListener("DOMContentLoaded", async function () {
   initializeStatePanelActions();
   initializeHeaderOverflowMenu();
   updateAuthUI();
+  // A restored session counts as "the next login": silently capture the
+  // current device so users who never typed a password after the device
+  // system shipped (session resume) still get their primary device recorded.
+  captureCurrentDeviceForSessionOnce().catch(() => {});
   showLoadingOverlay(true);
   try {
     const handledVerificationLink = await handleEmailVerificationOnStartup();

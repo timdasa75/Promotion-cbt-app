@@ -4481,24 +4481,59 @@ async function handleDeviceCheck(request, env) {
     };
   }
   
-  // First device for this user: auto-register as primary (no OTP needed)
+  // First active device for this user: auto-register as primary (no OTP
+  // needed). Idempotent — if this exact fingerprint already has a revoked row
+  // from a previous trust/revoke cycle, revive it as the permanent primary
+  // instead of stacking a duplicate, so repeated logins can never pile up
+  // rows for the same physical device.
   if (!hasDevices) {
     const ip = String(request.headers.get('CF-Connecting-IP') || '').trim();
     const userAgent = String(request.headers.get('User-Agent') || '').trim();
-    const trustResult = await addTrustedDevice(
-      database, user.id, deviceFingerprint, deviceName || 'Primary Device', '{}', ip, userAgent, 0, true
+    const now = new Date().toISOString();
+    const ghost = await database
+      .prepare('SELECT id FROM trusted_devices WHERE user_id = ?1 AND device_fingerprint = ?2 LIMIT 1')
+      .bind(user.id, deviceFingerprint)
+      .first();
+    let deviceId;
+    if (ghost?.id) {
+      deviceId = String(ghost.id);
+      await database
+        .prepare(`
+          UPDATE trusted_devices
+          SET revoked_at = '', is_permanent = 1, expires_at = '',
+              device_name = ?3, ip_address = ?4, user_agent = ?5,
+              trusted_at = ?6, last_used_at = ?6
+          WHERE id = ?1 AND user_id = ?2
+        `)
+        .bind(deviceId, user.id, deviceName || 'Primary Device', ip || '', userAgent || '', now)
+        .run();
+    } else {
+      const trustResult = await addTrustedDevice(
+        database, user.id, deviceFingerprint, deviceName || 'Primary Device', '{}', ip, userAgent, 0, true
+      );
+      deviceId = trustResult.deviceId;
+    }
+    await logLoginEvent(
+      database, user.id, email, 'device_primary_registered', deviceFingerprint,
+      deviceName || 'Primary Device', ip, userAgent, JSON.stringify({ deviceId, revived: Boolean(ghost?.id) })
     );
     return {
       ok: true,
       trusted: true,
       isPrimary: true,
-      deviceId: trustResult.deviceId,
+      deviceId,
       deviceName: deviceName || 'Primary Device',
       expiresAt: '',
-      lastUsedAt: new Date().toISOString(),
+      lastUsedAt: now,
     };
   }
   
+  // Known user on a new, untrusted device — the OTP gate applies. Record the
+  // event so admins can see how often verification is actually triggered.
+  await logLoginEvent(
+    database, user.id, email, 'device_check_new_device', deviceFingerprint,
+    deviceName, String(request.headers.get('CF-Connecting-IP') || '').trim(), '', '{}'
+  );
   return { ok: true, trusted: false, isPrimary: false, reason: 'new_device' };
 }
 
