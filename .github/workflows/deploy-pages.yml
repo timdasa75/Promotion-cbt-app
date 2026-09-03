@@ -119,6 +119,13 @@ jobs:
       - name: Verify Pages release (metadata, unit tests, and build)
         run: npm run verify:pages
 
+      # Stage 6 responsive matrix: fail on horizontal overflow or clipped
+      # visible controls at the 375/768/1280/1920 viewports. The spec soft-skips
+      # the topic category/setup steps when private question banks are absent
+      # from this checkout, so the gate stays deterministic.
+      - name: Responsive layout matrix (overflow and clipping)
+        run: npm run test:responsive
+
       - name: Configure Pages
         uses: actions/configure-pages@v6
 
