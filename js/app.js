@@ -7838,6 +7838,12 @@ function initializeAuthUI() {
 
   if (adminVerificationFilter) {
     adminVerificationFilter.addEventListener("change", () => {
+      // When filtering by verification status, reset plan filter to show all plans
+      const verificationValue = adminVerificationFilter.value;
+      if (verificationValue !== "all") {
+        const planFilterEl = document.getElementById("adminPlanFilter");
+        if (planFilterEl) planFilterEl.value = "all";
+      }
       renderAdminUserDirectory();
     });
   }
@@ -7846,6 +7852,9 @@ function initializeAuthUI() {
     adminShowUnverifiedBtn.addEventListener("click", () => {
       if (adminVerificationFilter) adminVerificationFilter.value = "unverified";
       if (adminStatusFilter) adminStatusFilter.value = "active";
+      // Reset plan filter to show all plans when viewing unverified users
+      const planFilterEl = document.getElementById("adminPlanFilter");
+      if (planFilterEl) planFilterEl.value = "all";
       renderAdminUserDirectory();
       document.getElementById("adminUserList")?.scrollIntoView({ behavior: "smooth", block: "start" });
     });
