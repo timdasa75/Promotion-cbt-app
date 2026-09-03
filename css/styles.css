@@ -11608,7 +11608,75 @@ body.dark-mode .admin-transactions-table .status-badge.failed {
 .admin-payment-item .tx-id {
     font-size: 0.8rem;
     color: var(--text-secondary, #64748B);
-    font-family: monospace;
+}
+
+/* ==============================
+   Dark Mode: Subscription & Payment Items
+   ============================== */
+
+[data-theme="dark"] .admin-subscription-item {
+    background: var(--surface-bright, #31394D);
+    border-color: var(--outline, #334155);
+}
+
+[data-theme="dark"] .admin-subscription-item .email {
+    color: var(--ink-100, #F1F5F9);
+}
+
+[data-theme="dark"] .admin-subscription-item .expiry {
+    color: var(--ink-400, #94A3B8);
+}
+
+[data-theme="dark"] .admin-subscription-item .plan-badge.monthly {
+    background: rgba(59, 130, 246, 0.2);
+    color: #60A5FA;
+}
+
+[data-theme="dark"] .admin-subscription-item .plan-badge.quarterly {
+    background: rgba(16, 185, 129, 0.2);
+    color: #34D399;
+}
+
+[data-theme="dark"] .admin-subscription-item .plan-badge.bi-annual {
+    background: rgba(245, 158, 11, 0.2);
+    color: #FBBF24;
+}
+
+[data-theme="dark"] .admin-subscription-item .plan-badge.annual {
+    background: rgba(139, 92, 246, 0.2);
+    color: #A78BFA;
+}
+
+[data-theme="dark"] .admin-subscription-item .status-badge.active {
+    background: rgba(16, 185, 129, 0.2);
+    color: #34D399;
+}
+
+[data-theme="dark"] .admin-subscription-item .status-badge.expiring {
+    background: rgba(245, 158, 11, 0.2);
+    color: #FBBF24;
+}
+
+[data-theme="dark"] .admin-subscription-item .status-badge.expired {
+    background: rgba(239, 68, 68, 0.2);
+    color: #F87171;
+}
+
+[data-theme="dark"] .admin-payment-item {
+    background: var(--surface-bright, #31394D);
+    border-color: var(--outline, #334155);
+}
+
+[data-theme="dark"] .admin-payment-item .email {
+    color: var(--ink-100, #F1F5F9);
+}
+
+[data-theme="dark"] .admin-payment-item .amount {
+    color: #34D399;
+}
+
+[data-theme="dark"] .admin-payment-item .tx-id {
+    color: var(--ink-400, #94A3B8);
 }
 
 .admin-payment-item .date {
