@@ -12,7 +12,7 @@ import {
   normalizeStudyFilters,
   resolveStudyQuestionCount,
 } from "./studyFilters.js";
-import { buildStatePanelHtml, resolveQueueUnlockNote } from "./controlStates.js";
+import { buildStatePanelHtml, resolveActivityRefreshNote, resolveQueueUnlockNote } from "./controlStates.js";
 import {
   buildTimingSignal,
   classifyDashboardState,
@@ -246,6 +246,12 @@ let volatileUpgradeRequests = [];
 let volatileAdminOperationHistory = [];
 let activityMetricsRefreshInterval = null;
 let activityMetricsPaused = false;
+// Activity-metric load-state bookkeeping for the dashboard cards so a failed
+// refresh surfaces an error/retry note instead of silently showing 0s.
+let activityMetricsEverLoaded = false;
+let activityMetricsLoading = false;
+let activityMetricsFailureAt = null;
+let activityMetricsLastSuccessAt = null;
 const ACTIVITY_METRICS_REFRESH_MS = 30000; // 30 seconds
 const RESTORABLE_SCREEN_IDS = new Set([
   "splashScreen",
@@ -810,21 +816,37 @@ async function fetchRecentLoginsCount() {
 }
 
 async function fetchActivityMetrics() {
+  // Returns a discriminated result instead of swallowing failures as `null`,
+  // so the caller can show an error note + retry when the Worker is down.
+  // `reason: "session"` means the auth flow already took over (e.g. 401), so
+  // no dashboard error UI should be shown for it.
   try {
     const config = getRuntimeConfig();
     const baseUrl = config?.cloudflareAuthBaseUrl || '';
     const session = readSession();
-    if (!session?.accessToken || !baseUrl) return null;
+    if (!session?.accessToken || !baseUrl) {
+      return { ok: false, reason: 'session', message: 'Admin session unavailable.' };
+    }
     const resp = await fetch(`${baseUrl}/adminActivityMetrics`, {
       headers: { 'Authorization': `Bearer ${session.accessToken}` }
     });
     if (resp.status === 401) {
       forceReauthentication();
-      return null;
+      return { ok: false, reason: 'session', message: 'Your session expired. Please sign in again.' };
     }
     const data = await resp.json().catch(() => ({}));
-    return data?.metrics || null;
-  } catch { return null; }
+    const metrics = data?.metrics;
+    if (!resp.ok || !metrics) {
+      return { ok: false, reason: 'error', message: `The metrics service returned HTTP ${resp.status}.` };
+    }
+    return { ok: true, metrics };
+  } catch (error) {
+    return {
+      ok: false,
+      reason: 'error',
+      message: error instanceof Error ? error.message : 'Network error while loading activity metrics.',
+    };
+  }
 }
 
 // Track duplicate user records (same email across Firebase + Cloudflare) so
@@ -957,9 +979,107 @@ function updateActivityMetricsDisplay(metrics) {
   }
 }
 
+const ACTIVITY_METRIC_VALUE_IDS = [
+  "adminStatActiveNow",
+  "adminStatHourlyActive",
+  "adminStatDailyActive",
+  "adminStatWeeklyActive",
+  "adminStatMonthlyActive",
+];
+
+function setActivityMetricCardValues(value) {
+  ACTIVITY_METRIC_VALUE_IDS.forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = String(value);
+  });
+}
+
+function setActivityMetricCardsStale(stale) {
+  document.querySelectorAll(".admin-activity-card.clickable").forEach((card) => {
+    card.classList.toggle("is-stale", Boolean(stale));
+  });
+}
+
+function formatClockTime(date) {
+  if (!date) return "";
+  const d = date instanceof Date ? date : new Date(date);
+  if (Number.isNaN(d.getTime())) return "";
+  try {
+    return d.toLocaleTimeString();
+  } catch {
+    return "";
+  }
+}
+
+// Loading / error / stale rendering for the User Activity cards. A failed
+// refresh must never present "0 active users" as a real number: while no data
+// has ever loaded the values read "—", and the shared error panel offers a
+// retry. Once real data exists, failures keep the last good values visible
+// (marked stale) and explain that the refresh failed.
+function renderActivityMetricsStatus() {
+  const statusEl = document.getElementById("activityMetricsStatus");
+  const cards = document.querySelector(".admin-activity-cards");
+  if (!statusEl) return;
+
+  if (activityMetricsLoading && !activityMetricsEverLoaded) {
+    statusEl.hidden = false;
+    statusEl.innerHTML = buildStatePanelHtml({
+      tone: "loading",
+      text: "Loading activity metrics…",
+    });
+    setActivityMetricCardValues("—");
+    setActivityMetricCardsStale(true);
+    if (cards) cards.setAttribute("aria-busy", "true");
+    return;
+  }
+
+  if (activityMetricsFailureAt && !activityMetricsLoading) {
+    statusEl.hidden = false;
+    const note = resolveActivityRefreshNote({
+      everLoaded: activityMetricsEverLoaded,
+      failureTimeLabel: formatClockTime(activityMetricsFailureAt),
+      lastSuccessTimeLabel: formatClockTime(activityMetricsLastSuccessAt),
+    });
+    statusEl.innerHTML = buildStatePanelHtml({
+      tone: note.tone,
+      text: note.text,
+      actionLabel: note.actionLabel,
+      actionTarget: note.actionTarget,
+    });
+    if (activityMetricsEverLoaded) {
+      setActivityMetricCardsStale(true);
+    } else {
+      setActivityMetricCardValues("—");
+      setActivityMetricCardsStale(true);
+    }
+    if (cards) cards.removeAttribute("aria-busy");
+    return;
+  }
+
+  statusEl.hidden = true;
+  statusEl.innerHTML = "";
+  setActivityMetricCardsStale(false);
+  if (cards) cards.removeAttribute("aria-busy");
+}
+
 async function refreshActivityMetrics() {
-  const metrics = await fetchActivityMetrics();
-  updateActivityMetricsDisplay(metrics);
+  activityMetricsLoading = true;
+  renderActivityMetricsStatus();
+  const result = await fetchActivityMetrics();
+  activityMetricsLoading = false;
+  if (!result.ok) {
+    // Session/auth problems already triggered the re-login flow; don't paint
+    // a retry panel over the sign-in prompt.
+    if (result.reason === "session") return;
+    activityMetricsFailureAt = new Date();
+    renderActivityMetricsStatus();
+    return;
+  }
+  activityMetricsFailureAt = null;
+  activityMetricsEverLoaded = true;
+  activityMetricsLastSuccessAt = new Date();
+  updateActivityMetricsDisplay(result.metrics);
+  renderActivityMetricsStatus();
 }
 
 function refreshAllDashboardData() {
@@ -995,11 +1115,19 @@ function startActivityMetricsAutoRefresh() {
 
 let activeUsersPeriod = null;
 
+function getActiveUsersPeriodLabel(period) {
+  const card = document.querySelector(`.admin-activity-card.clickable[data-period="${period}"]`);
+  const text = card?.querySelector('.admin-activity-label')?.textContent?.trim();
+  if (text) return text;
+  return String(period || '').replace(/[-_]+/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
 async function loadActiveUsersList(period) {
   const panel = document.getElementById('activeUsersPanel');
   const titleEl = document.getElementById('activeUsersTitle');
   const listEl = document.getElementById('activeUsersList');
   if (!panel || !listEl) return;
+  const periodLabel = getActiveUsersPeriodLabel(period);
   
   // Toggle off if same period clicked again
   if (activeUsersPeriod === period) {
@@ -1016,10 +1144,13 @@ async function loadActiveUsersList(period) {
     c.classList.toggle('active', c.dataset.period === period);
   });
   
-  // Show panel with loading state
+  // Show panel with the shared loading tone
   panel.classList.remove('hidden');
-  if (titleEl) titleEl.textContent = 'Loading...';
-  listEl.innerHTML = '<p class="admin-empty-state">Loading...</p>';
+  if (titleEl) titleEl.textContent = `${periodLabel} — loading…`;
+  listEl.innerHTML = buildStatePanelHtml({
+    tone: 'loading',
+    text: `Loading ${periodLabel.toLowerCase()}…`,
+  });
   
   try {
     const config = getRuntimeConfig();
@@ -1052,7 +1183,11 @@ async function loadActiveUsersList(period) {
     
     const activeUsers = Array.isArray(result.users) ? result.users : [];
     if (activeUsers.length === 0) {
-      listEl.innerHTML = '<p class="admin-empty-state">No users active in this period.</p>';
+      if (titleEl) titleEl.textContent = `${result.label} (${result.count || 0} users)`;
+      listEl.innerHTML = buildStatePanelHtml({
+        tone: 'empty',
+        text: 'No users active in this period.',
+      });
       return;
     }
     
@@ -1094,7 +1229,13 @@ async function loadActiveUsersList(period) {
       });
     });
   } catch (error) {
-    listEl.innerHTML = `<p class="admin-empty-state">Error: ${escapeHtml(error.message)}</p>`;
+    if (titleEl) titleEl.textContent = `${periodLabel} — couldn't load`;
+    listEl.innerHTML = buildStatePanelHtml({
+      tone: 'error',
+      text: `Couldn't load the active users list. Check your connection and try again.`,
+      actionLabel: 'Try again',
+      actionTarget: 'retry-active-users',
+    });
   }
 }
 
@@ -2308,6 +2449,18 @@ function initializeStatePanelActions() {
     }
     if (target === "retry-review") {
       renderReviewMistakesScreen();
+    }
+    if (target === "retry-activity-metrics") {
+      refreshActivityMetrics();
+    }
+    if (target === "retry-active-users") {
+      // Re-run the request for the currently open period. Clear the stored
+      // period first so loadActiveUsersList() doesn't hit its toggle-off branch.
+      const period = activeUsersPeriod;
+      if (period) {
+        activeUsersPeriod = null;
+        loadActiveUsersList(period);
+      }
     }
   });
 }

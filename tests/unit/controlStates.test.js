@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import {
   CONTROL_STATE_META,
   buildStatePanelHtml,
+  resolveActivityRefreshNote,
   resolvePremiumLockNote,
   resolveQuestionCountDisplay,
   resolveQueueUnlockNote,
@@ -131,4 +132,52 @@ test("buildStatePanelHtml escapes copy and falls back to a safe tone", () => {
   assert.match(html, /state-panel is-loading/);
   assert.doesNotMatch(html, /<script>/);
   assert.match(html, /&lt;script&gt;/);
+});
+
+test("resolveActivityRefreshNote distinguishes first-load failure from stale refresh failure", () => {
+  const firstLoad = resolveActivityRefreshNote({
+    everLoaded: false,
+    failureTimeLabel: "3:42:01 PM",
+  });
+  assert.equal(firstLoad.tone, "error");
+  assert.equal(firstLoad.actionLabel, "Try again");
+  assert.equal(firstLoad.actionTarget, "retry-activity-metrics");
+  assert.match(firstLoad.text, /Couldn't load activity metrics at 3:42:01 PM/);
+  assert.match(firstLoad.text, /Check your connection and try again\./);
+
+  const stale = resolveActivityRefreshNote({
+    everLoaded: true,
+    failureTimeLabel: "4:05 PM",
+    lastSuccessTimeLabel: "4:00 PM",
+  });
+  assert.match(stale.text, /Couldn't refresh activity metrics at 4:05 PM\./);
+  assert.match(stale.text, /Showing data from 4:00 PM\./);
+  assert.doesNotMatch(stale.text, /Check your connection/);
+});
+
+test("resolveActivityRefreshNote omits empty labels and appends detail only before first load", () => {
+  const noLabels = resolveActivityRefreshNote({ everLoaded: true });
+  assert.equal(noLabels.text, "Couldn't refresh activity metrics. Showing the last successful load.");
+
+  const detailed = resolveActivityRefreshNote({
+    everLoaded: false,
+    detail: "The metrics service returned HTTP 502.",
+  });
+  assert.match(detailed.text, /\(The metrics service returned HTTP 502\.\)$/);
+
+  const staleWithDetail = resolveActivityRefreshNote({
+    everLoaded: true,
+    detail: "The metrics service returned HTTP 502.",
+  });
+  assert.doesNotMatch(staleWithDetail.text, /HTTP 502/);
+});
+
+test("resolveActivityRefreshNote feeds buildStatePanelHtml into a retry panel", () => {
+  const note = resolveActivityRefreshNote({
+    everLoaded: false,
+    failureTimeLabel: "3:42:01 PM",
+  });
+  const html = buildStatePanelHtml(note);
+  assert.match(html, /state-panel is-error/);
+  assert.match(html, /data-state-action="retry-activity-metrics">Try again<\/button>/);
 });

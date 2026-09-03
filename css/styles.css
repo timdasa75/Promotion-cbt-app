@@ -12300,3 +12300,34 @@ body.dark-mode .state-panel.is-error .state-note-tag {
 #resultsActionRow .btn {
     flex: 0 1 auto;
 }
+
+/* ============================================================
+   Admin dashboard — activity-metric load states
+   Shared .state-panel vocabulary reused above the User Activity
+   cards; stale cards stay visible with dimmed, dashed styling so
+   a failed refresh never reads as "0 users".
+   ============================================================ */
+.admin-activity-status {
+    margin: 0;
+}
+
+.admin-activity-status .state-panel {
+    margin: 0 0 12px;
+}
+
+.admin-activity-card.is-stale {
+    border-style: dashed;
+    border-color: color-mix(in srgb, var(--ink-500, #64748b) 55%, var(--line, #e2e8f0));
+    opacity: 0.75;
+    cursor: default;
+}
+
+.admin-activity-card.is-stale.clickable:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: color-mix(in srgb, var(--ink-500, #64748b) 55%, var(--line, #e2e8f0));
+}
+
+body.dark-mode .admin-activity-card.is-stale {
+    border-color: color-mix(in srgb, var(--ink-500, #94a3b8) 55%, var(--outline, #475569));
+}

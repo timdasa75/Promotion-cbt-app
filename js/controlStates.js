@@ -119,6 +119,33 @@ export function buildStatePanelHtml({
   return `<div class="state-panel ${meta.tone}" role="status"><span class="state-note-tag">${escapeHtml(meta.tag)}</span>${textHtml}${actionHtml}</div>`;
 }
 
+export function resolveActivityRefreshNote({
+  everLoaded = false,
+  failureTimeLabel = "",
+  lastSuccessTimeLabel = "",
+  detail = "",
+} = {}) {
+  const when = String(failureTimeLabel || "").trim();
+  const staleFrom = String(lastSuccessTimeLabel || "").trim();
+  let text;
+  if (everLoaded) {
+    text = `Couldn't refresh activity metrics${when ? ` at ${when}` : ""}.`;
+    text += staleFrom
+      ? ` Showing data from ${staleFrom}.`
+      : " Showing the last successful load.";
+  } else {
+    text = `Couldn't load activity metrics${when ? ` at ${when}` : ""}. Check your connection and try again.`;
+    const detailText = String(detail || "").trim();
+    if (detailText) text += ` (${detailText})`;
+  }
+  return {
+    tone: "error",
+    text,
+    actionLabel: "Try again",
+    actionTarget: "retry-activity-metrics",
+  };
+}
+
 export function resolveQuestionCountDisplay({
   total = 0,
   cap = null,
