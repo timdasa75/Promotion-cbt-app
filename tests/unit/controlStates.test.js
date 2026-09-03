@@ -2,6 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
   CONTROL_STATE_META,
+  buildStatePanelHtml,
   resolvePremiumLockNote,
   resolveQuestionCountDisplay,
   resolveQueueUnlockNote,
@@ -102,4 +103,32 @@ test("resolveQuestionCountDisplay never advertises locked premium totals as usab
   assert.equal(locked.strong, "1466");
   assert.equal(locked.tail, "questions in full bank");
   assert.match(locked.title, /full bank/);
+});
+
+test("buildStatePanelHtml renders the requested tone and content", () => {
+  const loading = buildStatePanelHtml({ text: "Loading topics…" });
+  assert.match(loading, /state-panel is-loading/);
+  assert.match(loading, /state-note-tag">Loading</);
+  assert.match(loading, /Loading topics…/);
+
+  const error = buildStatePanelHtml({
+    tone: "error",
+    text: "Could not load. Try again.",
+    actionLabel: "Try again",
+    actionTarget: "retry-topics",
+  });
+  assert.match(error, /state-panel is-error/);
+  assert.match(error, /state-note-tag">Needs attention</);
+  assert.match(error, /Could not load\. Try again\./);
+  assert.match(error, /data-state-action="retry-topics">Try again<\/button>/);
+});
+
+test("buildStatePanelHtml escapes copy and falls back to a safe tone", () => {
+  const html = buildStatePanelHtml({
+    tone: "bogus",
+    text: '<script>alert("x")</script>',
+  });
+  assert.match(html, /state-panel is-loading/);
+  assert.doesNotMatch(html, /<script>/);
+  assert.match(html, /&lt;script&gt;/);
 });

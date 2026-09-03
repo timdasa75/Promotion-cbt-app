@@ -12,7 +12,7 @@ import {
   normalizeStudyFilters,
   resolveStudyQuestionCount,
 } from "./studyFilters.js";
-import { resolveQueueUnlockNote } from "./controlStates.js";
+import { buildStatePanelHtml, resolveQueueUnlockNote } from "./controlStates.js";
 import {
   buildTimingSignal,
   classifyDashboardState,
@@ -551,6 +551,15 @@ async function init() {
   } catch (error) {
     console.error("Error initializing app:", error);
     showError("Failed to load quiz data. Please try again later.");
+    const failedTopicList = document.getElementById("topicList");
+    if (failedTopicList) {
+      failedTopicList.innerHTML = buildStatePanelHtml({
+        tone: "error",
+        text: "Failed to load the topic catalogue. Check your connection and try again.",
+        actionLabel: "Try again",
+        actionTarget: "retry-topics",
+      });
+    }
   }
 }
 
@@ -2287,6 +2296,22 @@ function renderStateNote(
   }
 }
 
+// Delegated clicks for block-level state-panel recovery actions.
+function initializeStatePanelActions() {
+  document.addEventListener("click", (event) => {
+    const action = event.target.closest?.("[data-state-action]");
+    if (!action) return;
+    const target = String(action.dataset.stateAction || "").trim();
+    if (target === "retry-topics") {
+      window.location.reload();
+      return;
+    }
+    if (target === "retry-review") {
+      renderReviewMistakesScreen();
+    }
+  });
+}
+
 // Delegated clicks for inline state-note actions (e.g. "Sign in now").
 function initializeStateNoteActions() {
   ["dashboardFeedbackReason", "helpFeedbackNote"].forEach((id) => {
@@ -2392,7 +2417,17 @@ function renderReviewMistakesScreen() {
   const clearFiltersBtn = document.getElementById("reviewMistakesClearFiltersBtn");
   if (!list) return;
 
-  const queueEntries = user ? getRetryMissedQueueSnapshot(80) : [];
+  let queueEntries = [];
+  let reviewQueueFailed = false;
+  if (user) {
+    try {
+      const snapshot = getRetryMissedQueueSnapshot(80);
+      queueEntries = Array.isArray(snapshot) ? snapshot : [];
+    } catch (error) {
+      reviewQueueFailed = true;
+      console.error("Unable to read the review queue:", error);
+    }
+  }
   const filterOptions = getReviewMistakeFilterOptions(queueEntries, {
     getTopicNameById,
     formatDifficultyLabel,
@@ -2463,10 +2498,12 @@ function renderReviewMistakesScreen() {
     ).length;
     const latestUpdatedAt = queueEntries[0]?.updatedAt || "";
     const latestLabel = formatRelativeTime(latestUpdatedAt) || formatDateTime(latestUpdatedAt);
-    const chips = !user
-      ? []
-      : queueEntries.length
-        ? [
+    const chips = reviewQueueFailed
+      ? ["Review queue unavailable — use Try again below"]
+      : !user
+        ? []
+        : queueEntries.length
+          ? [
             `${queueEntries.length} queued`,
             `${uniqueTopics} topic${uniqueTopics === 1 ? "" : "s"}`,
             hardCount > 0 ? `${hardCount} hard` : "Mixed difficulty",
@@ -2485,6 +2522,16 @@ function renderReviewMistakesScreen() {
       primaryAction: { action: "open-login", label: "Login or Register", variant: "btn-primary" },
       secondaryAction: { action: "open-dashboard", label: "Back to Dashboard", variant: "btn-ghost" },
     }, { escapeHtml });
+    return;
+  }
+
+  if (reviewQueueFailed) {
+    list.innerHTML = buildStatePanelHtml({
+      tone: "error",
+      text: "Could not load your review queue. Try again to rebuild it from your recent sessions.",
+      actionLabel: "Try again",
+      actionTarget: "retry-review",
+    });
     return;
   }
 
@@ -8375,6 +8422,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   initializePasswordResetScreen();
   initializeScreenAccessibility();
   initializeStateNoteActions();
+  initializeStatePanelActions();
   initializeHeaderOverflowMenu();
   updateAuthUI();
   showLoadingOverlay(true);

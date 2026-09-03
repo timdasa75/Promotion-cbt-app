@@ -12202,3 +12202,84 @@ body.dark-mode .header-more-menu {
         display: block;
     }
 }
+
+/* ============================================================
+   Stage 4 tail — block-level loading/error state panels.
+   Used by section containers (topic grid, category list, mock
+   feature, review queue) that previously showed a bare "Loading…"
+   line or failed silently without a recovery action.
+   ============================================================ */
+
+.state-panel {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin: 6px 0;
+    padding: 14px 16px;
+    border: 1px solid var(--line, #e2e8f0);
+    border-radius: 14px;
+    background: var(--card, #ffffff);
+    font-size: 0.9rem;
+    line-height: 1.45;
+}
+
+.state-panel .state-note-text {
+    flex: 1 1 auto;
+    min-width: 220px;
+}
+
+.state-panel.is-loading {
+    color: var(--ink-600, #475569);
+}
+
+.state-panel.is-loading .state-note-tag {
+    color: #0369a1;
+    background: color-mix(in srgb, #0ea5e9 12%, transparent);
+    border-color: color-mix(in srgb, #0ea5e9 45%, transparent);
+}
+
+.state-panel.is-error {
+    color: var(--danger, #b91c1c);
+    border-color: color-mix(in srgb, var(--danger, #b91c1c) 35%, var(--line, #e2e8f0));
+    background: color-mix(in srgb, var(--danger, #b91c1c) 5%, var(--card, #ffffff));
+}
+
+.state-panel.is-error .state-note-tag {
+    color: var(--danger, #b91c1c);
+    background: color-mix(in srgb, var(--danger, #b91c1c) 10%, transparent);
+    border-color: color-mix(in srgb, var(--danger, #b91c1c) 40%, transparent);
+}
+
+.state-panel.is-empty {
+    color: var(--ink-600, #64748b);
+}
+
+.state-panel.is-premium .state-note-tag {
+    color: color-mix(in srgb, var(--gold, #ca8a04) 55%, var(--ink-900, #1e293b));
+    background: color-mix(in srgb, var(--gold, #ca8a04) 14%, transparent);
+    border-color: color-mix(in srgb, var(--gold, #ca8a04) 50%, transparent);
+}
+
+body.dark-mode .state-panel {
+    border-color: var(--outline, #475569);
+    background: var(--surface-container, #1e293b);
+}
+
+body.dark-mode .state-panel.is-loading {
+    color: #cbd5e1;
+}
+
+body.dark-mode .state-panel.is-loading .state-note-tag {
+    color: #7dd3fc;
+}
+
+body.dark-mode .state-panel.is-error {
+    color: #fecaca;
+    border-color: color-mix(in srgb, #ef4444 50%, var(--outline, #475569));
+    background: color-mix(in srgb, #ef4444 12%, var(--surface-container, #1e293b));
+}
+
+body.dark-mode .state-panel.is-error .state-note-tag {
+    color: #fca5a5;
+}

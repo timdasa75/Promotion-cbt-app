@@ -89,6 +89,36 @@ export function resolveUsedCapNote({
  * available-of-total or full-bank label so premium content is never shown
  * as if it were immediately usable.
  */
+function escapeHtml(value) {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+/**
+ * Block-level container state (loading / error / empty) for sections that
+ * fetch or build their content asynchronously, e.g. the topic grid or a
+ * review queue. Returns an HTML string ready for innerHTML.
+ */
+export function buildStatePanelHtml({
+  tone = "loading",
+  text = "",
+  actionLabel = "",
+  actionTarget = "",
+} = {}) {
+  const key = String(tone || "loading").trim().toLowerCase();
+  const meta = CONTROL_STATE_META[key] || CONTROL_STATE_META.loading;
+  const textHtml = text ? `<span class="state-note-text">${escapeHtml(text)}</span>` : "";
+  const actionHtml =
+    actionLabel && actionTarget
+      ? `<button type="button" class="state-note-action" data-state-action="${escapeHtml(actionTarget)}">${escapeHtml(actionLabel)}</button>`
+      : "";
+  return `<div class="state-panel ${meta.tone}" role="status"><span class="state-note-tag">${escapeHtml(meta.tag)}</span>${textHtml}${actionHtml}</div>`;
+}
+
 export function resolveQuestionCountDisplay({
   total = 0,
   cap = null,

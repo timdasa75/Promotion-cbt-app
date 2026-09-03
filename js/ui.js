@@ -25,6 +25,7 @@ import { getPaymentProvider } from "./authRuntime.js";
 import { debugLog } from "./logger.js";
 import { escapeHtml } from "./quiz/formatting.js";
 import {
+  buildStatePanelHtml,
   resolveQuestionCountDisplay,
   resolveUsedCapNote,
 } from "./controlStates.js";
@@ -297,7 +298,7 @@ export async function displayCategories(topic, onSelect) {
     return;
   }
 
-  categoryList.innerHTML = '<div class="loading">Loading categories...</div>';
+  categoryList.innerHTML = buildStatePanelHtml({ tone: "loading", text: "Loading categories…" });
 
   try {
     const sourceLoadResult = await fetchTopicDataFilesWithReport(topic, {
@@ -467,9 +468,9 @@ export async function displayTopics(topics, onSelect) {
     console.error("Topic list container not found");
     return;
   }
-  topicList.innerHTML = '<div class="loading">Loading topics...</div>';
+  topicList.innerHTML = buildStatePanelHtml({ tone: "loading", text: "Loading topics…" });
   if (mockExamFeature) {
-    mockExamFeature.innerHTML = '<div class="loading">Loading mock exam...</div>';
+    mockExamFeature.innerHTML = buildStatePanelHtml({ tone: "loading", text: "Loading mock exam…" });
   }
   topicList.innerHTML = "";
   if (mockExamFeature) {
@@ -479,7 +480,12 @@ export async function displayTopics(topics, onSelect) {
     mockExamFeatureCard.classList.add("hidden");
   }
   if (!topics || topics.length === 0) {
-    topicList.innerHTML = '<div class="error-message">No topics available</div>';
+    topicList.innerHTML = buildStatePanelHtml({
+      tone: "error",
+      text: "No topics are available right now. The content catalogue may still be deploying — please try again.",
+      actionLabel: "Try again",
+      actionTarget: "retry-topics",
+    });
     return;
   }
 
