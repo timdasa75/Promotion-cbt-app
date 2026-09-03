@@ -9,6 +9,7 @@ import {
   buildTopicMastery,
   buildTrendItems,
   buildWeeklyConsistency,
+  classifyDashboardState,
   classifyRecommendationPattern,
   formatDifficultyLabel,
   formatGlBandLabel,
@@ -392,4 +393,47 @@ test("analytics shared attempt label helpers keep mock and direct attempt naming
     getAttemptHeadline({ topicId: "psr", topicName: "Public Service Rules" }, options),
     "Public Service Rules",
   );
+});
+
+test("classifyDashboardState treats empty and draft-like attempts as first session", () => {
+  assert.equal(classifyDashboardState([]), "first-session");
+  assert.equal(classifyDashboardState(null), "first-session");
+  assert.equal(classifyDashboardState("not-an-array"), "first-session");
+  assert.equal(classifyDashboardState([{}]), "first-session");
+  assert.equal(classifyDashboardState([{ topicId: "psr" }]), "first-session");
+  assert.equal(classifyDashboardState([null, "junk", 42]), "first-session");
+});
+
+test("classifyDashboardState treats a scored or recorded attempt as returning learner", () => {
+  const recorded = {
+    attemptId: "a-1",
+    topicId: "psr",
+    scorePercentage: 80,
+    createdAt: "2026-09-01T10:00:00.000Z",
+  };
+  assert.equal(classifyDashboardState([recorded]), "returning-learner");
+
+  const legacy = { topicId: "psr", score: 62, completedAt: "2026-08-01T10:00:00.000Z" };
+  assert.equal(classifyDashboardState([legacy]), "returning-learner");
+
+  const zeroScore = {
+    attemptId: "a-0",
+    topicId: "psr",
+    scorePercentage: 0,
+    createdAt: "2026-09-01T10:00:00.000Z",
+  };
+  assert.equal(classifyDashboardState([zeroScore]), "returning-learner");
+
+  const idOnly = { attemptId: "a-2", topicId: "gl" };
+  assert.equal(classifyDashboardState([idOnly]), "returning-learner");
+});
+
+test("classifyDashboardState returns returning learner when any entry is valid", () => {
+  const mixed = [
+    {},
+    { topicId: "psr" },
+    null,
+    { attemptId: "a-9", scorePercentage: 55, createdAt: "2026-07-01T10:00:00.000Z" },
+  ];
+  assert.equal(classifyDashboardState(mixed), "returning-learner");
 });

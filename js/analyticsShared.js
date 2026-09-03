@@ -435,3 +435,29 @@ export function getAttemptHeadline(
     mockExamTopicLabel,
   });
 }
+
+/**
+ * Classify the learner dashboard state from recorded attempts.
+ *
+ * A completed scored session is one that was actually recorded (attempt id
+ * and/or a recorded timestamp present) or carries a finite score. Empty,
+ * malformed, and draft-like entries do not count, so a learner with no real
+ * sessions sees the focused first-session dashboard while returning learners
+ * keep the full analytics view.
+ */
+export function classifyDashboardState(attempts = []) {
+  const hasCompletedScoredSession = Array.isArray(attempts)
+    ? attempts.some((attempt) => {
+        if (!attempt || typeof attempt !== "object") return false;
+        const rawScore =
+          attempt?.scorePercentage ?? attempt?.score ?? attempt?.percentage;
+        const hasFiniteScore = Number.isFinite(Number(rawScore));
+        const recordedAt =
+          attempt?.createdAt || attempt?.completedAt || attempt?.finishedAt;
+        const hasRecordedTime =
+          Boolean(recordedAt) && !Number.isNaN(Date.parse(String(recordedAt)));
+        return Boolean(attempt?.attemptId) || hasFiniteScore || hasRecordedTime;
+      })
+    : false;
+  return hasCompletedScoredSession ? "returning-learner" : "first-session";
+}

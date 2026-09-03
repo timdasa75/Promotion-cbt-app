@@ -25,9 +25,20 @@ import { getPaymentProvider } from "./authRuntime.js";
 import { debugLog } from "./logger.js";
 import { escapeHtml } from "./quiz/formatting.js";
 import { showError, showSuccess, showWarning } from "./ui/notifications.js";
-import { showScreen } from "./ui/screen.js";
+import {
+  initializeScreenAccessibility,
+  initializeScreenRouting,
+  showScreen,
+} from "./ui/screen.js";
 
-export { showScreen, showError, showSuccess, showWarning };
+export {
+  initializeScreenAccessibility,
+  initializeScreenRouting,
+  showScreen,
+  showError,
+  showSuccess,
+  showWarning,
+};
 
 let confirmPromiseResolve = null;
 let confirmBindingsInitialized = false;

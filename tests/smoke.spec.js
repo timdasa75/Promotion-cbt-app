@@ -434,6 +434,36 @@ test("register screen reminds users to check Spam or Junk for verification email
   await expect(page.locator("#registerForm .auth-helper-text")).toContainText("Spam or Junk");
 });
 
+test("screen transitions isolate inactive controls and focus the new screen heading", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.locator("#appLoadingOverlay")).toHaveClass(/is-hidden/);
+
+  await expect(page.locator("#splashScreen")).toHaveAttribute("aria-hidden", "false");
+  await expect(page.locator("#topicSelectionScreen")).toHaveAttribute("aria-hidden", "true");
+  await expect(page.locator("#topicSelectionScreen")).toHaveAttribute("inert", "");
+
+  await page.locator("[data-screen-target='helpScreen']").first().dispatchEvent("click");
+  await expect(page.locator("#helpScreen")).toBeVisible();
+  await expect(page.locator("#helpScreen")).toHaveAttribute("aria-hidden", "false");
+  await expect(page.locator("#helpScreen")).not.toHaveAttribute("inert", "");
+  await expect(page.locator("#splashScreen")).toHaveAttribute("aria-hidden", "true");
+  await expect(page.locator("#splashScreen")).toHaveAttribute("inert", "");
+  await expect(page.locator("#helpScreen h2").first()).toBeFocused();
+});
+
+test("screen navigation writes GitHub Pages-safe routes and supports browser Back", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.locator("#appLoadingOverlay")).toHaveClass(/is-hidden/);
+
+  await page.locator("[data-screen-target='helpScreen']").first().dispatchEvent("click");
+  await expect(page).toHaveURL(/#\/help$/);
+  await expect(page.locator("#helpScreen")).toBeVisible();
+
+  await page.goBack();
+  await expect(page).toHaveURL(/\/$/);
+  await expect(page.locator("#splashScreen")).toBeVisible();
+});
+
 function mockCloudAuthConfig(baseUrl) {
   return {
     authProvider: "cloudflare",
@@ -677,12 +707,14 @@ test("free users can open the upgrade flow from locked topics", async ({ page })
 
   const premiumModal = page.locator("#premiumModal");
   await expect(premiumModal).toBeVisible();
+  await expect(premiumModal).toHaveAttribute("aria-labelledby", "premiumModalTitle");
   await expect(premiumModal).toContainText("Premium Content");
   await expect(premiumModal).toContainText("Unlock all 10 core topics");
 
   await page.click("#premiumExplorePlansBtn");
   const pricingModal = page.locator("#pricingModal");
   await expect(pricingModal).toBeVisible();
+  await expect(pricingModal).toHaveAttribute("aria-labelledby", "pricingModalTitle");
   await expect(pricingModal).toContainText("Monthly Premium Access");
   await expect(pricingModal).toContainText("Monthly");
 });

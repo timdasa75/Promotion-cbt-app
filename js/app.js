@@ -14,6 +14,7 @@ import {
 } from "./studyFilters.js";
 import {
   buildTimingSignal,
+  classifyDashboardState,
   formatDifficultyLabel,
   formatGlBandLabel,
   formatModeLabel,
@@ -26,6 +27,8 @@ import { DEFAULT_MOCK_EXAM_TEMPLATE_ID } from "./mockExamTemplates.js";
 import {
   applySessionSetupCopy,
   displayTopics,
+  initializeScreenAccessibility,
+  initializeScreenRouting,
   openPricingModal,
   selectTopic,
   showError,
@@ -191,6 +194,7 @@ let adminFeedbackSubmissions = [];
 let adminPaymentRows = [];
 let activeFeedbackContext = null;
 let pendingMockExamTemplateId = DEFAULT_MOCK_EXAM_TEMPLATE_ID;
+let authLastFocusedElement = null;
 
 // Pagination controllers for admin lists
 const adminUsersPagination = new PaginationController("adminUserList", {
@@ -2540,6 +2544,7 @@ function refreshDashboardInsights() {
   const summary = readProgressSummary();
   const attempts = Array.isArray(summary?.attempts) ? summary.attempts : [];
   const insights = buildAppAnalyticsSnapshot(attempts);
+  syncFirstSessionDashboard(attempts);
   recommendedTopicId = String(insights?.recommendedTopicId || "").trim() || null;
   renderDashboardStats(insights);
   renderAnalyticsScreen(insights);
@@ -2550,6 +2555,15 @@ function refreshDashboardInsights() {
   syncRevisionButtonState();
   renderBookmarkManager();
   return insights;
+}
+
+function syncFirstSessionDashboard(attempts = []) {
+  const dashboard = document.getElementById("topicSelectionScreen");
+  if (!dashboard) return;
+
+  const dashboardState = classifyDashboardState(attempts);
+  dashboard.classList.toggle("first-session", dashboardState === "first-session");
+  dashboard.setAttribute("data-dashboard-state", dashboardState);
 }
 
 function getActiveDashboardSetupSuggestion(insights) {
@@ -3482,6 +3496,8 @@ function setActiveAuthTab(mode) {
 function openAuthModal(mode = "login") {
   const modal = document.getElementById("authModal");
   if (!modal) return;
+  if (!modal.classList.contains("hidden")) return;
+  authLastFocusedElement = document.activeElement instanceof HTMLElement ? document.activeElement : null;
   setActiveAuthTab(mode);
   if (mode === "login") {
     const loginEmailInput = document.getElementById("loginEmail");
@@ -3496,12 +3512,18 @@ function openAuthModal(mode = "login") {
     }
   }
   modal.classList.remove("hidden");
+  requestAnimationFrame(() => {
+    const firstField = modal.querySelector(mode === "register" ? "#registerName" : "#loginEmail");
+    firstField?.focus();
+  });
 }
 
 function closeAuthModal() {
   const modal = document.getElementById("authModal");
   if (modal) modal.classList.add("hidden");
   setAuthMessage("");
+  authLastFocusedElement?.focus?.();
+  authLastFocusedElement = null;
 }
 
 // ============================================================
@@ -8206,6 +8228,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   initializeThemeShortcut();
   initializeAuthUI();
   initializePasswordResetScreen();
+  initializeScreenAccessibility();
   updateAuthUI();
   showLoadingOverlay(true);
   try {
@@ -8314,4 +8337,5 @@ document.addEventListener("DOMContentLoaded", async function () {
   });
 
   initializeThemeToggle();
+  initializeScreenRouting();
 });
