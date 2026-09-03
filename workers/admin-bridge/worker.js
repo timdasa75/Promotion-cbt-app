@@ -1010,108 +1010,122 @@ async function handleAdminCreateCloudflareMigrationLink(request, env) {
   }
 
   const nowIso = new Date().toISOString();
-  let user = await database
-    .prepare(`
-      SELECT id, email, password_hash, role, plan, status, email_verified
-      FROM auth_users
-      WHERE email = ?1
-      LIMIT 1
-    `)
-    .bind(email)
-    .first();
-
-  if (user?.id) {
-    await database
+  let user;
+  try {
+    user = await database
       .prepare(`
-        UPDATE auth_users
-        SET role = ?2,
-            plan = ?3,
-            status = ?4,
-            email_verified = ?5,
-            legacy_provider = 'firebase',
-            updated_at = ?6
-        WHERE id = ?1
+        SELECT id, email, password_hash, role, plan, status, email_verified
+        FROM auth_users
+        WHERE email = ?1
+        LIMIT 1
       `)
-      .bind(
-        String(user.id),
-        role,
-        plan,
-        status,
-        emailVerified ? 1 : 0,
-        nowIso,
-      )
-      .run();
-  } else {
-    const placeholderHash = await hashPassword(crypto.randomUUID() + generateRandomBase64Url(SESSION_SECRET_BYTES));
-    const userId = crypto.randomUUID();
-    await database
-      .prepare(`
-        INSERT INTO auth_users (
-          id,
-          email,
-          password_hash,
+      .bind(email)
+      .first();
+  } catch (dbError) {
+    throw createRouteError(500, `Database query failed: ${dbError?.message || 'unknown error'}`);
+  }
+
+  try {
+    if (user?.id) {
+      await database
+        .prepare(`
+          UPDATE auth_users
+          SET role = ?2,
+              plan = ?3,
+              status = ?4,
+              email_verified = ?5,
+              legacy_provider = 'firebase',
+              updated_at = ?6
+          WHERE id = ?1
+        `)
+        .bind(
+          String(user.id),
           role,
           plan,
           status,
-          email_verified,
-          legacy_provider,
-          legacy_user_id,
-          created_at,
-          updated_at,
-          last_login_at
-        ) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, 'firebase', '', ?8, ?8, '')
-      `)
-      .bind(
-        userId,
-        email,
-        placeholderHash,
-        role,
-        plan,
-        status,
-        emailVerified ? 1 : 0,
-        nowIso,
-      )
+          emailVerified ? 1 : 0,
+          nowIso,
+        )
+        .run();
+    } else {
+      const placeholderHash = await hashPassword(crypto.randomUUID() + generateRandomBase64Url(SESSION_SECRET_BYTES));
+      const userId = crypto.randomUUID();
+      await database
+        .prepare(`
+          INSERT INTO auth_users (
+            id,
+            email,
+            password_hash,
+            role,
+            plan,
+            status,
+            email_verified,
+            legacy_provider,
+            legacy_user_id,
+            created_at,
+            updated_at,
+            last_login_at
+          ) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, 'firebase', '', ?8, ?8, '')
+        `)
+        .bind(
+          userId,
+          email,
+          placeholderHash,
+          role,
+          plan,
+          status,
+          emailVerified ? 1 : 0,
+          nowIso,
+        )
+        .run();
+        user = { id: userId, email };
+    }
+  } catch (dbError) {
+    throw createRouteError(500, `Failed to update user record: ${dbError?.message || 'unknown error'}`);
+  }
+
+  try {
+    const tokenId = crypto.randomUUID();
+    const tokenSecret = generateRandomBase64Url(SESSION_SECRET_BYTES);
+    const tokenSecretHash = await sha256Base64Url(tokenSecret);
+    const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString();
+    await database
+      .prepare("DELETE FROM auth_email_tokens WHERE user_id = ?1 AND token_type = 'password_reset' AND consumed_at = ''")
+      .bind(String(user.id || ''))
       .run();
-      user = { id: userId, email };
-  }
+    await database
+      .prepare(`
+        INSERT INTO auth_email_tokens (
+          token_id,
+          user_id,
+          token_type,
+          token_secret_hash,
+          created_at,
+          expires_at,
+          consumed_at
+        ) VALUES (?1, ?2, 'password_reset', ?3, ?4, ?5, '')
+      `)
+      .bind(tokenId, String(user.id || ''), tokenSecretHash, nowIso, expiresAt)
+      .run();
 
-  const tokenId = crypto.randomUUID();
-  const tokenSecret = generateRandomBase64Url(SESSION_SECRET_BYTES);
-  const tokenSecretHash = await sha256Base64Url(tokenSecret);
-  const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString();
-  await database
-    .prepare("DELETE FROM auth_email_tokens WHERE user_id = ?1 AND token_type = 'password_reset' AND consumed_at = ''")
-    .bind(String(user.id || ''))
-    .run();
-  await database
-    .prepare(`
-      INSERT INTO auth_email_tokens (
-        token_id,
-        user_id,
-        token_type,
-        token_secret_hash,
-        created_at,
-        expires_at,
-        consumed_at
-      ) VALUES (?1, ?2, 'password_reset', ?3, ?4, ?5, '')
-    `)
-    .bind(tokenId, String(user.id || ''), tokenSecretHash, nowIso, expiresAt)
-    .run();
-
-  const migrationToken = `${tokenId}.${tokenSecret}`;
-  const baseUrl = continueUrl || String(request.headers.get('origin') || '').trim();
-  if (!baseUrl) {
-    throw new Error('continueUrl is required to build the migration link.');
+    const migrationToken = `${tokenId}.${tokenSecret}`;
+    const baseUrl = continueUrl || String(request.headers.get('origin') || '').trim();
+    if (!baseUrl) {
+      throw createRouteError(400, 'continueUrl is required to build the migration link.');
+    }
+    const url = new URL(baseUrl);
+    url.searchParams.set('migration', migrationToken);
+    return {
+      ok: true,
+      email,
+      url: url.toString(),
+      expiresAt,
+      warning: 'Share this one-time link with the user so they can set a new password.',
+    };
+  } catch (error) {
+    if (error?.httpStatus) throw error;
+    throw createRouteError(500, `Failed to create migration token: ${error?.message || 'unknown error'}`);
   }
-  const url = new URL(baseUrl);
-  url.searchParams.set('migration', migrationToken);
-  return {
-    ok: true,
-    email,
-    url: url.toString(),
-    expiresAt,
-    warning: 'Share this one-time link with the user so they can set a new password.',
-  };
 }
 
 async function handleAuthMigrationBootstrap(request, env) {
