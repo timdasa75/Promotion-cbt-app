@@ -2301,6 +2301,81 @@ function initializeStateNoteActions() {
   });
 }
 
+// Header overflow menu (tablet/mobile): below 700px the secondary header
+// actions (Admin, Profile, Help, Feedback) are moved into a labeled "More"
+// popover instead of shrinking into icon-only targets. The same button nodes
+// are reused so every existing handler, label, and auth-state update keeps
+// working; Login and the theme toggle stay visible as compact quick actions.
+const HEADER_OVERFLOW_ITEM_IDS = Object.freeze([
+  "headerAdminBtn",
+  "headerProfileBtn",
+  "headerHelpBtn",
+  "headerFeedbackBtn",
+]);
+const HEADER_OVERFLOW_QUERY = "(max-width: 700px)";
+
+function initializeHeaderOverflowMenu() {
+  const wrap = document.getElementById("headerMoreWrap");
+  const moreBtn = document.getElementById("headerMoreBtn");
+  const menu = document.getElementById("headerMoreMenu");
+  const headerActions = document.querySelector(".header-actions");
+  if (!wrap || !moreBtn || !menu || !headerActions) return;
+
+  const mediaQuery = window.matchMedia(HEADER_OVERFLOW_QUERY);
+
+  const closeMenu = () => {
+    menu.classList.add("hidden");
+    moreBtn.setAttribute("aria-expanded", "false");
+  };
+
+  moreBtn.addEventListener("click", (event) => {
+    event.stopPropagation();
+    if (menu.classList.contains("hidden")) {
+      menu.classList.remove("hidden");
+      moreBtn.setAttribute("aria-expanded", "true");
+    } else {
+      closeMenu();
+    }
+  });
+
+  // Close on outside click, Escape, or after choosing an item.
+  document.addEventListener("click", (event) => {
+    if (!event.target.closest?.("#headerMoreWrap")) closeMenu();
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeMenu();
+  });
+  menu.addEventListener("click", () => closeMenu());
+
+  const applyOverflowMode = () => {
+    if (mediaQuery.matches) {
+      HEADER_OVERFLOW_ITEM_IDS.forEach((id) => {
+        const item = document.getElementById(id);
+        if (item && item.parentElement !== menu) menu.appendChild(item);
+      });
+    } else {
+      const anchor =
+        document.getElementById("headerUpgradeBtn")
+        || document.getElementById("themeToggle")
+        || wrap;
+      HEADER_OVERFLOW_ITEM_IDS.forEach((id) => {
+        const item = document.getElementById(id);
+        if (item && item.parentElement === menu) {
+          headerActions.insertBefore(item, anchor);
+        }
+      });
+      closeMenu();
+    }
+  };
+
+  if (typeof mediaQuery.addEventListener === "function") {
+    mediaQuery.addEventListener("change", applyOverflowMode);
+  } else {
+    mediaQuery.addListener(applyOverflowMode);
+  }
+  applyOverflowMode();
+}
+
 function resetReviewMistakesFilters() {
   reviewMistakesFilters = { ...REVIEW_MISTAKES_DEFAULT_FILTERS };
 }
@@ -8300,6 +8375,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   initializePasswordResetScreen();
   initializeScreenAccessibility();
   initializeStateNoteActions();
+  initializeHeaderOverflowMenu();
   updateAuthUI();
   showLoadingOverlay(true);
   try {

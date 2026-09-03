@@ -12138,3 +12138,67 @@ body.dark-mode .lock-badge.used-badge {
         flex: 0 0 auto;
     }
 }
+
+/* ============================================================
+   Stage 3 follow-up — tablet/mobile labeled overflow menu.
+   Below 700px the secondary header actions move into a labeled
+   "More" popover; Login and the theme toggle stay as 44px icon
+   quick actions. The popover items are the real buttons (moved in
+   the DOM by app.js), so their handlers keep working.
+   ============================================================ */
+
+.header-more-wrap {
+    position: relative;
+    display: none;
+}
+
+.header-more-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    z-index: 45;
+    min-width: 220px;
+    padding: 8px;
+    display: grid;
+    gap: 6px;
+    border: 1px solid var(--line, #e2e8f0);
+    border-radius: 12px;
+    background: var(--card, #ffffff);
+    box-shadow: 0 18px 38px rgba(15, 23, 42, 0.16);
+}
+
+.header-more-menu.hidden {
+    display: none;
+}
+
+.header-more-menu .icon-button.icon-only {
+    width: 100%;
+    min-width: 0;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 0 12px;
+    min-height: 44px;
+}
+
+.header-more-menu .icon-button-label {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.88rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.header-more-menu [data-tooltip]::after {
+    display: none;
+}
+
+body.dark-mode .header-more-menu {
+    border-color: var(--outline, #475569);
+    background: var(--surface-container, #1e293b);
+}
+
+@media (max-width: 700px) {
+    .header-more-wrap {
+        display: block;
+    }
+}
