@@ -24,6 +24,7 @@ import {
 import { getPaymentProvider } from "./authRuntime.js";
 import { debugLog } from "./logger.js";
 import { escapeHtml } from "./quiz/formatting.js";
+import { resolveUsedCapNote } from "./controlStates.js";
 import { showError, showSuccess, showWarning } from "./ui/notifications.js";
 import {
   initializeScreenAccessibility,
@@ -43,6 +44,16 @@ export {
 let confirmPromiseResolve = null;
 let confirmBindingsInitialized = false;
 let confirmLastFocusedElement = null;
+
+// Stage-4 premium lock badge shared by topic and subtopic cards. The inline
+// action opens the pricing modal without triggering the card's own click.
+function premiumLockBadgeHtml(label = "Premium topic") {
+  return `
+    <span class="lock-badge premium-lock">
+      <span class="state-tag">${escapeHtml(label)}</span>
+      <button type="button" class="state-action" data-open-pricing>View access options</button>
+    </span>`;
+}
 
 export function openPricingModal() {
   const modal = document.getElementById("pricingModal");
@@ -332,7 +343,7 @@ export async function displayCategories(topic, onSelect) {
                   <div class="topic-icon">${safeIcon}</div>
                   <h3 class="topic-title">${safeName}</h3>
                   <p class="topic-description">${safeDescription}</p>
-                  ${!isUnlocked ? '<span class="lock-badge">Locked on Free</span>' : ""}
+                  ${!isUnlocked ? premiumLockBadgeHtml("Premium subtopic") : ""}
               </div>
               <div class="card-footer">
                   <div class="question-count">
@@ -340,10 +351,15 @@ export async function displayCategories(topic, onSelect) {
                   </div>
               </div>
           `;
+          const categoryPricingBtn = categoryCard.querySelector(".state-action[data-open-pricing]");
+          categoryPricingBtn?.addEventListener("click", (event) => {
+            event.stopPropagation();
+            openPricingModal();
+          });
           categoryCard.addEventListener("click", () => {
             if (!isUnlocked) {
               showWarning(
-                "This subtopic is locked on Free plan. Upgrade to access all subtopics.",
+                "This subtopic is locked on the Free plan. Upgrade to access all subtopics.",
               );
               return;
             }
@@ -545,15 +561,25 @@ export async function displayTopics(topics, onSelect) {
     if (!isUnlocked) {
       if (entitlement.id !== "premium" && mockExamStatus && !mockExamStatus.allowed) {
         const nextDate = formatShortDate(mockExamStatus.nextEligibleAt);
-        lockBadge = `<span class="lock-badge">Next free mock ${nextDate ? `on ${nextDate}` : ""}</span>`;
+        const usedNote = resolveUsedCapNote({
+          itemLabel: "Free mock",
+          nextEligibleText: nextDate ? `on ${nextDate}` : "",
+        });
+        lockBadge = `<span class="lock-badge used-badge"><span class="state-note-tag">${escapeHtml(usedNote.tag)}</span>${escapeHtml(usedNote.text)}</span>`;
       } else {
-        lockBadge = '<span class="lock-badge">Locked on Free</span>';
+        lockBadge = premiumLockBadgeHtml("Premium mock");
       }
     }
     const ctaLabel = entitlement.id !== "premium"
       ? (mockExamStatus?.allowed ? "Open Weekly Mock Setup" : "Weekly Mock Used")
       : "Open Mock Setup";
     const disabledAttr = entitlement.id !== "premium" && !mockExamStatus?.allowed ? "disabled" : "";
+    const usedNextDate = formatShortDate(mockExamStatus?.nextEligibleAt);
+    const ctaDisabledTitle =
+      entitlement.id !== "premium" && mockExamStatus && !mockExamStatus.allowed
+        ? `Used this week — available again ${usedNextDate ? `on ${usedNextDate}` : "next week"}.`
+        : "";
+    const ctaTitleAttr = ctaDisabledTitle ? ` title="${escapeHtml(ctaDisabledTitle)}"` : "";
     mockExamFeature.innerHTML = `
       <article class="mock-feature-panel ripple scale-on-hover${isUnlocked ? "" : " locked"}" tabindex="0">
         <div class="mock-feature-content">
@@ -574,7 +600,7 @@ export async function displayTopics(topics, onSelect) {
                 ${freeMockBadge}
                 ${lockBadge}
             </div>
-            <button class="btn btn-primary mock-exam-cta" type="button" ${disabledAttr}>
+            <button class="btn btn-primary mock-exam-cta" type="button" ${disabledAttr}${ctaTitleAttr}>
                 <span>${ctaLabel}</span>
             </button>
         </div>
@@ -594,14 +620,13 @@ export async function displayTopics(topics, onSelect) {
     topicCard.dataset.topicId = String(topic?.id || "");
     if (!isUnlocked) {
       topicCard.classList.add("locked");
-    }
-    const name = topic.name
+    }          const name = topic.name
       .replace(/^[A-Z]\.\s/, "")
       .replace(/ \(\d+ Questions\)/, "");
     const safeIcon = escapeHtml(topic.icon || "\uD83D\uDCD8");
     const safeName = escapeHtml(name);
     const safeDescription = escapeHtml(topic.description || "No description available");
-    const lockBadge = !isUnlocked ? '<span class="lock-badge">Locked on Free</span>' : "";
+    const lockBadge = !isUnlocked ? premiumLockBadgeHtml("Premium topic") : "";
 
     topicCard.innerHTML = `
         <div class="card-content">
@@ -623,6 +648,11 @@ export async function displayTopics(topics, onSelect) {
         </div>
     `;
 
+    const topicPricingBtn = topicCard.querySelector(".state-action[data-open-pricing]");
+    topicPricingBtn?.addEventListener("click", (event) => {
+      event.stopPropagation();
+      openPricingModal();
+    });
     attachTopicActivation(topicCard, topic, getTopicAccessState(topic));
     topicList.appendChild(topicCard);
     debugLog("Added topic card:", topic.name);

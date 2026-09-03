@@ -12,6 +12,7 @@ import {
   normalizeStudyFilters,
   resolveStudyQuestionCount,
 } from "./studyFilters.js";
+import { resolveQueueUnlockNote } from "./controlStates.js";
 import {
   buildTimingSignal,
   classifyDashboardState,
@@ -2233,7 +2234,7 @@ function renderSupportStateCards(insights = null) {
   if (syncMeta) syncMeta.textContent = supportModel.syncMeta;
 }
 
-function renderUtilityActionButton(button, label, count, emptyTitle) {
+function renderUtilityActionButton(button, label, count, emptyTitle, state = "prerequisite") {
   if (!button) return;
   const model = buildUtilityActionButtonModel({ label, count, emptyTitle });
   button.classList.toggle("has-count", model.hasCount);
@@ -2246,6 +2247,58 @@ function renderUtilityActionButton(button, label, count, emptyTitle) {
   button.disabled = model.disabled;
   button.setAttribute("aria-label", model.ariaLabel);
   button.setAttribute("title", model.title);
+  const queueNote = resolveQueueUnlockNote({ count, emptyText: emptyTitle, state });
+  const noteEl = button.parentElement?.querySelector(".state-note");
+  renderStateNote(noteEl, { ...queueNote });
+}
+
+// Shared renderer for the Stage-4 state vocabulary. Writes a small
+// `label + reason (+ optional action)` note into an existing .state-note
+// element; a note with no text or action is hidden again.
+function renderStateNote(
+  noteEl,
+  { tone = "is-prerequisite", tag = "", text = "", actionLabel = "", actionTarget = "", extraClass = "" } = {},
+) {
+  if (!noteEl) return;
+  noteEl.replaceChildren();
+  const visible = Boolean(text || actionLabel);
+  noteEl.classList.toggle("hidden", !visible);
+  if (!visible) return;
+  noteEl.className = `state-note ${tone} ${extraClass}`.trim();
+  if (tag) {
+    const tagEl = document.createElement("span");
+    tagEl.className = "state-note-tag";
+    tagEl.textContent = tag;
+    noteEl.appendChild(tagEl);
+  }
+  if (text) {
+    const textEl = document.createElement("span");
+    textEl.className = "state-note-text";
+    textEl.textContent = text;
+    noteEl.appendChild(textEl);
+  }
+  if (actionLabel && actionTarget) {
+    const actionEl = document.createElement("button");
+    actionEl.type = "button";
+    actionEl.className = "state-note-action";
+    actionEl.dataset.stateAction = actionTarget;
+    actionEl.textContent = actionLabel;
+    noteEl.appendChild(actionEl);
+  }
+}
+
+// Delegated clicks for inline state-note actions (e.g. "Sign in now").
+function initializeStateNoteActions() {
+  ["dashboardFeedbackReason", "helpFeedbackNote"].forEach((id) => {
+    const container = document.getElementById(id);
+    container?.addEventListener("click", (event) => {
+      const action = event.target.closest("[data-state-action]");
+      if (!action) return;
+      if (action.dataset.stateAction === "feedback-signin") {
+        openAuthModal("login");
+      }
+    });
+  });
 }
 
 function resetReviewMistakesFilters() {
@@ -5539,9 +5592,22 @@ function renderFeedbackUiState() {
     button.title = model.buttonTitle;
   });
 
+  const dashboardReason = document.getElementById("dashboardFeedbackReason");
+  renderStateNote(dashboardReason, {
+    tone: "is-prerequisite",
+    tag: "Sign in",
+    text: model.helpNoteHidden ? "" : model.helpNoteText,
+    actionLabel: model.helpNoteHidden ? "" : "Sign in now",
+    actionTarget: "feedback-signin",
+  });
+
   if (helpNote) {
-    helpNote.textContent = model.helpNoteText;
-    helpNote.classList.toggle("hidden", model.helpNoteHidden);
+    renderStateNote(helpNote, {
+      tone: "is-prerequisite",
+      tag: "Sign in",
+      text: model.helpNoteHidden ? "" : model.helpNoteText,
+      extraClass: "hero-meta help-feedback-note",
+    });
   }
 
   if (quizBtn) {
@@ -8229,6 +8295,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   initializeAuthUI();
   initializePasswordResetScreen();
   initializeScreenAccessibility();
+  initializeStateNoteActions();
   updateAuthUI();
   showLoadingOverlay(true);
   try {

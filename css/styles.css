@@ -11905,3 +11905,204 @@ body.dark-mode .admin-transactions-table .status-badge.failed {
     margin: 0;
     font-size: 0.9rem;
 }
+
+/* ============================================================
+   Stage 4 — Shared state vocabulary for unavailable/locked UI
+   Tone classes: .state-note + .is-empty / .is-prerequisite /
+   .is-premium / .is-used / .is-loading / .is-error
+   ============================================================ */
+
+.utility-cell {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.utility-cell .btn {
+    width: 100%;
+}
+
+.state-note {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 6px;
+    margin: 4px 2px 0;
+    font-size: 0.76rem;
+    line-height: 1.4;
+    color: var(--ink-600, #64748b);
+}
+
+.state-note-tag {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    font-size: 0.58rem;
+    padding: 1px 7px;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, currentColor 45%, transparent);
+    white-space: nowrap;
+}
+
+.state-note-text {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+/* Tone accents — light mode */
+.state-note.is-empty {
+    color: var(--ink-600, #64748b);
+}
+
+.state-note.is-prerequisite {
+    color: #92610c;
+}
+
+.state-note.is-prerequisite .state-note-tag {
+    color: #92400e;
+    background: color-mix(in srgb, #f59e0b 14%, transparent);
+    border-color: color-mix(in srgb, #f59e0b 45%, transparent);
+}
+
+.state-note.is-premium {
+    color: color-mix(in srgb, var(--gold, #ca8a04) 82%, var(--ink-900, #1e293b));
+}
+
+.state-note.is-premium .state-note-tag {
+    color: color-mix(in srgb, var(--gold, #ca8a04) 55%, var(--ink-900, #1e293b));
+    background: color-mix(in srgb, var(--gold, #ca8a04) 16%, transparent);
+    border-color: color-mix(in srgb, var(--gold, #ca8a04) 50%, transparent);
+}
+
+.state-note.is-used {
+    color: color-mix(in srgb, var(--green-700, #15803d) 80%, var(--ink-900, #1e293b));
+}
+
+.state-note.is-used .state-note-tag {
+    color: var(--green-700, #15803d);
+    background: color-mix(in srgb, var(--green-700, #15803d) 12%, transparent);
+    border-color: color-mix(in srgb, var(--green-700, #15803d) 40%, transparent);
+}
+
+.state-note.is-error {
+    color: var(--danger, #b91c1c);
+}
+
+.state-note.is-error .state-note-tag {
+    color: var(--danger, #b91c1c);
+    background: color-mix(in srgb, var(--danger, #b91c1c) 12%, transparent);
+    border-color: color-mix(in srgb, var(--danger, #b91c1c) 40%, transparent);
+}
+
+.state-note.is-loading {
+    color: var(--ink-500, #94a3b8);
+}
+
+/* Inline text action used inside state notes and lock badges */
+.state-note-action,
+.lock-badge .state-action {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+    color: var(--primary, #166534);
+    cursor: pointer;
+}
+
+.state-note-action:hover,
+.lock-badge .state-action:hover {
+    text-decoration-thickness: 2px;
+    color: var(--green-700, #15803d);
+}
+
+/* Premium lock badge on topic / subtopic cards */
+.lock-badge.premium-lock {
+    gap: 6px;
+    border-color: color-mix(in srgb, var(--gold, #ca8a04) 55%, var(--line, #e2e8f0));
+    background: color-mix(in srgb, var(--gold, #ca8a04) 10%, var(--card, #ffffff));
+}
+
+.lock-badge.premium-lock .state-tag {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    font-size: 0.62rem;
+    color: color-mix(in srgb, var(--gold, #ca8a04) 60%, var(--ink-900, #1e293b));
+}
+
+/* Weekly cap "used" badge */
+.lock-badge.used-badge {
+    border-color: color-mix(in srgb, var(--green-700, #15803d) 40%, var(--line, #e2e8f0));
+    background: color-mix(in srgb, var(--green-700, #15803d) 8%, var(--card, #ffffff));
+    color: var(--green-800, #166534);
+}
+
+.help-feedback-note.state-note {
+    margin-top: 10px;
+}
+
+/* Dark mode overrides */
+body.dark-mode .state-note.is-prerequisite {
+    color: #fcd34d;
+}
+
+body.dark-mode .state-note.is-prerequisite .state-note-tag {
+    color: #fbbf24;
+    background: color-mix(in srgb, #f59e0b 18%, transparent);
+    border-color: color-mix(in srgb, #f59e0b 55%, transparent);
+}
+
+body.dark-mode .state-note.is-premium {
+    color: #fde68a;
+}
+
+body.dark-mode .state-note.is-premium .state-note-tag {
+    color: #fcd34d;
+}
+
+body.dark-mode .state-note.is-used {
+    color: #a7f3d0;
+}
+
+body.dark-mode .state-note.is-used .state-note-tag {
+    color: #6ee7b7;
+}
+
+body.dark-mode .state-note.is-error {
+    color: #fecaca;
+}
+
+body.dark-mode .state-note.is-error .state-note-tag {
+    color: #fca5a5;
+}
+
+body.dark-mode .state-note-action,
+body.dark-mode .lock-badge .state-action {
+    color: #86efac;
+}
+
+body.dark-mode .state-note-action:hover,
+body.dark-mode .lock-badge .state-action:hover {
+    color: #a7f3d0;
+}
+
+body.dark-mode .lock-badge.premium-lock {
+    border-color: color-mix(in srgb, var(--gold, #ca8a04) 60%, var(--outline, #475569));
+    background: color-mix(in srgb, var(--gold, #ca8a04) 14%, var(--surface-container, #1e293b));
+}
+
+body.dark-mode .lock-badge.premium-lock .state-tag {
+    color: #fcd34d;
+}
+
+body.dark-mode .lock-badge.used-badge {
+    border-color: color-mix(in srgb, var(--green-500, #10b981) 55%, var(--outline, #475569));
+    background: color-mix(in srgb, var(--green-500, #10b981) 12%, var(--surface-container, #1e293b));
+    color: #a7f3d0;
+}

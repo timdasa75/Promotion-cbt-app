@@ -248,15 +248,27 @@
                             <p>Use live practice queues, review tools, and support screens without losing momentum.</p>
                         </div>
                         <div class="screen-nav-row dashboard-utility-row">
-                        <button class="btn btn-ghost" id="retryMissedBtn" type="button" disabled>Retry Missed</button>
-                        <button class="btn btn-ghost" id="revisionModeBtn" type="button" disabled>Revision (Flagged)</button>
-                        <button class="btn btn-ghost" id="spacedPracticeBtn" type="button" disabled>Spaced Practice</button>
+                        <div class="utility-cell">
+                            <button class="btn btn-ghost" id="retryMissedBtn" type="button" disabled>Retry Missed</button>
+                            <span class="state-note is-prerequisite hidden" id="retryMissedReason" role="status"></span>
+                        </div>
+                        <div class="utility-cell">
+                            <button class="btn btn-ghost" id="revisionModeBtn" type="button" disabled>Revision (Flagged)</button>
+                            <span class="state-note is-prerequisite hidden" id="revisionModeReason" role="status"></span>
+                        </div>
+                        <div class="utility-cell">
+                            <button class="btn btn-ghost" id="spacedPracticeBtn" type="button" disabled>Spaced Practice</button>
+                            <span class="state-note is-prerequisite hidden" id="spacedPracticeReason" role="status"></span>
+                        </div>
+                        <div class="utility-cell">
+                            <button class="btn btn-secondary" id="dashboardFeedbackBtn" type="button">Send Feedback</button>
+                            <span class="state-note is-prerequisite hidden" id="dashboardFeedbackReason" role="status"></span>
+                        </div>
                         <button class="btn btn-ghost" data-screen-target="reviewMistakesScreen" type="button">Review Mistakes</button>
                         <button class="btn btn-ghost" data-screen-target="analyticsScreen" type="button">Analytics</button>
                         <button class="btn btn-ghost" data-screen-target="quizHistoryScreen" type="button">Quiz History</button>
                         <button class="btn btn-ghost" data-screen-target="profileScreen" type="button">Profile and Settings</button>
                         <button class="btn btn-ghost hidden" id="openAdminBtn" type="button">Admin Panel</button>
-                        <button class="btn btn-secondary" id="dashboardFeedbackBtn" type="button">Send Feedback</button>
                         <button class="btn btn-ghost" data-screen-target="helpScreen" type="button">Help and About</button>
                         <button class="btn btn-ghost hidden" id="openStatesBtn" data-screen-target="statesScreen" type="button">Empty/Error States</button>
                         </div>
@@ -276,7 +288,7 @@
                             <button class="btn btn-ghost" data-screen-target="profileScreen" type="button">Profile and Settings</button>
                             <button class="btn btn-ghost" id="openHelpFeedbackBtn" type="button">Send Feedback</button>
                         </div>
-                        <p class="hero-meta help-feedback-note hidden" id="helpFeedbackNote"></p>
+                        <p class="hero-meta help-feedback-note state-note is-prerequisite hidden" id="helpFeedbackNote" role="status"></p>
                     </div>
                     <div class="card help-shell">
                         <div class="section-head screen-header help-head">
