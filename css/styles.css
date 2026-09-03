@@ -6002,6 +6002,7 @@ body.dark-mode .admin-view-header p {
     background: linear-gradient(180deg, color-mix(in srgb, var(--green-700) 2%, transparent), color-mix(in srgb, var(--green-700) 4%, var(--card)));
     justify-content: flex-start;
     align-items: center;
+    gap: 8px 10px;
 }
 
 .results-actions .btn {
@@ -6027,9 +6028,14 @@ body.dark-mode .admin-view-header p {
 }
 
 @media (min-width: 960px) {
-    .setup-actions-row.is-mock-setup,
-    .results-actions {
+    .setup-actions-row.is-mock-setup {
         flex-wrap: nowrap;
+    }
+
+    /* The results row can hold Retake, Share, Review, and Back at once; let
+       it wrap so the right-pinned Back action never overflows the card. */
+    .results-actions {
+        flex-wrap: wrap;
     }
 
     #resultsScreen {
@@ -12282,4 +12288,15 @@ body.dark-mode .state-panel.is-error {
 
 body.dark-mode .state-panel.is-error .state-note-tag {
     color: #fca5a5;
+}
+
+/* Results action row: never let Retake/Share/Review/Back overflow the card.
+   High specificity + !important guards against earlier compact-actions rules. */
+#resultsActionRow {
+    flex-wrap: wrap !important;
+    row-gap: 10px;
+}
+
+#resultsActionRow .btn {
+    flex: 0 1 auto;
 }

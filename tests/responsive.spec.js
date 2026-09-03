@@ -70,6 +70,70 @@ async function shot(page, label) {
   });
 }
 
+// Drive one short practice quiz from the session-setup screen through to the
+// results screen, asserting no overflow or clipping along the way. Returns
+// false (soft-skip with a note) when the private question banks are absent or
+// the quiz flow cannot be completed in this environment.
+async function attemptShortPracticeQuiz(page, vp) {
+  try {
+    const countSelect = page.locator("#studyQuestionCountSelect");
+    if (await countSelect.isVisible()) {
+      const chosen = await countSelect.evaluate((sel) => {
+        const values = [...sel.options]
+          .map((o) => Number(o.value))
+          .filter((n) => Number.isFinite(n) && n >= 5);
+        return values.length ? String(Math.min(...values)) : null;
+      });
+      if (chosen) await countSelect.selectOption(chosen);
+    }
+
+    await page.locator("#practiceModeCard").click();
+    await expect(page.locator("#quizScreen")).toBeVisible({ timeout: 30_000 });
+    await expect(page.locator("#optionsContainer button:not([disabled])").first()).toBeVisible({
+      timeout: 30_000,
+    });
+    await assertNoHorizontalOverflow(page, `quiz-${vp.label}`);
+    await assertNoClippedVisibleButtons(page, `quiz-${vp.label}`);
+    await shot(page, `quiz-${vp.label}`);
+
+    let guard = 0;
+    while ((await page.locator("#quizScreen").isVisible().catch(() => false)) && guard < 80) {
+      const answer = page.locator("#optionsContainer button:not([disabled])").first();
+      if (!(await answer.count())) break;
+      await answer.click();
+      const submit = page.locator("#submitBtn");
+      if ((await submit.isVisible().catch(() => false)) && !(await submit.isDisabled().catch(() => true))) {
+        await submit.click();
+      }
+      const next = page.locator("#nextBtn");
+      if ((await next.isVisible().catch(() => false)) && !(await next.isDisabled().catch(() => true))) {
+        await next.click();
+      } else {
+        await page.waitForTimeout(400);
+      }
+      guard += 1;
+    }
+
+    await expect(page.locator("#resultsScreen")).toBeVisible({ timeout: 30_000 });
+    await expect(page.locator("#finalScore")).toBeVisible();
+    await assertNoHorizontalOverflow(page, `results-${vp.label}`);
+    await assertNoClippedVisibleButtons(page, `results-${vp.label}`);
+    await shot(page, `results-${vp.label}`);
+    return true;
+  } catch (error) {
+    const message = String(error?.message || error || "");
+    // Genuine layout regressions must fail the gate — only soft-skip when the
+    // flow itself could not run (e.g. private question banks absent in CI).
+    if (/clipped controls|: (doc|body) \d+<=\d+\+tol/i.test(message)) {
+      throw error;
+    }
+    console.log(
+      `[responsive] ${vp.label}: quiz flow unavailable — skipped (${message.slice(0, 140)})`,
+    );
+    return false;
+  }
+}
+
 async function openAuthIfNeeded(page) {
   const authModal = page.locator("#authModal");
   if (!(await authModal.isVisible())) {
@@ -175,7 +239,7 @@ test("public surfaces fit the responsive matrix", async ({ page }) => {
 });
 
 test("learner surfaces fit the responsive matrix", async ({ page }) => {
-  test.setTimeout(240_000);
+  test.setTimeout(420_000);
   for (const vp of VIEWPORTS) {
     const email = `responsive-${Date.now()}@example.com`;
     await page.setViewportSize({ width: vp.width, height: vp.height });
@@ -218,11 +282,10 @@ test("learner surfaces fit the responsive matrix", async ({ page }) => {
       categoryScreen.waitFor({ state: "visible", timeout: 12_000 }).then(() => "category"),
     ]).catch(() => null);
     const skipDataSteps = () =>
-      console.log(`[responsive] ${vp.label}: topic question banks unavailable — category/setup steps skipped`);
+      console.log(`[responsive] ${vp.label}: topic question banks unavailable — category/setup/quiz steps skipped`);
+    let modeVisible = false;
     if (setupReady === "mode") {
-      await assertNoHorizontalOverflow(page, tag("setup"));
-      await assertNoClippedVisibleButtons(page, tag("setup"));
-      await shot(page, tag("setup"));
+      modeVisible = true;
     } else if (setupReady === "category") {
       const categoryCards = page.locator("#categoryList .topic-card");
       const cardsReady = await categoryCards
@@ -235,22 +298,20 @@ test("learner surfaces fit the responsive matrix", async ({ page }) => {
         await assertNoClippedVisibleButtons(page, tag("category"));
         await shot(page, tag("category"));
         await page.locator("#categoryList .topic-card:not(.locked)").first().click();
-        const modeReached = await modeScreen
+        modeVisible = await modeScreen
           .waitFor({ state: "visible", timeout: 20_000 })
           .then(() => true)
           .catch(() => false);
-        if (modeReached) {
-          await assertNoHorizontalOverflow(page, tag("setup"));
-          await assertNoClippedVisibleButtons(page, tag("setup"));
-          await shot(page, tag("setup"));
-        } else {
-          skipDataSteps();
-        }
-      } else {
-        skipDataSteps();
       }
-    } else {
+    }
+    if (!modeVisible) {
       skipDataSteps();
+    } else {
+      await assertNoHorizontalOverflow(page, tag("setup"));
+      await assertNoClippedVisibleButtons(page, tag("setup"));
+      await shot(page, tag("setup"));
+      // Short practice quiz through to results (soft-skips if no content).
+      await attemptShortPracticeQuiz(page, vp);
     }
 
     // Pricing modal from a locked premium topic chip stays on-screen.
