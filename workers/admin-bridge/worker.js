@@ -1,6 +1,7 @@
 import {
   buildPublicAuthUser,
   checkRateLimit,
+  generateRandomBase64Url,
   getAuthUserById,
   hashPassword,
   issueSession,
@@ -8,6 +9,7 @@ import {
   RATE_LIMIT,
   readSessionRecord,
   resolveHybridAuthRouteHandler,
+  SESSION_SECRET_BYTES,
   sha256Base64Url,
   timingSafeEqual,
   touchSession,
@@ -4131,9 +4133,11 @@ async function handleActiveUsersList(request, env) {
   }
   const sinceIso = sinceDate.toISOString();
   
-  // Get active users with their email and last seen time
+  // Fetch every session row seen within the window. A user can legitimately
+  // have several rows (multiple logins/devices), so the rows are grouped by
+  // email below — each user appears once, with their sessions as a count + list.
   const result = await database.prepare(`
-    SELECT DISTINCT
+    SELECT
       s.user_id,
       u.email,
       u.plan,
@@ -4147,23 +4151,56 @@ async function handleActiveUsersList(request, env) {
   `).bind(sinceIso).all();
   
   const allRows = Array.isArray(result?.results) ? result.results : [];
-  // Filter out admin users client-side
-  const rows = allRows.filter(row => !adminEmailSet.has(String(row.email || '').toLowerCase()));
-  
+
+  // Group session rows per user (excluding admin accounts) so the activity
+  // list counts each user exactly once instead of counting sessions.
+  const usersByEmail = new Map();
+  allRows.forEach((row) => {
+    const email = String(row.email || '').toLowerCase();
+    if (!email || adminEmailSet.has(email)) return;
+    let entry = usersByEmail.get(email);
+    if (!entry) {
+      entry = {
+        userId: row.user_id,
+        email: row.email,
+        plan: row.plan || 'free',
+        sessions: [],
+      };
+      usersByEmail.set(email, entry);
+    }
+    entry.sessions.push({
+      lastSeenAt: row.last_seen_at,
+      userAgent: String(row.user_agent || ''),
+      ipAddress: String(row.ip_address || ''),
+    });
+  });
+
+  // Query ordered rows newest-first, so sessions[0] is the most recent login.
+  const users = Array.from(usersByEmail.values())
+    .map((entry) => {
+      const first = entry.sessions[0];
+      return {
+        userId: entry.userId,
+        email: entry.email,
+        plan: entry.plan,
+        lastSeenAt: first?.lastSeenAt || '',
+        sessionCount: entry.sessions.length,
+        // Cap the per-user session detail so the payload stays small.
+        sessions: entry.sessions.slice(0, 50),
+      };
+    })
+    .sort((a, b) => Date.parse(b.lastSeenAt) - Date.parse(a.lastSeenAt));
+
+  const totalSessions = users.reduce((sum, user) => sum + user.sessionCount, 0);
+
   return {
     ok: true,
     period,
     label: periodConfig.label,
     since: sinceIso,
-    count: rows.length,
-    users: rows.map(row => ({
-      userId: row.user_id,
-      email: row.email,
-      plan: row.plan,
-      lastSeenAt: row.last_seen_at,
-      userAgent: row.user_agent || '',
-      ipAddress: row.ip_address || '',
-    })),
+    count: users.length,
+    totalSessions,
+    users,
   };
 }
 
@@ -4730,6 +4767,7 @@ export default {
     } catch (error) {
       const status = Number(error?.httpStatus || 0);
       const httpStatus = status > 0 ? status : 500;
+      console.error(`[route-error] ${request.method} ${normalizedPath} -> ${httpStatus}: ${error?.message || "unknown error"}`);
       if (isPaymentWebhook) {
         logWebhookEvent("error", "Webhook request failed", {
           path: normalizedPath,

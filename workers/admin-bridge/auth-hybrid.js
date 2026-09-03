@@ -6,7 +6,7 @@ import {
 const PASSWORD_HASH_ITERATIONS = 100000;
 const PASSWORD_HASH_ALGORITHM = "pbkdf2_sha256";
 const PASSWORD_SALT_BYTES = 16;
-const SESSION_SECRET_BYTES = 32;
+export const SESSION_SECRET_BYTES = 32;
 const DEFAULT_SESSION_TTL_SECONDS = 60 * 60 * 24 * 30;
 const TURNSTILE_VERIFY_URL = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
 
@@ -83,7 +83,7 @@ function base64UrlDecodeToBytes(value) {
   return bytes;
 }
 
-function generateRandomBase64Url(byteLength) {
+export function generateRandomBase64Url(byteLength) {
   const bytes = crypto.getRandomValues(new Uint8Array(byteLength));
   return base64UrlEncodeBytes(bytes);
 }

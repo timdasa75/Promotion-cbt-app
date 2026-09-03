@@ -47,7 +47,13 @@ async function postAdminApiJson(url, accessToken, body = {}, fetchImpl = fetch) 
   const payload = await response.json().catch(() => ({}));
   if (!response.ok || !payload?.ok) {
     const message = payload?.error || payload?.message || "Admin API request failed.";
-    throw new Error(message);
+    const error = new Error(message);
+    error.httpStatus = response.status;
+    if (response.status === 401) {
+      error.code = "SESSION_EXPIRED";
+      error.message = "Session expired. Please log in again.";
+    }
+    throw error;
   }
 
   return payload;

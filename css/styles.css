@@ -2885,6 +2885,86 @@ select:focus-visible,
     margin-bottom: 16px;
 }
 
+.admin-duplicates-summary {
+    margin: 0 0 16px;
+    border: 1px dashed color-mix(in srgb, var(--warning, #d97706) 45%, var(--line));
+    border-radius: 10px;
+    background: color-mix(in srgb, var(--warning, #d97706) 7%, var(--card));
+    padding: 10px 14px;
+}
+
+.admin-duplicates-summary[hidden] {
+    display: none;
+}
+
+.admin-duplicates-details summary {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: var(--ink-700);
+    user-select: none;
+}
+
+.admin-duplicates-details summary::-webkit-details-marker {
+    display: none;
+}
+
+.admin-duplicates-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--warning, #d97706);
+    color: #fff;
+    font-size: 0.7rem;
+    flex: none;
+}
+
+.admin-duplicates-list {
+    margin: 10px 0 2px;
+    padding: 0 0 0 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.admin-duplicates-item {
+    font-size: 0.82rem;
+    line-height: 1.45;
+}
+
+.admin-duplicates-email {
+    font-weight: 600;
+    color: var(--ink-800);
+    margin-right: 8px;
+    word-break: break-all;
+}
+
+.admin-duplicates-records {
+    color: var(--ink-600);
+}
+
+body.dark-mode .admin-duplicates-summary {
+    background: rgba(251, 191, 36, 0.06);
+}
+
+body.dark-mode .admin-duplicates-email {
+    color: #f1f5f9;
+}
+
+body.dark-mode .admin-duplicates-records {
+    color: #94a3b8;
+}
+
+body.dark-mode .admin-duplicates-details summary {
+    color: #cbd5e1;
+}
+
 .admin-stat-card {
     background: var(--card);
     border: 1px solid var(--line);
@@ -3090,6 +3170,11 @@ select:focus-visible,
     overflow-y: auto;
 }
 
+.admin-active-user-row {
+    display: grid;
+    gap: 2px;
+}
+
 .admin-active-user-item {
     display: flex;
     align-items: center;
@@ -3098,6 +3183,90 @@ select:focus-visible,
     border: 1px solid var(--line, #e2e8f0);
     border-radius: 8px;
     font-size: 0.85rem;
+}
+
+.admin-active-user-sessions-toggle {
+    flex: 0 0 auto;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 2px 10px;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--primary, #047857) 45%, var(--line));
+    background: color-mix(in srgb, var(--primary, #047857) 10%, transparent);
+    color: var(--primary, #047857);
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.admin-active-user-sessions-toggle:hover {
+    background: color-mix(in srgb, var(--primary, #047857) 18%, transparent);
+}
+
+.admin-active-user-session-list {
+    margin: 0 0 4px 12px;
+    padding: 8px 12px;
+    border-left: 2px solid var(--line, #e2e8f0);
+    display: grid;
+    gap: 4px;
+    font-size: 0.78rem;
+}
+
+.admin-active-user-session-list.hidden {
+    display: none;
+}
+
+.admin-active-user-session-list-heading {
+    font-weight: 600;
+    color: var(--ink-600, #64748b);
+    margin-bottom: 2px;
+}
+
+.admin-active-user-session {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.admin-active-user-session-time {
+    font-weight: 600;
+    color: var(--ink-800, #1e293b);
+    white-space: nowrap;
+}
+
+.admin-active-user-session-device {
+    color: var(--ink-600, #64748b);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 320px;
+}
+
+.admin-active-user-session-ip {
+    color: var(--ink-500, #94a3b8);
+    white-space: nowrap;
+}
+
+body.dark-mode .admin-active-user-session-list {
+    border-left-color: #334155;
+}
+
+body.dark-mode .admin-active-user-session-time {
+    color: #f1f5f9;
+}
+
+body.dark-mode .admin-active-user-session-device {
+    color: #cbd5e1;
+}
+
+body.dark-mode .admin-active-user-session-ip {
+    color: #94a3b8;
+}
+
+body.dark-mode .admin-active-user-sessions-toggle {
+    border-color: rgba(16, 185, 129, 0.5);
+    background: rgba(16, 185, 129, 0.12);
+    color: #34d399;
 }
 
 .admin-active-user-email {

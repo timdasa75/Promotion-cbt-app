@@ -68,7 +68,7 @@ import {
 } from "./quiz.js";
 import { escapeHtml, normalizeExplanationText, parseMarkdown } from "./quiz/formatting.js";
 import { debugLog } from "./logger.js";
-import { readSession } from "./authStorage.js";
+import { clearSession, readSession } from "./authStorage.js";
 import { PaginationController, getPaginatedItems } from "./pagination.js";
 import { buildAnalyticsSnapshot as composeAnalyticsSnapshot } from "./appAnalytics.js";
 import {
@@ -435,13 +435,67 @@ async function runOperationWithFeedback(
     }
     return result;
   } catch (error) {
-    const errorText = String(error?.message || "Operation failed.");
-    const nextMessage = failurePrefix ? `${failurePrefix} ${errorText}` : errorText;
-    showError(nextMessage);
+    if (isSessionExpiryError(error)) {
+      // Don't show a confusing failure toast for an expired session —
+      // sign the user out and force them through the login flow again.
+      forceReauthentication();
+    } else {
+      const errorText = String(error?.message || "Operation failed.");
+      const nextMessage = failurePrefix ? `${failurePrefix} ${errorText}` : errorText;
+      showError(nextMessage);
+    }
     throw error;
   } finally {
     showLoadingOverlay(false);
   }
+}
+
+// ============================================================
+// Session Expiry Handling
+// ============================================================
+
+let sessionExpiryHandlingInFlight = false;
+
+function isSessionExpiryError(error) {
+  const status = Number(error?.httpStatus || 0);
+  if (status === 401) return true;
+  if (error?.code === "SESSION_EXPIRED") return true;
+  const message = String(error?.message || "");
+  return /session.*expired|token.*expired|please (log|login) in again|sign in again/i.test(message);
+}
+
+/**
+ * When the stored session is no longer valid (Firebase ID token expired,
+ * Cloudflare session revoked, refresh failed) the app previously only showed
+ * a warning message. Instead, clear the stale session and force the user back
+ * through the login flow so every subsequent action runs with fresh auth.
+ */
+function forceReauthentication() {
+  if (sessionExpiryHandlingInFlight) return;
+  sessionExpiryHandlingInFlight = true;
+  try {
+    logoutUser();
+  } catch (ignored) {
+    // Best-effort remote logout — local session clearing below is what matters.
+  }
+  try {
+    clearSession();
+  } catch (ignored) {
+    // Best-effort storage cleanup.
+  }
+  try {
+    clearScreenState();
+  } catch (ignored) {
+    // Best-effort screen-state cleanup.
+  }
+  currentTopic = null;
+  updateAuthUI();
+  showScreen("splashScreen").catch(() => {});
+  openAuthModal("login");
+  showWarning("Your session has expired. Please log in again to continue.");
+  setTimeout(() => {
+    sessionExpiryHandlingInFlight = false;
+  }, 2000);
 }
 
 function getAuthToolbarIconMarkup(isSignedIn) {
@@ -750,9 +804,88 @@ async function fetchActivityMetrics() {
     const resp = await fetch(`${baseUrl}/adminActivityMetrics`, {
       headers: { 'Authorization': `Bearer ${session.accessToken}` }
     });
+    if (resp.status === 401) {
+      forceReauthentication();
+      return null;
+    }
     const data = await resp.json().catch(() => ({}));
     return data?.metrics || null;
   } catch { return null; }
+}
+
+// Track duplicate user records (same email across Firebase + Cloudflare) so
+// the dashboard can count each user once and still surface the extra records.
+let dashboardDuplicateGroups = [];
+
+function buildUniqueDirectorySummary(rows, adminEmailSet) {
+  const byEmail = new Map();
+  (Array.isArray(rows) ? rows : []).forEach((row) => {
+    const email = String(row?.email || "").trim().toLowerCase();
+    if (!email || adminEmailSet.has(email)) return;
+    const list = byEmail.get(email) || [];
+    list.push(row);
+    byEmail.set(email, list);
+  });
+
+  const groups = [];
+  const premiumEmails = new Set();
+  const verifiedEmails = new Set();
+  byEmail.forEach((records) => {
+    const email = records[0]?.email || "";
+    const premium = records.some((r) => String(r?.plan || "").toLowerCase() === "premium");
+    const verified = records.some((r) => r?.emailVerified === true);
+    if (premium) premiumEmails.add(email);
+    if (verified) verifiedEmails.add(email);
+    if (records.length > 1) {
+      groups.push({
+        email,
+        count: records.length,
+        records: records.map((r) => ({
+          id: String(r?.id || ""),
+          source: String(r?.source || ""),
+          plan: String(r?.plan || ""),
+          createdAt: String(r?.createdAt || r?.created_at || ""),
+        })),
+      });
+    }
+  });
+
+  return {
+    uniqueUsers: byEmail.size,
+    premiumUsers: premiumEmails.size,
+    verifiedUsers: verifiedEmails.size,
+    duplicateGroups: groups,
+    duplicateRecords: groups.reduce((sum, group) => sum + (group.count - 1), 0),
+  };
+}
+
+function renderDashboardDuplicatesInfo() {
+  const container = document.getElementById('adminDuplicatesSummary');
+  if (!container) return;
+  const heading = document.getElementById('adminDuplicatesHeading');
+  const listEl = document.getElementById('adminDuplicatesList');
+  if (!dashboardDuplicateGroups.length) {
+    container.hidden = true;
+    return;
+  }
+  const extraRecords = dashboardDuplicateGroups.reduce((sum, g) => sum + (g.count - 1), 0);
+  container.hidden = false;
+  if (heading) {
+    heading.textContent = `${extraRecords} additional record${extraRecords !== 1 ? "s" : ""} across ${dashboardDuplicateGroups.length} user${dashboardDuplicateGroups.length !== 1 ? "s" : ""} (same email in more than one account source)`;
+  }
+  if (listEl) {
+    listEl.innerHTML = dashboardDuplicateGroups.map((group) => {
+      const sourceLabels = group.records.map((record) => {
+        const source = String(record.source || "unknown");
+        const created = record.createdAt ? ` · created ${new Date(record.createdAt).toLocaleDateString()}` : "";
+        return `${escapeHtml(source)}${created}`;
+      });
+      return `<li class="admin-duplicates-item">
+        <span class="admin-duplicates-email">${escapeHtml(group.email)}</span>
+        <span class="admin-duplicates-records">${group.count} records: ${sourceLabels.join(" | ")}</span>
+      </li>`;
+    }).join('');
+  }
 }
 
 function updateActivityMetricsDisplay(metrics) {
@@ -775,16 +908,30 @@ function updateActivityMetricsDisplay(metrics) {
   if (weeklyActiveEl) weeklyActiveEl.textContent = String(Math.max(0, (metrics.weeklyActive || 0) - adminDeduction));
   if (monthlyActiveEl) monthlyActiveEl.textContent = String(Math.max(0, (metrics.monthlyActive || 0) - adminDeduction));
   
-  // Update stat cards from enriched metrics
+  // Update stat cards from enriched metrics.
+  // Users, Premium and Verified are derived from the merged directory
+  // (Firebase + Cloudflare) and de-duplicated by email so each user is
+  // counted exactly once. The Worker metrics are used as a fallback when the
+  // directory has not loaded yet.
   const totalUsersEl = document.getElementById('adminStatTotalUsers');
   const premiumUsersEl = document.getElementById('adminStatPremiumUsers');
   const trustedDevicesEl = document.getElementById('adminStatTrustedDevices');
   const recentLoginsEl = document.getElementById('adminStatRecentLogins');
-  // Use merged list count (Firebase + Cloudflare) excluding admins, if available
-  const mergedUserCount = (adminDirectoryUsers || []).filter(u => !adminEmailSet.has(String(u.email || '').toLowerCase())).length;
-  const totalUsersCount = mergedUserCount > (metrics.totalUsers || 0) ? mergedUserCount : (metrics.totalUsers || 0);
+  const directorySummary = buildUniqueDirectorySummary(adminDirectoryUsers, adminEmailSet);
+  dashboardDuplicateGroups = directorySummary.duplicateGroups;
+  renderDashboardDuplicatesInfo();
+  const totalUsersCount =
+    directorySummary.uniqueUsers > 0
+      ? directorySummary.uniqueUsers
+      : (metrics.totalUsers || 0);
   if (totalUsersEl) totalUsersEl.textContent = String(totalUsersCount);
-  if (premiumUsersEl && metrics.premiumUsers != null) premiumUsersEl.textContent = String(metrics.premiumUsers);
+  if (premiumUsersEl) {
+    premiumUsersEl.textContent = String(
+      directorySummary.premiumUsers > 0
+        ? directorySummary.premiumUsers
+        : (metrics.premiumUsers || 0),
+    );
+  }
   if (trustedDevicesEl && metrics.totalTrustedDevices != null) trustedDevicesEl.textContent = String(metrics.totalTrustedDevices);
   if (recentLoginsEl && metrics.recentLogins != null) recentLoginsEl.textContent = String(metrics.recentLogins);
   
@@ -870,33 +1017,103 @@ async function loadActiveUsersList(period) {
     const response = await fetch(`${baseUrl}/adminActiveUsers?period=${period}`, {
       headers: { 'Authorization': `Bearer ${accessToken}` },
     });
+    if (response.status === 401) {
+      forceReauthentication();
+      return;
+    }
     const result = await response.json().catch(() => ({}));
     
     if (!response.ok || !result?.ok) {
       throw new Error(result?.error || 'Failed to load active users');
     }
     
-    if (titleEl) titleEl.textContent = `${result.label} (${result.count} user${result.count !== 1 ? 's' : ''})`;
+    if (titleEl) {
+      const userLabel = `${result.count} user${result.count !== 1 ? 's' : ''}`;
+      const sessionLabel =
+        result.totalSessions !== undefined && result.totalSessions !== result.count
+          ? ` · ${result.totalSessions} session${result.totalSessions !== 1 ? 's' : ''}`
+          : '';
+      titleEl.textContent = `${result.label} (${userLabel}${sessionLabel})`;
+    }
     
-    if (result.users.length === 0) {
+    const activeUsers = Array.isArray(result.users) ? result.users : [];
+    if (activeUsers.length === 0) {
       listEl.innerHTML = '<p class="admin-empty-state">No users active in this period.</p>';
       return;
     }
     
-    listEl.innerHTML = result.users.map(user => {
+    listEl.innerHTML = activeUsers.map((user, index) => {
       const planClass = user.plan === 'premium' ? 'premium' : 'free';
       const lastSeen = user.lastSeenAt ? formatTimeAgo(user.lastSeenAt) : 'Unknown';
+      const sessionCount = Number(user.sessionCount || 1);
+      const hasMultipleSessions = sessionCount > 1 && Array.isArray(user.sessions) && user.sessions.length > 1;
+      const sessionToggle = hasMultipleSessions
+        ? `<button type="button" class="admin-active-user-sessions-toggle" data-toggle-sessions="${index}" aria-expanded="false" data-tooltip="This user was seen in ${sessionCount} sessions during the period">${sessionCount} sessions</button>`
+        : '';
+      const sessionDetail = hasMultipleSessions
+        ? `<div class="admin-active-user-session-list hidden" data-sessions="${index}">
+             <div class="admin-active-user-session-list-heading">Most recent ${Math.min(sessionCount, user.sessions.length)} sessions</div>
+             ${user.sessions.map(sessionRowHtml).join('')}
+           </div>`
+        : '';
       return `
-        <div class="admin-active-user-item">
-          <span class="admin-active-user-email">${escapeHtml(user.email)}</span>
-          <span class="admin-active-user-plan ${planClass}">${user.plan || 'free'}</span>
-          <span class="admin-active-user-lastseen">${lastSeen}</span>
+        <div class="admin-active-user-row">
+          <div class="admin-active-user-item">
+            <span class="admin-active-user-email">${escapeHtml(user.email)}</span>
+            <span class="admin-active-user-plan ${planClass}">${escapeHtml(user.plan || 'free')}</span>
+            <span class="admin-active-user-lastseen">${lastSeen}</span>
+            ${sessionToggle}
+          </div>
+          ${sessionDetail}
         </div>
       `;
     }).join('');
+    
+    // Expand/collapse the per-user session detail lists
+    listEl.querySelectorAll('[data-toggle-sessions]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const index = btn.dataset.toggleSessions;
+        const detail = listEl.querySelector(`[data-sessions="${index}"]`);
+        if (!detail) return;
+        const nowExpanded = detail.classList.toggle('hidden') === false;
+        btn.setAttribute('aria-expanded', String(nowExpanded));
+      });
+    });
   } catch (error) {
     listEl.innerHTML = `<p class="admin-empty-state">Error: ${escapeHtml(error.message)}</p>`;
   }
+}
+
+function formatSessionTime(isoString) {
+  if (!isoString) return 'Unknown';
+  const date = new Date(isoString);
+  if (Number.isNaN(date.getTime())) return 'Unknown';
+  try {
+    return date.toLocaleString([], {
+      month: 'short',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+    });
+  } catch {
+    return date.toLocaleString();
+  }
+}
+
+function sessionRowHtml(session) {
+  const when = formatSessionTime(session?.lastSeenAt);
+  const agent = String(session?.userAgent || '').trim();
+  const ip = String(session?.ipAddress || '').trim();
+  let device = agent ? agent.split(/[()]/).filter((part) => part.trim()).map((part) => part.trim()).filter((part) => !/^Mozilla/.test(part)).join(' · ') : '';
+  if (!device && agent) {
+    device = agent.slice(0, 48);
+  }
+  if (!device) device = 'Unknown device';
+  return `<div class="admin-active-user-session">
+    <span class="admin-active-user-session-time">${when}</span>
+    <span class="admin-active-user-session-device" title="${escapeHtml(agent)}">${escapeHtml(device)}</span>
+    ${ip ? `<span class="admin-active-user-session-ip">${escapeHtml(ip)}</span>` : ''}
+  </div>`;
 }
 
 function initializeActivityCardClicks() {
@@ -6400,9 +6617,16 @@ async function refreshAdminUserDirectory() {
         if (result.warning) {
           notice.textContent = result.warning;
           notice.classList.remove("hidden");
-          // Show session expired notification when using fallback data
+          // A local fallback usually means the admin API call failed, most
+          // commonly because the stored session expired. Force re-login
+          // instead of leaving the admin on stale fallback data.
           if (result.source === "local" && result.warning.includes("unavailable")) {
-            showWarning("Your session may have expired. Please log out and log back in to refresh the data.");
+            const staleSession = readSession();
+            if (!staleSession?.accessToken) {
+              forceReauthentication();
+            } else {
+              showWarning("User directory is unavailable. Your session may have expired — please log out and log back in.");
+            }
           }
         } else {
           notice.textContent = "";
@@ -6410,6 +6634,10 @@ async function refreshAdminUserDirectory() {
         }
       }
     } catch (error) {
+      if (isSessionExpiryError(error)) {
+        forceReauthentication();
+        return;
+      }
       adminDirectoryUsers = [];
       renderAdminUserDirectory();
       renderAdminRequests();

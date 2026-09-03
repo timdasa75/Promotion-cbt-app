@@ -47,6 +47,10 @@ __pycache__/
 .claude/*.local.json
 .claude/settings.local.json
 
+# Tooling / working artifacts
+.freebuff/
+.tmp-preview.png
+
 # Runtime auth config (contains live API key; keep local/deploy-managed only)
 config/runtime-auth.js
 
