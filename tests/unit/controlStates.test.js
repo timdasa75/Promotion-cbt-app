@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import {
   CONTROL_STATE_META,
   resolvePremiumLockNote,
+  resolveQuestionCountDisplay,
   resolveQueueUnlockNote,
   resolveUsedCapNote,
 } from "../../js/controlStates.js";
@@ -78,4 +79,27 @@ test("resolveUsedCapNote names the reset date when one is provided", () => {
 
   const withoutDate = resolveUsedCapNote({ itemLabel: "Free mock" });
   assert.equal(withoutDate.text, "Free mock used this week.");
+});
+
+test("resolveQuestionCountDisplay keeps plain totals when no filter applies", () => {
+  assert.equal(resolveQuestionCountDisplay({ total: 600 }), null);
+  assert.equal(resolveQuestionCountDisplay({ total: 600, cap: 1000 }), null);
+  assert.equal(resolveQuestionCountDisplay({ total: 0 }), null);
+  assert.equal(resolveQuestionCountDisplay({ total: 0, cap: 100 }), null);
+});
+
+test("resolveQuestionCountDisplay labels free-plan caps as available of total", () => {
+  const split = resolveQuestionCountDisplay({ total: 1466, cap: 100 });
+  assert.deepEqual(split, {
+    strong: "100",
+    tail: "of 1466 Questions",
+    title: "Free plan practice covers up to 100 of this content's 1466 questions.",
+  });
+});
+
+test("resolveQuestionCountDisplay never advertises locked premium totals as usable", () => {
+  const locked = resolveQuestionCountDisplay({ total: 1466, locked: true });
+  assert.equal(locked.strong, "1466");
+  assert.equal(locked.tail, "questions in full bank");
+  assert.match(locked.title, /full bank/);
 });

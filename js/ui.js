@@ -24,7 +24,10 @@ import {
 import { getPaymentProvider } from "./authRuntime.js";
 import { debugLog } from "./logger.js";
 import { escapeHtml } from "./quiz/formatting.js";
-import { resolveUsedCapNote } from "./controlStates.js";
+import {
+  resolveQuestionCountDisplay,
+  resolveUsedCapNote,
+} from "./controlStates.js";
 import { showError, showSuccess, showWarning } from "./ui/notifications.js";
 import {
   initializeScreenAccessibility,
@@ -53,6 +56,26 @@ function premiumLockBadgeHtml(label = "Premium topic") {
       <span class="state-tag">${escapeHtml(label)}</span>
       <button type="button" class="state-action" data-open-pricing>View access options</button>
     </span>`;
+}
+
+// Honest question-count footer for topic cards: plain "N Questions" when the
+// number is fully usable, otherwise an available-of-total or full-bank label.
+function buildQuestionCountMarkup(model, fallbackTotal) {
+  const svg =
+    '<svg class="icon-nudge-right" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>';
+  if (!model) {
+    return `<div class="question-count">${svg}<strong>${fallbackTotal}</strong> Questions</div>`;
+  }
+  const titleAttr = model.title ? ` title="${escapeHtml(model.title)}"` : "";
+  return `<div class="question-count"${titleAttr}>${svg}<strong>${escapeHtml(model.strong)}</strong> ${escapeHtml(model.tail)}</div>`;
+}
+
+function buildCategoryCountMarkup(model, fallbackTotal) {
+  if (!model) {
+    return `<div class="question-count"><strong>${fallbackTotal}</strong> Questions</div>`;
+  }
+  const titleAttr = model.title ? ` title="${escapeHtml(model.title)}"` : "";
+  return `<div class="question-count"${titleAttr}><strong>${escapeHtml(model.strong)}</strong> ${escapeHtml(model.tail)}</div>`;
 }
 
 export function openPricingModal() {
@@ -308,6 +331,10 @@ export async function displayCategories(topic, onSelect) {
 
     const entitlement = getCurrentEntitlement();
     const categoryLimit = entitlement.maxSubcategories;
+    const subcategoryQuestionCap =
+      typeof entitlement?.maxQuestionsPerSubcategory === "number"
+        ? entitlement.maxQuestionsPerSubcategory
+        : null;
     const countSubcategoryQuestions = (subcategory) =>
       getQuestionsFromSubcategory(subcategory).length;
 
@@ -324,6 +351,12 @@ export async function displayCategories(topic, onSelect) {
         subcategoriesToDisplay.map(async (subcategory, index) => {
           const isUnlocked = unlockedCategoryIds.has(subcategory.id);
           const count = countSubcategoryQuestions(subcategory);
+          const categoryCountModel = resolveQuestionCountDisplay({
+            total: count,
+            locked: !isUnlocked,
+            cap: isUnlocked ? subcategoryQuestionCap : null,
+          });
+          const categoryCountMarkup = buildCategoryCountMarkup(categoryCountModel, count);
 
           const categoryCard = document.createElement("div");
           categoryCard.className = "topic-card ripple scale-on-hover";
@@ -346,9 +379,7 @@ export async function displayCategories(topic, onSelect) {
                   ${!isUnlocked ? premiumLockBadgeHtml("Premium subtopic") : ""}
               </div>
               <div class="card-footer">
-                  <div class="question-count">
-                      <strong>${count}</strong> Questions
-                  </div>
+                  ${categoryCountMarkup}
               </div>
           `;
           const categoryPricingBtn = categoryCard.querySelector(".state-action[data-open-pricing]");
@@ -464,6 +495,11 @@ export async function displayTopics(topics, onSelect) {
   debugLog("Creating topic cards for", topics.length, "topics");
   const entitlement = getCurrentEntitlement();
   const topicLimit = entitlement.maxTopics;
+  const perTopicQuestionCap =
+    typeof entitlement?.maxSubcategories === "number" &&
+    typeof entitlement?.maxQuestionsPerSubcategory === "number"
+      ? entitlement.maxSubcategories * entitlement.maxQuestionsPerSubcategory
+      : null;
   const unlockedTopics = getAccessibleTopics(topics);
   const unlockedTopicIds = new Set(unlockedTopics.map((topic) => topic.id));
   const freeMockExamStatus = getFreeMockExamEligibility();
@@ -615,6 +651,15 @@ export async function displayTopics(topics, onSelect) {
 
   studyTopics.forEach((topic, index) => {
     const { isUnlocked } = getTopicAccessState(topic);
+    const topicCountModel = resolveQuestionCountDisplay({
+      total: counts[topic.id] ?? topic.mockExamQuestionCount ?? 0,
+      locked: !isUnlocked,
+      cap: perTopicQuestionCap,
+    });
+    const questionCountMarkup = buildQuestionCountMarkup(
+      topicCountModel,
+      counts[topic.id] ?? topic.mockExamQuestionCount ?? 0,
+    );
     const topicCard = document.createElement("div");
     topicCard.className = "topic-card ripple scale-on-hover";
     topicCard.dataset.topicId = String(topic?.id || "");
@@ -638,10 +683,7 @@ export async function displayTopics(topics, onSelect) {
             ${lockBadge}
         </div>
         <div class="card-footer">
-            <div class="question-count">
-                <svg class="icon-nudge-right" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
-                <strong>${counts[topic.id] || topic.mockExamQuestionCount || 0}</strong> Questions
-            </div>
+            ${questionCountMarkup}
             <div class="card-action-indicator">
                 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3"><path d="M9 18l6-6-6-6"></path></svg>
             </div>

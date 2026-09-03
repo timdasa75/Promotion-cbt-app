@@ -80,3 +80,39 @@ export function resolveUsedCapNote({
       : `${itemLabel} used this week.`,
   };
 }
+
+/**
+ * Honest question-count label for topic/subtopic cards.
+ *
+ * Returns null when the plain "N Questions" label is accurate (no access
+ * filter reduces the visible total). Otherwise it returns an explicit
+ * available-of-total or full-bank label so premium content is never shown
+ * as if it were immediately usable.
+ */
+export function resolveQuestionCountDisplay({
+  total = 0,
+  cap = null,
+  locked = false,
+} = {}) {
+  const totalN = Math.max(0, Math.floor(Number(total) || 0));
+  if (totalN <= 0) return null;
+
+  if (locked) {
+    return {
+      strong: String(totalN),
+      tail: "questions in full bank",
+      title: `Premium content — the full bank holds ${totalN} questions.`,
+    };
+  }
+
+  const capN = Math.max(0, Math.floor(Number(cap) || 0));
+  if (capN > 0 && capN < totalN) {
+    return {
+      strong: String(capN),
+      tail: `of ${totalN} Questions`,
+      title: `Free plan practice covers up to ${capN} of this content's ${totalN} questions.`,
+    };
+  }
+
+  return null;
+}
