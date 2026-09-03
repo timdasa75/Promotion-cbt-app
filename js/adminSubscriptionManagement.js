@@ -1,10 +1,8 @@
 /**
  * Subscription Management Module
- * Handles the admin panel's subscription overview with tabs for:
- * - Active Subscriptions
- * - Expiring Soon
- * - Payment History
- * - Revenue Metrics
+ * Handles the admin panel's payment section with 2 tabs:
+ * - Subscriptions: Summary stats + filterable subscription list
+ * - Transactions: Summary stats + unified transaction table
  */
 
 import { getRuntimeConfig } from "./authRuntime.js";
@@ -26,7 +24,6 @@ export function setSubscriptionUserData(users) {
   cachedPayments.forEach((p) => {
     const email = (p.email || p.flwCustomerEmail || '').toLowerCase();
     if (!email) return;
-    // Use the latest payment's expiry
     if (!paymentExpiryMap[email] || (p.expiresAt && p.expiresAt > paymentExpiryMap[email])) {
       paymentExpiryMap[email] = p.expiresAt || '';
     }
@@ -43,9 +40,8 @@ export function setSubscriptionUserData(users) {
   
   // Re-render if already initialized
   if (document.getElementById("activeSubList")) {
-    renderActiveSubscriptions();
-    renderExpiringSoon();
-    renderRevenueMetrics();
+    renderSubscriptionsTab();
+    renderTransactionsTab();
   }
 }
 
@@ -95,11 +91,9 @@ function switchTab(tabId) {
  */
 async function loadInitialData() {
   await Promise.all([loadSubscriptions(), loadPayments()]);
-  // Re-enrich subscriptions with payment expiry dates now that payments are loaded
   enrichSubscriptionsWithPaymentData();
-  renderActiveSubscriptions();
-  renderExpiringSoon();
-  renderRevenueMetrics();
+  renderSubscriptionsTab();
+  renderTransactionsTab();
 }
 
 /**
@@ -129,11 +123,10 @@ function enrichSubscriptionsWithPaymentData() {
 async function loadTabData(tabId) {
   switch (tabId) {
     case "subscriptions":
-      renderActiveSubscriptions();
-      renderRevenueMetrics();
+      renderSubscriptionsTab();
       break;
     case "transactions":
-      renderPaymentHistory();
+      renderTransactionsTab();
       break;
   }
 }
@@ -195,53 +188,137 @@ async function loadPayments() {
 }
 
 /**
- * Render active subscriptions list
+ * Get subscription status for a subscription
  */
-function renderActiveSubscriptions() {
+function getSubscriptionStatus(sub) {
+  const expiresAt = Date.parse(sub.planExpiresAt || "");
+  const now = Date.now();
+  const sevenDays = 7 * 24 * 60 * 60 * 1000;
+  
+  if (!expiresAt) return "active"; // No expiry = active (admin override)
+  if (expiresAt < now) return "expired";
+  if (expiresAt - now < sevenDays) return "expiring";
+  return "active";
+}
+
+/**
+ * Render the entire Subscriptions tab (summary stats + list)
+ */
+function renderSubscriptionsTab() {
+  // Calculate summary stats
+  const now = Date.now();
+  const sevenDays = 7 * 24 * 60 * 60 * 1000;
+  
+  const activeSubs = cachedSubscriptions.filter((sub) => {
+    const status = getSubscriptionStatus(sub);
+    return status === "active";
+  });
+  
+  const expiringSoon = cachedSubscriptions.filter((sub) => {
+    return getSubscriptionStatus(sub) === "expiring";
+  });
+  
+  const totalRevenue = cachedPayments
+    .filter((p) => p.status === "successful")
+    .reduce((sum, p) => sum + (p.amount || 0), 0);
+  
+  const totalUsers = cachedSubscriptions.length || 1;
+  const conversionRate = ((activeSubs.length / totalUsers) * 100).toFixed(1);
+
+  // Update summary stats
+  const totalActiveEl = document.getElementById("totalActiveSubs");
+  const expiringSoonEl = document.getElementById("expiringSoonCount");
+  const totalRevenueEl = document.getElementById("totalRevenue");
+  const conversionRateEl = document.getElementById("conversionRate");
+  
+  if (totalActiveEl) totalActiveEl.textContent = activeSubs.length;
+  if (expiringSoonEl) expiringSoonEl.textContent = expiringSoon.length;
+  if (totalRevenueEl) totalRevenueEl.textContent = `₦${totalRevenue.toLocaleString()}`;
+  if (conversionRateEl) conversionRateEl.textContent = `${conversionRate}%`;
+
+  // Render the subscription list
+  renderSubscriptionList();
+}
+
+/**
+ * Render the subscription list with filters
+ */
+function renderSubscriptionList() {
   const container = document.getElementById("activeSubList");
   const countEl = document.getElementById("activeSubCount");
   if (!container) return;
 
-  const activeSubs = cachedSubscriptions.filter((sub) => {
-    const expiresAt = Date.parse(sub.planExpiresAt || "");
-    return !expiresAt || expiresAt > Date.now();
-  });
+  // Get filter values
+  const statusFilter = document.getElementById("activeSubFilter")?.value || "all";
+  const planFilter = document.getElementById("activeSubPlanFilter")?.value || "all";
+  const searchTerm = (document.getElementById("activeSubSearch")?.value || "").toLowerCase();
 
-  if (countEl) countEl.textContent = activeSubs.length;
+  // Apply filters
+  let filtered = cachedSubscriptions.map((sub) => ({
+    ...sub,
+    _status: getSubscriptionStatus(sub),
+  }));
 
-  if (activeSubs.length === 0) {
+  if (statusFilter !== "all") {
+    filtered = filtered.filter((sub) => sub._status === statusFilter);
+  }
+  if (planFilter !== "all") {
+    filtered = filtered.filter((sub) => (sub.billingCycle || "monthly") === planFilter);
+  }
+  if (searchTerm) {
+    filtered = filtered.filter((sub) => 
+      (sub.email || "").toLowerCase().includes(searchTerm)
+    );
+  }
+
+  countEl.textContent = filtered.length;
+
+  if (filtered.length === 0) {
     container.innerHTML = `
       <div class="admin-empty-state">
         <div class="icon">📋</div>
-        <p>No active subscriptions found.</p>
+        <p>No subscriptions found matching your filters.</p>
       </div>
     `;
     return;
   }
 
-  container.innerHTML = activeSubs
+  container.innerHTML = filtered
     .map((sub) => {
-      const expiresAt = Date.parse(sub.planExpiresAt || "");
-      const isExpiringSoon = expiresAt && expiresAt - Date.now() < 7 * 24 * 60 * 60 * 1000;
-      const expiryClass = isExpiringSoon ? "expiring-soon" : "";
       const source = sub.planSource || sub.plan_source || '';
       const sourceLabel = source === 'override' ? ' (Admin)' : source === 'payment' ? ' (Paid)' : '';
       let expiryText;
+      const expiresAt = Date.parse(sub.planExpiresAt || "");
+      
       if (expiresAt) {
-        expiryText = new Date(expiresAt).toLocaleDateString();
+        const daysLeft = Math.ceil((expiresAt - Date.now()) / (24 * 60 * 60 * 1000));
+        if (daysLeft < 0) {
+          expiryText = 'Expired';
+        } else if (daysLeft === 0) {
+          expiryText = 'Expires today';
+        } else if (daysLeft <= 7) {
+          expiryText = `${daysLeft} day${daysLeft !== 1 ? 's' : ''} left`;
+        } else {
+          expiryText = new Date(expiresAt).toLocaleDateString();
+        }
       } else if (source === 'override') {
         expiryText = 'No expiry (Admin)';
       } else {
         expiryText = 'No expiry';
       }
+      
       const cycleLabel = sub.billingCycle || 'premium';
+      const statusClass = sub._status === 'expired' ? 'expired' : 
+                          sub._status === 'expiring' ? 'expiring' : 'active';
+      const statusLabel = sub._status === 'expired' ? 'Expired' : 
+                          sub._status === 'expiring' ? 'Expiring' : 'Active';
 
       return `
         <div class="admin-subscription-item">
           <span class="email">${escapeHtml(sub.email || "")}${sourceLabel}</span>
           <span class="plan-badge ${cycleLabel}">${cycleLabel}</span>
-          <span class="expiry ${expiryClass}">Expires: ${expiryText}</span>
-          <span class="status-badge active">Active</span>
+          <span class="expiry ${statusClass === 'expiring' ? 'expiring-soon' : ''}">${expiryText}</span>
+          <span class="status-badge ${statusClass}">${statusLabel}</span>
         </div>
       `;
     })
@@ -249,168 +326,87 @@ function renderActiveSubscriptions() {
 }
 
 /**
- * Render expiring soon subscriptions
+ * Render the entire Transactions tab (summary stats + table)
  */
-function renderExpiringSoon() {
-  const container = document.getElementById("expiringSubList");
-  const countEl = document.getElementById("expiringSubCount");
-  if (!container) return;
+function renderTransactionsTab() {
+  // Calculate summary stats
+  const totalTx = cachedPayments.length;
+  const successfulTx = cachedPayments.filter((p) => p.status === "successful").length;
+  const pendingTx = cachedPayments.filter((p) => p.status === "pending").length;
+  const failedTx = cachedPayments.filter((p) => p.status === "failed").length;
 
-  const now = Date.now();
-  const sevenDays = 7 * 24 * 60 * 60 * 1000;
+  // Update summary stats
+  const totalTxEl = document.getElementById("totalTransactions");
+  const successfulTxEl = document.getElementById("successfulTxCount");
+  const pendingTxEl = document.getElementById("pendingTxCount");
+  const failedTxEl = document.getElementById("failedTxCount");
+  
+  if (totalTxEl) totalTxEl.textContent = totalTx;
+  if (successfulTxEl) successfulTxEl.textContent = successfulTx;
+  if (pendingTxEl) pendingTxEl.textContent = pendingTx;
+  if (failedTxEl) failedTxEl.textContent = failedTx;
 
-  const expiringSoon = cachedSubscriptions.filter((sub) => {
-    const expiresAt = Date.parse(sub.planExpiresAt || "");
-    return expiresAt && expiresAt > now && expiresAt - now < sevenDays;
-  });
-
-  if (countEl) countEl.textContent = expiringSoon.length;
-
-  if (expiringSoon.length === 0) {
-    container.innerHTML = `
-      <div class="admin-empty-state">
-        <div class="icon">✅</div>
-        <p>No subscriptions expiring in the next 7 days.</p>
-      </div>
-    `;
-    return;
-  }
-
-  container.innerHTML = expiringSoon
-    .map((sub) => {
-      const expiresAt = Date.parse(sub.planExpiresAt || "");
-      const daysLeft = Math.ceil((expiresAt - now) / (24 * 60 * 60 * 1000));
-
-      return `
-        <div class="admin-subscription-item">
-          <span class="email">${escapeHtml(sub.email || "")}</span>
-          <span class="plan-badge ${sub.billingCycle || "monthly"}">${sub.billingCycle || "monthly"}</span>
-          <span class="expiry expiring-soon">${daysLeft} day${daysLeft !== 1 ? "s" : ""} left</span>
-          <span class="status-badge expiring">Expiring</span>
-        </div>
-      `;
-    })
-    .join("");
+  // Render the transactions table
+  renderTransactionsTable();
 }
 
 /**
- * Render payment history list
+ * Render the transactions table with filters
  */
-function renderPaymentHistory() {
+function renderTransactionsTable() {
   const container = document.getElementById("paymentHistoryList");
   const countEl = document.getElementById("paymentHistoryCount");
   if (!container) return;
 
-  if (countEl) countEl.textContent = cachedPayments.length;
+  // Get filter values
+  const statusFilter = document.getElementById("paymentHistoryStatus")?.value || "all";
+  const searchTerm = (document.getElementById("paymentHistorySearch")?.value || "").toLowerCase();
 
-  if (cachedPayments.length === 0) {
+  // Apply filters
+  let filtered = [...cachedPayments];
+
+  if (statusFilter !== "all") {
+    filtered = filtered.filter((p) => p.status === statusFilter);
+  }
+  if (searchTerm) {
+    filtered = filtered.filter((p) => 
+      (p.email || "").toLowerCase().includes(searchTerm) ||
+      (p.flwTransactionId || "").toLowerCase().includes(searchTerm) ||
+      (p.paymentId || "").toLowerCase().includes(searchTerm)
+    );
+  }
+
+  // Sort by date, newest first
+  filtered.sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0));
+
+  countEl.textContent = filtered.length;
+
+  if (filtered.length === 0) {
     container.innerHTML = `
-      <div class="admin-empty-state">
-        <div class="icon">💳</div>
-        <p>No payment history found.</p>
-      </div>
+      <tr class="admin-transactions-empty">
+        <td colspan="6" style="text-align: center; padding: 24px; color: var(--ink-600);">No transactions found</td>
+      </tr>
     `;
     return;
   }
 
-  // Sort by date, newest first
-  const sorted = [...cachedPayments].sort(
-    (a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0)
-  );
-
-  container.innerHTML = sorted
-    .slice(0, 50) // Show last 50 payments
+  container.innerHTML = filtered
     .map((payment) => {
       const date = payment.createdAt
         ? new Date(payment.createdAt).toLocaleDateString()
         : "Unknown";
-      const statusClass = payment.status === "successful" ? "active" : "expired";
+      const statusClass = payment.status === "successful" ? "active" : 
+                          payment.status === "pending" ? "warning" : "expired";
 
       return `
-        <div class="admin-payment-item">
-          <span class="email">${escapeHtml(payment.email || "")}</span>
-          <span class="amount">₦${(payment.amount || 0).toLocaleString()}</span>
-          <span class="tx-id">${payment.flwTransactionId || payment.paymentId || "N/A"}</span>
-          <span class="date">${date}</span>
-          <span class="status-badge ${statusClass}">${payment.status || "unknown"}</span>
-        </div>
-      `;
-    })
-    .join("");
-}
-
-/**
- * Render revenue metrics
- */
-function renderRevenueMetrics() {
-  // Total revenue
-  const totalRevenue = cachedPayments
-    .filter((p) => p.status === "successful")
-    .reduce((sum, p) => sum + (p.amount || 0), 0);
-
-  // Monthly revenue (last 30 days)
-  const thirtyDaysAgo = Date.now() - 30 * 24 * 60 * 60 * 1000;
-  const monthlyRevenue = cachedPayments
-    .filter(
-      (p) =>
-        p.status === "successful" &&
-        new Date(p.createdAt || 0).getTime() > thirtyDaysAgo
-    )
-    .reduce((sum, p) => sum + (p.amount || 0), 0);
-
-  // Active subscribers
-  const activeSubs = cachedSubscriptions.filter((sub) => {
-    const expiresAt = Date.parse(sub.planExpiresAt || "");
-    return !expiresAt || expiresAt > Date.now();
-  });
-
-  // Conversion rate
-  const totalUsers = cachedSubscriptions.length || 1;
-  const conversionRate = ((activeSubs.length / totalUsers) * 100).toFixed(1);
-
-  // Update DOM
-  document.getElementById("totalRevenue").textContent = `₦${totalRevenue.toLocaleString()}`;
-  document.getElementById("monthlyRevenue").textContent = `₦${monthlyRevenue.toLocaleString()}`;
-  document.getElementById("activeSubscriberCount").textContent = activeSubs.length;
-  document.getElementById("conversionRate").textContent = `${conversionRate}%`;
-
-  // Revenue by plan
-  renderRevenueByPlan();
-
-  const expiringSoonCount = cachedSubscriptions.filter((sub) => {
-    const expiresAt = Date.parse(sub.planExpiresAt || "");
-    return expiresAt && expiresAt > Date.now() && expiresAt - Date.now() < 7 * 24 * 60 * 60 * 1000;
-  }).length;
-  const totalActive = document.getElementById("totalActiveSubs");
-  const expiringSoon = document.getElementById("expiringSoonCount");
-  if (totalActive) totalActive.textContent = String(activeSubs.length);
-  if (expiringSoon) expiringSoon.textContent = String(expiringSoonCount);
-}
-
-/**
- * Render revenue breakdown by plan
- */
-function renderRevenueByPlan() {
-  const container = document.getElementById("revenueByPlanList");
-  if (!container) return;
-
-  const plans = ["monthly", "quarterly", "bi-annual", "annual"];
-  const revenueByPlan = {};
-
-  plans.forEach((plan) => {
-    revenueByPlan[plan] = cachedPayments
-      .filter((p) => p.status === "successful" && p.billingCycle === plan)
-      .reduce((sum, p) => sum + (p.amount || 0), 0);
-  });
-
-  container.innerHTML = plans
-    .map((plan) => {
-      const revenue = revenueByPlan[plan] || 0;
-      return `
-        <div class="admin-subscription-item">
-          <span class="email" style="text-transform: capitalize;">${plan}</span>
-          <span class="amount">₦${revenue.toLocaleString()}</span>
-        </div>
+        <tr>
+          <td>${escapeHtml(payment.email || "")}</td>
+          <td>₦${(payment.amount || 0).toLocaleString()}</td>
+          <td>${escapeHtml(payment.billingCycle || "N/A")}</td>
+          <td><span class="status-badge ${statusClass}">${payment.status || "unknown"}</span></td>
+          <td class="tx-id">${payment.flwTransactionId || payment.paymentId || "N/A"}</td>
+          <td>${date}</td>
+        </tr>
       `;
     })
     .join("");
@@ -429,19 +425,36 @@ function escapeHtml(str) {
  * Set up refresh handlers for each tab
  */
 export function setupRefreshHandlers() {
+  // Subscriptions tab refresh
   document.getElementById("refreshActiveSubBtn")?.addEventListener("click", async () => {
     await loadSubscriptions();
-    renderActiveSubscriptions();
+    enrichSubscriptionsWithPaymentData();
+    renderSubscriptionsTab();
   });
 
+  // Transactions tab refresh
   document.getElementById("refreshPaymentHistoryBtn")?.addEventListener("click", async () => {
     await loadPayments();
-    renderPaymentHistory();
+    enrichSubscriptionsWithPaymentData();
+    renderTransactionsTab();
   });
 
-  // "See all transactions" button on the dashboard navigates to Payments section
-  document.getElementById("refreshRecentPaymentsBtn")?.addEventListener("click", () => {
-    const navItem = document.querySelector('[data-admin-nav="payments"]');
-    if (navItem) navItem.click();
+  // Filter change handlers for subscriptions
+  document.getElementById("activeSubFilter")?.addEventListener("change", () => {
+    renderSubscriptionList();
+  });
+  document.getElementById("activeSubPlanFilter")?.addEventListener("change", () => {
+    renderSubscriptionList();
+  });
+  document.getElementById("activeSubSearch")?.addEventListener("input", () => {
+    renderSubscriptionList();
+  });
+
+  // Filter change handlers for transactions
+  document.getElementById("paymentHistoryStatus")?.addEventListener("change", () => {
+    renderTransactionsTable();
+  });
+  document.getElementById("paymentHistorySearch")?.addEventListener("input", () => {
+    renderTransactionsTable();
   });
 }

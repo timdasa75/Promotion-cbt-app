@@ -11469,6 +11469,33 @@ body.dark-mode .admin-transactions-table .status-badge.failed {
     font-variant-numeric: tabular-nums;
 }
 
+.admin-metric-value.expiring {
+    color: var(--amber-500, #F59E0B);
+}
+
+.admin-metric-value.success {
+    color: var(--green-500, #10B981);
+}
+
+.admin-metric-value.warning {
+    color: var(--amber-500, #F59E0B);
+}
+
+.admin-metric-value.error {
+    color: var(--red-500, #EF4444);
+}
+
+.admin-subscription-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.admin-subscription-summary .admin-section-card {
+    margin: 0;
+}
+
 .admin-subscription-list {
     display: flex;
     flex-direction: column;
