@@ -433,6 +433,208 @@ test("register screen reminds users to check Spam or Junk for verification email
   await page.click("#authTabRegister");
   await expect(page.locator("#registerForm .auth-helper-text")).toContainText("Spam or Junk");
 });
+
+function mockCloudAuthConfig(baseUrl) {
+  return {
+    authProvider: "cloudflare",
+    cloudflareAuthBaseUrl: baseUrl,
+    adminApiBaseUrl: baseUrl,
+    allowFirebaseFallback: false,
+    enableCloudProgressSync: false,
+  };
+}
+
+async function openLoginModal(page) {
+  const authModal = page.locator("#authModal");
+  if (!(await authModal.isVisible())) {
+    await page.locator("#startLearningBtn").dispatchEvent("click");
+  }
+  await expect(authModal).toBeVisible();
+  await page.click("#authTabLogin");
+}
+
+test("cloud registration guides an unverified user to the email verification link", async ({ page }) => {
+  const authBaseUrl = "http://127.0.0.1:5600/mock-auth";
+  let registrationRequest;
+  const corsHeaders = {
+    "access-control-allow-origin": "*",
+    "access-control-allow-methods": "POST, OPTIONS",
+    "access-control-allow-headers": "content-type, authorization",
+  };
+
+  await page.route("**/mock-auth/auth/register", async (route) => {
+    if (route.request().method() === "OPTIONS") {
+      await route.fulfill({ status: 204, headers: corsHeaders, body: "" });
+      return;
+    }
+    registrationRequest = route.request().postDataJSON();
+    await route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      headers: corsHeaders,
+      body: JSON.stringify({
+        ok: true,
+        requiresEmailVerification: true,
+        message: "Account created. Check your email to verify before login.",
+        verificationUrl: "https://example.test/verify?token=test-token",
+      }),
+    });
+  });
+  await page.addInitScript((config) => {
+    window.PROMOTION_CBT_AUTH = config;
+  }, mockCloudAuthConfig(authBaseUrl));
+
+  await page.goto("/");
+  await expect(page.locator("#appLoadingOverlay")).toHaveClass(/is-hidden/);
+  const authModal = page.locator("#authModal");
+  if (!(await authModal.isVisible())) {
+    await page.locator("#startLearningBtn").dispatchEvent("click");
+  }
+  await page.click("#authTabRegister");
+  await page.fill("#registerName", "Verification User");
+  await page.fill("#registerEmail", "verify@example.com");
+  await page.fill("#registerPassword", "password123");
+  await page.fill("#registerConfirmPassword", "password123");
+  await page.click("#registerForm button[type='submit']");
+
+  await expect(authModal).toBeHidden();
+  await expect(page.locator("body")).toContainText("Check your email to verify before login.");
+  expect(registrationRequest).toMatchObject({
+    name: "Verification User",
+    email: "verify@example.com",
+    password: "password123",
+    baseUrl: "http://127.0.0.1:5600",
+  });
+});
+
+test("an unverified login offers a resend link and password recovery returns neutral guidance", async ({ page }) => {
+  const authBaseUrl = "http://127.0.0.1:5600/mock-auth";
+  const requestBodies = {};
+  const corsHeaders = {
+    "access-control-allow-origin": "*",
+    "access-control-allow-methods": "POST, OPTIONS",
+    "access-control-allow-headers": "content-type, authorization",
+  };
+
+  await page.route("**/mock-auth/**", async (route) => {
+    if (route.request().method() === "OPTIONS") {
+      await route.fulfill({ status: 204, headers: corsHeaders, body: "" });
+      return;
+    }
+    const path = new URL(route.request().url()).pathname.replace(/^\/mock-auth/, "");
+    requestBodies[path] = route.request().postDataJSON();
+    const payload = path === "/auth/login"
+      ? { ok: false, error: "Email verification required. Please verify your email first." }
+      : path === "/auth/verification/resend"
+        ? { ok: true, message: "If this email is registered, a verification link has been sent." }
+        : path === "/auth/password/request"
+          ? { ok: true, message: "If this email matches an account, recovery instructions will follow shortly." }
+          : { ok: false, error: `Unexpected mock route: ${path}` };
+    await route.fulfill({
+      status: path === "/auth/login" ? 403 : payload.ok ? 200 : 404,
+      contentType: "application/json",
+      headers: corsHeaders,
+      body: JSON.stringify(payload),
+    });
+  });
+  await page.addInitScript((config) => {
+    window.PROMOTION_CBT_AUTH = config;
+  }, mockCloudAuthConfig(authBaseUrl));
+
+  await page.goto("/");
+  await expect(page.locator("#appLoadingOverlay")).toHaveClass(/is-hidden/);
+  await openLoginModal(page);
+  await page.fill("#loginEmail", "unverified@example.com");
+  await page.fill("#loginPassword", "password123");
+  await page.click("#loginForm button[type='submit']");
+
+  await expect(page.locator("#authMessage")).toContainText("Email verification required");
+  await expect(page.locator("#resendVerificationBtn")).toBeVisible();
+  await page.click("#resendVerificationBtn");
+  await expect(page.locator("#authMessage")).toContainText("verification link has been sent");
+  expect(requestBodies["/auth/verification/resend"]).toEqual({ email: "unverified@example.com" });
+
+  await page.click("#forgotPasswordBtn");
+  await expect(page.locator("#authMessage")).toContainText("recovery instructions will follow shortly");
+  expect(requestBodies["/auth/password/request"]).toMatchObject({
+    email: "unverified@example.com",
+    baseUrl: "http://127.0.0.1:5600",
+  });
+});
+
+test("a new device login requests an OTP and accepts the verified device code", async ({ page }) => {
+  const authBaseUrl = "http://127.0.0.1:5600/mock-auth";
+  const requests = {};
+  const corsHeaders = {
+    "access-control-allow-origin": "*",
+    "access-control-allow-methods": "POST, OPTIONS",
+    "access-control-allow-headers": "content-type, authorization",
+  };
+  const user = {
+    id: "user-otp",
+    name: "OTP User",
+    email: "otp@example.com",
+    plan: "free",
+    emailVerified: true,
+    role: "user",
+    status: "active",
+  };
+
+  await page.route("**/mock-auth/**", async (route) => {
+    if (route.request().method() === "OPTIONS") {
+      await route.fulfill({ status: 204, headers: corsHeaders, body: "" });
+      return;
+    }
+    const path = new URL(route.request().url()).pathname.replace(/^\/mock-auth/, "");
+    requests[path] = route.request().postDataJSON();
+    const payload = path === "/auth/login"
+      ? { ok: true, user, session: { token: "otp-session", expiresAt: "2099-01-01T00:00:00.000Z" } }
+      : path === "/auth/session"
+        ? { ok: true, user, session: { expiresAt: "2099-01-01T00:00:00.000Z" } }
+        : path === "/device/check"
+          ? { ok: true, trusted: false, reason: "new_device" }
+          : path === "/otp/request"
+            ? { ok: true, message: "Code sent" }
+            : path === "/otp/verify"
+              ? { ok: true, userId: user.id, email: user.email, plan: "free", role: "user", status: "active", deviceTrusted: true }
+              : path === "/device/trust" || path === "/login/alert"
+                ? { ok: true }
+                : { ok: false, error: `Unexpected mock route: ${path}` };
+    await route.fulfill({
+      status: payload.ok ? 200 : 404,
+      contentType: "application/json",
+      headers: corsHeaders,
+      body: JSON.stringify(payload),
+    });
+  });
+  await page.addInitScript((config) => {
+    window.PROMOTION_CBT_AUTH = config;
+  }, mockCloudAuthConfig(authBaseUrl));
+
+  await page.goto("/");
+  await expect(page.locator("#appLoadingOverlay")).toHaveClass(/is-hidden/);
+  await openLoginModal(page);
+  await page.fill("#loginEmail", user.email);
+  await page.fill("#loginPassword", "password123");
+  await page.click("#loginForm button[type='submit']");
+
+  await expect(page.locator("#otpModal")).toBeVisible();
+  expect(requests["/otp/request"]).toMatchObject({ email: user.email });
+  const otpDigits = page.locator(".otp-digit");
+  for (let index = 0; index < 6; index += 1) {
+    await otpDigits.nth(index).fill(String(index + 1));
+  }
+  await page.click("#otpForm button[type='submit']");
+
+  await expect(page.locator("#topicSelectionScreen")).toBeVisible();
+  expect(requests["/otp/verify"]).toMatchObject({
+    email: user.email,
+    otp: "123456",
+    trustDevice: true,
+    trustDays: 30,
+  });
+});
+
 test("dashboard filters and action buttons are interactive", async ({ page }) => {
   await registerAndEnter(page, "dashboard@example.com");
   await expect(page.locator("#topicList .topic-card:not(.hidden)").first()).toBeVisible();

@@ -4,6 +4,9 @@ import assert from "node:assert/strict";
 import {
   handleAuthRegister,
   handleAuthLogin,
+  handleAuthPasswordResetComplete,
+  handleAuthVerificationComplete,
+  handleAuthVerificationResend,
   hashPassword,
   resolveHybridAuthRouteHandler,
   verifyPassword,
@@ -29,7 +32,37 @@ test("cloudflare hybrid auth route resolver only claims auth routes", () => {
   assert.equal(typeof resolveHybridAuthRouteHandler("/auth/session"), "function");
   assert.equal(typeof resolveHybridAuthRouteHandler("/auth/logout"), "function");
   assert.equal(typeof resolveHybridAuthRouteHandler("/auth/password/change"), "function");
+  assert.equal(typeof resolveHybridAuthRouteHandler("/auth/password/complete"), "function");
+  assert.equal(typeof resolveHybridAuthRouteHandler("/auth/verification/resend"), "function");
+  assert.equal(typeof resolveHybridAuthRouteHandler("/auth/verification/complete"), "function");
   assert.equal(resolveHybridAuthRouteHandler("/adminListUsers"), null);
+});
+
+test("email verification and password reset reject incomplete public input before database access", async () => {
+  const noDatabaseAccess = {
+    prepare() {
+      throw new Error("database should not be accessed for invalid input");
+    },
+  };
+
+  const request = (path, body) => new Request(`https://worker.example.com${path}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+
+  await assert.rejects(
+    () => handleAuthVerificationResend(request("/auth/verification/resend", { email: "not-an-email" }), { AUTH_DB: noDatabaseAccess }),
+    (error) => error?.httpStatus === 400 && /valid email/i.test(error?.message),
+  );
+  await assert.rejects(
+    () => handleAuthVerificationComplete(request("/auth/verification/complete", {}), { AUTH_DB: noDatabaseAccess }),
+    (error) => error?.httpStatus === 400 && /verification token/i.test(error?.message),
+  );
+  await assert.rejects(
+    () => handleAuthPasswordResetComplete(request("/auth/password/complete", { token: "present", password: "short" }), { AUTH_DB: noDatabaseAccess }),
+    (error) => error?.httpStatus === 400 && /at least 8 characters/i.test(error?.message),
+  );
 });
 
 test("cloudflare login hides missing accounts and records rate-limit attempts", async () => {

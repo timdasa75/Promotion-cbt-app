@@ -294,7 +294,7 @@ function auditBank(file) {
               `option ${i + 1} contains '?': "${ot.slice(0, 60)}"`);
           }
           if (ot !== o) {
-            addFinding(bankName, subName, q, "option_whitespace", "warn", `option ${i + 1} has leading/trailing whitespace`);
+            addFinding(bankName, subName, q, "option_whitespace", "error", `option ${i + 1} has leading/trailing whitespace`);
           }
           const nk = norm(ot);
           if (seenOpts.has(nk)) {
@@ -330,7 +330,7 @@ function auditBank(file) {
         if (lens[q.correct] === Math.max(...lens)) correctLongest++;
         for (let i = 0; i < opts.length; i++) {
           if (i !== q.correct && typeof opts[i] === "string" && opts[i].length <= 8 && lens[q.correct] >= 25) {
-            addFinding(bankName, subName, q, "short_distractor", "warn",
+            addFinding(bankName, subName, q, "short_distractor", "error",
               `option ${i + 1} is only ${opts[i].length} chars ("${opts[i]}") vs ${lens[q.correct]}-char correct answer`);
             break;
           }
@@ -373,7 +373,7 @@ function auditBank(file) {
     for (const letter of LETTERS) {
       const pct = (posCounts[letter] / validCount) * 100;
       if (Math.abs(pct - 25) > 3.5 * sigmaPct) {
-        addFinding(bankName, "summary", null, "answer_position_bias", "warn",
+        addFinding(bankName, "summary", null, "answer_position_bias", "error",
           `answer '${letter}' appears ${posCounts[letter]}/${validCount} (${pct.toFixed(1)}%) — ${(Math.abs(pct - 25) / sigmaPct).toFixed(1)} sigma from 25%`);
       }
     }
@@ -383,7 +383,7 @@ function auditBank(file) {
     for (let i = 1; i <= seq.length; i++) {
       if (i === seq.length || seq[i] !== seq[runStart]) {
         if (i - runStart >= 10) {
-          addFinding(bankName, "summary", null, "answer_run", "warn",
+          addFinding(bankName, "summary", null, "answer_run", "error",
             `run of ${i - runStart} consecutive '${seq[runStart]}' answers in file order (starting at question ${runStart + 1})`);
         }
         runStart = i;
