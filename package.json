@@ -30,7 +30,8 @@
     "antigravity:init": "antigravity init",
     "design:export": "antigravity export-design",
     "antigravity:verify": "antigravity verify",
-    "antigravity:run": "antigravity run"
+    "antigravity:run": "antigravity run",
+    "test:responsive": "playwright test tests/responsive.spec.js"
   },
   "repository": {
     "type": "git",
