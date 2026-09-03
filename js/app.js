@@ -4747,6 +4747,10 @@ function updateAuthUI() {
     authActionBtn.setAttribute("aria-label", tooltip);
     authActionBtn.setAttribute("title", tooltip);
     authActionBtn.setAttribute("data-tooltip", tooltip);
+    const authActionLabel = document.getElementById("authActionLabel");
+    if (authActionLabel) {
+      authActionLabel.textContent = isSignedIn ? "Log out" : "Log in";
+    }
   }
   if (authToolbarSummary) {
     if (user) {
