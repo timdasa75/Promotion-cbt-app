@@ -1271,7 +1271,15 @@ function sessionRowHtml(session) {
   </div>`;
 }
 
+let activityCardClicksBound = false;
+
 function initializeActivityCardClicks() {
+  // The cards are static DOM and this runs from two paths (restoring a saved
+  // adminScreen after a reload, and openAdminScreen() on every open). Without
+  // the guard each open stacks another listener on the same card, so one click
+  // fires the toggle twice — panel opens and instantly closes, looking dead.
+  if (activityCardClicksBound) return;
+  activityCardClicksBound = true;
   document.querySelectorAll('.admin-activity-card.clickable').forEach(card => {
     card.addEventListener('click', () => {
       const period = card.dataset.period;
@@ -3983,14 +3991,17 @@ function closeAuthModal() {
 
 let otpPendingEmail = "";
 let otpPendingFingerprint = "";
+// "" | "google-login" — device challenge shown after Google auth completes
+let otpPendingMode = "";
 let otpResendInterval = null;
 
 /**
  * Open the OTP verification modal
  */
-function openOTPModal(email, deviceFingerprint) {
+function openOTPModal(email, deviceFingerprint, mode = "") {
   otpPendingEmail = email;
   otpPendingFingerprint = deviceFingerprint;
+  otpPendingMode = mode;
   
   const modal = document.getElementById("otpModal");
   const emailDisplay = document.getElementById("otpEmailDisplay");
@@ -4046,6 +4057,23 @@ function closeOTPModal() {
   
   otpPendingEmail = "";
   otpPendingFingerprint = "";
+  otpPendingMode = "";
+}
+
+/**
+ * Close the OTP modal after any challenge was shown for a Google sign-in.
+ * For a pending "google-login" challenge the cloudflare session was stored
+ * when the OAuth exchange finished, so dismissing the challenge without a
+ * successful verify must revoke that session — an untrusted device must not
+ * stay signed in. Plain email-flow challenges behave exactly as before.
+ */
+function closeOtpWithPendingGoogleCleanup() {
+  const wasGooglePending = otpPendingMode === "google-login";
+  closeOTPModal();
+  if (wasGooglePending) {
+    clearSession();
+    try { updateAuthUI(); } catch (e) { /* ignore */ }
+  }
 }
 
 /**
@@ -4257,6 +4285,70 @@ function captureCurrentDeviceForSessionOnce() {
 }
 
 /**
+ * Finalize a successful Google sign-in: sync cloud state and close the auth
+ * modal. Runs after the current device passed its check (or needed no
+ * challenge). Mirrors the pre-gate Google success handling exactly.
+ */
+async function finalizeGoogleLogin() {
+  closeOTPModal();
+  await updateAuthUI();
+  closeAuthModal();
+  try { await refreshAccessibleTopics(); } catch (e) { /* best-effort */ }
+  try { startCloudPlanAutoSync(); } catch (e) { /* ignore */ }
+  showSuccess("Signed in with Google.");
+}
+
+/**
+ * Device gate for Google sign-in, mirroring the login form's flow:
+ *  - trusted device (or the user's first device, auto-registered as primary
+ *    by /device/check) — finish the sign-in immediately;
+ *  - a genuinely NEW device on an account that already has devices — send the
+ *    OTP and hold the sign-in behind the challenge, so the device is recorded
+ *    before access is granted;
+ *  - infrastructure failures / missing D1 rows (user_not_found, no_config,
+ *    session_unavailable, check_failed) — never lock the user out, finish the
+ *    sign-in exactly as before this gate existed.
+ */
+async function handleGoogleLoginDeviceGate() {
+  const session = readSession();
+  const email = String(session?.user?.email || "").trim().toLowerCase();
+  if (!email || session?.provider === "local") {
+    await finalizeGoogleLogin();
+    return;
+  }
+  const fingerprint = await getDeviceFingerprint();
+  const result = await checkDeviceTrust(email, fingerprint);
+  if (result?.ok && result?.trusted) {
+    await finalizeGoogleLogin();
+    return;
+  }
+  if (result?.reason !== "new_device") {
+    await finalizeGoogleLogin();
+    return;
+  }
+  // New device on an account that already has one: challenge with OTP before
+  // the app treats the sign-in as complete. The Google session was stored when
+  // the OAuth exchange finished, but the UI is not finalized until the code
+  // verifies (which records the device as trusted for 30 days).
+  const deviceName = await getDeviceName();
+  try {
+    await requestOTP(email, fingerprint, deviceName);
+  } catch (error) {
+    // OTP could not be delivered — revoke the unverified Google session so the
+    // sign-in cannot silently continue, and surface the reason in the modal.
+    clearSession();
+    await updateAuthUI();
+    setAuthMessage(
+      error?.message ||
+        "We could not send a verification code to confirm this device. Please try again."
+    );
+    return;
+  }
+  closeAuthModal();
+  openOTPModal(email, fingerprint, "google-login");
+}
+
+/**
  * Get device fingerprint (lazy load from module)
  */
 let deviceFingerprintModule = null;
@@ -4353,9 +4445,10 @@ async function completeLogin(loginResult, email) {
     // first (login form), the OTP verify step recorded it when trustDevice was
     // checked, and a blanket /device/trust call on every login previously
     // stacked duplicate rows for the same fingerprint (one per login until the
-    // 3-device cap evicted them). Sessions restored without either path are
-    // captured best-effort by captureCurrentDeviceForSessionOnce() at boot and
-    // after Google sign-in.
+    // 3-device cap evicted them). Google sign-in runs its own device gate
+    // (handleGoogleLoginDeviceGate) that challenges new devices with OTP before
+    // finalizing, and sessions restored without either path are captured
+    // best-effort by captureCurrentDeviceForSessionOnce() at boot.
 
     // Send login alert for new device logins
     if (loginResult?.deviceTrusted === false) {
@@ -4380,6 +4473,7 @@ async function handleOTPVerification() {
   
   const trustDevice = document.getElementById("trustDeviceCheck")?.checked ?? true;
   const deviceName = await getDeviceName();
+  const pendingMode = otpPendingMode;
   
   try {
     setOTPMessage("", "success");
@@ -4391,6 +4485,18 @@ async function handleOTPVerification() {
       deviceName,
       trustDevice
     );
+    
+    if (pendingMode === "google-login") {
+      // Google sign-in: the cloudflare session was already written when the
+      // OAuth exchange completed. /otp/verify just recorded this device as a
+      // trusted 30-day row, so finish the sign-in WITHOUT overwriting that
+      // session with the minimal OTP payload (which would drop the token).
+      if (!result?.deviceTrusted) {
+        throw new Error("Keep \"Trust this device\" enabled to finish signing in with Google.");
+      }
+      await finalizeGoogleLogin();
+      return;
+    }
     
     // Store session
     if (result.userId) {
@@ -5240,14 +5346,7 @@ function updateAuthUI() {
       googleAuthEventsBound = true;
       window.addEventListener("google-login-success", async () => {
         try {
-          updateAuthUI();
-          closeAuthModal();
-          try { await refreshAccessibleTopics(); } catch (e) { /* best-effort */ }
-          try { startCloudPlanAutoSync(); } catch (e) { /* ignore */ }
-          showSuccess("Signed in with Google.");
-          // Google sign-in bypasses the login form's device gate entirely, so
-          // capture the current device here — first device becomes primary.
-          await captureCurrentDeviceForSessionOnce().catch(() => {});
+          await handleGoogleLoginDeviceGate();
         } catch (err) {
           console.error("Error handling google-login-success:", err);
           showWarning("Signed in but UI update failed.");
@@ -7278,7 +7377,13 @@ function loadPricingUI() {
   }).catch(() => {});
 }
 
+let pricingUiInitialized = false;
+
 function initializePricingUI() {
+  // Binds to static pricing elements; runs from both the saved-admin restore
+  // path and every openAdminScreen(), so guard against stacked listeners.
+  if (pricingUiInitialized) return;
+  pricingUiInitialized = true;
   const refreshBtn = document.getElementById('refreshPricingBtn');
   const saveBtn = document.getElementById('savePricingBtn');
   if (refreshBtn) refreshBtn.addEventListener('click', loadPricingUI);
@@ -7439,6 +7544,12 @@ async function openAdminScreen() {
         initializeAdminTabs();
         loadPricingUI();
         initializePricingUI();
+        // Payments/Subscriptions tab navigation, refresh buttons and filters —
+        // also bound by the saved-admin restore path; all inits are guarded so
+        // calling both is safe, but without this the Payments controls were
+        // never bound when the admin panel is first opened via the header.
+        initSubscriptionManagement();
+        setupRefreshHandlers();
         initializeActivityCardClicks();
         await showScreen("adminScreen");
       },
@@ -7568,12 +7679,12 @@ function initializeAuthUI() {
   const otpBackBtn = document.getElementById("otpBackBtn");
 
   if (otpCloseBtn) {
-    otpCloseBtn.addEventListener("click", closeOTPModal);
+    otpCloseBtn.addEventListener("click", closeOtpWithPendingGoogleCleanup);
   }
 
   if (otpModal) {
     otpModal.addEventListener("click", (event) => {
-      if (event.target === otpModal) closeOTPModal();
+      if (event.target === otpModal) closeOtpWithPendingGoogleCleanup();
     });
   }
 
@@ -7600,7 +7711,7 @@ function initializeAuthUI() {
 
   if (otpBackBtn) {
     otpBackBtn.addEventListener("click", () => {
-      closeOTPModal();
+      closeOtpWithPendingGoogleCleanup();
       openAuthModal("login");
     });
   }

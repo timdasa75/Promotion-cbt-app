@@ -10,6 +10,10 @@ import { getRuntimeConfig } from "./authRuntime.js";
 let cachedSubscriptions = [];
 let cachedPayments = [];
 let currentTab = "subscriptions";
+// Guard flags: the admin panel init can run from two paths (saved-admin
+// restore and openAdminScreen), so these bindings must not stack.
+let subscriptionManagementInitialized = false;
+let subscriptionRefreshHandlersBound = false;
 
 /**
  * Set user data from the main admin panel and enrich with payment expiry dates.
@@ -49,6 +53,8 @@ export function setSubscriptionUserData(users) {
  * Initialize the subscription management section
  */
 export function initSubscriptionManagement() {
+  if (subscriptionManagementInitialized) return;
+  subscriptionManagementInitialized = true;
   setupTabNavigation();
   loadInitialData();
 }
@@ -425,6 +431,10 @@ function escapeHtml(str) {
  * Set up refresh handlers for each tab
  */
 export function setupRefreshHandlers() {
+  // Binds to static filter/refresh controls; safe to call from both admin init
+  // paths, but each call would stack another listener without the guard.
+  if (subscriptionRefreshHandlersBound) return;
+  subscriptionRefreshHandlersBound = true;
   // Subscriptions tab refresh
   document.getElementById("refreshActiveSubBtn")?.addEventListener("click", async () => {
     await loadSubscriptions();

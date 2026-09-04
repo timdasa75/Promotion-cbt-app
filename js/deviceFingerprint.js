@@ -9,6 +9,44 @@ const FINGERPRINT_CACHE_KEY = 'cbt_device_fingerprint';
 const DEVICE_NAME_CACHE_KEY = 'cbt_device_name';
 
 /**
+ * Read a cached value with localStorage first (stable across tabs and browser
+ * restarts), falling back to the legacy sessionStorage cache so an identity
+ * minted before this change survives. A value found only in sessionStorage is
+ * promoted to localStorage by the matching write path below.
+ */
+function cachedGet(key) {
+  try {
+    const local = window.localStorage.getItem(key);
+    if (local) return local;
+  } catch (e) {
+    // localStorage unavailable (private mode / blocked) — fall through.
+  }
+  try {
+    return window.sessionStorage.getItem(key);
+  } catch (e) {
+    return null;
+  }
+}
+
+/**
+ * Persist a cached value to localStorage when possible, mirroring it into
+ * sessionStorage. Mirroring keeps the value identical across all tabs of the
+ * same browser profile even if localStorage is later blocked.
+ */
+function cachedSet(key, value) {
+  try {
+    window.localStorage.setItem(key, value);
+  } catch (e) {
+    // localStorage unavailable — sessionStorage mirror below still applies.
+  }
+  try {
+    window.sessionStorage.setItem(key, value);
+  } catch (e) {
+    // Storage might be full or disabled.
+  }
+}
+
+/**
  * Simple hash function for fingerprint generation
  * @param {string} str - String to hash
  * @returns {string} - 32-character hash
@@ -147,9 +185,15 @@ export function generateDeviceName() {
  * @returns {string} - 32-character fingerprint hash
  */
 export function generateDeviceFingerprint() {
-  // Check cache first
-  const cached = sessionStorage.getItem(FINGERPRINT_CACHE_KEY);
-  if (cached) return cached;
+  // Check cache first — the cache is persistent (localStorage), so the same
+  // browser profile keeps one stable identity across tabs and restarts. A
+  // per-tab/session identity made every new tab look like a brand-new device
+  // and defeated device capture (the Worker then OTP-gated every login).
+  const cached = cachedGet(FINGERPRINT_CACHE_KEY);
+  if (cached) {
+    cachedSet(FINGERPRINT_CACHE_KEY, cached);
+    return cached;
+  }
   
   const signals = {
     userAgent: navigator.userAgent || '',
@@ -183,12 +227,8 @@ export function generateDeviceFingerprint() {
   // Ensure 32 characters
   hash = hash.padEnd(32, '0').slice(0, 32);
   
-  // Cache the fingerprint
-  try {
-    sessionStorage.setItem(FINGERPRINT_CACHE_KEY, hash);
-  } catch (e) {
-    // Storage might be full or disabled
-  }
+  // Cache the fingerprint persistently
+  cachedSet(FINGERPRINT_CACHE_KEY, hash);
   
   return hash;
 }
@@ -198,15 +238,11 @@ export function generateDeviceFingerprint() {
  * @returns {string} - Device name
  */
 export function getDeviceName() {
-  const cached = sessionStorage.getItem(DEVICE_NAME_CACHE_KEY);
+  const cached = cachedGet(DEVICE_NAME_CACHE_KEY);
   if (cached) return cached;
   
   const name = generateDeviceName();
-  try {
-    sessionStorage.setItem(DEVICE_NAME_CACHE_KEY, name);
-  } catch (e) {
-    // Storage might be full or disabled
-  }
+  cachedSet(DEVICE_NAME_CACHE_KEY, name);
   
   return name;
 }
@@ -216,8 +252,14 @@ export function getDeviceName() {
  */
 export function clearFingerprintCache() {
   try {
-    sessionStorage.removeItem(FINGERPRINT_CACHE_KEY);
-    sessionStorage.removeItem(DEVICE_NAME_CACHE_KEY);
+    window.localStorage.removeItem(FINGERPRINT_CACHE_KEY);
+    window.localStorage.removeItem(DEVICE_NAME_CACHE_KEY);
+  } catch (e) {
+    // Ignore storage errors
+  }
+  try {
+    window.sessionStorage.removeItem(FINGERPRINT_CACHE_KEY);
+    window.sessionStorage.removeItem(DEVICE_NAME_CACHE_KEY);
   } catch (e) {
     // Ignore storage errors
   }
