@@ -3,8 +3,7 @@
 This guide walks you through **everything required to get Flutterwave working** for
 Promotion CBT Premium payments — from the documents you need to gather, to the
 dashboard setup, to the final live switch. The technical implementation is already
-built and deployed (see the **Flutterwave Sandbox (Test-Mode) Activation Plan** in
-`docs/selar-monthly-launch-plan.md`); this guide is the *what you need to do* companion.
+built and deployed; this guide is the *what you need to do* companion.
 
 **Time to complete:** ~30–45 minutes for the sandbox path (no KYC needed).
 **What you get:** users pay in-app with NGN cards, premium is granted automatically
@@ -146,7 +145,6 @@ flutterwaveWebhookUrl: "https://flw.promotioncbtadmin.workers.dev/w",
 
 - The webhook URL here is **informational only** — the real destination lives in the
   dashboard (Part 3). The app never sends to it.
-- `selarCheckoutLinks` can stay or be removed; harmless either way.
 - The tracked template `config/runtime-auth.example.js` keeps placeholder keys only —
   never commit a real key.
 
@@ -210,8 +208,7 @@ flutterwaveWebhookUrl: "https://flw.promotioncbtadmin.workers.dev/w",
 5. Re-run `npm run check:worker-routes:flutterwave`, then do **one real ₦2,500 card
    payment** end-to-end.
 
-**Rollback at any time:** flip `paymentProvider` back to `"selar"` — the Selar path
-stays fully intact.
+**Note:** Flutterwave is the only payment provider — no rollback path exists or is needed.
 
 ### Key rotation (do this any time a key leaks or you want fresh ones)
 
@@ -242,8 +239,7 @@ stays fully intact.
 - **Local NGN card fee:** ~2.0% (1.4% transaction + 0.6% platform fee).
 - **₦50 stamp duty** only on transactions above ₦10,000.
 - **No monthly platform fee, no Pro tier, no Zapier.**
-- On a ₦2,500 monthly sale: **≈ ₦50** — vs Selar's ~5% plus the ₦33k/mo Pro plan
-  needed for any automation at all.
+- On a ₦2,500 monthly sale: **≈ ₦50** in total fees.
 
 ## Final checklist
 
