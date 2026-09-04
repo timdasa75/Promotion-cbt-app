@@ -352,9 +352,8 @@ function createQuizRunId() {
 function isCloudProgressSyncReady() {
   return Boolean(isCloudProgressSyncEnabled() && getCurrentUser()?.id);
 }
-export const RETRY_MISSED_TOPIC_ID = "retry_missed";
-export const SPACED_PRACTICE_TOPIC_ID = "spaced_practice";
-export const REVISION_TOPIC_ID = "topic_revision";
+import { RETRY_MISSED_TOPIC_ID, SPACED_PRACTICE_TOPIC_ID, REVISION_TOPIC_ID } from "./quizTopicIds.js";
+export { RETRY_MISSED_TOPIC_ID, SPACED_PRACTICE_TOPIC_ID, REVISION_TOPIC_ID };
 
 let reviewContext = "study"; // "study" (pre-quiz) or "session" (post-quiz)
 let lastCompletedSession = null;

@@ -38,61 +38,93 @@ import {
   showWarning,
   showConfirm
 } from "./ui.js";
-import {
-  clearPersistedQuizRuntime,
-  dismissRetryMissedQuestion,
-  getCloudProgressSyncStatus,
-  getCurrentQuestionFeedbackContext,
-  getLatestResultsFeedbackContext,
-  getPersistedQuizRuntime,
-  getRetryMissedQueueCount,
-  getRetryMissedQueueSnapshot,
-  getRetryMissedQuestions,
-  getSpacedPracticeDueCount,
-  getSpacedPracticeQuestions,
-  loadQuestions,
-  readProgressSummary,
-  RETRY_MISSED_TOPIC_ID,
-  SPACED_PRACTICE_TOPIC_ID,
-  REVISION_TOPIC_ID,
-  toggleCurrentQuestionFlag,
-  getFlaggedQueueCount,
-  getFlaggedQuestions,
-  toggleCurrentQuestionBookmark,
-  getBookmarkedQueueCount,
-  getBookmarkedQuestions,
-  toggleBookmarkedQuestion,
-  restorePersistedQuizRuntime,
-  setCurrentTopic,
-  setCurrentMode,
-  getCurrentMode,
-  syncProgressFromCloudNow,
-  retakeFullQuiz,
-  renderQuizHistory,
-} from "./quiz.js";
+import { RETRY_MISSED_TOPIC_ID, SPACED_PRACTICE_TOPIC_ID, REVISION_TOPIC_ID } from "./quizTopicIds.js";
+
+// Lazy-loaded: quiz.js is the large session engine and must not block first
+// paint. It is prefetched at boot (see DOMContentLoaded) and guaranteed to be
+// ready before any dashboard render (see init()). The exported functions used
+// here are bound via destructuring from the dynamic import; the bundler keeps
+// this chunk out of the boot graph (no manualChunks rules reference it).
+let clearPersistedQuizRuntime, dismissRetryMissedQuestion, getCloudProgressSyncStatus, getCurrentQuestionFeedbackContext, getLatestResultsFeedbackContext, getPersistedQuizRuntime, getRetryMissedQueueCount, getRetryMissedQueueSnapshot, getRetryMissedQuestions, getSpacedPracticeDueCount, getSpacedPracticeQuestions, loadQuestions, readProgressSummary, toggleCurrentQuestionFlag, getFlaggedQueueCount, getFlaggedQuestions, toggleCurrentQuestionBookmark, getBookmarkedQueueCount, getBookmarkedQuestions, toggleBookmarkedQuestion, restorePersistedQuizRuntime, setCurrentTopic, setCurrentMode, getCurrentMode, syncProgressFromCloudNow, retakeFullQuiz, renderQuizHistory;
+let quizModulePromise = null;
+async function loadQuizNamespace() {
+  // Destructuring named exports from the dynamic import (same pattern as the
+  // paymentFlutterwave lazy import) keeps the quiz chunk out of the boot graph.
+  ({
+    clearPersistedQuizRuntime,
+    dismissRetryMissedQuestion,
+    getCloudProgressSyncStatus,
+    getCurrentQuestionFeedbackContext,
+    getLatestResultsFeedbackContext,
+    getPersistedQuizRuntime,
+    getRetryMissedQueueCount,
+    getRetryMissedQueueSnapshot,
+    getRetryMissedQuestions,
+    getSpacedPracticeDueCount,
+    getSpacedPracticeQuestions,
+    loadQuestions,
+    readProgressSummary,
+    toggleCurrentQuestionFlag,
+    getFlaggedQueueCount,
+    getFlaggedQuestions,
+    toggleCurrentQuestionBookmark,
+    getBookmarkedQueueCount,
+    getBookmarkedQuestions,
+    toggleBookmarkedQuestion,
+    restorePersistedQuizRuntime,
+    setCurrentTopic,
+    setCurrentMode,
+    getCurrentMode,
+    syncProgressFromCloudNow,
+    retakeFullQuiz,
+    renderQuizHistory,
+  } = await import("./quiz.js"));
+  return true;
+}
+function loadQuizApi() {
+  if (!quizModulePromise) {
+    quizModulePromise = loadQuizNamespace().catch((error) => {
+      quizModulePromise = null;
+      throw error;
+    });
+  }
+  return quizModulePromise;
+}
 import { escapeHtml, normalizeExplanationText, parseMarkdown } from "./quiz/formatting.js";
 import { debugLog } from "./logger.js";
 import { clearSession, readSession } from "./authStorage.js";
 import { PaginationController, getPaginatedItems } from "./pagination.js";
-import { buildAnalyticsSnapshot as composeAnalyticsSnapshot } from "./appAnalytics.js";
-import {
-  buildAnalyticsConsistencyHtml,
-  buildAnalyticsHeatmapHtml,
-  buildAnalyticsOverviewModel,
-  buildAnalyticsRecommendationModel,
-  buildAnalyticsTrendHtml,
-  buildDashboardStatsModel,
-} from "./appAnalyticsView.js";
-import {
-  buildDashboardSetupSuggestion,
-  buildDashboardSuggestionSignature,
-  buildRecommendation,
-  getPreferredRecommendedTopic,
-} from "./appRecommendations.js";
-import {
-  readDismissedDashboardRecommendationSignature,
-  writeDismissedDashboardRecommendationSignature,
-} from "./appRecommendationDismissals.js";
+// Lazy-loaded analytics view/model modules, reached through the aggregator
+// analyticsBundle.js. See loadQuizApi() for the boot/prefetch rationale.
+let buildAnalyticsSnapshot, buildAnalyticsConsistencyHtml, buildAnalyticsHeatmapHtml, buildAnalyticsOverviewModel, buildAnalyticsRecommendationModel, buildAnalyticsTrendHtml, buildDashboardStatsModel, buildDashboardSetupSuggestion, buildDashboardSuggestionSignature, buildRecommendation, getPreferredRecommendedTopic, readDismissedDashboardRecommendationSignature, writeDismissedDashboardRecommendationSignature;
+let analyticsModulesPromise = null;
+async function loadAnalyticsNamespace() {
+  ({
+    buildAnalyticsSnapshot,
+    buildAnalyticsConsistencyHtml,
+    buildAnalyticsHeatmapHtml,
+    buildAnalyticsOverviewModel,
+    buildAnalyticsRecommendationModel,
+    buildAnalyticsTrendHtml,
+    buildDashboardStatsModel,
+    buildDashboardSetupSuggestion,
+    buildDashboardSuggestionSignature,
+    buildRecommendation,
+    getPreferredRecommendedTopic,
+    readDismissedDashboardRecommendationSignature,
+    writeDismissedDashboardRecommendationSignature,
+  } = await import("./analyticsBundle.js"));
+  return true;
+}
+function loadAnalyticsApi() {
+  if (!analyticsModulesPromise) {
+    analyticsModulesPromise = loadAnalyticsNamespace().catch((error) => {
+      analyticsModulesPromise = null;
+      throw error;
+    });
+  }
+  return analyticsModulesPromise;
+}
 import {
   clearScreenState,
   readScreenState,
@@ -539,6 +571,9 @@ function withSyntheticTopics(topicsData) {
 
 async function init() {
   try {
+    // Lazy quiz/analytics modules must be ready before the first dashboard
+    // render touches them (refreshDashboardInsights and friends are sync).
+    await Promise.all([loadQuizApi(), loadAnalyticsApi()]);
     debugLog("Initializing app...");
     const topicsData = await loadData();
     allTopics = withSyntheticTopics(topicsData);
@@ -2457,7 +2492,7 @@ function getAttemptTimingSignal(attempt) {
 }
 
 function buildAppAnalyticsSnapshot(attempts) {
-  return composeAnalyticsSnapshot(attempts, {
+  return buildAnalyticsSnapshot(attempts, {
     topics: allTopics,
     isIncludedTopicId: isCoreAnalyticsTopicId,
     getFallbackTopicName: getTopicNameById,
@@ -8683,6 +8718,11 @@ function initializeSearchClearControls() {
 }
 
 document.addEventListener("DOMContentLoaded", async function () {
+  // Prefetch the lazily-split quiz/analytics chunks in parallel with the rest
+  // of boot so first paint never blocks on them; init() awaits them before any
+  // dashboard render.
+  loadQuizApi().catch(() => {});
+  loadAnalyticsApi().catch(() => {});
   startCloudPlanAutoSync();
   startAdminDirectoryAutoSync();
   initializeDashboardActions();

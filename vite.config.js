@@ -13,17 +13,15 @@ export default defineConfig(({ mode }) => {
     build: {
       outDir: "dist",
       emptyOutDir: true,
+      // Note: there is intentionally NO manualChunks here. The quiz and
+      // analytics modules are loaded via dynamic import() in js/app.js (see
+      // loadQuizApi/loadAnalyticsApi), and under rolldown-vite a manualChunks
+      // rule forces any matching module back into the entry's static module
+      // graph (modulepreload + static namespace import), which defeats the
+      // lazy loading. Without the rule they split into natural async chunks
+      // that are fetched only when first needed.
       rollupOptions: {
-        output: {
-          manualChunks(id) {
-            if (id.includes("/js/appAnalytics") || id.includes("/js/appAnalyticsView") || id.includes("/js/appRecommendations") || id.includes("/js/appRecommendationDismissals")) {
-              return "analytics";
-            }
-            if (id.includes("/js/quiz.js") || id.includes("/js/quiz/")) {
-              return "quiz";
-            }
-          },
-        },
+        output: {},
       },
     },
     plugins: [
