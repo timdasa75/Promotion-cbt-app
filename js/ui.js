@@ -21,7 +21,6 @@ import {
   getFreeMockExamEligibility,
   isAuthenticated,
 } from "./auth.js";
-import { getPaymentProvider } from "./authRuntime.js";
 import { debugLog } from "./logger.js";
 import { escapeHtml } from "./quiz/formatting.js";
 import {
@@ -86,10 +85,7 @@ export function openPricingModal() {
   // UI never names a provider the click handler won't use.
   const selectBtn = modal.querySelector(".select-plan-btn");
   if (selectBtn) {
-    selectBtn.textContent =
-      getPaymentProvider() === "flutterwave"
-        ? "Pay Monthly via Flutterwave"
-        : "Pay Monthly on Selar";
+    selectBtn.textContent = "Pay Monthly via Flutterwave";
   }
   modal.classList.remove("hidden");
 }

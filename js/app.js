@@ -175,11 +175,10 @@ import {
   submitFeedbackSubmission,
   submitUpgradeRequest,
   updateCloudUserStatusById,
-  verifySelarPayment,
   updateFeedbackSubmissionStatus,
   getUserFeedbackList,
 } from "./auth.js";
-import { getFirebaseConfig, getRuntimeConfig, getPaymentProvider, getSelarCheckoutUrl, isCloudAuthEnabled } from "./authRuntime.js";
+import { getFirebaseConfig, getRuntimeConfig, isCloudAuthEnabled } from "./authRuntime.js";
 import "./authGoogle.js";
 import { initSubscriptionManagement, setupRefreshHandlers, setSubscriptionUserData } from "./adminSubscriptionManagement.js";
 
@@ -5699,7 +5698,6 @@ function renderAdminRequests() {
 }
 
 function refreshProfileUpgradeSection() {
-  const provider = getPaymentProvider();
   const user = getCurrentUser();
   const isPremium = user?.plan === "premium";
 
@@ -7647,7 +7645,6 @@ function initializeAuthUI() {
   const changePasswordBtn = document.getElementById("changePasswordBtn");
   const profileLogoutBtn = document.getElementById("profileLogoutBtn");
   const syncProgressNowBtn = document.getElementById("syncProgressNowBtn");
-  const submitUpgradeEvidenceBtn = document.getElementById("submitUpgradeEvidenceBtn");
   const applyPlanOverrideBtn = document.getElementById("applyPlanOverrideBtn");
   const refreshAdminUsersBtn = document.getElementById("refreshAdminUsersBtn");
   const adminUserSearch = document.getElementById("adminUserSearch");
@@ -8038,127 +8035,6 @@ function initializeAuthUI() {
     });
   }
 
-  if (submitUpgradeEvidenceBtn) {
-    submitUpgradeEvidenceBtn.addEventListener("click", async () => {
-      const user = getCurrentUser();
-      if (!user?.email) {
-        showWarning("Login is required before submitting your Selar confirmation.");
-        return;
-      }
-      const reference = document.getElementById("upgradePaymentReference")?.value || "";
-      const amount = document.getElementById("upgradeAmountPaid")?.value || "";
-      const billingCycle = document.getElementById("upgradeBillingCycle")?.value || "";
-      if (!String(reference).trim()) {
-        showWarning("Enter your Selar order reference before submitting.");
-        return;
-      }
-      if (!billingCycle) {
-        showWarning("Select the billing cycle for your Selar payment.");
-        return;
-      }
-
-      const normalizedReference = String(reference).trim();
-      const normalizedCycle = String(billingCycle).trim();
-      const normalizedAmount = String(amount).trim();
-
-      // 1) Try fully-automatic verification: the Worker checks the reference
-      //    against Selar's merchant API and grants premium immediately.
-      const verification = await runOperationWithFeedback(
-        () => verifySelarPayment(normalizedReference, normalizedCycle),
-        {
-          loadingMessage: "Verifying your Selar payment...",
-          successMessage: "",
-          failurePrefix: "Unable to verify Selar payment:",
-        },
-      ).catch((error) => ({
-        verified: false,
-        reason: "request-failed",
-        warning: error?.message || "Verification is unavailable right now.",
-      }));
-
-      if (verification?.verified) {
-        const next = readUpgradeRequests();
-        next.push({
-          id: `req_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`,
-          email: user.email,
-          reference: normalizedReference,
-          amount: normalizedAmount,
-          billingCycle: normalizedCycle,
-          note: "Auto-verified via Selar API",
-          status: "approved",
-          createdAt: new Date().toISOString(),
-          reviewedAt: new Date().toISOString(),
-          reviewedBy: "selar-api",
-          reviewNote: "Order reference confirmed against Selar merchant API.",
-        });
-        writeUpgradeRequests(next);
-        showSuccess(
-          verification.warning ||
-          "Your Selar payment was verified and your premium access is now active.",
-        );
-        clearSelarConfirmationForm();
-        await refreshProfileUpgradeSection().catch(() => {});
-        await forceCloudPlanSync().catch(() => {});
-        await refreshUserUpgradeStatus().catch(() => {});
-        await refreshAuthSessionAfterGrant();
-        return;
-      }
-
-      // 2) Verification unavailable / not confirmed: fall back to the manual
-      //    review queue so no payment is ever lost.
-      try {
-        const cloudResult = await runOperationWithFeedback(
-          async () => {
-            const next = readUpgradeRequests();
-            next.push({
-              id: `req_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`,
-              email: user.email,
-              reference: normalizedReference,
-              amount: normalizedAmount,
-              billingCycle: normalizedCycle,
-              note: "Submitted from Selar confirmation form",
-              status: "pending",
-              createdAt: new Date().toISOString(),
-            });
-            writeUpgradeRequests(next);
-            return submitUpgradeRequest({
-              reference: normalizedReference,
-              amount: normalizedAmount,
-              billingCycle: normalizedCycle,
-              note: "Submitted from Selar confirmation form",
-            });
-          },
-          {
-            loadingMessage: "Submitting Selar confirmation...",
-            successMessage: "",
-            failurePrefix: "Unable to submit Selar confirmation:",
-          },
-        );
-
-        const baseCopy = cloudResult.cloudSaved
-          ? "Selar confirmation submitted and synced. Admin review is pending."
-          : "Selar confirmation submitted. Admin review is pending.";
-        const fallbackNote = verification?.warning
-          ? ` ${verification.warning}`
-          : "";
-        if (cloudResult.cloudSaved) {
-          showSuccess(`${baseCopy}${cloudResult.warning ? ` ${cloudResult.warning}` : ""}${fallbackNote}`.trim());
-        } else {
-          showWarning(`${baseCopy}${cloudResult.warning || ""}${fallbackNote}`.trim());
-        }
-      } catch (error) {
-        showError(`Unable to submit Selar confirmation: ${error?.message || "request failed."}`);
-      }
-
-      clearSelarConfirmationForm();
-      refreshProfileUpgradeSection().catch(() => {});
-      if (isCurrentUserAdmin()) {
-        await refreshAdminUserDirectory();
-        renderAdminRequests();
-      }
-    });
-  }
-
   if (headerProfileBtn) {
     headerProfileBtn.addEventListener("click", () => {
       if (!getCurrentUser()) {
@@ -8369,37 +8245,10 @@ function initializeAuthUI() {
     if (!user?.email) {
       closePricingModal();
       openAuthModal("login");
-      showWarning(getPaymentProvider() === "selar"
-        ? "Login is required before opening Selar checkout."
-        : "Login is required before starting card payment.");
+      showWarning("Login is required before starting card payment.");
       return;
     }
     closePricingModal();
-
-    if (getPaymentProvider() === "selar") {
-      const checkoutUrl = getSelarCheckoutUrl(cycle);
-      if (!checkoutUrl) {
-        showWarning("Selar checkout link is not configured for this plan. Add it to runtime auth config.");
-        showScreen("profileScreen");
-        return;
-      }
-
-      const opened = window.open(checkoutUrl, "_blank", "noopener,noreferrer");
-      showScreen("profileScreen");
-      setTimeout(() => {
-        const cycleInput = document.getElementById("upgradeBillingCycle");
-        const referenceInput = document.getElementById("upgradePaymentReference");
-        if (cycleInput) cycleInput.value = String(cycle || "");
-        if (referenceInput) referenceInput.focus();
-      }, 150);
-
-      if (opened) {
-        showSuccess("Selar checkout opened. After payment, submit your Selar order reference here.");
-      } else {
-        showWarning("Selar checkout could not open automatically. Open the Selar product link, then return here with your order reference.");
-      }
-      return;
-    }
 
     try {
       const { handleFlutterwavePayment } = await import("./paymentFlutterwave.js");

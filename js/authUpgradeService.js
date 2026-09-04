@@ -6,7 +6,6 @@ import {
   upsertCloudProfile,
   upsertCloudUpgradeRequestRecord,
 } from "./authCloudFirestore.js";
-import { requestCloudflareAuth } from "./authCloudflareClient.js";
 import {
   normalizeEmail,
   normalizeUpgradeRequestStatus,
@@ -287,83 +286,6 @@ export async function setUpgradeRequestStatus(
     return {
       cloudUpdated: false,
       warning: error?.message || "Unable to update cloud upgrade request status.",
-    };
-  }
-}
-
-// Ask the Worker to verify a submitted Selar order reference against Selar's
-// merchant API and, when confirmed, grant premium automatically.
-// Returns { verified, reason, plan, expiresAt, warning }. When verification
-// is unavailable or the order cannot be confirmed, the caller falls back to
-// the manual-review queue — this never throws for a non-verified outcome.
-export async function verifySelarPayment(
-  { reference = "", billingCycle = "" } = {},
-  { cloudAuthEnabled = false, currentUser = null, session = null, refreshSession } = {},
-  { verifyViaApi = requestCloudflareAuth, now = () => new Date().toISOString() } = {},
-) {
-  const normalizedReference = String(reference || "").trim();
-  const normalizedCycle = String(billingCycle || "").trim();
-  if (!cloudAuthEnabled) {
-    return {
-      verified: false,
-      reason: "cloud-disabled",
-      warning: "Cloud auth is not enabled. Your confirmation will be queued for manual review.",
-    };
-  }
-  if (!currentUser?.email) {
-    return {
-      verified: false,
-      reason: "login-required",
-      warning: "Login is required before submitting your Selar confirmation.",
-    };
-  }
-  if (!normalizedReference) {
-    return { verified: false, reason: "missing-reference", warning: "Enter your Selar order reference before submitting." };
-  }
-  if (!normalizedCycle) {
-    return { verified: false, reason: "missing-cycle", warning: "Select the billing cycle for your Selar payment." };
-  }
-  if (typeof refreshSession !== "function") {
-    return {
-      verified: false,
-      reason: "session-unavailable",
-      warning: "Cloud session is unavailable. Your confirmation will be queued for manual review.",
-    };
-  }
-
-  try {
-    const freshSession = await refreshSession(session, { clearOnFailure: true });
-    if (!freshSession?.accessToken) {
-      return {
-        verified: false,
-        reason: "session-unavailable",
-        warning: "Cloud session is unavailable. Your confirmation will be queued for manual review.",
-      };
-    }
-
-    const result = await verifyViaApi(
-      "payment/selar/verify",
-      {
-        orderReference: normalizedReference,
-        planCycle: normalizedCycle,
-      },
-      freshSession.accessToken,
-    );
-
-    return {
-      verified: Boolean(result?.verified),
-      reason: String(result?.reason || ""),
-      plan: String(result?.plan || ""),
-      expiresAt: String(result?.expiresAt || ""),
-      paymentId: String(result?.paymentId || ""),
-      warning: String(result?.warning || ""),
-      verifiedAt: now(),
-    };
-  } catch (error) {
-    return {
-      verified: false,
-      reason: "request-failed",
-      warning: error?.message || "Unable to verify your Selar confirmation right now. It will be queued for manual review.",
     };
   }
 }

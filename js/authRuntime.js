@@ -57,11 +57,7 @@ export function getFirebaseConfig() {
   );
   const verificationResendCooldownMs = Number(cfg.verificationResendCooldownMs);
   const passwordResetCooldownMs = Number(cfg.passwordResetCooldownMs);
-  const paymentProvider = String(cfg.paymentProvider || "selar").trim().toLowerCase();
-  const selarCheckoutLinks =
-    cfg.selarCheckoutLinks && typeof cfg.selarCheckoutLinks === "object"
-      ? cfg.selarCheckoutLinks
-      : {};
+  const paymentProvider = String(cfg.paymentProvider || "flutterwave").trim().toLowerCase();
   const flutterwavePublicKey = String(cfg.flutterwavePublicKey || "").trim();
   const flutterwaveWebhookUrl = String(cfg.flutterwaveWebhookUrl || "").trim();
 
@@ -82,7 +78,6 @@ export function getFirebaseConfig() {
     verificationResendCooldownMs,
     passwordResetCooldownMs,
     paymentProvider,
-    selarCheckoutLinks,
     flutterwavePublicKey,
     flutterwaveWebhookUrl,
     adminEmails: Array.isArray(cfg.adminEmails) ? cfg.adminEmails : [],
@@ -167,18 +162,6 @@ export function isCloudAuthMisconfigured() {
 export function getFlutterwavePublicKey() {
   const { flutterwavePublicKey } = getFirebaseConfig();
   return flutterwavePublicKey;
-}
-
-export function getPaymentProvider() {
-  const { paymentProvider } = getFirebaseConfig();
-  return paymentProvider === "flutterwave" ? "flutterwave" : "selar";
-}
-
-export function getSelarCheckoutUrl(planCycle = "") {
-  const { selarCheckoutLinks } = getFirebaseConfig();
-  const cycle = String(planCycle || "").trim().toLowerCase();
-  const links = selarCheckoutLinks && typeof selarCheckoutLinks === "object" ? selarCheckoutLinks : {};
-  return String(links[cycle] || links.default || "").trim();
 }
 
 /**
