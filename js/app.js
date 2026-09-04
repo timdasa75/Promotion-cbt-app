@@ -6180,6 +6180,22 @@ function renderFeedbackUiState() {
     closeFeedbackModal();
   }
 }
+function updateAdminFeedbackBadge() {
+  const badge = document.getElementById("adminFeedbackBadge");
+  if (!badge) return;
+
+  const newFeedbackCount = adminFeedbackSubmissions.filter(
+    (entry) => String(entry?.status || "").trim().toLowerCase() === "new",
+  ).length;
+  const label = newFeedbackCount === 1
+    ? "1 new feedback item"
+    : `${newFeedbackCount} new feedback items`;
+
+  badge.textContent = String(newFeedbackCount);
+  badge.setAttribute("aria-label", label);
+  badge.title = label;
+}
+
 function renderAdminFeedbackList() {
   const container = document.getElementById("adminFeedbackList");
   const searchInput = document.getElementById("adminFeedbackSearch");
@@ -6188,6 +6204,7 @@ function renderAdminFeedbackList() {
   const sourceFilter = document.getElementById("adminFeedbackSourceFilter");
   const sortSelect = document.getElementById("adminFeedbackSort");
   const countLabel = document.getElementById("adminFeedbackCount");
+  updateAdminFeedbackBadge();
   if (!container) return;
 
   if (sortSelect) {
