@@ -8251,22 +8251,8 @@ function initializeAuthUI() {
             showWarning(`Cloud sync notice: ${syncResult.warning}`);
           }
         }
-        logAdminOperation({
-          action: "Refresh users and overrides",
-          target: "admin directory",
-          status: "success",
-          message: syncResult.synced
-            ? "Cloud sync succeeded."
-            : `Cloud sync partial: ${syncResult.warning || "fallback applied."}`,
-        });
         renderAdminOperationHistory();
       } catch (error) {
-        logAdminOperation({
-          action: "Refresh users and overrides",
-          target: "admin directory",
-          status: "failed",
-          message: error?.message || "Unknown error.",
-        });
         renderAdminOperationHistory();
       }
     });
@@ -8316,20 +8302,8 @@ function initializeAuthUI() {
             failurePrefix: "Unable to refresh payments:",
           },
         );
-        logAdminOperation({
-          action: "Refresh payment history",
-          target: "payment history",
-          status: "success",
-          message: "Payments refreshed from the current data source.",
-        });
         renderAdminOperationHistory();
       } catch (error) {
-        logAdminOperation({
-          action: "Refresh payment history",
-          target: "payment history",
-          status: "failed",
-          message: error?.message || "Unknown error.",
-        });
         renderAdminOperationHistory();
       }
     });
@@ -8662,20 +8636,8 @@ function initializeAuthUI() {
             failurePrefix: "Unable to refresh feedback inbox:",
           },
         );
-        logAdminOperation({
-          action: "Refresh feedback inbox",
-          target: "feedback queue",
-          status: "success",
-          message: "Feedback inbox refreshed from Firestore.",
-        });
         renderAdminOperationHistory();
       } catch (error) {
-        logAdminOperation({
-          action: "Refresh feedback inbox",
-          target: "feedback queue",
-          status: "failed",
-          message: error?.message || "Unknown error.",
-        });
         renderAdminOperationHistory();
       }
     });
