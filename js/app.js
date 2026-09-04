@@ -4165,6 +4165,7 @@ async function verifyOTPLogin(email, otp, deviceFingerprint, deviceName, trustDe
     throw new Error("Auth service is not configured.");
   }
   
+  const deviceSignalsHash = await getDeviceSignalsHash();
   const response = await fetch(`${baseUrl}/otp/verify`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -4173,6 +4174,7 @@ async function verifyOTPLogin(email, otp, deviceFingerprint, deviceName, trustDe
       otp, 
       deviceFingerprint, 
       deviceName,
+      deviceSignalsHash,
       trustDevice,
       trustDays: 30
     }),
@@ -4224,6 +4226,7 @@ async function checkDeviceTrust(email, deviceFingerprint) {
   
   try {
     const deviceName = await getDeviceName();
+    const deviceSignalsHash = await getDeviceSignalsHash();
     const accessToken = String(readSession()?.accessToken || "").trim();
     if (!accessToken) {
       return { trusted: false, reason: "session_unavailable" };
@@ -4231,7 +4234,7 @@ async function checkDeviceTrust(email, deviceFingerprint) {
     const response = await fetch(`${baseUrl}/device/check`, {
       method: "POST",
       headers: { "Content-Type": "application/json", "Authorization": `Bearer ${accessToken}` },
-      body: JSON.stringify({ email, deviceFingerprint, deviceName }),
+      body: JSON.stringify({ email, deviceFingerprint, deviceName, deviceSignalsHash }),
     });
     
     const result = await response.json();
@@ -4377,6 +4380,25 @@ async function getDeviceName() {
     }
   }
   return deviceFingerprintModule.getDeviceName();
+}
+
+/**
+ * Browser-agnostic hash of the physical device (screen/GPU/cores/touch/OS/
+ * model/timezone). Sent alongside the exact per-browser fingerprint so the
+ * Worker can recognize a different browser on the same device as one device.
+ */
+async function getDeviceSignalsHash() {
+  if (!deviceFingerprintModule) {
+    try {
+      deviceFingerprintModule = await import("./deviceFingerprint.js");
+    } catch (error) {
+      return "";
+    }
+  }
+  if (typeof deviceFingerprintModule.generateDeviceSignalsHash !== "function") {
+    return "";
+  }
+  return deviceFingerprintModule.generateDeviceSignalsHash();
 }
 
 /**

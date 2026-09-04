@@ -3468,6 +3468,7 @@ async function handleOTPVerify(request, env) {
   const otp = String(body?.otp || '').trim();
   const deviceFingerprint = String(body?.deviceFingerprint || '').trim();
   const deviceName = String(body?.deviceName || '').trim();
+  const deviceSignalsHash = String(body?.deviceSignalsHash || '').trim();
   const trustDevice = body?.trustDevice === true;
   const trustDays = Number(body?.trustDays) || DEVICE_TRUST_DEFAULT_DAYS;
   
@@ -3500,7 +3501,7 @@ async function handleOTPVerify(request, env) {
   let deviceId = null;
   let expiresAt = null;
   if (trustDevice && deviceFingerprint) {
-    const trustResult = await addTrustedDevice(database, user.id, deviceFingerprint, deviceName, '{}', ip, userAgent, trustDays);
+    const trustResult = await addTrustedDevice(database, user.id, deviceFingerprint, deviceName, '{}', ip, userAgent, trustDays, false, deviceSignalsHash);
     deviceId = trustResult.deviceId;
     expiresAt = trustResult.expiresAt;
   }
@@ -3753,7 +3754,7 @@ async function checkDeviceTrust(database, userId, deviceFingerprint) {
   return result || null;
 }
 
-async function addTrustedDevice(database, userId, deviceFingerprint, deviceName, deviceInfo, ip, userAgent, trustDays, isPermanent = false) {
+async function addTrustedDevice(database, userId, deviceFingerprint, deviceName, deviceInfo, ip, userAgent, trustDays, isPermanent = false, deviceSignalsHash = '') {
   const days = trustDays || DEVICE_TRUST_DEFAULT_DAYS;
   const now = new Date().toISOString();
   const expiresAt = isPermanent ? '' : (days > 0 ? new Date(Date.now() + days * 24 * 60 * 60 * 1000).toISOString() : '');
@@ -3791,13 +3792,40 @@ async function addTrustedDevice(database, userId, deviceFingerprint, deviceName,
   const deviceId = generateId();
   await database
     .prepare(`
-      INSERT INTO trusted_devices (id, user_id, device_fingerprint, device_name, device_info, ip_address, user_agent, trusted_at, expires_at, last_used_at, is_permanent)
-      VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11)
+      INSERT INTO trusted_devices (id, user_id, device_fingerprint, device_name, device_info, ip_address, user_agent, trusted_at, expires_at, last_used_at, is_permanent, device_signals_hash)
+      VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12)
     `)
-    .bind(deviceId, userId, deviceFingerprint, deviceName || '', deviceInfo || '{}', ip || '', userAgent || '', now, expiresAt, now, isPermanent ? 1 : 0)
+    .bind(deviceId, userId, deviceFingerprint, deviceName || '', deviceInfo || '{}', ip || '', userAgent || '', now, expiresAt, now, isPermanent ? 1 : 0, deviceSignalsHash || '')
     .run();
   
   return { deviceId, expiresAt, isPermanent };
+}
+
+/**
+ * Find an ACTIVE trusted row for this user whose device-signals hash matches
+ * the incoming hash. Used to recognize a different browser on the same
+ * physical device: the exact fingerprint differs (per-browser storage), but
+ * the hardware signals (screen/GPU/cores/touch/OS/model/timezone) agree, so
+ * the user is not challenged with OTP. Only non-revoked, non-expired rows are
+ * considered, mirroring checkDeviceTrust()'s scope.
+ */
+async function findTrustedDeviceBySignals(database, userId, deviceSignalsHash) {
+  if (!deviceSignalsHash) return null;
+  const result = await database
+    .prepare(`
+      SELECT id, device_name, device_signals_hash, is_permanent
+      FROM trusted_devices
+      WHERE user_id = ?1
+        AND device_signals_hash = ?2
+        AND device_signals_hash != ''
+        AND revoked_at = ''
+        AND (expires_at = '' OR expires_at > ?3)
+      ORDER BY (is_permanent = 1) DESC, last_used_at DESC
+      LIMIT 1
+    `)
+    .bind(userId, deviceSignalsHash, new Date().toISOString())
+    .first();
+  return result || null;
 }
 
 async function revokeDevice(database, deviceId, userId) {
@@ -4410,6 +4438,7 @@ async function handleDeviceCheck(request, env) {
   const email = normalizeEmail(body?.email || '');
   const deviceFingerprint = String(body?.deviceFingerprint || '').trim();
   const deviceName = String(body?.deviceName || '').trim();
+  const deviceSignalsHash = String(body?.deviceSignalsHash || '').trim();
   
   if (!email || !email.includes('@')) {
     throw createRouteError(400, 'email is required.');
@@ -4456,13 +4485,41 @@ async function handleDeviceCheck(request, env) {
     };
   }
 
+  // Same physical device, different browser: the exact fingerprint differs
+  // (per-browser storage) but the hardware signals agree. Recognize it as an
+  // alias of the existing device and record this browser as a trusted 30-day
+  // row — no OTP needed, and Device Management shows the new browser.
+  const signalMatch = await findTrustedDeviceBySignals(database, user.id, deviceSignalsHash);
+  if (signalMatch) {
+    const ip = String(request.headers.get('CF-Connecting-IP') || '').trim();
+    const userAgent = String(request.headers.get('User-Agent') || '').trim();
+    const aliasName = deviceName || signalMatch.device_name || 'Same device (new browser)';
+    const trustResult = await addTrustedDevice(
+      database, user.id, deviceFingerprint, aliasName, '{}', ip, userAgent, DEVICE_TRUST_DEFAULT_DAYS, false, deviceSignalsHash
+    );
+    await logLoginEvent(
+      database, user.id, email, 'device_aliased', deviceFingerprint,
+      aliasName, ip, userAgent,
+      JSON.stringify({ deviceId: trustResult.deviceId, matchedDeviceId: signalMatch.id, matchedDeviceName: signalMatch.device_name || '' })
+    );
+    return {
+      ok: true,
+      trusted: true,
+      aliased: true,
+      deviceId: trustResult.deviceId,
+      deviceName: aliasName,
+      expiresAt: trustResult.expiresAt,
+      lastUsedAt: new Date().toISOString(),
+    };
+  }
+  
   // A support-issued grant is consumed atomically and applies only to this
   // authenticated user's current device. It never disables device auth globally.
   if (await consumeDeviceAuthRecoveryGrant(database, user.id, deviceFingerprint)) {
     const ip = String(request.headers.get('CF-Connecting-IP') || '').trim();
     const userAgent = String(request.headers.get('User-Agent') || '').trim();
     const trustResult = await addTrustedDevice(
-      database, user.id, deviceFingerprint, deviceName || 'Recovery Device', '{}', ip, userAgent, DEVICE_TRUST_DEFAULT_DAYS
+      database, user.id, deviceFingerprint, deviceName || 'Recovery Device', '{}', ip, userAgent, DEVICE_TRUST_DEFAULT_DAYS, false, deviceSignalsHash
     );
     await logLoginEvent(
       database, user.id, email, 'device_auth_recovery_consumed', deviceFingerprint,
@@ -4507,14 +4564,14 @@ async function handleDeviceCheck(request, env) {
           UPDATE trusted_devices
           SET revoked_at = '', is_permanent = 1, expires_at = '',
               device_name = ?3, ip_address = ?4, user_agent = ?5,
-              trusted_at = ?6, last_used_at = ?6
+              trusted_at = ?6, last_used_at = ?6, device_signals_hash = ?7
           WHERE id = ?1 AND user_id = ?2
         `)
-        .bind(deviceId, user.id, deviceName || 'Primary Device', ip || '', userAgent || '', now)
+        .bind(deviceId, user.id, deviceName || 'Primary Device', ip || '', userAgent || '', now, deviceSignalsHash || '')
         .run();
     } else {
       const trustResult = await addTrustedDevice(
-        database, user.id, deviceFingerprint, deviceName || 'Primary Device', '{}', ip, userAgent, 0, true
+        database, user.id, deviceFingerprint, deviceName || 'Primary Device', '{}', ip, userAgent, 0, true, deviceSignalsHash
       );
       deviceId = trustResult.deviceId;
     }
@@ -4549,6 +4606,7 @@ async function handleDeviceTrust(request, env) {
   const deviceFingerprint = String(body?.deviceFingerprint || '').trim();
   const deviceName = String(body?.deviceName || '').trim();
   const deviceInfo = String(body?.deviceInfo || '{}');
+  const deviceSignalsHash = String(body?.deviceSignalsHash || '').trim();
   const trustDays = Number(body?.trustDays) || DEVICE_TRUST_DEFAULT_DAYS;
   
   if (!email || !email.includes('@')) {
@@ -4572,7 +4630,7 @@ async function handleDeviceTrust(request, env) {
   const userAgent = String(request.headers.get('User-Agent') || '').trim();
   
   // Add trusted device
-  const result = await addTrustedDevice(database, user.id, deviceFingerprint, deviceName, deviceInfo, ip, userAgent, trustDays);
+  const result = await addTrustedDevice(database, user.id, deviceFingerprint, deviceName, deviceInfo, ip, userAgent, trustDays, false, deviceSignalsHash);
   
   // Log the event
   await logLoginEvent(database, user.id, email, 'device_trusted', deviceFingerprint, deviceName, ip, userAgent, JSON.stringify({ deviceId: result.deviceId }));
