@@ -29,6 +29,56 @@ class MemoryStorage {
   }
 }
 
+class MemoryCache {
+  constructor() {
+    this.entries = new Map();
+  }
+
+  normalizeKey(request) {
+    return typeof request === "string" ? request : request.url;
+  }
+
+  async match(request) {
+    const entry = this.entries.get(this.normalizeKey(request));
+    return entry ? entry.clone() : undefined;
+  }
+
+  async put(request, response) {
+    this.entries.set(this.normalizeKey(request), response.clone());
+  }
+
+  async keys() {
+    // Return the raw keys (URL strings). The real API returns Request objects,
+    // but the module code treats them opaquely, so strings are interchangeable.
+    return [...this.entries.keys()];
+  }
+
+  async delete(request) {
+    return this.entries.delete(this.normalizeKey(request));
+  }
+
+  async count() {
+    return this.entries.size;
+  }
+}
+
+class MemoryCacheStorage {
+  constructor() {
+    this.caches = new Map();
+    this.deleted = [];
+  }
+
+  async open(name) {
+    if (!this.caches.has(name)) this.caches.set(name, new MemoryCache());
+    return this.caches.get(name);
+  }
+
+  async delete(name) {
+    this.deleted.push(name);
+    return this.caches.delete(name);
+  }
+}
+
 function installBrowserContext({
   pathname = "/",
   flags = { enablePersistentJsonCache: true },
@@ -61,6 +111,7 @@ function installBrowserContext({
   return {
     localStorage,
     sessionStorage,
+    window,
     restore() {
       __resetTopicSourceCachesForTests();
       global.window = previousWindow;
@@ -144,6 +195,116 @@ test("fetchJsonFile discards malformed cache payloads and refreshes from network
 
     const refreshedEntry = JSON.parse(ctx.localStorage.getItem(cacheKey));
     assert.deepEqual(JSON.parse(refreshedEntry.text), { source: "network", refreshed: true });
+  } finally {
+    ctx.restore();
+  }
+});
+
+test("fetchJsonFile uses fresh Cache Storage entry before network fetch", async () => {
+  const ctx = installBrowserContext();
+  const caches = new MemoryCacheStorage();
+  ctx.window.caches = caches;
+  try {
+    const cache = await caches.open("promotion-cbt:topic-json:v1");
+    await cache.put(
+      "/data/cache-test.json",
+      new Response(JSON.stringify({ source: "cache-storage", value: 1 }), {
+        headers: { "X-Cached-At": String(Date.now()) },
+      }),
+    );
+
+    let fetchCalls = 0;
+    global.fetch = async () => {
+      fetchCalls += 1;
+      throw new Error("Network should not be called for fresh Cache Storage entry");
+    };
+
+    const result = await fetchJsonFile("data/cache-test.json");
+    assert.deepEqual(result, { source: "cache-storage", value: 1 });
+    assert.equal(fetchCalls, 0);
+  } finally {
+    ctx.restore();
+  }
+});
+
+test("fetchJsonFile falls back to stale Cache Storage entry when fetch fails", async () => {
+  const ctx = installBrowserContext();
+  const caches = new MemoryCacheStorage();
+  ctx.window.caches = caches;
+  try {
+    const cache = await caches.open("promotion-cbt:topic-json:v1");
+    await cache.put(
+      "/data/stale-cache.json",
+      new Response(JSON.stringify({ source: "stale-cache", recovered: true }), {
+        headers: { "X-Cached-At": String(Date.now() - (7 * 60 * 60 * 1000)) },
+      }),
+    );
+
+    let fetchCalls = 0;
+    global.fetch = async () => {
+      fetchCalls += 1;
+      throw new Error("offline");
+    };
+
+    const result = await fetchJsonFile("data/stale-cache.json");
+    assert.deepEqual(result, { source: "stale-cache", recovered: true });
+    assert.equal(fetchCalls, 1);
+  } finally {
+    ctx.restore();
+  }
+});
+
+test("fetchJsonFile persists to Cache Storage and skips localStorage when available", async () => {
+  const ctx = installBrowserContext();
+  const caches = new MemoryCacheStorage();
+  ctx.window.caches = caches;
+  try {
+    let fetchCalls = 0;
+    global.fetch = async () => {
+      fetchCalls += 1;
+      return {
+        ok: true,
+        text: async () => JSON.stringify({ source: "network", cached: true }),
+      };
+    };
+
+    const result = await fetchJsonFile("data/cache-test.json");
+    assert.deepEqual(result, { source: "network", cached: true });
+    assert.equal(fetchCalls, 1);
+
+    const cache = await caches.open("promotion-cbt:topic-json:v1");
+    const match = await cache.match("/data/cache-test.json");
+    assert.ok(match, "Cache Storage should hold the fetched payload");
+    assert.deepEqual(JSON.parse(await match.text()), { source: "network", cached: true });
+    assert.equal(
+      ctx.localStorage.getItem("promotion-cbt:json-cache:v2:/data/cache-test.json"),
+      null,
+      "localStorage should not be written when Cache Storage is available",
+    );
+  } finally {
+    ctx.restore();
+  }
+});
+
+test("Cache Storage entries are pruned to the maximum count, oldest first", async () => {
+  const ctx = installBrowserContext();
+  const caches = new MemoryCacheStorage();
+  ctx.window.caches = caches;
+  try {
+    global.fetch = async () => ({
+      ok: true,
+      text: async () => JSON.stringify({ source: "network", ok: true }),
+    });
+
+    const fileCount = 25;
+    for (let index = 0; index < fileCount; index += 1) {
+      await fetchJsonFile(`data/f${String(index).padStart(2, "0")}.json`);
+    }
+
+    const cache = await caches.open("promotion-cbt:topic-json:v1");
+    assert.ok((await cache.count()) <= 24, "cache should stay at or below the entry cap");
+    assert.equal(await cache.match("/data/f00.json"), undefined, "oldest entry should be evicted");
+    assert.ok(await cache.match("/data/f24.json"), "newest entry should survive");
   } finally {
     ctx.restore();
   }

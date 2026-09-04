@@ -17,6 +17,8 @@ const PERSISTENT_CACHE_INDEX_KEY = `${PERSISTENT_CACHE_PREFIX}index`;
 const PERSISTENT_CACHE_TTL_MS = 6 * 60 * 60 * 1000;
 const PERSISTENT_CACHE_MAX_TOTAL_BYTES = 3_500_000;
 const PERSISTENT_CACHE_MAX_ENTRY_BYTES = 1_500_000;
+const CACHE_STORAGE_NAME = "promotion-cbt:topic-json:v1";
+const PERSISTENT_CACHE_MAX_ENTRIES = 24;
 
 function getPersistentCacheStorage() {
   if (typeof window === "undefined") return null;
@@ -99,7 +101,7 @@ function prunePersistentCacheEntries(storage, index, incomingSize = 0, excludeKe
   return normalizedIndex;
 }
 
-function persistJsonText(filePath, text) {
+function persistLegacyJsonText(filePath, text) {
   const storage = getPersistentCacheStorage();
   if (!storage) return;
 
@@ -139,7 +141,7 @@ function persistJsonText(filePath, text) {
   }
 }
 
-function readPersistentJsonText(filePath) {
+function readLegacyJsonText(filePath) {
   const storage = getPersistentCacheStorage();
   if (!storage) return null;
 
@@ -177,6 +179,109 @@ function parseJsonText(text, file) {
     throw new Error(`Server returned HTML instead of JSON for ${file}`);
   }
   return JSON.parse(normalizedText);
+}
+
+function getCacheStorageHandle() {
+  if (typeof window === "undefined") return null;
+  if (!isFeatureEnabled("enablePersistentJsonCache")) return null;
+  try {
+    return window.caches || null;
+  } catch (_error) {
+    return null;
+  }
+}
+
+function buildCacheKeyUrl(filePath) {
+  const normalized = String(filePath || "").trim();
+  if (!normalized) return "";
+  return normalized.startsWith("/") ? normalized : `/${normalized}`;
+}
+
+async function readCacheStorageJsonText(filePath) {
+  const cachesStore = getCacheStorageHandle();
+  if (!cachesStore) return null;
+
+  try {
+    const cache = await cachesStore.open(CACHE_STORAGE_NAME);
+    const response = await cache.match(buildCacheKeyUrl(filePath));
+    if (!response || !response.ok) return null;
+
+    const text = await response.text();
+    if (!text || text.trim().startsWith("<")) return null;
+
+    const cachedAt = Math.max(0, Number(response.headers.get("X-Cached-At") || 0));
+    if (!cachedAt) return null;
+
+    return {
+      text,
+      cachedAt,
+      isFresh: Date.now() - cachedAt <= PERSISTENT_CACHE_TTL_MS,
+    };
+  } catch (_error) {
+    return null;
+  }
+}
+
+async function pruneCacheStorageEntries(cache) {
+  try {
+    const requests = await cache.keys();
+    if (requests.length <= PERSISTENT_CACHE_MAX_ENTRIES) return;
+
+    const entries = [];
+    for (const request of requests) {
+      const response = await cache.match(request);
+      entries.push({
+        request,
+        cachedAt: Math.max(0, Number(response?.headers?.get("X-Cached-At") || 0)),
+      });
+    }
+
+    entries.sort((left, right) => left.cachedAt - right.cachedAt);
+    const excess = entries.length - PERSISTENT_CACHE_MAX_ENTRIES;
+    for (let index = 0; index < excess; index += 1) {
+      await cache.delete(entries[index].request);
+    }
+  } catch (_error) {
+    // Pruning is best-effort; a full cache simply stops growing.
+  }
+}
+
+async function persistCacheStorageJsonText(filePath, text) {
+  const cachesStore = getCacheStorageHandle();
+  if (!cachesStore) return false;
+
+  try {
+    const cache = await cachesStore.open(CACHE_STORAGE_NAME);
+    const maxAgeSeconds = Math.max(60, Math.floor(PERSISTENT_CACHE_TTL_MS / 1000));
+    const response = new Response(text, {
+      headers: {
+        "Content-Type": "application/json",
+        "Cache-Control": `public, max-age=${maxAgeSeconds}`,
+        "X-Cached-At": String(Date.now()),
+      },
+    });
+    await cache.put(buildCacheKeyUrl(filePath), response);
+    await pruneCacheStorageEntries(cache);
+    return true;
+  } catch (_error) {
+    return false;
+  }
+}
+
+async function persistJsonText(filePath, text) {
+  const trimmedText = String(text || "");
+  if (!trimmedText || trimmedText.trim().startsWith("<")) return;
+
+  const persisted = await persistCacheStorageJsonText(filePath, trimmedText);
+  if (!persisted) {
+    persistLegacyJsonText(filePath, trimmedText);
+  }
+}
+
+async function readPersistentJsonText(filePath) {
+  const cacheEntry = await readCacheStorageJsonText(filePath);
+  if (cacheEntry) return cacheEntry;
+  return readLegacyJsonText(filePath);
 }
 
 function getProtectedTopicCacheKey(topic, session) {
@@ -279,6 +384,13 @@ async function fetchPublicTopicDataFilesWithReport(topic, options = {}) {
 export function __resetTopicSourceCachesForTests() {
   jsonCache.clear();
   protectedTopicCache.clear();
+  if (typeof window !== "undefined" && typeof window.caches?.delete === "function") {
+    try {
+      window.caches.delete(CACHE_STORAGE_NAME);
+    } catch (_error) {
+      // Best-effort: Cache Storage may be unavailable in test environments.
+    }
+  }
 }
 
 export function getBaseUrl() {
@@ -307,7 +419,7 @@ export async function fetchJsonFile(file) {
       return jsonCache.get(filePath);
     }
 
-    const cachedEntry = readPersistentJsonText(filePath);
+    const cachedEntry = await readPersistentJsonText(filePath);
     if (cachedEntry?.isFresh) {
       const cachedData = parseJsonText(cachedEntry.text, file);
       jsonCache.set(filePath, cachedData);
@@ -326,7 +438,7 @@ export async function fetchJsonFile(file) {
       const text = await response.text();
       const data = parseJsonText(text, file);
       jsonCache.set(filePath, data);
-      persistJsonText(filePath, text);
+      await persistJsonText(filePath, text);
       return data;
     } catch (error) {
       if (cachedEntry?.text) {
