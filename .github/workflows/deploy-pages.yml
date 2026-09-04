@@ -38,15 +38,15 @@ jobs:
         env:
           WORKER_BASE_URL: ${{ secrets.CLOUDFLARE_AUTH_BASE_URL }}
           # When a wrangler-scoped token exists, the route check also verifies
-          # the payment-provider secrets (SELAR_API_KEY, SELAR_WEBHOOK_SECRET,
-          # FLW_SECRET_KEY, FLW_WEBHOOK_SECRET_HASH) are deployed, so a
-          # silently unkeyed Selar or Flutterwave auto-grant path fails CI;
-          # without the token the secret checks are skipped, so CI stays green.
+          # the payment-provider secrets (FLW_SECRET_KEY, FLW_WEBHOOK_SECRET_HASH)
+          # are deployed, so a silently unkeyed Flutterwave auto-grant path
+          # fails CI; without the token the secret checks are skipped, so CI
+          # stays green.
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: |
           if [ -n "${WORKER_BASE_URL}" ]; then
             if [ -n "${CLOUDFLARE_API_TOKEN}" ]; then
-              npm run check:worker-routes -- --check-selar-key --check-flutterwave-key
+              npm run check:worker-routes -- --check-flutterwave-key
             else
               npm run check:worker-routes
             fi
@@ -63,7 +63,6 @@ jobs:
           FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
           CLOUDFLARE_AUTH_BASE_URL: ${{ secrets.CLOUDFLARE_AUTH_BASE_URL }}
           PAYMENT_PROVIDER: ${{ vars.PAYMENT_PROVIDER }}
-          SELAR_MONTHLY_CHECKOUT_URL: ${{ secrets.SELAR_MONTHLY_CHECKOUT_URL }}
           ADMIN_EMAILS: ${{ secrets.ADMIN_EMAILS }}
         run: |
           if [ -z "${CLOUDFLARE_AUTH_BASE_URL}" ]; then
@@ -80,7 +79,6 @@ jobs:
           ADMIN_API_BASE_URL: ${{ secrets.ADMIN_API_BASE_URL }}
           CLOUDFLARE_AUTH_BASE_URL: ${{ secrets.CLOUDFLARE_AUTH_BASE_URL }}
           PAYMENT_PROVIDER: ${{ vars.PAYMENT_PROVIDER }}
-          SELAR_MONTHLY_CHECKOUT_URL: ${{ secrets.SELAR_MONTHLY_CHECKOUT_URL }}
           FLUTTERWAVE_PUBLIC_KEY: ${{ secrets.FLUTTERWAVE_PUBLIC_KEY }}
           ADMIN_EMAILS: ${{ secrets.ADMIN_EMAILS }}
         run: |

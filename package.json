@@ -23,7 +23,6 @@
     "check:worker-routes": "node scripts/check_worker_routes.mjs",
     "check:worker-routes:warn": "node scripts/check_worker_routes.mjs --warn",
     "check:worker-routes:json": "node scripts/check_worker_routes.mjs --json",
-    "check:worker-routes:selar": "node scripts/check_worker_routes.mjs --check-selar-key",
     "check:worker-routes:flutterwave": "node scripts/check_worker_routes.mjs --check-flutterwave-key",
     "dev": "vite",
     "build": "vite build",

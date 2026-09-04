@@ -29,8 +29,7 @@ function buildCiGeneratedRuntimeConfigBody(overrides = {}) {
     cloudflareAuthBaseUrl: "https://ci-worker.example.workers.dev",
     enableCloudProgressSync: true,
     adminApiBaseUrl: "https://ci-worker.example.workers.dev",
-    paymentProvider: "selar",
-    selarCheckoutLinks: { default: "https://selar.com/ci", monthly: "https://selar.com/ci" },
+    paymentProvider: "flutterwave",
     adminEmails: [],
     ...overrides,
   };

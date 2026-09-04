@@ -11,9 +11,7 @@
 // Usage:
 //   node scripts/check_worker_routes.mjs [--base-url URL] [--origin ORIGIN]
 //     [--timeout-ms N] [--concurrency N] [--warn] [--json]
-//     [--check-selar-key] [--no-check-selar-key]
 //     [--check-flutterwave-key] [--no-check-flutterwave-key]
-//     [--bearer-token TOKEN]
 //
 //   --base-url  Worker base URL (default: WORKER_BASE_URL env, else parsed
 //               from config/runtime-auth.js cloudflareAuthBaseUrl/adminApiBaseUrl)
@@ -23,14 +21,6 @@
 //   --concurrency Number of parallel probes (default 4)
 //   --warn      Report findings but exit 0 (default exits 1 on findings)
 //   --json      Emit machine-readable JSON summary
-//   --check-selar-key  Verify SELAR_API_KEY and SELAR_WEBHOOK_SECRET are set on
-//               the deployed Worker via `wrangler secret list` (auto-enabled
-//               when CLOUDFLARE_API_TOKEN is present). Missing SELAR_API_KEY is
-//               a hard finding (/payment/selar/verify silently falls back to
-//               manual review); missing SELAR_WEBHOOK_SECRET makes
-//               /payment/webhook/selar — the Zapier bridge — answer 503 and
-//               silently stop automation. --no-check-selar-key disables it
-//               explicitly.
 //   --check-flutterwave-key  Verify FLW_SECRET_KEY and FLW_WEBHOOK_SECRET_HASH
 //               are set on the deployed Worker via `wrangler secret list`
 //               (auto-enabled when CLOUDFLARE_API_TOKEN is present). Missing
@@ -39,15 +29,8 @@
 //               grant chain throw → 500), and FLW_WEBHOOK_SECRET_HASH gates
 //               /payment/webhook/flutterwave (the auto-grant bridge throws →
 //               500). --no-check-flutterwave-key disables it explicitly.
-//   --bearer-token TOKEN  When supplied, also probe /payment/selar/verify with
-//               a real auth token (plus a stub order reference) so the check can
-//               observe the handler's actual behavior: reason "api_not_configured"
-//               or a 5xx are findings (auto-grant broken), while any other
-//               verification outcome proves the endpoint is live and keyed.
-//
 // Exit codes: 0 = healthy, 1 = findings (missing/5xx routes, missing
-//             SELAR_API_KEY / SELAR_WEBHOOK_SECRET / FLW_SECRET_KEY /
-//             FLW_WEBHOOK_SECRET_HASH, or config error),
+//             FLW_SECRET_KEY / FLW_WEBHOOK_SECRET_HASH, or config error),
 //             2 = cannot reach the Worker.
 
 import fs from "node:fs";
@@ -76,14 +59,6 @@ const concurrency = Math.max(1, Math.min(20, Number(readFlag("--concurrency") ||
 const warnOnly = args.has("--warn");
 const jsonOut = args.has("--json");
 const bearerToken = readFlag("--bearer-token");
-// The SELAR_API_KEY and FLW secret checks are each on by default when wrangler
-// can authenticate; the explicit flags let callers force or suppress them
-// regardless of the env.
-const checkSelarKeyFlag = args.has("--check-selar-key")
-  ? true
-  : args.has("--no-check-selar-key")
-    ? false
-    : Boolean(process.env.CLOUDFLARE_API_TOKEN);
 const checkFlutterwaveKeyFlag = args.has("--check-flutterwave-key")
   ? true
   : args.has("--no-check-flutterwave-key")
@@ -240,7 +215,7 @@ async function probe(route) {
     }
     if (status >= 500 && !RATE_LIMIT_STATUSES.has(status)) {
       // A 5xx means the route is registered but the handler (or platform) is
-      // erroring — e.g. the worker 500s on /payment/selar/verify, silently
+      // erroring — e.g. the worker 500s on /payment/verify, silently
       // disabling auto-grant. Surface it as a finding, not "present".
       return {
         route,
@@ -310,13 +285,9 @@ function extractClientCalls() {
   return [...new Set(calls.map(ROUTE_SLUG))].sort();
 }
 
-// -------------------------------------------- deployed worker secrets (SELAR + FLW)
-// Four secrets gate the payment auto-grant paths, and each silently degrades
-// to manual admin review (or a 500) when unset:
-//   - SELAR_API_KEY         gates /payment/selar/verify (legacy polling path)
-//   - SELAR_WEBHOOK_SECRET  gates /payment/webhook/selar (the Zapier bridge —
-//     the confirmed Selar automation path; unset means the route answers 503
-//     and the bridge silently stops).
+// -------------------------------------------- deployed worker secrets (Flutterwave)
+// Two secrets gate the Flutterwave payment auto-grant paths, and each
+// silently degrades to a 500 when unset:
 //   - FLW_SECRET_KEY        gates verifyFlutterwaveTransaction, which the
 //     /payment/verify and /payment/webhook/flutterwave grant chains both call;
 //     unset means they throw and answer 500.
@@ -353,8 +324,7 @@ function resolveWranglerCommand() {
 }
 
 // Returns { status: "ok" | "unverifiable", names: Set<string>, detail } —
-// one wrangler invocation shared by the SELAR and FLW checks so the whole
-// secret scan is a single `secret list` call.
+// one wrangler invocation so the whole secret scan is a single `secret list` call.
 function readDeployedSecretNames() {
   const cwd = path.join(ROOT_DIR, "workers", "admin-bridge");
   const run = (extraArgs) => {
@@ -419,44 +389,6 @@ function secretStatus(namesInfo, name) {
   };
 }
 
-// Probe /payment/selar/verify with a real auth token and a stub reference so
-// the check can observe the handler's actual behavior without waiting for a
-// real order. Any outcome other than "the endpoint answered" is a finding.
-async function probeSelarVerify() {
-  const url = new URL(`${workerBaseUrl}/payment/selar/verify`);
-  const controller = new AbortController();
-  try {
-    const body = JSON.stringify({ orderReference: "health-check-stub-order", planCycle: "monthly" });
-    const headers = { Authorization: `Bearer ${bearerToken}` };
-    if (originFlag) headers.Origin = originFlag;
-    const { status, text } = await httpPost(url, headers, body, controller.signal, timeoutMs);
-    let payload = {};
-    try {
-      payload = JSON.parse(text);
-    } catch {
-      // non-JSON body
-    }
-    const reason = String(payload?.reason || "");
-    if (status >= 500) return { status: "error", httpStatus: status, detail: `HTTP ${status}: ${text.slice(0, 200)}` };
-    if (status === 401 || status === 403) {
-      return { status: "unauthorized", httpStatus: status, detail: `HTTP ${status}: ${text.slice(0, 200)}` };
-    }
-    if (reason === "api_not_configured") {
-      return { status: "no-key", httpStatus: status, detail: "handler reported api_not_configured (SELAR_API_KEY unset on the Worker)" };
-    }
-    if (payload?.verified === true) {
-      return { status: "auto-verified", httpStatus: status, detail: "stub reference auto-verified (auto-grant path live)" };
-    }
-    // verified:false with a real reason (order_not_found / amount_mismatch /
-    // invalid_reference ...) proves the endpoint is live and keyed.
-    return { status: "live", httpStatus: status, detail: `endpoint live (reason: ${reason || "unknown"})` };
-  } catch (error) {
-    return { status: "network-error", httpStatus: 0, detail: error?.message || "network error" };
-  } finally {
-    controller.abort();
-  }
-}
-
 // ------------------------------------------------------------------------ main
 async function main() {
   const startedAt = Date.now();
@@ -513,48 +445,14 @@ async function main() {
   const serverErrors = results.filter((result) => result.serverError);
 
   // Payment auto-grant health: missing worker secrets silently degrade the
-  // corresponding payment path (Selar → manual review, Flutterwave → 500).
-  // Read the deployed secret list once (shared by both providers), then check
-  // the endpoint with a real token (--bearer-token) when supplied.
-  let selarApiKey = null;
-  let selarWebhookSecret = null;
+  // Flutterwave path (500s). Read the deployed secret list once, then report.
   let flwSecretKey = null;
   let flwWebhookSecretHash = null;
-  if (checkSelarKeyFlag || checkFlutterwaveKeyFlag) {
+  if (checkFlutterwaveKeyFlag) {
     const namesInfo = readDeployedSecretNames();
-    if (checkSelarKeyFlag) {
-      selarApiKey = secretStatus(namesInfo, "SELAR_API_KEY");
-      selarWebhookSecret = secretStatus(namesInfo, "SELAR_WEBHOOK_SECRET");
-    }
-    if (checkFlutterwaveKeyFlag) {
-      flwSecretKey = secretStatus(namesInfo, "FLW_SECRET_KEY");
-      flwWebhookSecretHash = secretStatus(namesInfo, "FLW_WEBHOOK_SECRET_HASH");
-    }
+    flwSecretKey = secretStatus(namesInfo, "FLW_SECRET_KEY");
+    flwWebhookSecretHash = secretStatus(namesInfo, "FLW_WEBHOOK_SECRET_HASH");
   }
-  let selarVerify = null;
-  if (bearerToken) {
-    selarVerify = await probeSelarVerify();
-  }
-
-  const selarFindings = [];
-  if (selarApiKey?.status === "missing") {
-    selarFindings.push(
-      "SELAR_API_KEY is NOT set on the deployed Worker; /payment/selar/verify falls back to manual review.",
-    );
-  } else if (selarApiKey?.status === "unverifiable") {
-    selarFindings.push(`SELAR_API_KEY presence could not be verified (wrangler secret list failed): ${selarApiKey.detail}`);
-  }
-  if (selarWebhookSecret?.status === "missing") {
-    selarFindings.push(
-      "SELAR_WEBHOOK_SECRET is NOT set on the deployed Worker; /payment/webhook/selar answers 503 and the Zapier bridge silently stops.",
-    );
-  } else if (selarWebhookSecret?.status === "unverifiable") {
-    selarFindings.push(`SELAR_WEBHOOK_SECRET presence could not be verified (wrangler secret list failed): ${selarWebhookSecret.detail}`);
-  }
-  if (selarVerify && ["no-key", "error", "network-error"].includes(selarVerify.status)) {
-    selarFindings.push(`/payment/selar/verify probe: ${selarVerify.detail}`);
-  }
-
   const flwFindings = [];
   if (flwSecretKey?.status === "missing") {
     flwFindings.push(
@@ -585,10 +483,6 @@ async function main() {
     serverErrors: serverErrors.map((result) => ({ route: result.route, status: result.status, error: result.error })),
     unresolved: stillUnresolved.map((result) => ({ route: result.route, error: result.error })),
     networkErrors: networkErrors.map((result) => ({ route: result.route, error: result.error })),
-    selarApiKey,
-    selarWebhookSecret,
-    selarVerify,
-    selarFindings,
     flwSecretKey,
     flwWebhookSecretHash,
     flwFindings,
@@ -631,22 +525,6 @@ async function main() {
       }
       console.log(`\nThe deployed Worker is erroring on registered routes. Check worker logs (wrangler tail) and redeploy.`);
     }
-    if (selarApiKey) {
-      console.log(`\nSELAR_API_KEY (worker secret): ${selarApiKey.status}${selarApiKey.detail ? ` — ${selarApiKey.detail}` : ""}`);
-    }
-    if (selarWebhookSecret) {
-      console.log(`\nSELAR_WEBHOOK_SECRET (worker secret): ${selarWebhookSecret.status}${selarWebhookSecret.detail ? ` — ${selarWebhookSecret.detail}` : ""}`);
-    }
-    if (selarVerify) {
-      console.log(`\n/payment/selar/verify probe: ${selarVerify.status}${selarVerify.detail ? ` — ${selarVerify.detail}` : ""}`);
-    }
-    if (selarFindings.length) {
-      console.log(`\nSelar auto-grant findings:`);
-      for (const finding of selarFindings) {
-        console.log(`  - ${finding}`);
-      }
-      console.log(`\nWhile SELAR_WEBHOOK_SECRET is unset, the Zapier bridge silently stops; while SELAR_API_KEY is unset, /payment/selar/verify silently requires manual review.`);
-    }
     if (flwSecretKey) {
       console.log(`\nFLW_SECRET_KEY (worker secret): ${flwSecretKey.status}${flwSecretKey.detail ? ` — ${flwSecretKey.detail}` : ""}`);
     }
@@ -666,7 +544,7 @@ async function main() {
   if (networkErrors.length === results.length) {
     process.exit(2);
   }
-  const hasFindings = missing.length > 0 || serverErrors.length > 0 || selarFindings.length > 0 || flwFindings.length > 0;
+  const hasFindings = missing.length > 0 || serverErrors.length > 0 || flwFindings.length > 0;
   if (hasFindings && !warnOnly && !effectiveOriginBlocked) {
     process.exit(1);
   }

@@ -4,11 +4,10 @@
 // exercise the probe/report/exit-code logic against a local mock Worker that
 // deliberately serves a stale route set (404 "Route not found").
 //
-// The SELAR_API_KEY / FLW secret checks talk to the REAL deployed Worker via
+// The FLW secret checks talk to the REAL deployed Worker via
 // `wrangler secret list`, so they are disabled by default here
-// (--no-check-selar-key --no-check-flutterwave-key) to keep the suite
-// hermetic; the live behavior is covered by running
-// `npm run check:worker-routes:selar` / `check:worker-routes:flutterwave`
+// (--no-check-flutterwave-key) to keep the suite hermetic; the live
+// behavior is covered by running `npm run check:worker-routes:flutterwave`
 // against the actual deployment.
 
 import { execFile } from "node:child_process";
@@ -25,7 +24,7 @@ function runHealthCheck(baseUrl, extraArgs = []) {
   return new Promise((resolve) => {
     execFile(
       process.execPath,
-      [SCRIPT, "--base-url", baseUrl, "--timeout-ms", "5000", "--no-check-selar-key", "--no-check-flutterwave-key", ...extraArgs],
+      [SCRIPT, "--base-url", baseUrl, "--timeout-ms", "5000", "--no-check-flutterwave-key", ...extraArgs],
       { cwd: ROOT, encoding: "utf8" },
       (error, stdout, stderr) => {
         resolve({ code: error?.code ?? 0, stdout, stderr });
@@ -91,13 +90,10 @@ test("check_worker_routes --json emits machine-readable summary", async () => {
     assert.ok(Array.isArray(summary.missing));
     assert.equal(summary.missing.length, 1);
     assert.equal(summary.missing[0].route, "/adminListPayments");
-    // New drift surfaces: 5xx servers and the SELAR/FLW key checks are part
-    // of the JSON contract (null here because --no-check-selar-key
-    // --no-check-flutterwave-key and no 5xx).
+    // New drift surfaces: 5xx servers and the FLW key checks are part
+    // of the JSON contract (null here because --no-check-flutterwave-key
+    // and no 5xx).
     assert.ok(Array.isArray(summary.serverErrors));
-    assert.equal(summary.selarApiKey, null);
-    assert.ok(Array.isArray(summary.selarFindings));
-    assert.equal(summary.selarFindings.length, 0);
     assert.equal(summary.flwSecretKey, null);
     assert.equal(summary.flwWebhookSecretHash, null);
     assert.ok(Array.isArray(summary.flwFindings));
@@ -125,7 +121,7 @@ test("check_worker_routes treats worker-handler 429 as route present (not missin
 test("check_worker_routes fails (exit 1) and lists 5xx routes as server errors", async () => {
   const server = http.createServer((req, res) => {
     res.setHeader("Content-Type", "application/json");
-    if (req.url.startsWith("/payment/selar/verify")) {
+    if (req.url.startsWith("/payment/verify")) {
       res.writeHead(500);
       res.end(JSON.stringify({ ok: false, error: "Internal Server Error" }));
     } else {
@@ -141,9 +137,9 @@ test("check_worker_routes fails (exit 1) and lists 5xx routes as server errors",
     const summary = JSON.parse(stdout);
     assert.equal(summary.missing.length, 0);
     assert.equal(summary.serverErrors.length, 1);
-    assert.equal(summary.serverErrors[0].route, "/payment/selar/verify");
+    assert.equal(summary.serverErrors[0].route, "/payment/verify");
     assert.equal(summary.serverErrors[0].status, 500);
-    assert.equal(summary.selarApiKey, null);
+    assert.equal(summary.flwSecretKey, null);
   } finally {
     await new Promise((resolve) => server.close(resolve));
   }
