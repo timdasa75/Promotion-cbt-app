@@ -1,5 +1,10 @@
 # Promotion‑CBT Design System
 
+> **Colour authority:** the implemented token values (light and dark themes),
+> the surface/foreground contract, and the WCAG contrast audit live in
+> [`docs/colour-system.md`](docs/colour-system.md). The palette below is the
+> original design intent and may not match the shipped `css/styles.css`.
+
 ## The "National" Palette
 
 | Token | CSS Variable | Hex | Usage |

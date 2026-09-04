@@ -119,6 +119,12 @@ jobs:
       - name: Verify Pages release (metadata, unit tests, and build)
         run: npm run verify:pages
 
+      # WCAG colour contract: fail the release when a required foreground /
+      # background token pair drops below 4.5:1 (3:1 for UI boundaries) in
+      # either theme.
+      - name: Colour contrast audit (WCAG pairs)
+        run: npm run test:colour
+
       # Stage 6 responsive matrix: fail on horizontal overflow or clipped
       # visible controls at the 375/768/1280/1920 viewports. The spec soft-skips
       # the topic category/setup steps when private question banks are absent

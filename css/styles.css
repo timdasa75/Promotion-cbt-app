@@ -73,8 +73,9 @@
     --radius-lg: 16px;
     --radius-full: 999px;
     
-    /* Focus ring */
-    --focus: 0 0 0 3px rgba(6, 78, 59, 0.3);
+    /* Focus ring — two-layer: surface-matched inner ring + accent outer ring */
+    --focus: 0 0 0 2px #ffffff, 0 0 0 4px rgba(6, 78, 59, 0.45);
+    --focus-ring: #0f7a44;
     
     /* Spacing scale */
     --space-1: 4px;
@@ -98,6 +99,35 @@
     /* White/Black */
     --white: #FFFFFF;
     --black: #000000;
+
+    /* Semantic surface/foreground pairs — a component that owns a non-default
+       background must also own the foreground tokens used on it. */
+    --surface-hero: #064e3b;
+    --on-hero: #ffffff;
+    --on-hero-muted: #e8f5ee;
+
+    --action-primary-bg: #064e3b;
+    --action-primary-fg: #ffffff;
+    --action-primary-hover: #065f46;
+
+    --action-secondary-bg: #e7f0ec;
+    --action-secondary-fg: #064e3b;
+    --action-secondary-border: #064e3b;
+
+    --action-danger-bg: #dc2626;
+    --action-danger-fg: #ffffff;
+    --action-danger-hover: #b91c1c;
+
+    --surface-success: #ecfdf5;
+    --text-success: #065f46;
+    --surface-warning: #fffbeb;
+    --text-warning: #92400e;
+    --surface-danger: #fef2f2;
+    --text-danger: #991b1b;
+
+    /* Legacy red aliases (previously undefined) */
+    --red-600: #dc2626;
+    --red-50: #fef2f2;
 }
 
 body.dark-mode {
@@ -188,12 +218,13 @@ body.dark-mode {
     --line: #30363d;
     --line-light: #21262d;
     
-    /* Dark mode text - WCAG AAA compliant for accessibility */
+    /* Dark mode text - WCAG AA compliant for accessibility (muted/500 and
+       secondary/600 must each clear 4.5:1 on the dark card surface) */
     --ink-900: #f0f6fc;
     --ink-800: #c9d1d9;
     --ink-700: #8b949e;
-    --ink-600: #768390;
-    --ink-500: #6e7681;
+    --ink-600: #8b949e;
+    --ink-500: #7d8590;
     --ink-400: #656d76;
     
     /* Dark mode primary - brighter green for better visibility */
@@ -216,6 +247,36 @@ body.dark-mode {
     --shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
     --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.6);
     --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.7);
+
+    /* Semantic surface/foreground pairs (dark) */
+    --surface-hero: #123d31;
+    --on-hero: #f0f6fc;
+    --on-hero-muted: #c9d1d9;
+
+    --action-primary-bg: #157a49;
+    --action-primary-fg: #ffffff;
+    --action-primary-hover: #1b8f57;
+
+    --action-secondary-bg: rgba(126, 231, 135, 0.08);
+    --action-secondary-fg: #7ee787;
+    --action-secondary-border: #2ea865;
+
+    --action-danger-bg: #c63b3b;
+    --action-danger-fg: #ffffff;
+    --action-danger-hover: #a93232;
+
+    --focus-ring: #7ee787;
+    --focus: 0 0 0 2px #0d1117, 0 0 0 4px rgba(126, 231, 135, 0.5);
+
+    --surface-success: #123524;
+    --text-success: #7ee787;
+    --surface-warning: #3a2f16;
+    --text-warning: #f2cc60;
+    --surface-danger: #3d1f22;
+    --text-danger: #ff7b72;
+
+    --red-600: #f85149;
+    --red-50: rgba(248, 81, 73, 0.15);
 }
 
 body.dark-mode .card,
@@ -227,11 +288,14 @@ body.dark-mode .mock-exam-card {
     color: var(--ink-900);
 }
 
-/* Fix dark mode card backgrounds - remove green tints */
+/* Fix dark mode card backgrounds - remove green tints. The dashboard cards are
+   flattened by their own ID selectors; the generic .recommendation-card is NOT
+   flattened because its surfaces now own their foreground tokens (see
+   #analyticsRecommendationCard hero gradient + analytics style block), so
+   flattening would leave white on-hero text on a plain dark card. */
 body.dark-mode #resumeSessionCard,
 body.dark-mode #recommendedTopicCard,
 body.dark-mode #mockExamFeatureCard,
-body.dark-mode .recommendation-card,
 body.dark-mode .topic-toolbar-shell,
 body.dark-mode .topic-grid-shell,
 body.dark-mode .dashboard-utility-shell,
@@ -392,18 +456,19 @@ body.dark-mode .admin-request-table tbody tr:nth-child(odd) {
 }
 
 /* Solid buttons keep deep backgrounds in dark mode: --green-900 flips to a
-   light tone (used for headings/text), so without this override primary
-   buttons would render white-on-light-green. #157a49 keeps white text AA
-   (≈5.4:1); #c63b3b keeps white text on destructive actions (≈5.2:1). */
+   light tone (used for headings/text), so primary buttons use the dedicated
+   --action-primary-bg (#157a49, white text ≈5.4:1 AA) and destructive
+   buttons use --action-danger-bg (#c63b3b, white text ≈5.2:1) instead of
+   inheriting the bright green --primary. */
 body.dark-mode .btn-primary,
 body.dark-mode #splashScreen .hero-panel .btn-primary {
-    background: var(--primary);
-    color: var(--white);
+    background: var(--action-primary-bg);
+    color: var(--action-primary-fg);
     font-weight: 700;
 }
 
 body.dark-mode .btn-primary:hover {
-    background: var(--primary-hover);
+    background: var(--action-primary-hover);
     box-shadow: 0 4px 16px rgba(52, 211, 153, 0.3);
 }
 
@@ -415,8 +480,8 @@ body.dark-mode .btn-secondary {
 }
 
 body.dark-mode .btn-secondary:hover {
-    background: var(--primary);
-    color: var(--white);
+    background: var(--action-primary-bg);
+    color: var(--action-primary-fg);
 }
 
 body.dark-mode .btn-ghost {
@@ -440,8 +505,8 @@ body.dark-mode .dashboard-utility-row .btn {
 }
 
 body.dark-mode .btn-destructive {
-    background: var(--danger);
-    color: #fff;
+    background: var(--action-danger-bg);
+    color: var(--action-danger-fg);
 }
 
 * {
@@ -731,7 +796,8 @@ h3,
     color: var(--ink-900);
     font-size: 0.78rem;
     line-height: 1.2;
-    white-space: nowrap;
+    white-space: normal;
+    max-width: min(240px, calc(100vw - 24px));
     box-shadow: var(--shadow);
     z-index: 35;
 }
@@ -755,7 +821,7 @@ h3,
     font-size: 0.78rem;
     line-height: 1.3;
     white-space: nowrap;
-    max-width: 260px;
+    max-width: min(260px, calc(100vw - 24px));
     white-space: normal;
     z-index: 50;
     pointer-events: none;
@@ -1110,13 +1176,23 @@ h3,
     max-width: 34rem;
 }
 
-#topicSelectionScreen.first-session #recommendedTopicCard::after {
-    content: "Start with a free topic, then choose Practice, Timed Test, or Study Review.";
-    display: block;
-    margin-top: var(--space-2);
-    color: var(--ink-700);
+.first-session-helper {
+    display: none;
+    margin: 0;
+    color: var(--on-hero-muted);
     font-size: 0.92rem;
     line-height: 1.45;
+}
+
+#topicSelectionScreen.first-session #recommendedTopicHelper {
+    display: block;
+    color: var(--on-hero-muted);
+}
+
+/* The helper sits on the dark hero surface in light mode and on the dark
+   card surface in dark mode; never inherit a page-level ink token. */
+body.dark-mode #topicSelectionScreen.first-session #recommendedTopicHelper {
+    color: var(--on-hero-muted);
 }
 
 #topicSelectionScreen.first-session .topic-toolbar-shell {
@@ -2018,15 +2094,15 @@ body.dark-mode .card-footer {
 
 .btn-primary,
 .btn {
-    background: var(--primary);
-    color: var(--white);
+    background: var(--action-primary-bg);
+    color: var(--action-primary-fg);
     font-weight: 700;
     transition: background var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .btn-primary:hover,
 .btn:hover {
-    background: var(--primary-hover);
+    background: var(--action-primary-hover);
     box-shadow: var(--shadow-md);
 }
 
@@ -2159,8 +2235,12 @@ body.dark-mode .card-footer {
 }
 
 .btn-destructive {
-    background: var(--danger);
-    color: #fff;
+    background: var(--action-danger-bg);
+    color: var(--action-danger-fg);
+}
+
+.btn-destructive:hover {
+    background: var(--action-danger-hover);
 }
 
 .btn:disabled {
@@ -2508,13 +2588,13 @@ select:focus-visible,
 }
 
 .option-feedback-label.correct {
-    color: var(--ok);
+    color: var(--text-success);
     border-color: color-mix(in srgb, var(--ok) 55%, var(--line));
     background: color-mix(in srgb, var(--ok-bg) 70%, var(--card));
 }
 
 .option-feedback-label.incorrect {
-    color: var(--danger);
+    color: var(--text-danger);
     border-color: color-mix(in srgb, var(--danger) 55%, var(--line));
     background: color-mix(in srgb, var(--danger-bg) 70%, var(--card));
 }
@@ -2589,7 +2669,7 @@ select:focus-visible,
 .traffic-green h3,
 .traffic-green#finalScore,
 #finalScore.traffic-green {
-    color: var(--ok);
+    color: var(--text-success);
 }
 
 .traffic-amber {
@@ -2601,7 +2681,7 @@ select:focus-visible,
 .traffic-amber h3,
 .traffic-amber#finalScore,
 #finalScore.traffic-amber {
-    color: var(--warning);
+    color: var(--text-warning);
 }
 
 .traffic-red {
@@ -2613,7 +2693,7 @@ select:focus-visible,
 .traffic-red h3,
 .traffic-red#finalScore,
 #finalScore.traffic-red {
-    color: var(--danger);
+    color: var(--text-danger);
 }
 
 .result-tag {
@@ -2650,7 +2730,14 @@ select:focus-visible,
 .analytic-label {
     margin-top: 2px;
     font-size: 0.8rem;
-    color: var(--ink-500);
+    color: var(--ink-600);
+}
+
+/* On tinted tiles the dark-theme secondary ink (#8b949e) drops below 4.5:1, so
+   analytics labels and their meta lines step up to the brighter ink level. */
+body.dark-mode .analytic-label,
+body.dark-mode .mock-breakdown-meta {
+    color: var(--ink-800);
 }
 
 .mock-breakdown-head {
@@ -4286,19 +4373,19 @@ body.dark-mode .admin-view-header p {
 }
 
 .admin-badge.pending {
-    color: var(--warning);
+    color: var(--text-warning);
     border-color: color-mix(in srgb, var(--warning) 45%, var(--line));
     background: var(--warning-bg);
 }
 
 .admin-badge.approved {
-    color: var(--ok);
+    color: var(--text-success);
     border-color: color-mix(in srgb, var(--ok) 45%, var(--line));
     background: var(--ok-bg);
 }
 
 .admin-badge.rejected {
-    color: var(--danger);
+    color: var(--text-danger);
     border-color: color-mix(in srgb, var(--danger) 45%, var(--line));
     background: var(--danger-bg);
 }
@@ -4310,7 +4397,7 @@ body.dark-mode .admin-view-header p {
 }
 
 .admin-badge.warning-badge {
-    color: var(--warning);
+    color: var(--text-warning);
     border-color: color-mix(in srgb, var(--warning) 45%, var(--line));
     background: var(--warning-bg);
 }
@@ -4726,7 +4813,7 @@ body.dark-mode .admin-view-header p {
 .warning-message {
     border: 1px solid color-mix(in srgb, var(--warning) 50%, var(--line));
     background: var(--warning-bg);
-    color: var(--warning);
+    color: var(--text-warning);
     border-radius: 10px;
     padding: 9px 10px;
 }
@@ -4734,7 +4821,7 @@ body.dark-mode .admin-view-header p {
 .error-message {
     border: 1px solid color-mix(in srgb, var(--danger) 60%, var(--line));
     background: var(--danger-bg);
-    color: var(--danger);
+    color: var(--text-danger);
     border-radius: 10px;
     padding: 9px 10px;
     margin-bottom: 8px;
@@ -4743,7 +4830,7 @@ body.dark-mode .admin-view-header p {
 .success-message {
     border: 1px solid color-mix(in srgb, var(--ok) 50%, var(--line));
     background: var(--ok-bg);
-    color: var(--ok);
+    color: var(--text-success);
     border-radius: 10px;
     padding: 9px 10px;
     margin-bottom: 8px;
@@ -7544,8 +7631,8 @@ body.dark-mode .dashboard-utility-row .btn-ghost:hover {
 }
 
 #recommendedTopicCard .btn-primary {
-    background: #fff;
-    color: var(--green-900);
+    background: var(--action-primary-bg);
+    color: var(--action-primary-fg);
     border-color: transparent;
     font-weight: 700;
     min-width: 220px;
@@ -7553,8 +7640,8 @@ body.dark-mode .dashboard-utility-row .btn-ghost:hover {
 }
 
 #recommendedTopicCard .btn-primary:hover {
-    background: rgba(255, 255, 255, 0.92);
-    box-shadow: 0 4px 16px rgba(255, 255, 255, 0.2);
+    background: var(--action-primary-hover);
+    box-shadow: 0 4px 16px rgba(6, 78, 59, 0.25);
 }
 
 /* Fix chips on dark recommendation card background */
@@ -8353,12 +8440,16 @@ body.dark-mode #quizScreen .quiz-actions .btn-secondary:hover {
     letter-spacing: -0.03em;
 }
 
-#analyticsRecommendationCard {
+/* The card owns a dark hero surface, so its foregrounds come from the
+   --surface-hero/--on-hero pair (the ID+ID selector outranks the generic
+   #analyticsScreen .card pale-gradient override that used to whitewash the
+   background while the white text stayed behind). */
+#analyticsScreen #analyticsRecommendationCard {
     position: relative;
     overflow: hidden;
-    border-color: color-mix(in srgb, var(--green-900) 18%, var(--line));
-    background: linear-gradient(155deg, color-mix(in srgb, var(--green-900) 90%, #05160d), color-mix(in srgb, var(--green-700) 42%, #0f2518));
-    color: var(--white);
+    border-color: color-mix(in srgb, var(--surface-hero) 30%, var(--line));
+    background: linear-gradient(155deg, var(--surface-hero), color-mix(in srgb, var(--surface-hero) 72%, #0a1f15));
+    color: var(--on-hero);
 }
 
 #analyticsRecommendationCard::before {
@@ -8378,7 +8469,7 @@ body.dark-mode #quizScreen .quiz-actions .btn-secondary:hover {
 }
 
 #analyticsRecommendationCard .eyebrow {
-    color: rgba(255, 255, 255, 0.7);
+    color: color-mix(in srgb, var(--on-hero) 72%, transparent);
 }
 
 #analyticsRecommendationTitle,
@@ -8389,13 +8480,38 @@ body.dark-mode #quizScreen .quiz-actions .btn-secondary:hover {
 
 #analyticsRecommendationMeta,
 #analyticsRecommendationConfidence {
-    color: rgba(255, 255, 255, 0.84);
+    color: color-mix(in srgb, var(--on-hero) 84%, transparent);
 }
 
 #analyticsRecommendationCard .chip {
     background: rgba(255, 255, 255, 0.14);
     color: rgba(255, 255, 255, 0.94);
     border-color: rgba(255, 255, 255, 0.18);
+}
+
+/* Restore the per-tone tints on analytics tiles: the base .analytic-item rule
+   is declared after the generic .traffic-* rules, so at equal specificity it
+   painted every tile with the same pale-green wash. These scoped rules win. */
+#analyticsScreen .analytic-item.traffic-green {
+    border-color: color-mix(in srgb, var(--ok) 45%, var(--line));
+    background: color-mix(in srgb, var(--ok-bg) 58%, var(--card));
+}
+
+#analyticsScreen .analytic-item.traffic-amber {
+    border-color: color-mix(in srgb, var(--warning) 45%, var(--line));
+    background: color-mix(in srgb, var(--warning-bg) 58%, var(--card));
+}
+
+#analyticsScreen .analytic-item.traffic-red {
+    border-color: color-mix(in srgb, var(--danger) 45%, var(--line));
+    background: color-mix(in srgb, var(--danger-bg) 58%, var(--card));
+}
+
+/* The overview card is a light surface (pale gradient + gold accent), so the
+   global .hero-meta white treatment does not apply; keep the meta line at a
+   readable secondary tone in both themes. */
+#analyticsScreen .analytics-overview-card .hero-meta {
+    color: var(--ink-600);
 }
 
 #profileScreen .profile-grid {
@@ -8639,8 +8755,8 @@ body.dark-mode #quizScreen .quiz-actions .btn-secondary:hover {
 #loginForm .btn-primary,
 #registerForm .btn-primary {
     min-height: 50px;
-    background: var(--primary);
-    color: var(--white);
+    background: var(--action-primary-bg);
+    color: var(--action-primary-fg);
     font-weight: 700;
     font-size: 1rem;
     box-shadow: 0 4px 16px rgba(31, 164, 99, 0.3);
@@ -10221,8 +10337,8 @@ body.dark-mode .google-fallback-btn:hover {
 
 body.dark-mode #loginForm .btn-primary,
 body.dark-mode #registerForm .btn-primary {
-    background: var(--primary);
-    color: var(--white);
+    background: var(--action-primary-bg);
+    color: var(--action-primary-fg);
 }
 
 body.dark-mode #forgotPasswordBtn {
@@ -10401,12 +10517,12 @@ body.dark-mode #quizScreen .explanation {
 /* Feedback labels */
 body.dark-mode #quizScreen .option-feedback-label.correct {
     background: var(--ok-bg);
-    color: var(--ok);
+    color: var(--text-success);
 }
 
 body.dark-mode #quizScreen .option-feedback-label.incorrect {
     background: var(--danger-bg);
-    color: var(--danger);
+    color: var(--text-danger);
 }
 
 body.dark-mode #quizScreen .feedback-status {
@@ -10421,12 +10537,12 @@ body.dark-mode #quizScreen .quiz-actions {
 
 /* Primary action button */
 body.dark-mode #quizScreen .quiz-actions .btn-primary {
-    background: var(--primary);
-    color: var(--white);
+    background: var(--action-primary-bg);
+    color: var(--action-primary-fg);
 }
 
 body.dark-mode #quizScreen .quiz-actions .btn-primary:hover {
-    background: var(--primary-hover);
+    background: var(--action-primary-hover);
 }
 
 /* Secondary action button — fix green-on-green contrast */
@@ -10693,45 +10809,47 @@ input:focus, select:focus, textarea:focus {
 
 /* Status Badges */
 .admin-badge.pending {
-    color: var(--warning);
+    color: var(--text-warning);
     border-color: var(--warning);
     background: var(--warning-bg);
 }
 
 .admin-badge.approved {
-    color: var(--success);
+    color: var(--text-success);
     border-color: var(--success);
     background: var(--success-bg);
 }
 
 .admin-badge.rejected {
-    color: var(--error);
+    color: var(--text-danger);
     border-color: var(--error);
     background: var(--error-bg);
 }
 
 /* Buttons */
 .btn-primary {
-    background: var(--primary);
-    color: var(--on-primary);
+    background: var(--action-primary-bg);
+    color: var(--action-primary-fg);
 }
 
 .btn-primary:hover {
-    background: var(--primary-hover);
+    background: var(--action-primary-hover);
 }
 
 .btn-secondary {
-    background: var(--secondary);
-    color: var(--on-secondary);
+    background: var(--action-secondary-bg);
+    color: var(--action-secondary-fg);
+    border: 2px solid var(--action-secondary-border);
 }
 
 .btn-secondary:hover {
-    background: var(--ink-700);
+    background: var(--action-primary-bg);
+    color: var(--action-primary-fg);
 }
 
 .btn-ghost {
     background: transparent;
-    border: 1px solid var(--outline);
+    border: 1px solid color-mix(in srgb, var(--green-700) 55%, var(--line));
     color: var(--ink-700);
 }
 
