@@ -12331,3 +12331,160 @@ body.dark-mode .state-panel.is-error .state-note-tag {
 body.dark-mode .admin-activity-card.is-stale {
     border-color: color-mix(in srgb, var(--ink-500, #94a3b8) 55%, var(--outline, #475569));
 }
+
+/* ============================================================
+   Admin device management — grouped by user (unique users,
+   expandable device list with clear device identity)
+   ============================================================ */
+.admin-device-group {
+    padding: 0.25rem 0;
+}
+
+.admin-device-group-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    width: 100%;
+    padding: 0.7rem 0.8rem;
+    background: none;
+    border: none;
+    border-radius: 10px;
+    font: inherit;
+    color: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+.admin-device-group-toggle:hover {
+    background: var(--surface);
+}
+
+.admin-device-chevron {
+    flex: 0 0 auto;
+    width: 1.1rem;
+    text-align: center;
+    font-size: 0.7rem;
+    color: var(--muted);
+}
+
+.admin-device-group-id {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    min-width: 0;
+}
+
+.admin-device-group-id .admin-user-email {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--ink-900);
+    word-break: break-word;
+}
+
+.admin-device-group-counts {
+    font-size: 0.75rem;
+    color: var(--muted);
+}
+
+.admin-device-group-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin: 0.15rem 0 0.4rem;
+    padding: 0.5rem 0.65rem 0.7rem 1.4rem;
+    border-top: 1px dashed var(--line);
+}
+
+.admin-device-group-body[hidden] {
+    display: none;
+}
+
+.admin-device-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.5rem 1rem;
+    align-items: center;
+    padding: 0.55rem 0.6rem;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--surface);
+}
+
+.admin-device-row:hover {
+    border-color: color-mix(in srgb, var(--line) 55%, var(--ok));
+}
+
+.admin-device-row-main {
+    display: flex;
+    flex-direction: column;
+    gap: 0.12rem;
+    min-width: 0;
+}
+
+.admin-device-row-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.3rem 0.6rem;
+}
+
+.admin-device-name {
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--ink-900);
+}
+
+.admin-device-row-badges {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.admin-device-row .meta {
+    font-size: 0.75rem;
+    color: var(--muted);
+}
+
+.admin-device-row-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.4rem;
+}
+
+.admin-device-note {
+    font-style: italic;
+    white-space: nowrap;
+}
+
+.admin-device-primary-badge {
+    background: var(--primary-light) !important;
+    color: var(--primary) !important;
+    border-color: var(--primary) !important;
+}
+
+.admin-device-row.is-revoked {
+    opacity: 0.85;
+}
+
+.admin-device-row.is-revoked .admin-device-name {
+    color: var(--ink-500);
+    text-decoration: line-through;
+    text-decoration-color: color-mix(in srgb, var(--danger) 55%, transparent);
+    text-decoration-thickness: 1px;
+}
+
+@media (max-width: 560px) {
+    .admin-device-row {
+        grid-template-columns: 1fr;
+    }
+    .admin-device-row-actions {
+        justify-content: flex-start;
+    }
+    .admin-device-group-body {
+        padding-left: 0.55rem;
+    }
+    .admin-device-note {
+        white-space: normal;
+    }
+}

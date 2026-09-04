@@ -3983,6 +3983,7 @@ async function handleAdminAllDevices(request, env) {
   const result = await database.prepare(`
     SELECT td.id, td.user_id, td.device_name, td.device_info, td.ip_address,
            td.trusted_at, td.expires_at, td.last_used_at, td.is_permanent,
+           td.revoked_at, td.device_fingerprint, td.user_agent,
            au.email
     FROM trusted_devices td
     JOIN auth_users au ON td.user_id = au.id
@@ -4002,6 +4003,10 @@ async function handleAdminAllDevices(request, env) {
       trustedAt: d.trusted_at,
       expiresAt: d.expires_at,
       lastUsedAt: d.last_used_at,
+      revokedAt: d.revoked_at || '',
+      fingerprint: d.device_fingerprint || '',
+      userAgent: d.user_agent || '',
+      isPermanent: d.is_permanent === 1,
       isPrimary: d.is_permanent === 1,
     })),
     total: rows.length,

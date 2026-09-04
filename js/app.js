@@ -1496,6 +1496,11 @@ function formatRelativeDate(date) {
 
 let adminDeviceList = [];
 let adminAuditList = [];
+// Emails of users whose device lists are expanded in the admin device panel.
+// Persists across re-renders within the session so a refresh keeps the list open.
+const expandedDeviceUsers = new Set();
+// Revoke-recency filter windows (hours) for the device status select.
+const REVOKED_RECENCY_WINDOW_HOURS = { "revoked-24h": 24, "revoked-7d": 168, "revoked-30d": 720 };
 
 /**
  * Render admin device management list
@@ -1524,72 +1529,190 @@ async function renderAdminDevices() {
     const allDevices = Array.isArray(result?.devices) ? result.devices : [];
     adminDeviceList = allDevices;
 
-    // Apply filters
-    const query = String(searchInput?.value || "").trim().toLowerCase();
-    const statusValue = String(statusFilter?.value || "all").toLowerCase();
+    // Classify lifecycle status so revoked rows are never mislabeled "Active".
     const now = new Date().toISOString();
+    const statusOf = (device) => {
+      const revoked = Boolean(device.revokedAt);
+      const expired = !revoked && Boolean(device.expiresAt) && device.expiresAt < now;
+      return revoked ? "revoked" : expired ? "expired" : "active";
+    };
+    const statusByDevice = new Map(allDevices.map(device => [device.id, statusOf(device)]));
 
-    let filtered = allDevices.filter(device => {
-      // Search filter
-      if (query && !device.email.toLowerCase().includes(query) && 
-          !(device.deviceName || "").toLowerCase().includes(query)) {
-        return false;
-      }
-      // Status filter
-      if (statusValue === "active" && device.expiresAt && device.expiresAt < now) {
-        return false;
-      }
-      if (statusValue === "expired" && (!device.expiresAt || device.expiresAt >= now)) {
-        return false;
-      }
-      return true;
-    });
-
-    if (countLabel) {
-      countLabel.textContent = String(filtered.length);
+    // Group by user (unique email) so each user appears exactly once, with
+    // their devices nested below an expandable header.
+    const groupsByEmail = new Map();
+    for (const device of allDevices) {
+      const email = String(device.email || "").trim();
+      if (!email) continue;
+      const key = email.toLowerCase();
+      if (!groupsByEmail.has(key)) groupsByEmail.set(key, { email, devices: [] });
+      groupsByEmail.get(key).devices.push(device);
     }
 
-    if (filtered.length === 0) {
-      container.innerHTML = '<div class="admin-request-item"><p class="meta">No trusted devices found. Devices are registered automatically when users log in. New users and existing users will appear here after their next login.</p></div>';
+    const query = String(searchInput?.value || "").trim().toLowerCase();
+    const statusValue = String(statusFilter?.value || "all").toLowerCase();
+
+    // Search + status filters run per device row; a user stays listed while any
+    // of their devices match (an email search shows all of that user's devices).
+    const matchesFilters = (device, email) => {
+      const status = statusByDevice.get(device.id);
+      if (statusValue === "active" && status !== "active") return false;
+      if (statusValue === "revoked" || REVOKED_RECENCY_WINDOW_HOURS[statusValue]) {
+        if (status !== "revoked") return false;
+        const windowHours = REVOKED_RECENCY_WINDOW_HOURS[statusValue];
+        if (windowHours && Date.parse(device.revokedAt || "") < Date.now() - windowHours * 3600 * 1000) return false;
+      }
+      if (statusValue === "expired" && status !== "expired") return false;
+      if (statusValue === "primary" && !device.isPermanent) return false;
+      if (query) {
+        const emailMatch = email.toLowerCase().includes(query);
+        const nameMatch = (device.deviceName || "").toLowerCase().includes(query);
+        const idMatch = (device.id || "").toLowerCase().includes(query);
+        if (!emailMatch && !nameMatch && !idMatch) return false;
+      }
+      return true;
+    };
+
+    const groups = [];
+    for (const group of groupsByEmail.values()) {
+      const devices = group.devices.filter(device => matchesFilters(device, group.email));
+      if (!devices.length) continue;
+      // Order rows inside a user: active before expired before revoked,
+      // primary before temporary, most recently used first.
+      const rank = { active: 0, expired: 1, revoked: 2 };
+      devices.sort((a, b) => {
+        const rankDiff = rank[statusByDevice.get(a.id)] - rank[statusByDevice.get(b.id)];
+        if (rankDiff) return rankDiff;
+        if (Boolean(a.isPermanent) !== Boolean(b.isPermanent)) return Boolean(a.isPermanent) ? -1 : 1;
+        return String(b.lastUsedAt || "").localeCompare(String(a.lastUsedAt || ""));
+      });
+      let recent = "";
+      for (const device of devices) {
+        if (String(device.lastUsedAt || "") > recent) recent = String(device.lastUsedAt || "");
+      }
+      groups.push({ email: group.email, devices, recent });
+    }
+    // Order users by their most recent device activity, newest first.
+    groups.sort((a, b) => String(b.recent).localeCompare(String(a.recent)));
+
+    const deviceTotal = groups.reduce((total, group) => total + group.devices.length, 0);
+    if (countLabel) {
+      // The chip shows unique users; the hover explains the full device count.
+      countLabel.textContent = String(groups.length);
+      countLabel.title = `${deviceTotal} device${deviceTotal === 1 ? "" : "s"} across ${groups.length} user${groups.length === 1 ? "" : "s"}`;
+    }
+
+    if (!groups.length) {
+      const hasCriteria = Boolean(query) || statusValue !== "all";
+      container.innerHTML = `<div class="admin-request-item"><p class="meta">${hasCriteria
+        ? "No users match the current search or filter."
+        : "No trusted devices found. Devices are registered automatically when users log in. New users and existing users will appear here after their next login."}</p></div>`;
       return;
     }
 
-    container.innerHTML = filtered.map(device => {
-      const isExpired = device.expiresAt && device.expiresAt < now;
-      const statusClass = isExpired ? "pending" : "approved";
-      const statusText = isExpired ? "Expired" : "Active";
-      const lastUsed = device.lastUsedAt ? formatRelativeTime(device.lastUsedAt) : "Never";
-      const expiresAt = device.expiresAt ? formatDate(device.expiresAt) : "Never";
-      const isPrimary = device.isPermanent;
-      const primaryBadge = isPrimary ? '<span class="admin-badge approved" style="background: var(--primary-light); color: var(--primary); border-color: var(--primary);">\u2B50 Primary</span>' : '';
+    // Expand everything when only a couple of users are shown; otherwise start
+    // collapsed and remember which users the admin opened this session.
+    const autoExpand = groups.length <= 2;
+
+    container.innerHTML = groups.map((group, groupIndex) => {
+      const key = group.email.toLowerCase();
+      const expanded = autoExpand || expandedDeviceUsers.has(key);
+      const bodyId = `admin-device-body-${groupIndex}`;
+
+      const tally = { active: 0, expired: 0, revoked: 0, primary: 0 };
+      for (const device of group.devices) {
+        const status = statusByDevice.get(device.id);
+        tally[status]++;
+        if (device.isPermanent && status === "active") tally.primary++;
+      }
+      const summaryBits = [
+        `${group.devices.length} device${group.devices.length === 1 ? "" : "s"}`,
+        ...(tally.active && !tally.primary ? [`${tally.active} active`] : []),
+        ...(tally.primary ? [`${tally.primary} primary`] : []),
+        ...(tally.expired ? [`${tally.expired} expired`] : []),
+        ...(tally.revoked ? [`${tally.revoked} revoked`] : []),
+      ];
+
+      const rows = group.devices.map(device => {
+        const status = statusByDevice.get(device.id);
+        const isPrimary = Boolean(device.isPermanent);
+        const statusClass = status === "revoked" ? "rejected" : status === "expired" ? "pending" : "approved";
+        const statusText = status.charAt(0).toUpperCase() + status.slice(1);
+        const fingerprint = String(device.fingerprint || device.id || "");
+        const identityBits = [
+          ...(fingerprint ? [`ID ${escapeHtml(fingerprint.slice(0, 8))}…`] : []),
+          ...(device.ipAddress ? [`IP ${escapeHtml(device.ipAddress)}`] : []),
+        ].filter(Boolean);
+        const whenBits = [
+          ...(status === "revoked" && device.revokedAt ? [`Revoked on ${formatDate(device.revokedAt)}`] : []),
+          ...(device.trustedAt ? [`Trusted ${formatDate(device.trustedAt)}`] : []),
+          ...(device.lastUsedAt ? [`Last seen ${formatRelativeTime(device.lastUsedAt)}`] : []),
+          ...(device.expiresAt ? [`Expires ${formatDate(device.expiresAt)}`] : ["Expires never"]),
+        ];
+
+        let action;
+        if (status === "active") {
+          action = `<button class="btn btn-ghost btn-sm btn-danger" data-admin-revoke-device data-email="${escapeHtml(group.email)}" data-device-id="${escapeHtml(device.id)}" type="button">Revoke</button>`;
+        } else if (status === "revoked") {
+          action = '<span class="meta admin-device-note">Revoked device</span>';
+        } else {
+          action = '<span class="meta admin-device-note">Expired device</span>';
+        }
+        const primaryBadge = isPrimary && status === "active"
+          ? '<span class="admin-badge approved admin-device-primary-badge">&#9733; Primary</span>'
+          : "";
+
+        return `
+          <div class="admin-device-row${status === "revoked" ? " is-revoked" : ""}">
+            <div class="admin-device-row-main">
+              <div class="admin-device-row-head">
+                <span class="admin-device-name">${escapeHtml(device.deviceName || "Unknown Device")}</span>
+                <span class="admin-device-row-badges">${primaryBadge}<span class="admin-badge ${statusClass}">${statusText}</span></span>
+              </div>
+              ${identityBits.length ? `<div class="meta">${identityBits.join(" · ")}</div>` : ""}
+              <div class="meta">${whenBits.join(" · ")}</div>
+            </div>
+            <div class="admin-device-row-actions">${action}</div>
+          </div>
+        `;
+      });
 
       return `
-        <div class="admin-request-item">
-          <div class="admin-user-summary">
-            <div class="admin-user-summary-main">
-              <div class="admin-user-summary-head">
-                <div class="admin-user-email">${escapeHtml(device.email)}</div>
-                <div class="admin-user-badges">
-                  ${primaryBadge}
-                  <span class="admin-badge ${statusClass}">${statusText}</span>
-                </div>
-              </div>
-              <div class="meta">
-                ${escapeHtml(device.deviceName || "Unknown Device")} · Last seen: ${lastUsed} · Expires: ${expiresAt}
-              </div>
-            </div>
-            ${isPrimary ? '<span class="meta" style="color: var(--ink-500); font-style: italic;">Cannot revoke primary device</span>' : `<button class="btn btn-ghost btn-sm btn-danger" data-admin-revoke-device data-email="${escapeHtml(device.email)}" data-device-id="${escapeHtml(device.id)}" type="button">Revoke</button>`}
-          </div>
+        <div class="admin-request-item admin-device-group">
+          <button type="button" class="admin-device-group-toggle" data-toggle-device-group="${escapeHtml(key)}" aria-expanded="${expanded}" aria-controls="${bodyId}">
+            <span class="admin-device-chevron" aria-hidden="true">${expanded ? "&#9660;" : "&#9654;"}</span>
+            <span class="admin-device-group-id">
+              <span class="admin-user-email">${escapeHtml(group.email)}</span>
+              <span class="meta admin-device-group-counts">${escapeHtml(summaryBits.join(" · "))}</span>
+            </span>
+          </button>
+          <div class="admin-device-group-body" id="${bodyId}"${expanded ? "" : " hidden"}>${rows.join("")}</div>
         </div>
       `;
     }).join("");
 
-    // Add revoke handlers
+    // Expand / collapse a user's device list (remembered for the session).
+    container.querySelectorAll("[data-toggle-device-group]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const key = btn.dataset.toggleDeviceGroup;
+        const body = document.getElementById(btn.getAttribute("aria-controls"));
+        const wasExpanded = btn.getAttribute("aria-expanded") === "true";
+        btn.setAttribute("aria-expanded", String(!wasExpanded));
+        const chevron = btn.querySelector(".admin-device-chevron");
+        if (chevron) chevron.innerHTML = wasExpanded ? "&#9654;" : "&#9660;";
+        if (wasExpanded) expandedDeviceUsers.delete(key); else expandedDeviceUsers.add(key);
+        if (body) body.hidden = wasExpanded;
+      });
+    });
+
+    // Revoke handlers (confirm first — the user re-verifies this device next login).
     container.querySelectorAll("[data-admin-revoke-device]").forEach(btn => {
       btn.addEventListener("click", async () => {
         const email = btn.dataset.email;
         const deviceId = btn.dataset.deviceId;
         if (!email || !deviceId) return;
+        const confirmed = window.confirm(`Revoke this device for ${email}? The user will be asked to verify this device again on its next login.`);
+        if (!confirmed) return;
         try {
           const config = getRuntimeConfig();
           const baseUrl = config?.cloudflareAuthBaseUrl || "";
