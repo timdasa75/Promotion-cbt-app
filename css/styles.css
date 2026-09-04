@@ -3906,6 +3906,40 @@ body.dark-mode .admin-view-header p {
     gap: 12px;
 }
 
+/* Shared admin list toolbar: search + filters share one row like the topic
+   toolbar. Children of these toolbars would otherwise inherit the global
+   `select { width: 100% }` rule and stack full-width on their own lines. */
+.admin-list-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+
+.admin-list-toolbar .search-wrap {
+    flex: 1 1 240px;
+    min-width: 180px;
+    width: auto;
+}
+
+.admin-list-toolbar select {
+    flex: 0 1 auto;
+    width: auto;
+    min-width: 140px;
+    max-width: 100%;
+}
+
+.admin-list-toolbar .btn {
+    flex: 0 0 auto;
+    white-space: nowrap;
+}
+
+@media (max-width: 699px) {
+    .admin-list-toolbar .search-wrap {
+        flex-basis: 100%;
+    }
+}
+
 /* Feedback toolbar: arrange filters horizontally in a row */
 .admin-feedback-toolbar {
     display: flex;
@@ -4955,6 +4989,16 @@ body.dark-mode .admin-view-header p {
     .plan-override-row .auth-field {
         width: 100%;
         min-width: 0;
+    }
+
+    /* The base flex-basis is width-oriented; once the toolbar is a column it
+       would be applied as height and stretch every select/search huge. */
+    .admin-request-toolbar .search-wrap,
+    .admin-user-toolbar .search-wrap,
+    .admin-request-toolbar select,
+    .admin-user-toolbar select {
+        flex: none;
+        height: auto;
     }
 
     .plan-override-item,
@@ -6316,6 +6360,54 @@ body.dark-mode .dashboard-utility-row .btn-ghost:hover {
     }
 }
 
+/* Topic search + filters share one row from tablet widths up: the segmented
+   chips keep natural widths and the search input absorbs the remaining space.
+   Below 700px they stack, with the chips as a 2x2 touch grid (see the
+   max-width media blocks). */
+@media (min-width: 700px) {
+    .topic-toolbar-shell .topic-toolbar {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+    }
+
+    .topic-toolbar-shell .topic-search-wrap {
+        flex: 1 1 200px;
+        min-width: 170px;
+        width: auto;
+    }
+
+    .topic-toolbar-shell .topic-filter-row {
+        display: flex;
+        flex: 0 1 auto;
+        width: auto;
+        max-width: none;
+        flex-wrap: nowrap;
+    }
+
+    .topic-toolbar-shell .topic-filter-row .chip {
+        flex: 0 1 auto;
+        min-width: 0;
+        white-space: nowrap;
+        font-size: 0.85rem;
+        padding: 0 14px;
+        line-height: 1.2;
+        text-align: center;
+    }
+}
+
+@media (min-width: 700px) and (max-width: 1023px) {
+    .topic-toolbar-shell .topic-filter-row {
+        overflow-x: auto;
+    }
+
+    .topic-toolbar-shell .topic-filter-row .chip {
+        padding: 0 10px;
+        font-size: 0.8rem;
+    }
+}
+
+
 #topicSelectionScreen .dashboard-grid {
     gap: 14px;
 }
@@ -7188,6 +7280,54 @@ body.dark-mode .dashboard-utility-row .btn-ghost:hover {
 
 #adminScreen .admin-plan-card {
     gap: 10px;
+}
+
+/* Admin list toolbars (desktop/tablet ≥700px): one shared search/filter band
+   like the topic toolbar — the search absorbs free space, selects keep their
+   content width (never full-width), and action buttons stay on the row.
+   Below 700px the mobile column layouts keep full-width controls. This block
+   sits late in the file so it wins over the earlier 720px mobile column rules
+   in the 700–720px overlap band. */
+@media (min-width: 700px) {
+    .admin-user-toolbar,
+    .admin-request-toolbar,
+    .admin-feedback-toolbar {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    .admin-user-toolbar .search-wrap,
+    .admin-request-toolbar .search-wrap,
+    .admin-feedback-toolbar .search-wrap {
+        flex: 1 1 240px;
+        width: auto;
+        min-width: 170px;
+        max-width: 100%;
+    }
+
+    /* Feedback has six controls; the search must not greedily grow and
+       strand the sort + refresh on their own row. Let it keep its basis so
+       all six share one row whenever the column allows. */
+    .admin-feedback-toolbar .search-wrap {
+        flex-grow: 0;
+    }
+
+    .admin-user-toolbar select,
+    .admin-request-toolbar select,
+    .admin-feedback-toolbar select {
+        flex: 0 1 128px;
+        width: auto;
+        min-width: 108px;
+        max-width: 100%;
+    }
+
+    .admin-user-toolbar button,
+    .admin-request-toolbar button,
+    .admin-feedback-toolbar .btn {
+        flex: 0 0 auto;
+        white-space: nowrap;
+    }
 }
 
 #adminScreen .admin-requests-card,
@@ -8074,6 +8214,11 @@ body.dark-mode #quizScreen .quiz-actions .btn-secondary:hover {
     border-radius: 14px;
     border-color: color-mix(in srgb, var(--green-900) 10%, var(--line));
     background: rgba(255, 255, 255, 0.8);
+    /* Share one row (equal thirds) instead of each inheriting the global
+       full-width select width and stacking. */
+    width: auto;
+    flex: 1 1 0;
+    min-width: 150px;
 }
 
 #reviewMistakesScreen .review-mistakes-list {
