@@ -19,7 +19,6 @@ import {
   sendPasswordResetEmail,
   sendWelcomeEmail,
 } from "./email-sender.js";
-import { readSelarApiConfig, verifySelarOrderByReference } from "./selarVerify.js";
 import {
   upsertUserProfile,
   getUserProfile,
@@ -1754,8 +1753,6 @@ function paymentRecordToFirestoreFields(receipt) {
     createdAt: { timestampValue: String(receipt.createdAt || new Date().toISOString()) },
     expiresAt: { timestampValue: String(receipt.expiresAt || "") },
   };
-  if (receipt.selarOrderRef) fields.selarOrderRef = { stringValue: String(receipt.selarOrderRef) };
-  if (receipt.selarProductName) fields.selarProductName = { stringValue: String(receipt.selarProductName) };
   return fields;
 }
 
@@ -1781,8 +1778,6 @@ function parsePaymentDocument(document) {
     flwTransactionId: String(firestoreValueToPlain(fields.flwTransactionId) || ""),
     flwCustomerEmail: normalizeEmail(firestoreValueToPlain(fields.flwCustomerEmail)),
     flwTxRef: String(firestoreValueToPlain(fields.flwTxRef) || ""),
-    selarOrderRef: String(firestoreValueToPlain(fields.selarOrderRef) || ""),
-    selarProductName: String(firestoreValueToPlain(fields.selarProductName) || ""),
     status: String(firestoreValueToPlain(fields.status) || "successful").toLowerCase(),
     createdAt: String(firestoreValueToPlain(fields.createdAt) || ""),
     expiresAt: String(firestoreValueToPlain(fields.expiresAt) || ""),
@@ -2011,294 +2006,6 @@ async function patchCloudflareUserPaymentPlan(env, userId) {
     .prepare("UPDATE auth_users SET plan = 'premium', plan_source = 'payment', updated_at = ?2 WHERE id = ?1")
     .bind(String(userId), new Date().toISOString())
     .run();
-}
-
-async function patchSelarPaymentProfile(env, userId, receipt) {
-  if (!userId) return;
-  const docUrl = firestoreDocumentUrl(env, `profiles/${encodeURIComponent(userId)}`);
-  const params = new URLSearchParams();
-  [
-    "plan",
-    "billingCycle",
-    "planExpiresAt",
-    "selarOrderRef",
-    "selarProductName",
-    "lastPaymentAt",
-  ].forEach((field) => params.append("updateMask.fieldPaths", field));
-
-  await firestoreRequest(env, `${docUrl}?${params.toString()}`, {
-    method: "PATCH",
-    body: {
-      fields: {
-        plan: { stringValue: "premium" },
-        billingCycle: { stringValue: String(receipt.billingCycle || "") },
-        planExpiresAt: { timestampValue: String(receipt.expiresAt || "") },
-        selarOrderRef: { stringValue: String(receipt.selarOrderRef || "") },
-        selarProductName: { stringValue: String(receipt.selarProductName || "") },
-        lastPaymentAt: { timestampValue: String(receipt.createdAt || new Date().toISOString()) },
-      },
-    },
-  });
-}
-
-// Shared Selar grant: applies premium to Firestore profile + Cloudflare auth
-// user and writes a payment record. Used by both the webhook and the new
-// server-side order verification endpoint so the two paths can never diverge.
-async function grantSelarPremium(env, { userId, email, orderRef, productName, planCycle, amount, currency, createdAt }) {
-  if (!userId) throw new Error("Missing user id for Selar grant.");
-  const normalizedCycle = normalizePaymentPlanCycle(planCycle);
-  if (!normalizedCycle) throw new Error("Unsupported payment plan.");
-  const now = createdAt || new Date().toISOString();
-  const expiresAt = calculatePaymentExpiry(normalizedCycle);
-  const paymentId = `selar_${orderRef || `${Date.now()}_${Math.random().toString(36).slice(2, 8)}`}`;
-  const receipt = {
-    paymentId,
-    userId: String(userId),
-    email: normalizeEmail(email || ""),
-    amount: Math.round(Number(amount) || PAYMENT_PLAN_PRICES[normalizedCycle] || 0),
-    currency: String(currency || "NGN").trim().toUpperCase() || "NGN",
-    billingCycle: normalizedCycle,
-    plan: "premium",
-    selarOrderRef: String(orderRef || ""),
-    selarProductName: String(productName || "").toLowerCase(),
-    status: "successful",
-    createdAt: now,
-    expiresAt,
-  };
-
-  await patchSelarPaymentProfile(env, userId, receipt);
-  await patchCloudflareUserPaymentPlan(env, userId).catch(() => {});
-  try {
-    await writePaymentRecord(env, receipt);
-  } catch (_) {}
-  return receipt;
-}
-
-// Server-side verification of a user-submitted Selar order reference.
-// The worker calls Selar's merchant API (api.selar.co/v2/orders) with
-// SELAR_API_KEY and, when the order is confirmed successful and matches the
-// signed-in buyer, grants premium automatically. If the API key is not
-// configured, or the order cannot be confirmed, it returns verified:false so
-// the client falls back to the manual-review queue — never a hard failure.
-async function handleSelarPaymentVerify(request, env) {
-  const user = await resolveAuthenticatedContentUser(request, env);
-  if (String(user?.status || "active").toLowerCase() !== "active") {
-    throw createRouteError(403, "Your account is not active.");
-  }
-
-  const body = await readJsonBody(request);
-  const orderReference = String(
-    body?.orderReference ||
-    body?.orderRef ||
-    body?.reference ||
-    body?.order_reference ||
-    ""
-  ).trim();
-  const planCycle = normalizePaymentPlanCycle(body?.planCycle || "");
-  if (!orderReference) throw createRouteError(400, "orderReference is required.");
-  if (!planCycle) throw createRouteError(400, "A valid plan cycle is required.");
-
-  const { apiKey } = readSelarApiConfig(env);
-  if (!apiKey) {
-    return {
-      ok: true,
-      verified: false,
-      reason: "api_not_configured",
-      warning: "Selar automatic verification is not configured. Your confirmation will be queued for admin review.",
-    };
-  }
-
-  const verification = await verifySelarOrderByReference(
-    { orderReference, buyerEmail: user.email, expectedAmount: PAYMENT_PLAN_PRICES[planCycle], apiKey },
-    {},
-  );
-
-  if (!verification.verified) {
-    return {
-      ok: true,
-      verified: false,
-      reason: verification.reason,
-      ...(verification.status ? { orderStatus: verification.status } : {}),
-      warning: selarVerifyFallbackWarning(verification.reason),
-    };
-  }
-
-  const productName = String(verification.order?.product_name || verification.order?.productName || "");
-  const receipt = await grantSelarPremium(env, {
-    userId: user.id,
-    email: user.email,
-    orderRef: orderReference,
-    productName,
-    planCycle,
-    amount: verification.amount || PAYMENT_PLAN_PRICES[planCycle],
-    currency: "NGN",
-  });
-
-  return {
-    ok: true,
-    verified: true,
-    plan: "premium",
-    billingCycle: planCycle,
-    expiresAt: receipt.expiresAt,
-    paymentId: receipt.paymentId,
-    warning: "Your Selar payment was verified and your premium access is now active.",
-  };
-}
-
-function selarVerifyFallbackWarning(reason) {
-  const messages = {
-    order_not_found: "We could not find this order on Selar yet. If you just paid, wait a few minutes and try again — or leave it for manual review.",
-    order_not_successful: "This Selar order is not marked as paid yet. If you just paid, try again in a few minutes.",
-    email_mismatch: "This Selar order belongs to a different email address. Use the same email on Selar and in the app.",
-    amount_mismatch: "The Selar order amount does not match the selected plan. Check the billing cycle you chose.",
-    reference_ambiguous: "We could not fully confirm this Selar order. Double-check the reference, then try again — or leave it for manual review.",
-    api_error: "Selar's service could not be reached right now. Your confirmation will be queued for manual review.",
-    api_not_configured: "Selar automatic verification is not configured. Your confirmation will be queued for admin review.",
-  };
-  return messages[reason] || "Your confirmation will be queued for manual review.";
-}
-
-async function handleSelarWebhook(request, env, ctx) {
-  // Selar does not currently publish a signed-webhook contract, so this route
-  // fails closed: a shared secret must be configured (worker secret
-  // SELAR_WEBHOOK_SECRET) and sent back by the webhook caller. If Selar adds
-  // official signature support later, extend this check rather than relaxing it.
-  const expectedSecret = String(env.SELAR_WEBHOOK_SECRET || "").trim();
-  if (!expectedSecret) {
-    throw createRouteError(503, "Selar webhook secret is not configured.");
-  }
-  const receivedSignature = String(
-    request.headers.get("x-selar-signature") ||
-      request.headers.get("x-selar-hash") ||
-      request.headers.get("x-webhook-signature") ||
-      ""
-  ).trim();
-  if (!receivedSignature || !timingSafeEqual(receivedSignature, expectedSecret)) {
-    throw createRouteError(403, "Forbidden");
-  }
-
-  const body = await readJsonBody(request);
-
-  // Only process clearly-successful purchase events; ignore anything else.
-  const eventStatus = String(
-    body?.status || body?.event_status || body?.payment_status || body?.event?.status || ""
-  ).trim().toLowerCase();
-  if (eventStatus && !["successful", "success", "paid", "completed"].includes(eventStatus)) {
-    return { ok: true, ignored: true };
-  }
-
-  const email = normalizeEmail(
-    body?.customer_email ||
-    body?.customerEmail ||
-    body?.email ||
-    body?.buyer_email ||
-    body?.buyerEmail ||
-    ""
-  );
-
-  if (!email || !email.includes("@")) {
-    return { ok: true, ignored: true };
-  }
-
-  const productName = String(
-    body?.product_name ||
-    body?.productName ||
-    body?.product ||
-    body?.item_name ||
-    body?.itemName ||
-    body?.title ||
-    ""
-  ).trim().toLowerCase();
-
-  let planCycle = normalizePaymentPlanCycle(
-    body?.plan_cycle ||
-    body?.planCycle ||
-    body?.billing_cycle ||
-    body?.billingCycle ||
-    ""
-  );
-
-  if (!planCycle) {
-    if (productName.includes("monthly")) planCycle = "monthly";
-    else if (productName.includes("quarter")) planCycle = "quarterly";
-    else if (productName.includes("bi-annual") || productName.includes("biannual") || productName.includes("bi annual")) planCycle = "bi-annual";
-    else if (productName.includes("annual") || productName.includes("yearly")) planCycle = "annual";
-  }
-
-  if (!planCycle) {
-    return { ok: true, ignored: true };
-  }
-
-  const orderRef = String(
-    body?.order_reference ||
-    body?.orderReference ||
-    body?.order_ref ||
-    body?.orderRef ||
-    body?.reference ||
-    body?.transaction_id ||
-    body?.transactionId ||
-    body?.id ||
-    ""
-  ).trim();
-
-  const amount = Math.round(Number(
-    body?.amount ||
-    body?.price ||
-    body?.total ||
-    body?.order_amount ||
-    body?.orderAmount ||
-    PAYMENT_PLAN_PRICES[planCycle] ||
-    0
-  ));
-
-  const currency = String(body?.currency || "NGN").trim().toUpperCase() || "NGN";
-
-  const runGrant = async () => {
-    let users = [];
-    try {
-      const payload = await identityAdminRequest(env, "accounts:lookup", {
-        body: { email: [email] },
-      });
-      users = Array.isArray(payload?.users) ? payload.users : [];
-    } catch (_) {
-      return { ok: true, ignored: true };
-    }
-
-    if (!users.length) return { ok: true, ignored: true };
-
-    const userId = String(users[0]?.localId || "").trim();
-    if (!userId) return { ok: true, ignored: true };
-
-    await grantSelarPremium(env, {
-      userId,
-      email,
-      orderRef,
-      productName,
-      planCycle,
-      amount,
-      currency,
-    });
-
-    return { ok: true, processed: true };
-  };
-
-  // Zapier's free "Code by Zapier" step allows ~1s of execution, but a cold
-  // Worker running the full grant chain (lookup + D1 + Firestore) can exceed
-  // that. When a runtime context is available, validate synchronously (fast)
-  // and run the grant in the background via ctx.waitUntil so the response
-  // arrives in milliseconds — the 200 then means "accepted", not "already
-  // granted". Without a ctx (unit tests), await the grant so behavior is
-  // deterministic.
-  if (typeof ctx?.waitUntil === "function") {
-    ctx.waitUntil(
-      runGrant().catch((error) => {
-        console.error("selar webhook background grant failed:", error?.message || error);
-      })
-    );
-    return { ok: true, processed: true };
-  }
-
-  return runGrant();
 }
 
 async function findCloudflareUserByEmail(env, email) {
@@ -4764,8 +4471,6 @@ export function resolveRouteHandler(path) {
   if (path.endsWith("/payment/verify")) return handlePaymentVerify;
   if (path.endsWith("/payment/history")) return handlePaymentHistory;
   if (path.endsWith("/payment/webhook/flutterwave")) return handlePaymentWebhook;
-  if (path.endsWith("/payment/webhook/selar")) return handleSelarWebhook;
-  if (path.endsWith("/payment/selar/verify")) return handleSelarPaymentVerify;
   // User-facing verification resend (no admin auth required) — check before hybrid auth
   if (path.endsWith("/auth/verification/resend")) return handleUserVerificationResend;
   const authRouteHandler = resolveHybridAuthRouteHandler(path);
@@ -4816,8 +4521,7 @@ export function resolveRouteHandler(path) {
 export default {
   async fetch(request, env, ctx) {
     const origin = resolveAllowedOrigin(request, env);
-    const isPaymentWebhook = new URL(request.url).pathname.endsWith("/payment/webhook/flutterwave") ||
-      new URL(request.url).pathname.endsWith("/payment/webhook/selar");
+    const isPaymentWebhook = new URL(request.url).pathname.endsWith("/payment/webhook/flutterwave");
 
     if (isPaymentWebhook) {
       const clientIp = request.headers.get("cf-connecting-ip") || request.headers.get("x-forwarded-for") || "unknown";
