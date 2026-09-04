@@ -690,14 +690,42 @@ function normalizeProtectedAssetPath(assetPath) {
   return value;
 }
 
+// Per-isolate cache of parsed protected assets. Keyed by asset path only —
+// entitlement filtering happens per request after the read, so one cached copy
+// is safe for every plan. The cache is cleared automatically whenever the
+// Worker is redeployed, so content updates never linger here.
+const protectedAssetDataCache = new Map();
+const PROTECTED_ASSET_CACHE_MAX_ENTRIES = 3;
+
 async function fetchProtectedAssetJson(env, assetPath) {
   const binding = resolveProtectedContentBinding(env);
   const cleanPath = normalizeProtectedAssetPath(assetPath);
-  const response = await binding.fetch(new Request(`https://protected-content.local/${cleanPath}`));
-  if (!response.ok) {
-    throw createRouteError(response.status || 404, `Protected content asset is unavailable: ${cleanPath}`);
+
+  if (protectedAssetDataCache.has(cleanPath)) {
+    const cached = protectedAssetDataCache.get(cleanPath);
+    protectedAssetDataCache.delete(cleanPath);
+    protectedAssetDataCache.set(cleanPath, cached);
+    return cached;
   }
-  return response.json();
+
+  const loadPromise = (async () => {
+    const response = await binding.fetch(new Request(`https://protected-content.local/${cleanPath}`));
+    if (!response.ok) {
+      throw createRouteError(response.status || 404, `Protected content asset is unavailable: ${cleanPath}`);
+    }
+    return response.json();
+  })().catch((error) => {
+    // Do not keep failed loads sticky in the cache.
+    protectedAssetDataCache.delete(cleanPath);
+    throw error;
+  });
+
+  protectedAssetDataCache.set(cleanPath, loadPromise);
+  if (protectedAssetDataCache.size > PROTECTED_ASSET_CACHE_MAX_ENTRIES) {
+    const oldestKey = protectedAssetDataCache.keys().next().value;
+    protectedAssetDataCache.delete(oldestKey);
+  }
+  return loadPromise;
 }
 
 async function loadProtectedTopicCatalog(env) {
@@ -925,13 +953,101 @@ async function handleCloudflareProgress(request, env) {
   };
 }
 
+const TOPIC_DATA_EDGE_CACHE_PREFIX = "topic-data:v1:";
+const TOPIC_DATA_EDGE_CACHE_TTL_SECONDS = 1800; // 30 min: serves rapid repeat loads
+// while bounding how long a content update can trail a deploy.
+
+function buildTopicDataCacheKey(entitlementId, topicId) {
+  return `${TOPIC_DATA_EDGE_CACHE_PREFIX}${String(entitlementId || "").trim()}:${String(topicId || "").trim()}`;
+}
+
+function getTopicDataCacheStorage() {
+  try {
+    if (typeof caches === "undefined") return null;
+    return caches.default || null;
+  } catch (_error) {
+    return null;
+  }
+}
+
+function topicDataCacheRequest(cacheKey) {
+  return new Request(`https://topic-data-cache.local/${encodeURIComponent(cacheKey)}`);
+}
+
+async function readTopicDataEdgeCache(cacheKey) {
+  const storage = getTopicDataCacheStorage();
+  if (!storage || !cacheKey) return null;
+  try {
+    return (await storage.match(topicDataCacheRequest(cacheKey))) || null;
+  } catch (_error) {
+    return null;
+  }
+}
+
+async function writeTopicDataEdgeCache(cacheKey, payload) {
+  const storage = getTopicDataCacheStorage();
+  if (!storage || !cacheKey) return;
+  try {
+    await storage.put(
+      topicDataCacheRequest(cacheKey),
+      new Response(JSON.stringify(payload), {
+        status: 200,
+        headers: {
+          "Content-Type": "application/json",
+          "Cache-Control": `public, max-age=${TOPIC_DATA_EDGE_CACHE_TTL_SECONDS}`,
+        },
+      }),
+    );
+  } catch (_error) {
+    // The Cache API can be unavailable (e.g., free plan); degrade gracefully.
+  }
+}
+
+function decorateTopicDataResponse(cachedResponse, origin) {
+  const headers = new Headers(cachedResponse.headers);
+  headers.set("Content-Type", "application/json");
+  headers.set("Cache-Control", `private, max-age=${TOPIC_DATA_EDGE_CACHE_TTL_SECONDS}`);
+  return withSecurityHeaders(
+    withCorsHeaders(
+      new Response(cachedResponse.body, { status: cachedResponse.status || 200, headers }),
+      origin,
+    )
+  );
+}
+
 async function handleProtectedTopicData(request, env) {
+  const body = await readJsonBody(request);
   const viewer = await resolveAuthenticatedContentUser(request, env);
+  return buildProtectedTopicDataPayload(viewer, body, env);
+}
+
+async function handleTopicDataWithEdgeCache(request, env, origin) {
+  const body = await readJsonBody(request);
+  const viewer = await resolveAuthenticatedContentUser(request, env);
+  const topicId = String(body?.topicId || "").trim();
+  const entitlement = resolveContentEntitlement(viewer);
+  const isActive = String(viewer?.status || "active").toLowerCase() === "active";
+  const cacheKey = topicId && isActive ? buildTopicDataCacheKey(entitlement.id, topicId) : "";
+
+  if (cacheKey) {
+    const cached = await readTopicDataEdgeCache(cacheKey);
+    if (cached) {
+      return decorateTopicDataResponse(cached, origin);
+    }
+  }
+
+  const payload = await buildProtectedTopicDataPayload(viewer, body, env);
+  if (cacheKey && payload?.ok) {
+    await writeTopicDataEdgeCache(cacheKey, payload);
+  }
+  return jsonResponse(payload, 200, origin);
+}
+
+async function buildProtectedTopicDataPayload(viewer, body, env) {
   if (String(viewer?.status || "active").toLowerCase() !== "active") {
     throw createRouteError(403, "Your account is not active.");
   }
 
-  const body = await readJsonBody(request);
   const topicId = String(body?.topicId || "").trim();
   if (!topicId) {
     throw createRouteError(400, "topicId is required.");
@@ -4463,6 +4579,11 @@ async function handleDeviceList(request, env) {
   };
 }
 
+export function __resetTopicDataCachesForTests() {
+  protectedAssetDataCache.clear();
+  protectedTopicCatalogPromise = null;
+}
+
 export function resolveRouteHandler(path) {
   if (path.endsWith("/auth/password/request")) return handleAuthPasswordRecoveryRequest;
   if (path.endsWith("/progress")) return handleCloudflareProgress;
@@ -4558,14 +4679,23 @@ export default {
     }
 
     try {
-      const payload = await routeHandler(request, env, ctx);
-      if (isPaymentWebhook) {
-        logWebhookEvent("info", "Webhook request completed", {
-          path: normalizedPath,
-          result: payload,
-        });
+      let response;
+      if (normalizedPath.endsWith("/content/topic-data")) {
+        // Topic data is entitlement-scoped and deterministic per plan, so it is
+        // cached at the edge under a plan-scoped key (never shared across
+        // plans). The cached copy carries private Cache-Control for the client.
+        response = await handleTopicDataWithEdgeCache(request, env, origin);
+      } else {
+        const payload = await routeHandler(request, env, ctx);
+        if (isPaymentWebhook) {
+          logWebhookEvent("info", "Webhook request completed", {
+            path: normalizedPath,
+            result: payload,
+          });
+        }
+        response = jsonResponse(payload, 200, origin);
       }
-      return jsonResponse(payload, 200, origin);
+      return response;
     } catch (error) {
       const status = Number(error?.httpStatus || 0);
       const httpStatus = status > 0 ? status : 500;
