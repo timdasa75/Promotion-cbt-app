@@ -3928,7 +3928,8 @@ async function handleAdminActivityMetrics(request, env) {
   // Activity queries use ?1 for the date, so exclusion starts at ?2.
   const activityUser = buildExclude(adminIds, 2);
   const activityEmail = buildExclude([...adminEmailSet].map(e => e.toLowerCase()), 2);
-  // User/device count queries have no date parameter, so exclusion starts at ?1.
+  // Count queries have no date parameter, so exclusion starts at ?1.
+  const countUser = buildExclude(adminIds, 1);
   const countEmail = buildExclude([...adminEmailSet].map(e => e.toLowerCase()), 1);
 
   const now = new Date();
@@ -3986,8 +3987,8 @@ async function handleAdminActivityMetrics(request, env) {
     // Feedback counts (no user_id filter — admin feedback is rare but counted)
     database.prepare(`SELECT COUNT(*) as count FROM feedback_submissions`).first(),
     database.prepare(`SELECT COUNT(*) as count FROM feedback_submissions WHERE status != 'resolved' AND status != 'dismissed'`).first(),
-    // Session and device counts — exclude admin
-    database.prepare(`SELECT COUNT(*) as count FROM auth_sessions WHERE 1=1 ${activityUser.clause ? 'AND user_id ' + activityUser.clause : ''}`).bind(...activityUser.params).first(),
+    // Session count — no date param, so exclusion starts at ?1
+    database.prepare(`SELECT COUNT(*) as count FROM auth_sessions WHERE 1=1 ${countUser.clause ? 'AND user_id ' + countUser.clause : ''}`).bind(...countUser.params).first(),
     database.prepare(`SELECT COUNT(*) as count FROM trusted_devices td JOIN auth_users u ON td.user_id = u.id WHERE 1=1 ${countEmail.clause ? 'AND lower(u.email) ' + countEmail.clause : ''}`).bind(...countEmail.params).first(),
     // Recent logins (last 24h via login_audit_log) — exclude admin
     database.prepare(
