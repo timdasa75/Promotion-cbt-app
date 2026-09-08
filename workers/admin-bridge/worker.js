@@ -3960,38 +3960,38 @@ async function handleAdminActivityMetrics(request, env) {
   ] = await Promise.all([
     // Currently active (session seen within last 5 minutes)
     database.prepare(
-      `SELECT COUNT(DISTINCT user_id) as count FROM auth_sessions WHERE last_seen_at >= ?1 AND user_id ${activityUser.clause}`
+      `SELECT COUNT(DISTINCT user_id) as count FROM auth_sessions WHERE last_seen_at >= ?1 ${activityUser.clause ? 'AND user_id ' + activityUser.clause : ''}`
     ).bind(fiveMinAgo, ...activityUser.params).first(),
     // Hourly active (session seen within last hour)
     database.prepare(
-      `SELECT COUNT(DISTINCT user_id) as count FROM auth_sessions WHERE last_seen_at >= ?1 AND user_id ${activityUser.clause}`
+      `SELECT COUNT(DISTINCT user_id) as count FROM auth_sessions WHERE last_seen_at >= ?1 ${activityUser.clause ? 'AND user_id ' + activityUser.clause : ''}`
     ).bind(oneHourAgo, ...activityUser.params).first(),
     // Daily active (session seen within last 24 hours)
     database.prepare(
-      `SELECT COUNT(DISTINCT user_id) as count FROM auth_sessions WHERE last_seen_at >= ?1 AND user_id ${activityUser.clause}`
+      `SELECT COUNT(DISTINCT user_id) as count FROM auth_sessions WHERE last_seen_at >= ?1 ${activityUser.clause ? 'AND user_id ' + activityUser.clause : ''}`
     ).bind(twentyFourHoursAgo, ...activityUser.params).first(),
     // Weekly active (session seen within last 7 days)
     database.prepare(
-      `SELECT COUNT(DISTINCT user_id) as count FROM auth_sessions WHERE last_seen_at >= ?1 AND user_id ${activityUser.clause}`
+      `SELECT COUNT(DISTINCT user_id) as count FROM auth_sessions WHERE last_seen_at >= ?1 ${activityUser.clause ? 'AND user_id ' + activityUser.clause : ''}`
     ).bind(sevenDaysAgo, ...activityUser.params).first(),
     // Monthly active (session seen within last 30 days)
     database.prepare(
-      `SELECT COUNT(DISTINCT user_id) as count FROM auth_sessions WHERE last_seen_at >= ?1 AND user_id ${activityUser.clause}`
+      `SELECT COUNT(DISTINCT user_id) as count FROM auth_sessions WHERE last_seen_at >= ?1 ${activityUser.clause ? 'AND user_id ' + activityUser.clause : ''}`
     ).bind(thirtyDaysAgo, ...activityUser.params).first(),
     // User counts — exclude admin emails (no date param, so start at ?1)
-    database.prepare(`SELECT COUNT(*) as count FROM auth_users WHERE lower(email) ${countEmail.clause}`).bind(...countEmail.params).first(),
-    database.prepare(`SELECT COUNT(*) as count FROM auth_users WHERE plan = 'premium' AND lower(email) ${countEmail.clause}`).bind(...countEmail.params).first(),
-    database.prepare(`SELECT COUNT(*) as count FROM auth_users WHERE email_verified = 1 AND lower(email) ${countEmail.clause}`).bind(...countEmail.params).first(),
-    database.prepare(`SELECT COUNT(*) as count FROM auth_users WHERE (email_verified = 0 OR email_verified IS NULL) AND lower(email) ${countEmail.clause}`).bind(...countEmail.params).first(),
+    database.prepare(`SELECT COUNT(*) as count FROM auth_users WHERE 1=1 ${countEmail.clause ? 'AND lower(email) ' + countEmail.clause : ''}`).bind(...countEmail.params).first(),
+    database.prepare(`SELECT COUNT(*) as count FROM auth_users WHERE plan = 'premium' ${countEmail.clause ? 'AND lower(email) ' + countEmail.clause : ''}`).bind(...countEmail.params).first(),
+    database.prepare(`SELECT COUNT(*) as count FROM auth_users WHERE email_verified = 1 ${countEmail.clause ? 'AND lower(email) ' + countEmail.clause : ''}`).bind(...countEmail.params).first(),
+    database.prepare(`SELECT COUNT(*) as count FROM auth_users WHERE (email_verified = 0 OR email_verified IS NULL) ${countEmail.clause ? 'AND lower(email) ' + countEmail.clause : ''}`).bind(...countEmail.params).first(),
     // Feedback counts (no user_id filter — admin feedback is rare but counted)
     database.prepare(`SELECT COUNT(*) as count FROM feedback_submissions`).first(),
     database.prepare(`SELECT COUNT(*) as count FROM feedback_submissions WHERE status != 'resolved' AND status != 'dismissed'`).first(),
     // Session and device counts — exclude admin
-    database.prepare(`SELECT COUNT(*) as count FROM auth_sessions WHERE user_id ${activityUser.clause}`).bind(...activityUser.params).first(),
-    database.prepare(`SELECT COUNT(*) as count FROM trusted_devices td JOIN auth_users u ON td.user_id = u.id WHERE lower(u.email) ${countEmail.clause}`).bind(...countEmail.params).first(),
+    database.prepare(`SELECT COUNT(*) as count FROM auth_sessions WHERE 1=1 ${activityUser.clause ? 'AND user_id ' + activityUser.clause : ''}`).bind(...activityUser.params).first(),
+    database.prepare(`SELECT COUNT(*) as count FROM trusted_devices td JOIN auth_users u ON td.user_id = u.id WHERE 1=1 ${countEmail.clause ? 'AND lower(u.email) ' + countEmail.clause : ''}`).bind(...countEmail.params).first(),
     // Recent logins (last 24h via login_audit_log) — exclude admin
     database.prepare(
-      `SELECT COUNT(DISTINCT email) as count FROM login_audit_log WHERE created_at >= ?1 AND lower(email) ${activityEmail.clause}`
+      `SELECT COUNT(DISTINCT email) as count FROM login_audit_log WHERE created_at >= ?1 ${activityEmail.clause ? 'AND lower(email) ' + activityEmail.clause : ''}`
     ).bind(twentyFourHoursAgo, ...activityEmail.params).first(),
   ]);
   
