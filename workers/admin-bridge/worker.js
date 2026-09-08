@@ -3904,7 +3904,9 @@ async function handleAdminActivityMetrics(request, env) {
   // Resolve admin user IDs so we can exclude the privileged admin account
   // from every stat — it should not inflate user counts, activity metrics,
   // device counts, or login counts.
-  const adminEmails = parseAdminEmails(env.ADMIN_EMAILS || '');
+  // parseAdminEmails returns a Set — convert to Array for SQL bind.
+  const adminEmailSet = parseAdminEmails(env.ADMIN_EMAILS || '');
+  const adminEmails = [...adminEmailSet];
   const adminEmailRows = adminEmails.length
     ? await database
         .prepare(`SELECT id FROM auth_users WHERE lower(email) IN (${adminEmails.map((_, i) => `?${i + 1}`).join(',')})`)
