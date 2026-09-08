@@ -967,16 +967,15 @@ function updateActivityMetricsDisplay(metrics) {
   const weeklyActiveEl = document.getElementById('adminStatWeeklyActive');
   const monthlyActiveEl = document.getElementById('adminStatMonthlyActive');
   
-  // Subtract admin from activity counts (Worker counts include admin)
+  // Worker now excludes admin emails from all activity counts — just
+  // paint the values directly.
   const config = getRuntimeConfig();
   const adminEmailSet = new Set((config.adminEmails || []).map(e => String(e).toLowerCase()));
-  const isAdminActive = (adminDirectoryUsers || []).some(u => adminEmailSet.has(String(u.email || '').toLowerCase()));
-  const adminDeduction = isAdminActive ? 1 : 0;
-  if (activeNowEl) activeNowEl.textContent = String(Math.max(0, (metrics.currentlyActive || 0) - adminDeduction));
-  if (hourlyActiveEl) hourlyActiveEl.textContent = String(Math.max(0, (metrics.hourlyActive || 0) - adminDeduction));
-  if (dailyActiveEl) dailyActiveEl.textContent = String(Math.max(0, (metrics.dailyActive || 0) - adminDeduction));
-  if (weeklyActiveEl) weeklyActiveEl.textContent = String(Math.max(0, (metrics.weeklyActive || 0) - adminDeduction));
-  if (monthlyActiveEl) monthlyActiveEl.textContent = String(Math.max(0, (metrics.monthlyActive || 0) - adminDeduction));
+  if (activeNowEl) activeNowEl.textContent = String(metrics.currentlyActive || 0);
+  if (hourlyActiveEl) hourlyActiveEl.textContent = String(metrics.hourlyActive || 0);
+  if (dailyActiveEl) dailyActiveEl.textContent = String(metrics.dailyActive || 0);
+  if (weeklyActiveEl) weeklyActiveEl.textContent = String(metrics.weeklyActive || 0);
+  if (monthlyActiveEl) monthlyActiveEl.textContent = String(metrics.monthlyActive || 0);
   
   // Update stat cards from enriched metrics.
   // Users, Premium and Verified are derived from the merged directory
@@ -1118,21 +1117,29 @@ async function refreshActivityMetrics() {
 
 function refreshAllDashboardData() {
   // Single fetch for all dashboard stats (activity metrics, devices, logins, users)
-  refreshActivityMetrics();
+  const metricsPromise = refreshActivityMetrics();
   // Refresh recent transactions
   renderRecentTransactions();
   // Refresh migration stats
   fetchMigrationStats();
+  // Refresh the device-management list while the Security tab is the active
+  // view, so newly captured logins appear without a manual Refresh click.
+  const securityView = document.getElementById("adminViewSecurity");
+  if (securityView?.classList.contains("active")) {
+    renderAdminDevices().catch(() => {});
+  }
+  return metricsPromise;
 }
 
 let activityMetricsAutoRefreshStarted = false;
 
 function startActivityMetricsAutoRefresh() {
-  if (activityMetricsAutoRefreshStarted) return;
+  if (activityMetricsAutoRefreshStarted) return Promise.resolve();
   activityMetricsAutoRefreshStarted = true;
   
-  // Initial fetch of all dashboard data
-  refreshAllDashboardData();
+  // Initial fetch of all dashboard data — return the promise so callers
+  // can await the first paint with real numbers before showing the screen.
+  const initialFetch = refreshAllDashboardData();
   
   // Start auto-refresh interval (refreshes ALL dashboard data)
   activityMetricsRefreshInterval = setInterval(() => {
@@ -1143,6 +1150,7 @@ function startActivityMetricsAutoRefresh() {
   
   // Update the pause button state
   updateActivityMetricsPauseButton();
+  return initialFetch;
 }
 
 // ---- Active Users List (clickable activity cards) ----
@@ -1360,6 +1368,10 @@ function stopActivityMetricsAutoRefresh() {
     clearInterval(activityMetricsRefreshInterval);
     activityMetricsRefreshInterval = null;
   }
+  // Allow the cycle to restart on the next admin visit; otherwise the flag
+  // stays true forever and the 30s refresh only ever runs during the FIRST
+  // time the admin screen is opened.
+  activityMetricsAutoRefreshStarted = false;
 }
 
 function toggleActivityMetricsAutoRefresh() {
@@ -1384,19 +1396,25 @@ function updateActivityMetricsPauseButton() {
 
 let dashboardStatsSource = null; // 'worker' when Worker has provided values
 
-function updateAdminDashboardSummary() {
+async function updateAdminDashboardSummary() {
   // Stat cards (totalUsers, premiumUsers, devices, logins) are ONLY updated
   // by refreshActivityMetrics() from the Worker endpoint to prevent flickering.
   // This function only handles non-stat-card dashboard content.
   
-  // Start activity metrics auto-refresh (this is the single source of truth for stats)
-  if (dashboardStatsSource !== 'worker') {
-    startActivityMetricsAutoRefresh();
-  }
+  // (Re)start activity metrics auto-refresh on every admin visit. The old
+  // `dashboardStatsSource !== 'worker'` guard permanently blocked restarts
+  // after the first successful load (the flag is never reset while the 30s
+  // interval IS stopped when leaving admin), so returning to the admin screen
+  // silently showed stale/zero stats with no refresh. startActivityMetrics-
+  // AutoRefresh dedupes concurrent calls itself, so the guard was redundant.
+  const initialMetricsFetch = startActivityMetricsAutoRefresh();
   // Render recent transactions
   renderRecentTransactions();
   // Fetch migration stats
   fetchMigrationStats();
+  // Await the initial metrics paint so the dashboard has real numbers
+  // before the admin screen becomes visible — avoids the flash of zeros.
+  await initialMetricsFetch;
 }
 
 /**
@@ -3601,11 +3619,13 @@ async function restoreScreenState() {
     renderAdminOverrides();
     renderAdminOperationHistory();
     renderAdminFeedbackList();
+    // Metrics first — same ordering as openAdminScreen so the initial
+    // fetch is awaited before the screen becomes visible.
+    await updateAdminDashboardSummary();
     await refreshAdminUserDirectory();
     await refreshAdminFeedbackSubmissions();
     renderAdminDevices().catch(() => {});
     renderAdminAuditLog().catch(() => {});
-    updateAdminDashboardSummary();
     initializeAdminTabs();
     loadPricingUI();
     initializePricingUI();
@@ -4557,11 +4577,18 @@ async function handleOTPVerification() {
     // Store session
     if (result.userId) {
       const sessionData = {
-        userId: result.userId,
-        email: result.email,
-        plan: result.plan,
-        role: result.role,
-        status: result.status,
+        provider: "cloudflare",
+        accessToken: result.session?.token || "",
+        refreshToken: "",
+        expiresAt: result.session?.expiresAt ? Date.parse(result.session.expiresAt) : 0,
+        createdAt: result.session?.createdAt || new Date().toISOString(),
+        user: {
+          id: result.userId,
+          email: result.email,
+          plan: result.plan,
+          role: result.role,
+          status: result.status,
+        },
         deviceTrusted: result.deviceTrusted,
       };
       sessionStorage.setItem("cbt_session_v1", JSON.stringify(sessionData));
@@ -5187,7 +5214,18 @@ async function renderTrustedDevices() {
     const currentFp = await getDeviceFingerprint();
 
     container.innerHTML = devices.map(device => {
-      const isCurrent = device.deviceInfo && JSON.parse(device.deviceInfo).fingerprint === currentFp;
+      // The Worker returns the stored fingerprint directly; fall back to the
+      // legacy deviceInfo comparison only until the Worker is redeployed.
+      let isCurrent = false;
+      if (device.fingerprint) {
+        isCurrent = device.fingerprint === currentFp;
+      } else if (device.deviceInfo) {
+        try {
+          isCurrent = JSON.parse(device.deviceInfo).fingerprint === currentFp;
+        } catch (e) {
+          isCurrent = false;
+        }
+      }
       const lastUsed = device.lastUsedAt ? formatRelativeTime(device.lastUsedAt) : 'Never';
       const expiresAt = device.expiresAt ? formatDate(device.expiresAt) : 'Never';
       
@@ -5780,6 +5818,10 @@ function refreshProfileUpgradeSection() {
       }
       subscriptionBadges.innerHTML = html || '<span class="admin-badge approved">Premium Access</span>';
     }
+
+    // Devices apply to every user — premium users must not skip this render
+    // (the early return below used to leave the list stuck on its placeholder).
+    renderTrustedDevices().catch(() => {});
 
     return renderProfilePaymentHistory();
   }
@@ -7358,6 +7400,11 @@ async function refreshAdminUserDirectory() {
   }
 }
 
+function isProfileScreenVisible() {
+  const profileScreen = document.getElementById("profileScreen");
+  return Boolean(profileScreen && !profileScreen.classList.contains("hidden"));
+}
+
 function shouldAutoSyncAdminDirectory() {
   if (!isCurrentUserAdmin() || document.hidden) return false;
   const profileScreen = document.getElementById("profileScreen");
@@ -7546,6 +7593,11 @@ function switchAdminTab(tabName) {
   if (targetNav) targetNav.classList.add('active');
   const targetView = document.getElementById(targetViewId);
   if (targetView) targetView.classList.add('active');
+  // Re-render the device list when the Security tab is activated so switching
+  // tabs shows fresh data instead of the render captured at admin screen open.
+  if (tabName === "security") {
+    renderAdminDevices().catch(() => {});
+  }
 }
 // Navigate to a specific sub-item in the admin sidebar
 function switchAdminSubTab(subName) {
@@ -7606,13 +7658,17 @@ async function openAdminScreen() {
         renderAdminOverrides();
         renderAdminOperationHistory();
         renderAdminFeedbackList();
+        // Start metrics fetch FIRST so the await below blocks until real
+        // numbers are painted. refreshAdminUserDirectory() also calls
+        // updateAdminDashboardSummary() (which dedupes via the flag), so
+        // the order matters: if the directory call runs first, the flag is
+        // already set and the await below returns instantly.
+        await updateAdminDashboardSummary();
         await refreshAdminUserDirectory();
         await refreshAdminFeedbackSubmissions();
         // Load security sections
         renderAdminDevices().catch(() => {});
         renderAdminAuditLog().catch(() => {});
-        // Update dashboard summary
-        updateAdminDashboardSummary();
         initializeAdminTabs();
         loadPricingUI();
         initializePricingUI();
@@ -8802,15 +8858,27 @@ document.addEventListener("DOMContentLoaded", async function () {
   document.addEventListener("visibilitychange", () => {
     if (document.visibilityState === "visible") {
       triggerBackgroundProgressSync({ force: true });
+      // Refresh the profile's trusted-device list when returning to the tab
+      // while the profile screen is open, so devices captured in another
+      // browser/tab appear without leaving and re-entering the screen.
+      if (isProfileScreenVisible()) {
+        renderTrustedDevices().catch(() => {});
+      }
     }
   });
 
   window.addEventListener("focus", () => {
     triggerBackgroundProgressSync({ force: true });
+    if (isProfileScreenVisible()) {
+      renderTrustedDevices().catch(() => {});
+    }
   });
 
   window.addEventListener("online", () => {
     triggerBackgroundProgressSync({ force: true });
+    if (isProfileScreenVisible()) {
+      renderTrustedDevices().catch(() => {});
+    }
   });
 
   await restoreScreenState();

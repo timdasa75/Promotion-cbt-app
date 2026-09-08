@@ -3324,10 +3324,36 @@ async function handleOTPVerify(request, env) {
   let deviceId = null;
   let expiresAt = null;
   if (trustDevice && deviceFingerprint) {
-    const trustResult = await addTrustedDevice(database, user.id, deviceFingerprint, deviceName, '{}', ip, userAgent, trustDays, false, deviceSignalsHash);
-    deviceId = trustResult.deviceId;
-    expiresAt = trustResult.expiresAt;
+    // Check if this device is already registered (trusted or revoked) —
+    // update it in-place instead of stacking a duplicate row.
+    const existing = await database
+      .prepare('SELECT id, is_permanent FROM trusted_devices WHERE user_id = ?1 AND device_fingerprint = ?2 LIMIT 1')
+      .bind(user.id, deviceFingerprint)
+      .first();
+    const now = new Date().toISOString();
+    const newExpires = trustDays > 0 ? new Date(Date.now() + trustDays * 24 * 60 * 60 * 1000).toISOString() : '';
+    if (existing) {
+      await database
+        .prepare(`
+          UPDATE trusted_devices
+          SET revoked_at = '', is_permanent = 0, device_name = ?3,
+              ip_address = ?4, user_agent = ?5, trusted_at = ?6,
+              last_used_at = ?6, expires_at = ?7, device_signals_hash = ?8
+          WHERE id = ?1 AND user_id = ?2
+        `)
+        .bind(existing.id, user.id, deviceName || 'Mobile Device', ip || '', userAgent || '', now, newExpires, deviceSignalsHash || '')
+        .run();
+      deviceId = existing.id;
+      expiresAt = newExpires;
+    } else {
+      const trustResult = await addTrustedDevice(database, user.id, deviceFingerprint, deviceName, '{}', ip, userAgent, trustDays, false, deviceSignalsHash);
+      deviceId = trustResult.deviceId;
+      expiresAt = trustResult.expiresAt;
+    }
   }
+  
+  // Issue a session token so the frontend can make authenticated requests
+  const session = await issueSession(database, user.id, request, env);
   
   // Log the event
   await logLoginEvent(database, user.id, email, 'otp_verified', deviceFingerprint, deviceName, ip, userAgent, JSON.stringify({ deviceId }));
@@ -3342,6 +3368,11 @@ async function handleOTPVerify(request, env) {
     deviceTrusted: trustDevice && !!deviceId,
     deviceId,
     deviceExpiresAt: expiresAt,
+    session: {
+      token: session.token,
+      expiresAt: session.expiresAt,
+      createdAt: session.createdAt,
+    },
   };
 }
 
@@ -3677,7 +3708,7 @@ async function revokeAllDevices(database, userId) {
 async function listTrustedDevices(database, userId) {
   const result = await database
     .prepare(`
-      SELECT id, device_name, device_info, ip_address, trusted_at, expires_at, last_used_at, is_permanent
+      SELECT id, device_name, device_info, device_fingerprint, ip_address, trusted_at, expires_at, last_used_at, is_permanent
       FROM trusted_devices
       WHERE user_id = ?1 AND revoked_at = ''
       ORDER BY last_used_at DESC
@@ -3870,6 +3901,27 @@ async function handleAdminActivityMetrics(request, env) {
   await verifyAdminCaller(request, env);
   const database = requireAuditDatabase(env);
   
+  // Resolve admin user IDs so we can exclude the privileged admin account
+  // from every stat — it should not inflate user counts, activity metrics,
+  // device counts, or login counts.
+  const adminEmails = parseAdminEmails(env.ADMIN_EMAILS || '');
+  const adminEmailRows = adminEmails.length
+    ? await database
+        .prepare(`SELECT id FROM auth_users WHERE lower(email) IN (${adminEmails.map((_, i) => `?${i + 1}`).join(',')})`)
+        .bind(...adminEmails.map(e => e.toLowerCase()))
+        .all()
+    : { results: [] };
+  const adminUserIdSet = new Set((adminEmailRows?.results || []).map(r => String(r.id)));
+  const adminIds = [...adminUserIdSet];
+  // Build SQL exclusion fragments.  When there are no admin IDs the
+  // fragment is simply `AND 1=1` (always true) so queries stay simple.
+  const excludeUser = adminIds.length
+    ? `AND user_id NOT IN (${adminIds.map((_, i) => `?${i + 1}`).join(',')})`
+    : '';
+  const excludeEmail = adminEmails.length
+    ? `AND lower(email) NOT IN (${adminEmails.map((_, i) => `?${i + 1}`).join(',')})`
+    : '';
+
   const now = new Date();
   const fiveMinAgo = new Date(now.getTime() - 5 * 60 * 1000).toISOString();
   const oneHourAgo = new Date(now.getTime() - 60 * 60 * 1000).toISOString();
@@ -3880,7 +3932,7 @@ async function handleAdminActivityMetrics(request, env) {
   // Use auth_sessions.last_seen_at for activity metrics — this tracks actual
   // session activity rather than relying on login_audit_log which may have
   // sparse event_type='login_success' records.
-  // Admin exclusion is handled client-side to keep queries simple and reliable.
+  // Admin accounts are excluded from every count.
   const [
     currentlyActive,
     hourlyActive,
@@ -3899,39 +3951,39 @@ async function handleAdminActivityMetrics(request, env) {
   ] = await Promise.all([
     // Currently active (session seen within last 5 minutes)
     database.prepare(
-      `SELECT COUNT(DISTINCT user_id) as count FROM auth_sessions WHERE last_seen_at >= ?1`
-    ).bind(fiveMinAgo).first(),
+      `SELECT COUNT(DISTINCT user_id) as count FROM auth_sessions WHERE last_seen_at >= ?1 ${excludeUser}`
+    ).bind(fiveMinAgo, ...adminIds).first(),
     // Hourly active (session seen within last hour)
     database.prepare(
-      `SELECT COUNT(DISTINCT user_id) as count FROM auth_sessions WHERE last_seen_at >= ?1`
-    ).bind(oneHourAgo).first(),
+      `SELECT COUNT(DISTINCT user_id) as count FROM auth_sessions WHERE last_seen_at >= ?1 ${excludeUser}`
+    ).bind(oneHourAgo, ...adminIds).first(),
     // Daily active (session seen within last 24 hours)
     database.prepare(
-      `SELECT COUNT(DISTINCT user_id) as count FROM auth_sessions WHERE last_seen_at >= ?1`
-    ).bind(twentyFourHoursAgo).first(),
+      `SELECT COUNT(DISTINCT user_id) as count FROM auth_sessions WHERE last_seen_at >= ?1 ${excludeUser}`
+    ).bind(twentyFourHoursAgo, ...adminIds).first(),
     // Weekly active (session seen within last 7 days)
     database.prepare(
-      `SELECT COUNT(DISTINCT user_id) as count FROM auth_sessions WHERE last_seen_at >= ?1`
-    ).bind(sevenDaysAgo).first(),
+      `SELECT COUNT(DISTINCT user_id) as count FROM auth_sessions WHERE last_seen_at >= ?1 ${excludeUser}`
+    ).bind(sevenDaysAgo, ...adminIds).first(),
     // Monthly active (session seen within last 30 days)
     database.prepare(
-      `SELECT COUNT(DISTINCT user_id) as count FROM auth_sessions WHERE last_seen_at >= ?1`
-    ).bind(thirtyDaysAgo).first(),
-    // User counts
-    database.prepare(`SELECT COUNT(*) as count FROM auth_users`).first(),
-    database.prepare(`SELECT COUNT(*) as count FROM auth_users WHERE plan = 'premium'`).first(),
-    database.prepare(`SELECT COUNT(*) as count FROM auth_users WHERE email_verified = 1`).first(),
-    database.prepare(`SELECT COUNT(*) as count FROM auth_users WHERE email_verified = 0 OR email_verified IS NULL`).first(),
-    // Feedback counts
+      `SELECT COUNT(DISTINCT user_id) as count FROM auth_sessions WHERE last_seen_at >= ?1 ${excludeUser}`
+    ).bind(thirtyDaysAgo, ...adminIds).first(),
+    // User counts — exclude admin emails
+    database.prepare(`SELECT COUNT(*) as count FROM auth_users WHERE 1=1 ${excludeEmail}`).bind(...adminEmails.map(e => e.toLowerCase())).first(),
+    database.prepare(`SELECT COUNT(*) as count FROM auth_users WHERE plan = 'premium' ${excludeEmail}`).bind(...adminEmails.map(e => e.toLowerCase())).first(),
+    database.prepare(`SELECT COUNT(*) as count FROM auth_users WHERE email_verified = 1 ${excludeEmail}`).bind(...adminEmails.map(e => e.toLowerCase())).first(),
+    database.prepare(`SELECT COUNT(*) as count FROM auth_users WHERE (email_verified = 0 OR email_verified IS NULL) ${excludeEmail}`).bind(...adminEmails.map(e => e.toLowerCase())).first(),
+    // Feedback counts (no user_id filter — admin feedback is rare but counted)
     database.prepare(`SELECT COUNT(*) as count FROM feedback_submissions`).first(),
     database.prepare(`SELECT COUNT(*) as count FROM feedback_submissions WHERE status != 'resolved' AND status != 'dismissed'`).first(),
-    // Session and device counts
-    database.prepare(`SELECT COUNT(*) as count FROM auth_sessions`).first(),
-    database.prepare(`SELECT COUNT(*) as count FROM trusted_devices`).first(),
-    // Recent logins (last 24h via login_audit_log)
+    // Session and device counts — exclude admin devices/sessions
+    database.prepare(`SELECT COUNT(*) as count FROM auth_sessions WHERE 1=1 ${excludeUser}`).bind(...adminIds).first(),
+    database.prepare(`SELECT COUNT(*) as count FROM trusted_devices td JOIN auth_users u ON td.user_id = u.id WHERE 1=1 ${excludeEmail}`).bind(...adminEmails.map(e => e.toLowerCase())).first(),
+    // Recent logins (last 24h via login_audit_log) — exclude admin
     database.prepare(
-      `SELECT COUNT(DISTINCT email) as count FROM login_audit_log WHERE created_at >= ?1`
-    ).bind(twentyFourHoursAgo).first(),
+      `SELECT COUNT(DISTINCT email) as count FROM login_audit_log WHERE created_at >= ?1 ${excludeEmail}`
+    ).bind(twentyFourHoursAgo, ...adminEmails.map(e => e.toLowerCase())).first(),
   ]);
   
   return {
@@ -4291,11 +4343,23 @@ async function handleDeviceCheck(request, env) {
   const trustedDevice = await checkDeviceTrust(database, user.id, deviceFingerprint);
   
   if (trustedDevice) {
-    // Update last_used_at
-    await database
-      .prepare('UPDATE trusted_devices SET last_used_at = ?1 WHERE id = ?2')
-      .bind(new Date().toISOString(), trustedDevice.id)
-      .run();
+    // Refresh last_used_at AND extend expires_at so active devices never
+    // expire while the user is still logging in. Permanent (primary) devices
+    // have no expiry and are left untouched.
+    const now = new Date().toISOString();
+    if (trustedDevice.is_permanent) {
+      await database
+        .prepare('UPDATE trusted_devices SET last_used_at = ?1 WHERE id = ?2')
+        .bind(now, trustedDevice.id)
+        .run();
+    } else {
+      const newExpires = new Date(Date.now() + DEVICE_TRUST_DEFAULT_DAYS * 24 * 60 * 60 * 1000).toISOString();
+      await database
+        .prepare('UPDATE trusted_devices SET last_used_at = ?1, expires_at = ?2 WHERE id = ?3')
+        .bind(now, newExpires, trustedDevice.id)
+        .run();
+      trustedDevice.expires_at = newExpires;
+    }
     
     return {
       ok: true,
@@ -4568,6 +4632,7 @@ async function handleDeviceList(request, env) {
       id: d.id,
       deviceName: d.device_name,
       deviceInfo: d.device_info,
+      fingerprint: d.device_fingerprint || '',
       ipAddress: d.ip_address,
       trustedAt: d.trusted_at,
       expiresAt: d.expires_at,
