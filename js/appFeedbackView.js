@@ -37,6 +37,68 @@ export function formatSessionModeLabel(mode) {
   return value ? `${value.charAt(0).toUpperCase()}${value.slice(1)}` : "-";
 }
 
+// Seen-state for admin replies shown on the profile page's "My Feedback" card.
+// Reply notification emails are suspended by default (D1 free tier), so this
+// in-app badge is the user's notification that an admin responded.
+export const FEEDBACK_SEEN_REPLIES_STORAGE_KEY = "cbt_feedback_seen_replies";
+
+// A reply is unseen when the stored "last seen" repliedAt for this submission
+// does not match the reply's repliedAt — so a fresh admin reply re-triggers the
+// badge even if an earlier reply was already seen.
+export function isFeedbackReplyUnseen(entry = {}, seenReplies = {}) {
+  const feedbackId = String(entry?.feedbackId || "").trim();
+  const repliedAt = String(entry?.repliedAt || "").trim();
+  if (!feedbackId || !repliedAt) return false;
+  return String(seenReplies?.[feedbackId] || "") !== repliedAt;
+}
+
+export function readFeedbackSeenReplies(storage = null) {
+  const store = storage || (typeof window !== "undefined" ? window.localStorage : null);
+  try {
+    const raw = store?.getItem?.(FEEDBACK_SEEN_REPLIES_STORAGE_KEY) || "";
+    const parsed = raw ? JSON.parse(raw) : {};
+    return parsed && typeof parsed === "object" && !Array.isArray(parsed) ? parsed : {};
+  } catch {
+    return {};
+  }
+}
+
+// Marks the current replies as seen and returns the PRE-VISIT snapshot of the
+// seen-map, so callers can render "unread" badges for replies that were unseen
+// before this call (email-client style: badge shows on the visit that first
+// renders a fresh reply, and is gone by the next visit).
+export function markFeedbackRepliesSeen(feedbackList = [], storage = null) {
+  const store = storage || (typeof window !== "undefined" ? window.localStorage : null);
+  const seen = readFeedbackSeenReplies(storage);
+  const preVisitSeen = { ...seen };
+  let changed = false;
+  (Array.isArray(feedbackList) ? feedbackList : []).forEach((entry) => {
+    const feedbackId = String(entry?.feedbackId || "").trim();
+    const repliedAt = String(entry?.repliedAt || "").trim();
+    if (feedbackId && repliedAt && seen[feedbackId] !== repliedAt) {
+      seen[feedbackId] = repliedAt;
+      changed = true;
+    }
+  });
+  if (changed && store && typeof store.setItem === "function") {
+    try {
+      store.setItem(FEEDBACK_SEEN_REPLIES_STORAGE_KEY, JSON.stringify(seen));
+    } catch {
+      // Storage may be unavailable (private mode / quota); badges just reset next visit.
+    }
+  }
+  return preVisitSeen;
+}
+
+// Number of submissions whose latest admin reply has not been seen yet — used
+// for the header/profile nav "team replied" badge (see renderUserFeedbackList).
+export function countUnseenFeedbackReplies(feedbackList = [], seenReplies = {}) {
+  return (Array.isArray(feedbackList) ? feedbackList : []).reduce(
+    (count, entry) => count + (isFeedbackReplyUnseen(entry, seenReplies) ? 1 : 0),
+    0,
+  );
+}
+
 export function feedbackStatusBadgeClass(status) {
   const value = String(status || "").trim().toLowerCase();
   if (value === "resolved") return "approved";

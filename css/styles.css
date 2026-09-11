@@ -765,6 +765,30 @@ h3,
     position: relative;
 }
 
+/* "Team replied" dot on the header profile button. Reply notification emails
+   are suspended by default (D1 free tier), so this badge is how a signed-in
+   user learns the team responded without opening the profile page. The button
+   is reused as-is inside the <=700px header overflow menu, so the badge
+   travels with it on small screens. */
+.header-reply-badge {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: transparent;
+    font-size: 0;
+    line-height: 0;
+    box-shadow: 0 0 0 2px var(--card);
+    pointer-events: none;
+}
+
+.header-reply-badge.hidden {
+    display: none;
+}
+
 .toolbar-icon {
     width: 20px;
     height: 20px;
@@ -1613,12 +1637,6 @@ body.dark-mode #topicSelectionScreen.first-session #recommendedTopicHelper {
     flex: 1 1 260px;
     width: auto;
     min-width: 220px;
-}
-
-.admin-request-toolbar select,
-.admin-user-toolbar select {
-    flex: 0 0 170px;
-    min-width: 160px;
 }
 
 .admin-request-toolbar button,
@@ -3995,7 +4013,11 @@ body.dark-mode .admin-view-header p {
 
 /* Shared admin list toolbar: search + filters share one row like the topic
    toolbar. Children of these toolbars would otherwise inherit the global
-   `select { width: 100% }` rule and stack full-width on their own lines. */
+   `select { width: 100% }` rule and stack full-width on their own lines.
+   
+   The child rules below are shared with the other admin toolbars in the late
+   desktop block, but they're restated here so the list toolbar keeps its own
+   identity and its own sensible defaults for the < 700px range. */
 .admin-list-toolbar {
     display: flex;
     flex-wrap: wrap;
@@ -4021,11 +4043,6 @@ body.dark-mode .admin-view-header p {
     white-space: nowrap;
 }
 
-@media (max-width: 699px) {
-    .admin-list-toolbar .search-wrap {
-        flex-basis: 100%;
-    }
-}
 
 /* Feedback toolbar: arrange filters horizontally in a row */
 .admin-feedback-toolbar {
@@ -4436,6 +4453,10 @@ body.dark-mode .admin-view-header p {
     min-width: 160px;
 }
 
+/* The user toolbar's status filter and refresh button are shared with the rest
+   of the admin toolbars in the late desktop block, but they keep their own
+   element ids here so the user list can keep its own default widths below the
+   tablet breakpoint. */
 .admin-user-toolbar #adminStatusFilter {
     width: auto;
     min-width: 160px;
@@ -5051,6 +5072,9 @@ body.dark-mode .admin-view-header p {
 
     .admin-request-toolbar,
     .admin-user-toolbar,
+    .admin-feedback-toolbar,
+    .admin-list-toolbar,
+    .admin-history-toolbar,
     .admin-verification-support,
     .plan-override-row {
         flex-direction: column;
@@ -5071,19 +5095,33 @@ body.dark-mode .admin-view-header p {
 
     .admin-request-toolbar .search-wrap,
     .admin-user-toolbar .search-wrap,
+    .admin-feedback-toolbar .search-wrap,
+    .admin-list-toolbar .search-wrap,
     .admin-request-toolbar select,
     .admin-user-toolbar select,
+    .admin-feedback-toolbar select,
+    .admin-list-toolbar select,
+    .admin-feedback-toolbar .btn,
+    .admin-list-toolbar .btn,
     .plan-override-row .auth-field {
         width: 100%;
         min-width: 0;
     }
 
     /* The base flex-basis is width-oriented; once the toolbar is a column it
-       would be applied as height and stretch every select/search huge. */
+       would be applied as height and stretch every select/search huge. Fix that
+       for the admin toolbars too so their search fields and selects don't balloon
+       vertically on small screens. */
     .admin-request-toolbar .search-wrap,
     .admin-user-toolbar .search-wrap,
+    .admin-feedback-toolbar .search-wrap,
+    .admin-list-toolbar .search-wrap,
     .admin-request-toolbar select,
-    .admin-user-toolbar select {
+    .admin-user-toolbar select,
+    .admin-feedback-toolbar select,
+    .admin-list-toolbar select,
+    .admin-feedback-toolbar .btn,
+    .admin-list-toolbar .btn {
         flex: none;
         height: auto;
     }
@@ -5258,19 +5296,6 @@ body.dark-mode .admin-view-header p {
     .admin-user-toolbar #adminStatusFilter,
     .admin-user-toolbar #refreshAdminUsersBtn {
         width: 100%;
-    }
-
-    /* Feedback toolbar responsive: stack on mobile */
-    .admin-feedback-toolbar {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .admin-feedback-toolbar .search-wrap,
-    .admin-feedback-toolbar select,
-    .admin-feedback-toolbar .btn {
-        width: 100%;
-        flex: none;
     }
 
     .quiz-topbar {
@@ -7369,16 +7394,28 @@ body.dark-mode .dashboard-utility-row .btn-ghost:hover {
     gap: 10px;
 }
 
-/* Admin list toolbars (desktop/tablet ≥700px): one shared search/filter band
-   like the topic toolbar — the search absorbs free space, selects keep their
-   content width (never full-width), and action buttons stay on the row.
-   Below 700px the mobile column layouts keep full-width controls. This block
-   sits late in the file so it wins over the earlier 720px mobile column rules
-   in the 700–720px overlap band. */
+/* Admin toolbars (desktop/tablet ≥700px): one shared search/filter band.
+   
+   These toolbars all look the same on desktop: a flexible search/filter field,
+   fixed-width selects, and non-growing action buttons.
+   
+   The feedback toolbar is the exception for its search field only. It
+   typically has six controls (search + category + source + status + two
+   action-ish controls), so if the search field kept growing it would push
+   the remaining controls onto their own row. Zeroing its flex-grow keeps
+   all six on one row when the viewport allows it; the user/request toolbars
+   usually have fewer controls and are allowed to grow into free space.
+   
+   The history toolbar is also included here so it gets the same desktop row
+   treatment if it's ever used in markup. It doesn't currently ship with a
+   search/filter cluster, so it won't be affected by the shared search/filter
+   child rules below. */
 @media (min-width: 700px) {
     .admin-user-toolbar,
     .admin-request-toolbar,
-    .admin-feedback-toolbar {
+    .admin-feedback-toolbar,
+    .admin-list-toolbar,
+    .admin-history-toolbar {
         flex-direction: row;
         flex-wrap: wrap;
         align-items: center;
@@ -7386,7 +7423,8 @@ body.dark-mode .dashboard-utility-row .btn-ghost:hover {
 
     .admin-user-toolbar .search-wrap,
     .admin-request-toolbar .search-wrap,
-    .admin-feedback-toolbar .search-wrap {
+    .admin-feedback-toolbar .search-wrap,
+    .admin-list-toolbar .search-wrap {
         flex: 1 1 240px;
         width: auto;
         min-width: 170px;
@@ -7402,7 +7440,8 @@ body.dark-mode .dashboard-utility-row .btn-ghost:hover {
 
     .admin-user-toolbar select,
     .admin-request-toolbar select,
-    .admin-feedback-toolbar select {
+    .admin-feedback-toolbar select,
+    .admin-list-toolbar select {
         flex: 0 1 128px;
         width: auto;
         min-width: 108px;
@@ -7411,7 +7450,8 @@ body.dark-mode .dashboard-utility-row .btn-ghost:hover {
 
     .admin-user-toolbar button,
     .admin-request-toolbar button,
-    .admin-feedback-toolbar .btn {
+    .admin-feedback-toolbar .btn,
+    .admin-list-toolbar .btn {
         flex: 0 0 auto;
         white-space: nowrap;
     }
@@ -9419,6 +9459,29 @@ body.dark-mode #quizScreen .quiz-actions .btn-secondary:hover {
     margin: 0;
     color: var(--ink-700);
     font-size: 0.9rem;
+}
+
+/* Unread admin-reply badge (profile "My Feedback" card). Reply notification
+   emails are suspended by default to conserve the D1 free tier, so this
+   in-app badge is the user's notification that the team responded. It shows
+   on the visit that first renders a fresh reply and clears on the next. */
+.user-feedback-unread-badge {
+    display: inline-block;
+    margin-left: 6px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: var(--primary);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    vertical-align: middle;
+}
+
+.admin-feedback-reply-display.is-unread {
+    border-left-width: 4px;
+    background: color-mix(in srgb, var(--primary-light) 40%, var(--card));
 }
 
 .admin-feedback-reply-input {

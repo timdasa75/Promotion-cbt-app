@@ -165,6 +165,10 @@ import {
   formatFeedbackStatusLabel,
   formatSessionModeLabel,
   getFeedbackModalCopy,
+  countUnseenFeedbackReplies,
+  isFeedbackReplyUnseen,
+  markFeedbackRepliesSeen,
+  readFeedbackSeenReplies,
 } from "./appFeedbackView.js";
 import { createMockSetupController } from "./app/mockSetup.js";
 import {
@@ -1132,6 +1136,7 @@ function refreshAllDashboardData() {
 }
 
 let activityMetricsAutoRefreshStarted = false;
+let activityMetricsVisibilityBound = false;
 
 function startActivityMetricsAutoRefresh() {
   if (activityMetricsAutoRefreshStarted) return Promise.resolve();
@@ -1142,14 +1147,30 @@ function startActivityMetricsAutoRefresh() {
   const initialFetch = refreshAllDashboardData();
   
   // Start auto-refresh interval (refreshes ALL dashboard data)
+  // Each refresh runs 14 SQL queries (several full-table scans) against D1,
+  // so unattended tabs can exhaust the free-tier daily row-read quota and
+  // take down login for everyone. Guard on document visibility and pause
+  // state so background tabs cost nothing.
   activityMetricsRefreshInterval = setInterval(() => {
-    if (!activityMetricsPaused) {
+    if (!activityMetricsPaused && document.visibilityState === "visible") {
       refreshAllDashboardData();
     }
   }, ACTIVITY_METRICS_REFRESH_MS);
   
   // Update the pause button state
   updateActivityMetricsPauseButton();
+
+  // Background tabs skip the interval above, so refresh once when the admin
+  // returns to the tab to keep the visible numbers current.
+  if (!activityMetricsVisibilityBound && typeof document !== "undefined") {
+    activityMetricsVisibilityBound = true;
+    document.addEventListener("visibilitychange", () => {
+      if (!document.hidden && !activityMetricsPaused) {
+        refreshAllDashboardData();
+      }
+    });
+  }
+
   return initialFetch;
 }
 
@@ -5393,11 +5414,14 @@ function updateAuthUI() {
     }
   }
   if (headerProfileBtn) {
-    const tooltip = user ? "Open profile settings" : "Login to access profile settings";
+    const tooltip = getHeaderProfileTooltip(user);
     headerProfileBtn.setAttribute("aria-label", tooltip);
     headerProfileBtn.setAttribute("title", tooltip);
     headerProfileBtn.setAttribute("data-tooltip", tooltip);
   }
+  // Header "team replied" badge: computed once per session when signed in;
+  // logout hides it and resets the memoized fetch so re-login refetches.
+  refreshHeaderReplyBadge().catch(() => {});
   if (headerAdminBtn) {
     const adminTooltip = isAdmin ? "Open admin panel" : "Admin access restricted";
     headerAdminBtn.classList.toggle("hidden", !isAdmin);
@@ -6380,10 +6404,6 @@ function renderAdminFeedbackList() {
             failurePrefix: "Unable to update feedback:",
           },
         );
-        // Send email notification when resolved
-        if (nextStatus === "resolved" && target) {
-          sendFeedbackNotification(target, "resolved").catch(() => {});
-        }
         logAdminOperation({
           action: "Update feedback status",
           target: targetLabel,
@@ -6450,44 +6470,12 @@ function renderAdminFeedbackList() {
           status: "success",
           message: replyText.substring(0, 100),
         });
-        // Send email notification to user
-        sendFeedbackNotification(feedbackEntry, "reply", replyText).catch(() => {});
         renderAdminFeedbackList();
       } catch (error) {
         showError(error?.message || "Failed to send reply.");
       }
     });
   });
-}
-
-async function sendFeedbackNotification(feedbackEntry, type, message = "") {
-  try {
-    const config = getRuntimeConfig();
-    const baseUrl = config?.cloudflareAuthBaseUrl || '';
-    if (!baseUrl || !feedbackEntry?.email) return;
-    const subject = type === "reply"
-      ? "Your feedback has been replied to"
-      : type === "resolved"
-        ? "Your feedback has been resolved"
-        : "Feedback update";
-    const body = type === "reply"
-      ? `Hello,\n\nAn admin has replied to your feedback:\n\n"${message}"\n\nPlease log in to view the full response.\n\nBest regards,\nPromotion CBT Team`
-      : type === "resolved"
-        ? `Hello,\n\nYour feedback has been marked as resolved. Thank you for helping us improve!\n\nBest regards,\nPromotion CBT Team`
-        : `Hello,\n\nYour feedback status has been updated.\n\nBest regards,\nPromotion CBT Team`;
-    await fetch(`${baseUrl}/feedback/notify`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        email: feedbackEntry.email,
-        subject,
-        body,
-        feedbackId: feedbackEntry.feedbackId,
-      }),
-    });
-  } catch (error) {
-    debugLog(`Feedback notification failed: ${error?.message || "request failed."}`);
-  }
 }
 
 function hasCloudBackedAdminSession() {
@@ -6577,6 +6565,57 @@ function updateProfileDataSyncUI() {
   if (syncNowBtn) syncNowBtn.classList.add("hidden");
 }
 
+// --- Header "team replied" badge -------------------------------------------
+// While feedback reply emails are suspended by default (D1 free tier), this
+// badge on the header profile button is how a signed-in user learns the team
+// responded. Deliberately frugal with D1 reads: the feedback list is fetched
+// at most once per browser session (memoized promise), never on a timer, and
+// profile visits reuse the renderUserFeedbackList data path.
+let headerReplyBadgeFetch = null;
+let headerReplyBadgeVisible = false;
+
+function getHeaderProfileTooltip(user) {
+  if (!user) return "Login to access profile settings";
+  return headerReplyBadgeVisible ? "Open profile settings — team replied" : "Open profile settings";
+}
+
+function setHeaderReplyBadgeVisible(visible) {
+  headerReplyBadgeVisible = Boolean(visible);
+  const badge = document.getElementById("headerProfileReplyBadge");
+  if (badge) {
+    badge.classList.toggle("hidden", !headerReplyBadgeVisible);
+  }
+  // Mirror state as a data attribute for styling/testing without extra lookups,
+  // and keep the tooltip in sync (it may have been reset by updateAuthUI).
+  const profileBtn = document.getElementById("headerProfileBtn");
+  if (profileBtn) {
+    profileBtn.setAttribute("data-reply-badge", headerReplyBadgeVisible ? "true" : "false");
+    const tooltip = getHeaderProfileTooltip(getCurrentUser());
+    profileBtn.setAttribute("aria-label", tooltip);
+    profileBtn.setAttribute("title", tooltip);
+    profileBtn.setAttribute("data-tooltip", tooltip);
+  }
+}
+
+async function refreshHeaderReplyBadge() {
+  if (!getCurrentUser()) {
+    headerReplyBadgeFetch = null;
+    setHeaderReplyBadgeVisible(false);
+    return;
+  }
+  if (!headerReplyBadgeFetch) {
+    headerReplyBadgeFetch = getUserFeedbackList(50)
+      .then((feedbackList) => {
+        const unseenCount = countUnseenFeedbackReplies(feedbackList || [], readFeedbackSeenReplies());
+        setHeaderReplyBadgeVisible(unseenCount > 0);
+      })
+      .catch(() => {
+        // The badge is non-critical; keep the current state on failure.
+      });
+  }
+  return headerReplyBadgeFetch;
+}
+
 async function renderUserFeedbackList() {
   const container = document.getElementById("userFeedbackList");
   if (!container) return;
@@ -6593,10 +6632,21 @@ async function renderUserFeedbackList() {
     
     if (!feedbackList || feedbackList.length === 0) {
       container.innerHTML = '<p class="meta">No feedback submitted yet.</p>';
+      setHeaderReplyBadgeVisible(false);
       return;
     }
     
     container.innerHTML = "";
+    // Unread-reply badges: seen-state is compared BEFORE marking, so a fresh admin
+    // reply shows a badge on this visit and clears on the next one. This in-app
+    // badge is the user's reply notification while reply emails are suspended
+    // (see FEEDBACK_EMAILS_ENABLED in the Worker).
+    const seenReplies = markFeedbackRepliesSeen(feedbackList);
+    // Viewing the profile is the read receipt: the header badge clears now that
+    // the replies have been marked seen (the in-card "New reply" chips still
+    // show for this visit, per the badge lifecycle in markFeedbackRepliesSeen).
+    setHeaderReplyBadgeVisible(countUnseenFeedbackReplies(feedbackList, readFeedbackSeenReplies()) > 0);
+    
     feedbackList.forEach((entry) => {
       const item = document.createElement("article");
       item.className = "user-feedback-item";
@@ -6609,9 +6659,12 @@ async function renderUserFeedbackList() {
       let adminReplyHtml = "";
       if (entry.adminReply) {
         const replyDate = formatDateTime(entry.repliedAt);
+        const unseenBadge = isFeedbackReplyUnseen(entry, seenReplies)
+          ? '<span class="user-feedback-unread-badge" title="New reply from the team">New reply</span>'
+          : "";
         adminReplyHtml = `
-          <div class="admin-feedback-reply-display">
-            <span class="meta">Admin Reply (${replyDate}):</span>
+          <div class="admin-feedback-reply-display ${unseenBadge ? "is-unread" : ""}">
+            <span class="meta">Admin Reply (${replyDate}): ${unseenBadge}</span>
             <p>${escapeHtml(entry.adminReply)}</p>
           </div>
         `;

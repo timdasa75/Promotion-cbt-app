@@ -15,6 +15,7 @@ import {
   touchSession,
 } from "./auth-hybrid.js";
 import {
+  sendEmail,
   sendVerificationEmail,
   sendPasswordResetEmail,
   sendWelcomeEmail,
@@ -594,6 +595,12 @@ function parseFeedbackRow(row = {}) {
     updatedAt: String(row?.updated_at || ""),
     reviewedAt: String(row?.reviewed_at || ""),
     reviewedBy: normalizeEmail(row?.reviewed_by || ""),
+    resolvedAt: String(row?.resolved_at || ""),
+    resolvedBy: normalizeEmail(row?.resolved_by || ""),
+    resolution: String(row?.resolution || ""),
+    adminReply: String(row?.admin_reply || ""),
+    repliedAt: String(row?.replied_at || ""),
+    repliedBy: normalizeEmail(row?.replied_by || ""),
     topicId: String(row?.topic_id || ""),
     topicName: String(row?.topic_name || ""),
     questionId: String(row?.question_id || ""),
@@ -2280,7 +2287,9 @@ async function handleAdminFeedbackList(request, env) {
   const result = await database
     .prepare(`
       SELECT feedback_id, user_id, email, category, status, source_screen, message, created_at, updated_at,
-             reviewed_at, reviewed_by, topic_id, topic_name, question_id, quiz_attempt_id, session_mode,
+             reviewed_at, reviewed_by, admin_reply, replied_at, replied_by,
+             resolved_at, resolved_by, resolution,
+             topic_id, topic_name, question_id, quiz_attempt_id, session_mode,
              question_preview, score_summary, difficulty, source_document, source_section, subcategory_name, client_info
       FROM feedback_submissions
       ORDER BY created_at DESC
@@ -2290,6 +2299,31 @@ async function handleAdminFeedbackList(request, env) {
     .all();
   const rows = Array.isArray(result?.results) ? result.results.map(parseFeedbackRow) : [];
   return { ok: true, feedback: rows, total: rows.length };
+}
+
+function escapeHtmlForEmail(value) {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+function buildFeedbackNotificationEmail({ name, subject, body, adminName }) {
+  const content = `
+    <p>Hello ${escapeHtmlForEmail(name || "there")},</p>
+    ${body}
+    ${adminName ? `<p style="margin-top:16px;color:#6b7280;font-size:14px;">— ${escapeHtmlForEmail(adminName)}</p>` : ""}
+    <p style="margin-top:24px;border-top:1px solid #e5e7eb;padding-top:12px;font-size:13px;color:#9ca3af;">You received this because you submitted feedback to Promotion CBT. If you have questions, log in and reply directly from your feedback history.</p>
+  `.trim();
+  return content;
+}
+
+// Feedback notification emails (resolve/reply) are suspended by default — see the
+// note in handleFeedbackStatusUpdate.
+function isFeedbackEmailsEnabled(env) {
+  return String(env.FEEDBACK_EMAILS_ENABLED || "").trim().toLowerCase() === "true";
 }
 
 async function handleFeedbackStatusUpdate(request, env) {
@@ -2302,16 +2336,103 @@ async function handleFeedbackStatusUpdate(request, env) {
   if (!["in_review", "resolved", "dismissed"].includes(status)) throw createRouteError(400, "Invalid feedback status.");
   const reviewedBy = normalizeEmail(body?.reviewer || actor?.email || "");
   const nowIso = new Date().toISOString();
+  const resolutionText = String(body?.resolution || "").trim();
+  const setReviewFields = status === "resolved"
+    ? `SET status = ?2, updated_at = ?3, reviewed_at = ?3, reviewed_by = ?4, resolved_at = ?3, resolved_by = ?4, resolution = ?5`
+    : `SET status = ?2, updated_at = ?3, reviewed_at = ?3, reviewed_by = ?4`;
   const result = await database
     .prepare(`
       UPDATE feedback_submissions
-      SET status = ?2, updated_at = ?3, reviewed_at = ?3, reviewed_by = ?4
+      ${setReviewFields}
       WHERE feedback_id = ?1
     `)
-    .bind(feedbackId, status, nowIso, reviewedBy)
+    .bind(
+      feedbackId,
+      status,
+      nowIso,
+      reviewedBy,
+      status === "resolved" ? resolutionText : null,
+    )
     .run();
   if (Number(result?.meta?.changes || 0) < 1) throw createRouteError(404, "Feedback submission was not found.");
-  return { ok: true, feedbackId, status, reviewedAt: nowIso };
+  const row = await database.prepare(`SELECT email, status, resolution FROM feedback_submissions WHERE feedback_id = ?1 LIMIT 1`).bind(feedbackId).first();
+  const userEmail = normalizeEmail(row?.email || "");
+
+  // Feedback notification emails are suspended by default to conserve the D1/Workers
+  // free tier: each email path cost an extra auth_users read for personalization, and
+  // daily row reads are what exhausted the quota and blocked all logins on 2026-09-11.
+  // Users see admin responses in the app instead: the "My Feedback" card on the
+  // profile page shows replies with an unread badge. Set
+  // FEEDBACK_EMAILS_ENABLED="true" in wrangler.toml [vars] (Workers Paid, or lower
+  // read pressure) to restore resolve/reply notification emails.
+  if (status === "resolved" && isFeedbackEmailsEnabled(env) && env.RESEND_API_KEY) {
+    const userRow = await database.prepare(`SELECT id, name FROM auth_users WHERE email = ?1 LIMIT 1`).bind(userEmail).first();
+    const userName = String(userRow?.name || "").trim() || userEmail.split("@")[0];
+    const notificationSubject = "Your feedback has been resolved";
+    const notificationBody = `<p>Your feedback has been reviewed and marked as <strong>resolved</strong>.</p>${resolutionText ? `<div style="background:#ecfdf3;border:1px solid #34d399;padding:14px;border-radius:8px;margin:16px 0;"><p style="margin:0 0 8px;font-weight:600;">Resolution</p><p style="margin:0;color:#1f2937;white-space:pre-wrap;">${escapeHtmlForEmail(resolutionText)}</p></div>` : ""}
+      <p>If you have follow-up questions, log in and reply from your feedback history.</p>`;
+    await sendEmail(env, {
+      to: userEmail,
+      subject: notificationSubject,
+      html: buildFeedbackNotificationEmail({ name: userName, subject: notificationSubject, body: notificationBody, adminName: reviewedBy }),
+    });
+  }
+
+  return { ok: true, feedbackId, status, reviewedAt: nowIso, userEmail, resolution: resolutionText };
+}
+
+async function handleFeedbackNotify(request, env) {
+  const actor = await verifyAdminCaller(request, env);
+  const database = requireAuditDatabase(env);
+  const body = await readJsonBody(request);
+  const targetEmail = normalizeEmail(body?.email || "");
+  if (!targetEmail) throw createRouteError(400, "Target email is required.");
+  if (!env.RESEND_API_KEY) return { ok: true, warning: "Email service not configured" };
+  const subject = String(body?.subject || "").trim();
+  const htmlBody = String(body?.body || "").trim();
+  if (!subject || !htmlBody) throw createRouteError(400, "Subject and body are required.");
+  try {
+    const result = await sendEmail(env, {
+      to: targetEmail,
+      subject,
+      html: buildFeedbackNotificationEmail({ name: targetEmail.split("@")[0], subject, body: htmlBody, adminName: normalizeEmail(actor?.email || "") }),
+    });
+    return result;
+  } catch (error) {
+    throw createRouteError(500, error?.message || "Failed to send notification.");
+  }
+}
+
+async function handleFeedbackReply(request, env) {
+  const actor = await verifyAdminCaller(request, env);
+  const database = requireAuditDatabase(env);
+  const body = await readJsonBody(request);
+  const feedbackId = String(body?.feedbackId || "").trim();
+  const replyText = String(body?.reply || "").trim();
+  if (!feedbackId) throw createRouteError(400, "Feedback id is required.");
+  if (!replyText) throw createRouteError(400, "Reply text is required.");
+  const nowIso = new Date().toISOString();
+  const actorEmail = normalizeEmail(actor?.email || "");
+  await database.prepare(`UPDATE feedback_submissions SET admin_reply = ?2, replied_at = ?3, replied_by = ?4, status = ?5 WHERE feedback_id = ?1`).bind(feedbackId, replyText, nowIso, actorEmail, "in_review").run();
+  // Same free-tier suspension as resolve emails: the email plus its personalization
+  // lookup cost D1 reads per reply. Users see the reply in the profile page's
+  // "My Feedback" card (with an unread badge) instead of their inbox.
+  if (isFeedbackEmailsEnabled(env) && env.RESEND_API_KEY) {
+    const row = await database.prepare(`SELECT email FROM feedback_submissions WHERE feedback_id = ?1 LIMIT 1`).bind(feedbackId).first();
+    const userEmail = normalizeEmail(row?.email || "");
+    if (userEmail) {
+      const userRow = await database.prepare(`SELECT id, name FROM auth_users WHERE email = ?1 LIMIT 1`).bind(userEmail).first();
+      const userName = String(userRow?.name || "").trim() || userEmail.split("@")[0];
+      const notificationSubject = "Your feedback has been replied to";
+      const notificationBody = `<p>An admin has replied to your feedback submission.</p><div style="background:#f8fafc;border:1px solid #e5e7eb;padding:14px;border-radius:8px;margin:16px 0;"><p style="margin:0 0 8px;font-weight:600;white-space:pre-wrap;">${escapeHtmlForEmail(replyText)}</p></div><p>You can reply again from your feedback history after logging in.</p>`;
+      await sendEmail(env, {
+        to: userEmail,
+        subject: notificationSubject,
+        html: buildFeedbackNotificationEmail({ name: userName, subject: notificationSubject, body: notificationBody, adminName: actorEmail }),
+      });
+    }
+  }
+  return { ok: true, feedbackId, repliedAt: nowIso };
 }
 
 async function handleUserFeedbackList(request, env) {
@@ -3897,26 +4018,75 @@ async function handleAdminAllDevices(request, env) {
 
 // ---- Activity Metrics Endpoint ----
 
-async function handleAdminActivityMetrics(request, env) {
-  await verifyAdminCaller(request, env);
+// Edge cache for the admin activity-metrics payload. The endpoint aggregates
+// over most rows in auth_users / auth_sessions / feedback / device tables, and
+// the dashboard auto-refreshes it — an unattended admin tab used to exhaust
+// D1's free-tier daily row-read quota and take login down for everyone. A
+// short TTL keeps the dashboard near-live while making repeat refreshes free.
+// Keep it short: admins expect fresh numbers.
+const ADMIN_METRICS_EDGE_CACHE_PREFIX = "admin-metrics:v1:";
+const ADMIN_METRICS_EDGE_CACHE_TTL_SECONDS = 60;
+
+function getAdminMetricsCacheStorage() {
+  try {
+    if (typeof caches === "undefined") return null;
+    return caches.default || null;
+  } catch (_error) {
+    return null;
+  }
+}
+
+function adminMetricsCacheRequest(cacheKey) {
+  return new Request(`https://admin-metrics-cache.local/${encodeURIComponent(cacheKey)}`);
+}
+
+async function readAdminMetricsEdgeCache(cacheKey) {
+  const storage = getAdminMetricsCacheStorage();
+  if (!storage || !cacheKey) return null;
+  try {
+    return (await storage.match(adminMetricsCacheRequest(cacheKey))) || null;
+  } catch (_error) {
+    return null;
+  }
+}
+
+async function writeAdminMetricsEdgeCache(cacheKey, payload) {
+  const storage = getAdminMetricsCacheStorage();
+  if (!storage || !cacheKey) return;
+  try {
+    await storage.put(
+      adminMetricsCacheRequest(cacheKey),
+      new Response(JSON.stringify(payload), {
+        status: 200,
+        headers: {
+          "Content-Type": "application/json",
+          // Stored copy is internal to the Worker; client responses get their
+          // Cache-Control from jsonResponse (no shared/browser caching).
+          "Cache-Control": `public, max-age=${ADMIN_METRICS_EDGE_CACHE_TTL_SECONDS}`,
+        },
+      }),
+    );
+  } catch (_error) {
+    // The Cache API can be unavailable (e.g., free plan); degrade gracefully.
+  }
+}
+
+async function buildAdminActivityMetricsPayload(env) {
   const database = requireAuditDatabase(env);
-  
+
   // Resolve admin user IDs so we can exclude the privileged admin account
   // from every stat — it should not inflate user counts, activity metrics,
-  // device counts, or login counts.
-  // parseAdminEmails returns a Set — convert to Array for SQL bind.
+  // device counts, or login counts. parseAdminEmails returns a Set — convert
+  // to a lowercase Array for SQL bind.
   const adminEmailSet = parseAdminEmails(env.ADMIN_EMAILS || '');
-  const adminEmails = [...adminEmailSet];
+  const adminEmails = [...adminEmailSet].map(e => e.toLowerCase());
   const adminEmailRows = adminEmails.length
     ? await database
         .prepare(`SELECT id FROM auth_users WHERE lower(email) IN (${adminEmails.map((_, i) => `?${i + 1}`).join(',')})`)
-        .bind(...adminEmails.map(e => e.toLowerCase()))
+        .bind(...adminEmails)
         .all()
     : { results: [] };
-  const adminUserIdSet = new Set((adminEmailRows?.results || []).map(r => String(r.id)));
-  const adminIds = [...adminUserIdSet];
-  // Build SQL exclusion fragments.  When there are no admin IDs the
-  // fragment is simply an empty string so queries stay simple.
+  const adminIds = (adminEmailRows?.results || []).map(r => String(r.id));
   // Helper: generate a NOT IN clause with parameters starting at `startIndex`.
   const buildExclude = (values, startIndex) => {
     if (!values.length) return { clause: '', params: [] };
@@ -3926,11 +4096,13 @@ async function handleAdminActivityMetrics(request, env) {
     };
   };
   // Activity queries use ?1 for the date, so exclusion starts at ?2.
-  const activityUser = buildExclude(adminIds, 2);
-  const activityEmail = buildExclude([...adminEmailSet].map(e => e.toLowerCase()), 2);
+  const activityEmail = buildExclude(adminEmails, 2);
+  // The consolidated session query binds five window dates at ?1-?5, so its
+  // user exclusion must start at ?6 to avoid a parameter index collision.
+  const sessionUser = buildExclude(adminIds, 6);
   // Count queries have no date parameter, so exclusion starts at ?1.
   const countUser = buildExclude(adminIds, 1);
-  const countEmail = buildExclude([...adminEmailSet].map(e => e.toLowerCase()), 1);
+  const countEmail = buildExclude(adminEmails, 1);
 
   const now = new Date();
   const fiveMinAgo = new Date(now.getTime() - 5 * 60 * 1000).toISOString();
@@ -3938,83 +4110,106 @@ async function handleAdminActivityMetrics(request, env) {
   const twentyFourHoursAgo = new Date(now.getTime() - 24 * 60 * 60 * 1000).toISOString();
   const sevenDaysAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000).toISOString();
   const thirtyDaysAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000).toISOString();
-  
-  // Use auth_sessions.last_seen_at for activity metrics — this tracks actual
-  // session activity rather than relying on login_audit_log which may have
-  // sparse event_type='login_success' records.
+
+  // The original implementation ran 14 separate COUNT queries per request
+  // (several of them full-table scans). They are consolidated into one
+  // statement per table using conditional aggregation, which reads each
+  // table once instead of once per metric — the same numbers at roughly a
+  // quarter of the row reads.
+  //
+  // Activity metrics use auth_sessions.last_seen_at (actual session activity)
+  // rather than login_audit_log, which may have sparse login_success records.
   // Admin accounts are excluded from every count.
-  const [
-    currentlyActive,
-    hourlyActive,
-    dailyActive,
-    weeklyActive,
-    monthlyActive,
-    totalUsers,
-    premiumUsers,
-    verifiedUsers,
-    unverifiedUsers,
-    totalFeedback,
-    openFeedback,
-    totalSessions,
-    totalTrustedDevices,
-    recentLogins,
-  ] = await Promise.all([
-    // Currently active (session seen within last 5 minutes)
-    database.prepare(
-      `SELECT COUNT(DISTINCT user_id) as count FROM auth_sessions WHERE last_seen_at >= ?1 ${activityUser.clause ? 'AND user_id ' + activityUser.clause : ''}`
-    ).bind(fiveMinAgo, ...activityUser.params).first(),
-    // Hourly active (session seen within last hour)
-    database.prepare(
-      `SELECT COUNT(DISTINCT user_id) as count FROM auth_sessions WHERE last_seen_at >= ?1 ${activityUser.clause ? 'AND user_id ' + activityUser.clause : ''}`
-    ).bind(oneHourAgo, ...activityUser.params).first(),
-    // Daily active (session seen within last 24 hours)
-    database.prepare(
-      `SELECT COUNT(DISTINCT user_id) as count FROM auth_sessions WHERE last_seen_at >= ?1 ${activityUser.clause ? 'AND user_id ' + activityUser.clause : ''}`
-    ).bind(twentyFourHoursAgo, ...activityUser.params).first(),
-    // Weekly active (session seen within last 7 days)
-    database.prepare(
-      `SELECT COUNT(DISTINCT user_id) as count FROM auth_sessions WHERE last_seen_at >= ?1 ${activityUser.clause ? 'AND user_id ' + activityUser.clause : ''}`
-    ).bind(sevenDaysAgo, ...activityUser.params).first(),
-    // Monthly active (session seen within last 30 days)
-    database.prepare(
-      `SELECT COUNT(DISTINCT user_id) as count FROM auth_sessions WHERE last_seen_at >= ?1 ${activityUser.clause ? 'AND user_id ' + activityUser.clause : ''}`
-    ).bind(thirtyDaysAgo, ...activityUser.params).first(),
-    // User counts — exclude admin emails (no date param, so start at ?1)
-    database.prepare(`SELECT COUNT(*) as count FROM auth_users WHERE 1=1 ${countEmail.clause ? 'AND lower(email) ' + countEmail.clause : ''}`).bind(...countEmail.params).first(),
-    database.prepare(`SELECT COUNT(*) as count FROM auth_users WHERE plan = 'premium' ${countEmail.clause ? 'AND lower(email) ' + countEmail.clause : ''}`).bind(...countEmail.params).first(),
-    database.prepare(`SELECT COUNT(*) as count FROM auth_users WHERE email_verified = 1 ${countEmail.clause ? 'AND lower(email) ' + countEmail.clause : ''}`).bind(...countEmail.params).first(),
-    database.prepare(`SELECT COUNT(*) as count FROM auth_users WHERE (email_verified = 0 OR email_verified IS NULL) ${countEmail.clause ? 'AND lower(email) ' + countEmail.clause : ''}`).bind(...countEmail.params).first(),
-    // Feedback counts (no user_id filter — admin feedback is rare but counted)
-    database.prepare(`SELECT COUNT(*) as count FROM feedback_submissions`).first(),
-    database.prepare(`SELECT COUNT(*) as count FROM feedback_submissions WHERE status != 'resolved' AND status != 'dismissed'`).first(),
-    // Session count — no date param, so exclusion starts at ?1
-    database.prepare(`SELECT COUNT(*) as count FROM auth_sessions WHERE 1=1 ${countUser.clause ? 'AND user_id ' + countUser.clause : ''}`).bind(...countUser.params).first(),
-    database.prepare(`SELECT COUNT(*) as count FROM trusted_devices td JOIN auth_users u ON td.user_id = u.id WHERE 1=1 ${countEmail.clause ? 'AND lower(u.email) ' + countEmail.clause : ''}`).bind(...countEmail.params).first(),
-    // Recent logins (last 24h via login_audit_log) — exclude admin
-    database.prepare(
-      `SELECT COUNT(DISTINCT email) as count FROM login_audit_log WHERE created_at >= ?1 ${activityEmail.clause ? 'AND lower(email) ' + activityEmail.clause : ''}`
-    ).bind(twentyFourHoursAgo, ...activityEmail.params).first(),
+  const adminSessionExclude = sessionUser.clause ? `AND user_id ${sessionUser.clause}` : '';
+  const adminEmailExcludeNoDate = countEmail.clause ? `AND lower(email) ${countEmail.clause}` : '';
+  const adminEmailExcludeWithDate = activityEmail.clause ? `AND lower(email) ${activityEmail.clause}` : '';
+
+  const [sessionStats, userStats, feedbackStats, deviceStats, recentLogins] = await Promise.all([
+    // Sessions: five activity windows (COUNT(DISTINCT user_id) per window)
+    // plus the total session count, in a single pass over auth_sessions.
+    database.prepare(`
+      SELECT
+        COUNT(DISTINCT CASE WHEN last_seen_at >= ?1 THEN user_id END) as currently_active,
+        COUNT(DISTINCT CASE WHEN last_seen_at >= ?2 THEN user_id END) as hourly_active,
+        COUNT(DISTINCT CASE WHEN last_seen_at >= ?3 THEN user_id END) as daily_active,
+        COUNT(DISTINCT CASE WHEN last_seen_at >= ?4 THEN user_id END) as weekly_active,
+        COUNT(DISTINCT CASE WHEN last_seen_at >= ?5 THEN user_id END) as monthly_active,
+        COUNT(*) as total_sessions
+      FROM auth_sessions
+      WHERE 1=1 ${adminSessionExclude}
+    `).bind(fiveMinAgo, oneHourAgo, twentyFourHoursAgo, sevenDaysAgo, thirtyDaysAgo, ...sessionUser.params).first(),
+
+    // Users: total / premium / verified / unverified in a single pass.
+    database.prepare(`
+      SELECT
+        COUNT(*) as total_users,
+        COUNT(CASE WHEN plan = 'premium' THEN 1 END) as premium_users,
+        COUNT(CASE WHEN email_verified = 1 THEN 1 END) as verified_users,
+        COUNT(CASE WHEN email_verified = 0 OR email_verified IS NULL THEN 1 END) as unverified_users
+      FROM auth_users
+      WHERE 1=1 ${adminEmailExcludeNoDate}
+    `).bind(...countEmail.params).first(),
+
+    // Feedback: total + open (not resolved/dismissed) in a single pass.
+    database.prepare(`
+      SELECT
+        COUNT(*) as total_feedback,
+        COUNT(CASE WHEN status != 'resolved' AND status != 'dismissed' THEN 1 END) as open_feedback
+      FROM feedback_submissions
+    `).first(),
+
+    // Trusted devices joined to users for the admin-email exclusion.
+    database.prepare(`
+      SELECT COUNT(*) as total_trusted_devices
+      FROM trusted_devices td
+      INNER JOIN auth_users u ON td.user_id = u.id
+      WHERE 1=1 ${countEmail.clause ? `AND lower(u.email) ${countEmail.clause}` : ''}
+    `).bind(...countEmail.params).first(),
+
+    // Recent logins (last 24h via login_audit_log) — exclude admin.
+    database.prepare(`
+      SELECT COUNT(DISTINCT email) as count
+      FROM login_audit_log
+      WHERE created_at >= ?1 ${adminEmailExcludeWithDate}
+    `).bind(twentyFourHoursAgo, ...activityEmail.params).first(),
   ]);
-  
+
   return {
     ok: true,
     metrics: {
-      currentlyActive: currentlyActive?.count || 0,
-      hourlyActive: hourlyActive?.count || 0,
-      dailyActive: dailyActive?.count || 0,
-      weeklyActive: weeklyActive?.count || 0,
-      monthlyActive: monthlyActive?.count || 0,
-      totalUsers: totalUsers?.count || 0,
-      premiumUsers: premiumUsers?.count || 0,
-      verifiedUsers: verifiedUsers?.count || 0,
-      unverifiedUsers: unverifiedUsers?.count || 0,
-      totalFeedback: totalFeedback?.count || 0,
-      openFeedback: openFeedback?.count || 0,
-      totalSessions: totalSessions?.count || 0,
-      totalTrustedDevices: totalTrustedDevices?.count || 0,
+      currentlyActive: sessionStats?.currently_active || 0,
+      hourlyActive: sessionStats?.hourly_active || 0,
+      dailyActive: sessionStats?.daily_active || 0,
+      weeklyActive: sessionStats?.weekly_active || 0,
+      monthlyActive: sessionStats?.monthly_active || 0,
+      totalUsers: userStats?.total_users || 0,
+      premiumUsers: userStats?.premium_users || 0,
+      verifiedUsers: userStats?.verified_users || 0,
+      unverifiedUsers: userStats?.unverified_users || 0,
+      totalFeedback: feedbackStats?.total_feedback || 0,
+      openFeedback: feedbackStats?.open_feedback || 0,
+      totalSessions: sessionStats?.total_sessions || 0,
+      totalTrustedDevices: deviceStats?.total_trusted_devices || 0,
       recentLogins: recentLogins?.count || 0,
     },
   };
+}
+
+async function handleAdminActivityMetrics(request, env) {
+  await verifyAdminCaller(request, env);
+  const cacheKey = `${ADMIN_METRICS_EDGE_CACHE_PREFIX}${ADMIN_METRICS_EDGE_CACHE_TTL_SECONDS}s`;
+
+  const cached = await readAdminMetricsEdgeCache(cacheKey);
+  if (cached) {
+    const cachedPayload = await cached.json().catch(() => null);
+    if (cachedPayload?.ok) return cachedPayload;
+  }
+
+  const payload = await buildAdminActivityMetricsPayload(env);
+  if (payload?.ok) {
+    await writeAdminMetricsEdgeCache(cacheKey, payload);
+  }
+  return payload;
 }
 
 // ---- Active Users List Endpoint ----
@@ -4684,6 +4879,8 @@ export function resolveRouteHandler(path) {
   if (path.endsWith("/adminDeletePaymentsByEmail")) return handleAdminDeletePaymentsByEmail;
   if (path.endsWith("/adminFeedbackList")) return handleAdminFeedbackList;
   if (path.endsWith("/feedback/status")) return handleFeedbackStatusUpdate;
+  if (path.endsWith("/feedback/notify")) return handleFeedbackNotify;
+  if (path.endsWith("/feedback/reply")) return handleFeedbackReply;
   if (path.endsWith("/feedback/userList")) return handleUserFeedbackList;
   if (path.endsWith("/adminSetUserStatus")) return handleAdminSetUserStatus;
   if (path.endsWith("/adminSetUserPlan")) return handleAdminSetUserPlan;

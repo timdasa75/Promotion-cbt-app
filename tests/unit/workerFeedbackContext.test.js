@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import worker from "../../workers/admin-bridge/worker.js";
+import worker, { resolveRouteHandler } from "../../workers/admin-bridge/worker.js";
 import { sha256Base64Url } from "../../workers/admin-bridge/auth-hybrid.js";
 
 const SESSION_ID = "sess-123";
@@ -31,6 +31,9 @@ function createAuthDatabase({ captures, sessionOverrides = {} } = {}) {
                   last_seen_at: new Date().toISOString(),
                   ...sessionOverrides,
                 };
+              }
+              if (sql.includes("FROM feedback_submissions") && sql.includes("SELECT email")) {
+                return { email: "reporter@example.com", status: "resolved", resolution: "" };
               }
               if (sql.includes("FROM auth_users")) {
                 return {
@@ -143,4 +146,226 @@ test("feedback submit rejects when email does not match the signed-in account", 
 
   const response = await worker.fetch(request, env);
   assert.equal(response.status, 403);
+});
+
+test("feedback reply and notify routes are registered", () => {
+  // These routes back the admin feedback inbox (reply + user notification).
+  // If a refactor drops one, the frontend keeps calling it and admins see
+  // silent failures, so each registration is asserted explicitly.
+  assert.equal(typeof resolveRouteHandler("/feedback/status"), "function");
+  assert.equal(typeof resolveRouteHandler("/feedback/notify"), "function");
+  assert.equal(typeof resolveRouteHandler("/feedback/reply"), "function");
+});
+
+test("feedback reply rejects unauthenticated callers", async () => {
+  const env = { AUTH_DB: createAuthDatabase({ captures: [] }), ALLOWED_ORIGINS: "https://app.example.test" };
+
+  const request = new Request("https://worker.example.com/feedback/reply", {
+    method: "POST",
+    headers: jsonHeaders(),
+    body: JSON.stringify({ feedbackId: "fbk_123", reply: "Thanks for the report." }),
+  });
+
+  const response = await worker.fetch(request, env);
+  assert.equal(response.status, 401);
+});
+
+test("resolving feedback does not email the user by default (free-tier suspension)", async () => {
+  const captures = [];
+  const env = {
+    AUTH_DB: createAuthDatabase({
+      captures,
+      sessionOverrides: { id: "admin-1", email: "admin@example.com", role: "admin", status: "active" },
+    }),
+    ALLOWED_ORIGINS: "https://app.example.test",
+    ADMIN_EMAILS: "admin@example.com",
+    // Key is deliberately set: proves the suspension flag, not the missing key,
+    // is what suppresses the email.
+    RESEND_API_KEY: "re_test_key",
+  };
+  const token = await buildToken();
+
+  const request = new Request("https://worker.example.com/feedback/status", {
+    method: "POST",
+    headers: { ...jsonHeaders(), Authorization: `Bearer ${token}` },
+    body: JSON.stringify({ feedbackId: "fbk_001", status: "resolved", resolution: "Fixed in the latest build.", reviewer: "admin@example.com" }),
+  });
+
+  const sent = [];
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = async (url, init) => {
+    if (String(url).includes("api.resend.com")) {
+      sent.push({ url: String(url), body: JSON.parse(init?.body || "{}") });
+      return { ok: true, status: 200, json: async () => ({}) };
+    }
+    return originalFetch(url, init);
+  };
+  try {
+    const response = await worker.fetch(request, env);
+    assert.equal(response.status, 200);
+    const payload = await response.json();
+    assert.equal(payload.ok, true);
+    assert.equal(payload.status, "resolved");
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+
+  assert.equal(sent.length, 0, "resolve emails are suspended by default to conserve D1 free-tier reads");
+  // The personalization name lookup is suspended along with the email — one fewer
+  // auth_users row read per resolution.
+  assert.ok(
+    !captures.some((entry) => entry.sql.includes("SELECT id, name FROM auth_users")),
+    "name lookup should not run while resolve emails are suspended",
+  );
+  const update = captures.find((entry) => entry.sql.includes("UPDATE feedback_submissions"));
+  assert.ok(update, "status update should still run");
+  assert.equal(update.values[4], "Fixed in the latest build.");
+});
+
+test("resolving feedback emails the user when FEEDBACK_EMAILS_ENABLED=true", async () => {
+  const captures = [];
+  const env = {
+    AUTH_DB: createAuthDatabase({
+      captures,
+      sessionOverrides: { id: "admin-1", email: "admin@example.com", role: "admin", status: "active" },
+    }),
+    ALLOWED_ORIGINS: "https://app.example.test",
+    ADMIN_EMAILS: "admin@example.com",
+    RESEND_API_KEY: "re_test_key",
+    FEEDBACK_EMAILS_ENABLED: "true",
+  };
+  const token = await buildToken();
+
+  const request = new Request("https://worker.example.com/feedback/status", {
+    method: "POST",
+    headers: { ...jsonHeaders(), Authorization: `Bearer ${token}` },
+    body: JSON.stringify({ feedbackId: "fbk_001", status: "resolved", resolution: "Fixed in the latest build." }),
+  });
+
+  const sent = [];
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = async (url, init) => {
+    if (String(url).includes("api.resend.com")) {
+      sent.push({ url: String(url), body: JSON.parse(init?.body || "{}") });
+      return { ok: true, status: 200, json: async () => ({}) };
+    }
+    return originalFetch(url, init);
+  };
+  try {
+    const response = await worker.fetch(request, env);
+    assert.equal(response.status, 200);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+
+  assert.equal(sent.length, 1, "opt-in flag restores the resolve email");
+  assert.equal(sent[0].body.to[0], "reporter@example.com");
+  assert.match(sent[0].body.subject, /resolved/i);
+});
+
+test("feedback reply does not email the user by default (free-tier suspension)", async () => {
+  const captures = [];
+  const env = {
+    AUTH_DB: createAuthDatabase({
+      captures,
+      sessionOverrides: { id: "admin-1", email: "admin@example.com", role: "admin", status: "active" },
+    }),
+    ALLOWED_ORIGINS: "https://app.example.test",
+    ADMIN_EMAILS: "admin@example.com",
+    // Key is deliberately set: proves the suspension flag, not the missing key,
+    // is what suppresses the email.
+    RESEND_API_KEY: "re_test_key",
+  };
+  const token = await buildToken();
+
+  const request = new Request("https://worker.example.com/feedback/reply", {
+    method: "POST",
+    headers: { ...jsonHeaders(), Authorization: `Bearer ${token}` },
+    body: JSON.stringify({ feedbackId: "fbk_001", reply: "Thanks — this is fixed in the latest build." }),
+  });
+
+  const sent = [];
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = async (url, init) => {
+    if (String(url).includes("api.resend.com")) {
+      sent.push({ url: String(url), body: JSON.parse(init?.body || "{}") });
+      return { ok: true, status: 200, json: async () => ({}) };
+    }
+    return originalFetch(url, init);
+  };
+  try {
+    const response = await worker.fetch(request, env);
+    assert.equal(response.status, 200);
+    const payload = await response.json();
+    assert.equal(payload.ok, true);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+
+  assert.equal(sent.length, 0, "reply emails are suspended by default to conserve D1 free-tier reads");
+  // The reply is still stored — the user sees it on the profile page instead of
+  // their inbox (see the unread badge in the "My Feedback" card).
+  const update = captures.find((entry) => entry.sql.includes("UPDATE feedback_submissions"));
+  assert.ok(update, "reply should still be stored");
+  assert.match(update.sql, /admin_reply/);
+  assert.equal(update.values[1], "Thanks — this is fixed in the latest build.");
+  // The personalization name lookup is suspended along with the email.
+  assert.ok(
+    !captures.some((entry) => entry.sql.includes("SELECT id, name FROM auth_users")),
+    "name lookup should not run while reply emails are suspended",
+  );
+});
+
+test("feedback reply emails the user when FEEDBACK_EMAILS_ENABLED=true", async () => {
+  const captures = [];
+  const env = {
+    AUTH_DB: createAuthDatabase({
+      captures,
+      sessionOverrides: { id: "admin-1", email: "admin@example.com", role: "admin", status: "active" },
+    }),
+    ALLOWED_ORIGINS: "https://app.example.test",
+    ADMIN_EMAILS: "admin@example.com",
+    RESEND_API_KEY: "re_test_key",
+    FEEDBACK_EMAILS_ENABLED: "true",
+  };
+  const token = await buildToken();
+
+  const request = new Request("https://worker.example.com/feedback/reply", {
+    method: "POST",
+    headers: { ...jsonHeaders(), Authorization: `Bearer ${token}` },
+    body: JSON.stringify({ feedbackId: "fbk_001", reply: "Thanks — this is fixed in the latest build." }),
+  });
+
+  const sent = [];
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = async (url, init) => {
+    if (String(url).includes("api.resend.com")) {
+      sent.push({ url: String(url), body: JSON.parse(init?.body || "{}") });
+      return { ok: true, status: 200, json: async () => ({}) };
+    }
+    return originalFetch(url, init);
+  };
+  try {
+    const response = await worker.fetch(request, env);
+    assert.equal(response.status, 200);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+
+  assert.equal(sent.length, 1, "opt-in flag restores the reply email");
+  assert.equal(sent[0].body.to[0], "reporter@example.com");
+  assert.match(sent[0].body.subject, /replied/i);
+});
+
+test("feedback notify rejects unauthenticated callers", async () => {
+  const env = { AUTH_DB: createAuthDatabase({ captures: [] }), ALLOWED_ORIGINS: "https://app.example.test" };
+
+  const request = new Request("https://worker.example.com/feedback/notify", {
+    method: "POST",
+    headers: jsonHeaders(),
+    body: JSON.stringify({ email: "user@example.com", subject: "Update", body: "<p>Hi</p>" }),
+  });
+
+  const response = await worker.fetch(request, env);
+  assert.equal(response.status, 401);
 });

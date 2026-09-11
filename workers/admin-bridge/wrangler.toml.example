@@ -15,6 +15,12 @@ FIREBASE_PROJECT_ID = "promotioncbt-app"
 # ADMIN_EMAILS = "admin@example.com"
 # Optional: set to false to skip Firebase Auth disabled-flag sync and only patch profile status.
 # SYNC_AUTH_DISABLED = "true"
+# Feedback notification emails (resolve + reply) are suspended by default to
+# conserve the D1 free tier (row reads, not email sends, were the exhausted
+# resource — see the 2026-09-11 quota outage). Users see admin responses in the
+# app instead: the profile page's "My Feedback" card shows replies with an unread
+# badge. Set to "true" on Workers Paid to also email users on resolve/reply.
+# FEEDBACK_EMAILS_ENABLED = "true"
 # Phase-2 hybrid auth rollout knobs (not live until auth endpoints are added):
 # CLOUDFLARE_AUTH_ISSUER = "https://promotion-cbt-auth.<your-subdomain>.workers.dev"
 

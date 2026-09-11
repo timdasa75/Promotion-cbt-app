@@ -15,6 +15,10 @@ import {
   formatFeedbackStatusLabel,
   formatSessionModeLabel,
   getFeedbackModalCopy,
+  countUnseenFeedbackReplies,
+  isFeedbackReplyUnseen,
+  markFeedbackRepliesSeen,
+  readFeedbackSeenReplies,
   trimFeedbackPreview,
 } from "../../js/appFeedbackView.js";
 
@@ -149,6 +153,67 @@ test("admin feedback helpers filter, summarize, and format entries", () => {
   assert.match(item.html, /Source: Quiz/);
   assert.match(item.html, /Mode: Practice/);
   assert.match(item.html, /Mark In Review/);
+});
+
+test("countUnseenFeedbackReplies counts only unseen replies", () => {
+  const seenReplies = { fbk_seen: "2026-09-11T10:00:00.000Z" };
+  const feedbackList = [
+    { feedbackId: "fbk_seen", repliedAt: "2026-09-11T10:00:00.000Z" },
+    { feedbackId: "fbk_fresh", repliedAt: "2026-09-12T09:00:00.000Z" },
+    { feedbackId: "fbk_fresh", repliedAt: "2026-09-12T09:00:00.000Z" },
+    { feedbackId: "fbk_no_reply" },
+  ];
+  assert.equal(countUnseenFeedbackReplies(feedbackList, seenReplies), 2);
+  assert.equal(countUnseenFeedbackReplies([], {}), 0);
+  assert.equal(countUnseenFeedbackReplies(feedbackList, { fbk_seen: "2026-09-11T10:00:00.000Z", fbk_fresh: "2026-09-12T09:00:00.000Z" }), 0);
+});
+
+test("feedback reply seen-state marks replies unread on first view only", () => {
+  const entry = { feedbackId: "fbk_1", repliedAt: "2026-09-11T10:00:00.000Z" };
+
+  // No seen-state yet: reply is unseen.
+  assert.equal(isFeedbackReplyUnseen(entry, {}), true);
+
+  const store = new Map();
+  const storage = {
+    getItem: (key) => (store.has(key) ? store.get(key) : null),
+    setItem: (key, value) => store.set(key, String(value)),
+  };
+
+  // First render marks it seen and returns the pre-visit state (badge shows).
+  const seenAfterFirst = markFeedbackRepliesSeen([entry], storage);
+  assert.equal(isFeedbackReplyUnseen(entry, seenAfterFirst), true, "badge shows on the visit that first renders the reply");
+
+  // Next visit: same reply is seen.
+  const seenOnSecondVisit = markFeedbackRepliesSeen([entry], storage);
+  assert.equal(isFeedbackReplyUnseen(entry, seenOnSecondVisit), false, "badge clears on the next visit");
+
+  // A fresh admin reply (new repliedAt) re-triggers the badge.
+  const updatedEntry = { feedbackId: "fbk_1", repliedAt: "2026-09-12T09:00:00.000Z" };
+  assert.equal(isFeedbackReplyUnseen(updatedEntry, seenOnSecondVisit), true, "a newer reply re-triggers the badge");
+});
+
+test("feedback seen-state helpers tolerate bad storage and malformed data", () => {
+  const throwingStorage = {
+    getItem: () => {
+      throw new Error("storage unavailable");
+    },
+    setItem: () => {
+      throw new Error("storage unavailable");
+    },
+  };
+
+  // Corrupt JSON / throwing storage degrade to empty seen-state, no throw.
+  assert.deepEqual(readFeedbackSeenReplies({ getItem: () => "not-json" }), {});
+  assert.deepEqual(readFeedbackSeenReplies(throwingStorage), {});
+  // Unwritable storage means nothing was previously seen, so the pre-visit
+  // snapshot stays empty and badges show (they just persist as unread).
+  assert.deepEqual(markFeedbackRepliesSeen([{ feedbackId: "fbk_2", repliedAt: "2026-09-11T10:00:00.000Z" }], throwingStorage), {});
+
+  // Entries without an id or repliedAt never count as unseen.
+  assert.equal(isFeedbackReplyUnseen({ feedbackId: "fbk_1" }, {}), false);
+  assert.equal(isFeedbackReplyUnseen({ repliedAt: "2026-09-11T10:00:00.000Z" }, {}), false);
+  assert.equal(isFeedbackReplyUnseen(null, {}), false);
 });
 
 test("admin feedback item model surfaces question context for resolution", () => {
