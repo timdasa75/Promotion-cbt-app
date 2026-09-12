@@ -2658,14 +2658,18 @@ select:focus-visible,
     letter-spacing: 0.01em;
 }
 
+/* Feedback from user report (fbk_1788857788883): the mid-green/mid-red status
+   text read ~3.6:1/~4.4:1 on these pale tinted panels in light mode. The
+   theme-scoped text tokens (dark green/red in light, bright in dark) restore
+   AA contrast in both themes. */
 .feedback-status-correct {
-    color: var(--ok);
+    color: var(--text-success);
     border-color: color-mix(in srgb, var(--ok) 55%, var(--line));
     background: color-mix(in srgb, var(--ok-bg) 72%, var(--card));
 }
 
 .feedback-status-incorrect {
-    color: var(--danger);
+    color: var(--text-danger);
     border-color: color-mix(in srgb, var(--danger) 55%, var(--line));
     background: color-mix(in srgb, var(--danger-bg) 72%, var(--card));
 }
@@ -4070,6 +4074,132 @@ body.dark-mode .admin-view-header p {
     white-space: nowrap;
 }
 
+/* Question Bank inspector (adminViewBank): mirrors the admin toolbar
+   pattern so the bank picker, search, and filters align with the rest of
+   the admin panel. Mobile stacking is covered by the shared admin-toolbar
+   column rule in the responsive block below. */
+.qb-toolbar-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    width: 100%;
+}
+
+.qb-toolbar-row .search-wrap {
+    flex: 1 1 200px;
+    min-width: 150px;
+}
+
+.qb-toolbar-row select {
+    flex: 1 1 160px;
+    min-width: 140px;
+    width: auto;
+}
+
+.qb-toolbar-row .btn {
+    flex: 0 0 auto;
+    white-space: nowrap;
+}
+
+.qb-question-row {
+    display: block;
+}
+
+.qb-question-row-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+.qb-question-id {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    overflow-wrap: anywhere;
+}
+
+.qb-question-stem {
+    margin: 6px 0 8px;
+    overflow-wrap: anywhere;
+}
+
+.qb-question-row-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.qb-editor {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--card);
+    padding: var(--space-3);
+    margin-top: var(--space-3);
+}
+
+.qb-editor.hidden,
+#qbEditorWrapper.hidden {
+    display: none;
+}
+
+.qb-field {
+    display: block;
+    margin: 12px 0;
+}
+
+.qb-field-inline {
+    margin: 0;
+}
+
+.qb-field textarea,
+.qb-field select,
+.qb-field input[type="text"] {
+    width: 100%;
+    margin-top: 4px;
+}
+
+.qb-toolbar-row .qb-field-inline select {
+    margin-top: 0;
+}
+
+.qb-options {
+    display: grid;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.qb-option-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.qb-option-correct {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    flex: 0 0 auto;
+}
+
+.qb-option-row .qb-option-input {
+    flex: 1 1 auto;
+}
+
+.qb-check {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 10px 0;
+}
+
+.qb-editor-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 12px;
+}
+
 .admin-section-card > * {
     margin-top: 0;
 }
@@ -5075,6 +5205,7 @@ body.dark-mode .admin-view-header p {
     .admin-feedback-toolbar,
     .admin-list-toolbar,
     .admin-history-toolbar,
+    .qb-toolbar-row,
     .admin-verification-support,
     .plan-override-row {
         flex-direction: column;
@@ -5096,10 +5227,12 @@ body.dark-mode .admin-view-header p {
     .admin-request-toolbar .search-wrap,
     .admin-user-toolbar .search-wrap,
     .admin-feedback-toolbar .search-wrap,
+    .qb-toolbar-row .search-wrap,
     .admin-list-toolbar .search-wrap,
     .admin-request-toolbar select,
     .admin-user-toolbar select,
     .admin-feedback-toolbar select,
+    .qb-toolbar-row select,
     .admin-list-toolbar select,
     .admin-feedback-toolbar .btn,
     .admin-list-toolbar .btn,
@@ -5115,10 +5248,12 @@ body.dark-mode .admin-view-header p {
     .admin-request-toolbar .search-wrap,
     .admin-user-toolbar .search-wrap,
     .admin-feedback-toolbar .search-wrap,
+    .qb-toolbar-row .search-wrap,
     .admin-list-toolbar .search-wrap,
     .admin-request-toolbar select,
     .admin-user-toolbar select,
     .admin-feedback-toolbar select,
+    .qb-toolbar-row select,
     .admin-list-toolbar select,
     .admin-feedback-toolbar .btn,
     .admin-list-toolbar .btn {
@@ -7415,6 +7550,7 @@ body.dark-mode .dashboard-utility-row .btn-ghost:hover {
     .admin-request-toolbar,
     .admin-feedback-toolbar,
     .admin-list-toolbar,
+    .qb-toolbar-row,
     .admin-history-toolbar {
         flex-direction: row;
         flex-wrap: wrap;
@@ -7424,6 +7560,7 @@ body.dark-mode .dashboard-utility-row .btn-ghost:hover {
     .admin-user-toolbar .search-wrap,
     .admin-request-toolbar .search-wrap,
     .admin-feedback-toolbar .search-wrap,
+    .qb-toolbar-row .search-wrap,
     .admin-list-toolbar .search-wrap {
         flex: 1 1 240px;
         width: auto;
@@ -7441,6 +7578,7 @@ body.dark-mode .dashboard-utility-row .btn-ghost:hover {
     .admin-user-toolbar select,
     .admin-request-toolbar select,
     .admin-feedback-toolbar select,
+    .qb-toolbar-row select,
     .admin-list-toolbar select {
         flex: 0 1 128px;
         width: auto;

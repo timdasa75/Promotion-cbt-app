@@ -754,6 +754,10 @@
                                     <span>Feedback</span>
                                     <span class="admin-nav-badge" id="adminFeedbackBadge">0</span>
                                 </button>
+                                <button class="admin-nav-item" data-admin-nav="bank" type="button">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                                    <span>Question Bank</span>
+                                </button>
                                 <button class="admin-nav-item" data-admin-nav="audit" type="button">
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
                                     <span>Audit</span>
@@ -1215,6 +1219,35 @@
                             <div id="adminFeedbackList" class="mistake-list"></div>
                         </article>
                                 </div>
+                            </section>
+                        </div>
+
+                        <div class="admin-view" id="adminViewBank">
+                            <div class="admin-view-header"><h2>Question Bank</h2><p>Inspect questions, apply overlay fixes, and resolve flagged content</p></div>
+                            <section class="admin-group" aria-labelledby="adminGroupBankTitle">
+                                <h3 class="admin-group-title" id="adminGroupBankTitle">Question Bank Inspector</h3>
+                                <div class="admin-grid">
+                                    <article class="card admin-section-card admin-feedback-card" data-admin-section="question-bank">
+                                        <div class="admin-card-head">
+                                            <h3>Bank Inspector &amp; Editor</h3>
+                                            <span class="admin-count" id="qbSummary">Select a topic to browse its question bank.</span>
+                                        </div>
+                                        <p class="inline-warning">Edits publish instantly through a D1 overlay — no redeploy needed. Static banks stay canonical; export &amp; canonize later.</p>
+                                        <div class="toolbar-row qb-toolbar-row">
+                                            <select id="qbTopicSelect" aria-label="Choose topic bank"></select>
+                                            <div class="search-wrap">
+                                                <input id="qbSearch" type="search" placeholder="Search question id or stem text" aria-label="Search question id or stem text" />
+                                                <button class="search-clear" type="button" aria-label="Clear search" title="Clear search">&#10005;</button>
+                                            </div>
+                                            <select id="qbSubcategoryFilter" aria-label="Filter by subcategory">
+                                                <option value="all">All Subcategories</option>
+                                            </select>
+                                            <button class="btn btn-secondary" id="qbRefreshBtn" type="button">Refresh</button>
+                                        </div>
+                                        <div id="qbQuestionList" class="mistake-list"></div>
+                                    </article>
+                                </div>
+                                <div id="qbEditorWrapper" class="hidden" aria-live="polite"></div>
                             </section>
                         </div>
 

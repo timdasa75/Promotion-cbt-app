@@ -170,6 +170,7 @@ import {
   markFeedbackRepliesSeen,
   readFeedbackSeenReplies,
 } from "./appFeedbackView.js";
+import { describeBankError, initializeAdminQuestionBank, openQuestionBankEditorForFeedback, renderAdminQuestionBank } from "./adminQuestionBank.js";
 import { createMockSetupController } from "./app/mockSetup.js";
 import {
   FEEDBACK_MESSAGE_MAX_LENGTH,
@@ -861,12 +862,15 @@ async function fetchActivityMetrics() {
   try {
     const config = getRuntimeConfig();
     const baseUrl = config?.cloudflareAuthBaseUrl || '';
-    const session = readSession();
-    if (!session?.accessToken || !baseUrl) {
+    // Use the refresh-aware accessor rather than the raw stored session. Right
+    // after login the persisted access token can still be the pre-refresh one,
+    // so a raw read 401s and the dashboard paints zeros until the user reloads.
+    const accessToken = String((await getCurrentAuthToken()) || '').trim();
+    if (!accessToken || !baseUrl) {
       return { ok: false, reason: 'session', message: 'Admin session unavailable.' };
     }
     const resp = await fetch(`${baseUrl}/adminActivityMetrics`, {
-      headers: { 'Authorization': `Bearer ${session.accessToken}` }
+      headers: { 'Authorization': `Bearer ${accessToken}` }
     });
     if (resp.status === 401) {
       forceReauthentication();
@@ -1139,7 +1143,17 @@ let activityMetricsAutoRefreshStarted = false;
 let activityMetricsVisibilityBound = false;
 
 function startActivityMetricsAutoRefresh() {
-  if (activityMetricsAutoRefreshStarted) return Promise.resolve();
+  if (activityMetricsAutoRefreshStarted) {
+    // The interval is already running, but an earlier open can latch this flag
+    // before the session is usable — that fetch fails and nothing ever paints,
+    // leaving the stat cards on their HTML defaults (zeros) until the next 30s
+    // tick. When no data has ever loaded, still run the awaited fetch so the
+    // dashboard shows real numbers on this open instead of after a reload.
+    if (!activityMetricsEverLoaded && !activityMetricsLoading) {
+      return refreshAllDashboardData();
+    }
+    return Promise.resolve();
+  }
   activityMetricsAutoRefreshStarted = true;
   
   // Initial fetch of all dashboard data — return the promise so callers
@@ -1218,8 +1232,10 @@ async function loadActiveUsersList(period) {
   try {
     const config = getRuntimeConfig();
     const baseUrl = String(config?.cloudflareAuthBaseUrl || '').trim();
-    const session = readSession();
-    const accessToken = String(session?.accessToken || '').trim();
+    // Refresh-aware token: the raw stored token is often stale on the first
+    // dashboard open after login, which made the first card click come back
+    // unauthorized until the user reloaded the page.
+    const accessToken = String((await getCurrentAuthToken()) || '').trim();
     if (!baseUrl || !accessToken) throw new Error('Admin session unavailable');
     
     const response = await fetch(`${baseUrl}/adminActiveUsers?period=${period}`, {
@@ -1445,11 +1461,11 @@ async function fetchMigrationStats() {
   try {
     const config = getRuntimeConfig();
     const baseUrl = config?.cloudflareAuthBaseUrl || '';
-    const session = readSession();
-    if (!session?.accessToken || !baseUrl) return;
+    const accessToken = String((await getCurrentAuthToken()) || '').trim();
+    if (!accessToken || !baseUrl) return;
     
     const resp = await fetch(`${baseUrl}/migration/stats`, {
-      headers: { 'Authorization': `Bearer ${session.accessToken}` }
+      headers: { 'Authorization': `Bearer ${accessToken}` }
     });
     const data = await resp.json().catch(() => ({}));
     
@@ -6424,6 +6440,25 @@ function renderAdminFeedbackList() {
     });
   });
 
+  // "Fix question" buttons: jump to the Question Bank tab with the flagged
+  // question pre-loaded in the editor (V1 feedback-to-fix workflow).
+  list.querySelectorAll(".admin-feedback-fix-btn").forEach((button) => {
+    button.addEventListener("click", () => {
+      const feedbackId = String(button.getAttribute("data-feedback-id") || "").trim();
+      const topicId = String(button.getAttribute("data-topic-id") || "").trim();
+      const questionId = String(button.getAttribute("data-question-id") || "").trim();
+      const entry = adminFeedbackSubmissions.find((item) => String(item?.feedbackId || "") === feedbackId);
+      openQuestionBankEditorForFeedback({
+        topicId,
+        questionId,
+        feedbackId,
+        replyDraft: entry?.adminReply || "",
+      })
+        .then(() => switchAdminTab("bank"))
+        .catch((error) => showError(describeBankError(error, "Unable to open the question editor.")));
+    });
+  });
+
   // Reply buttons
   list.querySelectorAll(".admin-feedback-reply-btn").forEach((button) => {
     button.addEventListener("click", async () => {
@@ -7602,6 +7637,9 @@ function initializeAdminTabs() {
       item.classList.add('active');
       const targetView = document.getElementById(targetViewId);
       if (targetView) targetView.classList.add('active');
+      if (targetNav === 'bank') {
+        renderAdminQuestionBank();
+      }
     });
   });
 
@@ -7650,6 +7688,11 @@ function switchAdminTab(tabName) {
   // tabs shows fresh data instead of the render captured at admin screen open.
   if (tabName === "security") {
     renderAdminDevices().catch(() => {});
+  }
+  // The bank view renders on demand so its topic list reflects any changes
+  // made since the admin screen was opened.
+  if (tabName === "bank") {
+    renderAdminQuestionBank();
   }
 }
 // Navigate to a specific sub-item in the admin sidebar
@@ -7732,6 +7775,7 @@ async function openAdminScreen() {
         initSubscriptionManagement();
         setupRefreshHandlers();
         initializeActivityCardClicks();
+        initializeAdminQuestionBank();
         await showScreen("adminScreen");
       },
       {

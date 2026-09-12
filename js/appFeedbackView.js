@@ -292,6 +292,12 @@ export function buildAdminFeedbackItemModel(entry = {}, {
     ? `<div class="admin-feedback-reply-display"><span class="meta">Admin Reply:</span><p>${safeReply}</p></div>`
     : "";
 
+  // "Fix question" jumps to the Question Bank editor pre-loaded with the
+  // flagged question; only meaningful when the submission carries context.
+  const fixQuestionButton = entry?.questionId && entry?.topicId
+    ? `<button class="btn btn-secondary btn-sm admin-feedback-fix-btn" data-feedback-id="${safeId}" data-topic-id="${escapeHtml(entry.topicId)}" data-question-id="${escapeHtml(entry.questionId)}" type="button" title="Open the flagged question in the Question Bank editor">Fix question</button>`
+    : "";
+
   // Action buttons: show reopen for resolved/dismissed, otherwise show status controls
   let actionButtons = "";
   if (isClosed) {
@@ -328,6 +334,7 @@ export function buildAdminFeedbackItemModel(entry = {}, {
         </div>
         <div class="admin-feedback-meta" title="${reviewedLabel}">${reviewedLabel}</div>
         <div class="button-row compact-actions admin-feedback-actions">
+          ${fixQuestionButton}
           ${actionButtons}
         </div>
       </div>
