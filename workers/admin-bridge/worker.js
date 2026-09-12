@@ -1034,7 +1034,9 @@ async function handleTopicDataWithEdgeCache(request, env, origin) {
   const topicId = String(body?.topicId || "").trim();
   const entitlement = resolveContentEntitlement(viewer);
   const isActive = String(viewer?.status || "active").toLowerCase() === "active";
-  const cacheKey = topicId && isActive ? buildTopicDataCacheKey(entitlement.id, topicId) : "";
+  const cacheKey = topicId && isActive
+    ? await buildTopicDataCacheKeyWithVersion(env, entitlement.id, topicId)
+    : "";
 
   if (cacheKey) {
     const cached = await readTopicDataEdgeCache(cacheKey);
@@ -1048,6 +1050,182 @@ async function handleTopicDataWithEdgeCache(request, env, origin) {
     await writeTopicDataEdgeCache(cacheKey, payload);
   }
   return jsonResponse(payload, 200, origin);
+}
+
+// --- Question bank overlay (docs/question-bank-management.md, V1) -----------
+// Admin edits live in the `question_edits` D1 table and are merged onto the
+// immutable static bank at serve time. The number of rows read per topic load
+// equals the number of *changed* questions (typically single digits), so this
+// stays far below the D1 free-tier read quota. Static banks remain canonical;
+// the overlay is a publish-fast layer, not a source of truth.
+
+const QUESTION_EDIT_FIELDS = Object.freeze([
+  "question",
+  "options",
+  "correct",
+  "explanation",
+  "difficulty",
+  "reviewStatus",
+  "lastReviewed",
+]);
+
+function normalizeQuestionEditInput(question, staticQuestion) {
+  if (!question || typeof question !== "object") {
+    throw createRouteError(400, "A question object is required.");
+  }
+
+  const options = question.options;
+  if (!Array.isArray(options) || options.length < 2 || options.length > 6) {
+    throw createRouteError(400, "A question must have between 2 and 6 answer options.");
+  }
+  if (options.some((option) => typeof option !== "string" || !option.trim())) {
+    throw createRouteError(400, "Every answer option needs non-empty text.");
+  }
+  // Option count must not change: the answer-scramble manifest
+  // (data/answer_order.json) is keyed to the bank's canonical option order.
+  if (staticQuestion && Array.isArray(staticQuestion.options) && options.length !== staticQuestion.options.length) {
+    throw createRouteError(400, "Option count must not change (the scramble manifest is order-keyed). Reorder or rewrite options instead.");
+  }
+
+  const correct = Number(question.correct);
+  if (!Number.isInteger(correct) || correct < 0 || correct >= options.length) {
+    throw createRouteError(400, `correct must be an integer index between 0 and ${options.length - 1}.`);
+  }
+
+  const stem = String(question.question || "").trim();
+  if (!stem) {
+    throw createRouteError(400, "The question stem is required.");
+  }
+  if (stem.length > 2000) {
+    throw createRouteError(400, "The question stem must be 2000 characters or fewer.");
+  }
+
+  const explanation = String(question.explanation || "").trim();
+  if (!explanation) {
+    throw createRouteError(400, "An explanation is required.");
+  }
+  if (explanation.length > 4000) {
+    throw createRouteError(400, "The explanation must be 4000 characters or fewer.");
+  }
+
+  const difficulty = ["easy", "medium", "hard"].includes(String(question.difficulty || "").toLowerCase())
+    ? String(question.difficulty).toLowerCase()
+    : String(staticQuestion?.difficulty || "medium").toLowerCase();
+  const reviewStatus = String(question.reviewStatus || "approved").toLowerCase() === "needs_review"
+    ? "needs_review"
+    : "approved";
+
+  // Server stamps lastReviewed so "when was this last verified?" is trustworthy.
+  const lastReviewed = new Date().toISOString().slice(0, 10);
+
+  // Start from the static question (when known) so unchanged fields such as
+  // chapter/keywords/marks/glBands ride along untouched.
+  const merged = {
+    ...(staticQuestion && typeof staticQuestion === "object" ? staticQuestion : {}),
+    ...(staticQuestion?.id ? {} : {}),
+    id: String(staticQuestion?.id || question.id || "").trim(),
+    question: stem,
+    options: options.map((option) => String(option).trim()),
+    correct,
+    explanation,
+    difficulty,
+    reviewStatus,
+    lastReviewed,
+  };
+  for (const key of Object.keys(merged)) {
+    if (merged[key] === undefined) delete merged[key];
+  }
+  return merged;
+}
+
+function mergeTopicEditsIntoPayload(payload, edits) {
+  if (!edits?.size || !payload) return payload;
+  const subcategories = collectSubcategories(payload);
+  let merged = 0;
+  const nextSubcategories = subcategories.map((subcategory) => {
+    const questions = getQuestionsFromSubcategory(subcategory);
+    let touched = false;
+    const nextQuestions = questions.map((question) => {
+      const edit = edits.get(String(question?.id || ""));
+      if (!edit) return question;
+      merged += 1;
+      touched = true;
+      return { ...question, ...edit };
+    });
+    if (!touched) return subcategory;
+    // Preserve exotic shapes (e.g. ca_general's nested wrapper) by only
+    // replacing the questions array in place.
+    return { ...subcategory, questions: nextQuestions };
+  });
+  if (!merged) return payload;
+  return { ...payload, subcategories: nextSubcategories };
+}
+
+async function loadTopicEditOverlay(env, topicId) {
+  const database = requireAuditDatabase(env);
+  try {
+    const result = await database
+      .prepare(
+        "SELECT question_id, payload FROM question_edits WHERE topic_id = ?1 AND status = 'active'",
+      )
+      .bind(String(topicId || "").trim())
+      .all();
+    const rows = Array.isArray(result?.results) ? result.results : [];
+    const edits = new Map();
+    for (const row of rows) {
+      try {
+        const parsed = JSON.parse(row.payload);
+        if (parsed && typeof parsed === "object" && row.question_id) {
+          edits.set(String(row.question_id), parsed);
+        }
+      } catch (_error) {
+        // A malformed row must never take down topic serving; skip it.
+      }
+    }
+    return edits;
+  } catch (error) {
+    if (error?.httpStatus) throw error;
+    // Overlay is a best-effort enhancement: if D1 is unavailable, serve the
+    // static bank rather than failing the user's topic load.
+    return new Map();
+  }
+}
+
+async function readTopicContentVersion(env, topicId) {
+  const database = requireAuditDatabase(env);
+  try {
+    const row = await database
+      .prepare("SELECT version FROM content_meta WHERE topic_id = ?1")
+      .bind(String(topicId || "").trim())
+      .first();
+    return Math.max(1, Number(row?.version || 1));
+  } catch (_error) {
+    return 1;
+  }
+}
+
+async function bumpTopicContentVersion(env, topicId) {
+  const database = requireAuditDatabase(env);
+  const nowIso = new Date().toISOString();
+  await database
+    .prepare(`
+      INSERT INTO content_meta (topic_id, version, updated_at)
+      VALUES (?1, 2, ?2)
+      ON CONFLICT(topic_id) DO UPDATE SET
+        version = version + 1,
+        updated_at = excluded.updated_at
+    `)
+    .bind(String(topicId || "").trim(), nowIso)
+    .run();
+}
+
+async function buildTopicDataCacheKeyWithVersion(env, entitlementId, topicId) {
+  const version = await readTopicContentVersion(env, topicId);
+  // Topics without overlay edits (version 1) keep the exact legacy cache key,
+  // so their edge behavior is byte-identical to the pre-overlay era; the
+  // version suffix appears only once an admin save has bumped the counter.
+  const baseKey = buildTopicDataCacheKey(entitlementId, topicId);
+  return version > 1 ? `${baseKey}:v${version}` : baseKey;
 }
 
 async function buildProtectedTopicDataPayload(viewer, body, env) {
@@ -1082,7 +1260,9 @@ async function buildProtectedTopicDataPayload(viewer, body, env) {
   for (const file of files) {
     try {
       const rawData = await fetchProtectedAssetJson(env, file);
-      payloads.push(filterTopicDataForEntitlement(rawData, entitlement));
+      const filtered = filterTopicDataForEntitlement(rawData, entitlement);
+      const edits = await loadTopicEditOverlay(env, topicId);
+      payloads.push(mergeTopicEditsIntoPayload(filtered, edits));
       loadedFiles.push(file);
     } catch (error) {
       failedFiles.push(file);
@@ -2299,6 +2479,148 @@ async function handleAdminFeedbackList(request, env) {
     .all();
   const rows = Array.isArray(result?.results) ? result.results.map(parseFeedbackRow) : [];
   return { ok: true, feedback: rows, total: rows.length };
+}
+
+// --- Question bank admin routes (V1: inspect / edit / revert) ---------------
+
+async function loadStaticBankForAdmin(env, topicId) {
+  const catalog = await loadProtectedTopicCatalog(env);
+  const topic = catalog.find((entry) => String(entry?.id || "").trim() === String(topicId || "").trim());
+  if (!topic?.file) {
+    throw createRouteError(404, "Topic was not found in the protected catalog.");
+  }
+  const rawData = await fetchProtectedAssetJson(env, topic.file);
+  const subcategories = collectSubcategories(rawData);
+  const byId = new Map();
+  for (const subcategory of subcategories) {
+    for (const question of getQuestionsFromSubcategory(subcategory)) {
+      const id = String(question?.id || "").trim();
+      if (id) byId.set(id, question);
+    }
+  }
+  return { topic, subcategories, byId };
+}
+
+async function handleAdminQuestionEdits(request, env) {
+  await verifyAdminCaller(request, env);
+  const database = requireAuditDatabase(env);
+  const body = await readJsonBody(request);
+  const topicId = String(body?.topicId || "").trim();
+  if (!topicId) {
+    throw createRouteError(400, "topicId is required.");
+  }
+
+  const [staticBank, editRows, version] = await Promise.all([
+    loadStaticBankForAdmin(env, topicId),
+    database
+      .prepare(`
+        SELECT topic_id, question_id, payload, origin, feedback_id, status, edited_by, created_at, updated_at
+        FROM question_edits
+        WHERE topic_id = ?1
+        ORDER BY updated_at DESC
+      `)
+      .bind(topicId)
+      .all(),
+    readTopicContentVersion(env, topicId),
+  ]);
+
+  const edits = Array.isArray(editRows?.results)
+    ? editRows.results.map((row) => {
+        let payload = null;
+        try {
+          payload = JSON.parse(row.payload);
+        } catch (_error) {
+          payload = null;
+        }
+        return { ...row, payload };
+      })
+    : [];
+
+  return {
+    ok: true,
+    topicId,
+    topicName: staticBank.topic?.name || topicId,
+    staticQuestionCount: staticBank.byId.size,
+    subcategories: staticBank.subcategories.map((subcategory) => ({
+      id: subcategory?.id || "",
+      name: subcategory?.name || subcategory?.id || "",
+      questionCount: getQuestionsFromSubcategory(subcategory).length,
+    })),
+    edits,
+    version,
+  };
+}
+
+async function handleAdminSaveQuestionEdit(request, env) {
+  const actor = await verifyAdminCaller(request, env);
+  const database = requireAuditDatabase(env);
+  const body = await readJsonBody(request);
+  const topicId = String(body?.topicId || "").trim();
+  const questionId = String(body?.questionId || "").trim();
+  if (!topicId || !questionId) {
+    throw createRouteError(400, "topicId and questionId are required.");
+  }
+
+  const staticBank = await loadStaticBankForAdmin(env, topicId);
+  const staticQuestion = staticBank.byId.get(questionId);
+  if (!staticQuestion) {
+    throw createRouteError(404, "Question was not found in the static bank. V1 only edits existing questions.");
+  }
+
+  const mergedQuestion = normalizeQuestionEditInput(body?.question || body, staticQuestion);
+  mergedQuestion.id = questionId;
+
+  const nowIso = new Date().toISOString();
+  await database
+    .prepare(`
+      INSERT INTO question_edits (topic_id, question_id, payload, origin, feedback_id, status, edited_by, created_at, updated_at)
+      VALUES (?1, ?2, ?3, ?4, ?5, 'active', ?6, ?7, ?8)
+      ON CONFLICT(topic_id, question_id) DO UPDATE SET
+        payload = excluded.payload,
+        origin = excluded.origin,
+        feedback_id = COALESCE(excluded.feedback_id, question_edits.feedback_id),
+        status = 'active',
+        edited_by = excluded.edited_by,
+        updated_at = excluded.updated_at
+    `)
+    .bind(
+      topicId,
+      questionId,
+      JSON.stringify(mergedQuestion),
+      String(body?.origin || "manual").trim() === "feedback" ? "feedback" : "manual",
+      body?.feedbackId ? String(body.feedbackId).trim() : null,
+      actor.email,
+      nowIso,
+      nowIso,
+    )
+    .run();
+  await bumpTopicContentVersion(env, topicId);
+
+  const version = await readTopicContentVersion(env, topicId);
+  return { ok: true, topicId, questionId, version, savedAt: nowIso };
+}
+
+async function handleAdminRevertQuestionEdit(request, env) {
+  const actor = await verifyAdminCaller(request, env);
+  const database = requireAuditDatabase(env);
+  const body = await readJsonBody(request);
+  const topicId = String(body?.topicId || "").trim();
+  const questionId = String(body?.questionId || "").trim();
+  if (!topicId || !questionId) {
+    throw createRouteError(400, "topicId and questionId are required.");
+  }
+
+  const result = await database
+    .prepare("DELETE FROM question_edits WHERE topic_id = ?1 AND question_id = ?2")
+    .bind(topicId, questionId)
+    .run();
+  if (!result?.meta?.changes) {
+    throw createRouteError(404, "No overlay row exists for this question.");
+  }
+  await bumpTopicContentVersion(env, topicId);
+
+  const version = await readTopicContentVersion(env, topicId);
+  return { ok: true, topicId, questionId, version, revertedBy: actor.email };
 }
 
 function escapeHtmlForEmail(value) {
@@ -4878,6 +5200,9 @@ export function resolveRouteHandler(path) {
   if (path.endsWith("/adminDeletePayment")) return handleAdminDeletePayment;
   if (path.endsWith("/adminDeletePaymentsByEmail")) return handleAdminDeletePaymentsByEmail;
   if (path.endsWith("/adminFeedbackList")) return handleAdminFeedbackList;
+  if (path.endsWith("/adminQuestionEdits")) return handleAdminQuestionEdits;
+  if (path.endsWith("/adminSaveQuestionEdit")) return handleAdminSaveQuestionEdit;
+  if (path.endsWith("/adminRevertQuestionEdit")) return handleAdminRevertQuestionEdit;
   if (path.endsWith("/feedback/status")) return handleFeedbackStatusUpdate;
   if (path.endsWith("/feedback/notify")) return handleFeedbackNotify;
   if (path.endsWith("/feedback/reply")) return handleFeedbackReply;
