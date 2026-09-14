@@ -288,6 +288,10 @@ let activityMetricsEverLoaded = false;
 let activityMetricsLoading = false;
 let activityMetricsFailureAt = null;
 let activityMetricsLastSuccessAt = null;
+// Detail message from the most recent failed refresh (network error text,
+// HTTP status). Shown on first-load failures only — once data is on screen the
+// stale-data explanation is more useful than the raw error.
+let activityMetricsLastFailureDetail = "";
 const ACTIVITY_METRICS_REFRESH_MS = 30000; // 30 seconds
 const RESTORABLE_SCREEN_IDS = new Set([
   "splashScreen",
@@ -1080,6 +1084,7 @@ function renderActivityMetricsStatus() {
       everLoaded: activityMetricsEverLoaded,
       failureTimeLabel: formatClockTime(activityMetricsFailureAt),
       lastSuccessTimeLabel: formatClockTime(activityMetricsLastSuccessAt),
+      detail: activityMetricsLastFailureDetail,
     });
     statusEl.innerHTML = buildStatePanelHtml({
       tone: note.tone,
@@ -1113,10 +1118,19 @@ async function refreshActivityMetrics() {
     // a retry panel over the sign-in prompt.
     if (result.reason === "session") return;
     activityMetricsFailureAt = new Date();
+    activityMetricsLastFailureDetail = result.message || "";
+    // Track consecutive failures for the auto-refresh backoff, capped so the
+    // skip-modulo logic stays sane.
+    activityMetricsConsecutiveFailures = Math.min(
+      activityMetricsConsecutiveFailures + 1,
+      ACTIVITY_METRICS_MAX_BACKOFF_TICKS,
+    );
     renderActivityMetricsStatus();
     return;
   }
   activityMetricsFailureAt = null;
+  activityMetricsLastFailureDetail = "";
+  activityMetricsConsecutiveFailures = 0;
   activityMetricsEverLoaded = true;
   activityMetricsLastSuccessAt = new Date();
   updateActivityMetricsDisplay(result.metrics);
@@ -1141,6 +1155,12 @@ function refreshAllDashboardData() {
 
 let activityMetricsAutoRefreshStarted = false;
 let activityMetricsVisibilityBound = false;
+// Consecutive-failure counter for the auto-refresh backoff. After repeated
+// failures the tick skips a growing number of base intervals, so a transient
+// D1 hiccup or exhausted quota doesn't produce a failing request every 30s.
+let activityMetricsConsecutiveFailures = 0;
+let activityMetricsRefreshTickCount = 0;
+const ACTIVITY_METRICS_MAX_BACKOFF_TICKS = 8; // retries at most every ~4 minutes
 
 function startActivityMetricsAutoRefresh() {
   if (activityMetricsAutoRefreshStarted) {
@@ -1160,15 +1180,25 @@ function startActivityMetricsAutoRefresh() {
   // can await the first paint with real numbers before showing the screen.
   const initialFetch = refreshAllDashboardData();
   
-  // Start auto-refresh interval (refreshes ALL dashboard data)
-  // Each refresh runs 14 SQL queries (several full-table scans) against D1,
-  // so unattended tabs can exhaust the free-tier daily row-read quota and
-  // take down login for everyone. Guard on document visibility and pause
-  // state so background tabs cost nothing.
+  // Start auto-refresh interval (refreshes ALL dashboard data).
+  // Each cache-miss refresh recomputes ~14 SQL aggregates against D1, so
+  // unattended tabs can exhaust the free-tier daily row-read quota and take
+  // login down for everyone. Guard on document visibility and pause state so
+  // background tabs cost nothing; the backoff counter skips ticks while the
+  // endpoint keeps failing so a broken endpoint is not hammered every 30s.
   activityMetricsRefreshInterval = setInterval(() => {
-    if (!activityMetricsPaused && document.visibilityState === "visible") {
-      refreshAllDashboardData();
+    if (activityMetricsPaused || document.visibilityState !== "visible") return;
+    // Backoff: while failing repeatedly, run only every Nth tick where N is
+    // the consecutive-failure count (1,2,3… capped). Any success or a manual
+    // "Try again" click resets the counter and lifts the skip immediately.
+    activityMetricsRefreshTickCount += 1;
+    if (
+      activityMetricsConsecutiveFailures > 1 &&
+      activityMetricsRefreshTickCount % activityMetricsConsecutiveFailures !== 0
+    ) {
+      return;
     }
+    refreshAllDashboardData();
   }, ACTIVITY_METRICS_REFRESH_MS);
   
   // Update the pause button state
@@ -2671,6 +2701,8 @@ function initializeStatePanelActions() {
       renderReviewMistakesScreen();
     }
     if (target === "retry-activity-metrics") {
+      // Manual retries lift the auto-refresh backoff immediately.
+      activityMetricsConsecutiveFailures = 0;
       refreshActivityMetrics();
     }
     if (target === "retry-active-users") {
@@ -3652,6 +3684,10 @@ async function restoreScreenState() {
   }
 
   if (savedScreenId === "adminScreen") {
+    // Mirror openAdminScreen(): hide the non-admin banner for verified admins.
+    document.querySelectorAll("#adminScreen .admin-head-card .inline-warning").forEach((el) => {
+      el.classList.toggle("hidden", isCurrentUserAdmin());
+    });
     renderAdminRequests();
     renderAdminOverrides();
     renderAdminOperationHistory();
@@ -7747,6 +7783,12 @@ async function openAdminScreen() {
     showWarning("Admin access is restricted.");
     return;
   }
+  // The head card's warning paragraph is static markup meant for signed-in
+  // non-admins; hide it for verified admins so it doesn't imply their access
+  // is provisional. (Shown again by restore paths when a non-admin lands here.)
+  document.querySelectorAll("#adminScreen .admin-head-card .inline-warning").forEach((el) => {
+    el.classList.add("hidden");
+  });
   try {
     await runOperationWithFeedback(
       async () => {
@@ -7998,6 +8040,12 @@ function initializeAuthUI() {
             failurePrefix: "Login failed:",
           },
         );
+
+        // Soft email verification: surface the unverified-email reminder
+        // without blocking the session (see isEmailVerificationRequired).
+        if (loginResult?.emailVerificationWarning) {
+          showWarning(loginResult.emailVerificationWarning);
+        }
         
         // Step 2: Check device trust
         const deviceFp = await getDeviceFingerprint();
@@ -8072,6 +8120,11 @@ function initializeAuthUI() {
 
         const successCopy = registration?.message || "Account created successfully.";
         setAuthMessage(successCopy, "success");
+        // Soft email verification: the user is signed in already; the reminder
+        // is advisory so registration never ends in a dead end.
+        if (registration?.emailVerificationWarning) {
+          showWarning(registration.emailVerificationWarning);
+        }
         showSuccess(successCopy);
         setTimeout(() => {
           closeAuthModal();

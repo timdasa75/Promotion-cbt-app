@@ -17,6 +17,10 @@ export const CONTROL_STATE_META = Object.freeze({
   used: { tone: "is-used", tag: "Used this week" },
   loading: { tone: "is-loading", tag: "Loading" },
   error: { tone: "is-error", tag: "Needs attention" },
+  // Soft-failure state: a background refresh failed but older data is still
+  // on screen. Amber/informational rather than red so a transient network
+  // hiccup on an auto-refresh doesn't read as an urgent problem.
+  stale: { tone: "is-stale", tag: "Stale data" },
 });
 
 function normalizeTone(state = "prerequisite") {
@@ -138,8 +142,11 @@ export function resolveActivityRefreshNote({
     const detailText = String(detail || "").trim();
     if (detailText) text += ` (${detailText})`;
   }
+  // First-load failures keep the urgent tone (the dashboard has no numbers at
+  // all); refresh failures over existing data downgrade to the stale tone so
+  // the panel stops reading as "needs urgent attention".
   return {
-    tone: "error",
+    tone: everLoaded ? "stale" : "error",
     text,
     actionLabel: "Try again",
     actionTarget: "retry-activity-metrics",

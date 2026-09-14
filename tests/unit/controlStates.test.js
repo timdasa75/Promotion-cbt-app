@@ -10,18 +10,20 @@ import {
   resolveUsedCapNote,
 } from "../../js/controlStates.js";
 
-test("control state meta exposes the six documented tones", () => {
+test("control state meta exposes the documented tones", () => {
   assert.deepEqual(Object.keys(CONTROL_STATE_META).sort(), [
     "empty",
     "error",
     "loading",
     "premium",
     "prerequisite",
+    "stale",
     "used",
   ]);
   assert.equal(CONTROL_STATE_META.prerequisite.tone, "is-prerequisite");
   assert.equal(CONTROL_STATE_META.premium.tone, "is-premium");
   assert.equal(CONTROL_STATE_META.used.tone, "is-used");
+  assert.equal(CONTROL_STATE_META.stale.tone, "is-stale");
 });
 
 test("resolveQueueUnlockNote shows the unlock copy only when the queue is empty", () => {
@@ -153,6 +155,10 @@ test("resolveActivityRefreshNote distinguishes first-load failure from stale ref
   assert.match(stale.text, /Couldn't refresh activity metrics at 4:05 PM\./);
   assert.match(stale.text, /Showing data from 4:00 PM\./);
   assert.doesNotMatch(stale.text, /Check your connection/);
+  // Refresh failures over existing data use the soft stale tone, not the
+  // urgent error tone (a transient network blip is not "needs attention").
+  assert.equal(stale.tone, "stale");
+  assert.ok(CONTROL_STATE_META.stale, "stale tone registered");
 });
 
 test("resolveActivityRefreshNote omits empty labels and appends detail only before first load", () => {
