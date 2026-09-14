@@ -44,6 +44,9 @@ export async function registerUserHybrid(
         message: payload?.message || payload?.warning || "Account created. Check your email to verify.",
         authMessage: payload?.message || payload?.warning || "Account created.",
         requiresEmailVerification,
+        ...(payload?.emailVerificationWarning
+          ? { emailVerificationWarning: String(payload.emailVerificationWarning) }
+          : {}),
         verificationUrl: payload?.verificationUrl || "",
         verificationExpiresAt: payload?.verificationExpiresAt || "",
       };
@@ -87,6 +90,9 @@ export async function loginUserHybrid(
       }
       return {
         ...(sessionPayload?.user || session?.user || payload?.user || {}),
+        ...(payload?.emailVerificationWarning
+          ? { emailVerificationWarning: String(payload.emailVerificationWarning) }
+          : {}),
         authMessage: payload?.warning || "Login successful.",
       };
     },

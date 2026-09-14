@@ -26,7 +26,7 @@ import { buildUpgradeRequestRecordFromProfile as buildUpgradeRequestRecordFromPr
 import { FEEDBACK_MESSAGE_MAX_LENGTH, getAdminFeedbackSubmissions as getAdminFeedbackSubmissionsService, getFeedbackAccessState as getFeedbackAccessStateService, getUserFeedbackList as getUserFeedbackListService, submitFeedbackSubmission as submitFeedbackSubmissionService, updateFeedbackSubmissionStatus as updateFeedbackSubmissionStatusService } from "./authFeedbackService.js";
 import { loginUserCloud as loginUserCloudService, logoutCloud as logoutCloudService, refreshCloudUserInSession as refreshCloudUserInSessionService, registerUserCloud as registerUserCloudService } from "./authCloudLifecycle.js";
 import { loginUserHybrid as loginUserHybridService, logoutHybrid as logoutHybridService, refreshCloudflareUserInSession as refreshCloudflareUserInSessionService, registerUserHybrid as registerUserHybridService } from "./authHybridLifecycle.js";
-import { buildIdentityToolkitAdminHeaders, getFirebaseConfig, getPasswordResetCooldownMs, getRuntimeConfig, getVerificationResendCooldownMs, isCloudAuthEnabled, isCloudAuthMisconfigured, isCloudAuthRequired, isCloudProgressSyncEnabled, isCloudflareAuthPrimary, isLocalDemoAuthEnabled, shouldAllowFirebaseAuthFallback } from "./authRuntime.js";
+import { buildIdentityToolkitAdminHeaders, getFirebaseConfig, getPasswordResetCooldownMs, getRuntimeConfig, getVerificationResendCooldownMs, isCloudAuthEnabled, isCloudAuthMisconfigured, isCloudAuthRequired, isCloudProgressSyncEnabled, isCloudflareAuthPrimary, isLocalDemoAuthEnabled, isLocalDemoAuthOptIn, shouldAllowFirebaseAuthFallback } from "./authRuntime.js";
 
 const DEFAULT_ADMIN_EMAILS = [];
 const PLAN_SYNC_INTERVAL_MS = 30 * 1000;
@@ -810,6 +810,10 @@ function applyPlanOverrideForEmail(user) {
 }
 
 export async function registerUser({ name, email, password, turnstileToken = "" }) {
+  if (isLocalDemoAuthOptIn()) {
+    assertLocalDemoAuthEnabled("Registration");
+    return registerUserLocal({ name, email, password });
+  }
   if (isCloudflareAuthPrimary()) {
     return registerUserHybrid({ name, email, password, turnstileToken });
   }
@@ -821,6 +825,10 @@ export async function registerUser({ name, email, password, turnstileToken = "" 
 }
 
 export async function loginUser({ email, password, turnstileToken = "" }) {
+  if (isLocalDemoAuthOptIn()) {
+    assertLocalDemoAuthEnabled("Login");
+    return loginUserLocal({ email, password });
+  }
   if (isCloudflareAuthPrimary()) {
     return loginUserHybrid({ email, password, turnstileToken });
   }
@@ -1245,6 +1253,7 @@ ${email} (${planLabel})`;
 export function getAuthProviderLabel(mode = "active") {
   const normalizedMode = String(mode || "active").trim().toLowerCase();
   if (normalizedMode === "configured") {
+    if (isLocalDemoAuthOptIn()) return "Demo";
     if (isCloudflareAuthPrimary()) {
       return shouldAllowFirebaseAuthFallback() ? "Hybrid" : "Cloudflare";
     }

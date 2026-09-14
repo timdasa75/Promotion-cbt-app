@@ -109,6 +109,189 @@ test("cloudflare login hides missing accounts and records rate-limit attempts", 
   assert.equal(writes[1].values[0], "login:ip:203.0.113.8");
 });
 
+test("cloudflare login signs in unverified users with a reminder in soft mode (default)", async () => {
+  const writes = [];
+  let reminderIssued = 0;
+  const database = {
+    prepare(sql) {
+      return {
+        bind(...values) {
+          return {
+            async first() {
+              if (sql.includes("FROM auth_rate_limits")) return null;
+              if (sql.includes("FROM auth_users") && sql.includes("WHERE email")) {
+                return {
+                  id: "u1",
+                  email: "user@example.com",
+                  password_hash: await hashPassword("super-secret-password"),
+                  role: "user",
+                  plan: "free",
+                  status: "active",
+                  email_verified: 0,
+                  legacy_provider: "",
+                  legacy_user_id: "",
+                  created_at: "2026-05-18T00:00:00.000Z",
+                  last_login_at: "",
+                };
+              }
+              if (sql.includes("FROM auth_users") && sql.includes("WHERE id")) {
+                return {
+                  id: "u1",
+                  email: "user@example.com",
+                  role: "user",
+                  plan: "free",
+                  status: "active",
+                  email_verified: 0,
+                  legacy_provider: "",
+                  legacy_user_id: "",
+                  created_at: "2026-05-18T00:00:00.000Z",
+                  last_login_at: "",
+                };
+              }
+              throw new Error(`Unexpected first query: ${sql}`);
+            },
+            async run() {
+              writes.push({ sql, values });
+              if (sql.includes("INSERT INTO auth_email_tokens")) reminderIssued += 1;
+              return { success: true };
+            },
+          };
+        },
+      };
+    },
+  };
+
+  const request = new Request("https://worker.example.com/auth/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "CF-Connecting-IP": "203.0.113.8",
+    },
+    body: JSON.stringify({
+      email: "user@example.com",
+      password: "super-secret-password",
+    }),
+  });
+
+  const result = await handleAuthLogin(request, { AUTH_DB: database });
+
+  // Soft verification: login succeeds despite email_verified = 0, a session
+  // is issued, and the response carries the verification reminder.
+  assert.equal(result.ok, true);
+  assert.ok(result.session?.token);
+  assert.match(result.emailVerificationWarning, /not verified/);
+  // Best-effort re-send of the verification email happened (token issued).
+  assert.equal(reminderIssued > 0, true);
+});
+
+test("cloudflare login still blocks unverified users when REQUIRE_EMAIL_VERIFICATION is on", async () => {
+  const database = {
+    prepare(sql) {
+      return {
+        bind() {
+          return {
+            async first() {
+              if (sql.includes("FROM auth_rate_limits")) return null;
+              if (sql.includes("FROM auth_users") && sql.includes("WHERE email")) {
+                return {
+                  id: "u1",
+                  email: "user@example.com",
+                  password_hash: await hashPassword("super-secret-password"),
+                  role: "user",
+                  plan: "free",
+                  status: "active",
+                  email_verified: 0,
+                  legacy_provider: "",
+                  legacy_user_id: "",
+                  created_at: "2026-05-18T00:00:00.000Z",
+                  last_login_at: "",
+                };
+              }
+              throw new Error(`Unexpected first query: ${sql}`);
+            },
+            async run() {
+              return { success: true };
+            },
+          };
+        },
+      };
+    },
+  };
+
+  const request = new Request("https://worker.example.com/auth/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "CF-Connecting-IP": "203.0.113.8",
+    },
+    body: JSON.stringify({
+      email: "user@example.com",
+      password: "super-secret-password",
+    }),
+  });
+
+  await assert.rejects(
+    () => handleAuthLogin(request, { AUTH_DB: database, REQUIRE_EMAIL_VERIFICATION: "true" }),
+    (error) => error?.httpStatus === 403 && /verify your email before login/i.test(error?.message),
+  );
+});
+
+test("cloudflare registration returns a live session in soft mode (default)", async () => {
+  const writes = [];
+  const database = {
+    prepare(sql) {
+      return {
+        bind(...values) {
+          return {
+            async first() {
+              if (sql.includes("FROM auth_rate_limits")) return null;
+              if (sql.includes("FROM auth_users") && sql.includes("WHERE email")) return null;
+              if (sql.includes("FROM auth_users") && sql.includes("WHERE id")) {
+                return {
+                  id: values[0],
+                  email: "new@example.com",
+                  role: "user",
+                  plan: "free",
+                  status: "active",
+                  email_verified: 0,
+                  created_at: "2026-05-18T00:00:00.000Z",
+                  last_login_at: "",
+                };
+              }
+              throw new Error(`Unexpected first query: ${sql}`);
+            },
+            async run() {
+              writes.push({ sql, values });
+              return { success: true };
+            },
+          };
+        },
+      };
+    },
+  };
+
+  const request = new Request("https://worker.example.com/auth/register", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "CF-Connecting-IP": "203.0.113.9",
+    },
+    body: JSON.stringify({
+      email: "new@example.com",
+      password: "super-secret-password",
+    }),
+  });
+
+  const result = await handleAuthRegister(request, { AUTH_DB: database });
+
+  // Soft verification: register signs the user in immediately instead of
+  // parking them on "check your email".
+  assert.equal(result.ok, true);
+  assert.equal(result.requiresEmailVerification, false);
+  assert.ok(result.session?.token);
+  assert.match(result.emailVerificationWarning, /signed in/i);
+});
+
 test("cloudflare registration resets expired rate-limit buckets", async () => {
   const writes = [];
   const database = {

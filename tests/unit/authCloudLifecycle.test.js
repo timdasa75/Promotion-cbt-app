@@ -27,7 +27,7 @@ test("refreshCloudUserInSession merges lookup user, profile sync, and plan sync"
   assert.equal(writes[0].user.email, "user@example.com");
 });
 
-test("registerUserCloud creates account, sends verification, and clears session", async () => {
+test("registerUserCloud signs the user in and survives a failed verification email (soft mode)", async () => {
   const calls = [];
   let cleared = 0;
   const result = await registerUserCloud(
@@ -41,6 +41,10 @@ test("registerUserCloud creates account, sends verification, and clears session"
         if (path === "accounts:update") {
           return { displayName: "User" };
         }
+        if (path === "accounts:sendOobCode") {
+          // Simulate the verification email failing to send.
+          throw new Error("mail quota exhausted");
+        }
         return { ok: true };
       },
       writeCloudSession: () => ({ accessToken: "id-1", user: { id: "u1" } }),
@@ -53,13 +57,59 @@ test("registerUserCloud creates account, sends verification, and clears session"
     },
   );
 
-  assert.equal(result.requiresEmailVerification, true);
-  assert.equal(cleared, 1);
+  // Soft verification: registration succeeds, the user stays signed in, and
+  // the message explains that the verification email could not be sent.
+  assert.equal(result.requiresEmailVerification, false);
+  assert.deepEqual(result.user, { id: "u1" });
+  assert.match(result.message, /could not be sent/);
+  assert.equal(cleared, 0);
   assert.deepEqual(calls.map((entry) => entry.path), [
     "accounts:signUp",
     "accounts:update",
     "accounts:sendOobCode",
   ]);
+});
+
+test("registerUserCloud clears session and requires verification when the hard gate is on", async () => {
+  const originalWindow = global.window;
+  global.window = { PROMOTION_CBT_REQUIRE_EMAIL_VERIFICATION: true };
+  try {
+    const calls = [];
+    let cleared = 0;
+    const result = await registerUserCloud(
+      { name: "User", email: "USER@example.com", password: "secret123" },
+      {
+        authRequest: async (path) => {
+          calls.push(path);
+          if (path === "accounts:signUp") {
+            return { idToken: "id-1", localId: "u1", email: "user@example.com" };
+          }
+          if (path === "accounts:update") {
+            return { displayName: "User" };
+          }
+          return { ok: true };
+        },
+        writeCloudSession: () => ({ accessToken: "id-1", user: { id: "u1" } }),
+        ensureProfileInSession: async () => {},
+        markVerificationResend: () => {},
+        clearCurrentSession: () => {
+          cleared += 1;
+        },
+        now: () => "2026-03-18T10:00:00.000Z",
+      },
+    );
+
+    assert.equal(result.requiresEmailVerification, true);
+    assert.equal(result.user, null);
+    assert.equal(cleared, 1);
+    assert.deepEqual(calls, [
+      "accounts:signUp",
+      "accounts:update",
+      "accounts:sendOobCode",
+    ]);
+  } finally {
+    global.window = originalWindow;
+  }
 });
 
 test("loginUserCloud refreshes session and blocks unverified or suspended users", async () => {
@@ -76,19 +126,48 @@ test("loginUserCloud refreshes session and blocks unverified or suspended users"
   );
   assert.equal(success.id, "u1");
 
-  await assert.rejects(
-    loginUserCloud(
-      { email: "user@example.com", password: "secret1" },
-      {
-        authRequest: async () => ({ idToken: "id-1" }),
-        writeCloudSession: () => ({ accessToken: "id-1" }),
-        refreshCloudUser: async () => ({ accessToken: "id-2", user: { id: "u1", emailVerified: false } }),
-        clearCurrentSession: () => cleared.push("clear-unverified"),
-        getProfileById: async () => ({ status: "active" }),
+  // Hard gate (opt-in via REQUIRE_EMAIL_VERIFICATION): unverified users are
+  // blocked from logging in.
+  const originalWindow = global.window;
+  global.window = { PROMOTION_CBT_REQUIRE_EMAIL_VERIFICATION: true };
+  try {
+    await assert.rejects(
+      loginUserCloud(
+        { email: "user@example.com", password: "secret1" },
+        {
+          authRequest: async () => ({ idToken: "id-1" }),
+          writeCloudSession: () => ({ accessToken: "id-1" }),
+          refreshCloudUser: async () => ({ accessToken: "id-2", user: { id: "u1", emailVerified: false } }),
+          clearCurrentSession: () => cleared.push("clear-unverified"),
+          getProfileById: async () => ({ status: "active" }),
+        },
+      ),
+      /Please verify your email before login/,
+    );
+  } finally {
+    global.window = originalWindow;
+  }
+
+  // Soft verification (default): an unverified email no longer blocks login —
+  // the user is signed in with a warning and a fresh verification email is
+  // requested best-effort.
+  const softResult = await loginUserCloud(
+    { email: "user@example.com", password: "secret1" },
+    {
+      authRequest: async (path) => {
+        if (path === "accounts:sendOobCode") {
+          throw new Error("send failed");
+        }
+        return { idToken: "id-1" };
       },
-    ),
-    /Please verify your email before login/,
+      writeCloudSession: () => ({ accessToken: "id-1" }),
+      refreshCloudUser: async () => ({ accessToken: "id-2", user: { id: "u1", emailVerified: false } }),
+      clearCurrentSession: () => cleared.push("clear-soft-unverified"),
+      getProfileById: async () => ({ status: "active" }),
+    },
   );
+  assert.equal(softResult.id, "u1");
+  assert.match(softResult.emailVerificationWarning, /not verified/);
 
   await assert.rejects(
     loginUserCloud(

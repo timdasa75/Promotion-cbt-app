@@ -19,6 +19,10 @@ function normalizeAuthProvider(cfg) {
   }
   
   // Default logic: If Cloudflare is configured, use hybrid as the modern default.
+  // NOTE: an enableLocalDemoAuth opt-in must NOT rewrite authProvider here —
+  // routing helpers like isCloudflareAuthPrimary() key off the provider, and a
+  // "demo" provider would make a configured production stack look unconfigured.
+  // The opt-in is a runtime-only override applied by isLocalDemoAuthOptIn().
   return hasCloudflare ? "hybrid" : "firebase";
 }
 
@@ -35,7 +39,7 @@ export function getFirebaseConfig() {
     cfg.firebaseQuotaProjectId || cfg.quotaProjectId || firebaseProjectId || "",
   ).trim();
   const googleClientId = String(cfg.googleClientId || cfg.googleOAuthClientId || "").trim();
-  
+
   const cloudflareAuthBaseUrl = normalizeBaseUrl(
     cfg.cloudflareAuthBaseUrl || cfg.cloudflareApiBaseUrl || "",
   );
@@ -80,6 +84,7 @@ export function getFirebaseConfig() {
     paymentProvider,
     flutterwavePublicKey,
     flutterwaveWebhookUrl,
+    requireEmailVerification: resolveRuntimeBoolean(cfg.requireEmailVerification, false),
     adminEmails: Array.isArray(cfg.adminEmails) ? cfg.adminEmails : [],
   };
 }
@@ -135,8 +140,9 @@ export function getPasswordResetCooldownMs() {
 }
 
 export function isLocalDevelopmentHost() {
-  const host = String((typeof window !== "undefined" && window.location?.hostname) || "").trim().toLowerCase();
-  return host === "" || host === "localhost" || host === "127.0.0.1";
+  return isLocalHostname(
+    typeof window !== "undefined" && window.location?.hostname,
+  );
 }
 
 export function isCloudAuthEnabled() {
@@ -165,6 +171,22 @@ export function getFlutterwavePublicKey() {
 }
 
 /**
+ * Whether unverified-email accounts must verify before they can log in.
+ *
+ * Default is OFF (soft verification): users can sign in immediately after
+ * registering, so a lost or undelivered verification email never locks them
+ * out of the app. Set REQUIRE_EMAIL_VERIFICATION = true in the runtime config
+ * (or window.PROMOTION_CBT_REQUIRE_EMAIL_VERIFICATION = true) to restore the
+ * old hard gate once email delivery is trustworthy again.
+ */
+export function isEmailVerificationRequired() {
+  if (typeof window !== "undefined" && typeof window.PROMOTION_CBT_REQUIRE_EMAIL_VERIFICATION === "boolean") {
+    return window.PROMOTION_CBT_REQUIRE_EMAIL_VERIFICATION;
+  }
+  return resolveRuntimeBoolean(getFirebaseConfig().requireEmailVerification, false);
+}
+
+/**
  * Decide whether device-local demo auth should be available.
  * The order matters: explicit window overrides win, then config flags, then the development fallback when cloud auth is unavailable.
  */
@@ -179,6 +201,29 @@ export function isLocalDemoAuthEnabled() {
   }
 
   return !isCloudAuthEnabled() && !isCloudAuthRequired();
+}
+
+/**
+ * Explicit opt-in for device-local demo auth even when cloud auth is
+ * configured — lets a localhost dev preview log in without reaching the
+ * production Worker or Firebase. A production deployment never matches the
+ * localhost hostname guard, so the live config stays untouched.
+ *
+ * Enable with `enableLocalDemoAuth: true` in a LOCAL runtime config, or with
+ * `window.PROMOTION_CBT_ALLOW_LOCAL_AUTH = true` (which also forces the opt-in
+ * off when set to false, matching isLocalDemoAuthEnabled's override).
+ * Default is false.
+ */
+export function isLocalDemoAuthOptIn() {
+  if (typeof window !== "undefined" && typeof window.PROMOTION_CBT_ALLOW_LOCAL_AUTH === "boolean") {
+    return window.PROMOTION_CBT_ALLOW_LOCAL_AUTH;
+  }
+  return isLocalDevelopmentHost() && Boolean(getFirebaseConfig().enableLocalDemoAuth);
+}
+
+function isLocalHostname(hostname) {
+  const host = String(hostname || "").trim().toLowerCase();
+  return host === "" || host === "localhost" || host === "127.0.0.1";
 }
 
 // Alias for backward compatibility

@@ -17,6 +17,12 @@ window.PROMOTION_CBT_AUTH = {
   firebaseFunctionsRegion: "us-central1",
   // Feature flag (phase rollout): when true, client can sync quiz progress to cloud.
   enableCloudProgressSync: true,
+  // Email verification gate (default false = soft verification): users can
+  // register and log in without waiting for the verification email, so a lost
+  // email never blocks access. The verification link is still sent best-effort
+  // and the app nudges unverified users to verify. Set to true only if the
+  // Worker also sets REQUIRE_EMAIL_VERIFICATION, to restore the hard gate.
+  requireEmailVerification: false,
   // Recommended: Cloudflare Worker admin bridge base URL.
   // Example: "https://promotion-cbt-admin.<your-subdomain>.workers.dev"
   // If omitted, app falls back to Firebase Cloud Functions URL.

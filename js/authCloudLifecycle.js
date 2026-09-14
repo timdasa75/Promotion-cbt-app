@@ -1,5 +1,6 @@
 import { getCloudProfileById } from "./authCloudFirestore.js";
 import { normalizeEmail } from "./authNormalization.js";
+import { isEmailVerificationRequired } from "./authRuntime.js";
 import {
   buildCloudUserFromLookupUser,
   firebaseAuthRequest,
@@ -111,20 +112,43 @@ export async function registerUserCloud(
 
   await ensureProfileInSession(saved);
 
-  await authRequest("accounts:sendOobCode", {
-    method: "POST",
-    body: {
-      requestType: "VERIFY_EMAIL",
-      idToken: saved.accessToken,
-    },
-  });
-  markVerificationResend(normalizedEmail);
+  // Best-effort verification email: a delivery failure must never abort the
+  // registration itself — the account row already exists, so a thrown error
+  // would leave the user stuck between "account created" and "email exists".
+  let verificationSent = true;
+  try {
+    await authRequest("accounts:sendOobCode", {
+      method: "POST",
+      body: {
+        requestType: "VERIFY_EMAIL",
+        idToken: saved.accessToken,
+      },
+    });
+    markVerificationResend(normalizedEmail);
+  } catch (error) {
+    verificationSent = false;
+  }
+
+  // Soft verification (default): sign the user straight in so a lost or
+  // undelivered verification email never locks them out. Set
+  // REQUIRE_EMAIL_VERIFICATION = true to restore the hard gate.
+  if (!isEmailVerificationRequired()) {
+    return {
+      user: saved.user,
+      requiresEmailVerification: false,
+      message: verificationSent
+        ? "Account created and you're signed in. We also sent a verification link — verifying keeps your account recoverable."
+        : "Account created and you're signed in. The verification email could not be sent just now; you can resend it later from your profile.",
+    };
+  }
 
   clearCurrentSession();
   return {
     user: null,
     requiresEmailVerification: true,
-    message: "Account created. Check your email to confirm before login.",
+    message: verificationSent
+      ? "Account created. Check your email to confirm before login."
+      : "Account created, but the verification email could not be sent. Use 'Resend verification' on the login screen in a minute.",
   };
 }
 
@@ -164,11 +188,33 @@ export async function loginUserCloud(
     throw new Error("Login failed.");
   }
 
+  // Soft verification (default): an unverified email must not block login —
+  // that gate permanently locked out anyone whose verification email went
+  // missing. Sign in anyway, surface a warning, and re-send the verification
+  // email best-effort so the user has a fresh link waiting.
   if (!synced.user.emailVerified) {
-    clearCurrentSession();
-    throw new Error(
-      "Please verify your email before login. Use 'Resend verification' only when needed.",
-    );
+    if (isEmailVerificationRequired()) {
+      clearCurrentSession();
+      throw new Error(
+        "Please verify your email before login. Use 'Resend verification' only when needed.",
+      );
+    }
+    try {
+      await authRequest("accounts:sendOobCode", {
+        method: "POST",
+        body: {
+          requestType: "VERIFY_EMAIL",
+          idToken: synced.accessToken,
+        },
+      });
+    } catch (error) {
+      // The nudge is advisory; never fail the login because of it.
+    }
+    return {
+      ...synced.user,
+      emailVerificationWarning:
+        "Signed in, but your email is not verified yet. We've sent a fresh verification link — check your inbox or Spam folder.",
+    };
   }
 
   try {

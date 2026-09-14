@@ -21,6 +21,12 @@ FIREBASE_PROJECT_ID = "promotioncbt-app"
 # app instead: the profile page's "My Feedback" card shows replies with an unread
 # badge. Set to "true" on Workers Paid to also email users on resolve/reply.
 # FEEDBACK_EMAILS_ENABLED = "true"
+# Soft email verification (default): new users sign in immediately after
+# registering and unverified users can still log in — a lost verification
+# email never locks anyone out, and unverified logins get a cooldown-limited
+# verification-email reminder. Set to "true" to restore the old hard
+# verify-before-login gate once email delivery is dependable again.
+# REQUIRE_EMAIL_VERIFICATION = "true"
 # Phase-2 hybrid auth rollout knobs (not live until auth endpoints are added):
 # CLOUDFLARE_AUTH_ISSUER = "https://promotion-cbt-auth.<your-subdomain>.workers.dev"
 

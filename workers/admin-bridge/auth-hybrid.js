@@ -56,6 +56,39 @@ function createHttpError(status, message) {
   return error;
 }
 
+function isEmailVerificationRequired(env) {
+  return String(env?.REQUIRE_EMAIL_VERIFICATION || "").trim().toLowerCase() === "true";
+}
+
+/**
+ * Best-effort re-send of the verification email on unverified login. Wrapped
+ * in its own cooldown bucket so a user with a broken inbox can retry logins
+ * freely without the Worker spending email quota on every attempt.
+ */
+async function sendLoginVerificationReminder(database, user, request, env) {
+  const bucketKey = `verify:login-reminder:${user.id}`;
+  const row = await database
+    .prepare("SELECT window_started_at, count FROM auth_rate_limits WHERE bucket_key = ?1")
+    .bind(bucketKey)
+    .first();
+  if (row) {
+    const ws = Date.parse(String(row.window_started_at || ""));
+    if (Number.isFinite(ws) && Date.now() - ws < 300 * 1000) return;
+  }
+  const now = new Date().toISOString();
+  await database
+    .prepare("INSERT OR REPLACE INTO auth_rate_limits (bucket_key, bucket_type, window_started_at, count) VALUES (?1, ?2, ?3, 1)")
+    .bind(bucketKey, "verify_login_reminder", now)
+    .run();
+  try {
+    await createVerificationChallenge(database, String(user.id || ""), request, env, {
+      email: String(user.email || ""),
+    });
+  } catch (error) {
+    // Advisory nudge only — never fail the login because of it.
+  }
+}
+
 function normalizeEmail(value) {
   return String(value || "").trim().toLowerCase();
 }
@@ -683,6 +716,31 @@ export async function handleAuthRegister(request, env) {
   const user = await getAuthUserById(database, userId);
   const verification = await createVerificationChallenge(database, userId, request, env, body);
 
+  // Soft verification (default): hand back a live session so the new user
+  // lands straight in the app. The verification email still goes out (best
+  // effort above), and admins can flip REQUIRE_EMAIL_VERIFICATION to "true"
+  // to restore the old verify-before-login behaviour.
+  if (!isEmailVerificationRequired(env)) {
+    const session = await issueSession(database, userId, request, env);
+    await database
+      .prepare("UPDATE auth_users SET last_login_at = ?2, updated_at = ?2 WHERE id = ?1")
+      .bind(userId, new Date().toISOString())
+      .run();
+    return {
+      ok: true,
+      mode: "cloudflare-auth",
+      user: buildPublicAuthUser({ ...user, email_verified: 0 }),
+      session,
+      requiresEmailVerification: false,
+      emailVerificationWarning: verification.verificationUrl
+        ? "Account created and you're signed in. We also sent a verification link — verifying keeps your account recoverable."
+        : "Account created and you're signed in. The verification email could not be sent just now; you can resend it later from your profile.",
+      verificationUrl: verification.verificationUrl,
+      verificationExpiresAt: verification.expiresAt,
+      message: "Account created. Welcome aboard!",
+    };
+  }
+
   return {
     ok: true,
     mode: "cloudflare-auth",
@@ -769,8 +827,17 @@ export async function handleAuthLogin(request, env) {
   if (String(user.status || "active").toLowerCase() !== "active") {
     throw createHttpError(403, "This account is not active.");
   }
+  let emailVerificationWarning = "";
   if (!Number(user.email_verified || 0)) {
-    throw createHttpError(403, "Please verify your email before login. Check your inbox for the verification email.");
+    if (isEmailVerificationRequired(env)) {
+      throw createHttpError(403, "Please verify your email before login. Check your inbox for the verification email.");
+    }
+    // Soft verification (default): let the user in, warn them, and queue a
+    // fresh verification email (cooldown-limited) so the old
+    // "email never arrived -> permanently locked out" failure is gone.
+    await sendLoginVerificationReminder(database, user, request, env);
+    emailVerificationWarning =
+      "Signed in, but your email is not verified yet. We've sent a fresh verification link — check your inbox or Spam folder.";
   }
 
   const nowIso = new Date().toISOString();
@@ -781,12 +848,16 @@ export async function handleAuthLogin(request, env) {
 
   const refreshedUser = await getAuthUserById(database, user.id);
   const session = await issueSession(database, user.id, request, env);
-  return {
+  const loginResult = {
     ok: true,
     mode: "cloudflare-auth",
     user: buildPublicAuthUser(refreshedUser),
     session,
   };
+  if (emailVerificationWarning) {
+    loginResult.emailVerificationWarning = emailVerificationWarning;
+  }
+  return loginResult;
 }
 
 export async function handleAuthSession(request, env) {

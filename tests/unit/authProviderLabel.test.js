@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 
 import { clearSession, writeSession } from "../../js/authStorage.js";
 import { getAuthProviderLabel } from "../../js/auth.js";
+import { isLocalDemoAuthOptIn } from "../../js/authRuntime.js";
 
 function createStorage(initial = {}) {
   const store = { ...initial };
@@ -19,13 +20,13 @@ function createStorage(initial = {}) {
   };
 }
 
-function setupGlobals(config = {}) {
+function setupGlobals(config = {}, { hostname = "localhost" } = {}) {
   const sessionStorage = createStorage();
   const localStorage = createStorage();
   global.window = {
     sessionStorage,
     localStorage,
-    location: { hostname: "example.com" },
+    location: { hostname },
     PROMOTION_CBT_AUTH: config,
   };
   global.localStorage = localStorage;
@@ -86,8 +87,29 @@ test("getAuthProviderLabel reports Cloud when Cloud auth is configured", () => {
   });
 
   try {
+    assert.equal(isLocalDemoAuthOptIn(), false);
     assert.equal(getAuthProviderLabel(), "Cloud");
     assert.equal(getAuthProviderLabel("configured"), "Cloud");
+  } finally {
+    global.window = originalWindow;
+    global.localStorage = originalLocalStorage;
+  }
+});
+
+test("getAuthProviderLabel reports Demo when cloud auth is configured but local demo is opted in", () => {
+  const originalWindow = global.window;
+  const originalLocalStorage = global.localStorage;
+  setupGlobals({
+    authProvider: "firebase",
+    cloudflareAuthBaseUrl: "https://auth.example.com",
+    enableLocalDemoAuth: true,
+    firebaseApiKey: "key-1",
+    firebaseProjectId: "project-1",
+  });
+
+  try {
+    assert.equal(isLocalDemoAuthOptIn(), true);
+    assert.equal(getAuthProviderLabel("configured"), "Demo");
   } finally {
     global.window = originalWindow;
     global.localStorage = originalLocalStorage;
