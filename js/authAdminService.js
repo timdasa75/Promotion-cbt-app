@@ -10,9 +10,13 @@ import { listCloudProfiles } from "./authCloudFirestore.js";
 import {
   deleteUserViaCloudFunction,
   listAdminOperationsViaAdminApi,
+  listResetRequestsViaAdminApi,
   listUsersViaCloudFunction,
   logAdminOperationViaAdminApi,
   createCloudflareMigrationLinkViaAdminApi,
+  lookupUserContactViaAdminApi,
+  sendPasswordResetViaAdminApi,
+  sendPasswordResetLinkViaWhatsAppApi,
   setUserPlanViaAdminApi,
   setUserStatusViaAdminApi,
 } from "./authAdminApi.js";
@@ -135,10 +139,42 @@ export async function getAdminOperationHistory(limit = 120, ensureAdminSession, 
   return listOperations(limit, session.accessToken);
 }
 
+export async function getResetRequestRows(limit = 200, ensureAdminSession, listResetRequests = listResetRequestsViaAdminApi) {
+  const session = await ensureAdminSession();
+  return listResetRequests(limit, session.accessToken);
+}
+
 export async function logAdminOperationToCloud(entry, ensureAdminSession, logOperation = logAdminOperationViaAdminApi) {
   const session = await ensureAdminSession();
   await logOperation(entry, session.accessToken);
   return { ok: true };
+}
+
+export async function sendPasswordResetToCloud(email, baseUrl, ensureAdminSession, sendReset = sendPasswordResetViaAdminApi) {
+  const normalizedEmail = normalizeEmail(email);
+  if (!normalizedEmail) {
+    throw new Error("User email is required.");
+  }
+  const session = await ensureAdminSession();
+  return sendReset(normalizedEmail, String(baseUrl || "").trim(), session.accessToken);
+}
+
+export async function sendPasswordResetLinkViaWhatsApp(email, baseUrl, ensureAdminSession, sendReset = sendPasswordResetLinkViaWhatsAppApi) {
+  const normalizedEmail = normalizeEmail(email);
+  if (!normalizedEmail) {
+    throw new Error("User email is required.");
+  }
+  const session = await ensureAdminSession();
+  return sendReset(normalizedEmail, String(baseUrl || "").trim(), session.accessToken);
+}
+
+export async function lookupUserContactInCloud(email, ensureAdminSession, lookup = lookupUserContactViaAdminApi) {
+  const normalizedEmail = normalizeEmail(email);
+  if (!normalizedEmail) {
+    throw new Error("User email is required.");
+  }
+  const session = await ensureAdminSession();
+  return lookup(normalizedEmail, session.accessToken);
 }
 
 export async function updateCloudUserStatusById(profileId, status, ensureAdminSession, setStatus = setUserStatusViaAdminApi) {

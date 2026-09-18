@@ -44,6 +44,18 @@ window.PROMOTION_CBT_AUTH = {
   paymentProvider: "flutterwave",
   flutterwavePublicKey: "REPLACE_WITH_FLUTTERWAVE_PUBLIC_KEY",
   flutterwaveWebhookUrl: "REPLACE_WITH_WORKER_PAYMENT_WEBHOOK_URL",
+  // WhatsApp self-service password recovery (free, user-initiated). Set to
+  // the business number users message with "RESET" (digits with country
+  // code, e.g. "2348012345678"). Empty string hides the login-screen button.
+  // Requires the Worker env vars WHATSAPP_TOKEN, WHATSAPP_PHONE_NUMBER_ID,
+  // WHATSAPP_APP_SECRET, WHATSAPP_VERIFY_TOKEN and PUBLIC_BASE_URL — see
+  // workers/admin-bridge/wrangler.toml.example.
+  //
+  // STATUS: ON HOLD (2026-09-18) — no WhatsApp Business account yet. The
+  // client button, Worker webhook, and tests are fully built and dormant:
+  // this field stays "" and the webhook stays undeployed until the Meta
+  // app exists. Activation checklist lives in wrangler.toml.example.
+  whatsappBusinessNumber: "",
   // Admin emails: users who receive admin panel access. Set here only — never commit real emails to source.
   adminEmails: [], // e.g. ["admin@youragency.gov.ng"]
 };

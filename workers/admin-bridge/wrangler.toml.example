@@ -42,6 +42,31 @@ FIREBASE_PROJECT_ID = "promotioncbt-app"
 # email sender (Resend/SendGrid/Workers Email) backs the recovery route.
 # Until then the /auth/password/request route honestly tells users to contact
 # an administrator instead of claiming instructions were emailed.
+#
+# WhatsApp self-service password recovery (free: users message first, which
+# opens Meta's 24-hour service window; the Worker's reply is non-template and
+# costs nothing). Requires a Meta WhatsApp Business app + webhook subscription:
+#   WHATSAPP_TOKEN             - permanent System User access token (Graph API)
+#   WHATSAPP_PHONE_NUMBER_ID   - the business phone number's ID in the app
+#   WHATSAPP_APP_SECRET        - app secret (verifies X-Hub-Signature-256)
+#   WHATSAPP_VERIFY_TOKEN      - any random string; also pasted into Meta's
+#                                webhook subscription form
+#   PUBLIC_BASE_URL            - e.g. "https://timdasa75.github.io" (used to
+#                                build reset links; GitHub Pages serves the
+#                                app under /<repo>, so the link includes it)
+# Webhook callback URL: https://<worker-host>/whatsapp/webhook
+# Also set whatsappBusinessNumber in config/runtime-auth.js to show the
+# login-screen button.
+# STATUS: ON HOLD (2026-09-18) — no WhatsApp Business account yet. The flow is
+# fully built and unit-tested but dormant: keep these unset and do NOT deploy
+# the /whatsapp/webhook route until the Meta app exists.
+# TOKEN and APP_SECRET are sensitive: set them with `wrangler secret put`
+# (WHATSAPP_TOKEN, WHATSAPP_APP_SECRET); the rest may live in [vars].
+# WHATSAPP_TOKEN = ""
+# WHATSAPP_PHONE_NUMBER_ID = ""
+# WHATSAPP_APP_SECRET = ""
+# WHATSAPP_VERIFY_TOKEN = ""
+# PUBLIC_BASE_URL = ""
 
 # Optional D1 binding for the future hybrid auth rollout:
 # [[d1_databases]]

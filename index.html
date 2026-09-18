@@ -82,6 +82,7 @@
                             </svg>
                         </span>
                         <span class="icon-button-label">Admin</span>
+                        <span id="headerAdminResetBadge" class="header-reply-badge header-admin-reset-badge hidden" aria-hidden="true"></span>
                     </button>
                     <button
                         id="headerProfileBtn"
@@ -647,6 +648,14 @@
                             <div class="profile-head"><div class="avatar" id="profileAvatar" aria-hidden="true">TU</div><div><h2 id="profileDisplayName">Tim User</h2><p id="profileSubtitle">Directorate Cadre Candidate</p></div></div>
                             <div class="button-row compact-actions profile-account-actions"><button class="btn btn-secondary" id="changePasswordBtn" type="button">Change Password</button><button class="btn btn-destructive" id="profileLogoutBtn" type="button">Logout</button></div>
                             <div class="setting-row profile-theme-row"><span>Theme</span><button class="btn btn-ghost" data-theme-action="toggle" type="button">Toggle Light/Dark</button></div>
+                            <div class="setting-row profile-phone-row">
+                                <span>Phone (WhatsApp &amp; codes)</span>
+                                <div class="profile-phone-controls">
+                                    <input id="profilePhoneInput" type="tel" autocomplete="tel" placeholder="e.g. +234 803 000 0000" />
+                                    <button class="btn btn-ghost btn-sm" id="savePhoneBtn" type="button">Save</button>
+                                </div>
+                            </div>
+                            <p class="hero-meta profile-phone-note" id="profilePhoneNote">Used for account-security messages on WhatsApp (like password-reset links) and verification codes. Your number is stored once — no need to ask again.</p>
                         </article>
                         <article class="card profile-card profile-data-card">
                             <div class="profile-upgrade-shell" id="profileUpgradeShell">
@@ -910,6 +919,30 @@
                                     <button class="btn btn-ghost btn-sm" id="closeActiveUsersBtn" type="button" aria-label="Close">&times;</button>
                                 </div>
                                 <div id="activeUsersList" class="admin-active-users-list"></div>
+                                <div class="admin-stat-card clickable" data-admin-stat="reset-requests" tabindex="0" role="button" aria-label="View unresolved password reset requests" data-tooltip="Users still waiting for a working reset link">
+                                    <div class="admin-stat-icon reset"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+                                    <div class="admin-stat-content">
+                                        <div class="admin-stat-value" id="adminResetRequestsCount">0</div>
+                                        <div class="admin-stat-label">Reset Requests</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Unresolved reset requests (expandable from the stat card) -->
+                            <div class="admin-active-users-panel hidden" id="adminResetRequestsPanel">
+                                <div class="admin-active-users-header">
+                                    <h3 id="adminResetRequestsPanelTitle">Unresolved Reset Requests</h3>
+                                    <div class="admin-card-actions">
+                                        <button class="btn btn-ghost btn-sm" id="refreshResetRequestsBtn" type="button">Refresh</button>
+                                        <button class="btn btn-ghost btn-sm" id="closeResetRequestsPanelBtn" type="button" aria-label="Close">&times;</button>
+                                    </div>
+                                </div>
+                                <p class="admin-card-hint">
+                                    Users still waiting for a working reset link. If email delivery is unavailable,
+                                    "Prepare email" copies a ready-to-send message with the reset link for you to
+                                    paste into your mail client. Links stay valid for 24 hours.
+                                </p>
+                                <div id="adminResetRequestsList" class="mistake-list"></div>
                             </div>
                         </div>
 
@@ -1333,7 +1366,7 @@
                 <button class="auth-close" id="authCloseBtn" type="button" aria-label="Close authentication panel">&times;</button>
                 <div class="section-head screen-header">
                     <h2 id="authModalTitle">Access Promotion CBT</h2>
-                    <p id="authModalIntro">Fastest way in: continue with Google. Or register with your email below — you can sign in right away and verify later.</p>
+                    <p id="authModalIntro">Tip: if you have a Gmail account, tap “Continue with Google” above to sign in instantly — no password needed. Prefer email? Register or login below — you can sign in right away and verify later.</p>
                     <p class="hero-meta hidden" id="authModeHint">Auth mode: Local (single-device)</p>
                 </div>
                 <div class="chip-row auth-tabs" role="tablist" aria-label="Authentication tabs">
@@ -1363,6 +1396,9 @@
                         </div>
                     </label>
                     <button class="btn btn-ghost" id="forgotPasswordBtn" type="button">Forgot password?</button>
+                    <button class="btn btn-ghost btn-sm hidden" id="whatsappResetBtn" type="button" title="Message our WhatsApp line and get a reset link back instantly — free">
+                        <span aria-hidden="true">💬</span> Reset password via WhatsApp
+                    </button>
                     <div id="cf-turnstile-login"></div>
                     <button class="btn btn-primary" type="submit">Login</button>
                     <button class="btn btn-ghost btn-sm" id="resendVerificationBtn" type="button" style="display:none;font-size:0.82rem;margin-top:4px;">Didn't receive verification email?</button>
@@ -1418,6 +1454,7 @@
                 <div class="section-head screen-header">
                     <h2 id="otpModalTitle">Verify Your Identity</h2>
                     <p id="otpInstruction">We sent a 6-digit code to <strong id="otpEmailDisplay"></strong></p>
+                    <p class="hero-meta" id="otpSmsNote" hidden>Codes arrive by email. Save your phone on your Profile page and we'll reach you on WhatsApp too when account help is needed.</p>
                 </div>
 
                 <form id="otpForm" class="auth-form">
@@ -1634,6 +1671,26 @@
                     <button class="btn btn-ghost" id="confirmCancelBtn">Cancel</button>
                     <button class="btn btn-primary" id="confirmOkBtn">Confirm</button>
                 </div>
+            </div>
+        </div>
+
+        <!-- Phone Capture Modal: lets existing users add the WhatsApp-capable
+             number that the password-reset WhatsApp handoff needs. -->
+        <div class="auth-modal hidden" id="phoneCaptureModal" role="dialog" aria-modal="true" aria-labelledby="phoneCaptureTitle" aria-describedby="phoneCaptureIntro">
+            <div class="auth-modal-card confirm-modal-card">
+                <h3 id="phoneCaptureTitle">Add your WhatsApp number</h3>
+                <p id="phoneCaptureIntro" style="color:var(--ink-600);">Add a phone number so we can reach you with verification codes and account help (like password resets) on WhatsApp — often faster than email.</p>
+                <form id="phoneCaptureForm" class="auth-form">
+                    <label class="auth-field">
+                        <span>Phone number (WhatsApp)</span>
+                        <input id="phoneCaptureInput" type="tel" inputmode="tel" autocomplete="tel" placeholder="e.g. 0803 123 4567" />
+                    </label>
+                    <p class="phone-capture-note">Stored once, used only for account security messages. You can change or remove it anytime from your Profile.</p>
+                    <div class="button-row">
+                        <button class="btn btn-ghost" id="phoneCaptureSkipBtn" type="button">Not now</button>
+                        <button class="btn btn-primary" id="phoneCaptureSaveBtn" type="submit">Save number</button>
+                    </div>
+                </form>
             </div>
         </div>
 

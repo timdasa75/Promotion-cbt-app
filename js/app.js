@@ -93,7 +93,9 @@ function loadQuizApi() {
 import { escapeHtml, normalizeExplanationText, parseMarkdown } from "./quiz/formatting.js";
 import { debugLog } from "./logger.js";
 import { clearSession, readSession } from "./authStorage.js";
+import { requestCloudflareAuth } from "./authCloudflareClient.js";
 import { PaginationController, getPaginatedItems } from "./pagination.js";
+import { isResetRequestRow, isResetSendRow, summarizePasswordResetRequests } from "./adminResetStats.js";
 // Lazy-loaded analytics view/model modules, reached through the aggregator
 // analyticsBundle.js. See loadQuizApi() for the boot/prefetch rationale.
 let buildAnalyticsSnapshot, buildAnalyticsConsistencyHtml, buildAnalyticsHeatmapHtml, buildAnalyticsOverviewModel, buildAnalyticsRecommendationModel, buildAnalyticsTrendHtml, buildDashboardStatsModel, buildDashboardSetupSuggestion, buildDashboardSuggestionSignature, buildRecommendation, getPreferredRecommendedTopic, readDismissedDashboardRecommendationSignature, writeDismissedDashboardRecommendationSignature;
@@ -183,6 +185,7 @@ import {
   getAccessibleTopics,
   getAdminFeedbackSubmissions,
   getAdminOperationHistory,
+  getResetRequestRows,
   getAdminUserDirectory,
   getAuthSummaryLabel,
   getAuthProviderLabel,
@@ -204,6 +207,9 @@ import {
   registerUser,
   requestPasswordReset,
   resendVerificationEmailForUser,
+  sendPasswordResetEmailForUser,
+  sendPasswordResetLinkViaWhatsAppForUser,
+  lookupUserContactForAdmin,
   resolveCloudflareMigrationToken,
   refreshCurrentUserAfterGrant,
   setPlanOverride,
@@ -215,6 +221,7 @@ import {
   updateFeedbackSubmissionStatus,
   getUserFeedbackList,
 } from "./auth.js";
+import { buildWhatsAppClickToChatUrl, toWhatsAppNumber } from "./adminWhatsApp.js";
 import { getFirebaseConfig, getRuntimeConfig, isCloudAuthEnabled } from "./authRuntime.js";
 import "./authGoogle.js";
 import { initSubscriptionManagement, setupRefreshHandlers, setSubscriptionUserData } from "./adminSubscriptionManagement.js";
@@ -1955,6 +1962,300 @@ function clearAdminOperationHistory() {
   writeAdminOperationHistory([]);
 }
 
+// Password-reset requests panel: derived from the cloud audit log (action
+// "Password recovery requested", written by the public forgot-password flow).
+let adminResetRows = [];
+let adminResetStats = null;
+let adminResetRequestsLoaded = false;
+let adminResetLoadFailed = false;
+const ADMIN_RESET_LIST_CAP = 8;
+const ADMIN_RESET_ROW_LIMIT = 200;
+
+async function refreshAdminResetRequests() {
+  const list = document.getElementById("adminResetRequestsList");
+  if (!list) return;
+  try {
+    // Dedicated action-filtered endpoint: the mixed operations window lets
+    // unrelated audit rows push reset rows out, which made the count shrink
+    // between loads.
+    const rows = await getResetRequestRows(ADMIN_RESET_ROW_LIMIT);
+    adminResetRows = Array.isArray(rows) ? rows : [];
+    adminResetStats = summarizePasswordResetRequests(adminResetRows);
+    adminResetRequestsLoaded = true;
+    adminResetLoadFailed = false;
+  } catch (error) {
+    debugLog("Admin reset-requests sync failed: " + (error?.message || "request failed."));
+    adminResetLoadFailed = !adminResetRequestsLoaded;
+    if (!adminResetRequestsLoaded) {
+      adminResetRows = [];
+      adminResetStats = null;
+    }
+  }
+  renderAdminResetRequests();
+  syncHeaderAdminResetBadgeFromStats();
+}
+
+function renderAdminResetRequests() {
+  const container = document.getElementById("adminResetRequestsList");
+  const countLabel = document.getElementById("adminResetRequestsCount");
+  if (!container) return;
+  const stats = adminResetStats || { unresolved: [], resolvedCount: 0, totalRequests: 0 };
+  const pending = stats.unresolved;
+  if (countLabel) {
+    if (adminResetLoadFailed) {
+      countLabel.textContent = "—";
+    } else {
+      countLabel.textContent = String(pending.length);
+    }
+    countLabel.classList.toggle("admin-count-alert", !adminResetLoadFailed && pending.length > 0);
+  }
+  clearElementContent(container);
+  if (!adminResetRequestsLoaded && !adminResetLoadFailed) {
+    const emptyCard = document.createElement("div");
+    emptyCard.className = "admin-request-item";
+    appendMetaLine(emptyCard, "Loading reset requests…");
+    container.appendChild(emptyCard);
+    return;
+  }
+  if (!pending.length) {
+    const emptyCard = document.createElement("div");
+    emptyCard.className = "admin-request-item";
+    appendMetaLine(
+      emptyCard,
+      adminResetLoadFailed
+        ? "Could not load reset requests — check the connection or use Refresh."
+      : adminResetRows.length
+        ? `All clear — ${stats.resolvedCount} request${stats.resolvedCount === 1 ? "" : "s"} resolved.`
+        : "No password reset requests logged yet."
+    );
+    container.appendChild(emptyCard);
+    return;
+  }
+  const visible = pending.slice(0, ADMIN_RESET_LIST_CAP);
+  visible.forEach((item) => {
+    const whenLabel = formatRelativeTime(item.requestedAt) || formatDateTime(item.requestedAt);
+    const card = document.createElement("article");
+    card.className = "admin-request-item admin-history-entry";
+    const head = document.createElement("div");
+    head.className = "admin-history-entry-head";
+    const titleWrap = document.createElement("div");
+    titleWrap.className = "admin-history-entry-title-wrap";
+    const title = document.createElement("h4");
+    title.className = "admin-history-entry-title";
+    title.textContent = item.email;
+    titleWrap.appendChild(title);
+    const bits = [whenLabel || "-"];
+    if (item.requestCount > 1) bits.push(`${item.requestCount} requests`);
+    if (item.lastSendFailed) bits.push("last send failed");
+    appendMetaLine(titleWrap, bits.join(" · "));
+    head.appendChild(titleWrap);
+    if (item.lastSendFailed) {
+      const badge = document.createElement("span");
+      badge.className = "admin-badge pending";
+      badge.textContent = "retry";
+      head.appendChild(badge);
+    }
+    card.appendChild(head);
+    const actionsRow = document.createElement("div");
+    actionsRow.className = "admin-history-meta-line";
+    const sendBtn = document.createElement("button");
+    sendBtn.className = "btn btn-ghost btn-sm";
+    sendBtn.type = "button";
+    sendBtn.textContent = "Send reset email";
+    sendBtn.addEventListener("click", () => {
+      sendResetEmailFromAdmin(item.email, sendBtn);
+    });
+    actionsRow.appendChild(sendBtn);
+    const waBtn = document.createElement("button");
+    waBtn.className = "btn btn-ghost btn-sm";
+    waBtn.type = "button";
+    waBtn.textContent = "Send via WhatsApp";
+    waBtn.title = "Open a WhatsApp draft with the reset link (uses the user's saved phone number)";
+    waBtn.addEventListener("click", () => {
+      sendResetLinkViaWhatsAppFromAdmin(item.email, waBtn);
+    });
+    actionsRow.appendChild(waBtn);
+    card.appendChild(actionsRow);
+    container.appendChild(card);
+  });
+  if (pending.length > visible.length) {
+    const moreCard = document.createElement("div");
+    moreCard.className = "admin-request-item";
+    appendMetaLine(moreCard, `+${pending.length - visible.length} more unresolved — see the operations list below.`);
+    container.appendChild(moreCard);
+  }
+}
+
+function buildManualResetEmailText(email, resetUrl) {
+  const appOrigin = String(window.location.origin || "").replace(/\/+$/, "");
+  return [
+    `Subject: Reset your password - Promotion CBT`,
+    `To: ${email}`,
+    ``,
+    `Hi ${email.split("@")[0]},`,
+    ``,
+    `A password reset was requested for your Promotion CBT account.`,
+    `Open the secure link below to choose a new password:`,
+    ``,
+    resetUrl,
+    ``,
+    `The link is single-use and expires in 24 hours. If you did not request a`,
+    `reset, you can ignore this message — your current password keeps working.`,
+    ``,
+    `— Promotion CBT`,
+    appOrigin,
+  ].join("\n");
+}
+
+async function copyManualResetEmail(email, resetUrl, button) {
+  const text = buildManualResetEmailText(email, resetUrl);
+  let copied = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    copied = true;
+  } catch {
+    // Clipboard API can be blocked (permissions/HTTP); fall back below.
+  }
+  if (!copied) {
+    try {
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.setAttribute("readonly", "");
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      copied = document.execCommand("copy");
+      ta.remove();
+    } catch {
+      copied = false;
+    }
+  }
+  if (copied) {
+    const original = button.textContent;
+    button.textContent = "Copied — paste in your mail app";
+    setTimeout(() => { button.textContent = original; }, 2500);
+    showSuccess(`Reset email for ${email} copied. Paste it into your mail app and send.`);
+  } else {
+    showWarning("Copy failed. The reset link is: " + resetUrl);
+  }
+}
+
+async function sendResetEmailFromAdmin(email, button) {
+  const normalized = String(email || "").trim();
+  if (!normalized || !normalized.includes("@")) {
+    showWarning("No valid email on this request.");
+    return;
+  }
+  if (!isCloudAuthEnabled()) {
+    showWarning("Cloud auth is not configured; reset emails need the Worker backend.");
+    return;
+  }
+  const originalText = button.textContent;
+  button.disabled = true;
+  button.textContent = "Preparing…";
+  try {
+    const result = await sendPasswordResetEmailForUser(normalized, window.location.origin);
+    if (result?.ok) {
+      showSuccess(`Reset email sent to ${normalized}.`);
+      logAdminOperation({ action: "Password reset email sent", target: normalized, status: "success", message: `Reset email sent from admin panel to ${normalized}.` });
+    } else if (result?.resetUrl) {
+      // Delivery failed or email service not configured (free tier). The token
+      // is still issued and valid for 24h — hand the admin a copyable email.
+      await copyManualResetEmail(normalized, result.resetUrl, button);
+      logAdminOperation({ action: "Password reset email sent", target: normalized, status: "failed", message: `Delivery unavailable; admin prepared manual email for ${normalized}.` });
+    } else {
+      showWarning(result?.warning || "Token issued but the email could not be sent (email service not configured?).");
+      logAdminOperation({ action: "Password reset email sent", target: normalized, status: "failed", message: String(result?.warning || "Email delivery failed.") });
+    }
+    refreshAdminResetRequests();
+  } catch (error) {
+    showError(`Failed to prepare reset email: ${error?.message || "request failed."}`);
+    logAdminOperation({ action: "Password reset email sent", target: normalized, status: "failed", message: String(error?.message || "request failed.") });
+  } finally {
+    button.disabled = false;
+    // The manual-send path leaves "Copied — paste in your mail app" on the
+    // button (restored by its own timeout); don't clobber it here.
+    if (button.textContent === "Preparing…") {
+      button.textContent = originalText;
+    }
+  }
+}
+
+// Open wa.me with a pre-filled reset message. Issues the reset token through
+// the Worker (channel:"whatsapp" skips the email leg), fetches the user's
+// captured phone, and hands the admin a ready-to-send WhatsApp draft.
+async function sendResetLinkViaWhatsAppFromAdmin(email, button) {
+  const normalized = String(email || "").trim();
+  if (!normalized || !normalized.includes("@")) {
+    showWarning("No valid email on this request.");
+    return;
+  }
+  if (!isCloudAuthEnabled()) {
+    showWarning("Cloud auth is not configured; WhatsApp handoff needs the Worker backend.");
+    return;
+  }
+  const originalText = button.textContent;
+  button.disabled = true;
+  button.textContent = "Preparing…";
+  let opened = false;
+  try {
+    // Token first: if this fails there's nothing to send, so don't open a
+    // draft the admin would have to retract.
+    const result = await sendPasswordResetLinkViaWhatsAppForUser(normalized, window.location.origin);
+    const resetUrl = String(result?.resetUrl || "");
+    if (!result?.ok || !resetUrl) {
+      showError(result?.warning || "Could not issue a reset link for WhatsApp.");
+      return;
+    }
+    const contact = await lookupUserContactForAdmin(normalized).catch(() => null);
+    const phone = String(contact?.phone || "");
+    if (!contact?.hasPhone || !phone) {
+      // No number on file: copy the link and tell the admin how to fix it.
+      await copyManualResetEmail(normalized, resetUrl, button);
+      showWarning("No phone number on file for this user — asked them to add one after their next sign-in. Reset link copied for email instead.");
+      logAdminOperation({ action: "Password reset email sent", target: normalized, status: "failed", message: `WhatsApp handoff skipped for ${normalized}: no phone number on file. Reset link copied for manual email.` });
+      return;
+    }
+    const displayName = getAdminDirectoryCachedName(normalized);
+    const waUrl = buildWhatsAppClickToChatUrl(phone, resetUrl, { name: displayName, email: normalized });
+    if (!waUrl) {
+      await copyManualResetEmail(normalized, resetUrl, button);
+      showWarning(`Stored phone for ${normalized} is not a usable WhatsApp number. Reset link copied for email instead.`);
+      logAdminOperation({ action: "Password reset email sent", target: normalized, status: "failed", message: `WhatsApp handoff failed for ${normalized}: stored number unusable for wa.me.` });
+      return;
+    }
+    opened = true;
+    window.open(waUrl, "_blank", "noopener");
+    showSuccess(`WhatsApp draft opened for ${displayName || normalized}. Press send in WhatsApp to deliver the link.`);
+    logAdminOperation({ action: "Password reset link sent via WhatsApp", target: normalized, status: "success", message: `Password reset link sent via WhatsApp to ${normalized}.` });
+  } catch (error) {
+    showError(`Failed to prepare WhatsApp handoff: ${error?.message || "request failed."}`);
+    logAdminOperation({ action: "Password reset email sent", target: normalized, status: "failed", message: `WhatsApp handoff error for ${normalized}: ${String(error?.message || "request failed.")}` });
+  } finally {
+    button.disabled = false;
+    // The no-phone fallback leaves the "Copied —" state + its own timeout on
+    // the button; only restore text when we didn't hand off to another flow.
+    if (!opened && button.textContent === "Preparing…") {
+      button.textContent = originalText;
+    }
+  }
+}
+
+// Directory rows carry names; reuse the loaded directory so the WhatsApp
+// greeting can use the user's actual name when available, else the email
+// local-part (buildWhatsAppResetMessage already falls back).
+function getAdminDirectoryCachedName(email) {
+  const target = String(email || "").trim().toLowerCase();
+  if (!target || !Array.isArray(adminDirectoryUsers)) return "";
+  for (const row of adminDirectoryUsers) {
+    if (String(row?.email || "").trim().toLowerCase() === target) {
+      return String(row?.name || "").trim();
+    }
+  }
+  return "";
+}
+
 async function renderAdminOperationHistory({ skipCloudSync = false } = {}) {
   const container = document.getElementById("adminOperationHistoryList");
   const countLabel = document.getElementById("adminOperationHistoryCount");
@@ -2039,6 +2340,31 @@ async function renderAdminOperationHistory({ skipCloudSync = false } = {}) {
     appendKv("Actor", entry?.actor || "-");
     appendKv("Outcome", entry?.status || "-");
     card.appendChild(metaLine);
+    const rowAction = String(entry?.action || "").trim().toLowerCase();
+    const rowTarget = String(entry?.target || "").trim();
+    const recoveryEligible = rowTarget.includes("@") && (rowAction === "password recovery requested" || rowAction === "password reset email sent");
+    if (recoveryEligible && rowAction !== "password reset email sent") {
+      const resetActions = document.createElement("div");
+      resetActions.className = "button-row compact-actions admin-history-message-actions";
+      const resetBtn = document.createElement("button");
+      resetBtn.type = "button";
+      resetBtn.className = "btn btn-ghost btn-sm";
+      resetBtn.textContent = "Send reset email";
+      resetBtn.addEventListener("click", () => {
+        sendResetEmailFromAdmin(rowTarget, resetBtn);
+      });
+      resetActions.appendChild(resetBtn);
+      const resetWaBtn = document.createElement("button");
+      resetWaBtn.type = "button";
+      resetWaBtn.className = "btn btn-ghost btn-sm";
+      resetWaBtn.textContent = "Send via WhatsApp";
+      resetWaBtn.title = "Open a WhatsApp draft with the reset link (uses the user's saved phone number)";
+      resetWaBtn.addEventListener("click", () => {
+        sendResetLinkViaWhatsAppFromAdmin(rowTarget, resetWaBtn);
+      });
+      resetActions.appendChild(resetWaBtn);
+      card.appendChild(resetActions);
+    }
     const messageText = String(entry?.message || "-");
     const linkMatch = messageText.match(/https?:\/\/[^\s]+/);
     if (!linkMatch) {
@@ -3691,6 +4017,8 @@ async function restoreScreenState() {
     renderAdminRequests();
     renderAdminOverrides();
     renderAdminOperationHistory();
+    renderAdminResetRequests();
+    refreshAdminResetRequests();
     renderAdminFeedbackList();
     // Metrics first — same ordering as openAdminScreen so the initial
     // fetch is awaited before the screen becomes visible.
@@ -4133,6 +4461,8 @@ function openOTPModal(email, deviceFingerprint, mode = "") {
   const modal = document.getElementById("otpModal");
   const emailDisplay = document.getElementById("otpEmailDisplay");
   const messageEl = document.getElementById("otpMessage");
+  const smsNote = document.getElementById("otpSmsNote");
+  if (smsNote) smsNote.hidden = false;
   
   if (!modal) return;
   
@@ -4575,6 +4905,10 @@ async function completeLogin(loginResult, email) {
       openMigrationModal({ email: loginResult?.email || email }, { mode: "firebase-session" });
     }
     showSuccess("Login successful.");
+    // Existing-user phone capture: ask shortly after landing on the topics
+    // screen (delay keeps the login toast uncluttered and the screen snappy).
+    bindPhoneCaptureModal();
+    setTimeout(() => { maybePromptForPhoneNumber().catch(() => {}); }, 1500);
     
     // Silent migration: sync Firebase profile to Cloudflare D1
     if (loginResult?.authProvider === "firebase" || loginResult?.shouldPromptPasswordUpgrade) {
@@ -4927,6 +5261,11 @@ async function handlePasswordResetSubmit(event) {
 
     pendingPasswordResetToken = "";
     showSuccess("Password reset successfully! You are now signed in.");
+    // This user just proved email delivery works for them, but the request
+    // itself is the #1 WhatsApp use case — capture the number now while the
+    // need is fresh (force: they may have dismissed the login prompt).
+    bindPhoneCaptureModal();
+    setTimeout(() => { maybePromptForPhoneNumber({ force: true }).catch(() => {}); }, 1500);
     await updateAuthUI();
     captureCurrentDeviceForSessionOnce().catch(() => {});
     closeAuthModal();
@@ -5474,8 +5813,12 @@ function updateAuthUI() {
   // Header "team replied" badge: computed once per session when signed in;
   // logout hides it and resets the memoized fetch so re-login refetches.
   refreshHeaderReplyBadge().catch(() => {});
+  // Admin toolbar badge: unresolved reset-request count (memoized, hidden on logout),
+  // re-polled every 5 minutes while the admin's tab is visible.
+  refreshHeaderAdminResetBadge().catch(() => {});
+  startAdminResetBadgeAutoRefresh();
   if (headerAdminBtn) {
-    const adminTooltip = isAdmin ? "Open admin panel" : "Admin access restricted";
+    const adminTooltip = getHeaderAdminTooltip();
     headerAdminBtn.classList.toggle("hidden", !isAdmin);
     headerAdminBtn.setAttribute("aria-label", adminTooltip);
     headerAdminBtn.setAttribute("title", adminTooltip);
@@ -5506,7 +5849,7 @@ function updateAuthUI() {
       authModalIntro.textContent = cloudConfigMissing
         ? "Cloud authentication is required on this deployment."
         : configuredProvider === "Cloud" || configuredProvider === "Hybrid" || configuredProvider === "Cloudflare"
-          ? "Register or login with your email to continue."
+          ? "Tip: if you have a Gmail account, tap “Continue with Google” above to sign in instantly — no password needed. Prefer email? Register or login below."
           : configuredProvider === "Demo"
             ? "Local demo access is available on this device only. Passwords are not stored."
             : "Cloud authentication is required on this deployment.";
@@ -5584,6 +5927,16 @@ function updateAuthUI() {
         ? "If you're signed out, we'll either send a reset email or record a recovery request for follow-up."
         : forgotPasswordBtn.title;
     }
+
+  // "Reset password via WhatsApp": only when the business number is
+  // configured (runtime config) AND the Worker-side flow is active. The
+  // cloud-auth check keeps the button off for local/demo deployments.
+  const whatsappResetBtn = document.getElementById("whatsappResetBtn");
+  if (whatsappResetBtn) {
+    const waNumber = String(getFirebaseConfig()?.whatsappBusinessNumber || "").trim();
+    const showWhatsappReset = Boolean(waNumber) && isCloudAuthEnabled();
+    whatsappResetBtn.classList.toggle("hidden", !showWhatsappReset);
+  }
 
     if (changePasswordBtn) {
       const canUseChangePassword = supportsLegacyFirebaseRecovery || supportsSignedInCloudflarePasswordChange;
@@ -5898,6 +6251,7 @@ function refreshProfileUpgradeSection() {
     // Devices apply to every user — premium users must not skip this render
     // (the early return below used to leave the list stuck on its placeholder).
     renderTrustedDevices().catch(() => {});
+    refreshProfilePhone().catch(() => {});
 
     return renderProfilePaymentHistory();
   }
@@ -5918,8 +6272,198 @@ function refreshProfileUpgradeSection() {
 
   // Render trusted devices for all users
   renderTrustedDevices().catch(() => {});
+  refreshProfilePhone().catch(() => {});
 
   return Promise.resolve();
+}
+
+// Profile phone capture (future SMS verification). Loads the masked stored
+// number and wires the Save button; the Worker is the single source of truth.
+let profilePhoneBound = false;
+function refreshProfilePhone() {
+  const input = document.getElementById("profilePhoneInput");
+  const note = document.getElementById("profilePhoneNote");
+  if (!input) return Promise.resolve();
+  const session = readSession();
+  if (!session?.accessToken) {
+    input.value = "";
+    input.disabled = true;
+    if (note) note.textContent = "Sign in to save a phone number for verification codes.";
+    return Promise.resolve();
+  }
+  input.disabled = false;
+  if (!profilePhoneBound) {
+    profilePhoneBound = true;
+    document.getElementById("savePhoneBtn")?.addEventListener("click", async () => {
+      const btn = document.getElementById("savePhoneBtn");
+      const phoneInput = document.getElementById("profilePhoneInput");
+      const phoneNote = document.getElementById("profilePhoneNote");
+      if (!btn || !phoneInput) return;
+      const activeSession = readSession();
+      if (!activeSession?.accessToken) {
+        showWarning("Sign in to save a phone number.");
+        return;
+      }
+      const value = String(phoneInput.value || "").trim();
+      btn.disabled = true;
+      btn.textContent = "Saving…";
+      try {
+        const result = await requestCloudflareAuth("auth/profile/phone", {
+          method: "POST",
+          body: { phone: value },
+          accessToken: activeSession.accessToken,
+        });
+        if (!value) {
+          showSuccess("Phone number removed.");
+        } else {
+          showSuccess(`Phone saved (${result?.phone || "stored"}). You'll be ready when SMS verification launches.`);
+        }
+        refreshProfilePhone();
+      } catch (error) {
+        showError(error?.message || "Could not save the phone number.");
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "Save";
+      }
+    });
+  }
+  return requestCloudflareAuth("auth/profile/phone", { method: "GET", accessToken: session.accessToken })
+    .then((payload) => {
+      if (document.activeElement !== input) input.value = payload?.phone ? `Stored: ${payload.phone}` : "";
+      if (note) note.textContent = payload?.phone
+        ? `Verification number on file: ${payload.phone}. Used for account-security messages (password resets, codes) on WhatsApp and, when SMS launches, text.`
+        : "Used for account-security messages on WhatsApp (like password-reset links) and verification codes. Your number is stored once — no need to ask again.";
+    })
+    .catch(() => {
+      // Non-critical; leave the field editable and the note as-is.
+    });
+}
+
+// Phone capture for existing users. Every account created before phone
+// capture shipped has no number on file, so the WhatsApp reset handoff can't
+// reach them. Rather than a bulk campaign, ask at the two moments the user is
+// already in an authenticated, cooperative flow: right after signing in and
+// right after completing a password reset (the exact journey where WhatsApp
+// delivery would have helped). Skippable; suppressed for 14 days per skip.
+const PHONE_CAPTURE_SKIP_KEY = "promotion-cbt:phone-capture:skipped-at";
+const PHONE_CAPTURE_SKIP_DAYS = 14;
+// A deliberate "Not now" on the *login* prompt is a one-time offer: the user
+// has a persistent local marker, so re-asking every login would train them to
+// dismiss modals. The post-password-reset prompt still re-asks (that journey
+// is exactly where WhatsApp reachability matters), and the Profile page is
+// always available for self-serve capture.
+let phoneCaptureBound = false;
+
+function phoneCaptureRecentlySkipped() {
+  try {
+    // Any recorded skip = never prompt at login again (once-only offer).
+    return Boolean(localStorage.getItem(PHONE_CAPTURE_SKIP_KEY));
+  } catch {
+    return false;
+  }
+}
+
+function markPhoneCaptureSkipped() {
+  try {
+    localStorage.setItem(PHONE_CAPTURE_SKIP_KEY, String(Date.now()));
+  } catch {
+    // storage unavailable — they'll just be asked again next session
+  }
+}
+
+/**
+ * Open the phone-capture modal if the signed-in user plausibly has no number
+ * saved. Fail-open silent: any API error just skips the prompt.
+ * @param {{ force?: boolean }} [opts] force bypasses the skip-suppression window
+ */
+async function maybePromptForPhoneNumber({ force = false } = {}) {
+  const modal = document.getElementById("phoneCaptureModal");
+  // force (post-password-reset) bypasses the skip-suppression window — the
+  // user is mid-recovery, the exact moment WhatsApp reachability matters —
+  // but never bypasses the has-phone check below.
+  if (!modal || (!force && phoneCaptureRecentlySkipped())) return;
+  const session = readSession();
+  if (!session?.accessToken) return; // Google/firebase-only sessions have no cloud profile yet
+  if (modal.classList.contains("hidden")) {
+    modal.classList.remove("hidden");
+  }
+  const input = document.getElementById("phoneCaptureInput");
+  const note = document.getElementById("phoneCaptureNote");
+  if (input) {
+    input.value = "";
+    setTimeout(() => input.focus(), 50);
+  }
+  // Pre-check: if the user already stored a number, don't nag — close quietly.
+  try {
+    const stored = await requestCloudflareAuth("auth/profile/phone", { method: "GET", accessToken: session.accessToken });
+    if (stored?.phone) {
+      modal.classList.add("hidden");
+      return;
+    }
+    if (note) note.textContent = "No number saved yet — add one to stay reachable on WhatsApp.";
+  } catch {
+    // Couldn't check (offline/session race): keep the modal open; the save
+    // path re-validates and duplicates are harmless (same number overwritten).
+  }
+}
+
+function closePhoneCaptureModal({ skipped = false } = {}) {
+  const modal = document.getElementById("phoneCaptureModal");
+  if (modal) modal.classList.add("hidden");
+  const form = document.getElementById("phoneCaptureForm");
+  if (form) form.reset();
+  if (skipped) markPhoneCaptureSkipped();
+}
+
+function bindPhoneCaptureModal() {
+  if (phoneCaptureBound) return;
+  const form = document.getElementById("phoneCaptureForm");
+  const skipBtn = document.getElementById("phoneCaptureSkipBtn");
+  if (!form) return;
+  phoneCaptureBound = true;
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const btn = document.getElementById("phoneCaptureSaveBtn");
+    const input = document.getElementById("phoneCaptureInput");
+    const value = String(input?.value || "").trim();
+    if (!value) {
+      showWarning("Enter a phone number, or choose \"Not now\".");
+      return;
+    }
+    // Client-side pre-check mirrors the Worker's rule so users on flaky
+    // connections get instant feedback instead of a round-trip error.
+    if (!toWhatsAppNumber(value)) {
+      showWarning("That doesn't look like a valid phone number — include the full number, e.g. 0803 123 4567.");
+      return;
+    }
+    const session = readSession();
+    if (!session?.accessToken) {
+      closePhoneCaptureModal();
+      return;
+    }
+    if (btn) {
+      btn.disabled = true;
+      btn.textContent = "Saving…";
+    }
+    try {
+      await requestCloudflareAuth("auth/profile/phone", {
+        method: "POST",
+        body: { phone: value },
+        accessToken: session.accessToken,
+      });
+      closePhoneCaptureModal();
+      showSuccess("Phone number saved — you're reachable on WhatsApp for account security messages.");
+      refreshProfilePhone().catch(() => {});
+    } catch (error) {
+      showError(error?.message || "Could not save the phone number. Try again from your Profile page.");
+    } finally {
+      if (btn) {
+        btn.disabled = false;
+        btn.textContent = "Save number";
+      }
+    }
+  });
+  skipBtn?.addEventListener("click", () => closePhoneCaptureModal({ skipped: true }));
 }
 
 // After an automatic grant, refresh the in-memory session so the plan badge
@@ -6685,6 +7229,93 @@ async function refreshHeaderReplyBadge() {
       });
   }
   return headerReplyBadgeFetch;
+}
+
+// Admin toolbar badge: unresolved password-reset request count on the header
+// Admin button, so admins notice pending requests before opening the dashboard.
+// Mirrors the reply-badge lifecycle: memoized fetch per session, hidden on
+// logout, tooltip kept in sync. Uses the dedicated action-filtered endpoint so
+// the count matches the dashboard card exactly.
+let headerAdminResetFetch = null;
+let headerAdminResetCount = 0;
+const ADMIN_RESET_BADGE_REFRESH_INTERVAL_MS = 5 * 60 * 1000;
+let adminResetBadgeIntervalHandle = null;
+let adminResetBadgeVisibilityBound = false;
+
+function getHeaderAdminTooltip() {
+  if (!isCurrentUserAdmin()) return "Admin access restricted";
+  if (headerAdminResetCount > 0) {
+    return `Open admin panel — ${headerAdminResetCount} unresolved reset request${headerAdminResetCount === 1 ? "" : "s"}`;
+  }
+  return "Open admin panel";
+}
+
+function setHeaderAdminResetBadge(count) {
+  headerAdminResetCount = Number(count) || 0;
+  const badge = document.getElementById("headerAdminResetBadge");
+  if (badge) {
+    badge.textContent = headerAdminResetCount > 0 ? String(headerAdminResetCount) : "";
+    badge.classList.toggle("hidden", !(headerAdminResetCount > 0));
+  }
+  const adminBtn = document.getElementById("headerAdminBtn");
+  if (adminBtn && isCurrentUserAdmin()) {
+    const tooltip = getHeaderAdminTooltip();
+    adminBtn.setAttribute("aria-label", tooltip);
+    adminBtn.setAttribute("title", tooltip);
+    adminBtn.setAttribute("data-tooltip", tooltip);
+  }
+}
+
+async function refreshHeaderAdminResetBadge() {
+  if (!isCurrentUserAdmin() || !isCloudAuthEnabled()) {
+    headerAdminResetFetch = null;
+    setHeaderAdminResetBadge(0);
+    return;
+  }
+  if (!headerAdminResetFetch) {
+    headerAdminResetFetch = getResetRequestRows(ADMIN_RESET_ROW_LIMIT)
+      .then((rows) => {
+        const stats = summarizePasswordResetRequests(Array.isArray(rows) ? rows : []);
+        setHeaderAdminResetBadge(stats.unresolved.length);
+      })
+      .catch(() => {
+        // The badge is non-critical; keep the current state on failure.
+      });
+  }
+  return headerAdminResetFetch;
+}
+
+// Periodic refresh (every 5 minutes) while an admin is signed in and the tab
+// is visible, so the badge reflects new recovery requests without a reload.
+// Mirrors the admin-directory auto-sync pattern: idempotent start, gated tick,
+// plus an immediate refresh when the tab becomes visible again.
+function shouldAutoRefreshAdminResetBadge() {
+  return isCurrentUserAdmin() && isCloudAuthEnabled() && !document.hidden;
+}
+
+function startAdminResetBadgeAutoRefresh() {
+  if (adminResetBadgeIntervalHandle) return;
+  adminResetBadgeIntervalHandle = setInterval(() => {
+    if (!shouldAutoRefreshAdminResetBadge()) return;
+    headerAdminResetFetch = null; // re-arm the session memo
+    refreshHeaderAdminResetBadge().catch(() => {});
+  }, ADMIN_RESET_BADGE_REFRESH_INTERVAL_MS);
+
+  if (adminResetBadgeVisibilityBound) return;
+  adminResetBadgeVisibilityBound = true;
+  document.addEventListener("visibilitychange", () => {
+    if (!shouldAutoRefreshAdminResetBadge()) return;
+    headerAdminResetFetch = null;
+    refreshHeaderAdminResetBadge().catch(() => {});
+  });
+}
+
+// Dashboard refreshes re-sync the badge from live data and re-arm the memo so
+// the next updateAuthUI picks up fresh state.
+function syncHeaderAdminResetBadgeFromStats() {
+  headerAdminResetFetch = null;
+  if (!isCurrentUserAdmin() || adminResetLoadFailed) return;
+  setHeaderAdminResetBadge(adminResetStats ? adminResetStats.unresolved.length : 0);
 }
 
 async function renderUserFeedbackList() {
@@ -7775,10 +8406,15 @@ function handleAdminStatCardClick(statType) {
         renderAdminAuditLog();
       }, 150);
       break;
+    case 'reset-requests':
+      // Toggle the expandable panel under the stat-card row (active-users pattern).
+      refreshAdminResetRequests();
+      document.getElementById('adminResetRequestsPanel')?.classList.toggle('hidden');
+      break;
   }
 }
 
-async function openAdminScreen() {
+async function openAdminScreen({ focusSectionId = "" } = {}) {
   if (!isCurrentUserAdmin()) {
     showWarning("Admin access is restricted.");
     return;
@@ -7795,6 +8431,8 @@ async function openAdminScreen() {
         renderAdminRequests();
         renderAdminOverrides();
         renderAdminOperationHistory();
+        renderAdminResetRequests();
+        refreshAdminResetRequests();
         renderAdminFeedbackList();
         // Start metrics fetch FIRST so the await below blocks until real
         // numbers are painted. refreshAdminUserDirectory() also calls
@@ -7826,6 +8464,25 @@ async function openAdminScreen() {
         failurePrefix: "Unable to open admin panel:",
       },
     );
+    if (focusSectionId) {
+      // Badge/deep-link entry: land the admin on the requested section. Runs
+      // after showScreen resolves, so the admin screen is active; the tab
+      // switch precedes scrolling so the target card is in the visible view.
+      switchAdminTab("dashboard");
+      if (focusSectionId === "password-reset-requests") {
+        // The list lives in the expandable panel; unhide it before scrolling.
+        document.getElementById("adminResetRequestsPanel")?.classList.remove("hidden");
+        refreshAdminResetRequests();
+      }
+      const section = document.getElementById(focusSectionId) || document.getElementById("adminResetRequestsPanel");
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth", block: "start" });
+        section.classList.remove("admin-focus-highlight");
+        // Restart the animation if the card was highlighted recently.
+        void section.offsetWidth;
+        section.classList.add("admin-focus-highlight");
+      }
+    }
   } catch (error) {
     // Error toast already displayed by runOperationWithFeedback.
   }
@@ -7889,6 +8546,7 @@ function initializeAuthUI() {
   const clearAdminOperationHistoryBtn = document.getElementById(
     "clearAdminOperationHistoryBtn",
   );
+  const refreshResetRequestsBtn = document.getElementById("refreshResetRequestsBtn");
   const openHelpFeedbackBtn = document.getElementById("openHelpFeedbackBtn");
   const dashboardFeedbackBtn = document.getElementById("dashboardFeedbackBtn");
   const headerFeedbackBtn = document.getElementById("headerFeedbackBtn");
@@ -8167,6 +8825,28 @@ function initializeAuthUI() {
     });
   }
 
+  // "Reset password via WhatsApp": open the user's WhatsApp with a pre-filled
+  // RESET message to the business line. Their incoming message opens Meta's
+  // free 24-hour service window; the Worker's webhook replies with a reset
+  // link (matched to the phone stored on their account — possession of the
+  // SIM is the proof of identity). No email needed, no cost to anyone.
+  const whatsappResetHandlerBtn = document.getElementById("whatsappResetBtn");
+  if (whatsappResetHandlerBtn) {
+    whatsappResetHandlerBtn.addEventListener("click", () => {
+      const waNumber = String(getFirebaseConfig()?.whatsappBusinessNumber || "").replace(/\D/g, "");
+      if (!waNumber || !isCloudAuthEnabled()) {
+        setAuthMessage("WhatsApp recovery isn't available right now — use 'Forgot password?' instead.");
+        return;
+      }
+      const text = encodeURIComponent("RESET");
+      window.open(`https://wa.me/${waNumber}?text=${text}`, "_blank", "noopener");
+      setAuthMessage(
+        "WhatsApp opened — press send on the RESET message. You'll get a reset link here in WhatsApp within a minute (must be the number saved on your Profile).",
+        "success",
+      );
+    });
+  }
+
   // Resend verification email button on login screen
   const resendVerificationBtn = document.getElementById("resendVerificationBtn");
   if (resendVerificationBtn) {
@@ -8287,7 +8967,11 @@ function initializeAuthUI() {
   }
   if (headerAdminBtn) {
     headerAdminBtn.addEventListener("click", async () => {
-      await openAdminScreen();
+      // A visible badge means pending work: land the admin directly on the
+      // reset-requests card instead of the dashboard top.
+      await openAdminScreen(
+        headerAdminResetCount > 0 ? { focusSectionId: "password-reset-requests" } : {}
+      );
     });
   }
 
@@ -8455,6 +9139,23 @@ function initializeAuthUI() {
       } catch (error) {
         // Error toast already displayed by runOperationWithFeedback.
       }
+    });
+  }
+
+  if (refreshResetRequestsBtn) {
+    refreshResetRequestsBtn.addEventListener("click", () => {
+      if (!isCurrentUserAdmin()) {
+        showWarning("Admin access is restricted.");
+        return;
+      }
+      refreshAdminResetRequests();
+    });
+  }
+
+  const closeResetRequestsPanelBtn = document.getElementById("closeResetRequestsPanelBtn");
+  if (closeResetRequestsPanelBtn) {
+    closeResetRequestsPanelBtn.addEventListener("click", () => {
+      document.getElementById("adminResetRequestsPanel")?.classList.add("hidden");
     });
   }
 

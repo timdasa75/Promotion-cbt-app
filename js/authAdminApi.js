@@ -209,6 +209,44 @@ export async function listAdminOperationsViaAdminApi(limit, accessToken, fetchIm
   return Array.isArray(payload?.operations) ? payload.operations : [];
 }
 
+export async function listResetRequestsViaAdminApi(limit, accessToken, fetchImpl = fetch) {
+  const payload = await postAdminApiJson(
+    buildAdminApiUrl("adminListResetRequests"),
+    accessToken,
+    { limit },
+    fetchImpl,
+  );
+  return Array.isArray(payload?.operations) ? payload.operations : [];
+}
+
+export async function sendPasswordResetViaAdminApi(email, baseUrl, accessToken, fetchImpl = fetch) {
+  const payload = await postAdminApiJson(
+    buildAdminApiUrl("adminSendPasswordReset"),
+    accessToken,
+    { email, baseUrl },
+    fetchImpl,
+  );
+  return payload;
+}
+
+export async function sendPasswordResetLinkViaWhatsAppApi(email, baseUrl, accessToken, fetchImpl = fetch) {
+  return postAdminApiJson(
+    buildAdminApiUrl("adminSendPasswordReset"),
+    accessToken,
+    { email, baseUrl, channel: "whatsapp" },
+    fetchImpl,
+  );
+}
+
+export async function lookupUserContactViaAdminApi(email, accessToken, fetchImpl = fetch) {
+  return postAdminApiJson(
+    buildAdminApiUrl("adminLookupUserContact"),
+    accessToken,
+    { email },
+    fetchImpl,
+  );
+}
+
 export async function logAdminOperationViaAdminApi(entry, accessToken, fetchImpl = fetch) {
   return postAdminApiJson(buildAdminApiUrl("adminLogOperation"), accessToken, entry || {}, fetchImpl);
 }

@@ -14,6 +14,13 @@ test.beforeEach(async ({ page }) => {
   );
 });
 
+// Production-build compatibility: the tests below import unbundled source
+// modules (import("/js/quiz.js") and friends) that only exist under the Vite
+// dev server. When the suite runs against a production build (vite preview),
+// they are skipped instead of failing — everything else runs against the build.
+const IS_PREVIEW_BUILD = process.env.PLAYWRIGHT_PREVIEW_BUILD === "1";
+const previewIncompatible = IS_PREVIEW_BUILD ? test.skip : test;
+
 // The exact config/runtime-auth.js the deploy workflow generates from secrets
 // (see .github/workflows/deploy-pages.yml). `overrides` replaces any field so
 // tests can serve a variant (e.g. a different payment provider) while keeping
@@ -753,7 +760,7 @@ test("review mode acts as pre-quiz study with answers and explanations visible",
 });
 
 
-test("timed topic test lets users end the exam early with warning", async ({ page }) => {
+previewIncompatible("timed topic test lets users end the exam early with warning", async ({ page }) => {
   await page.addInitScript(() => {
     const user = {
       id: "u_end_exam",
@@ -1654,7 +1661,7 @@ test("practice mode does not reveal feedback before submit after refresh restore
   await expect(page.locator("#submitBtn")).toBeVisible();
 });
 
-test("results show source-topic breakdown for mock exam sessions", async ({ page }) => {
+previewIncompatible("results show source-topic breakdown for mock exam sessions", async ({ page }) => {
   await page.addInitScript(() => {
     const user = {
       id: "u_mock_results",
@@ -1727,7 +1734,7 @@ await expect(page.locator("#categoryBreakdown")).toContainText("Best Next Step")
   await expect(page.locator("#retryPathResultsBtn")).toContainText("Retry Missed (");
 });
 
-test("topic results can return to tuned session setup with weak-area emphasis", async ({ page }) => {
+previewIncompatible("topic results can return to tuned session setup with weak-area emphasis", async ({ page }) => {
   await page.addInitScript(() => {
     const user = {
       id: "u_setup_tune",
@@ -1830,7 +1837,7 @@ await expect(page.locator("#categoryBreakdown")).toContainText("Best Next Step")
   await expect(page.locator("#studyTargetGlBandSelect")).toHaveValue("gl_15_16");
 });
 
-test("topic results can clear tuned setup guidance and still open session setup", async ({ page }) => {
+previewIncompatible("topic results can clear tuned setup guidance and still open session setup", async ({ page }) => {
   await page.addInitScript(() => {
     const user = {
       id: "u_setup_tune_clear",
@@ -1932,7 +1939,7 @@ test("topic results can clear tuned setup guidance and still open session setup"
   await expect(page.locator("#studyTargetGlBandSelect")).toHaveValue("general");
 });
 
-test("retry-missed queue is created from results and can start a focused retry session", async ({ page }) => {
+previewIncompatible("retry-missed queue is created from results and can start a focused retry session", async ({ page }) => {
   await page.addInitScript(() => {
     const user = {
       id: "u_retry",
@@ -2136,7 +2143,7 @@ await page.click("#startLearningBtn");
   await expect(page.locator("#reviewMistakesSummaryChips")).toContainText("2 queued");
 });
 
-test("spaced-practice queue shows due count and starts a focused spaced session", async ({ page }) => {
+previewIncompatible("spaced-practice queue shows due count and starts a focused spaced session", async ({ page }) => {
   await page.addInitScript(() => {
     const user = {
       id: "u_spaced",
@@ -2433,4 +2440,228 @@ test("local mode shows cloud-sign-in guidance for feedback and hides quiz feedba
   await page.click("#practiceModeCard");
   await expect(page.locator("#quizScreen")).toBeVisible();
   await expect(page.locator("#openQuizFeedbackBtn")).toBeHidden();
+});
+
+test("ethics quiz never renders fabricated Chapter 4 citation families", async ({ page }) => {
+  test.setTimeout(120_000);
+  await page.addInitScript(() => {
+    const user = {
+      id: "u_citation_guard",
+      name: "Citation Guard User",
+      email: "citation-guard@example.com",
+      passwordHash: "seedhash",
+      plan: "premium",
+      createdAt: new Date().toISOString(),
+    };
+    window.localStorage.setItem("cbt_users_v1", JSON.stringify([user]));
+    window.localStorage.setItem(
+      "cbt_session_v1",
+      JSON.stringify({ provider: "local", userId: user.id, createdAt: new Date().toISOString() }),
+    );
+  });
+
+  await page.goto("/");
+  await expect(page.locator("#appLoadingOverlay")).toHaveClass(/is-hidden/);
+  if (!(await page.locator("#topicSelectionScreen").isVisible())) {
+    await page.evaluate(() => { document.getElementById('authModal')?.classList.add('hidden'); });
+    await page.locator("#startLearningBtn").dispatchEvent("click");
+  }
+  await expect(page.locator("#topicSelectionScreen")).toBeVisible();
+
+  // psr_rules is a free topic, so the premium gate never blocks this flow.
+  // Production (vite preview / Pages) may land directly on Session Setup when
+  // the topic is still loading, so accept either the subcategory screen or
+  // the mode screen before continuing.
+  await page.locator("#topicList .topic-card", { hasText: "Public Service Rules" }).first().click();
+  // Production fetches the bank over the network: wait out the topic-load overlay
+  // (a no-op when it never appears, e.g. the instant dev-server path).
+  await expect(page.locator("#appLoadingOverlay")).toHaveClass(/is-hidden/, { timeout: 15_000 });
+  await expect(
+    page.locator("#categorySelectionScreen:visible, #modeSelectionScreen:visible"),
+  ).toBeVisible();
+  if (await page.locator("#categorySelectionScreen").isVisible()) {
+    await page.locator("#categoryList .topic-card", { hasText: "Conduct & Ethics" }).first().click();
+  }
+  await expect(page.locator("#modeSelectionScreen")).toBeVisible();
+
+  // Study Review renders every question with its rationale — one pass covers
+  // stems, options, and explanations without any answering logic.
+  await page.click("#reviewModeCard");
+  await expect(page.locator("#quizScreen")).toBeVisible();
+  await expect(page.locator("#optionsContainer .option-btn").first()).toBeVisible();
+
+  // The pre-deploy sweep already proved bank-level integrity; the browser test
+  // asserts the exact fabricated family that reached users in the wild.
+  const result = await page.evaluate(async () => {
+    // Any 04xxxx (Chapter 4 — increments/emoluments) citation inside the ethics
+    // subcategory is the fabrication signature that previously reached users.
+    const FABRICATED_04XXXX_IN_ETHICS = /\bPSR\s*04\d{4}\b/;
+    const findings = [];
+
+    const scanTextNodes = (root) => {
+      const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+      while (walker.nextNode()) {
+        const text = walker.currentNode.nodeValue || "";
+        if (FABRICATED_04XXXX_IN_ETHICS.test(text)) {
+          findings.push({ where: "rendered", text: text.trim().slice(0, 160) });
+        }
+      }
+    };
+
+    const scanCurrentCard = () => {
+      scanTextNodes(document.getElementById("questionText"));
+      scanTextNodes(document.getElementById("explanation"));
+      const options = document.getElementById("optionsContainer");
+      if (options) scanTextNodes(options);
+    };
+
+    const currentStem = () =>
+      (document.getElementById("questionText")?.textContent || "").trim();
+    const next = () => document.getElementById("nextBtn")?.click();
+    const waitForAdvance = async () => {
+      const before = currentStem();
+      for (let i = 0; i < 50; i += 1) {
+        await new Promise((r) => setTimeout(r, 100));
+        if (currentStem() !== before) return true;
+      }
+      return false;
+    };
+
+    // The app ships the whole psr_rules bank to the client — scan it directly
+    // so the guard does not depend on the review session's ordering.
+    const scanBank = async () => {
+      // production-faithful: resolve relative to the served base (Pages deploys live under /Promotion-cbt-app/).
+      const candidates = [new URL("data/psr_rules.json", document.baseURI).href, "/data/psr_rules.json"];
+      let bank = null;
+      for (const url of candidates) {
+        try {
+          const resp = await fetch(url, { cache: "no-store" });
+          if (!resp.ok) continue;
+          const data = await resp.json();
+          bank = data;
+          break;
+        } catch {
+          // try next candidate
+        }
+      }
+      if (!bank) return { error: "bank fetch failed" };
+      const subs = Array.isArray(bank?.subcategories) ? bank.subcategories : [];
+      const ethics = subs.find((s) => s.id === "psr_ethics");
+      if (!ethics) return { error: "psr_ethics subcategory missing" };
+      const questions = Array.isArray(ethics.questions) ? ethics.questions : [];
+      const flagged = [];
+      for (const q of questions) {
+        const haystack = [q.question, ...(Array.isArray(q.options) ? q.options : []), q.explanation]
+          .filter((v) => typeof v === "string")
+          .join("\n");
+        if (FABRICATED_04XXXX_IN_ETHICS.test(haystack)) {
+          flagged.push({ id: q.id, snippet: haystack.match(FABRICATED_04XXXX_IN_ETHICS)?.[0] });
+        }
+      }
+      return { scanned: questions.length, flagged };
+    };  
+
+    scanCurrentCard();
+    // Walk a bounded slice of the live review session (first 10 cards).
+    for (let i = 0; i < 10; i += 1) {
+      if (!(await waitForAdvance())) break;
+      scanCurrentCard();
+    }
+
+    const bankScan = await scanBank();
+    return { findings, bankScan };
+  }).catch((error) => ({ fatal: String(error) }));
+
+  // surface any internal failure clearly
+  expect(result.fatal, "in-page scan should not throw").toBeUndefined();
+  expect(result.bankScan?.error, "bank scan should load the served bank").toBeUndefined();
+  expect(result.bankScan?.flagged, "no fabricated 04xxxx citations in served psr_ethics").toEqual([]);
+  expect(result.findings, "no fabricated 04xxxx citations in rendered quiz").toEqual([]);
+});
+
+// Deep-link regression: with an unresolved reset request on the wire, clicking
+// the Admin toolbar button lands the admin on the Password Reset Requests card
+// (dashboard tab active, card scrolled into view) instead of the dashboard top.
+// The badge lifecycle is covered by unit-level stats; this test pins the flow.
+test("WhatsApp reset button stays hidden while the business number is unconfigured (ON HOLD feature)", async ({ page }) => {
+  // No whatsappBusinessNumber in config (and no runtime-auth override in the
+  // production build the preview serves) → the login modal must not offer the
+  // dormant self-service flow. Guards against accidental activation.
+  await page.goto("/");
+  await expect(page.locator("#appLoadingOverlay")).toHaveClass(/is-hidden/);
+  const authModal = page.locator("#authModal");
+  if (!(await authModal.isVisible())) {
+    await page.locator("#startLearningBtn").dispatchEvent("click");
+  }
+  await expect(authModal).toBeVisible();
+  const waBtn = page.locator("#whatsappResetBtn");
+  await expect(waBtn).toBeHidden();
+});
+
+test("admin badge deep-link opens the dashboard on the reset-requests card", async ({ page }) => {
+  const corsHeaders = {
+    "access-control-allow-origin": "*",
+    "access-control-allow-methods": "POST, OPTIONS",
+    "access-control-allow-headers": "authorization, content-type",
+  };
+  const respondJson = async (route, body) => {
+    if (route.request().method() === "OPTIONS") {
+      await route.fulfill({ status: 204, headers: corsHeaders, body: "" });
+      return;
+    }
+    await route.fulfill({ status: 200, contentType: "application/json", headers: corsHeaders, body: JSON.stringify(body) });
+  };
+
+  await page.addInitScript(() => {
+    window.PROMOTION_CBT_AUTH = {
+      firebaseApiKey: "mock-api-key",
+      firebaseProjectId: "mock-project-id",
+      firebaseAuthDomain: "mock-project-id.firebaseapp.com",
+      adminApiBaseUrl: "/mock-admin-api",
+      adminEmails: ["timdasa75@gmail.com"],
+    };
+    const nowIso = new Date().toISOString();
+    window.sessionStorage.setItem(
+      "cbt_session_v1",
+      JSON.stringify({
+        provider: "firebase",
+        accessToken: "mock-id-token",
+        refreshToken: "mock-refresh-token",
+        expiresAt: Date.now() + 60 * 60 * 1000,
+        user: { id: "u_admin", name: "Admin User", email: "timdasa75@gmail.com", plan: "premium", createdAt: nowIso, emailVerified: true },
+        createdAt: nowIso,
+      }),
+    );
+  });
+
+  const resetRows = [
+    { id: "a1", action: "Password recovery requested", target: "waiter@example.com", status: "pending", message: "", actor: "self-service", createdAt: new Date(Date.now() - 3600_000).toISOString() },
+    { id: "a2", action: "Password reset email sent", target: "resolved@example.com", status: "success", message: "", actor: "admin@example.com", createdAt: new Date(Date.now() - 7200_000).toISOString() },
+    { id: "a3", action: "Password recovery requested", target: "resolved@example.com", status: "pending", message: "", actor: "self-service", createdAt: new Date(Date.now() - 10800_000).toISOString() },
+  ];
+  await page.route("**/mock-admin-api/adminListResetRequests*", (route) => respondJson(route, { ok: true, operations: resetRows }));
+  await page.route("**/mock-admin-api/adminListOperations*", (route) => respondJson(route, { ok: true, operations: [] }));
+  await page.route("**/mock-admin-api/adminListUsers*", (route) => respondJson(route, { ok: true, total: 0, users: [] }));
+  await page.route("https://firestore.googleapis.com/**", (route) => route.fulfill({ status: 403, contentType: "application/json", body: "{}" }));
+  await serveCiGeneratedRuntimeConfig(page);
+
+  await page.goto("/");
+  await expect(page.locator("#appLoadingOverlay")).toHaveClass(/is-hidden/);
+
+  const badge = page.locator("#headerAdminResetBadge");
+  await expect(badge).toBeVisible();
+  await expect(badge).toHaveText("1");
+
+  await page.click("#headerAdminBtn");
+  await expect(page.locator("#adminScreen")).toBeVisible();
+  const dashboardActive = await page.evaluate(() => document.querySelector("#adminViewDashboard")?.classList.contains("active"));
+  expect(dashboardActive, "dashboard tab should be the active admin view").toBe(true);
+
+  // The deep-link opens the expandable reset-requests panel (active-users pattern).
+  await expect(page.locator("#adminResetRequestsPanel")).toBeVisible();
+  await expect(page.locator("#adminResetRequestsPanel")).toHaveClass(/admin-focus-highlight/);
+  await expect(page.locator("#adminResetRequestsList")).toContainText("waiter@example.com");
+
+  // The unresolved count also appears on the 5th stat card.
+  await expect(page.locator("[data-admin-stat='reset-requests'] .admin-stat-value")).toHaveText("1");
 });

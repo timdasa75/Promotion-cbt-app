@@ -19,7 +19,11 @@ CREATE TABLE IF NOT EXISTS auth_users (
   legacy_user_id TEXT NOT NULL DEFAULT '',
   created_at TEXT NOT NULL,
   updated_at TEXT NOT NULL,
-  last_login_at TEXT NOT NULL DEFAULT ''
+  last_login_at TEXT NOT NULL DEFAULT '',
+  -- Added in production by ad-hoc ALTER TABLE (2026-09) and mirrored here so
+  -- fresh deployments match the live database exactly.
+  plan_source TEXT DEFAULT 'free',
+  phone_number TEXT NOT NULL DEFAULT ''
 );
 
 CREATE INDEX IF NOT EXISTS idx_auth_users_status ON auth_users(status);

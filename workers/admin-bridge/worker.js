@@ -4,6 +4,7 @@ import {
   generateRandomBase64Url,
   getAuthUserById,
   hashPassword,
+  issueEmailToken,
   issueSession,
   parseBearerToken,
   RATE_LIMIT,
@@ -1880,6 +1881,408 @@ async function handleAuthPasswordRecoveryRequest(request, env) {
   };
 }
 
+// Admin-driven password-reset email (adminSendPasswordReset).
+// An admin acting on a user's reset request issues a fresh password_reset
+// email token and sends the reset email via Resend. Free-tier notes:
+//   - The public /auth/password/request endpoint already auto-sends when
+//     RESEND_API_KEY + baseUrl are present; this route is the manual fallback
+//     for when auto-send was skipped or the user asks for a resend.
+//   - The 24h one-active-token-per-user rule (issueEmailToken) makes resends
+//     idempotent within a day — no extra token churn on repeated clicks.
+//   - Auto-send is intentionally NOT triggered from here without an explicit
+//     admin call; Resend free tier is 100/day and 2,000/month, so the audit
+//     list lets admins choose who gets an email.
+async function handleAdminSendPasswordReset(request, env) {
+  const actor = await verifyAdminCaller(request, env);
+  const database = requireAuditDatabase(env);
+  const body = await readJsonBody(request);
+  const targetEmail = normalizeEmail(body?.email || "");
+  if (!targetEmail) throw createRouteError(400, "Target email is required.");
+
+  // WhatsApp handoff: the admin delivers the link themselves through wa.me,
+  // so skip the email leg entirely (don't burn a Resend attempt or leave a
+  // spurious "failed" row) — but still issue the token and audit the send.
+  const viaWhatsApp = body?.channel === "whatsapp";
+  const deliverEmail = viaWhatsApp ? false : body?.deliver !== false;
+
+  // NOTE: auth_users has no `name` column (schema file and production D1 agree).
+  // Selecting it throws D1 error 7500 at runtime — the 2026-09-18 admin reset
+  // outage. Display names live in user_profiles/Firestore; email-local-part is
+  // the fallback personalization here.
+  const authUser = await database
+    .prepare(`SELECT id, email, status FROM auth_users WHERE email = ?1 LIMIT 1`)
+    .bind(targetEmail)
+    .first();
+  if (!authUser?.id) throw createRouteError(404, "No account found for that email.");
+
+  const baseUrl = String(body?.baseUrl || request.headers.get("origin") || "").trim().replace(/\/+$/, "");
+  if (!baseUrl) throw createRouteError(400, "baseUrl is required to build the reset link.");
+
+  const tokenResult = await issueEmailToken(database, authUser.id, "password_reset", env);
+  if (!tokenResult?.token) {
+    throw createRouteError(500, "Failed to issue password reset token.");
+  }
+
+  const sendResult = deliverEmail
+    ? await sendPasswordResetEmail(env, {
+        email: targetEmail,
+        name: targetEmail.split("@")[0],
+        token: tokenResult.token,
+        baseUrl,
+      })
+    : null;
+
+  const emailDelivered = Boolean(sendResult?.ok);
+  // Manual-send fallback: free-tier Resend can't deliver from an unverified
+  // sender, so also hand the admin a ready-to-send link regardless of delivery.
+  const resetUrl = `${baseUrl}/reset-password?token=${encodeURIComponent(tokenResult.token)}`;
+  const emailConfigured = Boolean(env.RESEND_API_KEY);
+  await insertAuditLogRecord(database, {
+    actorUserId: String(actor?.id || ""),
+    actorEmail: String(actor?.email || ""),
+    targetUserId: String(authUser.id),
+    action: viaWhatsApp ? "Password reset link sent via WhatsApp" : "Password reset email sent",
+    status: viaWhatsApp || emailDelivered ? "success" : "failed",
+    details: {
+      target: targetEmail,
+      actor: String(actor?.email || ""),
+      message: viaWhatsApp
+        ? `Admin sent the password reset link to ${targetEmail} via WhatsApp.`
+        : emailDelivered
+          ? `Admin sent password reset email to ${targetEmail}.`
+          : emailConfigured
+            ? `Admin attempted password reset email to ${targetEmail}; delivery failed${sendResult?.error ? `: ${sendResult.error}` : ""}.`
+            : `Admin prepared password reset email for ${targetEmail} (manual send; email service not configured).`,
+      channel: viaWhatsApp ? "admin-whatsapp" : "admin-panel",
+    },
+  });
+
+  if (viaWhatsApp) {
+    return { ok: true, tokenIssued: true, emailDelivered: false, resetUrl, channel: "whatsapp" };
+  }
+  if (!emailDelivered) {
+    return {
+      ok: false,
+      warning: sendResult?.error || "Email service not configured; token issued but email was not sent.",
+      tokenIssued: true,
+      emailConfigured,
+      resetUrl,
+    };
+  }
+  return { ok: true, tokenIssued: true, emailDelivered: true, resetUrl };
+}
+
+// Admin contact lookup for WhatsApp outreach. Unlike the user directory —
+// which masks phone numbers — this returns the full stored number so the
+// admin panel can build a wa.me deep link. Returns hasPhone:false (not an
+// error) when the user simply hasn't captured a number yet.
+async function handleAdminLookupUserContact(request, env) {
+  await verifyAdminCaller(request, env);
+  const database = requireAuditDatabase(env);
+  const body = await readJsonBody(request);
+  const targetEmail = normalizeEmail(body?.email || "");
+  if (!targetEmail) throw createRouteError(400, "Target email is required.");
+  await ensurePhoneNumberColumn(database);
+  const row = await database
+    .prepare(`SELECT id, phone_number FROM auth_users WHERE email = ?1 LIMIT 1`)
+    .bind(targetEmail)
+    .first();
+  return {
+    ok: true,
+    found: Boolean(row?.id),
+    hasPhone: Boolean(String(row?.phone_number || "").trim()),
+    phone: String(row?.phone_number || ""),
+  };
+}
+
+// ---------------------------------------------------------------------------
+// WhatsApp self-service password recovery (Cloud API, user-initiated).
+//
+// Cost model: the user messages the business first (wa.me prefill from the
+// login screen), which opens Meta's free 24-hour customer-service window —
+// the Worker's reply inside that window is a plain (non-template) message
+// and costs nothing. No template approval, no per-message fees.
+//
+// Security: the phone number IS the credential here — a reset link is only
+// sent to the WhatsApp number already stored on the account, and WhatsApp
+// proves possession of that number by construction (SIM-bound account).
+// Delivery receipts and inbound webhooks are verified with the app secret
+// (X-Hub-Signature-256, HMAC-SHA256 hex over the raw body).
+// ---------------------------------------------------------------------------
+
+function bytesToHex(buffer) {
+  const view = buffer instanceof Uint8Array ? buffer : new Uint8Array(buffer);
+  let hex = "";
+  for (const byte of view) {
+    hex += byte.toString(16).padStart(2, "0");
+  }
+  return hex;
+}
+
+// Mirror of js/adminWhatsApp.js's toWhatsAppNumber (inlined: the Worker can't
+// import the browser module). Converts any stored format (0803…, +234…,
+// 234803…) to the bare international digits Meta uses as webhook sender IDs.
+function toWhatsAppNumber(value, countryCode = "234") {
+  const raw = String(value ?? "").trim();
+  if (!raw) return null;
+  let digits = raw.replace(/[^\d+]/g, "");
+  if (!digits) return null;
+  const cc = String(countryCode).replace(/\D/g, "") || "234";
+  const explicitInternational = digits.startsWith("+") || digits.startsWith("00");
+  if (digits.startsWith("00")) digits = digits.slice(2);
+  if (digits.startsWith("+")) digits = digits.slice(1);
+  if (digits.startsWith(cc) && digits.length > cc.length + 7) return digits;
+  if (explicitInternational) {
+    if (digits.length < 7 || digits.length > 15) return null;
+    return digits;
+  }
+  if (digits.startsWith("0")) digits = digits.slice(1);
+  if (digits.length < 7 || digits.length > 15) return null;
+  return cc + digits;
+}
+
+// Meta signs webhook payloads as "sha256=<hex hmac>" keyed with the app
+// secret. Fail closed on any absent/invalid signature.
+async function verifyWhatsAppSignature(request, rawBody, appSecret) {
+  const header = String(request.headers.get("x-hub-signature-256") || "").trim();
+  if (!header.startsWith("sha256=") || !appSecret) return false;
+  const provided = header.slice("sha256=".length).trim();
+  try {
+    const key = await crypto.subtle.importKey(
+      "raw",
+      new TextEncoder().encode(appSecret),
+      { name: "HMAC", hash: "SHA-256" },
+      false,
+      ["sign"],
+    );
+    const mac = await crypto.subtle.sign("HMAC", key, new TextEncoder().encode(rawBody));
+    return timingSafeEqual(provided, bytesToHex(mac));
+  } catch {
+    return false;
+  }
+}
+
+async function sendWhatsAppText(env, toPhone, body) {
+  const phoneNumberId = String(env.WHATSAPP_PHONE_NUMBER_ID || "").trim();
+  const token = String(env.WHATSAPP_TOKEN || "").trim();
+  if (!phoneNumberId || !token) {
+    return { ok: false, error: "WhatsApp Cloud API not configured." };
+  }
+  try {
+    const response = await fetch(
+      `https://graph.facebook.com/v21.0/${encodeURIComponent(phoneNumberId)}/messages`,
+      {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          messaging_product: "whatsapp",
+          recipient_type: "individual",
+          to: toPhone,
+          type: "text",
+          text: { preview_url: true, body },
+        }),
+      },
+    );
+    const payload = await response.json().catch(() => ({}));
+    if (!response.ok) {
+      return { ok: false, error: String(payload?.error?.message || `Graph API ${response.status}`) };
+    }
+    return { ok: true };
+  } catch (error) {
+    return { ok: false, error: String(error?.message || "Graph request failed.") };
+  }
+}
+
+async function handleWhatsAppWebhook(request, env, ctx) {
+  const database = requireAuditDatabase(env);
+  const method = String(request.method || "").toUpperCase();
+
+  // Subscription handshake: echo the challenge exactly (plain text — Meta
+  // compares the raw body).
+  if (method === "GET") {
+    const url = new URL(request.url);
+    const mode = url.searchParams.get("hub.mode");
+    const token = url.searchParams.get("hub.verify_token");
+    const challenge = url.searchParams.get("hub.challenge") || "";
+    const expected = String(env.WHATSAPP_VERIFY_TOKEN || "");
+    if (mode === "subscribe" && expected && token === expected) {
+      return new Response(challenge, { status: 200, headers: { "Content-Type": "text/plain" } });
+    }
+    return new Response("Forbidden", { status: 403, headers: { "Content-Type": "text/plain" } });
+  }
+
+  // Always 200 after signature verification — non-2xx makes Meta retry,
+  // which would amplify any transient error into a webhook storm.
+  const rawBody = await request.text();
+  const appSecret = String(env.WHATSAPP_APP_SECRET || "").trim();
+  if (!appSecret || !(await verifyWhatsAppSignature(request, rawBody, appSecret))) {
+    return new Response(JSON.stringify({ ok: false, error: "Invalid signature." }), { status: 401, headers: { "Content-Type": "application/json" } });
+  }
+
+  let payload = null;
+  try {
+    payload = JSON.parse(rawBody || "{}");
+  } catch {
+    return new Response(JSON.stringify({ ok: true, ignored: "unparseable" }), { status: 200, headers: { "Content-Type": "application/json" } });
+  }
+
+  await ensurePhoneNumberColumn(database);
+  const baseUrl = String(env.PUBLIC_BASE_URL || "").trim().replace(/\/+$/, "");
+
+  const entries = Array.isArray(payload?.entry) ? payload.entry : [];
+  for (const entry of entries) {
+    const changes = Array.isArray(entry?.changes) ? entry.changes : [];
+    for (const change of changes) {
+      const value = change?.value || {};
+      const messages = Array.isArray(value.messages) ? value.messages : [];
+      for (const message of messages) {
+        // Delivery/read receipts and error statuses have no `from` text flow.
+        const from = String(message?.from || "").replace(/\D/g, "");
+        if (!from) continue;
+        try {
+          // Per-phone throttle: 3 recovery replies per 15 minutes (the same
+          // budget the email recovery route uses per IP).
+          const rateCheck = await checkRateLimit(
+            database,
+            `wa_reset:${from}`,
+            RATE_LIMIT.RECOVERY_IP.type,
+            3,
+            900,
+          );
+          if (!rateCheck.allowed) {
+            await sendWhatsAppText(env, from, "Too many reset requests. Please wait a few minutes and send RESET again, or use email recovery in the app.");
+            continue;
+          }
+
+          // The webhook only knows the phone; match it against stored numbers
+          // using the exact normalization users get at capture time.
+          const stored = await database
+            .prepare(`SELECT id, email, phone_number FROM auth_users WHERE phone_number IS NOT NULL AND phone_number != ''`)
+            .all();
+          const rows = Array.isArray(stored?.results) ? stored.results : [];
+          const match = rows.find((row) => toWhatsAppNumber(row.phone_number) === from);
+
+          if (!match) {
+            await sendWhatsAppText(
+              env,
+              from,
+              "This WhatsApp number isn't linked to a Promotion CBT account. Open the app, sign in with your email, then add this number on your Profile page to enable WhatsApp recovery.",
+            );
+            continue;
+          }
+
+          if (!baseUrl) {
+            await sendWhatsAppText(env, from, "Sorry — WhatsApp recovery is temporarily unavailable. Please use 'Forgot password?' in the app.");
+            await insertAuditLogRecord(database, {
+              actorUserId: "",
+              actorEmail: "whatsapp-self-service",
+              targetUserId: String(match.id),
+              action: "Password reset link sent via WhatsApp",
+              status: "failed",
+              details: { target: String(match.email || ""), message: "PUBLIC_BASE_URL not configured; no reset link sent.", channel: "whatsapp-self-service" },
+            });
+            continue;
+          }
+
+          const { issueEmailToken } = await import("./auth-hybrid.js");
+          const tokenResult = await issueEmailToken(database, match.id, "password_reset", env);
+          const resetUrl = `${baseUrl}/reset-password?token=${encodeURIComponent(tokenResult.token)}`;
+          const displayName = String(match.email || "").split("@")[0];
+          const linkResult = await sendWhatsAppText(
+            env,
+            from,
+            `Hi ${displayName}, here is your Promotion CBT password reset link: ${resetUrl}\n\nIt is single-use and expires in 24 hours. If you didn't request a reset, ignore this message — your current password keeps working.`,
+          );
+          await insertAuditLogRecord(database, {
+            actorUserId: "",
+            actorEmail: "whatsapp-self-service",
+            targetUserId: String(match.id),
+            action: "Password reset link sent via WhatsApp",
+            status: linkResult.ok ? "success" : "failed",
+            details: {
+              target: String(match.email || ""),
+              message: linkResult.ok
+                ? `User requested a reset via WhatsApp; link sent to their verified number.`
+                : `WhatsApp reply failed: ${linkResult.error || "unknown error"}.`,
+              channel: "whatsapp-self-service",
+            },
+          });
+        } catch (error) {
+          console.error(`[whatsapp-webhook] message handling failed: ${error?.message || error}`);
+        }
+      }
+    }
+  }
+
+  return new Response(JSON.stringify({ ok: true }), { status: 200, headers: { "Content-Type": "application/json" } });
+}
+
+// Self-service phone capture for future SMS verification. Adds the column on
+// first use so no manual migration is required; production D1 gets it lazily.
+let phoneNumberColumnReady = false;
+async function ensurePhoneNumberColumn(database) {
+  if (phoneNumberColumnReady) return;
+  try {
+    await database.prepare(`SELECT phone_number FROM auth_users LIMIT 1`).first();
+  } catch {
+    await database.prepare(`ALTER TABLE auth_users ADD COLUMN phone_number TEXT NOT NULL DEFAULT ''`).run();
+  }
+  phoneNumberColumnReady = true;
+}
+
+function normalizePhoneNumber(value) {
+  const raw = String(value || "").trim();
+  if (!raw) return "";
+  const digits = raw.replace(/[\s()\-.]/g, "");
+  if (!/^\+?\d{7,15}$/.test(digits)) return null; // invalid, not empty
+  return digits;
+}
+
+function maskPhone(value) {
+  const raw = String(value || "");
+  if (raw.length < 5) return "***";
+  return `${raw.slice(0, 4)}***${raw.slice(-2)}`;
+}
+
+// GET returns the stored (masked) phone; POST validates and saves one.
+async function handleAuthProfilePhone(request, env) {
+  const user = await resolveAuthenticatedContentUser(request, env);
+  if (!user?.id) throw createRouteError(401, "Authentication required.");
+  const database = requireAuditDatabase(env);
+  await ensurePhoneNumberColumn(database);
+
+  if (String(request.method || "").toUpperCase() === "GET") {
+    const row = await database
+      .prepare(`SELECT phone_number FROM auth_users WHERE id = ?1 LIMIT 1`)
+      .bind(user.id)
+      .first();
+    return { ok: true, phone: maskPhone(row?.phone_number || "") };
+  }
+
+  const body = await readJsonBody(request);
+  const raw = String(body?.phone ?? "").trim();
+  if (!raw) {
+    // Clearing the field is a valid operation.
+    await database
+      .prepare(`UPDATE auth_users SET phone_number = '', updated_at = ?1 WHERE id = ?2`)
+      .bind(new Date().toISOString(), user.id)
+      .run();
+    return { ok: true, phone: "", cleared: true };
+  }
+  const phone = normalizePhoneNumber(raw);
+  if (!phone) {
+    throw createRouteError(400, "Enter a valid phone number (7–15 digits, optional + prefix). Clear the field to remove it.");
+  }
+  await database
+    .prepare(`UPDATE auth_users SET phone_number = ?1, updated_at = ?2 WHERE id = ?3`)
+    .bind(phone, new Date().toISOString(), user.id)
+    .run();
+  return { ok: true, phone: maskPhone(phone), smsVerificationReady: false };
+}
+
 async function handleAdminLogOperation(request, env) {
   const actor = await verifyAdminCaller(request, env);
   const database = requireAuditDatabase(env);
@@ -1914,6 +2317,37 @@ async function handleAdminListOperations(request, env) {
       LIMIT ?1
     `)
     .bind(limit)
+    .all();
+  const rows = Array.isArray(result?.results) ? result.results : [];
+  return {
+    ok: true,
+    operations: rows.map((row) => mapAuditLogToAdminOperation(row)),
+  };
+}
+
+// Dedicated query for the Password Reset Requests card. Unlike
+// adminListOperations (a mixed LIMIT window across ALL audit actions), this
+// filters to reset-flow actions server-side so unrelated activity (logins,
+// plan changes, …) can never push reset rows out of the result set — that
+// windowing made the dashboard count drift between loads.
+const RESET_AUDIT_ACTIONS = ["Password recovery requested", "Password reset email sent"];
+
+async function handleAdminListResetRequests(request, env) {
+  await verifyAdminCaller(request, env);
+  const database = requireAuditDatabase(env);
+  const body = await readJsonBody(request);
+  const rawLimit = Number(body?.limit || 200);
+  const limit = Math.max(1, Math.min(500, Number.isFinite(rawLimit) ? Math.floor(rawLimit) : 200));
+  const placeholders = RESET_AUDIT_ACTIONS.map((_, index) => `?${index + 2}`).join(", ");
+  const result = await database
+    .prepare(`
+      SELECT id, actor_user_id, actor_email, target_user_id, action, status, details_json, created_at
+      FROM auth_audit_log
+      WHERE action IN (${placeholders})
+      ORDER BY created_at DESC
+      LIMIT ?1
+    `)
+    .bind(limit, ...RESET_AUDIT_ACTIONS)
     .all();
   const rows = Array.isArray(result?.results) ? result.results : [];
   return {
@@ -2688,7 +3122,7 @@ async function handleFeedbackStatusUpdate(request, env) {
   // FEEDBACK_EMAILS_ENABLED="true" in wrangler.toml [vars] (Workers Paid, or lower
   // read pressure) to restore resolve/reply notification emails.
   if (status === "resolved" && isFeedbackEmailsEnabled(env) && env.RESEND_API_KEY) {
-    const userRow = await database.prepare(`SELECT id, name FROM auth_users WHERE email = ?1 LIMIT 1`).bind(userEmail).first();
+    const userRow = await database.prepare(`SELECT id FROM auth_users WHERE email = ?1 LIMIT 1`).bind(userEmail).first();
     const userName = String(userRow?.name || "").trim() || userEmail.split("@")[0];
     const notificationSubject = "Your feedback has been resolved";
     const notificationBody = `<p>Your feedback has been reviewed and marked as <strong>resolved</strong>.</p>${resolutionText ? `<div style="background:#ecfdf3;border:1px solid #34d399;padding:14px;border-radius:8px;margin:16px 0;"><p style="margin:0 0 8px;font-weight:600;">Resolution</p><p style="margin:0;color:#1f2937;white-space:pre-wrap;">${escapeHtmlForEmail(resolutionText)}</p></div>` : ""}
@@ -2743,7 +3177,7 @@ async function handleFeedbackReply(request, env) {
     const row = await database.prepare(`SELECT email FROM feedback_submissions WHERE feedback_id = ?1 LIMIT 1`).bind(feedbackId).first();
     const userEmail = normalizeEmail(row?.email || "");
     if (userEmail) {
-      const userRow = await database.prepare(`SELECT id, name FROM auth_users WHERE email = ?1 LIMIT 1`).bind(userEmail).first();
+      const userRow = await database.prepare(`SELECT id FROM auth_users WHERE email = ?1 LIMIT 1`).bind(userEmail).first();
       const userName = String(userRow?.name || "").trim() || userEmail.split("@")[0];
       const notificationSubject = "Your feedback has been replied to";
       const notificationBody = `<p>An admin has replied to your feedback submission.</p><div style="background:#f8fafc;border:1px solid #e5e7eb;padding:14px;border-radius:8px;margin:16px 0;"><p style="margin:0 0 8px;font-weight:600;white-space:pre-wrap;">${escapeHtmlForEmail(replyText)}</p></div><p>You can reply again from your feedback history after logging in.</p>`;
@@ -5186,6 +5620,7 @@ export function resolveRouteHandler(path) {
   if (path.endsWith("/payment/webhook/flutterwave")) return handlePaymentWebhook;
   // User-facing verification resend (no admin auth required) — check before hybrid auth
   if (path.endsWith("/auth/verification/resend")) return handleUserVerificationResend;
+  if (path.endsWith("/auth/profile/phone")) return handleAuthProfilePhone;
   const authRouteHandler = resolveHybridAuthRouteHandler(path);
   if (authRouteHandler) return authRouteHandler;
   if (path.endsWith("/adminListUsers")) return handleAdminListUsers;
@@ -5196,6 +5631,10 @@ export function resolveRouteHandler(path) {
   if (path.endsWith("/auth/migration/bootstrap")) return handleAuthMigrationBootstrap;
   if (path.endsWith("/adminLogOperation")) return handleAdminLogOperation;
   if (path.endsWith("/adminListOperations")) return handleAdminListOperations;
+  if (path.endsWith("/adminListResetRequests")) return handleAdminListResetRequests;
+  if (path.endsWith("/adminLookupUserContact")) return handleAdminLookupUserContact;
+  if (path.endsWith("/whatsapp/webhook")) return handleWhatsAppWebhook;
+  if (path.endsWith("/adminSendPasswordReset")) return handleAdminSendPasswordReset;
   if (path.endsWith("/adminListPayments")) return handleAdminListPayments;
   if (path.endsWith("/adminDeletePayment")) return handleAdminDeletePayment;
   if (path.endsWith("/adminDeletePaymentsByEmail")) return handleAdminDeletePaymentsByEmail;
@@ -5239,9 +5678,13 @@ export function resolveRouteHandler(path) {
 export default {
   async fetch(request, env, ctx) {
     const origin = resolveAllowedOrigin(request, env);
-    const isPaymentWebhook = new URL(request.url).pathname.endsWith("/payment/webhook/flutterwave");
+    const urlPath = new URL(request.url).pathname;
+    const isPaymentWebhook = urlPath.endsWith("/payment/webhook/flutterwave");
+    // WhatsApp/Meta webhooks are server-to-server (no Origin header);
+    // they authenticate via the X-Hub-Signature-256 HMAC instead.
+    const isWhatsAppWebhook = urlPath.endsWith("/whatsapp/webhook");
 
-    if (isPaymentWebhook) {
+    if (isPaymentWebhook || isWhatsAppWebhook) {
       const clientIp = request.headers.get("cf-connecting-ip") || request.headers.get("x-forwarded-for") || "unknown";
       logWebhookEvent("info", "Incoming webhook request at root handler", {
         method: request.method,
@@ -5266,7 +5709,7 @@ export default {
 
     // All browser-facing routes require an explicitly allowed Origin. Payment
     // webhooks are server-to-server and authenticate with their signatures.
-    if (!origin && !isPaymentWebhook) {
+    if (!origin && !isPaymentWebhook && !isWhatsAppWebhook) {
       return jsonResponse({ ok: false, error: "Origin not allowed." }, 403, "");
     }
 
@@ -5282,6 +5725,11 @@ export default {
         // cached at the edge under a plan-scoped key (never shared across
         // plans). The cached copy carries private Cache-Control for the client.
         response = await handleTopicDataWithEdgeCache(request, env, origin);
+      } else if (isWhatsAppWebhook) {
+        // The handler returns fully-formed Responses: the GET handshake must
+        // echo hub.challenge as plain text, and POST replies use their own
+        // status codes — neither survives jsonResponse wrapping.
+        response = await routeHandler(request, env, ctx);
       } else {
         const payload = await routeHandler(request, env, ctx);
         if (isPaymentWebhook) {

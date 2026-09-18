@@ -89,6 +89,7 @@ test("auth runtime helpers normalize config, auth flags, and hybrid rails", () =
       paymentProvider: "flutterwave",
       flutterwavePublicKey: "",
       flutterwaveWebhookUrl: "",
+      whatsappBusinessNumber: "",
       requireEmailVerification: false,
       adminEmails: [],
     });

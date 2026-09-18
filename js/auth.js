@@ -21,7 +21,7 @@ import { findCloudProfilesByEmail, patchCloudProfileFields, upsertCloudProfile, 
 import { sendVerificationViaAdminApi } from "./authAdminApi.js";
 import { bootstrapCloudflareMigrationFromFirebase as bootstrapCloudflareMigrationFromFirebaseClient, changeCloudflarePassword as changeCloudflarePasswordClient, completeCloudflareMigrationToken as completeCloudflareMigrationTokenClient, requestCloudflarePasswordRecovery as requestCloudflarePasswordRecoveryClient, resolveCloudflareMigrationToken as resolveCloudflareMigrationTokenClient } from "./authCloudflareClient.js";
 import { enrichDirectoryVerificationStates, ensureAdminCloudSession as ensureAdminCloudSessionHelper, getConfiguredAdminEmails as getConfiguredAdminEmailsHelper, isCurrentUserAdmin as isCurrentUserAdminHelper } from "./authAdminDirectory.js";
-import { deleteCloudUserById as deleteCloudUserByIdService, getAdminOperationHistory as getAdminOperationHistoryService, getAdminUserDirectory as getAdminUserDirectoryService, logAdminOperationToCloud as logAdminOperationToCloudService, createCloudflareMigrationLinkForUser as createCloudflareMigrationLinkForUserService, updateCloudUserStatusById as updateCloudUserStatusByIdService, updateCloudUserPlan as updateCloudUserPlanService } from "./authAdminService.js";
+import { deleteCloudUserById as deleteCloudUserByIdService, getAdminOperationHistory as getAdminOperationHistoryService, getAdminUserDirectory as getAdminUserDirectoryService, getResetRequestRows as getResetRequestRowsService, logAdminOperationToCloud as logAdminOperationToCloudService, sendPasswordResetToCloud as sendPasswordResetToCloudService, sendPasswordResetLinkViaWhatsApp as sendPasswordResetLinkViaWhatsAppService, lookupUserContactInCloud as lookupUserContactInCloudService, createCloudflareMigrationLinkForUser as createCloudflareMigrationLinkForUserService, updateCloudUserStatusById as updateCloudUserStatusByIdService, updateCloudUserPlan as updateCloudUserPlanService } from "./authAdminService.js";
 import { buildUpgradeRequestRecordFromProfile as buildUpgradeRequestRecordFromProfileService, ensureCloudProfileInSession as ensureCloudProfileInSessionService, getCurrentUserUpgradeRequest as getCurrentUserUpgradeRequestService, setUpgradeRequestStatus as setUpgradeRequestStatusService, submitUpgradeRequest as submitUpgradeRequestService } from "./authUpgradeService.js";
 import { FEEDBACK_MESSAGE_MAX_LENGTH, getAdminFeedbackSubmissions as getAdminFeedbackSubmissionsService, getFeedbackAccessState as getFeedbackAccessStateService, getUserFeedbackList as getUserFeedbackListService, submitFeedbackSubmission as submitFeedbackSubmissionService, updateFeedbackSubmissionStatus as updateFeedbackSubmissionStatusService } from "./authFeedbackService.js";
 import { loginUserCloud as loginUserCloudService, logoutCloud as logoutCloudService, refreshCloudUserInSession as refreshCloudUserInSessionService, registerUserCloud as registerUserCloudService } from "./authCloudLifecycle.js";
@@ -1419,8 +1419,24 @@ export async function getAdminOperationHistory(limit = 120) {
   return getAdminOperationHistoryService(limit, ensureAdminCloudSession);
 }
 
+export async function getResetRequestRows(limit = 200) {
+  return getResetRequestRowsService(limit, ensureAdminCloudSession);
+}
+
 export async function logAdminOperationToCloud(entry) {
   return logAdminOperationToCloudService(entry, ensureAdminCloudSession);
+}
+
+export async function sendPasswordResetEmailForUser(email, baseUrl) {
+  return sendPasswordResetToCloudService(email, baseUrl, ensureAdminCloudSession);
+}
+
+export async function sendPasswordResetLinkViaWhatsAppForUser(email, baseUrl) {
+  return sendPasswordResetLinkViaWhatsAppService(email, baseUrl, ensureAdminCloudSession);
+}
+
+export async function lookupUserContactForAdmin(email) {
+  return lookupUserContactInCloudService(email, ensureAdminCloudSession);
 }
 async function ensureAdminCloudSession() {
   return ensureAdminCloudSessionHelper({

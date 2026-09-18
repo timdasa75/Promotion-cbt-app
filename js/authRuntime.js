@@ -64,6 +64,9 @@ export function getFirebaseConfig() {
   const paymentProvider = String(cfg.paymentProvider || "flutterwave").trim().toLowerCase();
   const flutterwavePublicKey = String(cfg.flutterwavePublicKey || "").trim();
   const flutterwaveWebhookUrl = String(cfg.flutterwaveWebhookUrl || "").trim();
+  // WhatsApp self-service recovery: the business's public wa.me number (the
+  // one users message with "RESET"). Empty = the login-screen button hides.
+  const whatsappBusinessNumber = String(cfg.whatsappBusinessNumber || "").trim();
 
   return {
     authProvider,
@@ -84,6 +87,7 @@ export function getFirebaseConfig() {
     paymentProvider,
     flutterwavePublicKey,
     flutterwaveWebhookUrl,
+    whatsappBusinessNumber,
     requireEmailVerification: resolveRuntimeBoolean(cfg.requireEmailVerification, false),
     adminEmails: Array.isArray(cfg.adminEmails) ? cfg.adminEmails : [],
   };
