@@ -159,7 +159,11 @@ Choose the smallest useful verification set for the change:
 4. **Full smoke**: `npm run test:smoke:full`
 5. **Build**: `npm run build`
 6. **Topic audit** (if data changes): `npm run audit:topic-banks`
-7. **Worker route check** (if Worker/frontend routes change): `npm run check:worker-routes`
+7. **Gazette-grounded bank audits** (when editing question banks; strict forms gate via `verify:release`; they soft-skip where the private `.freebuff/` gazette OCR extracts are absent, e.g. CI):
+   - `npm run audit:citations` — every PSR/FR/PPA citation resolves to a real provision
+   - `npm run audit:coherence` — cited provision's text actually supports the keyed answer (lexical overlap)
+   - `npm run audit:half-fixed` — stem and explanation cite the same provision (catches half-applied text-replacement fixes)
+8. **Worker route check** (if Worker/frontend routes change): `npm run check:worker-routes`
 
 If a verification step cannot be run, say exactly why.
 

@@ -32,14 +32,6 @@ export function collectSubcategories(data) {
 export function getQuestionsFromSubcategory(subcategory) {
   if (!subcategory?.questions || !Array.isArray(subcategory.questions)) return [];
 
-  if (
-    subcategory.id === "ca_general" &&
-    subcategory.questions.length > 0 &&
-    Array.isArray(subcategory.questions[0]?.ca_general)
-  ) {
-    return subcategory.questions[0].ca_general;
-  }
-
   return subcategory.questions;
 }
 

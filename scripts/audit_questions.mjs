@@ -101,17 +101,12 @@ function getSubcategories(payload) {
   return [];
 }
 
-// Mirrors js/topicDataShape.js getQuestionsFromSubcategory: unwraps the legacy
-// ca_general wrapper `questions: [{ ca_general: [...] }]`.
+// Mirrors js/topicDataShape.js getQuestionsFromSubcategory. The legacy
+// ca_general wrapper `questions: [{ ca_general: [...] }]` was flattened in the
+// bank itself; this keeps only a generic safety net for any subcategory whose
+// questions[0] is a bare wrapper dict.
 function getQuestions(sub) {
   if (!sub || !Array.isArray(sub.questions)) return [];
-  if (
-    sub.id === "ca_general" &&
-    sub.questions.length > 0 &&
-    Array.isArray(sub.questions[0] && sub.questions[0].ca_general)
-  ) {
-    return sub.questions[0].ca_general;
-  }
   // generic fallback: any subcategory whose questions[0] is a bare wrapper dict
   const first = sub.questions[0];
   if (
