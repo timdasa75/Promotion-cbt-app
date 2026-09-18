@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 
 import {
   __resetTopicSourceCachesForTests,
+  DATA_CACHE_VERSION,
   fetchJsonFile,
   fetchTopicDataFilesWithReport,
 } from "../../js/topicSources.js";
@@ -10,6 +11,10 @@ import {
 class MemoryStorage {
   constructor() {
     this.map = new Map();
+  }
+
+  get length() {
+    return this.map.size;
   }
 
   getItem(key) {
@@ -22,6 +27,10 @@ class MemoryStorage {
 
   removeItem(key) {
     this.map.delete(key);
+  }
+
+  key(index) {
+    return [...this.map.keys()][index] ?? null;
   }
 
   clear() {
@@ -125,7 +134,7 @@ function installBrowserContext({
 test("fetchJsonFile uses fresh persistent cache before network fetch", async () => {
   const ctx = installBrowserContext();
   try {
-    const cacheKey = "promotion-cbt:json-cache:v2:/data/cache-test.json";
+    const cacheKey = `promotion-cbt:json-cache:v3:${DATA_CACHE_VERSION}:/data/cache-test.json`;
     ctx.localStorage.setItem(
       cacheKey,
       JSON.stringify({
@@ -151,7 +160,7 @@ test("fetchJsonFile uses fresh persistent cache before network fetch", async () 
 test("fetchJsonFile falls back to stale persistent cache when fetch fails", async () => {
   const ctx = installBrowserContext();
   try {
-    const cacheKey = "promotion-cbt:json-cache:v2:/data/stale-cache.json";
+    const cacheKey = `promotion-cbt:json-cache:v3:${DATA_CACHE_VERSION}:/data/stale-cache.json`;
     ctx.localStorage.setItem(
       cacheKey,
       JSON.stringify({
@@ -177,7 +186,7 @@ test("fetchJsonFile falls back to stale persistent cache when fetch fails", asyn
 test("fetchJsonFile discards malformed cache payloads and refreshes from network", async () => {
   const ctx = installBrowserContext();
   try {
-    const cacheKey = "promotion-cbt:json-cache:v2:/data/recover-cache.json";
+    const cacheKey = `promotion-cbt:json-cache:v3:${DATA_CACHE_VERSION}:/data/recover-cache.json`;
     ctx.localStorage.setItem(cacheKey, "{not-json");
 
     let fetchCalls = 0;
@@ -205,7 +214,7 @@ test("fetchJsonFile uses fresh Cache Storage entry before network fetch", async 
   const caches = new MemoryCacheStorage();
   ctx.window.caches = caches;
   try {
-    const cache = await caches.open("promotion-cbt:topic-json:v1");
+    const cache = await caches.open(`promotion-cbt:topic-json:v1:${DATA_CACHE_VERSION}`);
     await cache.put(
       "/data/cache-test.json",
       new Response(JSON.stringify({ source: "cache-storage", value: 1 }), {
@@ -232,7 +241,7 @@ test("fetchJsonFile falls back to stale Cache Storage entry when fetch fails", a
   const caches = new MemoryCacheStorage();
   ctx.window.caches = caches;
   try {
-    const cache = await caches.open("promotion-cbt:topic-json:v1");
+    const cache = await caches.open(`promotion-cbt:topic-json:v1:${DATA_CACHE_VERSION}`);
     await cache.put(
       "/data/stale-cache.json",
       new Response(JSON.stringify({ source: "stale-cache", recovered: true }), {
@@ -272,12 +281,12 @@ test("fetchJsonFile persists to Cache Storage and skips localStorage when availa
     assert.deepEqual(result, { source: "network", cached: true });
     assert.equal(fetchCalls, 1);
 
-    const cache = await caches.open("promotion-cbt:topic-json:v1");
+    const cache = await caches.open(`promotion-cbt:topic-json:v1:${DATA_CACHE_VERSION}`);
     const match = await cache.match("/data/cache-test.json");
     assert.ok(match, "Cache Storage should hold the fetched payload");
     assert.deepEqual(JSON.parse(await match.text()), { source: "network", cached: true });
     assert.equal(
-      ctx.localStorage.getItem("promotion-cbt:json-cache:v2:/data/cache-test.json"),
+      ctx.localStorage.getItem(`promotion-cbt:json-cache:v3:${DATA_CACHE_VERSION}:/data/cache-test.json`),
       null,
       "localStorage should not be written when Cache Storage is available",
     );
@@ -301,7 +310,7 @@ test("Cache Storage entries are pruned to the maximum count, oldest first", asyn
       await fetchJsonFile(`data/f${String(index).padStart(2, "0")}.json`);
     }
 
-    const cache = await caches.open("promotion-cbt:topic-json:v1");
+    const cache = await caches.open(`promotion-cbt:topic-json:v1:${DATA_CACHE_VERSION}`);
     assert.ok((await cache.count()) <= 24, "cache should stay at or below the entry cap");
     assert.equal(await cache.match("/data/f00.json"), undefined, "oldest entry should be evicted");
     assert.ok(await cache.match("/data/f24.json"), "newest entry should survive");
@@ -389,11 +398,125 @@ test("fetchTopicDataFilesWithReport falls back to public files without a cloud t
       { tolerateFailures: true },
     );
 
-    assert.deepEqual(calls, ["/data/psr_rules.json"]);
+    assert.deepEqual(calls, [`/data/psr_rules.json?v=${DATA_CACHE_VERSION}`]);
     assert.deepEqual(result.payloads, [{ subcategories: [{ id: "public", questions: [] }] }]);
     assert.deepEqual(result.loadedFiles, ["data/psr_rules.json"]);
     assert.deepEqual(result.failedFiles, []);
     assert.equal(result.totalFiles, 1);
+  } finally {
+    ctx.restore();
+  }
+});
+
+test("fetchJsonFile appends the build data version to data-file fetches", async () => {
+  const ctx = installBrowserContext();
+  try {
+    const calls = [];
+    global.fetch = async (url) => {
+      calls.push(url);
+      return {
+        ok: true,
+        text: async () => JSON.stringify({ source: "network" }),
+      };
+    };
+
+    await fetchJsonFile("data/psr_rules.json");
+
+    assert.equal(DATA_CACHE_VERSION.length > 0, true);
+    assert.ok(
+      calls.every((url) => url.includes(`?v=${DATA_CACHE_VERSION}`)),
+      `every fetch should carry the version param, got: ${calls.join(", ")}`,
+    );
+  } finally {
+    ctx.restore();
+  }
+});
+
+test("persistent cache keys are namespaced with the build data version", async () => {
+  const ctx = installBrowserContext();
+  const caches = new MemoryCacheStorage();
+  ctx.window.caches = caches;
+  try {
+    global.fetch = async () => ({
+      ok: true,
+      text: async () => JSON.stringify({ source: "network", namespaced: true }),
+    });
+
+    await fetchJsonFile("data/cache-test.json");
+
+    const cache = await caches.open(`promotion-cbt:topic-json:v1:${DATA_CACHE_VERSION}`);
+    const keys = await cache.keys();
+    assert.equal(keys.length, 1, "exactly one Cache Storage entry should exist");
+    assert.equal(keys[0], "/data/cache-test.json", "entry key stays the bare path");
+    assert.equal(
+      ctx.localStorage.getItem(`promotion-cbt:json-cache:v3:${DATA_CACHE_VERSION}:/data/cache-test.json`),
+      null,
+      "localStorage fallback stays empty while Cache Storage handles persistence",
+    );
+  } finally {
+    ctx.restore();
+  }
+});
+
+test("legacy localStorage json-cache entries are swept on first cache touch", async () => {
+  const ctx = installBrowserContext();
+  try {
+    const staleKey = "promotion-cbt:json-cache:v2:/data/old-bank.json";
+    ctx.localStorage.setItem(staleKey, JSON.stringify({ cachedAt: Date.now(), text: "{}" }));
+    ctx.localStorage.setItem("promotion-cbt:unrelated", "keep-me");
+
+    const storage = ctx.window.localStorage;
+    // getPersistentCacheStorage() runs the sweep; exercise it via a fetch that
+    // consults the persistent cache layer first.
+    global.fetch = async () => ({
+      ok: true,
+      text: async () => JSON.stringify({ source: "network" }),
+    });
+    await fetchJsonFile("data/old-bank.json");
+
+    assert.equal(storage.getItem(staleKey), null, "legacy v2 entry should be removed");
+    assert.equal(storage.getItem("promotion-cbt:unrelated"), "keep-me");
+    const refreshed = JSON.parse(
+      storage.getItem(`promotion-cbt:json-cache:v3:${DATA_CACHE_VERSION}:/data/old-bank.json`) || "null",
+    );
+    assert.deepEqual(
+      JSON.parse(refreshed?.text || "null"),
+      { source: "network" },
+      "the versioned localStorage entry should hold the freshly fetched payload",
+    );
+  } finally {
+    ctx.restore();
+  }
+});
+
+test("legacy Cache Storage buckets are deleted on first cache touch", async () => {
+  const ctx = installBrowserContext();
+  const caches = new MemoryCacheStorage();
+  ctx.window.caches = caches;
+  try {
+    const legacyCache = await caches.open("promotion-cbt:topic-json:v1");
+    await legacyCache.put(
+      "/data/psr_rules.json",
+      new Response("{}", { headers: { "X-Cached-At": String(Date.now()) } }),
+    );
+
+    global.fetch = async () => ({
+      ok: true,
+      text: async () => JSON.stringify({ source: "network" }),
+    });
+    await fetchJsonFile("data/psr_rules.json");
+
+    assert.equal(
+      await caches.open("promotion-cbt:topic-json:v1").then((c) => c.count()),
+      0,
+      "legacy bucket should have been emptied by the sweep",
+    );
+    assert.ok(caches.deleted.includes("promotion-cbt:topic-json:v1"), "sweep should delete the legacy bucket");
+
+    const versioned = await caches.open(`promotion-cbt:topic-json:v1:${DATA_CACHE_VERSION}`);
+    const match = await versioned.match("/data/psr_rules.json");
+    assert.ok(match, "fresh entry should live in the versioned bucket");
+    assert.deepEqual(JSON.parse(await match.text()), { source: "network" });
   } finally {
     ctx.restore();
   }
@@ -405,10 +528,10 @@ test("fetchJsonFile retries a relative fallback path when the primary base path 
     const calls = [];
     global.fetch = async (url) => {
       calls.push(url);
-      if (url === "/data/topics.json") {
+      if (url === `/data/topics.json?v=${DATA_CACHE_VERSION}`) {
         return { ok: false, status: 404, text: async () => "not found" };
       }
-      if (url === "data/topics.json") {
+      if (url === `data/topics.json?v=${DATA_CACHE_VERSION}`) {
         return {
           ok: true,
           text: async () => JSON.stringify({ topics: [{ id: "psr" }] }),
@@ -419,7 +542,10 @@ test("fetchJsonFile retries a relative fallback path when the primary base path 
 
     const result = await fetchJsonFile("data/topics.json");
     assert.deepEqual(result, { topics: [{ id: "psr" }] });
-    assert.deepEqual(calls, ["/data/topics.json", "data/topics.json"]);
+    assert.deepEqual(calls, [
+      `/data/topics.json?v=${DATA_CACHE_VERSION}`,
+      `data/topics.json?v=${DATA_CACHE_VERSION}`,
+    ]);
   } finally {
     ctx.restore();
   }

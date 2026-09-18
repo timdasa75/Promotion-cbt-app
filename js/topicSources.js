@@ -12,20 +12,73 @@ import {
 
 const jsonCache = new Map();
 const protectedTopicCache = new Map();
-const PERSISTENT_CACHE_PREFIX = "promotion-cbt:json-cache:v2:";
+
+// __BUILD_DATA_VERSION__ is injected by vite.config.js: a content hash of the
+// data/*.json files in production builds, "dev" under the dev server. Fetch
+// URLs and both persistent cache layers below are namespaced with it, so a
+// newly deployed question bank can never be served from an older build's
+// Cache Storage or localStorage entry (the stale-bank bug this fixes).
+const DATA_VERSION =
+  typeof __BUILD_DATA_VERSION__ === "string" && __BUILD_DATA_VERSION__
+    ? __BUILD_DATA_VERSION__
+    : "unversioned";
+export const DATA_CACHE_VERSION = DATA_VERSION;
+
+// Cache families written by older builds. They are deleted on startup so
+// stale banks cannot linger (or eat quota) after an app update.
+const LEGACY_CACHE_PREFIXES = [
+  "promotion-cbt:json-cache:v2:",
+  "promotion-cbt:json-cache:v1:",
+];
+const LEGACY_CACHE_STORAGE_NAMES = ["promotion-cbt:topic-json:v1"];
+
+const PERSISTENT_CACHE_PREFIX = `promotion-cbt:json-cache:v3:${DATA_VERSION}:`;
 const PERSISTENT_CACHE_INDEX_KEY = `${PERSISTENT_CACHE_PREFIX}index`;
 const PERSISTENT_CACHE_TTL_MS = 6 * 60 * 60 * 1000;
 const PERSISTENT_CACHE_MAX_TOTAL_BYTES = 3_500_000;
 const PERSISTENT_CACHE_MAX_ENTRY_BYTES = 1_500_000;
-const CACHE_STORAGE_NAME = "promotion-cbt:topic-json:v1";
+const CACHE_STORAGE_NAME = `promotion-cbt:topic-json:v1:${DATA_VERSION}`;
 const PERSISTENT_CACHE_MAX_ENTRIES = 24;
+
+function isDevServerContext() {
+  if (typeof window === "undefined" || !window.location) return false;
+  const hostname = String(window.location.hostname || "");
+  return hostname === "localhost" || hostname === "127.0.0.1";
+}
+
+// Append the build's data version to a data-file URL so browsers, service
+// workers, and CDN caches treat an updated bank as a different resource
+// instead of reusing a previously cached response.
+function buildDataUrl(filePath) {
+  const url = String(filePath || "").trim();
+  if (!url) return url;
+  return url.includes("?") ? `${url}&v=${DATA_VERSION}` : `${url}?v=${DATA_VERSION}`;
+}
+
+function removeLegacyLocalStorageEntries(storage) {
+  if (!storage || typeof storage.key !== "function") return;
+  try {
+    const staleKeys = [];
+    for (let index = 0; index < storage.length; index += 1) {
+      const key = storage.key(index);
+      if (key && LEGACY_CACHE_PREFIXES.some((prefix) => key.startsWith(prefix))) {
+        staleKeys.push(key);
+      }
+    }
+    staleKeys.forEach((key) => storage.removeItem(key));
+  } catch (_error) {
+    // Best-effort cleanup; leftover entries simply age out under quota pressure.
+  }
+}
 
 function getPersistentCacheStorage() {
   if (typeof window === "undefined") return null;
   if (!isFeatureEnabled("enablePersistentJsonCache")) return null;
 
   try {
-    return window.localStorage || null;
+    const storage = window.localStorage || null;
+    removeLegacyLocalStorageEntries(storage);
+    return storage;
   } catch (_error) {
     return null;
   }
@@ -191,6 +244,24 @@ function getCacheStorageHandle() {
   }
 }
 
+let legacyCacheSweepStarted = false;
+
+async function sweepLegacyCacheStorageBuckets() {
+  if (legacyCacheSweepStarted) return;
+  legacyCacheSweepStarted = true;
+  const cachesStore = getCacheStorageHandle();
+  if (!cachesStore) return;
+  await Promise.all(
+    LEGACY_CACHE_STORAGE_NAMES.map(async (name) => {
+      try {
+        await cachesStore.delete(name);
+      } catch (_error) {
+        // Best-effort: the old bucket disappears when the browser evicts it.
+      }
+    }),
+  );
+}
+
 function buildCacheKeyUrl(filePath) {
   const normalized = String(filePath || "").trim();
   if (!normalized) return "";
@@ -201,6 +272,7 @@ async function readCacheStorageJsonText(filePath) {
   const cachesStore = getCacheStorageHandle();
   if (!cachesStore) return null;
 
+  await sweepLegacyCacheStorageBuckets();
   try {
     const cache = await cachesStore.open(CACHE_STORAGE_NAME);
     const response = await cache.match(buildCacheKeyUrl(filePath));
@@ -250,6 +322,7 @@ async function persistCacheStorageJsonText(filePath, text) {
   const cachesStore = getCacheStorageHandle();
   if (!cachesStore) return false;
 
+  await sweepLegacyCacheStorageBuckets();
   try {
     const cache = await cachesStore.open(CACHE_STORAGE_NAME);
     const maxAgeSeconds = Math.max(60, Math.floor(PERSISTENT_CACHE_TTL_MS / 1000));
@@ -269,6 +342,10 @@ async function persistCacheStorageJsonText(filePath, text) {
 }
 
 async function persistJsonText(filePath, text) {
+  // The dev server serves data files straight from disk, so persistent
+  // caching would freeze stale banks across editing sessions.
+  if (isDevServerContext()) return;
+
   const trimmedText = String(text || "");
   if (!trimmedText || trimmedText.trim().startsWith("<")) return;
 
@@ -279,6 +356,9 @@ async function persistJsonText(filePath, text) {
 }
 
 async function readPersistentJsonText(filePath) {
+  // Dev server: always hit the network so bank edits show up on reload.
+  if (isDevServerContext()) return null;
+
   const cacheEntry = await readCacheStorageJsonText(filePath);
   if (cacheEntry) return cacheEntry;
   return readLegacyJsonText(filePath);
@@ -384,9 +464,11 @@ async function fetchPublicTopicDataFilesWithReport(topic, options = {}) {
 export function __resetTopicSourceCachesForTests() {
   jsonCache.clear();
   protectedTopicCache.clear();
+  legacyCacheSweepStarted = false;
   if (typeof window !== "undefined" && typeof window.caches?.delete === "function") {
     try {
       window.caches.delete(CACHE_STORAGE_NAME);
+      LEGACY_CACHE_STORAGE_NAMES.forEach((name) => window.caches.delete(name));
     } catch (_error) {
       // Best-effort: Cache Storage may be unavailable in test environments.
     }
@@ -429,7 +511,7 @@ export async function fetchJsonFile(file) {
     try {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 10000);
-      const response = await fetch(filePath, { signal: controller.signal });
+      const response = await fetch(buildDataUrl(filePath), { signal: controller.signal });
       clearTimeout(timeoutId);
       if (!response.ok) {
         throw new Error(`Failed to fetch ${file}: ${response.status}`);
