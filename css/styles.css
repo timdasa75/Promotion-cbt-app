@@ -9758,6 +9758,54 @@ body.dark-mode #quizScreen .quiz-actions .btn-secondary:hover {
     flex: 0 0 auto;
 }
 
+/* Feedback resolve modal: response-protocol entry point. Reuses the auth-modal
+   shell; the card is left-aligned (unlike confirm-modal-card) because it holds
+   a form and a quoted submission. */
+.feedback-resolve-context {
+    text-align: left;
+    display: grid;
+    gap: 4px;
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: color-mix(in srgb, var(--primary) 4%, var(--card));
+}
+
+.feedback-resolve-context .meta {
+    font-size: 0.75rem;
+}
+
+.feedback-resolve-message {
+    margin: 0;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--ink-800);
+    white-space: pre-wrap;
+    word-break: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.feedback-resolve-textarea {
+    width: 100%;
+    min-height: 96px;
+    resize: vertical;
+    padding: 8px 12px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-family: inherit;
+    line-height: 1.5;
+}
+
+.feedback-resolve-textarea:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: var(--focus);
+}
+
 .admin-feedback-reply-history {
     margin-top: 8px;
     padding: 8px 12px;

@@ -1699,6 +1699,32 @@
             </div>
         </div>
 
+        <!-- Feedback Resolve Modal: response protocol entry point. Resolving
+             requires a user-visible message; the original submission is shown
+             for context. The message goes to the user's My Feedback card. -->
+        <div class="auth-modal hidden" id="feedbackResolveModal" role="dialog" aria-modal="true" aria-labelledby="feedbackResolveTitle">
+            <div class="auth-modal-card confirm-modal-card">
+                <h3 id="feedbackResolveTitle">Resolve feedback</h3>
+                <div class="feedback-resolve-context">
+                    <span class="meta">From</span>
+                    <strong id="feedbackResolveEmail">user@example.com</strong>
+                    <p class="feedback-resolve-message" id="feedbackResolveMessage"></p>
+                    <p class="meta" id="feedbackResolveMeta" hidden></p>
+                </div>
+                <form id="feedbackResolveForm" class="auth-form">
+                    <label class="auth-field">
+                        <span>Message to the user</span>
+                        <textarea id="feedbackResolveTextarea" class="feedback-resolve-textarea" rows="4" maxlength="1000" placeholder="What was done about this? The user sees this in their My Feedback card."></textarea>
+                        <span class="meta">Required — sent to the user's My Feedback card with a "New reply" badge. No email is sent on the free tier.</span>
+                    </label>
+                    <div class="button-row">
+                        <button class="btn btn-ghost" id="feedbackResolveCancelBtn" type="button">Cancel</button>
+                        <button class="btn btn-primary" id="feedbackResolveSubmitBtn" type="submit">Resolve</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
         <!-- Password Reset Screen -->
         <section id="resetPasswordScreen" class="screen hidden">
             <div class="auth-modal" style="display:flex;align-items:center;justify-content:center;min-height:100vh;">

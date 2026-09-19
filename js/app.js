@@ -6983,6 +6983,132 @@ function updateAdminFeedbackBadge() {
   badge.title = label;
 }
 
+// --- Feedback resolve modal (response protocol) -----------------------------
+// Resolving always goes through this modal: it shows the original submission
+// for context and requires a user-visible message, which becomes the
+// resolution mirrored into the user's My Feedback card.
+let feedbackResolveBound = false;
+let feedbackResolveTarget = null;
+
+function bindFeedbackResolveModal() {
+  if (feedbackResolveBound) return;
+  const form = document.getElementById("feedbackResolveForm");
+  const cancelBtn = document.getElementById("feedbackResolveCancelBtn");
+  const modal = document.getElementById("feedbackResolveModal");
+  if (!form) return;
+  feedbackResolveBound = true;
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const textarea = document.getElementById("feedbackResolveTextarea");
+    const resolution = String(textarea?.value || "").trim();
+    if (!resolution) {
+      showWarning("A response message is required — tell the user what was done.");
+      textarea?.focus();
+      return;
+    }
+    if (!feedbackResolveTarget?.feedbackId) {
+      closeFeedbackResolveModal();
+      return;
+    }
+    const btn = document.getElementById("feedbackResolveSubmitBtn");
+    if (btn) {
+      btn.disabled = true;
+      btn.textContent = "Resolving…";
+    }
+    try {
+      await applyFeedbackStatusChange(feedbackResolveTarget.feedbackId, "resolved", resolution);
+      closeFeedbackResolveModal();
+    } catch {
+      // Failure toast already shown; keep the modal open with the draft intact.
+    } finally {
+      if (btn) {
+        btn.disabled = false;
+        btn.textContent = "Resolve";
+      }
+    }
+  });
+  cancelBtn?.addEventListener("click", () => closeFeedbackResolveModal());
+  // Backdrop click and Escape cancel, matching the auth-modal conventions.
+  modal?.addEventListener("click", (event) => {
+    if (event.target === modal) closeFeedbackResolveModal();
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !document.getElementById("feedbackResolveModal")?.classList.contains("hidden")) {
+      closeFeedbackResolveModal();
+    }
+  });
+}
+
+function openFeedbackResolveModal(entry = {}) {
+  feedbackResolveTarget = entry;
+  const modal = document.getElementById("feedbackResolveModal");
+  if (!modal) {
+    // Modal markup missing (should not happen): fail closed — resolving
+    // without a user-visible message violates the protocol.
+    showWarning("Resolve requires the response dialog — refresh the page and try again.");
+    return;
+  }
+  const emailEl = document.getElementById("feedbackResolveEmail");
+  const messageEl = document.getElementById("feedbackResolveMessage");
+  const metaEl = document.getElementById("feedbackResolveMeta");
+  const textarea = document.getElementById("feedbackResolveTextarea");
+  if (emailEl) emailEl.textContent = entry?.email || "Unknown user";
+  if (messageEl) messageEl.textContent = entry?.message || "(no message body)";
+  if (metaEl) {
+    const contextParts = [entry?.topicName, entry?.questionId].filter(Boolean);
+    metaEl.textContent = contextParts.join(" · ");
+    metaEl.hidden = contextParts.length === 0;
+  }
+  if (textarea) {
+    textarea.value = "";
+    setTimeout(() => textarea.focus(), 50);
+  }
+  modal.classList.remove("hidden");
+}
+
+function closeFeedbackResolveModal() {
+  const modal = document.getElementById("feedbackResolveModal");
+  if (modal) modal.classList.add("hidden");
+  const form = document.getElementById("feedbackResolveForm");
+  if (form) form.reset();
+  feedbackResolveTarget = null;
+}
+
+// Shared status-change flow: wraps the service call in operation feedback +
+// admin operation history, then refreshes the list. Used by the one-click
+// status buttons and the resolve modal submit alike.
+async function applyFeedbackStatusChange(feedbackId, nextStatus, resolution = "") {
+  const target = adminFeedbackSubmissions.find((entry) => String(entry?.feedbackId || "") === feedbackId);
+  const targetLabel = target?.email || feedbackId;
+  try {
+    await runOperationWithFeedback(
+      () => updateFeedbackSubmissionStatus(feedbackId, nextStatus, resolution),
+      {
+        loadingMessage: "Updating feedback status...",
+        successMessage: buildAdminFeedbackStatusMessage(nextStatus),
+        failurePrefix: "Unable to update feedback:",
+      },
+    );
+    logAdminOperation({
+      action: "Update feedback status",
+      target: targetLabel,
+      status: "success",
+      message: buildAdminFeedbackStatusMessage(nextStatus),
+    });
+  } catch (error) {
+    logAdminOperation({
+      action: "Update feedback status",
+      target: targetLabel,
+      status: "failed",
+      message: error?.message || "Unknown error.",
+    });
+    throw error;
+  } finally {
+    renderAdminOperationHistory();
+    await refreshAdminFeedbackSubmissions();
+  }
+}
+
 function renderAdminFeedbackList() {
   const container = document.getElementById("adminFeedbackList");
   const searchInput = document.getElementById("adminFeedbackSearch");
@@ -7082,42 +7208,18 @@ function renderAdminFeedbackList() {
       const nextStatus = String(button.getAttribute("data-feedback-status") || "").trim().toLowerCase();
       if (!feedbackId || !nextStatus) return;
       const target = adminFeedbackSubmissions.find((entry) => String(entry?.feedbackId || "") === feedbackId);
-      const targetLabel = target?.email || feedbackId;
-      // Response protocol: resolving must carry a user-visible message — the
-      // user sees it in their My Feedback card. Empty resolution cancels.
-      let resolution = "";
+      // Response protocol: resolving opens the in-app modal — a mandatory
+      // user-visible message composed with the original submission in view.
+      // The modal submit drives the status change.
       if (nextStatus === "resolved") {
-        resolution = String(window.prompt("Message to the user (visible in their My Feedback card):", "") || "").trim();
-        if (!resolution) {
-          showWarning("Resolve cancelled — a response message is required.");
-          return;
-        }
+        bindFeedbackResolveModal();
+        openFeedbackResolveModal(target || { feedbackId });
+        return;
       }
       try {
-        await runOperationWithFeedback(
-          () => updateFeedbackSubmissionStatus(feedbackId, nextStatus, resolution),
-          {
-            loadingMessage: "Updating feedback status...",
-            successMessage: buildAdminFeedbackStatusMessage(nextStatus),
-            failurePrefix: "Unable to update feedback:",
-          },
-        );
-        logAdminOperation({
-          action: "Update feedback status",
-          target: targetLabel,
-          status: "success",
-          message: buildAdminFeedbackStatusMessage(nextStatus),
-        });
-      } catch (error) {
-        logAdminOperation({
-          action: "Update feedback status",
-          target: targetLabel,
-          status: "failed",
-          message: error?.message || "Unknown error.",
-        });
-      } finally {
-        renderAdminOperationHistory();
-        await refreshAdminFeedbackSubmissions();
+        await applyFeedbackStatusChange(feedbackId, nextStatus);
+      } catch {
+        // Failure toast already shown by runOperationWithFeedback.
       }
     });
   });
