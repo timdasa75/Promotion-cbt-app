@@ -902,6 +902,53 @@ async function fetchActivityMetrics() {
   }
 }
 
+// ---- Independent top-card pollers ----
+// Each top stat card group owns its data source: Users/Premium come from the
+// admin user directory, Trusted Devices/Recent Logins from this dedicated
+// lightweight endpoint. One failing fetch never blanks the other group.
+let adminCountsEverLoaded = false;
+
+async function refreshAdminDashboardCounts() {
+  const devicesEl = document.getElementById('adminStatTrustedDevices');
+  const loginsEl = document.getElementById('adminStatRecentLogins');
+  if (!devicesEl && !loginsEl) return { ok: true };
+  try {
+    const config = getRuntimeConfig();
+    const baseUrl = config?.cloudflareAuthBaseUrl || '';
+    const accessToken = String((await getCurrentAuthToken()) || '').trim();
+    // Signed-out / unconfigured: leave the current values alone (the admin
+    // screen itself is gated, so this only guards stray early calls).
+    if (!accessToken || !baseUrl) return { ok: false, reason: 'session' };
+    const resp = await fetch(`${baseUrl}/adminDashboardCounts`, {
+      headers: { 'Authorization': `Bearer ${accessToken}` },
+    });
+    if (resp.status === 401) {
+      forceReauthentication();
+      return { ok: false, reason: 'session' };
+    }
+    const data = await resp.json().catch(() => ({}));
+    if (!resp.ok || !data?.ok || !data?.counts) {
+      throw new Error(`The counts service returned HTTP ${resp.status}.`);
+    }
+    adminCountsEverLoaded = true;
+    if (devicesEl) devicesEl.textContent = String(data.counts.totalTrustedDevices ?? 0);
+    if (loginsEl) loginsEl.textContent = String(data.counts.recentLogins ?? 0);
+    return { ok: true };
+  } catch (error) {
+    // Before any successful load, "—" beats a false 0. Afterwards keep the
+    // last good values visible (same stale-honoring rule as activity cards).
+    if (!adminCountsEverLoaded) {
+      if (devicesEl) devicesEl.textContent = "—";
+      if (loginsEl) loginsEl.textContent = "—";
+    }
+    return {
+      ok: false,
+      reason: 'error',
+      message: error instanceof Error ? error.message : 'Network error while loading dashboard counts.',
+    };
+  }
+}
+
 // Track duplicate user records (same email across Firebase + Cloudflare) so
 // the dashboard can count each user once and still surface the extra records.
 let dashboardDuplicateGroups = [];
@@ -946,6 +993,25 @@ function buildUniqueDirectorySummary(rows, adminEmailSet) {
     duplicateGroups: groups,
     duplicateRecords: groups.reduce((sum, group) => sum + (group.count - 1), 0),
   };
+}
+
+// Paint the user-derived top cards from a directory summary. Owned by the
+// directory poller (called on its success), NOT by the metrics success path —
+// otherwise a metrics outage would gate directory data behind a broken fetch.
+function paintDirectoryStatCards(directorySummary) {
+  const totalUsersEl = document.getElementById('adminStatTotalUsers');
+  const premiumUsersEl = document.getElementById('adminStatPremiumUsers');
+  if (directorySummary.uniqueUsers > 0) {
+    if (totalUsersEl) totalUsersEl.textContent = String(directorySummary.uniqueUsers);
+    if (premiumUsersEl) premiumUsersEl.textContent = String(directorySummary.premiumUsers);
+  }
+  dashboardDuplicateGroups = directorySummary.duplicateGroups;
+  renderDashboardDuplicatesInfo();
+}
+
+function buildAdminEmailSetFromConfig() {
+  const config = getRuntimeConfig();
+  return new Set((config.adminEmails || []).map(e => String(e).toLowerCase()));
 }
 
 function renderDashboardDuplicatesInfo() {
@@ -996,32 +1062,12 @@ function updateActivityMetricsDisplay(metrics) {
   if (weeklyActiveEl) weeklyActiveEl.textContent = String(metrics.weeklyActive || 0);
   if (monthlyActiveEl) monthlyActiveEl.textContent = String(metrics.monthlyActive || 0);
   
-  // Update stat cards from enriched metrics.
-  // Users, Premium and Verified are derived from the merged directory
-  // (Firebase + Cloudflare) and de-duplicated by email so each user is
-  // counted exactly once. The Worker metrics are used as a fallback when the
-  // directory has not loaded yet.
-  const totalUsersEl = document.getElementById('adminStatTotalUsers');
-  const premiumUsersEl = document.getElementById('adminStatPremiumUsers');
-  const trustedDevicesEl = document.getElementById('adminStatTrustedDevices');
-  const recentLoginsEl = document.getElementById('adminStatRecentLogins');
-  const directorySummary = buildUniqueDirectorySummary(adminDirectoryUsers, adminEmailSet);
+  // The user-derived top cards belong to the directory poller (painted on its
+  // success). Metrics success only re-renders the duplicates summary — the
+  // cards themselves are never gated on this endpoint.
+  const directorySummary = buildUniqueDirectorySummary(adminDirectoryUsers, buildAdminEmailSetFromConfig());
   dashboardDuplicateGroups = directorySummary.duplicateGroups;
   renderDashboardDuplicatesInfo();
-  const totalUsersCount =
-    directorySummary.uniqueUsers > 0
-      ? directorySummary.uniqueUsers
-      : (metrics.totalUsers || 0);
-  if (totalUsersEl) totalUsersEl.textContent = String(totalUsersCount);
-  if (premiumUsersEl) {
-    premiumUsersEl.textContent = String(
-      directorySummary.premiumUsers > 0
-        ? directorySummary.premiumUsers
-        : (metrics.premiumUsers || 0),
-    );
-  }
-  if (trustedDevicesEl && metrics.totalTrustedDevices != null) trustedDevicesEl.textContent = String(metrics.totalTrustedDevices);
-  if (recentLoginsEl && metrics.recentLogins != null) recentLoginsEl.textContent = String(metrics.recentLogins);
   
   // Update the last refreshed timestamp
   const lastRefreshedEl = document.getElementById('activityMetricsLastRefreshed');
@@ -1132,6 +1178,9 @@ async function refreshActivityMetrics() {
       activityMetricsConsecutiveFailures + 1,
       ACTIVITY_METRICS_MAX_BACKOFF_TICKS,
     );
+    // Top stat cards do NOT depend on this endpoint (they poll the directory
+    // and /adminDashboardCounts independently), so a metrics failure leaves
+    // them untouched.
     renderActivityMetricsStatus();
     return;
   }
@@ -1145,8 +1194,11 @@ async function refreshActivityMetrics() {
 }
 
 function refreshAllDashboardData() {
-  // Single fetch for all dashboard stats (activity metrics, devices, logins, users)
+  // Independent fetches: activity metrics + the top-card counts poll in
+  // parallel and fail separately, so one broken endpoint never blanks the
+  // whole dashboard.
   const metricsPromise = refreshActivityMetrics();
+  const countsPromise = refreshAdminDashboardCounts();
   // Refresh recent transactions
   renderRecentTransactions();
   // Refresh migration stats
@@ -1157,7 +1209,7 @@ function refreshAllDashboardData() {
   if (securityView?.classList.contains("active")) {
     renderAdminDevices().catch(() => {});
   }
-  return metricsPromise;
+  return Promise.allSettled([metricsPromise, countsPromise]);
 }
 
 let activityMetricsAutoRefreshStarted = false;
@@ -1471,9 +1523,10 @@ function updateActivityMetricsPauseButton() {
 let dashboardStatsSource = null; // 'worker' when Worker has provided values
 
 async function updateAdminDashboardSummary() {
-  // Stat cards (totalUsers, premiumUsers, devices, logins) are ONLY updated
-  // by refreshActivityMetrics() from the Worker endpoint to prevent flickering.
-  // This function only handles non-stat-card dashboard content.
+  // Top stat cards no longer depend on this function: Users/Premium are
+  // painted by refreshAdminUserDirectory() and Devices/Logins by
+  // refreshAdminDashboardCounts(), each on their own success. This function
+  // only (re)starts the activity-metrics auto-refresh.
   
   // (Re)start activity metrics auto-refresh on every admin visit. The old
   // `dashboardStatsSource !== 'worker'` guard permanently blocked restarts
@@ -8083,6 +8136,8 @@ function exportUserList() {
   showSuccess('User list exported.');
 }
 
+let adminDirectoryEverLoaded = false;
+
 async function refreshAdminUserDirectory() {
   if (adminDirectoryRefreshInFlight) {
     return adminDirectoryRefreshInFlight;
@@ -8095,7 +8150,9 @@ async function refreshAdminUserDirectory() {
     try {
       const result = await getAdminUserDirectory();
       adminDirectoryUsers = Array.isArray(result.users) ? result.users : [];
+      adminDirectoryEverLoaded = true;
       renderAdminUserDirectory();
+      paintDirectoryStatCards(buildUniqueDirectorySummary(adminDirectoryUsers, buildAdminEmailSetFromConfig()));
       renderAdminRequests();
       updateAdminDashboardSummary();
       setSubscriptionUserData(adminDirectoryUsers);
@@ -8135,6 +8192,15 @@ async function refreshAdminUserDirectory() {
       adminDirectoryUsers = [];
       renderAdminUserDirectory();
       renderAdminRequests();
+      // The Users/Premium cards belong to this poller: before any successful
+      // directory load, "—" beats a false 0 (metrics used to overwrite these
+      // as a fallback — that coupling is gone).
+      if (!adminDirectoryEverLoaded) {
+        const totalUsersEl = document.getElementById('adminStatTotalUsers');
+        const premiumUsersEl = document.getElementById('adminStatPremiumUsers');
+        if (totalUsersEl) totalUsersEl.textContent = "—";
+        if (premiumUsersEl) premiumUsersEl.textContent = "—";
+      }
       if (sourceLabel) {
         sourceLabel.textContent = "Source: unavailable";
       }

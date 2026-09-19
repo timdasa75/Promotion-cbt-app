@@ -4951,6 +4951,84 @@ async function buildAdminActivityMetricsPayload(env) {
   };
 }
 
+// ---- Dashboard top-card counts endpoint ----
+// The top stat cards (trusted devices, recent logins) poll this endpoint
+// independently of /adminActivityMetrics: one failing fetch must never blank
+// the other card group. Cheap (2 conditional aggregates), edge-cached 60s
+// using the same cache helpers as the metrics payload.
+async function buildAdminDashboardCountsPayload(env) {
+  const database = requireAuditDatabase(env);
+  const adminEmails = parseAdminEmails(env.ADMIN_EMAILS || '');
+  if (adminEmails.length) {
+    const adminEmailRows = await database
+      .prepare(`SELECT id FROM auth_users WHERE lower(email) IN (${adminEmails.map((_, i) => `?${i + 1}`).join(',')})`)
+      .bind(...adminEmails)
+      .all();
+    const adminIds = (adminEmailRows?.results || []).map(r => String(r.id));
+    const adminIdsExclude = adminIds.length ? `AND td.user_id NOT IN (${adminIds.map((_, i) => `?${i + 1}`).join(',')})` : '';
+    const adminEmailExclude = `AND lower(u.email) NOT IN (${adminEmails.map((_, i) => `?${adminIds.length + i + 1}`).join(',')})`;
+    const params = [...adminIds, ...adminEmails.map(e => String(e).toLowerCase())];
+    const twentyFourHoursAgo = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
+
+    const [deviceStats, recentLogins] = await Promise.all([
+      database.prepare(`
+        SELECT COUNT(*) as total_trusted_devices
+        FROM trusted_devices td
+        INNER JOIN auth_users u ON td.user_id = u.id
+        WHERE 1=1 ${adminIdsExclude} ${adminEmailExclude}
+      `).bind(...params).first(),
+      database.prepare(`
+        SELECT COUNT(DISTINCT email) as count
+        FROM login_audit_log
+        WHERE created_at >= ?${params.length + 1} ${adminEmails.length ? `AND lower(email) NOT IN (${adminEmails.map((_, i) => `?${params.length + i + 2}`).join(',')})` : ''}
+      `).bind(twentyFourHoursAgo, ...adminEmails.map(e => String(e).toLowerCase())).first(),
+    ]);
+    return {
+      ok: true,
+      counts: {
+        totalTrustedDevices: deviceStats?.total_trusted_devices || 0,
+        recentLogins: recentLogins?.count || 0,
+      },
+    };
+  }
+  // No admin emails configured: skip the exclusion clauses entirely.
+  const twentyFourHoursAgo = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
+  const [deviceStats, recentLogins] = await Promise.all([
+    database.prepare(`
+      SELECT COUNT(*) as total_trusted_devices
+      FROM trusted_devices td
+      INNER JOIN auth_users u ON td.user_id = u.id
+    `).first(),
+    database.prepare(`
+      SELECT COUNT(DISTINCT email) as count
+      FROM login_audit_log
+      WHERE created_at >= ?1
+    `).bind(twentyFourHoursAgo).first(),
+  ]);
+  return {
+    ok: true,
+    counts: {
+      totalTrustedDevices: deviceStats?.total_trusted_devices || 0,
+      recentLogins: recentLogins?.count || 0,
+    },
+  };
+}
+
+async function handleAdminDashboardCounts(request, env) {
+  await verifyAdminCaller(request, env);
+  const cacheKey = `${ADMIN_METRICS_EDGE_CACHE_PREFIX}dashboard-counts:${ADMIN_METRICS_EDGE_CACHE_TTL_SECONDS}s`;
+  const cached = await readAdminMetricsEdgeCache(cacheKey);
+  if (cached) {
+    const cachedPayload = await cached.json().catch(() => null);
+    if (cachedPayload?.ok) return cachedPayload;
+  }
+  const payload = await buildAdminDashboardCountsPayload(env);
+  if (payload?.ok) {
+    await writeAdminMetricsEdgeCache(cacheKey, payload);
+  }
+  return payload;
+}
+
 async function handleAdminActivityMetrics(request, env) {
   await verifyAdminCaller(request, env);
   const cacheKey = `${ADMIN_METRICS_EDGE_CACHE_PREFIX}${ADMIN_METRICS_EDGE_CACHE_TTL_SECONDS}s`;
@@ -5667,6 +5745,7 @@ export function resolveRouteHandler(path) {
   if (path.endsWith("/admin/device-count")) return handleAdminDeviceCount;
   if (path.endsWith("/admin/all-devices")) return handleAdminAllDevices;
   if (path.endsWith("/adminActivityMetrics")) return handleAdminActivityMetrics;
+  if (path.endsWith("/adminDashboardCounts")) return handleAdminDashboardCounts;
   if (path.endsWith("/adminActiveUsers")) return handleActiveUsersList;
   if (path.endsWith("/adminAuditLog")) return handleAdminAuditLog;
   if (path.endsWith("/migration/sync-profile")) return handleMigrationSyncProfile;
