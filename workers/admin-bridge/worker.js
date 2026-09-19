@@ -331,11 +331,25 @@ async function identityAdminRequest(env, path, { method = "POST", body = null, q
   }
 
   const url = projectScoped ? projectIdentityUrl(env, path, query) : globalIdentityUrl(path, query);
-  const response = await fetch(url, {
-    method,
-    headers,
-    body: body ? JSON.stringify(body) : undefined,
-  });
+  // One network-level retry: a dropped connection to Google must not fail the
+  // whole admin request (the request never reached Google, so re-sending is
+  // safe regardless of the operation). HTTP-level errors keep single-shot
+  // semantics — retrying a 4xx/5xx can duplicate side effects.
+  let response;
+  for (let attempt = 0; attempt < 2; attempt += 1) {
+    try {
+      response = await fetch(url, {
+        method,
+        headers,
+        body: body ? JSON.stringify(body) : undefined,
+      });
+      break;
+    } catch (networkError) {
+      if (attempt === 1) {
+        throw networkError;
+      }
+    }
+  }
 
   const payload = await response.json().catch(() => ({}));
   if (!response.ok) {
@@ -617,6 +631,14 @@ function parseFeedbackRow(row = {}) {
   };
 }
 
+// Short-lived cache of successful admin token verifications. Identity
+// Platform was looked up live on EVERY admin API call — one Google-side
+// hiccup (or a flaky fetch from the Worker) failed the admin request even
+// when D1 was healthy. Only successful verdicts are cached.
+const ADMIN_VERIFY_CACHE_TTL_MS = 60 * 1000;
+const ADMIN_VERIFY_CACHE_MAX = 64;
+const adminVerifyCache = new Map();
+
 async function verifyAdminCaller(request, env) {
   const header = String(request.headers.get("authorization") || "");
   if (!header.startsWith("Bearer ")) {
@@ -633,6 +655,19 @@ async function verifyAdminCaller(request, env) {
     throw createRouteError(403, "Admin access not configured.");
   }
 
+  // Verified-admin cache: every admin API call used to hit Google's Identity
+  // Platform live — a second network dependency on the hot path of every
+  // dashboard call, so one Google hiccup failed the admin request even when
+  // D1 was perfectly healthy. Tokens are verified cryptographically by
+  // Google, so caching the successful verdict briefly is safe: a stolen or
+  // revoked token keeps working for at most ADMIN_VERIFY_CACHE_TTL_MS, and
+  // admin sends are always user-initiated, so the added exposure window is
+  // acceptable for an admin-only surface.
+  const cached = adminVerifyCache.get(token);
+  if (cached && Date.now() < cached.expiresAtMs) {
+    return cached.caller;
+  }
+
   try {
     const payload = await identityAdminRequest(env, "accounts:lookup", {
       body: { idToken: token },
@@ -647,11 +682,17 @@ async function verifyAdminCaller(request, env) {
       throw new Error("Admin access denied.");
     }
 
-    return {
+    const caller = {
       email,
       id: String(user?.localId || ""),
       provider: "firebase",
     };
+    adminVerifyCache.set(token, { caller, expiresAtMs: Date.now() + ADMIN_VERIFY_CACHE_TTL_MS });
+    if (adminVerifyCache.size > ADMIN_VERIFY_CACHE_MAX) {
+      const oldest = adminVerifyCache.keys().next().value;
+      adminVerifyCache.delete(oldest);
+    }
+    return caller;
   } catch (firebaseError) {
     try {
       return await verifyCloudflareAdminCaller(token, env, allowedAdmins);
@@ -5778,7 +5819,26 @@ export function resolveRouteHandler(path) {
   if (path.endsWith("/migration/d1-status")) return handleD1MigrationStatus;
   return null;
 }
+// Keep-warm heartbeat for the cron trigger (see wrangler.toml [triggers]).
+// The free tier recycles idle isolates quickly, and the first request after a
+// recycle pays the full startup cost (runtime boot + first D1 connection),
+// which showed up as dropped/stalled admin dashboard calls. A trivial D1
+// touch every few minutes keeps an isolate hot so admin opens start warm.
+async function keepWarm(env) {
+  try {
+    const database = requireAuditDatabase(env);
+    await database.prepare("SELECT 1 AS up FROM auth_users LIMIT 1").first();
+  } catch (error) {
+    // Never throw from the cron — a failed heartbeat is harmless and the
+    // next one retries; this must never create noise on its own.
+  }
+}
+
 export default {
+  async scheduled(controller, env, ctx) {
+    ctx.waitUntil(keepWarm(env));
+  },
+
   async fetch(request, env, ctx) {
     const origin = resolveAllowedOrigin(request, env);
     const urlPath = new URL(request.url).pathname;

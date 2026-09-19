@@ -3283,6 +3283,14 @@ body.dark-mode .admin-duplicates-details summary {
     font-variant-numeric: tabular-nums;
 }
 
+/* "—" placeholder on a stat card: data not loaded yet or fetch failed.
+   Distinct from a real 0 so admins never misread "nobody signed up / no
+   logins" during the first paint. Cleared when the owning poller paints. */
+.admin-stat-value.is-pending {
+    color: var(--ink-500);
+    font-weight: 600;
+}
+
 .admin-stat-label {
     font-size: 0.75rem;
     font-weight: 600;

@@ -1,6 +1,7 @@
 import { normalizeEmail } from "./authNormalization.js";
 import { getFirebaseConfig } from "./authRuntime.js";
 import { writeSession } from "./authStorage.js";
+import { fetchWithRetry } from "./fetchWithRetry.js";
 
 function getCloudflareAuthBaseUrl() {
   const { cloudflareAuthBaseUrl } = getFirebaseConfig();
@@ -39,7 +40,10 @@ export async function requestCloudflareAuth(path, {
   accessToken = "",
   fetchImpl = fetch,
 } = {}) {
-  const response = await fetchImpl(buildCloudflareAuthUrl(path), {
+  // Network-level retries only (a request that never reached the server is
+  // safe to re-send for any method): the Worker's first request after idle
+  // can be dropped by a cold isolate or a stalled TLS handshake.
+  const response = await fetchWithRetry(buildCloudflareAuthUrl(path), {
     method,
     headers: {
       "Content-Type": "application/json",

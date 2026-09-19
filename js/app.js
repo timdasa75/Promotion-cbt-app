@@ -93,6 +93,7 @@ function loadQuizApi() {
 import { escapeHtml, normalizeExplanationText, parseMarkdown } from "./quiz/formatting.js";
 import { debugLog } from "./logger.js";
 import { clearSession, readSession } from "./authStorage.js";
+import { fetchWithRetry, isTransientHttpStatus } from "./fetchWithRetry.js";
 import { requestCloudflareAuth } from "./authCloudflareClient.js";
 import { PaginationController, getPaginatedItems } from "./pagination.js";
 import { isResetRequestRow, isResetSendRow, summarizePasswordResetRequests } from "./adminResetStats.js";
@@ -881,9 +882,11 @@ async function fetchActivityMetrics() {
     if (!accessToken || !baseUrl) {
       return { ok: false, reason: 'session', message: 'Admin session unavailable.' };
     }
-    const resp = await fetch(`${baseUrl}/adminActivityMetrics`, {
+    // Cold Worker isolates / flaky TLS can stall or drop the first request —
+    // retry transient failures so the dashboard survives a cold start.
+    const resp = await fetchWithRetry(`${baseUrl}/adminActivityMetrics`, {
       headers: { 'Authorization': `Bearer ${accessToken}` }
-    });
+    }, { shouldRetryResponse: isTransientHttpStatus });
     if (resp.status === 401) {
       forceReauthentication();
       return { ok: false, reason: 'session', message: 'Your session expired. Please sign in again.' };
@@ -920,9 +923,9 @@ async function refreshAdminDashboardCounts() {
     // Signed-out / unconfigured: leave the current values alone (the admin
     // screen itself is gated, so this only guards stray early calls).
     if (!accessToken || !baseUrl) return { ok: false, reason: 'session' };
-    const resp = await fetch(`${baseUrl}/adminDashboardCounts`, {
+    const resp = await fetchWithRetry(`${baseUrl}/adminDashboardCounts`, {
       headers: { 'Authorization': `Bearer ${accessToken}` },
-    });
+    }, { shouldRetryResponse: isTransientHttpStatus });
     if (resp.status === 401) {
       forceReauthentication();
       return { ok: false, reason: 'session' };
@@ -999,13 +1002,24 @@ function buildUniqueDirectorySummary(rows, adminEmailSet) {
 // Paint the user-derived top cards from a directory summary. Owned by the
 // directory poller (called on its success), NOT by the metrics success path —
 // otherwise a metrics outage would gate directory data behind a broken fetch.
-function paintDirectoryStatCards(directorySummary) {
+function paintDirectoryStatCards(directorySummary, { degraded = false } = {}) {
   const totalUsersEl = document.getElementById('adminStatTotalUsers');
   const premiumUsersEl = document.getElementById('adminStatPremiumUsers');
-  if (directorySummary.uniqueUsers > 0) {
-    if (totalUsersEl) totalUsersEl.textContent = String(directorySummary.uniqueUsers);
-    if (premiumUsersEl) premiumUsersEl.textContent = String(directorySummary.premiumUsers);
+  if (degraded && !adminDirectoryEverLoaded) {
+    // Degraded load (local/cached fallback) before any healthy load: "—"
+    // beats a false 0 — real user data exists, the live fetch just failed.
+    // Painting the fallback's stale counts here is what made the users number
+    // bounce downward between refreshes.
+    if (totalUsersEl) totalUsersEl.textContent = "—";
+    if (premiumUsersEl) premiumUsersEl.textContent = "—";
+  } else if (!degraded) {
+    if (totalUsersEl) totalUsersEl.textContent = String(directorySummary.uniqueUsers || 0);
+    if (premiumUsersEl) premiumUsersEl.textContent = String(directorySummary.premiumUsers || 0);
+    // Only a healthy load counts as loaded — a fallback result must keep the
+    // self-heal loop retrying the directory (see refreshAllDashboardData).
+    adminDirectoryEverLoaded = true;
   }
+  // Degraded loads after a healthy one keep the last good values visible.
   dashboardDuplicateGroups = directorySummary.duplicateGroups;
   renderDashboardDuplicatesInfo();
 }
@@ -1200,6 +1214,15 @@ function refreshAllDashboardData() {
   // whole dashboard.
   const metricsPromise = refreshActivityMetrics();
   const countsPromise = refreshAdminDashboardCounts();
+  // Self-heal the user-derived cards: the directory refresh normally runs
+  // only from openAdminScreen, so when that first call degraded (Worker cold
+  // start, flaky network), Users/Premium stayed on stale/fallback values
+  // until the admin reopened the panel — the "refresh until it works"
+  // symptom. The in-flight dedupe in refreshAdminUserDirectory makes this a
+  // no-op while openAdminScreen's own call is still running.
+  if (!adminDirectoryEverLoaded) {
+    refreshAdminUserDirectory().catch(() => {});
+  }
   // Refresh recent transactions
   renderRecentTransactions();
   // Refresh migration stats
@@ -1212,6 +1235,11 @@ function refreshAllDashboardData() {
   }
   return Promise.allSettled([metricsPromise, countsPromise]);
 }
+
+// Console/test hook: runs the exact refresh cycle the 30s auto-refresh
+// interval uses, so smoke tests (and support debugging) can trigger recovery
+// without waiting for a tick.
+window.__promoRefreshDashboard = refreshAllDashboardData;
 
 let activityMetricsAutoRefreshStarted = false;
 let activityMetricsVisibilityBound = false;
@@ -1232,6 +1260,9 @@ function startActivityMetricsAutoRefresh() {
     if (!activityMetricsEverLoaded && !activityMetricsLoading) {
       return refreshAllDashboardData();
     }
+    // (The top stat cards are painted by their own pollers and the dashboard
+    // loop self-heals a degraded directory, so a latched flag here can only
+    // delay the activity cards, never show false zeros.)
     return Promise.resolve();
   }
   activityMetricsAutoRefreshStarted = true;
@@ -2056,7 +2087,8 @@ function renderAdminResetRequests() {
   const stats = adminResetStats || { unresolved: [], resolvedCount: 0, totalRequests: 0 };
   const pending = stats.unresolved;
   if (countLabel) {
-    if (adminResetLoadFailed) {
+    if (adminResetLoadFailed || !adminResetRequestsLoaded) {
+      // Failed or still loading: "—" beats a transient false 0.
       countLabel.textContent = "—";
     } else {
       countLabel.textContent = String(pending.length);
@@ -8320,9 +8352,12 @@ async function refreshAdminUserDirectory() {
     try {
       const result = await getAdminUserDirectory();
       adminDirectoryUsers = Array.isArray(result.users) ? result.users : [];
-      adminDirectoryEverLoaded = true;
+      // A local-fallback result is NOT a real load: adminDirectoryEverLoaded
+      // flips inside paintDirectoryStatCards on healthy loads only, so the
+      // dashboard self-heal loop keeps retrying until the live fetch works.
+      const degraded = result.source === "local";
       renderAdminUserDirectory();
-      paintDirectoryStatCards(buildUniqueDirectorySummary(adminDirectoryUsers, buildAdminEmailSetFromConfig()));
+      paintDirectoryStatCards(buildUniqueDirectorySummary(adminDirectoryUsers, buildAdminEmailSetFromConfig()), { degraded });
       renderAdminRequests();
       updateAdminDashboardSummary();
       setSubscriptionUserData(adminDirectoryUsers);
@@ -8662,14 +8697,16 @@ async function openAdminScreen() {
         renderAdminResetRequests();
         refreshAdminResetRequests();
         renderAdminFeedbackList();
-        // Start metrics fetch FIRST so the await below blocks until real
-        // numbers are painted. refreshAdminUserDirectory() also calls
-        // updateAdminDashboardSummary() (which dedupes via the flag), so
-        // the order matters: if the directory call runs first, the flag is
-        // already set and the await below returns instantly.
-        await updateAdminDashboardSummary();
-        await refreshAdminUserDirectory();
-        await refreshAdminFeedbackSubmissions();
+        // Independent data loads run concurrently: the old sequential awaits
+        // stacked their latencies (each fetch can take seconds on a cold
+        // Worker, and the dashboard opened after the SUM of all three).
+        // allSettled keeps one failure from blocking the others, and the
+        // metrics/directory dedupe flags below prevent double-fetching.
+        await Promise.allSettled([
+          updateAdminDashboardSummary(),
+          refreshAdminUserDirectory(),
+          refreshAdminFeedbackSubmissions(),
+        ]);
         // Load security sections
         renderAdminDevices().catch(() => {});
         renderAdminAuditLog().catch(() => {});

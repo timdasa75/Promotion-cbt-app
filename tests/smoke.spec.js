@@ -2745,3 +2745,102 @@ test("top stat cards survive an activity-metrics outage with real counts, never 
   // And the metrics failure panel is visible with a retry affordance.
   await expect(page.locator("#activityMetricsStatus")).toBeVisible();
 });
+
+test("directory failure paints em-dashes, never false zeros, and the dashboard self-heals on retry", async ({ page }) => {
+  // Reproduces the "initial zeros until a couple of refreshes" bug: the first
+  // admin-list call fails (Worker cold start / flaky network), the dashboard
+  // must show "—" for the user-derived cards — never a false 0 — and the
+  // dashboard refresh cycle must retry the directory and paint real counts
+  // without the admin reopening the panel.
+  const corsHeaders = {
+    "access-control-allow-origin": "*",
+    "access-control-allow-methods": "POST, OPTIONS",
+    "access-control-allow-headers": "authorization, content-type",
+  };
+  const respondJson = async (route, body) => {
+    if (route.request().method() === "OPTIONS") {
+      await route.fulfill({ status: 204, headers: corsHeaders, body: "" });
+      return;
+    }
+    await route.fulfill({ status: 200, contentType: "application/json", headers: corsHeaders, body: JSON.stringify(body) });
+  };
+
+  await page.addInitScript(() => {
+    window.PROMOTION_CBT_AUTH = {
+      firebaseApiKey: "mock-api-key",
+      firebaseProjectId: "mock-project-id",
+      firebaseAuthDomain: "mock-project-id.firebaseapp.com",
+      adminApiBaseUrl: "/mock-admin-api",
+      cloudflareAuthBaseUrl: "/mock-admin-api",
+      adminEmails: ["timdasa75@gmail.com"],
+    };
+    const nowIso = new Date().toISOString();
+    window.sessionStorage.setItem(
+      "cbt_session_v1",
+      JSON.stringify({
+        provider: "firebase",
+        accessToken: "mock-id-token",
+        refreshToken: "mock-refresh-token",
+        expiresAt: Date.now() + 60 * 60 * 1000,
+        user: { id: "u_admin", name: "Admin User", email: "timdasa75@gmail.com", plan: "premium", createdAt: nowIso, emailVerified: true },
+        createdAt: nowIso,
+      }),
+    );
+  });
+
+  // The directory fails for the first four physical calls, then serves
+  // healthy data. Each logical directory fetch now retries transient network
+  // failures up to 3 attempts (fetchWithRetry), and the open flow can issue
+  // two logical calls (fire-and-forget dashboard cycle + awaited open) —
+  // four failures exhaust BOTH, so the first paint is deterministic "—".
+  // The fifth call models the network recovering (e.g. cold start finished).
+  let adminListUsersCalls = 0;
+  await page.route("**/mock-admin-api/adminListUsers*", async (route) => {
+    if (route.request().method() === "OPTIONS") {
+      return route.fulfill({ status: 204, headers: corsHeaders, body: "" });
+    }
+    adminListUsersCalls += 1;
+    if (adminListUsersCalls <= 4) {
+      return route.abort("connectionreset");
+    }
+    return respondJson(route, {
+      ok: true,
+      total: 1,
+      users: [{ id: "u1", email: "learner@example.com", name: "Learner", plan: "premium", emailVerified: true, disabled: false, createdAt: new Date().toISOString(), lastSignInAt: "" }],
+    });
+  });
+  await page.route("**/mock-admin-api/adminActivityMetrics*", (route) => {
+    if (route.request().method() === "OPTIONS") {
+      return route.fulfill({ status: 204, headers: corsHeaders, body: "" });
+    }
+    return route.fulfill({ status: 500, contentType: "application/json", headers: corsHeaders, body: JSON.stringify({ ok: false, error: "metrics down" }) });
+  });
+  await page.route("**/mock-admin-api/adminDashboardCounts*", (route) => respondJson(route, { ok: true, counts: { totalTrustedDevices: 12, recentLogins: 7 } }));
+  await page.route("**/mock-admin-api/adminListOperations*", (route) => respondJson(route, { ok: true, operations: [] }));
+  await page.route("**/mock-admin-api/adminListResetRequests*", (route) => respondJson(route, { ok: true, operations: [] }));
+  await page.route("**/mock-admin-api/adminListFeedback*", (route) => respondJson(route, { ok: true, submissions: [] }));
+  await page.route("https://firestore.googleapis.com/**", (route) => route.fulfill({ status: 403, contentType: "application/json", body: "{}" }));
+  await serveCiGeneratedRuntimeConfig(page);
+
+  await page.goto("/");
+  await expect(page.locator("#appLoadingOverlay")).toHaveClass(/is-hidden/);
+
+  await page.click("#headerAdminBtn");
+  await expect(page.locator("#adminScreen")).toBeVisible();
+
+  // First open, directory fetch failed: "—" (honest pending state), NOT 0.
+  // A fallback result must never paint stale/fallback user counts either.
+  await expect(page.locator("#adminStatTotalUsers")).toHaveText("—");
+  await expect(page.locator("#adminStatPremiumUsers")).toHaveText("—");
+
+  // Devices/Logins painted from their own endpoint despite the directory outage.
+  await expect(page.locator("#adminStatTrustedDevices")).toHaveText("12");
+  await expect(page.locator("#adminStatRecentLogins")).toHaveText("7");
+
+  // The network recovered: one dashboard refresh cycle (same code the 30s
+  // auto-refresh runs) must retry the degraded directory and paint real
+  // counts — the admin does not have to reopen the panel.
+  await page.evaluate(() => window.__promoRefreshDashboard());
+  await expect(page.locator("#adminStatTotalUsers")).toHaveText("1", { timeout: 15_000 });
+  await expect(page.locator("#adminStatPremiumUsers")).toHaveText("1");
+});

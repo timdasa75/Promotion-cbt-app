@@ -6,6 +6,7 @@ import {
   toOptionalIsoTimestamp,
 } from "./authNormalization.js";
 import { getFirebaseConfig } from "./authRuntime.js";
+import { fetchWithRetry } from "./fetchWithRetry.js";
 
 
 function getCloudFunctionsBaseUrl() {
@@ -35,14 +36,18 @@ async function postAdminApiJson(url, accessToken, body = {}, fetchImpl = fetch) 
     throw new Error("Session is unavailable.");
   }
 
-  const response = await fetchImpl(url, {
+  // Network-level retries only (never re-send after the server saw the
+  // request): cold Worker isolates and flaky connections drop the first
+  // admin call surprisingly often, which used to blank dashboard sections
+  // until a manual retry.
+  const response = await fetchWithRetry(url, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${accessToken}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify(body || {}),
-  });
+  }, { fetchImpl });
 
   const payload = await response.json().catch(() => ({}));
   if (!response.ok || !payload?.ok) {

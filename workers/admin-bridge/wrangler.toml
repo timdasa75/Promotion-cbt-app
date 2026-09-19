@@ -25,6 +25,13 @@ html_handling = "none"
 not_found_handling = "none"
 
 # Hybrid auth D1 binding (enable after creating the database and granting D1 token permissions):
+# Keep-warm heartbeat: wakes the Worker every 4 minutes so admin dashboard
+# opens start on a warm isolate instead of paying the cold-start cost that
+# showed up as dropped/stalled first requests. One of the free tier's five
+# cron triggers per Worker is plenty.
+[triggers]
+crons = ["*/4 * * * *"]
+
 [[d1_databases]]
 binding = "AUTH_DB"
 database_name = "promotion-cbt-auth"
