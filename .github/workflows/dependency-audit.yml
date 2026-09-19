@@ -1,0 +1,94 @@
+name: Dependency audit
+
+# Keeps the vulnerability backlog from rebuilding: every push/PR gets an
+# npm-audit gate, Dependabot PRs are auto-labeled for fast triage, and a
+# Monday digest posts the current alert count with triage pointers so drift
+# is visible even when nothing changed.
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  schedule:
+    # Mondays 06:10 Africa/Lagos (05:10 UTC), shortly after Dependabot's run.
+    - cron: "10 5 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: read
+  issues: write
+
+concurrency:
+  group: dependency-audit-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Gate: fail on any critical/high advisory across the whole tree. The
+      # manifest is devDependencies-only (the static site ships no runtime
+      # deps), but a compromised build tool is still a supply-chain risk — so
+      # dev deps are part of the gate, not exempt.
+      - name: Fail on critical or high advisories
+        run: npm audit --audit-level=high
+
+      # Report: full severity table for moderate/low visibility in the run log.
+      - name: Report full advisory table
+        if: always()
+        run: npm audit || true
+
+      # Label Dependabot's PRs "dependencies" so they group in the PR list and
+      # can be bulk-triaged; auto-merge stays opt-in per PR (the suite cannot
+      # run bank-dependent checks on a dependency-only change without care).
+      - name: Label Dependabot pull requests
+        if: github.event_name == 'pull_request' && github.actor == 'dependabot[bot]'
+        run: gh pr edit "$PR_URL" --add-label dependencies
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+
+  # Weekly digest: one place to see whether the backlog is growing. Fails the
+  # job (visible red X) when a critical/high advisory is present so the
+  # scheduled run itself acts as the tripwire.
+  digest:
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Weekly alert digest
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          COUNT=$(gh api "repos/$REPO/dependabot/alerts?state=open" --paginate --jq 'length')
+          CRIT=$(gh api "repos/$REPO/dependabot/alerts?state=open&severity=critical" --paginate --jq 'length')
+          HIGH=$(gh api "repos/$REPO/dependabot/alerts?state=open&severity=high" --paginate --jq 'length')
+          {
+            echo "## Dependency alert digest"
+            echo ""
+            echo "- Open alerts: **$COUNT** (critical: $CRIT, high: $HIGH)"
+            echo "- Triage queue: https://github.com/$REPO/security/dependabot"
+            echo "- Policy: fix or dismiss every critical/high; group moderates/lows"
+            echo "  into the weekly Dependabot PRs."
+          } >> "$GITHUB_STEP_SUMMARY"
+          if [ "$CRIT" -gt 0 ] || [ "$HIGH" -gt 0 ]; then
+            echo "::error::Critical/high advisories present: $CRIT critical, $HIGH high"
+            exit 1
+          fi

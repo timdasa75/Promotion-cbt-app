@@ -1,0 +1,42 @@
+# Dependabot keeps the dependency alert backlog from rebuilding: weekly
+# version updates for npm (dev-only deps) and the Actions used by CI, plus
+# weekly security updates for anything flagged.
+version: 2
+updates:
+  # Application/tooling dependencies (all devDependencies: Playwright, Vite,
+  # wrangler, jspdf). Grouped so minor/patch bumps land as one reviewable PR
+  # instead of a daily trickle; security fixes always ship immediately and
+  # separately.
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Africa/Lagos"
+    open-pull-requests-limit: 10
+    groups:
+      minor-and-patch:
+        update-types:
+          - "minor"
+          - "patch"
+    # Dependabot cannot run this app's test suite against question banks it
+    # cannot see, so CI (dependency-audit.yml) gates every PR it opens.
+    allow:
+      - dependency-type: "all"
+    versioning-strategy: increase
+
+  # Keep the actions pinned in .github/workflows current (checkout, setup-node,
+  # configure-pages, upload/deploy-pages...).
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Africa/Lagos"
+    groups:
+      actions:
+        patterns:
+          - "*"
+
