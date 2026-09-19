@@ -4809,6 +4809,10 @@ async function finalizeGoogleLogin() {
   try { await refreshAccessibleTopics(); } catch (e) { /* best-effort */ }
   try { startCloudPlanAutoSync(); } catch (e) { /* ignore */ }
   showSuccess("Signed in with Google.");
+  // Existing-user phone capture: same offer email logins get, shortly after
+  // landing on the topics screen (bindPhoneCaptureModal is idempotent).
+  bindPhoneCaptureModal();
+  setTimeout(() => { maybePromptForPhoneNumber().catch(() => {}); }, 1500);
 }
 
 /**
@@ -5899,13 +5903,25 @@ function updateAuthUI() {
     }
 
     if (authModalIntro) {
-      authModalIntro.textContent = cloudConfigMissing
-        ? "Cloud authentication is required on this deployment."
-        : configuredProvider === "Cloud" || configuredProvider === "Hybrid" || configuredProvider === "Cloudflare"
-          ? "Tip: if you have a Gmail account, tap “Continue with Google” above to sign in instantly — no password needed. Prefer email? Register or login below."
-          : configuredProvider === "Demo"
-            ? "Local demo access is available on this device only. Passwords are not stored."
-            : "Cloud authentication is required on this deployment.";
+      // Nudge keyed on cloud availability, not the active provider label: on a
+      // localhost dev preview with the demo opt-in enabled, the label reads
+      // "Demo" even though cloud auth is fully configured and the Google
+      // button is rendered — showing demo copy there hid the nudge.
+      // The nudge sits BELOW the Google button (google-nudge class); in demo
+      // mode the copy explains the local-demo fallback instead of pointing at
+      // the Google button, which is not wired up there.
+      if (cloudConfigMissing) {
+        authModalIntro.textContent = "Cloud authentication is required on this deployment.";
+        authModalIntro.hidden = false;
+      } else if (isCloudAuthEnabled()) {
+        authModalIntro.textContent = "Tip: if you have a Gmail account, tap “Continue with Google” to sign in instantly — no password needed. Prefer email? Register or login below — you can sign in right away and verify later.";
+        authModalIntro.hidden = false;
+      } else {
+        authModalIntro.textContent = configuredProvider === "Demo"
+          ? "Local demo access is available on this device only. Passwords are not stored."
+          : "Cloud authentication is required on this deployment.";
+        authModalIntro.hidden = false;
+      }
     }
 
     if (!googleAuthEventsBound) {
@@ -6386,10 +6402,33 @@ function refreshProfilePhone() {
       if (note) note.textContent = payload?.phone
         ? `Verification number on file: ${payload.phone}. Used for account-security messages (password resets, codes) on WhatsApp and, when SMS launches, text.`
         : "Used for account-security messages on WhatsApp (like password-reset links) and verification codes. Your number is stored once — no need to ask again.";
+      // Phoneless account: surface the add-number callout so the profile page
+      // itself prompts for it (the login modal offer is once-only and skippable,
+      // so this is the reliable catch-all).
+      updateProfilePhoneCallout(Boolean(payload?.phone));
     })
     .catch(() => {
       // Non-critical; leave the field editable and the note as-is.
+      updateProfilePhoneCallout(null); // unknown state — don't nag on errors
     });
+}
+
+// Callout on the profile card shown only when we positively know the account
+// has no phone number on file. "Add now" focuses the existing phone field.
+let profilePhoneCalloutBound = false;
+function updateProfilePhoneCallout(hasPhone) {
+  const callout = document.getElementById("profilePhoneCallout");
+  if (!callout) return;
+  const show = hasPhone === false; // null (unknown) stays hidden
+  callout.classList.toggle("hidden", !show);
+  if (show && !profilePhoneCalloutBound) {
+    profilePhoneCalloutBound = true;
+    document.getElementById("profilePhoneCalloutBtn")?.addEventListener("click", () => {
+      const input = document.getElementById("profilePhoneInput");
+      input?.scrollIntoView({ behavior: "smooth", block: "center" });
+      input?.focus();
+    });
+  }
 }
 
 // Phone capture for existing users. Every account created before phone

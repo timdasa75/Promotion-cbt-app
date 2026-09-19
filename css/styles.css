@@ -824,28 +824,49 @@ h3,
     line-height: 1.4;
 }
 
-/* Reset-requests card/panel: highlight when deep-linked from the toolbar badge. */
-.admin-focus-highlight {
-    animation: admin-focus-pulse 1.6s ease-out 1;
+/* Profile phone callout: shown only when the account has no number on file. */
+.profile-phone-callout {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: var(--space-2);
+    padding: 8px 10px;
+    border: 1px solid color-mix(in srgb, var(--warning, #d97706) 40%, var(--line));
+    border-radius: 8px;
+    background: color-mix(in srgb, var(--warning, #d97706) 8%, var(--card));
+    font-size: 0.82rem;
+    line-height: 1.35;
 }
 
-@keyframes admin-focus-pulse {
-    0% {
-        box-shadow: 0 0 0 3px var(--primary);
-        transform: translateY(-2px);
-    }
-    100% {
-        box-shadow: none;
-        transform: none;
-    }
+.profile-phone-callout.hidden {
+    display: none;
+}
+
+.profile-phone-callout .btn {
+    flex-shrink: 0;
+    margin-left: auto;
+}
+
+/* Auth-modal nudge: sits directly under the Google button it points at. */
+.google-nudge {
+    font-size: 0.82rem;
+    color: var(--ink-600);
+    text-align: center;
+    margin: 8px 0 0;
+    line-height: 1.45;
+}
+
+.google-nudge[hidden] {
+    display: none;
 }
 
 /* Admin toolbar badge: unresolved password-reset request count on the header
    Admin button. Reuses .header-reply-badge positioning (absolute top-right,
    ring, pointer-events none) but renders a number instead of a plain dot.
-   Clicks pass through to the button, which deep-links to the reset-requests
-   card when the badge is active. The button is reused inside the <=700px
-   header overflow menu, so the badge travels with it on small screens. */
+   The button itself always opens the admin dashboard at the top; the admin
+   reaches the list through the Reset Requests stat card. The button is
+   reused inside the <=700px header overflow menu, so the badge travels with
+   it on small screens. */
 .header-admin-reset-badge {
     top: 2px;
     right: 2px;

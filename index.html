@@ -648,6 +648,11 @@
                             <div class="profile-head"><div class="avatar" id="profileAvatar" aria-hidden="true">TU</div><div><h2 id="profileDisplayName">Tim User</h2><p id="profileSubtitle">Directorate Cadre Candidate</p></div></div>
                             <div class="button-row compact-actions profile-account-actions"><button class="btn btn-secondary" id="changePasswordBtn" type="button">Change Password</button><button class="btn btn-destructive" id="profileLogoutBtn" type="button">Logout</button></div>
                             <div class="setting-row profile-theme-row"><span>Theme</span><button class="btn btn-ghost" data-theme-action="toggle" type="button">Toggle Light/Dark</button></div>
+                            <div class="profile-phone-callout hidden" id="profilePhoneCallout" role="status">
+                                <span aria-hidden="true">📱</span>
+                                <span>Add your phone number so we can reach you on WhatsApp for password resets &amp; codes.</span>
+                                <button class="btn btn-ghost btn-sm" id="profilePhoneCalloutBtn" type="button">Add now</button>
+                            </div>
                             <div class="setting-row profile-phone-row">
                                 <span>Phone (WhatsApp &amp; codes)</span>
                                 <div class="profile-phone-controls">
@@ -1366,7 +1371,6 @@
                 <button class="auth-close" id="authCloseBtn" type="button" aria-label="Close authentication panel">&times;</button>
                 <div class="section-head screen-header">
                     <h2 id="authModalTitle">Access Promotion CBT</h2>
-                    <p id="authModalIntro">Tip: if you have a Gmail account, tap “Continue with Google” above to sign in instantly — no password needed. Prefer email? Register or login below — you can sign in right away and verify later.</p>
                     <p class="hero-meta hidden" id="authModeHint">Auth mode: Local (single-device)</p>
                 </div>
                 <div class="chip-row auth-tabs" role="tablist" aria-label="Authentication tabs">
@@ -1381,6 +1385,7 @@
                             <span>Continue with Google</span>
                         </button>
                     </div>
+                    <p class="google-nudge" id="authModalIntro">Tip: if you have a Gmail account, tap “Continue with Google” to sign in instantly — no password needed. Prefer email? Register or login below — you can sign in right away and verify later.</p>
                     <div class="divider-text">or</div>
                     <label class="auth-field">
                         <span>Email</span>
