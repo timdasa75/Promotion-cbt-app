@@ -2598,7 +2598,7 @@ test("WhatsApp reset button stays hidden while the business number is unconfigur
   await expect(waBtn).toBeHidden();
 });
 
-test("admin badge deep-link opens the dashboard on the reset-requests card", async ({ page }) => {
+test("admin button opens the dashboard top with the reset list click-to-open", async ({ page }) => {
   const corsHeaders = {
     "access-control-allow-origin": "*",
     "access-control-allow-methods": "POST, OPTIONS",
@@ -2657,11 +2657,91 @@ test("admin badge deep-link opens the dashboard on the reset-requests card", asy
   const dashboardActive = await page.evaluate(() => document.querySelector("#adminViewDashboard")?.classList.contains("active"));
   expect(dashboardActive, "dashboard tab should be the active admin view").toBe(true);
 
-  // The deep-link opens the expandable reset-requests panel (active-users pattern).
-  await expect(page.locator("#adminResetRequestsPanel")).toBeVisible();
-  await expect(page.locator("#adminResetRequestsPanel")).toHaveClass(/admin-focus-highlight/);
-  await expect(page.locator("#adminResetRequestsList")).toContainText("waiter@example.com");
+  // The Admin button always opens at the TOP of the dashboard — the expandable
+  // reset-requests panel stays hidden until its stat card is clicked.
+  await expect(page.locator("#adminResetRequestsPanel")).toBeHidden();
 
-  // The unresolved count also appears on the 5th stat card.
+  // The unresolved count is still surfaced on the badge and the 5th stat card.
+  await expect(badge).toHaveText("1");
   await expect(page.locator("[data-admin-stat='reset-requests'] .admin-stat-value")).toHaveText("1");
+
+  // Clicking the card opens the list on demand.
+  await page.click("[data-admin-stat='reset-requests']");
+  await expect(page.locator("#adminResetRequestsPanel")).toBeVisible();
+  await expect(page.locator("#adminResetRequestsList")).toContainText("waiter@example.com");
+});
+
+test("top stat cards survive an activity-metrics outage with real counts, never false zeros", async ({ page }) => {
+  const corsHeaders = {
+    "access-control-allow-origin": "*",
+    "access-control-allow-methods": "POST, OPTIONS",
+    "access-control-allow-headers": "authorization, content-type",
+  };
+  const respondJson = async (route, body) => {
+    if (route.request().method() === "OPTIONS") {
+      await route.fulfill({ status: 204, headers: corsHeaders, body: "" });
+      return;
+    }
+    await route.fulfill({ status: 200, contentType: "application/json", headers: corsHeaders, body: JSON.stringify(body) });
+  };
+
+  await page.addInitScript(() => {
+    window.PROMOTION_CBT_AUTH = {
+      firebaseApiKey: "mock-api-key",
+      firebaseProjectId: "mock-project-id",
+      firebaseAuthDomain: "mock-project-id.firebaseapp.com",
+      adminApiBaseUrl: "/mock-admin-api",
+      cloudflareAuthBaseUrl: "/mock-admin-api",
+      adminEmails: ["timdasa75@gmail.com"],
+    };
+    const nowIso = new Date().toISOString();
+    window.sessionStorage.setItem(
+      "cbt_session_v1",
+      JSON.stringify({
+        provider: "firebase",
+        accessToken: "mock-id-token",
+        refreshToken: "mock-refresh-token",
+        expiresAt: Date.now() + 60 * 60 * 1000,
+        user: { id: "u_admin", name: "Admin User", email: "timdasa75@gmail.com", plan: "premium", createdAt: nowIso, emailVerified: true },
+        createdAt: nowIso,
+      }),
+    );
+  });
+
+  // /adminActivityMetrics is HARD DOWN (500). The top cards must be unaffected.
+  await page.route("**/mock-admin-api/adminActivityMetrics*", (route) => {
+    if (route.request().method() === "OPTIONS") {
+      return route.fulfill({ status: 204, headers: corsHeaders, body: "" });
+    }
+    return route.fulfill({ status: 500, contentType: "application/json", headers: corsHeaders, body: JSON.stringify({ ok: false, error: "metrics down" }) });
+  });
+  // The independent counts endpoint serves real numbers.
+  await page.route("**/mock-admin-api/adminDashboardCounts*", (route) => respondJson(route, { ok: true, counts: { totalTrustedDevices: 12, recentLogins: 7 } }));
+  // Directory serves the user-derived cards (1 user, premium).
+  await page.route("**/mock-admin-api/adminListUsers*", (route) => respondJson(route, {
+    ok: true,
+    total: 1,
+    users: [{ id: "u1", email: "learner@example.com", name: "Learner", plan: "premium", emailVerified: true, disabled: false, createdAt: new Date().toISOString(), lastSignInAt: "" }],
+  }));
+  await page.route("**/mock-admin-api/adminListOperations*", (route) => respondJson(route, { ok: true, entries: [] }));
+  await page.route("**/mock-admin-api/adminListResetRequests*", (route) => respondJson(route, { ok: true, operations: [] }));
+  await page.route("https://firestore.googleapis.com/**", (route) => route.fulfill({ status: 403, contentType: "application/json", body: "{}" }));
+  await serveCiGeneratedRuntimeConfig(page);
+
+  await page.goto("/");
+  await expect(page.locator("#appLoadingOverlay")).toHaveClass(/is-hidden/);
+
+  await page.click("#headerAdminBtn");
+  await expect(page.locator("#adminScreen")).toBeVisible();
+
+  // Top cards painted from their OWN sources despite metrics being down.
+  await expect(page.locator("#adminStatTotalUsers")).toHaveText("1");
+  await expect(page.locator("#adminStatPremiumUsers")).toHaveText("1");
+  await expect(page.locator("#adminStatTrustedDevices")).toHaveText("12");
+  await expect(page.locator("#adminStatRecentLogins")).toHaveText("7");
+
+  // The activity cards show the honest no-data state (not zeros).
+  await expect(page.locator("#adminStatDailyActive")).toHaveText("—");
+  // And the metrics failure panel is visible with a retry affordance.
+  await expect(page.locator("#activityMetricsStatus")).toBeVisible();
 });

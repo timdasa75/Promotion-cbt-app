@@ -8519,7 +8519,7 @@ function handleAdminStatCardClick(statType) {
   }
 }
 
-async function openAdminScreen({ focusSectionId = "" } = {}) {
+async function openAdminScreen() {
   if (!isCurrentUserAdmin()) {
     showWarning("Admin access is restricted.");
     return;
@@ -8569,25 +8569,6 @@ async function openAdminScreen({ focusSectionId = "" } = {}) {
         failurePrefix: "Unable to open admin panel:",
       },
     );
-    if (focusSectionId) {
-      // Badge/deep-link entry: land the admin on the requested section. Runs
-      // after showScreen resolves, so the admin screen is active; the tab
-      // switch precedes scrolling so the target card is in the visible view.
-      switchAdminTab("dashboard");
-      if (focusSectionId === "password-reset-requests") {
-        // The list lives in the expandable panel; unhide it before scrolling.
-        document.getElementById("adminResetRequestsPanel")?.classList.remove("hidden");
-        refreshAdminResetRequests();
-      }
-      const section = document.getElementById(focusSectionId) || document.getElementById("adminResetRequestsPanel");
-      if (section) {
-        section.scrollIntoView({ behavior: "smooth", block: "start" });
-        section.classList.remove("admin-focus-highlight");
-        // Restart the animation if the card was highlighted recently.
-        void section.offsetWidth;
-        section.classList.add("admin-focus-highlight");
-      }
-    }
   } catch (error) {
     // Error toast already displayed by runOperationWithFeedback.
   }
@@ -9072,11 +9053,10 @@ function initializeAuthUI() {
   }
   if (headerAdminBtn) {
     headerAdminBtn.addEventListener("click", async () => {
-      // A visible badge means pending work: land the admin directly on the
-      // reset-requests card instead of the dashboard top.
-      await openAdminScreen(
-        headerAdminResetCount > 0 ? { focusSectionId: "password-reset-requests" } : {}
-      );
+      // Always open at the top of the dashboard. The reset badge still shows
+      // the pending count; the admin reviews it via the Reset Requests card
+      // (click-to-expand) rather than being teleported past the overview.
+      await openAdminScreen();
     });
   }
 
