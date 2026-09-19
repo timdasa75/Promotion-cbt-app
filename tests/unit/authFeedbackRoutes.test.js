@@ -141,7 +141,8 @@ test("firebase feedback operations use Firestore instead of Cloudflare auth rout
       category: "suggestion",
       message: "Please add more questions.",
     });
-    await updateFeedbackSubmissionStatus("fbk-1", "resolved");
+    // Response protocol: resolving carries the user-visible message.
+    await updateFeedbackSubmissionStatus("fbk-1", "resolved", "Confirmed — the answer key is corrected.");
 
     assert.ok(calls.every((call) => call.url.includes("firestore.googleapis.com")));
     assert.ok(calls.every((call) => !call.url.includes("auth.example.com")));

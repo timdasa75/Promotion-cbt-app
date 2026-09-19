@@ -147,7 +147,7 @@ export async function getAdminFeedbackSubmissions({ cloudAuthEnabled = false, cu
   return Array.isArray(result?.feedback) ? result.feedback : [];
 }
 
-export async function updateFeedbackSubmissionStatus(feedbackId, status, { cloudAuthEnabled = false, currentUserIsAdmin = false, session = null, refreshSession } = {}, { patchFeedback, now = () => new Date().toISOString() } = {}) {
+export async function updateFeedbackSubmissionStatus(feedbackId, status, { cloudAuthEnabled = false, currentUserIsAdmin = false, session = null, refreshSession, resolution = "" } = {}, { patchFeedback, now = () => new Date().toISOString() } = {}) {
   const normalizedFeedbackId = String(feedbackId || "").trim();
   if (!normalizedFeedbackId) throw new Error("Feedback id is required.");
   const nextStatus = normalizeFeedbackStatus(status);
@@ -157,21 +157,32 @@ export async function updateFeedbackSubmissionStatus(feedbackId, status, { cloud
   if (typeof refreshSession !== "function") throw new Error("Admin session is unavailable.");
   const freshSession = await refreshSession(session, { clearOnFailure: true });
   if (!freshSession?.accessToken) throw new Error("Admin session is unavailable.");
+  // Resolution note: the response text the user sees in their My Feedback
+  // card. Required by the response protocol when resolving; ignored (and
+  // never persisted) for other status changes.
+  const normalizedResolution = nextStatus === "resolved" ? String(resolution || "").trim() : "";
+  if (nextStatus === "resolved" && !normalizedResolution) throw new Error("A resolution message is required when resolving feedback.");
   if (patchFeedback) {
     const nowIso = toIsoTimestamp(now());
-    await patchFeedback(freshSession.accessToken, normalizedFeedbackId, {
+    const patch = {
       status: { stringValue: nextStatus },
       updatedAt: { timestampValue: nowIso },
       reviewedAt: { timestampValue: nowIso },
       reviewedBy: { stringValue: normalizeEmail(freshSession?.user?.email || "") },
-    });
-    return { feedbackId: normalizedFeedbackId, status: nextStatus, reviewedAt: nowIso };
+    };
+    if (nextStatus === "resolved") {
+      patch.resolution = { stringValue: normalizedResolution };
+      patch.adminReply = { stringValue: normalizedResolution };
+      patch.resolvedAt = { timestampValue: nowIso };
+    }
+    await patchFeedback(freshSession.accessToken, normalizedFeedbackId, patch);
+    return { feedbackId: normalizedFeedbackId, status: nextStatus, reviewedAt: nowIso, resolution: normalizedResolution };
   }
   const nowIso = toIsoTimestamp(now());
   if (typeof window !== "undefined") {
-    await workerRequest("feedback/status", { feedbackId: normalizedFeedbackId, status: nextStatus, reviewer: normalizeEmail(freshSession?.user?.email || "") }, freshSession.accessToken);
+    await workerRequest("feedback/status", { feedbackId: normalizedFeedbackId, status: nextStatus, reviewer: normalizeEmail(freshSession?.user?.email || ""), resolution: normalizedResolution }, freshSession.accessToken);
   }
-  return { feedbackId: normalizedFeedbackId, status: nextStatus, reviewedAt: nowIso };
+  return { feedbackId: normalizedFeedbackId, status: nextStatus, reviewedAt: nowIso, resolution: normalizedResolution };
 }
 
 export async function getUserFeedbackList({ cloudAuthEnabled = false, currentUser = null, session = null, refreshSession } = {}, { limit = 50 } = {}) {

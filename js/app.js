@@ -7083,9 +7083,19 @@ function renderAdminFeedbackList() {
       if (!feedbackId || !nextStatus) return;
       const target = adminFeedbackSubmissions.find((entry) => String(entry?.feedbackId || "") === feedbackId);
       const targetLabel = target?.email || feedbackId;
+      // Response protocol: resolving must carry a user-visible message — the
+      // user sees it in their My Feedback card. Empty resolution cancels.
+      let resolution = "";
+      if (nextStatus === "resolved") {
+        resolution = String(window.prompt("Message to the user (visible in their My Feedback card):", "") || "").trim();
+        if (!resolution) {
+          showWarning("Resolve cancelled — a response message is required.");
+          return;
+        }
+      }
       try {
         await runOperationWithFeedback(
-          () => updateFeedbackSubmissionStatus(feedbackId, nextStatus),
+          () => updateFeedbackSubmissionStatus(feedbackId, nextStatus, resolution),
           {
             loadingMessage: "Updating feedback status...",
             successMessage: buildAdminFeedbackStatusMessage(nextStatus),
@@ -7155,8 +7165,10 @@ function renderAdminFeedbackList() {
           feedbackEntry.adminReply = replyText;
           feedbackEntry.repliedAt = new Date().toISOString();
           feedbackEntry.repliedBy = session.user?.email || "admin";
-          // Auto-set status to in_review when replying
-          if (feedbackEntry.status !== "in_review") {
+          // Replying means the submission is being handled: promote "new" to
+          // in_review, but never demote a closed item (resolved/dismissed) —
+          // the Worker enforces the same rule server-side.
+          if (feedbackEntry.status === "new" || !feedbackEntry.status) {
             await updateFeedbackSubmissionStatus(feedbackId, "in_review");
             feedbackEntry.status = "in_review";
           }
@@ -8467,14 +8479,6 @@ function switchAdminTab(tabName) {
     renderAdminQuestionBank();
   }
 }
-// Navigate to a specific sub-item in the admin sidebar
-function switchAdminSubTab(subName) {
-  const subItem = document.querySelector(`.admin-nav-subitem[data-admin-sub="${subName}"]`);
-  if (subItem) {
-    subItem.click();
-  }
-}
-
 function handleAdminStatCardClick(statType) {
   switch (statType) {
     case 'total-users':

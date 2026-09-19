@@ -286,11 +286,22 @@ export function buildAdminFeedbackItemModel(entry = {}, {
   const isResolved = status === "resolved";
   const isDismissed = status === "dismissed";
   const isClosed = isResolved || isDismissed;
+  // Response shown to the admin: an explicit reply, or — critically — the
+  // resolution note written when the item was resolved. Users only ever see
+  // adminReply in their My Feedback card, so a resolution without a reply
+  // would be invisible to them; the admin sees both here.
   const hasReply = Boolean(entry?.adminReply);
+  const hasResolution = isResolved && Boolean(entry?.resolution);
   const safeReply = escapeHtml(entry?.adminReply || "");
-  const repliedLabel = hasReply
-    ? `<div class="admin-feedback-reply-display"><span class="meta">Admin Reply:</span><p>${safeReply}</p></div>`
-    : "";
+  const safeResolution = escapeHtml(entry?.resolution || "");
+  const repliedLabel = [
+    hasReply
+      ? `<div class="admin-feedback-reply-display"><span class="meta">Admin Reply:</span><p>${safeReply}</p></div>`
+      : "",
+    hasResolution
+      ? `<div class="admin-feedback-reply-display"><span class="meta">Resolution:</span><p>${safeResolution}</p></div>`
+      : "",
+  ].filter(Boolean).join("");
 
   // "Fix question" jumps to the Question Bank editor pre-loaded with the
   // flagged question; only meaningful when the submission carries context.
@@ -309,9 +320,11 @@ export function buildAdminFeedbackItemModel(entry = {}, {
           <button class="btn btn-ghost btn-sm" data-feedback-id="${safeId}" data-feedback-status="dismissed" type="button">Dismiss</button>`;
   }
 
-  // Reply section: only show for non-closed items
+  // Reply section: available while a conversation is possible. Dismissed
+  // items hide it; resolved items keep it so the admin can follow up in the
+  // same thread without reopening (replying never demotes a closed item).
   let replySection = "";
-  if (!isClosed) {
+  if (!isDismissed) {
     replySection = `
       <div class="admin-feedback-reply-section">
         <textarea class="admin-feedback-reply-input" placeholder="Reply to this feedback..." rows="2" data-feedback-id="${safeId}"></textarea>

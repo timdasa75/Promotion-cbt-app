@@ -3093,8 +3093,12 @@ async function handleFeedbackStatusUpdate(request, env) {
   const reviewedBy = normalizeEmail(body?.reviewer || actor?.email || "");
   const nowIso = new Date().toISOString();
   const resolutionText = String(body?.resolution || "").trim();
+  // Response protocol: admin_reply is the user-visible channel (the My Feedback
+  // card renders it, with the unseen badge). A resolution note is therefore
+  // mirrored into admin_reply so resolving without a separate reply still
+  // reaches the user.
   const setReviewFields = status === "resolved"
-    ? `SET status = ?2, updated_at = ?3, reviewed_at = ?3, reviewed_by = ?4, resolved_at = ?3, resolved_by = ?4, resolution = ?5`
+    ? `SET status = ?2, updated_at = ?3, reviewed_at = ?3, reviewed_by = ?4, resolved_at = ?3, resolved_by = ?4, resolution = ?5, admin_reply = ?5, replied_at = ?3, replied_by = ?4`
     : `SET status = ?2, updated_at = ?3, reviewed_at = ?3, reviewed_by = ?4`;
   const result = await database
     .prepare(`
@@ -3169,7 +3173,16 @@ async function handleFeedbackReply(request, env) {
   if (!replyText) throw createRouteError(400, "Reply text is required.");
   const nowIso = new Date().toISOString();
   const actorEmail = normalizeEmail(actor?.email || "");
-  await database.prepare(`UPDATE feedback_submissions SET admin_reply = ?2, replied_at = ?3, replied_by = ?4, status = ?5 WHERE feedback_id = ?1`).bind(feedbackId, replyText, nowIso, actorEmail, "in_review").run();
+  // Reply protocol: replying means the submission is being handled, so a
+  // "new" submission is promoted to in_review — but a closed item
+  // (resolved/dismissed) keeps its status. The reply text itself is what the
+  // user sees in their My Feedback card regardless of status.
+  await database.prepare(
+    `UPDATE feedback_submissions
+     SET admin_reply = ?2, replied_at = ?3, replied_by = ?4,
+         status = CASE WHEN status IN ('resolved', 'dismissed') THEN status ELSE ?5 END
+     WHERE feedback_id = ?1`
+  ).bind(feedbackId, replyText, nowIso, actorEmail, "in_review").run();
   // Same free-tier suspension as resolve emails: the email plus its personalization
   // lookup cost D1 reads per reply. Users see the reply in the profile page's
   // "My Feedback" card (with an unread badge) instead of their inbox.

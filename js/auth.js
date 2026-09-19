@@ -1109,13 +1109,14 @@ export async function getUserFeedbackList(limit = 50) {
   return getUserFeedbackListService(options, { limit });
 }
 
-export async function updateFeedbackSubmissionStatus(feedbackId, status) {
+export async function updateFeedbackSubmissionStatus(feedbackId, status, resolution = "") {
   const session = readSession();
   const options = {
     cloudAuthEnabled: isCloudAuthEnabled(),
     currentUserIsAdmin: isCurrentUserAdmin(),
     session,
     refreshSession: () => ensureAdminCloudSession(),
+    resolution,
   };
   const extra = {};
   if (session?.provider === "firebase") {

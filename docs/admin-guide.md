@@ -114,8 +114,36 @@ Admin actions:
 - `Mark In Review`
 - `Resolve`
 - `Dismiss`
+- `Send Reply` (text box on each card)
+- `Fix question` (question reports: opens the Question Bank editor)
 
 Every feedback status change is also written into the admin operation history.
+
+### Response protocol
+
+Every submission must end in a user-visible response. Users do not get
+notification emails on the free tier — they see admin responses only in the
+**My Feedback** card on their profile page (with a "New reply" badge on the
+next visit). That card shows the `admin_reply` text.
+
+1. **Acknowledge** — set `In Review` when you start looking (optional but
+   good practice).
+2. **Resolve with a message** — clicking `Resolve` prompts for a message to
+   the user. The prompt is mandatory: an empty message cancels the resolve.
+   The message is stored as both `resolution` (internal record) and
+   `admin_reply` (the channel the user actually sees), so a resolve on its
+   own always reaches the user.
+3. **Or reply without resolving** — for an ongoing conversation, use the
+   reply box. Replying promotes `New` to `In Review` but never demotes a
+   closed item; resolved submissions keep their status while you follow up.
+4. **Dismiss** closes without a user-facing response. Use it for spam or
+   no-action-required items; the user sees the `Dismissed` badge only.
+5. **Question reports** — use `Fix question`, correct the bank, then resolve
+   with a short note of what was changed (e.g. "Re-keyed to OHCSF per PSR
+   030102 — thanks for catching this").
+
+The admin feedback card shows both the reply and the resolution note so you
+can see exactly what the user was told.
 
 ## Data Source Behavior
 

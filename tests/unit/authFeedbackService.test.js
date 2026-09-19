@@ -177,6 +177,8 @@ test("admin feedback service lists submissions and patches review status", async
       currentUserIsAdmin: true,
       session: { provider: "firebase", accessToken: "token-1" },
       refreshSession: async () => ({ accessToken: "token-admin", user: { email: "ADMIN@example.com" } }),
+      // Response protocol: resolving carries a user-visible message.
+      resolution: "Re-keyed to OHCSF per PSR 030102 — thanks for the report.",
     },
     {
       patchFeedback: async (token, feedbackId, fields) => patches.push({ token, feedbackId, fields }),
@@ -190,4 +192,7 @@ test("admin feedback service lists submissions and patches review status", async
   assert.equal(patches[0].feedbackId, "fbk-1");
   assert.equal(patches[0].fields.status.stringValue, "resolved");
   assert.equal(patches[0].fields.reviewedBy.stringValue, "admin@example.com");
+  assert.equal(patches[0].fields.resolution.stringValue, "Re-keyed to OHCSF per PSR 030102 — thanks for the report.");
+  // User-visible channel: the My Feedback card renders adminReply only.
+  assert.equal(patches[0].fields.adminReply.stringValue, "Re-keyed to OHCSF per PSR 030102 — thanks for the report.");
 });
