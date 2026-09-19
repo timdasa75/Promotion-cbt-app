@@ -170,6 +170,7 @@ import {
   countUnseenFeedbackReplies,
   isFeedbackReplyUnseen,
   markFeedbackRepliesSeen,
+  parseFeedbackReplyThread,
   readFeedbackSeenReplies,
 } from "./appFeedbackView.js";
 import { describeBankError, initializeAdminQuestionBank, openQuestionBankEditorForFeedback, renderAdminQuestionBank } from "./adminQuestionBank.js";
@@ -7563,19 +7564,30 @@ async function renderUserFeedbackList() {
       const statusLabel = formatFeedbackStatusLabel(entry.status);
       const categoryLabel = formatFeedbackCategoryLabel(entry.category);
       const createdAt = formatDateTime(entry.createdAt);
+      const seenMs = Date.parse(seenReplies || "");
       
+      // Reply thread: the Worker appends each admin message, so render every
+      // entry in order with its own date — a follow-up reply adds to the
+      // conversation instead of replacing the resolution the user saw.
+      // Long text clamps to a few lines and expands on click.
       let adminReplyHtml = "";
-      if (entry.adminReply) {
-        const replyDate = formatDateTime(entry.repliedAt);
-        const unseenBadge = isFeedbackReplyUnseen(entry, seenReplies)
-          ? '<span class="user-feedback-unread-badge" title="New reply from the team">New reply</span>'
-          : "";
-        adminReplyHtml = `
-          <div class="admin-feedback-reply-display ${unseenBadge ? "is-unread" : ""}">
-            <span class="meta">Admin Reply (${replyDate}): ${unseenBadge}</span>
-            <p>${escapeHtml(entry.adminReply)}</p>
-          </div>
-        `;
+      const thread = parseFeedbackReplyThread(entry.adminReply);
+      if (thread.length) {
+        const entriesHtml = thread.map((msg) => {
+          const entryMs = Date.parse(msg.repliedAt || "");
+          const unseen = Number.isFinite(entryMs) && Number.isFinite(seenMs) && entryMs > seenMs;
+          const unseenBadge = unseen
+            ? '<span class="user-feedback-unread-badge" title="New reply from the team">New reply</span>'
+            : "";
+          const dateLabel = msg.repliedAt ? formatDateTime(msg.repliedAt) : formatDateTime(entry.repliedAt);
+          return `
+            <div class="admin-feedback-reply-display ${unseen ? "is-unread" : ""}">
+              <span class="meta">Admin Reply (${escapeHtml(dateLabel)}): ${unseenBadge}</span>
+              <p class="user-feedback-clampable" title="Click to expand">${escapeHtml(msg.text)}</p>
+            </div>
+          `;
+        }).join("");
+        adminReplyHtml = `<div class="user-feedback-reply-thread">${entriesHtml}</div>`;
       }
       
       item.innerHTML = `
@@ -7583,11 +7595,16 @@ async function renderUserFeedbackList() {
           <span class="user-feedback-category">${escapeHtml(categoryLabel)}</span>
           <span class="user-feedback-status ${statusClass}">${escapeHtml(statusLabel)}</span>
         </div>
-        <div class="user-feedback-message">${escapeHtml(entry.message)}</div>
+        <div class="user-feedback-message user-feedback-clampable" title="Click to expand">${escapeHtml(entry.message)}</div>
         ${entry.topicName ? `<div class="user-feedback-meta">Topic: ${escapeHtml(entry.topicName)}</div>` : ""}
         <div class="user-feedback-date">Submitted: ${escapeHtml(createdAt)}</div>
         ${adminReplyHtml}
       `;
+      
+      // Click-to-expand for clamped long text (message + reply entries).
+      item.querySelectorAll(".user-feedback-clampable").forEach((el) => {
+        el.addEventListener("click", () => el.classList.toggle("expanded"));
+      });
       
       container.appendChild(item);
     });

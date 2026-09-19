@@ -9895,6 +9895,33 @@ body.dark-mode #quizScreen .quiz-actions .btn-secondary:hover {
     color: var(--ink-400);
 }
 
+/* Reply thread on the user's My Feedback card: stacked admin messages, each
+   with its own date. Long text clamps to 6 lines and expands on click — a
+   resolution note can easily exceed the card's comfortable height. */
+.user-feedback-reply-thread {
+    display: grid;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.user-feedback-clampable {
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    cursor: pointer;
+}
+
+.user-feedback-clampable.expanded {
+    display: block;
+    -webkit-line-clamp: none;
+    -webkit-box-orient: horizontal;
+    overflow: visible;
+}
+
 @media (max-width: 699px) {
     .feedback-modal-card {
         width: 100%;

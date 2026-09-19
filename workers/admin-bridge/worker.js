@@ -3175,14 +3175,25 @@ async function handleFeedbackReply(request, env) {
   const actorEmail = normalizeEmail(actor?.email || "");
   // Reply protocol: replying means the submission is being handled, so a
   // "new" submission is promoted to in_review — but a closed item
-  // (resolved/dismissed) keeps its status. The reply text itself is what the
-  // user sees in their My Feedback card regardless of status.
+  // (resolved/dismissed) keeps its status. Prior admin messages are
+  // preserved: each reply is appended as a timestamped entry so the user's
+  // My Feedback card renders the full conversation instead of losing the
+  // resolution note to a follow-up reply. Entries are delimited with a
+  // control-plane prefix that carries no meaning inside message text
+  // (\u2026 is a plain ellipsis character, legal in user content).
+  const replyEntry = `[${nowIso}] ${replyText}`;
+  const previous = await database
+    .prepare(`SELECT admin_reply FROM feedback_submissions WHERE feedback_id = ?1`)
+    .bind(feedbackId)
+    .first();
+  const priorReply = String(previous?.admin_reply || "").trim();
+  const replyValue = priorReply ? `${priorReply}\n\u2026\n${replyEntry}` : replyEntry;
   await database.prepare(
     `UPDATE feedback_submissions
      SET admin_reply = ?2, replied_at = ?3, replied_by = ?4,
          status = CASE WHEN status IN ('resolved', 'dismissed') THEN status ELSE ?5 END
      WHERE feedback_id = ?1`
-  ).bind(feedbackId, replyText, nowIso, actorEmail, "in_review").run();
+  ).bind(feedbackId, replyValue, nowIso, actorEmail, "in_review").run();
   // Same free-tier suspension as resolve emails: the email plus its personalization
   // lookup cost D1 reads per reply. Users see the reply in the profile page's
   // "My Feedback" card (with an unread badge) instead of their inbox.
@@ -3215,7 +3226,7 @@ async function handleUserFeedbackList(request, env) {
   const result = await database
     .prepare(`
       SELECT feedback_id, user_id, email, category, status, source_screen, message, created_at, updated_at,
-             reviewed_at, reviewed_by, admin_reply, replied_at, replied_by,
+             reviewed_at, reviewed_by, admin_reply, replied_at, replied_by, resolution,
              topic_id, topic_name, question_id, quiz_attempt_id, session_mode,
              question_preview, score_summary, difficulty, source_document, source_section, subcategory_name
       FROM feedback_submissions

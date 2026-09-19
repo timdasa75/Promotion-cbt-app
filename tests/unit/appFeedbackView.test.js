@@ -1,6 +1,8 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
+  parseFeedbackReplyThread,
+  countUnseenRepliesInThread,
   buildAdminFeedbackEmptyState,
   buildAdminFeedbackItemModel,
   buildAdminFeedbackStatusMessage,
@@ -258,4 +260,50 @@ test("admin feedback item model surfaces question context for resolution", () =>
   assert.match(item.html, /What is the primary objective\?/);
   assert.match(item.html, /60% score - 24\/40 correct/);
   assert.match(item.html, /cloudflare · free · 1280x720/);
+});
+
+test("parseFeedbackReplyThread splits appended entries and keeps legacy replies whole", () => {
+  // Legacy single reply (pre-thread format): one untimestamped entry.
+  assert.deepEqual(parseFeedbackReplyThread("Fixed the answer key."), [
+    { repliedAt: "", text: "Fixed the answer key." },
+  ]);
+
+  // Thread format: [iso] entries separated by a bare ellipsis line.
+  const threaded = [
+    "[2026-09-18T22:15:00.000Z] Verified against PSR 030102 — re-keyed to OHCSF.",
+    "\u2026",
+    "[2026-09-19T08:30:00.000Z] The fix is live; thanks for the report.",
+  ].join("\n");
+  const parsed = parseFeedbackReplyThread(threaded);
+  assert.equal(parsed.length, 2);
+  assert.equal(parsed[0].repliedAt, "2026-09-18T22:15:00.000Z");
+  assert.match(parsed[0].text, /PSR 030102/);
+  assert.equal(parsed[1].repliedAt, "2026-09-19T08:30:00.000Z");
+
+  // Multi-line entry text is preserved inside its entry.
+  const multiline = "[2026-09-18T22:15:00.000Z] Line one.\nLine two.\n\u2026\n[2026-09-19T08:30:00.000Z] Next.";
+  const parsedMulti = parseFeedbackReplyThread(multiline);
+  assert.equal(parsedMulti.length, 2);
+  assert.equal(parsedMulti[0].text, "Line one.\nLine two.");
+
+  // Empty / whitespace-only input yields no entries.
+  assert.deepEqual(parseFeedbackReplyThread(""), []);
+  assert.deepEqual(parseFeedbackReplyThread("   \n\u2026\n  "), []);
+});
+
+test("countUnseenRepliesInThread counts entries newer than the seen marker only", () => {
+  const threaded = [
+    "[2026-09-18T22:15:00.000Z] First reply.",
+    "\u2026",
+    "[2026-09-19T08:30:00.000Z] Second reply.",
+  ].join("\n");
+
+  // No valid seen marker: nothing counts as unseen (badge handled elsewhere).
+  assert.equal(countUnseenRepliesInThread(threaded, ""), 0);
+  // Seen up to the first reply: only the second is new.
+  assert.equal(countUnseenRepliesInThread(threaded, "2026-09-18T23:00:00.000Z"), 1);
+  // Seen everything: zero.
+  assert.equal(countUnseenRepliesInThread(threaded, "2026-09-19T09:00:00.000Z"), 0);
+  // Seen nothing: both are new.
+  assert.equal(countUnseenRepliesInThread(threaded, "2026-09-01T00:00:00.000Z"), 2);
 });

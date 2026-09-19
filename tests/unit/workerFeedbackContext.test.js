@@ -12,7 +12,7 @@ async function buildToken() {
   return `${SESSION_ID}.${SESSION_SECRET}`;
 }
 
-function createAuthDatabase({ captures, sessionOverrides = {} } = {}) {
+function createAuthDatabase({ captures, sessionOverrides = {}, currentAdminReply = "" } = {}) {
   const writes = Array.isArray(captures) ? captures : [];
   return {
     prepare(sql) {
@@ -34,6 +34,11 @@ function createAuthDatabase({ captures, sessionOverrides = {} } = {}) {
               }
               if (sql.includes("FROM feedback_submissions") && sql.includes("SELECT email")) {
                 return { email: "reporter@example.com", status: "resolved", resolution: "" };
+              }
+              // Reply-append path: the handler reads the prior thread before
+              // appending the new entry.
+              if (sql.includes("FROM feedback_submissions") && sql.includes("SELECT admin_reply")) {
+                return { admin_reply: currentAdminReply };
               }
               if (sql.includes("FROM auth_users")) {
                 return {
@@ -308,7 +313,8 @@ test("feedback reply does not email the user by default (free-tier suspension)",
   const update = captures.find((entry) => entry.sql.includes("UPDATE feedback_submissions"));
   assert.ok(update, "reply should still be stored");
   assert.match(update.sql, /admin_reply/);
-  assert.equal(update.values[1], "Thanks — this is fixed in the latest build.");
+  // Thread format: each reply is a timestamped entry (see parseFeedbackReplyThread).
+  assert.match(update.values[1], /^\[\d{4}-\d{2}-\d{2}T[\d:.]+Z\] Thanks — this is fixed in the latest build\.$/);
   // The personalization name lookup is suspended along with the email.
   assert.ok(
     !captures.some((entry) => entry.sql.includes("SELECT id, name FROM auth_users")),

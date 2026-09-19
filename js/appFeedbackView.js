@@ -232,6 +232,47 @@ export function buildAdminFeedbackStatusMessage(nextStatus) {
   return `Feedback marked as ${formatFeedbackStatusLabel(nextStatus)}.`;
 }
 
+// Reply threads: the Worker appends each admin message as "[iso] text"
+// entries separated by a bare ellipsis line, so a follow-up reply never
+// destroys the resolution the user was already shown. Parse that stored
+// format into ordered entries; anything without the marker (legacy single
+// replies) comes back as one untimestamped entry.
+export const FEEDBACK_REPLY_SEPARATOR = "\u2026";
+
+export function parseFeedbackReplyThread(adminReply) {
+  const raw = String(adminReply || "");
+  if (!raw.trim()) return [];
+  const entries = [];
+  let current = null;
+  for (const line of raw.split("\n")) {
+    const trimmed = line.trim();
+    if (trimmed === FEEDBACK_REPLY_SEPARATOR) {
+      if (current) entries.push(current);
+      current = null;
+      continue;
+    }
+    const stampMatch = trimmed.match(/^\[((\d{4})-(\d{2})-(\d{2})[^\]]*)\]\s?(.*)$/);
+    if (stampMatch && !current) {
+      current = { repliedAt: stampMatch[1], text: stampMatch[5] };
+    } else {
+      if (!current) current = { repliedAt: "", text: trimmed };
+      else current.text += `\n${trimmed}`;
+    }
+  }
+  if (current) entries.push(current);
+  return entries.filter((entry) => entry.text.trim());
+}
+
+export function countUnseenRepliesInThread(adminReply, seenIso) {
+  const seenMs = Date.parse(seenIso || "");
+  if (!Number.isFinite(seenMs)) return 0;
+  return parseFeedbackReplyThread(adminReply)
+    .filter((entry) => {
+      const ms = Date.parse(entry.repliedAt);
+      return Number.isFinite(ms) && ms > seenMs;
+    }).length;
+}
+
 export function buildAdminFeedbackItemModel(entry = {}, {
   formatDateTime = () => "-",
   formatRelativeTime = () => "",
@@ -286,18 +327,20 @@ export function buildAdminFeedbackItemModel(entry = {}, {
   const isResolved = status === "resolved";
   const isDismissed = status === "dismissed";
   const isClosed = isResolved || isDismissed;
-  // Response shown to the admin: an explicit reply, or — critically — the
-  // resolution note written when the item was resolved. Users only ever see
-  // adminReply in their My Feedback card, so a resolution without a reply
-  // would be invisible to them; the admin sees both here.
-  const hasReply = Boolean(entry?.adminReply);
+  // Response shown to the admin: the full reply thread (the Worker appends
+  // follow-ups) plus the resolution note. Users only ever see the thread in
+  // their My Feedback card, so the admin sees exactly what was sent.
   const hasResolution = isResolved && Boolean(entry?.resolution);
-  const safeReply = escapeHtml(entry?.adminReply || "");
   const safeResolution = escapeHtml(entry?.resolution || "");
+  const threadEntries = parseFeedbackReplyThread(entry?.adminReply);
+  const threadHtml = threadEntries
+    .map((msg) => {
+      const stamp = msg.repliedAt ? ` (${escapeHtml(formatDateTime(msg.repliedAt))})` : (entry?.repliedAt ? ` (${escapeHtml(formatDateTime(entry.repliedAt))})` : "");
+      return `<div class="admin-feedback-reply-display"><span class="meta">Admin Reply${stamp}:</span><p>${escapeHtml(msg.text)}</p></div>`;
+    })
+    .join("");
   const repliedLabel = [
-    hasReply
-      ? `<div class="admin-feedback-reply-display"><span class="meta">Admin Reply:</span><p>${safeReply}</p></div>`
-      : "",
+    threadHtml,
     hasResolution
       ? `<div class="admin-feedback-reply-display"><span class="meta">Resolution:</span><p>${safeResolution}</p></div>`
       : "",
