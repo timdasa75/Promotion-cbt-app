@@ -1,5 +1,13 @@
 const admin = require("firebase-admin");
-const functions = require("firebase-functions");
+const { getAuth } = require("firebase-admin/auth");
+const { getFirestore, FieldValue } = require("firebase-admin/firestore");
+// These handlers are written against the first-generation Functions API
+// (https.onRequest, firestore.document().onDelete, auth.user().onDelete).
+// firebase-functions v7 exposes the second-generation API at the package
+// root, so the v1 namespace must be imported explicitly; the bare root import
+// leaves functions.firestore.document and functions.auth undefined and the
+// whole module throws on load.
+const functions = require("firebase-functions/v1");
 
 admin.initializeApp();
 function getAllowedAdminEmails() {
@@ -22,7 +30,7 @@ async function authenticateAdminRequest(req) {
   if (!idToken) {
     throw new Error("Missing bearer token.");
   }
-  const decoded = await admin.auth().verifyIdToken(idToken);
+  const decoded = await getAuth().verifyIdToken(idToken);
   const email = String(decoded?.email || "").trim().toLowerCase();
   if (!email) {
     throw new Error("Authenticated user has no email.");
@@ -103,7 +111,7 @@ exports.adminDeleteUserById = functions.https.onRequest(async (req, res) => {
     let authDeleted = false;
     let profileDeleted = false;
     try {
-      await admin.auth().deleteUser(userId);
+      await getAuth().deleteUser(userId);
       authDeleted = true;
     } catch (error) {
       if (error?.code !== "auth/user-not-found") {
@@ -111,7 +119,7 @@ exports.adminDeleteUserById = functions.https.onRequest(async (req, res) => {
       }
     }
 
-    const profileRef = admin.firestore().doc(`profiles/${userId}`);
+    const profileRef = getFirestore().doc(`profiles/${userId}`);
     const profileSnapshot = await profileRef.get();
     if (profileSnapshot.exists) {
       await profileRef.delete();
@@ -149,7 +157,7 @@ exports.adminListUsers = functions.https.onRequest(async (req, res) => {
     let loop = 0;
 
     do {
-      const result = await admin.auth().listUsers(1000, pageToken);
+      const result = await getAuth().listUsers(1000, pageToken);
       result.users.forEach((userRecord) => {
         users.push({
           id: String(userRecord.uid || ""),
@@ -192,7 +200,7 @@ exports.deleteAuthUserOnProfileDeletion = functions.firestore
       return null;
     }
     try {
-      await admin.auth().deleteUser(userId);
+      await getAuth().deleteUser(userId);
       functions.logger.info(`Deleted Firebase Auth user ${userId} after profile removal.`);
     } catch (error) {
       if (error.code === "auth/user-not-found") {
@@ -216,7 +224,7 @@ exports.deleteProfileOnAuthDeletion = functions.auth.user().onDelete(async (user
     return null;
   }
   try {
-    const profileRef = admin.firestore().doc(`profiles/${userId}`);
+    const profileRef = getFirestore().doc(`profiles/${userId}`);
     const profileSnapshot = await profileRef.get();
     if (!profileSnapshot.exists) {
       functions.logger.info(`No profile to delete for auth user ${userId}.`);
@@ -259,7 +267,7 @@ exports.adminLookupUsers = functions.https.onRequest(async (req, res) => {
     const users = [];
     for (let index = 0; index < normalizedEmails.length; index += 100) {
       const batch = normalizedEmails.slice(index, index + 100);
-      const result = await admin.auth().getUsers(batch.map((email) => ({ email })));
+      const result = await getAuth().getUsers(batch.map((email) => ({ email })));
       result.users.forEach((userRecord) => {
         const email = String(userRecord.email || "").toLowerCase();
         if (!email) return;
@@ -301,14 +309,13 @@ exports.adminSetUserStatus = functions.https.onRequest(async (req, res) => {
     const nextStatus = statusRaw === "suspended" ? "suspended" : "active";
     const disabled = nextStatus === "suspended";
 
-    await admin.auth().updateUser(userId, { disabled });
-    await admin
-      .firestore()
+    await getAuth().updateUser(userId, { disabled });
+    await getFirestore()
       .doc(`profiles/${userId}`)
       .set(
         {
           status: nextStatus,
-          lastSeenAt: admin.firestore.FieldValue.serverTimestamp(),
+          lastSeenAt: FieldValue.serverTimestamp(),
         },
         { merge: true },
       );
