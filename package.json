@@ -52,9 +52,9 @@
   },
   "homepage": "https://github.com/timdasa75/Promotion-cbt-app#readme",
   "devDependencies": {
-    "@playwright/test": "^1.58.2",
+    "@playwright/test": "^1.63.0",
     "jspdf": "^4.2.1",
-    "vite": "^8.0.1",
+    "vite": "^8.3.0",
     "vite-plugin-static-copy": "^3.3.0",
     "wrangler": "^4.86.0"
   },
